@@ -7,7 +7,7 @@ using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.CodeAnalysis.Text;
 using Vogen.Generator.Diagnostics;
 
-namespace Vogen.Generator.generators
+namespace Vogen.Generator.Generators
 {
     [Generator]
     public class ValueObjectGenerator : ISourceGenerator
@@ -106,10 +106,9 @@ namespace Vogen.Generator.generators
 
                 IGenerateSourceCode generator = GetGenerator(item);
 
-                string? classAsText = generator.BuildClass(item, voClass, _log);
+                string classAsText = generator.BuildClass(item, voClass, _log);
 
                 SourceText sourceText = SourceText.From(classAsText, Encoding.UTF8);
-                
 
                 string filename = $"{item.FullNamespace}_{voClass.Identifier}.Generated.cs";
 

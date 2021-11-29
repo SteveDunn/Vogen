@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 
-namespace Vogen.Generator.generators;
+namespace Vogen.Generator.Generators;
 
 public static class Util
 {

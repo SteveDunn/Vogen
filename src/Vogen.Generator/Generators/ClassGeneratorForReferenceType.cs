@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 
-namespace Vogen.Generator.generators;
+namespace Vogen.Generator.Generators;
 
 public class ClassGeneratorForReferenceType : IGenerateSourceCode
 {
