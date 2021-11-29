@@ -81,7 +81,7 @@ namespace Vogen.Tests
         }
 
         [Fact]
-        public void validation()
+        public void Validation()
         {
             Func<Age> act = () => Age.From(12);
             act.Should().ThrowExactly<ValueObjectValidationException>();
@@ -108,57 +108,26 @@ namespace Vogen.Tests
 
             Func<MinimalValidation> act6 = () => MinimalValidation.From(1);
             act6.Should().ThrowExactly<ValueObjectValidationException>().WithMessage("[none provided]");
-
         }
 
         [Fact]
-        public void no_validation()
+        public void No_validation()
         {
             Func<Anything> act = () => Anything.From(int.MaxValue);
             act.Should().NotThrow();
         }
 
         [Fact]
-        public void nullness()
+        public void Nullness()
         {
             (Age.From(50) == null!).Should().BeFalse();
-            //todo:
-            // Age.From(50).Equals(null!).Should().BeFalse();
+            Age.From(50).Equals(null!).Should().BeFalse();
 
             (Age.From(50) != null!).Should().BeTrue();
-
-            // Func<Daves> act = () => Daves.From(null!);
-            // act.Should().ThrowExactly<ValueObjectValidationException>();
         }
 
-        //todo: unassigned/default etc.
-        // [Fact]
-        // public void nullobject()
-        // {
-        //     // OK
-        //     PlayerNumber.From(5).Value.Should().Be(5);
-        //
-        //     // Invalid
-        //     Func<PlayerNumber> act = () => PlayerNumber.From(0);
-        //     act.Should().Throw<ValueObjectValidationException>();
-        //
-        //     // Null
-        //     (PlayerNumber.From(5) != PlayerNumber.Unassigned).Should().BeTrue();
-        // }
-
-        // [Fact]
-        // public void collections_are_unsupported()
-        // {
-        //     Func<Daves> act = () => Daves.From(new List<Dave>
-        //     {
-        //         Dave.From("david bowie")
-        //     });
-        //
-        //     act.Should().ThrowExactly<NotSupportedException>();
-        // }
-
         [Fact]
-        public void hashing()
+        public void Hashing()
         {
             (Age.From(18).GetHashCode() == Age.From(18).GetHashCode()).Should().BeTrue();
             (Age.From(18).GetHashCode() == Age.From(19).GetHashCode()).Should().BeFalse();
@@ -167,7 +136,7 @@ namespace Vogen.Tests
         }
         
         [Fact]
-        public void to_string()
+        public void To_string()
         {
             Age.From(18).ToString().Should().Be("18");
             Age.From(100).ToString().Should().Be("100");
@@ -175,7 +144,7 @@ namespace Vogen.Tests
         }
 
         [Fact]
-        public void storing_1()
+        public void Storing_1()
         {
             var a1 = Age.From(18);
             var a2 = Age.From(50);
@@ -193,7 +162,7 @@ namespace Vogen.Tests
         }
 
         [Fact]
-        public void storing_2()
+        public void Storing_2()
         {
             var a1 = Age.From(18);
             var a2 = Age.From(18);

@@ -1,5 +1,4 @@
-﻿using System;
-using System.ComponentModel;
+﻿using System.ComponentModel;
 using BenchmarkDotNet.Attributes;
 using Vogen.SharedTypes;
 
@@ -49,14 +48,6 @@ namespace Vogen.Benchmarks.WithValidation
     [MemoryDiagnoser, Description("The underlying type is string and the VOs validation that they're not null or empty")]
     public class Underlying_string_With_Validation
     {
-        private Random _random;
-
-        [GlobalSetup]
-        public void GlobalSetup()
-        {
-            _random = new Random();
-        }
-
         private string Combine(string s1, string s2) => $"{s1}-{s2}";
         
         public NameAsClass Combine(NameAsClass s1, NameAsClass s2) => NameAsClass.From($"{s1}-{s2}");
@@ -118,7 +109,6 @@ namespace Vogen.Benchmarks.WithValidation
     [ValueObject(typeof(int))]
     public partial struct NumberAsStruct
     {
-        // todo: add diagnostic to check that this method is static
         public static Validation Validate(int value) =>
             value > 0 ? Validation.Ok : Validation.Invalid("Must be greater than zero");
     }

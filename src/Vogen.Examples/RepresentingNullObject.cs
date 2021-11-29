@@ -1,4 +1,5 @@
 ﻿using Vogen.SharedTypes;
+// ReSharper disable UnusedMember.Global
 
 namespace Vogen.Examples
 {
@@ -14,7 +15,7 @@ namespace Vogen.Examples
     {
         public static void Run()
         {
-            var id = VendorId.Unspecified;
+            _ = VendorId.Unspecified;
         }
     }
 }
