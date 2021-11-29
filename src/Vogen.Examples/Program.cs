@@ -1,4 +1,4 @@
-﻿namespace StringlyTyped.Examples
+﻿namespace Vogen.Examples
 {
     class Program
     {

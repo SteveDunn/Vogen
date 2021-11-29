@@ -11,9 +11,12 @@ Primitive Obsession AKA **StringlyTyped** means being obsessed with primitives. 
 
 ## What is the repository?
 
-This is a semi-opinionated library which generates [Value Objects](https://wiki.c2.com/?ValueObject) that wrap simple primitives such as `int`, `string`, `double` etc.
-e.g. instead of `int age` - we'd have `Age age`. `Age` might have validation that it couldn't be negative.
-e.g. instead of `string postcode` - we'd have `Postcode postcode`. `Postcode` might have validation.
+This is a semi-opinionated library which generates [Value Objects](https://wiki.c2.com/?ValueObject) that wrap simple primitives such as `int`, `string`, `double` etc. The main goal of this project is to have almost the same speed and memory performance as using primitives.
+
+Some examples:
+
+* instead of `int age` - we'd have `Age age`. `Age` might have validation that it couldn't be negative
+* instead of `string postcode` - we'd have `Postcode postcode`. `Postcode` might have validation on the format of the text
 
 The opinions are expressed as:
 
@@ -23,33 +26,43 @@ The opinions are expressed as:
 * Any validation that is not `Validation.Ok` results in a `ValueObjectValidationException` being thrown
 
 Instead of
-```
+
+```csharp
 int customerId = 42;
 ```
 
-... we have
+... we'd have
 
-```
+```csharp
 var customerId = CustomerId.From(42);
 ```
 
-## todo - new syntax and describe classes and structs
+`CustomerId` is declared as:
 
-`CustomerId` derives from this package's `ValueObject` type:
-``` cs
-public class CustomerId : ValueObject<int, CustomerId>
+```csharp
+[ValueObject(typeof(int))]
+public partial class CustomerId 
 {
 }
 ```
+That's all you need to do to switch from a primitive to a Value Object.
 
 Here it is again with some validation
 
-``` cs
-public class CustomerId : ValueObject<int, CustomerId>
+```csharp
+[ValueObject(typeof(int))]
+public partial class CustomerId 
 {
-    public override Validation Validate() => Value > 0 
-      ? Validation.Ok 
-      : Validation.Invalid("Customer IDs cannot be zero or negative.");
+    private static Validation Validate(int value) => 
+        value > 0 ? Validation.Ok : Validation.Invalid(); 
+}
+```
+
+This generates the constructor and equality code. If your type better suits a value-type, which the example above does (being an `int`), then just change `class` to `struct`:
+```csharp
+[ValueObject(typeof(int))]
+public partial struct CustomerId 
+{
 }
 ```
 
@@ -101,6 +114,8 @@ public void DoSomething(CustomerId customerId, SupplierId supplierId, Amount amo
 Now, the caller can't mess up the ordering of parameters, and the objects themselves are guaranteed to be valid and immutable.
 
 -----
+
+todo: need to tidy up everything below
 
 Notes for the new source generated version below - needs tidying up:
 

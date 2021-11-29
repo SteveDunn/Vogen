@@ -1,7 +1,19 @@
 ﻿using System;
+using Vogen.SharedTypes;
 
-namespace StringlyTyped.Examples
+namespace Vogen.Examples
 {
+    [ValueObject(typeof(string))]
+
+    public partial class Dave
+    {
+        private static Validation Validate(string value) =>
+            value.StartsWith("dave ", StringComparison.OrdinalIgnoreCase) ||
+            value.StartsWith("david ", StringComparison.OrdinalIgnoreCase)
+                ? Validation.Ok
+                : Validation.Invalid($"must be a dave or david - {value} is neither.");
+    }
+
     internal static class ValidationExample
     {
         public static void Run()
@@ -23,16 +35,7 @@ namespace StringlyTyped.Examples
             }
         }
 
-        public class Dave : ValueObject<string, Dave>
-        {
-            public override Validation Validate() =>
-                Value.StartsWith("dave ", StringComparison.OrdinalIgnoreCase) ||
-                Value.StartsWith("david ", StringComparison.OrdinalIgnoreCase)
-                    ? Validation.Ok
-                    : Validation.Invalid($"must be a dave or david - {Value} is neither.");
-        }
-
-        internal class DaveProcessor
+        private class DaveProcessor
         {
             internal void Process(Dave dave) => Console.WriteLine($"Processing {dave}");
         }

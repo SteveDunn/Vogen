@@ -23,6 +23,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "_files", "_files", "{72AF0E
 		README.md = README.md
 	EndProjectSection
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Vogen.Examples", "src\Vogen.Examples\Vogen.Examples.csproj", "{6FE6E6FB-9C4B-4DF1-9AB3-48004479DB8A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -45,6 +47,10 @@ Global
 		{213EEE06-F547-4E46-A365-A0B8595D905B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{213EEE06-F547-4E46-A365-A0B8595D905B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{213EEE06-F547-4E46-A365-A0B8595D905B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6FE6E6FB-9C4B-4DF1-9AB3-48004479DB8A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6FE6E6FB-9C4B-4DF1-9AB3-48004479DB8A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6FE6E6FB-9C4B-4DF1-9AB3-48004479DB8A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6FE6E6FB-9C4B-4DF1-9AB3-48004479DB8A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -54,6 +60,7 @@ Global
 		{2532B83A-01C3-4C91-AE0C-682CD9508028} = {9955BB98-6ACF-4EC8-AE59-1B8DDCCBDCC6}
 		{23A799DB-6FCE-462D-8F7D-76F4B1FAD20B} = {57174048-09D4-46A6-932C-8F90F2B603D0}
 		{213EEE06-F547-4E46-A365-A0B8595D905B} = {57174048-09D4-46A6-932C-8F90F2B603D0}
+		{6FE6E6FB-9C4B-4DF1-9AB3-48004479DB8A} = {57174048-09D4-46A6-932C-8F90F2B603D0}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {E4D5DD02-533B-4333-9CF9-ACD294C7F2EE}
