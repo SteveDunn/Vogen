@@ -1,0 +1,9 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+		<TargetFramework>netstandard2.0</TargetFramework>
+		<LanguageVersion>10.0</LanguageVersion>
+		<ImplicitUsings>disable</ImplicitUsings>
+  </PropertyGroup>
+
+</Project>

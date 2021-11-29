@@ -1,0 +1,2 @@
+﻿namespace Vogen.Tests.Types;
+
