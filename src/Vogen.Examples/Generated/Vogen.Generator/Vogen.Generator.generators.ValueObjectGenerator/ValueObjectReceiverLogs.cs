@@ -36,14 +36,6 @@ Found a class named BasicExample
 ++ full namespace is Vogen.Examples
 ++ full name is Vogen.Examples.BasicExample
 no attributes on Vogen.Examples.BasicExample
-++ full namespace is Vogen.Examples
-++ full name is Vogen.Examples.MyReadOnlyVo
-   Augmenting class: MyReadOnlyVo
-Found a class named UseReadOnly
-    Found 0 attributes
-++ full namespace is Vogen.Examples
-++ full name is Vogen.Examples.UseReadOnly
-no attributes on Vogen.Examples.UseReadOnly
 ++ full namespace is Vogen.Examples.Namespace1.Namespace2
 ++ full name is Vogen.Examples.Namespace1.Namespace2.NestedType
    Augmenting class: NestedType
@@ -75,8 +67,16 @@ Found a class named Program
 ++ full namespace is Vogen.Examples
 ++ full name is Vogen.Examples.Program
 no attributes on Vogen.Examples.Program
+++ full namespace is Vogen.Examples
+++ full name is Vogen.Examples.MyReadOnlyVo
+   Augmenting class: MyReadOnlyVo
+Found a class named UseReadOnly
+    Found 0 attributes
+++ full namespace is Vogen.Examples
+++ full name is Vogen.Examples.UseReadOnly
+no attributes on Vogen.Examples.UseReadOnly
 Found a class named VendorId
-    Found 2 attributes
+    Found 3 attributes
    Class to augment: VendorId Full Name: Vogen.Examples
    Attribute: ValueObjectAttribute Full Name: Vogen.SharedTypes
     ....Argument: Type='System.Type' Value_Type='Microsoft.CodeAnalysis.CSharp.Symbols.PublicModel.NonErrorNamedTypeSymbol' Value='int'
@@ -85,12 +85,17 @@ Found a class named VendorId
    Attribute: InstanceAttribute Full Name: Vogen.SharedTypes
     ....Argument: Type='string' Value_Type='System.String' Value='Unspecified'
     ....Argument: Type='int' Value_Type='System.Int32' Value='0'
+   Class to augment: VendorId Full Name: Vogen.Examples
+   Attribute: InstanceAttribute Full Name: Vogen.SharedTypes
+    ....Argument: Type='string' Value_Type='System.String' Value='Invalid'
+    ....Argument: Type='int' Value_Type='System.Int32' Value='-1'
 ++ full namespace is Vogen.Examples
 ++ full name is Vogen.Examples.VendorId
    Augmenting class: VendorId
     Found method named Validate
     Added and will call Validate
 instance attribute found - Name: 'Unspecified', Value: 0
+instance attribute found - Name: 'Invalid', Value: -1
 Found a class named RepresentingUnspecified
     Found 0 attributes
 ++ full namespace is Vogen.Examples

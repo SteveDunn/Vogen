@@ -148,39 +148,6 @@ public static MyInt Invalid = new MyInt(-1);
 public static MyInt Unspecified = new MyInt(-2);
 ```
 
-
-# structs
-Should be able to treat structs the same
-## static methods on structs?
-
-ReferenceEquals doesn't need to be generated
-
-Because Complex is a value type, it cannot be derived from. Therefore, the override to Equals(Object) method need 
-not call GetType to determine the precise run-time type of each object, but can instead use the is operator in C# or the TypeOf operator in Visual Basic to check the type of the obj parameter.
-
-```csharp
-         public bool Equals(MyBestStruct? other)
-         {
-             if (!other.HasValue)
-                 return false;
-
-             return Equals(other.Value);
-         }
-
-         public bool Equals(MyBestStruct other)
-         {
-             return System.Collections.Generic.EqualityComparer<int>.Default.Equals(Value, other.Value);
-         }
-
-         public bool Equals(int? primitive) => Value.Equals(primitive);
-
-         public override bool Equals(object? obj)
-         {
-             return obj is MyBestStruct s && this == s;
-         }
-```
-
-
 # Benchmarking
 ## How do I run the benchmarks?
 `dotnet run -c Release -- --job short --filter *`

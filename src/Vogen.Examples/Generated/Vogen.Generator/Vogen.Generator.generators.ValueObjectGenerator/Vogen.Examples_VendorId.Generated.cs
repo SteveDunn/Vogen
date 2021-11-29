@@ -95,6 +95,10 @@ namespace Vogen.Examples
 
 public static VendorId Unspecified = new VendorId(0);
 
+// instance...
+
+public static VendorId Invalid = new VendorId(-1);
+
 
         public override string ToString() => Value.ToString();
     }
