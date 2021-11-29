@@ -36,6 +36,40 @@ Found a class named BasicExample
 ++ full namespace is Vogen.Examples
 ++ full name is Vogen.Examples.BasicExample
 no attributes on Vogen.Examples.BasicExample
+++ full namespace is Vogen.Examples
+++ full name is Vogen.Examples.MyReadOnlyVo
+   Augmenting class: MyReadOnlyVo
+Found a class named UseReadOnly
+    Found 0 attributes
+++ full namespace is Vogen.Examples
+++ full name is Vogen.Examples.UseReadOnly
+no attributes on Vogen.Examples.UseReadOnly
+++ full namespace is Vogen.Examples.Namespace1.Namespace2
+++ full name is Vogen.Examples.Namespace1.Namespace2.NestedType
+   Augmenting class: NestedType
+Found a class named UseIt
+    Found 0 attributes
+++ full namespace is Vogen.Examples
+++ full name is Vogen.Examples.UseIt
+no attributes on Vogen.Examples.UseIt
+Found a class named TopLevelClass
+    Found 0 attributes
+++ full namespace is Vogen.Examples.AnotherNamespace.AndAnother
+++ full name is Vogen.Examples.AnotherNamespace.AndAnother.TopLevelClass
+no attributes on Vogen.Examples.AnotherNamespace.AndAnother.TopLevelClass
+Found a class named AnotherClass
+    Found 0 attributes
+++ full namespace is Vogen.Examples.AnotherNamespace.AndAnother
+++ full name is Vogen.Examples.AnotherNamespace.AndAnother.AnotherClass
+no attributes on Vogen.Examples.AnotherNamespace.AndAnother.TopLevelClass.AnotherClass
+Found a class named AndAnother
+    Found 0 attributes
+++ full namespace is Vogen.Examples.AnotherNamespace.AndAnother
+++ full name is Vogen.Examples.AnotherNamespace.AndAnother.AndAnother
+no attributes on Vogen.Examples.AnotherNamespace.AndAnother.TopLevelClass.AnotherClass.AndAnother
+++ full namespace is Vogen.Examples.AnotherNamespace.AndAnother
+++ full name is Vogen.Examples.AnotherNamespace.AndAnother.NestedType
+no attributes on Vogen.Examples.AnotherNamespace.AndAnother.TopLevelClass.AnotherClass.AndAnother.NestedType
 Found a class named Program
     Found 0 attributes
 ++ full namespace is Vogen.Examples

@@ -1,5 +1,5 @@
 ﻿/*
-Got 5 work item(s)
+Got 7 work item(s)
 generating for CustomerId
 voClass.Identifier.ToFullString() is 'CustomerId'
 No InstanceProperties on WorkItem - doing no instance properties
@@ -14,6 +14,16 @@ generating for Amount
 voClass.Identifier.ToFullString() is 'Amount'
 No InstanceProperties on WorkItem - doing no instance properties
 -=-= writing source to Vogen.Examples_Amount.Generated.cs
+finished that one...
+generating for MyReadOnlyVo
+voClass.Identifier.ToFullString() is 'MyReadOnlyVo'
+No InstanceProperties on WorkItem - doing no instance properties
+-=-= writing source to Vogen.Examples_MyReadOnlyVo.Generated.cs
+finished that one...
+generating for NestedType
+voClass.Identifier.ToFullString() is 'NestedType'
+No InstanceProperties on WorkItem - doing no instance properties
+-=-= writing source to Vogen.Examples.Namespace1.Namespace2_NestedType.Generated.cs
 finished that one...
 generating for VendorId
 voClass.Identifier.ToFullString() is 'VendorId'
