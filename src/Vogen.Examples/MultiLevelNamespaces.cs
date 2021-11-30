@@ -1,9 +1,7 @@
-﻿// ReSharper disable once RedundantUsingDirective
-// ReSharper disable RedundantNameQualifier
+﻿// ReSharper disable RedundantNameQualifier
 // ReSharper disable ArrangeConstructorOrDestructorBody
 // // ReSharper disable StructCanBeMadeReadOnly
 
-using Vogen.Examples.Namespace1.Namespace2;
 using Vogen.SharedTypes;
 
 namespace Vogen.Examples
@@ -12,7 +10,6 @@ namespace Vogen.Examples
     {
         namespace Namespace2
         {
-            // uncomment to get error VOG001: Type 'NestedType' cannot be nested - remove it from inside AndAnother
             [ValueObject(typeof(int))]
             public partial struct NestedType
             {
