@@ -77,7 +77,7 @@ we can have:
 public void DoSomething(CustomerId customerId, SupplierId supplierId, Amount amount)
 ```
 
-Now, callers can't mess up the ordering or parameters and accidentally pass us a Supplier ID in place of a Customer ID.
+Now, callers can't mess up the ordering of parameters and accidentally pass us a Supplier ID in place of a Customer ID.
 
 It also means that validation **is in just one place**. You can't introduce bad objects into your domain, therefore you can assume that **in _your_ domain** every ValueObject is valid.  Handy.
 
