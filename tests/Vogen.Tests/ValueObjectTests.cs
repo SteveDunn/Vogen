@@ -11,7 +11,7 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using FluentAssertions;
-using Vogen.SharedTypes;
+using Vogen;
 using Vogen.Tests.Types;
 using Xunit;
 

@@ -3,7 +3,7 @@
 // ReSharper disable ArrangeConstructorOrDestructorBody
 // ReSharper disable StructCanBeMadeReadOnly
 
-using Vogen.SharedTypes;
+using Vogen;
 
 namespace Vogen.Examples
 {

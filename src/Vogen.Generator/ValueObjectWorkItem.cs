@@ -6,8 +6,6 @@ namespace Vogen.Generator;
 
 public class ValueObjectWorkItem
 {
-    public ExpressionSyntax? UnderlyingTypeExpression { get; set; }
-
     public MethodDeclarationSyntax? ValidateMethod { get; set; }
 
     public INamedTypeSymbol? UnderlyingType { get; set; }

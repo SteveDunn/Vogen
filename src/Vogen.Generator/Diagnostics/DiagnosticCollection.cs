@@ -43,6 +43,16 @@ internal class DiagnosticCollection : IEnumerable<Diagnostic>
         "Validation must be static",
         "{0} must be static");
 
+    private static readonly DiagnosticDescriptor _instanceMethodCannotHaveNullArgumentName = CreateDescriptor(
+        DiagnosticCode.InstanceMethodCannotHaveNullArgumentName,
+        "Instance attribute cannot have null name",
+        "{0} cannot have a null name");
+
+    private static readonly DiagnosticDescriptor _instanceMethodCannotHaveNullArgumentValue = CreateDescriptor(
+        DiagnosticCode.InstanceMethodCannotHaveNullArgumentValue,
+        "Instance attribute cannot have null value",
+        "{0} cannot have a null value");
+
     public void AddTypeCannotBeNested(INamedTypeSymbol typeModel, INamedTypeSymbol container) => 
         AddDiagnostic(_typeCannotBeNested, typeModel.Locations, typeModel.Name, container.Name);
 
@@ -60,6 +70,12 @@ internal class DiagnosticCollection : IEnumerable<Diagnostic>
 
     public void AddUnderlyingTypeCannotBeCollection(INamedTypeSymbol voClass, INamedTypeSymbol underlyingType) => 
         AddDiagnostic(_underlyingTypeCannotBeCollection, voClass.Locations, voClass.Name, underlyingType);
+
+    public void AddInstanceMethodCannotHaveNullArgumentName(INamedTypeSymbol voClass) => 
+        AddDiagnostic(_instanceMethodCannotHaveNullArgumentName, voClass.Locations, voClass.Name);
+
+    public void AddInstanceMethodCannotHaveNullArgumentValue(INamedTypeSymbol voClass) => 
+        AddDiagnostic(_instanceMethodCannotHaveNullArgumentValue, voClass.Locations, voClass.Name);
 
     private static DiagnosticDescriptor CreateDescriptor(DiagnosticCode code, string title, string messageFormat, DiagnosticSeverity severity = DiagnosticSeverity.Error)
     {

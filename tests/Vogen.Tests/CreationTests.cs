@@ -1,6 +1,5 @@
 using System;
 using FluentAssertions;
-using Vogen.SharedTypes;
 using Vogen.Tests.Types;
 using Xunit; //using tests.Types.AnotherNamespace.AndAnother;
 

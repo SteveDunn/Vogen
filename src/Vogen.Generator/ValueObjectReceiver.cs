@@ -7,8 +7,9 @@ using System.Linq;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
+using Vogen.Generator.Diagnostics;
 
-namespace Vogen.Generator.Diagnostics;
+namespace Vogen.Generator;
 
 class ValueObjectReceiver : ISyntaxContextReceiver
 {
@@ -17,30 +18,17 @@ class ValueObjectReceiver : ISyntaxContextReceiver
     public List<ValueObjectWorkItem> WorkItems { get; } = new();
 
     public DiagnosticCollection DiagnosticMessages { get; } = new();
-    
+
     public void OnVisitSyntaxNode(GeneratorSyntaxContext context)
     {
         try
         {
-#if DEBUG
-            if (!Debugger.IsAttached)
-            {
-                // Debugger.Launch();
-            }
-#endif
-            Diagnose(context);
-
             if (context.Node is not TypeDeclarationSyntax typeDeclarationSyntax)
             {
                 return;
             }
 
             var voClass = (INamedTypeSymbol) context.SemanticModel.GetDeclaredSymbol(context.Node)!;
-
-
-            string fullNamespace = voClass.FullNamespace();
-            Log.Add("++ full namespace is " + fullNamespace);
-            Log.Add("++ full name is " + voClass.FullName());
 
             var attributes = voClass.GetAttributes();
 
@@ -53,13 +41,28 @@ class ValueObjectReceiver : ISyntaxContextReceiver
 
             AttributeData? voAttribute =
                 attributes.SingleOrDefault(a =>
-                    a.AttributeClass?.ToString() == "Vogen.SharedTypes.ValueObjectAttribute");
+                {
+                    var fullName = a.AttributeClass?.FullName();
+                    Log.Add($"== attribute fullname is {fullName}");
+                    return fullName is "Vogen.ValueObjectAttribute";
+                });
 
             if (voAttribute is null)
             {
-                Log.Add(
-                    $"attribute class not Vogen.SharedTypes.ValueObjectAttribute - is '{attributes.SingleOrDefault()?.AttributeClass}'");
-
+                return;
+            }
+            
+            if (voAttribute.ConstructorArguments.Length == 0)
+            {
+                DiagnosticMessages.AddMustSpecifyUnderlyingType(voClass);
+                return;
+            }
+            
+            var underlyingType = (INamedTypeSymbol?) voAttribute.ConstructorArguments[0].Value;
+            
+            if (underlyingType is null)
+            {
+                DiagnosticMessages.AddMustSpecifyUnderlyingType(voClass);
                 return;
             }
 
@@ -69,10 +72,7 @@ class ValueObjectReceiver : ISyntaxContextReceiver
                 DiagnosticMessages.AddTypeCannotBeNested(voClass, containingType);
             }
 
-
-            var instanceProperties = TryBuildInstanceProperties(attributes);
-
-            Log.Add($"   Augmenting class: {typeDeclarationSyntax.Identifier}");
+            var instanceProperties = TryBuildInstanceProperties(attributes, voClass);
 
             MethodDeclarationSyntax? validateMethod = null;
 
@@ -83,7 +83,7 @@ class ValueObjectReceiver : ISyntaxContextReceiver
                 {
                     if (!(mds.DescendantTokens().Any(t => t.IsKind(SyntaxKind.StaticKeyword))))
                     {
-                            DiagnosticMessages.AddValidationMustBeStatic(mds);
+                        DiagnosticMessages.AddValidationMustBeStatic(mds);
                     }
 
                     object? value = mds.Identifier.Value;
@@ -107,14 +107,6 @@ class ValueObjectReceiver : ISyntaxContextReceiver
                 }
             }
 
-            var underlyingType = (INamedTypeSymbol?) voAttribute.ConstructorArguments[0].Value;
-
-            if (underlyingType is null)
-            {
-                DiagnosticMessages.AddMustSpecifyUnderlyingType(voClass);
-                return;
-            }
-
             if (SymbolEqualityComparer.Default.Equals(voClass, underlyingType))
             {
                 DiagnosticMessages.AddUnderlyingTypeMustNotBeSameAsValueObjectType(voClass);
@@ -124,7 +116,7 @@ class ValueObjectReceiver : ISyntaxContextReceiver
             {
                 DiagnosticMessages.AddUnderlyingTypeCannotBeCollection(voClass, underlyingType);
             }
-
+            
             bool isValueType = underlyingType.IsValueType;
 
             WorkItems.Add(new ValueObjectWorkItem
@@ -134,52 +126,63 @@ class ValueObjectReceiver : ISyntaxContextReceiver
                 IsValueType = isValueType,
                 UnderlyingType = underlyingType,
                 ValidateMethod = validateMethod,
-                FullNamespace = fullNamespace
+                FullNamespace = voClass.FullNamespace()
             });
-
-
-            // ClassToAugment = classDeclarationSyntax;
-            // Log.Add($"   Attribute: {att.AttributeClass!.Name} Full Name: {att.AttributeClass.FullNamespace()}");
-            //
-            // UnderlyingType = (INamedTypeSymbol?)att.ConstructorArguments[0].Value;
         }
-        catch (Exception ex)
+        catch (Exception ex) when (LogException(ex))
         {
-            Log.Add("Error parsing syntax: " + ex);
-            //throw;
         }
     }
 
-    private IEnumerable<InstanceProperties> TryBuildInstanceProperties(ImmutableArray<AttributeData> attributes)
+    private bool LogException(Exception ex)
     {
-        var atts =
-            attributes.Where(a => a.AttributeClass?.ToString() == "Vogen.SharedTypes.InstanceAttribute");
+        Log.Add("Error parsing syntax: " + ex);
+        return false;
+    }
 
-        foreach (var att in atts)
+    private IEnumerable<InstanceProperties> TryBuildInstanceProperties(
+        ImmutableArray<AttributeData> attributes,
+        INamedTypeSymbol voClass)
+    {
+        var matchingAttributes =
+            attributes.Where(a => a.AttributeClass?.ToString() is "Vogen.InstanceAttribute");
+
+        foreach (AttributeData? eachAttribute in matchingAttributes)
         {
-            // var att =
-            //     attributes.SingleOrDefault(a => a.AttributeClass?.ToString() == "Vogen.SharedTypes.InstanceAttribute");
-
-            if (att == null)
+            if (eachAttribute == null)
             {
                 Log.Add($"no instance attribute");
 
                 continue;
             }
 
-            var name = (string?) att.ConstructorArguments[0].Value;
+            ImmutableArray<TypedConstant> constructorArguments = eachAttribute.ConstructorArguments;
+
+            if (constructorArguments.Length == 0)
+            {
+                Log.Add($"no constructor args!");
+                continue;
+            }
+
+            var name = (string?) constructorArguments[0].Value;
 
             if (name is null)
             {
                 Log.Add($"name symbol for InstanceAttribute is null");
-                continue;
+                DiagnosticMessages.AddInstanceMethodCannotHaveNullArgumentName(voClass);
+              //  continue;
             }
 
-            var value = att.ConstructorArguments[1].Value;
+            var value = constructorArguments[1].Value;
 
             if (value is null)
             {
                 Log.Add($"value symbol for InstanceAttribute is null");
+                DiagnosticMessages.AddInstanceMethodCannotHaveNullArgumentValue(voClass!);
+            }
+
+            if (name is null || value is null)
+            {
                 continue;
             }
 
@@ -188,38 +191,5 @@ class ValueObjectReceiver : ISyntaxContextReceiver
             yield return new InstanceProperties(name, value);
         }
 
-    }
-
-    private void Diagnose(GeneratorSyntaxContext context)
-    {
-        if (context.Node is ClassDeclarationSyntax)
-        {
-            var testClass = (INamedTypeSymbol)context.SemanticModel.GetDeclaredSymbol(context.Node)!;
-            Log.Add($"Found a class named {testClass.Name}");
-            var attributes = testClass.GetAttributes();
-            Log.Add($"    Found {attributes.Length} attributes");
-            foreach (AttributeData att in attributes)
-            {
-                Log.Add($"   Class to augment: {testClass!.Name} Full Name: {testClass.FullNamespace()}");
-                Log.Add($"   Attribute: {att.AttributeClass!.Name} Full Name: {att.AttributeClass.FullNamespace()}");
-                foreach (var arg in att.ConstructorArguments)
-                {
-                    Log.Add(
-                        $"    ....Argument: Type='{arg.Type}' Value_Type='{arg.Value?.GetType().FullName}' Value='{arg.Value}'");
-
-                    if (arg.Value is INamedTypeSymbol namedArgType)
-                    {
-                        Log.Add($"    ........Found a INamedTypeSymbol named '{namedArgType}'");
-                        var members = namedArgType.GetMembers();
-                        foreach (var member in members)
-                        {
-                            if (member is IPropertySymbol property)
-                                Log.Add(
-                                    $"    ...........Property: {property.Name} CanRead:{property.GetMethod != null} CanWrite:{property.SetMethod != null}");
-                        }
-                    }
-                }
-            }
-        }
     }
 }

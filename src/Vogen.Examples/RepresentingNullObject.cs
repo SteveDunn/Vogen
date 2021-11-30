@@ -3,7 +3,7 @@
 // ReSharper disable ArrangeMethodOrOperatorBody
 
 using System;
-using Vogen.SharedTypes;
+using Vogen;
 
 namespace Vogen.Examples
 {

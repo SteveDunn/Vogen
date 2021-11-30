@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel;
 using BenchmarkDotNet.Attributes;
-using Vogen.SharedTypes;
+using Vogen;
 
 namespace Vogen.Benchmarks.NoValidation
 {
