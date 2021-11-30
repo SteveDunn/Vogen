@@ -1,5 +1,5 @@
 ﻿// ReSharper disable once RedundantUsingDirective
-using Vogen.SharedTypes;
+using Vogen;
 
 namespace Vogen.Examples
 {

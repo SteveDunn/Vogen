@@ -8,7 +8,7 @@ public class StructGeneratorForValueAndReferenceTypes : IGenerateSourceCode
     public string BuildClass(ValueObjectWorkItem item, TypeDeclarationSyntax tds, List<string> log)
     {
         var structName = tds.Identifier;
-        return $@"using Vogen.SharedTypes;
+        return $@"using Vogen;
 
 namespace {item.FullNamespace}
 {{

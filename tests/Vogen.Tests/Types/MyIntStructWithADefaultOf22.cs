@@ -1,4 +1,4 @@
-﻿using Vogen.SharedTypes;
+﻿using Vogen;
 
 namespace Vogen.Tests.Types;
 

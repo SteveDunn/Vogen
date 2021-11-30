@@ -1,13 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Linq;
 using System.Text;
 using Microsoft.CodeAnalysis;
+using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.CodeAnalysis.Text;
 using Vogen.Generator.Diagnostics;
+using Vogen.Generator.Generators;
 
-namespace Vogen.Generator.Generators
+namespace Vogen.Generator
 {
     [Generator]
     public class ValueObjectGenerator : ISourceGenerator
@@ -17,6 +20,76 @@ namespace Vogen.Generator.Generators
         private readonly ClassGeneratorForReferenceType _classGeneratorForReferenceType;
         private readonly ClassGeneratorForValueType _classGeneratorForValueType;
         private readonly StructGeneratorForValueAndReferenceTypes _structGeneratorForValueAndReferenceTypes;
+        
+        private const string _vogenSharedTypes = @"
+using System;
+using System.Runtime.Serialization;
+
+namespace Vogen
+{
+
+    [AttributeUsage(AttributeTargets.Class | AttributeTargets.Struct, AllowMultiple = true)]
+    public class ValueObjectAttribute : Attribute
+    {
+        public Type UnderlyingType { get; }
+
+        public ValueObjectAttribute(Type underlyingType)
+        {
+            UnderlyingType = underlyingType;
+        }
+    }
+
+    public class Validation
+    {
+        public string ErrorMessage { get; }
+
+        public static readonly Validation Ok = new Validation(string.Empty);
+
+        private Validation(string reason) => ErrorMessage = reason;
+
+        public static Validation Invalid(string reason = """")
+        {
+            if (string.IsNullOrEmpty(reason))
+            {
+                return new Validation(""[none provided]"");
+            }
+
+            return new Validation(reason);
+        }
+    }
+
+    [AttributeUsage(AttributeTargets.Class | AttributeTargets.Struct, AllowMultiple = true)]
+    public class InstanceAttribute : Attribute
+    {
+        public object Value { get; }
+
+        public string Name { get; }
+
+        public InstanceAttribute(string name, object value) => (Name, Value) = (name, value);
+    }
+
+    [Serializable]
+    public class ValueObjectValidationException : Exception
+    {
+        public ValueObjectValidationException()
+        {
+        }
+
+        public ValueObjectValidationException(string message) : base(message)
+        {
+        }
+
+        public ValueObjectValidationException(string message, Exception inner) : base(message, inner)
+        {
+        }
+
+        protected ValueObjectValidationException(
+            SerializationInfo info,
+            StreamingContext context) : base(info, context)
+        {
+        }
+    }
+}";
 
         public ValueObjectGenerator()
         {
@@ -32,7 +105,10 @@ namespace Vogen.Generator.Generators
             {
                 // Debugger.Launch();
             }
-#endif             
+#endif
+            // Register the attribute source
+            context.RegisterForPostInitialization((i) => i.AddSource("VogenSharedTypes", _vogenSharedTypes));
+
             // Register a factory that can create our custom syntax receiver
             context.RegisterForSyntaxNotifications(() => new ValueObjectReceiver());
         }
@@ -48,6 +124,9 @@ namespace Vogen.Generator.Generators
 
             try
             {
+                INamedTypeSymbol voAttributeSymbol = context.Compilation.GetTypeByMetadataName("Vogen.ValueObjectAttribute")!;
+                INamedTypeSymbol voInstanceSymbol = context.Compilation.GetTypeByMetadataName("Vogen.InstanceAttribute")!;
+
                 // the generator infrastructure will create a receiver and populate it
                 // we can retrieve the populated instance via the context
                 ValueObjectReceiver syntaxReceiver = (ValueObjectReceiver)context.SyntaxContextReceiver;
@@ -67,9 +146,9 @@ namespace Vogen.Generator.Generators
                         $@"/*{Environment.NewLine + string.Join(Environment.NewLine, syntaxReceiver.Log) + Environment.NewLine}*/",
                         Encoding.UTF8));
 
-                foreach (var syntaxReceiverWorkItem in syntaxReceiver.WorkItems)
+                foreach (var eachWorkItem in syntaxReceiver.WorkItems)
                 {
-                    HandleWorkItem(context, syntaxReceiverWorkItem);
+                    HandleWorkItem(context, eachWorkItem);
                 }
             }
             catch (Exception ex)
@@ -103,7 +182,7 @@ namespace Vogen.Generator.Generators
                 TypeDeclarationSyntax voClass = item.TypeToAugment;
 
                 _log.Add($"voClass.Identifier.ToFullString() is '{voClass.Identifier}'");
-
+                
                 IGenerateSourceCode generator = GetGenerator(item);
 
                 string classAsText = generator.BuildClass(item, voClass, _log);

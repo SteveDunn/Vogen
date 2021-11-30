@@ -30,9 +30,9 @@ public static class Util
     {
         if (workItem.ValidateMethod != null)
             return @$"var validation = {workItem.TypeToAugment.Identifier}.Validate(value);
-            if (validation != Vogen.SharedTypes.Validation.Ok)
+            if (validation != Vogen.Validation.Ok)
             {{
-                throw new Vogen.SharedTypes.ValueObjectValidationException(validation.ErrorMessage);
+                throw new Vogen.ValueObjectValidationException(validation.ErrorMessage);
             }}
 ";
         return string.Empty;

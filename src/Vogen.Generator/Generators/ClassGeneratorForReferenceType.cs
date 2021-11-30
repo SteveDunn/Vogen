@@ -10,7 +10,7 @@ public class ClassGeneratorForReferenceType : IGenerateSourceCode
         var className = tds.Identifier;
 
         return $@"
-using Vogen.SharedTypes;
+using Vogen;
 
 namespace {item.FullNamespace}
 {{
@@ -32,7 +32,7 @@ namespace {item.FullNamespace}
         {{
             if (value is null)
             {{
-                throw new Vogen.SharedTypes.ValueObjectValidationException(""Cannot create a value object with null."");
+                throw new Vogen.ValueObjectValidationException(""Cannot create a value object with null."");
             }}
 
             {className} instance = new {className}(value);

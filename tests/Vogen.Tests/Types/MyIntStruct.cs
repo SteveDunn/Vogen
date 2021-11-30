@@ -1,9 +1,9 @@
-﻿using Vogen.SharedTypes;
+﻿using Vogen;
 
 namespace Vogen.Tests.Types;
 
 [ValueObject(typeof(int))]
-public partial struct MyIntStruct
+public readonly partial struct MyIntStruct
 {
     private static Validation Validate(int value)
     {

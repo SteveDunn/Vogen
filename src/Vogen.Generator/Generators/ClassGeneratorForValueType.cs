@@ -9,7 +9,7 @@ public class ClassGeneratorForValueType : IGenerateSourceCode
     {
         var className = tds.Identifier;
         return $@"
-using Vogen.SharedTypes;
+using Vogen;
 
 namespace {item.FullNamespace}
 {{

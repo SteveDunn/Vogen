@@ -11,5 +11,7 @@ public enum DiagnosticCode
     UnderlyingTypeMustNotBeSameAsValueObject = 2,
     UnderlyingTypeCannotBeCollection = 3,
     ValidationMustReturnValidationType = 4,
-    ValidationMustBeStatic = 5
+    ValidationMustBeStatic = 5,
+    InstanceMethodCannotHaveNullArgumentName = 6,
+    InstanceMethodCannotHaveNullArgumentValue = 7
 }
