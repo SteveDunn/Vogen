@@ -14,10 +14,17 @@ namespace {item.FullNamespace}
 {{
     public partial struct {structName} : System.IEquatable<{structName}>
     {{
-        // public readonly {item.UnderlyingType} Value {{ get; }}
-        public readonly {item.UnderlyingType} Value;
+        private readonly bool _wasSet = false;
 
-        private {structName}({item.UnderlyingType} value) => Value = value;
+        private readonly {item.UnderlyingType} _value;
+
+        public readonly {item.UnderlyingType} Value =>  _wasSet ? _value : throw new Vogen.ValueObjectValidationException(""Validation skipped by default initialisation. Please use 'From(int)' for construction."");
+
+        private {structName}({item.UnderlyingType} value)
+        {{
+            _wasSet = true;
+            _value = value;
+        }}
 
         public static {structName} From({item.UnderlyingType} value)
         {{

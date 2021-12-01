@@ -93,7 +93,7 @@ int customerId = 42
 
 What's wrong with that?
 
-A customer ID likely **cannot** be *fully* represented by an `int`.  An `int` can be negative or zero, but it's unlikely a customer ID can be. So, we have **constraints** on a customer ID.  We can't _represent_ or _enforce_ those constraints on an `int`.
+A customer ID likely cannot be *fully* represented by an `int`.  An `int` can be negative or zero, but it's unlikely a customer ID can be. So, we have **constraints** on a customer ID.  We can't _represent_ or _enforce_ those constraints on an `int`.
 
 So, we need some validation to ensure the **constraints** of a customer ID are met. Because it's in `int`, we can't be sure if it's been checked beforehand, so we need to check it every time we use it.  Because it's a primitive, someone might've changed the value, so even if we're 100% sure we've checked it before, it still might need checking again.
 
@@ -112,6 +112,31 @@ public void DoSomething(CustomerId customerId, SupplierId supplierId, Amount amo
 ```
 
 Now, the caller can't mess up the ordering of parameters, and the objects themselves are guaranteed to be valid and immutable.
+
+# FAQ
+
+* Why can't I just use `public record struct CustomerId(int id);`?
+
+That doesn't give you validation. To validate `id`, you can't use the shorthand syntax. So you'd need to do:
+
+```csharp
+public record struct CustomerId
+{
+    public CustomerId(int id) {
+        if(id <=0) throw new Exception(...)
+    }
+}
+```
+
+* Can I stop the use of `CustomerId customerId = default(CustomerId);`?
+
+No. If your type is a `struct`, there's no way to stop someone doing that.  But Vogen ensures that the `Value` is not usable in this case, e.g.
+
+```csharp
+var customId = default(CustomerId);
+
+Console.WriteLine(customerId.Value); // exception - ValueObjectValidationException - "Validation skipped by default initialisation. Please use 'From(int)' for construction."
+```
 
 -----
 
