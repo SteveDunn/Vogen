@@ -5,7 +5,7 @@ using System.Linq;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 
-namespace Vogen.Generator.Diagnostics;
+namespace Vogen.Diagnostics;
 
 internal class DiagnosticCollection : IEnumerable<Diagnostic>
 {

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Microsoft.CodeAnalysis;
 
-namespace Vogen.Generator;
+namespace Vogen;
 
 static class SemanticHelper
 {

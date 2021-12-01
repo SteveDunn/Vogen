@@ -1,4 +1,4 @@
-﻿namespace Vogen.Generator;
+﻿namespace Vogen;
 
 public class InstanceProperties
 {

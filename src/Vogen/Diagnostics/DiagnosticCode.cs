@@ -1,4 +1,4 @@
-﻿namespace Vogen.Generator.Diagnostics;
+﻿namespace Vogen.Diagnostics;
 
 /// <summary>
 /// Identifies the type of error / diagnostic encountered during emission

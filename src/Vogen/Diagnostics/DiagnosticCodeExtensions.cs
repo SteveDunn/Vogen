@@ -1,4 +1,4 @@
-﻿namespace Vogen.Generator.Diagnostics;
+﻿namespace Vogen.Diagnostics;
 
 public static class DiagnosticCodeExtensions
 {

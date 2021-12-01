@@ -453,4 +453,4 @@ $RECYCLE.BIN/
 !.vscode/launch.json
 !.vscode/extensions.json
 
-**/Generated/Vogen.Generator/*
+**/Generated/Vogen/*

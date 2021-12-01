@@ -1,14 +1,13 @@
 ﻿using System.Collections.Generic;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 
-namespace Vogen.Generator.Generators;
+namespace Vogen.Generators;
 
-public class ClassGeneratorForReferenceType : IGenerateSourceCode
+public class ClassGeneratorForValueType : IGenerateSourceCode
 {
     public string BuildClass(ValueObjectWorkItem item, TypeDeclarationSyntax tds, List<string> log)
     {
         var className = tds.Identifier;
-
         return $@"
 using Vogen;
 
@@ -29,12 +28,7 @@ namespace {item.FullNamespace}
         /// <param name=""value"">The underlying type.</param>
         /// <returns>An instance of this type.</returns>
         public static {className} From({item.UnderlyingType} value)
-        {{
-            if (value is null)
-            {{
-                throw new Vogen.ValueObjectValidationException(""Cannot create a value object with null."");
-            }}
-
+        {{ 
             {className} instance = new {className}(value);
 
             {Util.GenerateValidation(item)}

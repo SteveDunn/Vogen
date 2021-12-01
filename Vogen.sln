@@ -11,7 +11,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Vogen.Tests", "tests\Vogen.
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{57174048-09D4-46A6-932C-8F90F2B603D0}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Vogen.Generator", "src\Vogen.Generator\Vogen.Generator.csproj", "{23A799DB-6FCE-462D-8F7D-76F4B1FAD20B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Vogen", "src\Vogen\Vogen.csproj", "{23A799DB-6FCE-462D-8F7D-76F4B1FAD20B}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "_files", "_files", "{72AF0ED1-00F0-42D7-9997-169FEFBC2DB2}"
 	ProjectSection(SolutionItems) = preProject

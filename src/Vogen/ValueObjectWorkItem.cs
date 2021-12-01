@@ -2,7 +2,7 @@
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 
-namespace Vogen.Generator;
+namespace Vogen;
 
 public class ValueObjectWorkItem
 {

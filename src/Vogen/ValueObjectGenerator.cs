@@ -1,16 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
 using System.Text;
 using Microsoft.CodeAnalysis;
-using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.CodeAnalysis.Text;
-using Vogen.Generator.Diagnostics;
-using Vogen.Generator.Generators;
+using Vogen.Diagnostics;
+using Vogen.Generators;
 
-namespace Vogen.Generator
+namespace Vogen
 {
     [Generator]
     public class ValueObjectGenerator : ISourceGenerator
