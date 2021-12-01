@@ -1,7 +1,4 @@
 # Vogen
-<p align="center">
-  <img src="./assets/cavey.png">
-</p>
 
 # What is the package?
 
@@ -76,19 +73,20 @@ It also means that validation **is in just one place**. You can't introduce bad 
 Here's the benchmarks comparing a native int to a ValueObject:
 
 ```ini
-|                  Method |     Mean |    Error |   StdDev | Ratio |  Gen 0 | Gen 1 | Gen 2 | Allocated |
-|------------------------ |---------:|---------:|---------:|------:|-------:|------:|------:|----------:|
-|        UsingIntNatively | 17.04 ns | 0.253 ns | 0.014 ns |  1.00 |      - |     - |     - |         - |
-|  UsingValueObjectStruct | 19.76 ns | 2.463 ns | 0.135 ns |  1.16 |      - |     - |     - |         - |
-
+|                  Method |     Mean |    Error |   StdDev | Ratio | Allocated |
+|------------------------ |---------:|---------:|---------:|------:|----------:|
+|        UsingIntNatively | 17.04 ns | 0.253 ns | 0.014 ns |  1.00 |         - |
+|  UsingValueObjectStruct | 19.76 ns | 2.463 ns | 0.135 ns |  1.16 |         - |
+```
 
 There's hardly any speed overhead, and no memory overhead.
 
-The next most common scenario is using a VO class to represent a native `String`.  These results are:
+The next most common scenario is using a VO class to represent a natits are:
 
 ```ini
-|                   Method |     Mean |    Error |  StdDev | Ratio |  Gen 0 | Gen 1 | Gen 2 | Allocated |
-|------------------------- |---------:|---------:|--------:|------:|-------:|------:|------:|----------:|
-|      UsingStringNatively | 204.4 ns |  8.09 ns | 0.44 ns |  1.00 | 0.0153 |     - |     - |     256 B |
-|  UsingValueObjectAsClass | 250.7 ns | 29.97 ns | 1.64 ns |  1.23 | 0.0196 |     - |     - |     328 B |
-| UsingValueObjectAsStruct | 248.9 ns | 18.82 ns | 1.03 ns |  1.22 | 0.0181 |     - |     - |     304 B |
+|                   Method |     Mean |    Error |  StdDev | Ratio | Allocated |
+|------------------------- |---------:|---------:|--------:|------:|----------:|
+|      UsingStringNatively | 204.4 ns |  8.09 ns | 0.44 ns |  1.00 |     256 B |
+|  UsingValueObjectAsClass | 250.7 ns | 29.97 ns | 1.64 ns |  1.23 |     328 B |
+| UsingValueObjectAsStruct | 248.9 ns | 18.82 ns | 1.03 ns |  1.22 |     304 B |
+```
