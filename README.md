@@ -128,14 +128,23 @@ public record struct CustomerId
 }
 ```
 
-* Can I stop the use of `CustomerId customerId = default(CustomerId);`?
+* If my VO is a `struct`, can I stop the use of `CustomerId customerId = default(CustomerId);`?
 
 No. If your type is a `struct`, there's no way to stop someone doing that.  But Vogen ensures that the `Value` is not usable in this case, e.g.
 
 ```csharp
 var customId = default(CustomerId);
 
-Console.WriteLine(customerId.Value); // exception - ValueObjectValidationException - "Validation skipped by default initialisation. Please use 'From(int)' for construction."
+Console.WriteLine(customerId.Value); // exception - ValueObjectValidationException - "Validation skipped by default initialisation. Please use the 'From' method for construction."
+```
+
+* If my VO is a `struct`, can I stop the use of `CustomerId customerId = new(CustomerId);`?
+
+Yes. If your type is a `struct`, then you _can_ call the constructor without a compilation error, however, you will get a runtime error:
+```csharp
+var customId = new CustomerId();
+
+Console.WriteLine(customerId.Value); // exception - ValueObjectValidationException - "Validation skipped by attempting to use the default constructor. Please use the 'From' method for construction."
 ```
 
 -----

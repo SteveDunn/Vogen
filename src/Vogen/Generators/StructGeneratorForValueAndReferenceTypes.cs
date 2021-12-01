@@ -18,7 +18,13 @@ namespace {item.FullNamespace}
 
         private readonly {item.UnderlyingType} _value;
 
-        public readonly {item.UnderlyingType} Value =>  _wasSet ? _value : throw new Vogen.ValueObjectValidationException(""Validation skipped by default initialisation. Please use 'From(int)' for construction."");
+        public readonly {item.UnderlyingType} Value =>  _wasSet ? _value : throw new Vogen.ValueObjectValidationException(""Validation skipped by default initialisation. Please use the 'From' method for construction."");
+
+        
+        public {structName}()
+        {{
+            throw new Vogen.ValueObjectValidationException(""Validation skipped by attempting to use the default constructor. Please use the 'From' method for construction."");
+        }}
 
         private {structName}({item.UnderlyingType} value)
         {{
@@ -31,7 +37,6 @@ namespace {item.FullNamespace}
             {structName} instance = new {structName}(value);
 
             {Util.GenerateValidation(item)}
-
             return instance;
         }}
 
