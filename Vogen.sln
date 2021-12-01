@@ -18,6 +18,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "_files", "_files", "{72AF0E
 		.editorconfig = .editorconfig
 		.gitignore = .gitignore
 		Directory.Build.props = Directory.Build.props
+		docs\nuget-readme.md = docs\nuget-readme.md
 		README.md = README.md
 	EndProjectSection
 EndProject
