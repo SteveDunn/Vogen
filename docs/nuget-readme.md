@@ -1,10 +1,40 @@
-# Vogen
+# Vogen - Value Object Generator
 
 # What is the package?
 
-This is a semi-opinionated library which generates [Value Objects](https://wiki.c2.com/?ValueObject) that wrap simple primitives such as `int`, `string`, `double` etc. The main goal of this project is to have almost the same speed and memory performance as using primitives.
+This is a _semi_-opinionated library which is a Source Generator to generate [Value Objects](https://wiki.c2.com/?ValueObject).
+The main goal is that the Value Objects generated have almost the same speed and memory performance as using primitives.
 
-Primitive Obsession means being obsessed with primitives.  It is a Code Smell that degrades the quality of software.
+The Value Objects wrap simple primitives such as `int`, `string`, `double` etc.
+
+To get started, add this package, and add a type such as:
+
+```csharp
+[ValueObject(typeof(int))]
+public partial struct CustomerId 
+{
+}
+```
+
+You can now treat `CustomerId` as you would an `int` and there is very little performance difference between the two:
+
+`var id = CustomerId.From(42);`
+
+And your method signatures change from:
+
+```charp
+public void HandleCustomer(int customerId)`
+```
+
+to
+
+```charp
+public void HandleCustomer(CustomerId customerId)`
+```
+
+The Source Generator generates code for things like creating the object and for performing equality. 
+
+Value Objects help combat Primitive Obsession. Primitive Obsession means being obsessed with primitives.  It is a Code Smell that degrades the quality of software.
 
 > "*Primitive Obsession is using primitive data types to represent domain ideas*" [#](https://wiki.c2.com/?PrimitiveObsession)
 
