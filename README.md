@@ -2,7 +2,7 @@
 
 ![Build](https://github.com/stevedunn/vogen/actions/workflows/build.yaml/badge.svg) [![GitHub release](https://img.shields.io/github/release/stevedunn/vogen.svg)](https://GitHub.com/stevedunn/vogen/releases/) [![GitHub license](https://img.shields.io/github/license/stevedunn/vogen.svg)](https://github.com/SteveDunn/Vogen/blob/main/LICENSE) 
 [![GitHub issues](https://img.shields.io/github/issues/Naereen/StrapDown.js.svg)](https://GitHub.com/stevedunn/vogen/issues/) [![GitHub issues-closed](https://img.shields.io/github/issues-closed/Naereen/StrapDown.js.svg)](https://GitHub.com/stevedunn/vogen/issues?q=is%3Aissue+is%3Aclosed)
-[![Vogen stable version](https://badgen.net/nuget/v/vogen)](https://nuget.org/packages/newtonsoft.json)
+[![Vogen stable version](https://badgen.net/nuget/v/vogen)](https://nuget.org/packages/vogen)
 
 <p align="center">
   <img src="./assets/cavey.png">
@@ -16,7 +16,7 @@ Primitive Obsession AKA **StringlyTyped** means being obsessed with primitives. 
 
 ## What is the repository?
 
-This is a semi-opinionated library which generates [Value Objects](https://wiki.c2.com/?ValueObject) that wrap simple primitives such as `int`, `string`, `double` etc. The main goal of this project is to have almost the same speed and memory performance as using primitives.
+This is a semi-opinionated library which generates [Value Objects](https://wiki.c2.com/?ValueObject) that wrap simple primitives such as `int`, `string`, `double` etc. The main goal of this project is to achieve **almost the same speed and memory performance as using primitives directly**.
 
 Some examples:
 
@@ -46,7 +46,7 @@ var customerId = CustomerId.From(42);
 
 ```csharp
 [ValueObject(typeof(int))]
-public partial class CustomerId 
+public partial struct CustomerId 
 {
 }
 ```
@@ -63,19 +63,12 @@ public partial class CustomerId
 }
 ```
 
-This generates the constructor and equality code. If your type better suits a value-type, which the example above does (being an `int`), then just change `class` to `struct`:
-```csharp
-[ValueObject(typeof(int))]
-public partial struct CustomerId 
-{
-}
-```
-
-This allows us to have more _strongly typed_ domain objects instead of primitives, which makes the code easier to read and enforces better method signatures, so instead of:
+Value Object allow more _strongly typed_ domain objects instead of primitives, which makes the code easier to read and enforces tighter method signatures, so instead of:
 
 ``` cs
 public void DoSomething(int customerId, int supplierId, int amount)
 ```
+
 we can have:
 
 ``` cs
@@ -102,21 +95,60 @@ A customer ID likely cannot be *fully* represented by an `int`.  An `int` can be
 
 So, we need some validation to ensure the **constraints** of a customer ID are met. Because it's in `int`, we can't be sure if it's been checked beforehand, so we need to check it every time we use it.  Because it's a primitive, someone might've changed the value, so even if we're 100% sure we've checked it before, it still might need checking again.
 
-So far, we've used as an example, a customer ID of value `42`.  In C#, it may come as no surprise that "`42 == 42`" (*I haven't checked that in JavaScript!*).  But, in our **domain**, should `42` always equal `42`?  Probably not if you're comparing a Supplier ID of `42` to a Customer ID of `42`! But primitives won't help you here (remember, `42 == 42`!) Given this signature:
+So far, we've used as an example, a customer ID of value `42`.  In C#, it may come as no surprise that "`42 == 42`" (*I haven't checked that in JavaScript!*).  But, in our **domain**, should `42` always equal `42`?  Probably not if you're comparing a Supplier ID of `42` to a Customer ID of `42`! But primitives won't help you here (remember, `42 == 42`!).
 
-``` cs
-public void DoSomething(int customerId, int supplierId, int amount)
+```csharp
+(42 == 42) // true
+(SuppliedId.From(42) == SupplierId.From(42)) // true
+(SuppliedId.From(42) == VendorId.From(42)) // compilation error
 ```
 
-.. the compiler won't tell you you've messed it up by accidentally swapping customer and supplier IDs.
+But sometimes, we need to denote that a Value Object isn't valid or hasn't been set. We don't want anyone _outside_ of the object doing this as it could be used accidentally.  It's common to have `Unspecified` instances, e.g.
 
-But by using ValueObjects, that signature becomes much more strongly typed:
-
-``` cs
-public void DoSomething(CustomerId customerId, SupplierId supplierId, Amount amount)
+```csharp
+public class Person
+{
+    public Age Age { get; } = Age.Unspecified;
+}
 ```
 
-Now, the caller can't mess up the ordering of parameters, and the objects themselves are guaranteed to be valid and immutable.
+We can do that with an `Instance` attribute:
+
+```csharp
+  [ValueObject(typeof(int))]
+  [Instance("Unspecified", -1)]
+  public readonly partial struct Age
+  {
+      public static Validation Validate(int value) =>
+          value > 0 ? Validation.Ok : Validation.Invalid("Must be greater than zero.");
+  }
+```
+
+This generates `public static Age Unspecified = new Age(-1);`.  The constructor is `private`, so only this type can (deliberately) create _invalid_ instances.
+
+Now, when we use `Age`, our validation becomes clearer:
+
+```csharp
+public void Process(Person person) {
+    if(person.Age == Age.Unspecified) {
+        // age not specified.
+    }
+}
+```
+
+We can also specify other instance properties:
+
+```csharp
+[ValueObject(typeof(int))]
+[Instance("Freezing", 0)]
+[Instance("Boiling", 100)]
+public readonly partial struct Centigrade
+{
+    public static Validation Validate(float value) =>
+        value >= -273 ? Validation.Ok : Validation.Invalid("Cannot be colder than absolute zero");
+}
+```
+
 
 # FAQ
 
