@@ -1,10 +1,12 @@
 # Vogen
+
+![Build](https://github.com/stevedunn/vogen/actions/workflows/build.yaml/badge.svg) [![GitHub release](https://img.shields.io/github/release/stevedunn/vogen.svg)](https://GitHub.com/stevedunn/vogen/releases/) [![GitHub license](https://img.shields.io/github/license/stevedunn/vogen.svg)](https://github.com/SteveDunn/Vogen/blob/main/LICENSE) 
+[![GitHub issues](https://img.shields.io/github/issues/Naereen/StrapDown.js.svg)](https://GitHub.com/stevedunn/vogen/issues/) [![GitHub issues-closed](https://img.shields.io/github/issues-closed/Naereen/StrapDown.js.svg)](https://GitHub.com/stevedunn/vogen/issues?q=is%3Aissue+is%3Aclosed)
+[![Vogen stable version](https://badgen.net/nuget/v/vogen)](https://nuget.org/packages/newtonsoft.json)
+
 <p align="center">
   <img src="./assets/cavey.png">
 </p>
-
-![Build](https://github.com/martinothamar/WrapperValueObject/workflows/Build/badge.svg)
-[![NuGet](https://img.shields.io/nuget/v/WrapperValueObject.Generator.svg)](https://www.nuget.org/packages/WrapperValueObject.Generator/)
 
 # A cure for StringlyTyped software and PrimitiveObsession.
 
