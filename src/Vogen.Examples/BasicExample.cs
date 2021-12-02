@@ -3,6 +3,30 @@ using Vogen;
 
 namespace Vogen.Examples
 {
+    // can be internal structs
+    [ValueObject(typeof(int))]
+    internal partial struct Centimeter
+    {
+    }
+
+    // can be internal classes
+    [ValueObject(typeof(int))]
+    internal partial class Meter
+    {
+    }
+
+    // can be readonly internal 
+    [ValueObject(typeof(int))]
+    internal readonly partial struct Furlong
+    {
+    }
+
+    // can be internal sealed
+    [ValueObject(typeof(int))]
+    internal sealed partial class Lumens
+    {
+    }
+
     [ValueObject(typeof(int))]
     public partial class CustomerId
     {

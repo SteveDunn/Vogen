@@ -13,7 +13,7 @@ using Vogen;
 
 namespace {item.FullNamespace}
 {{
-    public partial class {className} : System.IEquatable<{className}>
+    {Util.GenerateModifiersFor(tds)} class {className} : System.IEquatable<{className}>
     {{
         public {item.UnderlyingType} Value {{ get; }}
 

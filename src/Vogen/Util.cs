@@ -72,4 +72,5 @@ public static {classDeclarationSyntax.Identifier} {instanceProperties.Name} = ne
         return instancePropertiesValue.ToString();
     }
 
+    public static string GenerateModifiersFor(TypeDeclarationSyntax tds) => string.Join(" ", tds.Modifiers);
 }

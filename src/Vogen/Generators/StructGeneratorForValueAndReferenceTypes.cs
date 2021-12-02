@@ -12,7 +12,7 @@ public class StructGeneratorForValueAndReferenceTypes : IGenerateSourceCode
 
 namespace {item.FullNamespace}
 {{
-    public partial struct {structName} : System.IEquatable<{structName}>
+    {Util.GenerateModifiersFor(tds)} struct {structName} : System.IEquatable<{structName}>
     {{
         private readonly bool _wasSet = false;
 
