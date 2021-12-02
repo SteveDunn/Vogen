@@ -23,6 +23,11 @@ internal class DiagnosticCollection : IEnumerable<Diagnostic>
         "Types cannot be nested",
         "Type '{0}' must specify an underlying type");
 
+    private static readonly DiagnosticDescriptor _cannotHaveUserConstructors = CreateDescriptor(
+        DiagnosticCode.CannotHaveUserConstructors,
+        "Cannot have user defined constructors",
+        "Cannot have user defined constructors, please use the From method for creation.");
+
     private static readonly DiagnosticDescriptor _underlyingTypeCannotBeCollection = CreateDescriptor(
         DiagnosticCode.UnderlyingTypeCannotBeCollection,
         "Underlying type cannot be collection",
@@ -64,6 +69,9 @@ internal class DiagnosticCollection : IEnumerable<Diagnostic>
 
     public void AddMustSpecifyUnderlyingType(INamedTypeSymbol underlyingType) => 
         AddDiagnostic(_mustSpecifyUnderlyingType, underlyingType.Locations, underlyingType.Name);
+
+    public void AddCannotHaveUserConstructors(IMethodSymbol constructor) => 
+        AddDiagnostic(_cannotHaveUserConstructors, constructor.Locations);
 
     public void AddUnderlyingTypeMustNotBeSameAsValueObjectType(INamedTypeSymbol underlyingType) => 
         AddDiagnostic(_underlyingTypeMustNotBeSameAsValueObject, underlyingType.Locations, underlyingType.Name);

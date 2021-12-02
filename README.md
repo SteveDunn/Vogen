@@ -3,6 +3,9 @@
   <img src="./assets/cavey.png">
 </p>
 
+![Build](https://github.com/martinothamar/WrapperValueObject/workflows/Build/badge.svg)
+[![NuGet](https://img.shields.io/nuget/v/WrapperValueObject.Generator.svg)](https://www.nuget.org/packages/WrapperValueObject.Generator/)
+
 # A cure for StringlyTyped software and PrimitiveObsession.
 
 Primitive Obsession AKA **StringlyTyped** means being obsessed with primitives.  It is a Code Smell that degrades the quality of software.
@@ -146,6 +149,16 @@ var customId = new CustomerId();
 
 Console.WriteLine(customerId.Value); // exception - ValueObjectValidationException - "Validation skipped by attempting to use the default constructor. Please use the 'From' method for construction."
 ```
+
+* If my VO is a struct, can I have my own constructor?
+
+No. The parameterless constructor is generated automatically, and the constructor that takes the underlying value is also generated automatically.
+If you add further constructors, then you will get a compilation error from the code generator [todo: describe]
+
+* If my VO is a struct, can I have my own fields?
+You could, but you'd get compiler warning [CS0282-There is no defined ordering between fields in multiple declarations of partial class or struct 'type'](https://docs.microsoft.com/en-us/dotnet/csharp/misc/cs0282)
+
+* My underlying type is a string, does it matter if I use a `struct` or `class`?
 
 -----
 

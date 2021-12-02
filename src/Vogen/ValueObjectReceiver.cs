@@ -28,13 +28,11 @@ class ValueObjectReceiver : ISyntaxContextReceiver
             }
 
             var voClass = (INamedTypeSymbol) context.SemanticModel.GetDeclaredSymbol(context.Node)!;
-
+            
             var attributes = voClass.GetAttributes();
 
             if (attributes.Length == 0)
             {
-                Log.Add($"no attributes on {voClass}");
-
                 return;
             }
 
@@ -42,7 +40,6 @@ class ValueObjectReceiver : ISyntaxContextReceiver
                 attributes.SingleOrDefault(a =>
                 {
                     var fullName = a.AttributeClass?.FullName();
-                    Log.Add($"== attribute fullname is {fullName}");
                     return fullName is "Vogen.ValueObjectAttribute";
                 });
 
@@ -55,6 +52,17 @@ class ValueObjectReceiver : ISyntaxContextReceiver
             {
                 DiagnosticMessages.AddMustSpecifyUnderlyingType(voClass);
                 return;
+            }
+
+            foreach (var eachConstructor in voClass.Constructors)
+            {
+                // no need to check for default constructor as it's already defined
+                // and the user will see: error CS0111: Type 'Foo' already defines a member called 'Foo' with the same parameter type
+                if (eachConstructor.Parameters.Length > 0)
+                {
+                    DiagnosticMessages.AddCannotHaveUserConstructors(eachConstructor);
+                }
+                
             }
             
             var underlyingType = (INamedTypeSymbol?) voAttribute.ConstructorArguments[0].Value;
