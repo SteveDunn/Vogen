@@ -23,6 +23,11 @@ internal class DiagnosticCollection : IEnumerable<Diagnostic>
         "Types cannot be nested",
         "Type '{0}' must specify an underlying type");
 
+    private static readonly DiagnosticDescriptor _usingDefaultProhibited = CreateDescriptor(
+        DiagnosticCode.UsingDefaultProhibited,
+        "Using default of Value Objects is prohibited",
+        "Type '{0}' cannot be constructed with default as it is prohibited.");
+
     private static readonly DiagnosticDescriptor _cannotHaveUserConstructors = CreateDescriptor(
         DiagnosticCode.CannotHaveUserConstructors,
         "Cannot have user defined constructors",
@@ -70,6 +75,9 @@ internal class DiagnosticCollection : IEnumerable<Diagnostic>
     public void AddMustSpecifyUnderlyingType(INamedTypeSymbol underlyingType) => 
         AddDiagnostic(_mustSpecifyUnderlyingType, underlyingType.Locations, underlyingType.Name);
 
+    public void AddUsingDefaultProhibited(Location locationOfDefaultStatement, string voClassName) => 
+        AddDiagnostic(_usingDefaultProhibited, voClassName, locationOfDefaultStatement);
+
     public void AddCannotHaveUserConstructors(IMethodSymbol constructor) => 
         AddDiagnostic(_cannotHaveUserConstructors, constructor.Locations);
 
@@ -92,11 +100,24 @@ internal class DiagnosticCollection : IEnumerable<Diagnostic>
         return new DiagnosticDescriptor(code.Format(), title, messageFormat, "RestEaseGeneration", severity, isEnabledByDefault: true, customTags: tags);
     }
 
+    private void AddDiagnostic(DiagnosticDescriptor descriptor, string name, Location location)
+    {
+        var diagnostic = Diagnostic.Create(descriptor, location, name);
+        
+        AddDiagnostic(diagnostic);
+    }
+
     private void AddDiagnostic(DiagnosticDescriptor descriptor, IEnumerable<Location> locations, params object?[] args)
     {
         var locationsList = (locations as IReadOnlyList<Location>) ?? locations.ToList();
+
+        var diagnostic = Diagnostic.Create(
+            descriptor, 
+            locationsList.Count == 0 ? Location.None : locationsList[0],
+            locationsList.Skip(1), 
+            args);
         
-        AddDiagnostic(Diagnostic.Create(descriptor, locationsList.Count == 0 ? Location.None : locationsList[0], locationsList.Skip(1), args));
+        AddDiagnostic(diagnostic);
     }
 
     private void AddDiagnostic(DiagnosticDescriptor descriptor, Location? location, params object?[] args) => 
