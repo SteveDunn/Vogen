@@ -14,5 +14,6 @@ public enum DiagnosticCode
     ValidationMustBeStatic = 5,
     InstanceMethodCannotHaveNullArgumentName = 6,
     InstanceMethodCannotHaveNullArgumentValue = 7,
-    CannotHaveUserConstructors = 8
+    CannotHaveUserConstructors = 8,
+    UsingDefaultProhibited = 9
 }

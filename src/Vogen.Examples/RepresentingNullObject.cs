@@ -5,8 +5,37 @@
 using System;
 using Vogen;
 
-namespace Vogen.Examples
+namespace Vogen.Examples.Instances
 {
+    [ValueObject(typeof(int))]
+    [Instance("Freezing", 0)]
+    [Instance("Boiling", 100)]
+    public readonly partial struct Centigrade
+    {
+        public static Validation Validate(float value) =>
+            value >= -273 ? Validation.Ok : Validation.Invalid("Cannot be colder than absolute zero");
+    }
+
+    // bug - https://github.com/SteveDunn/Vogen/issues/10
+    // [ValueObject(typeof(float))]
+    // [Instance("Freezing", 0.0f)]
+    // [Instance("Boiling", 100.0f)]
+    // [Instance("AbsoluteZero", -273.15f)]
+    // public readonly partial struct Centigrade
+    // {
+    //     public static Validation Validate(float value) =>
+    //         value >= AbsoluteZero.Value ? Validation.Ok : Validation.Invalid("Cannot be colder than absolute zero");
+    // }
+
+    [ValueObject(typeof(int))]
+    [Instance("Unspecified", -1)]
+    [Instance("Invalid", -2)]
+    public readonly partial struct Age
+    {
+        public static Validation Validate(int value) =>
+            value > 0 ? Validation.Ok : Validation.Invalid("Must be greater than zero.");
+    }
+
     [ValueObject(typeof(int))]
     [Instance("Unspecified", 0)]
     [Instance("Invalid", -1)]
