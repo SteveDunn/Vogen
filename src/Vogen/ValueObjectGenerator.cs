@@ -29,77 +29,6 @@ namespace Vogen
 // ------------------------------------------------------------------------------
 ".Replace("\r\n", "\n").Replace("\n", Environment.NewLine); // normalize regardless of git checkout policy        
 
-        private static readonly string _vogenSharedTypes = GeneratedPreamble + @"
-
-using System;
-using System.Runtime.Serialization;
-
-namespace Vogen
-{
-
-    [AttributeUsage(AttributeTargets.Class | AttributeTargets.Struct, AllowMultiple = true)]
-    public class ValueObjectAttribute : Attribute
-    {
-        public Type UnderlyingType { get; }
-
-        public ValueObjectAttribute(Type underlyingType)
-        {
-            UnderlyingType = underlyingType;
-        }
-    }
-
-    public class Validation
-    {
-        public string ErrorMessage { get; }
-
-        public static readonly Validation Ok = new Validation(string.Empty);
-
-        private Validation(string reason) => ErrorMessage = reason;
-
-        public static Validation Invalid(string reason = """")
-        {
-            if (string.IsNullOrEmpty(reason))
-            {
-                return new Validation(""[none provided]"");
-            }
-
-            return new Validation(reason);
-        }
-    }
-
-    [AttributeUsage(AttributeTargets.Class | AttributeTargets.Struct, AllowMultiple = true)]
-    public class InstanceAttribute : Attribute
-    {
-        public object Value { get; }
-
-        public string Name { get; }
-
-        public InstanceAttribute(string name, object value) => (Name, Value) = (name, value);
-    }
-
-    [Serializable]
-    public class ValueObjectValidationException : Exception
-    {
-        public ValueObjectValidationException()
-        {
-        }
-
-        public ValueObjectValidationException(string message) : base(message)
-        {
-        }
-
-        public ValueObjectValidationException(string message, Exception inner) : base(message, inner)
-        {
-        }
-
-        protected ValueObjectValidationException(
-            SerializationInfo info,
-            StreamingContext context) : base(info, context)
-        {
-        }
-    }
-}";
-
         public ValueObjectGenerator()
         {
             _classGeneratorForReferenceType = new ClassGeneratorForReferenceType();
@@ -109,14 +38,6 @@ namespace Vogen
 
         public void Initialize(GeneratorInitializationContext context)
         {
-#if DEBUG
-            if (!Debugger.IsAttached)
-            {
-                // Debugger.Launch();
-            }
-#endif
-            // Register the attribute source
-            context.RegisterForPostInitialization((i) => i.AddSource("VogenSharedTypes.g", _vogenSharedTypes));
 
             // Register a factory that can create our custom syntax receiver
             context.RegisterForSyntaxNotifications(() => new ValueObjectReceiver());

@@ -109,28 +109,28 @@ namespace Vogen.Benchmarks.WithValidation
     [ValueObject(typeof(int))]
     public partial struct NumberAsStruct
     {
-        public static Validation Validate(int value) =>
+        private static Validation Validate(int value) =>
             value > 0 ? Validation.Ok : Validation.Invalid("Must be greater than zero");
     }
 
     [ValueObject(typeof(int))]
     public partial class NumberAsClass
     {
-        public static Validation Validate(int value) =>
+        private static Validation Validate(int value) =>
             value > 0 ? Validation.Ok : Validation.Invalid("Must be greater than zero");
     }
 
     [ValueObject(typeof(string))]
     public partial class NameAsClass
     {
-        public static Validation Validate(string value) =>
+        private static Validation Validate(string value) =>
             string.IsNullOrEmpty(value) ? Validation.Invalid("Must not be null or empty") : Validation.Ok;
     }
 
     [ValueObject(typeof(string))]
     public partial struct NameAsStruct
     {
-        public static Validation Validate(string value) =>
+        private static Validation Validate(string value) =>
             string.IsNullOrEmpty(value) ? Validation.Invalid("Must not be null or empty") : Validation.Ok;
     }
 

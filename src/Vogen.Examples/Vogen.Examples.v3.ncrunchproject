@@ -1,0 +1,8 @@
+﻿<ProjectConfiguration>
+  <Settings>
+    <CopyReferencedAssembliesToWorkspace>True</CopyReferencedAssembliesToWorkspace>
+    <IgnoreThisComponentCompletely>True</IgnoreThisComponentCompletely>
+    <IncludeStaticReferencesInWorkspace>False</IncludeStaticReferencesInWorkspace>
+    <InstrumentOutputAssembly>False</InstrumentOutputAssembly>
+  </Settings>
+</ProjectConfiguration>

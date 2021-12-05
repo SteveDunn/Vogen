@@ -276,8 +276,3 @@ WarmupCount=3
 |  UsingValueObjectAsClass | 250.7 ns | 29.97 ns | 1.64 ns |  1.23 | 0.0196 |     - |     - |     328 B |
 | UsingValueObjectAsStruct | 248.9 ns | 18.82 ns | 1.03 ns |  1.22 | 0.0181 |     - |     - |     304 B |
 
-
-## FAQ
-If I reference the generator assembly itself, why do I get errors in NCrunch?
-
-You need to set `Instrument output assembly` to `false` for the generator in the NCrunch configuration.

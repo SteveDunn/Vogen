@@ -12,7 +12,7 @@ namespace Vogen.Examples.Instances
     [Instance("Boiling", 100)]
     public readonly partial struct Centigrade
     {
-        public static Validation Validate(float value) =>
+        internal static Validation Validate(float value) =>
             value >= -273 ? Validation.Ok : Validation.Invalid("Cannot be colder than absolute zero");
     }
 
@@ -32,7 +32,7 @@ namespace Vogen.Examples.Instances
     [Instance("Invalid", -2)]
     public readonly partial struct Age
     {
-        public static Validation Validate(int value) =>
+        private static Validation Validate(int value) =>
             value > 0 ? Validation.Ok : Validation.Invalid("Must be greater than zero.");
     }
 
