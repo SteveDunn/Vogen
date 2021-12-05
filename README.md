@@ -167,22 +167,11 @@ public record struct CustomerId
 
 * If my VO is a `struct`, can I stop the use of `CustomerId customerId = default(CustomerId);`?
 
-No. If your type is a `struct`, there's no way to stop someone doing that.  But Vogen ensures that the `Value` is not usable in this case, e.g.
-
-```csharp
-var customId = default(CustomerId);
-
-Console.WriteLine(customerId.Value); // exception - ValueObjectValidationException - "Validation skipped by default initialisation. Please use the 'From' method for construction."
-```
+Yes. The analyser generates a compilation error.
 
 * If my VO is a `struct`, can I stop the use of `CustomerId customerId = new(CustomerId);`?
 
-Yes. If your type is a `struct`, then you _can_ call the constructor without a compilation error, however, you will get a runtime error:
-```csharp
-var customId = new CustomerId();
-
-Console.WriteLine(customerId.Value); // exception - ValueObjectValidationException - "Validation skipped by attempting to use the default constructor. Please use the 'From' method for construction."
-```
+Yes. The analyser generates a compilation error.
 
 * If my VO is a struct, can I have my own constructor?
 
@@ -192,42 +181,6 @@ If you add further constructors, then you will get a compilation error from the 
 * If my VO is a struct, can I have my own fields?
 You could, but you'd get compiler warning [CS0282-There is no defined ordering between fields in multiple declarations of partial class or struct 'type'](https://docs.microsoft.com/en-us/dotnet/csharp/misc/cs0282)
 
-* My underlying type is a string, does it matter if I use a `struct` or `class`?
-
------
-
-todo: need to tidy up everything below
-
-Notes for the new source generated version below - needs tidying up:
-
-
-# Why?
-We want value semantics with validation, but this currently isn't part of C# / the framework.
-
-But why not use `record`? A `record` doesn't enforce validation. A `record struct Foo(int Value)` has no validation, so you must use the constructor syntax.
-
-# Attributes
-`[ValueObject(typeof(int))]`
-`int` can be any primivive, e.g. `double`, `decimal`, `string`
-
-`[Instance(name: "Default", value: "42")]`
-Means that a public static readonly property is created named as specified with a value as specified.
-e.g.
-
-```
-[ValueObject(typeof(int))]
-[Instance(name: "Invalid", value: -1)]
-[Instance(name: "Unspecified", value: -2)]
-public partial class MyInt {}
-```
-
-... generates these fields:
-
-```csharp
-public static MyInt Invalid = new MyInt(-1);
-
-public static MyInt Unspecified = new MyInt(-2);
-```
 
 # Benchmarking
 ## How do I run the benchmarks?
@@ -276,3 +229,8 @@ WarmupCount=3
 |  UsingValueObjectAsClass | 250.7 ns | 29.97 ns | 1.64 ns |  1.23 | 0.0196 |     - |     - |     328 B |
 | UsingValueObjectAsStruct | 248.9 ns | 18.82 ns | 1.03 ns |  1.22 | 0.0181 |     - |     - |     304 B |
 
+
+## FAQ
+If I reference the generator assembly itself, why do I get errors in NCrunch?
+
+You need to set `Instrument output assembly` to `false` for the generator in the NCrunch configuration.
