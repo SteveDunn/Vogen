@@ -179,8 +179,12 @@ No. The parameterless constructor is generated automatically, and the constructo
 If you add further constructors, then you will get a compilation error from the code generator [todo: describe]
 
 * If my VO is a struct, can I have my own fields?
+
 You could, but you'd get compiler warning [CS0282-There is no defined ordering between fields in multiple declarations of partial class or struct 'type'](https://docs.microsoft.com/en-us/dotnet/csharp/misc/cs0282)
 
+* If I reference the generator assembly itself, why do I get errors in NCrunch?
+
+You need to set `Instrument output assembly` to `false` for the generator in the NCrunch configuration.
 
 # Benchmarking
 ## How do I run the benchmarks?
@@ -228,3 +232,4 @@ WarmupCount=3
 |      UsingStringNatively | 204.4 ns |  8.09 ns | 0.44 ns |  1.00 | 0.0153 |     - |     - |     256 B |
 |  UsingValueObjectAsClass | 250.7 ns | 29.97 ns | 1.64 ns |  1.23 | 0.0196 |     - |     - |     328 B |
 | UsingValueObjectAsStruct | 248.9 ns | 18.82 ns | 1.03 ns |  1.22 | 0.0181 |     - |     - |     304 B |
+

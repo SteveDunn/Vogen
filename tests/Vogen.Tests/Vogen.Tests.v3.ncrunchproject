@@ -1,0 +1,13 @@
+﻿<ProjectConfiguration>
+  <Settings>
+    <AllowCodeAnalysis>True</AllowCodeAnalysis>
+    <AllowStaticCodeContractChecking>False</AllowStaticCodeContractChecking>
+    <BuildLogVerbosity>Quiet</BuildLogVerbosity>
+    <CopyReferencedAssembliesToWorkspace>True</CopyReferencedAssembliesToWorkspace>
+    <HiddenComponentWarnings>
+      <Value>CopyReferencedAssembliesToWorkspaceIsOn</Value>
+    </HiddenComponentWarnings>
+    <IncludeStaticReferencesInWorkspace>True</IncludeStaticReferencesInWorkspace>
+    <InstrumentOutputAssembly>False</InstrumentOutputAssembly>
+  </Settings>
+</ProjectConfiguration>
