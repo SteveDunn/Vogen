@@ -1,6 +1,12 @@
 ﻿<ProjectConfiguration>
   <Settings>
+    <AdditionalFilesToIncludeForProject />
     <AllowCodeAnalysis>False</AllowCodeAnalysis>
+    <HiddenComponentWarnings>
+      <Value>DerivedFilesIncludedInWorkspace</Value>
+    </HiddenComponentWarnings>
+    <IncludeStaticReferencesInWorkspace>True</IncludeStaticReferencesInWorkspace>
     <InstrumentOutputAssembly>False</InstrumentOutputAssembly>
+    <RunPostBuildEvents>False</RunPostBuildEvents>
   </Settings>
 </ProjectConfiguration>
