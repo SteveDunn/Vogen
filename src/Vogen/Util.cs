@@ -69,6 +69,21 @@ public static {classDeclarationSyntax.Identifier} {instanceProperties.Name} = ne
             return $@"""{instancePropertiesValue}""";
         }
 
+        if (item.UnderlyingType?.FullName() == typeof(decimal).FullName)
+        {
+            return $@"{instancePropertiesValue}m";
+        }
+
+        if (item.UnderlyingType?.FullName() == typeof(float).FullName)
+        {
+            return $@"{instancePropertiesValue}f";
+        }
+
+        if (item.UnderlyingType?.FullName() == typeof(double).FullName)
+        {
+            return $@"{instancePropertiesValue}d";
+        }
+
         return instancePropertiesValue.ToString();
     }
 

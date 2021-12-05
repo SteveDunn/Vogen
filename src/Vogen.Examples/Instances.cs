@@ -7,25 +7,16 @@ using Vogen;
 
 namespace Vogen.Examples.Instances
 {
-    [ValueObject(typeof(int))]
-    [Instance("Freezing", 0)]
-    [Instance("Boiling", 100)]
+    // bug - https://github.com/SteveDunn/Vogen/issues/10
+    [ValueObject(typeof(float))]
+    [Instance("Freezing", 0.0f)]
+    [Instance("Boiling", 100.0f)]
+    [Instance("AbsoluteZero", -273.15f)]
     public readonly partial struct Centigrade
     {
-        internal static Validation Validate(float value) =>
-            value >= -273 ? Validation.Ok : Validation.Invalid("Cannot be colder than absolute zero");
+        public static Validation Validate(float value) =>
+            value >= AbsoluteZero.Value ? Validation.Ok : Validation.Invalid("Cannot be colder than absolute zero");
     }
-
-    // bug - https://github.com/SteveDunn/Vogen/issues/10
-    // [ValueObject(typeof(float))]
-    // [Instance("Freezing", 0.0f)]
-    // [Instance("Boiling", 100.0f)]
-    // [Instance("AbsoluteZero", -273.15f)]
-    // public readonly partial struct Centigrade
-    // {
-    //     public static Validation Validate(float value) =>
-    //         value >= AbsoluteZero.Value ? Validation.Ok : Validation.Invalid("Cannot be colder than absolute zero");
-    // }
 
     [ValueObject(typeof(int))]
     [Instance("Unspecified", -1)]
