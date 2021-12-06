@@ -48,7 +48,7 @@ namespace Vogen.Examples
             Console.WriteLine($"Processing customer {customerId}, supplier {supplierId}, with amount {amount}");
     }
 
-    internal class BasicExample
+    internal class BasicExamples
     {
         public static void Run()
         {

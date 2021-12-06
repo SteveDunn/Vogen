@@ -1,13 +1,12 @@
-﻿// ReSharper disable UnusedMember.Global
-// ReSharper disable UnusedType.Global
-// ReSharper disable ArrangeMethodOrOperatorBody
-
-using System;
-using Vogen;
+﻿using System;
 
 namespace Vogen.Examples.Instances
 {
-    // bug - https://github.com/SteveDunn/Vogen/issues/10
+    
+    /*
+     * Instances allow us to create specific static readonly instances of this type.
+     */
+    
     [ValueObject(typeof(float))]
     [Instance("Freezing", 0.0f)]
     [Instance("Boiling", 100.0f)]
@@ -18,6 +17,11 @@ namespace Vogen.Examples.Instances
             value >= AbsoluteZero.Value ? Validation.Ok : Validation.Invalid("Cannot be colder than absolute zero");
     }
 
+    /*
+     * Instances are the only way to avoid validation, so we can create instances
+     * that nobody else can. This is useful for creating special instances
+     * that represent concepts such as 'invalid' and 'unspecified'.
+     */
     [ValueObject(typeof(int))]
     [Instance("Unspecified", -1)]
     [Instance("Invalid", -2)]
@@ -60,10 +64,12 @@ namespace Vogen.Examples.Instances
     {
         public VendorName GetVendorName(VendorId id)
         {
-            if (id == VendorId.Unspecified) throw new InvalidOperationException("The vendor ID was unspecified");
+            if (id == VendorId.Unspecified) 
+                throw new InvalidOperationException("The vendor ID was unspecified");
 
             // throw if invalid
-            if (id == VendorId.Invalid) throw new InvalidOperationException("The vendor ID was invalid");
+            if (id == VendorId.Invalid) 
+                throw new InvalidOperationException("The vendor ID was invalid");
             
             // or record it as invalid
             if (id == VendorId.Invalid) return VendorName.Invalid;
@@ -74,15 +80,13 @@ namespace Vogen.Examples.Instances
 
     internal static class RepresentingUnspecified
     {
-        private static VendorId _unspecified = VendorId.Unspecified;
-        
         public static void Run()
         {
             VendorInformation vi = new VendorInformation();
             Console.WriteLine(vi.VendorId == VendorId.Unspecified); // true
             Console.WriteLine(vi.VendorId != VendorId.Invalid); // true
 
-            // from a text file that is screwed, we'll end up with
+            // from a text file that is screwed, we'll end up with:
             var invalidVi = VendorInformation.FromTextFile();
             
             Console.WriteLine(invalidVi.VendorId == VendorId.Invalid); // true
