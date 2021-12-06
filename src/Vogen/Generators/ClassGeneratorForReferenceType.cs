@@ -16,6 +16,11 @@ namespace {item.FullNamespace}
 {{
     {Util.GenerateModifiersFor(tds)} class {className} : System.IEquatable<{className}>
     {{
+        public {className}()
+        {{
+            throw new Vogen.ValueObjectValidationException(""Validation skipped by attempting to use the default constructor. Please use the 'From' method for construction."");
+        }}
+
         public {item.UnderlyingType} Value {{ get; }}
 
         private {className}({item.UnderlyingType} value)

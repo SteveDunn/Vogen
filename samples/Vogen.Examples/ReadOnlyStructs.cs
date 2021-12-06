@@ -1,9 +1,4 @@
-﻿// ReSharper disable once RedundantUsingDirective
-// ReSharper disable RedundantNameQualifier
-// ReSharper disable ArrangeConstructorOrDestructorBody
-// ReSharper disable StructCanBeMadeReadOnly
-
-using Vogen;
+﻿using Vogen;
 
 namespace Vogen.Examples
 {

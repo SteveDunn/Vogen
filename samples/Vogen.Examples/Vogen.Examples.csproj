@@ -9,7 +9,7 @@
   <ItemGroup>
     <!-- Note that this is not a "normal" ProjectReference.
          It needs the additional 'OutputItemType' and 'ReferenceOutputAssmbly' attributes. -->
-    <ProjectReference Include="..\Vogen\Vogen.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="true" />
+    <ProjectReference Include="..\..\src\Vogen\Vogen.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="true" />
   </ItemGroup>
 
   <PropertyGroup>

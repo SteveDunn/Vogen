@@ -14,23 +14,16 @@ namespace {item.FullNamespace}
 {{
     {Util.GenerateModifiersFor(tds)} struct {structName} : System.IEquatable<{structName}>
     {{
-        private readonly bool _wasSet = false;
-
         private readonly {item.UnderlyingType} _value;
 
-        public readonly {item.UnderlyingType} Value =>  _wasSet ? _value : throw new Vogen.ValueObjectValidationException(""Validation skipped by default initialisation. Please use the 'From' method for construction."");
+        public readonly {item.UnderlyingType} Value => _value;
 
-        
         public {structName}()
         {{
             throw new Vogen.ValueObjectValidationException(""Validation skipped by attempting to use the default constructor. Please use the 'From' method for construction."");
         }}
 
-        private {structName}({item.UnderlyingType} value)
-        {{
-            _wasSet = true;
-            _value = value;
-        }}
+        private {structName}({item.UnderlyingType} value) => _value = value;
 
         public static {structName} From({item.UnderlyingType} value)
         {{
