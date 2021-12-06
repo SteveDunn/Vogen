@@ -42,22 +42,16 @@ namespace Vogen.Benchmarks.NoValidation
         public NameAsStruct Combine(NameAsStruct s1, NameAsStruct s2) => NameAsStruct.From($"{s1}-{s2}");
         
         [Benchmark(Baseline = true)]
-        public string UsingStringNatively()
-        {
-            return Combine(TestData.GetRandomString(), TestData.GetRandomString());
-        }
+        public string UsingStringNatively() => 
+            Combine(TestData.GetRandomString(), TestData.GetRandomString());
 
         [Benchmark]
-        public NameAsClass UsingValueObjectAsClass()
-        {
-            return Combine(NameAsClass.From(TestData.GetRandomString()), NameAsClass.From(TestData.GetRandomString()));
-        }
+        public NameAsStruct UsingValueObjectAsStruct() => 
+            Combine(NameAsStruct.From(TestData.GetRandomString()), NameAsStruct.From(TestData.GetRandomString()));
 
         [Benchmark]
-        public NameAsStruct UsingValueObjectAsStruct()
-        {
-            return Combine(NameAsStruct.From(TestData.GetRandomString()), NameAsStruct.From(TestData.GetRandomString()));
-        }
+        public NameAsClass UsingValueObjectAsClass() => 
+            Combine(NameAsClass.From(TestData.GetRandomString()), NameAsClass.From(TestData.GetRandomString()));
     }
 
     public static class Calculator

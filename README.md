@@ -205,18 +205,17 @@ Job=ShortRun  IterationCount=3  LaunchCount=1
 WarmupCount=3  
 
 ```
-|                  Method |     Mean |    Error |   StdDev | Ratio |  Gen 0 | Gen 1 | Gen 2 | Allocated |
-|------------------------ |---------:|---------:|---------:|------:|-------:|------:|------:|----------:|
-|        UsingIntNatively | 17.04 ns | 0.253 ns | 0.014 ns |  1.00 |      - |     - |     - |         - |
-|  UsingValueObjectStruct | 19.76 ns | 2.463 ns | 0.135 ns |  1.16 |      - |     - |     - |         - |
-| UsingValueObjectAsClass | 28.22 ns | 3.440 ns | 0.189 ns |  1.66 | 0.0043 |     - |     - |      72 B |
+|                  Method |     Mean |    Error |   StdDev | Ratio | Allocated |
+|------------------------ |---------:|---------:|---------:|------:|----------:|
+|        UsingIntNatively | 13.79 ns | 5.737 ns | 0.314 ns |  1.00 |         - |
+|  UsingValueObjectStruct | 13.58 ns | 0.447 ns | 0.024 ns |  0.99 |         - |
+```
 
-This looks very promising as the results between native int and VO struct are cloase and there is no memory overhead.
+This looks very promising as the results between a native int and a VO struct are almost identical and there is no memory overhead.
 
 The next most common scenario is using a VO class to represent a native `String`.  These results are:
 
 ``` ini
-
 BenchmarkDotNet=v0.12.1, OS=Windows 10.0.22000
 AMD Ryzen 9 5950X, 1 CPU, 32 logical and 16 physical cores
 .NET Core SDK=6.0.100
