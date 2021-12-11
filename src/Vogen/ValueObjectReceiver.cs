@@ -177,18 +177,19 @@ class ValueObjectReceiver : ISyntaxContextReceiver
         {
             if (memberDeclarationSyntax is MethodDeclarationSyntax mds)
             {
-                if (!(mds.DescendantTokens().Any(t => t.IsKind(SyntaxKind.StaticKeyword))))
-                {
-                    DiagnosticMessages.AddValidationMustBeStatic(mds);
-                }
-
                 object? value = mds.Identifier.Value;
 
                 Log.Add($"    Found method named {value}");
 
                 if (value?.ToString() == "Validate")
                 {
+                    if (!(mds.DescendantTokens().Any(t => t.IsKind(SyntaxKind.StaticKeyword))))
+                    {
+                        DiagnosticMessages.AddValidationMustBeStatic(mds);
+                    }
+
                     TypeSyntax returnTypeSyntax = mds.ReturnType;
+                    
                     if (returnTypeSyntax.ToString() != "Validation")
                     {
                         DiagnosticMessages.AddValidationMustReturnValidationType(mds);
