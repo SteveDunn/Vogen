@@ -174,64 +174,6 @@ public readonly partial struct Centigrade {
 }
 ```
 
-# FAQ
-
-* Why can't I just use `public record struct CustomerId(int id);`?
-
-That doesn't give you validation. To validate `id`, you can't use the shorthand syntax. So you'd need to do:
-
-```csharp
-public record struct CustomerId
-{
-    public CustomerId(int id) {
-        if(id <=0) throw new Exception(...)
-    }
-}
-```
-
-You might also provide other constructors which might not validate the data, thereby allowing invalid data into your domain. Those other constructors might not throw exception, or might throw different exceptions.  One of the opinions in Vogen is that any invalid data given to a Value Object throws a `ValueObjectValidationException`.
-
-You could also use `default(CustomerId)` to evade validation.  In Vogen, there are analysers that catch this and fail the build.
-
-* It seems like a lot of overhead; I can validate the value myself
-
-You could, but to ensure consistency throughout your domain, you'd have to **validate everywhere**. And Shallow's Law says that that's not possible:
-
-> ⚖️ **Shalloway's Law**
-_"when N things need to change and N > 1, Shalloway will find at most N - 1 of these things."_
-
-Concretely: _"When 5 things need to change, Shalloway will find at most, 4 of these things."_
-
-* If my VO is a `struct`, can I stop the use of `CustomerId customerId = default(CustomerId);`?
-
-Yes. The analyser generates a compilation error.
-
-* If my VO is a `struct`, can I stop the use of `CustomerId customerId = new(CustomerId);`?
-
-Yes. The analyser generates a compilation error.
-
-* If my VO is a struct, can I have my own constructor?
-
-No. The parameter-less constructor is generated automatically, and the constructor that takes the underlying value is also generated automatically.
-
-If you add further constructors, then you will get a compilation error from the code generator, e.g.
-
-```csharp
-[ValueObject(typeof(int))]
-public partial struct CustomerId {
-    // Vogen already generates this as a private constructor to that you can't use it:
-    // error CS0111: Type 'CustomerId' already defines a member called 'CustomerId' with the same parameter type
-    public CustomerId() { }
-
-    // error VOG008: Cannot have user defined constructors, please use the From method for creation.
-    public CustomerId(int value) { }
-}
-```
-
-* If my VO is a struct, can I have my own fields?
-
-You could, but you'd get compiler warning [CS0282-There is no defined ordering between fields in multiple declarations of partial class or struct 'type'](https://docs.microsoft.com/en-us/dotnet/csharp/misc/cs0282)
-
 ## Benchmarking
 
 ### How do I run the benchmarks?
@@ -280,3 +222,103 @@ WarmupCount=3
 |------------------------- |---------:|---------:|--------:|------:|-------:|------:|------:|----------:|
 |      UsingStringNatively | 204.4 ns |  8.09 ns | 0.44 ns |  1.00 | 0.0153 |     - |     - |     256 B |
 | UsingValueObjectAsStruct | 248.9 ns | 18.82 ns | 1.03 ns |  1.22 | 0.0181 |     - |     - |     304 B |
+
+
+# FAQ
+
+## Why can't I just use `public record struct CustomerId(int id);`?
+
+That doesn't give you validation. To validate `id`, you can't use the shorthand syntax. So you'd need to do:
+
+```csharp
+public record struct CustomerId
+{
+    public CustomerId(int id) {
+        if(id <=0) throw new Exception(...)
+    }
+}
+```
+
+You might also provide other constructors which might not validate the data, thereby allowing invalid data into your domain. Those other constructors might not throw exception, or might throw different exceptions.  One of the opinions in Vogen is that any invalid data given to a Value Object throws a `ValueObjectValidationException`.
+
+You could also use `default(CustomerId)` to evade validation.  In Vogen, there are analysers that catch this and fail the build, e.g:
+
+```charp
+// error VOG009: Type 'CustomerId' cannot be constructed with default as it is prohibited.
+CustomerId c = default;
+
+// error VOG009: Type 'CustomerId' cannot be constructed with default as it is prohibited.
+var c2 = default(CustomerId);
+```
+
+## Can I serialize and deserialize them?
+
+Yes, by referencing [Vogen.Serialization](https://www.nuget.org/packages/Vogen.Serialization).
+
+## It seems like a lot of overhead; I can validate the value myself
+
+You could, but to ensure consistency throughout your domain, you'd have to **validate everywhere**. And Shallow's Law says that that's not possible:
+
+> ⚖️ **Shalloway's Law**
+_"when N things need to change and N > 1, Shalloway will find at most N - 1 of these things."_
+
+Concretely: _"When 5 things need to change, Shalloway will find at most, 4 of these things."_
+
+## If my VO is a `struct`, can I stop the use of `CustomerId customerId = default(CustomerId);`?
+
+Yes. The analyser generates a compilation error.
+
+## If my VO is a `struct`, can I stop the use of `CustomerId customerId = new(CustomerId);`?
+
+Yes. The analyser generates a compilation error.
+
+## If my VO is a struct, can I have my own constructor?
+
+No. The parameter-less constructor is generated automatically, and the constructor that takes the underlying value is also generated automatically.
+
+If you add further constructors, then you will get a compilation error from the code generator, e.g.
+
+```csharp
+[ValueObject(typeof(int))]
+public partial struct CustomerId {
+    // Vogen already generates this as a private constructor to that you can't use it:
+    // error CS0111: Type 'CustomerId' already defines a member called 'CustomerId' with the same parameter type
+    public CustomerId() { }
+
+    // error VOG008: Cannot have user defined constructors, please use the From method for creation.
+    public CustomerId(int value) { }
+}
+```
+
+## If my VO is a struct, can I have my own fields?
+
+You could, but you'd get compiler warning [CS0282-There is no defined ordering between fields in multiple declarations of partial class or struct 'type'](https://docs.microsoft.com/en-us/dotnet/csharp/misc/cs0282)
+
+## Why are there no implicit conversions to and from the primitive types that are being wrapped?
+
+Implicit operators can be useful, but for Value Objects, they can confuse things. Take the following code **without** any implicit conversions:
+
+```csharp
+Age age1 = Age.From(1);
+OsVersion osVersion = OsVersion.From(1);
+
+Console.WriteLine(age1 == osVersion); // won't compile! \o/
+```
+
+That makes perfect sense. But adding in an implicit operator **from** `Age` **to** `int`, and it does compile!
+
+`Console.WriteLine(age1 == osVersion); // TRUE! (◎_◎;)`
+
+If we remove that implicit operator and replace it with an implicit operator **from** `int` **to** `Age`, it no longer compiles, which is great (we've got type safety back), but we end up [violating the rules of implicit operators](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/operators/user-defined-conversion-operators):
+
+> Predefined C# implicit conversions always succeed and never throw an exception. User-defined implicit conversions should behave in that way as well. If a custom conversion can throw an exception or lose information, define it as an explicit conversion
+
+In my research, I read some other opinions, and noted that the guidelines listed in [this answer](https://softwareengineering.stackexchange.com/a/284377/30906) say:
+
+* If the conversion can throw an (`InvalidCast`) exception, then it shouldn't be implicit.
+* If the conversion causes a heap allocation each time it is performed, then it shouldn't be implicit.
+
+Which is interesting - Vogen _wouldn't_ throw an `InvalidCastException` (only an `ValueObjectValidationException`).  Also, for `struct`s, we _wouldn't_ create a heap allocation.
+
+But since users of Vogen can declare a Value Object as a `class` **or** `struct`, then we wouldn't want implicit operators (from `primitive` => `ValueObject`) for just `structs` and not `class`es.
+
