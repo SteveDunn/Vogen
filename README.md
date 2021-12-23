@@ -13,52 +13,70 @@
 This is a source generator and code analyser that generates strongly typed **domain ideas**. You provide this:
 
 ```csharp
-    [ValueObject(typeof(int))]
-    public partial class CustomerId {
-        // optional
-        private static Validation Validate(int value) => value > 0 
-            ? Validation.Ok 
-            : Validation.Invalid("Customer IDs must be a positive number.");
-    }
+[ValueObject(typeof(int))]
+public partial struct CustomerId {
+    // optional
+    private static Validation Validate(int value) => value > 0 
+        ? Validation.Ok 
+        : Validation.Invalid("Customer IDs must be a positive number.");
+}
 ```
 
 ... and Vogen generates this:
 
 ```csharp
-public partial class CustomerId : System.IEquatable<CustomerId>
-{
-    public int Value { get; }
+    public partial struct CustomerId : System.IEquatable<CustomerId> {
+        private readonly int _value;
 
-    private CustomerId(int value) {
-        Value = value;
-    }
+        public readonly int Value => _value;
 
-    public static CustomerId From(int value) { 
-        CustomerId instance = new CustomerId(value);
-
-        var validation = CustomerId.Validate(value);
-        if (validation != Vogen.Validation.Ok)
-        {
-            throw new Vogen.ValueObjectValidationException(validation.ErrorMessage);
+        public CustomerId() {
+            throw new Vogen.ValueObjectValidationException("Validation skipped by attempting to use the default constructor...");
         }
 
-        return instance;
+        private CustomerId(int value) => _value = value;
+
+        public static CustomerId From(int value) {
+            CustomerId instance = new CustomerId(value);
+            return instance;
+        }
+
+        public readonly bool Equals(CustomerId other) ...
+        public readonly bool Equals(int primitive) ...
+        public readonly override bool Equals(object obj) ...
+        public static bool operator ==(CustomerId left, CustomerId right) ...
+        public static bool operator !=(CustomerId left, CustomerId right) ...
+        public static bool operator ==(CustomerId left, int right) ...
+        public static bool operator !=(CustomerId left, int right) ...
+        public static bool operator ==(int left, CustomerId right) ...
+        public static bool operator !=(int left, CustomerId right) ...
+
+        public readonly override int GetHashCode() ...
+
+        public readonly override string ToString() ...
     }
+```
 
-    public bool Equals(CustomerId other) ...
-    public bool Equals(int primitive) ...
-    public override bool Equals(object obj) ...
+The code analyser helps you avoid accidentally creating invalid objects:
 
-    public static bool operator ==(CustomerId left, CustomerId right) ...
-    public static bool operator !=(CustomerId left, CustomerId right) ...
-    public static bool operator ==(CustomerId left, int right) ...
-    public static bool operator !=(CustomerId left, int right) ...
-    public static bool operator ==(int left, CustomerId right) ...
-    public static bool operator !=(int left, CustomerId right) ...
+```csharp
+[ValueObject(typeof(int))]
+public partial struct CustomerId {
+    // Vogen already generates this as a private constructor to that you can't use it:
+    // error CS0111: Type 'CustomerId' already defines a member called 'CustomerId' with the same parameter type
+    public CustomerId() { }
 
-    public override int GetHashCode() ...
-    public override string ToString() => Value.ToString();
+    // error VOG008: Cannot have user defined constructors, please use the From method for creation.
+    public CustomerId(int value) { }
 }
+```
+
+```csharp
+// error VOG009: Type 'CustomerId' cannot be constructed with default as it is prohibited.
+CustomerId c = default;
+
+// error VOG009: Type 'CustomerId' cannot be constructed with default as it is prohibited.
+var c2 = default(CustomerId);
 ```
 
 The main goal of this project is to achieve **almost the same speed and memory performance as using primitives directly**.
@@ -243,7 +261,7 @@ You might also provide other constructors which might not validate the data, the
 
 You could also use `default(CustomerId)` to evade validation.  In Vogen, there are analysers that catch this and fail the build, e.g:
 
-```charp
+```csharp
 // error VOG009: Type 'CustomerId' cannot be constructed with default as it is prohibited.
 CustomerId c = default;
 
@@ -281,7 +299,7 @@ If you add further constructors, then you will get a compilation error from the 
 ```csharp
 [ValueObject(typeof(int))]
 public partial struct CustomerId {
-    // Vogen already generates this as a private constructor to that you can't use it:
+    // Vogen already generates this as a private constructor:
     // error CS0111: Type 'CustomerId' already defines a member called 'CustomerId' with the same parameter type
     public CustomerId() { }
 
@@ -315,10 +333,109 @@ If we remove that implicit operator and replace it with an implicit operator **f
 
 In my research, I read some other opinions, and noted that the guidelines listed in [this answer](https://softwareengineering.stackexchange.com/a/284377/30906) say:
 
-* If the conversion can throw an (`InvalidCast`) exception, then it shouldn't be implicit.
+* If the conversion can throw an `InvalidCast` exception, then it shouldn't be implicit.
 * If the conversion causes a heap allocation each time it is performed, then it shouldn't be implicit.
 
 Which is interesting - Vogen _wouldn't_ throw an `InvalidCastException` (only an `ValueObjectValidationException`).  Also, for `struct`s, we _wouldn't_ create a heap allocation.
 
 But since users of Vogen can declare a Value Object as a `class` **or** `struct`, then we wouldn't want implicit operators (from `primitive` => `ValueObject`) for just `structs` and not `class`es.
 
+## Can you opt-in to implicit conversions?
+
+No, but you can provide them yourself. For certain types it would allow a much more natural way of expressing, er, expressions.
+
+Although it can be confusing. Let's say there's a type like this (and imagine that there's implicit conversions to `Age` and to `int`'):
+
+```csharp
+[ValueObject(typeof(int))]
+public readonly partial struct Age
+    public static Validation Validate(int n) => n >= 0 ? Validation.Ok : Validation.Invalid("Must be zero or more");
+}
+```
+
+That says that `Age` instances can never be negative.  So you would probably expect the following to throw, but it doesn't:
+
+```csharp
+var age20 = Age.From(20);
+var age10 = age20 / 2;
+++age10;
+age10 -= 12; // bang - goes negative??
+```
+
+But no..  The implicit cast in `var age10 = age20 / 2` results in an `int` and not an `Age`. Changing it to `Age age10 = age20 / 2` fixes it. But this does go to show that it can be confusing.
+
+## Why is there no interface?
+
+> _If I'm using a library that uses Vogen, I'd like to easily tell if the type is just a primitive wrapper or not by the fact that it implements an interface, such as `IValidated<T>`_
+
+Just like primitives have no interfaces, there's no need to have interfaces on Value Objects. The receiver that takes a `CustomerId` knows that it's a Value Object.  If it were instead to take an `IValidated<int>`, then it wouldn't have any more information; you'd still have to know to call `Value` to get the value.
+
+It might also relax type safety. Without the interface, we'd have signatures such as this:
+
+```csharp
+public void SomSomething(CustomerId customerId, SupplierId supplierId, ProductId productId);
+```
+
+... but with the interface, we _could_ have signatures such as this:
+
+```csharp
+public void SomSomething(IValidate<int> customerId, IValidated<int> supplierId, IValidated<int> productId);
+```
+
+So, callers could mess things up by calling `DoSomething(productId, supplierId, customerId)`)
+
+There would also be no need to know if it's validated, as, if it's in your domain, it's valid (there's no way to manually create invalid instances).  And with that said, there'd also be no point in exposing the 'Validate' method via the interface because validation is done at creation.
+
+## Why are they called 'Value Objects'?
+The term Value Object represents a small object whos equality is based on value and not identity. From [Wikipedia](https://en.wikipedia.org/wiki/Value_object)
+
+> _In computer science, a value object is a small object that represents a simple entity whose equality is not based on identity: i.e. two value objects are equal when they have the same value, not necessarily being the same object._
+
+In DDD, a Value Object is (again, from [Wikipedia](https://en.wikipedia.org/wiki/Domain-driven_design#Building_blocks))
+
+>  _... a value object is an immutable object that contains attributes but has no conceptual identity_
+
+## Can I represent special values
+
+Yes. You might want to represent special values for things like invalid or unspecified instances, e.g.
+
+```csharp
+/*
+* Instances are the only way to avoid validation, so we can create instances
+* that nobody else can. This is useful for creating special instances
+* that represent concepts such as 'invalid' and 'unspecified'.
+*/
+[ValueObject(typeof(int))]
+[Instance("Unspecified", -1)]
+[Instance("Invalid", -2)]
+public readonly partial struct Age
+{
+    private static Validation Validate(int value) =>
+        value > 0 ? Validation.Ok : Validation.Invalid("Must be greater than zero.");
+}
+```
+
+You can then use default values when using these types, e.g.
+
+```csharp
+public class Person {
+    public Age Age { get; set; } = Age.Unspecified
+}
+```
+
+... and if you take an Age, you can compare it to an instance that is invalid/unspecified
+
+```csharp
+public void CanEnter(Age age) {
+    if(age == Age.Unspecified || age == Age.Invalid) throw CannotEnterException("Name not specified or is invalid")
+    return age < 17;
+}
+```
+
+# What alternatives are there?
+
+[ValueOf](https://github.com/mcintyre321/ValueOf) 
+
+[StringlyTyped](https://github.com/stevedunn/stringlytyped)
+
+[ValueObjectGenerator](https://github.com/RyotaMurohoshi/ValueObjectGenerator)
