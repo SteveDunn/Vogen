@@ -10,7 +10,7 @@
 
 ## Overview
 
-This is a source generator and code analyser that generates strongly typed **domain ideas**. You provide this:
+This is a .NET source generator and code analyser that generates strongly typed **domain ideas**. You provide this:
 
 ```csharp
 [ValueObject(typeof(int))]
@@ -57,7 +57,19 @@ public partial struct CustomerId {
     }
 ```
 
-The code analyser helps you avoid accidentally creating invalid objects:
+You then use `CustomerId` instead of `int` in your domain in the full knowledge that it is valid and safe to use:
+
+```csharp
+CustomerId customerId = CustomerId.From(123);
+SendInvoice(customerId);
+
+...
+
+public void SendInvoice(CustomerId customerId) { ... }
+```
+
+To ensure validity of your value objects, the code analyser helps you avoid mistakes.
+It does this by adding new constraints in the form of new compilation errors:
 
 ```csharp
 [ValueObject(typeof(int))]
