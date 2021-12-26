@@ -28,6 +28,11 @@ internal class DiagnosticCollection : IEnumerable<Diagnostic>
         "Using default of Value Objects is prohibited",
         "Type '{0}' cannot be constructed with default as it is prohibited.");
 
+    private static readonly DiagnosticDescriptor _usingNewProhibited = CreateDescriptor(
+        DiagnosticCode.UsingNewProhibited,
+        "Using new to create Value Objects is prohibited. Please use the From method for creation.",
+        "Type '{0}' cannot be constructed with 'new' as it is prohibited.");
+
     private static readonly DiagnosticDescriptor _cannotHaveUserConstructors = CreateDescriptor(
         DiagnosticCode.CannotHaveUserConstructors,
         "Cannot have user defined constructors",
@@ -77,6 +82,9 @@ internal class DiagnosticCollection : IEnumerable<Diagnostic>
 
     public void AddUsingDefaultProhibited(Location locationOfDefaultStatement, string voClassName) => 
         AddDiagnostic(_usingDefaultProhibited, voClassName, locationOfDefaultStatement);
+
+    public void AddUsingNewProhibited(Location location, string voClassName) => 
+        AddDiagnostic(_usingNewProhibited, voClassName, location);
 
     public void AddCannotHaveUserConstructors(IMethodSymbol constructor) => 
         AddDiagnostic(_cannotHaveUserConstructors, constructor.Locations);
