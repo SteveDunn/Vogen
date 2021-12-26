@@ -19,6 +19,9 @@ namespace Vogen.Examples.NoDefaulting
 
             // VendorId v = default;
             // var v2 = default(VendorId);
+
+            // uncomment for - error VOG010: Type 'VendorId' cannot be constructed with 'new' as it is prohibited.
+            // var v3 = new VendorId();
         }
     }
 

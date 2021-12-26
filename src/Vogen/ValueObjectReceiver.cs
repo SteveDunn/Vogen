@@ -22,6 +22,13 @@ class ValueObjectReceiver : ISyntaxContextReceiver
     {
         try
         {
+            if (context.Node is ObjectCreationExpressionSyntax objectCreationExpressionSyntax)
+            {
+                HandleObjectCreation(context, objectCreationExpressionSyntax);
+
+                return;
+            }
+
             if (context.Node is TypeDeclarationSyntax typeDeclarationSyntax)
             {
                 HandleType(context, typeDeclarationSyntax);
@@ -44,6 +51,24 @@ class ValueObjectReceiver : ISyntaxContextReceiver
         catch (Exception ex) when (LogException(ex))
         {
         }
+    }
+
+    private void HandleObjectCreation(GeneratorSyntaxContext context, ObjectCreationExpressionSyntax syntax)
+    {
+        var ancestor = syntax.Ancestors(false)
+            .FirstOrDefault(a => a.IsKind(SyntaxKind.VariableDeclaration));
+
+        if (ancestor is not VariableDeclarationSyntax variableDeclarationSyntax)
+        {
+            return;
+        }
+
+        if (!IsOneOfOurValueObjects(context, variableDeclarationSyntax.Type, out string name))
+        {
+            return;
+        }
+
+        DiagnosticMessages.AddUsingNewProhibited(variableDeclarationSyntax.GetLocation(), name);
     }
 
     private void HandleDefaultLiteralExpression(GeneratorSyntaxContext context, LiteralExpressionSyntax literalExpressionSyntax)
