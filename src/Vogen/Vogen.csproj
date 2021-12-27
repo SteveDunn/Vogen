@@ -5,6 +5,7 @@
     <LanguageVersion>10.0</LanguageVersion>
     <ImplicitUsings>disable</ImplicitUsings>
     <nullable>enable</nullable>
+    <IsRoslynComponent>true</IsRoslynComponent>
 
     <Features>strict</Features>
     <PackageId>Vogen</PackageId>

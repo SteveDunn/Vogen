@@ -83,6 +83,12 @@ internal class DiagnosticCollection : IEnumerable<Diagnostic>
     public void AddUsingDefaultProhibited(Location locationOfDefaultStatement, string voClassName) => 
         AddDiagnostic(_usingDefaultProhibited, voClassName, locationOfDefaultStatement);
 
+    public static Diagnostic UsingDefaultProhibited(Location locationOfDefaultStatement, string voClassName) => 
+        BuildDiagnostic(_usingDefaultProhibited, voClassName, locationOfDefaultStatement);
+
+    public static Diagnostic UsingNewProhibited(Location location, string voClassName) => 
+        BuildDiagnostic(_usingNewProhibited, voClassName, location);
+
     public void AddUsingNewProhibited(Location location, string voClassName) => 
         AddDiagnostic(_usingNewProhibited, voClassName, location);
 
@@ -114,6 +120,9 @@ internal class DiagnosticCollection : IEnumerable<Diagnostic>
         
         AddDiagnostic(diagnostic);
     }
+
+    private static Diagnostic BuildDiagnostic(DiagnosticDescriptor descriptor, string name, Location location) => 
+        Diagnostic.Create(descriptor, location, name);
 
     private void AddDiagnostic(DiagnosticDescriptor descriptor, IEnumerable<Location> locations, params object?[] args)
     {

@@ -7,7 +7,6 @@ namespace Vogen;
 
 static class SemanticHelper
 {
-    //[return: NotNullIfNotNull("symbol")]
     public static string? FullName(this INamedTypeSymbol? symbol)
     {
         if (symbol == null)

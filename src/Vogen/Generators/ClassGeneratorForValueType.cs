@@ -5,7 +5,7 @@ namespace Vogen.Generators;
 
 public class ClassGeneratorForValueType : IGenerateSourceCode
 {
-    public string BuildClass(ValueObjectWorkItem item, TypeDeclarationSyntax tds, List<string> log)
+    public string BuildClass(VoWorkItem item, TypeDeclarationSyntax tds, List<string> log)
     {
         var className = tds.Identifier;
         return $@"
