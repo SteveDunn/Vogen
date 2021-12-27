@@ -9,10 +9,5 @@
 
 using Testbench;
 
-CallMe(MyVo.From(123));
-
-void CallMe(MyVo customerId)
-{
-    int _ = customerId.Value;
-}
-
+// uncomment this to fail the build (as the analyzer will say that Value Objects can't be constructed with new())
+// MyVo v = new();

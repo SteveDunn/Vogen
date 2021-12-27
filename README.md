@@ -88,7 +88,16 @@ public partial struct CustomerId {
 CustomerId c = default;
 
 // error VOG009: Type 'CustomerId' cannot be constructed with default as it is prohibited.
-var c2 = default(CustomerId);
+var c = default(CustomerId);
+
+// error VOG009: Type 'CustomerId' cannot be constructed with default as it is prohibited.
+void ProcessCustomer(CustomerId customerId = default)
+
+// uncomment for - error VOG010: Type 'CustomerId' cannot be constructed with 'new' as it is prohibited.
+var c = new CustomerId();
+
+// uncomment for - error VOG010: Type 'CustomerId' cannot be constructed with 'new' as it is prohibited.
+CustomerId c = new();
 ```
 
 The main goal of this project is to achieve **almost the same speed and memory performance as using primitives directly**.

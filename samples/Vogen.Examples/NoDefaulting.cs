@@ -24,7 +24,8 @@ namespace Vogen.Examples.NoDefaulting
             // var v3 = new VendorId();
 
             // uncomment for - error VOG010: Type 'CustomerId' cannot be constructed with 'new' as it is prohibited.
-            // var v4 = new CustomerId();
+            //var v4 = new CustomerId();
+            // CustomerId v5 = new();
             // var _ = new CustomerId();
             // new CustomerId();
         }
