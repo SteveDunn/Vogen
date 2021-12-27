@@ -5,7 +5,7 @@ namespace Vogen.Generators;
 
 public class StructGeneratorForValueAndReferenceTypes : IGenerateSourceCode
 {
-    public string BuildClass(ValueObjectWorkItem item, TypeDeclarationSyntax tds, List<string> log)
+    public string BuildClass(VoWorkItem item, TypeDeclarationSyntax tds, List<string> log)
     {
         var structName = tds.Identifier;
         return $@"using Vogen;

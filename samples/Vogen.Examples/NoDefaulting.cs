@@ -14,7 +14,7 @@ namespace Vogen.Examples.NoDefaulting
         public Naughty()
         {
             // uncomment for - error VOG009: Type 'CustomerId' cannot be constructed with default as it is prohibited.
-            // CustomerId c = default;
+            // CustomerId c = default; 
             // var c2 = default(CustomerId);
 
             // VendorId v = default;
@@ -22,7 +22,18 @@ namespace Vogen.Examples.NoDefaulting
 
             // uncomment for - error VOG010: Type 'VendorId' cannot be constructed with 'new' as it is prohibited.
             // var v3 = new VendorId();
+
+            // uncomment for - error VOG010: Type 'CustomerId' cannot be constructed with 'new' as it is prohibited.
+            //var v4 = new CustomerId();
+            // CustomerId v5 = new();
+            // var _ = new CustomerId();
+            // new CustomerId();
         }
+
+        // public void CallMe(CustomerId customerId = default)
+        // {
+        //     int _ = customerId.Value;
+        // }
     }
 
     [ValueObject(typeof(int))]

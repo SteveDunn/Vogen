@@ -4,7 +4,7 @@ using Microsoft.CodeAnalysis.CSharp.Syntax;
 
 namespace Vogen;
 
-public class ValueObjectWorkItem
+public class VoWorkItem
 {
     public MethodDeclarationSyntax? ValidateMethod { get; set; }
 
@@ -17,4 +17,5 @@ public class ValueObjectWorkItem
     public List<InstanceProperties> InstanceProperties { get; set; } = new();
 
     public string FullNamespace { get; set; } = string.Empty;
+    public INamedTypeSymbol? ContainingType { get; set; }
 }

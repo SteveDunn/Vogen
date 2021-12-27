@@ -5,5 +5,5 @@ namespace Vogen.Generators;
 
 public interface IGenerateSourceCode
 {
-    string BuildClass(ValueObjectWorkItem item, TypeDeclarationSyntax tds, List<string> log);
+    string BuildClass(VoWorkItem item, TypeDeclarationSyntax tds, List<string> log);
 }

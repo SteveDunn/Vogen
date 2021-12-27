@@ -7,7 +7,7 @@ namespace Vogen;
 
 public static class Util
 {
-    public static string GenerateAnyInstances(TypeDeclarationSyntax classDeclarationSyntax, ValueObjectWorkItem item,
+    public static string GenerateAnyInstances(TypeDeclarationSyntax classDeclarationSyntax, VoWorkItem item,
         List<string> log)
     {
         if (item.InstanceProperties.Count == 0)
@@ -26,7 +26,7 @@ public static class Util
         return sb.ToString();
     }
     
-    public static string GenerateValidation(ValueObjectWorkItem workItem)
+    public static string GenerateValidation(VoWorkItem workItem)
     {
         if (workItem.ValidateMethod != null)
             return @$"var validation = {workItem.TypeToAugment.Identifier}.Validate(value);
@@ -42,7 +42,7 @@ public static class Util
     private static string GenerateAnyInstances_internal(
         InstanceProperties instanceProperties,
         TypeDeclarationSyntax classDeclarationSyntax, 
-        ValueObjectWorkItem item,
+        VoWorkItem item,
         List<string> log)
     {
         if (item.InstanceProperties.Count == 0)
@@ -60,7 +60,7 @@ public static class Util
 public static {classDeclarationSyntax.Identifier} {instanceProperties.Name} = new {classDeclarationSyntax.Identifier}({instanceValue});";
     }
 
-    private static string BuildInstanceValue(ValueObjectWorkItem item, object instancePropertiesValue, List<string> log)
+    private static string BuildInstanceValue(VoWorkItem item, object instancePropertiesValue, List<string> log)
     {
         log.Add($"underlying type is '{item.UnderlyingType?.FullName()}'");
 
