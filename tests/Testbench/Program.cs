@@ -11,3 +11,4 @@ using Testbench;
 
 // uncomment this to fail the build (as the analyzer will say that Value Objects can't be constructed with new())
 // MyVo v = new();
+Console.ReadLine();
