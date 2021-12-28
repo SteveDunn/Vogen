@@ -111,7 +111,7 @@ internal class DiagnosticCollection : IEnumerable<Diagnostic>
     {
         string[] tags = severity == DiagnosticSeverity.Error ? new[] { WellKnownDiagnosticTags.NotConfigurable } : Array.Empty<string>();
 
-        return new DiagnosticDescriptor(code.Format(), title, messageFormat, "RestEaseGeneration", severity, isEnabledByDefault: true, customTags: tags);
+        return new DiagnosticDescriptor(code.Format(), title, messageFormat, "Vogen", severity, isEnabledByDefault: true, customTags: tags);
     }
 
     private void AddDiagnostic(DiagnosticDescriptor descriptor, string name, Location location)

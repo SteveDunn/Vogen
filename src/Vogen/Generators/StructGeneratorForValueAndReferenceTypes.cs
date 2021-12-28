@@ -1,17 +1,15 @@
-﻿using System.Collections.Generic;
-using Microsoft.CodeAnalysis.CSharp.Syntax;
+﻿using Microsoft.CodeAnalysis.CSharp.Syntax;
 
 namespace Vogen.Generators;
 
 public class StructGeneratorForValueAndReferenceTypes : IGenerateSourceCode
 {
-    public string BuildClass(VoWorkItem item, TypeDeclarationSyntax tds, List<string> log)
+    public string BuildClass(VoWorkItem item, TypeDeclarationSyntax tds)
     {
         var structName = tds.Identifier;
         return $@"using Vogen;
 
-namespace {item.FullNamespace}
-{{
+{Util.WriteStartNamespace(item.FullNamespace)}
     {Util.GenerateModifiersFor(tds)} struct {structName} : System.IEquatable<{structName}>
     {{
         private readonly {item.UnderlyingType} _value;
@@ -58,8 +56,8 @@ namespace {item.FullNamespace}
 
         public readonly override string ToString() => Value.ToString();
 
-        {Util.GenerateAnyInstances(tds, item, log)}
+        {Util.GenerateAnyInstances(tds, item)}
     }}
-}}";
+{Util.WriteCloseNamespace(item.FullNamespace)}";
     }
 }

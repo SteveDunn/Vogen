@@ -1,19 +1,17 @@
-﻿using System.Collections.Generic;
-using Microsoft.CodeAnalysis.CSharp.Syntax;
+﻿using Microsoft.CodeAnalysis.CSharp.Syntax;
 
 namespace Vogen.Generators;
 
 public class ClassGeneratorForReferenceType : IGenerateSourceCode
 {
-    public string BuildClass(VoWorkItem item, TypeDeclarationSyntax tds, List<string> log)
+    public string BuildClass(VoWorkItem item, TypeDeclarationSyntax tds)
     {
         var className = tds.Identifier;
 
         return $@"
 using Vogen;
 
-namespace {item.FullNamespace}
-{{
+{Util.WriteStartNamespace(item.FullNamespace)}
     {Util.GenerateModifiersFor(tds)} class {className} : System.IEquatable<{className}>
     {{
         public {className}()
@@ -106,10 +104,10 @@ namespace {item.FullNamespace}
             }}
         }}
 
-        {Util.GenerateAnyInstances(tds, item, log)}
+        {Util.GenerateAnyInstances(tds, item)}
 
         public override string ToString() => Value.ToString();
     }}
-}}";
+{Util.WriteCloseNamespace(item.FullNamespace)}";
     }
 }

@@ -96,7 +96,35 @@ public void DoSomething(CustomerId customerId, SupplierId supplierId, Amount amo
 
 Now, callers can't mess up the ordering of parameters and accidentally pass us a Supplier ID in place of a Customer ID.
 
-It also means that validation **is in just one place**. You can't introduce bad objects into your domain, therefore you can assume that **in _your_ domain** every ValueObject is valid.  Handy.
+It also means that validation **is in just one place**. You can't introduce bad objects into your domain, therefore you can assume that **in _your_ domain** every ValueObject is valid.
+
+## Adding the package
+
+Add the package to your application using
+
+```bash
+dotnet add package Vogen
+```
+
+This adds a `<PackageReference>` to your project. You can additionally mark the package as `PrivateAssets="all"` and `ExcludeAssets="runtime"`.
+
+> Setting `PrivateAssets="all"` means any projects referencing this one won't get a reference to the _Vogen_ package. Setting `ExcludeAssets="runtime"` ensures the _Vogen.SharedTypes.dll_ file is not copied to your build output (it is not required at runtime).
+
+```xml
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net6.0</TargetFramework>
+  </PropertyGroup>
+
+  <!-- Add the package -->
+  <PackageReference Include="Vogen" Version="1.0.9" 
+    PrivateAssets="all" ExcludeAssets="runtime" />
+  <!-- -->
+
+</Project>
+```
 
 ## How does it compare to using native types?
 

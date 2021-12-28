@@ -454,3 +454,6 @@ $RECYCLE.BIN/
 !.vscode/extensions.json
 
 **/Generated/Vogen/*
+
+*.received.txt
+BenchmarkDotNet.Artifacts

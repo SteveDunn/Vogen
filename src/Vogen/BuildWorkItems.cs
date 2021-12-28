@@ -14,7 +14,6 @@ internal static class BuildWorkItems
     public static VoWorkItem? TryBuild(
         VoTarget target,
         SourceProductionContext context,
-        List<string> log,
         DiagnosticCollection diagnostics)
     {
         var tds = target.TypeToAugment;
@@ -66,7 +65,7 @@ internal static class BuildWorkItems
             diagnostics.AddTypeCannotBeNested(voClass, containingType);
         }
 
-        var instanceProperties = TryBuildInstanceProperties(attributes, voClass, log, diagnostics);
+        var instanceProperties = TryBuildInstanceProperties(attributes, voClass, diagnostics);
 
         MethodDeclarationSyntax? validateMethod = null;
 
@@ -76,8 +75,6 @@ internal static class BuildWorkItems
             if (memberDeclarationSyntax is MethodDeclarationSyntax mds)
             {
                 object? value = mds.Identifier.Value;
-
-                log.Add($"    Found method named {value}");
 
                 if (value?.ToString() == "Validate")
                 {
@@ -91,11 +88,7 @@ internal static class BuildWorkItems
                     if (returnTypeSyntax.ToString() != "Validation")
                     {
                         diagnostics.AddValidationMustReturnValidationType(mds);
-                        log.Add($"    Validate return type is {returnTypeSyntax}");
-
                     }
-
-                    log.Add($"    Added and will call {value}");
 
                     validateMethod = mds;
                 }
@@ -128,7 +121,6 @@ internal static class BuildWorkItems
     private static IEnumerable<InstanceProperties> TryBuildInstanceProperties(
         ImmutableArray<AttributeData> attributes,
         INamedTypeSymbol voClass,
-        List<string> log,
         DiagnosticCollection diagnostics)
     {
         var matchingAttributes =
@@ -138,8 +130,6 @@ internal static class BuildWorkItems
         {
             if (eachAttribute == null)
             {
-                log.Add($"no instance attribute");
-
                 continue;
             }
 
@@ -147,7 +137,6 @@ internal static class BuildWorkItems
 
             if (constructorArguments.Length == 0)
             {
-                log.Add($"no constructor args!");
                 continue;
             }
 
@@ -155,7 +144,6 @@ internal static class BuildWorkItems
 
             if (name is null)
             {
-                log.Add($"name symbol for InstanceAttribute is null");
                 diagnostics.AddInstanceMethodCannotHaveNullArgumentName(voClass);
                 //  continue;
             }
@@ -164,7 +152,6 @@ internal static class BuildWorkItems
 
             if (value is null)
             {
-                log.Add($"value symbol for InstanceAttribute is null");
                 diagnostics.AddInstanceMethodCannotHaveNullArgumentValue(voClass);
             }
 
@@ -172,8 +159,6 @@ internal static class BuildWorkItems
             {
                 continue;
             }
-
-            log.Add($"instance attribute found - Name: '{name}', Value: {value}");
 
             yield return new InstanceProperties(name, value);
         }

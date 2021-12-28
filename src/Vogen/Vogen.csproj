@@ -20,9 +20,6 @@
     <PackageIcon>gradient_128x128.png</PackageIcon>
     <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
     <PublishRepositoryUrl>true</PublishRepositoryUrl>
-    <IncludeSymbols>true</IncludeSymbols>
-    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
-    <EmbedUntrackedSources>true</EmbedUntrackedSources>
     <Deterministic>true</Deterministic>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <RepositoryUrl>https://github.com/SteveDunn/Vogen</RepositoryUrl>
@@ -52,13 +49,17 @@
 
   <!-- only used at compile time and not run time-->
   <PropertyGroup>
-    <IncludeBuildOutput>true</IncludeBuildOutput>
-    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+    <IncludeBuildOutput>false</IncludeBuildOutput>
+    <!-- <GeneratePackageOnBuild>True</GeneratePackageOnBuild> -->
     <PackageReadmeFile>nuget-readme.md</PackageReadmeFile>
   </PropertyGroup>
 
   <ItemGroup>
+    <None Include="..\..\docs\nuget-readme.md" Pack="true" PackagePath="\" />
     <None Include="$(OutputPath)\$(AssemblyName).dll" Pack="true" PackagePath="analyzers/dotnet/cs" Visible="false" />
+    <None Include="$(OutputPath)\Vogen.SharedTypes.dll" Pack="true" PackagePath="analyzers/dotnet/cs" Visible="false" />
+    <None Include="$(OutputPath)\Vogen.SharedTypes.dll" Pack="true" PackagePath="lib\netstandard2.0" Visible="true" />
+
   </ItemGroup>    
 
   <ItemGroup>
@@ -72,11 +73,11 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
+    <ProjectReference Include="..\Vogen.SharedTypes\Vogen.SharedTypes.csproj" PrivateAssets="All" />
   </ItemGroup>
 
   <ItemGroup>
     <Folder Include="Diagnostics\" />
-    <None Include="..\..\docs\nuget-readme.md" Pack="true" PackagePath="\" />
   </ItemGroup>
 
 </Project>

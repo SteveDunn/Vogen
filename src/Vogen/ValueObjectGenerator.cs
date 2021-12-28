@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Linq;
-using System.Text;
 using Microsoft.CodeAnalysis;
-using Microsoft.CodeAnalysis.CSharp.Syntax;
-using Microsoft.CodeAnalysis.Text;
 using Vogen.Diagnostics;
 
 namespace Vogen
@@ -30,44 +26,29 @@ namespace Vogen
                     transform: static (ctx, _) => VoFilter.TryGetTarget(ctx))
                 .Where(static m => m is not null);
 
-        static void Execute(Compilation compilation, ImmutableArray<VoTarget?> typeDeclarations, SourceProductionContext context)
+        static void Execute(Compilation compilation, ImmutableArray<VoTarget?> typeDeclarations,
+            SourceProductionContext context)
         {
             if (typeDeclarations.IsDefaultOrEmpty)
             {
                 return;
             }
 
-            List<string> log = new();
+            DiagnosticCollection diagnostics = new DiagnosticCollection();
 
-            try
+            List<VoWorkItem> workItems = GetWorkItems(typeDeclarations, context, diagnostics).ToList();
+
+            foreach (var eachWorkItem in workItems)
             {
-                DiagnosticCollection diagnostics = new DiagnosticCollection();
-
-                List<VoWorkItem> workItems = GetWorkItems(typeDeclarations, context, log, diagnostics).ToList();
-
-                foreach (var eachWorkItem in workItems)
-                {
-                    WriteWorkItems.WriteVo(eachWorkItem, compilation, context, log, diagnostics);
-                }
-
-                ReportErrors(context, diagnostics);
+                WriteWorkItems.WriteVo(eachWorkItem, compilation, context, diagnostics);
             }
-            catch (Exception ex)
-            {
-                log.Add(ex.ToString());
-            }
-            finally
-            {
-                context.AddSource("ValueObjectGeneratorLogs", SourceText.From(
-                    $@"/*{Environment.NewLine + string.Join(Environment.NewLine, log) + Environment.NewLine}*/",
-                    Encoding.UTF8));
-            }
+
+            ReportErrors(context, diagnostics);
         }
 
         static IEnumerable<VoWorkItem> GetWorkItems(
             ImmutableArray<VoTarget?> targets,
             SourceProductionContext context,
-            List<string> log,
             DiagnosticCollection diagnostics)
         {
             if (targets.IsDefaultOrEmpty)
@@ -82,7 +63,7 @@ namespace Vogen
                     continue;
                 }
                 
-                var ret = BuildWorkItems.TryBuild(eachTarget, context, log, diagnostics);
+                var ret = BuildWorkItems.TryBuild(eachTarget, context, diagnostics);
                 
                 if (ret is not null)
                 {

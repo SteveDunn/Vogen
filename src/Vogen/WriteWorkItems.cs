@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Text;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
@@ -32,48 +31,31 @@ internal static class WriteWorkItems
         _structGeneratorForValueAndReferenceTypes = new StructGeneratorForValueAndReferenceTypes();
     }
 
-    public static void WriteVo(VoWorkItem item, Compilation compilation, SourceProductionContext context, List<string> log, DiagnosticCollection diagnostics)
+    public static void WriteVo(VoWorkItem item, Compilation compilation, SourceProductionContext context,
+        DiagnosticCollection diagnostics)
     {
-        try
-        {
-            log.Add($"generating for {item.TypeToAugment.Identifier}");
+        // get the recorded user class
+        TypeDeclarationSyntax voClass = item.TypeToAugment;
 
-            // get the recorded user class
-            TypeDeclarationSyntax voClass = item.TypeToAugment;
+        IGenerateSourceCode generator = GetGenerator(item);
 
-            log.Add($"voClass.Identifier.ToFullString() is '{voClass.Identifier}'");
+        string classAsText = GeneratedPreamble + Environment.NewLine + generator.BuildClass(item, voClass);
 
-            IGenerateSourceCode generator = GetGenerator(item);
+        SourceText sourceText = SourceText.From(classAsText, Encoding.UTF8);
 
-            string classAsText = GeneratedPreamble + Environment.NewLine + generator.BuildClass(item, voClass, log);
+        string filename = $"{item.FullNamespace}_{voClass.Identifier}.g.cs";
 
-            SourceText sourceText = SourceText.From(classAsText, Encoding.UTF8);
-
-            string filename = $"{item.FullNamespace}_{voClass.Identifier}.g.cs";
-
-            log.Add($"-=-= writing source to {filename}");
-            context.AddSource(filename, sourceText);
-
-            log.Add("finished that one...");
-        }
-        catch (Exception ex)
-        {
-            DiagnosticCollection c = new DiagnosticCollection();
-            ReportErrors(context, c);
-            log.Add(ex.ToString());
-        }
+        context.AddSource(filename, sourceText);
     }
 
-    private static IGenerateSourceCode GetGenerator(VoWorkItem item)
-    {
-        return item.TypeToAugment switch
+    private static IGenerateSourceCode GetGenerator(VoWorkItem item) =>
+        item.TypeToAugment switch
         {
             ClassDeclarationSyntax when item.IsValueType => _classGeneratorForValueType,
             ClassDeclarationSyntax => _classGeneratorForReferenceType,
             StructDeclarationSyntax => _structGeneratorForValueAndReferenceTypes,
             _ => throw new InvalidOperationException("Don't know how to get the generator!")
         };
-    }
 
     private static void ReportErrors(SourceProductionContext context,
         DiagnosticCollection syntaxReceiverDiagnosticMessages)
