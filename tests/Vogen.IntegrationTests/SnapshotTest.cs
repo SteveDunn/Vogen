@@ -157,4 +157,58 @@ public partial struct CustomerId
         diagnostics.Should().BeEmpty();
         return Verifier.Verify(output).UseDirectory("Snapshots");
     }
+
+    [Fact]
+    public Task Validation_with_PacalCased_validate_method()
+    {
+        // The source code to test
+        var source = @"using Vogen;
+
+namespace Whatever;
+
+[ValueObject(typeof(int))]
+public partial struct CustomerId
+{
+    private static Validation Validate(int value)
+    {
+        if (value > 0)
+            return Validation.Ok;
+
+        return Validation.Invalid(""must be greater than zero"");
+    }
+}
+";
+        
+        var (diagnostics, output) = TestHelper.GetGeneratedOutput<ValueObjectGenerator>(source);
+
+        diagnostics.Should().BeEmpty();
+        return Verifier.Verify(output).UseDirectory("Snapshots");
+    }
+
+    [Fact]
+    public Task Validation_with_camelCased_validate_method()
+    {
+        // The source code to test
+        var source = @"using Vogen;
+
+namespace Whatever;
+
+[ValueObject(typeof(int))]
+public partial struct CustomerId
+{
+    private static Validation validate(int value)
+    {
+        if (value > 0)
+            return Validation.Ok;
+
+        return Validation.Invalid(""must be greater than zero"");
+    }
+}
+";
+        
+        var (diagnostics, output) = TestHelper.GetGeneratedOutput<ValueObjectGenerator>(source);
+
+        diagnostics.Should().BeEmpty();
+        return Verifier.Verify(output).UseDirectory("Snapshots");
+    }
 }

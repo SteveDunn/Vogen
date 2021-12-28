@@ -26,7 +26,7 @@ public static class Util
     public static string GenerateValidation(VoWorkItem workItem)
     {
         if (workItem.ValidateMethod != null)
-            return @$"var validation = {workItem.TypeToAugment.Identifier}.Validate(value);
+            return @$"var validation = {workItem.TypeToAugment.Identifier}.{workItem.ValidateMethod.Identifier.Value}(value);
             if (validation != Vogen.Validation.Ok)
             {{
                 throw new Vogen.ValueObjectValidationException(validation.ErrorMessage);

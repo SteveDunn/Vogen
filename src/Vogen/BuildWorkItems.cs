@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Linq;
@@ -76,7 +77,7 @@ internal static class BuildWorkItems
             {
                 object? value = mds.Identifier.Value;
 
-                if (value?.ToString() == "Validate")
+                if (StringComparer.OrdinalIgnoreCase.Compare(value?.ToString(), "validate") == 0)
                 {
                     if (!(mds.DescendantTokens().Any(t => t.IsKind(SyntaxKind.StaticKeyword))))
                     {
