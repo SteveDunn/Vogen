@@ -101,4 +101,35 @@ CustomerId c = new();
         diagnostic.Id.Should().Be("VOG010");
         diagnostic.ToString().Should().Be("(10,1): error VOG010: Type 'CustomerId' cannot be constructed with 'new' as it is prohibited.");
     }
+
+    [Fact]
+    public void No_defaulting_parameters_using_default()
+    {
+        // The source code to test
+        var source = @"using Vogen;
+
+namespace Whatever;
+
+[ValueObject(typeof(int))]
+public partial struct CustomerId
+{
+}
+
+public class Foo
+{
+    public void DoSomething(CustomerId customerId = default) {
+    }
+}
+
+CustomerId c = new();
+";
+        
+        var (diagnostics, _) = TestHelper.GetGeneratedOutput<CreationUsingImplicitNewAnalyzer>(source);
+
+        diagnostics.Should().HaveCount(1);
+        Diagnostic diagnostic = diagnostics.Single();
+
+        diagnostic.Id.Should().Be("VOG010");
+        diagnostic.ToString().Should().Be("(16,1): error VOG010: Type 'CustomerId' cannot be constructed with 'new' as it is prohibited.");
+    }
 }
