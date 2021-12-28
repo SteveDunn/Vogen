@@ -132,4 +132,29 @@ CustomerId c = new();
         diagnostic.Id.Should().Be("VOG010");
         diagnostic.ToString().Should().Be("(16,1): error VOG010: Type 'CustomerId' cannot be constructed with 'new' as it is prohibited.");
     }
+
+    [Fact]
+    public Task Produces_instances()
+    {
+        // The source code to test
+        var source = @"using Vogen;
+
+namespace Whatever;
+
+[ValueObject(typeof(int))]
+[Instance(name: ""Unspecified"", value: -1)]
+[Instance(name: ""Unspecified1"", value: -2)]
+[Instance(name: ""Unspecified2"", value: -3)]
+[Instance(name: ""Unspecified3"", value: -4)]
+[Instance(name: ""Cust42"", value: 42)]
+public partial struct CustomerId
+{
+}
+";
+        
+        var (diagnostics, output) = TestHelper.GetGeneratedOutput<ValueObjectGenerator>(source);
+
+        diagnostics.Should().BeEmpty();
+        return Verifier.Verify(output).UseDirectory("Snapshots");
+    }
 }
