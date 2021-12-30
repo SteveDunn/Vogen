@@ -9,12 +9,14 @@
 
 using Vogen;
 
-var c =Foo.GetCustomer();
+// var c =Foo.GetCustomer();
+
+Console.ReadLine();
 
 [ValueObject(typeof(int))]
 public partial struct CustomerId { }
 
 class Foo  {
-    public static CustomerId GetCustomer() => default;
+    // public static CustomerId GetCustomer() => default;
 }
 
