@@ -9,16 +9,14 @@
 
 using Vogen;
 
-var c = Foo.GetCustomer();
+var c = GetCustomer();
+CustomerId GetCustomer() => CustomerId.From(123);
 
 Console.ReadLine();
 
 [ValueObject(typeof(int))]
 public partial struct CustomerId { }
 
-class Foo
-{
-    public static CustomerId GetCustomer() => CustomerId.From(123);
-}
+
 
 

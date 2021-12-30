@@ -94,7 +94,7 @@ class Foo  {
     }
 
     [Fact]
-    public void No_creation_using_new_from_method()
+    public void Disallow_new_from_method()
     {
         // The source code to test
         var source = @"using Vogen;
@@ -121,5 +121,52 @@ class Foo  {
         diagnostic.ToString().Should().Be("(11,51): error VOG010: Type 'CustomerId' cannot be constructed with 'new' as it is prohibited.");
     }
 
+    [Fact]
+    public void Disallow_implicit_new_from_local_function()
+    {
+        // The source code to test
+        var source = @"using Vogen;
+
+var c = GetCustomer();
+CustomerId GetCustomer() => new();
+
+Console.ReadLine();
+
+[ValueObject(typeof(int))]
+public partial struct CustomerId { }
+";
+
+        var (diagnostics, _) = TestHelper.GetGeneratedOutput<CreationUsingImplicitNewAnalyzer>(source);
+
+        diagnostics.Should().HaveCount(1);
+        Diagnostic diagnostic = diagnostics.Single();
+
+        diagnostic.Id.Should().Be("VOG010");
+        diagnostic.ToString().Should().Be("(4,1): error VOG010: Type 'CustomerId' cannot be constructed with 'new' as it is prohibited.");
+    }
+
+    [Fact]
+    public void Disallow_new_from_local_function()
+    {
+        // The source code to test
+        var source = @"using Vogen;
+
+var c = GetCustomer();
+CustomerId GetCustomer() => new CustomerId();
+
+Console.ReadLine();
+
+[ValueObject(typeof(int))]
+public partial struct CustomerId { }
+";
+
+        var (diagnostics, _) = TestHelper.GetGeneratedOutput<CreationUsingNewAnalyzer>(source);
+
+        diagnostics.Should().HaveCount(1);
+        Diagnostic diagnostic = diagnostics.Single();
+
+        diagnostic.Id.Should().Be("VOG010");
+        diagnostic.ToString().Should().Be("(4,33): error VOG010: Type 'CustomerId' cannot be constructed with 'new' as it is prohibited.");
+    }
 
 }
