@@ -3,7 +3,7 @@
 namespace Testbench
 {
     [ValueObject(typeof(int))]
-    public partial struct MyVo
+    public partial struct CustomerId
     {
     }
 }

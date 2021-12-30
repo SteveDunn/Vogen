@@ -10,5 +10,11 @@
 using Testbench;
 
 // uncomment this to fail the build (as the analyzer will say that Value Objects can't be constructed with new())
-// MyVo v = new();
+CustomerId[] customers = new CustomerId[] {CustomerId.From(123), GetCustomer(), CustomerId.From(321) };
+
+CustomerId GetCustomer() => default;
+
+Console.WriteLine(customers[0].Value);
+Console.WriteLine(customers[1].Value);
+Console.WriteLine(customers[2].Value);
 Console.ReadLine();

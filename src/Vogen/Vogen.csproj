@@ -12,6 +12,7 @@
     <Version>1.0.0</Version>
     <PackageVersion>1.0.0</PackageVersion>
     <PackageProjectUrl>https://github.com/SteveDunn/Vogen</PackageProjectUrl>
+    <EnablePackageValidation>true</EnablePackageValidation>
 
     <Authors>Steve Dunn</Authors>
     <Copyright>Copyright Steve Dunn</Copyright>

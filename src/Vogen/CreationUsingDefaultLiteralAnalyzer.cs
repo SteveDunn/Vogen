@@ -59,8 +59,17 @@ public class CreationUsingDefaultLiteralAnalyzer : IIncrementalGenerator
     // We need to try to find the 'Type' from either one of those type.
     private static TypeSyntax? GetTypeFromVariableOrParameter(LiteralExpressionSyntax literalExpressionSyntax)
     {
-        
+        // first, see if it's an array
         var ancestor = literalExpressionSyntax.Ancestors(false)
+            .FirstOrDefault(a => a.IsKind(SyntaxKind.ArrayCreationExpression));
+
+        if (ancestor is ArrayCreationExpressionSyntax arraySyntax)
+        {
+            return arraySyntax.Type.ElementType;
+        }
+
+
+        ancestor = literalExpressionSyntax.Ancestors(false)
             .FirstOrDefault(a => a.IsKind(SyntaxKind.VariableDeclaration));
 
         if (ancestor is VariableDeclarationSyntax variableDeclarationSyntax)
