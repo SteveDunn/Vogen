@@ -7,14 +7,14 @@
  * to analyze and generate types for.
  */
 
-using Testbench;
+using Vogen;
 
-// uncomment this to fail the build (as the analyzer will say that Value Objects can't be constructed with new())
-CustomerId[] customers = new CustomerId[] {CustomerId.From(123), GetCustomer(), CustomerId.From(321) };
+var c =Foo.GetCustomer();
 
-CustomerId GetCustomer() => default;
+[ValueObject(typeof(int))]
+public partial struct CustomerId { }
 
-Console.WriteLine(customers[0].Value);
-Console.WriteLine(customers[1].Value);
-Console.WriteLine(customers[2].Value);
-Console.ReadLine();
+class Foo  {
+    public static CustomerId GetCustomer() => default;
+}
+

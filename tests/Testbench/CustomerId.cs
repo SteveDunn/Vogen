@@ -2,8 +2,8 @@
 
 namespace Testbench
 {
-    [ValueObject(typeof(int))]
-    public partial struct CustomerId
-    {
-    }
+    // [ValueObject(typeof(int))]
+    // public partial struct CustomerId
+    // {
+    // }
 }

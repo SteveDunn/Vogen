@@ -68,6 +68,22 @@ public class CreationUsingDefaultLiteralAnalyzer : IIncrementalGenerator
             return arraySyntax.Type.ElementType;
         }
 
+        ancestor = literalExpressionSyntax.Ancestors(false)
+            .FirstOrDefault(a => a.IsKind(SyntaxKind.LocalFunctionStatement));
+
+        if (ancestor is LocalFunctionStatementSyntax syntax)
+        {
+            return syntax.ReturnType;
+        }
+
+        ancestor = literalExpressionSyntax.Ancestors(false)
+            .FirstOrDefault(a => a.IsKind(SyntaxKind.MethodDeclaration));
+
+        if (ancestor is MethodDeclarationSyntax methodSyntax)
+        {
+            return methodSyntax.ReturnType;
+        }
+
 
         ancestor = literalExpressionSyntax.Ancestors(false)
             .FirstOrDefault(a => a.IsKind(SyntaxKind.VariableDeclaration));
