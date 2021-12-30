@@ -52,6 +52,21 @@ public class CreationUsingImplicitNewAnalyzer : IIncrementalGenerator
             };
         }
 
+        ancestor = syntax.Ancestors(false)
+            .FirstOrDefault(a => a.IsKind(SyntaxKind.MethodDeclaration));
+
+        if (ancestor is MethodDeclarationSyntax methodSyntax)
+        {
+            TypeSyntax t = methodSyntax.ReturnType;
+            INamedTypeSymbol? voClass = VoFilter.TryGetValueObjectClass(ctx, t);
+
+            return voClass == null ? null : new FoundItem
+            {
+                VoClass = voClass,
+                Location = t.GetLocation()
+            };
+        }
+
         return null;
     }
 
