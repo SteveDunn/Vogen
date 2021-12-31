@@ -17,5 +17,4 @@ public class VoWorkItem
     public List<InstanceProperties> InstanceProperties { get; set; } = new();
 
     public string FullNamespace { get; set; } = string.Empty;
-    public INamedTypeSymbol? ContainingType { get; set; }
 }

@@ -1,5 +1,4 @@
 ﻿using System.Linq;
-using System.Threading.Tasks;
 using FluentAssertions;
 using Microsoft.CodeAnalysis;
 using VerifyXunit;
@@ -9,11 +8,11 @@ using Xunit.Abstractions;
 namespace Vogen.IntegrationTests.SnapshotTests;
 
 [UsesVerify] 
-public class DefaultingTests
+public class DisallowDefaultingTests
 {
     private readonly ITestOutputHelper _output;
 
-    public DefaultingTests(ITestOutputHelper output) => _output = output;
+    public DisallowDefaultingTests(ITestOutputHelper output) => _output = output;
 
     [Fact]
     public void Disallows_default_parameters()
@@ -138,6 +137,51 @@ class Foo  {
 
         diagnostic.Id.Should().Be("VOG009");
         diagnostic.ToString().Should().Be("(8,19): error VOG009: Type 'CustomerId' cannot be constructed with default as it is prohibited.");
+    }
+
+    [Fact]
+    public void Disallows_default_literal_from_func()
+    {
+        // The source code to test
+        var source = @"using System;
+using Vogen;
+Func<CustomerId> f = () => default;
+
+[ValueObject(typeof(int))]
+public partial struct CustomerId { }
+";
+        
+        var (diagnostics, output) = TestHelper.GetGeneratedOutput<CreationUsingDefaultLiteralAnalyzer>(source);
+        
+        _output.WriteLine(output);
+
+        diagnostics.Should().HaveCount(1);
+        Diagnostic diagnostic = diagnostics.Single();
+
+        diagnostic.Id.Should().Be("VOG009");
+        diagnostic.ToString().Should().Be("(3,28): error VOG009: Type 'CustomerId' cannot be constructed with default as it is prohibited.");
+    }
+
+    [Fact]
+    public void Disallows_default_from_func()
+    {
+        // The source code to test
+        var source = @"using Vogen;
+Func<CustomerId> f = () => default(CustomerId);
+
+[ValueObject(typeof(int))]
+public partial struct CustomerId { }
+";
+        
+        var (diagnostics, output) = TestHelper.GetGeneratedOutput<CreationUsingDefaultAnalyzer>(source);
+        
+        _output.WriteLine(output);
+
+        diagnostics.Should().HaveCount(1);
+        Diagnostic diagnostic = diagnostics.Single();
+
+        diagnostic.Id.Should().Be("VOG009");
+        diagnostic.ToString().Should().Be("(2,36): error VOG009: Type 'CustomerId' cannot be constructed with default as it is prohibited.");
     }
 
 }

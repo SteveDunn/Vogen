@@ -56,14 +56,4 @@ internal static class WriteWorkItems
             StructDeclarationSyntax => _structGeneratorForValueAndReferenceTypes,
             _ => throw new InvalidOperationException("Don't know how to get the generator!")
         };
-
-    private static void ReportErrors(SourceProductionContext context,
-        DiagnosticCollection syntaxReceiverDiagnosticMessages)
-    {
-        foreach (var eachDiag in syntaxReceiverDiagnosticMessages)
-        {
-            context.ReportDiagnostic(eachDiag);
-        }
-    }
-
 }

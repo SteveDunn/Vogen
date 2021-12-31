@@ -1,5 +1,4 @@
 ﻿using System.Linq;
-using System.Threading.Tasks;
 using FluentAssertions;
 using Microsoft.CodeAnalysis;
 using VerifyXunit;
@@ -168,5 +167,140 @@ public partial struct CustomerId { }
         diagnostic.Id.Should().Be("VOG010");
         diagnostic.ToString().Should().Be("(4,33): error VOG010: Type 'CustomerId' cannot be constructed with 'new' as it is prohibited.");
     }
+
+    [Fact]
+    public void Disallow_new_from_func()
+    {
+        // The source code to test
+        var source = @"using Vogen;
+Func<CustomerId> f = () => new CustomerId();
+
+[ValueObject(typeof(int))]
+public partial struct CustomerId { }
+";
+
+        var (diagnostics, output) = TestHelper.GetGeneratedOutput<CreationUsingNewAnalyzer>(source);
+
+        _output.WriteLine(output);
+
+        diagnostics.Should().HaveCount(1);
+        Diagnostic diagnostic = diagnostics.Single();
+
+        diagnostic.Id.Should().Be("VOG010");
+        diagnostic.ToString().Should().Be("(2,32): error VOG010: Type 'CustomerId' cannot be constructed with 'new' as it is prohibited.");
+    }
+
+    [Fact]
+    public void Disallow_new_from_func2()
+    {
+        // The source code to test
+        var source = @"using Vogen;
+Func<int, int, CustomerId, string, CustomerId> f = (a,b,c,d) => new CustomerId();
+
+[ValueObject(typeof(int))]
+public partial struct CustomerId { }
+";
+
+        var (diagnostics, output) = TestHelper.GetGeneratedOutput<CreationUsingNewAnalyzer>(source);
+
+        _output.WriteLine(output);
+
+        diagnostics.Should().HaveCount(1);
+        Diagnostic diagnostic = diagnostics.Single();
+
+        diagnostic.Id.Should().Be("VOG010");
+        diagnostic.ToString().Should().Be("(2,69): error VOG010: Type 'CustomerId' cannot be constructed with 'new' as it is prohibited.");
+    }
+
+    [Fact]
+    public void Disallow_new_from_func3()
+    {
+        // The source code to test
+        var source = @"using Vogen;
+Func<int, int, CustomerId, string, Task<CustomerId>> f = async (a,b,c, d) => await Task.FromResult(new CustomerId());
+
+[ValueObject(typeof(int))]
+public partial struct CustomerId { }
+";
+
+        var (diagnostics, output) = TestHelper.GetGeneratedOutput<CreationUsingNewAnalyzer>(source);
+
+        _output.WriteLine(output);
+
+        diagnostics.Should().HaveCount(1);
+        Diagnostic diagnostic = diagnostics.Single();
+
+        diagnostic.Id.Should().Be("VOG010");
+        diagnostic.ToString().Should().Be("(2,104): error VOG010: Type 'CustomerId' cannot be constructed with 'new' as it is prohibited.");
+    }
+
+    [Fact]
+    public void Disallow_implicit_new_from_func()
+    {
+        // The source code to test
+        var source = @"using System;
+using Vogen;
+Func<CustomerId> f = () => new();
+
+[ValueObject(typeof(int))]
+public partial struct CustomerId { }
+";
+
+        var (diagnostics, output) = TestHelper.GetGeneratedOutput<CreationUsingImplicitNewAnalyzer>(source);
+
+        _output.WriteLine(output);
+
+        diagnostics.Should().HaveCount(1);
+        Diagnostic diagnostic = diagnostics.Single();
+
+        diagnostic.Id.Should().Be("VOG010");
+        diagnostic.ToString().Should().Be("(3,28): error VOG010: Type 'CustomerId' cannot be constructed with 'new' as it is prohibited.");
+    }
+
+    [Fact]
+    public void Disallow_implicit_new_from_func2()
+    {
+        // The source code to test
+        var source = @"using System;
+using Vogen;
+Func<int, int, CustomerId, string, CustomerId> f = (a,b,c, d) => new();
+
+[ValueObject(typeof(int))]
+public partial struct CustomerId { }
+";
+
+        var (diagnostics, output) = TestHelper.GetGeneratedOutput<CreationUsingImplicitNewAnalyzer>(source);
+
+        _output.WriteLine(output);
+
+        diagnostics.Should().HaveCount(1);
+        Diagnostic diagnostic = diagnostics.Single();
+
+        diagnostic.Id.Should().Be("VOG010");
+        diagnostic.ToString().Should().Be("(3,66): error VOG010: Type 'CustomerId' cannot be constructed with 'new' as it is prohibited.");
+    }
+
+//     [Fact]
+//     public void Disallow_implicit_new_from_func3()
+//     {
+//         // The source code to test
+//         var source = @"using System;
+// using Vogen;
+// Func<int, int, CustomerId, string, Task<CustomerId>> f = async (a,b,c, d) => await Task.FromResult(new());
+//
+// [ValueObject(typeof(int))]
+// public partial struct CustomerId { }
+// ";
+//
+//         var (diagnostics, output) = TestHelper.GetGeneratedOutput<CreationUsingImplicitNewAnalyzer>(source);
+//
+//         _output.WriteLine(output);
+//
+//         diagnostics.Should().HaveCount(1);
+//         Diagnostic diagnostic = diagnostics.Single();
+//
+//         diagnostic.Id.Should().Be("VOG010");
+//         diagnostic.ToString().Should().Be("(2,100): error VOG010: Type '' cannot be constructed with 'new' as it is prohibited.");
+//     }
 
 }
