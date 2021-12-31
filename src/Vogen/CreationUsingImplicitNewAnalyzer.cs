@@ -22,7 +22,7 @@ public class CreationUsingImplicitNewAnalyzer : IIncrementalGenerator
 
         IncrementalValueProvider<(Compilation, ImmutableArray<FoundItem?>)> compilationAndTypes
             = context.CompilationProvider.Combine(targets.Collect());
-            
+
         context.RegisterSourceOutput(compilationAndTypes,
             static (spc, source) => Execute(source.Item2, spc));
     }
@@ -50,11 +50,30 @@ public class CreationUsingImplicitNewAnalyzer : IIncrementalGenerator
         return voClass is null ? null : new FoundItem(syntax.GetLocation(), voClass);
     }
 
-    private static INamedTypeSymbol? TryGetTypeFromModel(GeneratorSyntaxContext ctx, ImplicitObjectCreationExpressionSyntax implicitNewSyntax)
+    private static INamedTypeSymbol? TryGetTypeFromModel(GeneratorSyntaxContext ctx, ImplicitObjectCreationExpressionSyntax implicitNewSyntax) =>
+        TryGetFromArgumentDeclaration(ctx, implicitNewSyntax) ??
+        TryGetFromLambda(ctx, implicitNewSyntax);
+
+    private static INamedTypeSymbol? TryGetFromArgumentDeclaration(
+        GeneratorSyntaxContext ctx,
+        ImplicitObjectCreationExpressionSyntax implicitNewSyntax)
     {
-        // for lambdas, we need the semantic model...
-        var voClass = TryGetFromLambda(ctx, implicitNewSyntax);
-        return voClass;
+        var argumentSyntax = implicitNewSyntax.Ancestors(false)
+            .FirstOrDefault(a => a.IsKind(SyntaxKind.Argument));
+
+        if (argumentSyntax is null)
+        {
+            return null;
+        }
+
+        var typeSymbol = ctx.SemanticModel.GetTypeInfo(implicitNewSyntax).Type as INamedTypeSymbol;
+
+        if (typeSymbol == null)
+        {
+            return null;
+        }
+
+        return VoFilter.IsTarget(typeSymbol) ? typeSymbol : null;
     }
 
     private static INamedTypeSymbol? TryGetFromLambda(
@@ -77,8 +96,8 @@ public class CreationUsingImplicitNewAnalyzer : IIncrementalGenerator
         }
 
         var returnTypeSymbol = ms.ReturnType as INamedTypeSymbol;
-        
-        if(VoFilter.TryGetValueObjectClass(ctx, returnTypeSymbol))
+
+        if (VoFilter.IsTarget(returnTypeSymbol))
         {
             return returnTypeSymbol;
         }
@@ -86,9 +105,7 @@ public class CreationUsingImplicitNewAnalyzer : IIncrementalGenerator
         return null;
     }
 
-    private static FoundItem? TryGetTargetFromSyntax(
-        GeneratorSyntaxContext ctx,
-        SyntaxNode syntax)
+    private static FoundItem? TryGetTargetFromSyntax(GeneratorSyntaxContext ctx, SyntaxNode syntax)
     {
         var ancestor = syntax.Ancestors(false)
             .FirstOrDefault(a => a.IsKind(SyntaxKind.VariableDeclaration));
@@ -112,7 +129,7 @@ public class CreationUsingImplicitNewAnalyzer : IIncrementalGenerator
         if (ancestor is MethodDeclarationSyntax methodSyntax)
         {
             TypeSyntax t = methodSyntax.ReturnType;
-            
+
             INamedTypeSymbol? voClass = VoFilter.TryGetValueObjectClass(ctx, t);
 
             return voClass == null ? null : new FoundItem
@@ -128,7 +145,7 @@ public class CreationUsingImplicitNewAnalyzer : IIncrementalGenerator
         if (ancestor is LocalFunctionStatementSyntax localFunctionStatementSyntax)
         {
             TypeSyntax t = localFunctionStatementSyntax.ReturnType;
-            
+
             INamedTypeSymbol? voClass = VoFilter.TryGetValueObjectClass(ctx, t);
 
             return voClass == null ? null : new FoundItem
@@ -141,7 +158,7 @@ public class CreationUsingImplicitNewAnalyzer : IIncrementalGenerator
         return null;
     }
 
-    static void Execute(ImmutableArray<FoundItem?> typeDeclarations, SourceProductionContext context)
+    private static void Execute(ImmutableArray<FoundItem?> typeDeclarations, SourceProductionContext context)
     {
         foreach (FoundItem? eachFoundItem in typeDeclarations)
         {

@@ -55,16 +55,16 @@ internal static class VoFilter
 
         var symbol = typeSymbolInfo.Symbol as INamedTypeSymbol;
         
-        return TryGetValueObjectClass(context, symbol) ? symbol : null;
+        return IsTarget(symbol) ? symbol : null;
     }
 
-    public static bool TryGetValueObjectClass(GeneratorSyntaxContext context, INamedTypeSymbol? voClass)
+    public static bool IsTarget(INamedTypeSymbol? voClass)
     {
         if (voClass == null)
         {
             return false;
         }
-        
+
         var attributes = voClass.GetAttributes();
 
         if (attributes.Length == 0)
