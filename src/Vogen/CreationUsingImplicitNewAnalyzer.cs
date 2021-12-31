@@ -14,7 +14,7 @@ namespace Vogen;
 [Generator]
 public class CreationUsingImplicitNewAnalyzer : IIncrementalGenerator
 {
-    public record struct FoundItem(Location Location, INamedTypeSymbol VoClass);
+    private record struct FoundItem(Location Location, INamedTypeSymbol VoClass);
 
     public void Initialize(IncrementalGeneratorInitializationContext context)
     {
@@ -24,7 +24,7 @@ public class CreationUsingImplicitNewAnalyzer : IIncrementalGenerator
             = context.CompilationProvider.Combine(targets.Collect());
             
         context.RegisterSourceOutput(compilationAndTypes,
-            static (spc, source) => Execute(source.Item1, source.Item2, spc));
+            static (spc, source) => Execute(source.Item2, spc));
     }
 
     private static IncrementalValuesProvider<FoundItem?> GetTargets(IncrementalGeneratorInitializationContext context) =>
@@ -36,13 +36,67 @@ public class CreationUsingImplicitNewAnalyzer : IIncrementalGenerator
     private static FoundItem? TryGetTarget(GeneratorSyntaxContext ctx)
     {
         var syntax = (ImplicitObjectCreationExpressionSyntax) ctx.Node;
+
+        var foundItem = TryGetTargetFromSyntax(ctx, syntax);
+
+        if (foundItem is not null)
+        {
+            return foundItem;
+        }
+
+        INamedTypeSymbol? voClass = TryGetTypeFromModel(ctx, syntax);
+
+
+        return voClass is null ? null : new FoundItem(syntax.GetLocation(), voClass);
+    }
+
+    private static INamedTypeSymbol? TryGetTypeFromModel(GeneratorSyntaxContext ctx, ImplicitObjectCreationExpressionSyntax implicitNewSyntax)
+    {
+        // for lambdas, we need the semantic model...
+        var voClass = TryGetFromLambda(ctx, implicitNewSyntax);
+        return voClass;
+    }
+
+    private static INamedTypeSymbol? TryGetFromLambda(
+        GeneratorSyntaxContext ctx,
+        ImplicitObjectCreationExpressionSyntax implicitNewSyntax)
+    {
+        var ancestor = implicitNewSyntax.Ancestors(false)
+            .FirstOrDefault(a => a.IsKind(SyntaxKind.ParenthesizedLambdaExpression));
+
+        if (ancestor is not ParenthesizedLambdaExpressionSyntax lambdaExpressionSyntax)
+        {
+            return null;
+        }
+
+        var info = ctx.SemanticModel.GetSymbolInfo(lambdaExpressionSyntax);
+
+        if (info.Symbol is not IMethodSymbol ms)
+        {
+            return null;
+        }
+
+        var returnTypeSymbol = ms.ReturnType as INamedTypeSymbol;
         
+        if(VoFilter.TryGetValueObjectClass(ctx, returnTypeSymbol))
+        {
+            return returnTypeSymbol;
+        }
+
+        return null;
+    }
+
+    private static FoundItem? TryGetTargetFromSyntax(
+        GeneratorSyntaxContext ctx,
+        SyntaxNode syntax)
+    {
         var ancestor = syntax.Ancestors(false)
             .FirstOrDefault(a => a.IsKind(SyntaxKind.VariableDeclaration));
 
         if (ancestor is VariableDeclarationSyntax variableDeclarationSyntax)
         {
             TypeSyntax t = variableDeclarationSyntax.Type;
+
             INamedTypeSymbol? voClass = VoFilter.TryGetValueObjectClass(ctx, t);
 
             return voClass == null ? null : new FoundItem
@@ -58,6 +112,7 @@ public class CreationUsingImplicitNewAnalyzer : IIncrementalGenerator
         if (ancestor is MethodDeclarationSyntax methodSyntax)
         {
             TypeSyntax t = methodSyntax.ReturnType;
+            
             INamedTypeSymbol? voClass = VoFilter.TryGetValueObjectClass(ctx, t);
 
             return voClass == null ? null : new FoundItem
@@ -73,6 +128,7 @@ public class CreationUsingImplicitNewAnalyzer : IIncrementalGenerator
         if (ancestor is LocalFunctionStatementSyntax localFunctionStatementSyntax)
         {
             TypeSyntax t = localFunctionStatementSyntax.ReturnType;
+            
             INamedTypeSymbol? voClass = VoFilter.TryGetValueObjectClass(ctx, t);
 
             return voClass == null ? null : new FoundItem
@@ -85,10 +141,7 @@ public class CreationUsingImplicitNewAnalyzer : IIncrementalGenerator
         return null;
     }
 
-    static void Execute(
-        Compilation _, 
-        ImmutableArray<FoundItem?> typeDeclarations,
-        SourceProductionContext context)
+    static void Execute(ImmutableArray<FoundItem?> typeDeclarations, SourceProductionContext context)
     {
         foreach (FoundItem? eachFoundItem in typeDeclarations)
         {

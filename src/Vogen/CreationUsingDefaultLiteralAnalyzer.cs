@@ -14,7 +14,7 @@ namespace Vogen;
 [Generator]
 public class CreationUsingDefaultLiteralAnalyzer : IIncrementalGenerator
 {
-    public record struct FoundItem(Location Location, INamedTypeSymbol VoClass);
+    private record struct FoundItem(Location Location, INamedTypeSymbol VoClass);
 
     public void Initialize(IncrementalGeneratorInitializationContext context)
     {
@@ -22,7 +22,7 @@ public class CreationUsingDefaultLiteralAnalyzer : IIncrementalGenerator
 
         IncrementalValueProvider<(Compilation, ImmutableArray<FoundItem?>)> compilationAndTypes
             = context.CompilationProvider.Combine(targets.Collect());
-            
+
         context.RegisterSourceOutput(compilationAndTypes,
             static (spc, source) => Execute(source.Item2, spc));
     }
@@ -42,22 +42,37 @@ public class CreationUsingDefaultLiteralAnalyzer : IIncrementalGenerator
             return null;
         }
 
-        var typeSyntax = GetTypeFromVariableOrParameter(literalExpressionSyntax);
-        
-        if (typeSyntax is null)
-        {
-            return null;
-        }
-        
-        INamedTypeSymbol? voClass = VoFilter.TryGetValueObjectClass(ctx, typeSyntax);
+        var typeSyntax = TryGetTypeFromVariableOrParameter(ctx, literalExpressionSyntax);
 
-        return voClass is null ? null : new FoundItem(typeSyntax.GetLocation(), voClass);
+        if (typeSyntax is not null)
+        {
+            var classFromSyntax = VoFilter.TryGetValueObjectClass(ctx, typeSyntax);
+
+            if (classFromSyntax is not null)
+            {
+                return new FoundItem(typeSyntax.GetLocation(), classFromSyntax);
+            }
+        }
+
+        INamedTypeSymbol? classFromModel = TryGetTypeFromModel(ctx, literalExpressionSyntax);
+
+        return classFromModel is null ? null : new FoundItem(literalExpressionSyntax.GetLocation(), classFromModel);
     }
-    
+
+    private static INamedTypeSymbol? TryGetTypeFromModel(GeneratorSyntaxContext ctx, LiteralExpressionSyntax literalExpressionSyntax)
+    {
+        // for lambdas, we need the semantic model...
+        var voClass = TryGetFromLambda(ctx, literalExpressionSyntax);
+        return voClass;
+
+    }
+
     // A default literal expression can be for a variable (CustomerId id = default), or
     // a parameter (void DoSomething(CustomerId id = default)).
     // We need to try to find the 'Type' from either one of those type.
-    private static TypeSyntax? GetTypeFromVariableOrParameter(LiteralExpressionSyntax literalExpressionSyntax)
+    private static TypeSyntax? TryGetTypeFromVariableOrParameter(
+        GeneratorSyntaxContext ctx,
+        LiteralExpressionSyntax literalExpressionSyntax)
     {
         // first, see if it's an array
         var ancestor = literalExpressionSyntax.Ancestors(false)
@@ -84,7 +99,6 @@ public class CreationUsingDefaultLiteralAnalyzer : IIncrementalGenerator
             return methodSyntax.ReturnType;
         }
 
-
         ancestor = literalExpressionSyntax.Ancestors(false)
             .FirstOrDefault(a => a.IsKind(SyntaxKind.VariableDeclaration));
 
@@ -99,6 +113,35 @@ public class CreationUsingDefaultLiteralAnalyzer : IIncrementalGenerator
         if (ancestor is ParameterSyntax parameterSyntax)
         {
             return parameterSyntax.Type;
+        }
+
+        return null;
+    }
+
+    private static INamedTypeSymbol? TryGetFromLambda(
+        GeneratorSyntaxContext ctx,
+        SyntaxNode literalExpressionSyntax)
+    {
+        var ancestor = literalExpressionSyntax.Ancestors(false)
+            .FirstOrDefault(a => a.IsKind(SyntaxKind.ParenthesizedLambdaExpression));
+
+        if (ancestor is not ParenthesizedLambdaExpressionSyntax lambdaExpressionSyntax)
+        {
+            return null;
+        }
+
+        var info = ctx.SemanticModel.GetSymbolInfo(lambdaExpressionSyntax);
+
+        if (info.Symbol is not IMethodSymbol ms)
+        {
+            return null;
+        }
+
+        var returnTypeSymbol = ms.ReturnType as INamedTypeSymbol;
+
+        if (VoFilter.TryGetValueObjectClass(ctx, returnTypeSymbol))
+        {
+            return returnTypeSymbol;
         }
 
         return null;

@@ -49,27 +49,32 @@ internal static class VoFilter
         return null;
     }
 
-    public static INamedTypeSymbol? TryGetValueObjectClass(GeneratorSyntaxContext context, SyntaxNode node)
+    public static INamedTypeSymbol? TryGetValueObjectClass(GeneratorSyntaxContext context, SyntaxNode syntaxNode)
     {
-        SymbolInfo typeSymbolInfo = context.SemanticModel.GetSymbolInfo(node);
+        SymbolInfo typeSymbolInfo = context.SemanticModel.GetSymbolInfo(syntaxNode);
 
-        var voClass = typeSymbolInfo.Symbol as INamedTypeSymbol;
+        var symbol = typeSymbolInfo.Symbol as INamedTypeSymbol;
         
+        return TryGetValueObjectClass(context, symbol) ? symbol : null;
+    }
+
+    public static bool TryGetValueObjectClass(GeneratorSyntaxContext context, INamedTypeSymbol? voClass)
+    {
         if (voClass == null)
         {
-            return null;
+            return false;
         }
-
+        
         var attributes = voClass.GetAttributes();
 
         if (attributes.Length == 0)
         {
-            return null;
+            return false;
         }
 
         AttributeData? voAttribute =
             attributes.SingleOrDefault(a => a.AttributeClass?.FullName() is "Vogen.ValueObjectAttribute");
 
-        return voAttribute is null ? null : voClass;
+        return voAttribute is not null;
     }
 }

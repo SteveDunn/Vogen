@@ -7,16 +7,15 @@
  * to analyze and generate types for.
  */
 
+using System;
 using Vogen;
 
-var c = GetCustomer();
-CustomerId GetCustomer() => CustomerId.From(123);
+// Task<CustomerId> t = Task.FromResult<CustomerId>(new());
 
 Console.ReadLine();
 
 [ValueObject(typeof(int))]
 public partial struct CustomerId { }
-
 
 
 
