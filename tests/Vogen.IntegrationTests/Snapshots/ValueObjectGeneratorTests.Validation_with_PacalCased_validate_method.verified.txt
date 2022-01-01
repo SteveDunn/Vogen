@@ -14,16 +14,29 @@ namespace Whatever
 
     public partial struct CustomerId : System.IEquatable<CustomerId>
     {
+        private readonly bool _isInitialized;
+        
         private readonly int _value;
 
-        public readonly int Value => _value;
+        public readonly int Value
+        {
+            get
+            {
+                EnsureInitialized();
+                return _value;
+            }
+        }
 
         public CustomerId()
         {
             throw new Vogen.ValueObjectValidationException("Validation skipped by attempting to use the default constructor. Please use the 'From' method for construction.");
         }
 
-        private CustomerId(int value) => _value = value;
+        private CustomerId(int value) 
+        {
+            _value = value;
+            _isInitialized = true;
+        }
 
         public static CustomerId From(int value)
         {
@@ -35,11 +48,13 @@ namespace Whatever
                 throw new Vogen.ValueObjectValidationException(validation.ErrorMessage);
             }
 
+
             return instance;
         }
 
         public readonly bool Equals(CustomerId other)
         {
+            EnsureInitialized();
             return System.Collections.Generic.EqualityComparer<int>.Default.Equals(Value, other.Value);
         }
 
@@ -62,6 +77,11 @@ namespace Whatever
         public readonly override int GetHashCode() => System.Collections.Generic.EqualityComparer<int>.Default.GetHashCode();
 
         public readonly override string ToString() => Value.ToString();
+
+        private readonly void EnsureInitialized()
+        {
+            if(!_isInitialized) throw new ValueObjectValidationException("Use of uninitialized Value Object.");
+        }
 
         
     }
