@@ -1,21 +1,18 @@
-﻿/*
- * PURELY HERE TO TEST CODE GENERATION AND ANALYZERS.
- * This project is the target project when debugging the main Vogen project.
- *
- * To debug, Select Vogen as the active project, and select 'Roslyn' as the target,
- * and the press F5. That will start the debugger and Vogen will use this project
- * to analyze and generate types for.
- */
-
-using System;
+﻿using System;
+using System.Threading.Tasks;
 using Vogen;
 
 // Task<CustomerId> t = Task.FromResult<CustomerId>(new());
+// Task<CustomerId> t2 = Task.FromResult<CustomerId>(default);
 
-Console.ReadLine();
+Foo<CustomerId> f = new Foo<CustomerId>();
+var c = f.Get4();
+Console.WriteLine(c.Value);
+
+public class Foo<T> where T : struct
+{
+    public T Get4() => default;
+}
 
 [ValueObject(typeof(int))]
 public partial struct CustomerId { }
-
-
-

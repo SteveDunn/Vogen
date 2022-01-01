@@ -1,5 +1,4 @@
 ﻿using System.Collections.Immutable;
-using System.Linq;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
@@ -42,106 +41,12 @@ public class CreationUsingDefaultLiteralAnalyzer : IIncrementalGenerator
             return null;
         }
 
-        var typeSyntax = TryGetTypeFromVariableOrParameter(ctx, literalExpressionSyntax);
-
-        if (typeSyntax is not null)
+        var typeInfo = ctx.SemanticModel.GetTypeInfo(literalExpressionSyntax).Type;
+        if (typeInfo is INamedTypeSymbol typeSymbol)
         {
-            var classFromSyntax = VoFilter.TryGetValueObjectClass(ctx, typeSyntax);
-
-            if (classFromSyntax is not null)
-            {
-                return new FoundItem(typeSyntax.GetLocation(), classFromSyntax);
-            }
-        }
-
-        INamedTypeSymbol? classFromModel = TryGetTypeFromModel(ctx, literalExpressionSyntax);
-
-        return classFromModel is null ? null : new FoundItem(literalExpressionSyntax.GetLocation(), classFromModel);
-    }
-
-    private static INamedTypeSymbol? TryGetTypeFromModel(GeneratorSyntaxContext ctx, LiteralExpressionSyntax literalExpressionSyntax)
-    {
-        // for lambdas, we need the semantic model...
-        var voClass = TryGetFromLambda(ctx, literalExpressionSyntax);
-        return voClass;
-
-    }
-
-    // A default literal expression can be for a variable (CustomerId id = default), or
-    // a parameter (void DoSomething(CustomerId id = default)).
-    // We need to try to find the 'Type' from either one of those type.
-    private static TypeSyntax? TryGetTypeFromVariableOrParameter(
-        GeneratorSyntaxContext ctx,
-        LiteralExpressionSyntax literalExpressionSyntax)
-    {
-        // first, see if it's an array
-        var ancestor = literalExpressionSyntax.Ancestors(false)
-            .FirstOrDefault(a => a.IsKind(SyntaxKind.ArrayCreationExpression));
-
-        if (ancestor is ArrayCreationExpressionSyntax arraySyntax)
-        {
-            return arraySyntax.Type.ElementType;
-        }
-
-        ancestor = literalExpressionSyntax.Ancestors(false)
-            .FirstOrDefault(a => a.IsKind(SyntaxKind.LocalFunctionStatement));
-
-        if (ancestor is LocalFunctionStatementSyntax syntax)
-        {
-            return syntax.ReturnType;
-        }
-
-        ancestor = literalExpressionSyntax.Ancestors(false)
-            .FirstOrDefault(a => a.IsKind(SyntaxKind.MethodDeclaration));
-
-        if (ancestor is MethodDeclarationSyntax methodSyntax)
-        {
-            return methodSyntax.ReturnType;
-        }
-
-        ancestor = literalExpressionSyntax.Ancestors(false)
-            .FirstOrDefault(a => a.IsKind(SyntaxKind.VariableDeclaration));
-
-        if (ancestor is VariableDeclarationSyntax variableDeclarationSyntax)
-        {
-            return variableDeclarationSyntax.Type;
-        }
-
-        ancestor = literalExpressionSyntax.Ancestors(false)
-            .FirstOrDefault(a => a.IsKind(SyntaxKind.Parameter));
-
-        if (ancestor is ParameterSyntax parameterSyntax)
-        {
-            return parameterSyntax.Type;
-        }
-
-        return null;
-    }
-
-    private static INamedTypeSymbol? TryGetFromLambda(
-        GeneratorSyntaxContext ctx,
-        SyntaxNode literalExpressionSyntax)
-    {
-        var ancestor = literalExpressionSyntax.Ancestors(false)
-            .FirstOrDefault(a => a.IsKind(SyntaxKind.ParenthesizedLambdaExpression));
-
-        if (ancestor is not ParenthesizedLambdaExpressionSyntax lambdaExpressionSyntax)
-        {
-            return null;
-        }
-
-        var info = ctx.SemanticModel.GetSymbolInfo(lambdaExpressionSyntax);
-
-        if (info.Symbol is not IMethodSymbol ms)
-        {
-            return null;
-        }
-
-        var returnTypeSymbol = ms.ReturnType as INamedTypeSymbol;
-
-        if (VoFilter.TryGetValueObjectClass(ctx, returnTypeSymbol))
-        {
-            return returnTypeSymbol;
+            return VoFilter.IsTarget(typeSymbol)
+                ? new FoundItem(literalExpressionSyntax.GetLocation(), typeSymbol)
+                : null;
         }
 
         return null;

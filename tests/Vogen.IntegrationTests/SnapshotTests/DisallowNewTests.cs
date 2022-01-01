@@ -280,27 +280,52 @@ public partial struct CustomerId { }
         diagnostic.ToString().Should().Be("(3,66): error VOG010: Type 'CustomerId' cannot be constructed with 'new' as it is prohibited.");
     }
 
-//     [Fact]
-//     public void Disallow_implicit_new_from_func3()
-//     {
-//         // The source code to test
-//         var source = @"using System;
-// using Vogen;
-// Func<int, int, CustomerId, string, Task<CustomerId>> f = async (a,b,c, d) => await Task.FromResult(new());
-//
-// [ValueObject(typeof(int))]
-// public partial struct CustomerId { }
-// ";
-//
-//         var (diagnostics, output) = TestHelper.GetGeneratedOutput<CreationUsingImplicitNewAnalyzer>(source);
-//
-//         _output.WriteLine(output);
-//
-//         diagnostics.Should().HaveCount(1);
-//         Diagnostic diagnostic = diagnostics.Single();
-//
-//         diagnostic.Id.Should().Be("VOG010");
-//         diagnostic.ToString().Should().Be("(2,100): error VOG010: Type '' cannot be constructed with 'new' as it is prohibited.");
-//     }
+    [Fact]
+    public void Disallow_implicit_new_from_func3()
+    {
+        // The source code to test
+        var source = @"using System;
+using System.Threading.Tasks;
+using Vogen;
+Func<int, int, CustomerId, string, Task<CustomerId>> f = async (a,b,c, d) => await Task.FromResult<CustomerId>(new());
+
+[ValueObject(typeof(int))]
+public partial struct CustomerId { }
+";
+
+        var (diagnostics, output) = TestHelper.GetGeneratedOutput<CreationUsingImplicitNewAnalyzer>(source);
+
+        _output.WriteLine(output);
+
+        diagnostics.Should().HaveCount(1);
+        Diagnostic diagnostic = diagnostics.Single();
+
+        diagnostic.Id.Should().Be("VOG010");
+        diagnostic.ToString().Should().Be("(4,112): error VOG010: Type 'CustomerId' cannot be constructed with 'new' as it is prohibited.");
+    }
+
+    [Fact]
+    public void Disallow_implicit_default_as_parameter()
+    {
+        // The source code to test
+        var source = @"using System;
+using System.Threading.Tasks;
+using Vogen;
+Task<CustomerId> t3 = Task.FromResult<CustomerId>(default);
+
+[ValueObject(typeof(int))]
+public partial struct CustomerId { }
+";
+
+        var (diagnostics, output) = TestHelper.GetGeneratedOutput<CreationUsingDefaultLiteralAnalyzer>(source);
+
+        _output.WriteLine(output);
+
+        diagnostics.Should().HaveCount(1);
+        Diagnostic diagnostic = diagnostics.Single();
+
+        diagnostic.Id.Should().Be("VOG009");
+        diagnostic.ToString().Should().Be("(4,51): error VOG009: Type 'CustomerId' cannot be constructed with default as it is prohibited.");
+    }
 
 }
