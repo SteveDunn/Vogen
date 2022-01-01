@@ -38,7 +38,7 @@ public class Validationtests
         Action camelCase = () => MyVo_validate_with_camelCase_method_name.From(-1);
         Action pascalCase = () => MyVo_validate_with_PascalCase_method_name.From(-1);
 
-        //camelCase.Should().ThrowExactly<ValueObjectValidationException>().WithMessage("must be greater than zero");
+        camelCase.Should().ThrowExactly<ValueObjectValidationException>().WithMessage("must be greater than zero");
         pascalCase.Should().ThrowExactly<ValueObjectValidationException>().WithMessage("must be greater than zero");
     }
 }
