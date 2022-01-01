@@ -17,6 +17,9 @@ public partial class MyInt
     }
 }
 
+[ValueObject(typeof(int))]
+public partial struct CustomerId { }
+
 public class CreationTests
 {
     [Fact]
@@ -61,5 +64,14 @@ public class CreationTests
         Action action = () => MyInt.From(-1);
         
         action.Should().Throw<ValueObjectValidationException>().WithMessage("must be greater than zero");
+    }
+
+    [Fact]
+    public void Default_vo_throws_at_runtime()
+    {
+        CustomerId[] ints = new CustomerId[10];
+        Func<int> action = () => ints[0].Value;
+
+        action.Should().Throw<ValueObjectValidationException>().WithMessage("Use of uninitialized Value Object.");
     }
 }
