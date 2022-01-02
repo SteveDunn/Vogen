@@ -7,6 +7,44 @@
     <nullable>enable</nullable>
     <IsRoslynComponent>true</IsRoslynComponent>
 
+
+  </PropertyGroup>
+
+  <!-- only used at compile time and not run time-->
+  <PropertyGroup>
+    <IncludeBuildOutput>false</IncludeBuildOutput>
+    <!-- <GeneratePackageOnBuild>True</GeneratePackageOnBuild> -->
+    <PackageReadmeFile>nuget-readme.md</PackageReadmeFile>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="..\..\docs\nuget-readme.md" Pack="true" PackagePath="\" />
+    <None Include="$(OutputPath)\$(AssemblyName).dll" Pack="true" PackagePath="analyzers/dotnet/cs" Visible="false" />
+    <None Include="$(OutputPath)\Vogen.SharedTypes.dll" Pack="true" PackagePath="analyzers/dotnet/cs" Visible="false" />
+    <None Include="$(OutputPath)\Vogen.SharedTypes.dll" Pack="true" PackagePath="lib\netstandard2.0" Visible="true" />
+
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\..\assets\logo\gradient_128x128.png" Pack="true" PackagePath="" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.CodeAnalysis.CSharp" Version="4.0.1" PrivateAssets="all" />
+    <PackageReference Include="Microsoft.CodeAnalysis.Analyzers" Version="3.3.3" PrivateAssets="all" />
+    <PackageReference Include="MinVer" Version="2.5.0">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <ProjectReference Include="..\Vogen.SharedTypes\Vogen.SharedTypes.csproj" PrivateAssets="All" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Diagnostics\" />
+  </ItemGroup>
+
+
+  <PropertyGroup>
     <Features>strict</Features>
     <PackageId>Vogen</PackageId>
     <Version>1.0.0</Version>
@@ -38,7 +76,7 @@
       public partial struct CustomerId
       {
       }
-      
+
       var customerId = CustomerId.From(42);
       ```
 
@@ -47,38 +85,4 @@
     <RepositoryType>git</RepositoryType>
 
   </PropertyGroup>
-
-  <!-- only used at compile time and not run time-->
-  <PropertyGroup>
-    <IncludeBuildOutput>false</IncludeBuildOutput>
-    <!-- <GeneratePackageOnBuild>True</GeneratePackageOnBuild> -->
-    <PackageReadmeFile>nuget-readme.md</PackageReadmeFile>
-  </PropertyGroup>
-
-  <ItemGroup>
-    <None Include="..\..\docs\nuget-readme.md" Pack="true" PackagePath="\" />
-    <None Include="$(OutputPath)\$(AssemblyName).dll" Pack="true" PackagePath="analyzers/dotnet/cs" Visible="false" />
-    <None Include="$(OutputPath)\Vogen.SharedTypes.dll" Pack="true" PackagePath="analyzers/dotnet/cs" Visible="false" />
-    <None Include="$(OutputPath)\Vogen.SharedTypes.dll" Pack="true" PackagePath="lib\netstandard2.0" Visible="true" />
-
-  </ItemGroup>    
-
-  <ItemGroup>
-    <None Include="..\..\assets\logo\gradient_128x128.png" Pack="true" PackagePath="" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <PackageReference Include="Microsoft.CodeAnalysis.CSharp" Version="4.0.1" PrivateAssets="all" />
-    <PackageReference Include="Microsoft.CodeAnalysis.Analyzers" Version="3.3.3" PrivateAssets="all" />
-    <PackageReference Include="MinVer" Version="2.5.0">
-      <PrivateAssets>all</PrivateAssets>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-    </PackageReference>
-    <ProjectReference Include="..\Vogen.SharedTypes\Vogen.SharedTypes.csproj" PrivateAssets="All" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Diagnostics\" />
-  </ItemGroup>
-
 </Project>
