@@ -67,7 +67,7 @@ public class StructGeneratorForValueAndReferenceTypes : IGenerateSourceCode
         public static bool operator ==({item.UnderlyingType} left, {structName} right) => Equals(left, right.Value);
         public static bool operator !=({item.UnderlyingType} left, {structName} right) => !Equals(left, right.Value);
 
-        public readonly override int GetHashCode() => System.Collections.Generic.EqualityComparer<{item.UnderlyingType}>.Default.GetHashCode();
+        public readonly override int GetHashCode() => System.Collections.Generic.EqualityComparer<{item.UnderlyingType}>.Default.GetHashCode(_value);
 
         public readonly override string ToString() => Value.ToString();
 
