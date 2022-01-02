@@ -67,7 +67,7 @@ using Vogen;
         public static bool operator ==(int left, CustomerId right) => Equals(left, right.Value);
         public static bool operator !=(int left, CustomerId right) => !Equals(left, right.Value);
 
-        public readonly override int GetHashCode() => System.Collections.Generic.EqualityComparer<int>.Default.GetHashCode();
+        public readonly override int GetHashCode() => System.Collections.Generic.EqualityComparer<int>.Default.GetHashCode(_value);
 
         public readonly override string ToString() => Value.ToString();
 
