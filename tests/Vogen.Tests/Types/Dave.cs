@@ -1,5 +1,4 @@
 ﻿using System;
-using Vogen;
 
 namespace Vogen.Tests.Types;
 

@@ -221,8 +221,7 @@ public readonly partial struct Centigrade {
 
 ### Common scenario - underlying type of int with validation
 
-This benchmark compared using an int natively (`int n = 1`) vs using a VO struct (`struct n {}`), vs using a VO class (`class n {}`).
-Each uses validation that `n > 0`
+This benchmark compared using an int natively (`int n = 1`) vs using a VO struct (`struct n {}`).
 
 ``` ini
 BenchmarkDotNet=v0.12.1, OS=Windows 10.0.22000
@@ -238,10 +237,11 @@ WarmupCount=3
 
 |                  Method |     Mean |    Error |   StdDev | Ratio | Allocated |
 |------------------------ |---------:|---------:|---------:|------:|----------:|
-|        UsingIntNatively | 13.79 ns | 5.737 ns | 0.314 ns |  1.00 |         - |
-|  UsingValueObjectStruct | 13.58 ns | 0.447 ns | 0.024 ns |  0.99 |         - |
+|        UsingIntNatively | 13.57 ns | 0.086 ns | 0.005 ns |  1.00 |         - |
+|  UsingValueObjectStruct | 14.08 ns | 1.131 ns | 0.062 ns |  1.04 |         - |
 
-This looks very promising as the results between a native int and a VO struct are almost identical and there is no memory overhead.
+
+There is no discernable difference between using a native int and a VO struct; both are pretty much the same in terms of speed and memory.
 
 The next most common scenario is using a VO class to represent a native `String`.  These results are:
 
@@ -257,28 +257,29 @@ WarmupCount=3
 
 ```
 
-|                   Method |     Mean |    Error |  StdDev | Ratio |  Gen 0 | Gen 1 | Gen 2 | Allocated |
-|------------------------- |---------:|---------:|--------:|------:|-------:|------:|------:|----------:|
-|      UsingStringNatively | 204.4 ns |  8.09 ns | 0.44 ns |  1.00 | 0.0153 |     - |     - |     256 B |
-| UsingValueObjectAsStruct | 248.9 ns | 18.82 ns | 1.03 ns |  1.22 | 0.0181 |     - |     - |     304 B |
+|                   Method |     Mean |     Error |   StdDev | Ratio | RatioSD |  Gen 0 | Allocated |
+|------------------------- |---------:|----------:|---------:|------:|--------:|-------:|----------:|
+|      UsingStringNatively | 135.4 ns |  16.89 ns |  0.93 ns |  1.00 |    0.00 | 0.0153 |     256 B |
+| UsingValueObjectAsStruct | 171.8 ns |  14.40 ns |  0.79 ns |  1.27 |    0.01 | 0.0153 |     256 B |
 
+There is a tiny amount of performance overhead, but these measurements are incredibly small. There is no memory overhead.
 
 # FAQ
 
-## Why can't I just use `public record struct CustomerId(int id);`?
+## Why can't I just use `public record struct CustomerId(int Value);`?
 
-That doesn't give you validation. To validate `id`, you can't use the shorthand syntax. So you'd need to do:
+That doesn't give you validation. To validate `Value`, you can't use the shorthand syntax (Primary Constructor). So you'd need to do:
 
 ```csharp
 public record struct CustomerId
 {
-    public CustomerId(int id) {
-        if(id <=0) throw new Exception(...)
+    public CustomerId(int value) {
+        if(value <=0) throw new Exception(...)
     }
 }
 ```
 
-You might also provide other constructors which might not validate the data, thereby allowing invalid data into your domain. Those other constructors might not throw exception, or might throw different exceptions.  One of the opinions in Vogen is that any invalid data given to a Value Object throws a `ValueObjectValidationException`.
+You might also provide other constructors which might not validate the data, thereby _allowing invalid data into your domain_. Those other constructors might not throw exception, or might throw different exceptions.  One of the opinions in Vogen is that any invalid data given to a Value Object throws a `ValueObjectValidationException`.
 
 You could also use `default(CustomerId)` to evade validation.  In Vogen, there are analysers that catch this and fail the build, e.g:
 
@@ -452,6 +453,15 @@ public void CanEnter(Age age) {
     return age < 17;
 }
 ```
+
+## Why isn't the part of the language?
+
+It would be great if it was, but it's not currently. There is a [long-standing language proposal](https://github.com/dotnet/csharplang/issues/146) focusing on non-defaultable value types.
+Having non-defaultable value types is a great first step, but it would also be handy to have something in the language to enforce validate.
+So I added a [language proposal for invariant records](https://github.com/dotnet/csharplang/discussions/5574).
+
+One of the responses in the proposal says that the language team decided that validation policies should not be part of C#, but provided by source generators.
+
 
 # What alternatives are there?
 

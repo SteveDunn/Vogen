@@ -2,9 +2,9 @@
 using Vogen.Tests.Types;
 using Xunit;
 
-namespace Vogen.Tests
+namespace Vogen.Tests.InstanceFields
 {
-    public class InstanceFieldsTests
+    public class InstanceFieldTests
     {
         [Fact]
         public void Type_with_two_instance_fields()

@@ -3,7 +3,7 @@
 
 using Vogen;
 
-namespace Vogen.Examples
+namespace Vogen.Examples.Nesting
 {
     /*
      * Value Objects can be in nested namespaces, but cannot be in a nested class.

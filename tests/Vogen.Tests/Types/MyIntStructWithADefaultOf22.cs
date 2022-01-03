@@ -1,6 +1,4 @@
-﻿using Vogen;
-
-namespace Vogen.Tests.Types;
+﻿namespace Vogen.Tests.Types;
 
 [ValueObject(typeof(int))]
 [Instance(name: "Default", value: 22)]
