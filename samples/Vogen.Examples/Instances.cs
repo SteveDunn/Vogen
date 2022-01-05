@@ -2,11 +2,27 @@
 
 namespace Vogen.Examples.Instances
 {
-    
+
     /*
      * Instances allow us to create specific static readonly instances of this type.
      */
-    
+
+    internal static class InstanceExamples
+    {
+        public static void Run()
+        {
+            VendorInformation vi = new VendorInformation();
+            Console.WriteLine(vi.VendorId == VendorId.Unspecified); // true
+            Console.WriteLine(vi.VendorId != VendorId.Invalid); // true
+
+            // from a text file that is screwed, we'll end up with:
+            var invalidVi = VendorInformation.FromTextFile();
+
+            Console.WriteLine(invalidVi.VendorId == VendorId.Invalid); // true
+        }
+    }
+
+
     [ValueObject(typeof(float))]
     [Instance("Freezing", 0.0f)]
     [Instance("Boiling", 100.0f)]
@@ -75,21 +91,6 @@ namespace Vogen.Examples.Instances
             if (id == VendorId.Invalid) return VendorName.Invalid;
 
             return VendorName.From("abc");
-        }
-    }
-
-    internal static class RepresentingUnspecified
-    {
-        public static void Run()
-        {
-            VendorInformation vi = new VendorInformation();
-            Console.WriteLine(vi.VendorId == VendorId.Unspecified); // true
-            Console.WriteLine(vi.VendorId != VendorId.Invalid); // true
-
-            // from a text file that is screwed, we'll end up with:
-            var invalidVi = VendorInformation.FromTextFile();
-            
-            Console.WriteLine(invalidVi.VendorId == VendorId.Invalid); // true
         }
     }
 }

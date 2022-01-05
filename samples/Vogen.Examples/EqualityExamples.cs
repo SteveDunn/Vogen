@@ -2,9 +2,9 @@
 using Vogen;
 using Vogen.Examples.Instances;
 
-namespace Vogen.Examples
+namespace Vogen.Examples.Equality
 {
-    internal class Equality
+    internal class EqualityExamples
     {
         public static void Run()
         {
@@ -22,4 +22,10 @@ namespace Vogen.Examples
             // Console.WriteLine(Age.From(1) == Centigrade.From(1)); // true
         }
     }
+
+    [ValueObject(typeof(int))]
+    public readonly partial struct Age {}
+
+    [ValueObject(typeof(float))]
+    public readonly partial struct Centigrade { }
 }

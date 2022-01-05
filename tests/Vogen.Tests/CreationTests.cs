@@ -1,9 +1,9 @@
 using System;
 using FluentAssertions;
 using Vogen.Tests.Types;
-using Xunit; //using tests.Types.AnotherNamespace.AndAnother;
+using Xunit;
 
-namespace Vogen.Tests;
+namespace Vogen.Tests.Creation;
 
 [ValueObject(typeof(int))]
 public partial class MyInt

@@ -1,6 +1,4 @@
-﻿using Vogen;
-
-namespace Vogen.Tests.Types;
+﻿namespace Vogen.Tests.Types;
 
 [ValueObject(typeof(int))]
 public partial class Score

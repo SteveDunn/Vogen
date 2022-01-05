@@ -28,12 +28,27 @@ namespace Vogen.Examples.NoDefaulting
             // CustomerId v5 = new();
             // var _ = new CustomerId();
             // new CustomerId();
+
+            // this is valid syntax as it can't easily be picked up at compile time,
+            // but it throws a ValueObjectValidationException at runtime.
+            CustomerId[] customerIds = new CustomerId[10];
         }
 
+        // a method can't accept a VO and default it
+        // error VOG009: Type 'CustomerId' cannot be constructed with default as it is prohibited
         // public void CallMe(CustomerId customerId = default)
         // {
         //     int _ = customerId.Value;
         // }
+
+        // error VOG009: Type 'CustomerId' cannot be constructed with default as it is prohibited.
+        // public CustomerId GetCustomerId() => default;
+
+        //  error VOG010: Type 'CustomerId' cannot be constructed with 'new' as it is prohibited.
+        // public CustomerId GetCustomerId() => new();
+        // public CustomerId GetCustomerId() => new CustomerId();
+        
+        
     }
 
     [ValueObject(typeof(int))]

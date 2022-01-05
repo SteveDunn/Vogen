@@ -68,8 +68,9 @@ SendInvoice(customerId);
 public void SendInvoice(CustomerId customerId) { ... }
 ```
 
-To ensure validity of your value objects, the code analyser helps you avoid mistakes.
-It does this by adding new constraints in the form of new compilation errors:
+To ensure the validity of your value objects, the code analyser helps you avoid mistakes.
+
+It does this by adding new constraints in the form of new compilation errors. For example, the analyser will spot issues when you declare a value object:
 
 ```csharp
 [ValueObject(typeof(int))]
@@ -83,21 +84,27 @@ public partial struct CustomerId {
 }
 ```
 
+... and it will spot issues when creating or consuming value objects:
+
 ```csharp
-// error VOG009: Type 'CustomerId' cannot be constructed with default as it is prohibited.
-CustomerId c = default;
+// catches object creation expressions
+var c = new CustomerId(); // error VOG010: Type 'CustomerId' cannot be constructed with 'new' as it is prohibited
+CustomerId c = default; // error VOG009: Type 'CustomerId' cannot be constructed with default as it is prohibited.
+var c = default(CustomerId); // error VOG009: Type 'CustomerId' cannot be constructed with default as it is prohibited.
+var c = GetCustomerId(); // error VOG010: Type 'CustomerId' cannot be constructed with 'new' as it is prohibited
 
-// error VOG009: Type 'CustomerId' cannot be constructed with default as it is prohibited.
-var c = default(CustomerId);
+// catches lambda expressions
+Func<CustomerId> f = () => default; // error VOG009: Type 'CustomerId' cannot be constructed with default as it is prohibited.
 
-// error VOG009: Type 'CustomerId' cannot be constructed with default as it is prohibited.
-void ProcessCustomer(CustomerId customerId = default)
+// catches method / local function return expressions
+CustomerId GetCustomerId() => default; // error VOG009: Type 'CustomerId' cannot be constructed with default as it is prohibited.
+CustomerId GetCustomerId() => new CustomerId(); // error VOG010: Type 'CustomerId' cannot be constructed with 'new' as it is prohibited
+CustomerId GetCustomerId() => new(); // error VOG010: Type 'CustomerId' cannot be constructed with 'new' as it is prohibited
 
-// uncomment for - error VOG010: Type 'CustomerId' cannot be constructed with 'new' as it is prohibited.
-var c = new CustomerId();
+// catches argument / parameter expressions
+Task<CustomerId> t = Task.FromResult<CustomerId>(new()); // error VOG010: Type 'CustomerId' cannot be constructed with 'new' as it is prohibited
 
-// uncomment for - error VOG010: Type 'CustomerId' cannot be constructed with 'new' as it is prohibited.
-CustomerId c = new();
+void Process(CustomerId customerId = default) { } // error VOG009: Type 'CustomerId' cannot be constructed with default as it is prohibited.
 ```
 
 The main goal of this project is to achieve **almost the same speed and memory performance as using primitives directly**.
@@ -213,16 +220,10 @@ public readonly partial struct Centigrade {
 }
 ```
 
-## Benchmarking
+## Performance
 
-### How do I run the benchmarks?
-
-`dotnet run -c Release -- --job short --filter *`
-
-### Common scenario - underlying type of int with validation
-
-This benchmark compared using an int natively (`int n = 1`) vs using a VO struct (`struct n {}`), vs using a VO class (`class n {}`).
-Each uses validation that `n > 0`
+As mentioned previously, the goal of Vogen is to achieve very similar performance compare to using primitives themselves.
+Here's a benchmark comparing the use of a validated value object with underlying type of int vs using an int natively (_primitively_ 🤓)
 
 ``` ini
 BenchmarkDotNet=v0.12.1, OS=Windows 10.0.22000
@@ -235,13 +236,13 @@ Job=ShortRun  IterationCount=3  LaunchCount=1
 WarmupCount=3  
 
 ```
-
 |                  Method |     Mean |    Error |   StdDev | Ratio | Allocated |
 |------------------------ |---------:|---------:|---------:|------:|----------:|
-|        UsingIntNatively | 13.79 ns | 5.737 ns | 0.314 ns |  1.00 |         - |
-|  UsingValueObjectStruct | 13.58 ns | 0.447 ns | 0.024 ns |  0.99 |         - |
+|        UsingIntNatively | 13.57 ns | 0.086 ns | 0.005 ns |  1.00 |         - |
+|  UsingValueObjectStruct | 14.08 ns | 1.131 ns | 0.062 ns |  1.04 |         - |
 
-This looks very promising as the results between a native int and a VO struct are almost identical and there is no memory overhead.
+
+There is no discernable difference between using a native int and a VO struct; both are pretty much the same in terms of speed and memory.
 
 The next most common scenario is using a VO class to represent a native `String`.  These results are:
 
@@ -256,29 +257,29 @@ Job=ShortRun  IterationCount=3  LaunchCount=1
 WarmupCount=3  
 
 ```
+|                   Method |     Mean |     Error |   StdDev | Ratio | RatioSD |  Gen 0 | Allocated |
+|------------------------- |---------:|----------:|---------:|------:|--------:|-------:|----------:|
+|      UsingStringNatively | 135.4 ns |  16.89 ns |  0.93 ns |  1.00 |    0.00 | 0.0153 |     256 B |
+| UsingValueObjectAsStruct | 171.8 ns |  14.40 ns |  0.79 ns |  1.27 |    0.01 | 0.0153 |     256 B |
 
-|                   Method |     Mean |    Error |  StdDev | Ratio |  Gen 0 | Gen 1 | Gen 2 | Allocated |
-|------------------------- |---------:|---------:|--------:|------:|-------:|------:|------:|----------:|
-|      UsingStringNatively | 204.4 ns |  8.09 ns | 0.44 ns |  1.00 | 0.0153 |     - |     - |     256 B |
-| UsingValueObjectAsStruct | 248.9 ns | 18.82 ns | 1.03 ns |  1.22 | 0.0181 |     - |     - |     304 B |
-
+There is a tiny amount of performance overhead, but these measurements are incredibly small. There is no memory overhead.
 
 # FAQ
 
-## Why can't I just use `public record struct CustomerId(int id);`?
+## Why can't I just use `public record struct CustomerId(int Value);`?
 
-That doesn't give you validation. To validate `id`, you can't use the shorthand syntax. So you'd need to do:
+That doesn't give you validation. To validate `Value`, you can't use the shorthand syntax (Primary Constructor). So you'd need to do:
 
 ```csharp
 public record struct CustomerId
 {
-    public CustomerId(int id) {
-        if(id <=0) throw new Exception(...)
+    public CustomerId(int value) {
+        if(value <=0) throw new Exception(...)
     }
 }
 ```
 
-You might also provide other constructors which might not validate the data, thereby allowing invalid data into your domain. Those other constructors might not throw exception, or might throw different exceptions.  One of the opinions in Vogen is that any invalid data given to a Value Object throws a `ValueObjectValidationException`.
+You might also provide other constructors which might not validate the data, thereby _allowing invalid data into your domain_. Those other constructors might not throw exception, or might throw different exceptions.  One of the opinions in Vogen is that any invalid data given to a Value Object throws a `ValueObjectValidationException`.
 
 You could also use `default(CustomerId)` to evade validation.  In Vogen, there are analysers that catch this and fail the build, e.g:
 
@@ -452,6 +453,19 @@ public void CanEnter(Age age) {
     return age < 17;
 }
 ```
+
+## Why isn't the part of the language?
+
+It would be great if it was, but it's not currently. I [wrote an article about it](https://dunnhq.com/posts/2022/non-defaultable-value-types/), but in summary, there is a [long-standing language proposal](https://github.com/dotnet/csharplang/issues/146) focusing on non-defaultable value types.
+Having non-defaultable value types is a great first step, but it would also be handy to have something in the language to enforce validate.
+So I added a [language proposal for invariant records](https://github.com/dotnet/csharplang/discussions/5574).
+
+One of the responses in the proposal says that the language team decided that validation policies should not be part of C#, but provided by source generators.
+
+### How do I run the benchmarks?
+
+`dotnet run -c Release -- --job short --filter *`
+
 
 # What alternatives are there?
 
