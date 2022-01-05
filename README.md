@@ -68,8 +68,9 @@ SendInvoice(customerId);
 public void SendInvoice(CustomerId customerId) { ... }
 ```
 
-To ensure validity of your value objects, the code analyser helps you avoid mistakes.
-It does this by adding new constraints in the form of new compilation errors:
+To ensure the validity of your value objects, the code analyser helps you avoid mistakes.
+
+It does this by adding new constraints in the form of new compilation errors. For example, the analyser will spot issues when you declare a value object:
 
 ```csharp
 [ValueObject(typeof(int))]
@@ -83,21 +84,27 @@ public partial struct CustomerId {
 }
 ```
 
+... and it will spot issues when creating or consuming value objects:
+
 ```csharp
-// error VOG009: Type 'CustomerId' cannot be constructed with default as it is prohibited.
-CustomerId c = default;
+// catches object creation expressions
+var c = new CustomerId(); // error VOG010: Type 'CustomerId' cannot be constructed with 'new' as it is prohibited
+CustomerId c = default; // error VOG009: Type 'CustomerId' cannot be constructed with default as it is prohibited.
+var c = default(CustomerId); // error VOG009: Type 'CustomerId' cannot be constructed with default as it is prohibited.
+var c = GetCustomerId(); // error VOG010: Type 'CustomerId' cannot be constructed with 'new' as it is prohibited
 
-// error VOG009: Type 'CustomerId' cannot be constructed with default as it is prohibited.
-var c = default(CustomerId);
+// catches lambda expressions
+Func<CustomerId> f = () => default; // error VOG009: Type 'CustomerId' cannot be constructed with default as it is prohibited.
 
-// error VOG009: Type 'CustomerId' cannot be constructed with default as it is prohibited.
-void ProcessCustomer(CustomerId customerId = default)
+// catches method / local function return expressions
+CustomerId GetCustomerId() => default; // error VOG009: Type 'CustomerId' cannot be constructed with default as it is prohibited.
+CustomerId GetCustomerId() => new CustomerId(); // error VOG010: Type 'CustomerId' cannot be constructed with 'new' as it is prohibited
+CustomerId GetCustomerId() => new(); // error VOG010: Type 'CustomerId' cannot be constructed with 'new' as it is prohibited
 
-// uncomment for - error VOG010: Type 'CustomerId' cannot be constructed with 'new' as it is prohibited.
-var c = new CustomerId();
+// catches argument / parameter expressions
+Task<CustomerId> t = Task.FromResult<CustomerId>(new()); // error VOG010: Type 'CustomerId' cannot be constructed with 'new' as it is prohibited
 
-// uncomment for - error VOG010: Type 'CustomerId' cannot be constructed with 'new' as it is prohibited.
-CustomerId c = new();
+void Process(CustomerId customerId = default) { } // error VOG009: Type 'CustomerId' cannot be constructed with default as it is prohibited.
 ```
 
 The main goal of this project is to achieve **almost the same speed and memory performance as using primitives directly**.
@@ -213,15 +220,10 @@ public readonly partial struct Centigrade {
 }
 ```
 
-## Benchmarking
+## Performance
 
-### How do I run the benchmarks?
-
-`dotnet run -c Release -- --job short --filter *`
-
-### Common scenario - underlying type of int with validation
-
-This benchmark compared using an int natively (`int n = 1`) vs using a VO struct (`struct n {}`).
+As mentioned previously, the goal of Vogen is to achieve very similar performance compare to using primitives themselves.
+Here's a benchmark comparing the use of a validated value object with underlying type of int vs using an int natively (_primitively_ 🤓)
 
 ``` ini
 BenchmarkDotNet=v0.12.1, OS=Windows 10.0.22000
@@ -234,7 +236,6 @@ Job=ShortRun  IterationCount=3  LaunchCount=1
 WarmupCount=3  
 
 ```
-
 |                  Method |     Mean |    Error |   StdDev | Ratio | Allocated |
 |------------------------ |---------:|---------:|---------:|------:|----------:|
 |        UsingIntNatively | 13.57 ns | 0.086 ns | 0.005 ns |  1.00 |         - |
@@ -256,7 +257,6 @@ Job=ShortRun  IterationCount=3  LaunchCount=1
 WarmupCount=3  
 
 ```
-
 |                   Method |     Mean |     Error |   StdDev | Ratio | RatioSD |  Gen 0 | Allocated |
 |------------------------- |---------:|----------:|---------:|------:|--------:|-------:|----------:|
 |      UsingStringNatively | 135.4 ns |  16.89 ns |  0.93 ns |  1.00 |    0.00 | 0.0153 |     256 B |
@@ -456,11 +456,15 @@ public void CanEnter(Age age) {
 
 ## Why isn't the part of the language?
 
-It would be great if it was, but it's not currently. There is a [long-standing language proposal](https://github.com/dotnet/csharplang/issues/146) focusing on non-defaultable value types.
+It would be great if it was, but it's not currently. I [wrote an article about it](https://dunnhq.com/posts/2022/non-defaultable-value-types/), but in summary, there is a [long-standing language proposal](https://github.com/dotnet/csharplang/issues/146) focusing on non-defaultable value types.
 Having non-defaultable value types is a great first step, but it would also be handy to have something in the language to enforce validate.
 So I added a [language proposal for invariant records](https://github.com/dotnet/csharplang/discussions/5574).
 
 One of the responses in the proposal says that the language team decided that validation policies should not be part of C#, but provided by source generators.
+
+### How do I run the benchmarks?
+
+`dotnet run -c Release -- --job short --filter *`
 
 
 # What alternatives are there?
