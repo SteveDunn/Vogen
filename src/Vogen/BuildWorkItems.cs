@@ -36,12 +36,6 @@ internal static class BuildWorkItems
             return null;
         }
 
-        if (voAttribute.ConstructorArguments.Length == 0)
-        {
-            diagnostics.AddMustSpecifyUnderlyingType(voClass);
-            return null;
-        }
-
         foreach (var eachConstructor in voClass.Constructors)
         {
             // no need to check for default constructor as it's already defined
@@ -52,12 +46,36 @@ internal static class BuildWorkItems
             }
         }
 
-        var underlyingType = (INamedTypeSymbol?) voAttribute.ConstructorArguments[0].Value;
+        ImmutableArray<TypedConstant> args = voAttribute.ConstructorArguments;
+
+        INamedTypeSymbol? underlyingType = null;
+        Conversions conversions = Conversions.None;
+
+        foreach (TypedConstant arg in args)
+        {
+            if (arg.Kind == TypedConstantKind.Error)
+            {
+                break;
+            }
+        }
+
+        if (args.Length == 0)
+        {
+            diagnostics.AddMustSpecifyUnderlyingType(voClass);
+            return null;
+        }
+
+        underlyingType = (INamedTypeSymbol?) args[0].Value;
 
         if (underlyingType is null)
         {
             diagnostics.AddMustSpecifyUnderlyingType(voClass);
             return null;
+        }
+
+        if (args.Length == 2 && args[1].Value is not null)
+        {
+            conversions = (Conversions) args[1].Value!;
         }
 
         var containingType = target.ContainingType;// context.SemanticModel.GetDeclaredSymbol(context.Node)!.ContainingType;
@@ -114,6 +132,7 @@ internal static class BuildWorkItems
             TypeToAugment = tds,
             IsValueType = isValueType,
             UnderlyingType = underlyingType,
+            Conversions = conversions,
             ValidateMethod = validateMethod,
             FullNamespace = voClass.FullNamespace()
         };

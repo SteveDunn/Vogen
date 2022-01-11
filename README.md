@@ -474,3 +474,27 @@ One of the responses in the proposal says that the language team decided that va
 [StringlyTyped](https://github.com/stevedunn/stringlytyped)
 
 [ValueObjectGenerator](https://github.com/RyotaMurohoshi/ValueObjectGenerator)
+
+# What primitive types are supported?
+
+Any type can be wrapped. Serialisation and type conversions have implementations for:
+* string
+
+* int
+* long
+* short
+
+* float (Single)
+* decimal
+* double
+
+* Guid
+
+For other types, a generic type conversion and serialisers are applied. If you are supplying your own converters for type conversion and serialization, then specify `None` for converters and decorate your type with attributes for your own types, e.g.
+
+```csharp
+[ValueObject(typeof(SpecialPrimitive), conversions: Conversions.None)]
+[System.Text.Json.Serialization.JsonConverter(typeof(SpecialPrimitiveJsonConverter))]
+[System.ComponentModel.TypeConverter(typeof(SpecialPrimitiveTypeConverter))]
+public partial struct SpecialMeasurement { }
+```

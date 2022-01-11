@@ -1,0 +1,1 @@
+﻿        public int CompareTo(VOTYPE other) => Value.CompareTo(other.Value);

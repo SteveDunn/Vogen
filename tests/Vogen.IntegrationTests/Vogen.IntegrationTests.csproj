@@ -8,9 +8,12 @@
   </PropertyGroup>
 
 	<ItemGroup>
+		<PackageReference Include="Dapper" Version="2.0.123" />
 		<PackageReference Include="FluentAssertions" Version="6.2.0" />
 		<PackageReference Include="Microsoft.CodeAnalysis.Common" Version="4.0.1" />
 		<PackageReference Include="Microsoft.CodeAnalysis.CSharp" Version="4.0.1" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.17" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="3.1.17" />
 		<PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.0.0" />
 		<PackageReference Include="Verify.SourceGenerators" Version="1.2.0" />
 		<PackageReference Include="Verify.Xunit" Version="14.12.0" />
@@ -46,6 +49,17 @@
 
 	<ItemGroup>
 	  <Folder Include="Snapshots\" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <None Update="DiagnosticsTests\Snapshots\ValueObjectGeneratorTests.Validation_with_camelCased_validate_method.verified.txt">
+	    <ParentFile>$([System.String]::Copy('%(FileName)').Split('.')[0])</ParentFile>
+	    <DependentUpon>%(ParentFile).cs</DependentUpon>
+	  </None>
+	  <None Update="DiagnosticsTests\Snapshots\ValueObjectGeneratorTests.Validation_with_PacalCased_validate_method.verified.txt">
+	    <ParentFile>$([System.String]::Copy('%(FileName)').Split('.')[0])</ParentFile>
+	    <DependentUpon>%(ParentFile).cs</DependentUpon>
+	  </None>
 	</ItemGroup>
 
 </Project>

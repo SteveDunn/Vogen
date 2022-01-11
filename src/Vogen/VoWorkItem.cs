@@ -8,7 +8,7 @@ public class VoWorkItem
 {
     public MethodDeclarationSyntax? ValidateMethod { get; set; }
 
-    public INamedTypeSymbol? UnderlyingType { get; set; }
+    public INamedTypeSymbol UnderlyingType { get; set; } = null!;
 
     public TypeDeclarationSyntax TypeToAugment { get; set; } = null!;
     
@@ -17,4 +17,7 @@ public class VoWorkItem
     public List<InstanceProperties> InstanceProperties { get; set; } = new();
 
     public string FullNamespace { get; set; } = string.Empty;
+    public Conversions Conversions { get; set; }
+    public string VoTypeName => TypeToAugment.Identifier.ToString();
+    public string UnderlyingTypeFullName => UnderlyingType.FullName() ?? UnderlyingType.Name;
 }

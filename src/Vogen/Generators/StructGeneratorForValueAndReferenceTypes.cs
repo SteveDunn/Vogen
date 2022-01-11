@@ -10,8 +10,13 @@ public class StructGeneratorForValueAndReferenceTypes : IGenerateSourceCode
         return $@"using Vogen;
 
 {Util.WriteStartNamespace(item.FullNamespace)}
+    {Util.GenerateAnyConversionAttributes(tds, item)}
     {Util.GenerateModifiersFor(tds)} struct {structName} : System.IEquatable<{structName}>
     {{
+#if DEBUG    
+        private readonly System.Diagnostics.StackTrace _stackTrace = null;
+#endif
+
         private readonly bool _isInitialized;
         
         private readonly {item.UnderlyingType} _value;
@@ -27,7 +32,12 @@ public class StructGeneratorForValueAndReferenceTypes : IGenerateSourceCode
 
         public {structName}()
         {{
-            throw new Vogen.ValueObjectValidationException(""Validation skipped by attempting to use the default constructor. Please use the 'From' method for construction."");
+#if DEBUG
+            _stackTrace = new System.Diagnostics.StackTrace();
+#endif
+
+            _isInitialized = false;
+            _value = default;
         }}
 
         private {structName}({item.UnderlyingType} value) 
@@ -47,7 +57,10 @@ public class StructGeneratorForValueAndReferenceTypes : IGenerateSourceCode
 
         public readonly bool Equals({structName} other)
         {{
-            EnsureInitialized();
+            // It's possible to create uninitialized instances via converters such as EfCore (HasDefaultValue), which call Equals.
+            // We treat anything uninitialized as not equal to anything, even other uninitialized instances of this type.
+            if(!_isInitialized || !other._isInitialized) return false;
+
             return System.Collections.Generic.EqualityComparer<{item.UnderlyingType}>.Default.Equals(Value, other.Value);
         }}
 
@@ -73,11 +86,23 @@ public class StructGeneratorForValueAndReferenceTypes : IGenerateSourceCode
 
         private readonly void EnsureInitialized()
         {{
-            if(!_isInitialized) throw new ValueObjectValidationException(""Use of uninitialized Value Object."");
+            if (!_isInitialized)
+            {{
+#if DEBUG
+                string message = ""Use of uninitialized Value Object at: "" + _stackTrace ?? """";
+#else
+                string message = ""Use of uninitialized Value Object."";
+#endif
+
+                throw new ValueObjectValidationException(message);
+            }}
         }}
 
-        {Util.GenerateAnyInstances(tds, item)}
-    }}
+        { Util.GenerateAnyInstances(tds, item)}
+ 
+        {Util.GenerateAnyConversionBodies(tds, item)}
+
+}}
 {Util.WriteCloseNamespace(item.FullNamespace)}";
     }
 }
