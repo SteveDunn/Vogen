@@ -10,10 +10,11 @@
             {
                 return value switch
                 {
-                    long longValue => new VOTYPE(longValue),
-                    int intValue => new VOTYPE(intValue),
                     short shortValue => new VOTYPE(shortValue),
-                    string stringValue when  !string.IsNullOrEmpty(stringValue) && long.TryParse(stringValue, out var result) => new VOTYPE(result),
+                    int intValue => new VOTYPE((short)intValue),
+                    long longValue => new VOTYPE((short)longValue),
+
+                    string stringValue when  !string.IsNullOrEmpty(stringValue) && short.TryParse(stringValue, out var result) => new VOTYPE(result),
                     _ => throw new System.InvalidCastException($"Unable to cast object of type {value.GetType()} to VOTYPE"),
                 };
             }

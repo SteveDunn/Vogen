@@ -1,4 +1,4 @@
-﻿namespace Vogen.StringegrationTests.NewTests.Types
+﻿namespace Vogen.IntegrationTests.SerializationAndConversionTests.Types
 {
     [ValueObject(conversions: Conversions.None, underlyingType: typeof(string))]
     public partial struct StringVo { }

@@ -11,6 +11,7 @@
                 return value switch
                 {
                     double doubleValue => new VOTYPE(doubleValue),
+                    long longValue => new VOTYPE((double)longValue),
                     string stringValue when !string.IsNullOrEmpty(stringValue) && double.TryParse(stringValue, out var result) => new VOTYPE(result),
                     _ => base.ConvertFrom(context, culture, value),
                 };
