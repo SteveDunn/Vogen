@@ -18,5 +18,6 @@ public static class ModuleInitializer
         SqlMapper.AddTypeHandler(new DapperShortVo.DapperTypeHandler());
         SqlMapper.AddTypeHandler(new DapperFloatVo.DapperTypeHandler());
         SqlMapper.AddTypeHandler(new DapperDoubleVo.DapperTypeHandler());
+        SqlMapper.AddTypeHandler(new DapperDecimalVo.DapperTypeHandler());
     }
 }
