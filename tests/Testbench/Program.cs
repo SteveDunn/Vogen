@@ -1,6 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
+using Dapper;
 using Microsoft.Data.Sqlite;
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
@@ -8,89 +11,35 @@ using Vogen;
 
 Console.WriteLine("!!");
 
-// [ValueObject(typeof(TimeSpan), conversions: Conversions.TypeConverter)]
-// public partial struct Duration { }
-//
-// [ValueObject(typeof(DateTime), conversions: Conversions.TypeConverter)]
-// public partial struct ReminderTime { }
-// //
-// [ValueObject(typeof(float), conversions: Conversions.TypeConverter)]
-// public partial struct Velocity { }
-//
-// [ValueObject(typeof(double), conversions: Conversions.TypeConverter | Conversions.SystemTextJson)]
-// public partial struct Velocity2 { }
-//
-// [ValueObject(typeof(decimal), conversions: Conversions.TypeConverter | Conversions.SystemTextJson)]
-// public partial struct Amount { }
-//
-// [ValueObject(typeof(short), conversions: Conversions.TypeConverter | Conversions.SystemTextJson)]
-// public partial struct ShortAmount { }
 
-// [ValueObject(typeof(TimeSpan))]
-// public partial struct Duration
+
+// SqlMapper.ResetTypeHandlers();
+// SqlMapper.AddTypeHandler(typeof(DapperBoolVo), new DapperDateTimeVo.DapperBoolVo());
+//
+// using var connection = new SqliteConnection("DataSource=:memory:");
+// await connection.OpenAsync();
+//
+// connection.Execute(
+//     @"create table Customer
+//                 (
+//                     Id                                  integer identity primary key,
+//                     IsSpecial                         boolean not null
+//                 )");
+//
+// var c = new Customer
 // {
-//     private static Validation Validate(TimeSpan timeSpan) =>
-//         timeSpan >= TimeSpan.Zero ? Validation.Ok : Validation.Invalid("Cannot be negative");
+//     Id = 123,
+//     IsSpecial = DapperBoolVo.From(true)
+// };
 //
-//     public Duration DecreaseBy(TimeSpan amount) => Duration.From(Value - amount);
-// }
-
-// public partial struct Foo
+// connection.Execute("insert into Customer(Id, IsSpecial) values(@Id, @IsSpecial)", c);
+// Customer f2 = connection.Query<Customer>("select * from Customer where Id = @Id", c).Single();
+//
+// class Customer
 // {
-//     private Foo(DateTime value) => Value = value;
-//
-//     public DateTime Value { get; }
-//
-//     public static Foo From(DateTime value) => new(value);
+//     public int Id { get; set; }
+//     public DapperBoolVo IsSpecial { get; set; }
 // }
-//
-// class VOTYPESystemTextJsonConverter : System.Text.Json.Serialization.JsonConverter<Foo>
-// {
-//     public override Foo Read(ref System.Text.Json.Utf8JsonReader reader, System.Type typeToConvert, System.Text.Json.JsonSerializerOptions options)
-//     {
-//         var v = System.Text.Json.JsonSerializer.Deserialize<TimeSpan>(ref reader, options);
-//
-//         return Foo.From(reader.GetDateTime());
-//     }
-//
-//     public override void Write(System.Text.Json.Utf8JsonWriter writer, Foo value, System.Text.Json.JsonSerializerOptions options)
-//     {
-//         // does decimal/double/float
-//         writer.WriteStringValue(value.Value);
-//     }
-// }
-
-EfCoreCustomerIdInt[] ints = new EfCoreCustomerIdInt[10];
-var v = ints[0].Value;
-
-
-
-var connection = new SqliteConnection("DataSource=:memory:");
-            connection.Open();
-
-            var options = new DbContextOptionsBuilder<TestDbContext>()
-                .UseSqlite(connection)
-                .Options;
-
-            var original = new TestEntity { Id = EfCoreCustomerIdInt.From(123) };
-            using (var context = new TestDbContext(options))
-            {
-                context.Database.EnsureCreated();
-                context.Entities.Add(original);
-                context.SaveChanges();
-            }
-            using (var context = new TestDbContext(options))
-            {
-                var all = context.Entities.ToList();
-                if (all.Count != 1)
-                {
-                    throw new Exception("!!");
-                }
-
-                var item = all.Single();
-
-                if (original.Id != item.Id) throw new Exception("!!!");
-            }
 
 public class TestEntity
 {
@@ -120,8 +69,72 @@ public class TestDbContext : DbContext
 }
 
 
-[ValueObject(typeof(int), conversions: Conversions.TypeConverter | Conversions.EfCoreValueConverter)]
-public partial struct EfCoreInt { }
+// [ValueObject(typeof(int), conversions: Conversions.TypeConverter | Conversions.EfCoreValueConverter)]
+// public partial struct EfCoreInt { }
 //
 // [ValueObject(typeof(string), conversions: Conversions.TypeConverter | Conversions.SystemTextJson)]
 // public partial struct CustomerName { }
+
+//[ValueObject(conversions: Conversions.DapperTypeHandler, underlyingType: typeof(DateTime))]
+public partial struct DapperDateTimeVo { }
+
+// [ValueObject(conversions: Conversions.DapperTypeHandler | Conversions.TypeConverter, underlyingType: typeof(DateTime))]
+// public partial struct SteveDataTime { }
+
+
+
+[ValueObject(typeof(char), conversions: Conversions.TypeConverter)]
+public partial struct MyCharacter { }
+//
+// [ValueObject(typeof(TimeSpan), conversions: Conversions.TypeConverter)]
+// public partial struct Duration { }
+//
+// [ValueObject(typeof(DateTime), conversions: Conversions.TypeConverter)]
+// public partial struct ReminderTime { }
+// //
+// [ValueObject(typeof(float), conversions: Conversions.TypeConverter)]
+// public partial struct Velocity { }
+//
+// [ValueObject(typeof(double), conversions: Conversions.TypeConverter | Conversions.SystemTextJson)]
+// public partial struct Velocity2 { }
+//
+// [ValueObject(typeof(decimal), conversions: Conversions.TypeConverter | Conversions.SystemTextJson)]
+// public partial struct Amount { }
+//
+// [ValueObject(typeof(short), conversions: Conversions.TypeConverter | Conversions.SystemTextJson)]
+// public partial struct ShortAmount { }
+
+// [ValueObject(typeof(TimeSpan))]
+// public partial struct Duration
+// {
+//     private static Validation Validate(TimeSpan timeSpan) =>
+//         timeSpan >= TimeSpan.Zero ? Validation.Ok : Validation.Invalid("Cannot be negative");
+//
+//     public Duration DecreaseBy(TimeSpan amount) => Duration.From(Value - amount);
+// }
+
+public partial struct Foo
+{
+    private Foo(byte value) => Value = value;
+
+    public byte Value { get; }
+
+    public static Foo From(byte value) => new(value);
+}
+
+class VOTYPESystemTextJsonConverter : System.Text.Json.Serialization.JsonConverter<Foo>
+{
+    public override Foo Read(ref System.Text.Json.Utf8JsonReader reader, System.Type typeToConvert, System.Text.Json.JsonSerializerOptions options)
+    {
+        var v = System.Text.Json.JsonSerializer.Deserialize<byte>(ref reader, options);
+
+        return Foo.From(reader.GetByte());
+    }
+
+    public override void Write(System.Text.Json.Utf8JsonWriter writer, Foo value, System.Text.Json.JsonSerializerOptions options)
+    {
+        // does decimal/double/float
+        //writer.WriteNumberValue(value.Value);
+        writer.WriteNumberValue(value.Value);
+    }
+}

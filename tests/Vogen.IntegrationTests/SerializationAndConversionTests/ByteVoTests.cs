@@ -8,108 +8,111 @@ using Dapper;
 using FluentAssertions;
 using Microsoft.Data.Sqlite;
 using Microsoft.EntityFrameworkCore;
-using Vogen.IntegrationTests.NewTests.Types;
+using Vogen.IntegrationTests.SerializationAndConversionTests.Types;
 using Xunit;
 using NewtonsoftJsonSerializer = Newtonsoft.Json.JsonConvert;
 using SystemTextJsonSerializer = System.Text.Json.JsonSerializer;
+// ReSharper disable RedundantOverflowCheckingContext
+// ReSharper disable ConvertToLocalFunction
 
 namespace Vogen.IntegrationTests.SerializationAndConversionTests
 {
-    [ValueObject(underlyingType: typeof(int))]
-    public partial struct AnotherIntVo { }
+    [ValueObject(underlyingType: typeof(byte))]
+    public partial struct AnotherByteVo { }
 
-    public class IntVoTests
+    public class ByteVoTests
     {
         [Fact]
         public void equality_between_same_value_objects()
         {
-            IntVo.From(18).Equals(IntVo.From(18)).Should().BeTrue();
-            (IntVo.From(18) == IntVo.From(18)).Should().BeTrue();
+            ByteVo.From(18).Equals(ByteVo.From(18)).Should().BeTrue();
+            (ByteVo.From(18) == ByteVo.From(18)).Should().BeTrue();
 
-            (IntVo.From(18) != IntVo.From(19)).Should().BeTrue();
-            (IntVo.From(18) == IntVo.From(19)).Should().BeFalse();
+            (ByteVo.From(18) != ByteVo.From(19)).Should().BeTrue();
+            (ByteVo.From(18) == ByteVo.From(19)).Should().BeFalse();
 
-            IntVo.From(18).Equals(IntVo.From(18)).Should().BeTrue();
-            (IntVo.From(18) == IntVo.From(18)).Should().BeTrue();
+            ByteVo.From(18).Equals(ByteVo.From(18)).Should().BeTrue();
+            (ByteVo.From(18) == ByteVo.From(18)).Should().BeTrue();
 
-            var original = IntVo.From(18);
-            var other = IntVo.From(18);
+            var original = ByteVo.From(18);
+            var other = ByteVo.From(18);
 
-            ((original as IEquatable<IntVo>).Equals(other)).Should().BeTrue();
-            ((other as IEquatable<IntVo>).Equals(original)).Should().BeTrue();
+            ((original as IEquatable<ByteVo>).Equals(other)).Should().BeTrue();
+            ((other as IEquatable<ByteVo>).Equals(original)).Should().BeTrue();
         }
+
 
         [Fact]
         public void equality_between_different_value_objects()
         {
-            IntVo.From(18).Equals(AnotherIntVo.From(18)).Should().BeFalse();
+            ByteVo.From(18).Equals(AnotherByteVo.From(18)).Should().BeFalse();
         }
 
         [Fact]
-        public void CanSerializeToInt_WithNewtonsoftJsonProvider()
+        public void CanSerializeToShort_WithNewtonsoftJsonProvider()
         {
-            var foo = NewtonsoftJsonIntVo.From(123);
+            var foo = NewtonsoftJsonByteVo.From(123);
 
             string serializedFoo = NewtonsoftJsonSerializer.SerializeObject(foo);
-            string serializedInt = NewtonsoftJsonSerializer.SerializeObject(foo.Value);
+            string serializedShort = NewtonsoftJsonSerializer.SerializeObject(foo.Value);
 
-            Assert.Equal(serializedFoo, serializedInt);
+            Assert.Equal(serializedFoo, serializedShort);
         }
 
         [Fact]
-        public void CanSerializeToInt_WithSystemTextJsonProvider()
+        public void CanSerializeToShort_WithSystemTextJsonProvider()
         {
-            var foo = SystemTextJsonIntVo.From(123);
+            var foo = SystemTextJsonByteVo.From(123);
 
             string serializedFoo = SystemTextJsonSerializer.Serialize(foo);
-            string serializedInt = SystemTextJsonSerializer.Serialize(foo.Value);
+            string serializedShort = SystemTextJsonSerializer.Serialize(foo.Value);
 
-            serializedFoo.Equals(serializedInt).Should().BeTrue();
+            serializedFoo.Equals(serializedShort).Should().BeTrue();
         }
 
         [Fact]
-        public void CanDeserializeFromInt_WithNewtonsoftJsonProvider()
+        public void CanDeserializeFromShort_WithNewtonsoftJsonProvider()
         {
-            var value = 123;
-            var foo = NewtonsoftJsonIntVo.From(value);
-            var serializedInt = NewtonsoftJsonSerializer.SerializeObject(value);
+            byte value = 123;
+            var foo = NewtonsoftJsonByteVo.From(value);
+            var serializedShort = NewtonsoftJsonSerializer.SerializeObject(value);
 
-            var deserializedFoo = NewtonsoftJsonSerializer.DeserializeObject<NewtonsoftJsonIntVo>(serializedInt);
+            var deserializedFoo = NewtonsoftJsonSerializer.DeserializeObject<NewtonsoftJsonByteVo>(serializedShort);
 
             Assert.Equal(foo, deserializedFoo);
         }
 
         [Fact]
-        public void CanDeserializeFromInt_WithSystemTextJsonProvider()
+        public void CanDeserializeFromShort_WithSystemTextJsonProvider()
         {
-            var value = 123;
-            var foo = SystemTextJsonIntVo.From(value);
-            var serializedInt = SystemTextJsonSerializer.Serialize(value);
+            byte value = 123;
+            var foo = SystemTextJsonByteVo.From(value);
+            var serializedShort = SystemTextJsonSerializer.Serialize(value);
 
-            var deserializedFoo = SystemTextJsonSerializer.Deserialize<SystemTextJsonIntVo>(serializedInt);
+            var deserializedFoo = SystemTextJsonSerializer.Deserialize<SystemTextJsonByteVo>(serializedShort);
 
             Assert.Equal(foo, deserializedFoo);
         }
 
         [Fact]
-        public void CanSerializeToInt_WithBothJsonConverters()
+        public void CanSerializeToShort_WithBothJsonConverters()
         {
-            var foo = BothJsonIntVo.From(123);
+            var foo = BothJsonByteVo.From(123);
 
             var serializedFoo1 = NewtonsoftJsonSerializer.SerializeObject(foo);
-            var serializedInt1 = NewtonsoftJsonSerializer.SerializeObject(foo.Value);
+            var serializedShort1 = NewtonsoftJsonSerializer.SerializeObject(foo.Value);
 
             var serializedFoo2 = SystemTextJsonSerializer.Serialize(foo);
-            var serializedInt2 = SystemTextJsonSerializer.Serialize(foo.Value);
+            var serializedShort2 = SystemTextJsonSerializer.Serialize(foo.Value);
 
-            Assert.Equal(serializedFoo1, serializedInt1);
-            Assert.Equal(serializedFoo2, serializedInt2);
+            Assert.Equal(serializedFoo1, serializedShort1);
+            Assert.Equal(serializedFoo2, serializedShort2);
         }
 
         [Fact]
         public void WhenNoJsonConverter_SystemTextJsonSerializesWithValueProperty()
         {
-            var foo = NoJsonIntVo.From(123);
+            var foo = NoJsonByteVo.From(123);
 
             var serialized = SystemTextJsonSerializer.Serialize(foo);
 
@@ -121,7 +124,7 @@ namespace Vogen.IntegrationTests.SerializationAndConversionTests
         [Fact]
         public void WhenNoJsonConverter_NewtonsoftSerializesWithoutValueProperty()
         {
-            var foo = NoJsonIntVo.From(123);
+            var foo = NoJsonByteVo.From(123);
 
             var serialized = NewtonsoftJsonSerializer.SerializeObject(foo);
 
@@ -133,7 +136,7 @@ namespace Vogen.IntegrationTests.SerializationAndConversionTests
         [Fact]
         public void WhenNoTypeConverter_SerializesWithValueProperty()
         {
-            var foo = NoConverterIntVo.From(123);
+            var foo = NoConverterByteVo.From(123);
 
             var newtonsoft = SystemTextJsonSerializer.Serialize(foo);
             var systemText = SystemTextJsonSerializer.Serialize(foo);
@@ -154,7 +157,7 @@ namespace Vogen.IntegrationTests.SerializationAndConversionTests
                 .UseSqlite(connection)
                 .Options;
 
-            var original = new TestEntity { Id = EfCoreIntVo.From(123) };
+            var original = new TestEntity { Id = EfCoreByteVo.From(123) };
             using (var context = new TestDbContext(options))
             {
                 context.Database.EnsureCreated();
@@ -175,21 +178,21 @@ namespace Vogen.IntegrationTests.SerializationAndConversionTests
             using var connection = new SqliteConnection("DataSource=:memory:");
             await connection.OpenAsync();
 
-            IEnumerable<DapperIntVo> results = await connection.QueryAsync<DapperIntVo>("SELECT 123");
+            IEnumerable<DapperByteVo> results = await connection.QueryAsync<DapperByteVo>("SELECT 123");
 
             var value = Assert.Single(results);
-            Assert.Equal(DapperIntVo.From(123), value);
+            Assert.Equal(DapperByteVo.From(123), value);
         }
 
         [Theory]
-        [InlineData(123)]
+        [InlineData((byte) 123)]
         [InlineData("123")]
         public void TypeConverter_CanConvertToAndFrom(object value)
         {
-            var converter = TypeDescriptor.GetConverter(typeof(NoJsonIntVo));
+            var converter = TypeDescriptor.GetConverter(typeof(NoJsonByteVo));
             var id = converter.ConvertFrom(value);
-            Assert.IsType<NoJsonIntVo>(id);
-            Assert.Equal(NoJsonIntVo.From(123), id);
+            Assert.IsType<NoJsonByteVo>(id);
+            Assert.Equal(NoJsonByteVo.From(123), id);
 
             var reconverted = converter.ConvertTo(id, value.GetType());
             Assert.Equal(value, reconverted);
@@ -203,27 +206,27 @@ namespace Vogen.IntegrationTests.SerializationAndConversionTests
             {
             }
 
-             protected override void OnModelCreating(ModelBuilder modelBuilder)
-             {
-                 modelBuilder
-                     .Entity<TestEntity>(builder =>
-                     {
-                         builder
-                             .Property(x => x.Id)
-                             .HasConversion(new EfCoreIntVo.EfCoreValueConverter())
-                             .ValueGeneratedNever();
-                     });
-             }
+            protected override void OnModelCreating(ModelBuilder modelBuilder)
+            {
+                modelBuilder
+                    .Entity<TestEntity>(builder =>
+                    {
+                        builder
+                            .Property(x => x.Id)
+                            .HasConversion(new EfCoreByteVo.EfCoreValueConverter())
+                            .ValueGeneratedNever();
+                    });
+            }
         }
 
         public class TestEntity
         {
-            public EfCoreIntVo Id { get; set; }
+            public EfCoreByteVo Id { get; set; }
         }
 
         public class EntityWithNullableId
         {
-            public NewtonsoftJsonIntVo? Id { get; set; }
+            public NewtonsoftJsonByteVo? Id { get; set; }
         }
     }
 }

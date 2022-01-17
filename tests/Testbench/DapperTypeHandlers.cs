@@ -8,7 +8,7 @@ namespace Testbench;
         [ModuleInitializer]
         public static void AddHandlers()
         {
-            SqlMapper.AddTypeHandler(new DapperCustomerIdInt.DapperTypeHandler());
+            //SqlMapper.AddTypeHandler(typeof(DapperDateTimeVo), new DapperDateTimeVo.DapperTypeHandler());
         }
     }
 

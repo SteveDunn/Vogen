@@ -10,10 +10,10 @@
             {
                 return value switch
                 {
-                    System.DateTime dtValue => new VOTYPE(dtValue),
+                    System.DateTimeOffset dtValue => new VOTYPE(dtValue),
                     string stringValue when 
                         !string.IsNullOrEmpty(stringValue) &&
-                        System.DateTime.TryParseExact(stringValue, "yyyy-MM-dd HH:mm:ss.fffffff", System.Globalization.CultureInfo.InvariantCulture, System.Globalization.DateTimeStyles.None, out var result) => new VOTYPE(result),
+                        System.DateTimeOffset.TryParseExact(stringValue, "yyyy-MM-dd HH:mm:ss.fffffff", System.Globalization.CultureInfo.InvariantCulture, System.Globalization.DateTimeStyles.None, out var result) => new VOTYPE(result),
                     _ => throw new System.InvalidCastException($"Unable to cast object of type {value.GetType()} to VOTYPE"),
                 };
             }

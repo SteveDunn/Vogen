@@ -12,6 +12,11 @@ public static class ModuleInitializer
     public static void Init()
     {
         VerifySourceGenerators.Enable();
+        SqlMapper.AddTypeHandler(new DapperCharVo.DapperTypeHandler());
+        SqlMapper.AddTypeHandler(new DapperBoolVo.DapperTypeHandler());
+        SqlMapper.AddTypeHandler(new DapperByteVo.DapperTypeHandler());
+        SqlMapper.AddTypeHandler(new DapperDateTimeOffsetVo.DapperTypeHandler());
+        SqlMapper.AddTypeHandler(new DapperDateTimeVo.DapperTypeHandler());
         SqlMapper.AddTypeHandler(new DapperIntVo.DapperTypeHandler());
         SqlMapper.AddTypeHandler(new DapperStringVo.DapperTypeHandler());
         SqlMapper.AddTypeHandler(new DapperLongVo.DapperTypeHandler());

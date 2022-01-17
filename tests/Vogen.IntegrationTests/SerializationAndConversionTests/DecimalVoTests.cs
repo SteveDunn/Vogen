@@ -57,18 +57,6 @@ namespace Vogen.IntegrationTests.SerializationAndConversionTests
         }
 
         [Fact]
-        public void CanSerializeToNullableLong_WithNewtonsoftJsonProvider()
-        {
-            var entity = new EntityWithNullableId { Id = null };
-
-            var json = NewtonsoftJsonSerializer.SerializeObject(entity);
-            var deserialize = NewtonsoftJsonSerializer.DeserializeObject<EntityWithNullableId>(json);
-
-            deserialize.Should().NotBeNull();
-            deserialize.Id.Should().BeNull();
-        }
-
-        [Fact]
         public void CanSerializeToLong_WithSystemTextJsonProvider()
         {
             var foo = SystemTextJsonDecimalVo.From(123D);
