@@ -4,7 +4,7 @@ using VerifyXunit;
 using Xunit;
 using Xunit.Abstractions;
 
-namespace Vogen.IntegrationTests.DiagnosticsTests;
+namespace Vogen.IntegrationTests.SnapshotTests;
 
 [UsesVerify] 
 public class ValueObjectGeneratorTests

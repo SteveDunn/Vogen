@@ -123,7 +123,7 @@ namespace Vogen.IntegrationTests.SerializationAndConversionTests
 
             var serialized = SystemTextJsonSerializer.Serialize(foo);
 
-            var expected = "{\"Value\":\"" + _date1.ToString("o") + "\"}";
+            var expected = "{\"Value\":\"" + _date1.ToString("O") + "\"}";
 
             Assert.Equal(expected, serialized);
         }
@@ -148,7 +148,7 @@ namespace Vogen.IntegrationTests.SerializationAndConversionTests
             var newtonsoft = SystemTextJsonSerializer.Serialize(foo);
             var systemText = SystemTextJsonSerializer.Serialize(foo);
 
-            var expected = "{\"Value\":\"" + _date1.ToString("o") + "\"}";
+            var expected = "{\"Value\":\"" + _date1.ToString("O") + "\"}";
 
             Assert.Equal(expected, newtonsoft);
             Assert.Equal(expected, systemText);
