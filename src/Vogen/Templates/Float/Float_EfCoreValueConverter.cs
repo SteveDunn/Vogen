@@ -3,7 +3,7 @@
         {
             public EfCoreValueConverter(Microsoft.EntityFrameworkCore.Storage.ValueConversion.ConverterMappingHints mappingHints = null)
                 : base(
-                    id => id.Value,
+                    vo => vo.Value,
                     value => VOTYPE.From(value),
                     mappingHints
                 ) { }

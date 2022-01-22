@@ -11,14 +11,14 @@ public class FooVoGenerationTests
     [Fact]
     public Task NoConverterFooVo_Test() =>
         RunTest(@"
-  [ValueObject(conversions: Conversions.None, underlyingType: typeof(Foo))]
+  [ValueObject(conversions: Conversions.None, underlyingType: typeof(Bar))]
   public partial struct NoConverterFooVo { }");
 
     [Fact]
     public Task NoJsonFooVo_Test()
     {
         return RunTest(@"
-    [ValueObject(conversions: Conversions.TypeConverter, underlyingType: typeof(Foo))]
+    [ValueObject(conversions: Conversions.TypeConverter, underlyingType: typeof(Bar))]
     public partial struct NoJsonFooVo { }");
     }
 
@@ -26,7 +26,7 @@ public class FooVoGenerationTests
     public Task NewtonsoftJsonFooVo_Test()
     {
         return RunTest(@"
-    [ValueObject(conversions: Conversions.NewtonsoftJson, underlyingType: typeof(Foo))]
+    [ValueObject(conversions: Conversions.NewtonsoftJson, underlyingType: typeof(Bar))]
     public partial struct NewtonsoftJsonFooVo { }");
     }
 
@@ -34,7 +34,7 @@ public class FooVoGenerationTests
     public Task SystemTextJsonFooVo_Test()
     {
         return RunTest(@"
-    [ValueObject(conversions: Conversions.SystemTextJson, underlyingType: typeof(Foo))]
+    [ValueObject(conversions: Conversions.SystemTextJson, underlyingType: typeof(Bar))]
     public partial struct SystemTextJsonFooVo { }
 ");
     }
@@ -43,7 +43,7 @@ public class FooVoGenerationTests
     public Task BothJsonFooVo_Test()
     {
         return RunTest(@"
-    [ValueObject(conversions: Conversions.NewtonsoftJson | Conversions.SystemTextJson, underlyingType: typeof(Foo))]
+    [ValueObject(conversions: Conversions.NewtonsoftJson | Conversions.SystemTextJson, underlyingType: typeof(Bar))]
     public partial struct BothJsonFooVo { }");
     }
 
@@ -51,7 +51,7 @@ public class FooVoGenerationTests
     public Task EfCoreFooVo_Test()
     {
         return RunTest(@"
-        [ValueObject(conversions: Conversions.EfCoreValueConverter, underlyingType: typeof(Foo))]
+        [ValueObject(conversions: Conversions.EfCoreValueConverter, underlyingType: typeof(Bar))]
     public partial struct EfCoreFooVo { }");
     }
 
@@ -59,15 +59,19 @@ public class FooVoGenerationTests
     public Task DapperFooVo_Test()
     {
         return RunTest(@"
-    [ValueObject(conversions: Conversions.DapperTypeHandler, underlyingType: typeof(Foo))]
+    [ValueObject(conversions: Conversions.DapperTypeHandler, underlyingType: typeof(Bar))]
     public partial struct DapperFooVo { }");
     }
 
     private Task RunTest(string declaration)
     {
-        var source = @"using Vogen;
+        var source = @"using System;
+using Vogen;
 namespace Whatever
 {
+
+public record struct Bar(int Age, string Name);
+
 " + declaration + @"
 }";
 

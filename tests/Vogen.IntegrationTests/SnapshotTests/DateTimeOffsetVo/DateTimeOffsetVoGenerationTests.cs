@@ -65,7 +65,8 @@ public class DateTimeOffsetVoGenerationTests
 
     private Task RunTest(string declaration)
     {
-        var source = @"using Vogen;
+        var source = @"using System;
+using Vogen;
 namespace Whatever
 {
 " + declaration + @"
