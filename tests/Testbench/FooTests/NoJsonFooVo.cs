@@ -2,6 +2,7 @@
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Globalization;
+using System.Text.Json;
 using Testbench.FooTests;
 using Vogen;
 
@@ -81,6 +82,7 @@ namespace Testbench
 
         public readonly override string ToString() => Value.ToString()!;
 
+
         private readonly void EnsureInitialized()
         {
             if (!_isInitialized)
@@ -95,26 +97,37 @@ namespace Testbench
             }
         }
 
-
-        public class DapperTypeHandler : Dapper.SqlMapper.TypeHandler<NoJsonFooVo>
+        public class EfCoreValueConverter : Microsoft.EntityFrameworkCore.Storage.ValueConversion.ValueConverter<NoJsonFooVo, string>
         {
-            public override void SetValue(System.Data.IDbDataParameter parameter, NoJsonFooVo value)
-            {
-                var v = System.Text.Json.JsonSerializer.Serialize(value.Value);
-                parameter.Value = v;
-            }
-        
-            public override NoJsonFooVo Parse(object value)
-            {
-                return value switch
-                {
-                    string stringValue =>
-                        new NoJsonFooVo(System.Text.Json.JsonSerializer.Deserialize<Bar>(stringValue)),
-                    _ => throw new System.InvalidCastException(
-                        $"Unable to cast object of type {value.GetType()} to DapperFooVo")
-                };
-            }
+            public EfCoreValueConverter(Microsoft.EntityFrameworkCore.Storage.ValueConversion.ConverterMappingHints mappingHints = null!)
+                : base(
+                    vo => System.Text.Json.JsonSerializer.Serialize(vo.Value, default(JsonSerializerOptions)),
+                    text =>new NoJsonFooVo(System.Text.Json.JsonSerializer.Deserialize<Bar>(text, default(JsonSerializerOptions))),
+                    mappingHints
+                )
+            { }
         }
+
+
+        // public class DapperTypeHandler : Dapper.SqlMapper.TypeHandler<NoJsonFooVo>
+        // {
+        //     public override void SetValue(System.Data.IDbDataParameter parameter, NoJsonFooVo value)
+        //     {
+        //         var v = System.Text.Json.JsonSerializer.Serialize(value.Value);
+        //         parameter.Value = v;
+        //     }
+        //
+        //     public override NoJsonFooVo Parse(object value)
+        //     {
+        //         return value switch
+        //         {
+        //             string stringValue =>
+        //                 new NoJsonFooVo(System.Text.Json.JsonSerializer.Deserialize<Bar>(stringValue)),
+        //             _ => throw new System.InvalidCastException(
+        //                 $"Unable to cast object of type {value.GetType()} to DapperFooVo")
+        //         };
+        //     }
+        // }
 
 
 

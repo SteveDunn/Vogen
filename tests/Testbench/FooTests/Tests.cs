@@ -1,58 +1,93 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
+using System.Text.Json;
 using Dapper;
 using Microsoft.Data.Sqlite;
+using Microsoft.EntityFrameworkCore;
 
 namespace Testbench.FooTests;
 
 public static class Tests
 {
-    public static void TestDapper()
+    private static Bar _bar1 = new Bar {Age = 42, Name = "Fred"};
+
+    public static void TestEfCore()
     {
-            SqlMapper.AddTypeHandler(new NoJsonFooVo.DapperTypeHandler());
+        var connection = new SqliteConnection("DataSource=:memory:");
+        connection.Open();
 
-        using var connection = new SqliteConnection("DataSource=:memory:");
-         connection.Open();
+        var options = new DbContextOptionsBuilder<TestDbContext>()
+            .UseSqlite(connection)
+            .Options;
 
-        IEnumerable<NoJsonFooVo> results = connection.Query<NoJsonFooVo>("SELECT '{\"Age\":42,\"Name\":\"Fred\"}'");
-
-        NoJsonFooVo value = results.Single();
-
-
-
-        var bar = new Bar { Age = 12, Name = "Fred" };
-        
-        string serializedBar = Newtonsoft.Json.JsonConvert.SerializeObject(bar);
-        var bar2 = Newtonsoft.Json.JsonConvert.DeserializeObject<Bar>(serializedBar);
-        
-        var foo = NoJsonFooVo.From(new Bar { Age = 12, Name = "Fred" });
-        
-        string serializedFoo = Newtonsoft.Json.JsonConvert.SerializeObject(foo);
-        var foo2 = Newtonsoft.Json.JsonConvert.DeserializeObject<NoJsonFooVo>(serializedFoo);
+        var original = new TestEntity
+        {
+            BarField = new Bar{Age = 12, Name = "Wilma"},
+            FooField = NoJsonFooVo.From(_bar1)
+        };
+        //var original = new TestEntity { FooField = NoJsonFooVo.From(_bar1) };
+        using (var context = new TestDbContext(options))
+        {
+            context.Database.EnsureCreated();
+            context.Entities.Add(original);
+            context.SaveChanges();
+        }
+        using (var context = new TestDbContext(options))
+        {
+            var all = context.Entities.ToList();
+            // var retrieved = Assert.Single(all);
+            //Assert.Equal(original.FooField, retrieved.FooField);
+        }
     }
 
-    public static void TestNoJson()
+    public class TestDbContext : DbContext
     {
-        var bar = new Bar { Age = 12, Name = "Fred" };
-        
-        string serializedBar = Newtonsoft.Json.JsonConvert.SerializeObject(bar);
-        var bar2 = Newtonsoft.Json.JsonConvert.DeserializeObject<Bar>(serializedBar);
-        
-        var foo = NoJsonFooVo.From(new Bar { Age = 12, Name = "Fred" });
-        
-        string serializedFoo = Newtonsoft.Json.JsonConvert.SerializeObject(foo);
-        var foo2 = Newtonsoft.Json.JsonConvert.DeserializeObject<NoJsonFooVo>(serializedFoo);
+        public DbSet<TestEntity> Entities { get; set; } = null!;
+
+        public TestDbContext(DbContextOptions options) : base(options)
+        {
+        }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+
+            modelBuilder
+                .Entity<TestEntity>()
+                .Property(x => x.BarField)
+                .HasConversion(new BarConverter());
+
+            modelBuilder
+                .Entity<TestEntity>()
+                .Property(x => x.FooField)
+                .HasConversion(new NoJsonFooVo.EfCoreValueConverter());
+
+        }
     }
 
-    public static void TestNewtonAndTypeConverter()
+    public class BarConverter : Microsoft.EntityFrameworkCore.Storage.ValueConversion.ValueConverter<Bar, string>
     {
-        var bar = new Bar { Age = 12, Name = "Fred" };
-        string serializedBar = Newtonsoft.Json.JsonConvert.SerializeObject(bar);
-        var bar2 = Newtonsoft.Json.JsonConvert.DeserializeObject<Bar>(serializedBar);
+        public BarConverter(Microsoft.EntityFrameworkCore.Storage.ValueConversion.ConverterMappingHints mappingHints = null!)
+            : base(
+                convertToProviderExpression: vo => System.Text.Json.JsonSerializer.Serialize(vo, default(JsonSerializerOptions)),
+                text => System.Text.Json.JsonSerializer.Deserialize<Bar>(text, default(JsonSerializerOptions)),
+                mappingHints
+            )
+        { }
+    }
 
-        var foo = FooWithNewtonAndTypeConverter.From(new Bar { Age = 12, Name = "Fred" });
-        string serializedFoo = Newtonsoft.Json.JsonConvert.SerializeObject(foo);
-        var foo2 = Newtonsoft.Json.JsonConvert.DeserializeObject<FooWithNewtonAndTypeConverter>(serializedFoo);
+
+
+    public class TestEntity
+    {
+        public int Id { get; set; }
+
+        public Bar BarField { get; set; } = default!;
+        
+        public NoJsonFooVo FooField { get; set; }
+
+        //public string FooField { get; set; } = "";
     }
 }

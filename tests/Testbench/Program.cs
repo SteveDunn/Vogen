@@ -14,7 +14,7 @@ using Vogen;
 Console.WriteLine("!!");
 
 
-Tests.TestDapper();
+Tests.TestEfCore();
 
 
 
@@ -46,32 +46,8 @@ Tests.TestDapper();
 //     public DapperBoolVo IsSpecial { get; set; }
 // }
 
-public class TestEntity
-{
-    public EfCoreCustomerIdInt Id { get; set; }
-}
 
 
-public class TestDbContext : DbContext
-{
-    public DbSet<TestEntity> Entities { get; set; } = null!;
-
-    public TestDbContext(DbContextOptions options) : base(options)
-    {
-    }
-
-    protected override void OnModelCreating(ModelBuilder modelBuilder)
-    {
-        modelBuilder
-            .Entity<TestEntity>(builder =>
-            {
-                builder
-                    .Property(x => x.Id)
-                    .HasConversion(new EfCoreCustomerIdInt.EfCoreValueConverter())
-                    .ValueGeneratedNever();
-            });
-    }
-}
 
 
 // [ValueObject(typeof(int), conversions: Conversions.TypeConverter | Conversions.EfCoreValueConverter)]

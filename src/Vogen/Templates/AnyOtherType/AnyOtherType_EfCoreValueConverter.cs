@@ -1,10 +1,10 @@
 ﻿        
-        public class EfCoreValueConverter : Microsoft.EntityFrameworkCore.Storage.ValueConversion.ValueConverter<VOTYPE, VOUNDERLYINGTYPE>
+        public class EfCoreValueConverter : Microsoft.EntityFrameworkCore.Storage.ValueConversion.ValueConverter<VOTYPE, string>
         {
             public EfCoreValueConverter(Microsoft.EntityFrameworkCore.Storage.ValueConversion.ConverterMappingHints mappingHints = null)
                 : base(
-                    ut => ut.Value,
-                    vo => new VOTYPE(vo),
+                    vo => System.Text.Json.JsonSerializer.Serialize(vo.Value, default(System.Text.Json.JsonSerializerOptions)),
+                    text => new VOTYPE(System.Text.Json.JsonSerializer.Deserialize<VOUNDERLYINGTYPE>(text, default(System.Text.Json.JsonSerializerOptions))),
                     mappingHints
                 ) { }
         }

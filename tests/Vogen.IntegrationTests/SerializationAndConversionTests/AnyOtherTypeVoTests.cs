@@ -160,7 +160,7 @@ namespace Vogen.IntegrationTests.SerializationAndConversionTests
                 .UseSqlite(connection)
                 .Options;
 
-            var original = new TestEntity { Id = EfCoreFooVo.From(_bar1) };
+            var original = new TestEntity { FooField = EfCoreFooVo.From(_bar1) };
             using (var context = new TestDbContext(options))
             {
                 context.Database.EnsureCreated();
@@ -171,7 +171,7 @@ namespace Vogen.IntegrationTests.SerializationAndConversionTests
             {
                 var all = context.Entities.ToList();
                 var retrieved = Assert.Single(all);
-                Assert.Equal(original.Id, retrieved.Id);
+                Assert.Equal(original.FooField, retrieved.FooField);
             }
         }
 
@@ -194,13 +194,11 @@ namespace Vogen.IntegrationTests.SerializationAndConversionTests
             var converter = TypeDescriptor.GetConverter(typeof(NoJsonFooVo));
             
             object vo = converter.ConvertFrom(_bar1);
-            //object id3 = converter.ConvertTo(id2, typeof(Bar));
-            // object id = converter.ConvertFrom(value);
-            //
+
             Assert.IsType<NoJsonFooVo>(vo);
-            //
+
             Assert.Equal(NoJsonFooVo.From(_bar1), vo);
-            //
+
             object reconverted = converter.ConvertTo(vo, typeof(Bar));
             Assert.IsType<Bar>(reconverted);
             Assert.Equal(((NoJsonFooVo)vo).Value, reconverted);
@@ -220,34 +218,17 @@ namespace Vogen.IntegrationTests.SerializationAndConversionTests
                      .Entity<TestEntity>(builder =>
                      {
                          builder
-                             .Property(x => x.Id)
-                             .HasConversion(new EfCoreFooVo.EfCoreValueConverter())
-                             .ValueGeneratedNever();
-                     })
-                     // .Entity<Bar>(builder =>
-                     // {
-                     //     builder
-                     //         .Property(x => x.Name)
-                     //         .HasConversion<string>()
-                     //         .ValueGeneratedNever();
-                     //     builder
-                     //         .Property(x => x.Age)
-                     //         .HasConversion<int>()
-                     //         .ValueGeneratedNever();
-                     // })
-                     //
-                     ;
+                             .Property(x => x.FooField)
+                             .HasConversion(new EfCoreFooVo.EfCoreValueConverter());
+                     });
              }
         }
 
         public class TestEntity
         {
-            public EfCoreFooVo Id { get; set; }
-        }
-
-        public class EntityWithNullableId
-        {
-            public NewtonsoftJsonFooVo? Id { get; set; }
+            public int Id { get; set; }
+            
+            public EfCoreFooVo FooField { get; set; }
         }
     }
 }

@@ -1,6 +1,6 @@
 ﻿namespace Vogen.IntegrationTests.SerializationAndConversionTests.Types
 {
-    public record class Bar(int Age, string Name);
+    public record struct Bar(int Age, string Name);
 
     [ValueObject(conversions: Conversions.None, underlyingType: typeof(Bar))]
     public partial struct FooVo { }
