@@ -220,10 +220,5 @@ namespace Vogen.IntegrationTests.SerializationAndConversionTests
         {
             public EfCoreIntVo Id { get; set; }
         }
-
-        public class EntityWithNullableId
-        {
-            public NewtonsoftJsonIntVo? Id { get; set; }
-        }
     }
 }

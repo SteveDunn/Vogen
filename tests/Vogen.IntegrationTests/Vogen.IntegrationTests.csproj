@@ -66,4 +66,8 @@
 	  </None>
 	</ItemGroup>
 
+	<ItemGroup>
+	  <Folder Include="SnapshotTests\BoolVo\Snapshots\" />
+	</ItemGroup>
+
 </Project>

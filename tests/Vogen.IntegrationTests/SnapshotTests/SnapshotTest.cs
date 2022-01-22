@@ -77,7 +77,7 @@ public partial struct CustomerId
     }
 
     [Fact]
-    public Task Validation_with_PacalCased_validate_method()
+    public Task Validation_with_PascalCased_validate_method()
     {
         // The source code to test
         var source = @"using Vogen;

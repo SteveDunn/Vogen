@@ -1,4 +1,4 @@
-﻿namespace Vogen.IntegrationTests.SerializationAndConversionTests.Types
+﻿namespace Vogen.IntegrationTests.TestTypes
 {
     [ValueObject(conversions: Conversions.None, underlyingType: typeof(char))]
     public partial struct CharVo { }

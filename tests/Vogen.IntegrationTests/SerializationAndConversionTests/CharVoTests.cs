@@ -8,7 +8,7 @@ using Dapper;
 using FluentAssertions;
 using Microsoft.Data.Sqlite;
 using Microsoft.EntityFrameworkCore;
-using Vogen.IntegrationTests.SerializationAndConversionTests.Types;
+using Vogen.IntegrationTests.TestTypes;
 using Xunit;
 using NewtonsoftJsonSerializer = Newtonsoft.Json.JsonConvert;
 using SystemTextJsonSerializer = System.Text.Json.JsonSerializer;
@@ -221,11 +221,6 @@ namespace Vogen.IntegrationTests.SerializationAndConversionTests
         public class TestEntity
         {
             public EfCoreCharVo Id { get; set; }
-        }
-
-        public class EntityWithNullableId
-        {
-            public NewtonsoftJsonCharVo? Id { get; set; }
         }
     }
 }

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Vogen.IntegrationTests.SerializationAndConversionTests.Types
+namespace Vogen.IntegrationTests.TestTypes
 {
     [ValueObject(conversions: Conversions.None, underlyingType: typeof(Guid))]
     public partial struct GuidVo { }

@@ -2,7 +2,7 @@
 using Dapper;
 using VerifyTests;
 using Vogen.IntegrationTests.NewTests.Types;
-using Vogen.IntegrationTests.SerializationAndConversionTests.Types;
+using Vogen.IntegrationTests.TestTypes;
 
 namespace Vogen.IntegrationTests;
 
