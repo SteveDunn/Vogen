@@ -8,12 +8,12 @@
 
             public override void WriteJson(Newtonsoft.Json.JsonWriter writer, object value, Newtonsoft.Json.JsonSerializer serializer)
             {
-                var id = (VOTYPE)value;
-                serializer.Serialize(writer, id.Value);
+                var id = ((VOTYPE)value).Value;
+                serializer.Serialize(writer, id);
             }
 
             public override object ReadJson(Newtonsoft.Json.JsonReader reader, System.Type objectType, object existingValue, Newtonsoft.Json.JsonSerializer serializer)
             {
-                return new VOTYPE(serializer.Deserialize<string>(reader));
+                return new VOTYPE(serializer.Deserialize<VOUNDERLYINGTYPE>(reader));
             }
         }

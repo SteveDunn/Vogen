@@ -1,17 +1,52 @@
-﻿        class VOTYPETypeConverter : System.ComponentModel.TypeConverter
+﻿        // class VOTYPETypeConverter : System.ComponentModel.TypeConverter
+        // {
+        //     public override bool CanConvertFrom(System.ComponentModel.ITypeDescriptorContext context, System.Type sourceType)
+        //     {
+        //         return true;
+        //     }
+        //
+        //     public override object ConvertFrom(System.ComponentModel.ITypeDescriptorContext context, System.Globalization.CultureInfo culture, object value)
+        //     {
+        //         return new VOTYPE((VOUNDERLYINGTYPE)value);
+        //         //return new VOTYPE((VOUNDERLYINGTYPE)base.ConvertFrom(()));
+        //     }
+        // }
+
+        class VOTYPETypeConverter : System.ComponentModel.TypeConverter
         {
             public override bool CanConvertFrom(System.ComponentModel.ITypeDescriptorContext context, System.Type sourceType)
             {
-                return true;
+                return sourceType == typeof(VOUNDERLYINGTYPE);
             }
-
+        
             public override object ConvertFrom(System.ComponentModel.ITypeDescriptorContext context, System.Globalization.CultureInfo culture, object value)
             {
-                return new VOTYPE((VOUNDERLYINGTYPE)value);
+                VOUNDERLYINGTYPE ut = (VOUNDERLYINGTYPE)value;
+
+                return new VOTYPE(ut);
+            }
+        
+            public override bool CanConvertTo(System.ComponentModel.ITypeDescriptorContext context, System.Type sourceType)
+            {
+                return sourceType == typeof(VOUNDERLYINGTYPE);
+            }
+        
+            public override object ConvertTo(System.ComponentModel.ITypeDescriptorContext context, System.Globalization.CultureInfo culture, object value, System.Type destinationType)
+            {
+                if (value is VOTYPE idValue)
+                {
+                    return idValue.Value;
+                    // if (destinationType == typeof(string))
+                    // {
+                    //     return idValue.Value;
+                    // }
+                }
+        
+                return base.ConvertTo(context, culture, value, destinationType);
             }
         }
 
-        // class VOTYPETypeConverter : System.ComponentModel.TypeConverter
+        // // class VOTYPETypeConverter : System.ComponentModel.TypeConverter
         // {
         //     public override bool CanConvertFrom(System.ComponentModel.ITypeDescriptorContext context, System.Type sourceType)
         //     {

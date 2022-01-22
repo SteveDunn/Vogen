@@ -3,6 +3,7 @@
         {
             public override void SetValue(System.Data.IDbDataParameter parameter, VOTYPE value)
             {
+                parameter.DbType = System.Data.DbType.Double;
                 parameter.Value = value.Value;
             }
 

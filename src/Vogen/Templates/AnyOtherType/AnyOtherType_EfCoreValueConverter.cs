@@ -1,10 +1,10 @@
-﻿
-        public class EfCoreValueConverter : Microsoft.EntityFrameworkCore.Storage.ValueConversion.ValueConverter<VOTYPE, string>
+﻿        
+        public class EfCoreValueConverter : Microsoft.EntityFrameworkCore.Storage.ValueConversion.ValueConverter<VOTYPE, VOUNDERLYINGTYPE>
         {
             public EfCoreValueConverter(Microsoft.EntityFrameworkCore.Storage.ValueConversion.ConverterMappingHints mappingHints = null)
                 : base(
-                    id => id.Value,
-                    value => new VOTYPE(value),
+                    ut => ut.Value,
+                    vo => new VOTYPE(vo),
                     mappingHints
                 ) { }
         }

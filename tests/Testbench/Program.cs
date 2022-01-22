@@ -1,15 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Globalization;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using Dapper;
 using Microsoft.Data.Sqlite;
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
+using Testbench.FooTests;
 using Vogen;
 
 Console.WriteLine("!!");
+
+
+Tests.TestNoJson();
 
 
 
@@ -85,6 +90,7 @@ public partial struct DapperDateTimeVo { }
 
 [ValueObject(typeof(char), conversions: Conversions.TypeConverter)]
 public partial struct MyCharacter { }
+
 //
 // [ValueObject(typeof(TimeSpan), conversions: Conversions.TypeConverter)]
 // public partial struct Duration { }
@@ -112,29 +118,3 @@ public partial struct MyCharacter { }
 //
 //     public Duration DecreaseBy(TimeSpan amount) => Duration.From(Value - amount);
 // }
-
-public partial struct Foo
-{
-    private Foo(byte value) => Value = value;
-
-    public byte Value { get; }
-
-    public static Foo From(byte value) => new(value);
-}
-
-class VOTYPESystemTextJsonConverter : System.Text.Json.Serialization.JsonConverter<Foo>
-{
-    public override Foo Read(ref System.Text.Json.Utf8JsonReader reader, System.Type typeToConvert, System.Text.Json.JsonSerializerOptions options)
-    {
-        var v = System.Text.Json.JsonSerializer.Deserialize<byte>(ref reader, options);
-
-        return Foo.From(reader.GetByte());
-    }
-
-    public override void Write(System.Text.Json.Utf8JsonWriter writer, Foo value, System.Text.Json.JsonSerializerOptions options)
-    {
-        // does decimal/double/float
-        //writer.WriteNumberValue(value.Value);
-        writer.WriteNumberValue(value.Value);
-    }
-}
