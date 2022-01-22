@@ -181,7 +181,7 @@ namespace Vogen.IntegrationTests.SerializationAndConversionTests
             using var connection = new SqliteConnection("DataSource=:memory:");
             await connection.OpenAsync();
 
-            IEnumerable<DapperFooVo> results = await connection.QueryAsync<DapperFooVo>("SELECT '5640dad4-862a-4738-9e3c-c76dc227eb66'");
+            IEnumerable<DapperFooVo> results = await connection.QueryAsync<DapperFooVo>("SELECT '{\"Age\":42,\"Name\":\"Fred\"}'");
 
             var value = Assert.Single(results);
             Assert.Equal(value, DapperFooVo.From(_bar1));

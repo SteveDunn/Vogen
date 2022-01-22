@@ -100,15 +100,18 @@ namespace Testbench
         {
             public override void SetValue(System.Data.IDbDataParameter parameter, NoJsonFooVo value)
             {
-                parameter.Value = value.Value;
+                var v = System.Text.Json.JsonSerializer.Serialize(value.Value);
+                parameter.Value = v;
             }
         
             public override NoJsonFooVo Parse(object value)
             {
                 return value switch
                 {
-                    string stringValue => new NoJsonFooVo(stringValue),
-                    _ => throw new System.InvalidCastException($"Unable to cast object of type {value.GetType()} to DapperFooVo"),
+                    string stringValue =>
+                        new NoJsonFooVo(System.Text.Json.JsonSerializer.Deserialize<Bar>(stringValue)),
+                    _ => throw new System.InvalidCastException(
+                        $"Unable to cast object of type {value.GetType()} to DapperFooVo")
                 };
             }
         }

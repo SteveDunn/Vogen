@@ -14,7 +14,7 @@ using Vogen;
 Console.WriteLine("!!");
 
 
-Tests.TestNoJson();
+Tests.TestDapper();
 
 
 
