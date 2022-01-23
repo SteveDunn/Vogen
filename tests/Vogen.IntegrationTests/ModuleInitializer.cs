@@ -1,7 +1,6 @@
 ﻿using System.Runtime.CompilerServices;
 using Dapper;
 using VerifyTests;
-using Vogen.IntegrationTests.NewTests.Types;
 using Vogen.IntegrationTests.TestTypes;
 
 namespace Vogen.IntegrationTests;

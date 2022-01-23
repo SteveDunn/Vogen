@@ -27,7 +27,7 @@ namespace Vogen.IntegrationTests.SerializationAndConversionTests
 
     public class DateTimeOffsetVoTests
     {
-        private static readonly DateTimeOffset _date1 = DateTimeOffset.Now;
+        private static readonly DateTimeOffset _date1 = new DateTimeOffset(1970, 6, 10, 14, 01, 02, TimeSpan.Zero) + TimeSpan.FromTicks(12345678);
         private static readonly DateTimeOffset _date2 = DateTimeOffset.Now.AddMinutes(42.69);
         
         [Fact]
@@ -182,7 +182,7 @@ namespace Vogen.IntegrationTests.SerializationAndConversionTests
         [Fact]
         public async Task WhenDapperValueConverterUsesValueConverter()
         {
-            await using var connection = new SqliteConnection("DataSource=:memory:");
+            using var connection = new SqliteConnection("DataSource=:memory:");
             await connection.OpenAsync();
 
             IEnumerable<DapperDateTimeOffsetVo> results = await connection.QueryAsync<DapperDateTimeOffsetVo>("SELECT '2022-01-15 19:08:49.5413764'");

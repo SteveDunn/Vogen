@@ -27,7 +27,7 @@ namespace Vogen.IntegrationTests.SerializationAndConversionTests
 
     public class DateTimeVoTests
     {
-        private static readonly DateTime _date1 = DateTime.Now;
+        private static readonly DateTime _date1 = new DateTime(1970, 6, 10, 14, 01, 02, DateTimeKind.Utc) + TimeSpan.FromTicks(12345678);
         private static readonly DateTime _date2 = DateTime.Now.AddMinutes(42.69);
         
         [Fact]
@@ -125,7 +125,7 @@ namespace Vogen.IntegrationTests.SerializationAndConversionTests
 
             var expected = "{\"Value\":\"" + _date1.ToString("O") + "\"}";
 
-            Assert.Equal(expected, serialized);
+            serialized.Should().Be(expected);
         }
 
         [Fact]
@@ -150,8 +150,8 @@ namespace Vogen.IntegrationTests.SerializationAndConversionTests
 
             var expected = "{\"Value\":\"" + _date1.ToString("O") + "\"}";
 
-            Assert.Equal(expected, newtonsoft);
-            Assert.Equal(expected, systemText);
+            newtonsoft.Should().Be(expected);
+            systemText.Should().Be(expected);
         }
 
         [Fact]
@@ -182,7 +182,7 @@ namespace Vogen.IntegrationTests.SerializationAndConversionTests
         [Fact]
         public async Task WhenDapperValueConverterUsesValueConverter()
         {
-            await using var connection = new SqliteConnection("DataSource=:memory:");
+            using var connection = new SqliteConnection("DataSource=:memory:");
             await connection.OpenAsync();
 
             IEnumerable<DapperDateTimeVo> results = await connection.QueryAsync<DapperDateTimeVo>("SELECT '2022-01-15 19:08:49.5413764'");

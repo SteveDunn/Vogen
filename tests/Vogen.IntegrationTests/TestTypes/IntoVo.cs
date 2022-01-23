@@ -1,4 +1,4 @@
-﻿namespace Vogen.IntegrationTests.NewTests.Types
+﻿namespace Vogen.IntegrationTests.TestTypes
 {
     [ValueObject(conversions: Conversions.None, underlyingType: typeof(int))]
     public partial struct IntVo { }

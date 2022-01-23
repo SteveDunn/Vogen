@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Vogen.IntegrationTests.NewTests.Types
+namespace Vogen.IntegrationTests.TestTypes
 {
     [ValueObject(conversions: Conversions.None, underlyingType: typeof(float))]
     public partial struct FloatVo { }
