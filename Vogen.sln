@@ -17,6 +17,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "_files", "_files", "{72AF0E
 	ProjectSection(SolutionItems) = preProject
 		.editorconfig = .editorconfig
 		.gitignore = .gitignore
+		.github\workflows\build.yaml = .github\workflows\build.yaml
 		Directory.Build.props = Directory.Build.props
 		docs\nuget-readme.md = docs\nuget-readme.md
 		README.md = README.md
@@ -32,7 +33,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Vogen.SharedTypes", "src\Vo
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Vogen.IntegrationTests", "tests\Vogen.IntegrationTests\Vogen.IntegrationTests.csproj", "{26940BFB-A17F-4C7D-8449-4A419FEC1412}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vogen.Samples.WebApi", "samples\Vogen.Samples.WebApi\Vogen.Samples.WebApi.csproj", "{87017D9C-3017-4B93-8BD9-F00F1FF5AAED}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Vogen.Samples.WebApi", "samples\Vogen.Samples.WebApi\Vogen.Samples.WebApi.csproj", "{87017D9C-3017-4B93-8BD9-F00F1FF5AAED}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
