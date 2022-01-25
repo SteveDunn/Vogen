@@ -29,6 +29,7 @@
 
 
   <ItemGroup>
+        <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
 		<PackageReference Include="Dapper" Version="2.0.123" />
 		<PackageReference Include="FluentAssertions" Version="6.2.0" />
 		<PackageReference Include="Microsoft.CodeAnalysis.Common" Version="4.0.1" />
@@ -73,6 +74,16 @@
   at least one subdirectory, which is our key that it's coming from a source generator as opposed to something that is coming from
   some other tool. -->
 		<Compile Remove="Generated/*/**/*.cs" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <None Remove="xunit.runner.json" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Content Include="xunit.runner.json">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </Content>
 	</ItemGroup>
 
 	<ItemGroup>
