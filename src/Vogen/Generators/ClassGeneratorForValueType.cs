@@ -11,6 +11,7 @@ public class ClassGeneratorForValueType : IGenerateSourceCode
 using Vogen;
 
 {Util.WriteStartNamespace(item.FullNamespace)}
+    {Util.GenerateAnyConversionAttributes(tds, item)}
     {Util.GenerateModifiersFor(tds)} class {className} : System.IEquatable<{className}>
     {{
         public {className}()
@@ -101,6 +102,8 @@ using Vogen;
         {Util.GenerateAnyInstances(tds, item)}
 
         public override string ToString() => Value.ToString();
+ 
+        {Util.GenerateAnyConversionBodies(tds, item)}
     }}
 {Util.WriteCloseNamespace(item.FullNamespace)}";
     }

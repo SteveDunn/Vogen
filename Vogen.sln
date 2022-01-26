@@ -16,9 +16,12 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "_files", "_files", "{72AF0ED1-00F0-42D7-9997-169FEFBC2DB2}"
 	ProjectSection(SolutionItems) = preProject
 		.editorconfig = .editorconfig
+		.gitattributes = .gitattributes
 		.gitignore = .gitignore
+		.github\workflows\build.yaml = .github\workflows\build.yaml
 		Directory.Build.props = Directory.Build.props
 		docs\nuget-readme.md = docs\nuget-readme.md
+		.github\workflows\publish.yaml = .github\workflows\publish.yaml
 		README.md = README.md
 	EndProjectSection
 EndProject
@@ -57,6 +60,7 @@ Global
 		{00BA2434-F908-49DF-89C5-024F26C2C0F1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{00BA2434-F908-49DF-89C5-024F26C2C0F1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{00BA2434-F908-49DF-89C5-024F26C2C0F1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{00BA2434-F908-49DF-89C5-024F26C2C0F1}.Release|Any CPU.Build.0 = Release|Any CPU
 		{ACBCBC0B-430F-46A3-AD96-6AF28DBA7F9D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{ACBCBC0B-430F-46A3-AD96-6AF28DBA7F9D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{ACBCBC0B-430F-46A3-AD96-6AF28DBA7F9D}.Release|Any CPU.ActiveCfg = Release|Any CPU

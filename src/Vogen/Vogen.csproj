@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
+    <TargetFrameworks>netstandard2.0</TargetFrameworks>
     <LanguageVersion>10.0</LanguageVersion>
     <ImplicitUsings>disable</ImplicitUsings>
     <nullable>enable</nullable>
@@ -16,6 +16,10 @@
     <!-- <GeneratePackageOnBuild>True</GeneratePackageOnBuild> -->
     <PackageReadmeFile>nuget-readme.md</PackageReadmeFile>
   </PropertyGroup>
+  <ItemGroup>
+    <Compile Remove="Templates\**\*.cs" />
+    <EmbeddedResource Include="Templates\**\*.cs" />
+  </ItemGroup>
 
   <ItemGroup>
     <None Include="..\..\docs\nuget-readme.md" Pack="true" PackagePath="\" />
@@ -41,8 +45,10 @@
 
   <ItemGroup>
     <Folder Include="Diagnostics\" />
+    <Folder Include="Generators\Conversions\JsonNetConverters\" />
+    <Folder Include="Generators\Conversions\SystemTextJsonConverters\" />
+    <Folder Include="Generators\Conversions\TypeConverters\" />
   </ItemGroup>
-
 
   <PropertyGroup>
     <Features>strict</Features>

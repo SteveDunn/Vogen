@@ -72,6 +72,6 @@ public class CreationTests
         CustomerId[] ints = new CustomerId[10];
         Func<int> action = () => ints[0].Value;
 
-        action.Should().Throw<ValueObjectValidationException>().WithMessage("Use of uninitialized Value Object.");
+        action.Should().Throw<ValueObjectValidationException>().WithMessage("Use of uninitialized Value Object*");
     }
 }

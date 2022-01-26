@@ -1,11 +1,26 @@
 ﻿using System;
+using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
+using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
+using Vogen.Generators.Conversions;
+
+[assembly: InternalsVisibleTo("Vogen.Tests")]
 
 namespace Vogen;
 
 public static class Util
 {
+    static readonly IGenerateConversion[] _conversionGenerators = 
+    {
+        new GenerateSystemTextJsonConversions(),
+        new GenerateNewtonsoftJsonConversions(),
+        new GenerateTypeConverterConversions(),
+        new GenerateDapperConversions(),
+        new GenerateEfCoreTypeConversions()
+    };
+    
     public static string GenerateAnyInstances(TypeDeclarationSyntax classDeclarationSyntax, VoWorkItem item)
     {
         if (item.InstanceProperties.Count == 0)
@@ -101,5 +116,35 @@ public static {classDeclarationSyntax.Identifier} {instanceProperties.Name} = ne
         }
 
         return @$"}}";
+    }
+
+    /// <summary>
+    /// These are the attributes that are written to the top of the type, things like
+    /// `TypeConverter`, `System.Text.JsonConverter` etc.
+    /// </summary>
+    /// <param name="tds"></param>
+    /// <param name="item"></param>
+    /// <returns></returns>
+    public static string GenerateAnyConversionAttributes(TypeDeclarationSyntax tds, VoWorkItem item)
+    {
+        StringBuilder sb = new StringBuilder();
+        
+        foreach (var conversionGenerator in _conversionGenerators)
+        {
+            sb.AppendLine(conversionGenerator.GenerateAnyAttributes(tds, item));
+        }
+
+        return sb.ToString();
+    }
+
+    public static string GenerateAnyConversionBodies(TypeDeclarationSyntax tds, VoWorkItem item)
+    {
+        StringBuilder sb = new StringBuilder();
+        foreach (var conversionGenerator in _conversionGenerators)
+        {
+            sb.AppendLine(conversionGenerator.GenerateAnyBody(tds, item));
+        }
+        
+        return sb.ToString();
     }
 }

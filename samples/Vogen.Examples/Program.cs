@@ -1,12 +1,23 @@
-﻿using Vogen.Examples.Equality;
+﻿using System;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace Vogen.Examples
 {
     class Program
     {
-        static void Main(string[] args)
+        static Task Main(string[] args)
         {
-            EqualityExamples.Run();
+            var scenarioTypes = typeof(Program).Assembly.GetTypes().Where(t => typeof(IScenario).IsAssignableFrom(t) && t != typeof(IScenario)).ToList();
+
+            foreach (var eachScenarioType in scenarioTypes)
+            {
+                ((IScenario)Activator.CreateInstance(eachScenarioType)).Run();
+            }
+
+            Console.WriteLine("Finished");
+            
+            return Task.CompletedTask;
         }
     }
 }
