@@ -264,6 +264,23 @@ WarmupCount=3
 
 There is a tiny amount of performance overhead, but these measurements are incredibly small. There is no memory overhead.
 
+## Serialisation and type conversion
+By default, each VO is decoarated with a `TypeConverter` and `System.Text.Json` (STJ) serializer. There are other converters/serialiazer for:
+* Newtonsoft.Json (NSJ)
+* Dapper
+* EFCore
+
+They are controlled by the `Conversions` enum. The following is has serializers for NSJ and STJ:
+
+```csharp
+[ValueObject(conversions: Conversions.NewtonsoftJson | Conversions.SystemTextJson, underlyingType: typeof(float))]
+public partial readonly struct Celsius { }
+```
+
+If you don't want any conversions, then specify `Conversions.None`.
+
+If you want your own conversion, then again specify none, and implement them yourself, just like any other type.  But be aware that even serialisers will get the same compilation errors for `new` and `default` when trying to create VOs.
+
 # FAQ
 
 ## Why can't I just use `public record struct CustomerId(int Value);`?
@@ -483,14 +500,19 @@ Any type can be wrapped. Serialisation and type conversions have implementations
 * int
 * long
 * short
+* byte
 
 * float (Single)
 * decimal
 * double
 
+* DateTime
+* DateTimeOffset
 * Guid
 
-For other types, a generic type conversion and serialisers are applied. If you are supplying your own converters for type conversion and serialization, then specify `None` for converters and decorate your type with attributes for your own types, e.g.
+* bool
+
+For other types, a generic type conversion and serialiser is applied. If you are supplying your own converters for type conversion and serialization, then specify `None` for converters and decorate your type with attributes for your own types, e.g.
 
 ```csharp
 [ValueObject(typeof(SpecialPrimitive), conversions: Conversions.None)]
