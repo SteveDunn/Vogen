@@ -1,7 +1,7 @@
 ﻿using System;
-using Vogen;
+using System.Threading.Tasks;
 
-namespace Vogen.Examples
+namespace Vogen.Examples.TypicalScenarios
 {
     [ValueObject(typeof(string))]
 
@@ -14,9 +14,9 @@ namespace Vogen.Examples
                 : Validation.Invalid($"must be a dave or david - {value} is neither.");
     }
 
-    internal static class ValidationExample
+    internal class ValidationExample : IScenario
     {
-        public static void Run()
+        public Task Run()
         {
             string[] names = new[] { "Dave Grohl", "David Beckham", "Fred Flintstone" };
 
@@ -33,6 +33,8 @@ namespace Vogen.Examples
                     Console.WriteLine(e.Message);
                 }
             }
+
+            return Task.CompletedTask;
         }
 
         private class DaveProcessor

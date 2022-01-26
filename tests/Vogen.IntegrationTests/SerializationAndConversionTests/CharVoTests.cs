@@ -51,70 +51,70 @@ namespace Vogen.IntegrationTests.SerializationAndConversionTests
         [Fact]
         public void CanSerializeToShort_WithNewtonsoftJsonProvider()
         {
-            var foo = NewtonsoftJsonCharVo.From('a');
+            var vo = NewtonsoftJsonCharVo.From('a');
 
-            string serializedFoo = NewtonsoftJsonSerializer.SerializeObject(foo);
-            string serializedShort = NewtonsoftJsonSerializer.SerializeObject(foo.Value);
+            string serializedVo = NewtonsoftJsonSerializer.SerializeObject(vo);
+            string serializedShort = NewtonsoftJsonSerializer.SerializeObject(vo.Value);
 
-            Assert.Equal(serializedFoo, serializedShort);
+            Assert.Equal(serializedVo, serializedShort);
         }
 
         [Fact]
         public void CanSerializeToShort_WithSystemTextJsonProvider()
         {
-            var foo = SystemTextJsonCharVo.From('a');
+            var vo = SystemTextJsonCharVo.From('a');
 
-            string serializedFoo = SystemTextJsonSerializer.Serialize(foo);
-            string serializedShort = SystemTextJsonSerializer.Serialize(foo.Value);
+            string serializedVo = SystemTextJsonSerializer.Serialize(vo);
+            string serializedShort = SystemTextJsonSerializer.Serialize(vo.Value);
 
-            serializedFoo.Equals(serializedShort).Should().BeTrue();
+            serializedVo.Equals(serializedShort).Should().BeTrue();
         }
 
         [Fact]
         public void CanDeserializeFromShort_WithNewtonsoftJsonProvider()
         {
             char value = 'a';
-            var foo = NewtonsoftJsonCharVo.From(value);
+            var vo = NewtonsoftJsonCharVo.From(value);
             var serializedShort = NewtonsoftJsonSerializer.SerializeObject(value);
 
-            var deserializedFoo = NewtonsoftJsonSerializer.DeserializeObject<NewtonsoftJsonCharVo>(serializedShort);
+            var deserializedVo = NewtonsoftJsonSerializer.DeserializeObject<NewtonsoftJsonCharVo>(serializedShort);
 
-            Assert.Equal(foo, deserializedFoo);
+            Assert.Equal(vo, deserializedVo);
         }
 
         [Fact]
         public void CanDeserializeFromShort_WithSystemTextJsonProvider()
         {
             char value = 'a';
-            var foo = SystemTextJsonCharVo.From(value);
+            var vo = SystemTextJsonCharVo.From(value);
             var serializedShort = SystemTextJsonSerializer.Serialize(value);
 
-            var deserializedFoo = SystemTextJsonSerializer.Deserialize<SystemTextJsonCharVo>(serializedShort);
+            var deserializedVo = SystemTextJsonSerializer.Deserialize<SystemTextJsonCharVo>(serializedShort);
 
-            Assert.Equal(foo, deserializedFoo);
+            Assert.Equal(vo, deserializedVo);
         }
 
         [Fact]
         public void CanSerializeToShort_WithBothJsonConverters()
         {
-            var foo = BothJsonCharVo.From('a');
+            var vo = BothJsonCharVo.From('a');
 
-            var serializedFoo1 = NewtonsoftJsonSerializer.SerializeObject(foo);
-            var serializedShort1 = NewtonsoftJsonSerializer.SerializeObject(foo.Value);
+            var serializedVo1 = NewtonsoftJsonSerializer.SerializeObject(vo);
+            var serializedShort1 = NewtonsoftJsonSerializer.SerializeObject(vo.Value);
 
-            var serializedFoo2 = SystemTextJsonSerializer.Serialize(foo);
-            var serializedShort2 = SystemTextJsonSerializer.Serialize(foo.Value);
+            var serializedVo2 = SystemTextJsonSerializer.Serialize(vo);
+            var serializedShort2 = SystemTextJsonSerializer.Serialize(vo.Value);
 
-            Assert.Equal(serializedFoo1, serializedShort1);
-            Assert.Equal(serializedFoo2, serializedShort2);
+            Assert.Equal(serializedVo1, serializedShort1);
+            Assert.Equal(serializedVo2, serializedShort2);
         }
 
         [Fact]
         public void WhenNoJsonConverter_SystemTextJsonSerializesWithValueProperty()
         {
-            var foo = NoJsonCharVo.From('a');
+            var vo = NoJsonCharVo.From('a');
 
-            var serialized = SystemTextJsonSerializer.Serialize(foo);
+            var serialized = SystemTextJsonSerializer.Serialize(vo);
 
             var expected = "{\"Value\":\"a\"}";
 
@@ -124,11 +124,11 @@ namespace Vogen.IntegrationTests.SerializationAndConversionTests
         [Fact]
         public void WhenNoJsonConverter_NewtonsoftSerializesWithoutValueProperty()
         {
-            var foo = NoJsonCharVo.From('a');
+            var vo = NoJsonCharVo.From('a');
 
-            var serialized = NewtonsoftJsonSerializer.SerializeObject(foo);
+            var serialized = NewtonsoftJsonSerializer.SerializeObject(vo);
 
-            var expected = $"\"{foo.Value}\"";
+            var expected = $"\"{vo.Value}\"";
 
             Assert.Equal(expected, serialized);
         }
@@ -136,10 +136,10 @@ namespace Vogen.IntegrationTests.SerializationAndConversionTests
         [Fact]
         public void WhenNoTypeConverter_SerializesWithValueProperty()
         {
-            var foo = NoConverterCharVo.From('a');
+            var vo = NoConverterCharVo.From('a');
 
-            var newtonsoft = SystemTextJsonSerializer.Serialize(foo);
-            var systemText = SystemTextJsonSerializer.Serialize(foo);
+            var newtonsoft = SystemTextJsonSerializer.Serialize(vo);
+            var systemText = SystemTextJsonSerializer.Serialize(vo);
 
             var expected = "{\"Value\":\"a\"}";
 

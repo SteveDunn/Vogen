@@ -69,59 +69,59 @@ namespace Vogen.IntegrationTests.SerializationAndConversionTests
         [Fact]
         public void CanSerializeToString_WithSystemTextJsonProvider()
         {
-            var foo = SystemTextJsonDateTimeOffsetVo.From(_date1);
+            var vo = SystemTextJsonDateTimeOffsetVo.From(_date1);
 
-            string serializedFoo = SystemTextJsonSerializer.Serialize(foo);
-            string serializedString = SystemTextJsonSerializer.Serialize(foo.Value);
+            string serializedVo = SystemTextJsonSerializer.Serialize(vo);
+            string serializedString = SystemTextJsonSerializer.Serialize(vo.Value);
 
-            serializedFoo.Equals(serializedString).Should().BeTrue();
+            serializedVo.Equals(serializedString).Should().BeTrue();
         }
 
         [Fact]
         public void CanDeserializeFromString_WithNewtonsoftJsonProvider()
         {
             var value = _date1;
-            var foo = NewtonsoftJsonDateTimeOffsetVo.From(value);
+            var vo = NewtonsoftJsonDateTimeOffsetVo.From(value);
             var serializedString = NewtonsoftJsonSerializer.SerializeObject(value);
 
-            var deserializedFoo = NewtonsoftJsonSerializer.DeserializeObject<NewtonsoftJsonDateTimeOffsetVo>(serializedString);
+            var deserializedVo = NewtonsoftJsonSerializer.DeserializeObject<NewtonsoftJsonDateTimeOffsetVo>(serializedString);
 
-            Assert.Equal(foo, deserializedFoo);
+            Assert.Equal(vo, deserializedVo);
         }
 
         [Fact]
         public void CanDeserializeFromString_WithSystemTextJsonProvider()
         {
             var value = _date1;
-            var foo = SystemTextJsonDateTimeOffsetVo.From(value);
+            var vo = SystemTextJsonDateTimeOffsetVo.From(value);
             var serializedString = SystemTextJsonSerializer.Serialize(value);
 
-            var deserializedFoo = SystemTextJsonSerializer.Deserialize<SystemTextJsonDateTimeOffsetVo>(serializedString);
+            var deserializedVo = SystemTextJsonSerializer.Deserialize<SystemTextJsonDateTimeOffsetVo>(serializedString);
 
-            Assert.Equal(foo, deserializedFoo);
+            Assert.Equal(vo, deserializedVo);
         }
 
         [Fact]
         public void CanSerializeToString_WithBothJsonConverters()
         {
-            var foo = BothJsonDateTimeOffsetVo.From(_date1);
+            var vo = BothJsonDateTimeOffsetVo.From(_date1);
 
-            var serializedFoo1 = NewtonsoftJsonSerializer.SerializeObject(foo);
-            var serializedString1 = NewtonsoftJsonSerializer.SerializeObject(foo.Value);
+            var serializedVo1 = NewtonsoftJsonSerializer.SerializeObject(vo);
+            var serializedString1 = NewtonsoftJsonSerializer.SerializeObject(vo.Value);
 
-            var serializedFoo2 = SystemTextJsonSerializer.Serialize(foo);
-            var serializedString2 = SystemTextJsonSerializer.Serialize(foo.Value);
+            var serializedVo2 = SystemTextJsonSerializer.Serialize(vo);
+            var serializedString2 = SystemTextJsonSerializer.Serialize(vo.Value);
 
-            Assert.Equal(serializedFoo1, serializedString1);
-            Assert.Equal(serializedFoo2, serializedString2);
+            Assert.Equal(serializedVo1, serializedString1);
+            Assert.Equal(serializedVo2, serializedString2);
         }
 
         [Fact]
         public void WhenNoJsonConverter_SystemTextJsonSerializesWithValueProperty()
         {
-            var foo = NoJsonDateTimeOffsetVo.From(_date1);
+            var vo = NoJsonDateTimeOffsetVo.From(_date1);
 
-            var serialized = SystemTextJsonSerializer.Serialize(foo);
+            var serialized = SystemTextJsonSerializer.Serialize(vo);
 
             var expected = "{\"Value\":\"" + _date1.ToString("O") + "\"}";
 
@@ -131,9 +131,9 @@ namespace Vogen.IntegrationTests.SerializationAndConversionTests
         [Fact]
         public void WhenNoJsonConverter_NewtonsoftSerializesWithoutValueProperty()
         {
-            var foo = NoJsonDateTimeOffsetVo.From(_date1);
+            var vo = NoJsonDateTimeOffsetVo.From(_date1);
 
-            var serialized = NewtonsoftJsonSerializer.SerializeObject(foo);
+            var serialized = NewtonsoftJsonSerializer.SerializeObject(vo);
 
             var expected = $"\"{_date1:o}\"";
 
@@ -143,10 +143,10 @@ namespace Vogen.IntegrationTests.SerializationAndConversionTests
         [Fact]
         public void WhenNoTypeConverter_SerializesWithValueProperty()
         {
-            var foo = NoConverterDateTimeOffsetVo.From(_date1);
+            var vo = NoConverterDateTimeOffsetVo.From(_date1);
 
-            var newtonsoft = SystemTextJsonSerializer.Serialize(foo);
-            var systemText = SystemTextJsonSerializer.Serialize(foo);
+            var newtonsoft = SystemTextJsonSerializer.Serialize(vo);
+            var systemText = SystemTextJsonSerializer.Serialize(vo);
 
             var expected = "{\"Value\":\"" + _date1.ToString("O") + "\"}";
 

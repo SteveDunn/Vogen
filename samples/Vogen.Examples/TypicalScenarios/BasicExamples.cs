@@ -1,8 +1,22 @@
 ﻿using System;
-using Vogen;
+using System.Threading.Tasks;
 
-namespace Vogen.Examples
+namespace Vogen.Examples.TypicalScenarios
 {
+    internal class BasicExamples : IScenario
+    {
+        public Task Run()
+        {
+            // we can't mess up the order of parameters - doing the following results in:
+            //      Argument 1: cannot convert from 'SupplierId' to 'CustomerId'
+            // new CustomerProcessor().Process(SupplierId.From(123), SupplierId.From(321), Amount.From(123));
+
+            new CustomerProcessor().Process(CustomerId.From(123), SupplierId.From(321), Amount.From(123));
+
+            return Task.CompletedTask;
+        }
+    }
+
     // can be internal structs
     [ValueObject(typeof(int))]
     internal partial struct Centimeter
@@ -46,17 +60,5 @@ namespace Vogen.Examples
     {
         internal void Process(CustomerId customerId, SupplierId supplierId, Amount amount) =>
             Console.WriteLine($"Processing customer {customerId}, supplier {supplierId}, with amount {amount}");
-    }
-
-    internal class BasicExamples
-    {
-        public static void Run()
-        {
-            // we can't mess up the order of parameters - doing the following results in:
-            //      Argument 1: cannot convert from 'SupplierId' to 'CustomerId'
-            // new CustomerProcessor().Process(SupplierId.From(123), SupplierId.From(321), Amount.From(123));
-
-            new CustomerProcessor().Process(CustomerId.From(123), SupplierId.From(321), Amount.From(123));
-        }
     }
 }

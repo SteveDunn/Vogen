@@ -61,59 +61,59 @@ namespace Vogen.IntegrationTests.SerializationAndConversionTests
         [Fact]
         public void CanSerializeToString_WithSystemTextJsonProvider()
         {
-            var foo = SystemTextJsonFooVo.From(_bar1);
+            var vo = SystemTextJsonFooVo.From(_bar1);
 
-            string serializedFoo = SystemTextJsonSerializer.Serialize(foo);
-            string serializedString = SystemTextJsonSerializer.Serialize(foo.Value);
+            string serializedVo = SystemTextJsonSerializer.Serialize(vo);
+            string serializedString = SystemTextJsonSerializer.Serialize(vo.Value);
 
-            serializedFoo.Equals(serializedString).Should().BeTrue();
+            serializedVo.Equals(serializedString).Should().BeTrue();
         }
 
         [Fact]
         public void CanDeserializeFromString_WithNewtonsoftJsonProvider()
         {
             var value = _bar1;
-            var foo = NewtonsoftJsonFooVo.From(value);
+            var vo = NewtonsoftJsonFooVo.From(value);
             var serializedString = NewtonsoftJsonSerializer.SerializeObject(value);
 
-            var deserializedFoo = NewtonsoftJsonSerializer.DeserializeObject<NewtonsoftJsonFooVo>(serializedString);
+            var deserializedVo = NewtonsoftJsonSerializer.DeserializeObject<NewtonsoftJsonFooVo>(serializedString);
 
-            Assert.Equal(foo, deserializedFoo);
+            Assert.Equal(vo, deserializedVo);
         }
 
         [Fact]
         public void CanDeserializeFromString_WithSystemTextJsonProvider()
         {
             var value = _bar1;
-            var foo = SystemTextJsonFooVo.From(value);
+            var vo = SystemTextJsonFooVo.From(value);
             var serializedString = SystemTextJsonSerializer.Serialize(value);
 
-            var deserializedFoo = SystemTextJsonSerializer.Deserialize<SystemTextJsonFooVo>(serializedString);
+            var deserializedVo = SystemTextJsonSerializer.Deserialize<SystemTextJsonFooVo>(serializedString);
 
-            Assert.Equal(foo, deserializedFoo);
+            Assert.Equal(vo, deserializedVo);
         }
 
         [Fact]
         public void CanSerializeToString_WithBothJsonConverters()
         {
-            var foo = BothJsonFooVo.From(_bar1);
+            var vo = BothJsonFooVo.From(_bar1);
 
-            var serializedFoo1 = NewtonsoftJsonSerializer.SerializeObject(foo);
-            var serializedString1 = NewtonsoftJsonSerializer.SerializeObject(foo.Value);
+            var serializedVo1 = NewtonsoftJsonSerializer.SerializeObject(vo);
+            var serializedString1 = NewtonsoftJsonSerializer.SerializeObject(vo.Value);
 
-            var serializedFoo2 = SystemTextJsonSerializer.Serialize(foo);
-            var serializedString2 = SystemTextJsonSerializer.Serialize(foo.Value);
+            var serializedVo2 = SystemTextJsonSerializer.Serialize(vo);
+            var serializedString2 = SystemTextJsonSerializer.Serialize(vo.Value);
 
-            Assert.Equal(serializedFoo1, serializedString1);
-            Assert.Equal(serializedFoo2, serializedString2);
+            Assert.Equal(serializedVo1, serializedString1);
+            Assert.Equal(serializedVo2, serializedString2);
         }
 
         [Fact]
         public void WhenNoJsonConverter_SystemTextJsonSerializesWithValueProperty()
         {
-            var foo = NoJsonFooVo.From(_bar1);
+            var vo = NoJsonFooVo.From(_bar1);
 
-            var serialized = SystemTextJsonSerializer.Serialize(foo);
+            var serialized = SystemTextJsonSerializer.Serialize(vo);
 
             var expected = "{\"Value\":{\"Age\":42,\"Name\":\"Fred\"}}";
 
@@ -139,10 +139,10 @@ namespace Vogen.IntegrationTests.SerializationAndConversionTests
         [Fact]
         public void WithTypeConverterButNoJsonConverters_SystemTextJsonSerializesWithValueProperty()
         {
-            var foo = NoConverterFooVo.From(_bar1);
+            var vo = NoConverterFooVo.From(_bar1);
 
-            var newtonsoft = SystemTextJsonSerializer.Serialize(foo);
-            var systemText = SystemTextJsonSerializer.Serialize(foo);
+            var newtonsoft = SystemTextJsonSerializer.Serialize(vo);
+            var systemText = SystemTextJsonSerializer.Serialize(vo);
 
             var expected = "{\"Value\":{\"Age\":42,\"Name\":\"Fred\"}}";
 

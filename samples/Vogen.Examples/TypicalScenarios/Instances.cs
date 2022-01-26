@@ -1,24 +1,27 @@
 ﻿using System;
+using System.Threading.Tasks;
 
-namespace Vogen.Examples.Instances
+namespace Vogen.Examples.TypicalScenarios
 {
 
     /*
      * Instances allow us to create specific static readonly instances of this type.
      */
 
-    internal static class InstanceExamples
+    internal class InstanceExamples : IScenario
     {
-        public static void Run()
+        public Task Run()
         {
             VendorInformation vi = new VendorInformation();
-            Console.WriteLine(vi.VendorId == VendorId.Unspecified); // true
-            Console.WriteLine(vi.VendorId != VendorId.Invalid); // true
+            Console.WriteLine((bool) (vi.VendorId == VendorId.Unspecified)); // true
+            Console.WriteLine((bool) (vi.VendorId != VendorId.Invalid)); // true
 
             // from a text file that is screwed, we'll end up with:
             var invalidVi = VendorInformation.FromTextFile();
 
-            Console.WriteLine(invalidVi.VendorId == VendorId.Invalid); // true
+            Console.WriteLine((bool) (invalidVi.VendorId == VendorId.Invalid)); // true
+
+            return Task.CompletedTask;
         }
     }
 
