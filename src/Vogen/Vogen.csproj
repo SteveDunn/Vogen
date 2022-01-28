@@ -10,7 +10,10 @@
     <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
 
   </PropertyGroup>
-
+  
+  <PropertyGroup>
+    <MinVerVerbosity>diagnostic</MinVerVerbosity>
+  </PropertyGroup>
 
   <!-- only used at compile time and not run time-->
   <PropertyGroup>
