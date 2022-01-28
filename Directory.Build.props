@@ -3,5 +3,6 @@
     <LangVersion>preview</LangVersion>
     <NoWarn>$(NoWarn);CS1701;CS1702;CS1591</NoWarn>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <PackageOutputPath>$(MSBuildThisFileDirectory)\artifacts</PackageOutputPath>
   </PropertyGroup>
 </Project>
