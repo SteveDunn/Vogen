@@ -18,10 +18,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "_files", "_files", "{72AF0E
 		.editorconfig = .editorconfig
 		.gitattributes = .gitattributes
 		.gitignore = .gitignore
-		.github\workflows\build.yaml = .github\workflows\build.yaml
 		Directory.Build.props = Directory.Build.props
 		docs\nuget-readme.md = docs\nuget-readme.md
-		.github\workflows\publish.yaml = .github\workflows\publish.yaml
 		README.md = README.md
 	EndProjectSection
 EndProject
@@ -34,6 +32,18 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Vogen.SharedTypes", "src\Vogen.SharedTypes\Vogen.SharedTypes.csproj", "{ACBCBC0B-430F-46A3-AD96-6AF28DBA7F9D}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Vogen.IntegrationTests", "tests\Vogen.IntegrationTests\Vogen.IntegrationTests.csproj", "{26940BFB-A17F-4C7D-8449-4A419FEC1412}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".github", ".github", "{D3048A7B-80B6-4BE2-881B-622E7FC26FC8}"
+	ProjectSection(SolutionItems) = preProject
+		.github\dependabot.yml = .github\dependabot.yml
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "workflows", "workflows", "{7CB90DA2-8BCB-4F4C-A5F3-9F6E8B6CC402}"
+	ProjectSection(SolutionItems) = preProject
+		.github\workflows\build.yaml = .github\workflows\build.yaml
+		.github\workflows\codeql-analysis.yml = .github\workflows\codeql-analysis.yml
+		.github\workflows\publish.yaml = .github\workflows\publish.yaml
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -81,6 +91,8 @@ Global
 		{00BA2434-F908-49DF-89C5-024F26C2C0F1} = {9955BB98-6ACF-4EC8-AE59-1B8DDCCBDCC6}
 		{ACBCBC0B-430F-46A3-AD96-6AF28DBA7F9D} = {57174048-09D4-46A6-932C-8F90F2B603D0}
 		{26940BFB-A17F-4C7D-8449-4A419FEC1412} = {9955BB98-6ACF-4EC8-AE59-1B8DDCCBDCC6}
+		{D3048A7B-80B6-4BE2-881B-622E7FC26FC8} = {72AF0ED1-00F0-42D7-9997-169FEFBC2DB2}
+		{7CB90DA2-8BCB-4F4C-A5F3-9F6E8B6CC402} = {D3048A7B-80B6-4BE2-881B-622E7FC26FC8}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {E4D5DD02-533B-4333-9CF9-ACD294C7F2EE}
