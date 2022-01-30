@@ -6,4 +6,4 @@ This project supports only the latest version with security updates. However, we
 
 ## Reporting a Vulnerability
 
-Contact [steve@dunnhq.com|@SteveDunn] to report a security vulnerability. You will be thanked!
+Contact [steve@dunnhq.com](Steve) ([@SteveDunn](https://twitter.com/SteveDunn)) to report a security vulnerability. You will be thanked!
