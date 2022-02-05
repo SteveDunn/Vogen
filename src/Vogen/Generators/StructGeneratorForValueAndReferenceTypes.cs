@@ -23,6 +23,7 @@ public class StructGeneratorForValueAndReferenceTypes : IGenerateSourceCode
 
         public readonly {item.UnderlyingType} Value
         {{
+            [System.Diagnostics.DebuggerStepThroughAttribute]
             get
             {{
                 EnsureInitialized();
@@ -30,6 +31,7 @@ public class StructGeneratorForValueAndReferenceTypes : IGenerateSourceCode
             }}
         }}
 
+        [System.Diagnostics.DebuggerStepThroughAttribute]
         public {structName}()
         {{
 #if DEBUG
@@ -40,6 +42,7 @@ public class StructGeneratorForValueAndReferenceTypes : IGenerateSourceCode
             _value = default;
         }}
 
+        [System.Diagnostics.DebuggerStepThroughAttribute]
         private {structName}({item.UnderlyingType} value) 
         {{
             _value = value;

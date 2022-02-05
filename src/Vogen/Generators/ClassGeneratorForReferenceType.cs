@@ -15,13 +15,15 @@ using Vogen;
     {Util.GenerateAnyConversionAttributes(tds, item)}
     {Util.GenerateModifiersFor(tds)} class {className} : System.IEquatable<{className}>
     {{
+        [System.Diagnostics.DebuggerStepThroughAttribute]
         public {className}()
         {{
             throw new Vogen.ValueObjectValidationException(""Validation skipped by attempting to use the default constructor. Please use the 'From' method for construction."");
         }}
 
-        public {item.UnderlyingType} Value {{ get; }}
+        public {item.UnderlyingType} Value {{ [System.Diagnostics.DebuggerStepThroughAttribute] get; }}
 
+        [System.Diagnostics.DebuggerStepThroughAttribute]
         private {className}({item.UnderlyingType} value)
         {{
             Value = value;

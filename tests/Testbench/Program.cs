@@ -14,7 +14,8 @@ using Vogen;
 Console.WriteLine("!!");
 
 
-Tests.TestEfCore();
+MyCharacter c = MyCharacter.From('a');
+Console.WriteLine(c.Value);
 
 
 
