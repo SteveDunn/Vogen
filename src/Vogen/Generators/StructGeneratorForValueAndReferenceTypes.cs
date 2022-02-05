@@ -32,6 +32,7 @@ public class StructGeneratorForValueAndReferenceTypes : IGenerateSourceCode
         }}
 
         [System.Diagnostics.DebuggerStepThroughAttribute]
+        [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
         public {structName}()
         {{
 #if DEBUG

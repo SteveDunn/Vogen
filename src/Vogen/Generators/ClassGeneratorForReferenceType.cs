@@ -16,6 +16,7 @@ using Vogen;
     {Util.GenerateModifiersFor(tds)} class {className} : System.IEquatable<{className}>
     {{
         [System.Diagnostics.DebuggerStepThroughAttribute]
+        [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
         public {className}()
         {{
             throw new Vogen.ValueObjectValidationException(""Validation skipped by attempting to use the default constructor. Please use the 'From' method for construction."");
