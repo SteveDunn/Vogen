@@ -10,7 +10,15 @@ using Microsoft.Data.Sqlite;
 using Microsoft.EntityFrameworkCore;
 using Vogen.IntegrationTests.TestTypes;
 using Xunit;
+using BothJsonDoubleVo = Vogen.IntegrationTests.TestTypes.StructVos.BothJsonDoubleVo;
+using DapperDoubleVo = Vogen.IntegrationTests.TestTypes.StructVos.DapperDoubleVo;
+using DoubleVo = Vogen.IntegrationTests.TestTypes.StructVos.DoubleVo;
+using EfCoreDoubleVo = Vogen.IntegrationTests.TestTypes.StructVos.EfCoreDoubleVo;
+using NewtonsoftJsonDoubleVo = Vogen.IntegrationTests.TestTypes.StructVos.NewtonsoftJsonDoubleVo;
 using NewtonsoftJsonSerializer = Newtonsoft.Json.JsonConvert;
+using NoConverterDoubleVo = Vogen.IntegrationTests.TestTypes.StructVos.NoConverterDoubleVo;
+using NoJsonDoubleVo = Vogen.IntegrationTests.TestTypes.StructVos.NoJsonDoubleVo;
+using SystemTextJsonDoubleVo = Vogen.IntegrationTests.TestTypes.StructVos.SystemTextJsonDoubleVo;
 using SystemTextJsonSerializer = System.Text.Json.JsonSerializer;
 
 namespace Vogen.IntegrationTests.SerializationAndConversionTests.StructVos

@@ -2,7 +2,7 @@
 
 namespace Vogen.Generators;
 
-public class StructGeneratorForValueAndReferenceTypes : IGenerateSourceCode
+public class StructGenerator : IGenerateSourceCode
 {
     public string BuildClass(VoWorkItem item, TypeDeclarationSyntax tds)
     {
@@ -52,6 +52,11 @@ public class StructGeneratorForValueAndReferenceTypes : IGenerateSourceCode
             _isInitialized = true;
         }}
 
+        /// <summary>
+        /// Builds an instance from the provided underlying type.
+        /// </summary>
+        /// <param name=""value"">The underlying type.</param>
+        /// <returns>An instance of this type.</returns>
         public static {structName} From({item.UnderlyingType} value)
         {{
             {structName} instance = new {structName}(value);

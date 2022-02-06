@@ -222,6 +222,8 @@ public readonly partial struct Centigrade {
 
 ## Performance
 
+(to run these yourself: `dotnet run -c Release -- --job short --framework net6.0 --filter *` in the `benchmarks` folders)
+
 As mentioned previously, the goal of Vogen is to achieve very similar performance compare to using primitives themselves.
 Here's a benchmark comparing the use of a validated value object with underlying type of int vs using an int natively (_primitively_ 🤓)
 
@@ -270,7 +272,7 @@ By default, each VO is decoarated with a `TypeConverter` and `System.Text.Json` 
 * Dapper
 * EFCore
 
-They are controlled by the `Conversions` enum. The following is has serializers for NSJ and STJ:
+They are controlled by the `Conversions` enum. The following has serializers for NSJ and STJ:
 
 ```csharp
 [ValueObject(conversions: Conversions.NewtonsoftJson | Conversions.SystemTextJson, underlyingType: typeof(float))]
@@ -280,6 +282,14 @@ public partial readonly struct Celsius { }
 If you don't want any conversions, then specify `Conversions.None`.
 
 If you want your own conversion, then again specify none, and implement them yourself, just like any other type.  But be aware that even serialisers will get the same compilation errors for `new` and `default` when trying to create VOs.
+
+If you want to use Dapper, remember to register it - something like this:
+
+```csharp
+SqlMapper.AddTypeHandler(new Customer.DapperTypeHandler());
+```
+
+See the examples folder for more information.
 
 # FAQ
 
@@ -481,8 +491,16 @@ One of the responses in the proposal says that the language team decided that va
 
 ### How do I run the benchmarks?
 
-`dotnet run -c Release -- --job short --filter *`
+`dotnet run -c Release -- --job short --framework net6.0 --filter *`
 
+# Why do I get a build a build error when running `.\Build.ps1`?
+
+You might see this:
+```
+.\Build.ps1 : File C:\Build.ps1 cannot be loaded. The file C:\Build.ps1 is not digitally signed. You cannot run this script on the current system. 
+```
+
+To get around this, run `Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
 
 # What alternatives are there?
 
@@ -520,3 +538,10 @@ For other types, a generic type conversion and serialiser is applied. If you are
 [System.ComponentModel.TypeConverter(typeof(SpecialPrimitiveTypeConverter))]
 public partial struct SpecialMeasurement { }
 ```
+
+# I've added a feature but the 'Snapshot' tests are failing in the build - what do I do?
+
+When the integration tests are run, it uses snapshot tests to compare the current output to the expected output.
+If your change changes the output, the snapshot tests will bring up your configured code diff tool, for instance, Beyond Compare, and
+show you the difference. You can accept the differences in that tool, or, if there's lot's of differencs (and they're all expected!), just
+paste your clipboard into a terminal window as the snapshot tests write the commands to sync diffs to the clipboard.

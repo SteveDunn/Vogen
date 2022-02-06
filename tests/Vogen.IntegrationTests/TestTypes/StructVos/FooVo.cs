@@ -1,4 +1,4 @@
-﻿namespace Vogen.IntegrationTests.TestTypes
+﻿namespace Vogen.IntegrationTests.TestTypes.StructVos
 {
     public record struct Bar(int Age, string Name);
 

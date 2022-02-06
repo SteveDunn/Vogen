@@ -9,8 +9,17 @@ using FluentAssertions;
 using Microsoft.Data.Sqlite;
 using Microsoft.EntityFrameworkCore;
 using Vogen.IntegrationTests.TestTypes;
+using Vogen.IntegrationTests.TestTypes.StructVos;
 using Xunit;
+using BothJsonFooVo = Vogen.IntegrationTests.TestTypes.StructVos.BothJsonFooVo;
+using DapperFooVo = Vogen.IntegrationTests.TestTypes.StructVos.DapperFooVo;
+using EfCoreFooVo = Vogen.IntegrationTests.TestTypes.StructVos.EfCoreFooVo;
+using FooVo = Vogen.IntegrationTests.TestTypes.StructVos.FooVo;
+using NewtonsoftJsonFooVo = Vogen.IntegrationTests.TestTypes.StructVos.NewtonsoftJsonFooVo;
 using NewtonsoftJsonSerializer = Newtonsoft.Json.JsonConvert;
+using NoConverterFooVo = Vogen.IntegrationTests.TestTypes.StructVos.NoConverterFooVo;
+using NoJsonFooVo = Vogen.IntegrationTests.TestTypes.StructVos.NoJsonFooVo;
+using SystemTextJsonFooVo = Vogen.IntegrationTests.TestTypes.StructVos.SystemTextJsonFooVo;
 using SystemTextJsonSerializer = System.Text.Json.JsonSerializer;
 
 namespace Vogen.IntegrationTests.SerializationAndConversionTests.StructVos

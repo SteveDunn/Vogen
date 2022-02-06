@@ -2,7 +2,7 @@
 
 namespace Vogen.Generators;
 
-public class ClassGeneratorForReferenceType : IGenerateSourceCode
+public class ClassGenerator : IGenerateSourceCode
 {
     public string BuildClass(VoWorkItem item, TypeDeclarationSyntax tds)
     {
@@ -17,19 +17,38 @@ using Vogen;
     [System.Diagnostics.DebuggerDisplayAttribute(""Underlying type: {item.UnderlyingType}, Value = {{ _value }}"")]
     {Util.GenerateModifiersFor(tds)} class {className} : System.IEquatable<{className}>
     {{
+#if DEBUG    
+        private readonly System.Diagnostics.StackTrace _stackTrace = null;
+#endif
+        private readonly bool _isInitialized;
+        private readonly {item.UnderlyingType} _value;
+        
+public {item.UnderlyingType} Value
+        {{
+            [System.Diagnostics.DebuggerStepThroughAttribute]
+            get
+            {{
+                EnsureInitialized();
+                return _value;
+            }}
+        }}
+
         [System.Diagnostics.DebuggerStepThroughAttribute]
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
         public {className}()
         {{
-            throw new Vogen.ValueObjectValidationException(""Validation skipped by attempting to use the default constructor. Please use the 'From' method for construction."");
+#if DEBUG
+            _stackTrace = new System.Diagnostics.StackTrace();
+#endif
+            _isInitialized = false;
+            _value = default;
         }}
-
-        public {item.UnderlyingType} Value {{ [System.Diagnostics.DebuggerStepThroughAttribute] get; }}
 
         [System.Diagnostics.DebuggerStepThroughAttribute]
         private {className}({item.UnderlyingType} value)
         {{
-            Value = value;
+            _value = value;
+            _isInitialized = true;
         }}
 
         /// <summary>
@@ -39,10 +58,7 @@ using Vogen;
         /// <returns>An instance of this type.</returns>
         public static {className} From({item.UnderlyingType} value)
         {{
-            if (value is null)
-            {{
-                throw new Vogen.ValueObjectValidationException(""Cannot create a value object with null."");
-            }}
+            {GenerateNullCheckIfNeeded(item)}
 
             {className} instance = new {className}(value);
 
@@ -58,6 +74,10 @@ using Vogen;
                 return false;
             }}
 
+            // It's possible to create uninitialized instances via converters such as EfCore (HasDefaultValue), which call Equals.
+            // We treat anything uninitialized as not equal to anything, even other uninitialized instances of this type.
+            if(!_isInitialized || !other._isInitialized) return false;
+	    	
             if (ReferenceEquals(this, other))
             {{
                 return true;
@@ -109,6 +129,21 @@ using Vogen;
             }}
         }}
 
+        private void EnsureInitialized()
+        {{
+            if (!_isInitialized)
+            {{
+#if DEBUG
+                string message = ""Use of uninitialized Value Object at: "" + _stackTrace ?? """";
+#else
+                string message = ""Use of uninitialized Value Object."";
+#endif
+
+                throw new ValueObjectValidationException(message);
+            }}
+        }}
+
+
         {Util.GenerateAnyInstances(tds, item)}
 
         public override string ToString() => Value.ToString();
@@ -119,4 +154,12 @@ using Vogen;
     }}
 {Util.WriteCloseNamespace(item.FullNamespace)}";
     }
+
+    private string GenerateNullCheckIfNeeded(VoWorkItem voWorkItem) =>
+        voWorkItem.IsValueType ? string.Empty
+            : $@"            if (value is null)
+            {{
+                throw new Vogen.ValueObjectValidationException(""Cannot create a value object with null."");
+            }}
+";
 }

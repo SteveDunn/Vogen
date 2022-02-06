@@ -1,4 +1,4 @@
-﻿namespace Vogen.IntegrationTests.TestTypes
+﻿namespace Vogen.IntegrationTests.TestTypes.StructVos
 {
     [ValueObject(conversions: Conversions.None, underlyingType: typeof(bool))]
     public partial struct BoolVo { }

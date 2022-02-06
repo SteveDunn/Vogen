@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Vogen.IntegrationTests.TestTypes
+namespace Vogen.IntegrationTests.TestTypes.StructVos
 {
     [ValueObject(conversions: Conversions.None, underlyingType: typeof(DateTimeOffset))]
     public partial struct DateTimeOffsetVo { }

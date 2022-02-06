@@ -1,4 +1,4 @@
-﻿namespace Vogen.IntegrationTests.TestTypes
+﻿namespace Vogen.IntegrationTests.TestTypes.StructVos
 {
     [ValueObject(conversions: Conversions.None, underlyingType: typeof(string))]
     public partial struct StringVo { }
