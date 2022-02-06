@@ -11,9 +11,10 @@
 
   </PropertyGroup>
   
-  <PropertyGroup>
-    <MinVerVerbosity>diagnostic</MinVerVerbosity>
-  </PropertyGroup>
+  <!-- Uncomment if you're getting unexpected minver results-->  
+  <!-- <PropertyGroup> -->
+  <!--   <MinVerVerbosity>diagnostic</MinVerVerbosity> -->
+  <!-- </PropertyGroup> -->
 
   <!-- only used at compile time and not run time-->
   <PropertyGroup>
@@ -22,8 +23,19 @@
     <PackageReadmeFile>nuget-readme.md</PackageReadmeFile>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Remove="Generators\Conversions\JsonNetConverters\**" />
+    <Compile Remove="Generators\Conversions\SystemTextJsonConverters\**" />
+    <Compile Remove="Generators\Conversions\TypeConverters\**" />
     <Compile Remove="Templates\**\*.cs" />
     <EmbeddedResource Include="Templates\**\*.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Remove="Generators\Conversions\JsonNetConverters\**" />
+    <EmbeddedResource Remove="Generators\Conversions\SystemTextJsonConverters\**" />
+    <EmbeddedResource Remove="Generators\Conversions\TypeConverters\**" />
+    <None Remove="Generators\Conversions\JsonNetConverters\**" />
+    <None Remove="Generators\Conversions\SystemTextJsonConverters\**" />
+    <None Remove="Generators\Conversions\TypeConverters\**" />
   </ItemGroup>
 
   <ItemGroup>
@@ -50,9 +62,6 @@
 
   <ItemGroup>
     <Folder Include="Diagnostics\" />
-    <Folder Include="Generators\Conversions\JsonNetConverters\" />
-    <Folder Include="Generators\Conversions\SystemTextJsonConverters\" />
-    <Folder Include="Generators\Conversions\TypeConverters\" />
   </ItemGroup>
 
   <PropertyGroup>

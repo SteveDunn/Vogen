@@ -3,22 +3,7 @@ using FluentAssertions;
 using Vogen.Tests.Types;
 using Xunit;
 
-namespace Vogen.Tests.Creation;
-
-[ValueObject(typeof(int))]
-public partial class MyInt
-{
-    private static Validation Validate(int value)
-    {
-        if (value > 0)
-            return Validation.Ok;
-
-        return Validation.Invalid("must be greater than zero");
-    }
-}
-
-[ValueObject(typeof(int))]
-public partial struct CustomerId { }
+namespace Vogen.Tests;
 
 public class CreationTests
 {

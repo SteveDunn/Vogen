@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
-using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Vogen.Generators.Conversions;
 
@@ -131,7 +129,11 @@ public static {classDeclarationSyntax.Identifier} {instanceProperties.Name} = ne
         
         foreach (var conversionGenerator in _conversionGenerators)
         {
-            sb.AppendLine(conversionGenerator.GenerateAnyAttributes(tds, item));
+            var attribute = conversionGenerator.GenerateAnyAttributes(tds, item);
+            if (!string.IsNullOrEmpty(attribute))
+            {
+                sb.AppendLine(attribute);
+            }
         }
 
         return sb.ToString();
@@ -146,5 +148,50 @@ public static {classDeclarationSyntax.Identifier} {instanceProperties.Name} = ne
         }
         
         return sb.ToString();
+    }
+
+    public static string GenerateDebuggerProxyForStructs(TypeDeclarationSyntax tds, VoWorkItem item)
+    {
+        string code = $@"internal sealed class {item.VoTypeName}DebugView
+        {{
+            private readonly {item.VoTypeName} _t;
+
+            {item.VoTypeName}DebugView({item.VoTypeName} t)
+            {{
+                _t = t;
+            }}
+
+            public bool IsInitialized => _t._isInitialized;
+            public string UnderlyingType => ""{item.UnderlyingTypeFullName}"";
+            public string Value => _t._isInitialized ? _t._value.ToString() : ""[not initialized]"" ;
+
+            #if DEBUG
+            public string CreatedWith => _t._stackTrace?.ToString() ?? ""the From method"";
+            #endif
+
+            public string Conversions => @""{Util.GenerateAnyConversionAttributes(tds, item)}"";
+                }}";
+
+        return code;
+    }
+
+    public static string GenerateDebuggerProxyForClasses(TypeDeclarationSyntax tds, VoWorkItem item)
+    {
+        string code = $@"internal sealed class {item.VoTypeName}DebugView
+        {{
+            private readonly {item.VoTypeName} _t;
+
+            {item.VoTypeName}DebugView({item.VoTypeName} t)
+            {{
+                _t = t;
+            }}
+
+            public string UnderlyingType => ""{item.UnderlyingTypeFullName}"";
+            public {item.UnderlyingTypeFullName} Value => _t.Value ;
+
+            public string Conversions => @""{Util.GenerateAnyConversionAttributes(tds, item)}"";
+                }}";
+
+        return code;
     }
 }

@@ -9,6 +9,7 @@
 	<s:String x:Key="/Default/PatternsAndTemplates/Todo/TodoPatterns/=50FDC07863E169428BD0187F9012A372/Pattern/@EntryValue">checkin:</s:String>
 	<s:String x:Key="/Default/PatternsAndTemplates/Todo/TodoPatterns/=50FDC07863E169428BD0187F9012A372/TodoIconStyle/@EntryValue">Error</s:String>
 	<s:Boolean x:Key="/Default/UserDictionary/Words/=Beckham/@EntryIndexedValue">True</s:Boolean>
+	<s:Boolean x:Key="/Default/UserDictionary/Words/=Browsable/@EntryIndexedValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/UserDictionary/Words/=Daves/@EntryIndexedValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/UserDictionary/Words/=Diag/@EntryIndexedValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/UserDictionary/Words/=Flintstone/@EntryIndexedValue">True</s:Boolean>

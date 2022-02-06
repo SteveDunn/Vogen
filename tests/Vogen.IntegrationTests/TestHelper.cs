@@ -73,6 +73,4 @@ public static class TestHelper
 
         return (diagnostics, trees.Count != originalTreeCount ? trees[trees.Count - 1].ToString() : string.Empty);
     }
-
-
 }

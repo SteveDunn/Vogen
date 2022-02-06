@@ -8,7 +8,7 @@ namespace Vogen.Tests.ValidationTests;
 public class ValidationTests
 {
     [Fact]
-    public void Valiation_passes()
+    public void Validation_passes()
     {
         Action camelCase = () => MyVo_validate_with_camelCase_method_name.From(-1);
         Action pascalCase = () => MyVo_validate_with_PascalCase_method_name.From(-1);
