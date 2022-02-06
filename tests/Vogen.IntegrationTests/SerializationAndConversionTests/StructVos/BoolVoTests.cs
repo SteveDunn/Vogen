@@ -15,54 +15,54 @@ using SystemTextJsonSerializer = System.Text.Json.JsonSerializer;
 // ReSharper disable RedundantOverflowCheckingContext
 // ReSharper disable ConvertToLocalFunction
 
-namespace Vogen.IntegrationTests.SerializationAndConversionTests
+namespace Vogen.IntegrationTests.SerializationAndConversionTests.StructVos
 {
-    [ValueObject(underlyingType: typeof(char))]
-    public partial struct AnotherCharVo { }
+    [ValueObject(underlyingType: typeof(bool))]
+    public partial struct AnotherBoolVo { }
 
-    public class CharVoTests
+    public class BoolVoTests
     {
         [Fact]
         public void equality_between_same_value_objects()
         {
-            CharVo.From('a').Equals(CharVo.From('a')).Should().BeTrue();
-            (CharVo.From('a') == CharVo.From('a')).Should().BeTrue();
+            BoolVo.From(true).Equals(BoolVo.From(true)).Should().BeTrue();
+            (BoolVo.From(false) == BoolVo.From(false)).Should().BeTrue();
 
-            (CharVo.From('a') != CharVo.From('b')).Should().BeTrue();
-            (CharVo.From('a') == CharVo.From('b')).Should().BeFalse();
+            (BoolVo.From(true) != BoolVo.From(false)).Should().BeTrue();
+            (BoolVo.From(true) == BoolVo.From(false)).Should().BeFalse();
 
-            CharVo.From('a').Equals(CharVo.From('a')).Should().BeTrue();
-            (CharVo.From('a') == CharVo.From('a')).Should().BeTrue();
+            BoolVo.From(true).Equals(BoolVo.From(true)).Should().BeTrue();
+            (BoolVo.From(true) == BoolVo.From(true)).Should().BeTrue();
 
-            var original = CharVo.From('a');
-            var other = CharVo.From('a');
+            var original = BoolVo.From(true);
+            var other = BoolVo.From(true);
 
-            ((original as IEquatable<CharVo>).Equals(other)).Should().BeTrue();
-            ((other as IEquatable<CharVo>).Equals(original)).Should().BeTrue();
+            ((original as IEquatable<BoolVo>).Equals(other)).Should().BeTrue();
+            ((other as IEquatable<BoolVo>).Equals(original)).Should().BeTrue();
         }
 
 
         [Fact]
         public void equality_between_different_value_objects()
         {
-            CharVo.From('a').Equals(AnotherCharVo.From('a')).Should().BeFalse();
+            BoolVo.From(true).Equals(AnotherBoolVo.From(true)).Should().BeFalse();
         }
 
         [Fact]
         public void CanSerializeToShort_WithNewtonsoftJsonProvider()
         {
-            var vo = NewtonsoftJsonCharVo.From('a');
+            var vo = NewtonsoftJsonBoolVo.From(true);
 
             string serializedVo = NewtonsoftJsonSerializer.SerializeObject(vo);
-            string serializedShort = NewtonsoftJsonSerializer.SerializeObject(vo.Value);
+            string serializedBool = NewtonsoftJsonSerializer.SerializeObject(vo.Value);
 
-            Assert.Equal(serializedVo, serializedShort);
+            Assert.Equal(serializedVo, serializedBool);
         }
 
         [Fact]
         public void CanSerializeToShort_WithSystemTextJsonProvider()
         {
-            var vo = SystemTextJsonCharVo.From('a');
+            var vo = SystemTextJsonBoolVo.From(true);
 
             string serializedVo = SystemTextJsonSerializer.Serialize(vo);
             string serializedShort = SystemTextJsonSerializer.Serialize(vo.Value);
@@ -73,11 +73,11 @@ namespace Vogen.IntegrationTests.SerializationAndConversionTests
         [Fact]
         public void CanDeserializeFromShort_WithNewtonsoftJsonProvider()
         {
-            char value = 'a';
-            var vo = NewtonsoftJsonCharVo.From(value);
+            bool value = true;
+            var vo = NewtonsoftJsonBoolVo.From(value);
             var serializedShort = NewtonsoftJsonSerializer.SerializeObject(value);
 
-            var deserializedVo = NewtonsoftJsonSerializer.DeserializeObject<NewtonsoftJsonCharVo>(serializedShort);
+            var deserializedVo = NewtonsoftJsonSerializer.DeserializeObject<NewtonsoftJsonBoolVo>(serializedShort);
 
             Assert.Equal(vo, deserializedVo);
         }
@@ -85,11 +85,11 @@ namespace Vogen.IntegrationTests.SerializationAndConversionTests
         [Fact]
         public void CanDeserializeFromShort_WithSystemTextJsonProvider()
         {
-            char value = 'a';
-            var vo = SystemTextJsonCharVo.From(value);
+            bool value = true;
+            var vo = SystemTextJsonBoolVo.From(value);
             var serializedShort = SystemTextJsonSerializer.Serialize(value);
 
-            var deserializedVo = SystemTextJsonSerializer.Deserialize<SystemTextJsonCharVo>(serializedShort);
+            var deserializedVo = SystemTextJsonSerializer.Deserialize<SystemTextJsonBoolVo>(serializedShort);
 
             Assert.Equal(vo, deserializedVo);
         }
@@ -97,7 +97,7 @@ namespace Vogen.IntegrationTests.SerializationAndConversionTests
         [Fact]
         public void CanSerializeToShort_WithBothJsonConverters()
         {
-            var vo = BothJsonCharVo.From('a');
+            var vo = BothJsonBoolVo.From(true);
 
             var serializedVo1 = NewtonsoftJsonSerializer.SerializeObject(vo);
             var serializedShort1 = NewtonsoftJsonSerializer.SerializeObject(vo.Value);
@@ -112,11 +112,11 @@ namespace Vogen.IntegrationTests.SerializationAndConversionTests
         [Fact]
         public void WhenNoJsonConverter_SystemTextJsonSerializesWithValueProperty()
         {
-            var vo = NoJsonCharVo.From('a');
+            var vo = NoJsonBoolVo.From(true);
 
             var serialized = SystemTextJsonSerializer.Serialize(vo);
 
-            var expected = "{\"Value\":\"a\"}";
+            var expected = "{\"Value\":true}";
 
             Assert.Equal(expected, serialized);
         }
@@ -124,11 +124,11 @@ namespace Vogen.IntegrationTests.SerializationAndConversionTests
         [Fact]
         public void WhenNoJsonConverter_NewtonsoftSerializesWithoutValueProperty()
         {
-            var vo = NoJsonCharVo.From('a');
+            var vo = NoJsonBoolVo.From(true);
 
             var serialized = NewtonsoftJsonSerializer.SerializeObject(vo);
 
-            var expected = $"\"{vo.Value}\"";
+            var expected = $"\"{(bool)vo.Value}\"";
 
             Assert.Equal(expected, serialized);
         }
@@ -136,12 +136,12 @@ namespace Vogen.IntegrationTests.SerializationAndConversionTests
         [Fact]
         public void WhenNoTypeConverter_SerializesWithValueProperty()
         {
-            var vo = NoConverterCharVo.From('a');
+            var vo = NoConverterBoolVo.From(true);
 
             var newtonsoft = SystemTextJsonSerializer.Serialize(vo);
             var systemText = SystemTextJsonSerializer.Serialize(vo);
 
-            var expected = "{\"Value\":\"a\"}";
+            var expected = "{\"Value\":true}";
 
             Assert.Equal(expected, newtonsoft);
             Assert.Equal(expected, systemText);
@@ -157,7 +157,7 @@ namespace Vogen.IntegrationTests.SerializationAndConversionTests
                 .UseSqlite(connection)
                 .Options;
 
-            var original = new TestEntity { Id = EfCoreCharVo.From('a') };
+            var original = new TestEntity { Id = EfCoreBoolVo.From(true) };
             using (var context = new TestDbContext(options))
             {
                 context.Database.EnsureCreated();
@@ -178,23 +178,40 @@ namespace Vogen.IntegrationTests.SerializationAndConversionTests
             using var connection = new SqliteConnection("DataSource=:memory:");
             await connection.OpenAsync();
 
-            IEnumerable<DapperCharVo> results = await connection.QueryAsync<DapperCharVo>("SELECT 'a'");
+            IEnumerable<DapperBoolVo> results = await connection.QueryAsync<DapperBoolVo>("SELECT true");
 
             var value = Assert.Single(results);
-            Assert.Equal(DapperCharVo.From('a'), value);
+            Assert.Equal(DapperBoolVo.From(true), value);
         }
 
         [Theory]
-        [InlineData((char) 97)]
-        public void TypeConverter_CanConvertToAndFrom(object value)
+        [InlineData("true", true, "True")]
+        [InlineData("True", true, "True")]
+        [InlineData("false", false, "False")]
+        [InlineData("False", false, "False")]
+        public void TypeConverter_CanConvertToAndFrom_strings(object input, bool expectedBool, string expectedString)
         {
-            var converter = TypeDescriptor.GetConverter(typeof(NoJsonCharVo));
-            var id = converter.ConvertFrom(value);
-            Assert.IsType<NoJsonCharVo>(id);
-            Assert.Equal(NoJsonCharVo.From('a'), id);
+            TypeConverter converter = TypeDescriptor.GetConverter(typeof(NoJsonBoolVo));
+            
+            object converted = converter.ConvertFrom(input);
+            Assert.IsType<NoJsonBoolVo>(converted);
+            Assert.Equal(NoJsonBoolVo.From(expectedBool), converted);
 
-            var reconverted = converter.ConvertTo(id, value.GetType());
-            Assert.Equal(value, reconverted);
+            object reconverted = converter.ConvertTo(converted, input.GetType());
+            Assert.Equal(expectedString, reconverted);
+        }
+
+        [Theory]
+        [InlineData(true, "True")]
+        [InlineData(false, "False")]
+        public void TypeConverter_CanConvertToAndFrom_bools(bool input, string expectedString)
+        {
+            TypeConverter converter = TypeDescriptor.GetConverter(typeof(NoJsonBoolVo));
+
+            NoJsonBoolVo v = NoJsonBoolVo.From(input);
+            
+            object asString = converter.ConvertTo(v, typeof(string));
+            Assert.Equal(expectedString, asString);
         }
 
         public class TestDbContext : DbContext
@@ -212,7 +229,7 @@ namespace Vogen.IntegrationTests.SerializationAndConversionTests
                     {
                         builder
                             .Property(x => x.Id)
-                            .HasConversion(new EfCoreCharVo.EfCoreValueConverter())
+                            .HasConversion(new EfCoreBoolVo.EfCoreValueConverter())
                             .ValueGeneratedNever();
                     });
             }
@@ -220,7 +237,7 @@ namespace Vogen.IntegrationTests.SerializationAndConversionTests
 
         public class TestEntity
         {
-            public EfCoreCharVo Id { get; set; }
+            public EfCoreBoolVo Id { get; set; }
         }
     }
 }

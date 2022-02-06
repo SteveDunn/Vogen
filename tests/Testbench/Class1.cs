@@ -11,15 +11,29 @@ using Vogen;
 
 namespace Vogen.IntegrationTests.TestTypes
 {
-
-
-
-
-
-
-
+    [System.Diagnostics.DebuggerTypeProxyAttribute(typeof(NoConverterByteVoDebuggerProxy))]
+    [System.Diagnostics.DebuggerDisplayAttribute("Underlying type: byte, Value={_value}")]
     public partial struct NoConverterByteVo : System.IEquatable<NoConverterByteVo>
     {
+
+        public class NoConverterByteVoDebuggerProxy
+        {
+            private readonly NoConverterByteVo _t;
+
+            NoConverterByteVoDebuggerProxy(NoConverterByteVo t)
+            {
+                _t = t;
+            }
+
+            public bool IsInitialized => _t._isInitialized;
+            public string Value => _t._isInitialized ? _t._value.ToString() : "[not initialized]" ;
+            
+            #if DEBUG
+            public string CreatedWith =>  _t._stackTrace?.ToString() ?? "the From method";
+            #endif
+
+            public string Conversions => "{Util.GenerateAnyConversionAttributes(tds, item)}";
+        }
 #if DEBUG    
         private readonly System.Diagnostics.StackTrace _stackTrace = null;
 #endif
@@ -39,6 +53,7 @@ namespace Vogen.IntegrationTests.TestTypes
         }
 
         [System.Diagnostics.DebuggerStepThroughAttribute]
+        [System.Diagnostics.DebuggerHidden]
         public NoConverterByteVo()
         {
 #if DEBUG
@@ -50,6 +65,7 @@ namespace Vogen.IntegrationTests.TestTypes
         }
 
         [System.Diagnostics.DebuggerStepThroughAttribute]
+        [System.Diagnostics.DebuggerHidden]
         private NoConverterByteVo(byte value)
         {
             _value = value;

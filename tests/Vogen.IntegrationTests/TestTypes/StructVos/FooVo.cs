@@ -11,14 +11,23 @@
     [ValueObject(conversions: Conversions.TypeConverter, underlyingType: typeof(Bar))]
     public partial struct NoJsonFooVo { }
 
+    [ValueObject(conversions: Conversions.TypeConverter, underlyingType: typeof(Bar))]
+    public partial class NoJsonFooVoClass { }
+
     [ValueObject(conversions: Conversions.NewtonsoftJson, underlyingType: typeof(Bar))]
     public partial struct NewtonsoftJsonFooVo { }
+
+    [ValueObject(conversions: Conversions.NewtonsoftJson, underlyingType: typeof(Bar))]
+    public partial class NewtonsoftJsonFooVoClass { }
 
     [ValueObject(conversions: Conversions.SystemTextJson, underlyingType: typeof(Bar))]
     public partial struct SystemTextJsonFooVo { }
 
     [ValueObject(conversions: Conversions.NewtonsoftJson | Conversions.SystemTextJson, underlyingType: typeof(Bar))]
     public partial struct BothJsonFooVo { }
+
+    [ValueObject(conversions: Conversions.NewtonsoftJson | Conversions.SystemTextJson, underlyingType: typeof(Bar))]
+    public partial class BothJsonFooVoClass { }
 
     [ValueObject(conversions: Conversions.EfCoreValueConverter, underlyingType: typeof(Bar))]
     public partial struct EfCoreFooVo { }

@@ -11,7 +11,9 @@ public class StructGeneratorForValueAndReferenceTypes : IGenerateSourceCode
 
 {Util.WriteStartNamespace(item.FullNamespace)}
     {Util.GenerateAnyConversionAttributes(tds, item)}
-    {Util.GenerateModifiersFor(tds)} struct {structName} : System.IEquatable<{structName}>
+    [System.Diagnostics.DebuggerTypeProxyAttribute(typeof({structName}DebugView))]
+    [System.Diagnostics.DebuggerDisplayAttribute(""Underlying type: {item.UnderlyingType}, Value = {{ _value }}"")]
+    { Util.GenerateModifiersFor(tds)} struct {structName} : System.IEquatable<{structName}>
     {{
 #if DEBUG    
         private readonly System.Diagnostics.StackTrace _stackTrace = null;
@@ -105,6 +107,8 @@ public class StructGeneratorForValueAndReferenceTypes : IGenerateSourceCode
         { Util.GenerateAnyInstances(tds, item)}
  
         {Util.GenerateAnyConversionBodies(tds, item)}
+
+        {Util.GenerateDebuggerProxyForStructs(tds, item)}
 
 }}
 {Util.WriteCloseNamespace(item.FullNamespace)}";

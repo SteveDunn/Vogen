@@ -10,8 +10,13 @@ using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
 using Testbench.FooTests;
 using Vogen;
+using Vogen.IntegrationTests.TestTypes;
 
 Console.WriteLine("!!");
+
+
+
+var d = NoConverterByteVo.From(42);
 
 
 MyCharacter c = MyCharacter.From('a');

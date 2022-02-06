@@ -12,6 +12,8 @@ using Vogen;
 
 {Util.WriteStartNamespace(item.FullNamespace)}
     {Util.GenerateAnyConversionAttributes(tds, item)}
+    [System.Diagnostics.DebuggerTypeProxyAttribute(typeof({className}DebugView))]
+    [System.Diagnostics.DebuggerDisplayAttribute(""Underlying type: {item.UnderlyingType}, Value = {{ _value }}"")]
     {Util.GenerateModifiersFor(tds)} class {className} : System.IEquatable<{className}>
     {{
         [System.Diagnostics.DebuggerStepThroughAttribute]
@@ -108,6 +110,8 @@ using Vogen;
         public override string ToString() => Value.ToString();
  
         {Util.GenerateAnyConversionBodies(tds, item)}
+
+        {Util.GenerateDebuggerProxyForClasses(tds, item)}
     }}
 {Util.WriteCloseNamespace(item.FullNamespace)}";
     }
