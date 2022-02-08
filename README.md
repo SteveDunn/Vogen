@@ -320,7 +320,9 @@ var c2 = default(CustomerId);
 
 ## Can I serialize and deserialize them?
 
-Yes, by referencing [Vogen.Serialization](https://www.nuget.org/packages/Vogen.Serialization).
+Yes, please see #serialisation-and-type-conversion
+
+For version 1.0.16 and low, you can serialize by referencing [Vogen.Serialization](https://www.nuget.org/packages/Vogen.Serialization).
 
 ## It seems like a lot of overhead; I can validate the value myself
 
