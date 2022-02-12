@@ -157,8 +157,7 @@ namespace Whatever
             public string CreatedWith => _t._stackTrace?.ToString() ?? "the From method";
             #endif
 
-            public string Conversions => @"[Newtonsoft.Json.JsonConverter(typeof(NewtonsoftJsonFloatVoNewtonsoftJsonConverter))]
-";
+            public string Conversions => @"NewtonsoftJson";
                 }
 
 }

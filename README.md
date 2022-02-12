@@ -214,7 +214,7 @@ We can also specify other instance properties:
 [ValueObject(typeof(int))]
 [Instance("Freezing", 0)]
 [Instance("Boiling", 100)]
-public readonly partial struct Centigrade {
+public readonly partial struct Celsius {
     public static Validation Validate(float value) =>
         value >= -273 ? Validation.Ok : Validation.Invalid("Cannot be colder than absolute zero");
 }
@@ -276,7 +276,7 @@ They are controlled by the `Conversions` enum. The following has serializers for
 
 ```csharp
 [ValueObject(conversions: Conversions.NewtonsoftJson | Conversions.SystemTextJson, underlyingType: typeof(float))]
-public partial readonly struct Celsius { }
+public readonly partial struct Celsius { }
 ```
 
 If you don't want any conversions, then specify `Conversions.None`.
@@ -506,11 +506,17 @@ To get around this, run `Set-ExecutionPolicy -Scope Process -ExecutionPolicy Byp
 
 # What alternatives are there?
 
-[ValueOf](https://github.com/mcintyre321/ValueOf) 
+[StronglyTypedId](https://github.com/andrewlock/StronglyTypedId)
+This is focused more on IDs. Vogen is focused more of 'Domain Concepts' and the constraints associated with those concepts.
 
 [StringlyTyped](https://github.com/stevedunn/stringlytyped)
+This is my first attempt and is NON source-generated. There is memory overhead because the base type is a class. There are also no analzsers.
+
+[ValueOf](https://github.com/mcintyre321/ValueOf) 
+Similar to StringlyTyped - non source-generated and no analysers. This is also more relaxed and allows composite 'underlying' types.
 
 [ValueObjectGenerator](https://github.com/RyotaMurohoshi/ValueObjectGenerator)
+Similar to Vogen, but less focus on validation and no code analyzer.
 
 # What primitive types are supported?
 

@@ -1,9 +1,8 @@
 ﻿using System.Runtime.CompilerServices;
 using Dapper;
-using Vogen.Examples.TestTypes;
 using Vogen.Examples.Types;
 
-namespace Vogen.IntegrationTests;
+namespace Vogen.Examples;
 
 public static class ModuleInitializer
 {

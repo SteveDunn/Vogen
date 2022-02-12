@@ -1,7 +1,8 @@
-﻿using System;
-
-namespace Vogen.Examples.TestTypes
+﻿namespace Vogen.Examples.Types
 {
+    [ValueObject(conversions: Conversions.NewtonsoftJson | Conversions.SystemTextJson, underlyingType: typeof(float))]
+    public readonly partial struct Celsius { }
+
     [ValueObject(conversions: Conversions.None, underlyingType: typeof(float))]
     public partial struct FloatVo { }
 

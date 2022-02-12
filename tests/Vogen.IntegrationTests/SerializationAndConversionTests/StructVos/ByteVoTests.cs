@@ -8,18 +8,10 @@ using Dapper;
 using FluentAssertions;
 using Microsoft.Data.Sqlite;
 using Microsoft.EntityFrameworkCore;
-using Vogen.IntegrationTests.TestTypes;
 using Xunit;
-using BothJsonByteVo = Vogen.IntegrationTests.TestTypes.StructVos.BothJsonByteVo;
-using ByteVo = Vogen.IntegrationTests.TestTypes.StructVos.ByteVo;
-using DapperByteVo = Vogen.IntegrationTests.TestTypes.StructVos.DapperByteVo;
-using EfCoreByteVo = Vogen.IntegrationTests.TestTypes.StructVos.EfCoreByteVo;
-using NewtonsoftJsonByteVo = Vogen.IntegrationTests.TestTypes.StructVos.NewtonsoftJsonByteVo;
 using NewtonsoftJsonSerializer = Newtonsoft.Json.JsonConvert;
-using NoConverterByteVo = Vogen.IntegrationTests.TestTypes.StructVos.NoConverterByteVo;
-using NoJsonByteVo = Vogen.IntegrationTests.TestTypes.StructVos.NoJsonByteVo;
-using SystemTextJsonByteVo = Vogen.IntegrationTests.TestTypes.StructVos.SystemTextJsonByteVo;
 using SystemTextJsonSerializer = System.Text.Json.JsonSerializer;
+using Vogen.IntegrationTests.TestTypes.StructVos;
 // ReSharper disable RedundantOverflowCheckingContext
 // ReSharper disable ConvertToLocalFunction
 

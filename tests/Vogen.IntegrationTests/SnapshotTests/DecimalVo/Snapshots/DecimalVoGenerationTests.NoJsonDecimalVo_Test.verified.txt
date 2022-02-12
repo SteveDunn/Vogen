@@ -178,8 +178,7 @@ namespace Whatever
             public string CreatedWith => _t._stackTrace?.ToString() ?? "the From method";
             #endif
 
-            public string Conversions => @"[System.ComponentModel.TypeConverter(typeof(NoJsonDecimalVoTypeConverter))]
-";
+            public string Conversions => @"TypeConverter";
                 }
 
 }

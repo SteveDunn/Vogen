@@ -196,9 +196,7 @@ namespace Whatever
             public string CreatedWith => _t._stackTrace?.ToString() ?? "the From method";
             #endif
 
-            public string Conversions => @"[System.Text.Json.Serialization.JsonConverter(typeof(CustomerIdSystemTextJsonConverter))]
-[System.ComponentModel.TypeConverter(typeof(CustomerIdTypeConverter))]
-";
+            public string Conversions => @"Default";
                 }
 
 }

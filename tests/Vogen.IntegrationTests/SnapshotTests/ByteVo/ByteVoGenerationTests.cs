@@ -1,6 +1,8 @@
 ﻿using System.Threading.Tasks;
 using FluentAssertions;
+using VerifyTests;
 using VerifyXunit;
+using Vogen.IntegrationTests.SnapshotTests.BoolVo;
 using Xunit;
 
 namespace Vogen.IntegrationTests.SnapshotTests.ByteVo;
@@ -77,4 +79,5 @@ namespace Whatever
 
         return Verifier.Verify(output).UseDirectory("Snapshots");
     }
+
 }

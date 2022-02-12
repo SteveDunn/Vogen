@@ -170,9 +170,7 @@ namespace Whatever
             public string CreatedWith => _t._stackTrace?.ToString() ?? "the From method";
             #endif
 
-            public string Conversions => @"[System.Text.Json.Serialization.JsonConverter(typeof(BothJsonFooVoSystemTextJsonConverter))]
-[Newtonsoft.Json.JsonConverter(typeof(BothJsonFooVoNewtonsoftJsonConverter))]
-";
+            public string Conversions => @"NewtonsoftJson, SystemTextJson";
                 }
 
 }

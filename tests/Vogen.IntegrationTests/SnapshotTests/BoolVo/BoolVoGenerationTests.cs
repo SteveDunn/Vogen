@@ -1,5 +1,6 @@
 ﻿using System.Threading.Tasks;
 using FluentAssertions;
+using VerifyTests;
 using VerifyXunit;
 using Xunit;
 
@@ -63,7 +64,7 @@ public class BoolVoGenerationTests
     public partial struct DapperBoolVo { }");
     }
 
-    private Task RunTest(string declaration)
+    private Task RunTest(string declaration, VerifySettings? settings = null)
     {
         var source = @"using Vogen;
 namespace Whatever
@@ -75,6 +76,6 @@ namespace Whatever
 
         diagnostics.Should().BeEmpty();
 
-        return Verifier.Verify(output).UseDirectory("Snapshots");
+        return Verifier.Verify(output, settings).UseDirectory("Snapshots");
     }
 }

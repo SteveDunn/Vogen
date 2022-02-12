@@ -138,6 +138,8 @@ public static {classDeclarationSyntax.Identifier} {instanceProperties.Name} = ne
 
         return sb.ToString();
     }
+    
+    public static string GenerateAnyConversionAttributesForDebuggerProxy(TypeDeclarationSyntax tds, VoWorkItem item) => item.Conversions.ToString();
 
     public static string GenerateAnyConversionBodies(TypeDeclarationSyntax tds, VoWorkItem item)
     {
@@ -169,7 +171,7 @@ public static {classDeclarationSyntax.Identifier} {instanceProperties.Name} = ne
             public string CreatedWith => _t._stackTrace?.ToString() ?? ""the From method"";
             #endif
 
-            public string Conversions => @""{Util.GenerateAnyConversionAttributes(tds, item)}"";
+            public string Conversions => @""{Util.GenerateAnyConversionAttributesForDebuggerProxy(tds, item)}"";
                 }}";
 
         return code;
