@@ -8,18 +8,10 @@ using Dapper;
 using FluentAssertions;
 using Microsoft.Data.Sqlite;
 using Microsoft.EntityFrameworkCore;
-using Vogen.IntegrationTests.TestTypes;
 using Xunit;
-using BothJsonLongVo = Vogen.IntegrationTests.TestTypes.ClassVos.BothJsonLongVo;
-using DapperLongVo = Vogen.IntegrationTests.TestTypes.ClassVos.DapperLongVo;
-using EfCoreLongVo = Vogen.IntegrationTests.TestTypes.ClassVos.EfCoreLongVo;
-using LongVo = Vogen.IntegrationTests.TestTypes.ClassVos.LongVo;
-using NewtonsoftJsonLongVo = Vogen.IntegrationTests.TestTypes.ClassVos.NewtonsoftJsonLongVo;
 using NewtonsoftJsonSerializer = Newtonsoft.Json.JsonConvert;
-using NoConverterLongVo = Vogen.IntegrationTests.TestTypes.ClassVos.NoConverterLongVo;
-using NoJsonLongVo = Vogen.IntegrationTests.TestTypes.ClassVos.NoJsonLongVo;
-using SystemTextJsonLongVo = Vogen.IntegrationTests.TestTypes.ClassVos.SystemTextJsonLongVo;
 using SystemTextJsonSerializer = System.Text.Json.JsonSerializer;
+using Vogen.IntegrationTests.TestTypes.ClassVos;
 
 namespace Vogen.IntegrationTests.SerializationAndConversionTests.ClassVos
 {

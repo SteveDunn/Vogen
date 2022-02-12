@@ -9,18 +9,10 @@ using Dapper;
 using FluentAssertions;
 using Microsoft.Data.Sqlite;
 using Microsoft.EntityFrameworkCore;
-using Vogen.IntegrationTests.TestTypes;
 using Xunit;
-using BothJsonDateTimeVo = Vogen.IntegrationTests.TestTypes.ClassVos.BothJsonDateTimeVo;
-using DapperDateTimeVo = Vogen.IntegrationTests.TestTypes.ClassVos.DapperDateTimeVo;
-using DateTimeVo = Vogen.IntegrationTests.TestTypes.ClassVos.DateTimeVo;
-using EfCoreDateTimeVo = Vogen.IntegrationTests.TestTypes.ClassVos.EfCoreDateTimeVo;
-using NewtonsoftJsonDateTimeVo = Vogen.IntegrationTests.TestTypes.ClassVos.NewtonsoftJsonDateTimeVo;
 using NewtonsoftJsonSerializer = Newtonsoft.Json.JsonConvert;
-using NoConverterDateTimeVo = Vogen.IntegrationTests.TestTypes.ClassVos.NoConverterDateTimeVo;
-using NoJsonDateTimeVo = Vogen.IntegrationTests.TestTypes.ClassVos.NoJsonDateTimeVo;
-using SystemTextJsonDateTimeVo = Vogen.IntegrationTests.TestTypes.ClassVos.SystemTextJsonDateTimeVo;
 using SystemTextJsonSerializer = System.Text.Json.JsonSerializer;
+using Vogen.IntegrationTests.TestTypes.ClassVos;
 // ReSharper disable EqualExpressionComparison
 // ReSharper disable RedundantCast
 // ReSharper disable ArrangeMethodOrOperatorBody
