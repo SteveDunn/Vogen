@@ -15,16 +15,16 @@ public class PermutationsOfConversionsTests
 {
     [Theory]
     [ClassData(typeof(PermutationsOfConversions))]
-    public Task PermutationsTests(string type, string underlying, string conversions)
+    public Task PermutationsTests(string type, string conversions)
     {
         var settings = new VerifySettings();
         
         // shorten the filename used
-        settings.UseParameters(type.Replace(' ', '-'), underlying, Hash(conversions));
+        settings.UseParameters(type.Replace(' ', '-'), Hash(conversions));
 
          return RunTest($@"
-  [ValueObject(conversions: {conversions}, underlyingType: typeof({underlying}))]
-  public {type} My{underlying}Vo {{ }}", settings);
+  [ValueObject(conversions: {conversions}, underlyingType: typeof(int))]
+  public {type} MyIntVo {{ }}", settings);
     }
 
     private object? Hash(string input)
@@ -32,7 +32,7 @@ public class PermutationsOfConversionsTests
         using var sha1 = SHA1.Create();
         var hash = sha1.ComputeHash(Encoding.UTF8.GetBytes(input));
 
-        //make sure the hash is only alpha numeric to prevent charecters that may break the url
+        //make sure the hash is only alpha numeric to prevent characters that may break the url
         return string.Concat(Convert.ToBase64String(hash).ToCharArray().Where(x => char.IsLetterOrDigit(x)).Take(10));
     }
 

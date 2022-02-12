@@ -8,8 +8,6 @@ public class PermutationsOfConversions : IEnumerable<object[]>
 {
     public IEnumerator<object[]> GetEnumerator()
     {
-        string[] underlyings = new[] {"int", "string", "Guid", "TimeSpan"};
-
         string[] types = new[] {"partial class", "partial struct", "readonly partial struct"};
 
         string[] inputs =
@@ -20,24 +18,19 @@ public class PermutationsOfConversions : IEnumerable<object[]>
 
         foreach (var eachType in types)
         {
-            foreach (var eachUnderlying in underlyings)
+            yield return new object[] {eachType, "Conversions.None"};
+
+            for (int i = 0; i < inputs.Length - 2; i++)
             {
-
-                yield return new object[] {eachType, eachUnderlying, "Conversions.None"};
-
-                for (int i = 0; i < inputs.Length - 2; i++)
+                var subset = inputs.Skip(i).ToArray();
+                var permutations = Permute(subset);
+                foreach (var perms in permutations)
                 {
-                    var subset = inputs.Skip(i).ToArray();
-                    var permutations = Permute(subset);
-                    foreach (var perms in permutations)
+                    yield return new object[]
                     {
-                        yield return new object[]
-                        {
-                            eachType, 
-                            eachUnderlying, 
-                            string.Join(" | ", perms)
-                        };
-                    }
+                        eachType,
+                        string.Join(" | ", perms)
+                    };
                 }
             }
         }
