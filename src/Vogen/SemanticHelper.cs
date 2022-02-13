@@ -1,7 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.Immutable;
 using System.Linq;
 using Microsoft.CodeAnalysis;
+using Microsoft.CodeAnalysis.CSharp;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
 
 namespace Vogen;
 
@@ -16,7 +19,8 @@ static class SemanticHelper
         var suffix = "";
         if (symbol.Arity > 0)
         {
-            suffix = "<" + string.Join(", ", symbol.TypeArguments.Select(targ => FullName((INamedTypeSymbol)targ))) + ">";
+            suffix = "<" + string.Join(", ", symbol.TypeArguments.Select(targ => FullName((INamedTypeSymbol) targ))) +
+                     ">";
         }
 
         if (prefix != "")
@@ -38,7 +42,7 @@ static class SemanticHelper
 
             iterator = iterator.ContainingNamespace;
         }
-        
+
         return string.Join(".", parts);
     }
 
@@ -50,7 +54,8 @@ static class SemanticHelper
 
     public static IEnumerable<IPropertySymbol> ReadWriteScalarProperties(this INamedTypeSymbol symbol)
     {
-        return symbol.GetMembers().OfType<IPropertySymbol>().Where(p => p.CanRead() && p.CanWrite() && !p.HasParameters());
+        return symbol.GetMembers().OfType<IPropertySymbol>()
+            .Where(p => p.CanRead() && p.CanWrite() && !p.HasParameters());
     }
 
     public static IEnumerable<IPropertySymbol> ReadableScalarProperties(this INamedTypeSymbol symbol)
@@ -64,9 +69,9 @@ static class SemanticHelper
     }
 
     public static bool CanRead(this IPropertySymbol symbol) => symbol.GetMethod != null;
-    
+
     public static bool CanWrite(this IPropertySymbol symbol) => symbol.SetMethod != null;
-    
+
     public static bool HasParameters(this IPropertySymbol symbol) => symbol.Parameters.Any();
 
     public static bool ImplementsInterfaceOrBaseClass(this INamedTypeSymbol? typeSymbol, Type typeToCheck)
@@ -96,4 +101,25 @@ static class SemanticHelper
 
         return false;
     }
+
+
+
+    // public static bool IsAssemblyLevelAttribute(SyntaxNode node)
+    //     => node is AttributeListSyntax attributeList
+    //        && attributeList.Target is not null
+    //        && attributeList.Target.Identifier.IsKind(SyntaxKind.AssemblyKeyword);
+
+}
+
+internal static class InvalidConversionDiagnostic
+{
+    internal const string Id = "STI3";
+    internal const string Message = "The Conversion value provided is not a valid combination of flags";
+    internal const string Title = "Invalid conversion";
+
+    public static Diagnostic Create(SyntaxNode currentNode) =>
+        Diagnostic.Create(
+            new DiagnosticDescriptor(
+                Id, Title, Message, category: "Usage", defaultSeverity: DiagnosticSeverity.Warning, isEnabledByDefault: true),
+            currentNode.GetLocation());
 }

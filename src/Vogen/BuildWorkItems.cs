@@ -48,7 +48,6 @@ internal static class BuildWorkItems
 
         ImmutableArray<TypedConstant> args = voAttribute.ConstructorArguments;
 
-        INamedTypeSymbol? underlyingType = null;
         Conversions conversions = Conversions.None;
 
         foreach (TypedConstant arg in args)
@@ -65,7 +64,7 @@ internal static class BuildWorkItems
             return null;
         }
 
-        underlyingType = (INamedTypeSymbol?) args[0].Value;
+        var underlyingType = (INamedTypeSymbol?) args[0].Value;
 
         if (underlyingType is null)
         {
@@ -184,6 +183,4 @@ internal static class BuildWorkItems
         }
 
     }
-
-
 }

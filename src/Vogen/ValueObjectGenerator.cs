@@ -2,6 +2,7 @@
 using System.Collections.Immutable;
 using System.Linq;
 using Microsoft.CodeAnalysis;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Vogen.Diagnostics;
 
 namespace Vogen
@@ -11,22 +12,41 @@ namespace Vogen
     {
         public void Initialize(IncrementalGeneratorInitializationContext context)
         {
-            IncrementalValuesProvider<VoTarget?> targets = GetTargets(context);
+            IncrementalValueProvider<(ImmutableArray<VoTarget> Left, ImmutableArray<AttributeSyntax> Right)> targets = GetTargets(context);
 
-            IncrementalValueProvider<(Compilation, ImmutableArray<VoTarget?>)> compilationAndTypes
-                = context.CompilationProvider.Combine(targets.Collect());
-            
-            context.RegisterSourceOutput(compilationAndTypes,
-                static (spc, source) => Execute(source.Item1, source.Item2, spc));
+            IncrementalValueProvider<(Compilation Left, (ImmutableArray<VoTarget> Left, ImmutableArray<AttributeSyntax> Right) Right)> compilationAndValues
+                = context.CompilationProvider.Combine(targets);
+
+            context.RegisterSourceOutput(compilationAndValues,
+                static (spc, source) => Execute(
+                    source.Left, 
+                    source.Right.Left, 
+                    source.Right.Right,
+                    spc));
         }
 
-        private static IncrementalValuesProvider<VoTarget?> GetTargets(IncrementalGeneratorInitializationContext context) =>
-            context.SyntaxProvider.CreateSyntaxProvider(
+        private static IncrementalValueProvider<(ImmutableArray<VoTarget> Left, ImmutableArray<AttributeSyntax> Right)> GetTargets(IncrementalGeneratorInitializationContext context)
+        {
+            IncrementalValuesProvider<VoTarget> voFilter = context.SyntaxProvider.CreateSyntaxProvider(
                     predicate: static (s, _) => VoFilter.IsTarget(s),
                     transform: static (ctx, _) => VoFilter.TryGetTarget(ctx))
-                .Where(static m => m is not null);
+                .Where(static m => m is not null)!;
 
-        static void Execute(Compilation compilation, ImmutableArray<VoTarget?> typeDeclarations,
+            IncrementalValuesProvider<AttributeSyntax> globalConfigFilter = context.SyntaxProvider.CreateSyntaxProvider(
+                    predicate: static (s, _) => GlobalConfigFilter.IsTarget(s),
+                    transform: static (ctx, _) => GlobalConfigFilter.GetAssemblyLevelAttributeForConfiguration(ctx))
+                .Where(static m => m is not null)!;
+
+            IncrementalValueProvider<(ImmutableArray<VoTarget> Left, ImmutableArray<AttributeSyntax> Right)> targetsAndDefaultAttributes
+                = voFilter.Collect().Combine(globalConfigFilter.Collect());
+
+            return targetsAndDefaultAttributes;
+        }
+
+        static void Execute(
+            Compilation compilation, 
+            ImmutableArray<VoTarget> typeDeclarations,
+            ImmutableArray<AttributeSyntax> defaults,
             SourceProductionContext context)
         {
             if (typeDeclarations.IsDefaultOrEmpty)
@@ -36,18 +56,25 @@ namespace Vogen
 
             DiagnosticCollection diagnostics = new DiagnosticCollection();
 
+            // get all of the ValueObject types found.
             List<VoWorkItem> workItems = GetWorkItems(typeDeclarations, context, diagnostics).ToList();
 
-            foreach (var eachWorkItem in workItems)
+            if (workItems.Count > 0)
             {
-                WriteWorkItems.WriteVo(eachWorkItem, compilation, context, diagnostics);
+                // if there are some, get the
+                var globalConfig = GlobalConfigFilter.GetDefaultConfigFromGlobalAttribute(defaults, compilation, context.ReportDiagnostic);
+
+                foreach (var eachWorkItem in workItems)
+                {
+                    WriteWorkItems.WriteVo(eachWorkItem, compilation, context, diagnostics, globalConfig);
+                }
             }
 
             ReportErrors(context, diagnostics);
         }
 
         static IEnumerable<VoWorkItem> GetWorkItems(
-            ImmutableArray<VoTarget?> targets,
+            ImmutableArray<VoTarget> targets,
             SourceProductionContext context,
             DiagnosticCollection diagnostics)
         {

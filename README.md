@@ -549,7 +549,24 @@ public partial struct SpecialMeasurement { }
 
 # I've added a feature but the 'Snapshot' tests are failing in the build - what do I do?
 
-When the integration tests are run, it uses snapshot tests to compare the current output to the expected output.
-If your change changes the output, the snapshot tests will bring up your configured code diff tool, for instance, Beyond Compare, and
-show you the difference. You can accept the differences in that tool, or, if there's lot's of differencs (and they're all expected!), just
-paste your clipboard into a terminal window as the snapshot tests write the commands to sync diffs to the clipboard.
+Firstly, thank you for adding a feature! When the integration tests are run, it uses snapshot tests to compare the current output to the expected output.
+If your feature/fix changes the output, the snapshot tests will bring up your configured code diff tool, for instance, Beyond Compare, and
+shows you the differences. You can accept the differences in that tool, or, if there's lot's of differencs (and they're all expected!), you have various options depending on your platform and tooling. Those are [described here](https://github.com/VerifyTests/Verify/blob/main/docs/clipboard.md). The quickest and easiest way is to just copy the 'actual' files to the 'expected' files:
+
+On Windows:
+
+`cmd /c del "VerifiedFile"`
+
+On Linux or MacOS:
+
+`rm -f "VerifiedFile"`
+
+# How do I debug the source generator?
+
+To test the source generator,  install the Roslyn SDK and then. 
+
+To test in VS, you'll have a new 'launch profile':
+
+![image showing the new launch profile for Roslyn](/docs/img/2022-02-13-05-45-54.png)
+
+Select the Vogen project as the active project, and from the dropdown, select 'Roslyn'. Then just F5 to start debugging.
