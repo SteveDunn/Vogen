@@ -31,15 +31,46 @@ internal static class Templates
     private static void ThrowNoResource(string resourceName) => 
         throw new MissingResourceException($"Could not find embedded resource {resourceName}. Available names: {string.Join(", ", _existingResources)}");
 
-    public static string? TryGetForSpecificType(INamedTypeSymbol? underlyingType, string restOfTemplateName)
+    public static string? TryGetForSpecificType(INamedTypeSymbol? type, string restOfTemplateName)
     {
-        var underlyingTypeName = TypeResolver.ResolveTemplateNameFromTypeName(underlyingType);
+        var typeName = TypeResolver.ResolveTemplateNameFromTypeName(type);
+
+        return LoadEmbeddedResource($"Vogen.Templates.{typeName}.{typeName}_{restOfTemplateName}.cs");
+    }
+
+    public static string? TryGetForSpecificType(Type type, string restOfTemplateName)
+    {
+        var underlyingTypeName = TypeResolver.ResolveTemplateNameFromTypeName(type);
 
         return LoadEmbeddedResource($"Vogen.Templates.{underlyingTypeName}.{underlyingTypeName}_{restOfTemplateName}.cs");
     }
 
+
     static class TypeResolver
     {
+        public static string? ResolveTemplateNameFromTypeName(Type? nts)
+        {
+            if (nts == null) return null;
+            if (nts.IsSpecialName)
+            {
+                var s = nts.Name.ToString();
+                var underscore = s.IndexOf("_", StringComparison.OrdinalIgnoreCase);
+                if (underscore >= s.Length - 1)
+                {
+                    return s;
+                }
+
+                var newString = s.Substring(underscore + 1);
+                if (newString == "Int64") return "Long";
+                if (newString == "Int32") return "Int";
+                if (newString == "Int16") return "Short";
+
+                return newString;
+            }
+
+            return nts.Name;
+        }
+
         /// <summary>
         /// Resolves a named type symbol to a template name.
         /// Named typed symbols for primitives have the 'SpecialType' set. This can be in the form of 'Int16' for Short,

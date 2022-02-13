@@ -43,6 +43,11 @@ internal class DiagnosticCollection : IEnumerable<Diagnostic>
         "Underlying type cannot be collection",
         "Type '{0}' has an underlying type of {1} which is not valid");
 
+    private static readonly DiagnosticDescriptor _invalidConversions = CreateDescriptor(
+        DiagnosticCode.InvalidConversions,
+        "Invalid Conversions",
+        "The Conversions specified do not match any known conversions - see the Conversions type");
+
     private static readonly DiagnosticDescriptor _underlyingTypeMustNotBeSameAsValueObject = CreateDescriptor(
         DiagnosticCode.UnderlyingTypeMustNotBeSameAsValueObject,
         "Invalid underlying type",
@@ -98,8 +103,12 @@ internal class DiagnosticCollection : IEnumerable<Diagnostic>
     public void AddUnderlyingTypeMustNotBeSameAsValueObjectType(INamedTypeSymbol underlyingType) => 
         AddDiagnostic(_underlyingTypeMustNotBeSameAsValueObject, underlyingType.Locations, underlyingType.Name);
 
-    public void AddUnderlyingTypeCannotBeCollection(INamedTypeSymbol voClass, INamedTypeSymbol underlyingType) => 
-        AddDiagnostic(_underlyingTypeCannotBeCollection, voClass.Locations, voClass.Name, underlyingType);
+    // public void AddUnderlyingTypeCannotBeCollection(INamedTypeSymbol voClass, INamedTypeSymbol underlyingType) => 
+    //     AddDiagnostic(_underlyingTypeCannotBeCollection, voClass.Locations, voClass.Name, underlyingType);
+
+    public void AddUnderlyingTypeCannotBeCollection(INamedTypeSymbol voClass, Type underlyingType) => AddDiagnostic(_underlyingTypeCannotBeCollection, voClass.Locations, voClass.Name, underlyingType);
+
+    public void AddInvalidConversions(Location location) => AddDiagnostic(_invalidConversions, location);
 
     public void AddInstanceMethodCannotHaveNullArgumentName(INamedTypeSymbol voClass) => 
         AddDiagnostic(_instanceMethodCannotHaveNullArgumentName, voClass.Locations, voClass.Name);

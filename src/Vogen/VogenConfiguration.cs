@@ -2,32 +2,38 @@
 
 namespace Vogen;
 
-internal readonly struct VogenConfiguration
+public readonly struct VogenConfiguration
 {
     public VogenConfiguration(
-        Type validationExceptionType,
-        Conversions conversions)
+        Type? underlyingType,
+        Type? validationExceptionType,
+        Conversions? conversions)
     {
+        UnderlyingType = underlyingType;
         ValidationExceptionType = validationExceptionType;
         Conversions = conversions;
     }
 
     public static VogenConfiguration Combine(
-        VogenConfiguration? attributeValues,
+        VogenConfiguration localValues,
         VogenConfiguration? globalValues)
     {
 
-        var conversions = attributeValues?.Conversions ?? globalValues?.Conversions ?? DefaultInstance.Conversions;
-        var validationExceptionType = attributeValues?.ValidationExceptionType ?? globalValues?.ValidationExceptionType ?? DefaultInstance.ValidationExceptionType;
+        Conversions? conversions = localValues.Conversions ?? globalValues?.Conversions ?? DefaultInstance.Conversions;
+        var validationExceptionType = localValues.ValidationExceptionType ?? globalValues?.ValidationExceptionType ?? DefaultInstance.ValidationExceptionType;
+        var underlyingType = localValues.UnderlyingType ?? globalValues?.UnderlyingType ?? DefaultInstance.UnderlyingType;
 
-        return new VogenConfiguration(validationExceptionType, conversions);
+        return new VogenConfiguration(underlyingType, validationExceptionType, conversions);
     }
 
-    public Type ValidationExceptionType { get; }
+    public Type? UnderlyingType { get; }
+    
+    public Type? ValidationExceptionType { get; }
 
-    public Conversions Conversions { get; }
+    public Conversions? Conversions { get; }
 
     public static readonly VogenConfiguration DefaultInstance = new(
+        underlyingType: typeof(int),
         validationExceptionType: typeof(ValueObjectValidationException),
-        conversions: Conversions.Default);
+        conversions: Vogen.Conversions.Default);
 }

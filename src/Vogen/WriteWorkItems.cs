@@ -29,8 +29,7 @@ internal static class WriteWorkItems
         _structGenerator = new StructGenerator();
     }
 
-    public static void WriteVo(VoWorkItem item, Compilation compilation, SourceProductionContext context,
-        DiagnosticCollection diagnostics, VogenConfiguration? vogenConfiguration)
+    public static void WriteVo(VoWorkItem item, Compilation compilation, SourceProductionContext context)
     {
         // get the recorded user class
         TypeDeclarationSyntax voClass = item.TypeToAugment;

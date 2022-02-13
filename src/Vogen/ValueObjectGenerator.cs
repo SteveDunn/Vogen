@@ -46,7 +46,7 @@ namespace Vogen
         static void Execute(
             Compilation compilation, 
             ImmutableArray<VoTarget> typeDeclarations,
-            ImmutableArray<AttributeSyntax> defaults,
+            ImmutableArray<AttributeSyntax> globalConfigAttributes,
             SourceProductionContext context)
         {
             if (typeDeclarations.IsDefaultOrEmpty)
@@ -56,27 +56,28 @@ namespace Vogen
 
             DiagnosticCollection diagnostics = new DiagnosticCollection();
 
+            // if there are some, get the
+            VogenConfiguration globalConfig =
+                GlobalConfigFilter.GetDefaultConfigFromGlobalAttribute(globalConfigAttributes, compilation, diagnostics) ?? default;
+
             // get all of the ValueObject types found.
-            List<VoWorkItem> workItems = GetWorkItems(typeDeclarations, context, diagnostics).ToList();
+            List<VoWorkItem> workItems = GetWorkItems(typeDeclarations, context, diagnostics, globalConfig).ToList();
 
             if (workItems.Count > 0)
             {
-                // if there are some, get the
-                var globalConfig = GlobalConfigFilter.GetDefaultConfigFromGlobalAttribute(defaults, compilation, context.ReportDiagnostic);
-
                 foreach (var eachWorkItem in workItems)
                 {
-                    WriteWorkItems.WriteVo(eachWorkItem, compilation, context, diagnostics, globalConfig);
+                    WriteWorkItems.WriteVo(eachWorkItem, compilation, context);
                 }
             }
 
             ReportErrors(context, diagnostics);
         }
 
-        static IEnumerable<VoWorkItem> GetWorkItems(
-            ImmutableArray<VoTarget> targets,
+        static IEnumerable<VoWorkItem> GetWorkItems(ImmutableArray<VoTarget> targets,
             SourceProductionContext context,
-            DiagnosticCollection diagnostics)
+            DiagnosticCollection diagnostics, 
+            VogenConfiguration globalConfig)
         {
             if (targets.IsDefaultOrEmpty)
             {
@@ -90,7 +91,7 @@ namespace Vogen
                     continue;
                 }
                 
-                var ret = BuildWorkItems.TryBuild(eachTarget, context, diagnostics);
+                var ret = BuildWorkItems.TryBuild(eachTarget, context, diagnostics, globalConfig);
                 
                 if (ret is not null)
                 {

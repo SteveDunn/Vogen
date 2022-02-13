@@ -11,11 +11,14 @@ using Newtonsoft.Json;
 using Vogen;
 
 
-[assembly: VogenDefaults]
+[assembly: VogenDefaults(underlyingType: typeof(string), conversions: Conversions.None)]
 
-Console.WriteLine("!!");
-var id = MyId.From(123);
+var id = FooVo.From(new Bar(123, "aaa"));
+
+Console.WriteLine($"{id.Value} ({id.Value.GetType()})");
 
 
-[ValueObject(typeof(int))]
-public partial struct MyId {}
+public record struct Bar(int Age, string Name);
+
+[ValueObject(conversions: Conversions.None, underlyingType: typeof(Bar))]
+public partial class FooVo { }

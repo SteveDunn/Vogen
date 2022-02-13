@@ -5,6 +5,7 @@ using System.Linq;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
+using Vogen.Diagnostics;
 
 namespace Vogen;
 
@@ -29,12 +30,12 @@ internal static class GlobalConfigFilter
     /// </summary>
     /// <param name="defaults"></param>
     /// <param name="compilation"></param>
-    /// <param name="reportDiagnostic"></param>
+    /// <param name="diags"></param>
     /// <returns></returns>
     public static VogenConfiguration? GetDefaultConfigFromGlobalAttribute(
         ImmutableArray<AttributeSyntax> defaults,
         Compilation compilation,
-        Action<Diagnostic> reportDiagnostic)
+        DiagnosticCollection diags)
     {
         if (defaults.IsDefaultOrEmpty)
         {
@@ -48,95 +49,129 @@ internal static class GlobalConfigFilter
             return null;
         }
 
-        INamedTypeSymbol? defaultsAttribute = compilation.GetTypeByMetadataName("Vogen.VogenDefaultsAttribute");
-        if (defaultsAttribute is null)
+        INamedTypeSymbol? allThatMatchByName = compilation.GetTypeByMetadataName("Vogen.VogenDefaultsAttribute");
+        if (allThatMatchByName is null)
         {
-            // The attribute isn't part of the compilation for some reason...
             return null;
         }
 
-        foreach (AttributeData attribute in assemblyAttributes)
+        AttributeData? matchingAttribute = assemblyAttributes.SingleOrDefault(aa =>
+            allThatMatchByName.Equals(aa.AttributeClass, SymbolEqualityComparer.Default));
+
+        if (matchingAttribute == null)
         {
-            if (!defaultsAttribute.Equals(attribute.AttributeClass, SymbolEqualityComparer.Default))
-            {
-                continue;
-            }
-
-            Type invalidExceptionType = typeof(ValueObjectValidationException);
-            Conversions conversions = Conversions.Default;
-            bool hasMisconfiguredInput = false;
-
-            if (!attribute.ConstructorArguments.IsEmpty)
-            {
-                // make sure we don't have any errors
-                ImmutableArray<TypedConstant> args = attribute.ConstructorArguments;
-
-                foreach (TypedConstant arg in args)
-                {
-                    if (arg.Kind == TypedConstantKind.Error)
-                    {
-                        // have an error, so don't try and do any generation
-                        hasMisconfiguredInput = true;
-                    }
-                }
-
-                switch (args.Length)
-                {
-                    case 2:
-                        conversions = (Conversions) (args[1].Value ?? Conversions.Default);
-                        goto case 1;
-                    case 1:
-                        invalidExceptionType = (Type) (args[0].Value ?? typeof(ValueObjectValidationException));
-                        break;
-                }
-            }
-
-            if (!attribute.NamedArguments.IsEmpty)
-            {
-                foreach (KeyValuePair<string, TypedConstant> arg in attribute.NamedArguments)
-                {
-                    TypedConstant typedConstant = arg.Value;
-                    if (typedConstant.Kind == TypedConstantKind.Error)
-                    {
-                        hasMisconfiguredInput = true;
-                    }
-                    else
-                    {
-                        switch (arg.Key)
-                        {
-                            case "invalidExceptionType":
-                                invalidExceptionType = (Type) typedConstant.Value!;
-                                break;
-                            case "conversions":
-                                conversions = (Conversions) (typedConstant.Value ?? Conversions.Default);
-                                break;
-                        }
-                    }
-                }
-            }
-
-            if (hasMisconfiguredInput)
-            {
-                // skip further generator execution and let compiler generate the errors
-                break;
-            }
-
-            SyntaxNode? syntax = null;
-            if (!conversions.IsValidFlags())
-            {
-                syntax = attribute.ApplicationSyntaxReference?.GetSyntax();
-                if (syntax is not null)
-                {
-                    reportDiagnostic(InvalidConversionDiagnostic.Create(syntax));
-                }
-            }
-
-            return new VogenConfiguration(invalidExceptionType, conversions);
+            return null;
         }
 
-        return null;
+        return BuildConfigurationFromAttribute(matchingAttribute, diags);
+    }
+    
+    public static VogenConfiguration? BuildConfigurationFromAttribute(AttributeData matchingAttribute, 
+        DiagnosticCollection diagnostics)
+    {
+        Type? invalidExceptionType = typeof(ValueObjectValidationException);
+        Type? underlyingType = typeof(ValueObjectValidationException);
+        Conversions? conversions = null;
+        
+        bool hasMisconfiguredInput = false;
+
+        if (!matchingAttribute.ConstructorArguments.IsEmpty)
+        {
+            // make sure we don't have any errors
+            ImmutableArray<TypedConstant> args = matchingAttribute.ConstructorArguments;
+
+            foreach (TypedConstant arg in args)
+            {
+                if (arg.Kind == TypedConstantKind.Error)
+                {
+                    // have an error, so don't try and do any generation
+                    hasMisconfiguredInput = true;
+                }
+            }
+
+            switch (args.Length)
+            {
+                case 3:
+                    invalidExceptionType = (Type?)args[2].Value;
+                    goto case 2;
+                case 2:
+                    conversions = (Conversions)args[1].Value!;
+                    goto case 1;
+                case 1:
+                    INamedTypeSymbol? s = (INamedTypeSymbol?)args[0].Value;
+                 //   compilation.GetSemanticModel(s.)
+
+                    string? qualifiedTypeName = s.FullName();// GetQualifiedTypeName(s);
+                    underlyingType = s == null ? null : Type.GetType(qualifiedTypeName ?? throw new InvalidOperationException($"No full name for '{s}'"));
+                    break;
+            }
+        }
+        
+
+        if (!matchingAttribute.NamedArguments.IsEmpty)
+        {
+            foreach (KeyValuePair<string, TypedConstant> arg in matchingAttribute.NamedArguments)
+            {
+                TypedConstant typedConstant = arg.Value;
+                if (typedConstant.Kind == TypedConstantKind.Error)
+                {
+                    hasMisconfiguredInput = true;
+                }
+                else
+                {
+                    switch (arg.Key)
+                    {
+                        case "underlyingType":
+                            underlyingType = (Type) typedConstant.Value!;
+                            break;
+                        case "invalidExceptionType":
+                            invalidExceptionType = (Type) typedConstant.Value!;
+                            break;
+                        case "conversions":
+                            conversions = (Conversions) (typedConstant.Value ?? Conversions.Default);
+                            break;
+                    }
+                }
+            }
+        }
+
+        if (hasMisconfiguredInput)
+        {
+            // skip further generator execution and let compiler generate the errors
+            return null;
+        }
+
+        SyntaxNode? syntax = null;
+        if (conversions.HasValue && !conversions.Value.IsValidFlags())
+        {
+            syntax = matchingAttribute.ApplicationSyntaxReference?.GetSyntax();
+            if (syntax is not null)
+            {
+                diagnostics.AddInvalidConversions(syntax.GetLocation());
+                //diagnostics(InvalidConversionDiagnostic.Create(syntax));
+            }
+        }
+
+        return new VogenConfiguration(underlyingType, invalidExceptionType, conversions);
     }
 
+    private static string? GetQualifiedTypeName(ISymbol? symbol)
+    {
+        if (symbol == null)
+        {
+            return null;
+        }
+        
+        return symbol.ContainingNamespace
+               + "." + symbol.Name
+               + ", " + symbol.ContainingAssembly;
+    }
+
+    /// <summary>
+    /// Tries to get the syntax element for any matching attribute that might exist in the provided context.
+    /// </summary>
+    /// <param name="context"></param>
+    /// <returns></returns>
     public static AttributeSyntax? GetAssemblyLevelAttributeForConfiguration(GeneratorSyntaxContext context)
     {
         // we know the node is a AttributeListSyntax thanks to IsSyntaxTargetForGeneration

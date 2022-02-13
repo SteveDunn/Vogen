@@ -6,16 +6,20 @@
     public class VogenDefaultsAttribute : Attribute
     {
         public VogenDefaultsAttribute(
-            Type? typeOfValidationException = null!,
-            Conversions conversions = Conversions.Default)
+            Type? underlyingType = null!,
+            Conversions conversions = Vogen.Conversions.Default,
+            Type? typeOfValidationException = null!)
         {
+            UnderlyingType = underlyingType ?? typeof(int);
             TypeOfValidationException = typeOfValidationException ?? typeof(ValueObjectValidationException);
             Conversions = conversions;
         }
 
-        public Type TypeOfValidationException { get; }
+        public Type UnderlyingType { get;  } = typeof(int);
 
-        public Conversions Conversions { get; }
+        public Type TypeOfValidationException { get; } = typeof(ValueObjectValidationException);
+
+        public Conversions Conversions { get; } = Conversions.Default;
     }
 }
 

@@ -111,15 +111,15 @@ static class SemanticHelper
 
 }
 
-internal static class InvalidConversionDiagnostic
-{
-    internal const string Id = "STI3";
-    internal const string Message = "The Conversion value provided is not a valid combination of flags";
-    internal const string Title = "Invalid conversion";
-
-    public static Diagnostic Create(SyntaxNode currentNode) =>
-        Diagnostic.Create(
-            new DiagnosticDescriptor(
-                Id, Title, Message, category: "Usage", defaultSeverity: DiagnosticSeverity.Warning, isEnabledByDefault: true),
-            currentNode.GetLocation());
-}
+// internal static class InvalidConversionDiagnostic
+// {
+//     internal const string Id = "STI3";
+//     internal const string Message = "The Conversion value provided is not a valid combination of flags";
+//     internal const string Title = "Invalid conversion";
+//
+//     public static Diagnostic Create(SyntaxNode currentNode) =>
+//         Diagnostic.Create(
+//             new DiagnosticDescriptor(
+//                 Id, Title, Message, category: "Usage", defaultSeverity: DiagnosticSeverity.Warning, isEnabledByDefault: true),
+//             currentNode.GetLocation());
+// }

@@ -12,16 +12,16 @@ namespace Vogen;
 
 internal static class BuildWorkItems
 {
-    public static VoWorkItem? TryBuild(
-        VoTarget target,
+    public static VoWorkItem? TryBuild(VoTarget target,
         SourceProductionContext context,
-        DiagnosticCollection diagnostics)
+        DiagnosticCollection diagnostics, 
+        VogenConfiguration globalConfig)
     {
         var tds = target.TypeToAugment;
 
         var voClass = target.SymbolForType;
 
-        var attributes = voClass.GetAttributes();
+        ImmutableArray<AttributeData> attributes = voClass.GetAttributes();
 
         if (attributes.Length == 0)
         {
@@ -48,7 +48,16 @@ internal static class BuildWorkItems
 
         ImmutableArray<TypedConstant> args = voAttribute.ConstructorArguments;
 
-        Conversions conversions = Conversions.None;
+        var localConfig = GlobalConfigFilter.BuildConfigurationFromAttribute(voAttribute, diagnostics);
+        
+        if (localConfig == null)
+        {
+            return null;
+        }
+
+        var config = VogenConfiguration.Combine(localConfig.Value, globalConfig);
+
+//        Conversions conversions = Conversions.None;
 
         foreach (TypedConstant arg in args)
         {
@@ -58,24 +67,24 @@ internal static class BuildWorkItems
             }
         }
 
-        if (args.Length == 0)
-        {
-            diagnostics.AddMustSpecifyUnderlyingType(voClass);
-            return null;
-        }
-
-        var underlyingType = (INamedTypeSymbol?) args[0].Value;
-
-        if (underlyingType is null)
-        {
-            diagnostics.AddMustSpecifyUnderlyingType(voClass);
-            return null;
-        }
-
-        if (args.Length == 2 && args[1].Value is not null)
-        {
-            conversions = (Conversions) args[1].Value!;
-        }
+        // if (args.Length == 0)
+        // {
+        //     diagnostics.AddMustSpecifyUnderlyingType(voClass);
+        //     return null;
+        // }
+        //
+        // var underlyingType = (INamedTypeSymbol?) args[0].Value;
+        //
+        // if (underlyingType is null)
+        // {
+        //     diagnostics.AddMustSpecifyUnderlyingType(voClass);
+        //     return null;
+        // }
+        //
+        // if (args.Length == 2 && args[1].Value is not null)
+        // {
+        //     conversions = (Conversions) args[1].Value!;
+        // }
 
         var containingType = target.ContainingType;// context.SemanticModel.GetDeclaredSymbol(context.Node)!.ContainingType;
         if (containingType != null)
@@ -113,25 +122,37 @@ internal static class BuildWorkItems
             }
         }
 
-        if (SymbolEqualityComparer.Default.Equals(voClass, underlyingType))
+        if (config.UnderlyingType == voClass.GetType())
         {
             diagnostics.AddUnderlyingTypeMustNotBeSameAsValueObjectType(voClass);
         }
 
-        if (underlyingType.ImplementsInterfaceOrBaseClass(typeof(ICollection)))
+        // if (SymbolEqualityComparer.Default.Equals(voClass, underlyingType))
+        // {
+        //     diagnostics.AddUnderlyingTypeMustNotBeSameAsValueObjectType(voClass);
+        // }
+
+        if (config.UnderlyingType!.IsAssignableFrom(typeof(ICollection)))
         {
-            diagnostics.AddUnderlyingTypeCannotBeCollection(voClass, underlyingType);
+            diagnostics.AddUnderlyingTypeCannotBeCollection(voClass, config.UnderlyingType!);
         }
 
-        bool isValueType = underlyingType.IsValueType;
+        // if (underlyingType.ImplementsInterfaceOrBaseClass(typeof(ICollection)))
+        // {
+        //     diagnostics.AddUnderlyingTypeCannotBeCollection(voClass, underlyingType);
+        // }
+
+        bool isValueType = config.UnderlyingType!.IsValueType;
+        //bool isValueType = underlyingType.IsValueType;
 
         return new VoWorkItem
         {
             InstanceProperties = instanceProperties.ToList(),
             TypeToAugment = tds,
             IsValueType = isValueType,
-            UnderlyingType = underlyingType,
-            Conversions = conversions,
+            UnderlyingType = config.UnderlyingType ?? throw new InvalidOperationException("Must have underlying type"),
+            Conversions = config.Conversions ?? throw new InvalidOperationException("Must have Conversions"),
+            TypeForValidationExceptions = config.ValidationExceptionType ?? throw new InvalidOperationException("Must have validation exception type"),
             ValidateMethod = validateMethod,
             FullNamespace = voClass.FullNamespace()
         };

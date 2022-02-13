@@ -69,22 +69,22 @@ public static {classDeclarationSyntax.Identifier} {instanceProperties.Name} = ne
 
     private static string BuildInstanceValue(VoWorkItem item, object instancePropertiesValue)
     {
-        if (item.UnderlyingType?.FullName() == typeof(String).FullName)
+        if (item.UnderlyingType?.FullName == typeof(String).FullName)
         {
             return $@"""{instancePropertiesValue}""";
         }
 
-        if (item.UnderlyingType?.FullName() == typeof(decimal).FullName)
+        if (item.UnderlyingType?.FullName == typeof(decimal).FullName)
         {
             return $@"{instancePropertiesValue}m";
         }
 
-        if (item.UnderlyingType?.FullName() == typeof(float).FullName)
+        if (item.UnderlyingType?.FullName == typeof(float).FullName)
         {
             return $@"{instancePropertiesValue}f";
         }
 
-        if (item.UnderlyingType?.FullName() == typeof(double).FullName)
+        if (item.UnderlyingType?.FullName == typeof(double).FullName)
         {
             return $@"{instancePropertiesValue}d";
         }

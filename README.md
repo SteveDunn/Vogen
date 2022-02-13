@@ -570,3 +570,25 @@ To test in VS, you'll have a new 'launch profile':
 ![image showing the new launch profile for Roslyn](/docs/img/2022-02-13-05-45-54.png)
 
 Select the Vogen project as the active project, and from the dropdown, select 'Roslyn'. Then just F5 to start debugging.
+
+# How is it configured?
+
+Each Value Object can have it's own _optional_ configuration. Configuration includes:
+
+* The underlying type
+* Any 'conversions' (Dapper, System.Text.Json, Newtonsoft.Json, etc.)
+* The type of the exception that is throw when validation fails
+
+If any of those above are not specified, then global configuration is used. It looks like this:
+```csharp
+[assembly: VogenDefaults(underlyingType: typeof(int), conversions: Conversions.None)]
+```
+
+Those again are optional. If they're not specified, then they are defaulted to:
+
+* Underlying type = `typeof(int)`
+* Conversions = `Conversions.Default` (`TypeConverter` and `System.Text.Json`)
+* Validation exception type = `typeof(ValueObjectValidationException)`
+
+If any conversions are supplied that don't match the enum, then compilation fails.
+If an exception type is supplied that does not derived from `Exception`, then compilation fails.
