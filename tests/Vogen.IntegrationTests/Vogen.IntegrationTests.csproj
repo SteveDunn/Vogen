@@ -31,7 +31,7 @@
         <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
 		<PackageReference Include="Dapper" Version="2.0.123" />
 		<PackageReference Include="FluentAssertions" Version="6.5.1" />
-		<PackageReference Include="Microsoft.CodeAnalysis.Common" Version="4.0.1" />
+		<PackageReference Include="Microsoft.CodeAnalysis.Common" Version="4.1.0" />
 		<PackageReference Include="Microsoft.CodeAnalysis.CSharp" Version="4.0.1" />
 		<PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.0.0" />
 		<PackageReference Include="Verify.SourceGenerators" Version="1.3.0" />
