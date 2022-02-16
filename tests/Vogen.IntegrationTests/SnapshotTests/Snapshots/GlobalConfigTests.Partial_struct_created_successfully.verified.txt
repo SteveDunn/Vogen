@@ -16,7 +16,7 @@ namespace Whatever
 [System.ComponentModel.TypeConverter(typeof(CustomerIdTypeConverter))]
 
     [System.Diagnostics.DebuggerTypeProxyAttribute(typeof(CustomerIdDebugView))]
-    [System.Diagnostics.DebuggerDisplayAttribute("Underlying type: int, Value = { _value }")]
+    [System.Diagnostics.DebuggerDisplayAttribute("Underlying type: , Value = { _value }")]
     public partial struct CustomerId : System.IEquatable<CustomerId>
     {
 #if DEBUG    
@@ -25,9 +25,9 @@ namespace Whatever
 
         private readonly bool _isInitialized;
         
-        private readonly int _value;
+        private readonly  _value;
 
-        public readonly int Value
+        public readonly  Value
         {
             [System.Diagnostics.DebuggerStepThroughAttribute]
             get
@@ -50,7 +50,7 @@ namespace Whatever
         }
 
         [System.Diagnostics.DebuggerStepThroughAttribute]
-        private CustomerId(int value) 
+        private CustomerId( value) 
         {
             _value = value;
             _isInitialized = true;
@@ -61,16 +61,11 @@ namespace Whatever
         /// </summary>
         /// <param name="value">The underlying type.</param>
         /// <returns>An instance of this type.</returns>
-        public static CustomerId From(int value)
+        public static CustomerId From( value)
         {
             CustomerId instance = new CustomerId(value);
 
-            var validation = CustomerId.validate(value);
-            if (validation != Vogen.Validation.Ok)
-            {
-                throw new ValueObjectValidationException(validation.ErrorMessage);
-            }
-
+            
 
             return instance;
         }
@@ -81,10 +76,10 @@ namespace Whatever
             // We treat anything uninitialized as not equal to anything, even other uninitialized instances of this type.
             if(!_isInitialized || !other._isInitialized) return false;
 
-            return System.Collections.Generic.EqualityComparer<int>.Default.Equals(Value, other.Value);
+            return System.Collections.Generic.EqualityComparer<>.Default.Equals(Value, other.Value);
         }
 
-        public readonly bool Equals(int primitive) => Value.Equals(primitive);
+        public readonly bool Equals( primitive) => Value.Equals(primitive);
 
         public readonly override bool Equals(object obj)
         {
@@ -94,13 +89,13 @@ namespace Whatever
         public static bool operator ==(CustomerId left, CustomerId right) => Equals(left, right);
         public static bool operator !=(CustomerId left, CustomerId right) => !(left == right);
 
-        public static bool operator ==(CustomerId left, int right) => Equals(left.Value, right);
-        public static bool operator !=(CustomerId left, int right) => !Equals(left.Value, right);
+        public static bool operator ==(CustomerId left,  right) => Equals(left.Value, right);
+        public static bool operator !=(CustomerId left,  right) => !Equals(left.Value, right);
 
-        public static bool operator ==(int left, CustomerId right) => Equals(left, right.Value);
-        public static bool operator !=(int left, CustomerId right) => !Equals(left, right.Value);
+        public static bool operator ==( left, CustomerId right) => Equals(left, right.Value);
+        public static bool operator !=( left, CustomerId right) => !Equals(left, right.Value);
 
-        public readonly override int GetHashCode() => System.Collections.Generic.EqualityComparer<int>.Default.GetHashCode(_value);
+        public readonly override int GetHashCode() => System.Collections.Generic.EqualityComparer<>.Default.GetHashCode(_value);
 
         public readonly override string ToString() => Value.ToString();
 

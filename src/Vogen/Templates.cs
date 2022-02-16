@@ -81,7 +81,14 @@ internal static class Templates
         /// <returns></returns>
         public static string? ResolveTemplateNameFromTypeName(INamedTypeSymbol? nts)
         {
-            if (nts == null) return null;
+            // the symbol might be null, which means it wasn't provided in the source
+            // (either in ValueObjectAttribute or in the VogenConfigurationAttribute)
+            // so we default it to int
+            if (nts == null)
+            {
+                return "Int";
+            }
+
             if (nts.SpecialType != SpecialType.None)
             {
                 var s = nts.SpecialType.ToString();

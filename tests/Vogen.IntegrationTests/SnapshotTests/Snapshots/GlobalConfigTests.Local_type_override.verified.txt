@@ -16,7 +16,7 @@ namespace Whatever
 [System.ComponentModel.TypeConverter(typeof(CustomerIdTypeConverter))]
 
     [System.Diagnostics.DebuggerTypeProxyAttribute(typeof(CustomerIdDebugView))]
-    [System.Diagnostics.DebuggerDisplayAttribute("Underlying type: int, Value = { _value }")]
+    [System.Diagnostics.DebuggerDisplayAttribute("Underlying type: float, Value = { _value }")]
     public partial struct CustomerId : System.IEquatable<CustomerId>
     {
 #if DEBUG    
@@ -25,9 +25,9 @@ namespace Whatever
 
         private readonly bool _isInitialized;
         
-        private readonly int _value;
+        private readonly float _value;
 
-        public readonly int Value
+        public readonly float Value
         {
             [System.Diagnostics.DebuggerStepThroughAttribute]
             get
@@ -50,7 +50,7 @@ namespace Whatever
         }
 
         [System.Diagnostics.DebuggerStepThroughAttribute]
-        private CustomerId(int value) 
+        private CustomerId(float value) 
         {
             _value = value;
             _isInitialized = true;
@@ -61,16 +61,11 @@ namespace Whatever
         /// </summary>
         /// <param name="value">The underlying type.</param>
         /// <returns>An instance of this type.</returns>
-        public static CustomerId From(int value)
+        public static CustomerId From(float value)
         {
             CustomerId instance = new CustomerId(value);
 
-            var validation = CustomerId.validate(value);
-            if (validation != Vogen.Validation.Ok)
-            {
-                throw new ValueObjectValidationException(validation.ErrorMessage);
-            }
-
+            
 
             return instance;
         }
@@ -81,10 +76,10 @@ namespace Whatever
             // We treat anything uninitialized as not equal to anything, even other uninitialized instances of this type.
             if(!_isInitialized || !other._isInitialized) return false;
 
-            return System.Collections.Generic.EqualityComparer<int>.Default.Equals(Value, other.Value);
+            return System.Collections.Generic.EqualityComparer<float>.Default.Equals(Value, other.Value);
         }
 
-        public readonly bool Equals(int primitive) => Value.Equals(primitive);
+        public readonly bool Equals(float primitive) => Value.Equals(primitive);
 
         public readonly override bool Equals(object obj)
         {
@@ -94,13 +89,13 @@ namespace Whatever
         public static bool operator ==(CustomerId left, CustomerId right) => Equals(left, right);
         public static bool operator !=(CustomerId left, CustomerId right) => !(left == right);
 
-        public static bool operator ==(CustomerId left, int right) => Equals(left.Value, right);
-        public static bool operator !=(CustomerId left, int right) => !Equals(left.Value, right);
+        public static bool operator ==(CustomerId left, float right) => Equals(left.Value, right);
+        public static bool operator !=(CustomerId left, float right) => !Equals(left.Value, right);
 
-        public static bool operator ==(int left, CustomerId right) => Equals(left, right.Value);
-        public static bool operator !=(int left, CustomerId right) => !Equals(left, right.Value);
+        public static bool operator ==(float left, CustomerId right) => Equals(left, right.Value);
+        public static bool operator !=(float left, CustomerId right) => !Equals(left, right.Value);
 
-        public readonly override int GetHashCode() => System.Collections.Generic.EqualityComparer<int>.Default.GetHashCode(_value);
+        public readonly override int GetHashCode() => System.Collections.Generic.EqualityComparer<float>.Default.GetHashCode(_value);
 
         public readonly override string ToString() => Value.ToString();
 
@@ -125,7 +120,7 @@ namespace Whatever
         {
             public override CustomerId Read(ref System.Text.Json.Utf8JsonReader reader, System.Type typeToConvert, System.Text.Json.JsonSerializerOptions options)
             {
-                return new CustomerId(reader.GetInt32());
+                return CustomerId.From(reader.GetSingle());
             }
 
             public override void Write(System.Text.Json.Utf8JsonWriter writer, CustomerId value, System.Text.Json.JsonSerializerOptions options)
@@ -139,29 +134,29 @@ namespace Whatever
         {
             public override bool CanConvertFrom(System.ComponentModel.ITypeDescriptorContext context, System.Type sourceType)
             {
-                return sourceType == typeof(int) || sourceType == typeof(string) || base.CanConvertFrom(context, sourceType);
+                return sourceType == typeof(float) || sourceType == typeof(string) || base.CanConvertFrom(context, sourceType);
             }
 
             public override object ConvertFrom(System.ComponentModel.ITypeDescriptorContext context, System.Globalization.CultureInfo culture, object value)
             {
                 return value switch
                 {
-                    int intValue => new CustomerId(intValue),
-                    string stringValue when !string.IsNullOrEmpty(stringValue) && int.TryParse(stringValue, out var result) => new CustomerId(result),
+                    float floatValue => new CustomerId(floatValue),
+                    string stringValue when !string.IsNullOrEmpty(stringValue) && float.TryParse(stringValue, out var result) => new CustomerId(result),
                     _ => base.ConvertFrom(context, culture, value),
                 };
             }
 
             public override bool CanConvertTo(System.ComponentModel.ITypeDescriptorContext context, System.Type sourceType)
             {
-                return sourceType == typeof(int) || sourceType == typeof(string) || base.CanConvertTo(context, sourceType);
+                return sourceType == typeof(float) || sourceType == typeof(string) || base.CanConvertTo(context, sourceType);
             }
 
             public override object ConvertTo(System.ComponentModel.ITypeDescriptorContext context, System.Globalization.CultureInfo culture, object value, System.Type destinationType)
             {
                 if (value is CustomerId idValue)
                 {
-                    if (destinationType == typeof(int))
+                    if (destinationType == typeof(float))
                     {
                         return idValue.Value;
                     }
@@ -189,7 +184,7 @@ namespace Whatever
             }
 
             public bool IsInitialized => _t._isInitialized;
-            public string UnderlyingType => "System.Int32";
+            public string UnderlyingType => "System.Single";
             public string Value => _t._isInitialized ? _t._value.ToString() : "[not initialized]" ;
 
             #if DEBUG

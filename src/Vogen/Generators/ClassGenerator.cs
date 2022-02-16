@@ -8,22 +8,24 @@ public class ClassGenerator : IGenerateSourceCode
     {
         var className = tds.Identifier;
 
+        var itemUnderlyingType = item.UnderlyingType?.ToString() ?? "System.Int32";
+
         return $@"
 using Vogen;
 
 {Util.WriteStartNamespace(item.FullNamespace)}
     {Util.GenerateAnyConversionAttributes(tds, item)}
     [System.Diagnostics.DebuggerTypeProxyAttribute(typeof({className}DebugView))]
-    [System.Diagnostics.DebuggerDisplayAttribute(""Underlying type: {item.UnderlyingType}, Value = {{ _value }}"")]
+    [System.Diagnostics.DebuggerDisplayAttribute(""Underlying type: {itemUnderlyingType}, Value = {{ _value }}"")]
     {Util.GenerateModifiersFor(tds)} class {className} : System.IEquatable<{className}>
     {{
 #if DEBUG    
         private readonly System.Diagnostics.StackTrace _stackTrace = null;
 #endif
         private readonly bool _isInitialized;
-        private readonly {item.UnderlyingType} _value;
+        private readonly {itemUnderlyingType} _value;
         
-public {item.UnderlyingType} Value
+public {itemUnderlyingType} Value
         {{
             [System.Diagnostics.DebuggerStepThroughAttribute]
             get
@@ -45,7 +47,7 @@ public {item.UnderlyingType} Value
         }}
 
         [System.Diagnostics.DebuggerStepThroughAttribute]
-        private {className}({item.UnderlyingType} value)
+        private {className}({itemUnderlyingType} value)
         {{
             _value = value;
             _isInitialized = true;
@@ -56,7 +58,7 @@ public {item.UnderlyingType} Value
         /// </summary>
         /// <param name=""value"">The underlying type.</param>
         /// <returns>An instance of this type.</returns>
-        public static {className} From({item.UnderlyingType} value)
+        public static {className} From({itemUnderlyingType} value)
         {{
             {GenerateNullCheckIfNeeded(item)}
 
@@ -83,10 +85,10 @@ public {item.UnderlyingType} Value
                 return true;
             }}
 
-            return GetType() == other.GetType() && System.Collections.Generic.EqualityComparer<{item.UnderlyingType}>.Default.Equals(Value, other.Value);
+            return GetType() == other.GetType() && System.Collections.Generic.EqualityComparer<{itemUnderlyingType}>.Default.Equals(Value, other.Value);
         }}
 
-        public bool Equals({item.UnderlyingType} primitive) => Value.Equals(primitive);
+        public bool Equals({itemUnderlyingType} primitive) => Value.Equals(primitive);
 
         public override bool Equals(object obj)
         {{
@@ -111,11 +113,11 @@ public {item.UnderlyingType} Value
         public static bool operator ==({className} left, {className} right) => Equals(left, right);
         public static bool operator !=({className} left, {className} right) => !Equals(left, right);
 
-        public static bool operator ==({className} left, {item.UnderlyingType} right) => Equals(left.Value, right);
-        public static bool operator !=({className} left, {item.UnderlyingType} right) => !Equals(left.Value, right);
+        public static bool operator ==({className} left, {itemUnderlyingType} right) => Equals(left.Value, right);
+        public static bool operator !=({className} left, {itemUnderlyingType} right) => !Equals(left.Value, right);
 
-        public static bool operator ==({item.UnderlyingType} left, {className} right) => Equals(left, right.Value);
-        public static bool operator !=({item.UnderlyingType} left, {className} right) => !Equals(left, right.Value);
+        public static bool operator ==({itemUnderlyingType} left, {className} right) => Equals(left, right.Value);
+        public static bool operator !=({itemUnderlyingType} left, {className} right) => !Equals(left, right.Value);
 
         public override int GetHashCode()
         {{
@@ -124,7 +126,7 @@ public {item.UnderlyingType} Value
                 int hash = (int) 2166136261;
                 hash = (hash * 16777619) ^ Value.GetHashCode();
                 hash = (hash * 16777619) ^ GetType().GetHashCode();
-                hash = (hash * 16777619) ^ System.Collections.Generic.EqualityComparer<{item.UnderlyingType}>.Default.GetHashCode();
+                hash = (hash * 16777619) ^ System.Collections.Generic.EqualityComparer<{itemUnderlyingType}>.Default.GetHashCode();
                 return hash;
             }}
         }}
@@ -139,7 +141,7 @@ public {item.UnderlyingType} Value
                 string message = ""Use of uninitialized Value Object."";
 #endif
 
-                throw new ValueObjectValidationException(message);
+                throw new {item.ValidationExceptionFullName}(message);
             }}
         }}
 
@@ -159,7 +161,7 @@ public {item.UnderlyingType} Value
         voWorkItem.IsValueType ? string.Empty
             : $@"            if (value is null)
             {{
-                throw new Vogen.ValueObjectValidationException(""Cannot create a value object with null."");
+                throw new {voWorkItem.ValidationExceptionFullName}(""Cannot create a value object with null."");
             }}
 ";
 }

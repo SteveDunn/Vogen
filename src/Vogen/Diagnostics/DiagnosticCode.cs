@@ -17,5 +17,6 @@ public enum DiagnosticCode
     CannotHaveUserConstructors = 8,
     UsingDefaultProhibited = 9,
     UsingNewProhibited = 10,
-    InvalidConversions = 11
+    InvalidConversions = 11,
+    CustomExceptionMustDeriveFromException = 12
 }

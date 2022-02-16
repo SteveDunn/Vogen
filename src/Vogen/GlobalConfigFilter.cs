@@ -69,9 +69,9 @@ internal static class GlobalConfigFilter
     public static VogenConfiguration? BuildConfigurationFromAttribute(AttributeData matchingAttribute, 
         DiagnosticCollection diagnostics)
     {
-        Type? invalidExceptionType = typeof(ValueObjectValidationException);
-        Type? underlyingType = typeof(ValueObjectValidationException);
-        Conversions? conversions = null;
+        INamedTypeSymbol? invalidExceptionType = null;
+        INamedTypeSymbol? underlyingType = null;
+        Conversions conversions = Conversions.Default;
         
         bool hasMisconfiguredInput = false;
 
@@ -92,22 +92,25 @@ internal static class GlobalConfigFilter
             switch (args.Length)
             {
                 case 3:
-                    invalidExceptionType = (Type?)args[2].Value;
+                    invalidExceptionType = (INamedTypeSymbol?)args[2].Value;
+                    if(invalidExceptionType != null && !invalidExceptionType.ImplementsInterfaceOrBaseClass(typeof(System.Exception)))
+                    {
+                        diagnostics.AddCustomExceptionMustDeriveFromException(invalidExceptionType);
+                    }
                     goto case 2;
                 case 2:
-                    conversions = (Conversions)args[1].Value!;
+                    if (args[1].Value != null)
+                    {
+                        conversions = (Conversions) args[1].Value!;
+                    }
+
                     goto case 1;
                 case 1:
-                    INamedTypeSymbol? s = (INamedTypeSymbol?)args[0].Value;
-                 //   compilation.GetSemanticModel(s.)
-
-                    string? qualifiedTypeName = s.FullName();// GetQualifiedTypeName(s);
-                    underlyingType = s == null ? null : Type.GetType(qualifiedTypeName ?? throw new InvalidOperationException($"No full name for '{s}'"));
+                    underlyingType = (INamedTypeSymbol?)args[0].Value;
                     break;
             }
         }
         
-
         if (!matchingAttribute.NamedArguments.IsEmpty)
         {
             foreach (KeyValuePair<string, TypedConstant> arg in matchingAttribute.NamedArguments)
@@ -122,10 +125,10 @@ internal static class GlobalConfigFilter
                     switch (arg.Key)
                     {
                         case "underlyingType":
-                            underlyingType = (Type) typedConstant.Value!;
+                            underlyingType = (INamedTypeSymbol?) typedConstant.Value!;
                             break;
                         case "invalidExceptionType":
-                            invalidExceptionType = (Type) typedConstant.Value!;
+                            invalidExceptionType = (INamedTypeSymbol?) typedConstant.Value!;
                             break;
                         case "conversions":
                             conversions = (Conversions) (typedConstant.Value ?? Conversions.Default);
@@ -142,7 +145,8 @@ internal static class GlobalConfigFilter
         }
 
         SyntaxNode? syntax = null;
-        if (conversions.HasValue && !conversions.Value.IsValidFlags())
+        //if (conversions.HasValue && !conversions.Value.IsValidFlags())
+        if (!conversions.IsValidFlags())
         {
             syntax = matchingAttribute.ApplicationSyntaxReference?.GetSyntax();
             if (syntax is not null)

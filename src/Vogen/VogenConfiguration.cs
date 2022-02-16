@@ -1,13 +1,14 @@
 ﻿using System;
+using Microsoft.CodeAnalysis;
 
 namespace Vogen;
 
 public readonly struct VogenConfiguration
 {
     public VogenConfiguration(
-        Type? underlyingType,
-        Type? validationExceptionType,
-        Conversions? conversions)
+        INamedTypeSymbol? underlyingType,
+        INamedTypeSymbol? validationExceptionType,
+        Conversions conversions)
     {
         UnderlyingType = underlyingType;
         ValidationExceptionType = validationExceptionType;
@@ -18,22 +19,31 @@ public readonly struct VogenConfiguration
         VogenConfiguration localValues,
         VogenConfiguration? globalValues)
     {
+        var conversions = (localValues.Conversions, globalValues?.Conversions) switch
+        {
+            (Conversions.Default, null) => DefaultInstance.Conversions,
+            (Conversions.Default, Conversions.Default) => DefaultInstance.Conversions,
+            (Conversions.Default, var globalDefault) => globalDefault.Value,
+            (var specificValue, _) => specificValue
+        };
 
-        Conversions? conversions = localValues.Conversions ?? globalValues?.Conversions ?? DefaultInstance.Conversions;
+
         var validationExceptionType = localValues.ValidationExceptionType ?? globalValues?.ValidationExceptionType ?? DefaultInstance.ValidationExceptionType;
         var underlyingType = localValues.UnderlyingType ?? globalValues?.UnderlyingType ?? DefaultInstance.UnderlyingType;
 
         return new VogenConfiguration(underlyingType, validationExceptionType, conversions);
     }
 
-    public Type? UnderlyingType { get; }
+    public INamedTypeSymbol? UnderlyingType { get; }
     
-    public Type? ValidationExceptionType { get; }
+    public INamedTypeSymbol? ValidationExceptionType { get; }
 
-    public Conversions? Conversions { get; }
+    public Conversions Conversions { get; }
 
+    // the issue here is that without a physical 'symbol' in the source, we can't
+    // get the namedtypesymbol
     public static readonly VogenConfiguration DefaultInstance = new(
-        underlyingType: typeof(int),
-        validationExceptionType: typeof(ValueObjectValidationException),
+        underlyingType: null,
+        validationExceptionType: null,
         conversions: Vogen.Conversions.Default);
 }

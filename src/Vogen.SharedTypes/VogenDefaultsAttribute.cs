@@ -7,7 +7,7 @@
     {
         public VogenDefaultsAttribute(
             Type? underlyingType = null!,
-            Conversions conversions = Vogen.Conversions.Default,
+            Conversions conversions = Conversions.Default,
             Type? typeOfValidationException = null!)
         {
             UnderlyingType = underlyingType ?? typeof(int);

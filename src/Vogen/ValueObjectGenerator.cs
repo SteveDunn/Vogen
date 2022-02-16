@@ -57,8 +57,8 @@ namespace Vogen
             DiagnosticCollection diagnostics = new DiagnosticCollection();
 
             // if there are some, get the
-            VogenConfiguration globalConfig =
-                GlobalConfigFilter.GetDefaultConfigFromGlobalAttribute(globalConfigAttributes, compilation, diagnostics) ?? default;
+            VogenConfiguration? globalConfig =
+                GlobalConfigFilter.GetDefaultConfigFromGlobalAttribute(globalConfigAttributes, compilation, diagnostics) ?? null;
 
             // get all of the ValueObject types found.
             List<VoWorkItem> workItems = GetWorkItems(typeDeclarations, context, diagnostics, globalConfig).ToList();
@@ -77,7 +77,7 @@ namespace Vogen
         static IEnumerable<VoWorkItem> GetWorkItems(ImmutableArray<VoTarget> targets,
             SourceProductionContext context,
             DiagnosticCollection diagnostics, 
-            VogenConfiguration globalConfig)
+            VogenConfiguration? globalConfig)
         {
             if (targets.IsDefaultOrEmpty)
             {

@@ -18,11 +18,6 @@ internal class DiagnosticCollection : IEnumerable<Diagnostic>
         "Types cannot be nested",
         "Type '{0}' cannot be nested - remove it from inside {1}");
 
-    private static readonly DiagnosticDescriptor _mustSpecifyUnderlyingType = CreateDescriptor(
-        DiagnosticCode.MustSpecifyUnderlyingType,
-        "Types cannot be nested",
-        "Type '{0}' must specify an underlying type");
-
     private static readonly DiagnosticDescriptor _usingDefaultProhibited = CreateDescriptor(
         DiagnosticCode.UsingDefaultProhibited,
         "Using default of Value Objects is prohibited",
@@ -73,6 +68,11 @@ internal class DiagnosticCollection : IEnumerable<Diagnostic>
         "Instance attribute cannot have null value",
         "{0} cannot have a null value");
 
+    private static readonly DiagnosticDescriptor _customExceptionMustDeriveFromException = CreateDescriptor(
+        DiagnosticCode.CustomExceptionMustDeriveFromException,
+        "Invalid custom exception",
+        "{0} must derive from System.Exception");
+
     public void AddTypeCannotBeNested(INamedTypeSymbol typeModel, INamedTypeSymbol container) => 
         AddDiagnostic(_typeCannotBeNested, typeModel.Locations, typeModel.Name, container.Name);
 
@@ -81,9 +81,6 @@ internal class DiagnosticCollection : IEnumerable<Diagnostic>
 
     public void AddValidationMustBeStatic(MethodDeclarationSyntax member) => 
         AddDiagnostic(_validationMustBeStatic, member.GetLocation(), member.Identifier);
-
-    public void AddMustSpecifyUnderlyingType(INamedTypeSymbol underlyingType) => 
-        AddDiagnostic(_mustSpecifyUnderlyingType, underlyingType.Locations, underlyingType.Name);
 
     public void AddUsingDefaultProhibited(Location locationOfDefaultStatement, string voClassName) => 
         AddDiagnostic(_usingDefaultProhibited, voClassName, locationOfDefaultStatement);
@@ -103,10 +100,8 @@ internal class DiagnosticCollection : IEnumerable<Diagnostic>
     public void AddUnderlyingTypeMustNotBeSameAsValueObjectType(INamedTypeSymbol underlyingType) => 
         AddDiagnostic(_underlyingTypeMustNotBeSameAsValueObject, underlyingType.Locations, underlyingType.Name);
 
-    // public void AddUnderlyingTypeCannotBeCollection(INamedTypeSymbol voClass, INamedTypeSymbol underlyingType) => 
-    //     AddDiagnostic(_underlyingTypeCannotBeCollection, voClass.Locations, voClass.Name, underlyingType);
-
-    public void AddUnderlyingTypeCannotBeCollection(INamedTypeSymbol voClass, Type underlyingType) => AddDiagnostic(_underlyingTypeCannotBeCollection, voClass.Locations, voClass.Name, underlyingType);
+    public void AddUnderlyingTypeCannotBeCollection(INamedTypeSymbol voClass, INamedTypeSymbol underlyingType) => 
+        AddDiagnostic(_underlyingTypeCannotBeCollection, voClass.Locations, voClass.Name, underlyingType);
 
     public void AddInvalidConversions(Location location) => AddDiagnostic(_invalidConversions, location);
 
@@ -115,6 +110,9 @@ internal class DiagnosticCollection : IEnumerable<Diagnostic>
 
     public void AddInstanceMethodCannotHaveNullArgumentValue(INamedTypeSymbol voClass) => 
         AddDiagnostic(_instanceMethodCannotHaveNullArgumentValue, voClass.Locations, voClass.Name);
+
+    public void AddCustomExceptionMustDeriveFromException(INamedTypeSymbol symbol) => 
+        AddDiagnostic(_customExceptionMustDeriveFromException, symbol.Locations, symbol.Name);
 
     private static DiagnosticDescriptor CreateDescriptor(DiagnosticCode code, string title, string messageFormat, DiagnosticSeverity severity = DiagnosticSeverity.Error)
     {

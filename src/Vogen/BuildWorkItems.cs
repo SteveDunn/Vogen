@@ -15,7 +15,7 @@ internal static class BuildWorkItems
     public static VoWorkItem? TryBuild(VoTarget target,
         SourceProductionContext context,
         DiagnosticCollection diagnostics, 
-        VogenConfiguration globalConfig)
+        VogenConfiguration? globalConfig)
     {
         var tds = target.TypeToAugment;
 
@@ -57,8 +57,6 @@ internal static class BuildWorkItems
 
         var config = VogenConfiguration.Combine(localConfig.Value, globalConfig);
 
-//        Conversions conversions = Conversions.None;
-
         foreach (TypedConstant arg in args)
         {
             if (arg.Kind == TypedConstantKind.Error)
@@ -66,25 +64,6 @@ internal static class BuildWorkItems
                 break;
             }
         }
-
-        // if (args.Length == 0)
-        // {
-        //     diagnostics.AddMustSpecifyUnderlyingType(voClass);
-        //     return null;
-        // }
-        //
-        // var underlyingType = (INamedTypeSymbol?) args[0].Value;
-        //
-        // if (underlyingType is null)
-        // {
-        //     diagnostics.AddMustSpecifyUnderlyingType(voClass);
-        //     return null;
-        // }
-        //
-        // if (args.Length == 2 && args[1].Value is not null)
-        // {
-        //     conversions = (Conversions) args[1].Value!;
-        // }
 
         var containingType = target.ContainingType;// context.SemanticModel.GetDeclaredSymbol(context.Node)!.ContainingType;
         if (containingType != null)
@@ -122,37 +101,41 @@ internal static class BuildWorkItems
             }
         }
 
-        if (config.UnderlyingType == voClass.GetType())
-        {
-            diagnostics.AddUnderlyingTypeMustNotBeSameAsValueObjectType(voClass);
-        }
-
-        // if (SymbolEqualityComparer.Default.Equals(voClass, underlyingType))
+        // if (config.UnderlyingType == voClass.GetType())
         // {
         //     diagnostics.AddUnderlyingTypeMustNotBeSameAsValueObjectType(voClass);
         // }
 
-        if (config.UnderlyingType!.IsAssignableFrom(typeof(ICollection)))
+        if (SymbolEqualityComparer.Default.Equals(voClass, config.UnderlyingType))
+        {
+            diagnostics.AddUnderlyingTypeMustNotBeSameAsValueObjectType(voClass);
+        }
+
+        // if (config.UnderlyingType!.IsAssignableFrom(typeof(ICollection)))
+        // {
+        //     diagnostics.AddUnderlyingTypeCannotBeCollection(voClass, config.UnderlyingType!);
+        // }
+
+        if (config.UnderlyingType.ImplementsInterfaceOrBaseClass(typeof(ICollection)))
         {
             diagnostics.AddUnderlyingTypeCannotBeCollection(voClass, config.UnderlyingType!);
         }
 
-        // if (underlyingType.ImplementsInterfaceOrBaseClass(typeof(ICollection)))
-        // {
-        //     diagnostics.AddUnderlyingTypeCannotBeCollection(voClass, underlyingType);
-        // }
-
-        bool isValueType = config.UnderlyingType!.IsValueType;
-        //bool isValueType = underlyingType.IsValueType;
+        //bool isValueType = config.UnderlyingType!.IsValueType;
+        bool isValueType = true;// default is int
+        if (config.UnderlyingType != null)
+        {
+            isValueType = config.UnderlyingType.IsValueType;
+        }
 
         return new VoWorkItem
         {
             InstanceProperties = instanceProperties.ToList(),
             TypeToAugment = tds,
             IsValueType = isValueType,
-            UnderlyingType = config.UnderlyingType ?? throw new InvalidOperationException("Must have underlying type"),
-            Conversions = config.Conversions ?? throw new InvalidOperationException("Must have Conversions"),
-            TypeForValidationExceptions = config.ValidationExceptionType ?? throw new InvalidOperationException("Must have validation exception type"),
+            UnderlyingType = config.UnderlyingType,
+            Conversions = config.Conversions, //?? throw new InvalidOperationException("Must have Conversions"),
+            TypeForValidationExceptions = config.ValidationExceptionType,
             ValidateMethod = validateMethod,
             FullNamespace = voClass.FullNamespace()
         };

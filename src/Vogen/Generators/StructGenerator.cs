@@ -7,12 +7,14 @@ public class StructGenerator : IGenerateSourceCode
     public string BuildClass(VoWorkItem item, TypeDeclarationSyntax tds)
     {
         var structName = tds.Identifier;
+        var itemUnderlyingType = item.UnderlyingType?.ToString() ?? "System.Int32";
+
         return $@"using Vogen;
 
 {Util.WriteStartNamespace(item.FullNamespace)}
     {Util.GenerateAnyConversionAttributes(tds, item)}
     [System.Diagnostics.DebuggerTypeProxyAttribute(typeof({structName}DebugView))]
-    [System.Diagnostics.DebuggerDisplayAttribute(""Underlying type: {item.UnderlyingType}, Value = {{ _value }}"")]
+    [System.Diagnostics.DebuggerDisplayAttribute(""Underlying type: {itemUnderlyingType}, Value = {{ _value }}"")]
     { Util.GenerateModifiersFor(tds)} struct {structName} : System.IEquatable<{structName}>
     {{
 #if DEBUG    
@@ -21,9 +23,9 @@ public class StructGenerator : IGenerateSourceCode
 
         private readonly bool _isInitialized;
         
-        private readonly {item.UnderlyingType} _value;
+        private readonly {itemUnderlyingType} _value;
 
-        public readonly {item.UnderlyingType} Value
+        public readonly {itemUnderlyingType} Value
         {{
             [System.Diagnostics.DebuggerStepThroughAttribute]
             get
@@ -46,7 +48,7 @@ public class StructGenerator : IGenerateSourceCode
         }}
 
         [System.Diagnostics.DebuggerStepThroughAttribute]
-        private {structName}({item.UnderlyingType} value) 
+        private {structName}({itemUnderlyingType} value) 
         {{
             _value = value;
             _isInitialized = true;
@@ -57,7 +59,7 @@ public class StructGenerator : IGenerateSourceCode
         /// </summary>
         /// <param name=""value"">The underlying type.</param>
         /// <returns>An instance of this type.</returns>
-        public static {structName} From({item.UnderlyingType} value)
+        public static {structName} From({itemUnderlyingType} value)
         {{
             {structName} instance = new {structName}(value);
 
@@ -72,10 +74,10 @@ public class StructGenerator : IGenerateSourceCode
             // We treat anything uninitialized as not equal to anything, even other uninitialized instances of this type.
             if(!_isInitialized || !other._isInitialized) return false;
 
-            return System.Collections.Generic.EqualityComparer<{item.UnderlyingType}>.Default.Equals(Value, other.Value);
+            return System.Collections.Generic.EqualityComparer<{itemUnderlyingType}>.Default.Equals(Value, other.Value);
         }}
 
-        public readonly bool Equals({item.UnderlyingType} primitive) => Value.Equals(primitive);
+        public readonly bool Equals({itemUnderlyingType} primitive) => Value.Equals(primitive);
 
         public readonly override bool Equals(object obj)
         {{
@@ -85,13 +87,13 @@ public class StructGenerator : IGenerateSourceCode
         public static bool operator ==({structName} left, {structName} right) => Equals(left, right);
         public static bool operator !=({structName} left, {structName} right) => !(left == right);
 
-        public static bool operator ==({structName} left, {item.UnderlyingType} right) => Equals(left.Value, right);
-        public static bool operator !=({structName} left, {item.UnderlyingType} right) => !Equals(left.Value, right);
+        public static bool operator ==({structName} left, {itemUnderlyingType} right) => Equals(left.Value, right);
+        public static bool operator !=({structName} left, {itemUnderlyingType} right) => !Equals(left.Value, right);
 
-        public static bool operator ==({item.UnderlyingType} left, {structName} right) => Equals(left, right.Value);
-        public static bool operator !=({item.UnderlyingType} left, {structName} right) => !Equals(left, right.Value);
+        public static bool operator ==({itemUnderlyingType} left, {structName} right) => Equals(left, right.Value);
+        public static bool operator !=({itemUnderlyingType} left, {structName} right) => !Equals(left, right.Value);
 
-        public readonly override int GetHashCode() => System.Collections.Generic.EqualityComparer<{item.UnderlyingType}>.Default.GetHashCode(_value);
+        public readonly override int GetHashCode() => System.Collections.Generic.EqualityComparer<{itemUnderlyingType}>.Default.GetHashCode(_value);
 
         public readonly override string ToString() => Value.ToString();
 
@@ -105,7 +107,7 @@ public class StructGenerator : IGenerateSourceCode
                 string message = ""Use of uninitialized Value Object."";
 #endif
 
-                throw new ValueObjectValidationException(message);
+                throw new {item.ValidationExceptionFullName}(message);
             }}
         }}
 

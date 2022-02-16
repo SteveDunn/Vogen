@@ -9,8 +9,7 @@ public class VoWorkItem
 {
     public MethodDeclarationSyntax? ValidateMethod { get; set; }
 
-//    public INamedTypeSymbol UnderlyingType { get; set; } = null!;
-    public Type UnderlyingType { get; set; } = null!;
+    public INamedTypeSymbol? UnderlyingType { get; set; } = null!;
 
     public TypeDeclarationSyntax TypeToAugment { get; set; } = null!;
     
@@ -22,10 +21,11 @@ public class VoWorkItem
 
     public Conversions Conversions { get; set; }
 
-    public Type TypeForValidationExceptions { get; set; } = null!;
+    public INamedTypeSymbol? TypeForValidationExceptions { get; set; } = null!;
+
+    public string ValidationExceptionFullName => TypeForValidationExceptions?.FullName() ?? "ValueObjectValidationException";
 
     public string VoTypeName => TypeToAugment.Identifier.ToString();
     
-    public string UnderlyingTypeFullName => UnderlyingType.FullName ?? UnderlyingType.Name;
-    //public string UnderlyingTypeFullName => UnderlyingType.FullName() ?? UnderlyingType.Name;
+    public string UnderlyingTypeFullName => UnderlyingType.FullName() ?? UnderlyingType?.Name ?? "System.Int32";
 }
