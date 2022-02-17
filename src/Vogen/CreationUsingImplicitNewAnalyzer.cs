@@ -46,7 +46,6 @@ public class CreationUsingImplicitNewAnalyzer : IIncrementalGenerator
 
         INamedTypeSymbol? voClass = TryGetTypeFromModel(ctx, syntax);
 
-
         return voClass is null ? null : new FoundItem(syntax.GetLocation(), voClass);
     }
 
@@ -165,7 +164,7 @@ public class CreationUsingImplicitNewAnalyzer : IIncrementalGenerator
             if (eachFoundItem is not null)
             {
                 context.ReportDiagnostic(
-                    DiagnosticCollection.UsingNewProhibited(eachFoundItem.Value.Location, eachFoundItem.Value.VoClass.Name));
+                    DiagnosticItems.UsingNewProhibited(eachFoundItem.Value.Location, eachFoundItem.Value.VoClass.Name));
             }
         }
     }

@@ -15,11 +15,11 @@
         public ValueObjectAttribute(
             Type? underlyingType = null!,
             Conversions conversions = Conversions.Default,
-            Type? validationExceptionType = null!)
+            Type? throws = null!)
         {
             UnderlyingType = underlyingType;
             Conversions = conversions;
-            ValidationExceptionType = validationExceptionType;
+            ValidationExceptionType = throws;
         }
 
         public Type? UnderlyingType { get; }

@@ -30,12 +30,12 @@ internal static class GlobalConfigFilter
     /// </summary>
     /// <param name="defaults"></param>
     /// <param name="compilation"></param>
-    /// <param name="diags"></param>
+    /// <param name="context"></param>
     /// <returns></returns>
     public static VogenConfiguration? GetDefaultConfigFromGlobalAttribute(
         ImmutableArray<AttributeSyntax> defaults,
         Compilation compilation,
-        DiagnosticCollection diags)
+        SourceProductionContext context)
     {
         if (defaults.IsDefaultOrEmpty)
         {
@@ -63,17 +63,18 @@ internal static class GlobalConfigFilter
             return null;
         }
 
-        return BuildConfigurationFromAttribute(matchingAttribute, diags);
+        return BuildConfigurationFromAttribute(matchingAttribute, context);
     }
     
-    public static VogenConfiguration? BuildConfigurationFromAttribute(AttributeData matchingAttribute, 
-        DiagnosticCollection diagnostics)
+    public static VogenConfiguration? BuildConfigurationFromAttribute(
+        AttributeData matchingAttribute, 
+        SourceProductionContext context)
     {
         INamedTypeSymbol? invalidExceptionType = null;
         INamedTypeSymbol? underlyingType = null;
         Conversions conversions = Conversions.Default;
         
-        bool hasMisconfiguredInput = false;
+        bool hasErroredAttributes = false;
 
         if (!matchingAttribute.ConstructorArguments.IsEmpty)
         {
@@ -84,8 +85,7 @@ internal static class GlobalConfigFilter
             {
                 if (arg.Kind == TypedConstantKind.Error)
                 {
-                    // have an error, so don't try and do any generation
-                    hasMisconfiguredInput = true;
+                    hasErroredAttributes = true;
                 }
             }
 
@@ -95,7 +95,7 @@ internal static class GlobalConfigFilter
                     invalidExceptionType = (INamedTypeSymbol?)args[2].Value;
                     if(invalidExceptionType != null && !invalidExceptionType.ImplementsInterfaceOrBaseClass(typeof(System.Exception)))
                     {
-                        diagnostics.AddCustomExceptionMustDeriveFromException(invalidExceptionType);
+                        context.ReportDiagnostic(DiagnosticItems.CustomExceptionMustDeriveFromException(invalidExceptionType));
                     }
                     goto case 2;
                 case 2:
@@ -118,7 +118,7 @@ internal static class GlobalConfigFilter
                 TypedConstant typedConstant = arg.Value;
                 if (typedConstant.Kind == TypedConstantKind.Error)
                 {
-                    hasMisconfiguredInput = true;
+                    hasErroredAttributes = true;
                 }
                 else
                 {
@@ -138,37 +138,22 @@ internal static class GlobalConfigFilter
             }
         }
 
-        if (hasMisconfiguredInput)
+        if (hasErroredAttributes)
         {
             // skip further generator execution and let compiler generate the errors
             return null;
         }
 
-        SyntaxNode? syntax = null;
-        //if (conversions.HasValue && !conversions.Value.IsValidFlags())
         if (!conversions.IsValidFlags())
         {
-            syntax = matchingAttribute.ApplicationSyntaxReference?.GetSyntax();
+            var syntax = matchingAttribute.ApplicationSyntaxReference?.GetSyntax();
             if (syntax is not null)
             {
-                diagnostics.AddInvalidConversions(syntax.GetLocation());
-                //diagnostics(InvalidConversionDiagnostic.Create(syntax));
+                context.ReportDiagnostic(DiagnosticItems.InvalidConversions(syntax.GetLocation()));
             }
         }
 
         return new VogenConfiguration(underlyingType, invalidExceptionType, conversions);
-    }
-
-    private static string? GetQualifiedTypeName(ISymbol? symbol)
-    {
-        if (symbol == null)
-        {
-            return null;
-        }
-        
-        return symbol.ContainingNamespace
-               + "." + symbol.Name
-               + ", " + symbol.ContainingAssembly;
     }
 
     /// <summary>

@@ -19,7 +19,7 @@ public class CreationUsingNewAnalyzer : IIncrementalGenerator
 
         IncrementalValueProvider<(Compilation, ImmutableArray<FoundItem?>)> compilationAndTypes
             = context.CompilationProvider.Combine(targets.Collect());
-            
+
         context.RegisterSourceOutput(compilationAndTypes,
             static (spc, source) => Execute(source.Item1, source.Item2, spc));
     }
@@ -54,7 +54,7 @@ public class CreationUsingNewAnalyzer : IIncrementalGenerator
             if (eachFoundItem is not null)
             {
                 context.ReportDiagnostic(
-                    DiagnosticCollection.UsingNewProhibited(eachFoundItem.Value.Location, eachFoundItem.Value.VoClass.Name));
+                    DiagnosticItems.UsingNewProhibited(eachFoundItem.Value.Location, eachFoundItem.Value.VoClass.Name));
             }
         }
     }

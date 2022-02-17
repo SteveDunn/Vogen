@@ -76,7 +76,7 @@ public partial struct CustomerId
 using Vogen;
 namespace Whatever;
 
-[ValueObject(validationExceptionType: typeof(Vogen.IntegrationTests.SnapshotTests.MyValidationException))]
+[ValueObject(throws: typeof(Vogen.IntegrationTests.SnapshotTests.MyValidationException))]
 public partial struct CustomerId
 {
     private static Validation Validate(int value) => value > 0 ? Validation.Ok : Validation.Invalid(""xxxx"");
@@ -123,7 +123,7 @@ public partial struct CustomerId { }";
 using Vogen;
 namespace Whatever;
 
-[ValueObject(conversions: Conversions.DapperTypeHandler, validationExceptionType: typeof(Vogen.IntegrationTests.SnapshotTests.MyValidationException))]
+[ValueObject(conversions: Conversions.DapperTypeHandler, throws: typeof(Vogen.IntegrationTests.SnapshotTests.MyValidationException))]
 public partial struct CustomerId
 {
     private static Validation Validate(int value) => value > 0 ? Validation.Ok : Validation.Invalid(""xxxx"");
@@ -148,7 +148,7 @@ public partial struct CustomerId
         var source = @"using System;
 using Vogen;
 
-[assembly: VogenDefaults(underlyingType: typeof(string), conversions: Conversions.None, typeOfValidationException:typeof(Vogen.IntegrationTests.SnapshotTests.MyValidationException))]
+[assembly: VogenDefaults(underlyingType: typeof(string), conversions: Conversions.None, throws:typeof(Vogen.IntegrationTests.SnapshotTests.MyValidationException))]
 
 [ValueObject]
 public partial struct CustomerId

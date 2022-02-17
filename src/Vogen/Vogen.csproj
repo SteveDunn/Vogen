@@ -60,10 +60,6 @@
     <ProjectReference Include="..\Vogen.SharedTypes\Vogen.SharedTypes.csproj" PrivateAssets="All" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Diagnostics\" />
-  </ItemGroup>
-
   <PropertyGroup>
     <Features>strict</Features>
     <PackageId>Vogen</PackageId>

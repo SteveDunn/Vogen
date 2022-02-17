@@ -3,7 +3,6 @@ using System.Collections.Immutable;
 using System.Linq;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
-using Vogen.Diagnostics;
 
 namespace Vogen
 {
@@ -53,15 +52,13 @@ namespace Vogen
             {
                 return;
             }
-
-            DiagnosticCollection diagnostics = new DiagnosticCollection();
-
+            
             // if there are some, get the
             VogenConfiguration? globalConfig =
-                GlobalConfigFilter.GetDefaultConfigFromGlobalAttribute(globalConfigAttributes, compilation, diagnostics) ?? null;
+                GlobalConfigFilter.GetDefaultConfigFromGlobalAttribute(globalConfigAttributes, compilation, context) ?? null;
 
             // get all of the ValueObject types found.
-            List<VoWorkItem> workItems = GetWorkItems(typeDeclarations, context, diagnostics, globalConfig).ToList();
+            List<VoWorkItem> workItems = GetWorkItems(typeDeclarations, context, globalConfig).ToList();
 
             if (workItems.Count > 0)
             {
@@ -70,13 +67,10 @@ namespace Vogen
                     WriteWorkItems.WriteVo(eachWorkItem, compilation, context);
                 }
             }
-
-            ReportErrors(context, diagnostics);
         }
 
         static IEnumerable<VoWorkItem> GetWorkItems(ImmutableArray<VoTarget> targets,
             SourceProductionContext context,
-            DiagnosticCollection diagnostics, 
             VogenConfiguration? globalConfig)
         {
             if (targets.IsDefaultOrEmpty)
@@ -91,21 +85,12 @@ namespace Vogen
                     continue;
                 }
                 
-                var ret = BuildWorkItems.TryBuild(eachTarget, context, diagnostics, globalConfig);
+                var ret = BuildWorkItems.TryBuild(eachTarget, context, globalConfig);
                 
                 if (ret is not null)
                 {
                     yield return ret;
                 }
-            }
-        }
-
-        private static void ReportErrors(SourceProductionContext context,
-            DiagnosticCollection syntaxReceiverDiagnosticMessages)
-        {
-            foreach (var eachDiag in syntaxReceiverDiagnosticMessages)
-            {
-                context.ReportDiagnostic(eachDiag);
             }
         }
     }

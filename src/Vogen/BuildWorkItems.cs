@@ -13,8 +13,7 @@ namespace Vogen;
 internal static class BuildWorkItems
 {
     public static VoWorkItem? TryBuild(VoTarget target,
-        SourceProductionContext context,
-        DiagnosticCollection diagnostics, 
+        SourceProductionContext context, 
         VogenConfiguration? globalConfig)
     {
         var tds = target.TypeToAugment;
@@ -42,13 +41,14 @@ internal static class BuildWorkItems
             // and the user will see: error CS0111: Type 'Foo' already defines a member called 'Foo' with the same parameter type
             if (eachConstructor.Parameters.Length > 0)
             {
-                diagnostics.AddCannotHaveUserConstructors(eachConstructor);
+                context.ReportDiagnostic(DiagnosticItems.CannotHaveUserConstructors(eachConstructor));
             }
         }
 
         ImmutableArray<TypedConstant> args = voAttribute.ConstructorArguments;
 
-        var localConfig = GlobalConfigFilter.BuildConfigurationFromAttribute(voAttribute, diagnostics);
+        // build the configuration but log any diagnostics (we have a separate analyzer that does that)
+        var localConfig = GlobalConfigFilter.BuildConfigurationFromAttribute(voAttribute, context);
         
         if (localConfig == null)
         {
@@ -68,10 +68,10 @@ internal static class BuildWorkItems
         var containingType = target.ContainingType;// context.SemanticModel.GetDeclaredSymbol(context.Node)!.ContainingType;
         if (containingType != null)
         {
-            diagnostics.AddTypeCannotBeNested(voClass, containingType);
+            context.ReportDiagnostic(DiagnosticItems.TypeCannotBeNested(voClass, containingType));
         }
 
-        var instanceProperties = TryBuildInstanceProperties(attributes, voClass, diagnostics);
+        var instanceProperties = TryBuildInstanceProperties(attributes, voClass, context);
 
         MethodDeclarationSyntax? validateMethod = null;
 
@@ -86,14 +86,14 @@ internal static class BuildWorkItems
                 {
                     if (!(mds.DescendantTokens().Any(t => t.IsKind(SyntaxKind.StaticKeyword))))
                     {
-                        diagnostics.AddValidationMustBeStatic(mds);
+                        context.ReportDiagnostic(DiagnosticItems.ValidationMustBeStatic(mds));
                     }
 
                     TypeSyntax returnTypeSyntax = mds.ReturnType;
 
                     if (returnTypeSyntax.ToString() != "Validation")
                     {
-                        diagnostics.AddValidationMustReturnValidationType(mds);
+                        context.ReportDiagnostic(DiagnosticItems.ValidationMustReturnValidationType(mds));
                     }
 
                     validateMethod = mds;
@@ -101,28 +101,17 @@ internal static class BuildWorkItems
             }
         }
 
-        // if (config.UnderlyingType == voClass.GetType())
-        // {
-        //     diagnostics.AddUnderlyingTypeMustNotBeSameAsValueObjectType(voClass);
-        // }
-
         if (SymbolEqualityComparer.Default.Equals(voClass, config.UnderlyingType))
         {
-            diagnostics.AddUnderlyingTypeMustNotBeSameAsValueObjectType(voClass);
+            context.ReportDiagnostic(DiagnosticItems.UnderlyingTypeMustNotBeSameAsValueObjectType(voClass));
         }
-
-        // if (config.UnderlyingType!.IsAssignableFrom(typeof(ICollection)))
-        // {
-        //     diagnostics.AddUnderlyingTypeCannotBeCollection(voClass, config.UnderlyingType!);
-        // }
 
         if (config.UnderlyingType.ImplementsInterfaceOrBaseClass(typeof(ICollection)))
         {
-            diagnostics.AddUnderlyingTypeCannotBeCollection(voClass, config.UnderlyingType!);
+            context.ReportDiagnostic(DiagnosticItems.UnderlyingTypeCannotBeCollection(voClass, config.UnderlyingType!));
         }
 
-        //bool isValueType = config.UnderlyingType!.IsValueType;
-        bool isValueType = true;// default is int
+        bool isValueType = true;
         if (config.UnderlyingType != null)
         {
             isValueType = config.UnderlyingType.IsValueType;
@@ -144,7 +133,7 @@ internal static class BuildWorkItems
     private static IEnumerable<InstanceProperties> TryBuildInstanceProperties(
         ImmutableArray<AttributeData> attributes,
         INamedTypeSymbol voClass,
-        DiagnosticCollection diagnostics)
+        SourceProductionContext context)
     {
         var matchingAttributes =
             attributes.Where(a => a.AttributeClass?.ToString() is "Vogen.InstanceAttribute");
@@ -167,7 +156,7 @@ internal static class BuildWorkItems
 
             if (name is null)
             {
-                diagnostics.AddInstanceMethodCannotHaveNullArgumentName(voClass);
+                context.ReportDiagnostic(DiagnosticItems.InstanceMethodCannotHaveNullArgumentName(voClass));
                 //  continue;
             }
 
@@ -175,7 +164,7 @@ internal static class BuildWorkItems
 
             if (value is null)
             {
-                diagnostics.AddInstanceMethodCannotHaveNullArgumentValue(voClass);
+                context.ReportDiagnostic(DiagnosticItems.InstanceMethodCannotHaveNullArgumentValue(voClass));
             }
 
             if (name is null || value is null)

@@ -59,7 +59,7 @@ public class CreationUsingDefaultLiteralAnalyzer : IIncrementalGenerator
             if (eachFoundItem is not null)
             {
                 context.ReportDiagnostic(
-                    DiagnosticCollection.UsingDefaultProhibited(eachFoundItem.Value.Location, eachFoundItem.Value.VoClass.Name));
+                    DiagnosticItems.UsingDefaultProhibited(eachFoundItem.Value.Location, eachFoundItem.Value.VoClass.Name));
             }
         }
     }
