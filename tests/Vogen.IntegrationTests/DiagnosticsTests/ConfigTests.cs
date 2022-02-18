@@ -110,20 +110,44 @@ public class BadException_that_is_not_mentioned_in_any_attribute{} // this one i
         diagnostics.ElementAt(1).ToString().Should()
             .Be("(15,14): error VOG012: BadException2 must derive from System.Exception");
     }
+
+    [Fact]
+    public void Cannot_use_custom_exception_without_a_constructor_with_one_parameter()
+    {
+        var source = @"using System;
+using Vogen;
+
+namespace Whatever;
+
+[ValueObject(throws:typeof(BadException))]
+public partial struct CustomerId
+{
+    private static Validation Validate(int value) => value > 0 ? Validation.Ok : Validation.Invalid(""xxxx"");
 }
 
-public class BadException{}
+public class BadException : Exception { } // breaks because there's no constructor
+";
 
-[Serializable]
-public class GoodException : Exception
-{
-    public GoodException() { }
-    public GoodException(string message) : base(message) { }
-    public GoodException(string message, Exception inner) : base(message, inner) { }
+        var (diagnostics, _) = TestHelper.GetGeneratedOutput<ValueObjectGenerator>(source);
 
-    protected GoodException(
-        SerializationInfo info,
-        StreamingContext context) : base(info, context)
-    {
+        diagnostics.Should().HaveCount(1);
+
+        using AssertionScope scope = new AssertionScope();
+        diagnostics[0].Id.Should().Be("VOG013");
+        diagnostics[0].ToString().Should().Be("(12,14): error VOG013: BadException must have at least 1 constructor with 1 parameter");
     }
 }
+
+// [Serializable]
+// public class GoodException : Exception
+// {
+//     public GoodException() { }
+//     public GoodException(string message) : base(message) { }
+//     public GoodException(string message, Exception inner) : base(message, inner) { }
+//
+//     protected GoodException(
+//         SerializationInfo info,
+//         StreamingContext context) : base(info, context)
+//     {
+//     }
+// }

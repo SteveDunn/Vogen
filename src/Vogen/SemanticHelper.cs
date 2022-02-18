@@ -91,12 +91,17 @@ static class SemanticHelper
             return true;
         }
 
-        foreach (var @interface in typeSymbol.AllInterfaces)
+        foreach (INamedTypeSymbol? @interface in typeSymbol.AllInterfaces)
         {
             if (@interface.MetadataName == typeToCheck.Name)
             {
                 return true;
             }
+        }
+
+        if (typeSymbol.BaseType != null)
+        {
+            return ImplementsInterfaceOrBaseClass(typeSymbol.BaseType, typeToCheck);
         }
 
         return false;

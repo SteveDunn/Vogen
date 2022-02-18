@@ -68,6 +68,11 @@ internal static class DiagnosticItems
         "Invalid custom exception",
         "{0} must derive from System.Exception");
 
+    private static readonly DiagnosticDescriptor _customExceptionMustHaveValidConstructor = CreateDescriptor(
+        DiagnosticCode.CustomExceptionMustHaveValidConstructor,
+        "Invalid custom exception",
+        "{0} must have at least 1 constructor with 1 parameter");
+
     public static Diagnostic TypeCannotBeNested(INamedTypeSymbol typeModel, INamedTypeSymbol container) => 
         Create(_typeCannotBeNested, typeModel.Locations, typeModel.Name, container.Name);
 
@@ -102,6 +107,9 @@ internal static class DiagnosticItems
 
     public static Diagnostic CustomExceptionMustDeriveFromException(INamedTypeSymbol symbol) => 
         Create(_customExceptionMustDeriveFromException, symbol.Locations, symbol.Name);
+
+    public static Diagnostic CustomExceptionMustHaveValidConstructor(INamedTypeSymbol symbol) => 
+        Create(_customExceptionMustHaveValidConstructor, symbol.Locations, symbol.Name);
 
     private static DiagnosticDescriptor CreateDescriptor(DiagnosticCode code, string title, string messageFormat, DiagnosticSeverity severity = DiagnosticSeverity.Error)
     {

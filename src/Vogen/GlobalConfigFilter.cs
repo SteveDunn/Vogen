@@ -96,6 +96,12 @@ internal static class GlobalConfigFilter
                     if(invalidExceptionType != null && !invalidExceptionType.ImplementsInterfaceOrBaseClass(typeof(System.Exception)))
                     {
                         context.ReportDiagnostic(DiagnosticItems.CustomExceptionMustDeriveFromException(invalidExceptionType));
+                        goto case 2;
+                    }
+
+                    if (invalidExceptionType != null && !invalidExceptionType.Constructors.Any(c => c.Parameters.Length == 1))
+                    {
+                        context.ReportDiagnostic(DiagnosticItems.CustomExceptionMustHaveValidConstructor(invalidExceptionType));
                     }
                     goto case 2;
                 case 2:

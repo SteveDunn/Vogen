@@ -18,5 +18,6 @@ public enum DiagnosticCode
     UsingDefaultProhibited = 9,
     UsingNewProhibited = 10,
     InvalidConversions = 11,
-    CustomExceptionMustDeriveFromException = 12
+    CustomExceptionMustDeriveFromException = 12,
+    CustomExceptionMustHaveValidConstructor = 13
 }
