@@ -93,17 +93,10 @@ internal static class GlobalConfigFilter
             {
                 case 3:
                     invalidExceptionType = (INamedTypeSymbol?)args[2].Value;
-                    if(invalidExceptionType != null && !invalidExceptionType.ImplementsInterfaceOrBaseClass(typeof(System.Exception)))
-                    {
-                        context.ReportDiagnostic(DiagnosticItems.CustomExceptionMustDeriveFromException(invalidExceptionType));
-                        goto case 2;
-                    }
 
-                    if (invalidExceptionType != null && !invalidExceptionType.Constructors.Any(c => c.Parameters.Length == 1))
-                    {
-                        context.ReportDiagnostic(DiagnosticItems.CustomExceptionMustHaveValidConstructor(invalidExceptionType));
-                    }
+                    ReportAnyIssuesWithTheException(invalidExceptionType, context);
                     goto case 2;
+                    
                 case 2:
                     if (args[1].Value != null)
                     {
@@ -160,6 +153,30 @@ internal static class GlobalConfigFilter
         }
 
         return new VogenConfiguration(underlyingType, invalidExceptionType, conversions);
+    }
+
+    private static void ReportAnyIssuesWithTheException(INamedTypeSymbol? invalidExceptionType, SourceProductionContext context)
+    {
+        if (invalidExceptionType == null)
+        {
+            return;
+        }
+        
+        if (!invalidExceptionType.ImplementsInterfaceOrBaseClass(typeof(Exception)))
+        {
+            context.ReportDiagnostic(DiagnosticItems.CustomExceptionMustDeriveFromException(invalidExceptionType));
+        }
+
+        var allConstructors = invalidExceptionType.Constructors.Where(c=>c.DeclaredAccessibility == Accessibility.Public);
+        
+        var singleParameterConstructors = allConstructors.Where(c => c.Parameters.Length == 1);
+        
+        if (singleParameterConstructors.Any(c => c.Parameters.Single().Type.Name == "String"))
+        {
+            return;
+        }
+
+        context.ReportDiagnostic(DiagnosticItems.CustomExceptionMustHaveValidConstructor(invalidExceptionType));
     }
 
     /// <summary>

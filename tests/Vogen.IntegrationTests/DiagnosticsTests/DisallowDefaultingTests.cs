@@ -17,7 +17,6 @@ public class DisallowDefaultingTests
     [Fact]
     public void Disallows_default_parameters()
     {
-        // The source code to test
         var source = @"using Vogen;
 
 namespace Whatever;
@@ -80,7 +79,6 @@ Hashtable? GetHashtable() => default;
     [Fact]
     public void Disallows_default_literal_array_members()
     {
-        // The source code to test
         var source = @"using Vogen;
 namespace Whatever;
 
@@ -102,7 +100,6 @@ CustomerId[] customers = new CustomerId[] {CustomerId.From(123), default, Custom
     [Fact]
     public void Disallows_default_literal_from_local_function()
     {
-        // The source code to test
         var source = @"using Vogen;
 var c = GetCustomer();
 
@@ -126,7 +123,6 @@ public partial struct CustomerId { }
     [Fact]
     public void Disallows_default_from_local_function()
     {
-        // The source code to test
         var source = @"using Vogen;
 var c = GetCustomer();
 
@@ -150,7 +146,6 @@ public partial struct CustomerId { }
     [Fact]
     public void Disallows_default_from_method()
     {
-        // The source code to test
         var source = @"using Vogen;
 var c =Foo.GetCustomer();
 
@@ -176,7 +171,6 @@ class Foo  {
     [Fact]
     public void Disallows_default_literal_from_func()
     {
-        // The source code to test
         var source = @"using System;
 using Vogen;
 Func<CustomerId> f = () => default;
@@ -199,7 +193,6 @@ public partial struct CustomerId { }
     [Fact]
     public void Disallows_default_from_func()
     {
-        // The source code to test
         var source = @"using Vogen;
 Func<CustomerId> f = () => default(CustomerId);
 

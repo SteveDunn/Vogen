@@ -71,7 +71,7 @@ internal static class DiagnosticItems
     private static readonly DiagnosticDescriptor _customExceptionMustHaveValidConstructor = CreateDescriptor(
         DiagnosticCode.CustomExceptionMustHaveValidConstructor,
         "Invalid custom exception",
-        "{0} must have at least 1 constructor with 1 parameter");
+        "{0} must have at least 1 public constructor with 1 parameter of type System.String");
 
     public static Diagnostic TypeCannotBeNested(INamedTypeSymbol typeModel, INamedTypeSymbol container) => 
         Create(_typeCannotBeNested, typeModel.Locations, typeModel.Name, container.Name);

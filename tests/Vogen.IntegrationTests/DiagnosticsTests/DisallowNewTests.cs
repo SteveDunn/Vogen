@@ -17,7 +17,6 @@ public class DisallowNewTests
     [Fact]
     public void No_creation_using_new()
     {
-        // The source code to test
         var source = @"using Vogen;
 
 namespace Whatever;
@@ -42,7 +41,6 @@ var c = new CustomerId();
     [Fact]
     public void No_creation_using_implicit_new()
     {
-        // The source code to test
         var source = @"using Vogen;
 
 namespace Whatever;
@@ -67,7 +65,6 @@ CustomerId c = new();
     [Fact]
     public void No_creation_using_implicit_new_from_method()
     {
-        // The source code to test
         var source = @"using Vogen;
 
 var c =Foo.GetCustomer();
@@ -95,7 +92,6 @@ class Foo  {
     [Fact]
     public void Disallow_new_from_method()
     {
-        // The source code to test
         var source = @"using Vogen;
 
 var c =Foo.GetCustomer();
@@ -123,7 +119,6 @@ class Foo  {
     [Fact]
     public void Disallow_implicit_new_from_local_function()
     {
-        // The source code to test
         var source = @"using Vogen;
 
 var c = GetCustomer();
@@ -147,7 +142,6 @@ public partial struct CustomerId { }
     [Fact]
     public void Disallow_new_from_local_function()
     {
-        // The source code to test
         var source = @"using Vogen;
 
 var c = GetCustomer();
@@ -171,7 +165,6 @@ public partial struct CustomerId { }
     [Fact]
     public void Disallow_new_from_func()
     {
-        // The source code to test
         var source = @"using Vogen;
 Func<CustomerId> f = () => new CustomerId();
 
@@ -193,7 +186,6 @@ public partial struct CustomerId { }
     [Fact]
     public void Disallow_new_from_func2()
     {
-        // The source code to test
         var source = @"using Vogen;
 Func<int, int, CustomerId, string, CustomerId> f = (a,b,c,d) => new CustomerId();
 
@@ -215,7 +207,6 @@ public partial struct CustomerId { }
     [Fact]
     public void Disallow_new_from_func3()
     {
-        // The source code to test
         var source = @"using Vogen;
 Func<int, int, CustomerId, string, Task<CustomerId>> f = async (a,b,c, d) => await Task.FromResult(new CustomerId());
 
@@ -237,7 +228,6 @@ public partial struct CustomerId { }
     [Fact]
     public void Disallow_implicit_new_from_func()
     {
-        // The source code to test
         var source = @"using System;
 using Vogen;
 Func<CustomerId> f = () => new();
@@ -260,7 +250,6 @@ public partial struct CustomerId { }
     [Fact]
     public void Disallow_implicit_new_from_func2()
     {
-        // The source code to test
         var source = @"using System;
 using Vogen;
 Func<int, int, CustomerId, string, CustomerId> f = (a,b,c, d) => new();
@@ -283,7 +272,6 @@ public partial struct CustomerId { }
     [Fact]
     public void Disallow_implicit_new_from_func3()
     {
-        // The source code to test
         var source = @"using System;
 using System.Threading.Tasks;
 using Vogen;
@@ -307,7 +295,6 @@ public partial struct CustomerId { }
     [Fact]
     public void Disallow_implicit_default_as_parameter()
     {
-        // The source code to test
         var source = @"using System;
 using System.Threading.Tasks;
 using Vogen;
