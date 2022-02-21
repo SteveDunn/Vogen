@@ -1,7 +1,7 @@
 ﻿using System;
 using Vogen;
 
-[assembly: VogenDefaults(conversions: (Conversions)666)]
+//[assembly: VogenDefaults(conversions: (Conversions)666)]
 
 namespace Whatever;
 
