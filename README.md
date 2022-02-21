@@ -13,7 +13,7 @@
 This is a .NET source generator and code analyser that generates strongly typed **domain ideas**. You provide this:
 
 ```csharp
-[ValueObject(typeof(int))]
+[ValueObject]
 public partial struct CustomerId {
     // optional
     private static Validation Validate(int value) => value > 0 
@@ -68,12 +68,14 @@ SendInvoice(customerId);
 public void SendInvoice(CustomerId customerId) { ... }
 ```
 
-To ensure the validity of your value objects, the code analyser helps you avoid mistakes.
+`int` is the default type for Value Objects, but you individually or globally configure them to be other types. See the Configuration section later in the document.
+
+To ensure the validity of your value objects, the code analyser helps you to avoid mistakes.
 
 It does this by adding new constraints in the form of new compilation errors. For example, the analyser will spot issues when you declare a value object:
 
 ```csharp
-[ValueObject(typeof(int))]
+[ValueObject]
 public partial struct CustomerId {
     // Vogen already generates this as a private constructor to that you can't use it:
     // error CS0111: Type 'CustomerId' already defines a member called 'CustomerId' with the same parameter type
@@ -188,7 +190,7 @@ public class Person {
 We can do that with an `Instance` attribute:
 
 ```csharp
-  [ValueObject(typeof(int))]
+  [ValueObject]
   [Instance("Unspecified", -1)]
   public readonly partial struct Age {
       public static Validation Validate(int value) =>
@@ -219,6 +221,31 @@ public readonly partial struct Celsius {
         value >= -273 ? Validation.Ok : Validation.Invalid("Cannot be colder than absolute zero");
 }
 ```
+
+## Configuration
+
+Each Value Object can have it's own _optional_ configuration. Configuration includes:
+
+* The underlying type
+* Any 'conversions' (Dapper, System.Text.Json, Newtonsoft.Json, etc.)
+* The type of the exception that is thrown when validation fails
+
+If any of those above are not specified, then global configuration is inferred. It looks like this:
+```csharp
+[assembly: VogenDefaults(underlyingType: typeof(int), conversions: Conversions.None, throws: typeof(ValueObjectValidationException))]
+```
+
+Those again are optional. If they're not specified, then they are defaulted to:
+
+* Underlying type = `typeof(int)`
+* Conversions = `Conversions.Default` (`TypeConverter` and `System.Text.Json`)
+* Validation exception type = `typeof(ValueObjectValidationException)`
+
+There are several code analysis warnings for invalid configuration, including:
+
+* when you specify an exception that does not derive from `System.Exception`
+* when your exception does not have 1 public constructor that takes an int
+* when the combination of conversions does not match an entry
 
 ## Performance
 
@@ -291,9 +318,9 @@ SqlMapper.AddTypeHandler(new Customer.DapperTypeHandler());
 
 See the examples folder for more information.
 
-# FAQ
+## FAQ
 
-## Why can't I just use `public record struct CustomerId(int Value);`?
+### Why can't I just use `public record struct CustomerId(int Value);`?
 
 That doesn't give you validation. To validate `Value`, you can't use the shorthand syntax (Primary Constructor). So you'd need to do:
 
@@ -318,13 +345,13 @@ CustomerId c = default;
 var c2 = default(CustomerId);
 ```
 
-## Can I serialize and deserialize them?
+### Can I serialize and deserialize them?
 
 Yes, please see #serialisation-and-type-conversion
 
 For version 1.0.16 and low, you can serialize by referencing [Vogen.Serialization](https://www.nuget.org/packages/Vogen.Serialization).
 
-## It seems like a lot of overhead; I can validate the value myself
+### It seems like a lot of overhead; I can validate the value myself
 
 You could, but to ensure consistency throughout your domain, you'd have to **validate everywhere**. And Shallow's Law says that that's not possible:
 
@@ -333,15 +360,15 @@ _"when N things need to change and N > 1, Shalloway will find at most N - 1 of t
 
 Concretely: _"When 5 things need to change, Shalloway will find at most, 4 of these things."_
 
-## If my VO is a `struct`, can I stop the use of `CustomerId customerId = default(CustomerId);`?
+### If my VO is a `struct`, can I stop the use of `CustomerId customerId = default(CustomerId);`?
 
 Yes. The analyser generates a compilation error.
 
-## If my VO is a `struct`, can I stop the use of `CustomerId customerId = new(CustomerId);`?
+### If my VO is a `struct`, can I stop the use of `CustomerId customerId = new(CustomerId);`?
 
 Yes. The analyser generates a compilation error.
 
-## If my VO is a struct, can I have my own constructor?
+### If my VO is a struct, can I have my own constructor?
 
 No. The parameter-less constructor is generated automatically, and the constructor that takes the underlying value is also generated automatically.
 
@@ -359,11 +386,11 @@ public partial struct CustomerId {
 }
 ```
 
-## If my VO is a struct, can I have my own fields?
+### If my VO is a struct, can I have my own fields?
 
 You could, but you'd get compiler warning [CS0282-There is no defined ordering between fields in multiple declarations of partial class or struct 'type'](https://docs.microsoft.com/en-us/dotnet/csharp/misc/cs0282)
 
-## Why are there no implicit conversions to and from the primitive types that are being wrapped?
+### Why are there no implicit conversions to and from the primitive types that are being wrapped?
 
 Implicit operators can be useful, but for Value Objects, they can confuse things. Take the following code **without** any implicit conversions:
 
@@ -391,7 +418,7 @@ Which is interesting - Vogen _wouldn't_ throw an `InvalidCastException` (only an
 
 But since users of Vogen can declare a Value Object as a `class` **or** `struct`, then we wouldn't want implicit operators (from `primitive` => `ValueObject`) for just `structs` and not `class`es.
 
-## Can you opt-in to implicit conversions?
+### Can you opt-in to implicit conversions?
 
 No, but you can provide them yourself. For certain types it would allow a much more natural way of expressing, er, expressions.
 
@@ -415,7 +442,7 @@ age10 -= 12; // bang - goes negative??
 
 But no..  The implicit cast in `var age10 = age20 / 2` results in an `int` and not an `Age`. Changing it to `Age age10 = age20 / 2` fixes it. But this does go to show that it can be confusing.
 
-## Why is there no interface?
+### Why is there no interface?
 
 > _If I'm using a library that uses Vogen, I'd like to easily tell if the type is just a primitive wrapper or not by the fact that it implements an interface, such as `IValidated<T>`_
 
@@ -437,7 +464,7 @@ So, callers could mess things up by calling `DoSomething(productId, supplierId, 
 
 There would also be no need to know if it's validated, as, if it's in your domain, it's valid (there's no way to manually create invalid instances).  And with that said, there'd also be no point in exposing the 'Validate' method via the interface because validation is done at creation.
 
-## Why are they called 'Value Objects'?
+### Why are they called 'Value Objects'?
 The term Value Object represents a small object whos equality is based on value and not identity. From [Wikipedia](https://en.wikipedia.org/wiki/Value_object)
 
 > _In computer science, a value object is a small object that represents a simple entity whose equality is not based on identity: i.e. two value objects are equal when they have the same value, not necessarily being the same object._
@@ -446,7 +473,7 @@ In DDD, a Value Object is (again, from [Wikipedia](https://en.wikipedia.org/wiki
 
 >  _... a value object is an immutable object that contains attributes but has no conceptual identity_
 
-## Can I represent special values
+### Can I represent special values
 
 Yes. You might want to represent special values for things like invalid or unspecified instances, e.g.
 
@@ -483,7 +510,7 @@ public void CanEnter(Age age) {
 }
 ```
 
-## Why isn't the part of the language?
+### Why isn't the part of the language?
 
 It would be great if it was, but it's not currently. I [wrote an article about it](https://dunnhq.com/posts/2022/non-defaultable-value-types/), but in summary, there is a [long-standing language proposal](https://github.com/dotnet/csharplang/issues/146) focusing on non-defaultable value types.
 Having non-defaultable value types is a great first step, but it would also be handy to have something in the language to enforce validate.
@@ -495,7 +522,7 @@ One of the responses in the proposal says that the language team decided that va
 
 `dotnet run -c Release -- --job short --framework net6.0 --filter *`
 
-# Why do I get a build a build error when running `.\Build.ps1`?
+### Why do I get a build a build error when running `.\Build.ps1`?
 
 You might see this:
 ```
@@ -504,7 +531,7 @@ You might see this:
 
 To get around this, run `Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
 
-# What alternatives are there?
+### What alternatives are there?
 
 [StronglyTypedId](https://github.com/andrewlock/StronglyTypedId)
 This is focused more on IDs. Vogen is focused more of 'Domain Concepts' and the constraints associated with those concepts.
@@ -516,9 +543,9 @@ This is my first attempt and is NON source-generated. There is memory overhead b
 Similar to StringlyTyped - non source-generated and no analysers. This is also more relaxed and allows composite 'underlying' types.
 
 [ValueObjectGenerator](https://github.com/RyotaMurohoshi/ValueObjectGenerator)
-Similar to Vogen, but less focus on validation and no code analyzer.
+Similar to Vogen, but less focused on validation and no code analyzer.
 
-# What primitive types are supported?
+### What primitive types are supported?
 
 Any type can be wrapped. Serialisation and type conversions have implementations for:
 * string
@@ -547,21 +574,13 @@ For other types, a generic type conversion and serialiser is applied. If you are
 public partial struct SpecialMeasurement { }
 ```
 
-# I've added a feature but the 'Snapshot' tests are failing in the build - what do I do?
+### I've added a feature but the 'Snapshot' tests are failing in the build - what do I do?
 
 When the integration tests are run, it uses snapshot tests to compare the current output to the expected output.
 If your feature/fix changes the output, the snapshot tests will bring up your configured code diff tool, for instance, Beyond Compare, and
-shows you the differences. You can accept the differences in that tool, or, if there's lot's of differencs (and they're all expected!), you have various options depending on your platform and tooling. Those are [described here](https://github.com/VerifyTests/Verify/blob/main/docs/clipboard.md). The quickest and easiest way is to just copy the 'actual' files to the 'expected' files:
+shows you the differences. You can accept the differences in that tool, or, if there's lot's of differencs (and they're all expected!), you have various options depending on your platform and tooling. Those are [described here](https://github.com/VerifyTests/Verify/blob/main/docs/clipboard.md). 
 
-On Windows:
-
-`cmd /c del "VerifiedFile"`
-
-On Linux or MacOS:
-
-`rm -f "VerifiedFile"`
-
-# How do I debug the source generator?
+### How do I debug the source generator?
 
 To test the source generator,  install the Roslyn SDK and then. 
 
@@ -571,24 +590,5 @@ To test in VS, you'll have a new 'launch profile':
 
 Select the Vogen project as the active project, and from the dropdown, select 'Roslyn'. Then just F5 to start debugging.
 
-# How is it configured?
-
-Each Value Object can have it's own _optional_ configuration. Configuration includes:
-
-* The underlying type
-* Any 'conversions' (Dapper, System.Text.Json, Newtonsoft.Json, etc.)
-* The type of the exception that is throw when validation fails
-
-If any of those above are not specified, then global configuration is used. It looks like this:
-```csharp
-[assembly: VogenDefaults(underlyingType: typeof(int), conversions: Conversions.None)]
-```
-
-Those again are optional. If they're not specified, then they are defaulted to:
-
-* Underlying type = `typeof(int)`
-* Conversions = `Conversions.Default` (`TypeConverter` and `System.Text.Json`)
-* Validation exception type = `typeof(ValueObjectValidationException)`
-
-If any conversions are supplied that don't match the enum, then compilation fails.
-If an exception type is supplied that does not derived from `Exception`, then compilation fails.
+### Can I get it to throw my own exception?
+Yes, by specifying the exception type in either the `ValueObject` attribute, or globally, with `VogenConfiguration`.

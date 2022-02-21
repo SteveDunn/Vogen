@@ -17,6 +17,12 @@ namespace Vogen.Examples.TypicalScenarios
         }
     }
 
+    // defaults to int
+    [ValueObject]
+    internal readonly partial struct Score
+    {
+    }
+
     // can be internal structs
     [ValueObject(typeof(int))]
     internal partial struct Centimeter
@@ -51,9 +57,18 @@ namespace Vogen.Examples.TypicalScenarios
     {
     }
 
-    [ValueObject(typeof(int))]
+    // defaults to int, but configured to throw an AmountException
+    [ValueObject(throws: typeof(AmountException))]
     public partial class Amount
     {
+        private static Validation Validate(int value) => value > 0 ? Validation.Ok : Validation.Invalid("Must be > 0"); // throws an AmountException
+    }
+
+    public class AmountException : Exception
+    {
+        public AmountException(string message) : base(message)
+        {
+        }
     }
 
     internal class CustomerProcessor
