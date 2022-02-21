@@ -16,7 +16,7 @@ namespace Whatever
 [System.ComponentModel.TypeConverter(typeof(CustomerIdTypeConverter))]
 
     [System.Diagnostics.DebuggerTypeProxyAttribute(typeof(CustomerIdDebugView))]
-    [System.Diagnostics.DebuggerDisplayAttribute("Underlying type: int, Value = { _value }")]
+    [System.Diagnostics.DebuggerDisplayAttribute("Underlying type: System.Int32, Value = { _value }")]
     public partial struct CustomerId : System.IEquatable<CustomerId>
     {
 #if DEBUG    
@@ -25,9 +25,9 @@ namespace Whatever
 
         private readonly bool _isInitialized;
         
-        private readonly int _value;
+        private readonly System.Int32 _value;
 
-        public readonly int Value
+        public readonly System.Int32 Value
         {
             [System.Diagnostics.DebuggerStepThroughAttribute]
             get
@@ -50,7 +50,7 @@ namespace Whatever
         }
 
         [System.Diagnostics.DebuggerStepThroughAttribute]
-        private CustomerId(int value) 
+        private CustomerId(System.Int32 value) 
         {
             _value = value;
             _isInitialized = true;
@@ -61,14 +61,14 @@ namespace Whatever
         /// </summary>
         /// <param name="value">The underlying type.</param>
         /// <returns>An instance of this type.</returns>
-        public static CustomerId From(int value)
+        public static CustomerId From(System.Int32 value)
         {
             CustomerId instance = new CustomerId(value);
 
-            var validation = CustomerId.validate(value);
+            var validation = CustomerId.Validate(value);
             if (validation != Vogen.Validation.Ok)
             {
-                throw new ValueObjectValidationException(validation.ErrorMessage);
+                throw new Vogen.IntegrationTests.SnapshotTests.MyValidationException(validation.ErrorMessage);
             }
 
 
@@ -81,10 +81,10 @@ namespace Whatever
             // We treat anything uninitialized as not equal to anything, even other uninitialized instances of this type.
             if(!_isInitialized || !other._isInitialized) return false;
 
-            return System.Collections.Generic.EqualityComparer<int>.Default.Equals(Value, other.Value);
+            return System.Collections.Generic.EqualityComparer<System.Int32>.Default.Equals(Value, other.Value);
         }
 
-        public readonly bool Equals(int primitive) => Value.Equals(primitive);
+        public readonly bool Equals(System.Int32 primitive) => Value.Equals(primitive);
 
         public readonly override bool Equals(object obj)
         {
@@ -94,13 +94,13 @@ namespace Whatever
         public static bool operator ==(CustomerId left, CustomerId right) => Equals(left, right);
         public static bool operator !=(CustomerId left, CustomerId right) => !(left == right);
 
-        public static bool operator ==(CustomerId left, int right) => Equals(left.Value, right);
-        public static bool operator !=(CustomerId left, int right) => !Equals(left.Value, right);
+        public static bool operator ==(CustomerId left, System.Int32 right) => Equals(left.Value, right);
+        public static bool operator !=(CustomerId left, System.Int32 right) => !Equals(left.Value, right);
 
-        public static bool operator ==(int left, CustomerId right) => Equals(left, right.Value);
-        public static bool operator !=(int left, CustomerId right) => !Equals(left, right.Value);
+        public static bool operator ==(System.Int32 left, CustomerId right) => Equals(left, right.Value);
+        public static bool operator !=(System.Int32 left, CustomerId right) => !Equals(left, right.Value);
 
-        public readonly override int GetHashCode() => System.Collections.Generic.EqualityComparer<int>.Default.GetHashCode(_value);
+        public readonly override int GetHashCode() => System.Collections.Generic.EqualityComparer<System.Int32>.Default.GetHashCode(_value);
 
         public readonly override string ToString() => Value.ToString();
 
@@ -114,7 +114,7 @@ namespace Whatever
                 string message = "Use of uninitialized Value Object.";
 #endif
 
-                throw new ValueObjectValidationException(message);
+                throw new Vogen.IntegrationTests.SnapshotTests.MyValidationException(message);
             }
         }
 

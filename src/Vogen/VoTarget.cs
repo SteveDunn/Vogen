@@ -13,6 +13,9 @@ internal class VoTarget
         SymbolForType = symbolForType ?? throw new InvalidOperationException("No symbol for type!");
     }
 
+    /// <summary>
+    /// The type that the user provides, e.g. `CustomerId`
+    /// </summary>
     public TypeDeclarationSyntax TypeToAugment { get; set; }
     
     public INamedTypeSymbol? ContainingType { get; set; }

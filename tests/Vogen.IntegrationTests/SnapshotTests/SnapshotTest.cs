@@ -16,7 +16,6 @@ public class ValueObjectGeneratorTests
     [Fact]
     public Task Partial_struct_created_successfully()
     {
-        // The source code to test
         var source = @"using Vogen;
 namespace Whatever;
 
@@ -35,7 +34,6 @@ public partial struct CustomerId
     [Fact]
     public Task No_namespace()
     {
-        // The source code to test
         var source = @"using Vogen;
 
 [ValueObject(typeof(int))]
@@ -54,7 +52,6 @@ public partial struct CustomerId
     [Fact]
     public Task Produces_instances()
     {
-        // The source code to test
         var source = @"using Vogen;
 
 namespace Whatever;
@@ -79,7 +76,6 @@ public partial struct CustomerId
     [Fact]
     public Task Validation_with_PascalCased_validate_method()
     {
-        // The source code to test
         var source = @"using Vogen;
 
 namespace Whatever;
@@ -106,7 +102,6 @@ public partial struct CustomerId
     [Fact]
     public Task Validation_with_camelCased_validate_method()
     {
-        // The source code to test
         var source = @"using Vogen;
 
 namespace Whatever;

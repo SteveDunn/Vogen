@@ -16,5 +16,8 @@ public enum DiagnosticCode
     InstanceMethodCannotHaveNullArgumentValue = 7,
     CannotHaveUserConstructors = 8,
     UsingDefaultProhibited = 9,
-    UsingNewProhibited = 10
+    UsingNewProhibited = 10,
+    InvalidConversions = 11,
+    CustomExceptionMustDeriveFromException = 12,
+    CustomExceptionMustHaveValidConstructor = 13
 }

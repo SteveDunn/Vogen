@@ -27,14 +27,6 @@ public class CreationTests
         (vo1 == vo2).Should().BeTrue();
     }
 
-    // doesn't work - need to handle nested types
-    // [Fact]
-    // public void Creation_Happy_Path_EmbeddedType()
-    // {
-    //     var embedded = new TopLevelClass.AnotherClass.AndAnother.NestedType();
-    //     embedded.From(123);
-    // }
-
     [Fact]
     public void Creation_Unhappy_Path_MyString()
     {
