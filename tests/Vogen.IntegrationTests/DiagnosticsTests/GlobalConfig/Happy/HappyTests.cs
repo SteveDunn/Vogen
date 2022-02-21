@@ -66,7 +66,7 @@ public class MyValidationException : Exception
     }
 
     [Fact]
-    public Task Valid_conversion_and_exceptions_override()
+    public Task Conversion_and_exceptions_override()
     {
         var source = @"using System;
 using Vogen;

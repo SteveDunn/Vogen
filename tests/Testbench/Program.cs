@@ -1,7 +1,7 @@
 ﻿using System;
 using Vogen;
 
-[assembly: VogenDefaults(underlyingType: typeof(string), conversions: Conversions.None, throws: typeof(Whatever.MyValidationException))]
+[assembly: VogenDefaults(conversions: (Conversions)666)]
 
 namespace Whatever;
 

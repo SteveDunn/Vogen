@@ -15,10 +15,6 @@ public class HappyTests
 
     public HappyTests(ITestOutputHelper output) => _output = output;
     
-    /// <summary>
-    /// We don't supply any global config, but override the underlying type on this VO.
-    /// </summary>
-    /// <returns></returns>
     [Fact]
     public Task Type_override()
     {
@@ -38,10 +34,6 @@ public partial struct CustomerId
         return Verifier.Verify(output).UseDirectory("Snapshots");
     }
 
-    /// <summary>
-    /// We don't supply any global config, but override the exception type on this VO.
-    /// </summary>
-    /// <returns></returns>
     [Fact]
     public Task Exception_override()
     {
@@ -68,10 +60,6 @@ public class MyValidationException : Exception
         return Verifier.Verify(output).UseDirectory("Snapshots");
     }
 
-    /// <summary>
-    /// We don't supply any global config, but override the Conversion on this VO.
-    /// </summary>
-    /// <returns></returns>
     [Fact]
     public Task Conversion_override()
     {
@@ -89,10 +77,6 @@ public partial struct CustomerId { }";
         return Verifier.Verify(output).UseDirectory("Snapshots");
     }
 
-    /// <summary>
-    /// We don't supply any global config, but override the exception and conversion for the VO.
-    /// </summary>
-    /// <returns></returns>
     [Fact]
     public Task Conversion_and_exceptions_override()
     {
@@ -120,11 +104,6 @@ public class MyValidationException : Exception
         return Verifier.Verify(output).UseDirectory("Snapshots");
     }
 
-    /// <summary>
-    /// We *do* provide global config and *do not* provide local config (on the VO). The VO
-    /// will use what's specified in the global config.
-    /// </summary>
-    /// <returns></returns>
     [Fact]
     public Task Override_global_config_locally()
     {

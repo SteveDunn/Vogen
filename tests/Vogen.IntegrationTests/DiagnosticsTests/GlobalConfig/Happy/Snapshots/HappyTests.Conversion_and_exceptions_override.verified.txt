@@ -63,7 +63,12 @@ namespace Whatever
         {
             CustomerId instance = new CustomerId(value);
 
-            
+            var validation = CustomerId.Validate(value);
+            if (validation != Vogen.Validation.Ok)
+            {
+                throw new Whatever.MyValidationException(validation.ErrorMessage);
+            }
+
 
             return instance;
         }
@@ -107,7 +112,7 @@ namespace Whatever
                 string message = "Use of uninitialized Value Object.";
 #endif
 
-                throw new ValueObjectValidationException(message);
+                throw new Whatever.MyValidationException(message);
             }
         }
 
@@ -117,6 +122,25 @@ namespace Whatever
 
 
 
+        public class DapperTypeHandler : Dapper.SqlMapper.TypeHandler<CustomerId>
+        {
+            public override void SetValue(System.Data.IDbDataParameter parameter, CustomerId value)
+            {
+                parameter.DbType = System.Data.DbType.Int32;
+                parameter.Value = value.Value;
+            }
+
+            public override CustomerId Parse(object value)
+            {
+                return value switch
+                {
+                    int intValue => new CustomerId(intValue),
+                    long longValue when longValue < int.MaxValue => new CustomerId((int)longValue),
+                    string stringValue when !string.IsNullOrEmpty(stringValue) && int.TryParse(stringValue, out var result) => new CustomerId(result),
+                    _ => throw new System.InvalidCastException($"Unable to cast object of type {value.GetType()} to CustomerId"),
+                };
+            }
+        }
 
 
 
@@ -137,7 +161,7 @@ namespace Whatever
             public string CreatedWith => _t._stackTrace?.ToString() ?? "the From method";
             #endif
 
-            public string Conversions => @"None";
+            public string Conversions => @"DapperTypeHandler";
                 }
 
 }

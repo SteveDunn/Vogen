@@ -16,7 +16,7 @@ public class SadTests
     public SadTests(ITestOutputHelper output) => _output = output;
 
     [Fact]
-    public Task Missing_any_constructors()
+    public void Missing_any_constructors()
     {
         var source = @"using System;
 using Vogen;
@@ -41,12 +41,10 @@ public class MyValidationException : Exception
 
         diagnostic.Id.Should().Be("VOG013");
         diagnostic.ToString().Should().Be("(11,14): error VOG013: MyValidationException must have at least 1 public constructor with 1 parameter of type System.String");
-
-        return Verifier.Verify(output).UseDirectory("Snapshots");
     }
 
     [Fact]
-    public Task Missing_string_constructor()
+    public void Missing_string_constructor()
     {
         var source = @"using System;
 using Vogen;
@@ -71,13 +69,11 @@ public class MyValidationException : Exception
         Diagnostic diagnostic = diagnostics.Single();
 
         diagnostic.Id.Should().Be("VOG013");
-        diagnostic.ToString().Should().Be("(11,14): error VOG013: MyValidationException must have at least 1 public constructor with 1 parameter of type System.String");
-
-        return Verifier.Verify(output).UseDirectory("Snapshots");
+        diagnostic.ToString().Should().Be("(11,14): error VOG013: MyValidationException must have at least 1 public constructor with 1 parameter of type System.String"); 
     }
 
     [Fact]
-    public Task Missing_public_string_constructor_on_exception()
+    public void Missing_public_string_constructor_on_exception()
     {
         var source = @"using System;
 using Vogen;
@@ -103,12 +99,10 @@ public class MyValidationException : Exception
 
         diagnostic.Id.Should().Be("VOG013");
         diagnostic.ToString().Should().Be("(11,14): error VOG013: MyValidationException must have at least 1 public constructor with 1 parameter of type System.String");
-
-        return Verifier.Verify(output).UseDirectory("Snapshots");
     }
 
     [Fact]
-    public Task Not_an_exception()
+    public void Not_an_exception()
     {
         var source = @"using System;
 using Vogen;
@@ -137,7 +131,29 @@ public class MyValidationException { } // NOT AN EXCEPTION!
                 second.Id.Should().Be("VOG013");
                 second.ToString().Should().Be("(11,14): error VOG013: MyValidationException must have at least 1 public constructor with 1 parameter of type System.String");
             });
-
-        return Verifier.Verify(output).UseDirectory("Snapshots");
     }
+
+    [Fact]
+    public void Not_valid_conversion()
+    {
+        var source = @"using System;
+using Vogen;
+
+namespace Whatever;
+
+[ValueObject(conversions: (Conversions)666)]
+public partial struct CustomerId { }
+";
+
+        var (diagnostics, output) = TestHelper.GetGeneratedOutput<ValueObjectGenerator>(source);
+
+        diagnostics.Should().HaveCount(1);
+
+        diagnostics.Should().SatisfyRespectively(first =>
+        {
+            first.Id.Should().Be("VOG011");
+            first.ToString().Should().Be("(6,2): error VOG011: The Conversions specified do not match any known conversions - see the Conversions type");
+        });
+    }
+
 }
