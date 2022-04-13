@@ -16,7 +16,9 @@
 
 ## Overview
 
-This is a .NET source generator and code analyser that generates strongly typed **domain ideas**. You provide this:
+This is a .NET source generator and code analyzer for .NET. It's compatible with .NET Framework 4.6.2 and onwards, and .NET 5+. For .NET Framework, please see the FAQ section on how to get set up correctly. 
+
+The generator generates strongly typed **domain ideas**. You provide this:
 
 ```csharp
 [ValueObject]
@@ -325,6 +327,26 @@ SqlMapper.AddTypeHandler(new Customer.DapperTypeHandler());
 See the examples folder for more information.
 
 ## FAQ
+
+### What versions of .NET are supported?
+.NET Framework 4.6.2 and onwards and .NET 5+ are supported.
+If you're using .NET Framework and the old style C# projects (the one before the 'SDK style' projects), then you'll need to do a few things differently:
+
+* add the reference using `PackageReference` in the .csproj file:
+```xml
+  <ItemGroup>
+      <PackageReference Include="Vogen" Version="[LATEST_VERSION_HERE - E.G. 1.0.19]" PrivateAssets="all" />
+  </ItemGroup>
+```
+
+* set the language version to `latest` (or anything `8` or more):
+
+```diff
+  <PropertyGroup>
++    <LangVersion>latest</LangVersion>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+
+```
 
 ### Why can't I just use `public record struct CustomerId(int Value);`?
 
