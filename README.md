@@ -335,7 +335,7 @@ If you're using .NET Framework and the old style C# projects (the one before the
 * add the reference using `PackageReference` in the .csproj file:
 ```xml
   <ItemGroup>
-      <PackageReference Include="Vogen" Version="[LATEST_VERSION_HERE - E.G. 1.0.19]" PrivateAssets="all" />
+      <PackageReference Include="Vogen" Version="[LATEST_VERSION_HERE - E.G. 1.0.18]" PrivateAssets="all" />
   </ItemGroup>
 ```
 
