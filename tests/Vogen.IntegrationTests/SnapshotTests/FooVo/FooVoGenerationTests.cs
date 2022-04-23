@@ -63,6 +63,14 @@ public class FooVoGenerationTests
     public partial struct DapperFooVo { }");
     }
 
+    [Fact]
+    public Task LinqToDbFooVo_Test()
+    {
+        return RunTest(@"
+    [ValueObject(conversions: Conversions.LinqToDbValueConverter, underlyingType: typeof(Bar))]
+    public partial struct LinqToDbFooVo { }");
+    }
+
     private Task RunTest(string declaration)
     {
         var source = @"using System;

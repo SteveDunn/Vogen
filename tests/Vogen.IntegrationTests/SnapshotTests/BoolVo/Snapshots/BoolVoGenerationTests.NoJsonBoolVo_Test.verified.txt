@@ -15,7 +15,7 @@ namespace Whatever
     [System.ComponentModel.TypeConverter(typeof(NoJsonBoolVoTypeConverter))]
 
     [System.Diagnostics.DebuggerTypeProxyAttribute(typeof(NoJsonBoolVoDebugView))]
-    [System.Diagnostics.DebuggerDisplayAttribute("Underlying type: byte, Value = { _value }")]
+    [System.Diagnostics.DebuggerDisplayAttribute("Underlying type: bool, Value = { _value }")]
     public partial struct NoJsonBoolVo : System.IEquatable<NoJsonBoolVo>
     {
 #if DEBUG    
@@ -24,9 +24,9 @@ namespace Whatever
 
         private readonly bool _isInitialized;
         
-        private readonly byte _value;
+        private readonly bool _value;
 
-        public readonly byte Value
+        public readonly bool Value
         {
             [System.Diagnostics.DebuggerStepThroughAttribute]
             get
@@ -49,7 +49,7 @@ namespace Whatever
         }
 
         [System.Diagnostics.DebuggerStepThroughAttribute]
-        private NoJsonBoolVo(byte value) 
+        private NoJsonBoolVo(bool value) 
         {
             _value = value;
             _isInitialized = true;
@@ -60,7 +60,7 @@ namespace Whatever
         /// </summary>
         /// <param name="value">The underlying type.</param>
         /// <returns>An instance of this type.</returns>
-        public static NoJsonBoolVo From(byte value)
+        public static NoJsonBoolVo From(bool value)
         {
             NoJsonBoolVo instance = new NoJsonBoolVo(value);
 
@@ -75,10 +75,10 @@ namespace Whatever
             // We treat anything uninitialized as not equal to anything, even other uninitialized instances of this type.
             if(!_isInitialized || !other._isInitialized) return false;
 
-            return System.Collections.Generic.EqualityComparer<byte>.Default.Equals(Value, other.Value);
+            return System.Collections.Generic.EqualityComparer<bool>.Default.Equals(Value, other.Value);
         }
 
-        public readonly bool Equals(byte primitive) => Value.Equals(primitive);
+        public readonly bool Equals(bool primitive) => Value.Equals(primitive);
 
         public readonly override bool Equals(object obj)
         {
@@ -88,13 +88,13 @@ namespace Whatever
         public static bool operator ==(NoJsonBoolVo left, NoJsonBoolVo right) => Equals(left, right);
         public static bool operator !=(NoJsonBoolVo left, NoJsonBoolVo right) => !(left == right);
 
-        public static bool operator ==(NoJsonBoolVo left, byte right) => Equals(left.Value, right);
-        public static bool operator !=(NoJsonBoolVo left, byte right) => !Equals(left.Value, right);
+        public static bool operator ==(NoJsonBoolVo left, bool right) => Equals(left.Value, right);
+        public static bool operator !=(NoJsonBoolVo left, bool right) => !Equals(left.Value, right);
 
-        public static bool operator ==(byte left, NoJsonBoolVo right) => Equals(left, right.Value);
-        public static bool operator !=(byte left, NoJsonBoolVo right) => !Equals(left, right.Value);
+        public static bool operator ==(bool left, NoJsonBoolVo right) => Equals(left, right.Value);
+        public static bool operator !=(bool left, NoJsonBoolVo right) => !Equals(left, right.Value);
 
-        public readonly override int GetHashCode() => System.Collections.Generic.EqualityComparer<byte>.Default.GetHashCode(_value);
+        public readonly override int GetHashCode() => System.Collections.Generic.EqualityComparer<bool>.Default.GetHashCode(_value);
 
         public readonly override string ToString() => Value.ToString();
 
@@ -121,32 +121,29 @@ namespace Whatever
         {
             public override bool CanConvertFrom(System.ComponentModel.ITypeDescriptorContext context, System.Type sourceType)
             {
-                return sourceType == typeof(byte) || sourceType == typeof(string) || base.CanConvertFrom(context, sourceType);
+                return sourceType == typeof(bool) || sourceType == typeof(string) || base.CanConvertFrom(context, sourceType);
             }
 
             public override object ConvertFrom(System.ComponentModel.ITypeDescriptorContext context, System.Globalization.CultureInfo culture, object value)
             {
                 return value switch
                 {
-                    byte byteValue => new NoJsonBoolVo(byteValue),
-                    short shortValue => new NoJsonBoolVo((byte)shortValue),
-                    int intValue => new NoJsonBoolVo((byte)intValue),
-                    long longValue => new NoJsonBoolVo((byte)longValue),
-                    string stringValue when  !string.IsNullOrEmpty(stringValue) && byte.TryParse(stringValue, out var result) => new NoJsonBoolVo(result),
+                    bool boolValue => new NoJsonBoolVo(boolValue),
+                    string stringValue when  !string.IsNullOrEmpty(stringValue) && bool.TryParse(stringValue, out var result) => new NoJsonBoolVo(result),
                     _ => base.ConvertFrom(context, culture, value),
                 };
             }
 
             public override bool CanConvertTo(System.ComponentModel.ITypeDescriptorContext context, System.Type sourceType)
             {
-                return sourceType == typeof(byte) || sourceType == typeof(string) || base.CanConvertTo(context, sourceType);
+                return sourceType == typeof(bool) || sourceType == typeof(string) || base.CanConvertTo(context, sourceType);
             }
 
             public override object ConvertTo(System.ComponentModel.ITypeDescriptorContext context, System.Globalization.CultureInfo culture, object value, System.Type destinationType)
             {
                 if (value is NoJsonBoolVo idValue)
                 {
-                    if (destinationType == typeof(byte))
+                    if (destinationType == typeof(bool))
                     {
                         return idValue.Value;
                     }
@@ -164,6 +161,7 @@ namespace Whatever
 
 
 
+
         internal sealed class NoJsonBoolVoDebugView
         {
             private readonly NoJsonBoolVo _t;
@@ -174,7 +172,7 @@ namespace Whatever
             }
 
             public bool IsInitialized => _t._isInitialized;
-            public string UnderlyingType => "System.Byte";
+            public string UnderlyingType => "System.Boolean";
             public string Value => _t._isInitialized ? _t._value.ToString() : "[not initialized]" ;
 
             #if DEBUG

@@ -31,7 +31,10 @@
 
     [ValueObject(conversions: Conversions.EfCoreValueConverter, underlyingType: typeof(Bar))]
     public partial struct EfCoreFooVo { }
-    
+
     [ValueObject(conversions: Conversions.DapperTypeHandler, underlyingType: typeof(Bar))]
     public partial struct DapperFooVo { }
+
+    [ValueObject(conversions: Conversions.LinqToDbValueConverter, underlyingType: typeof(Bar))]
+    public partial struct LinqToDbFooVo { }
 }

@@ -137,6 +137,7 @@ namespace Whatever
 
 
 
+
         internal sealed class DapperStringVoDebugView
         {
             private readonly DapperStringVo _t;

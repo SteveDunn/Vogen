@@ -63,6 +63,14 @@ public class ShortVoGenerationTests
     public partial struct DapperShortVo { }");
     }
 
+    [Fact]
+    public Task LinqToDbShortVo_Test()
+    {
+        return RunTest(@"
+    [ValueObject(conversions: Conversions.LinqToDbValueConverter, underlyingType: typeof(short))]
+    public partial struct LinqToDbShortVo { }");
+    }
+
     private Task RunTest(string declaration)
     {
         var source = @"using Vogen;

@@ -63,6 +63,14 @@ public class DateTimeVoGenerationTests
     public partial struct DapperDateTimeVo { }");
     }
 
+    [Fact]
+    public Task LinqToDbDateTimeVo_Test()
+    {
+        return RunTest(@"
+    [ValueObject(conversions: Conversions.LinqToDbValueConverter, underlyingType: typeof(DateTime))]
+    public partial struct LinqToDbDateTimeVo { }");
+    }
+
     private Task RunTest(string declaration)
     {
         var source = @"using System;

@@ -12,6 +12,10 @@ using Xunit;
 using NewtonsoftJsonSerializer = Newtonsoft.Json.JsonConvert;
 using SystemTextJsonSerializer = System.Text.Json.JsonSerializer;
 using Vogen.IntegrationTests.TestTypes.ClassVos;
+using LinqToDB;
+using LinqToDB.Data;
+using LinqToDB.DataProvider.SQLite;
+using LinqToDB.Mapping;
 // ReSharper disable RedundantOverflowCheckingContext
 // ReSharper disable ConvertToLocalFunction
 
@@ -157,7 +161,7 @@ namespace Vogen.IntegrationTests.SerializationAndConversionTests.ClassVos
                 .UseSqlite(connection)
                 .Options;
 
-            var original = new TestEntity { Id = EfCoreByteVo.From(123) };
+            var original = new EfCoreTestEntity { Id = EfCoreByteVo.From(123) };
             using (var context = new TestDbContext(options))
             {
                 context.Database.EnsureCreated();
@@ -184,6 +188,32 @@ namespace Vogen.IntegrationTests.SerializationAndConversionTests.ClassVos
             Assert.Equal(DapperByteVo.From(123), value);
         }
 
+        [Fact]
+        public void WhenLinqToDbValueConverterUsesValueConverter()
+        {
+            var connection = new SqliteConnection("DataSource=:memory:");
+            connection.Open();
+
+            var original = new LinqToDbTestEntity { Id = LinqToDbByteVo.From(123) };
+            using (var context = new DataConnection(
+                SQLiteTools.GetDataProvider("SQLite.MS"),
+                connection,
+                disposeConnection: false))
+            {
+                context.CreateTable<LinqToDbTestEntity>();
+                context.Insert(original);
+            }
+            using (var context = new DataConnection(
+                SQLiteTools.GetDataProvider("SQLite.MS"),
+                connection,
+                disposeConnection: false))
+            {
+                var all = context.GetTable<LinqToDbTestEntity>().ToList();
+                var retrieved = Assert.Single(all);
+                Assert.Equal(original.Id, retrieved.Id);
+            }
+        }
+
         [Theory]
         [InlineData((byte) 123)]
         [InlineData("123")]
@@ -200,7 +230,7 @@ namespace Vogen.IntegrationTests.SerializationAndConversionTests.ClassVos
 
         public class TestDbContext : DbContext
         {
-            public DbSet<TestEntity> Entities { get; set; }
+            public DbSet<EfCoreTestEntity> Entities { get; set; }
 
             public TestDbContext(DbContextOptions options) : base(options)
             {
@@ -209,7 +239,7 @@ namespace Vogen.IntegrationTests.SerializationAndConversionTests.ClassVos
             protected override void OnModelCreating(ModelBuilder modelBuilder)
             {
                 modelBuilder
-                    .Entity<TestEntity>(builder =>
+                    .Entity<EfCoreTestEntity>(builder =>
                     {
                         builder
                             .Property(x => x.Id)
@@ -219,9 +249,16 @@ namespace Vogen.IntegrationTests.SerializationAndConversionTests.ClassVos
             }
         }
 
-        public class TestEntity
+        public class EfCoreTestEntity
         {
             public EfCoreByteVo Id { get; set; }
+        }
+
+        public class LinqToDbTestEntity
+        {
+            [Column(DataType = DataType.Byte)]
+            [ValueConverter(ConverterType = typeof(LinqToDbByteVo.LinqToDbValueConverter))]
+            public LinqToDbByteVo Id { get; set; }
         }
     }
 }

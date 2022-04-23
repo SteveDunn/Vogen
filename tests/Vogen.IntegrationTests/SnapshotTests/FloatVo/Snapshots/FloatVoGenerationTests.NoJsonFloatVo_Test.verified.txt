@@ -161,6 +161,7 @@ namespace Whatever
 
 
 
+
         internal sealed class NoJsonFloatVoDebugView
         {
             private readonly NoJsonFloatVo _t;

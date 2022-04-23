@@ -137,6 +137,7 @@ namespace Whatever
 
 
 
+
         internal sealed class DapperFooVoDebugView
         {
             private readonly DapperFooVo _t;

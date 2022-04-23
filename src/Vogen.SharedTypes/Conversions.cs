@@ -46,4 +46,9 @@ public enum Conversions
     /// Creates a Dapper TypeHandler for converting to and from the type
     /// </summary>
     DapperTypeHandler = 1 << 5,
+
+    /// <summary>
+    /// Creates a LinqToDb ValueConverter for converting to and from the type
+    /// </summary>
+    LinqToDbValueConverter = 1 << 6,
 }

@@ -63,6 +63,14 @@ public class LongVoGenerationTests
     public partial struct DapperLongVo { }");
     }
 
+    [Fact]
+    public Task LinqToDbLongVo_Test()
+    {
+        return RunTest(@"
+    [ValueObject(conversions: Conversions.LinqToDbValueConverter, underlyingType: typeof(long))]
+    public partial struct LinqToDbLongVo { }");
+    }
+
     private Task RunTest(string declaration)
     {
         var source = @"using Vogen;

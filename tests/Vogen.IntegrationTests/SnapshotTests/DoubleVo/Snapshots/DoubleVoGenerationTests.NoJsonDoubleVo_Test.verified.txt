@@ -162,6 +162,7 @@ namespace Whatever
 
 
 
+
         internal sealed class NoJsonDoubleVoDebugView
         {
             private readonly NoJsonDoubleVo _t;

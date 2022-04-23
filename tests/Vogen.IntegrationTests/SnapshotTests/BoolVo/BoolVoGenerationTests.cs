@@ -12,14 +12,14 @@ public class BoolVoGenerationTests
     [Fact]
     public Task NoConverterBoolVo_Test() =>
         RunTest(@"
-  [ValueObject(conversions: Conversions.None, underlyingType: typeof(byte))]
+  [ValueObject(conversions: Conversions.None, underlyingType: typeof(bool))]
   public partial struct NoConverterBoolVo { }");
 
     [Fact]
     public Task NoJsonBoolVo_Test()
     {
         return RunTest(@"
-    [ValueObject(conversions: Conversions.TypeConverter, underlyingType: typeof(byte))]
+    [ValueObject(conversions: Conversions.TypeConverter, underlyingType: typeof(bool))]
     public partial struct NoJsonBoolVo { }");
     }
     
@@ -27,7 +27,7 @@ public class BoolVoGenerationTests
     public Task NewtonsoftJsonBoolVo_Test()
     {
         return RunTest(@"
-    [ValueObject(conversions: Conversions.NewtonsoftJson, underlyingType: typeof(byte))]
+    [ValueObject(conversions: Conversions.NewtonsoftJson, underlyingType: typeof(bool))]
     public partial struct NewtonsoftJsonBoolVo { }");
     }
     
@@ -35,7 +35,7 @@ public class BoolVoGenerationTests
     public Task SystemTextJsonBoolVo_Test()
     {
         return RunTest(@"
-    [ValueObject(conversions: Conversions.SystemTextJson, underlyingType: typeof(byte))]
+    [ValueObject(conversions: Conversions.SystemTextJson, underlyingType: typeof(bool))]
     public partial struct SystemTextJsonBoolVo { }
 ");
     }
@@ -44,7 +44,7 @@ public class BoolVoGenerationTests
     public Task BothJsonBoolVo_Test()
     {
         return RunTest(@"
-    [ValueObject(conversions: Conversions.NewtonsoftJson | Conversions.SystemTextJson, underlyingType: typeof(byte))]
+    [ValueObject(conversions: Conversions.NewtonsoftJson | Conversions.SystemTextJson, underlyingType: typeof(bool))]
     public partial struct BothJsonBoolVo { }");
     }
 
@@ -52,7 +52,7 @@ public class BoolVoGenerationTests
     public Task EfCoreBoolVo_Test()
     {
         return RunTest(@"
-        [ValueObject(conversions: Conversions.EfCoreValueConverter, underlyingType: typeof(byte))]
+        [ValueObject(conversions: Conversions.EfCoreValueConverter, underlyingType: typeof(bool))]
     public partial struct EfCoreBoolVo { }");
     }
 
@@ -60,7 +60,15 @@ public class BoolVoGenerationTests
     public Task DapperBoolVo_Test()
     {
         return RunTest(@"
-    [ValueObject(conversions: Conversions.DapperTypeHandler, underlyingType: typeof(byte))]
+    [ValueObject(conversions: Conversions.DapperTypeHandler, underlyingType: typeof(bool))]
+    public partial struct DapperBoolVo { }");
+    }
+
+    [Fact]
+    public Task LinqToDbBoolVo_Test()
+    {
+        return RunTest(@"
+    [ValueObject(conversions: Conversions.LinqToDbValueConverter, underlyingType: typeof(bool))]
     public partial struct DapperBoolVo { }");
     }
 

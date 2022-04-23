@@ -63,6 +63,14 @@ public class DoubleVoGenerationTests
     public partial struct DapperDoubleVo { }");
     }
 
+    [Fact]
+    public Task LinqToDbDoubleVo_Test()
+    {
+        return RunTest(@"
+    [ValueObject(conversions: Conversions.LinqToDbValueConverter, underlyingType: typeof(double))]
+    public partial struct LinqToDbDoubleVo { }");
+    }
+
     private Task RunTest(string declaration)
     {
         var source = @"using Vogen;

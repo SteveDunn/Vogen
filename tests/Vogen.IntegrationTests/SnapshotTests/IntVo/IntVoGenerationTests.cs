@@ -63,6 +63,14 @@ public class IntVoGenerationTests
     public partial struct DapperIntVo { }");
     }
 
+    [Fact]
+    public Task LinqToDbIntVo_Test()
+    {
+        return RunTest(@"
+    [ValueObject(conversions: Conversions.LinqToDbValueConverter, underlyingType: typeof(int))]
+    public partial struct LinqToDbIntVo { }");
+    }
+
     private Task RunTest(string declaration)
     {
         var source = @"using Vogen;

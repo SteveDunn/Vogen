@@ -141,6 +141,7 @@ namespace Whatever
 
 
 
+
         internal sealed class DapperFloatVoDebugView
         {
             private readonly DapperFloatVo _t;

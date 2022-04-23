@@ -140,6 +140,7 @@ namespace Whatever
 
 
 
+
         internal sealed class NewtonsoftJsonFloatVoDebugView
         {
             private readonly NewtonsoftJsonFloatVo _t;

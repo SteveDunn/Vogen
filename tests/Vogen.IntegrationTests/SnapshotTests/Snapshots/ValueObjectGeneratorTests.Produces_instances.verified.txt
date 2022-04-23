@@ -194,6 +194,7 @@ public static CustomerId Cust42 = new CustomerId(42);
 
 
 
+
         internal sealed class CustomerIdDebugView
         {
             private readonly CustomerId _t;

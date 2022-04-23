@@ -140,6 +140,7 @@ namespace Whatever
 
 
 
+
         internal sealed class DapperDoubleVoDebugView
         {
             private readonly DapperDoubleVo _t;

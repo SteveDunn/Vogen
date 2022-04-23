@@ -129,6 +129,7 @@ namespace Whatever
         }
 
 
+
         internal sealed class EfCoreCharVoDebugView
         {
             private readonly EfCoreCharVo _t;

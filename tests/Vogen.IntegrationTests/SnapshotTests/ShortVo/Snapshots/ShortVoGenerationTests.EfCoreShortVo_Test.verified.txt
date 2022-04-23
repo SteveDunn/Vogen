@@ -129,6 +129,7 @@ namespace Whatever
         }
 
 
+
         internal sealed class EfCoreShortVoDebugView
         {
             private readonly EfCoreShortVo _t;

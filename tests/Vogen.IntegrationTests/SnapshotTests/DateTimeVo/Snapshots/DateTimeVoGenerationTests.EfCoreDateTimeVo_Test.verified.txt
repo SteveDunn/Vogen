@@ -129,6 +129,7 @@ namespace Whatever
         }
 
 
+
         internal sealed class EfCoreDateTimeVoDebugView
         {
             private readonly EfCoreDateTimeVo _t;

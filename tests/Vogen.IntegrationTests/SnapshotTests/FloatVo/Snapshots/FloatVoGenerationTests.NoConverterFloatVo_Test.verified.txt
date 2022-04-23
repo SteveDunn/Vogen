@@ -120,6 +120,7 @@ namespace Whatever
 
 
 
+
         internal sealed class NoConverterFloatVoDebugView
         {
             private readonly NoConverterFloatVo _t;

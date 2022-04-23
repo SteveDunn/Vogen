@@ -23,4 +23,7 @@
 
     [ValueObject(conversions: Conversions.DapperTypeHandler, underlyingType: typeof(bool))]
     public partial struct DapperBoolVo { }
+
+    [ValueObject(conversions: Conversions.LinqToDbValueConverter, underlyingType: typeof(bool))]
+    public partial struct LinqToDbBoolVo { }
 }
