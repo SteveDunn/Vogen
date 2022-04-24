@@ -40,7 +40,7 @@ namespace Vogen.Examples.SerializationAndConversion
 
 		public class TestDbContext : DataConnection
 		{
-			public ITable<TestEntity> Entities { get; set; }
+			public ITable<TestEntity> Entities => GetTable<TestEntity>();
 
 			public TestDbContext(SqliteConnection connection)
 				: base(
@@ -52,7 +52,9 @@ namespace Vogen.Examples.SerializationAndConversion
 
 		public class TestEntity
 		{
-			[PrimaryKey, ValueConverter(ConverterType = typeof(LinqToDbStringVo.LinqToDbValueConverter))]
+			[PrimaryKey]
+			[Column(DataType = DataType.VarChar)]
+			[ValueConverter(ConverterType = typeof(LinqToDbStringVo.LinqToDbValueConverter))]
 			public LinqToDbStringVo Id { get; set; }
 		}
 	}
