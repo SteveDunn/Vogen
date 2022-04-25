@@ -2,8 +2,6 @@
 | :---            | :---                  | :---   | :---    |
 | GitHub Actions  | Ubuntu, Mac & Windows | ![Build](https://github.com/stevedunn/vogen/actions/workflows/build.yaml/badge.svg) | [![GitHub Actions Build History](https://buildstats.info/github/chart/SteveDunn/Vogen?branch=main&includeBuildsFromPullRequest=false)](https://github.com/SteveDunn/Vogen/actions) |
 
-
-
  [![GitHub release](https://img.shields.io/github/release/stevedunn/vogen.svg)](https://GitHub.com/stevedunn/vogen/releases/) [![GitHub license](https://img.shields.io/github/license/stevedunn/vogen.svg)](https://github.com/SteveDunn/Vogen/blob/main/LICENSE) 
 [![GitHub issues](https://img.shields.io/github/issues/Naereen/StrapDown.js.svg)](https://GitHub.com/stevedunn/vogen/issues/) [![GitHub issues-closed](https://img.shields.io/github/issues-closed/Naereen/StrapDown.js.svg)](https://GitHub.com/stevedunn/vogen/issues?q=is%3Aissue+is%3Aclosed) 
 [![NuGet Badge](https://buildstats.info/nuget/Vogen)](https://www.nuget.org/packages/Vogen/)
@@ -16,7 +14,7 @@
 
 ## Overview
 
-This is a .NET source generator and code analyzer for .NET. It's compatible with .NET Framework 4.6.2 and onwards, and .NET 5+. For .NET Framework, please see the FAQ section on how to get set up correctly. 
+This is a .NET source generator and code analyzer for .NET. It's compatible with .NET Framework 4.6.1 and onwards, and .NET 5+. For .NET Framework, please see the FAQ section on how to get set up correctly.
 
 The generator generates strongly typed **domain ideas**. You provide this:
 
@@ -232,13 +230,14 @@ public readonly partial struct Celsius {
 
 ## Configuration
 
-Each Value Object can have it's own _optional_ configuration. Configuration includes:
+Each Value Object can have it's own *optional* configuration. Configuration includes:
 
 * The underlying type
 * Any 'conversions' (Dapper, System.Text.Json, Newtonsoft.Json, etc.)
 * The type of the exception that is thrown when validation fails
 
 If any of those above are not specified, then global configuration is inferred. It looks like this:
+
 ```csharp
 [assembly: VogenDefaults(underlyingType: typeof(int), conversions: Conversions.None, throws: typeof(ValueObjectValidationException))]
 ```
@@ -260,7 +259,7 @@ There are several code analysis warnings for invalid configuration, including:
 (to run these yourself: `dotnet run -c Release -- --job short --framework net6.0 --filter *` in the `benchmarks` folders)
 
 As mentioned previously, the goal of Vogen is to achieve very similar performance compare to using primitives themselves.
-Here's a benchmark comparing the use of a validated value object with underlying type of int vs using an int natively (_primitively_ 🤓)
+Here's a benchmark comparing the use of a validated value object with underlying type of int vs using an int natively (*primitively* 🤓)
 
 ``` ini
 BenchmarkDotNet=v0.12.1, OS=Windows 10.0.22000
@@ -273,11 +272,11 @@ Job=ShortRun  IterationCount=3  LaunchCount=1
 WarmupCount=3  
 
 ```
+
 |                  Method |     Mean |    Error |   StdDev | Ratio | Allocated |
 |------------------------ |---------:|---------:|---------:|------:|----------:|
 |        UsingIntNatively | 13.57 ns | 0.086 ns | 0.005 ns |  1.00 |         - |
 |  UsingValueObjectStruct | 14.08 ns | 1.131 ns | 0.062 ns |  1.04 |         - |
-
 
 There is no discernable difference between using a native int and a VO struct; both are pretty much the same in terms of speed and memory.
 
@@ -294,6 +293,7 @@ Job=ShortRun  IterationCount=3  LaunchCount=1
 WarmupCount=3  
 
 ```
+
 |                   Method |     Mean |     Error |   StdDev | Ratio | RatioSD |  Gen 0 | Allocated |
 |------------------------- |---------:|----------:|---------:|------:|--------:|-------:|----------:|
 |      UsingStringNatively | 135.4 ns |  16.89 ns |  0.93 ns |  1.00 |    0.00 | 0.0153 |     256 B |
@@ -302,10 +302,13 @@ WarmupCount=3
 There is a tiny amount of performance overhead, but these measurements are incredibly small. There is no memory overhead.
 
 ## Serialisation and type conversion
+
 By default, each VO is decoarated with a `TypeConverter` and `System.Text.Json` (STJ) serializer. There are other converters/serialiazer for:
+
 * Newtonsoft.Json (NSJ)
 * Dapper
 * EFCore
+* [LINQ to DB](https://github.com/linq2db/linq2db)
 
 They are controlled by the `Conversions` enum. The following has serializers for NSJ and STJ:
 
@@ -329,10 +332,12 @@ See the examples folder for more information.
 ## FAQ
 
 ### What versions of .NET are supported?
-.NET Framework 4.6.2 and onwards and .NET 5+ are supported.
+
+.NET Framework 4.6.1 and onwards and .NET 5+ are supported.
 If you're using .NET Framework and the old style C# projects (the one before the 'SDK style' projects), then you'll need to do a few things differently:
 
 * add the reference using `PackageReference` in the .csproj file:
+
 ```xml
   <ItemGroup>
       <PackageReference Include="Vogen" Version="[LATEST_VERSION_HERE - E.G. 1.0.18]" PrivateAssets="all" />
@@ -347,6 +352,38 @@ If you're using .NET Framework and the old style C# projects (the one before the
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
 
 ```
+
+### Why are they called 'Value Objects'?
+
+The term Value Object represents a small object whos equality is based on value and not identity. From [Wikipedia](https://en.wikipedia.org/wiki/Value_object)
+
+> _In computer science, a value object is a small object that represents a simple entity whose equality is not based on identity: i.e. two value objects are equal when they have the same value, not necessarily being the same object._
+
+In DDD, a Value Object is (again, from [Wikipedia](https://en.wikipedia.org/wiki/Domain-driven_design#Building_blocks))
+
+>  _... a value object is an immutable object that contains attributes but has no conceptual identity_
+
+### How can I view the code that is generated?
+
+Add this to your `.csproj` file:
+
+```xml
+<PropertyGroup>
+    <EmitCompilerGeneratedFiles>true</EmitCompilerGeneratedFiles>
+    <CompilerGeneratedFilesOutputPath>Generated</CompilerGeneratedFilesOutputPath>
+</PropertyGroup>
+
+<ItemGroup>
+    <Compile Remove="Generated/*/**/*.cs" />
+</ItemGroup>
+```
+
+Then, you can view the generated files in the `Generated` folder. In Visual Studio, you need to select 'Show all files' in the Solution Explorer window:
+![the solution explorer window showing the 'show all files' option](/docs/img/20220425061514.png)
+
+Here's an example from the included `Samples` project:
+
+![the solution explorer window showing generated files](docs/img/20220425061733.png)
 
 ### Why can't I just use `public record struct CustomerId(int Value);`?
 
@@ -376,30 +413,32 @@ var c2 = default(CustomerId);
 ### Can I serialize and deserialize them?
 
 Yes. By default, each VO is decoarated with a `TypeConverter` and `System.Text.Json` (STJ) serializer. There are other converters/serialiazer for:
+
 * Newtonsoft.Json (NSJ)
 * Dapper
 * EFCore
+* LINQ to DB
 
-### It seems like a lot of overhead; I can validate the value myself
+### It seems like a lot of overhead; I can validate the value myself when I use it!
 
 You could, but to ensure consistency throughout your domain, you'd have to **validate everywhere**. And Shallow's Law says that that's not possible:
 
 > ⚖️ **Shalloway's Law**
-_"when N things need to change and N > 1, Shalloway will find at most N - 1 of these things."_
+> *"when N things need to change and N > 1, Shalloway will find at most N - 1 of these things."*
 
-Concretely: _"When 5 things need to change, Shalloway will find at most, 4 of these things."_
+Concretely: *"When 5 things need to change, Shalloway will find at most, 4 of these things."*
 
-### If my VO is a `struct`, can I stop the use of `CustomerId customerId = default(CustomerId);`?
+### If my VO is a `struct`, can I prohibit the use of `CustomerId customerId = default(CustomerId);`?
 
-Yes. The analyser generates a compilation error.
+**Yes**. The analyzer generates a compilation error.
 
-### If my VO is a `struct`, can I stop the use of `CustomerId customerId = new(CustomerId);`?
+### If my VO is a `struct`, can I prohibit the use of `CustomerId customerId = new(CustomerId);`?
 
-Yes. The analyser generates a compilation error.
+**Yes**. The analyzer generates a compilation error.
 
 ### If my VO is a struct, can I have my own constructor?
 
-No. The parameter-less constructor is generated automatically, and the constructor that takes the underlying value is also generated automatically.
+**No**. The parameter-less constructor is generated automatically, and the constructor that takes the underlying value is also generated automatically.
 
 If you add further constructors, then you will get a compilation error from the code generator, e.g.
 
@@ -417,7 +456,7 @@ public partial struct CustomerId {
 
 ### If my VO is a struct, can I have my own fields?
 
-You could, but you'd get compiler warning [CS0282-There is no defined ordering between fields in multiple declarations of partial class or struct 'type'](https://docs.microsoft.com/en-us/dotnet/csharp/misc/cs0282)
+You *could*, but you'd get compiler warning [CS0282-There is no defined ordering between fields in multiple declarations of partial class or struct 'type'](https://docs.microsoft.com/en-us/dotnet/csharp/misc/cs0282)
 
 ### Why are there no implicit conversions to and from the primitive types that are being wrapped?
 
@@ -469,7 +508,7 @@ var age10 = age20 / 2;
 age10 -= 12; // bang - goes negative??
 ```
 
-But no..  The implicit cast in `var age10 = age20 / 2` results in an `int` and not an `Age`. Changing it to `Age age10 = age20 / 2` fixes it. But this does go to show that it can be confusing.
+But no...  the implicit cast in `var age10 = age20 / 2` results in an `int` and not an `Age`. Changing it to `Age age10 = age20 / 2` fixes it. But this does go to show that it can be confusing.
 
 ### Why is there no interface?
 
@@ -492,15 +531,6 @@ public void SomSomething(IValidate<int> customerId, IValidated<int> supplierId, 
 So, callers could mess things up by calling `DoSomething(productId, supplierId, customerId)`)
 
 There would also be no need to know if it's validated, as, if it's in your domain, it's valid (there's no way to manually create invalid instances).  And with that said, there'd also be no point in exposing the 'Validate' method via the interface because validation is done at creation.
-
-### Why are they called 'Value Objects'?
-The term Value Object represents a small object whos equality is based on value and not identity. From [Wikipedia](https://en.wikipedia.org/wiki/Value_object)
-
-> _In computer science, a value object is a small object that represents a simple entity whose equality is not based on identity: i.e. two value objects are equal when they have the same value, not necessarily being the same object._
-
-In DDD, a Value Object is (again, from [Wikipedia](https://en.wikipedia.org/wiki/Domain-driven_design#Building_blocks))
-
->  _... a value object is an immutable object that contains attributes but has no conceptual identity_
 
 ### Can I represent special values
 
