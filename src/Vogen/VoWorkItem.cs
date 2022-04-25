@@ -23,9 +23,9 @@ public class VoWorkItem
 
     public INamedTypeSymbol? TypeForValidationExceptions { get; set; } = null!;
 
-    public string ValidationExceptionFullName => TypeForValidationExceptions?.FullName() ?? "ValueObjectValidationException";
+    public string ValidationExceptionFullName => TypeForValidationExceptions?.FullName() ?? "global::Vogen.ValueObjectValidationException";
 
     public string VoTypeName => TypeToAugment.Identifier.ToString();
     
-    public string UnderlyingTypeFullName => UnderlyingType.FullName() ?? UnderlyingType?.Name ?? "System.Int32";
+    public string UnderlyingTypeFullName => UnderlyingType.FullName() ?? UnderlyingType?.Name ?? "global::System.Int32";
 }

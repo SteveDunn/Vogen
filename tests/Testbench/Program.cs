@@ -16,10 +16,10 @@ public class Program
 }
 
 
-[ValueObject(underlyingType:typeof(float))]
+[ValueObject(underlyingType:typeof(int))]
 public partial struct CustomerId
 {
-    private static Validation Validate(float value) => value > 0 ? Validation.Ok : Validation.Invalid("xxxx");
+    private static Validation Validate(int value) => value > 0 ? Validation.Ok : Validation.Invalid("xxxx");
 }
 
 public class MyValidationException : Exception

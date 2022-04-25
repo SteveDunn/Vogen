@@ -11,7 +11,7 @@ internal class GenerateNewtonsoftJsonConversions : IGenerateConversion
             return string.Empty;
         }
 
-        return $@"[Newtonsoft.Json.JsonConverter(typeof({item.VoTypeName}NewtonsoftJsonConverter))]";
+        return $@"[global::Newtonsoft.Json.JsonConverter(typeof({item.VoTypeName}NewtonsoftJsonConverter))]";
     }
 
     public string GenerateAnyBody(TypeDeclarationSyntax tds, VoWorkItem item)

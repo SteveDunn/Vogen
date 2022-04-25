@@ -1,5 +1,5 @@
 ﻿
-        public class LinqToDbValueConverter : global::LinqToDB.Common.ValueConverter<VOTYPE, System.DateTimeOffset>
+        public class LinqToDbValueConverter : global::LinqToDB.Common.ValueConverter<VOTYPE, global::System.DateTimeOffset>
         {
             public LinqToDbValueConverter()
                 : base(
