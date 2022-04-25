@@ -25,4 +25,7 @@ namespace Vogen.Examples.Types
 
     [ValueObject(conversions: Conversions.DapperTypeHandler, underlyingType: typeof(DateTimeOffset))]
     public partial struct DapperDateTimeOffsetVo { }
+
+    [ValueObject(conversions: Conversions.LinqToDbValueConverter, underlyingType: typeof(DateTimeOffset))]
+    public partial struct LinqToDbDateTimeOffsetVo { }
 }

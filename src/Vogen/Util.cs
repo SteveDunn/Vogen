@@ -16,7 +16,8 @@ public static class Util
         new GenerateNewtonsoftJsonConversions(),
         new GenerateTypeConverterConversions(),
         new GenerateDapperConversions(),
-        new GenerateEfCoreTypeConversions()
+        new GenerateEfCoreTypeConversions(),
+        new GenerateLinqToDbConversions(),
     };
     
     public static string GenerateAnyInstances(TypeDeclarationSyntax classDeclarationSyntax, VoWorkItem item)

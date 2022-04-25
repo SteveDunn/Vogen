@@ -120,6 +120,7 @@ namespace Whatever
 
 
 
+
         internal sealed class NoConverterCharVoDebugView
         {
             private readonly NoConverterCharVo _t;

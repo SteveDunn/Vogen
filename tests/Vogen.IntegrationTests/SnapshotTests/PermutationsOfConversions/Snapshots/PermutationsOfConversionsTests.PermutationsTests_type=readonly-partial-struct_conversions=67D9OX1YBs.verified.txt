@@ -120,6 +120,7 @@ namespace Whatever
 
 
 
+
         internal sealed class MyIntVoDebugView
         {
             private readonly MyIntVo _t;

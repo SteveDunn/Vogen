@@ -63,6 +63,14 @@ public class FloatVoGenerationTests
     public partial struct DapperFloatVo { }");
     }
 
+    [Fact]
+    public Task LinqToDbFloatVo_Test()
+    {
+        return RunTest(@"
+    [ValueObject(conversions: Conversions.LinqToDbValueConverter, underlyingType: typeof(float))]
+    public partial struct LinqToDbFloatVo { }");
+    }
+
     private Task RunTest(string declaration)
     {
         var source = @"using System;

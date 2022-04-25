@@ -14,7 +14,7 @@ namespace Whatever
 
     
     [System.Diagnostics.DebuggerTypeProxyAttribute(typeof(NoConverterBoolVoDebugView))]
-    [System.Diagnostics.DebuggerDisplayAttribute("Underlying type: byte, Value = { _value }")]
+    [System.Diagnostics.DebuggerDisplayAttribute("Underlying type: bool, Value = { _value }")]
     public partial struct NoConverterBoolVo : System.IEquatable<NoConverterBoolVo>
     {
 #if DEBUG    
@@ -23,9 +23,9 @@ namespace Whatever
 
         private readonly bool _isInitialized;
         
-        private readonly byte _value;
+        private readonly bool _value;
 
-        public readonly byte Value
+        public readonly bool Value
         {
             [System.Diagnostics.DebuggerStepThroughAttribute]
             get
@@ -48,7 +48,7 @@ namespace Whatever
         }
 
         [System.Diagnostics.DebuggerStepThroughAttribute]
-        private NoConverterBoolVo(byte value) 
+        private NoConverterBoolVo(bool value) 
         {
             _value = value;
             _isInitialized = true;
@@ -59,7 +59,7 @@ namespace Whatever
         /// </summary>
         /// <param name="value">The underlying type.</param>
         /// <returns>An instance of this type.</returns>
-        public static NoConverterBoolVo From(byte value)
+        public static NoConverterBoolVo From(bool value)
         {
             NoConverterBoolVo instance = new NoConverterBoolVo(value);
 
@@ -74,10 +74,10 @@ namespace Whatever
             // We treat anything uninitialized as not equal to anything, even other uninitialized instances of this type.
             if(!_isInitialized || !other._isInitialized) return false;
 
-            return System.Collections.Generic.EqualityComparer<byte>.Default.Equals(Value, other.Value);
+            return System.Collections.Generic.EqualityComparer<bool>.Default.Equals(Value, other.Value);
         }
 
-        public readonly bool Equals(byte primitive) => Value.Equals(primitive);
+        public readonly bool Equals(bool primitive) => Value.Equals(primitive);
 
         public readonly override bool Equals(object obj)
         {
@@ -87,13 +87,13 @@ namespace Whatever
         public static bool operator ==(NoConverterBoolVo left, NoConverterBoolVo right) => Equals(left, right);
         public static bool operator !=(NoConverterBoolVo left, NoConverterBoolVo right) => !(left == right);
 
-        public static bool operator ==(NoConverterBoolVo left, byte right) => Equals(left.Value, right);
-        public static bool operator !=(NoConverterBoolVo left, byte right) => !Equals(left.Value, right);
+        public static bool operator ==(NoConverterBoolVo left, bool right) => Equals(left.Value, right);
+        public static bool operator !=(NoConverterBoolVo left, bool right) => !Equals(left.Value, right);
 
-        public static bool operator ==(byte left, NoConverterBoolVo right) => Equals(left, right.Value);
-        public static bool operator !=(byte left, NoConverterBoolVo right) => !Equals(left, right.Value);
+        public static bool operator ==(bool left, NoConverterBoolVo right) => Equals(left, right.Value);
+        public static bool operator !=(bool left, NoConverterBoolVo right) => !Equals(left, right.Value);
 
-        public readonly override int GetHashCode() => System.Collections.Generic.EqualityComparer<byte>.Default.GetHashCode(_value);
+        public readonly override int GetHashCode() => System.Collections.Generic.EqualityComparer<bool>.Default.GetHashCode(_value);
 
         public readonly override string ToString() => Value.ToString();
 
@@ -120,6 +120,7 @@ namespace Whatever
 
 
 
+
         internal sealed class NoConverterBoolVoDebugView
         {
             private readonly NoConverterBoolVo _t;
@@ -130,7 +131,7 @@ namespace Whatever
             }
 
             public bool IsInitialized => _t._isInitialized;
-            public string UnderlyingType => "System.Byte";
+            public string UnderlyingType => "System.Boolean";
             public string Value => _t._isInitialized ? _t._value.ToString() : "[not initialized]" ;
 
             #if DEBUG

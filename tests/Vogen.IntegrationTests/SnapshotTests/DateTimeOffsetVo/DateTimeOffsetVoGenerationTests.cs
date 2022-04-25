@@ -63,6 +63,14 @@ public class DateTimeOffsetVoGenerationTests
     public partial struct DapperDateTimeOffsetVo { }");
     }
 
+    [Fact]
+    public Task LinqToDbDateTimeOffsetVo_Test()
+    {
+        return RunTest(@"
+    [ValueObject(conversions: Conversions.LinqToDbValueConverter, underlyingType: typeof(DateTimeOffset))]
+    public partial struct LinqToDbDateTimeOffsetVo { }");
+    }
+
     private Task RunTest(string declaration)
     {
         var source = @"using System;

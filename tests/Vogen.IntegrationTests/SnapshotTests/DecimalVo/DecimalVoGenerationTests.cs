@@ -63,6 +63,14 @@ public class DecimalVoGenerationTests
     public partial struct DapperDecimalVo { }");
     }
 
+    [Fact]
+    public Task LinqToDbDecimalVo_Test()
+    {
+        return RunTest(@"
+    [ValueObject(conversions: Conversions.LinqToDbValueConverter, underlyingType: typeof(decimal))]
+    public partial struct LinqToDbDecimalVo { }");
+    }
+
     private Task RunTest(string declaration)
     {
         var source = @"using Vogen;

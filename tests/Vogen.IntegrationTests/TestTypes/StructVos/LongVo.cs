@@ -23,4 +23,7 @@
 
     [ValueObject(conversions: Conversions.DapperTypeHandler, underlyingType: typeof(long))]
     public partial struct DapperLongVo { }
+
+    [ValueObject(conversions: Conversions.LinqToDbValueConverter, underlyingType: typeof(long))]
+    public partial struct LinqToDbLongVo { }
 }

@@ -23,4 +23,7 @@
 
     [ValueObject(conversions: Conversions.DapperTypeHandler, underlyingType: typeof(float))]
     public partial struct DapperFloatVo { }
+
+    [ValueObject(conversions: Conversions.LinqToDbValueConverter, underlyingType: typeof(float))]
+    public partial struct LinqToDbFloatVo { }
 }

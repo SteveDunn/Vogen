@@ -23,4 +23,7 @@
 
     [ValueObject(conversions: Conversions.DapperTypeHandler, underlyingType: typeof(string))]
     public partial struct DapperStringVo { }
+
+    [ValueObject(conversions: Conversions.LinqToDbValueConverter, underlyingType: typeof(string))]
+    public partial struct LinqToDbStringVo { }
 }

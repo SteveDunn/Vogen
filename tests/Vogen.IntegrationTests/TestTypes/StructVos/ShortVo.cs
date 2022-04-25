@@ -23,4 +23,7 @@
 
     [ValueObject(conversions: Conversions.DapperTypeHandler, underlyingType: typeof(short))]
     public partial struct DapperShortVo { }
+
+    [ValueObject(conversions: Conversions.LinqToDbValueConverter, underlyingType: typeof(short))]
+    public partial struct LinqToDbShortVo { }
 }

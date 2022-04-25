@@ -13,6 +13,10 @@ using Xunit;
 using NewtonsoftJsonSerializer = Newtonsoft.Json.JsonConvert;
 using SystemTextJsonSerializer = System.Text.Json.JsonSerializer;
 using Vogen.IntegrationTests.TestTypes.ClassVos;
+using LinqToDB;
+using LinqToDB.Data;
+using LinqToDB.DataProvider.SQLite;
+using LinqToDB.Mapping;
 // ReSharper disable EqualExpressionComparison
 // ReSharper disable RedundantCast
 // ReSharper disable ArrangeMethodOrOperatorBody
@@ -164,7 +168,7 @@ namespace Vogen.IntegrationTests.SerializationAndConversionTests.ClassVos
                 .UseSqlite(connection)
                 .Options;
 
-            var original = new TestEntity { Id = EfCoreDateTimeOffsetVo.From(_date1) };
+            var original = new EfCoreTestEntity { Id = EfCoreDateTimeOffsetVo.From(_date1) };
             using (var context = new TestDbContext(options))
             {
                 context.Database.EnsureCreated();
@@ -193,6 +197,32 @@ namespace Vogen.IntegrationTests.SerializationAndConversionTests.ClassVos
             actual.Should().Be(expected);
         }
 
+        [Fact]
+        public void WhenLinqToDbValueConverterUsesValueConverter()
+        {
+            var connection = new SqliteConnection("DataSource=:memory:");
+            connection.Open();
+
+            var original = new LinqToDbTestEntity { Id = LinqToDbDateTimeOffsetVo.From(_date1) };
+            using (var context = new DataConnection(
+                SQLiteTools.GetDataProvider("SQLite.MS"),
+                connection,
+                disposeConnection: false))
+            {
+                context.CreateTable<LinqToDbTestEntity>();
+                context.Insert(original);
+            }
+            using (var context = new DataConnection(
+                SQLiteTools.GetDataProvider("SQLite.MS"),
+                connection,
+                disposeConnection: false))
+            {
+                var all = context.GetTable<LinqToDbTestEntity>().ToList();
+                var retrieved = Assert.Single(all);
+                Assert.Equal(original.Id, retrieved.Id);
+            }
+        }
+
         [Theory]
         [InlineData("2022-01-15T19:08:49.5413764+00:00")]
         public void TypeConverter_CanConvertToAndFrom(string value)
@@ -208,7 +238,7 @@ namespace Vogen.IntegrationTests.SerializationAndConversionTests.ClassVos
 
         public class TestDbContext : DbContext
         {
-            public DbSet<TestEntity> Entities { get; set; }
+            public DbSet<EfCoreTestEntity> Entities { get; set; }
 
             public TestDbContext(DbContextOptions options) : base(options)
             {
@@ -217,7 +247,7 @@ namespace Vogen.IntegrationTests.SerializationAndConversionTests.ClassVos
              protected override void OnModelCreating(ModelBuilder modelBuilder)
              {
                  modelBuilder
-                     .Entity<TestEntity>(builder =>
+                     .Entity<EfCoreTestEntity>(builder =>
                      {
                          builder
                              .Property(x => x.Id)
@@ -227,9 +257,16 @@ namespace Vogen.IntegrationTests.SerializationAndConversionTests.ClassVos
              }
         }
 
-        public class TestEntity
+        public class EfCoreTestEntity
         {
             public EfCoreDateTimeOffsetVo Id { get; set; }
+        }
+
+        public class LinqToDbTestEntity
+        {
+            [Column(DataType = DataType.DateTimeOffset)]
+            [ValueConverter(ConverterType = typeof(LinqToDbDateTimeOffsetVo.LinqToDbValueConverter))]
+            public LinqToDbDateTimeOffsetVo Id { get; set; }
         }
     }
 }

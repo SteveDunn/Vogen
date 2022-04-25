@@ -153,6 +153,7 @@ namespace Whatever
 
 
 
+
         internal sealed class BothJsonFloatVoDebugView
         {
             private readonly BothJsonFloatVo _t;

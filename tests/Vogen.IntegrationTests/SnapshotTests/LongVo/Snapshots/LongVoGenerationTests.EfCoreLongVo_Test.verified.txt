@@ -129,6 +129,7 @@ namespace Whatever
         }
 
 
+
         internal sealed class EfCoreLongVoDebugView
         {
             private readonly EfCoreLongVo _t;

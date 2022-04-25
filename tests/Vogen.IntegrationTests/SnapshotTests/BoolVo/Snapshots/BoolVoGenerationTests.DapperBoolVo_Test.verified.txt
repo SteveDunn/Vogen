@@ -14,7 +14,7 @@ namespace Whatever
 
     
     [System.Diagnostics.DebuggerTypeProxyAttribute(typeof(DapperBoolVoDebugView))]
-    [System.Diagnostics.DebuggerDisplayAttribute("Underlying type: byte, Value = { _value }")]
+    [System.Diagnostics.DebuggerDisplayAttribute("Underlying type: bool, Value = { _value }")]
     public partial struct DapperBoolVo : System.IEquatable<DapperBoolVo>
     {
 #if DEBUG    
@@ -23,9 +23,9 @@ namespace Whatever
 
         private readonly bool _isInitialized;
         
-        private readonly byte _value;
+        private readonly bool _value;
 
-        public readonly byte Value
+        public readonly bool Value
         {
             [System.Diagnostics.DebuggerStepThroughAttribute]
             get
@@ -48,7 +48,7 @@ namespace Whatever
         }
 
         [System.Diagnostics.DebuggerStepThroughAttribute]
-        private DapperBoolVo(byte value) 
+        private DapperBoolVo(bool value) 
         {
             _value = value;
             _isInitialized = true;
@@ -59,7 +59,7 @@ namespace Whatever
         /// </summary>
         /// <param name="value">The underlying type.</param>
         /// <returns>An instance of this type.</returns>
-        public static DapperBoolVo From(byte value)
+        public static DapperBoolVo From(bool value)
         {
             DapperBoolVo instance = new DapperBoolVo(value);
 
@@ -74,10 +74,10 @@ namespace Whatever
             // We treat anything uninitialized as not equal to anything, even other uninitialized instances of this type.
             if(!_isInitialized || !other._isInitialized) return false;
 
-            return System.Collections.Generic.EqualityComparer<byte>.Default.Equals(Value, other.Value);
+            return System.Collections.Generic.EqualityComparer<bool>.Default.Equals(Value, other.Value);
         }
 
-        public readonly bool Equals(byte primitive) => Value.Equals(primitive);
+        public readonly bool Equals(bool primitive) => Value.Equals(primitive);
 
         public readonly override bool Equals(object obj)
         {
@@ -87,13 +87,13 @@ namespace Whatever
         public static bool operator ==(DapperBoolVo left, DapperBoolVo right) => Equals(left, right);
         public static bool operator !=(DapperBoolVo left, DapperBoolVo right) => !(left == right);
 
-        public static bool operator ==(DapperBoolVo left, byte right) => Equals(left.Value, right);
-        public static bool operator !=(DapperBoolVo left, byte right) => !Equals(left.Value, right);
+        public static bool operator ==(DapperBoolVo left, bool right) => Equals(left.Value, right);
+        public static bool operator !=(DapperBoolVo left, bool right) => !Equals(left.Value, right);
 
-        public static bool operator ==(byte left, DapperBoolVo right) => Equals(left, right.Value);
-        public static bool operator !=(byte left, DapperBoolVo right) => !Equals(left, right.Value);
+        public static bool operator ==(bool left, DapperBoolVo right) => Equals(left, right.Value);
+        public static bool operator !=(bool left, DapperBoolVo right) => !Equals(left, right.Value);
 
-        public readonly override int GetHashCode() => System.Collections.Generic.EqualityComparer<byte>.Default.GetHashCode(_value);
+        public readonly override int GetHashCode() => System.Collections.Generic.EqualityComparer<bool>.Default.GetHashCode(_value);
 
         public readonly override string ToString() => Value.ToString();
 
@@ -120,7 +120,7 @@ namespace Whatever
         {
             public override void SetValue(System.Data.IDbDataParameter parameter, DapperBoolVo value)
             {
-                parameter.DbType = System.Data.DbType.Byte;
+                parameter.DbType = System.Data.DbType.Boolean;
                 parameter.Value = value.Value;
             }
 
@@ -128,15 +128,15 @@ namespace Whatever
             {
                 return value switch
                 {
-                    byte byteValue => new DapperBoolVo(byteValue),
-                    short shortValue => new DapperBoolVo((byte)shortValue),
-                    int intValue => new DapperBoolVo((byte)intValue),
-                    long longValue => new DapperBoolVo((byte)longValue),
-                    string stringValue when !string.IsNullOrEmpty(stringValue) && byte.TryParse(stringValue, out var result) => new DapperBoolVo(result),
+                    bool boolValue => new DapperBoolVo(boolValue),
+                    long longValue when longValue is 0 => new DapperBoolVo(false),
+                    long longValue when longValue is 1 => new DapperBoolVo(true),
+                    string stringValue when !string.IsNullOrEmpty(stringValue) && bool.TryParse(stringValue, out var result) => new DapperBoolVo(result),
                     _ => throw new System.InvalidCastException($"Unable to cast object of type {value.GetType()} to DapperBoolVo"),
                 };
             }
         }
+
 
 
 
@@ -150,7 +150,7 @@ namespace Whatever
             }
 
             public bool IsInitialized => _t._isInitialized;
-            public string UnderlyingType => "System.Byte";
+            public string UnderlyingType => "System.Boolean";
             public string Value => _t._isInitialized ? _t._value.ToString() : "[not initialized]" ;
 
             #if DEBUG

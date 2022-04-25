@@ -23,4 +23,7 @@
 
     [ValueObject(conversions: Conversions.DapperTypeHandler, underlyingType: typeof(int))]
     public partial class DapperIntVo { }
+
+    [ValueObject(conversions: Conversions.LinqToDbValueConverter, underlyingType: typeof(int))]
+    public partial class LinqToDbIntVo { }
 }

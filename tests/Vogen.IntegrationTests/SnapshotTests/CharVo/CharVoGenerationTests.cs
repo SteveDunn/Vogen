@@ -63,6 +63,14 @@ public class CharVoGenerationTests
     public partial struct DapperCharVo { }");
     }
 
+    [Fact]
+    public Task LinqToDbCharVo_Test()
+    {
+        return RunTest(@"
+    [ValueObject(conversions: Conversions.LinqToDbValueConverter, underlyingType: typeof(char))]
+    public partial struct LinqToDbCharVo { }");
+    }
+
     private Task RunTest(string declaration)
     {
         var source = @"using Vogen;

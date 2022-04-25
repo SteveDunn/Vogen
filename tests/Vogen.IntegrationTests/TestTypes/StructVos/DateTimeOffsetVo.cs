@@ -25,4 +25,7 @@ namespace Vogen.IntegrationTests.TestTypes.StructVos
 
     [ValueObject(conversions: Conversions.DapperTypeHandler, underlyingType: typeof(DateTimeOffset))]
     public partial struct DapperDateTimeOffsetVo { }
+
+    [ValueObject(conversions: Conversions.LinqToDbValueConverter, underlyingType: typeof(DateTimeOffset))]
+    public partial struct LinqToDbDateTimeOffsetVo { }
 }

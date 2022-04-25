@@ -13,7 +13,7 @@ public class PermutationsOfConversions : IEnumerable<object[]>
         string[] inputs =
         {
             "Conversions.TypeConverter", "Conversions.DapperTypeHandler", "Conversions.EfCoreValueConverter",
-            "Conversions.NewtonsoftJson", "Conversions.SystemTextJson"
+            "Conversions.NewtonsoftJson", "Conversions.SystemTextJson", "Conversions.LinqToDbValueConverter",
         };
 
         foreach (var eachType in types)

@@ -25,4 +25,7 @@ namespace Vogen.IntegrationTests.TestTypes.ClassVos
 
     [ValueObject(conversions: Conversions.DapperTypeHandler, underlyingType: typeof(Guid))]
     public partial class DapperGuidVo { }
+
+    [ValueObject(conversions: Conversions.LinqToDbValueConverter, underlyingType: typeof(Guid))]
+    public partial class LinqToDbGuidVo { }
 }

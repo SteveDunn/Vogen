@@ -139,6 +139,7 @@ namespace Whatever
 
 
 
+
         internal sealed class DapperDecimalVoDebugView
         {
             private readonly DapperDecimalVo _t;

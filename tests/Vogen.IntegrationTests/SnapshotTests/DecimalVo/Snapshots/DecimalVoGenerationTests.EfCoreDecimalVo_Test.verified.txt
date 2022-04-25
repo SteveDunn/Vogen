@@ -129,6 +129,7 @@ namespace Whatever
         }
 
 
+
         internal sealed class EfCoreDecimalVoDebugView
         {
             private readonly EfCoreDecimalVo _t;

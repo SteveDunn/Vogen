@@ -65,6 +65,14 @@ public class ByteVoGenerationTests
     public partial struct DapperByteVo { }");
     }
 
+    [Fact]
+    public Task LinqToDbByteVo_Test()
+    {
+        return RunTest(@"
+    [ValueObject(conversions: Conversions.LinqToDbValueConverter, underlyingType: typeof(byte))]
+    public partial struct DapperByteVo { }");
+    }
+
     private Task RunTest(string declaration)
     {
         var source = @"using Vogen;

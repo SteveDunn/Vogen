@@ -63,6 +63,14 @@ public class GuidVoGenerationTests
     public partial struct DapperGuidVo { }");
     }
 
+    [Fact]
+    public Task LinqToDbGuidVo_Test()
+    {
+        return RunTest(@"
+    [ValueObject(conversions: Conversions.LinqToDbValueConverter, underlyingType: typeof(Guid))]
+    public partial struct LinqToDbGuidVo { }");
+    }
+
     private Task RunTest(string declaration)
     {
         var source = @"using System;

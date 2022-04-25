@@ -204,6 +204,7 @@ namespace Whatever
 
 
 
+
         internal sealed class NoJsonFooVoDebugView
         {
             private readonly NoJsonFooVo _t;

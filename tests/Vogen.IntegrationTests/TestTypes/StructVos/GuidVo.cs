@@ -25,4 +25,7 @@ namespace Vogen.IntegrationTests.TestTypes.StructVos
 
     [ValueObject(conversions: Conversions.DapperTypeHandler, underlyingType: typeof(Guid))]
     public partial struct DapperGuidVo { }
+
+    [ValueObject(conversions: Conversions.LinqToDbValueConverter, underlyingType: typeof(Guid))]
+    public partial struct LinqToDbGuidVo { }
 }

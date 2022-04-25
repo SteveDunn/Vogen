@@ -12,6 +12,10 @@ using Xunit;
 using NewtonsoftJsonSerializer = Newtonsoft.Json.JsonConvert;
 using SystemTextJsonSerializer = System.Text.Json.JsonSerializer;
 using Vogen.IntegrationTests.TestTypes.ClassVos;
+using LinqToDB;
+using LinqToDB.Data;
+using LinqToDB.DataProvider.SQLite;
+using LinqToDB.Mapping;
 
 namespace Vogen.IntegrationTests.SerializationAndConversionTests.ClassVos
 {
@@ -156,7 +160,7 @@ namespace Vogen.IntegrationTests.SerializationAndConversionTests.ClassVos
                 .UseSqlite(connection)
                 .Options;
 
-            var original = new TestEntity { Id = EfCoreGuidVo.From(_guid1) };
+            var original = new EfCoreTestEntity { Id = EfCoreGuidVo.From(_guid1) };
             using (var context = new TestDbContext(options))
             {
                 context.Database.EnsureCreated();
@@ -183,6 +187,32 @@ namespace Vogen.IntegrationTests.SerializationAndConversionTests.ClassVos
             Assert.Equal(value, DapperGuidVo.From(Guid.Parse("5640dad4-862a-4738-9e3c-c76dc227eb66")));
         }
 
+        [Fact]
+        public void WhenLinqToDbValueConverterUsesValueConverter()
+        {
+            var connection = new SqliteConnection("DataSource=:memory:");
+            connection.Open();
+
+            var original = new LinqToDbTestEntity { Id = LinqToDbGuidVo.From(Guid.Parse("5640dad4-862a-4738-9e3c-c76dc227eb66")) };
+            using (var context = new DataConnection(
+                SQLiteTools.GetDataProvider("SQLite.MS"),
+                connection,
+                disposeConnection: false))
+            {
+                context.CreateTable<LinqToDbTestEntity>();
+                context.Insert(original);
+            }
+            using (var context = new DataConnection(
+                SQLiteTools.GetDataProvider("SQLite.MS"),
+                connection,
+                disposeConnection: false))
+            {
+                var all = context.GetTable<LinqToDbTestEntity>().ToList();
+                var retrieved = Assert.Single(all);
+                Assert.Equal(original.Id, retrieved.Id);
+            }
+        }
+
         [Theory]
         [InlineData("78104553-f1cd-41ec-bcb6-d3a8ff8d994d")]
         public void TypeConverter_CanConvertToAndFrom(string value)
@@ -198,7 +228,7 @@ namespace Vogen.IntegrationTests.SerializationAndConversionTests.ClassVos
 
         public class TestDbContext : DbContext
         {
-            public DbSet<TestEntity> Entities { get; set; }
+            public DbSet<EfCoreTestEntity> Entities { get; set; }
 
             public TestDbContext(DbContextOptions options) : base(options)
             {
@@ -207,7 +237,7 @@ namespace Vogen.IntegrationTests.SerializationAndConversionTests.ClassVos
              protected override void OnModelCreating(ModelBuilder modelBuilder)
              {
                  modelBuilder
-                     .Entity<TestEntity>(builder =>
+                     .Entity<EfCoreTestEntity>(builder =>
                      {
                          builder
                              .Property(x => x.Id)
@@ -217,9 +247,16 @@ namespace Vogen.IntegrationTests.SerializationAndConversionTests.ClassVos
              }
         }
 
-        public class TestEntity
+        public class EfCoreTestEntity
         {
             public EfCoreGuidVo Id { get; set; }
+        }
+
+        public class LinqToDbTestEntity
+        {
+            [Column(DataType = DataType.Guid)]
+            [ValueConverter(ConverterType = typeof(LinqToDbGuidVo.LinqToDbValueConverter))]
+            public LinqToDbGuidVo Id { get; set; }
         }
     }
 }

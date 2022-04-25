@@ -6,6 +6,10 @@ using System.Linq;
 using System.Threading.Tasks;
 using Dapper;
 using FluentAssertions;
+using LinqToDB;
+using LinqToDB.Data;
+using LinqToDB.DataProvider.SQLite;
+using LinqToDB.Mapping;
 using Microsoft.Data.Sqlite;
 using Microsoft.EntityFrameworkCore;
 using Vogen.IntegrationTests.TestTypes.StructVos;
@@ -91,7 +95,7 @@ namespace Vogen.IntegrationTests.SerializationAndConversionTests.StructVos
 
             Assert.Equal(vo, deserializedVo);
         }
-        
+
         [Fact]
         public void CanDeserializeFromStringClass_WithNewtonsoftJsonProvider()
         {
@@ -210,7 +214,7 @@ namespace Vogen.IntegrationTests.SerializationAndConversionTests.StructVos
                 .UseSqlite(connection)
                 .Options;
 
-            var original = new TestEntity { FooField = EfCoreFooVo.From(_bar1) };
+            var original = new EfCoreTestEntity { FooField = EfCoreFooVo.From(_bar1) };
             using (var context = new TestDbContext(options))
             {
                 context.Database.EnsureCreated();
@@ -238,11 +242,37 @@ namespace Vogen.IntegrationTests.SerializationAndConversionTests.StructVos
         }
 
         [Fact]
+        public void WhenLinqToDbValueConverterUsesValueConverter()
+        {
+            var connection = new SqliteConnection("DataSource=:memory:");
+            connection.Open();
+
+            var original = new LinqToDbTestEntity { FooField = LinqToDbFooVo.From(_bar1) };
+            using (var context = new DataConnection(
+                SQLiteTools.GetDataProvider("SQLite.MS"),
+                connection,
+                disposeConnection: false))
+            {
+                context.CreateTable<LinqToDbTestEntity>();
+                context.Insert(original);
+            }
+            using (var context = new DataConnection(
+                SQLiteTools.GetDataProvider("SQLite.MS"),
+                connection,
+                disposeConnection: false))
+            {
+                var all = context.GetTable<LinqToDbTestEntity>().ToList();
+                var retrieved = Assert.Single(all);
+                Assert.Equal(original.FooField, retrieved.FooField);
+            }
+        }
+
+        [Fact]
         public void TypeConverter_CanConvertToAndFrom()
         {
             var b = _bar1;
             var converter = TypeDescriptor.GetConverter(typeof(NoJsonFooVo));
-            
+
             object vo = converter.ConvertFrom(_bar1);
 
             Assert.IsType<NoJsonFooVo>(vo);
@@ -251,34 +281,41 @@ namespace Vogen.IntegrationTests.SerializationAndConversionTests.StructVos
 
             object reconverted = converter.ConvertTo(vo, typeof(Bar));
             Assert.IsType<Bar>(reconverted);
-            Assert.Equal(((NoJsonFooVo)vo).Value, reconverted);
+            Assert.Equal(((NoJsonFooVo) vo).Value, reconverted);
         }
 
         public class TestDbContext : DbContext
         {
-            public DbSet<TestEntity> Entities { get; set; }
+            public DbSet<EfCoreTestEntity> Entities { get; set; }
 
             public TestDbContext(DbContextOptions options) : base(options)
             {
             }
 
-             protected override void OnModelCreating(ModelBuilder modelBuilder)
-             {
-                 modelBuilder
-                     .Entity<TestEntity>(builder =>
-                     {
-                         builder
-                             .Property(x => x.FooField)
-                             .HasConversion(new EfCoreFooVo.EfCoreValueConverter());
-                     });
-             }
+            protected override void OnModelCreating(ModelBuilder modelBuilder)
+            {
+                modelBuilder
+                    .Entity<EfCoreTestEntity>(builder =>
+                    {
+                        builder
+                            .Property(x => x.FooField)
+                            .HasConversion(new EfCoreFooVo.EfCoreValueConverter());
+                    });
+            }
         }
 
-        public class TestEntity
+        public class EfCoreTestEntity
         {
             public int Id { get; set; }
-            
+
             public EfCoreFooVo FooField { get; set; }
+        }
+
+        public class LinqToDbTestEntity
+        {
+            [Column(DataType = DataType.VarChar)]
+            [ValueConverter(ConverterType = typeof(LinqToDbFooVo.LinqToDbValueConverter))]
+            public LinqToDbFooVo FooField { get; set; }
         }
     }
 }

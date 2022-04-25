@@ -15,7 +15,7 @@ namespace Whatever
     [Newtonsoft.Json.JsonConverter(typeof(NewtonsoftJsonBoolVoNewtonsoftJsonConverter))]
 
     [System.Diagnostics.DebuggerTypeProxyAttribute(typeof(NewtonsoftJsonBoolVoDebugView))]
-    [System.Diagnostics.DebuggerDisplayAttribute("Underlying type: byte, Value = { _value }")]
+    [System.Diagnostics.DebuggerDisplayAttribute("Underlying type: bool, Value = { _value }")]
     public partial struct NewtonsoftJsonBoolVo : System.IEquatable<NewtonsoftJsonBoolVo>
     {
 #if DEBUG    
@@ -24,9 +24,9 @@ namespace Whatever
 
         private readonly bool _isInitialized;
         
-        private readonly byte _value;
+        private readonly bool _value;
 
-        public readonly byte Value
+        public readonly bool Value
         {
             [System.Diagnostics.DebuggerStepThroughAttribute]
             get
@@ -49,7 +49,7 @@ namespace Whatever
         }
 
         [System.Diagnostics.DebuggerStepThroughAttribute]
-        private NewtonsoftJsonBoolVo(byte value) 
+        private NewtonsoftJsonBoolVo(bool value) 
         {
             _value = value;
             _isInitialized = true;
@@ -60,7 +60,7 @@ namespace Whatever
         /// </summary>
         /// <param name="value">The underlying type.</param>
         /// <returns>An instance of this type.</returns>
-        public static NewtonsoftJsonBoolVo From(byte value)
+        public static NewtonsoftJsonBoolVo From(bool value)
         {
             NewtonsoftJsonBoolVo instance = new NewtonsoftJsonBoolVo(value);
 
@@ -75,10 +75,10 @@ namespace Whatever
             // We treat anything uninitialized as not equal to anything, even other uninitialized instances of this type.
             if(!_isInitialized || !other._isInitialized) return false;
 
-            return System.Collections.Generic.EqualityComparer<byte>.Default.Equals(Value, other.Value);
+            return System.Collections.Generic.EqualityComparer<bool>.Default.Equals(Value, other.Value);
         }
 
-        public readonly bool Equals(byte primitive) => Value.Equals(primitive);
+        public readonly bool Equals(bool primitive) => Value.Equals(primitive);
 
         public readonly override bool Equals(object obj)
         {
@@ -88,13 +88,13 @@ namespace Whatever
         public static bool operator ==(NewtonsoftJsonBoolVo left, NewtonsoftJsonBoolVo right) => Equals(left, right);
         public static bool operator !=(NewtonsoftJsonBoolVo left, NewtonsoftJsonBoolVo right) => !(left == right);
 
-        public static bool operator ==(NewtonsoftJsonBoolVo left, byte right) => Equals(left.Value, right);
-        public static bool operator !=(NewtonsoftJsonBoolVo left, byte right) => !Equals(left.Value, right);
+        public static bool operator ==(NewtonsoftJsonBoolVo left, bool right) => Equals(left.Value, right);
+        public static bool operator !=(NewtonsoftJsonBoolVo left, bool right) => !Equals(left.Value, right);
 
-        public static bool operator ==(byte left, NewtonsoftJsonBoolVo right) => Equals(left, right.Value);
-        public static bool operator !=(byte left, NewtonsoftJsonBoolVo right) => !Equals(left, right.Value);
+        public static bool operator ==(bool left, NewtonsoftJsonBoolVo right) => Equals(left, right.Value);
+        public static bool operator !=(bool left, NewtonsoftJsonBoolVo right) => !Equals(left, right.Value);
 
-        public readonly override int GetHashCode() => System.Collections.Generic.EqualityComparer<byte>.Default.GetHashCode(_value);
+        public readonly override int GetHashCode() => System.Collections.Generic.EqualityComparer<bool>.Default.GetHashCode(_value);
 
         public readonly override string ToString() => Value.ToString();
 
@@ -131,10 +131,11 @@ namespace Whatever
 
             public override object ReadJson(Newtonsoft.Json.JsonReader reader, System.Type objectType, object existingValue, Newtonsoft.Json.JsonSerializer serializer)
             {
-                var result = serializer.Deserialize<byte?>(reader);
+                var result = serializer.Deserialize<bool?>(reader);
                 return result.HasValue ? new NewtonsoftJsonBoolVo(result.Value) : null;
             }
         }
+
 
 
 
@@ -150,7 +151,7 @@ namespace Whatever
             }
 
             public bool IsInitialized => _t._isInitialized;
-            public string UnderlyingType => "System.Byte";
+            public string UnderlyingType => "System.Boolean";
             public string Value => _t._isInitialized ? _t._value.ToString() : "[not initialized]" ;
 
             #if DEBUG

@@ -156,6 +156,7 @@ public int Value
 
 
 
+
         internal sealed class MyIntVoDebugView
         {
             private readonly MyIntVo _t;

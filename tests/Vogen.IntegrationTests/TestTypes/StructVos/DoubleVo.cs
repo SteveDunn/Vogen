@@ -23,4 +23,7 @@
 
     [ValueObject(conversions: Conversions.DapperTypeHandler, underlyingType: typeof(double))]
     public partial struct DapperDoubleVo { }
+
+    [ValueObject(conversions: Conversions.LinqToDbValueConverter, underlyingType: typeof(double))]
+    public partial struct LinqToDbDoubleVo { }
 }
