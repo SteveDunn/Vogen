@@ -7,4 +7,10 @@
                     value => new VOTYPE(value),
                     mappingHints
                 ) { }
+            public EfCoreValueConverter()
+                : base(
+                    vo => vo.Value,
+                    value => new VOTYPE(value),
+                    null
+                ) { }
         }
