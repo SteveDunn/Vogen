@@ -164,15 +164,15 @@ public static {classDeclarationSyntax.Identifier} {instanceProperties.Name} = ne
                 _t = t;
             }}
 
-            public bool IsInitialized => _t._isInitialized;
-            public string UnderlyingType => ""{item.UnderlyingTypeFullName}"";
-            public string Value => _t._isInitialized ? _t._value.ToString() : ""[not initialized]"" ;
+            public global::System.Boolean IsInitialized => _t._isInitialized;
+            public global::System.String UnderlyingType => ""{item.UnderlyingTypeFullName}"";
+            public global::System.String Value => _t._isInitialized ? _t._value.ToString() : ""[not initialized]"" ;
 
             #if DEBUG
-            public string CreatedWith => _t._stackTrace?.ToString() ?? ""the From method"";
+            public global::System.String CreatedWith => _t._stackTrace?.ToString() ?? ""the From method"";
             #endif
 
-            public string Conversions => @""{Util.GenerateAnyConversionAttributesForDebuggerProxy(tds, item)}"";
+            public global::System.String Conversions => @""{Util.GenerateAnyConversionAttributesForDebuggerProxy(tds, item)}"";
                 }}";
 
         return code;
@@ -189,10 +189,10 @@ public static {classDeclarationSyntax.Identifier} {instanceProperties.Name} = ne
                 _t = t;
             }}
 
-            public string UnderlyingType => ""{item.UnderlyingTypeFullName}"";
+            public global::System.String UnderlyingType => ""{item.UnderlyingTypeFullName}"";
             public {item.UnderlyingTypeFullName} Value => _t.Value ;
 
-            public string Conversions => @""{Util.GenerateAnyConversionAttributes(tds, item)}"";
+            public global::System.String Conversions => @""{Util.GenerateAnyConversionAttributes(tds, item)}"";
                 }}";
 
         return code;

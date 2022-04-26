@@ -1,9 +1,9 @@
 ﻿
-        public class DapperTypeHandler : Dapper.SqlMapper.TypeHandler<VOTYPE>
+        public class DapperTypeHandler : global::Dapper.SqlMapper.TypeHandler<VOTYPE>
         {
-            public override void SetValue(System.Data.IDbDataParameter parameter, VOTYPE value)
+            public override void SetValue(global::System.Data.IDbDataParameter parameter, VOTYPE value)
             {
-                parameter.DbType = System.Data.DbType.DateTimeOffset;
+                parameter.DbType = global::System.Data.DbType.DateTimeOffset;
                 parameter.Value = value.Value;
             }
 
@@ -11,11 +11,11 @@
             {
                 return value switch
                 {
-                    System.DateTimeOffset dtValue => new VOTYPE(dtValue),
-                    string stringValue when 
-                        !string.IsNullOrEmpty(stringValue) &&
-                        System.DateTimeOffset.TryParseExact(stringValue, "yyyy-MM-dd HH:mm:ss.fffffff", System.Globalization.CultureInfo.InvariantCulture, System.Globalization.DateTimeStyles.None, out var result) => new VOTYPE(result),
-                    _ => throw new System.InvalidCastException($"Unable to cast object of type {value.GetType()} to VOTYPE"),
+                    global::System.DateTimeOffset dtValue => new VOTYPE(dtValue),
+                    global::System.String stringValue when 
+                        !global::System.String.IsNullOrEmpty(stringValue) &&
+                        global::System.DateTimeOffset.TryParseExact(stringValue, "yyyy-MM-dd HH:mm:ss.fffffff", global::System.Globalization.CultureInfo.InvariantCulture, global::System.Globalization.DateTimeStyles.None, out var result) => new VOTYPE(result),
+                    _ => throw new global::System.InvalidCastException($"Unable to cast object of type {value.GetType()} to VOTYPE"),
                 };
             }
         }

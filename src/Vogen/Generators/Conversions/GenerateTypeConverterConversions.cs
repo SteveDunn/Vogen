@@ -11,7 +11,7 @@ class GenerateTypeConverterConversions : IGenerateConversion
             return string.Empty;
         }
 
-        return $@"[System.ComponentModel.TypeConverter(typeof({item.VoTypeName}TypeConverter))]";
+        return $@"[global::System.ComponentModel.TypeConverter(typeof({item.VoTypeName}TypeConverter))]";
     }
 
     public string GenerateAnyBody(TypeDeclarationSyntax tds, VoWorkItem item)

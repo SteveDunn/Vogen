@@ -13,21 +13,21 @@ namespace Whatever
 {
 
     
-    [System.Diagnostics.DebuggerTypeProxyAttribute(typeof(LinqToDbDoubleVoDebugView))]
-    [System.Diagnostics.DebuggerDisplayAttribute("Underlying type: double, Value = { _value }")]
-    public partial struct LinqToDbDoubleVo : System.IEquatable<LinqToDbDoubleVo>
+    [global::System.Diagnostics.DebuggerTypeProxyAttribute(typeof(LinqToDbDoubleVoDebugView))]
+    [global::System.Diagnostics.DebuggerDisplayAttribute("Underlying type: double, Value = { _value }")]
+    public partial struct LinqToDbDoubleVo : global::System.IEquatable<LinqToDbDoubleVo>
     {
 #if DEBUG    
-        private readonly System.Diagnostics.StackTrace _stackTrace = null;
+        private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
 #endif
 
-        private readonly bool _isInitialized;
+        private readonly global::System.Boolean _isInitialized;
         
         private readonly double _value;
 
         public readonly double Value
         {
-            [System.Diagnostics.DebuggerStepThroughAttribute]
+            [global::System.Diagnostics.DebuggerStepThroughAttribute]
             get
             {
                 EnsureInitialized();
@@ -35,19 +35,19 @@ namespace Whatever
             }
         }
 
-        [System.Diagnostics.DebuggerStepThroughAttribute]
-        [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
+        [global::System.Diagnostics.DebuggerStepThroughAttribute]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public LinqToDbDoubleVo()
         {
 #if DEBUG
-            _stackTrace = new System.Diagnostics.StackTrace();
+            _stackTrace = new global::System.Diagnostics.StackTrace();
 #endif
 
             _isInitialized = false;
             _value = default;
         }
 
-        [System.Diagnostics.DebuggerStepThroughAttribute]
+        [global::System.Diagnostics.DebuggerStepThroughAttribute]
         private LinqToDbDoubleVo(double value) 
         {
             _value = value;
@@ -68,46 +68,46 @@ namespace Whatever
             return instance;
         }
 
-        public readonly bool Equals(LinqToDbDoubleVo other)
+        public readonly global::System.Boolean Equals(LinqToDbDoubleVo other)
         {
             // It's possible to create uninitialized instances via converters such as EfCore (HasDefaultValue), which call Equals.
             // We treat anything uninitialized as not equal to anything, even other uninitialized instances of this type.
             if(!_isInitialized || !other._isInitialized) return false;
 
-            return System.Collections.Generic.EqualityComparer<double>.Default.Equals(Value, other.Value);
+            return global::System.Collections.Generic.EqualityComparer<double>.Default.Equals(Value, other.Value);
         }
 
-        public readonly bool Equals(double primitive) => Value.Equals(primitive);
+        public readonly global::System.Boolean Equals(double primitive) => Value.Equals(primitive);
 
-        public readonly override bool Equals(object obj)
+        public readonly override global::System.Boolean Equals(global::System.Object obj)
         {
             return obj is LinqToDbDoubleVo && Equals((LinqToDbDoubleVo) obj);
         }
 
-        public static bool operator ==(LinqToDbDoubleVo left, LinqToDbDoubleVo right) => Equals(left, right);
-        public static bool operator !=(LinqToDbDoubleVo left, LinqToDbDoubleVo right) => !(left == right);
+        public static global::System.Boolean operator ==(LinqToDbDoubleVo left, LinqToDbDoubleVo right) => Equals(left, right);
+        public static global::System.Boolean operator !=(LinqToDbDoubleVo left, LinqToDbDoubleVo right) => !(left == right);
 
-        public static bool operator ==(LinqToDbDoubleVo left, double right) => Equals(left.Value, right);
-        public static bool operator !=(LinqToDbDoubleVo left, double right) => !Equals(left.Value, right);
+        public static global::System.Boolean operator ==(LinqToDbDoubleVo left, double right) => Equals(left.Value, right);
+        public static global::System.Boolean operator !=(LinqToDbDoubleVo left, double right) => !Equals(left.Value, right);
 
-        public static bool operator ==(double left, LinqToDbDoubleVo right) => Equals(left, right.Value);
-        public static bool operator !=(double left, LinqToDbDoubleVo right) => !Equals(left, right.Value);
+        public static global::System.Boolean operator ==(double left, LinqToDbDoubleVo right) => Equals(left, right.Value);
+        public static global::System.Boolean operator !=(double left, LinqToDbDoubleVo right) => !Equals(left, right.Value);
 
-        public readonly override int GetHashCode() => System.Collections.Generic.EqualityComparer<double>.Default.GetHashCode(_value);
+        public readonly override global::System.Int32 GetHashCode() => global::System.Collections.Generic.EqualityComparer<double>.Default.GetHashCode(_value);
 
-        public readonly override string ToString() => Value.ToString();
+        public readonly override global::System.String ToString() => Value.ToString();
 
         private readonly void EnsureInitialized()
         {
             if (!_isInitialized)
             {
 #if DEBUG
-                string message = "Use of uninitialized Value Object at: " + _stackTrace ?? "";
+                global::System.String message = "Use of uninitialized Value Object at: " + _stackTrace ?? "";
 #else
-                string message = "Use of uninitialized Value Object.";
+                global::System.String message = "Use of uninitialized Value Object.";
 #endif
 
-                throw new ValueObjectValidationException(message);
+                throw new global::Vogen.ValueObjectValidationException(message);
             }
         }
 
@@ -119,7 +119,7 @@ namespace Whatever
 
 
 
-        public class LinqToDbValueConverter : global::LinqToDB.Common.ValueConverter<LinqToDbDoubleVo, double>
+        public class LinqToDbValueConverter : global::LinqToDB.Common.ValueConverter<LinqToDbDoubleVo, global::System.Double>
         {
             public LinqToDbValueConverter()
                 : base(
@@ -139,15 +139,15 @@ namespace Whatever
                 _t = t;
             }
 
-            public bool IsInitialized => _t._isInitialized;
-            public string UnderlyingType => "System.Double";
-            public string Value => _t._isInitialized ? _t._value.ToString() : "[not initialized]" ;
+            public global::System.Boolean IsInitialized => _t._isInitialized;
+            public global::System.String UnderlyingType => "System.Double";
+            public global::System.String Value => _t._isInitialized ? _t._value.ToString() : "[not initialized]" ;
 
             #if DEBUG
-            public string CreatedWith => _t._stackTrace?.ToString() ?? "the From method";
+            public global::System.String CreatedWith => _t._stackTrace?.ToString() ?? "the From method";
             #endif
 
-            public string Conversions => @"LinqToDbValueConverter";
+            public global::System.String Conversions => @"LinqToDbValueConverter";
                 }
 
 }

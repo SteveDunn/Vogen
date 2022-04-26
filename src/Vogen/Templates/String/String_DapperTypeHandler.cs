@@ -1,9 +1,9 @@
 ﻿
-        public class DapperTypeHandler : Dapper.SqlMapper.TypeHandler<VOTYPE>
+        public class DapperTypeHandler : global::Dapper.SqlMapper.TypeHandler<VOTYPE>
         {
-            public override void SetValue(System.Data.IDbDataParameter parameter, VOTYPE value)
+            public override void SetValue(global::System.Data.IDbDataParameter parameter, VOTYPE value)
             {
-                parameter.DbType = System.Data.DbType.String;
+                parameter.DbType = global::System.Data.DbType.String;
                 parameter.Value = value.Value;
             }
 
@@ -11,8 +11,8 @@
             {
                 return value switch
                 {
-                    string stringValue => new VOTYPE(stringValue),
-                    _ => throw new System.InvalidCastException($"Unable to cast object of type {value.GetType()} to VOTYPE"),
+                    global::System.String stringValue => new VOTYPE(stringValue),
+                    _ => throw new global::System.InvalidCastException($"Unable to cast object of type {value.GetType()} to VOTYPE"),
                 };
             }
         }

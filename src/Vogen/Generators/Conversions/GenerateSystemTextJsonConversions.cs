@@ -11,7 +11,7 @@ internal class GenerateSystemTextJsonConversions : IGenerateConversion
             return string.Empty;
         }
 
-        return $@"[System.Text.Json.Serialization.JsonConverter(typeof({item.VoTypeName}SystemTextJsonConverter))]";
+        return $@"[global::System.Text.Json.Serialization.JsonConverter(typeof({item.VoTypeName}SystemTextJsonConverter))]";
     }
 
     public string GenerateAnyBody(TypeDeclarationSyntax tds, VoWorkItem item)

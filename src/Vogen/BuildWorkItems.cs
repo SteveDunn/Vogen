@@ -123,7 +123,7 @@ internal static class BuildWorkItems
             TypeToAugment = tds,
             IsValueType = isValueType,
             UnderlyingType = config.UnderlyingType,
-            Conversions = config.Conversions, //?? throw new InvalidOperationException("Must have Conversions"),
+            Conversions = config.Conversions,
             TypeForValidationExceptions = config.ValidationExceptionType,
             ValidateMethod = validateMethod,
             FullNamespace = voClass.FullNamespace()
@@ -157,7 +157,6 @@ internal static class BuildWorkItems
             if (name is null)
             {
                 context.ReportDiagnostic(DiagnosticItems.InstanceMethodCannotHaveNullArgumentName(voClass));
-                //  continue;
             }
 
             var value = constructorArguments[1].Value;
@@ -174,6 +173,5 @@ internal static class BuildWorkItems
 
             yield return new InstanceProperties(name, value);
         }
-
     }
 }

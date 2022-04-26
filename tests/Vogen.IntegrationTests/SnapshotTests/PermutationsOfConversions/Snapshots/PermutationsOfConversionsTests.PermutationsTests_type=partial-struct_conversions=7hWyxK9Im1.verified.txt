@@ -12,24 +12,24 @@ using Vogen;
 namespace Whatever
 {
 
-    [System.Text.Json.Serialization.JsonConverter(typeof(MyIntVoSystemTextJsonConverter))]
-[Newtonsoft.Json.JsonConverter(typeof(MyIntVoNewtonsoftJsonConverter))]
+    [global::System.Text.Json.Serialization.JsonConverter(typeof(MyIntVoSystemTextJsonConverter))]
+[global::Newtonsoft.Json.JsonConverter(typeof(MyIntVoNewtonsoftJsonConverter))]
 
-    [System.Diagnostics.DebuggerTypeProxyAttribute(typeof(MyIntVoDebugView))]
-    [System.Diagnostics.DebuggerDisplayAttribute("Underlying type: int, Value = { _value }")]
-    public partial struct MyIntVo : System.IEquatable<MyIntVo>
+    [global::System.Diagnostics.DebuggerTypeProxyAttribute(typeof(MyIntVoDebugView))]
+    [global::System.Diagnostics.DebuggerDisplayAttribute("Underlying type: int, Value = { _value }")]
+    public partial struct MyIntVo : global::System.IEquatable<MyIntVo>
     {
 #if DEBUG    
-        private readonly System.Diagnostics.StackTrace _stackTrace = null;
+        private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
 #endif
 
-        private readonly bool _isInitialized;
+        private readonly global::System.Boolean _isInitialized;
         
         private readonly int _value;
 
         public readonly int Value
         {
-            [System.Diagnostics.DebuggerStepThroughAttribute]
+            [global::System.Diagnostics.DebuggerStepThroughAttribute]
             get
             {
                 EnsureInitialized();
@@ -37,19 +37,19 @@ namespace Whatever
             }
         }
 
-        [System.Diagnostics.DebuggerStepThroughAttribute]
-        [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
+        [global::System.Diagnostics.DebuggerStepThroughAttribute]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public MyIntVo()
         {
 #if DEBUG
-            _stackTrace = new System.Diagnostics.StackTrace();
+            _stackTrace = new global::System.Diagnostics.StackTrace();
 #endif
 
             _isInitialized = false;
             _value = default;
         }
 
-        [System.Diagnostics.DebuggerStepThroughAttribute]
+        [global::System.Diagnostics.DebuggerStepThroughAttribute]
         private MyIntVo(int value) 
         {
             _value = value;
@@ -70,60 +70,60 @@ namespace Whatever
             return instance;
         }
 
-        public readonly bool Equals(MyIntVo other)
+        public readonly global::System.Boolean Equals(MyIntVo other)
         {
             // It's possible to create uninitialized instances via converters such as EfCore (HasDefaultValue), which call Equals.
             // We treat anything uninitialized as not equal to anything, even other uninitialized instances of this type.
             if(!_isInitialized || !other._isInitialized) return false;
 
-            return System.Collections.Generic.EqualityComparer<int>.Default.Equals(Value, other.Value);
+            return global::System.Collections.Generic.EqualityComparer<int>.Default.Equals(Value, other.Value);
         }
 
-        public readonly bool Equals(int primitive) => Value.Equals(primitive);
+        public readonly global::System.Boolean Equals(int primitive) => Value.Equals(primitive);
 
-        public readonly override bool Equals(object obj)
+        public readonly override global::System.Boolean Equals(global::System.Object obj)
         {
             return obj is MyIntVo && Equals((MyIntVo) obj);
         }
 
-        public static bool operator ==(MyIntVo left, MyIntVo right) => Equals(left, right);
-        public static bool operator !=(MyIntVo left, MyIntVo right) => !(left == right);
+        public static global::System.Boolean operator ==(MyIntVo left, MyIntVo right) => Equals(left, right);
+        public static global::System.Boolean operator !=(MyIntVo left, MyIntVo right) => !(left == right);
 
-        public static bool operator ==(MyIntVo left, int right) => Equals(left.Value, right);
-        public static bool operator !=(MyIntVo left, int right) => !Equals(left.Value, right);
+        public static global::System.Boolean operator ==(MyIntVo left, int right) => Equals(left.Value, right);
+        public static global::System.Boolean operator !=(MyIntVo left, int right) => !Equals(left.Value, right);
 
-        public static bool operator ==(int left, MyIntVo right) => Equals(left, right.Value);
-        public static bool operator !=(int left, MyIntVo right) => !Equals(left, right.Value);
+        public static global::System.Boolean operator ==(int left, MyIntVo right) => Equals(left, right.Value);
+        public static global::System.Boolean operator !=(int left, MyIntVo right) => !Equals(left, right.Value);
 
-        public readonly override int GetHashCode() => System.Collections.Generic.EqualityComparer<int>.Default.GetHashCode(_value);
+        public readonly override global::System.Int32 GetHashCode() => global::System.Collections.Generic.EqualityComparer<int>.Default.GetHashCode(_value);
 
-        public readonly override string ToString() => Value.ToString();
+        public readonly override global::System.String ToString() => Value.ToString();
 
         private readonly void EnsureInitialized()
         {
             if (!_isInitialized)
             {
 #if DEBUG
-                string message = "Use of uninitialized Value Object at: " + _stackTrace ?? "";
+                global::System.String message = "Use of uninitialized Value Object at: " + _stackTrace ?? "";
 #else
-                string message = "Use of uninitialized Value Object.";
+                global::System.String message = "Use of uninitialized Value Object.";
 #endif
 
-                throw new ValueObjectValidationException(message);
+                throw new global::Vogen.ValueObjectValidationException(message);
             }
         }
 
         
  
         
-        class MyIntVoSystemTextJsonConverter : System.Text.Json.Serialization.JsonConverter<MyIntVo>
+        class MyIntVoSystemTextJsonConverter : global::System.Text.Json.Serialization.JsonConverter<MyIntVo>
         {
-            public override MyIntVo Read(ref System.Text.Json.Utf8JsonReader reader, System.Type typeToConvert, System.Text.Json.JsonSerializerOptions options)
+            public override MyIntVo Read(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {
                 return new MyIntVo(reader.GetInt32());
             }
 
-            public override void Write(System.Text.Json.Utf8JsonWriter writer, MyIntVo value, System.Text.Json.JsonSerializerOptions options)
+            public override void Write(System.Text.Json.Utf8JsonWriter writer, MyIntVo value, global::System.Text.Json.JsonSerializerOptions options)
             {
                 writer.WriteNumberValue(value.Value);
             }
@@ -144,7 +144,7 @@ namespace Whatever
 
             public override object ReadJson(Newtonsoft.Json.JsonReader reader, System.Type objectType, object existingValue, Newtonsoft.Json.JsonSerializer serializer)
             {
-                var result = serializer.Deserialize<int?>(reader);
+                var result = serializer.Deserialize<global::System.Int32?>(reader);
                 return result.HasValue ? new MyIntVo(result.Value) : null;
             }
         }
@@ -152,7 +152,7 @@ namespace Whatever
 
 
 
-        public class LinqToDbValueConverter : global::LinqToDB.Common.ValueConverter<MyIntVo, int>
+        public class LinqToDbValueConverter : global::LinqToDB.Common.ValueConverter<MyIntVo, global::System.Int32>
         {
             public LinqToDbValueConverter()
                 : base(
@@ -172,15 +172,15 @@ namespace Whatever
                 _t = t;
             }
 
-            public bool IsInitialized => _t._isInitialized;
-            public string UnderlyingType => "System.Int32";
-            public string Value => _t._isInitialized ? _t._value.ToString() : "[not initialized]" ;
+            public global::System.Boolean IsInitialized => _t._isInitialized;
+            public global::System.String UnderlyingType => "System.Int32";
+            public global::System.String Value => _t._isInitialized ? _t._value.ToString() : "[not initialized]" ;
 
             #if DEBUG
-            public string CreatedWith => _t._stackTrace?.ToString() ?? "the From method";
+            public global::System.String CreatedWith => _t._stackTrace?.ToString() ?? "the From method";
             #endif
 
-            public string Conversions => @"NewtonsoftJson, SystemTextJson, LinqToDbValueConverter";
+            public global::System.String Conversions => @"NewtonsoftJson, SystemTextJson, LinqToDbValueConverter";
                 }
 
 }

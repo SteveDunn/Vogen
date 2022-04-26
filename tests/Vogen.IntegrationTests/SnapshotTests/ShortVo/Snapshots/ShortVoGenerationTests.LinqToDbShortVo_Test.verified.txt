@@ -13,21 +13,21 @@ namespace Whatever
 {
 
     
-    [System.Diagnostics.DebuggerTypeProxyAttribute(typeof(LinqToDbShortVoDebugView))]
-    [System.Diagnostics.DebuggerDisplayAttribute("Underlying type: short, Value = { _value }")]
-    public partial struct LinqToDbShortVo : System.IEquatable<LinqToDbShortVo>
+    [global::System.Diagnostics.DebuggerTypeProxyAttribute(typeof(LinqToDbShortVoDebugView))]
+    [global::System.Diagnostics.DebuggerDisplayAttribute("Underlying type: short, Value = { _value }")]
+    public partial struct LinqToDbShortVo : global::System.IEquatable<LinqToDbShortVo>
     {
 #if DEBUG    
-        private readonly System.Diagnostics.StackTrace _stackTrace = null;
+        private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
 #endif
 
-        private readonly bool _isInitialized;
+        private readonly global::System.Boolean _isInitialized;
         
         private readonly short _value;
 
         public readonly short Value
         {
-            [System.Diagnostics.DebuggerStepThroughAttribute]
+            [global::System.Diagnostics.DebuggerStepThroughAttribute]
             get
             {
                 EnsureInitialized();
@@ -35,19 +35,19 @@ namespace Whatever
             }
         }
 
-        [System.Diagnostics.DebuggerStepThroughAttribute]
-        [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
+        [global::System.Diagnostics.DebuggerStepThroughAttribute]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public LinqToDbShortVo()
         {
 #if DEBUG
-            _stackTrace = new System.Diagnostics.StackTrace();
+            _stackTrace = new global::System.Diagnostics.StackTrace();
 #endif
 
             _isInitialized = false;
             _value = default;
         }
 
-        [System.Diagnostics.DebuggerStepThroughAttribute]
+        [global::System.Diagnostics.DebuggerStepThroughAttribute]
         private LinqToDbShortVo(short value) 
         {
             _value = value;
@@ -68,46 +68,46 @@ namespace Whatever
             return instance;
         }
 
-        public readonly bool Equals(LinqToDbShortVo other)
+        public readonly global::System.Boolean Equals(LinqToDbShortVo other)
         {
             // It's possible to create uninitialized instances via converters such as EfCore (HasDefaultValue), which call Equals.
             // We treat anything uninitialized as not equal to anything, even other uninitialized instances of this type.
             if(!_isInitialized || !other._isInitialized) return false;
 
-            return System.Collections.Generic.EqualityComparer<short>.Default.Equals(Value, other.Value);
+            return global::System.Collections.Generic.EqualityComparer<short>.Default.Equals(Value, other.Value);
         }
 
-        public readonly bool Equals(short primitive) => Value.Equals(primitive);
+        public readonly global::System.Boolean Equals(short primitive) => Value.Equals(primitive);
 
-        public readonly override bool Equals(object obj)
+        public readonly override global::System.Boolean Equals(global::System.Object obj)
         {
             return obj is LinqToDbShortVo && Equals((LinqToDbShortVo) obj);
         }
 
-        public static bool operator ==(LinqToDbShortVo left, LinqToDbShortVo right) => Equals(left, right);
-        public static bool operator !=(LinqToDbShortVo left, LinqToDbShortVo right) => !(left == right);
+        public static global::System.Boolean operator ==(LinqToDbShortVo left, LinqToDbShortVo right) => Equals(left, right);
+        public static global::System.Boolean operator !=(LinqToDbShortVo left, LinqToDbShortVo right) => !(left == right);
 
-        public static bool operator ==(LinqToDbShortVo left, short right) => Equals(left.Value, right);
-        public static bool operator !=(LinqToDbShortVo left, short right) => !Equals(left.Value, right);
+        public static global::System.Boolean operator ==(LinqToDbShortVo left, short right) => Equals(left.Value, right);
+        public static global::System.Boolean operator !=(LinqToDbShortVo left, short right) => !Equals(left.Value, right);
 
-        public static bool operator ==(short left, LinqToDbShortVo right) => Equals(left, right.Value);
-        public static bool operator !=(short left, LinqToDbShortVo right) => !Equals(left, right.Value);
+        public static global::System.Boolean operator ==(short left, LinqToDbShortVo right) => Equals(left, right.Value);
+        public static global::System.Boolean operator !=(short left, LinqToDbShortVo right) => !Equals(left, right.Value);
 
-        public readonly override int GetHashCode() => System.Collections.Generic.EqualityComparer<short>.Default.GetHashCode(_value);
+        public readonly override global::System.Int32 GetHashCode() => global::System.Collections.Generic.EqualityComparer<short>.Default.GetHashCode(_value);
 
-        public readonly override string ToString() => Value.ToString();
+        public readonly override global::System.String ToString() => Value.ToString();
 
         private readonly void EnsureInitialized()
         {
             if (!_isInitialized)
             {
 #if DEBUG
-                string message = "Use of uninitialized Value Object at: " + _stackTrace ?? "";
+                global::System.String message = "Use of uninitialized Value Object at: " + _stackTrace ?? "";
 #else
-                string message = "Use of uninitialized Value Object.";
+                global::System.String message = "Use of uninitialized Value Object.";
 #endif
 
-                throw new ValueObjectValidationException(message);
+                throw new global::Vogen.ValueObjectValidationException(message);
             }
         }
 
@@ -119,7 +119,7 @@ namespace Whatever
 
 
 
-        public class LinqToDbValueConverter : global::LinqToDB.Common.ValueConverter<LinqToDbShortVo, short>
+        public class LinqToDbValueConverter : global::LinqToDB.Common.ValueConverter<LinqToDbShortVo, global::System.Int16>
         {
             public LinqToDbValueConverter()
                 : base(
@@ -139,15 +139,15 @@ namespace Whatever
                 _t = t;
             }
 
-            public bool IsInitialized => _t._isInitialized;
-            public string UnderlyingType => "System.Int16";
-            public string Value => _t._isInitialized ? _t._value.ToString() : "[not initialized]" ;
+            public global::System.Boolean IsInitialized => _t._isInitialized;
+            public global::System.String UnderlyingType => "System.Int16";
+            public global::System.String Value => _t._isInitialized ? _t._value.ToString() : "[not initialized]" ;
 
             #if DEBUG
-            public string CreatedWith => _t._stackTrace?.ToString() ?? "the From method";
+            public global::System.String CreatedWith => _t._stackTrace?.ToString() ?? "the From method";
             #endif
 
-            public string Conversions => @"LinqToDbValueConverter";
+            public global::System.String Conversions => @"LinqToDbValueConverter";
                 }
 
 }

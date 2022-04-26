@@ -1,10 +1,10 @@
 ﻿
-        public class LinqToDbValueConverter : global::LinqToDB.Common.ValueConverter<VOTYPE, string>
+        public class LinqToDbValueConverter : global::LinqToDB.Common.ValueConverter<VOTYPE, global::System.String>
         {
             public LinqToDbValueConverter()
                 : base(
-                      v => System.Text.Json.JsonSerializer.Serialize(v.Value, default(System.Text.Json.JsonSerializerOptions)),
-                      p => new VOTYPE(System.Text.Json.JsonSerializer.Deserialize<VOUNDERLYINGTYPE>(p, default(System.Text.Json.JsonSerializerOptions))),
+                      v => global::System.Text.Json.JsonSerializer.Serialize(v.Value, default(global::System.Text.Json.JsonSerializerOptions)),
+                      p => new VOTYPE(global::System.Text.Json.JsonSerializer.Deserialize<VOUNDERLYINGTYPE>(p, default(global::System.Text.Json.JsonSerializerOptions))),
                       handlesNulls: false)
             { }
         }

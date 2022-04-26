@@ -1,36 +1,36 @@
 ﻿
-        class VOTYPETypeConverter : System.ComponentModel.TypeConverter
+        class VOTYPETypeConverter : global::System.ComponentModel.TypeConverter
         {
-            public override bool CanConvertFrom(System.ComponentModel.ITypeDescriptorContext context, System.Type sourceType)
+            public override global::System.Boolean CanConvertFrom(global::System.ComponentModel.ITypeDescriptorContext context, global::System.Type sourceType)
             {
-                return sourceType == typeof(bool) || sourceType == typeof(string) || base.CanConvertFrom(context, sourceType);
+                return sourceType == typeof(global::System.Boolean) || sourceType == typeof(global::System.String) || base.CanConvertFrom(context, sourceType);
             }
 
-            public override object ConvertFrom(System.ComponentModel.ITypeDescriptorContext context, System.Globalization.CultureInfo culture, object value)
+            public override global::System.Object ConvertFrom(global::System.ComponentModel.ITypeDescriptorContext context, global::System.Globalization.CultureInfo culture, global::System.Object value)
             {
                 return value switch
                 {
-                    bool boolValue => new VOTYPE(boolValue),
-                    string stringValue when  !string.IsNullOrEmpty(stringValue) && bool.TryParse(stringValue, out var result) => new VOTYPE(result),
+                    global::System.Boolean boolValue => new VOTYPE(boolValue),
+                    global::System.String stringValue when  !global::System.String.IsNullOrEmpty(stringValue) && global::System.Boolean.TryParse(stringValue, out var result) => new VOTYPE(result),
                     _ => base.ConvertFrom(context, culture, value),
                 };
             }
 
-            public override bool CanConvertTo(System.ComponentModel.ITypeDescriptorContext context, System.Type sourceType)
+            public override bool CanConvertTo(global::System.ComponentModel.ITypeDescriptorContext context, global::System.Type sourceType)
             {
-                return sourceType == typeof(bool) || sourceType == typeof(string) || base.CanConvertTo(context, sourceType);
+                return sourceType == typeof(global::System.Boolean) || sourceType == typeof(global::System.String) || base.CanConvertTo(context, sourceType);
             }
 
-            public override object ConvertTo(System.ComponentModel.ITypeDescriptorContext context, System.Globalization.CultureInfo culture, object value, System.Type destinationType)
+            public override object ConvertTo(global::System.ComponentModel.ITypeDescriptorContext context, global::System.Globalization.CultureInfo culture, global::System.Object value, global::System.Type destinationType)
             {
                 if (value is VOTYPE idValue)
                 {
-                    if (destinationType == typeof(bool))
+                    if (destinationType == typeof(global::System.Boolean))
                     {
                         return idValue.Value;
                     }
 
-                    if (destinationType == typeof(string))
+                    if (destinationType == typeof(global::System.String))
                     {
                         return idValue.Value.ToString();
                     }

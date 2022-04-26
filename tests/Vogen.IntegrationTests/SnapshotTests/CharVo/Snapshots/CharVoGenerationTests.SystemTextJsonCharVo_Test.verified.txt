@@ -12,23 +12,23 @@ using Vogen;
 namespace Whatever
 {
 
-    [System.Text.Json.Serialization.JsonConverter(typeof(SystemTextJsonCharVoSystemTextJsonConverter))]
+    [global::System.Text.Json.Serialization.JsonConverter(typeof(SystemTextJsonCharVoSystemTextJsonConverter))]
 
-    [System.Diagnostics.DebuggerTypeProxyAttribute(typeof(SystemTextJsonCharVoDebugView))]
-    [System.Diagnostics.DebuggerDisplayAttribute("Underlying type: char, Value = { _value }")]
-    public partial struct SystemTextJsonCharVo : System.IEquatable<SystemTextJsonCharVo>
+    [global::System.Diagnostics.DebuggerTypeProxyAttribute(typeof(SystemTextJsonCharVoDebugView))]
+    [global::System.Diagnostics.DebuggerDisplayAttribute("Underlying type: char, Value = { _value }")]
+    public partial struct SystemTextJsonCharVo : global::System.IEquatable<SystemTextJsonCharVo>
     {
 #if DEBUG    
-        private readonly System.Diagnostics.StackTrace _stackTrace = null;
+        private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
 #endif
 
-        private readonly bool _isInitialized;
+        private readonly global::System.Boolean _isInitialized;
         
         private readonly char _value;
 
         public readonly char Value
         {
-            [System.Diagnostics.DebuggerStepThroughAttribute]
+            [global::System.Diagnostics.DebuggerStepThroughAttribute]
             get
             {
                 EnsureInitialized();
@@ -36,19 +36,19 @@ namespace Whatever
             }
         }
 
-        [System.Diagnostics.DebuggerStepThroughAttribute]
-        [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
+        [global::System.Diagnostics.DebuggerStepThroughAttribute]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public SystemTextJsonCharVo()
         {
 #if DEBUG
-            _stackTrace = new System.Diagnostics.StackTrace();
+            _stackTrace = new global::System.Diagnostics.StackTrace();
 #endif
 
             _isInitialized = false;
             _value = default;
         }
 
-        [System.Diagnostics.DebuggerStepThroughAttribute]
+        [global::System.Diagnostics.DebuggerStepThroughAttribute]
         private SystemTextJsonCharVo(char value) 
         {
             _value = value;
@@ -69,62 +69,62 @@ namespace Whatever
             return instance;
         }
 
-        public readonly bool Equals(SystemTextJsonCharVo other)
+        public readonly global::System.Boolean Equals(SystemTextJsonCharVo other)
         {
             // It's possible to create uninitialized instances via converters such as EfCore (HasDefaultValue), which call Equals.
             // We treat anything uninitialized as not equal to anything, even other uninitialized instances of this type.
             if(!_isInitialized || !other._isInitialized) return false;
 
-            return System.Collections.Generic.EqualityComparer<char>.Default.Equals(Value, other.Value);
+            return global::System.Collections.Generic.EqualityComparer<char>.Default.Equals(Value, other.Value);
         }
 
-        public readonly bool Equals(char primitive) => Value.Equals(primitive);
+        public readonly global::System.Boolean Equals(char primitive) => Value.Equals(primitive);
 
-        public readonly override bool Equals(object obj)
+        public readonly override global::System.Boolean Equals(global::System.Object obj)
         {
             return obj is SystemTextJsonCharVo && Equals((SystemTextJsonCharVo) obj);
         }
 
-        public static bool operator ==(SystemTextJsonCharVo left, SystemTextJsonCharVo right) => Equals(left, right);
-        public static bool operator !=(SystemTextJsonCharVo left, SystemTextJsonCharVo right) => !(left == right);
+        public static global::System.Boolean operator ==(SystemTextJsonCharVo left, SystemTextJsonCharVo right) => Equals(left, right);
+        public static global::System.Boolean operator !=(SystemTextJsonCharVo left, SystemTextJsonCharVo right) => !(left == right);
 
-        public static bool operator ==(SystemTextJsonCharVo left, char right) => Equals(left.Value, right);
-        public static bool operator !=(SystemTextJsonCharVo left, char right) => !Equals(left.Value, right);
+        public static global::System.Boolean operator ==(SystemTextJsonCharVo left, char right) => Equals(left.Value, right);
+        public static global::System.Boolean operator !=(SystemTextJsonCharVo left, char right) => !Equals(left.Value, right);
 
-        public static bool operator ==(char left, SystemTextJsonCharVo right) => Equals(left, right.Value);
-        public static bool operator !=(char left, SystemTextJsonCharVo right) => !Equals(left, right.Value);
+        public static global::System.Boolean operator ==(char left, SystemTextJsonCharVo right) => Equals(left, right.Value);
+        public static global::System.Boolean operator !=(char left, SystemTextJsonCharVo right) => !Equals(left, right.Value);
 
-        public readonly override int GetHashCode() => System.Collections.Generic.EqualityComparer<char>.Default.GetHashCode(_value);
+        public readonly override global::System.Int32 GetHashCode() => global::System.Collections.Generic.EqualityComparer<char>.Default.GetHashCode(_value);
 
-        public readonly override string ToString() => Value.ToString();
+        public readonly override global::System.String ToString() => Value.ToString();
 
         private readonly void EnsureInitialized()
         {
             if (!_isInitialized)
             {
 #if DEBUG
-                string message = "Use of uninitialized Value Object at: " + _stackTrace ?? "";
+                global::System.String message = "Use of uninitialized Value Object at: " + _stackTrace ?? "";
 #else
-                string message = "Use of uninitialized Value Object.";
+                global::System.String message = "Use of uninitialized Value Object.";
 #endif
 
-                throw new ValueObjectValidationException(message);
+                throw new global::Vogen.ValueObjectValidationException(message);
             }
         }
 
         
  
         
-        class SystemTextJsonCharVoSystemTextJsonConverter : System.Text.Json.Serialization.JsonConverter<SystemTextJsonCharVo>
+        class SystemTextJsonCharVoSystemTextJsonConverter : global::System.Text.Json.Serialization.JsonConverter<SystemTextJsonCharVo>
         {
-            public override SystemTextJsonCharVo Read(ref System.Text.Json.Utf8JsonReader reader, System.Type typeToConvert, System.Text.Json.JsonSerializerOptions options)
+            public override SystemTextJsonCharVo Read(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {
                 var s = reader.GetString();
 
                 return new SystemTextJsonCharVo(s[0]);
             }
 
-            public override void Write(System.Text.Json.Utf8JsonWriter writer, SystemTextJsonCharVo value, System.Text.Json.JsonSerializerOptions options)
+            public override void Write(System.Text.Json.Utf8JsonWriter writer, SystemTextJsonCharVo value, global::System.Text.Json.JsonSerializerOptions options)
             {
                 writer.WriteStringValue(value.Value.ToString());
             }
@@ -145,15 +145,15 @@ namespace Whatever
                 _t = t;
             }
 
-            public bool IsInitialized => _t._isInitialized;
-            public string UnderlyingType => "System.Char";
-            public string Value => _t._isInitialized ? _t._value.ToString() : "[not initialized]" ;
+            public global::System.Boolean IsInitialized => _t._isInitialized;
+            public global::System.String UnderlyingType => "System.Char";
+            public global::System.String Value => _t._isInitialized ? _t._value.ToString() : "[not initialized]" ;
 
             #if DEBUG
-            public string CreatedWith => _t._stackTrace?.ToString() ?? "the From method";
+            public global::System.String CreatedWith => _t._stackTrace?.ToString() ?? "the From method";
             #endif
 
-            public string Conversions => @"SystemTextJson";
+            public global::System.String Conversions => @"SystemTextJson";
                 }
 
 }

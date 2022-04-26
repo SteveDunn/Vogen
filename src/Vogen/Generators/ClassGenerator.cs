@@ -8,26 +8,26 @@ public class ClassGenerator : IGenerateSourceCode
     {
         var className = tds.Identifier;
 
-        var itemUnderlyingType = item.UnderlyingType?.ToString() ?? "System.Int32";
+        var itemUnderlyingType = item.UnderlyingType?.ToString() ?? "global::System.Int32";
 
         return $@"
 using Vogen;
 
 {Util.WriteStartNamespace(item.FullNamespace)}
     {Util.GenerateAnyConversionAttributes(tds, item)}
-    [System.Diagnostics.DebuggerTypeProxyAttribute(typeof({className}DebugView))]
-    [System.Diagnostics.DebuggerDisplayAttribute(""Underlying type: {itemUnderlyingType}, Value = {{ _value }}"")]
-    {Util.GenerateModifiersFor(tds)} class {className} : System.IEquatable<{className}>
+    [global::System.Diagnostics.DebuggerTypeProxyAttribute(typeof({className}DebugView))]
+    [global::System.Diagnostics.DebuggerDisplayAttribute(""Underlying type: {itemUnderlyingType}, Value = {{ _value }}"")]
+    {Util.GenerateModifiersFor(tds)} class {className} : global::System.IEquatable<{className}>
     {{
 #if DEBUG    
-        private readonly System.Diagnostics.StackTrace _stackTrace = null;
+        private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
 #endif
-        private readonly bool _isInitialized;
+        private readonly global::System.Boolean _isInitialized;
         private readonly {itemUnderlyingType} _value;
         
 public {itemUnderlyingType} Value
         {{
-            [System.Diagnostics.DebuggerStepThroughAttribute]
+            [global::System.Diagnostics.DebuggerStepThroughAttribute]
             get
             {{
                 EnsureInitialized();
@@ -35,18 +35,18 @@ public {itemUnderlyingType} Value
             }}
         }}
 
-        [System.Diagnostics.DebuggerStepThroughAttribute]
-        [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
+        [global::System.Diagnostics.DebuggerStepThroughAttribute]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public {className}()
         {{
 #if DEBUG
-            _stackTrace = new System.Diagnostics.StackTrace();
+            _stackTrace = new global::System.Diagnostics.StackTrace();
 #endif
             _isInitialized = false;
             _value = default;
         }}
 
-        [System.Diagnostics.DebuggerStepThroughAttribute]
+        [global::System.Diagnostics.DebuggerStepThroughAttribute]
         private {className}({itemUnderlyingType} value)
         {{
             _value = value;
@@ -69,7 +69,7 @@ public {itemUnderlyingType} Value
             return instance;
         }}
 
-        public bool Equals({className} other)
+        public global::System.Boolean Equals({className} other)
         {{
             if (ReferenceEquals(null, other))
             {{
@@ -85,12 +85,12 @@ public {itemUnderlyingType} Value
                 return true;
             }}
 
-            return GetType() == other.GetType() && System.Collections.Generic.EqualityComparer<{itemUnderlyingType}>.Default.Equals(Value, other.Value);
+            return GetType() == other.GetType() && global::System.Collections.Generic.EqualityComparer<{itemUnderlyingType}>.Default.Equals(Value, other.Value);
         }}
 
-        public bool Equals({itemUnderlyingType} primitive) => Value.Equals(primitive);
+        public global::System.Boolean Equals({itemUnderlyingType} primitive) => Value.Equals(primitive);
 
-        public override bool Equals(object obj)
+        public override global::System.Boolean Equals(global::System.Object obj)
         {{
             if (ReferenceEquals(null, obj))
             {{
@@ -110,23 +110,23 @@ public {itemUnderlyingType} Value
             return Equals(({className}) obj);
         }}
 
-        public static bool operator ==({className} left, {className} right) => Equals(left, right);
-        public static bool operator !=({className} left, {className} right) => !Equals(left, right);
+        public static global::System.Boolean operator ==({className} left, {className} right) => Equals(left, right);
+        public static global::System.Boolean operator !=({className} left, {className} right) => !Equals(left, right);
 
-        public static bool operator ==({className} left, {itemUnderlyingType} right) => Equals(left.Value, right);
-        public static bool operator !=({className} left, {itemUnderlyingType} right) => !Equals(left.Value, right);
+        public static global::System.Boolean operator ==({className} left, {itemUnderlyingType} right) => Equals(left.Value, right);
+        public static global::System.Boolean operator !=({className} left, {itemUnderlyingType} right) => !Equals(left.Value, right);
 
-        public static bool operator ==({itemUnderlyingType} left, {className} right) => Equals(left, right.Value);
-        public static bool operator !=({itemUnderlyingType} left, {className} right) => !Equals(left, right.Value);
+        public static global::System.Boolean operator ==({itemUnderlyingType} left, {className} right) => Equals(left, right.Value);
+        public static global::System.Boolean operator !=({itemUnderlyingType} left, {className} right) => !Equals(left, right.Value);
 
-        public override int GetHashCode()
+        public override global::System.Int32 GetHashCode()
         {{
             unchecked // Overflow is fine, just wrap
             {{
-                int hash = (int) 2166136261;
+                global::System.Int32 hash = (global::System.Int32) 2166136261;
                 hash = (hash * 16777619) ^ Value.GetHashCode();
                 hash = (hash * 16777619) ^ GetType().GetHashCode();
-                hash = (hash * 16777619) ^ System.Collections.Generic.EqualityComparer<{itemUnderlyingType}>.Default.GetHashCode();
+                hash = (hash * 16777619) ^ global::System.Collections.Generic.EqualityComparer<{itemUnderlyingType}>.Default.GetHashCode();
                 return hash;
             }}
         }}
@@ -136,9 +136,9 @@ public {itemUnderlyingType} Value
             if (!_isInitialized)
             {{
 #if DEBUG
-                string message = ""Use of uninitialized Value Object at: "" + _stackTrace ?? """";
+                global::System.String message = ""Use of uninitialized Value Object at: "" + _stackTrace ?? """";
 #else
-                string message = ""Use of uninitialized Value Object."";
+                global::System.String message = ""Use of uninitialized Value Object."";
 #endif
 
                 throw new {item.ValidationExceptionFullName}(message);
@@ -148,7 +148,7 @@ public {itemUnderlyingType} Value
 
         {Util.GenerateAnyInstances(tds, item)}
 
-        public override string ToString() => Value.ToString();
+        public override global::System.String ToString() => Value.ToString();
 
         {Util.GenerateAnyConversionBodies(tds, item)}
 
