@@ -11,7 +11,7 @@
                 return value switch
                 {
                     global::System.Int64 longValue => new VOTYPE(longValue),
-                    string stringValue when  !global::System.String.IsNullOrEmpty(stringValue) && long.TryParse(stringValue, out var result) => new VOTYPE(result),
+                    global::System.String stringValue when  !global::System.String.IsNullOrEmpty(stringValue) && long.TryParse(stringValue, out var result) => new VOTYPE(result),
                     _ => base.ConvertFrom(context, culture, value),
                 };
             }

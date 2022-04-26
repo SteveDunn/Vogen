@@ -128,11 +128,11 @@ namespace Whatever
             {
                 return value switch
                 {
-                    char charValue => new NoJsonCharVo(charValue),
-                    short shortValue => new NoJsonCharVo((char)shortValue),
-                    global::System.Int32 intValue => new NoJsonCharVo((char)intValue),
-                    global::System.Int64 longValue => new NoJsonCharVo((char)longValue),
-                    global::System.String stringValue when  !global::System.String.IsNullOrEmpty(stringValue) && char.TryParse(stringValue, out var result) => new NoJsonCharVo(result),
+                    global::System.Char charValue => new NoJsonCharVo(charValue),
+                    global::System.Int16 shortValue => new NoJsonCharVo((global::System.Char)shortValue),
+                    global::System.Int32 intValue => new NoJsonCharVo((global::System.Char)intValue),
+                    global::System.Int64 longValue => new NoJsonCharVo((global::System.Char)longValue),
+                    global::System.String stringValue when  !global::System.String.IsNullOrEmpty(stringValue) && global::System.Char.TryParse(stringValue, out var result) => new NoJsonCharVo(result),
                     _ => base.ConvertFrom(context, culture, value),
                 };
             }

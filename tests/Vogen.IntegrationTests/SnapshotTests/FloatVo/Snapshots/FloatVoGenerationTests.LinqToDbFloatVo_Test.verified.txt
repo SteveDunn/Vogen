@@ -119,7 +119,7 @@ namespace Whatever
 
 
 
-        public class LinqToDbValueConverter : global::LinqToDB.Common.ValueConverter<LinqToDbFloatVo, float>
+        public class LinqToDbValueConverter : global::LinqToDB.Common.ValueConverter<LinqToDbFloatVo, global::System.Single>
         {
             public LinqToDbValueConverter()
                 : base(

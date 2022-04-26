@@ -11,7 +11,7 @@
             {
                 return value switch
                 {
-                    string stringValue => new VOTYPE(stringValue),
+                    global::System.String stringValue => new VOTYPE(stringValue),
                     _ => throw new global::System.InvalidCastException($"Unable to cast object of type {value.GetType()} to VOTYPE"),
                 };
             }

@@ -129,7 +129,7 @@ namespace Whatever
                 return value switch
                 {
                     global::System.Single floatValue => new NoJsonFloatVo(floatValue),
-                    global::System.String stringValue when !global::System.String.IsNullOrEmpty(stringValue) && float.TryParse(stringValue, out var result) => new NoJsonFloatVo(result),
+                    global::System.String stringValue when !global::System.String.IsNullOrEmpty(stringValue) && global::System.Single.TryParse(stringValue, out var result) => new NoJsonFloatVo(result),
                     _ => base.ConvertFrom(context, culture, value),
                 };
             }

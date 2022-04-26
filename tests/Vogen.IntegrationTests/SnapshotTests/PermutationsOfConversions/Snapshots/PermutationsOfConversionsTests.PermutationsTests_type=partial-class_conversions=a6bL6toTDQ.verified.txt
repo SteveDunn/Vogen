@@ -199,7 +199,7 @@ public int Value
                 return value switch
                 {
                     global::System.Int32 intValue => new MyIntVo(intValue),
-                    global::System.Int64 longValue when longValue < int.MaxValue => new MyIntVo((int)longValue),
+                    global::System.Int64 longValue when longValue < global::System.Int32.MaxValue => new MyIntVo((global::System.Int32)longValue),
                     global::System.String stringValue when !global::System.String.IsNullOrEmpty(stringValue) && global::System.Int32.TryParse(stringValue, out var result) => new MyIntVo(result),
                     _ => throw new global::System.InvalidCastException($"Unable to cast object of type {value.GetType()} to MyIntVo"),
                 };
@@ -216,7 +216,7 @@ public int Value
                 ) { }
         }
 
-        public class LinqToDbValueConverter : global::LinqToDB.Common.ValueConverter<MyIntVo, int>
+        public class LinqToDbValueConverter : global::LinqToDB.Common.ValueConverter<MyIntVo, global::System.Int32>
         {
             public LinqToDbValueConverter()
                 : base(

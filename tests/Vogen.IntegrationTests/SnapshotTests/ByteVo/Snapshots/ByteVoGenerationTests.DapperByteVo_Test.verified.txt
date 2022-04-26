@@ -128,11 +128,11 @@ namespace Whatever
             {
                 return value switch
                 {
-                    byte byteValue => new DapperByteVo(byteValue),
-                    short shortValue => new DapperByteVo((byte)shortValue),
-                    global::System.Int32 intValue => new DapperByteVo((byte)intValue),
-                    global::System.Int64 longValue => new DapperByteVo((byte)longValue),
-                    global::System.String stringValue when !global::System.String.IsNullOrEmpty(stringValue) && byte.TryParse(stringValue, out var result) => new DapperByteVo(result),
+                    global::System.Byte byteValue => new DapperByteVo(byteValue),
+                    global::System.Int16 shortValue => new DapperByteVo((global::System.Byte)shortValue),
+                    global::System.Int32 intValue => new DapperByteVo((global::System.Byte)intValue),
+                    global::System.Int64 longValue => new DapperByteVo((global::System.Byte)longValue),
+                    global::System.String stringValue when !global::System.String.IsNullOrEmpty(stringValue) && global::System.Byte.TryParse(stringValue, out var result) => new DapperByteVo(result),
                     _ => throw new global::System.InvalidCastException($"Unable to cast object of type {value.GetType()} to DapperByteVo"),
                 };
             }

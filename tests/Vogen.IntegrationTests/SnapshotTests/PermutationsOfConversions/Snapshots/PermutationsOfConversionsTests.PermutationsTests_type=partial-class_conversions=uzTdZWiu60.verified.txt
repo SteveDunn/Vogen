@@ -188,7 +188,7 @@ public int Value
 
 
 
-        public class LinqToDbValueConverter : global::LinqToDB.Common.ValueConverter<MyIntVo, int>
+        public class LinqToDbValueConverter : global::LinqToDB.Common.ValueConverter<MyIntVo, global::System.Int32>
         {
             public LinqToDbValueConverter()
                 : base(

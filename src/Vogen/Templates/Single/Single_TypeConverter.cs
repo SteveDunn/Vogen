@@ -11,7 +11,7 @@
                 return value switch
                 {
                     global::System.Single floatValue => new VOTYPE(floatValue),
-                    global::System.String stringValue when !global::System.String.IsNullOrEmpty(stringValue) && float.TryParse(stringValue, out var result) => new VOTYPE(result),
+                    global::System.String stringValue when !global::System.String.IsNullOrEmpty(stringValue) && global::System.Single.TryParse(stringValue, out var result) => new VOTYPE(result),
                     _ => base.ConvertFrom(context, culture, value),
                 };
             }

@@ -128,10 +128,10 @@ namespace Whatever
             {
                 return value switch
                 {
-                    short shortValue => new NoJsonShortVo(shortValue),
-                    global::System.Int32 intValue => new NoJsonShortVo((short)intValue),
-                    global::System.Int64 longValue => new NoJsonShortVo((short)longValue),
-                    string stringValue when  !global::System.String.IsNullOrEmpty(stringValue) && short.TryParse(stringValue, out var result) => new NoJsonShortVo(result),
+                    global::System.Int16 shortValue => new NoJsonShortVo(shortValue),
+                    global::System.Int32 intValue => new NoJsonShortVo((global::System.Int16)intValue),
+                    global::System.Int64 longValue => new NoJsonShortVo((global::System.Int16)longValue),
+                    global::System.String stringValue when  !global::System.String.IsNullOrEmpty(stringValue) && global::System.Int16.TryParse(stringValue, out var result) => new NoJsonShortVo(result),
                     _ => base.ConvertFrom(context, culture, value),
                 };
             }

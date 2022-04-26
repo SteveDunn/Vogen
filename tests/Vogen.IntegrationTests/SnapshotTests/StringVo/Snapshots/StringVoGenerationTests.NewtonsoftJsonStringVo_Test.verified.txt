@@ -131,7 +131,7 @@ namespace Whatever
 
             public override object ReadJson(Newtonsoft.Json.JsonReader reader, System.Type objectType, object existingValue, Newtonsoft.Json.JsonSerializer serializer)
             {
-                return new NewtonsoftJsonStringVo(serializer.Deserialize<string>(reader));
+                return new NewtonsoftJsonStringVo(serializer.Deserialize<global::System.String>(reader));
             }
         }
 

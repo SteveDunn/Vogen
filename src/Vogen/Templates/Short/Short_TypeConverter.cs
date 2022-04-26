@@ -10,10 +10,10 @@
             {
                 return value switch
                 {
-                    short shortValue => new VOTYPE(shortValue),
-                    global::System.Int32 intValue => new VOTYPE((short)intValue),
-                    global::System.Int64 longValue => new VOTYPE((short)longValue),
-                    string stringValue when  !global::System.String.IsNullOrEmpty(stringValue) && short.TryParse(stringValue, out var result) => new VOTYPE(result),
+                    global::System.Int16 shortValue => new VOTYPE(shortValue),
+                    global::System.Int32 intValue => new VOTYPE((global::System.Int16)intValue),
+                    global::System.Int64 longValue => new VOTYPE((global::System.Int16)longValue),
+                    global::System.String stringValue when  !global::System.String.IsNullOrEmpty(stringValue) && global::System.Int16.TryParse(stringValue, out var result) => new VOTYPE(result),
                     _ => base.ConvertFrom(context, culture, value),
                 };
             }

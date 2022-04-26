@@ -10,7 +10,7 @@
             {
                 return value switch
                 {
-                    string stringValue when !global::System.String.IsNullOrEmpty(stringValue) && global::System.DateTimeOffset.TryParseExact(stringValue, "O", global::System.Globalization.CultureInfo.InvariantCulture, global::System.Globalization.DateTimeStyles.RoundtripKind, out var result) => new VOTYPE(result),
+                    global::System.String stringValue when !global::System.String.IsNullOrEmpty(stringValue) && global::System.DateTimeOffset.TryParseExact(stringValue, "O", global::System.Globalization.CultureInfo.InvariantCulture, global::System.Globalization.DateTimeStyles.RoundtripKind, out var result) => new VOTYPE(result),
                     global::System.DateTimeOffset dateTimeValue => new VOTYPE(dateTimeValue),
                     _ => base.ConvertFrom(context, culture, value),
                 };

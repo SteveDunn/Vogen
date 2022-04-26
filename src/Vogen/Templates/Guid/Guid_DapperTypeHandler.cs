@@ -11,8 +11,8 @@
             {
                 return value switch
                 {
-                    System.Guid guidValue => new VOTYPE(guidValue),
-                    global::System.String stringValue when !global::System.String.IsNullOrEmpty(stringValue) && System.Guid.TryParse(stringValue, out var result) => new VOTYPE(result),
+                    global::System.Guid guidValue => new VOTYPE(guidValue),
+                    global::System.String stringValue when !global::System.String.IsNullOrEmpty(stringValue) && global::System.Guid.TryParse(stringValue, out var result) => new VOTYPE(result),
                     _ => throw new global::System.InvalidCastException($"Unable to cast object of type {value.GetType()} to VOTYPE"),
                 };
             }

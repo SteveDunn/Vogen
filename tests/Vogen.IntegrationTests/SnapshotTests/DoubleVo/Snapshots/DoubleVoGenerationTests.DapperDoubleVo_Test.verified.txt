@@ -131,8 +131,8 @@ namespace Whatever
                 {
                     global::System.Double doubleValue => new DapperDoubleVo(doubleValue),
                     global::System.Int32 intValue => new DapperDoubleVo(intValue),
-                    global::System.Int64 longValue when longValue < double.MaxValue => new DapperDoubleVo((double)longValue),
-                    global::System.String stringValue when !global::System.String.IsNullOrEmpty(stringValue) && double.TryParse(stringValue, out var result) => new DapperDoubleVo(result),
+                    global::System.Int64 longValue when longValue < global::System.Double.MaxValue => new DapperDoubleVo((global::System.Double)longValue),
+                    global::System.String stringValue when !global::System.String.IsNullOrEmpty(stringValue) && global::System.Double.TryParse(stringValue, out var result) => new DapperDoubleVo(result),
                     _ => throw new global::System.InvalidCastException($"Unable to cast object of type {value.GetType()} to DapperDoubleVo"),
                 };
             }

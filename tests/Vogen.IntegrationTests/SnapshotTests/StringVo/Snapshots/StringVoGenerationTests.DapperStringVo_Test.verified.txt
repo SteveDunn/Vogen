@@ -129,7 +129,7 @@ namespace Whatever
             {
                 return value switch
                 {
-                    string stringValue => new DapperStringVo(stringValue),
+                    global::System.String stringValue => new DapperStringVo(stringValue),
                     _ => throw new global::System.InvalidCastException($"Unable to cast object of type {value.GetType()} to DapperStringVo"),
                 };
             }
