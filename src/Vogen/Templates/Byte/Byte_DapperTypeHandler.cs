@@ -2,7 +2,7 @@
         {
             public override void SetValue(global::System.Data.IDbDataParameter parameter, VOTYPE value)
             {
-                parameter.DbType = System.Data.DbType.Byte;
+                parameter.DbType = global::System.Data.DbType.Byte;
                 parameter.Value = value.Value;
             }
 
@@ -12,9 +12,9 @@
                 {
                     byte byteValue => new VOTYPE(byteValue),
                     short shortValue => new VOTYPE((byte)shortValue),
-                    int intValue => new VOTYPE((byte)intValue),
-                    long longValue => new VOTYPE((byte)longValue),
-                    string stringValue when !string.IsNullOrEmpty(stringValue) && byte.TryParse(stringValue, out var result) => new VOTYPE(result),
+                    global::System.Int32 intValue => new VOTYPE((byte)intValue),
+                    global::System.Int64 longValue => new VOTYPE((byte)longValue),
+                    global::System.String stringValue when !global::System.String.IsNullOrEmpty(stringValue) && byte.TryParse(stringValue, out var result) => new VOTYPE(result),
                     _ => throw new global::System.InvalidCastException($"Unable to cast object of type {value.GetType()} to VOTYPE"),
                 };
             }

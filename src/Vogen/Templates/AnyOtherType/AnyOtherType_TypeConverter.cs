@@ -1,12 +1,12 @@
 ﻿
         class VOTYPETypeConverter : global::System.ComponentModel.TypeConverter
         {
-            public override bool CanConvertFrom(global::System.ComponentModel.ITypeDescriptorContext context, global::System.Type sourceType)
+            public override global::System.Boolean CanConvertFrom(global::System.ComponentModel.ITypeDescriptorContext context, global::System.Type sourceType)
             {
                 return sourceType == typeof(VOUNDERLYINGTYPE);
             }
         
-            public override object ConvertFrom(global::System.ComponentModel.ITypeDescriptorContext context, global::System.Globalization.CultureInfo culture, global::System.Object value)
+            public override global::System.Object ConvertFrom(global::System.ComponentModel.ITypeDescriptorContext context, global::System.Globalization.CultureInfo culture, global::System.Object value)
             {
                 VOUNDERLYINGTYPE ut = (VOUNDERLYINGTYPE)value;
 

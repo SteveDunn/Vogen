@@ -6,11 +6,11 @@
                 parameter.Value = global::System.Text.Json.JsonSerializer.Serialize(value.Value);
             }
 
-    public override VOTYPE Parse(object value)
+            public override VOTYPE Parse(object value)
             {
                 return value switch
                 {
-                    string stringValue =>
+                    global::System.String stringValue =>
                         new VOTYPE(global::System.Text.Json.JsonSerializer.Deserialize<Bar>(stringValue)),
                     _ => throw new global::System.InvalidCastException($"Unable to cast object of type {value.GetType()} to VOTYPE"),
                 };

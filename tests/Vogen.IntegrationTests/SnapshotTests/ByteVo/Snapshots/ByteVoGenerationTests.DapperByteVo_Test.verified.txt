@@ -13,21 +13,21 @@ namespace Whatever
 {
 
     
-    [System.Diagnostics.DebuggerTypeProxyAttribute(typeof(DapperByteVoDebugView))]
-    [System.Diagnostics.DebuggerDisplayAttribute("Underlying type: byte, Value = { _value }")]
-    public partial struct DapperByteVo : System.IEquatable<DapperByteVo>
+    [global::System.Diagnostics.DebuggerTypeProxyAttribute(typeof(DapperByteVoDebugView))]
+    [global::System.Diagnostics.DebuggerDisplayAttribute("Underlying type: byte, Value = { _value }")]
+    public partial struct DapperByteVo : global::System.IEquatable<DapperByteVo>
     {
 #if DEBUG    
-        private readonly System.Diagnostics.StackTrace _stackTrace = null;
+        private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
 #endif
 
-        private readonly bool _isInitialized;
+        private readonly global::System.Boolean _isInitialized;
         
         private readonly byte _value;
 
         public readonly byte Value
         {
-            [System.Diagnostics.DebuggerStepThroughAttribute]
+            [global::System.Diagnostics.DebuggerStepThroughAttribute]
             get
             {
                 EnsureInitialized();
@@ -35,19 +35,19 @@ namespace Whatever
             }
         }
 
-        [System.Diagnostics.DebuggerStepThroughAttribute]
-        [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
+        [global::System.Diagnostics.DebuggerStepThroughAttribute]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public DapperByteVo()
         {
 #if DEBUG
-            _stackTrace = new System.Diagnostics.StackTrace();
+            _stackTrace = new global::System.Diagnostics.StackTrace();
 #endif
 
             _isInitialized = false;
             _value = default;
         }
 
-        [System.Diagnostics.DebuggerStepThroughAttribute]
+        [global::System.Diagnostics.DebuggerStepThroughAttribute]
         private DapperByteVo(byte value) 
         {
             _value = value;
@@ -68,46 +68,46 @@ namespace Whatever
             return instance;
         }
 
-        public readonly bool Equals(DapperByteVo other)
+        public readonly global::System.Boolean Equals(DapperByteVo other)
         {
             // It's possible to create uninitialized instances via converters such as EfCore (HasDefaultValue), which call Equals.
             // We treat anything uninitialized as not equal to anything, even other uninitialized instances of this type.
             if(!_isInitialized || !other._isInitialized) return false;
 
-            return System.Collections.Generic.EqualityComparer<byte>.Default.Equals(Value, other.Value);
+            return global::System.Collections.Generic.EqualityComparer<byte>.Default.Equals(Value, other.Value);
         }
 
-        public readonly bool Equals(byte primitive) => Value.Equals(primitive);
+        public readonly global::System.Boolean Equals(byte primitive) => Value.Equals(primitive);
 
-        public readonly override bool Equals(object obj)
+        public readonly override global::System.Boolean Equals(global::System.Object obj)
         {
             return obj is DapperByteVo && Equals((DapperByteVo) obj);
         }
 
-        public static bool operator ==(DapperByteVo left, DapperByteVo right) => Equals(left, right);
-        public static bool operator !=(DapperByteVo left, DapperByteVo right) => !(left == right);
+        public static global::System.Boolean operator ==(DapperByteVo left, DapperByteVo right) => Equals(left, right);
+        public static global::System.Boolean operator !=(DapperByteVo left, DapperByteVo right) => !(left == right);
 
-        public static bool operator ==(DapperByteVo left, byte right) => Equals(left.Value, right);
-        public static bool operator !=(DapperByteVo left, byte right) => !Equals(left.Value, right);
+        public static global::System.Boolean operator ==(DapperByteVo left, byte right) => Equals(left.Value, right);
+        public static global::System.Boolean operator !=(DapperByteVo left, byte right) => !Equals(left.Value, right);
 
-        public static bool operator ==(byte left, DapperByteVo right) => Equals(left, right.Value);
-        public static bool operator !=(byte left, DapperByteVo right) => !Equals(left, right.Value);
+        public static global::System.Boolean operator ==(byte left, DapperByteVo right) => Equals(left, right.Value);
+        public static global::System.Boolean operator !=(byte left, DapperByteVo right) => !Equals(left, right.Value);
 
-        public readonly override int GetHashCode() => System.Collections.Generic.EqualityComparer<byte>.Default.GetHashCode(_value);
+        public readonly override global::System.Int32 GetHashCode() => global::System.Collections.Generic.EqualityComparer<byte>.Default.GetHashCode(_value);
 
-        public readonly override string ToString() => Value.ToString();
+        public readonly override global::System.String ToString() => Value.ToString();
 
         private readonly void EnsureInitialized()
         {
             if (!_isInitialized)
             {
 #if DEBUG
-                string message = "Use of uninitialized Value Object at: " + _stackTrace ?? "";
+                global::System.String message = "Use of uninitialized Value Object at: " + _stackTrace ?? "";
 #else
-                string message = "Use of uninitialized Value Object.";
+                global::System.String message = "Use of uninitialized Value Object.";
 #endif
 
-                throw new ValueObjectValidationException(message);
+                throw new global::Vogen.ValueObjectValidationException(message);
             }
         }
 
@@ -116,11 +116,11 @@ namespace Whatever
         
 
 
-        public class DapperTypeHandler : Dapper.SqlMapper.TypeHandler<DapperByteVo>
+        public class DapperTypeHandler : global::Dapper.SqlMapper.TypeHandler<DapperByteVo>
         {
-            public override void SetValue(System.Data.IDbDataParameter parameter, DapperByteVo value)
+            public override void SetValue(global::System.Data.IDbDataParameter parameter, DapperByteVo value)
             {
-                parameter.DbType = System.Data.DbType.Byte;
+                parameter.DbType = global::System.Data.DbType.Byte;
                 parameter.Value = value.Value;
             }
 
@@ -130,10 +130,10 @@ namespace Whatever
                 {
                     byte byteValue => new DapperByteVo(byteValue),
                     short shortValue => new DapperByteVo((byte)shortValue),
-                    int intValue => new DapperByteVo((byte)intValue),
-                    long longValue => new DapperByteVo((byte)longValue),
-                    string stringValue when !string.IsNullOrEmpty(stringValue) && byte.TryParse(stringValue, out var result) => new DapperByteVo(result),
-                    _ => throw new System.InvalidCastException($"Unable to cast object of type {value.GetType()} to DapperByteVo"),
+                    global::System.Int32 intValue => new DapperByteVo((byte)intValue),
+                    global::System.Int64 longValue => new DapperByteVo((byte)longValue),
+                    global::System.String stringValue when !global::System.String.IsNullOrEmpty(stringValue) && byte.TryParse(stringValue, out var result) => new DapperByteVo(result),
+                    _ => throw new global::System.InvalidCastException($"Unable to cast object of type {value.GetType()} to DapperByteVo"),
                 };
             }
         }
@@ -150,15 +150,15 @@ namespace Whatever
                 _t = t;
             }
 
-            public bool IsInitialized => _t._isInitialized;
-            public string UnderlyingType => "System.Byte";
-            public string Value => _t._isInitialized ? _t._value.ToString() : "[not initialized]" ;
+            public global::System.Boolean IsInitialized => _t._isInitialized;
+            public global::System.String UnderlyingType => "System.Byte";
+            public global::System.String Value => _t._isInitialized ? _t._value.ToString() : "[not initialized]" ;
 
             #if DEBUG
-            public string CreatedWith => _t._stackTrace?.ToString() ?? "the From method";
+            public global::System.String CreatedWith => _t._stackTrace?.ToString() ?? "the From method";
             #endif
 
-            public string Conversions => @"DapperTypeHandler";
+            public global::System.String Conversions => @"DapperTypeHandler";
                 }
 
 }

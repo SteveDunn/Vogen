@@ -13,21 +13,21 @@ namespace Whatever
 {
 
     
-    [System.Diagnostics.DebuggerTypeProxyAttribute(typeof(DapperFooVoDebugView))]
-    [System.Diagnostics.DebuggerDisplayAttribute("Underlying type: Whatever.Bar, Value = { _value }")]
-    public partial struct DapperFooVo : System.IEquatable<DapperFooVo>
+    [global::System.Diagnostics.DebuggerTypeProxyAttribute(typeof(DapperFooVoDebugView))]
+    [global::System.Diagnostics.DebuggerDisplayAttribute("Underlying type: Whatever.Bar, Value = { _value }")]
+    public partial struct DapperFooVo : global::System.IEquatable<DapperFooVo>
     {
 #if DEBUG    
-        private readonly System.Diagnostics.StackTrace _stackTrace = null;
+        private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
 #endif
 
-        private readonly bool _isInitialized;
+        private readonly global::System.Boolean _isInitialized;
         
         private readonly Whatever.Bar _value;
 
         public readonly Whatever.Bar Value
         {
-            [System.Diagnostics.DebuggerStepThroughAttribute]
+            [global::System.Diagnostics.DebuggerStepThroughAttribute]
             get
             {
                 EnsureInitialized();
@@ -35,19 +35,19 @@ namespace Whatever
             }
         }
 
-        [System.Diagnostics.DebuggerStepThroughAttribute]
-        [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
+        [global::System.Diagnostics.DebuggerStepThroughAttribute]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public DapperFooVo()
         {
 #if DEBUG
-            _stackTrace = new System.Diagnostics.StackTrace();
+            _stackTrace = new global::System.Diagnostics.StackTrace();
 #endif
 
             _isInitialized = false;
             _value = default;
         }
 
-        [System.Diagnostics.DebuggerStepThroughAttribute]
+        [global::System.Diagnostics.DebuggerStepThroughAttribute]
         private DapperFooVo(Whatever.Bar value) 
         {
             _value = value;
@@ -68,46 +68,46 @@ namespace Whatever
             return instance;
         }
 
-        public readonly bool Equals(DapperFooVo other)
+        public readonly global::System.Boolean Equals(DapperFooVo other)
         {
             // It's possible to create uninitialized instances via converters such as EfCore (HasDefaultValue), which call Equals.
             // We treat anything uninitialized as not equal to anything, even other uninitialized instances of this type.
             if(!_isInitialized || !other._isInitialized) return false;
 
-            return System.Collections.Generic.EqualityComparer<Whatever.Bar>.Default.Equals(Value, other.Value);
+            return global::System.Collections.Generic.EqualityComparer<Whatever.Bar>.Default.Equals(Value, other.Value);
         }
 
-        public readonly bool Equals(Whatever.Bar primitive) => Value.Equals(primitive);
+        public readonly global::System.Boolean Equals(Whatever.Bar primitive) => Value.Equals(primitive);
 
-        public readonly override bool Equals(object obj)
+        public readonly override global::System.Boolean Equals(global::System.Object obj)
         {
             return obj is DapperFooVo && Equals((DapperFooVo) obj);
         }
 
-        public static bool operator ==(DapperFooVo left, DapperFooVo right) => Equals(left, right);
-        public static bool operator !=(DapperFooVo left, DapperFooVo right) => !(left == right);
+        public static global::System.Boolean operator ==(DapperFooVo left, DapperFooVo right) => Equals(left, right);
+        public static global::System.Boolean operator !=(DapperFooVo left, DapperFooVo right) => !(left == right);
 
-        public static bool operator ==(DapperFooVo left, Whatever.Bar right) => Equals(left.Value, right);
-        public static bool operator !=(DapperFooVo left, Whatever.Bar right) => !Equals(left.Value, right);
+        public static global::System.Boolean operator ==(DapperFooVo left, Whatever.Bar right) => Equals(left.Value, right);
+        public static global::System.Boolean operator !=(DapperFooVo left, Whatever.Bar right) => !Equals(left.Value, right);
 
-        public static bool operator ==(Whatever.Bar left, DapperFooVo right) => Equals(left, right.Value);
-        public static bool operator !=(Whatever.Bar left, DapperFooVo right) => !Equals(left, right.Value);
+        public static global::System.Boolean operator ==(Whatever.Bar left, DapperFooVo right) => Equals(left, right.Value);
+        public static global::System.Boolean operator !=(Whatever.Bar left, DapperFooVo right) => !Equals(left, right.Value);
 
-        public readonly override int GetHashCode() => System.Collections.Generic.EqualityComparer<Whatever.Bar>.Default.GetHashCode(_value);
+        public readonly override global::System.Int32 GetHashCode() => global::System.Collections.Generic.EqualityComparer<Whatever.Bar>.Default.GetHashCode(_value);
 
-        public readonly override string ToString() => Value.ToString();
+        public readonly override global::System.String ToString() => Value.ToString();
 
         private readonly void EnsureInitialized()
         {
             if (!_isInitialized)
             {
 #if DEBUG
-                string message = "Use of uninitialized Value Object at: " + _stackTrace ?? "";
+                global::System.String message = "Use of uninitialized Value Object at: " + _stackTrace ?? "";
 #else
-                string message = "Use of uninitialized Value Object.";
+                global::System.String message = "Use of uninitialized Value Object.";
 #endif
 
-                throw new ValueObjectValidationException(message);
+                throw new global::Vogen.ValueObjectValidationException(message);
             }
         }
 
@@ -117,20 +117,20 @@ namespace Whatever
 
 
 
-        public class DapperTypeHandler : Dapper.SqlMapper.TypeHandler<DapperFooVo>
+        public class DapperTypeHandler : global::Dapper.SqlMapper.TypeHandler<DapperFooVo>
         {
-            public override void SetValue(System.Data.IDbDataParameter parameter, DapperFooVo value)
+            public override void SetValue(global::System.Data.IDbDataParameter parameter, DapperFooVo value)
             {
-                parameter.Value = System.Text.Json.JsonSerializer.Serialize(value.Value);
+                parameter.Value = global::System.Text.Json.JsonSerializer.Serialize(value.Value);
             }
 
-    public override DapperFooVo Parse(object value)
+            public override DapperFooVo Parse(object value)
             {
                 return value switch
                 {
-                    string stringValue =>
-                        new DapperFooVo(System.Text.Json.JsonSerializer.Deserialize<Bar>(stringValue)),
-                    _ => throw new System.InvalidCastException($"Unable to cast object of type {value.GetType()} to DapperFooVo"),
+                    global::System.String stringValue =>
+                        new DapperFooVo(global::System.Text.Json.JsonSerializer.Deserialize<Bar>(stringValue)),
+                    _ => throw new global::System.InvalidCastException($"Unable to cast object of type {value.GetType()} to DapperFooVo"),
                 };
             }
         }
@@ -147,15 +147,15 @@ namespace Whatever
                 _t = t;
             }
 
-            public bool IsInitialized => _t._isInitialized;
-            public string UnderlyingType => "Whatever.Bar";
-            public string Value => _t._isInitialized ? _t._value.ToString() : "[not initialized]" ;
+            public global::System.Boolean IsInitialized => _t._isInitialized;
+            public global::System.String UnderlyingType => "Whatever.Bar";
+            public global::System.String Value => _t._isInitialized ? _t._value.ToString() : "[not initialized]" ;
 
             #if DEBUG
-            public string CreatedWith => _t._stackTrace?.ToString() ?? "the From method";
+            public global::System.String CreatedWith => _t._stackTrace?.ToString() ?? "the From method";
             #endif
 
-            public string Conversions => @"DapperTypeHandler";
+            public global::System.String Conversions => @"DapperTypeHandler";
                 }
 
 }

@@ -12,24 +12,24 @@ using Vogen;
 namespace Whatever
 {
 
-    [System.Text.Json.Serialization.JsonConverter(typeof(BothJsonBoolVoSystemTextJsonConverter))]
-[Newtonsoft.Json.JsonConverter(typeof(BothJsonBoolVoNewtonsoftJsonConverter))]
+    [global::System.Text.Json.Serialization.JsonConverter(typeof(BothJsonBoolVoSystemTextJsonConverter))]
+[global::Newtonsoft.Json.JsonConverter(typeof(BothJsonBoolVoNewtonsoftJsonConverter))]
 
-    [System.Diagnostics.DebuggerTypeProxyAttribute(typeof(BothJsonBoolVoDebugView))]
-    [System.Diagnostics.DebuggerDisplayAttribute("Underlying type: bool, Value = { _value }")]
-    public partial struct BothJsonBoolVo : System.IEquatable<BothJsonBoolVo>
+    [global::System.Diagnostics.DebuggerTypeProxyAttribute(typeof(BothJsonBoolVoDebugView))]
+    [global::System.Diagnostics.DebuggerDisplayAttribute("Underlying type: bool, Value = { _value }")]
+    public partial struct BothJsonBoolVo : global::System.IEquatable<BothJsonBoolVo>
     {
 #if DEBUG    
-        private readonly System.Diagnostics.StackTrace _stackTrace = null;
+        private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
 #endif
 
-        private readonly bool _isInitialized;
+        private readonly global::System.Boolean _isInitialized;
         
         private readonly bool _value;
 
         public readonly bool Value
         {
-            [System.Diagnostics.DebuggerStepThroughAttribute]
+            [global::System.Diagnostics.DebuggerStepThroughAttribute]
             get
             {
                 EnsureInitialized();
@@ -37,19 +37,19 @@ namespace Whatever
             }
         }
 
-        [System.Diagnostics.DebuggerStepThroughAttribute]
-        [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
+        [global::System.Diagnostics.DebuggerStepThroughAttribute]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public BothJsonBoolVo()
         {
 #if DEBUG
-            _stackTrace = new System.Diagnostics.StackTrace();
+            _stackTrace = new global::System.Diagnostics.StackTrace();
 #endif
 
             _isInitialized = false;
             _value = default;
         }
 
-        [System.Diagnostics.DebuggerStepThroughAttribute]
+        [global::System.Diagnostics.DebuggerStepThroughAttribute]
         private BothJsonBoolVo(bool value) 
         {
             _value = value;
@@ -70,60 +70,60 @@ namespace Whatever
             return instance;
         }
 
-        public readonly bool Equals(BothJsonBoolVo other)
+        public readonly global::System.Boolean Equals(BothJsonBoolVo other)
         {
             // It's possible to create uninitialized instances via converters such as EfCore (HasDefaultValue), which call Equals.
             // We treat anything uninitialized as not equal to anything, even other uninitialized instances of this type.
             if(!_isInitialized || !other._isInitialized) return false;
 
-            return System.Collections.Generic.EqualityComparer<bool>.Default.Equals(Value, other.Value);
+            return global::System.Collections.Generic.EqualityComparer<bool>.Default.Equals(Value, other.Value);
         }
 
-        public readonly bool Equals(bool primitive) => Value.Equals(primitive);
+        public readonly global::System.Boolean Equals(bool primitive) => Value.Equals(primitive);
 
-        public readonly override bool Equals(object obj)
+        public readonly override global::System.Boolean Equals(global::System.Object obj)
         {
             return obj is BothJsonBoolVo && Equals((BothJsonBoolVo) obj);
         }
 
-        public static bool operator ==(BothJsonBoolVo left, BothJsonBoolVo right) => Equals(left, right);
-        public static bool operator !=(BothJsonBoolVo left, BothJsonBoolVo right) => !(left == right);
+        public static global::System.Boolean operator ==(BothJsonBoolVo left, BothJsonBoolVo right) => Equals(left, right);
+        public static global::System.Boolean operator !=(BothJsonBoolVo left, BothJsonBoolVo right) => !(left == right);
 
-        public static bool operator ==(BothJsonBoolVo left, bool right) => Equals(left.Value, right);
-        public static bool operator !=(BothJsonBoolVo left, bool right) => !Equals(left.Value, right);
+        public static global::System.Boolean operator ==(BothJsonBoolVo left, bool right) => Equals(left.Value, right);
+        public static global::System.Boolean operator !=(BothJsonBoolVo left, bool right) => !Equals(left.Value, right);
 
-        public static bool operator ==(bool left, BothJsonBoolVo right) => Equals(left, right.Value);
-        public static bool operator !=(bool left, BothJsonBoolVo right) => !Equals(left, right.Value);
+        public static global::System.Boolean operator ==(bool left, BothJsonBoolVo right) => Equals(left, right.Value);
+        public static global::System.Boolean operator !=(bool left, BothJsonBoolVo right) => !Equals(left, right.Value);
 
-        public readonly override int GetHashCode() => System.Collections.Generic.EqualityComparer<bool>.Default.GetHashCode(_value);
+        public readonly override global::System.Int32 GetHashCode() => global::System.Collections.Generic.EqualityComparer<bool>.Default.GetHashCode(_value);
 
-        public readonly override string ToString() => Value.ToString();
+        public readonly override global::System.String ToString() => Value.ToString();
 
         private readonly void EnsureInitialized()
         {
             if (!_isInitialized)
             {
 #if DEBUG
-                string message = "Use of uninitialized Value Object at: " + _stackTrace ?? "";
+                global::System.String message = "Use of uninitialized Value Object at: " + _stackTrace ?? "";
 #else
-                string message = "Use of uninitialized Value Object.";
+                global::System.String message = "Use of uninitialized Value Object.";
 #endif
 
-                throw new ValueObjectValidationException(message);
+                throw new global::Vogen.ValueObjectValidationException(message);
             }
         }
 
         
  
         
-        class BothJsonBoolVoSystemTextJsonConverter : System.Text.Json.Serialization.JsonConverter<BothJsonBoolVo>
+        class BothJsonBoolVoSystemTextJsonConverter : global::System.Text.Json.Serialization.JsonConverter<BothJsonBoolVo>
         {
-            public override BothJsonBoolVo Read(ref System.Text.Json.Utf8JsonReader reader, System.Type typeToConvert, System.Text.Json.JsonSerializerOptions options)
+            public override BothJsonBoolVo Read(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {
                 return new BothJsonBoolVo(reader.GetBoolean());
             }
 
-            public override void Write(System.Text.Json.Utf8JsonWriter writer, BothJsonBoolVo value, System.Text.Json.JsonSerializerOptions options)
+            public override void Write(global::System.Text.Json.Utf8JsonWriter writer, BothJsonBoolVo value, global::System.Text.Json.JsonSerializerOptions options)
             {
                 writer.WriteBooleanValue(value.Value);
             }
@@ -163,15 +163,15 @@ namespace Whatever
                 _t = t;
             }
 
-            public bool IsInitialized => _t._isInitialized;
-            public string UnderlyingType => "System.Boolean";
-            public string Value => _t._isInitialized ? _t._value.ToString() : "[not initialized]" ;
+            public global::System.Boolean IsInitialized => _t._isInitialized;
+            public global::System.String UnderlyingType => "System.Boolean";
+            public global::System.String Value => _t._isInitialized ? _t._value.ToString() : "[not initialized]" ;
 
             #if DEBUG
-            public string CreatedWith => _t._stackTrace?.ToString() ?? "the From method";
+            public global::System.String CreatedWith => _t._stackTrace?.ToString() ?? "the From method";
             #endif
 
-            public string Conversions => @"NewtonsoftJson, SystemTextJson";
+            public global::System.String Conversions => @"NewtonsoftJson, SystemTextJson";
                 }
 
 }
