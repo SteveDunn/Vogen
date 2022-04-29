@@ -224,6 +224,28 @@ namespace Vogen.IntegrationTests.SerializationAndConversionTests.ClassVos
             var reconverted = converter.ConvertTo(id, value.GetType());
             Assert.Equal(value, reconverted);
         }
+        
+        [Fact]
+        public void RoundTrip_WithNsj()
+        {
+            var vo = NewtonsoftJsonDoubleVo.From(123.45);
+
+            string serializedVo = NewtonsoftJsonSerializer.SerializeObject(vo);
+            var deserializedVo = NewtonsoftJsonSerializer.DeserializeObject<NewtonsoftJsonDoubleVo>(serializedVo)!;
+
+            deserializedVo.Value.Should().Be(123.45);
+        }
+
+        [Fact]
+        public void RoundTrip_WithStj()
+        {
+            var vo = SystemTextJsonDoubleVo.From(123.45);
+
+            string serializedVo = SystemTextJsonSerializer.Serialize(vo);
+            var deserializedVo = SystemTextJsonSerializer.Deserialize<SystemTextJsonDoubleVo>(serializedVo)!;
+
+            deserializedVo.Value.Should().Be(123.45);
+        }
 
         public class TestDbContext : DbContext
         {
