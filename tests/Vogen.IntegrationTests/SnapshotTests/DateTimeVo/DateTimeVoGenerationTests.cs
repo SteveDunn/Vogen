@@ -73,12 +73,12 @@ public class DateTimeVoGenerationTests
 
     private Task RunTest(string declaration)
     {
-        var source = @"using System;
+        var source = $@"using System;
 using Vogen;
 namespace Whatever
-{
-" + declaration + @"
-}";
+{{
+{declaration}
+}}";
 
         var (diagnostics, output) = TestHelper.GetGeneratedOutput<ValueObjectGenerator>(source);
 
