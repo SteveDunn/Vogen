@@ -50,64 +50,86 @@ namespace Vogen.IntegrationTests.SerializationAndConversionTests.ClassVos
         }
 
         [Fact]
-        public void CanSerializeToInt_WithNewtonsoftJsonProvider()
+        public void CanSerializeToFloat_WithNewtonsoftJsonProvider()
         {
-            var vo = NewtonsoftJsonFloatVo.From(123);
+            var vo = NewtonsoftJsonFloatVo.From(123.45f);
 
             string serializedVo = NewtonsoftJsonSerializer.SerializeObject(vo);
-            string serializedInt = NewtonsoftJsonSerializer.SerializeObject(vo.Value);
+            string serializedFloat = NewtonsoftJsonSerializer.SerializeObject(vo.Value);
 
-            Assert.Equal(serializedVo, serializedInt);
+            Assert.Equal(serializedVo, serializedFloat);
         }
 
         [Fact]
-        public void CanSerializeToInt_WithSystemTextJsonProvider()
+        public void RoundTrip_WithNsj()
+        {
+            var vo = NewtonsoftJsonFloatVo.From(123.45f);
+
+            string serializedVo = NewtonsoftJsonSerializer.SerializeObject(vo);
+            var deserializedVo = NewtonsoftJsonSerializer.DeserializeObject<NewtonsoftJsonFloatVo>(serializedVo)!;
+
+            deserializedVo.Value.Should().Be(123.45f);
+        }
+
+        [Fact]
+        public void RoundTrip_WithStj()
+        {
+            var vo = SystemTextJsonFloatVo.From(123.45f);
+
+            string serializedVo = SystemTextJsonSerializer.Serialize(vo);
+            var deserializedVo = SystemTextJsonSerializer.Deserialize<SystemTextJsonFloatVo>(serializedVo)!;
+
+            deserializedVo.Value.Should().Be(123.45f);
+        }
+
+        [Fact]
+        public void CanSerializeToFloat_WithSystemTextJsonProvider()
         {
             var vo = SystemTextJsonFloatVo.From(123);
 
             string serializedVo = SystemTextJsonSerializer.Serialize(vo);
-            string serializedInt = SystemTextJsonSerializer.Serialize(vo.Value);
+            string serializedFloat = SystemTextJsonSerializer.Serialize(vo.Value);
 
-            serializedVo.Equals(serializedInt).Should().BeTrue();
+            serializedVo.Equals(serializedFloat).Should().BeTrue();
         }
 
         [Fact]
-        public void CanDeserializeFromInt_WithNewtonsoftJsonProvider()
+        public void CanDeserializeFromFloat_WithNewtonsoftJsonProvider()
         {
             var value = 123;
             var vo = NewtonsoftJsonFloatVo.From(value);
-            var serializedInt = NewtonsoftJsonSerializer.SerializeObject(value);
+            var serializedFloat = NewtonsoftJsonSerializer.SerializeObject(value);
 
-            var deserializedVo = NewtonsoftJsonSerializer.DeserializeObject<NewtonsoftJsonFloatVo>(serializedInt);
+            var deserializedVo = NewtonsoftJsonSerializer.DeserializeObject<NewtonsoftJsonFloatVo>(serializedFloat);
 
             Assert.Equal(vo, deserializedVo);
         }
 
         [Fact]
-        public void CanDeserializeFromInt_WithSystemTextJsonProvider()
+        public void CanDeserializeFromFloat_WithSystemTextJsonProvider()
         {
             var value = 123;
             var vo = SystemTextJsonFloatVo.From(value);
-            var serializedInt = SystemTextJsonSerializer.Serialize(value);
+            var serializedFloat = SystemTextJsonSerializer.Serialize(value);
 
-            var deserializedVo = SystemTextJsonSerializer.Deserialize<SystemTextJsonFloatVo>(serializedInt);
+            var deserializedVo = SystemTextJsonSerializer.Deserialize<SystemTextJsonFloatVo>(serializedFloat);
 
             Assert.Equal(vo, deserializedVo);
         }
 
         [Fact]
-        public void CanSerializeToInt_WithBothJsonConverters()
+        public void CanSerializeToFloat_WithBothJsonConverters()
         {
-            var vo = BothJsonFloatVo.From(123);
+            var vo = BothJsonFloatVo.From(123.45f);
 
             var serializedVo1 = NewtonsoftJsonSerializer.SerializeObject(vo);
-            var serializedInt1 = NewtonsoftJsonSerializer.SerializeObject(vo.Value);
+            var serializedFloat1 = NewtonsoftJsonSerializer.SerializeObject(vo.Value);
 
             var serializedVo2 = SystemTextJsonSerializer.Serialize(vo);
-            var serializedInt2 = SystemTextJsonSerializer.Serialize(vo.Value);
+            var serializedFloat2 = SystemTextJsonSerializer.Serialize(vo.Value);
 
-            Assert.Equal(serializedVo1, serializedInt1);
-            Assert.Equal(serializedVo2, serializedInt2);
+            Assert.Equal(serializedVo1, serializedFloat1);
+            Assert.Equal(serializedVo2, serializedFloat2);
         }
 
         [Fact]
@@ -212,14 +234,14 @@ namespace Vogen.IntegrationTests.SerializationAndConversionTests.ClassVos
         }
 
         [Theory]
-        [InlineData((float)123)]
-        [InlineData("123")]
+        [InlineData((float)123.45)]
+        [InlineData("123.45")]
         public void TypeConverter_CanConvertToAndFrom(object value)
         {
             var converter = TypeDescriptor.GetConverter(typeof(NoJsonFloatVo));
             var id = converter.ConvertFrom(value);
             Assert.IsType<NoJsonFloatVo>(id);
-            Assert.Equal(NoJsonFloatVo.From(123), id);
+            Assert.Equal(NoJsonFloatVo.From(123.45f), id);
 
             var reconverted = converter.ConvertTo(id, value.GetType());
             Assert.Equal(value, reconverted);
