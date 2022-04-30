@@ -4,34 +4,25 @@ using System.Linq;
 
 namespace Vogen.IntegrationTests.SnapshotTests.PermutationsOfConversions;
 
-public class PermutationsOfConversions : IEnumerable<object[]>
+public class Permutations : IEnumerable<string>
 {
-    public IEnumerator<object[]> GetEnumerator()
+    static readonly string[] inputs =
     {
-        string[] types = new[] {"partial class", "partial struct", "readonly partial struct"};
+        "Conversions.TypeConverter", "Conversions.DapperTypeHandler", "Conversions.EfCoreValueConverter",
+        "Conversions.NewtonsoftJson", "Conversions.SystemTextJson", "Conversions.LinqToDbValueConverter",
+    };
 
-        string[] inputs =
+    public IEnumerator<string> GetEnumerator()
+    {
+        yield return "Conversions.None";
+
+        for (int i = 0; i < inputs.Length - 2; i++)
         {
-            "Conversions.TypeConverter", "Conversions.DapperTypeHandler", "Conversions.EfCoreValueConverter",
-            "Conversions.NewtonsoftJson", "Conversions.SystemTextJson", "Conversions.LinqToDbValueConverter",
-        };
-
-        foreach (var eachType in types)
-        {
-            yield return new object[] {eachType, "Conversions.None"};
-
-            for (int i = 0; i < inputs.Length - 2; i++)
+            var subset = inputs.Skip(i).ToArray();
+            var permutations = Permute(subset);
+            foreach (var perms in permutations)
             {
-                var subset = inputs.Skip(i).ToArray();
-                var permutations = Permute(subset);
-                foreach (var perms in permutations)
-                {
-                    yield return new object[]
-                    {
-                        eachType,
-                        string.Join(" | ", perms)
-                    };
-                }
+                yield return string.Join(" | ", perms);
             }
         }
     }

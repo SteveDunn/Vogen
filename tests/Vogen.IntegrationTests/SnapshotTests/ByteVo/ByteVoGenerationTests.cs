@@ -75,11 +75,11 @@ public class ByteVoGenerationTests
 
     private Task RunTest(string declaration)
     {
-        var source = @"using Vogen;
+        var source = $@"using Vogen;
 namespace Whatever
-{
-" + declaration + @"
-}";
+{{
+{declaration}
+}}";
 
         var (diagnostics, output) = TestHelper.GetGeneratedOutput<ValueObjectGenerator>(source);
 
