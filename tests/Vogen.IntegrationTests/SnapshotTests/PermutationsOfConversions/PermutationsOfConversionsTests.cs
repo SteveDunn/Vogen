@@ -17,33 +17,39 @@ public class PermutationsOfConversionsTests
     /// For different types (class, struct, readonly struct), generate types with different
     /// permutations of conversions to ensure that everything builds OK.
     /// </summary>
+    [UsesVerify]
     public class ConversionPermutationTests
     {
+        static readonly string[] _permutations = new Permutations().ToArray();
+        static readonly string[] _types = {"partial class", "partial struct", "partial readonly struct"};
+
         // These used to be 'ClassData' tests, but they were run sequentially, which was very slow.
         // This test now runs the permutations in parallel.
         [Fact]
-        public Task CompilesWithAnyCombinationOfConverters()
+        public async Task CompilesWithAnyCombinationOfConverters()
         {
-            List<string> perms = new Permutations().ToList();
+            var tasks = _types.Select(t => Task.Run(() => Run(t))).ToArray();
+            
+            await Task.WhenAll(tasks);
+        }
 
-            string[] types = {"partial class", "partial struct", "partial readonly struct"};
+        private static async Task Run(string type)
+        {
+            var typeHash = type.Replace(' ', '-');
 
-            Parallel.ForEach(types, type =>
+            foreach(var conversions in _permutations)
             {
-                Parallel.ForEach(perms, conversions =>
-                {
-                    var settings = new VerifySettings();
+                var settings = new VerifySettings();
 
-                    // shorten the filename used
-                    settings.UseParameters(type.Replace(' ', '-') + Hash(conversions));
+                // shorten the filename used
+                string parameters = typeHash + Hash(conversions);
+                settings.UseFileName(parameters);
+                settings.AutoVerify();
 
-                    RunTest($@"
+                await RunTest($@"
   [ValueObject(conversions: {conversions}, underlyingType: typeof(int))]
   public {type} MyIntVo {{ }}", settings);
-                });
-            });
-
-            return Task.CompletedTask;
+            }
         }
     }
     
@@ -56,7 +62,7 @@ public class PermutationsOfConversionsTests
         return string.Concat(Convert.ToBase64String(hash).ToCharArray().Where(char.IsLetterOrDigit).Take(10));
     }
 
-    private static Task RunTest(string declaration, VerifySettings? settings = null)
+    private static async Task RunTest(string declaration, VerifySettings? settings = null)
     {
         var source = $@"using System;
 using Vogen;
@@ -69,6 +75,6 @@ namespace Whatever
 
         diagnostics.Should().BeEmpty();
 
-        return Verifier.Verify(output, settings).UseDirectory("Snapshots");
+        await Verifier.Verify(output, settings).UseDirectory("Snapshots");
     }    
 }
