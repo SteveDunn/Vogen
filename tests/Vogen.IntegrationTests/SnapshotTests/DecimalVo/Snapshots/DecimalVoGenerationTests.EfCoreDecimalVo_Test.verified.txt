@@ -7,11 +7,15 @@
 // </auto-generated>
 // ------------------------------------------------------------------------------
 
+// Suppress warnings about [Obsolete] member usage in generated code.
+#pragma warning disable CS0618
+
 using Vogen;
 
 namespace Whatever
 {
 
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Vogen", "1.0.0.0")]
     
     [global::System.Diagnostics.DebuggerTypeProxyAttribute(typeof(EfCoreDecimalVoDebugView))]
     [global::System.Diagnostics.DebuggerDisplayAttribute("Underlying type: decimal, Value = { _value }")]

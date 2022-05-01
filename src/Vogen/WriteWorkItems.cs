@@ -21,7 +21,9 @@ internal static class WriteWorkItems
 //     the code is regenerated.
 // </auto-generated>
 // ------------------------------------------------------------------------------
-".Replace("\r\n", "\n").Replace("\n", Environment.NewLine); // normalize regardless of git checkout policy        
+
+// Suppress warnings about [Obsolete] member usage in generated code.
+#pragma warning disable CS0618".Replace("\r\n", "\n").Replace("\n", Environment.NewLine); // normalize regardless of git checkout policy        
 
     static WriteWorkItems()
     {
