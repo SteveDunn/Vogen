@@ -9,9 +9,11 @@ public class StructGenerator : IGenerateSourceCode
         var structName = tds.Identifier;
         var itemUnderlyingType = item.UnderlyingType?.ToString() ?? "global::System.Int32";
 
-        return $@"using Vogen;
+        return $@"
+using Vogen;
 
 {Util.WriteStartNamespace(item.FullNamespace)}
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute(""{Util.GenerateYourAssemblyName()}"", ""{Util.GenerateYourAssemblyVersion()}"")]
     {Util.GenerateAnyConversionAttributes(tds, item)}
     [global::System.Diagnostics.DebuggerTypeProxyAttribute(typeof({structName}DebugView))]
     [global::System.Diagnostics.DebuggerDisplayAttribute(""Underlying type: {itemUnderlyingType}, Value = {{ _value }}"")]

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Text;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
@@ -197,4 +198,7 @@ public static {classDeclarationSyntax.Identifier} {instanceProperties.Name} = ne
 
         return code;
     }
+
+    public static string GenerateYourAssemblyName() => typeof(Util).Assembly.GetName().Name;
+    public static string GenerateYourAssemblyVersion() => typeof(Util).Assembly.GetName().Version.ToString();
 }
