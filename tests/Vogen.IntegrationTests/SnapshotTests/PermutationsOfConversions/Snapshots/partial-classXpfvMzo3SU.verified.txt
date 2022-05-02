@@ -67,6 +67,8 @@ public int Value
         {
             
 
+            
+
             MyIntVo instance = new MyIntVo(value);
 
             

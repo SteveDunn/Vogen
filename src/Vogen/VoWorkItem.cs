@@ -7,10 +7,15 @@ namespace Vogen;
 
 public class VoWorkItem
 {
+    public MethodDeclarationSyntax? NormalizeInputMethod { get; set; }
+    
     public MethodDeclarationSyntax? ValidateMethod { get; set; }
 
     public INamedTypeSymbol? UnderlyingType { get; set; } = null!;
 
+    /// <summary>
+    /// The syntax information for the type to augement.
+    /// </summary>
     public TypeDeclarationSyntax TypeToAugment { get; set; } = null!;
     
     public bool IsValueType { get; set; }

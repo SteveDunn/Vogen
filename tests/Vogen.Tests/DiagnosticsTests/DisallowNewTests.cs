@@ -5,7 +5,7 @@ using VerifyXunit;
 using Xunit;
 using Xunit.Abstractions;
 
-namespace Vogen.IntegrationTests.SnapshotTests;
+namespace Vogen.Tests.DiagnosticsTests;
 
 [UsesVerify] 
 public class DisallowNewTests

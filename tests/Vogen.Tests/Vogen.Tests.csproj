@@ -49,7 +49,7 @@
 		<!-- Note that this is not a "normal" ProjectReference.
          It needs the additional 'OutputItemType' and 'ReferenceOutputAssmbly' attributes. -->
     <ProjectReference Include="..\..\src\Vogen.SharedTypes\Vogen.SharedTypes.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="true" />
-    <ProjectReference Include="..\..\src\Vogen\Vogen.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="false" />
+    <ProjectReference Include="..\..\src\Vogen\Vogen.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="true" />
 	</ItemGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
@@ -62,6 +62,29 @@
   at least one subdirectory, which is our key that it's coming from a source generator as opposed to something that is coming from
   some other tool. -->
 		<Compile Remove="Generated/*/**/*.cs" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <None Update="DiagnosticsTests\LocalConfig\Happy\Snapshots\HappyTests.Conversion_and_exceptions_override.verified.txt">
+	    <ParentFile>$([System.String]::Copy('%(FileName)').Split('.')[0])</ParentFile>
+	    <DependentUpon>%(ParentFile).cs</DependentUpon>
+	  </None>
+	  <None Update="DiagnosticsTests\LocalConfig\Happy\Snapshots\HappyTests.Conversion_override.verified.txt">
+	    <ParentFile>$([System.String]::Copy('%(FileName)').Split('.')[0])</ParentFile>
+	    <DependentUpon>%(ParentFile).cs</DependentUpon>
+	  </None>
+	  <None Update="DiagnosticsTests\LocalConfig\Happy\Snapshots\HappyTests.Exception_override.verified.txt">
+	    <ParentFile>$([System.String]::Copy('%(FileName)').Split('.')[0])</ParentFile>
+	    <DependentUpon>%(ParentFile).cs</DependentUpon>
+	  </None>
+	  <None Update="DiagnosticsTests\LocalConfig\Happy\Snapshots\HappyTests.Override_global_config_locally.verified.txt">
+	    <ParentFile>$([System.String]::Copy('%(FileName)').Split('.')[0])</ParentFile>
+	    <DependentUpon>%(ParentFile).cs</DependentUpon>
+	  </None>
+	  <None Update="DiagnosticsTests\LocalConfig\Happy\Snapshots\HappyTests.Type_override.verified.txt">
+	    <ParentFile>$([System.String]::Copy('%(FileName)').Split('.')[0])</ParentFile>
+	    <DependentUpon>%(ParentFile).cs</DependentUpon>
+	  </None>
 	</ItemGroup>
 
 </Project>

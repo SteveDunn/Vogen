@@ -18,11 +18,11 @@ internal static class VoFilter
     // This is stage 2 in the pipeline - we filter down to just 1 target
     public static VoTarget? TryGetTarget(GeneratorSyntaxContext context)
     {
-        var tds = (TypeDeclarationSyntax) context.Node;
+        var voSyntaxInformation = (TypeDeclarationSyntax) context.Node;
 
-        var voClass = (INamedTypeSymbol) context.SemanticModel.GetDeclaredSymbol(context.Node)!;
+        var voSymbolInformation = (INamedTypeSymbol) context.SemanticModel.GetDeclaredSymbol(context.Node)!;
 
-        foreach (AttributeListSyntax attributeListSyntax in tds.AttributeLists)
+        foreach (AttributeListSyntax attributeListSyntax in voSyntaxInformation.AttributeLists)
         {
             foreach (AttributeSyntax attributeSyntax in attributeListSyntax.Attributes)
             {
@@ -39,9 +39,36 @@ internal static class VoFilter
                 if (fullName == "Vogen.ValueObjectAttribute")
                 {
                     return new VoTarget(
-                        tds, 
+                        context.SemanticModel,
+                        voSyntaxInformation, 
                         context.SemanticModel.GetDeclaredSymbol(context.Node)!.ContainingType,
-                        voClass);
+                        voSymbolInformation);
+                }
+            }
+        }
+
+        return null;
+    }
+
+    public static INamedTypeSymbol? TryGetUnderlyingType(GeneratorSyntaxContext context, TypeDeclarationSyntax tds)
+    {
+        foreach (AttributeListSyntax attributeListSyntax in tds.AttributeLists)
+        {
+            foreach (AttributeSyntax attributeSyntax in attributeListSyntax.Attributes)
+            {
+                IMethodSymbol? attributeSymbol = context.SemanticModel.GetSymbolInfo(attributeSyntax).Symbol as IMethodSymbol;
+
+                if (attributeSymbol == null)
+                {
+                    continue;
+                }
+
+                INamedTypeSymbol attributeContainingTypeSymbol = attributeSymbol.ContainingType;
+                string fullName = attributeContainingTypeSymbol.ToDisplayString();
+
+                if (fullName == "Vogen.ValueObjectAttribute")
+                {
+                    return context.SemanticModel.GetDeclaredSymbol(context.Node)!.ContainingType;
                 }
             }
         }

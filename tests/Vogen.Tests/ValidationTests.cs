@@ -18,6 +18,14 @@ public class ValidationTests
     }
 
     [Fact]
+    public void Validation_can_have_different_synonyms_for_input()
+    {
+        Action vo = () => MyVo_validate_with_synonymous_input_parameter.From(-1);
+
+        vo.Should().ThrowExactly<ValueObjectValidationException>().WithMessage("must be greater than zero");
+    }
+
+    [Fact]
     public void Validation()
     {
         Func<Age> act = () => Age.From(12);
@@ -66,6 +74,20 @@ public partial class MyVo_validate_with_camelCase_method_name
         return Validation.Invalid("must be greater than zero");
     }
 }
+
+[ValueObject(typeof(int))]
+public partial class MyVo_validate_with_synonymous_input_parameter
+{
+    // the input type is synonymous the same as the underlying type
+    private static Validation validate(Int32 value)
+    {
+        if (value > 0)
+            return Validation.Ok;
+
+        return Validation.Invalid("must be greater than zero");
+    }
+}
+
 
 [ValueObject(typeof(int))]
 public partial class MyVo_validate_with_PascalCase_method_name

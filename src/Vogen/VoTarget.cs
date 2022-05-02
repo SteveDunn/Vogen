@@ -4,21 +4,37 @@ using Microsoft.CodeAnalysis.CSharp.Syntax;
 
 namespace Vogen;
 
+/// <summary>
+/// The 'first stage' pass of the analyzer creates these.
+/// </summary>
 internal class VoTarget
 {
-    public VoTarget(TypeDeclarationSyntax typeToAugment, INamedTypeSymbol? containingType, INamedTypeSymbol symbolForType)
+    public VoTarget(
+        SemanticModel semanticModel, 
+        TypeDeclarationSyntax typeToAugment,
+        INamedTypeSymbol? containingType, INamedTypeSymbol symbolForType)
     {
-        TypeToAugment = typeToAugment ?? throw new InvalidOperationException("No type to augment!");
+        SemanticModel = semanticModel;
+        VoSyntaxInformation = typeToAugment ?? throw new InvalidOperationException("No type to augment!");
         ContainingType = containingType;
-        SymbolForType = symbolForType ?? throw new InvalidOperationException("No symbol for type!");
+        VoSymbolInformation = symbolForType ?? throw new InvalidOperationException("No symbol for type!");
     }
 
+    public SemanticModel SemanticModel { get; }
+
     /// <summary>
-    /// The type that the user provides, e.g. `CustomerId`
+    /// The syntax for the type that the user provides, e.g. `CustomerId`
     /// </summary>
-    public TypeDeclarationSyntax TypeToAugment { get; set; }
+    public TypeDeclarationSyntax VoSyntaxInformation { get; set; }
     
+    /// <summary>
+    /// The type that contains this Value Object. Used to check (and throw) if
+    /// it is a nested class as that is not supported.
+    /// </summary>
     public INamedTypeSymbol? ContainingType { get; set; }
     
-    public INamedTypeSymbol SymbolForType { get; set; }
+    /// <summary>
+    /// The symbol information for the Value Object
+    /// </summary>
+    public INamedTypeSymbol VoSymbolInformation { get; set; }
 }

@@ -24,11 +24,13 @@ public class CreationUsingDefaultAnalyzer : IIncrementalGenerator
             static (spc, source) => Execute(source.Item1, source.Item2, spc));
     }
 
-    private static IncrementalValuesProvider<FoundItem?> GetTargets(IncrementalGeneratorInitializationContext context) =>
-        context.SyntaxProvider.CreateSyntaxProvider(
+    private static IncrementalValuesProvider<FoundItem?> GetTargets(IncrementalGeneratorInitializationContext context)
+    {
+        return context.SyntaxProvider.CreateSyntaxProvider(
                 predicate: static (s, _) => s is DefaultExpressionSyntax,
                 transform: static (ctx, _) => TryGetTarget(ctx))
             .Where(static m => m is not null);
+    }
 
     private static FoundItem? TryGetTarget(GeneratorSyntaxContext ctx)
     {

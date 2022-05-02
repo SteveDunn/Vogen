@@ -63,6 +63,8 @@ public {itemUnderlyingType} Value
         {{
             {GenerateNullCheckIfNeeded(item)}
 
+            {Util.GenerateNormalizeInputMethodIfNeeded(item)}
+
             {className} instance = new {className}(value);
 
             {Util.GenerateValidation(item)}

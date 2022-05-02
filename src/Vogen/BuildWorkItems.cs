@@ -16,11 +16,11 @@ internal static class BuildWorkItems
         SourceProductionContext context, 
         VogenConfiguration? globalConfig)
     {
-        var tds = target.TypeToAugment;
+        TypeDeclarationSyntax voTypeSyntax = target.VoSyntaxInformation;
 
-        var voClass = target.SymbolForType;
+        INamedTypeSymbol voSymbolInformation = target.VoSymbolInformation;
 
-        ImmutableArray<AttributeData> attributes = voClass.GetAttributes();
+        ImmutableArray<AttributeData> attributes = voSymbolInformation.GetAttributes();
 
         if (attributes.Length == 0)
         {
@@ -35,7 +35,7 @@ internal static class BuildWorkItems
             return null;
         }
 
-        foreach (var eachConstructor in voClass.Constructors)
+        foreach (var eachConstructor in voSymbolInformation.Constructors)
         {
             // no need to check for default constructor as it's already defined
             // and the user will see: error CS0111: Type 'Foo' already defines a member called 'Foo' with the same parameter type
@@ -65,26 +65,27 @@ internal static class BuildWorkItems
             }
         }
 
-        var containingType = target.ContainingType;// context.SemanticModel.GetDeclaredSymbol(context.Node)!.ContainingType;
+        INamedTypeSymbol? containingType = target.ContainingType;// context.SemanticModel.GetDeclaredSymbol(context.Node)!.ContainingType;
         if (containingType != null)
         {
-            context.ReportDiagnostic(DiagnosticItems.TypeCannotBeNested(voClass, containingType));
+            context.ReportDiagnostic(DiagnosticItems.TypeCannotBeNested(voSymbolInformation, containingType));
         }
 
-        var instanceProperties = TryBuildInstanceProperties(attributes, voClass, context);
+        var instanceProperties = TryBuildInstanceProperties(attributes, voSymbolInformation, context);
 
         MethodDeclarationSyntax? validateMethod = null;
+        MethodDeclarationSyntax? normalizeInputMethod = null;
 
-        // add any validator methods it finds
-        foreach (var memberDeclarationSyntax in tds.Members)
+        // add any validator or normalize methods it finds
+        foreach (var memberDeclarationSyntax in voTypeSyntax.Members)
         {
             if (memberDeclarationSyntax is MethodDeclarationSyntax mds)
             {
-                object? value = mds.Identifier.Value;
+                string? methodName = mds.Identifier.Value?.ToString();
 
-                if (StringComparer.OrdinalIgnoreCase.Compare(value?.ToString(), "validate") == 0)
+                if (StringComparer.OrdinalIgnoreCase.Compare(methodName, "validate") == 0)
                 {
-                    if (!(mds.DescendantTokens().Any(t => t.IsKind(SyntaxKind.StaticKeyword))))
+                    if (!IsMethodStatic(mds))
                     {
                         context.ReportDiagnostic(DiagnosticItems.ValidationMustBeStatic(mds));
                     }
@@ -98,17 +99,51 @@ internal static class BuildWorkItems
 
                     validateMethod = mds;
                 }
+
+                if (StringComparer.OrdinalIgnoreCase.Compare(methodName, "normalizeinput") == 0)
+                {
+                    if (!(IsMethodStatic(mds)))
+                    {
+                        context.ReportDiagnostic(DiagnosticItems.NormalizeInputMethodMustBeStatic(mds));
+                    }
+
+                    if (mds.ParameterList.Parameters.Count != 1)
+                    {
+                        context.ReportDiagnostic(DiagnosticItems.NormalizeInputMethodTakeOneParameterOfUnderlyingType(mds));
+                        return null;
+                    }
+
+                    TypeSyntax? fistParamType = mds.ParameterList.Parameters[0].Type;
+                    INamedTypeSymbol? fptSymbol = target.SemanticModel.GetSymbolInfo(fistParamType!).Symbol as INamedTypeSymbol;
+                    bool sameType2 = SymbolEqualityComparer.Default.Equals(fptSymbol, config.UnderlyingType);
+                    if (!sameType2)
+                    {
+                        context.ReportDiagnostic(DiagnosticItems.NormalizeInputMethodTakeOneParameterOfUnderlyingType(mds));
+                        return null;
+                    }
+
+                    INamedTypeSymbol? returnTypeOfMethod = target.SemanticModel.GetSymbolInfo(mds.ReturnType).Symbol as INamedTypeSymbol;
+                    
+                    bool sameType = SymbolEqualityComparer.Default.Equals(returnTypeOfMethod, config.UnderlyingType);
+
+                     if (!sameType)
+                    {
+                        context.ReportDiagnostic(DiagnosticItems.NormalizeInputMethodMustReturnUnderlyingType(mds));
+                    }
+
+                    normalizeInputMethod = mds;
+                }
             }
         }
 
-        if (SymbolEqualityComparer.Default.Equals(voClass, config.UnderlyingType))
+        if (SymbolEqualityComparer.Default.Equals(voSymbolInformation, config.UnderlyingType))
         {
-            context.ReportDiagnostic(DiagnosticItems.UnderlyingTypeMustNotBeSameAsValueObjectType(voClass));
+            context.ReportDiagnostic(DiagnosticItems.UnderlyingTypeMustNotBeSameAsValueObjectType(voSymbolInformation));
         }
 
         if (config.UnderlyingType.ImplementsInterfaceOrBaseClass(typeof(ICollection)))
         {
-            context.ReportDiagnostic(DiagnosticItems.UnderlyingTypeCannotBeCollection(voClass, config.UnderlyingType!));
+            context.ReportDiagnostic(DiagnosticItems.UnderlyingTypeCannotBeCollection(voSymbolInformation, config.UnderlyingType!));
         }
 
         bool isValueType = true;
@@ -120,15 +155,18 @@ internal static class BuildWorkItems
         return new VoWorkItem
         {
             InstanceProperties = instanceProperties.ToList(),
-            TypeToAugment = tds,
+            TypeToAugment = voTypeSyntax,
             IsValueType = isValueType,
             UnderlyingType = config.UnderlyingType,
             Conversions = config.Conversions,
             TypeForValidationExceptions = config.ValidationExceptionType,
             ValidateMethod = validateMethod,
-            FullNamespace = voClass.FullNamespace()
+            NormalizeInputMethod = normalizeInputMethod,
+            FullNamespace = voSymbolInformation.FullNamespace()
         };
     }
+
+    private static bool IsMethodStatic(MethodDeclarationSyntax mds) => mds.DescendantTokens().Any(t => t.IsKind(SyntaxKind.StaticKeyword));
 
     private static IEnumerable<InstanceProperties> TryBuildInstanceProperties(
         ImmutableArray<AttributeData> attributes,
