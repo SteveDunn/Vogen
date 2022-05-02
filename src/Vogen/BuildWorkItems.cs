@@ -113,22 +113,16 @@ internal static class BuildWorkItems
                         return null;
                     }
 
-                    TypeSyntax? fistParamType = mds.ParameterList.Parameters[0].Type;
-                    INamedTypeSymbol? fptSymbol = target.SemanticModel.GetSymbolInfo(fistParamType!).Symbol as INamedTypeSymbol;
-                    bool sameType2 = SymbolEqualityComparer.Default.Equals(fptSymbol, config.UnderlyingType);
-                    if (!sameType2)
+                    if (!AreSameType(mds.ParameterList.Parameters[0].Type, config.UnderlyingType, target.SemanticModel))
                     {
                         context.ReportDiagnostic(DiagnosticItems.NormalizeInputMethodTakeOneParameterOfUnderlyingType(mds));
                         return null;
                     }
-
-                    INamedTypeSymbol? returnTypeOfMethod = target.SemanticModel.GetSymbolInfo(mds.ReturnType).Symbol as INamedTypeSymbol;
                     
-                    bool sameType = SymbolEqualityComparer.Default.Equals(returnTypeOfMethod, config.UnderlyingType);
-
-                     if (!sameType)
+                    if (!AreSameType(mds.ReturnType, config.UnderlyingType, target.SemanticModel))
                     {
                         context.ReportDiagnostic(DiagnosticItems.NormalizeInputMethodMustReturnUnderlyingType(mds));
+                        return null;
                     }
 
                     normalizeInputMethod = mds;
@@ -164,6 +158,15 @@ internal static class BuildWorkItems
             NormalizeInputMethod = normalizeInputMethod,
             FullNamespace = voSymbolInformation.FullNamespace()
         };
+    }
+
+    private static bool AreSameType(
+        TypeSyntax? typeSyntax, 
+        INamedTypeSymbol? expectedType,
+        SemanticModel targetSemanticModel)
+    {
+        INamedTypeSymbol? fptSymbol = targetSemanticModel.GetSymbolInfo(typeSyntax!).Symbol as INamedTypeSymbol;
+        return SymbolEqualityComparer.Default.Equals(fptSymbol, expectedType);
     }
 
     private static bool IsMethodStatic(MethodDeclarationSyntax mds) => mds.DescendantTokens().Any(t => t.IsKind(SyntaxKind.StaticKeyword));
