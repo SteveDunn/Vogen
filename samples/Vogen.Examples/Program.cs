@@ -12,12 +12,22 @@ namespace Vogen.Examples
 
             foreach (var eachScenarioType in scenarioTypes)
             {
+                WriteBanner(eachScenarioType);
                 ((IScenario)Activator.CreateInstance(eachScenarioType)).Run();
             }
 
             Console.WriteLine("Finished");
             
             return Task.CompletedTask;
+        }
+
+        private static void WriteBanner(Type eachScenarioType)
+        {
+            Console.WriteLine();
+            Console.WriteLine();
+            Console.WriteLine();
+            Console.WriteLine("==========================================================");
+            Console.WriteLine($"Running {eachScenarioType.Name}");
         }
     }
 }
