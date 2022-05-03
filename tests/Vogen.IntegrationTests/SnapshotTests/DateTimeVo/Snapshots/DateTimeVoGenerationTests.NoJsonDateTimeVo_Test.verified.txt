@@ -66,6 +66,8 @@ namespace Whatever
         /// <returns>An instance of this type.</returns>
         public static NoJsonDateTimeVo From(System.DateTime value)
         {
+            
+
             NoJsonDateTimeVo instance = new NoJsonDateTimeVo(value);
 
             

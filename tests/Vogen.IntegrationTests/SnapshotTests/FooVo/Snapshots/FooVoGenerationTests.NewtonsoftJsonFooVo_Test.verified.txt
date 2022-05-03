@@ -66,6 +66,8 @@ namespace Whatever
         /// <returns>An instance of this type.</returns>
         public static NewtonsoftJsonFooVo From(Whatever.Bar value)
         {
+            
+
             NewtonsoftJsonFooVo instance = new NewtonsoftJsonFooVo(value);
 
             

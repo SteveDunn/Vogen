@@ -66,6 +66,8 @@ namespace Whatever
         /// <returns>An instance of this type.</returns>
         public static NoJsonFloatVo From(float value)
         {
+            
+
             NoJsonFloatVo instance = new NoJsonFloatVo(value);
 
             

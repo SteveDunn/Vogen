@@ -65,6 +65,8 @@ using Vogen;
         /// <returns>An instance of this type.</returns>
         public static CustomerId From(int value)
         {
+            
+
             CustomerId instance = new CustomerId(value);
 
             

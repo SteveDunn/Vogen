@@ -66,6 +66,8 @@ namespace Whatever
         /// <returns>An instance of this type.</returns>
         public static NewtonsoftJsonCharVo From(char value)
         {
+            
+
             NewtonsoftJsonCharVo instance = new NewtonsoftJsonCharVo(value);
 
             

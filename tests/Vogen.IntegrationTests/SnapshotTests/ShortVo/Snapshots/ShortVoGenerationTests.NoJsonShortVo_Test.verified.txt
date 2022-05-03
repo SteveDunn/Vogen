@@ -66,6 +66,8 @@ namespace Whatever
         /// <returns>An instance of this type.</returns>
         public static NoJsonShortVo From(short value)
         {
+            
+
             NoJsonShortVo instance = new NoJsonShortVo(value);
 
             

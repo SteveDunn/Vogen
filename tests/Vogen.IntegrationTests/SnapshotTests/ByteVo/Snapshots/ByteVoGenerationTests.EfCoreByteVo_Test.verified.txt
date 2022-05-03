@@ -65,6 +65,8 @@ namespace Whatever
         /// <returns>An instance of this type.</returns>
         public static EfCoreByteVo From(byte value)
         {
+            
+
             EfCoreByteVo instance = new EfCoreByteVo(value);
 
             

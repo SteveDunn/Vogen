@@ -66,6 +66,8 @@ namespace Whatever
         /// <returns>An instance of this type.</returns>
         public static NoJsonBoolVo From(bool value)
         {
+            
+
             NoJsonBoolVo instance = new NoJsonBoolVo(value);
 
             

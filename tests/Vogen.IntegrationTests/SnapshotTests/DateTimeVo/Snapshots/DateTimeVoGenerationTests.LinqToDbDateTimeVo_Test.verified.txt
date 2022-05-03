@@ -65,6 +65,8 @@ namespace Whatever
         /// <returns>An instance of this type.</returns>
         public static LinqToDbDateTimeVo From(System.DateTime value)
         {
+            
+
             LinqToDbDateTimeVo instance = new LinqToDbDateTimeVo(value);
 
             

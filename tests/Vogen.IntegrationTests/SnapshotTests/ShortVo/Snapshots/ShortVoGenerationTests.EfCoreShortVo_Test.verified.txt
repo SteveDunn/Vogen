@@ -65,6 +65,8 @@ namespace Whatever
         /// <returns>An instance of this type.</returns>
         public static EfCoreShortVo From(short value)
         {
+            
+
             EfCoreShortVo instance = new EfCoreShortVo(value);
 
             

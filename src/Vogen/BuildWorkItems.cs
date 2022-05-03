@@ -13,7 +13,7 @@ namespace Vogen;
 internal static class BuildWorkItems
 {
     public static VoWorkItem? TryBuild(VoTarget target,
-        SourceProductionContext context, 
+        SourceProductionContext context,
         VogenConfiguration? globalConfig)
     {
         TypeDeclarationSyntax voTypeSyntax = target.VoSyntaxInformation;
@@ -49,7 +49,7 @@ internal static class BuildWorkItems
 
         // build the configuration but log any diagnostics (we have a separate analyzer that does that)
         var localConfig = GlobalConfigFilter.BuildConfigurationFromAttribute(voAttribute, context);
-        
+
         if (localConfig == null)
         {
             return null;
@@ -83,48 +83,13 @@ internal static class BuildWorkItems
             {
                 string? methodName = mds.Identifier.Value?.ToString();
 
-                if (StringComparer.OrdinalIgnoreCase.Compare(methodName, "validate") == 0)
+                if (TryHandleValidateMethod(methodName, mds, context))
                 {
-                    if (!IsMethodStatic(mds))
-                    {
-                        context.ReportDiagnostic(DiagnosticItems.ValidationMustBeStatic(mds));
-                    }
-
-                    TypeSyntax returnTypeSyntax = mds.ReturnType;
-
-                    if (returnTypeSyntax.ToString() != "Validation")
-                    {
-                        context.ReportDiagnostic(DiagnosticItems.ValidationMustReturnValidationType(mds));
-                    }
-
                     validateMethod = mds;
                 }
 
-                if (StringComparer.OrdinalIgnoreCase.Compare(methodName, "normalizeinput") == 0)
+                if (TryHandleNormalizeMethod(methodName, mds, context, config, target))
                 {
-                    if (!(IsMethodStatic(mds)))
-                    {
-                        context.ReportDiagnostic(DiagnosticItems.NormalizeInputMethodMustBeStatic(mds));
-                    }
-
-                    if (mds.ParameterList.Parameters.Count != 1)
-                    {
-                        context.ReportDiagnostic(DiagnosticItems.NormalizeInputMethodTakeOneParameterOfUnderlyingType(mds));
-                        return null;
-                    }
-
-                    if (!AreSameType(mds.ParameterList.Parameters[0].Type, config.UnderlyingType, target.SemanticModel))
-                    {
-                        context.ReportDiagnostic(DiagnosticItems.NormalizeInputMethodTakeOneParameterOfUnderlyingType(mds));
-                        return null;
-                    }
-                    
-                    if (!AreSameType(mds.ReturnType, config.UnderlyingType, target.SemanticModel))
-                    {
-                        context.ReportDiagnostic(DiagnosticItems.NormalizeInputMethodMustReturnUnderlyingType(mds));
-                        return null;
-                    }
-
                     normalizeInputMethod = mds;
                 }
             }
@@ -160,8 +125,71 @@ internal static class BuildWorkItems
         };
     }
 
+    private static bool TryHandleNormalizeMethod(
+        string? methodName, 
+        MethodDeclarationSyntax mds,
+        SourceProductionContext context, 
+        VogenConfiguration config, 
+        VoTarget target)
+    {
+        if (StringComparer.OrdinalIgnoreCase.Compare(methodName, "normalizeinput") != 0)
+        {
+            return false;
+        }
+
+        if (!(IsMethodStatic(mds)))
+        {
+            context.ReportDiagnostic(DiagnosticItems.NormalizeInputMethodMustBeStatic(mds));
+            return false;
+        }
+
+        if (mds.ParameterList.Parameters.Count != 1)
+        {
+            context.ReportDiagnostic(DiagnosticItems.NormalizeInputMethodTakeOneParameterOfUnderlyingType(mds));
+            return false;
+        }
+
+        if (!AreSameType(mds.ParameterList.Parameters[0].Type, config.UnderlyingType, target.SemanticModel))
+        {
+            context.ReportDiagnostic(DiagnosticItems.NormalizeInputMethodTakeOneParameterOfUnderlyingType(mds));
+            return false;
+        }
+
+        if (!AreSameType(mds.ReturnType, config.UnderlyingType, target.SemanticModel))
+        {
+            context.ReportDiagnostic(DiagnosticItems.NormalizeInputMethodMustReturnUnderlyingType(mds));
+            return false;
+        }
+
+        return true;
+    }
+
+    private static bool TryHandleValidateMethod(string? methodName, MethodDeclarationSyntax mds, SourceProductionContext context)
+    {
+        if (StringComparer.OrdinalIgnoreCase.Compare(methodName, "validate") != 0)
+        {
+            return false;
+        }
+
+        if (!IsMethodStatic(mds))
+        {
+            context.ReportDiagnostic(DiagnosticItems.ValidationMustBeStatic(mds));
+            return false;
+        }
+
+        TypeSyntax returnTypeSyntax = mds.ReturnType;
+
+        if (returnTypeSyntax.ToString() != "Validation")
+        {
+            context.ReportDiagnostic(DiagnosticItems.ValidationMustReturnValidationType(mds));
+            return false;
+        }
+
+        return true;
+    }
+
     private static bool AreSameType(
-        TypeSyntax? typeSyntax, 
+        TypeSyntax? typeSyntax,
         INamedTypeSymbol? expectedType,
         SemanticModel targetSemanticModel)
     {

@@ -66,6 +66,8 @@ namespace Whatever
         /// <returns>An instance of this type.</returns>
         public static SystemTextJsonFloatVo From(float value)
         {
+            
+
             SystemTextJsonFloatVo instance = new SystemTextJsonFloatVo(value);
 
             

@@ -65,6 +65,8 @@ namespace Whatever
         /// <returns>An instance of this type.</returns>
         public static EfCoreFooVo From(Whatever.Bar value)
         {
+            
+
             EfCoreFooVo instance = new EfCoreFooVo(value);
 
             

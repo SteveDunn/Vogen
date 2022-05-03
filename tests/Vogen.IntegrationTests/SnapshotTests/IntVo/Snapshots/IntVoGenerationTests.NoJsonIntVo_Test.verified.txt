@@ -66,6 +66,8 @@ namespace Whatever
         /// <returns>An instance of this type.</returns>
         public static NoJsonIntVo From(int value)
         {
+            
+
             NoJsonIntVo instance = new NoJsonIntVo(value);
 
             

@@ -65,6 +65,8 @@ namespace Whatever
         /// <returns>An instance of this type.</returns>
         public static LinqToDbShortVo From(short value)
         {
+            
+
             LinqToDbShortVo instance = new LinqToDbShortVo(value);
 
             

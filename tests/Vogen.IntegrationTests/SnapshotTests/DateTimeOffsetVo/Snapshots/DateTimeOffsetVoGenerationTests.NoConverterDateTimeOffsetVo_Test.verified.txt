@@ -65,6 +65,8 @@ namespace Whatever
         /// <returns>An instance of this type.</returns>
         public static NoConverterDateTimeOffsetVo From(System.DateTimeOffset value)
         {
+            
+
             NoConverterDateTimeOffsetVo instance = new NoConverterDateTimeOffsetVo(value);
 
             

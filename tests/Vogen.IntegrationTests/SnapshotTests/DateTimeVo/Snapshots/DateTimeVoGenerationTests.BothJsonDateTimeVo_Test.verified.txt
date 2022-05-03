@@ -67,6 +67,8 @@ namespace Whatever
         /// <returns>An instance of this type.</returns>
         public static BothJsonDateTimeVo From(System.DateTime value)
         {
+            
+
             BothJsonDateTimeVo instance = new BothJsonDateTimeVo(value);
 
             

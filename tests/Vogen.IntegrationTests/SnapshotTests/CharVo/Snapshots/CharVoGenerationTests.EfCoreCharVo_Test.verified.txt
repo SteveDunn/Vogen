@@ -65,6 +65,8 @@ namespace Whatever
         /// <returns>An instance of this type.</returns>
         public static EfCoreCharVo From(char value)
         {
+            
+
             EfCoreCharVo instance = new EfCoreCharVo(value);
 
             

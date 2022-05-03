@@ -66,6 +66,8 @@ namespace Whatever
         /// <returns>An instance of this type.</returns>
         public static SystemTextJsonDecimalVo From(decimal value)
         {
+            
+
             SystemTextJsonDecimalVo instance = new SystemTextJsonDecimalVo(value);
 
             

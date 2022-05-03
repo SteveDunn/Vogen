@@ -66,6 +66,8 @@ namespace Whatever
         /// <returns>An instance of this type.</returns>
         public static NoJsonDecimalVo From(decimal value)
         {
+            
+
             NoJsonDecimalVo instance = new NoJsonDecimalVo(value);
 
             
