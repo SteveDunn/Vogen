@@ -66,6 +66,8 @@ namespace Whatever
         /// <returns>An instance of this type.</returns>
         public static SystemTextJsonGuidVo From(System.Guid value)
         {
+            
+
             SystemTextJsonGuidVo instance = new SystemTextJsonGuidVo(value);
 
             

@@ -4,8 +4,9 @@ using Microsoft.CodeAnalysis;
 using VerifyXunit;
 using Xunit;
 using Xunit.Abstractions;
+using Vogen;
 
-namespace Vogen.IntegrationTests.SnapshotTests;
+namespace Vogen.Tests.DiagnosticsTests;
 
 [UsesVerify] 
 public class DisallowDefaultingTests

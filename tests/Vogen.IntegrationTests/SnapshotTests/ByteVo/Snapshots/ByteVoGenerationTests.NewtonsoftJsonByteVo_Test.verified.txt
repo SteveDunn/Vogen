@@ -66,6 +66,8 @@ namespace Whatever
         /// <returns>An instance of this type.</returns>
         public static NewtonsoftJsonByteVo From(byte value)
         {
+            
+
             NewtonsoftJsonByteVo instance = new NewtonsoftJsonByteVo(value);
 
             

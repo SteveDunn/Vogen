@@ -66,6 +66,8 @@ namespace Whatever
         /// <returns>An instance of this type.</returns>
         public static NoJsonLongVo From(long value)
         {
+            
+
             NoJsonLongVo instance = new NoJsonLongVo(value);
 
             

@@ -48,9 +48,24 @@ internal static class DiagnosticItems
         "Validation returns incorrect type",
         "{0} must return a Validation type");
 
+    private static readonly DiagnosticDescriptor _normalizeInputMethodMustReturnSameUnderlyingType = CreateDescriptor(
+        DiagnosticCode.NormalizeInputMethodMustReturnSameUnderlyingType,
+        "NormalizeInput returns incorrect type",
+        "{0} must return the same underlying type");
+    
+    private static readonly DiagnosticDescriptor _normalizeInputMethodTakeOneParameterOfUnderlyingType = CreateDescriptor(
+        DiagnosticCode.NormalizeInputMethodTakeOneParameterOfUnderlyingType,
+        "NormalizeInput accepts wrong type",
+        "{0} must accept one parameter of the same type as the underlying type");
+
     private static readonly DiagnosticDescriptor _validationMustBeStatic = CreateDescriptor(
         DiagnosticCode.ValidationMustBeStatic,
         "Validation must be static",
+        "{0} must be static");
+
+    private static readonly DiagnosticDescriptor _normalizeInputMethodMustBeStatic = CreateDescriptor(
+        DiagnosticCode.NormalizeInputMethodMustBeStatic,
+        "NormalizeInput must be static",
         "{0} must be static");
 
     private static readonly DiagnosticDescriptor _instanceMethodCannotHaveNullArgumentName = CreateDescriptor(
@@ -79,8 +94,17 @@ internal static class DiagnosticItems
     public static Diagnostic ValidationMustReturnValidationType(MethodDeclarationSyntax member) => 
         Create(_validationMustReturnValidationType, member.GetLocation(), member.Identifier);
 
+    public static Diagnostic NormalizeInputMethodMustReturnUnderlyingType(MethodDeclarationSyntax member) => 
+        Create(_normalizeInputMethodMustReturnSameUnderlyingType, member.GetLocation(), member.Identifier);
+
+    public static Diagnostic NormalizeInputMethodTakeOneParameterOfUnderlyingType(MethodDeclarationSyntax member) => 
+        Create(_normalizeInputMethodTakeOneParameterOfUnderlyingType, member.GetLocation(), member.Identifier);
+
     public static Diagnostic ValidationMustBeStatic(MethodDeclarationSyntax member) => 
         Create(_validationMustBeStatic, member.GetLocation(), member.Identifier);
+
+    public static Diagnostic NormalizeInputMethodMustBeStatic(MethodDeclarationSyntax member) => 
+        Create(_normalizeInputMethodMustBeStatic, member.GetLocation(), member.Identifier);
 
     public static Diagnostic UsingDefaultProhibited(Location locationOfDefaultStatement, string voClassName) => 
         BuildDiagnostic(_usingDefaultProhibited, voClassName, locationOfDefaultStatement);

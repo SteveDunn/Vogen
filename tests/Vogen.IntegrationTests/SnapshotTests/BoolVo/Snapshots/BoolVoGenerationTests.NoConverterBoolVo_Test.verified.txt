@@ -65,6 +65,8 @@ namespace Whatever
         /// <returns>An instance of this type.</returns>
         public static NoConverterBoolVo From(bool value)
         {
+            
+
             NoConverterBoolVo instance = new NoConverterBoolVo(value);
 
             

@@ -40,5 +40,8 @@ public static class ModuleInitializer
         SqlMapper.AddTypeHandler(new Vogen.IntegrationTests.TestTypes.StructVos.DapperDoubleVo.DapperTypeHandler());
         SqlMapper.AddTypeHandler(new Vogen.IntegrationTests.TestTypes.StructVos.DapperDecimalVo.DapperTypeHandler());
         SqlMapper.AddTypeHandler(new Vogen.IntegrationTests.TestTypes.StructVos.DapperGuidVo.DapperTypeHandler());
+        
+
+        VerifierSettings.AddScrubber(s => s.Replace("    [global::System.CodeDom.Compiler.GeneratedCodeAttribute(\"Vogen\", \"0.0.0.0\")]", "    [global::System.CodeDom.Compiler.GeneratedCodeAttribute(\"Vogen\", \"1.0.0.0\")]"));
     }
 }

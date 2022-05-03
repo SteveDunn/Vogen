@@ -65,6 +65,8 @@ namespace Whatever
         /// <returns>An instance of this type.</returns>
         public static NoConverterDecimalVo From(decimal value)
         {
+            
+
             NoConverterDecimalVo instance = new NoConverterDecimalVo(value);
 
             

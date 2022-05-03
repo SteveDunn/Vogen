@@ -66,6 +66,8 @@ namespace Whatever
         /// <returns>An instance of this type.</returns>
         public static NewtonsoftJsonGuidVo From(System.Guid value)
         {
+            
+
             NewtonsoftJsonGuidVo instance = new NewtonsoftJsonGuidVo(value);
 
             

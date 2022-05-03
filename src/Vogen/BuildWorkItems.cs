@@ -13,14 +13,14 @@ namespace Vogen;
 internal static class BuildWorkItems
 {
     public static VoWorkItem? TryBuild(VoTarget target,
-        SourceProductionContext context, 
+        SourceProductionContext context,
         VogenConfiguration? globalConfig)
     {
-        var tds = target.TypeToAugment;
+        TypeDeclarationSyntax voTypeSyntax = target.VoSyntaxInformation;
 
-        var voClass = target.SymbolForType;
+        INamedTypeSymbol voSymbolInformation = target.VoSymbolInformation;
 
-        ImmutableArray<AttributeData> attributes = voClass.GetAttributes();
+        ImmutableArray<AttributeData> attributes = voSymbolInformation.GetAttributes();
 
         if (attributes.Length == 0)
         {
@@ -35,7 +35,7 @@ internal static class BuildWorkItems
             return null;
         }
 
-        foreach (var eachConstructor in voClass.Constructors)
+        foreach (var eachConstructor in voSymbolInformation.Constructors)
         {
             // no need to check for default constructor as it's already defined
             // and the user will see: error CS0111: Type 'Foo' already defines a member called 'Foo' with the same parameter type
@@ -49,7 +49,7 @@ internal static class BuildWorkItems
 
         // build the configuration but log any diagnostics (we have a separate analyzer that does that)
         var localConfig = GlobalConfigFilter.BuildConfigurationFromAttribute(voAttribute, context);
-        
+
         if (localConfig == null)
         {
             return null;
@@ -65,50 +65,44 @@ internal static class BuildWorkItems
             }
         }
 
-        var containingType = target.ContainingType;// context.SemanticModel.GetDeclaredSymbol(context.Node)!.ContainingType;
+        INamedTypeSymbol? containingType = target.ContainingType;// context.SemanticModel.GetDeclaredSymbol(context.Node)!.ContainingType;
         if (containingType != null)
         {
-            context.ReportDiagnostic(DiagnosticItems.TypeCannotBeNested(voClass, containingType));
+            context.ReportDiagnostic(DiagnosticItems.TypeCannotBeNested(voSymbolInformation, containingType));
         }
 
-        var instanceProperties = TryBuildInstanceProperties(attributes, voClass, context);
+        var instanceProperties = TryBuildInstanceProperties(attributes, voSymbolInformation, context);
 
         MethodDeclarationSyntax? validateMethod = null;
+        MethodDeclarationSyntax? normalizeInputMethod = null;
 
-        // add any validator methods it finds
-        foreach (var memberDeclarationSyntax in tds.Members)
+        // add any validator or normalize methods it finds
+        foreach (var memberDeclarationSyntax in voTypeSyntax.Members)
         {
             if (memberDeclarationSyntax is MethodDeclarationSyntax mds)
             {
-                object? value = mds.Identifier.Value;
+                string? methodName = mds.Identifier.Value?.ToString();
 
-                if (StringComparer.OrdinalIgnoreCase.Compare(value?.ToString(), "validate") == 0)
+                if (TryHandleValidateMethod(methodName, mds, context))
                 {
-                    if (!(mds.DescendantTokens().Any(t => t.IsKind(SyntaxKind.StaticKeyword))))
-                    {
-                        context.ReportDiagnostic(DiagnosticItems.ValidationMustBeStatic(mds));
-                    }
-
-                    TypeSyntax returnTypeSyntax = mds.ReturnType;
-
-                    if (returnTypeSyntax.ToString() != "Validation")
-                    {
-                        context.ReportDiagnostic(DiagnosticItems.ValidationMustReturnValidationType(mds));
-                    }
-
                     validateMethod = mds;
+                }
+
+                if (TryHandleNormalizeMethod(methodName, mds, context, config, target))
+                {
+                    normalizeInputMethod = mds;
                 }
             }
         }
 
-        if (SymbolEqualityComparer.Default.Equals(voClass, config.UnderlyingType))
+        if (SymbolEqualityComparer.Default.Equals(voSymbolInformation, config.UnderlyingType))
         {
-            context.ReportDiagnostic(DiagnosticItems.UnderlyingTypeMustNotBeSameAsValueObjectType(voClass));
+            context.ReportDiagnostic(DiagnosticItems.UnderlyingTypeMustNotBeSameAsValueObjectType(voSymbolInformation));
         }
 
         if (config.UnderlyingType.ImplementsInterfaceOrBaseClass(typeof(ICollection)))
         {
-            context.ReportDiagnostic(DiagnosticItems.UnderlyingTypeCannotBeCollection(voClass, config.UnderlyingType!));
+            context.ReportDiagnostic(DiagnosticItems.UnderlyingTypeCannotBeCollection(voSymbolInformation, config.UnderlyingType!));
         }
 
         bool isValueType = true;
@@ -120,15 +114,90 @@ internal static class BuildWorkItems
         return new VoWorkItem
         {
             InstanceProperties = instanceProperties.ToList(),
-            TypeToAugment = tds,
+            TypeToAugment = voTypeSyntax,
             IsValueType = isValueType,
             UnderlyingType = config.UnderlyingType,
             Conversions = config.Conversions,
             TypeForValidationExceptions = config.ValidationExceptionType,
             ValidateMethod = validateMethod,
-            FullNamespace = voClass.FullNamespace()
+            NormalizeInputMethod = normalizeInputMethod,
+            FullNamespace = voSymbolInformation.FullNamespace()
         };
     }
+
+    private static bool TryHandleNormalizeMethod(
+        string? methodName, 
+        MethodDeclarationSyntax mds,
+        SourceProductionContext context, 
+        VogenConfiguration config, 
+        VoTarget target)
+    {
+        if (StringComparer.OrdinalIgnoreCase.Compare(methodName, "normalizeinput") != 0)
+        {
+            return false;
+        }
+
+        if (!(IsMethodStatic(mds)))
+        {
+            context.ReportDiagnostic(DiagnosticItems.NormalizeInputMethodMustBeStatic(mds));
+            return false;
+        }
+
+        if (mds.ParameterList.Parameters.Count != 1)
+        {
+            context.ReportDiagnostic(DiagnosticItems.NormalizeInputMethodTakeOneParameterOfUnderlyingType(mds));
+            return false;
+        }
+
+        if (!AreSameType(mds.ParameterList.Parameters[0].Type, config.UnderlyingType, target.SemanticModel))
+        {
+            context.ReportDiagnostic(DiagnosticItems.NormalizeInputMethodTakeOneParameterOfUnderlyingType(mds));
+            return false;
+        }
+
+        if (!AreSameType(mds.ReturnType, config.UnderlyingType, target.SemanticModel))
+        {
+            context.ReportDiagnostic(DiagnosticItems.NormalizeInputMethodMustReturnUnderlyingType(mds));
+            return false;
+        }
+
+        return true;
+    }
+
+    private static bool TryHandleValidateMethod(string? methodName, MethodDeclarationSyntax mds, SourceProductionContext context)
+    {
+        if (StringComparer.OrdinalIgnoreCase.Compare(methodName, "validate") != 0)
+        {
+            return false;
+        }
+
+        if (!IsMethodStatic(mds))
+        {
+            context.ReportDiagnostic(DiagnosticItems.ValidationMustBeStatic(mds));
+            return false;
+        }
+
+        TypeSyntax returnTypeSyntax = mds.ReturnType;
+
+        if (returnTypeSyntax.ToString() != "Validation")
+        {
+            context.ReportDiagnostic(DiagnosticItems.ValidationMustReturnValidationType(mds));
+            return false;
+        }
+
+        return true;
+    }
+
+    private static bool AreSameType(
+        TypeSyntax? typeSyntax,
+        INamedTypeSymbol? expectedType,
+        SemanticModel targetSemanticModel)
+    {
+        INamedTypeSymbol? fptSymbol = targetSemanticModel.GetSymbolInfo(typeSyntax!).Symbol as INamedTypeSymbol;
+        return SymbolEqualityComparer.Default.Equals(fptSymbol, expectedType);
+    }
+
+    private static bool IsMethodStatic(MethodDeclarationSyntax mds) => mds.DescendantTokens().Any(t => t.IsKind(SyntaxKind.StaticKeyword));
 
     private static IEnumerable<InstanceProperties> TryBuildInstanceProperties(
         ImmutableArray<AttributeData> attributes,

@@ -65,6 +65,8 @@ namespace Whatever
         /// <returns>An instance of this type.</returns>
         public static NoConverterFloatVo From(float value)
         {
+            
+
             NoConverterFloatVo instance = new NoConverterFloatVo(value);
 
             

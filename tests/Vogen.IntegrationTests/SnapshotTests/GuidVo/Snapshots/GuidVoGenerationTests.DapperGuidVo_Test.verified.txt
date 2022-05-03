@@ -65,6 +65,8 @@ namespace Whatever
         /// <returns>An instance of this type.</returns>
         public static DapperGuidVo From(System.Guid value)
         {
+            
+
             DapperGuidVo instance = new DapperGuidVo(value);
 
             

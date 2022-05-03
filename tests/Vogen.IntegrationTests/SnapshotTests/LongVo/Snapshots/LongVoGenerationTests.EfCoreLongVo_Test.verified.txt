@@ -65,6 +65,8 @@ namespace Whatever
         /// <returns>An instance of this type.</returns>
         public static EfCoreLongVo From(long value)
         {
+            
+
             EfCoreLongVo instance = new EfCoreLongVo(value);
 
             

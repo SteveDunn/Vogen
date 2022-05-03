@@ -66,6 +66,8 @@ namespace Whatever
         /// <returns>An instance of this type.</returns>
         public static NoJsonDateTimeOffsetVo From(System.DateTimeOffset value)
         {
+            
+
             NoJsonDateTimeOffsetVo instance = new NoJsonDateTimeOffsetVo(value);
 
             

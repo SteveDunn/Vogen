@@ -66,6 +66,8 @@ namespace Whatever
         /// <returns>An instance of this type.</returns>
         public static NewtonsoftJsonDecimalVo From(decimal value)
         {
+            
+
             NewtonsoftJsonDecimalVo instance = new NewtonsoftJsonDecimalVo(value);
 
             

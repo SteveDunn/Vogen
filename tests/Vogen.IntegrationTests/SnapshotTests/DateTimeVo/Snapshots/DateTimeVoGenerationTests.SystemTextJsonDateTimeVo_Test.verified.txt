@@ -66,6 +66,8 @@ namespace Whatever
         /// <returns>An instance of this type.</returns>
         public static SystemTextJsonDateTimeVo From(System.DateTime value)
         {
+            
+
             SystemTextJsonDateTimeVo instance = new SystemTextJsonDateTimeVo(value);
 
             

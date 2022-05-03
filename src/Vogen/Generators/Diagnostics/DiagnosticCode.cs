@@ -19,5 +19,8 @@ public enum DiagnosticCode
     UsingNewProhibited = 10,
     InvalidConversions = 11,
     CustomExceptionMustDeriveFromException = 12,
-    CustomExceptionMustHaveValidConstructor = 13
+    CustomExceptionMustHaveValidConstructor = 13,
+    NormalizeInputMethodMustBeStatic = 14,
+    NormalizeInputMethodMustReturnSameUnderlyingType = 15,
+    NormalizeInputMethodTakeOneParameterOfUnderlyingType = 16,
 }

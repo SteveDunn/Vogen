@@ -66,6 +66,8 @@ namespace Whatever
         /// <returns>An instance of this type.</returns>
         public static NewtonsoftJsonLongVo From(long value)
         {
+            
+
             NewtonsoftJsonLongVo instance = new NewtonsoftJsonLongVo(value);
 
             

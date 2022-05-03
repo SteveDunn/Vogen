@@ -49,6 +49,14 @@ public static class Util
 ";
         return string.Empty;
     }
+
+    public static string GenerateNormalizeInputMethodIfNeeded(VoWorkItem workItem)
+    {
+        if (workItem.NormalizeInputMethod != null)
+            return @$"value = {workItem.TypeToAugment.Identifier}.{workItem.NormalizeInputMethod.Identifier.Value}(value);
+";
+        return string.Empty;
+    }
     
 
     private static string GenerateAnyInstances_internal(

@@ -66,6 +66,8 @@ namespace Whatever
         /// <returns>An instance of this type.</returns>
         public static SystemTextJsonShortVo From(short value)
         {
+            
+
             SystemTextJsonShortVo instance = new SystemTextJsonShortVo(value);
 
             

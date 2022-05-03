@@ -72,7 +72,7 @@ public class BoolVoGenerationTests
     public partial struct DapperBoolVo { }");
     }
 
-    private Task RunTest(string declaration, VerifySettings? settings = null)
+    private Task RunTest(string declaration)
     {
         var source = @"using Vogen;
 namespace Whatever
@@ -84,6 +84,6 @@ namespace Whatever
 
         diagnostics.Should().BeEmpty();
 
-        return Verifier.Verify(output, settings).UseDirectory("Snapshots");
+        return Verifier.Verify(output, null).UseDirectory("Snapshots");
     }
 }

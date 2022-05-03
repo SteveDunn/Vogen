@@ -66,6 +66,8 @@ namespace Whatever
         /// <returns>An instance of this type.</returns>
         public static NewtonsoftJsonDateTimeOffsetVo From(System.DateTimeOffset value)
         {
+            
+
             NewtonsoftJsonDateTimeOffsetVo instance = new NewtonsoftJsonDateTimeOffsetVo(value);
 
             

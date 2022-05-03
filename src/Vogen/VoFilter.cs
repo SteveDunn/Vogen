@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Collections.Immutable;
+using System.Linq;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 
@@ -18,11 +19,11 @@ internal static class VoFilter
     // This is stage 2 in the pipeline - we filter down to just 1 target
     public static VoTarget? TryGetTarget(GeneratorSyntaxContext context)
     {
-        var tds = (TypeDeclarationSyntax) context.Node;
+        var voSyntaxInformation = (TypeDeclarationSyntax) context.Node;
 
-        var voClass = (INamedTypeSymbol) context.SemanticModel.GetDeclaredSymbol(context.Node)!;
+        var voSymbolInformation = (INamedTypeSymbol) context.SemanticModel.GetDeclaredSymbol(context.Node)!;
 
-        foreach (AttributeListSyntax attributeListSyntax in tds.AttributeLists)
+        foreach (AttributeListSyntax attributeListSyntax in voSyntaxInformation.AttributeLists)
         {
             foreach (AttributeSyntax attributeSyntax in attributeListSyntax.Attributes)
             {
@@ -39,23 +40,15 @@ internal static class VoFilter
                 if (fullName == "Vogen.ValueObjectAttribute")
                 {
                     return new VoTarget(
-                        tds, 
+                        context.SemanticModel,
+                        voSyntaxInformation, 
                         context.SemanticModel.GetDeclaredSymbol(context.Node)!.ContainingType,
-                        voClass);
+                        voSymbolInformation);
                 }
             }
         }
 
         return null;
-    }
-
-    public static INamedTypeSymbol? TryGetValueObjectClass(GeneratorSyntaxContext context, SyntaxNode syntaxNode)
-    {
-        SymbolInfo typeSymbolInfo = context.SemanticModel.GetSymbolInfo(syntaxNode);
-
-        var symbol = typeSymbolInfo.Symbol as INamedTypeSymbol;
-        
-        return IsTarget(symbol) ? symbol : null;
     }
 
     public static bool IsTarget(INamedTypeSymbol? voClass)
@@ -65,7 +58,7 @@ internal static class VoFilter
             return false;
         }
 
-        var attributes = voClass.GetAttributes();
+        ImmutableArray<AttributeData> attributes = voClass.GetAttributes();
 
         if (attributes.Length == 0)
         {
@@ -76,5 +69,14 @@ internal static class VoFilter
             attributes.SingleOrDefault(a => a.AttributeClass?.FullName() is "Vogen.ValueObjectAttribute");
 
         return voAttribute is not null;
+    }
+
+    public static INamedTypeSymbol? TryGetValueObjectClass(GeneratorSyntaxContext context, SyntaxNode syntaxNode)
+    {
+        SymbolInfo typeSymbolInfo = context.SemanticModel.GetSymbolInfo(syntaxNode);
+
+        var symbol = typeSymbolInfo.Symbol as INamedTypeSymbol;
+        
+        return IsTarget(symbol) ? symbol : null;
     }
 }

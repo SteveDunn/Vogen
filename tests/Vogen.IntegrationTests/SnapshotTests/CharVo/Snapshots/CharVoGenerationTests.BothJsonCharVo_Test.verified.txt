@@ -67,6 +67,8 @@ namespace Whatever
         /// <returns>An instance of this type.</returns>
         public static BothJsonCharVo From(char value)
         {
+            
+
             BothJsonCharVo instance = new BothJsonCharVo(value);
 
             

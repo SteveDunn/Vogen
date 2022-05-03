@@ -65,9 +65,16 @@ namespace Whatever
         /// <returns>An instance of this type.</returns>
         public static CustomerId From(global::System.Int32 value)
         {
+            
+
             CustomerId instance = new CustomerId(value);
 
-            
+            var validation = CustomerId.Validate(value);
+            if (validation != Vogen.Validation.Ok)
+            {
+                throw new Whatever.MyValidationException(validation.ErrorMessage);
+            }
+
 
             return instance;
         }
@@ -111,7 +118,7 @@ namespace Whatever
                 global::System.String message = "Use of uninitialized Value Object.";
 #endif
 
-                throw new global::Vogen.ValueObjectValidationException(message);
+                throw new Whatever.MyValidationException(message);
             }
         }
 
@@ -121,6 +128,25 @@ namespace Whatever
 
 
 
+        public class DapperTypeHandler : global::Dapper.SqlMapper.TypeHandler<CustomerId>
+        {
+            public override void SetValue(global::System.Data.IDbDataParameter parameter, CustomerId value)
+            {
+                parameter.DbType = global::System.Data.DbType.Int32;
+                parameter.Value = value.Value;
+            }
+
+            public override CustomerId Parse(object value)
+            {
+                return value switch
+                {
+                    global::System.Int32 intValue => new CustomerId(intValue),
+                    global::System.Int64 longValue when longValue < global::System.Int32.MaxValue => new CustomerId((global::System.Int32)longValue),
+                    global::System.String stringValue when !global::System.String.IsNullOrEmpty(stringValue) && global::System.Int32.TryParse(stringValue, out var result) => new CustomerId(result),
+                    _ => throw new global::System.InvalidCastException($"Unable to cast object of type {value.GetType()} to CustomerId"),
+                };
+            }
+        }
 
 
 
@@ -142,7 +168,7 @@ namespace Whatever
             public global::System.String CreatedWith => _t._stackTrace?.ToString() ?? "the From method";
             #endif
 
-            public global::System.String Conversions => @"None";
+            public global::System.String Conversions => @"DapperTypeHandler";
                 }
 
 }

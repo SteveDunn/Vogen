@@ -65,6 +65,8 @@ namespace Whatever
         /// <returns>An instance of this type.</returns>
         public static DapperStringVo From(string value)
         {
+            
+
             DapperStringVo instance = new DapperStringVo(value);
 
             

@@ -65,6 +65,8 @@ namespace Whatever
         /// <returns>An instance of this type.</returns>
         public static LinqToDbGuidVo From(System.Guid value)
         {
+            
+
             LinqToDbGuidVo instance = new LinqToDbGuidVo(value);
 
             

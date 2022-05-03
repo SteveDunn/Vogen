@@ -63,6 +63,8 @@ using Vogen;
         /// <returns>An instance of this type.</returns>
         public static {structName} From({itemUnderlyingType} value)
         {{
+            {Util.GenerateNormalizeInputMethodIfNeeded(item)}
+
             {structName} instance = new {structName}(value);
 
             {Util.GenerateValidation(item)}

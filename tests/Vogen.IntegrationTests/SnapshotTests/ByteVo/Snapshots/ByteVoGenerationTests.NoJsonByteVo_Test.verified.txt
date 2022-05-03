@@ -66,6 +66,8 @@ namespace Whatever
         /// <returns>An instance of this type.</returns>
         public static NoJsonByteVo From(byte value)
         {
+            
+
             NoJsonByteVo instance = new NoJsonByteVo(value);
 
             
