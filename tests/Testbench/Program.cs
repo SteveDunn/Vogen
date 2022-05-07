@@ -21,3 +21,6 @@ public partial class NormalizedToMax128WithValidation
 
     private static Int32 NormalizeInput(int input) => Math.Min(128, input);
 }
+
+[ValueObject(underlyingType:typeof(int))]
+public sealed partial class @class { }

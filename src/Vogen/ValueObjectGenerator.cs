@@ -64,7 +64,7 @@ namespace Vogen
             {
                 foreach (var eachWorkItem in workItems)
                 {
-                    WriteWorkItems.WriteVo(eachWorkItem, compilation, context);
+                    WriteWorkItems.WriteVo(eachWorkItem, context);
                 }
             }
         }
