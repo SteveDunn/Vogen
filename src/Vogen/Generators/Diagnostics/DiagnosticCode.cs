@@ -23,4 +23,5 @@ public enum DiagnosticCode
     NormalizeInputMethodMustBeStatic = 14,
     NormalizeInputMethodMustReturnSameUnderlyingType = 15,
     NormalizeInputMethodTakeOneParameterOfUnderlyingType = 16,
+    TypeCannotBeAbstract = 17,
 }

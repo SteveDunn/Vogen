@@ -35,17 +35,12 @@ internal static class BuildWorkItems
             return null;
         }
 
-        foreach (var eachConstructor in voSymbolInformation.Constructors)
+        if (voSymbolInformation.IsAbstract)
         {
-            // no need to check for default constructor as it's already defined
-            // and the user will see: error CS0111: Type 'Foo' already defines a member called 'Foo' with the same parameter type
-            if (eachConstructor.Parameters.Length > 0)
-            {
-                context.ReportDiagnostic(DiagnosticItems.CannotHaveUserConstructors(eachConstructor));
-            }
+            context.ReportDiagnostic(DiagnosticItems.TypeCannotBeAbstract(voSymbolInformation));
         }
 
-        ImmutableArray<TypedConstant> args = voAttribute.ConstructorArguments;
+        ReportErrorsForAnyUserConstructors(context, voSymbolInformation);
 
         // build the configuration but log any diagnostics (we have a separate analyzer that does that)
         var localConfig = GlobalConfigFilter.BuildConfigurationFromAttribute(voAttribute, context);
@@ -57,19 +52,7 @@ internal static class BuildWorkItems
 
         var config = VogenConfiguration.Combine(localConfig.Value, globalConfig);
 
-        foreach (TypedConstant arg in args)
-        {
-            if (arg.Kind == TypedConstantKind.Error)
-            {
-                break;
-            }
-        }
-
-        INamedTypeSymbol? containingType = target.ContainingType;// context.SemanticModel.GetDeclaredSymbol(context.Node)!.ContainingType;
-        if (containingType != null)
-        {
-            context.ReportDiagnostic(DiagnosticItems.TypeCannotBeNested(voSymbolInformation, containingType));
-        }
+        ReportErrorIfNestedType(target, context, voSymbolInformation);
 
         var instanceProperties = TryBuildInstanceProperties(attributes, voSymbolInformation, context);
 
@@ -95,21 +78,11 @@ internal static class BuildWorkItems
             }
         }
 
-        if (SymbolEqualityComparer.Default.Equals(voSymbolInformation, config.UnderlyingType))
-        {
-            context.ReportDiagnostic(DiagnosticItems.UnderlyingTypeMustNotBeSameAsValueObjectType(voSymbolInformation));
-        }
+        ReportErrorIfVoTypeIsSameAsUnderlyingType(context, voSymbolInformation, config);
 
-        if (config.UnderlyingType.ImplementsInterfaceOrBaseClass(typeof(ICollection)))
-        {
-            context.ReportDiagnostic(DiagnosticItems.UnderlyingTypeCannotBeCollection(voSymbolInformation, config.UnderlyingType!));
-        }
+        ReportErrorIfUnderlyingTypeIsCollection(context, config, voSymbolInformation);
 
-        bool isValueType = true;
-        if (config.UnderlyingType != null)
-        {
-            isValueType = config.UnderlyingType.IsValueType;
-        }
+        var isValueType = IsValueType(config);
 
         return new VoWorkItem
         {
@@ -123,6 +96,59 @@ internal static class BuildWorkItems
             NormalizeInputMethod = normalizeInputMethod,
             FullNamespace = voSymbolInformation.FullNamespace()
         };
+    }
+
+    private static bool IsValueType(VogenConfiguration config)
+    {
+        bool isValueType = true;
+        if (config.UnderlyingType != null)
+        {
+            isValueType = config.UnderlyingType.IsValueType;
+        }
+
+        return isValueType;
+    }
+
+    private static void ReportErrorIfUnderlyingTypeIsCollection(SourceProductionContext context, VogenConfiguration config,
+        INamedTypeSymbol voSymbolInformation)
+    {
+        if (config.UnderlyingType.ImplementsInterfaceOrBaseClass(typeof(ICollection)))
+        {
+            context.ReportDiagnostic(
+                DiagnosticItems.UnderlyingTypeCannotBeCollection(voSymbolInformation, config.UnderlyingType!));
+        }
+    }
+
+    private static void ReportErrorIfVoTypeIsSameAsUnderlyingType(SourceProductionContext context,
+        INamedTypeSymbol voSymbolInformation, VogenConfiguration config)
+    {
+        if (SymbolEqualityComparer.Default.Equals(voSymbolInformation, config.UnderlyingType))
+        {
+            context.ReportDiagnostic(DiagnosticItems.UnderlyingTypeMustNotBeSameAsValueObjectType(voSymbolInformation));
+        }
+    }
+
+    private static void ReportErrorIfNestedType(VoTarget target, SourceProductionContext context,
+        INamedTypeSymbol voSymbolInformation)
+    {
+        INamedTypeSymbol? containingType = target.ContainingType;
+        if (containingType != null)
+        {
+            context.ReportDiagnostic(DiagnosticItems.TypeCannotBeNested(voSymbolInformation, containingType));
+        }
+    }
+
+    private static void ReportErrorsForAnyUserConstructors(SourceProductionContext context, INamedTypeSymbol voSymbolInformation)
+    {
+        foreach (var eachConstructor in voSymbolInformation.Constructors)
+        {
+            // no need to check for default constructor as it's already defined
+            // and the user will see: error CS0111: Type 'Foo' already defines a member called 'Foo' with the same parameter type
+            if (eachConstructor.Parameters.Length > 0)
+            {
+                context.ReportDiagnostic(DiagnosticItems.CannotHaveUserConstructors(eachConstructor));
+            }
+        }
     }
 
     private static bool TryHandleNormalizeMethod(
