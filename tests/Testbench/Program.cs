@@ -14,13 +14,14 @@ public class Program
     }
 }
 
-[ValueObject(underlyingType:typeof(int))]
-public partial class NormalizedToMax128WithValidation
-{
-    private static Validation Validate(int value) => value <= 128 && value >= 0 ? Validation.Ok : Validation.Invalid("xxxx");
+// [ValueObject(underlyingType:typeof(int))]
+// public partial class NormalizedToMax128WithValidation
+// {
+//     private static Validation Validate(int value) => value <= 128 && value >= 0 ? Validation.Ok : Validation.Invalid("xxxx");
+//
+//     private static Int32 NormalizeInput(int input) => Math.Min(128, input);
+// }
 
-    private static Int32 NormalizeInput(int input) => Math.Min(128, input);
-}
+// [ValueObject(underlyingType:typeof(int))]
+// public sealed partial class @class { }
 
-[ValueObject(underlyingType:typeof(int))]
-public sealed partial class @class { }

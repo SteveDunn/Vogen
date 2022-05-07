@@ -13,6 +13,11 @@ internal static class DiagnosticItems
         "Types cannot be nested",
         "Type '{0}' cannot be nested - remove it from inside {1}");
 
+    private static readonly DiagnosticDescriptor _typeCannotBeAbstract = CreateDescriptor(
+        DiagnosticCode.TypeCannotBeAbstract,
+        "Types cannot be abstract",
+        "Type '{0}' cannot be abstract");
+
     private static readonly DiagnosticDescriptor _usingDefaultProhibited = CreateDescriptor(
         DiagnosticCode.UsingDefaultProhibited,
         "Using default of Value Objects is prohibited",
@@ -90,6 +95,9 @@ internal static class DiagnosticItems
 
     public static Diagnostic TypeCannotBeNested(INamedTypeSymbol typeModel, INamedTypeSymbol container) => 
         Create(_typeCannotBeNested, typeModel.Locations, typeModel.Name, container.Name);
+
+    public static Diagnostic TypeCannotBeAbstract(INamedTypeSymbol typeModel) => 
+        Create(_typeCannotBeAbstract, typeModel.Locations, typeModel.Name);
 
     public static Diagnostic ValidationMustReturnValidationType(MethodDeclarationSyntax member) => 
         Create(_validationMustReturnValidationType, member.GetLocation(), member.Identifier);
