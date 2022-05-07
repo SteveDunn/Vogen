@@ -31,7 +31,7 @@ internal static class WriteWorkItems
         _structGenerator = new StructGenerator();
     }
 
-    public static void WriteVo(VoWorkItem item, Compilation compilation, SourceProductionContext context)
+    public static void WriteVo(VoWorkItem item, SourceProductionContext context)
     {
         // get the recorded user class
         TypeDeclarationSyntax voClass = item.TypeToAugment;
@@ -42,9 +42,14 @@ internal static class WriteWorkItems
 
         SourceText sourceText = SourceText.From(classAsText, Encoding.UTF8);
 
-        string filename = $"{item.FullNamespace}_{voClass.Identifier}.g.cs";
+        string filename = $"{item.FullNamespace}_{SanitizeToALegalFilename()}.g.cs";
 
         context.AddSource(filename, sourceText);
+
+        string SanitizeToALegalFilename()
+        {
+            return voClass.Identifier.ToString().Replace('@', '_');
+        }
     }
 
     private static IGenerateSourceCode GetGenerator(VoWorkItem item) =>

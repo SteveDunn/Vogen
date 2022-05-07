@@ -51,4 +51,15 @@ public class CreationTests
 
         action.Should().Throw<ValueObjectValidationException>().WithMessage("Use of uninitialized Value Object*");
     }
+    
+    [Fact]
+    public void Creation_can_create_a_VO_with_a_verbatim_identifier()
+    {
+        @class c1 = @class.From(123);
+        @class c2 = @class.From(123);
+    
+        @c1.Should().Be(c2);
+        (c1 == c2).Should().BeTrue();
+    }
+    
 }
