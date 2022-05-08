@@ -11,6 +11,7 @@ public class Program
 {
     public static void Main()
     {
+
     }
 }
 
@@ -22,6 +23,9 @@ public class Program
 //     private static Int32 NormalizeInput(int input) => Math.Min(128, input);
 // }
 
-// [ValueObject(underlyingType:typeof(int))]
-// public sealed partial class @class { }
+public sealed partial record Score
+{
+    private static Validation Validate(int value) => value >= 0 ? Validation.Ok : Validation.Invalid("Score must be zero or more");
+}
+
 

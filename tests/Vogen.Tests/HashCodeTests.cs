@@ -15,6 +15,12 @@ namespace Vogen.Tests.HashCodes
     public partial class MyClassInt { }
 
     [ValueObject(typeof(int))]
+    public partial record class MyRecordClassInt { }
+
+    [ValueObject(typeof(int))]
+    public partial record class MyRecordClassInt2 { }
+
+    [ValueObject(typeof(int))]
     public partial class MyClassInt2 { }
     
     public class HashCodeTests
@@ -54,11 +60,15 @@ namespace Vogen.Tests.HashCodes
         public class WithClasses
         {
             [Fact]
-            public void SameStructsHaveSameHashCode()
+            public void SameClassesHaveSameHashCode()
             {
                 MyClassInt.From(0).GetHashCode().Should().Be(MyClassInt.From(0).GetHashCode());
 
                 MyClassInt.From(-1).GetHashCode().Should().Be(MyClassInt.From(-1).GetHashCode());
+
+                MyRecordClassInt.From(0).GetHashCode().Should().Be(MyRecordClassInt.From(0).GetHashCode());
+
+                MyRecordClassInt.From(-1).GetHashCode().Should().Be(MyRecordClassInt.From(-1).GetHashCode());
             }
 
             /// <summary>
@@ -70,6 +80,10 @@ namespace Vogen.Tests.HashCodes
                 MyClassInt.From(0).GetHashCode().Should().NotBe(MyClassInt2.From(0).GetHashCode());
 
                 MyClassInt.From(-1).GetHashCode().Should().NotBe(MyClassInt2.From(-1).GetHashCode());
+
+                MyRecordClassInt.From(0).GetHashCode().Should().NotBe(MyRecordClassInt2.From(0).GetHashCode());
+
+                MyRecordClassInt.From(-1).GetHashCode().Should().NotBe(MyRecordClassInt2.From(-1).GetHashCode());
             }
 
             [Fact]
@@ -97,6 +111,39 @@ namespace Vogen.Tests.HashCodes
                 var a2 = Age.From(18);
 
                 var d = new Dictionary<Age, string> { { a1, "hello1" } };
+
+                d[a2] = "hello2";
+
+                d.Count.Should().Be(1);
+
+                d[a1].Should().Be("hello2");
+            }
+
+            [Fact]
+            public void Storing_3()
+            {
+                var a1 = MyRecordClassInt.From(18);
+                var a2 = MyRecordClassInt.From(50);
+
+                var d = new Dictionary<MyRecordClassInt, string>
+                {
+                    { a1, "hello1" },
+                    { a2, "hello2" }
+                };
+
+                d.Count.Should().Be(2);
+
+                d[a1].Should().Be("hello1");
+                d[a2].Should().Be("hello2");
+            }
+
+            [Fact]
+            public void Storing_4()
+            {
+                var a1 = MyRecordClassInt.From(18);
+                var a2 = MyRecordClassInt.From(18);
+
+                var d = new Dictionary<MyRecordClassInt, string> { { a1, "hello1" } };
 
                 d[a2] = "hello2";
 

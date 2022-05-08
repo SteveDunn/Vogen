@@ -1,17 +1,18 @@
 using System;
 using FluentAssertions;
+using Vogen.Tests.RecordTests;
 using Vogen.Tests.Types;
 using Xunit;
 
 namespace Vogen.Tests;
 
-public class CreationTests
+public class RecordClassCreationTests
 {
     [Fact]
     public void Creation_Happy_Path_MyInt()
     {
-        MyInt vo1 = MyInt.From(123);
-        MyInt vo2 = MyInt.From(123);
+        MyRecordClassInt vo1 = MyRecordClassInt.From(123);
+        MyRecordClassInt vo2 = MyRecordClassInt.From(123);
     
         vo1.Should().Be(vo2);
         (vo1 == vo2).Should().BeTrue();
@@ -20,8 +21,8 @@ public class CreationTests
     [Fact]
     public void Creation_Happy_Path_MyString()
     {
-        MyString vo1 = MyString.From("123");
-        MyString vo2 = MyString.From("123");
+        MyRecordClassString vo1 = MyRecordClassString.From("123");
+        MyRecordClassString vo2 = MyRecordClassString.From("123");
 
         vo1.Should().Be(vo2);
         (vo1 == vo2).Should().BeTrue();
@@ -30,7 +31,7 @@ public class CreationTests
     [Fact]
     public void Creation_Unhappy_Path_MyString()
     {
-        Action action = () => MyString.From(null!);
+        Action action = () => MyRecordClassString.From(null!);
         
         action.Should().Throw<ValueObjectValidationException>().WithMessage("Cannot create a value object with null.");
     }
@@ -38,7 +39,7 @@ public class CreationTests
     [Fact]
     public void Creation_Unhappy_Path_MyInt()
     {
-        Action action = () => MyInt.From(-1);
+        Action action = () => MyRecordClassInt.From(-1);
         
         action.Should().Throw<ValueObjectValidationException>().WithMessage("must be greater than zero");
     }
@@ -46,19 +47,9 @@ public class CreationTests
     [Fact]
     public void Default_vo_throws_at_runtime()
     {
-        CustomerId[] ints = new CustomerId[10];
-        Func<int> action = () => ints[0].Value;
+        MyRecordClassInt vo = (MyRecordClassInt) Activator.CreateInstance(typeof(MyRecordClassInt))!;
+        Func<int> action = () => vo.Value;
 
         action.Should().Throw<ValueObjectValidationException>().WithMessage("Use of uninitialized Value Object*");
-    }
-    
-    [Fact]
-    public void Creation_can_create_a_VO_with_a_verbatim_identifier()
-    {
-        @class c1 = @class.From(123);
-        @class c2 = @class.From(123);
-    
-        @c1.Should().Be(c2);
-        (c1 == c2).Should().BeTrue();
     }
 }

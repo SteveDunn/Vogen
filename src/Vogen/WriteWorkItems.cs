@@ -11,6 +11,7 @@ namespace Vogen;
 internal static class WriteWorkItems
 {
     private static readonly ClassGenerator _classGenerator;
+    private static readonly RecordClassGenerator _recordClassGenerator;
     private static readonly StructGenerator _structGenerator;
 
     private static readonly string _generatedPreamble = @"// ------------------------------------------------------------------------------
@@ -28,6 +29,7 @@ internal static class WriteWorkItems
     static WriteWorkItems()
     {
         _classGenerator = new ClassGenerator();
+        _recordClassGenerator = new RecordClassGenerator();
         _structGenerator = new StructGenerator();
     }
 
@@ -57,6 +59,7 @@ internal static class WriteWorkItems
         {
             ClassDeclarationSyntax => _classGenerator,
             StructDeclarationSyntax => _structGenerator,
+            RecordDeclarationSyntax => _recordClassGenerator,
             _ => throw new InvalidOperationException("Don't know how to get the generator!")
         };
 }
