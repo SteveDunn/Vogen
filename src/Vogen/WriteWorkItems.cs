@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Text;
 using Microsoft.CodeAnalysis;
+using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.CodeAnalysis.Text;
 using Vogen.Diagnostics;
@@ -12,6 +13,7 @@ internal static class WriteWorkItems
 {
     private static readonly ClassGenerator _classGenerator;
     private static readonly RecordClassGenerator _recordClassGenerator;
+    private static readonly RecordStructGenerator _recordStructGenerator;
     private static readonly StructGenerator _structGenerator;
 
     private static readonly string _generatedPreamble = @"// ------------------------------------------------------------------------------
@@ -30,6 +32,7 @@ internal static class WriteWorkItems
     {
         _classGenerator = new ClassGenerator();
         _recordClassGenerator = new RecordClassGenerator();
+        _recordStructGenerator = new RecordStructGenerator();
         _structGenerator = new StructGenerator();
     }
 
@@ -59,7 +62,8 @@ internal static class WriteWorkItems
         {
             ClassDeclarationSyntax => _classGenerator,
             StructDeclarationSyntax => _structGenerator,
-            RecordDeclarationSyntax => _recordClassGenerator,
+            RecordDeclarationSyntax rds when rds.IsKind(SyntaxKind.RecordDeclaration) => _recordClassGenerator,
+            RecordDeclarationSyntax rds when rds.IsKind(SyntaxKind.RecordStructDeclaration) => _recordStructGenerator,
             _ => throw new InvalidOperationException("Don't know how to get the generator!")
         };
 }

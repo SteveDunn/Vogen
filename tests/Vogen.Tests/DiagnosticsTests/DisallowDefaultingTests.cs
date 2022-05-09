@@ -15,21 +15,26 @@ public class DisallowDefaultingTests
 
     public DisallowDefaultingTests(ITestOutputHelper output) => _output = output;
 
-    [Fact]
-    public void Disallows_default_parameters()
+    [Theory]
+    [InlineData("partial class")]
+    [InlineData("partial struct")]
+    [InlineData("readonly partial struct")]
+    [InlineData("partial record class")]
+    [InlineData("partial record struct")]
+    [InlineData("readonly partial record struct")]
+    public void Disallows_default_parameters(string type)
     {
-        var source = @"using Vogen;
+        var source = $@"using Vogen;
 
 namespace Whatever;
 
 [ValueObject(typeof(int))]
-public partial struct CustomerId { }
+public {type} CustomerId {{ }}
 
 public class Foo
-{
-    public void DoSomething(CustomerId customerId = default) {
-    }
-}
+{{
+    public void DoSomething(CustomerId customerId = default) {{ }}
+}}
 
 CustomerId c = new();
 ";
@@ -77,16 +82,22 @@ Hashtable? GetHashtable() => default;
         diagnostics.Should().BeEmpty();
     }
 
-    [Fact]
-    public void Disallows_default_literal_array_members()
+    [Theory]
+    [InlineData("partial class")]
+    [InlineData("partial struct")]
+    [InlineData("readonly partial struct")]
+    [InlineData("partial record class")]
+    [InlineData("partial record struct")]
+    [InlineData("readonly partial record struct")]
+    public void Disallows_default_literal_array_members(string type)
     {
-        var source = @"using Vogen;
+        var source = $@"using Vogen;
 namespace Whatever;
 
 [ValueObject(typeof(int))]
-public partial struct CustomerId { }
+public {type} CustomerId {{ }}
 
-CustomerId[] customers = new CustomerId[] {CustomerId.From(123), default, CustomerId.From(321) };
+CustomerId[] customers = new CustomerId[] {{ CustomerId.From(123), default, CustomerId.From(321) }};
 ";
         
         var (diagnostics, _) = TestHelper.GetGeneratedOutput<CreationUsingDefaultLiteralAnalyzer>(source);
@@ -98,16 +109,22 @@ CustomerId[] customers = new CustomerId[] {CustomerId.From(123), default, Custom
         diagnostic.ToString().Should().Be("(7,66): error VOG009: Type 'CustomerId' cannot be constructed with default as it is prohibited.");
     }
 
-    [Fact]
-    public void Disallows_default_literal_from_local_function()
+    [Theory]
+    [InlineData("partial class")]
+    [InlineData("partial struct")]
+    [InlineData("readonly partial struct")]
+    [InlineData("partial record class")]
+    [InlineData("partial record struct")]
+    [InlineData("readonly partial record struct")]
+    public void Disallows_default_literal_from_local_function(string type)
     {
-        var source = @"using Vogen;
+        var source = $@"using Vogen;
 var c = GetCustomer();
 
 CustomerId GetCustomer() => default;
 
 [ValueObject(typeof(int))]
-public partial struct CustomerId { }
+public {type} CustomerId {{ }}
 ";
         
         var (diagnostics, output) = TestHelper.GetGeneratedOutput<CreationUsingDefaultLiteralAnalyzer>(source);
@@ -121,16 +138,22 @@ public partial struct CustomerId { }
         diagnostic.ToString().Should().Be("(4,29): error VOG009: Type 'CustomerId' cannot be constructed with default as it is prohibited.");
     }
 
-    [Fact]
-    public void Disallows_default_from_local_function()
+    [Theory]
+    [InlineData("partial class")]
+    [InlineData("partial struct")]
+    [InlineData("readonly partial struct")]
+    [InlineData("partial record class")]
+    [InlineData("partial record struct")]
+    [InlineData("readonly partial record struct")]
+    public void Disallows_default_from_local_function(string type)
     {
-        var source = @"using Vogen;
+        var source = $@"using Vogen;
 var c = GetCustomer();
 
 CustomerId GetCustomer() => default(CustomerId);
 
 [ValueObject(typeof(int))]
-public partial struct CustomerId { }
+public {type} CustomerId {{ }}
 ";
         
         var (diagnostics, output) = TestHelper.GetGeneratedOutput<CreationUsingDefaultAnalyzer>(source);
@@ -144,18 +167,24 @@ public partial struct CustomerId { }
         diagnostic.ToString().Should().Be("(4,37): error VOG009: Type 'CustomerId' cannot be constructed with default as it is prohibited.");
     }
 
-    [Fact]
-    public void Disallows_default_from_method()
+    [Theory]
+    [InlineData("partial class")]
+    [InlineData("partial struct")]
+    [InlineData("readonly partial struct")]
+    [InlineData("partial record class")]
+    [InlineData("partial record struct")]
+    [InlineData("readonly partial record struct")]
+    public void Disallows_default_from_method(string type)
     {
-        var source = @"using Vogen;
+        var source = $@"using Vogen;
 var c =Foo.GetCustomer();
 
 [ValueObject(typeof(int))]
-public partial struct CustomerId { }
+public {type} CustomerId {{ }}
 
-class Foo  {
+class Foo  {{
     public static CustomerId GetCustomer() => default;
-}
+}}
 ";
         
         var (diagnostics, output) = TestHelper.GetGeneratedOutput<CreationUsingDefaultLiteralAnalyzer>(source);
@@ -169,15 +198,21 @@ class Foo  {
         diagnostic.ToString().Should().Be("(8,47): error VOG009: Type 'CustomerId' cannot be constructed with default as it is prohibited.");
     }
 
-    [Fact]
-    public void Disallows_default_literal_from_func()
+    [Theory]
+    [InlineData("partial class")]
+    [InlineData("partial struct")]
+    [InlineData("readonly partial struct")]
+    [InlineData("partial record class")]
+    [InlineData("partial record struct")]
+    [InlineData("readonly partial record struct")]
+    public void Disallows_default_literal_from_func(string type)
     {
-        var source = @"using System;
+        var source = $@"using System;
 using Vogen;
 Func<CustomerId> f = () => default;
 
 [ValueObject(typeof(int))]
-public partial struct CustomerId { }
+public {type} CustomerId {{ }}
 ";
         
         var (diagnostics, output) = TestHelper.GetGeneratedOutput<CreationUsingDefaultLiteralAnalyzer>(source);
@@ -191,14 +226,20 @@ public partial struct CustomerId { }
         diagnostic.ToString().Should().Be("(3,28): error VOG009: Type 'CustomerId' cannot be constructed with default as it is prohibited.");
     }
 
-    [Fact]
-    public void Disallows_default_from_func()
+    [Theory]
+    [InlineData("partial class")]
+    [InlineData("partial struct")]
+    [InlineData("readonly partial struct")]
+    [InlineData("partial record class")]
+    [InlineData("partial record struct")]
+    [InlineData("readonly partial record struct")]
+    public void Disallows_default_from_func(string type)
     {
-        var source = @"using Vogen;
+        var source = $@"using Vogen;
 Func<CustomerId> f = () => default(CustomerId);
 
 [ValueObject(typeof(int))]
-public partial struct CustomerId { }
+public {type} CustomerId {{ }}
 ";
         
         var (diagnostics, output) = TestHelper.GetGeneratedOutput<CreationUsingDefaultAnalyzer>(source);
@@ -211,5 +252,4 @@ public partial struct CustomerId { }
         diagnostic.Id.Should().Be("VOG009");
         diagnostic.ToString().Should().Be("(2,36): error VOG009: Type 'CustomerId' cannot be constructed with default as it is prohibited.");
     }
-
 }

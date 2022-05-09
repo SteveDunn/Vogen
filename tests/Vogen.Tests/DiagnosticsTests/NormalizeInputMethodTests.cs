@@ -16,9 +16,12 @@ public class NormalizeInputMethodTests
     public NormalizeInputMethodTests(ITestOutputHelper output) => _output = output;
 
     [Theory]
-    [InlineData("class")]
-    [InlineData("struct")]
-    [InlineData("readonly struct")]
+    [InlineData("partial class")]
+    [InlineData("partial struct")]
+    [InlineData("readonly partial struct")]
+    [InlineData("partial record class")]
+    [InlineData("partial record struct")]
+    [InlineData("readonly partial record struct")]
     public void NormalizeInput_FailsWithParameterOfWrongType(string type)
     {
         var source = BuildSource(type);
@@ -46,9 +49,12 @@ public {type} CustomerId
     }
 
     [Theory]
-    [InlineData("class")]
-    [InlineData("struct")]
-    [InlineData("readonly struct")]
+    [InlineData("partial class")]
+    [InlineData("partial struct")]
+    [InlineData("readonly partial struct")]
+    [InlineData("partial record class")]
+    [InlineData("partial record struct")]
+    [InlineData("readonly partial record struct")]
     public void NormalizeInput_FailsWithReturnOfWrongType(string type)
     {
         var source = BuildSource(type);
@@ -76,9 +82,12 @@ public {type} CustomerId
     }
 
     [Theory]
-    [InlineData("class")]
-    [InlineData("struct")]
-    [InlineData("readonly struct")]
+    [InlineData("partial class")]
+    [InlineData("partial struct")]
+    [InlineData("readonly partial struct")]
+    [InlineData("partial record class")]
+    [InlineData("partial record struct")]
+    [InlineData("readonly partial record struct")]
     public void NormalizeInput_FailsWhenNonStatic(string type)
     {
         var source = BuildSource(type);

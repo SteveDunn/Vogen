@@ -11,7 +11,8 @@ public class Program
 {
     public static void Main()
     {
-
+        var s = Score.From(1);
+        Console.WriteLine(s.Value);
     }
 }
 
@@ -23,7 +24,8 @@ public class Program
 //     private static Int32 NormalizeInput(int input) => Math.Min(128, input);
 // }
 
-public sealed partial record Score
+[ValueObject]
+public readonly partial record struct Score
 {
     private static Validation Validate(int value) => value >= 0 ? Validation.Ok : Validation.Invalid("Score must be zero or more");
 }

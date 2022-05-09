@@ -28,17 +28,5 @@ namespace Vogen.Tests.InstanceFields
                 MyIntStructWithADefaultOf22.Default2.Value.Should().Be(33);
             }
         }
-
-        public class RecordClassVo
-        {
-            [Fact]
-            public void Type_with_two_instance_fields()
-            {
-                _ = MyRecordClassVoIntWithTwoInstanceOfInvalidAndUnspecified.From(100);
-
-                MyRecordClassVoIntWithTwoInstanceOfInvalidAndUnspecified.Invalid.Value.Should().Be(-1);
-                MyRecordClassVoIntWithTwoInstanceOfInvalidAndUnspecified.Unspecified.Value.Should().Be(-2);
-            }
-        }
     }
 }
