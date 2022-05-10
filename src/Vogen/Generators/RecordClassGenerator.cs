@@ -100,6 +100,9 @@ public {itemUnderlyingType} Value
 
         {Util.GenerateAnyInstances(tds, item)}
 
+        // record enumerates fields - we just want our Value and to throw if it's not initialized.
+        public override global::System.String ToString() => Value.ToString();
+
         {Util.GenerateAnyConversionBodies(tds, item)}
 
         {Util.GenerateDebuggerProxyForClasses(tds, item)}

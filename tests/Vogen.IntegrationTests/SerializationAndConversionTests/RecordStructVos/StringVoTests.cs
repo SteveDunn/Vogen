@@ -11,16 +11,16 @@ using Microsoft.EntityFrameworkCore;
 using Xunit;
 using NewtonsoftJsonSerializer = Newtonsoft.Json.JsonConvert;
 using SystemTextJsonSerializer = System.Text.Json.JsonSerializer;
-using Vogen.IntegrationTests.TestTypes.RecordClassVos;
+using Vogen.IntegrationTests.TestTypes.RecordStructVos;
 using LinqToDB;
 using LinqToDB.Data;
 using LinqToDB.DataProvider.SQLite;
 using LinqToDB.Mapping;
 
-namespace Vogen.IntegrationTests.SerializationAndConversionTests.RecordClassVos
+namespace Vogen.IntegrationTests.SerializationAndConversionTests.RecordStructVos
 {
     [ValueObject(underlyingType: typeof(string))]
-    public partial struct AnotherStringVo { }
+    public partial record struct AnotherStringVo { }
 
     public class StringVoTests
     {

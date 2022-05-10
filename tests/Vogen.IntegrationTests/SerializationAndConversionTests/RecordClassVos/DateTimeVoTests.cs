@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore;
 using Xunit;
 using NewtonsoftJsonSerializer = Newtonsoft.Json.JsonConvert;
 using SystemTextJsonSerializer = System.Text.Json.JsonSerializer;
-using Vogen.IntegrationTests.TestTypes.ClassVos;
+using Vogen.IntegrationTests.TestTypes.RecordClassVos;
 using LinqToDB;
 using LinqToDB.Data;
 using LinqToDB.DataProvider.SQLite;
@@ -24,7 +24,7 @@ using LinqToDB.Mapping;
 // ReSharper disable PropertyCanBeMadeInitOnly.Global
 // ReSharper disable SuspiciousTypeConversion.Global
 
-namespace Vogen.IntegrationTests.SerializationAndConversionTests.ClassVos
+namespace Vogen.IntegrationTests.SerializationAndConversionTests.RecordClassVos
 {
     [ValueObject(underlyingType: typeof(DateTime))]
     public readonly partial struct AnotherDateTimeVo { }

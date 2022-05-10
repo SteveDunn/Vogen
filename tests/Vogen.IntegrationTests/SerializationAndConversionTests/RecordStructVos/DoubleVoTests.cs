@@ -11,113 +11,113 @@ using Microsoft.EntityFrameworkCore;
 using Xunit;
 using NewtonsoftJsonSerializer = Newtonsoft.Json.JsonConvert;
 using SystemTextJsonSerializer = System.Text.Json.JsonSerializer;
-using Vogen.IntegrationTests.TestTypes.RecordClassVos;
+using Vogen.IntegrationTests.TestTypes.RecordStructVos;
 using LinqToDB;
 using LinqToDB.Data;
 using LinqToDB.DataProvider.SQLite;
 using LinqToDB.Mapping;
 
-namespace Vogen.IntegrationTests.SerializationAndConversionTests.RecordClassVos
+namespace Vogen.IntegrationTests.SerializationAndConversionTests.RecordStructVos
 {
-    [ValueObject(underlyingType: typeof(string))]
-    public partial struct AnotherStringVo { }
+    [ValueObject(underlyingType: typeof(double))]
+    public partial struct AnotherDoubleVo { }
 
-    public class StringVoTests
+    public class DoubleVoTests
     {
         [Fact]
         public void equality_between_same_value_objects()
         {
-            StringVo.From("hello!").Equals(StringVo.From("hello!")).Should().BeTrue();
-            (StringVo.From("hello!") == StringVo.From("hello!")).Should().BeTrue();
+            DoubleVo.From(18).Equals(DoubleVo.From(18)).Should().BeTrue();
+            (DoubleVo.From(18) == DoubleVo.From(18)).Should().BeTrue();
 
-            (StringVo.From("hello!") != StringVo.From("world!")).Should().BeTrue();
-            (StringVo.From("hello!") == StringVo.From("world!")).Should().BeFalse();
+            (DoubleVo.From(18) != DoubleVo.From(19)).Should().BeTrue();
+            (DoubleVo.From(18) == DoubleVo.From(19)).Should().BeFalse();
 
-            StringVo.From("hello!").Equals(StringVo.From("hello!")).Should().BeTrue();
-            (StringVo.From("hello!") == StringVo.From("hello!")).Should().BeTrue();
+            DoubleVo.From(18).Equals(DoubleVo.From(18)).Should().BeTrue();
+            (DoubleVo.From(18) == DoubleVo.From(18)).Should().BeTrue();
 
-            var original = StringVo.From("hello!");
-            var other = StringVo.From("hello!");
+            var original = DoubleVo.From(18);
+            var other = DoubleVo.From(18);
 
-            ((original as IEquatable<StringVo>).Equals(other)).Should().BeTrue();
-            ((other as IEquatable<StringVo>).Equals(original)).Should().BeTrue();
+            ((original as IEquatable<DoubleVo>).Equals(other)).Should().BeTrue();
+            ((other as IEquatable<DoubleVo>).Equals(original)).Should().BeTrue();
         }
 
         [Fact]
         public void equality_between_different_value_objects()
         {
-            StringVo.From("hello!").Equals(AnotherStringVo.From("hello!")).Should().BeFalse();
+            DoubleVo.From(18).Equals(AnotherDoubleVo.From(18)).Should().BeFalse();
         }
 
         [Fact]
-        public void CanSerializeToString_WithNewtonsoftJsonProvider()
+        public void CanSerializeToLong_WithNewtonsoftJsonProvider()
         {
-            var vo = NewtonsoftJsonStringVo.From("foo!");
+            var vo = NewtonsoftJsonDoubleVo.From(123D);
 
             string serializedVo = NewtonsoftJsonSerializer.SerializeObject(vo);
-            string serializedString = NewtonsoftJsonSerializer.SerializeObject(vo.Value);
+            string serializedLong = NewtonsoftJsonSerializer.SerializeObject(vo.Value);
 
-            Assert.Equal(serializedVo, serializedString);
+            Assert.Equal(serializedVo, serializedLong);
         }
 
         [Fact]
-        public void CanSerializeToString_WithSystemTextJsonProvider()
+        public void CanSerializeToLong_WithSystemTextJsonProvider()
         {
-            var vo = SystemTextJsonStringVo.From("foo!");
+            var vo = SystemTextJsonDoubleVo.From(123D);
 
             string serializedVo = SystemTextJsonSerializer.Serialize(vo);
-            string serializedString = SystemTextJsonSerializer.Serialize(vo.Value);
+            string serializedLong = SystemTextJsonSerializer.Serialize(vo.Value);
 
-            serializedVo.Equals(serializedString).Should().BeTrue();
+            serializedVo.Equals(serializedLong).Should().BeTrue();
         }
 
         [Fact]
-        public void CanDeserializeFromString_WithNewtonsoftJsonProvider()
+        public void CanDeserializeFromLong_WithNewtonsoftJsonProvider()
         {
-            var value = "foo!";
-            var vo = NewtonsoftJsonStringVo.From(value);
-            var serializedString = NewtonsoftJsonSerializer.SerializeObject(value);
+            var value = 123D;
+            var vo = NewtonsoftJsonDoubleVo.From(value);
+            var serializedLong = NewtonsoftJsonSerializer.SerializeObject(value);
 
-            var deserializedVo = NewtonsoftJsonSerializer.DeserializeObject<NewtonsoftJsonStringVo>(serializedString);
+            var deserializedVo = NewtonsoftJsonSerializer.DeserializeObject<NewtonsoftJsonDoubleVo>(serializedLong);
 
             Assert.Equal(vo, deserializedVo);
         }
 
         [Fact]
-        public void CanDeserializeFromString_WithSystemTextJsonProvider()
+        public void CanDeserializeFromLong_WithSystemTextJsonProvider()
         {
-            var value = "foo!";
-            var vo = SystemTextJsonStringVo.From(value);
-            var serializedString = SystemTextJsonSerializer.Serialize(value);
+            var value = 123D;
+            var vo = SystemTextJsonDoubleVo.From(value);
+            var serializedLong = SystemTextJsonSerializer.Serialize(value);
 
-            var deserializedVo = SystemTextJsonSerializer.Deserialize<SystemTextJsonStringVo>(serializedString);
+            var deserializedVo = SystemTextJsonSerializer.Deserialize<SystemTextJsonDoubleVo>(serializedLong);
 
             Assert.Equal(vo, deserializedVo);
         }
 
         [Fact]
-        public void CanSerializeToString_WithBothJsonConverters()
+        public void CanSerializeToLong_WithBothJsonConverters()
         {
-            var vo = BothJsonStringVo.From("foo!");
+            var vo = BothJsonDoubleVo.From(123D);
 
             var serializedVo1 = NewtonsoftJsonSerializer.SerializeObject(vo);
-            var serializedString1 = NewtonsoftJsonSerializer.SerializeObject(vo.Value);
+            var serializedLong1 = NewtonsoftJsonSerializer.SerializeObject(vo.Value);
 
             var serializedVo2 = SystemTextJsonSerializer.Serialize(vo);
-            var serializedString2 = SystemTextJsonSerializer.Serialize(vo.Value);
+            var serializedLong2 = SystemTextJsonSerializer.Serialize(vo.Value);
 
-            Assert.Equal(serializedVo1, serializedString1);
-            Assert.Equal(serializedVo2, serializedString2);
+            Assert.Equal(serializedVo1, serializedLong1);
+            Assert.Equal(serializedVo2, serializedLong2);
         }
 
         [Fact]
         public void WhenNoJsonConverter_SystemTextJsonSerializesWithValueProperty()
         {
-            var vo = NoJsonStringVo.From("foo!");
+            var vo = NoJsonDoubleVo.From(123D);
 
             var serialized = SystemTextJsonSerializer.Serialize(vo);
 
-            var expected = "{\"Value\":\"" + vo.Value + "\"}";
+            var expected = "{\"Value\":" + vo.Value + "}";
 
             Assert.Equal(expected, serialized);
         }
@@ -125,7 +125,7 @@ namespace Vogen.IntegrationTests.SerializationAndConversionTests.RecordClassVos
         [Fact]
         public void WhenNoJsonConverter_NewtonsoftSerializesWithoutValueProperty()
         {
-            var vo = NoJsonStringVo.From("foo!");
+            var vo = NoJsonDoubleVo.From(123D);
 
             var serialized = NewtonsoftJsonSerializer.SerializeObject(vo);
 
@@ -137,12 +137,12 @@ namespace Vogen.IntegrationTests.SerializationAndConversionTests.RecordClassVos
         [Fact]
         public void WhenNoTypeConverter_SerializesWithValueProperty()
         {
-            var vo = NoConverterStringVo.From("foo!");
+            var vo = NoConverterDoubleVo.From(123D);
 
             var newtonsoft = SystemTextJsonSerializer.Serialize(vo);
             var systemText = SystemTextJsonSerializer.Serialize(vo);
 
-            var expected = "{\"Value\":\"" + vo.Value + "\"}";
+            var expected = "{\"Value\":" + vo.Value + "}";
 
             Assert.Equal(expected, newtonsoft);
             Assert.Equal(expected, systemText);
@@ -158,7 +158,7 @@ namespace Vogen.IntegrationTests.SerializationAndConversionTests.RecordClassVos
                 .UseSqlite(connection)
                 .Options;
 
-            var original = new EfCoreTestEntity { Id = EfCoreStringVo.From("foo!") };
+            var original = new EfCoreTestEntity { Id = EfCoreDoubleVo.From(123D) };
             using (var context = new TestDbContext(options))
             {
                 context.Database.EnsureCreated();
@@ -179,10 +179,10 @@ namespace Vogen.IntegrationTests.SerializationAndConversionTests.RecordClassVos
             using var connection = new SqliteConnection("DataSource=:memory:");
             await connection.OpenAsync();
 
-            IEnumerable<DapperStringVo> results = await connection.QueryAsync<DapperStringVo>("SELECT 'foo!'");
+            IEnumerable<DapperDoubleVo> results = await connection.QueryAsync<DapperDoubleVo>("SELECT 123");
 
             var value = Assert.Single(results);
-            Assert.Equal(DapperStringVo.From("foo!"), value);
+            Assert.Equal(DapperDoubleVo.From(123D), value);
         }
 
         [Fact]
@@ -191,7 +191,7 @@ namespace Vogen.IntegrationTests.SerializationAndConversionTests.RecordClassVos
             var connection = new SqliteConnection("DataSource=:memory:");
             connection.Open();
 
-            var original = new LinqToDbTestEntity { Id = LinqToDbStringVo.From("foo!") };
+            var original = new LinqToDbTestEntity { Id = LinqToDbDoubleVo.From(123) };
             using (var context = new DataConnection(
                 SQLiteTools.GetDataProvider("SQLite.MS"),
                 connection,
@@ -212,17 +212,39 @@ namespace Vogen.IntegrationTests.SerializationAndConversionTests.RecordClassVos
         }
 
         [Theory]
-        [InlineData("")]
+        [InlineData(123D)]
         [InlineData("123")]
         public void TypeConverter_CanConvertToAndFrom(object value)
         {
-            var converter = TypeDescriptor.GetConverter(typeof(NoJsonStringVo));
+            var converter = TypeDescriptor.GetConverter(typeof(NoJsonDoubleVo));
             var id = converter.ConvertFrom(value);
-            Assert.IsType<NoJsonStringVo>(id);
-            Assert.Equal(NoJsonStringVo.From(value?.ToString()), id);
+            Assert.IsType<NoJsonDoubleVo>(id);
+            Assert.Equal(NoJsonDoubleVo.From(123D), id);
 
             var reconverted = converter.ConvertTo(id, value.GetType());
             Assert.Equal(value, reconverted);
+        }
+        
+        [Fact]
+        public void RoundTrip_WithNsj()
+        {
+            var vo = NewtonsoftJsonDoubleVo.From(123.45);
+
+            string serializedVo = NewtonsoftJsonSerializer.SerializeObject(vo);
+            var deserializedVo = NewtonsoftJsonSerializer.DeserializeObject<NewtonsoftJsonDoubleVo>(serializedVo)!;
+
+            deserializedVo.Value.Should().Be(123.45);
+        }
+
+        [Fact]
+        public void RoundTrip_WithStj()
+        {
+            var vo = SystemTextJsonDoubleVo.From(123.45);
+
+            string serializedVo = SystemTextJsonSerializer.Serialize(vo);
+            var deserializedVo = SystemTextJsonSerializer.Deserialize<SystemTextJsonDoubleVo>(serializedVo)!;
+
+            deserializedVo.Value.Should().Be(123.45);
         }
 
         public class TestDbContext : DbContext
@@ -240,7 +262,7 @@ namespace Vogen.IntegrationTests.SerializationAndConversionTests.RecordClassVos
                      {
                          builder
                              .Property(x => x.Id)
-                             .HasConversion(new EfCoreStringVo.EfCoreValueConverter())
+                             .HasConversion(new EfCoreDoubleVo.EfCoreValueConverter())
                              .ValueGeneratedNever();
                      });
              }
@@ -248,14 +270,14 @@ namespace Vogen.IntegrationTests.SerializationAndConversionTests.RecordClassVos
 
         public class EfCoreTestEntity
         {
-            public EfCoreStringVo Id { get; set; }
+            public EfCoreDoubleVo Id { get; set; }
         }
 
         public class LinqToDbTestEntity
         {
-            [Column(DataType = DataType.VarChar)]
-            [ValueConverter(ConverterType = typeof(LinqToDbStringVo.LinqToDbValueConverter))]
-            public LinqToDbStringVo Id { get; set; }
+            [Column(DataType = DataType.Double)]
+            [ValueConverter(ConverterType = typeof(LinqToDbDoubleVo.LinqToDbValueConverter))]
+            public LinqToDbDoubleVo Id { get; set; }
         }
     }
 }

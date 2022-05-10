@@ -45,7 +45,7 @@ CustomerId c = new();
         Diagnostic diagnostic = diagnostics.Single();
 
         diagnostic.Id.Should().Be("VOG010");
-        diagnostic.ToString().Should().Be("(14,1): error VOG010: Type 'CustomerId' cannot be constructed with 'new' as it is prohibited.");
+        diagnostic.ToString().Should().Match("*error VOG010: Type 'CustomerId' cannot be constructed with 'new' as it is prohibited.");
     }
 
     [Fact]
@@ -106,7 +106,7 @@ CustomerId[] customers = new CustomerId[] {{ CustomerId.From(123), default, Cust
         Diagnostic diagnostic = diagnostics.Single();
 
         diagnostic.Id.Should().Be("VOG009");
-        diagnostic.ToString().Should().Be("(7,66): error VOG009: Type 'CustomerId' cannot be constructed with default as it is prohibited.");
+        diagnostic.ToString().Should().Match("*error VOG009: Type 'CustomerId' cannot be constructed with default as it is prohibited.");
     }
 
     [Theory]

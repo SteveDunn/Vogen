@@ -15,11 +15,11 @@ using Microsoft.EntityFrameworkCore;
 using Xunit;
 using NewtonsoftJsonSerializer = Newtonsoft.Json.JsonConvert;
 using SystemTextJsonSerializer = System.Text.Json.JsonSerializer;
-using Vogen.IntegrationTests.TestTypes.ClassVos;
+using Vogen.IntegrationTests.TestTypes.RecordClassVos;
 // ReSharper disable RedundantOverflowCheckingContext
 // ReSharper disable ConvertToLocalFunction
 
-namespace Vogen.IntegrationTests.SerializationAndConversionTests.ClassVos
+namespace Vogen.IntegrationTests.SerializationAndConversionTests.RecordClassVos
 {
     [ValueObject(underlyingType: typeof(bool))]
     public partial struct AnotherBoolVo { }

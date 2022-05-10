@@ -12,15 +12,15 @@ using LinqToDB.DataProvider.SQLite;
 using LinqToDB.Mapping;
 using Microsoft.Data.Sqlite;
 using Microsoft.EntityFrameworkCore;
-using Vogen.IntegrationTests.TestTypes.ClassVos;
+using Vogen.IntegrationTests.TestTypes.RecordStructVos;
 using Xunit;
 using NewtonsoftJsonSerializer = Newtonsoft.Json.JsonConvert;
 using SystemTextJsonSerializer = System.Text.Json.JsonSerializer;
 
-namespace Vogen.IntegrationTests.SerializationAndConversionTests.ClassVos
+namespace Vogen.IntegrationTests.SerializationAndConversionTests.RecordStructVos
 {
     [ValueObject(underlyingType: typeof(Bar))]
-    public partial class AnotherFooVo { }
+    public partial record struct AnotherFooVo { }
 
     public class AnyOtherTypeVoTests
     {
