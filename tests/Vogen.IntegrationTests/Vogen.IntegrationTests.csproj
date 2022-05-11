@@ -136,7 +136,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="SnapshotTests\BoolVo\Snapshots\" />
+    <Folder Include="SnapshotTests\GenerationTests\Snapshots\" />
   </ItemGroup>
 
 </Project>
