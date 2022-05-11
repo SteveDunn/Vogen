@@ -1,4 +1,6 @@
-﻿using System.Linq;
+﻿using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
 using FluentAssertions;
 using FluentAssertions.Execution;
 using Microsoft.CodeAnalysis;
@@ -11,17 +13,40 @@ namespace Vogen.Tests.DiagnosticsTests;
 [UsesVerify] 
 public class NormalizeInputMethodTests
 {
+        public class MyClassData : IEnumerable<object[]>
+    {
+        public IEnumerator<object[]> GetEnumerator()
+        {
+            yield return new[] {"public partial class"};
+            yield return new[] {"public sealed partial class"};
+            yield return new[] {"public partial struct"};
+            yield return new[] {"public readonly partial struct"};
+            yield return new[] {"public sealed partial record class"};
+            yield return new[] {"public sealed partial record"};
+            yield return new[] {"public partial record struct"};
+            yield return new[] {"public readonly partial record struct"};
+
+            yield return new[] {"internal partial class"};
+            yield return new[] {"internal sealed partial class"};
+            yield return new[] {"internal partial struct"};
+            yield return new[] {"internal readonly partial struct"};
+            yield return new[] {"internal sealed partial record class"};
+            yield return new[] {"internal sealed partial record"};
+            yield return new[] {"internal partial record struct"};
+            yield return new[] {"internal readonly partial record struct"};
+        }
+
+
+        IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
+    }
+
+    
     private readonly ITestOutputHelper _output;
 
     public NormalizeInputMethodTests(ITestOutputHelper output) => _output = output;
 
     [Theory]
-    [InlineData("partial class")]
-    [InlineData("partial struct")]
-    [InlineData("readonly partial struct")]
-    [InlineData("partial record class")]
-    [InlineData("partial record struct")]
-    [InlineData("readonly partial record struct")]
+    [ClassData(typeof(MyClassData))]
     public void NormalizeInput_FailsWithParameterOfWrongType(string type)
     {
         var source = BuildSource(type);
@@ -42,19 +67,14 @@ public class NormalizeInputMethodTests
 namespace Whatever;
 
 [ValueObject(typeof(int))]
-public {type} CustomerId
+{type} CustomerId
 {{
     private static int NormalizeInput(bool value) => 0;
 }}";
     }
 
     [Theory]
-    [InlineData("partial class")]
-    [InlineData("partial struct")]
-    [InlineData("readonly partial struct")]
-    [InlineData("partial record class")]
-    [InlineData("partial record struct")]
-    [InlineData("readonly partial record struct")]
+    [ClassData(typeof(MyClassData))]
     public void NormalizeInput_FailsWithReturnOfWrongType(string type)
     {
         var source = BuildSource(type);
@@ -82,12 +102,7 @@ public {type} CustomerId
     }
 
     [Theory]
-    [InlineData("partial class")]
-    [InlineData("partial struct")]
-    [InlineData("readonly partial struct")]
-    [InlineData("partial record class")]
-    [InlineData("partial record struct")]
-    [InlineData("readonly partial record struct")]
+    [ClassData(typeof(MyClassData))]
     public void NormalizeInput_FailsWhenNonStatic(string type)
     {
         var source = BuildSource(type);
@@ -108,7 +123,7 @@ public {type} CustomerId
 namespace Whatever;
 
 [ValueObject(typeof(int))]
-public {type} CustomerId
+{type} CustomerId
 {{
     private int NormalizeInput(int value) => 0;
 }}";

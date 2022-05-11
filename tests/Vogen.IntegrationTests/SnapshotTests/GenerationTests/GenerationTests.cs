@@ -40,13 +40,16 @@ public class GenerationTests
             "readonly partial struct",
             
             "partial class",
-            "partial class",
             "sealed partial class",
 
             "partial record struct",
-            
-            "sealed partial record class",
             "readonly partial record struct",
+            
+            "partial record class",
+            "sealed partial record class",
+
+            "partial record",
+            "sealed partial record",
         };
 
         // for each of the types above, create classes for each one of these attributes
@@ -73,7 +76,6 @@ public class GenerationTests
             "decimal",
             "double",
             "float",
-            //"FooVo",
             "int",
             "System.Guid",
             "long",
