@@ -21,7 +21,11 @@ public class GenerationTests
                 {
                     foreach (string underlyingType in _underlyingTypes)
                     {
-                        yield return new object[] { type, conversion, underlyingType, createClassName(type, conversion, underlyingType) };
+                        var qualifiedType = "public " + type;
+                        yield return new object[] { qualifiedType, conversion, underlyingType, createClassName(qualifiedType, conversion, underlyingType) };
+                        
+                        qualifiedType = "internal " + type;
+                        yield return new object[] { qualifiedType, conversion, underlyingType, createClassName(qualifiedType, conversion, underlyingType) };
                     }
                 }
             }
@@ -32,12 +36,17 @@ public class GenerationTests
 
         private readonly string[] _types = new[]
         {
-            "public partial struct",
-            "public partial class",
-            "public partial record struct",
-            "public partial record class",
-            "public readonly partial struct",
-            "public readonly partial record struct"
+            "partial struct",
+            "readonly partial struct",
+            
+            "partial class",
+            "partial class",
+            "sealed partial class",
+
+            "partial record struct",
+            
+            "sealed partial record class",
+            "readonly partial record struct",
         };
 
         // for each of the types above, create classes for each one of these attributes

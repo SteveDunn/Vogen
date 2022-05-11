@@ -5,6 +5,9 @@ using Vogen;
 
 namespace Whatever;
 
+[ValueObject(conversions: Conversions.DapperTypeHandler, underlyingType: typeof(DateTime))]
+internal sealed partial record class public_partial_classConversions_DapperTypeHandlerDateTime { }
+
 
 
 public class Program
@@ -29,9 +32,3 @@ public class Program
 // {
 //     private static Validation Validate(int value) => value >= 0 ? Validation.Ok : Validation.Invalid("Score must be zero or more");
 // }
-
-
-[ValueObject(conversions: Conversions.DapperTypeHandler, underlyingType: typeof(DateTime))]
-public partial class public_partial_classConversions_DapperTypeHandlerDateTime { }
-
-

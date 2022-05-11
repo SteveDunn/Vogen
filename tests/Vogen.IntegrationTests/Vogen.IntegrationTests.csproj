@@ -135,8 +135,4 @@
     </None>
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="SnapshotTests\GenerationTests\Snapshots\" />
-  </ItemGroup>
-
 </Project>
