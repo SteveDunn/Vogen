@@ -1,7 +1,11 @@
 ﻿using System;
+using System.IO;
 using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Text;
+using System.Xml;
+using System.Xml.Linq;
+using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Vogen.Generators.Conversions;
 
@@ -11,7 +15,7 @@ namespace Vogen;
 
 public static class Util
 {
-    static readonly IGenerateConversion[] _conversionGenerators = 
+    static readonly IGenerateConversion[] _conversionGenerators =
     {
         new GenerateSystemTextJsonConversions(),
         new GenerateNewtonsoftJsonConversions(),
@@ -20,7 +24,7 @@ public static class Util
         new GenerateEfCoreTypeConversions(),
         new GenerateLinqToDbConversions(),
     };
-    
+
     public static string GenerateAnyInstances(TypeDeclarationSyntax classDeclarationSyntax, VoWorkItem item)
     {
         if (item.InstanceProperties.Count == 0)
@@ -29,15 +33,15 @@ public static class Util
         }
 
         StringBuilder sb = new StringBuilder();
-        
+
         foreach (var each in item.InstanceProperties)
         {
-            sb.AppendLine(GenerateAnyInstances_internal(each,classDeclarationSyntax, item));
+            sb.AppendLine(GenerateAnyInstances_internal(each, classDeclarationSyntax, item));
         }
 
         return sb.ToString();
     }
-    
+
     public static string GenerateValidation(VoWorkItem workItem)
     {
         if (workItem.ValidateMethod != null)
@@ -57,11 +61,11 @@ public static class Util
 ";
         return string.Empty;
     }
-    
+
 
     private static string GenerateAnyInstances_internal(
         InstanceProperties instanceProperties,
-        TypeDeclarationSyntax classDeclarationSyntax, 
+        TypeDeclarationSyntax classDeclarationSyntax,
         VoWorkItem item)
     {
         if (item.InstanceProperties.Count == 0)
@@ -74,7 +78,23 @@ public static class Util
         return $@"
 // instance...
 
-public static {classDeclarationSyntax.Identifier} {instanceProperties.Name} = new {classDeclarationSyntax.Identifier}({instanceValue});";
+{BuildInstanceComment(classDeclarationSyntax.Identifier, item, instanceProperties.TripleSlashComments)}public static {classDeclarationSyntax.Identifier} {instanceProperties.Name} = new {classDeclarationSyntax.Identifier}({instanceValue});";
+    }
+
+    private static string BuildInstanceComment(SyntaxToken syntaxToken, VoWorkItem voWorkItem, string? commentText)
+    {
+        if (string.IsNullOrEmpty(commentText))
+        {
+            return string.Empty;
+        }
+
+        var x = new XElement("summary", commentText);
+        var y = new XElement("returns", $"An immutable shared instance of \"T:{voWorkItem.FullNamespace}.{syntaxToken}\"");
+
+        return $@"    
+/// {x}
+/// {y}
+";
     }
 
     private static string BuildInstanceValue(VoWorkItem item, object instancePropertiesValue)
@@ -136,7 +156,7 @@ public static {classDeclarationSyntax.Identifier} {instanceProperties.Name} = ne
     public static string GenerateAnyConversionAttributes(TypeDeclarationSyntax tds, VoWorkItem item)
     {
         StringBuilder sb = new StringBuilder();
-        
+
         foreach (var conversionGenerator in _conversionGenerators)
         {
             var attribute = conversionGenerator.GenerateAnyAttributes(tds, item);
@@ -148,7 +168,7 @@ public static {classDeclarationSyntax.Identifier} {instanceProperties.Name} = ne
 
         return sb.ToString();
     }
-    
+
     public static string GenerateAnyConversionAttributesForDebuggerProxy(TypeDeclarationSyntax tds, VoWorkItem item) => item.Conversions.ToString();
 
     public static string GenerateAnyConversionBodies(TypeDeclarationSyntax tds, VoWorkItem item)
@@ -158,7 +178,7 @@ public static {classDeclarationSyntax.Identifier} {instanceProperties.Name} = ne
         {
             sb.AppendLine(conversionGenerator.GenerateAnyBody(tds, item));
         }
-        
+
         return sb.ToString();
     }
 

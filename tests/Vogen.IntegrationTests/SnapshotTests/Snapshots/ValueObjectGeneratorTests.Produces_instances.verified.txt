@@ -122,6 +122,9 @@ namespace Whatever
         
 // instance...
 
+    
+/// <summary>a short description that'll show up in intellisense</summary>
+/// <returns>An immutable shared instance of "T:Whatever.CustomerId"</returns>
 public static CustomerId Unspecified = new CustomerId(-1);
 
 // instance...
@@ -130,6 +133,9 @@ public static CustomerId Unspecified1 = new CustomerId(-2);
 
 // instance...
 
+    
+/// <summary>&lt;some_xml&gt;whatever&lt;/some_xml</summary>
+/// <returns>An immutable shared instance of "T:Whatever.CustomerId"</returns>
 public static CustomerId Unspecified2 = new CustomerId(-3);
 
 // instance...

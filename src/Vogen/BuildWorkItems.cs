@@ -240,7 +240,7 @@ internal static class BuildWorkItems
 
         foreach (AttributeData? eachAttribute in matchingAttributes)
         {
-            if (eachAttribute == null)
+            if (eachAttribute is null)
             {
                 continue;
             }
@@ -270,8 +270,10 @@ internal static class BuildWorkItems
             {
                 continue;
             }
-
-            yield return new InstanceProperties(name, value);
+            
+            var tripleSlashComment = (string?)constructorArguments[2].Value;
+            
+            yield return new InstanceProperties(name, value, tripleSlashComment ?? string.Empty);
         }
     }
 }

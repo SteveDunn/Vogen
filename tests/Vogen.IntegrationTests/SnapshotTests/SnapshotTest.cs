@@ -57,9 +57,9 @@ public partial struct CustomerId
 namespace Whatever;
 
 [ValueObject(typeof(int))]
-[Instance(name: ""Unspecified"", value: -1)]
+[Instance(name: ""Unspecified"", value: -1, tripleSlashComment: ""a short description that'll show up in intellisense"")]
 [Instance(name: ""Unspecified1"", value: -2)]
-[Instance(name: ""Unspecified2"", value: -3)]
+[Instance(name: ""Unspecified2"", value: -3, tripleSlashComment: ""<some_xml>whatever</some_xml"")]
 [Instance(name: ""Unspecified3"", value: -4)]
 [Instance(name: ""Cust42"", value: 42)]
 public partial struct CustomerId
