@@ -14,22 +14,26 @@ public class SadTests
 
     public SadTests(ITestOutputHelper output) => _output = output;
 
-    [Fact]
-    public void Missing_any_constructors()
+    [Theory]
+    [InlineData("partial class")]
+    [InlineData("partial struct")]
+    [InlineData("readonly partial struct")]
+    [InlineData("partial record class")]
+    [InlineData("partial record struct")]
+    [InlineData("readonly partial record struct")]
+    public void Missing_any_constructors(string type)
     {
-        var source = @"using System;
+        var source = $@"using System;
 using Vogen;
 namespace Whatever;
 
 [ValueObject(throws: typeof(MyValidationException))]
-public partial struct CustomerId
-{
+public {type} CustomerId
+{{
     private static Validation Validate(int value) => value > 0 ? Validation.Ok : Validation.Invalid(""xxxx"");
-}
+}}
 
-public class MyValidationException : Exception
-{
-}
+public class MyValidationException : Exception {{ }}
 ";
 
         var (diagnostics, output) = TestHelper.GetGeneratedOutput<ValueObjectGenerator>(source);
@@ -42,23 +46,29 @@ public class MyValidationException : Exception
         diagnostic.ToString().Should().Be("(11,14): error VOG013: MyValidationException must have at least 1 public constructor with 1 parameter of type System.String");
     }
 
-    [Fact]
-    public void Missing_string_constructor()
+    [Theory]
+    [InlineData("partial class")]
+    [InlineData("partial struct")]
+    [InlineData("readonly partial struct")]
+    [InlineData("partial record class")]
+    [InlineData("partial record struct")]
+    [InlineData("readonly partial record struct")]
+    public void Missing_string_constructor(string path)
     {
-        var source = @"using System;
+        var source = $@"using System;
 using Vogen;
 namespace Whatever;
 
 [ValueObject(throws: typeof(MyValidationException))]
-public partial struct CustomerId
-{
+public {path} CustomerId
+{{
     private static Validation Validate(int value) => value > 0 ? Validation.Ok : Validation.Invalid(""xxxx"");
-}
+}}
 
 public class MyValidationException : Exception
-{
-    public MyValidationException(object o) : base(o.ToString() { }
-}
+{{
+    public MyValidationException(object o) : base(o.ToString() {{ }}
+}}
 ";
 
         var (diagnostics, output) = TestHelper.GetGeneratedOutput<ValueObjectGenerator>(source);
@@ -71,23 +81,29 @@ public class MyValidationException : Exception
         diagnostic.ToString().Should().Be("(11,14): error VOG013: MyValidationException must have at least 1 public constructor with 1 parameter of type System.String"); 
     }
 
-    [Fact]
-    public void Missing_public_string_constructor_on_exception()
+    [Theory]
+    [InlineData("partial class")]
+    [InlineData("partial struct")]
+    [InlineData("readonly partial struct")]
+    [InlineData("partial record class")]
+    [InlineData("partial record struct")]
+    [InlineData("readonly partial record struct")]
+    public void Missing_public_string_constructor_on_exception(string type)
     {
-        var source = @"using System;
+        var source = $@"using System;
 using Vogen;
 namespace Whatever;
 
 [ValueObject(throws: typeof(MyValidationException))]
-public partial struct CustomerId
-{
+public {type} CustomerId
+{{
     private static Validation Validate(int value) => value > 0 ? Validation.Ok : Validation.Invalid(""xxxx"");
-}
+}}
 
 public class MyValidationException : Exception
-{
-    private MyValidationException(object o) : base(o.ToString() { } // PRIVATE!
-}
+{{
+    private MyValidationException(object o) : base(o.ToString() {{ }} // PRIVATE!
+}}
 ";
 
         var (diagnostics, output) = TestHelper.GetGeneratedOutput<ValueObjectGenerator>(source);
@@ -100,20 +116,26 @@ public class MyValidationException : Exception
         diagnostic.ToString().Should().Be("(11,14): error VOG013: MyValidationException must have at least 1 public constructor with 1 parameter of type System.String");
     }
 
-    [Fact]
-    public void Not_an_exception()
+    [Theory]
+    [InlineData("partial class")]
+    [InlineData("partial struct")]
+    [InlineData("readonly partial struct")]
+    [InlineData("partial record class")]
+    [InlineData("partial record struct")]
+    [InlineData("readonly partial record struct")]
+    public void Not_an_exception(string type)
     {
-        var source = @"using System;
+        var source = $@"using System;
 using Vogen;
 namespace Whatever;
 
 [ValueObject(throws: typeof(MyValidationException))]
-public partial struct CustomerId
-{
+public {type} CustomerId
+{{
     private static Validation Validate(int value) => value > 0 ? Validation.Ok : Validation.Invalid(""xxxx"");
-}
+}}
 
-public class MyValidationException { } // NOT AN EXCEPTION!
+public class MyValidationException {{ }} // NOT AN EXCEPTION!
 ";
 
         var (diagnostics, output) = TestHelper.GetGeneratedOutput<ValueObjectGenerator>(source);
@@ -132,16 +154,22 @@ public class MyValidationException { } // NOT AN EXCEPTION!
             });
     }
 
-    [Fact]
-    public void Not_valid_conversion()
+    [Theory]
+    [InlineData("partial class")]
+    [InlineData("partial struct")]
+    [InlineData("readonly partial struct")]
+    [InlineData("partial record class")]
+    [InlineData("partial record struct")]
+    [InlineData("readonly partial record struct")]
+    public void Not_valid_conversion(string type)
     {
-        var source = @"using System;
+        var source = $@"using System;
 using Vogen;
 
 namespace Whatever;
 
 [ValueObject(conversions: (Conversions)666)]
-public partial struct CustomerId { }
+public {type} CustomerId {{ }}
 ";
 
         var (diagnostics, output) = TestHelper.GetGeneratedOutput<ValueObjectGenerator>(source);
@@ -154,5 +182,4 @@ public partial struct CustomerId { }
             first.ToString().Should().Be("(6,2): error VOG011: The Conversions specified do not match any known conversions - see the Conversions type");
         });
     }
-
 }

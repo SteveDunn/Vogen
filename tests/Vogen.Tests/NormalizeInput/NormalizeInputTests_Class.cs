@@ -8,17 +8,17 @@ public class NormalizeInputTests_Class
 {
     
     [Fact]
-    public void WhenInputIsNormalized_ReturnsTheNormalizedValue() => Class_NormalizedToMax128.From(129).Value.Should().Be(128);
+    public void WhenInputIsNormalized_ReturnsTheNormalizedValue() => Struct_NormalizedToMax128.From(129).Value.Should().Be(128);
 
     [Fact]
     public void WhenInputIsNormalized_DoesNotThrowIfNormalizedToValidValue()
     {
-        Action a = () => Class_NormalizedToMax128WithValidation.From(129);
+        Action a = () => Struct_NormalizedToMax128WithValidation.From(129);
         a.Should().NotThrow();
     }
 
     [Fact]
-    public void Class_WhenInputIsNormalized_ThrowsIfNormalizedToValidValue()
+    public void Class_WhenInputIsNormalized_ThrowsIfNormalizedToInvalidValue()
     {
         Action a = () => Class_NormalizedToMax128WithValidation.From(-1);
         a.Should().ThrowExactly<ValueObjectValidationException>();

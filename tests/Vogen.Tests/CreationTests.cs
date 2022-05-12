@@ -61,5 +61,4 @@ public class CreationTests
         @c1.Should().Be(c2);
         (c1 == c2).Should().BeTrue();
     }
-    
 }

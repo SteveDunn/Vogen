@@ -5,12 +5,17 @@ using Vogen;
 
 namespace Whatever;
 
+[ValueObject(conversions: Conversions.DapperTypeHandler, underlyingType: typeof(DateTime))]
+internal sealed partial record class public_partial_classConversions_DapperTypeHandlerDateTime { }
+
 
 
 public class Program
 {
     public static void Main()
     {
+        //var s = Score.From(1);
+        //Console.WriteLine(s.Value);
     }
 }
 
@@ -22,6 +27,8 @@ public class Program
 //     private static Int32 NormalizeInput(int input) => Math.Min(128, input);
 // }
 
-// [ValueObject(underlyingType:typeof(int))]
-// public sealed partial class @class { }
-
+// [ValueObject]
+// public readonly partial record struct Score
+// {
+//     private static Validation Validate(int value) => value >= 0 ? Validation.Ok : Validation.Invalid("Score must be zero or more");
+// }

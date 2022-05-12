@@ -82,7 +82,7 @@ internal static class BuildWorkItems
 
         ReportErrorIfUnderlyingTypeIsCollection(context, config, voSymbolInformation);
 
-        var isValueType = IsValueType(config);
+        var isValueType = IsUnderlyingAValueType(config);
 
         return new VoWorkItem
         {
@@ -98,7 +98,7 @@ internal static class BuildWorkItems
         };
     }
 
-    private static bool IsValueType(VogenConfiguration config)
+    private static bool IsUnderlyingAValueType(VogenConfiguration config)
     {
         bool isValueType = true;
         if (config.UnderlyingType != null)
@@ -140,6 +140,11 @@ internal static class BuildWorkItems
 
     private static void ReportErrorsForAnyUserConstructors(SourceProductionContext context, INamedTypeSymbol voSymbolInformation)
     {
+        if (voSymbolInformation.IsRecord)
+        {
+            return;
+        }
+        
         foreach (var eachConstructor in voSymbolInformation.Constructors)
         {
             // no need to check for default constructor as it's already defined

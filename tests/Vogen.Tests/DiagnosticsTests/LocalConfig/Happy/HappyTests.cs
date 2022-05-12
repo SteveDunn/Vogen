@@ -14,40 +14,50 @@ public class HappyTests
 
     public HappyTests(ITestOutputHelper output) => _output = output;
     
-    [Fact]
-    public void Type_override()
+    [Theory]
+    [InlineData("partial class")]
+    [InlineData("partial struct")]
+    [InlineData("readonly partial struct")]
+    [InlineData("partial record class")]
+    [InlineData("partial record struct")]
+    [InlineData("readonly partial record struct")]
+    public void Type_override(string type)
     {
-        var source = @"using System;
+        var source = $@"using System;
 using Vogen;
 namespace Whatever;
 
 [ValueObject(typeof(float))]
-public partial struct CustomerId
-{
-}";
+public {type} CustomerId {{ }}";
         
         var (diagnostics, output) = TestHelper.GetGeneratedOutput<ValueObjectGenerator>(source);
 
         diagnostics.Should().BeEmpty();
     }
 
-    [Fact]
-    public void Exception_override()
+    [Theory]
+    [InlineData("partial class")]
+    [InlineData("partial struct")]
+    [InlineData("readonly partial struct")]
+    [InlineData("partial record class")]
+    [InlineData("partial record struct")]
+    [InlineData("readonly partial record struct")]
+    public void Exception_override(string type)
     {
-        var source = @"using System;
+        var source = $@"using System;
 using Vogen;
 namespace Whatever;
 
 [ValueObject(throws: typeof(MyValidationException))]
-public partial struct CustomerId
-{
+public {type} CustomerId
+{{
     private static Validation Validate(int value) => value > 0 ? Validation.Ok : Validation.Invalid(""xxxx"");
-}
+}}
 
 public class MyValidationException : Exception
-{
-    public MyValidationException(string message) : base(message) { }
-}
+{{
+    public MyValidationException(string message) : base(message) {{ }}
+}}
 ";
 
         var (diagnostics, output) = TestHelper.GetGeneratedOutput<ValueObjectGenerator>(source);
@@ -55,39 +65,51 @@ public class MyValidationException : Exception
         diagnostics.Should().HaveCount(0);
     }
 
-    [Fact]
-    public void Conversion_override()
+    [Theory]
+    [InlineData("partial class")]
+    [InlineData("partial struct")]
+    [InlineData("readonly partial struct")]
+    [InlineData("partial record class")]
+    [InlineData("partial record struct")]
+    [InlineData("readonly partial record struct")]
+    public void Conversion_override(string type)
     {
-        var source = @"using System;
+        var source = $@"using System;
 using Vogen;
 namespace Whatever;
 
 [ValueObject(conversions: Conversions.None)]
-public partial struct CustomerId { }";
+public {type} CustomerId {{ }}";
         
         var (diagnostics, output) = TestHelper.GetGeneratedOutput<ValueObjectGenerator>(source);
 
         diagnostics.Should().BeEmpty();
     }
 
-    [Fact]
-    public void Conversion_and_exceptions_override()
+    [Theory]
+    [InlineData("partial class")]
+    [InlineData("partial struct")]
+    [InlineData("readonly partial struct")]
+    [InlineData("partial record class")]
+    [InlineData("partial record struct")]
+    [InlineData("readonly partial record struct")]
+    public void Conversion_and_exceptions_override(string type)
     {
-        var source = @"using System;
+        var source = $@"using System;
 using Vogen;
 namespace Whatever;
 
 [ValueObject(conversions: Conversions.DapperTypeHandler, throws: typeof(Whatever.MyValidationException))]
-public partial struct CustomerId
-{
+public {type} CustomerId
+{{
     private static Validation Validate(int value) => value > 0 ? Validation.Ok : Validation.Invalid(""xxxx"");
-}
+}}
 
 
 public class MyValidationException : Exception
-{
-    public MyValidationException(string message) : base(message) { }
-}
+{{
+    public MyValidationException(string message) : base(message) {{ }}
+}}
 ";
         
         var (diagnostics, output) = TestHelper.GetGeneratedOutput<ValueObjectGenerator>(source);
@@ -95,10 +117,16 @@ public class MyValidationException : Exception
         diagnostics.Should().HaveCount(0);
     }
 
-    [Fact]
-    public void Override_global_config_locally()
+    [Theory]
+    [InlineData("partial class")]
+    [InlineData("partial struct")]
+    [InlineData("readonly partial struct")]
+    [InlineData("partial record class")]
+    [InlineData("partial record struct")]
+    [InlineData("readonly partial record struct")]
+    public void Override_global_config_locally(string type)
     {
-        var source = @"using System;
+        var source = $@"using System;
 using Vogen;
 
 [assembly: VogenDefaults(underlyingType: typeof(string), conversions: Conversions.None, throws:typeof(Whatever.MyValidationException))]
@@ -106,15 +134,15 @@ using Vogen;
 namespace Whatever;
 
 [ValueObject(underlyingType:typeof(float))]
-public partial struct CustomerId
-{
+public {type} CustomerId
+{{
     private static Validation Validate(float value) => value > 0 ? Validation.Ok : Validation.Invalid(""xxxx"");
-}
+}}
 
 public class MyValidationException : Exception
-{
-    public MyValidationException(string message) : base(message) { }
-}
+{{
+    public MyValidationException(string message) : base(message) {{ }}
+}}
 ";
         
         var (diagnostics, output) = TestHelper.GetGeneratedOutput<ValueObjectGenerator>(source);

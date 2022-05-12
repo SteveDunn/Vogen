@@ -7,7 +7,6 @@ using Xunit.Abstractions;
 
 namespace Vogen.Tests.DiagnosticsTests.GlobalConfig.Sad;
 
-[UsesVerify] 
 public class SadTests
 {
     private readonly ITestOutputHelper _output;

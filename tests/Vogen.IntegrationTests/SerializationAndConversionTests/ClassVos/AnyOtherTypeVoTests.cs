@@ -20,7 +20,7 @@ using SystemTextJsonSerializer = System.Text.Json.JsonSerializer;
 namespace Vogen.IntegrationTests.SerializationAndConversionTests.ClassVos
 {
     [ValueObject(underlyingType: typeof(Bar))]
-    public partial struct AnotherFooVo { }
+    public partial class AnotherFooVo { }
 
     public class AnyOtherTypeVoTests
     {
