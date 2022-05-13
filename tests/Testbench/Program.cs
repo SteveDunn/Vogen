@@ -5,19 +5,26 @@ using Vogen;
 
 namespace Whatever;
 
-[ValueObject(conversions: Conversions.DapperTypeHandler, underlyingType: typeof(DateTime))]
-internal sealed partial record class public_partial_classConversions_DapperTypeHandlerDateTime { }
-
-
+[ValueObject]
+[Instance("Min", 10, @"<abc>whatevs</abc>")]
+internal sealed partial record MyVo
+{
+    /// <summary>noxml</summary>
+    /// <returns>An immutable shared instance of "T:Whatever.MyVo"</returns>
+    public static int Foo = 123;
+}
 
 public class Program
 {
     public static void Main()
     {
-        //var s = Score.From(1);
-        //Console.WriteLine(s.Value);
+        var v = MyVo.Min;
+        var v2 = MyVo.Foo;
     }
 }
+
+
+
 
 // [ValueObject(underlyingType:typeof(int))]
 // public partial class NormalizedToMax128WithValidation

@@ -8,6 +8,9 @@ public class InstanceAttribute : Attribute
     public object Value { get; }
 
     public string Name { get; }
+    
+    public string TripleSlashComment { get; }
 
-    public InstanceAttribute(string name, object value) => (Name, Value) = (name, value);
+    public InstanceAttribute(string name, object value, string tripleSlashComment = "") =>
+        (Name, Value, TripleSlashComment) = (name, value, tripleSlashComment);
 }
