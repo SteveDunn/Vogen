@@ -1,7 +1,5 @@
-﻿using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using FluentAssertions;
-using Microsoft.CodeAnalysis;
 using VerifyXunit;
 using Xunit;
 using Xunit.Abstractions;

@@ -1,9 +1,7 @@
-﻿using System.Threading.Tasks;
-using FluentAssertions;
+﻿using FluentAssertions;
 using VerifyXunit;
 using Xunit;
 using Xunit.Abstractions;
-using Vogen;
 
 namespace Vogen.Tests.DiagnosticsTests.LocalConfig.Happy;
 

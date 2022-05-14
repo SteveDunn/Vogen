@@ -1,8 +1,6 @@
 ﻿// ReSharper disable RedundantNameQualifier
 // ReSharper disable ArrangeConstructorOrDestructorBody
 
-using Vogen;
-
 namespace Vogen.Examples.Nesting
 {
     /*

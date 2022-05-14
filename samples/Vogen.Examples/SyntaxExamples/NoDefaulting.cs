@@ -1,6 +1,4 @@
-﻿using System;
-using Vogen;
-#pragma warning disable CS0219
+﻿#pragma warning disable CS0219
 
 namespace Vogen.Examples.NoDefaulting
 {

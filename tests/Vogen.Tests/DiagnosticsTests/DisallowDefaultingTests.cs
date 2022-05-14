@@ -4,7 +4,6 @@ using Microsoft.CodeAnalysis;
 using VerifyXunit;
 using Xunit;
 using Xunit.Abstractions;
-using Vogen;
 
 namespace Vogen.Tests.DiagnosticsTests;
 

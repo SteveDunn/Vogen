@@ -1,7 +1,6 @@
 ﻿using System.Linq;
 using FluentAssertions;
 using Microsoft.CodeAnalysis;
-using VerifyXunit;
 using Xunit;
 using Xunit.Abstractions;
 
