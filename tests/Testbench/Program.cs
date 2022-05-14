@@ -18,11 +18,13 @@ public class Program
 {
     public static void Main()
     {
-        var v = MyVo.Min;
-        var v2 = MyVo.Foo;
     }
 }
 
+[ValueObject]
+public partial record Age
+{
+}
 
 
 

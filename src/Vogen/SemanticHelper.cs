@@ -1,10 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections.Immutable;
 using System.Linq;
 using Microsoft.CodeAnalysis;
-using Microsoft.CodeAnalysis.CSharp;
-using Microsoft.CodeAnalysis.CSharp.Syntax;
 
 namespace Vogen;
 
@@ -45,7 +42,6 @@ static class SemanticHelper
 
         return string.Join(".", parts);
     }
-
 
     public static bool HasDefaultConstructor(this INamedTypeSymbol symbol)
     {
@@ -106,25 +102,4 @@ static class SemanticHelper
 
         return false;
     }
-
-
-
-    // public static bool IsAssemblyLevelAttribute(SyntaxNode node)
-    //     => node is AttributeListSyntax attributeList
-    //        && attributeList.Target is not null
-    //        && attributeList.Target.Identifier.IsKind(SyntaxKind.AssemblyKeyword);
-
 }
-
-// internal static class InvalidConversionDiagnostic
-// {
-//     internal const string Id = "STI3";
-//     internal const string Message = "The Conversion value provided is not a valid combination of flags";
-//     internal const string Title = "Invalid conversion";
-//
-//     public static Diagnostic Create(SyntaxNode currentNode) =>
-//         Diagnostic.Create(
-//             new DiagnosticDescriptor(
-//                 Id, Title, Message, category: "Usage", defaultSeverity: DiagnosticSeverity.Warning, isEnabledByDefault: true),
-//             currentNode.GetLocation());
-// }
