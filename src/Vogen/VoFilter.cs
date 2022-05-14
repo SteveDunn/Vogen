@@ -48,30 +48,14 @@ internal static class VoFilter
         var voSyntaxInformation = (TypeDeclarationSyntax) context.Node;
 
         var voSymbolInformation = (INamedTypeSymbol) context.SemanticModel.GetDeclaredSymbol(context.Node)!;
-
-        foreach (AttributeListSyntax attributeListSyntax in voSyntaxInformation.AttributeLists)
+        
+        if(HasValueObjectAttribute(voSyntaxInformation.AttributeLists, context))
         {
-            foreach (AttributeSyntax attributeSyntax in attributeListSyntax.Attributes)
-            {
-                IMethodSymbol? attributeSymbol = context.SemanticModel.GetSymbolInfo(attributeSyntax).Symbol as IMethodSymbol;
-
-                if (attributeSymbol == null)
-                {
-                    continue;
-                }
-
-                INamedTypeSymbol attributeContainingTypeSymbol = attributeSymbol.ContainingType;
-                string fullName = attributeContainingTypeSymbol.ToDisplayString();
-
-                if (fullName == "Vogen.ValueObjectAttribute")
-                {
-                    return new VoTarget(
-                        context.SemanticModel,
-                        voSyntaxInformation, 
-                        context.SemanticModel.GetDeclaredSymbol(context.Node)!.ContainingType,
-                        voSymbolInformation);
-                }
-            }
+            return new VoTarget(
+                context.SemanticModel,
+                voSyntaxInformation, 
+                context.SemanticModel.GetDeclaredSymbol(context.Node)!.ContainingType,
+                voSymbolInformation);
         }
 
         return null;
