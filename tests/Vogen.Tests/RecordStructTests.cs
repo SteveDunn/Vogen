@@ -59,7 +59,7 @@ public class RecordStructTests
 
         Action a = () =>
         {
-            MyRecordStruct r5 = r1 with { Value = -1 };
+            MyRecordStruct _ = r1 with { Value = -1 };
         };
 
 

@@ -158,8 +158,6 @@ internal static class DiagnosticItems
         return new DiagnosticDescriptor(code.Format(), title, messageFormat, "Vogen", severity, isEnabledByDefault: true, customTags: tags);
     }
 
-    private static Diagnostic Create(DiagnosticDescriptor descriptor, string name, Location location) => Diagnostic.Create(descriptor, location, name);
-
     private static Diagnostic BuildDiagnostic(DiagnosticDescriptor descriptor, string name, Location location) => 
         Diagnostic.Create(descriptor, location, name);
 

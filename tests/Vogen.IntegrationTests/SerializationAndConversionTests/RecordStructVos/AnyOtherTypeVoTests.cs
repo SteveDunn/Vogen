@@ -270,7 +270,6 @@ namespace Vogen.IntegrationTests.SerializationAndConversionTests.RecordStructVos
         [Fact]
         public void TypeConverter_CanConvertToAndFrom()
         {
-            var b = _bar1;
             var converter = TypeDescriptor.GetConverter(typeof(NoJsonFooVo));
 
             object vo = converter.ConvertFrom(_bar1);

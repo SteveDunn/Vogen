@@ -126,10 +126,8 @@ CustomerId GetCustomer() => default;
 public {type} CustomerId {{ }}
 ";
         
-        var (diagnostics, output) = TestHelper.GetGeneratedOutput<CreationUsingDefaultLiteralAnalyzer>(source);
+        var (diagnostics, _) = TestHelper.GetGeneratedOutput<CreationUsingDefaultLiteralAnalyzer>(source);
         
-        _output.WriteLine(output);
-
         diagnostics.Should().HaveCount(1);
         Diagnostic diagnostic = diagnostics.Single();
 
@@ -155,10 +153,8 @@ CustomerId GetCustomer() => default(CustomerId);
 public {type} CustomerId {{ }}
 ";
         
-        var (diagnostics, output) = TestHelper.GetGeneratedOutput<CreationUsingDefaultAnalyzer>(source);
+        var (diagnostics, _) = TestHelper.GetGeneratedOutput<CreationUsingDefaultAnalyzer>(source);
         
-        _output.WriteLine(output);
-
         diagnostics.Should().HaveCount(1);
         Diagnostic diagnostic = diagnostics.Single();
 
@@ -186,10 +182,8 @@ class Foo  {{
 }}
 ";
         
-        var (diagnostics, output) = TestHelper.GetGeneratedOutput<CreationUsingDefaultLiteralAnalyzer>(source);
+        var (diagnostics, _) = TestHelper.GetGeneratedOutput<CreationUsingDefaultLiteralAnalyzer>(source);
         
-        _output.WriteLine(output);
-
         diagnostics.Should().HaveCount(1);
         Diagnostic diagnostic = diagnostics.Single();
 
@@ -214,10 +208,8 @@ Func<CustomerId> f = () => default;
 public {type} CustomerId {{ }}
 ";
         
-        var (diagnostics, output) = TestHelper.GetGeneratedOutput<CreationUsingDefaultLiteralAnalyzer>(source);
+        var (diagnostics, _) = TestHelper.GetGeneratedOutput<CreationUsingDefaultLiteralAnalyzer>(source);
         
-        _output.WriteLine(output);
-
         diagnostics.Should().HaveCount(1);
         Diagnostic diagnostic = diagnostics.Single();
 
@@ -241,10 +233,8 @@ Func<CustomerId> f = () => default(CustomerId);
 public {type} CustomerId {{ }}
 ";
         
-        var (diagnostics, output) = TestHelper.GetGeneratedOutput<CreationUsingDefaultAnalyzer>(source);
+        var (diagnostics, _) = TestHelper.GetGeneratedOutput<CreationUsingDefaultAnalyzer>(source);
         
-        _output.WriteLine(output);
-
         diagnostics.Should().HaveCount(1);
         Diagnostic diagnostic = diagnostics.Single();
 

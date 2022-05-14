@@ -28,7 +28,7 @@ public partial struct CustomerId
 {
 }";
         
-        var (diagnostics, output) = TestHelper.GetGeneratedOutput<ValueObjectGenerator>(source);
+        var (diagnostics, _) = TestHelper.GetGeneratedOutput<ValueObjectGenerator>(source);
 
         diagnostics.Should().BeEmpty();
     }
@@ -55,7 +55,7 @@ public class MyValidationException : Exception
 }
 ";
 
-        var (diagnostics, output) = TestHelper.GetGeneratedOutput<ValueObjectGenerator>(source);
+        var (diagnostics, _) = TestHelper.GetGeneratedOutput<ValueObjectGenerator>(source);
 
         diagnostics.Should().HaveCount(0);
     }
@@ -84,7 +84,7 @@ public class MyValidationException : Exception
 }
 ";
         
-        var (diagnostics, output) = TestHelper.GetGeneratedOutput<ValueObjectGenerator>(source);
+        var (diagnostics, _) = TestHelper.GetGeneratedOutput<ValueObjectGenerator>(source);
 
         diagnostics.Should().HaveCount(0);
     }
@@ -111,7 +111,7 @@ public class MyValidationException : Exception
 }
 ";
         
-        var (diagnostics, output) = TestHelper.GetGeneratedOutput<ValueObjectGenerator>(source);
+        var (diagnostics, _) = TestHelper.GetGeneratedOutput<ValueObjectGenerator>(source);
 
         diagnostics.Should().BeEmpty();
     }

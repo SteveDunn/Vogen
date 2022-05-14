@@ -36,7 +36,7 @@ public {type} CustomerId
 public class MyValidationException : Exception {{ }}
 ";
 
-        var (diagnostics, output) = TestHelper.GetGeneratedOutput<ValueObjectGenerator>(source);
+        var (diagnostics, _) = TestHelper.GetGeneratedOutput<ValueObjectGenerator>(source);
 
         diagnostics.Should().HaveCount(1);
 
@@ -71,7 +71,7 @@ public class MyValidationException : Exception
 }}
 ";
 
-        var (diagnostics, output) = TestHelper.GetGeneratedOutput<ValueObjectGenerator>(source);
+        var (diagnostics, _) = TestHelper.GetGeneratedOutput<ValueObjectGenerator>(source);
 
         diagnostics.Should().HaveCount(1);
 
@@ -106,7 +106,7 @@ public class MyValidationException : Exception
 }}
 ";
 
-        var (diagnostics, output) = TestHelper.GetGeneratedOutput<ValueObjectGenerator>(source);
+        var (diagnostics, _) = TestHelper.GetGeneratedOutput<ValueObjectGenerator>(source);
 
         diagnostics.Should().HaveCount(1);
 
@@ -138,7 +138,7 @@ public {type} CustomerId
 public class MyValidationException {{ }} // NOT AN EXCEPTION!
 ";
 
-        var (diagnostics, output) = TestHelper.GetGeneratedOutput<ValueObjectGenerator>(source);
+        var (diagnostics, _) = TestHelper.GetGeneratedOutput<ValueObjectGenerator>(source);
 
         diagnostics.Should().HaveCount(2);
 
@@ -172,7 +172,7 @@ namespace Whatever;
 public {type} CustomerId {{ }}
 ";
 
-        var (diagnostics, output) = TestHelper.GetGeneratedOutput<ValueObjectGenerator>(source);
+        var (diagnostics, _) = TestHelper.GetGeneratedOutput<ValueObjectGenerator>(source);
 
         diagnostics.Should().HaveCount(1);
 
