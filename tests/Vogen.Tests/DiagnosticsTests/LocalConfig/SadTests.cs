@@ -3,17 +3,12 @@ using FluentAssertions;
 using Microsoft.CodeAnalysis;
 using VerifyXunit;
 using Xunit;
-using Xunit.Abstractions;
 
-namespace Vogen.Tests.DiagnosticsTests.LocalConfig.Sad;
+namespace Vogen.Tests.DiagnosticsTests.LocalConfig;
 
-[UsesVerify] 
+[UsesVerify]
 public class SadTests
 {
-    private readonly ITestOutputHelper _output;
-
-    public SadTests(ITestOutputHelper output) => _output = output;
-
     [Theory]
     [InlineData("partial class")]
     [InlineData("partial struct")]
@@ -78,7 +73,7 @@ public class MyValidationException : Exception
         Diagnostic diagnostic = diagnostics.Single();
 
         diagnostic.Id.Should().Be("VOG013");
-        diagnostic.ToString().Should().Be("(11,14): error VOG013: MyValidationException must have at least 1 public constructor with 1 parameter of type System.String"); 
+        diagnostic.ToString().Should().Be("(11,14): error VOG013: MyValidationException must have at least 1 public constructor with 1 parameter of type System.String");
     }
 
     [Theory]

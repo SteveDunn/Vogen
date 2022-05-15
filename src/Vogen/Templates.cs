@@ -50,7 +50,7 @@ internal static class Templates
             if (nts == null) return null;
             if (nts.IsSpecialName)
             {
-                var s = nts.Name.ToString();
+                var s = nts.Name;
                 var underscore = s.IndexOf("_", StringComparison.OrdinalIgnoreCase);
                 if (underscore >= s.Length - 1)
                 {
@@ -76,7 +76,7 @@ internal static class Templates
         /// </summary>
         /// <param name="nts"></param>
         /// <returns></returns>
-        public static string? ResolveTemplateNameFromTypeName(INamedTypeSymbol? nts)
+        public static string ResolveTemplateNameFromTypeName(INamedTypeSymbol? nts)
         {
             // the symbol might be null, which means it wasn't provided in the source
             // (either in ValueObjectAttribute or in the VogenConfigurationAttribute)

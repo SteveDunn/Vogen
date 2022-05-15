@@ -2,18 +2,14 @@
 using FluentAssertions;
 using Microsoft.CodeAnalysis;
 using VerifyXunit;
+using Vogen.Analyzers;
 using Xunit;
-using Xunit.Abstractions;
 
 namespace Vogen.Tests.DiagnosticsTests;
 
 [UsesVerify] 
 public class DisallowNewTests
 {
-    private readonly ITestOutputHelper _output;
-
-    public DisallowNewTests(ITestOutputHelper output) => _output = output;
-
     [Theory]
     [InlineData("partial class")]
     [InlineData("partial struct")]

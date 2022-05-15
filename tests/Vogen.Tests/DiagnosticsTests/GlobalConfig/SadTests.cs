@@ -2,16 +2,11 @@
 using FluentAssertions;
 using Microsoft.CodeAnalysis;
 using Xunit;
-using Xunit.Abstractions;
 
 namespace Vogen.Tests.DiagnosticsTests.GlobalConfig.Sad;
 
 public class SadTests
 {
-    private readonly ITestOutputHelper _output;
-
-    public SadTests(ITestOutputHelper output) => _output = output;
-
     [Fact]
     public void Missing_any_constructors()
     {

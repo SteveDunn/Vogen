@@ -41,8 +41,10 @@ public readonly struct VogenConfiguration
 
     // the issue here is that without a physical 'symbol' in the source, we can't
     // get the namedtypesymbol
+    // ReSharper disable once MemberCanBePrivate.Global
     public static readonly VogenConfiguration DefaultInstance = new(
         underlyingType: null,
         validationExceptionType: null,
+        // ReSharper disable once RedundantNameQualifier
         conversions: Vogen.Conversions.Default);
 }

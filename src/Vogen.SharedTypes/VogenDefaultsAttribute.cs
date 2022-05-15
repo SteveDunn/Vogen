@@ -1,4 +1,7 @@
-﻿namespace Vogen
+﻿// ReSharper disable MemberInitializerValueIgnored
+// ReSharper disable UnusedType.Global
+
+namespace Vogen
 {
     using System;
 

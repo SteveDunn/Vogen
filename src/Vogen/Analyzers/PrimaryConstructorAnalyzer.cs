@@ -1,19 +1,17 @@
 ﻿using System.Collections.Immutable;
 using Microsoft.CodeAnalysis;
-using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Vogen.Diagnostics;
 
-namespace Vogen;
+namespace Vogen.Analyzers;
 
 /// <summary>
-/// An analyzer that stops `CustomerId = default(CustomerId);` and `void DoSomething(CustomerId id = default)`.
-/// See also <see cref="CreationUsingDefaultAnalyzer"/>.
+/// An analyzer that stops record VOs having a primary constructor.
 /// </summary>
 [Generator]
-public class CreationUsingDefaultLiteralAnalyzer : IIncrementalGenerator
+public class PrimaryConstructorAnalyzer : IIncrementalGenerator
 {
-    private record struct FoundItem(Location Location, INamedTypeSymbol VoClass);
+    private record struct FoundItem(Location Location, string Name);
 
     public void Initialize(IncrementalGeneratorInitializationContext context)
     {
@@ -28,28 +26,29 @@ public class CreationUsingDefaultLiteralAnalyzer : IIncrementalGenerator
 
     private static IncrementalValuesProvider<FoundItem?> GetTargets(IncrementalGeneratorInitializationContext context) =>
         context.SyntaxProvider.CreateSyntaxProvider(
-                predicate: static (s, _) => s is LiteralExpressionSyntax,
+                predicate: static (s, _) => s is ParameterListSyntax,
                 transform: static (ctx, _) => TryGetTarget(ctx))
             .Where(static m => m is not null);
 
     private static FoundItem? TryGetTarget(GeneratorSyntaxContext ctx)
     {
-        var literalExpressionSyntax = (LiteralExpressionSyntax) ctx.Node;
+        RecordDeclarationSyntax? rds = ctx.Node.Parent as RecordDeclarationSyntax;
 
-        if (literalExpressionSyntax.Kind() != SyntaxKind.DefaultLiteralExpression)
+        if (rds == null)
         {
             return null;
         }
 
-        var typeInfo = ctx.SemanticModel.GetTypeInfo(literalExpressionSyntax).Type;
-        if (typeInfo is INamedTypeSymbol typeSymbol)
+        if (!VoFilter.HasValueObjectAttribute(rds.AttributeLists, ctx))
         {
-            return VoFilter.IsTarget(typeSymbol)
-                ? new FoundItem(literalExpressionSyntax.GetLocation(), typeSymbol)
-                : null;
+            return null;
         }
 
-        return null;
+        return new FoundItem
+        {
+            Name = rds.Identifier.Value?.ToString()!,
+            Location = rds.GetLocation()
+        };
     }
 
     static void Execute(ImmutableArray<FoundItem?> typeDeclarations, SourceProductionContext context)
@@ -59,7 +58,7 @@ public class CreationUsingDefaultLiteralAnalyzer : IIncrementalGenerator
             if (eachFoundItem is not null)
             {
                 context.ReportDiagnostic(
-                    DiagnosticItems.UsingDefaultProhibited(eachFoundItem.Value.Location, eachFoundItem.Value.VoClass.Name));
+                    DiagnosticItems.PrimaryConstructorProhibited(eachFoundItem.Value.Location, eachFoundItem.Value.Name));
             }
         }
     }
