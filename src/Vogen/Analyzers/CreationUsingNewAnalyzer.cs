@@ -1,19 +1,17 @@
 ﻿using System.Collections.Immutable;
 using Microsoft.CodeAnalysis;
-using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Vogen.Diagnostics;
 
-namespace Vogen;
+namespace Vogen.Analyzers;
 
 /// <summary>
-/// An analyzer that stops `CustomerId = default(CustomerId);` and `void DoSomething(CustomerId id = default)`.
-/// See also <see cref="CreationUsingDefaultAnalyzer"/>.
+/// An analyzer that stops `new CustomerId()`.
 /// </summary>
 [Generator]
-public class CreationUsingDefaultLiteralAnalyzer : IIncrementalGenerator
+public class CreationUsingNewAnalyzer : IIncrementalGenerator
 {
-    private record struct FoundItem(Location Location, INamedTypeSymbol VoClass);
+    public record struct FoundItem(Location Location, INamedTypeSymbol VoClass);
 
     public void Initialize(IncrementalGeneratorInitializationContext context)
     {
@@ -28,28 +26,22 @@ public class CreationUsingDefaultLiteralAnalyzer : IIncrementalGenerator
 
     private static IncrementalValuesProvider<FoundItem?> GetTargets(IncrementalGeneratorInitializationContext context) =>
         context.SyntaxProvider.CreateSyntaxProvider(
-                predicate: static (s, _) => s is LiteralExpressionSyntax,
+                predicate: static (s, _) => s is ObjectCreationExpressionSyntax,
                 transform: static (ctx, _) => TryGetTarget(ctx))
             .Where(static m => m is not null);
 
     private static FoundItem? TryGetTarget(GeneratorSyntaxContext ctx)
     {
-        var literalExpressionSyntax = (LiteralExpressionSyntax) ctx.Node;
+        var syntax = (ObjectCreationExpressionSyntax) ctx.Node;
 
-        if (literalExpressionSyntax.Kind() != SyntaxKind.DefaultLiteralExpression)
+        TypeSyntax t = syntax.Type;
+        INamedTypeSymbol? voClass = VoFilter.TryGetValueObjectClass(ctx, t);
+
+        return voClass == null ? null : new FoundItem
         {
-            return null;
-        }
-
-        var typeInfo = ctx.SemanticModel.GetTypeInfo(literalExpressionSyntax).Type;
-        if (typeInfo is INamedTypeSymbol typeSymbol)
-        {
-            return VoFilter.IsTarget(typeSymbol)
-                ? new FoundItem(literalExpressionSyntax.GetLocation(), typeSymbol)
-                : null;
-        }
-
-        return null;
+            VoClass = voClass,
+            Location = t.GetLocation()
+        };
     }
 
     static void Execute(ImmutableArray<FoundItem?> typeDeclarations, SourceProductionContext context)
@@ -59,7 +51,7 @@ public class CreationUsingDefaultLiteralAnalyzer : IIncrementalGenerator
             if (eachFoundItem is not null)
             {
                 context.ReportDiagnostic(
-                    DiagnosticItems.UsingDefaultProhibited(eachFoundItem.Value.Location, eachFoundItem.Value.VoClass.Name));
+                    DiagnosticItems.UsingNewProhibited(eachFoundItem.Value.Location, eachFoundItem.Value.VoClass.Name));
             }
         }
     }

@@ -3,6 +3,7 @@ using FluentAssertions;
 using FluentAssertions.Execution;
 using Microsoft.CodeAnalysis;
 using VerifyXunit;
+using Vogen.Analyzers;
 using Xunit;
 using Xunit.Abstractions;
 

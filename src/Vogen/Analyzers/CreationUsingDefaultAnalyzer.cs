@@ -3,13 +3,13 @@ using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Vogen.Diagnostics;
 
-namespace Vogen;
+namespace Vogen.Analyzers;
 
 /// <summary>
-/// An analyzer that stops `new CustomerId()`.
+/// An analyzer that stops `CustomerId = default;`.
 /// </summary>
 [Generator]
-public class CreationUsingNewAnalyzer : IIncrementalGenerator
+public class CreationUsingDefaultAnalyzer : IIncrementalGenerator
 {
     public record struct FoundItem(Location Location, INamedTypeSymbol VoClass);
 
@@ -24,23 +24,26 @@ public class CreationUsingNewAnalyzer : IIncrementalGenerator
             static (spc, source) => Execute(source.Item2, spc));
     }
 
-    private static IncrementalValuesProvider<FoundItem?> GetTargets(IncrementalGeneratorInitializationContext context) =>
-        context.SyntaxProvider.CreateSyntaxProvider(
-                predicate: static (s, _) => s is ObjectCreationExpressionSyntax,
+    private static IncrementalValuesProvider<FoundItem?> GetTargets(IncrementalGeneratorInitializationContext context)
+    {
+        return context.SyntaxProvider.CreateSyntaxProvider(
+                predicate: static (s, _) => s is DefaultExpressionSyntax,
                 transform: static (ctx, _) => TryGetTarget(ctx))
             .Where(static m => m is not null);
+    }
 
     private static FoundItem? TryGetTarget(GeneratorSyntaxContext ctx)
     {
-        var syntax = (ObjectCreationExpressionSyntax) ctx.Node;
+        var defaultExpressionSyntax = (DefaultExpressionSyntax) ctx.Node;
 
-        TypeSyntax t = syntax.Type;
-        INamedTypeSymbol? voClass = VoFilter.TryGetValueObjectClass(ctx, t);
+        TypeSyntax typeSyntax = defaultExpressionSyntax.Type;
+
+        INamedTypeSymbol? voClass = VoFilter.TryGetValueObjectClass(ctx, typeSyntax);
 
         return voClass == null ? null : new FoundItem
         {
             VoClass = voClass,
-            Location = t.GetLocation()
+            Location = typeSyntax.GetLocation()
         };
     }
 
@@ -50,8 +53,7 @@ public class CreationUsingNewAnalyzer : IIncrementalGenerator
         {
             if (eachFoundItem is not null)
             {
-                context.ReportDiagnostic(
-                    DiagnosticItems.UsingNewProhibited(eachFoundItem.Value.Location, eachFoundItem.Value.VoClass.Name));
+                context.ReportDiagnostic(DiagnosticItems.UsingDefaultProhibited(eachFoundItem.Value.Location, eachFoundItem.Value.VoClass.Name));
             }
         }
     }

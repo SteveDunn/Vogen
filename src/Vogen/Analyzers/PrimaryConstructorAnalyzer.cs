@@ -3,7 +3,7 @@ using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Vogen.Diagnostics;
 
-namespace Vogen;
+namespace Vogen.Analyzers;
 
 /// <summary>
 /// An analyzer that stops record VOs having a primary constructor.
@@ -34,7 +34,7 @@ public class PrimaryConstructorAnalyzer : IIncrementalGenerator
     {
         RecordDeclarationSyntax? rds = ctx.Node.Parent as RecordDeclarationSyntax;
 
-        if(rds == null)
+        if (rds == null)
         {
             return null;
         }
@@ -52,7 +52,7 @@ public class PrimaryConstructorAnalyzer : IIncrementalGenerator
     }
 
     static void Execute(
-        Compilation _, 
+        Compilation _,
         ImmutableArray<FoundItem?> typeDeclarations,
         SourceProductionContext context)
     {

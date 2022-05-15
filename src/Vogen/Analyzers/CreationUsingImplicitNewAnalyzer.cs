@@ -5,7 +5,7 @@ using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Vogen.Diagnostics;
 
-namespace Vogen;
+namespace Vogen.Analyzers;
 
 /// <summary>
 /// An analyzer that stops target type new (implicit new): `CustomerId c = new()`.
