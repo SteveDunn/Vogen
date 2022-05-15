@@ -4,17 +4,12 @@ using Microsoft.CodeAnalysis;
 using VerifyXunit;
 using Vogen.Analyzers;
 using Xunit;
-using Xunit.Abstractions;
 
 namespace Vogen.Tests.DiagnosticsTests;
 
 [UsesVerify] 
 public class DisallowDefaultingTests
 {
-    private readonly ITestOutputHelper _output;
-
-    public DisallowDefaultingTests(ITestOutputHelper output) => _output = output;
-
     [Theory]
     [InlineData("partial class")]
     [InlineData("partial struct")]

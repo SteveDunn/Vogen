@@ -1,17 +1,12 @@
 ﻿using FluentAssertions;
 using VerifyXunit;
 using Xunit;
-using Xunit.Abstractions;
 
 namespace Vogen.Tests.DiagnosticsTests.LocalConfig.Happy;
 
 [UsesVerify] 
 public class HappyTests
 {
-    private readonly ITestOutputHelper _output;
-
-    public HappyTests(ITestOutputHelper output) => _output = output;
-    
     [Theory]
     [InlineData("partial class")]
     [InlineData("partial struct")]

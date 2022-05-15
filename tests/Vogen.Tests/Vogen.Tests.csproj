@@ -64,27 +64,4 @@
 		<Compile Remove="Generated/*/**/*.cs" />
 	</ItemGroup>
 
-	<ItemGroup>
-	  <None Update="DiagnosticsTests\LocalConfig\Happy\Snapshots\HappyTests.Conversion_and_exceptions_override.verified.txt">
-	    <ParentFile>$([System.String]::Copy('%(FileName)').Split('.')[0])</ParentFile>
-	    <DependentUpon>%(ParentFile).cs</DependentUpon>
-	  </None>
-	  <None Update="DiagnosticsTests\LocalConfig\Happy\Snapshots\HappyTests.Conversion_override.verified.txt">
-	    <ParentFile>$([System.String]::Copy('%(FileName)').Split('.')[0])</ParentFile>
-	    <DependentUpon>%(ParentFile).cs</DependentUpon>
-	  </None>
-	  <None Update="DiagnosticsTests\LocalConfig\Happy\Snapshots\HappyTests.Exception_override.verified.txt">
-	    <ParentFile>$([System.String]::Copy('%(FileName)').Split('.')[0])</ParentFile>
-	    <DependentUpon>%(ParentFile).cs</DependentUpon>
-	  </None>
-	  <None Update="DiagnosticsTests\LocalConfig\Happy\Snapshots\HappyTests.Override_global_config_locally.verified.txt">
-	    <ParentFile>$([System.String]::Copy('%(FileName)').Split('.')[0])</ParentFile>
-	    <DependentUpon>%(ParentFile).cs</DependentUpon>
-	  </None>
-	  <None Update="DiagnosticsTests\LocalConfig\Happy\Snapshots\HappyTests.Type_override.verified.txt">
-	    <ParentFile>$([System.String]::Copy('%(FileName)').Split('.')[0])</ParentFile>
-	    <DependentUpon>%(ParentFile).cs</DependentUpon>
-	  </None>
-	</ItemGroup>
-
 </Project>

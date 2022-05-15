@@ -2,17 +2,12 @@
 using FluentAssertions;
 using VerifyXunit;
 using Xunit;
-using Xunit.Abstractions;
 
 namespace Vogen.IntegrationTests.SnapshotTests;
 
 [UsesVerify] 
 public class ValueObjectGeneratorTests
 {
-    private readonly ITestOutputHelper _output;
-
-    public ValueObjectGeneratorTests(ITestOutputHelper output) => _output = output;
-
     [Fact]
     public Task Partial_struct_created_successfully()
     {

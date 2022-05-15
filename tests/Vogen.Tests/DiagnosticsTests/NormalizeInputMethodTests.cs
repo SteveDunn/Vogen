@@ -6,7 +6,6 @@ using FluentAssertions.Execution;
 using Microsoft.CodeAnalysis;
 using VerifyXunit;
 using Xunit;
-using Xunit.Abstractions;
 
 namespace Vogen.Tests.DiagnosticsTests;
 
@@ -39,11 +38,6 @@ public class NormalizeInputMethodTests
 
         IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
     }
-
-    
-    private readonly ITestOutputHelper _output;
-
-    public NormalizeInputMethodTests(ITestOutputHelper output) => _output = output;
 
     [Theory]
     [ClassData(typeof(MyClassData))]

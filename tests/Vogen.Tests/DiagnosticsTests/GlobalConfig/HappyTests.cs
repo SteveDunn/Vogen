@@ -1,17 +1,12 @@
 ﻿using FluentAssertions;
 using VerifyXunit;
 using Xunit;
-using Xunit.Abstractions;
 
 namespace Vogen.Tests.DiagnosticsTests.GlobalConfig.Happy;
 
 [UsesVerify] 
 public class HappyTests
 {
-    private readonly ITestOutputHelper _output;
-
-    public HappyTests(ITestOutputHelper output) => _output = output;
-    
     [Fact]
     public void Type_override()
     {

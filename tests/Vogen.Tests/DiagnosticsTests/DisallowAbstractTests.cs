@@ -4,17 +4,12 @@ using FluentAssertions.Execution;
 using Microsoft.CodeAnalysis;
 using VerifyXunit;
 using Xunit;
-using Xunit.Abstractions;
 
 namespace Vogen.Tests.DiagnosticsTests;
 
 [UsesVerify] 
 public class DisallowAbstractTests
 {
-    private readonly ITestOutputHelper _output;
-
-    public DisallowAbstractTests(ITestOutputHelper output) => _output = output;
-
     [Theory]
     [InlineData("partial abstract class")]
     [InlineData("partial abstract record class")]

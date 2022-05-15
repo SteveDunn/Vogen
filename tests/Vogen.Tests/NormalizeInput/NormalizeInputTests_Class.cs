@@ -38,12 +38,6 @@ public class NormalizeInputTests_Class
 }
 
 [ValueObject(underlyingType:typeof(int))]
-public partial class Class_NormalizedToMax128
-{
-    private static Int32 NormalizeInput(int input) => Math.Min(128, input);
-}
-
-[ValueObject(underlyingType:typeof(int))]
 public partial class Class_Normalized_WithSynonymousInputParam
 {
     private static int NormalizeInput(Int32 input) => Math.Min(128, input);
