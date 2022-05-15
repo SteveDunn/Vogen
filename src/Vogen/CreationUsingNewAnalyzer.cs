@@ -21,7 +21,7 @@ public class CreationUsingNewAnalyzer : IIncrementalGenerator
             = context.CompilationProvider.Combine(targets.Collect());
 
         context.RegisterSourceOutput(compilationAndTypes,
-            static (spc, source) => Execute(source.Item1, source.Item2, spc));
+            static (spc, source) => Execute(source.Item2, spc));
     }
 
     private static IncrementalValuesProvider<FoundItem?> GetTargets(IncrementalGeneratorInitializationContext context) =>
@@ -44,10 +44,7 @@ public class CreationUsingNewAnalyzer : IIncrementalGenerator
         };
     }
 
-    static void Execute(
-        Compilation _, 
-        ImmutableArray<FoundItem?> typeDeclarations,
-        SourceProductionContext context)
+    static void Execute(ImmutableArray<FoundItem?> typeDeclarations, SourceProductionContext context)
     {
         foreach (FoundItem? eachFoundItem in typeDeclarations)
         {
