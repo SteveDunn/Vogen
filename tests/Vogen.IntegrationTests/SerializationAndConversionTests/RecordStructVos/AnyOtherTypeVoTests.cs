@@ -16,6 +16,7 @@ using Vogen.IntegrationTests.TestTypes.RecordStructVos;
 using Xunit;
 using NewtonsoftJsonSerializer = Newtonsoft.Json.JsonConvert;
 using SystemTextJsonSerializer = System.Text.Json.JsonSerializer;
+// ReSharper disable EqualExpressionComparison
 
 namespace Vogen.IntegrationTests.SerializationAndConversionTests.RecordStructVos
 {
@@ -24,8 +25,9 @@ namespace Vogen.IntegrationTests.SerializationAndConversionTests.RecordStructVos
 
     public class AnyOtherTypeVoTests
     {
-        public static readonly Bar _bar1 = new Bar(42, "Fred");
-        public static readonly Bar _wilma = new Bar(52, "Wilma");
+        private static readonly Bar _bar1 = new Bar(42, "Fred");
+        private static readonly Bar _wilma = new Bar(52, "Wilma");
+        
         [Fact]
         public void equality_between_same_value_objects()
         {
