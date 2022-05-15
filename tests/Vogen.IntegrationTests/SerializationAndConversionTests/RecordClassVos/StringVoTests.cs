@@ -219,7 +219,7 @@ namespace Vogen.IntegrationTests.SerializationAndConversionTests.RecordClassVos
             var converter = TypeDescriptor.GetConverter(typeof(NoJsonStringVo));
             var id = converter.ConvertFrom(value);
             Assert.IsType<NoJsonStringVo>(id);
-            Assert.Equal(NoJsonStringVo.From(value?.ToString()), id);
+            Assert.Equal(NoJsonStringVo.From(value!.ToString()), id);
 
             var reconverted = converter.ConvertTo(id, value.GetType());
             Assert.Equal(value, reconverted);

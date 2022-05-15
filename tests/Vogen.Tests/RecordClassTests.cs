@@ -59,7 +59,7 @@ public class RecordClassTests
 
         Action a = () =>
         {
-            MyRecord r5 = r1 with { Value = -1 };
+            MyRecord _ = r1 with { Value = -1 };
         };
 
 

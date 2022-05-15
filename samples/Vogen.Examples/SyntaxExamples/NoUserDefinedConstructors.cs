@@ -1,7 +1,4 @@
-﻿using System;
-using Vogen;
-
-namespace Vogen.Examples.NoUserDefinedConstructors
+﻿namespace Vogen.Examples.NoUserDefinedConstructors
 {
     /*
         You shouldn't be allowed to use a default constructor as it could bypass

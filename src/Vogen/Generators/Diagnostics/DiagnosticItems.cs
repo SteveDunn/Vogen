@@ -28,6 +28,11 @@ internal static class DiagnosticItems
         "Using new to create Value Objects is prohibited. Please use the From method for creation.",
         "Type '{0}' cannot be constructed with 'new' as it is prohibited.");
 
+    private static readonly DiagnosticDescriptor _primaryConstructorProhibited = CreateDescriptor(
+        DiagnosticCode.PrimaryConstructorProhibited,
+        "Primary constructors on Value Objects are prohibited. Creation is done via the From method.",
+        "Type '{0}' cannot have a primary constructor");
+
     private static readonly DiagnosticDescriptor _cannotHaveUserConstructors = CreateDescriptor(
         DiagnosticCode.CannotHaveUserConstructors,
         "Cannot have user defined constructors",
@@ -120,6 +125,9 @@ internal static class DiagnosticItems
     public static Diagnostic UsingNewProhibited(Location location, string voClassName) => 
         BuildDiagnostic(_usingNewProhibited, voClassName, location);
 
+    public static Diagnostic PrimaryConstructorProhibited(Location location, string voClassName) => 
+        BuildDiagnostic(_primaryConstructorProhibited, voClassName, location);
+
     public static Diagnostic CannotHaveUserConstructors(IMethodSymbol constructor) => 
         Create(_cannotHaveUserConstructors, constructor.Locations);
 
@@ -149,8 +157,6 @@ internal static class DiagnosticItems
 
         return new DiagnosticDescriptor(code.Format(), title, messageFormat, "Vogen", severity, isEnabledByDefault: true, customTags: tags);
     }
-
-    private static Diagnostic Create(DiagnosticDescriptor descriptor, string name, Location location) => Diagnostic.Create(descriptor, location, name);
 
     private static Diagnostic BuildDiagnostic(DiagnosticDescriptor descriptor, string name, Location location) => 
         Diagnostic.Create(descriptor, location, name);

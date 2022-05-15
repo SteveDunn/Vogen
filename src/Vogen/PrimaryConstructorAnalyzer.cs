@@ -6,12 +6,12 @@ using Vogen.Diagnostics;
 namespace Vogen;
 
 /// <summary>
-/// An analyzer that stops `new CustomerId()`.
+/// An analyzer that stops record VOs having a primary constructor.
 /// </summary>
 [Generator]
-public class CreationUsingNewAnalyzer : IIncrementalGenerator
+public class PrimaryConstructorAnalyzer : IIncrementalGenerator
 {
-    public record struct FoundItem(Location Location, INamedTypeSymbol VoClass);
+    private record struct FoundItem(Location Location, string Name);
 
     public void Initialize(IncrementalGeneratorInitializationContext context)
     {
@@ -21,37 +21,47 @@ public class CreationUsingNewAnalyzer : IIncrementalGenerator
             = context.CompilationProvider.Combine(targets.Collect());
 
         context.RegisterSourceOutput(compilationAndTypes,
-            static (spc, source) => Execute(source.Item2, spc));
+            static (spc, source) => Execute(source.Item1, source.Item2, spc));
     }
 
     private static IncrementalValuesProvider<FoundItem?> GetTargets(IncrementalGeneratorInitializationContext context) =>
         context.SyntaxProvider.CreateSyntaxProvider(
-                predicate: static (s, _) => s is ObjectCreationExpressionSyntax,
+                predicate: static (s, _) => s is ParameterListSyntax,
                 transform: static (ctx, _) => TryGetTarget(ctx))
             .Where(static m => m is not null);
 
     private static FoundItem? TryGetTarget(GeneratorSyntaxContext ctx)
     {
-        var syntax = (ObjectCreationExpressionSyntax) ctx.Node;
+        RecordDeclarationSyntax? rds = ctx.Node.Parent as RecordDeclarationSyntax;
 
-        TypeSyntax t = syntax.Type;
-        INamedTypeSymbol? voClass = VoFilter.TryGetValueObjectClass(ctx, t);
-
-        return voClass == null ? null : new FoundItem
+        if(rds == null)
         {
-            VoClass = voClass,
-            Location = t.GetLocation()
+            return null;
+        }
+
+        if (!VoFilter.HasValueObjectAttribute(rds.AttributeLists, ctx))
+        {
+            return null;
+        }
+
+        return new FoundItem
+        {
+            Name = rds.Identifier.Value?.ToString()!,
+            Location = rds.GetLocation()
         };
     }
 
-    static void Execute(ImmutableArray<FoundItem?> typeDeclarations, SourceProductionContext context)
+    static void Execute(
+        Compilation _, 
+        ImmutableArray<FoundItem?> typeDeclarations,
+        SourceProductionContext context)
     {
         foreach (FoundItem? eachFoundItem in typeDeclarations)
         {
             if (eachFoundItem is not null)
             {
                 context.ReportDiagnostic(
-                    DiagnosticItems.UsingNewProhibited(eachFoundItem.Value.Location, eachFoundItem.Value.VoClass.Name));
+                    DiagnosticItems.PrimaryConstructorProhibited(eachFoundItem.Value.Location, eachFoundItem.Value.Name));
             }
         }
     }

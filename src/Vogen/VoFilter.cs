@@ -16,14 +16,9 @@ internal static class VoFilter
     public static bool IsTarget(SyntaxNode syntaxNode) =>
         syntaxNode is TypeDeclarationSyntax t && t.AttributeLists.Count > 0;
 
-    // This is stage 2 in the pipeline - we filter down to just 1 target
-    public static VoTarget? TryGetTarget(GeneratorSyntaxContext context)
+    public static bool HasValueObjectAttribute(SyntaxList<AttributeListSyntax> attributeList, GeneratorSyntaxContext context)
     {
-        var voSyntaxInformation = (TypeDeclarationSyntax) context.Node;
-
-        var voSymbolInformation = (INamedTypeSymbol) context.SemanticModel.GetDeclaredSymbol(context.Node)!;
-
-        foreach (AttributeListSyntax attributeListSyntax in voSyntaxInformation.AttributeLists)
+        foreach (AttributeListSyntax attributeListSyntax in attributeList)
         {
             foreach (AttributeSyntax attributeSyntax in attributeListSyntax.Attributes)
             {
@@ -39,13 +34,28 @@ internal static class VoFilter
 
                 if (fullName == "Vogen.ValueObjectAttribute")
                 {
-                    return new VoTarget(
-                        context.SemanticModel,
-                        voSyntaxInformation, 
-                        context.SemanticModel.GetDeclaredSymbol(context.Node)!.ContainingType,
-                        voSymbolInformation);
+                    return true;
                 }
             }
+        }
+
+        return false;
+    }
+
+    // This is stage 2 in the pipeline - we filter down to just 1 target
+    public static VoTarget? TryGetTarget(GeneratorSyntaxContext context)
+    {
+        var voSyntaxInformation = (TypeDeclarationSyntax) context.Node;
+
+        var voSymbolInformation = (INamedTypeSymbol) context.SemanticModel.GetDeclaredSymbol(context.Node)!;
+        
+        if(HasValueObjectAttribute(voSyntaxInformation.AttributeLists, context))
+        {
+            return new VoTarget(
+                context.SemanticModel,
+                voSyntaxInformation, 
+                context.SemanticModel.GetDeclaredSymbol(context.Node)!.ContainingType,
+                voSymbolInformation);
         }
 
         return null;

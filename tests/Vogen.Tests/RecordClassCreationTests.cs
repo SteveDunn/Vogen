@@ -1,6 +1,5 @@
 using System;
 using FluentAssertions;
-using Vogen.Tests.RecordTests;
 using Vogen.Tests.Types;
 using Xunit;
 

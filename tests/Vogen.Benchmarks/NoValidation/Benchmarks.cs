@@ -1,6 +1,5 @@
 ﻿using System.ComponentModel;
 using BenchmarkDotNet.Attributes;
-using Vogen;
 
 namespace Vogen.Benchmarks.NoValidation
 {

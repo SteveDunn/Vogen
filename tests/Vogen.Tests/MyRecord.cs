@@ -1,6 +1,3 @@
-using System;
-using Vogen.Tests.Types;
-
 namespace Vogen.Tests.RecordTests;
 
 [ValueObject]

@@ -132,7 +132,7 @@ namespace Vogen.IntegrationTests.SerializationAndConversionTests.RecordClassVos
 
             var serialized = NewtonsoftJsonSerializer.SerializeObject(vo);
 
-            var expected = $"\"{(bool)vo.Value}\"";
+            var expected = $"\"{vo.Value}\"";
 
             Assert.Equal(expected, serialized);
         }

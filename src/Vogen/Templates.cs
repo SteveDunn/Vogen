@@ -28,9 +28,6 @@ internal static class Templates
         return reader.ReadToEnd();
     }
 
-    private static void ThrowNoResource(string resourceName) => 
-        throw new MissingResourceException($"Could not find embedded resource {resourceName}. Available names: {string.Join(", ", _existingResources)}");
-
     public static string? TryGetForSpecificType(INamedTypeSymbol? type, string restOfTemplateName)
     {
         var typeName = TypeResolver.ResolveTemplateNameFromTypeName(type);

@@ -214,9 +214,7 @@ Func<CustomerId> f = () => new CustomerId();
 public {type} CustomerId {{ }}
 ";
 
-        var (diagnostics, output) = TestHelper.GetGeneratedOutput<CreationUsingNewAnalyzer>(source);
-
-        _output.WriteLine(output);
+        var (diagnostics, _) = TestHelper.GetGeneratedOutput<CreationUsingNewAnalyzer>(source);
 
         diagnostics.Should().HaveCount(1);
         Diagnostic diagnostic = diagnostics.Single();
@@ -241,9 +239,7 @@ Func<int, int, CustomerId, string, CustomerId> f = (a,b,c,d) => new CustomerId()
 public {type} CustomerId {{ }}
 ";
 
-        var (diagnostics, output) = TestHelper.GetGeneratedOutput<CreationUsingNewAnalyzer>(source);
-
-        _output.WriteLine(output);
+        var (diagnostics, _) = TestHelper.GetGeneratedOutput<CreationUsingNewAnalyzer>(source);
 
         diagnostics.Should().HaveCount(1);
         Diagnostic diagnostic = diagnostics.Single();
@@ -268,9 +264,7 @@ Func<int, int, CustomerId, string, Task<CustomerId>> f = async (a,b,c, d) => awa
 public {type} CustomerId {{ }}
 ";
 
-        var (diagnostics, output) = TestHelper.GetGeneratedOutput<CreationUsingNewAnalyzer>(source);
-
-        _output.WriteLine(output);
+        var (diagnostics, _) = TestHelper.GetGeneratedOutput<CreationUsingNewAnalyzer>(source);
 
         diagnostics.Should().HaveCount(1);
         Diagnostic diagnostic = diagnostics.Single();
@@ -296,9 +290,7 @@ Func<CustomerId> f = () => new();
 public {type} CustomerId {{ }}
 ";
 
-        var (diagnostics, output) = TestHelper.GetGeneratedOutput<CreationUsingImplicitNewAnalyzer>(source);
-
-        _output.WriteLine(output);
+        var (diagnostics, _) = TestHelper.GetGeneratedOutput<CreationUsingImplicitNewAnalyzer>(source);
 
         diagnostics.Should().HaveCount(1);
         Diagnostic diagnostic = diagnostics.Single();
@@ -324,9 +316,7 @@ Func<int, int, CustomerId, string, CustomerId> f = (a,b,c, d) => new();
 public {type} CustomerId {{ }}
 ";
 
-        var (diagnostics, output) = TestHelper.GetGeneratedOutput<CreationUsingImplicitNewAnalyzer>(source);
-
-        _output.WriteLine(output);
+        var (diagnostics, _) = TestHelper.GetGeneratedOutput<CreationUsingImplicitNewAnalyzer>(source);
 
         diagnostics.Should().HaveCount(1);
         Diagnostic diagnostic = diagnostics.Single();
@@ -353,9 +343,7 @@ Func<int, int, CustomerId, string, Task<CustomerId>> f = async (a,b,c, d) => awa
 public {type} CustomerId {{ }}
 ";
 
-        var (diagnostics, output) = TestHelper.GetGeneratedOutput<CreationUsingImplicitNewAnalyzer>(source);
-
-        _output.WriteLine(output);
+        var (diagnostics, _) = TestHelper.GetGeneratedOutput<CreationUsingImplicitNewAnalyzer>(source);
 
         diagnostics.Should().HaveCount(1);
         Diagnostic diagnostic = diagnostics.Single();
@@ -382,9 +370,7 @@ Task<CustomerId> t3 = Task.FromResult<CustomerId>(default);
 public {type} CustomerId {{ }}
 ";
 
-        var (diagnostics, output) = TestHelper.GetGeneratedOutput<CreationUsingDefaultLiteralAnalyzer>(source);
-
-        _output.WriteLine(output);
+        var (diagnostics, _) = TestHelper.GetGeneratedOutput<CreationUsingDefaultLiteralAnalyzer>(source);
 
         diagnostics.Should().HaveCount(1);
         Diagnostic diagnostic = diagnostics.Single();

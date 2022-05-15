@@ -1,5 +1,4 @@
-﻿using System;
-using Vogen;
+﻿// ReSharper disable UnusedVariable
 #pragma warning disable CS0219
 
 namespace Vogen.Examples.NoDefaulting

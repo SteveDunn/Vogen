@@ -1,4 +1,6 @@
-﻿using System;
+﻿// ReSharper disable UnusedVariable
+#pragma warning disable CS0219
+using System;
 using System.Threading.Tasks;
 using Vogen.Examples.Types;
 using NewtonsoftJsonSerializer = Newtonsoft.Json.JsonConvert;
@@ -9,7 +11,6 @@ namespace Vogen.Examples.SerializationAndConversion
     public class SerializationAndConversionExamples : IScenario
     {
         private static readonly DateTimeOffset _date1 = new DateTimeOffset(1970, 6, 10, 14, 01, 02, TimeSpan.Zero) + TimeSpan.FromTicks(12345678);
-        private static readonly DateTimeOffset _date2 = DateTimeOffset.Now.AddMinutes(42.69);
 
         public Task Run()
         {

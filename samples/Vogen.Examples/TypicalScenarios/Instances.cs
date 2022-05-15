@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
+// ReSharper disable RedundantCast
 
 namespace Vogen.Examples.TypicalScenarios
 {

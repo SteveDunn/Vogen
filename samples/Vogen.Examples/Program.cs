@@ -13,7 +13,7 @@ namespace Vogen.Examples
             foreach (var eachScenarioType in scenarioTypes)
             {
                 WriteBanner(eachScenarioType);
-                ((IScenario)Activator.CreateInstance(eachScenarioType)).Run();
+                (((IScenario)Activator.CreateInstance(eachScenarioType))!).Run();
             }
 
             Console.WriteLine("Finished");

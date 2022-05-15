@@ -20,7 +20,7 @@ using LinqToDB.Mapping;
 namespace Vogen.IntegrationTests.SerializationAndConversionTests.RecordStructVos
 {
     [ValueObject(underlyingType: typeof(decimal))]
-    public partial struct AnotherDecimalVo { }
+    public partial record struct AnotherDecimalVo { }
 
     public class DecimalVoTests
     {
