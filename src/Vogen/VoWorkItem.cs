@@ -13,7 +13,7 @@ public class VoWorkItem
     public INamedTypeSymbol? UnderlyingType { get; set; } = null!;
 
     /// <summary>
-    /// The syntax information for the type to augement.
+    /// The syntax information for the type to augment.
     /// </summary>
     public TypeDeclarationSyntax TypeToAugment { get; set; } = null!;
     

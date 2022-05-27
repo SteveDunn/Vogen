@@ -18,16 +18,16 @@ namespace Whatever
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Vogen", "1.0.0.0")]
     
     [global::System.Diagnostics.DebuggerTypeProxyAttribute(typeof(internal_sealed_partial_classConversions_DapperTypeHandlerboolDebugView))]
-    [global::System.Diagnostics.DebuggerDisplayAttribute("Underlying type: bool, Value = { _value }")]
+    [global::System.Diagnostics.DebuggerDisplayAttribute("Underlying type: System.Boolean, Value = { _value }")]
     internal sealed partial class internal_sealed_partial_classConversions_DapperTypeHandlerbool : global::System.IEquatable<internal_sealed_partial_classConversions_DapperTypeHandlerbool>
     {
 #if DEBUG    
         private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
 #endif
         private readonly global::System.Boolean _isInitialized;
-        private readonly bool _value;
+        private readonly System.Boolean _value;
         
-public bool Value
+public System.Boolean Value
         {
             [global::System.Diagnostics.DebuggerStepThroughAttribute]
             get
@@ -49,7 +49,7 @@ public bool Value
         }
 
         [global::System.Diagnostics.DebuggerStepThroughAttribute]
-        private internal_sealed_partial_classConversions_DapperTypeHandlerbool(bool value)
+        private internal_sealed_partial_classConversions_DapperTypeHandlerbool(System.Boolean value)
         {
             _value = value;
             _isInitialized = true;
@@ -60,7 +60,7 @@ public bool Value
         /// </summary>
         /// <param name="value">The underlying type.</param>
         /// <returns>An instance of this type.</returns>
-        public static internal_sealed_partial_classConversions_DapperTypeHandlerbool From(bool value)
+        public static internal_sealed_partial_classConversions_DapperTypeHandlerbool From(System.Boolean value)
         {
             
 
@@ -89,10 +89,10 @@ public bool Value
                 return true;
             }
 
-            return GetType() == other.GetType() && global::System.Collections.Generic.EqualityComparer<bool>.Default.Equals(Value, other.Value);
+            return GetType() == other.GetType() && global::System.Collections.Generic.EqualityComparer<System.Boolean>.Default.Equals(Value, other.Value);
         }
 
-        public global::System.Boolean Equals(bool primitive) => Value.Equals(primitive);
+        public global::System.Boolean Equals(System.Boolean primitive) => Value.Equals(primitive);
 
         public override global::System.Boolean Equals(global::System.Object obj)
         {
@@ -117,11 +117,11 @@ public bool Value
         public static global::System.Boolean operator ==(internal_sealed_partial_classConversions_DapperTypeHandlerbool left, internal_sealed_partial_classConversions_DapperTypeHandlerbool right) => Equals(left, right);
         public static global::System.Boolean operator !=(internal_sealed_partial_classConversions_DapperTypeHandlerbool left, internal_sealed_partial_classConversions_DapperTypeHandlerbool right) => !Equals(left, right);
 
-        public static global::System.Boolean operator ==(internal_sealed_partial_classConversions_DapperTypeHandlerbool left, bool right) => Equals(left.Value, right);
-        public static global::System.Boolean operator !=(internal_sealed_partial_classConversions_DapperTypeHandlerbool left, bool right) => !Equals(left.Value, right);
+        public static global::System.Boolean operator ==(internal_sealed_partial_classConversions_DapperTypeHandlerbool left, System.Boolean right) => Equals(left.Value, right);
+        public static global::System.Boolean operator !=(internal_sealed_partial_classConversions_DapperTypeHandlerbool left, System.Boolean right) => !Equals(left.Value, right);
 
-        public static global::System.Boolean operator ==(bool left, internal_sealed_partial_classConversions_DapperTypeHandlerbool right) => Equals(left, right.Value);
-        public static global::System.Boolean operator !=(bool left, internal_sealed_partial_classConversions_DapperTypeHandlerbool right) => !Equals(left, right.Value);
+        public static global::System.Boolean operator ==(System.Boolean left, internal_sealed_partial_classConversions_DapperTypeHandlerbool right) => Equals(left, right.Value);
+        public static global::System.Boolean operator !=(System.Boolean left, internal_sealed_partial_classConversions_DapperTypeHandlerbool right) => !Equals(left, right.Value);
 
         public override global::System.Int32 GetHashCode()
         {
@@ -130,7 +130,7 @@ public bool Value
                 global::System.Int32 hash = (global::System.Int32) 2166136261;
                 hash = (hash * 16777619) ^ Value.GetHashCode();
                 hash = (hash * 16777619) ^ GetType().GetHashCode();
-                hash = (hash * 16777619) ^ global::System.Collections.Generic.EqualityComparer<bool>.Default.GetHashCode();
+                hash = (hash * 16777619) ^ global::System.Collections.Generic.EqualityComparer<System.Boolean>.Default.GetHashCode();
                 return hash;
             }
         }

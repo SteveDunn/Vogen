@@ -3,6 +3,7 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Xml.Linq;
 using Microsoft.CodeAnalysis;
+using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Vogen.Generators.Conversions;
 
@@ -75,8 +76,11 @@ public static class Util
         return $@"
 // instance...
 
-{BuildInstanceComment(classDeclarationSyntax.Identifier, item, instanceProperties.TripleSlashComments)}public static {classDeclarationSyntax.Identifier} {instanceProperties.Name} = new {classDeclarationSyntax.Identifier}({instanceValue});";
+{BuildInstanceComment(classDeclarationSyntax.Identifier, item, instanceProperties.TripleSlashComments)}public static {classDeclarationSyntax.Identifier} {Util.EscapeIfRequired(instanceProperties.Name)} = new {classDeclarationSyntax.Identifier}({instanceValue});";
     }
+
+    public static string EscapeIfRequired(string name) => 
+        SyntaxFacts.GetKeywordKind(name) != SyntaxKind.None || SyntaxFacts.GetContextualKeywordKind(name) != SyntaxKind.None ? "@" + name : name;
 
     private static string BuildInstanceComment(SyntaxToken syntaxToken, VoWorkItem voWorkItem, string? commentText)
     {
@@ -96,22 +100,24 @@ public static class Util
 
     private static string BuildInstanceValue(VoWorkItem item, object instancePropertiesValue)
     {
-        if (item.UnderlyingType?.FullName() == typeof(String).FullName)
+        var fullName = item.UnderlyingType?.FullName();
+        
+        if (fullName == typeof(String).FullName)
         {
             return $@"""{instancePropertiesValue}""";
         }
 
-        if (item.UnderlyingType?.FullName() == typeof(decimal).FullName)
+        if (fullName == typeof(decimal).FullName)
         {
             return $@"{instancePropertiesValue}m";
         }
 
-        if (item.UnderlyingType?.FullName() == typeof(float).FullName)
+        if (fullName == typeof(float).FullName)
         {
             return $@"{instancePropertiesValue}f";
         }
 
-        if (item.UnderlyingType?.FullName() == typeof(double).FullName)
+        if (fullName == typeof(double).FullName)
         {
             return $@"{instancePropertiesValue}d";
         }
@@ -128,7 +134,7 @@ public static class Util
             return string.Empty;
         }
 
-        return @$"namespace {@namespace}
+        return @$"namespace {EscapeIfRequired(@namespace)}
 {{
 ";
     }
