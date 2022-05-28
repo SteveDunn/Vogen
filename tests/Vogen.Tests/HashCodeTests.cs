@@ -36,8 +36,11 @@ namespace Vogen.Tests.HashCodes
                 (Age.From(18).GetHashCode() == Age.From(19).GetHashCode()).Should().BeFalse();
                 (Age.From(18).GetHashCode() == Score.From(1).GetHashCode()).Should().BeFalse();
                 (Age.From(18).GetHashCode() == Score.From(18).GetHashCode()).Should().BeFalse();
-                (@classFromEscapedNamespace.From(123).GetHashCode() == @classFromEscapedNamespace.From(123).GetHashCode()).Should().BeFalse();
-                (@event2.From(new @record.@struct.@float.@decimal()).GetHashCode() == @event2.From(new @record.@struct.@float.@decimal()).GetHashCode()).Should().BeFalse();
+                (@classFromEscapedNamespace.From(123).GetHashCode() == @classFromEscapedNamespace.From(123).GetHashCode()).Should().BeTrue();
+                (@classFromEscapedNamespace.From(123).GetHashCode() == @classFromEscapedNamespace.From(666).GetHashCode()).Should().BeFalse();
+                (@classFromEscapedNamespace.From(123).GetHashCode() == @event2.From(new @record.@struct.@float.@decimal()).GetHashCode()).Should().BeFalse();
+                (@event2.From(new @record.@struct.@float.@decimal()).GetHashCode() == @classFromEscapedNamespace.From(123).GetHashCode()).Should().BeFalse();
+                (@event2.From(new @record.@struct.@float.@decimal()).GetHashCode() == @event2.From(new @record.@struct.@float.@decimal()).GetHashCode()).Should().BeTrue();
             }
 
             [Fact]
