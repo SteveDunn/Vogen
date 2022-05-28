@@ -1,6 +1,4 @@
-﻿using @class;
-using @class.@struct.@int;
-using record.@int;
+﻿using @class.@struct.@int;
 using Vogen;
 
 namespace Whatever
