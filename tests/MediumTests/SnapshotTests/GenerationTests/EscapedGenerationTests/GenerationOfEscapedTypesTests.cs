@@ -80,7 +80,7 @@ namespace @class
         diagnostics.Should().BeEmpty();
 
         VerifySettings settings = new VerifySettings();
-        settings.UseFileName(className);
+        settings.UseFileName(TestHelper.ShortenForFilename(className));
         return Verifier.Verify(output, settings).UseDirectory("Snapshots");
     }
 }
