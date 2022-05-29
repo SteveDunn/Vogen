@@ -1,23 +1,35 @@
-﻿using Vogen;
+﻿using @class.@struct.@int;
+using Vogen;
 
-//[assembly: VogenDefaults(conversions: (Conversions)666)]
-
-namespace Whatever;
-
-public class Program
+namespace Whatever
 {
-    public static void Main()
+    public class Program
+    {
+        public static void Main()
+        {
+            var r = @float.From(11);
+        }
+    }
+    
+    [ValueObject(typeof(int))]
+    public partial class Age
+    {
+    }
+
+}
+
+namespace record.@int
+{
+    public class @decimal
     {
     }
 }
 
-[ValueObject]
-public partial record Age
+namespace @class.@struct.@int
 {
-}
-
-[ValueObject]
-[Instance("Min", 10, @"<abc>whatevs</abc>")]
-internal sealed partial record MyVo
-{
+    [ValueObject(typeof(decimal))]
+    [Instance("onetwothree", 123)]
+    public partial class @float
+    {
+    }
 }

@@ -45,14 +45,16 @@ internal static class WriteWorkItems
         string classAsText = _generatedPreamble + Environment.NewLine + generator.BuildClass(item, voClass);
 
         SourceText sourceText = SourceText.From(classAsText, Encoding.UTF8);
+        
+        var unsanitized = $"{item.FullNamespace}_{voClass.Identifier}.g.cs";
 
-        string filename = $"{item.FullNamespace}_{SanitizeToALegalFilename()}.g.cs";
+        string filename = SanitizeToALegalFilename(unsanitized);
 
         context.AddSource(filename, sourceText);
 
-        string SanitizeToALegalFilename()
+        string SanitizeToALegalFilename(string input)
         {
-            return voClass.Identifier.ToString().Replace('@', '_');
+            return input.Replace('@', '_');
         }
     }
 

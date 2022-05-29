@@ -20,16 +20,16 @@ namespace Whatever
 [global::Newtonsoft.Json.JsonConverter(typeof(public_sealed_partial_classConversions_NewtonsoftJsonNewtonsoftJsonConverter))]
 
     [global::System.Diagnostics.DebuggerTypeProxyAttribute(typeof(public_sealed_partial_classConversions_NewtonsoftJsonDebugView))]
-    [global::System.Diagnostics.DebuggerDisplayAttribute("Underlying type: bool, Value = { _value }")]
+    [global::System.Diagnostics.DebuggerDisplayAttribute("Underlying type: System.Boolean, Value = { _value }")]
     public sealed partial class public_sealed_partial_classConversions_NewtonsoftJson : global::System.IEquatable<public_sealed_partial_classConversions_NewtonsoftJson>
     {
 #if DEBUG    
         private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
 #endif
         private readonly global::System.Boolean _isInitialized;
-        private readonly bool _value;
+        private readonly System.Boolean _value;
         
-public bool Value
+public System.Boolean Value
         {
             [global::System.Diagnostics.DebuggerStepThroughAttribute]
             get
@@ -51,7 +51,7 @@ public bool Value
         }
 
         [global::System.Diagnostics.DebuggerStepThroughAttribute]
-        private public_sealed_partial_classConversions_NewtonsoftJson(bool value)
+        private public_sealed_partial_classConversions_NewtonsoftJson(System.Boolean value)
         {
             _value = value;
             _isInitialized = true;
@@ -62,7 +62,7 @@ public bool Value
         /// </summary>
         /// <param name="value">The underlying type.</param>
         /// <returns>An instance of this type.</returns>
-        public static public_sealed_partial_classConversions_NewtonsoftJson From(bool value)
+        public static public_sealed_partial_classConversions_NewtonsoftJson From(System.Boolean value)
         {
             
 
@@ -91,10 +91,10 @@ public bool Value
                 return true;
             }
 
-            return GetType() == other.GetType() && global::System.Collections.Generic.EqualityComparer<bool>.Default.Equals(Value, other.Value);
+            return GetType() == other.GetType() && global::System.Collections.Generic.EqualityComparer<System.Boolean>.Default.Equals(Value, other.Value);
         }
 
-        public global::System.Boolean Equals(bool primitive) => Value.Equals(primitive);
+        public global::System.Boolean Equals(System.Boolean primitive) => Value.Equals(primitive);
 
         public override global::System.Boolean Equals(global::System.Object obj)
         {
@@ -119,11 +119,11 @@ public bool Value
         public static global::System.Boolean operator ==(public_sealed_partial_classConversions_NewtonsoftJson left, public_sealed_partial_classConversions_NewtonsoftJson right) => Equals(left, right);
         public static global::System.Boolean operator !=(public_sealed_partial_classConversions_NewtonsoftJson left, public_sealed_partial_classConversions_NewtonsoftJson right) => !Equals(left, right);
 
-        public static global::System.Boolean operator ==(public_sealed_partial_classConversions_NewtonsoftJson left, bool right) => Equals(left.Value, right);
-        public static global::System.Boolean operator !=(public_sealed_partial_classConversions_NewtonsoftJson left, bool right) => !Equals(left.Value, right);
+        public static global::System.Boolean operator ==(public_sealed_partial_classConversions_NewtonsoftJson left, System.Boolean right) => Equals(left.Value, right);
+        public static global::System.Boolean operator !=(public_sealed_partial_classConversions_NewtonsoftJson left, System.Boolean right) => !Equals(left.Value, right);
 
-        public static global::System.Boolean operator ==(bool left, public_sealed_partial_classConversions_NewtonsoftJson right) => Equals(left, right.Value);
-        public static global::System.Boolean operator !=(bool left, public_sealed_partial_classConversions_NewtonsoftJson right) => !Equals(left, right.Value);
+        public static global::System.Boolean operator ==(System.Boolean left, public_sealed_partial_classConversions_NewtonsoftJson right) => Equals(left, right.Value);
+        public static global::System.Boolean operator !=(System.Boolean left, public_sealed_partial_classConversions_NewtonsoftJson right) => !Equals(left, right.Value);
 
         public override global::System.Int32 GetHashCode()
         {
@@ -132,7 +132,7 @@ public bool Value
                 global::System.Int32 hash = (global::System.Int32) 2166136261;
                 hash = (hash * 16777619) ^ Value.GetHashCode();
                 hash = (hash * 16777619) ^ GetType().GetHashCode();
-                hash = (hash * 16777619) ^ global::System.Collections.Generic.EqualityComparer<bool>.Default.GetHashCode();
+                hash = (hash * 16777619) ^ global::System.Collections.Generic.EqualityComparer<System.Boolean>.Default.GetHashCode();
                 return hash;
             }
         }

@@ -19,16 +19,16 @@ namespace Whatever
     [global::System.ComponentModel.TypeConverter(typeof(public_sealed_partial_classConversions_TypeConverterstringTypeConverter))]
 
     [global::System.Diagnostics.DebuggerTypeProxyAttribute(typeof(public_sealed_partial_classConversions_TypeConverterstringDebugView))]
-    [global::System.Diagnostics.DebuggerDisplayAttribute("Underlying type: string, Value = { _value }")]
+    [global::System.Diagnostics.DebuggerDisplayAttribute("Underlying type: System.String, Value = { _value }")]
     public sealed partial class public_sealed_partial_classConversions_TypeConverterstring : global::System.IEquatable<public_sealed_partial_classConversions_TypeConverterstring>
     {
 #if DEBUG    
         private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
 #endif
         private readonly global::System.Boolean _isInitialized;
-        private readonly string _value;
+        private readonly System.String _value;
         
-public string Value
+public System.String Value
         {
             [global::System.Diagnostics.DebuggerStepThroughAttribute]
             get
@@ -50,7 +50,7 @@ public string Value
         }
 
         [global::System.Diagnostics.DebuggerStepThroughAttribute]
-        private public_sealed_partial_classConversions_TypeConverterstring(string value)
+        private public_sealed_partial_classConversions_TypeConverterstring(System.String value)
         {
             _value = value;
             _isInitialized = true;
@@ -61,7 +61,7 @@ public string Value
         /// </summary>
         /// <param name="value">The underlying type.</param>
         /// <returns>An instance of this type.</returns>
-        public static public_sealed_partial_classConversions_TypeConverterstring From(string value)
+        public static public_sealed_partial_classConversions_TypeConverterstring From(System.String value)
         {
                         if (value is null)
             {
@@ -94,10 +94,10 @@ public string Value
                 return true;
             }
 
-            return GetType() == other.GetType() && global::System.Collections.Generic.EqualityComparer<string>.Default.Equals(Value, other.Value);
+            return GetType() == other.GetType() && global::System.Collections.Generic.EqualityComparer<System.String>.Default.Equals(Value, other.Value);
         }
 
-        public global::System.Boolean Equals(string primitive) => Value.Equals(primitive);
+        public global::System.Boolean Equals(System.String primitive) => Value.Equals(primitive);
 
         public override global::System.Boolean Equals(global::System.Object obj)
         {
@@ -122,11 +122,11 @@ public string Value
         public static global::System.Boolean operator ==(public_sealed_partial_classConversions_TypeConverterstring left, public_sealed_partial_classConversions_TypeConverterstring right) => Equals(left, right);
         public static global::System.Boolean operator !=(public_sealed_partial_classConversions_TypeConverterstring left, public_sealed_partial_classConversions_TypeConverterstring right) => !Equals(left, right);
 
-        public static global::System.Boolean operator ==(public_sealed_partial_classConversions_TypeConverterstring left, string right) => Equals(left.Value, right);
-        public static global::System.Boolean operator !=(public_sealed_partial_classConversions_TypeConverterstring left, string right) => !Equals(left.Value, right);
+        public static global::System.Boolean operator ==(public_sealed_partial_classConversions_TypeConverterstring left, System.String right) => Equals(left.Value, right);
+        public static global::System.Boolean operator !=(public_sealed_partial_classConversions_TypeConverterstring left, System.String right) => !Equals(left.Value, right);
 
-        public static global::System.Boolean operator ==(string left, public_sealed_partial_classConversions_TypeConverterstring right) => Equals(left, right.Value);
-        public static global::System.Boolean operator !=(string left, public_sealed_partial_classConversions_TypeConverterstring right) => !Equals(left, right.Value);
+        public static global::System.Boolean operator ==(System.String left, public_sealed_partial_classConversions_TypeConverterstring right) => Equals(left, right.Value);
+        public static global::System.Boolean operator !=(System.String left, public_sealed_partial_classConversions_TypeConverterstring right) => !Equals(left, right.Value);
 
         public override global::System.Int32 GetHashCode()
         {
@@ -135,7 +135,7 @@ public string Value
                 global::System.Int32 hash = (global::System.Int32) 2166136261;
                 hash = (hash * 16777619) ^ Value.GetHashCode();
                 hash = (hash * 16777619) ^ GetType().GetHashCode();
-                hash = (hash * 16777619) ^ global::System.Collections.Generic.EqualityComparer<string>.Default.GetHashCode();
+                hash = (hash * 16777619) ^ global::System.Collections.Generic.EqualityComparer<System.String>.Default.GetHashCode();
                 return hash;
             }
         }

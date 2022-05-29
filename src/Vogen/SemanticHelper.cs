@@ -16,14 +16,13 @@ static class SemanticHelper
         var suffix = "";
         if (symbol.Arity > 0)
         {
-            suffix = "<" + string.Join(", ", symbol.TypeArguments.Select(targ => FullName((INamedTypeSymbol) targ))) +
-                     ">";
+            suffix = $"<{string.Join(", ", symbol.TypeArguments.Select(targ => FullName((INamedTypeSymbol) targ)))}>";
         }
 
         if (prefix != "")
-            return prefix + "." + symbol.Name + suffix;
+            return $"{prefix}.{Util.EscapeIfRequired(symbol.Name)}{suffix}";
         else
-            return symbol.Name + suffix;
+            return Util.EscapeIfRequired(symbol.Name) + suffix;
     }
 
     public static string FullNamespace(this ISymbol symbol)
@@ -34,7 +33,7 @@ static class SemanticHelper
         {
             if (!string.IsNullOrEmpty(iterator.Name))
             {
-                parts.Push(iterator.Name);
+                parts.Push(Util.EscapeIfRequired(iterator.Name));
             }
 
             iterator = iterator.ContainingNamespace;

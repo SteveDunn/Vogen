@@ -27,6 +27,17 @@ namespace Vogen.Tests.InstanceFields
                 MyIntStructWithADefaultOf22.Default.Value.Should().Be(22);
                 MyIntStructWithADefaultOf22.Default2.Value.Should().Be(33);
             }
+
+            [Fact]
+            public void Struct_with_an_instance_field_with_reserved_names()
+            {
+                var sut = MyIntStructWithReservedNames.From(100);
+
+                sut.Value.Should().Be(100);
+
+                MyIntStructWithReservedNames.@event.Value.Should().Be(22);
+                MyIntStructWithReservedNames.@class.Value.Should().Be(33);
+            }
         }
     }
 }

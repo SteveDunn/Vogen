@@ -119,4 +119,61 @@ public partial struct CustomerId
         diagnostics.Should().BeEmpty();
         return Verifier.Verify(output).UseDirectory("Snapshots");
     }
+
+    [Fact]
+    public Task Instance_names_can_have_reserved_keywords()
+    {
+        var source = @"using Vogen;
+
+namespace Whatever;
+
+[ValueObject]
+[Instance(name: ""@class"", value: 42)]
+[Instance(name: ""@event"", value: 69)]
+public partial struct CustomerId
+{
+    private static Validation validate(int value)
+    {
+        if (value > 0)
+            return Validation.Ok;
+
+        return Validation.Invalid(""must be greater than zero"");
+    }
+}
+";
+        
+        var (diagnostics, output) = TestHelper.GetGeneratedOutput<ValueObjectGenerator>(source);
+
+        diagnostics.Should().BeEmpty();
+        return Verifier.Verify(output).UseDirectory("Snapshots");
+    }
+
+    [Fact]
+    public Task Namespace_names_can_have_reserved_keywords()
+    {
+        var source = @"using Vogen;
+
+namespace @double;
+
+[ValueObject]
+[Instance(name: ""@class"", value: 42)]
+[Instance(name: ""@event"", value: 69)]
+[Instance(name: ""@void"", value: 666)]
+public partial struct @class
+{
+    private static Validation validate(int value)
+    {
+        if (value > 0)
+            return Validation.Ok;
+
+        return Validation.Invalid(""must be greater than zero"");
+    }
+}
+";
+        
+        var (diagnostics, output) = TestHelper.GetGeneratedOutput<ValueObjectGenerator>(source);
+
+        diagnostics.Should().BeEmpty();
+        return Verifier.Verify(output).UseDirectory("Snapshots");
+    }
 }
