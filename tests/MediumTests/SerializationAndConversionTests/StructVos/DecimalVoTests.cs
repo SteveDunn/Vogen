@@ -52,7 +52,7 @@ namespace Vogen.IntegrationTests.SerializationAndConversionTests.StructVos
         [Fact]
         public void CanSerializeToLong_WithNewtonsoftJsonProvider()
         {
-            var vo = NewtonsoftJsonDecimalVo.From(123D);
+            var vo = NewtonsoftJsonDecimalVo.From(123M);
 
             string serializedVo = NewtonsoftJsonSerializer.SerializeObject(vo);
             string serializedLong = NewtonsoftJsonSerializer.SerializeObject(vo.Value);
@@ -63,7 +63,7 @@ namespace Vogen.IntegrationTests.SerializationAndConversionTests.StructVos
         [Fact]
         public void CanSerializeToLong_WithSystemTextJsonProvider()
         {
-            var vo = SystemTextJsonDecimalVo.From(123D);
+            var vo = SystemTextJsonDecimalVo.From(123M);
 
             string serializedVo = SystemTextJsonSerializer.Serialize(vo);
             string serializedLong = SystemTextJsonSerializer.Serialize(vo.Value);
@@ -74,7 +74,7 @@ namespace Vogen.IntegrationTests.SerializationAndConversionTests.StructVos
         [Fact]
         public void CanDeserializeFromLong_WithNewtonsoftJsonProvider()
         {
-            var value = 123D;
+            var value = 123M;
             var vo = NewtonsoftJsonDecimalVo.From(value);
             var serializedLong = NewtonsoftJsonSerializer.SerializeObject(value);
 
@@ -86,7 +86,7 @@ namespace Vogen.IntegrationTests.SerializationAndConversionTests.StructVos
         [Fact]
         public void CanDeserializeFromLong_WithSystemTextJsonProvider()
         {
-            var value = 123D;
+            var value = 123M;
             var vo = SystemTextJsonDecimalVo.From(value);
             var serializedLong = SystemTextJsonSerializer.Serialize(value);
 
@@ -98,7 +98,7 @@ namespace Vogen.IntegrationTests.SerializationAndConversionTests.StructVos
         [Fact]
         public void CanSerializeToLong_WithBothJsonConverters()
         {
-            var vo = BothJsonDecimalVo.From(123D);
+            var vo = BothJsonDecimalVo.From(123M);
 
             var serializedVo1 = NewtonsoftJsonSerializer.SerializeObject(vo);
             var serializedLong1 = NewtonsoftJsonSerializer.SerializeObject(vo.Value);
@@ -113,7 +113,7 @@ namespace Vogen.IntegrationTests.SerializationAndConversionTests.StructVos
         [Fact]
         public void WhenNoJsonConverter_SystemTextJsonSerializesWithValueProperty()
         {
-            var vo = NoJsonDecimalVo.From(123D);
+            var vo = NoJsonDecimalVo.From(123M);
 
             var serialized = SystemTextJsonSerializer.Serialize(vo);
 
@@ -125,7 +125,7 @@ namespace Vogen.IntegrationTests.SerializationAndConversionTests.StructVos
         [Fact]
         public void WhenNoJsonConverter_NewtonsoftSerializesWithoutValueProperty()
         {
-            var vo = NoJsonDecimalVo.From(123D);
+            var vo = NoJsonDecimalVo.From(123M);
 
             var serialized = NewtonsoftJsonSerializer.SerializeObject(vo);
 
@@ -137,7 +137,7 @@ namespace Vogen.IntegrationTests.SerializationAndConversionTests.StructVos
         [Fact]
         public void WhenNoTypeConverter_SerializesWithValueProperty()
         {
-            var vo = NoConverterDecimalVo.From(123D);
+            var vo = NoConverterDecimalVo.From(123M);
 
             var newtonsoft = SystemTextJsonSerializer.Serialize(vo);
             var systemText = SystemTextJsonSerializer.Serialize(vo);
@@ -158,7 +158,7 @@ namespace Vogen.IntegrationTests.SerializationAndConversionTests.StructVos
                 .UseSqlite(connection)
                 .Options;
 
-            var original = new EfCoreTestEntity { Id = EfCoreDecimalVo.From(123D) };
+            var original = new EfCoreTestEntity { Id = EfCoreDecimalVo.From(123M) };
             using (var context = new TestDbContext(options))
             {
                 context.Database.EnsureCreated();
@@ -182,7 +182,7 @@ namespace Vogen.IntegrationTests.SerializationAndConversionTests.StructVos
             IEnumerable<DapperDecimalVo> results = await connection.QueryAsync<DapperDecimalVo>("SELECT 123");
 
             var value = Assert.Single(results);
-            Assert.Equal(DapperDecimalVo.From(123D), value);
+            Assert.Equal(DapperDecimalVo.From(123M), value);
         }
 
         [Fact]
@@ -211,15 +211,27 @@ namespace Vogen.IntegrationTests.SerializationAndConversionTests.StructVos
             }
         }
 
+        [Fact]
+        public void TypeConverter_CanConvertToAndFromDecimal()
+        {
+            decimal value = 123m;
+            var converter = TypeDescriptor.GetConverter(typeof(NoJsonDecimalVo));
+            var id = converter.ConvertFrom(value);
+            Assert.IsType<NoJsonDecimalVo>(id);
+            Assert.Equal(NoJsonDecimalVo.From(123M), id);
+
+            var reconverted = converter.ConvertTo(id, value.GetType());
+            Assert.Equal(value, reconverted);
+        }
+
         [Theory]
-        [InlineData(123D)]
         [InlineData("123")]
         public void TypeConverter_CanConvertToAndFrom(object value)
         {
             var converter = TypeDescriptor.GetConverter(typeof(NoJsonDecimalVo));
             var id = converter.ConvertFrom(value);
             Assert.IsType<NoJsonDecimalVo>(id);
-            Assert.Equal(NoJsonDecimalVo.From(123D), id);
+            Assert.Equal(NoJsonDecimalVo.From(123M), id);
 
             var reconverted = converter.ConvertTo(id, value.GetType());
             Assert.Equal(value, reconverted);
