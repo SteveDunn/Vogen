@@ -18,11 +18,13 @@ namespace Vogen
         public VogenDefaultsAttribute(
             Type? underlyingType = null!,
             Conversions conversions = Conversions.Default,
-            Type? throws = null!)
+            Type? throws = null!,
+            Customizations customizations = Customizations.None)
         {
             UnderlyingType = underlyingType ?? typeof(int);
             TypeOfValidationException = throws ?? typeof(ValueObjectValidationException);
             Conversions = conversions;
+            Customizations = customizations;
         }
 
         public Type UnderlyingType { get;  } = typeof(int);
@@ -30,6 +32,8 @@ namespace Vogen
         public Type TypeOfValidationException { get; } = typeof(ValueObjectValidationException);
 
         public Conversions Conversions { get; } = Conversions.Default;
+        
+        public Customizations Customizations { get; }
     }
 }
 

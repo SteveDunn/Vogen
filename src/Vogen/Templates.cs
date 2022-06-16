@@ -43,6 +43,16 @@ internal static class Templates
     }
 
 
+    public static string GetForAnyType(string restOfTemplateName)
+    {
+        string resourceName = $"Vogen.Templates.AnyOtherType.AnyOtherType_{restOfTemplateName}.cs";
+
+        string? template = LoadEmbeddedResource(resourceName);
+
+        return template ?? throw new MissingResourceException(
+            $"Could not find embedded resource {resourceName}. Available names: {string.Join(", ", _existingResources)}");
+    }
+
     static class TypeResolver
     {
         public static string? ResolveTemplateNameFromTypeName(Type? nts)
@@ -105,15 +115,5 @@ internal static class Templates
 
             return nts.Name;
         }
-    }
-
-    public static string GetForAnyType(string restOfTemplateName)
-    {
-        string resourceName = $"Vogen.Templates.AnyOtherType.AnyOtherType_{restOfTemplateName}.cs";
-
-        string? template = LoadEmbeddedResource(resourceName);
-
-        return template ?? throw new MissingResourceException(
-            $"Could not find embedded resource {resourceName}. Available names: {string.Join(", ", _existingResources)}");
     }
 }

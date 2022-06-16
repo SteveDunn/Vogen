@@ -3,7 +3,7 @@
 namespace Vogen;
 
 /// <summary>
-/// Converters used to to serialize/deserialize Value Objects
+/// Converters used to convert/serialize/deserialize Value Objects
 /// </summary>
 [Flags]
 public enum Conversions
