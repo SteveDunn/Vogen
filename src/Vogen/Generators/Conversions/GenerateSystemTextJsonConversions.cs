@@ -25,7 +25,7 @@ internal class GenerateSystemTextJsonConversions : IGenerateConversion
         if (code.Contains("__NORMAL__"))
         {
             (string keep, string cut) keepCut =
-                item.Customizations.HasFlag(Customizations.TreatDoublesAsStringsInSystemTextJson)
+                item.Customizations.HasFlag(Customizations.TreatNumberAsStringInSystemTextJson)
                     ? ("__STRING__", "__NORMAL__") : ("__NORMAL__", "__STRING__");
 
             code = CodeSections.CutSection(code, keepCut.cut);

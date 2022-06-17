@@ -17,10 +17,10 @@ public enum Customizations
     None = 0,
     
     /// <summary>
-    /// When [de]serializing a double in System.Text.Json, treat the data as a culture
-    /// invariant string. This gets around the issue of JavaScript losing precision
-    /// on very large numbers. See <see href="https://github.com/SteveDunn/Vogen/issues/165"/>
+    /// When [de]serializing an underlying primitive that wold normally be written as a number in System.Text.Json,
+    /// instead, treat the underlying primitive as a culture invariant string. This gets around the issue of
+    /// JavaScript losing precision on very large numbers. See <see href="https://github.com/SteveDunn/Vogen/issues/165"/>
     /// for more information.
     /// </summary>
-    TreatDoublesAsStringsInSystemTextJson = 1 << 0
+    TreatNumberAsStringInSystemTextJson = 1 << 0
 }

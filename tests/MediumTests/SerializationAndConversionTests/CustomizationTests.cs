@@ -8,14 +8,24 @@ using JsonSerializer = System.Text.Json.JsonSerializer;
 
 namespace MediumTests.SerializationAndConversionTests;
 
-[ValueObject(underlyingType: typeof(double), conversions: Conversions.Default, customizations: Customizations.TreatDoublesAsStringsInSystemTextJson)]
-public partial class HolderId
+[ValueObject(underlyingType: typeof(double), conversions: Conversions.Default, customizations: Customizations.TreatNumberAsStringInSystemTextJson)]
+public partial class DoubleHolderId
+{
+}
+
+[ValueObject(underlyingType: typeof(decimal), conversions: Conversions.Default, customizations: Customizations.TreatNumberAsStringInSystemTextJson)]
+public partial class DecimalHolderId
+{
+}
+
+[ValueObject(underlyingType: typeof(long), conversions: Conversions.Default, customizations: Customizations.TreatNumberAsStringInSystemTextJson)]
+public partial class LongHolderId
 {
 }
 
 public class MyThing
 {
-    public HolderId HolderId { get; set; }
+    public DoubleHolderId HolderId { get; set; }
 }
 
 public class CustomizationTests
@@ -23,10 +33,10 @@ public class CustomizationTests
     [Fact]
     public void CanSerializeAndDeserializeAsString()
     {
-        var holderId = HolderId.From(720742592373919744);
+        var holderId = DoubleHolderId.From(720742592373919744);
 
         string serialized = JsonSerializer.Serialize(holderId);
-        var deserialized = JsonSerializer.Deserialize<HolderId>(serialized);
+        var deserialized = JsonSerializer.Deserialize<DoubleHolderId>(serialized);
 
         deserialized.Value.Should().Be(720742592373919744);
     }
@@ -34,7 +44,7 @@ public class CustomizationTests
     [Fact]
     public void CanSerializeAndDeserializeWhenVoIsInAComplexObject()
     {
-        var holderId = HolderId.From(720742592373919744);
+        var holderId = DoubleHolderId.From(720742592373919744);
 
         var t = new MyThing
         {
