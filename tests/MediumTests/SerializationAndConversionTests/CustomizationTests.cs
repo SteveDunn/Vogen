@@ -132,8 +132,6 @@ public class CustomizationTests
         
         string serialized = JsonSerializer.Serialize(container);
 
-        serialized.Should().Be("{\"DoubleHolder_as_a_string\":\"7.2074259237392E\\u002B17\",\"DecimalHolder_as_a_string\":\"720742592373919744\",\"LongHolder_as_a_string\":\"720742592373919744\",\"FloatHolder_as_a_string\":\"7.207426E\\u002B17\",\"ByteHolder_as_a_string\":\"123\",\"IntHolder_as_a_string\":\"321\",\"ShortHolder_as_a_string\":\"123\",\"DoubleHolder_normal\":7.2074259237391974E+17,\"DecimalHolder_normal\":720742592373919744,\"LongHolder_normal\":720742592373919744,\"FloatHolder_normal\":7.20742585E+17,\"ByteHolder_normal\":123,\"IntHolder_normal\":321,\"ShortHolder_normal\":123}");
-        
         var deserialized = JsonSerializer.Deserialize<Container>(serialized);
 
         deserialized.ByteHolder_as_a_string.Value.Should().Be(123);
