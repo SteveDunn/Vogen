@@ -15,6 +15,9 @@
     [ValueObject(conversions: Conversions.SystemTextJson, underlyingType: typeof(float))]
     public partial class SystemTextJsonFloatVo { }
 
+    [ValueObject(conversions: Conversions.SystemTextJson, underlyingType: typeof(float), customizations: Customizations.TreatNumberAsStringInSystemTextJson)]
+    public partial class SystemTextJsonFloatVo_Treating_numbers_as_string { }
+
     [ValueObject(conversions: Conversions.NewtonsoftJson | Conversions.SystemTextJson, underlyingType: typeof(float))]
     public partial class BothJsonFloatVo { }
 

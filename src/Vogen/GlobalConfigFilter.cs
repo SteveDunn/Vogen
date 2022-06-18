@@ -163,6 +163,15 @@ internal static class GlobalConfigFilter
             }
         }
 
+        if (!customizations.IsValidFlags())
+        {
+            var syntax = matchingAttribute.ApplicationSyntaxReference?.GetSyntax();
+            if (syntax is not null)
+            {
+                context.ReportDiagnostic(DiagnosticItems.InvalidCustomizations(syntax.GetLocation()));
+            }
+        }
+
         return new VogenConfiguration(underlyingType, invalidExceptionType, conversions, customizations);
     }
 

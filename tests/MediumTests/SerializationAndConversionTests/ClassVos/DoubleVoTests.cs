@@ -96,6 +96,17 @@ namespace Vogen.IntegrationTests.SerializationAndConversionTests.ClassVos
         }
 
         [Fact]
+        public void CanDeserializeFromLong_WithSystemTextJsonProvider_treating_numbers_as_string()
+        {
+            var vo = SystemTextJsonDoubleVo_number_as_string.From(123D);
+            var serializedLong = SystemTextJsonSerializer.Serialize(vo);
+
+            var deserializedVo = SystemTextJsonSerializer.Deserialize<SystemTextJsonDoubleVo_number_as_string>(serializedLong);
+
+            Assert.Equal(vo, deserializedVo);
+        }
+
+        [Fact]
         public void CanSerializeToLong_WithBothJsonConverters()
         {
             var vo = BothJsonDoubleVo.From(123D);
@@ -243,6 +254,17 @@ namespace Vogen.IntegrationTests.SerializationAndConversionTests.ClassVos
 
             string serializedVo = SystemTextJsonSerializer.Serialize(vo);
             var deserializedVo = SystemTextJsonSerializer.Deserialize<SystemTextJsonDoubleVo>(serializedVo)!;
+
+            deserializedVo.Value.Should().Be(123.45);
+        }
+
+        [Fact]
+        public void RoundTrip_WithStj_Treating_numbers_as_string()
+        {
+            var vo = SystemTextJsonDoubleVo_number_as_string.From(123.45);
+
+            string serializedVo = SystemTextJsonSerializer.Serialize(vo);
+            var deserializedVo = SystemTextJsonSerializer.Deserialize<SystemTextJsonDoubleVo_number_as_string>(serializedVo)!;
 
             deserializedVo.Value.Should().Be(123.45);
         }

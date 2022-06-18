@@ -48,6 +48,11 @@ internal static class DiagnosticItems
         "Invalid Conversions",
         "The Conversions specified do not match any known conversions - see the Conversions type");
 
+    private static readonly DiagnosticDescriptor _invalidCustomizations = CreateDescriptor(
+        DiagnosticCode.InvalidCustomizations,
+        "Invalid Customizations",
+        "The Customizations specified do not match any known customizations - see the Customizations type");
+
     private static readonly DiagnosticDescriptor _underlyingTypeMustNotBeSameAsValueObject = CreateDescriptor(
         DiagnosticCode.UnderlyingTypeMustNotBeSameAsValueObject,
         "Invalid underlying type",
@@ -138,6 +143,8 @@ internal static class DiagnosticItems
         Create(_underlyingTypeCannotBeCollection, voClass.Locations, voClass.Name, underlyingType);
 
     public static Diagnostic InvalidConversions(Location location) => Create(_invalidConversions, location);
+    
+    public static Diagnostic InvalidCustomizations(Location location) => Create(_invalidCustomizations, location);
 
     public static Diagnostic InstanceMethodCannotHaveNullArgumentName(INamedTypeSymbol voClass) => 
         Create(_instanceMethodCannotHaveNullArgumentName, voClass.Locations, voClass.Name);

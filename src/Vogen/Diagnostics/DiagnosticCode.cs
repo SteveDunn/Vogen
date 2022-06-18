@@ -24,5 +24,6 @@ public enum DiagnosticCode
     NormalizeInputMethodMustReturnSameUnderlyingType = 15,
     NormalizeInputMethodTakeOneParameterOfUnderlyingType = 16,
     TypeCannotBeAbstract = 17,
-    PrimaryConstructorProhibited = 18
+    PrimaryConstructorProhibited = 18,
+    InvalidCustomizations = 19
 }
