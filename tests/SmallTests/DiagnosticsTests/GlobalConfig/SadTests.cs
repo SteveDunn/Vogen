@@ -163,4 +163,59 @@ public partial struct CustomerId { }
                 first.ToString().Should().Be("(4,12): error VOG011: The Conversions specified do not match any known conversions - see the Conversions type");
             });
     }
+
+    [Fact]
+    public void Not_valid_customization()
+    {
+        var source = @"using System;
+using Vogen;
+
+[assembly: VogenDefaults(customizations: (Customizations)666)]
+
+namespace Whatever;
+
+[ValueObject]
+public partial struct CustomerId { }
+";
+
+        var (diagnostics, _) = TestHelper.GetGeneratedOutput<ValueObjectGenerator>(source);
+
+        diagnostics.Should().HaveCount(1);
+
+        diagnostics.Should().SatisfyRespectively(first =>
+            {
+                first.Id.Should().Be("VOG019");
+                first.ToString().Should().Be("(4,12): error VOG019: The Customizations specified do not match any known customizations - see the Customizations type");
+            });
+    }
+
+    [Fact]
+    public void Not_valid_customization_or_conversion()
+    {
+        var source = @"using System;
+using Vogen;
+
+[assembly: VogenDefaults(customizations: (Customizations)666, conversions: (Conversions)666)]
+
+namespace Whatever;
+
+[ValueObject]
+public partial struct CustomerId { }
+";
+
+        var (diagnostics, _) = TestHelper.GetGeneratedOutput<ValueObjectGenerator>(source);
+
+        diagnostics.Should().HaveCount(2);
+
+        diagnostics.Should().SatisfyRespectively(first =>
+            {
+                first.Id.Should().Be("VOG011");
+                first.ToString().Should().Be("(4,12): error VOG011: The Conversions specified do not match any known conversions - see the Conversions type");
+            },
+            second =>
+            {
+                second.Id.Should().Be("VOG019");
+                second.ToString().Should().Be("(4,12): error VOG019: The Customizations specified do not match any known customizations - see the Customizations type");
+            });
+    }
 }

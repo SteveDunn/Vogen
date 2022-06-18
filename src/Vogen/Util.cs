@@ -7,7 +7,8 @@ using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Vogen.Generators.Conversions;
 
-[assembly: InternalsVisibleTo("Vogen.Tests")]
+[assembly: InternalsVisibleTo("SmallTests")]
+[assembly: InternalsVisibleTo("MediumTests")]
 
 namespace Vogen;
 

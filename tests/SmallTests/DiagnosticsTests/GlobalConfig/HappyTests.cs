@@ -1,6 +1,5 @@
 ﻿using FluentAssertions;
 using Vogen;
-using Vogen.Tests;
 using Xunit;
 
 namespace SmallTests.DiagnosticsTests.GlobalConfig;

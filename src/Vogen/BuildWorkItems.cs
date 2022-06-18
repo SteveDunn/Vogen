@@ -91,6 +91,7 @@ internal static class BuildWorkItems
             IsValueType = isValueType,
             UnderlyingType = config.UnderlyingType,
             Conversions = config.Conversions,
+            Customizations = config.Customizations,
             TypeForValidationExceptions = config.ValidationExceptionType,
             ValidateMethod = validateMethod,
             NormalizeInputMethod = normalizeInputMethod,

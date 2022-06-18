@@ -62,6 +62,27 @@ public class MyValidationException : Exception
     }
 
     [Fact]
+    public Task Customization_override()
+    {
+        var source = @"using System;
+using Vogen;
+
+[assembly: VogenDefaults(customizations: Customizations.TreatNumberAsStringInSystemTextJson)]
+
+namespace Whatever;
+
+[ValueObject]
+public partial struct CustomerId { }
+";
+
+        var (diagnostics, output) = TestHelper.GetGeneratedOutput<ValueObjectGenerator>(source);
+
+        diagnostics.Should().HaveCount(0);
+
+        return Verifier.Verify(output).UseDirectory("Snapshots");
+    }
+
+    [Fact]
     public Task Conversion_and_exceptions_override()
     {
         var source = @"using System;

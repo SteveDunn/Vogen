@@ -15,11 +15,13 @@
         public ValueObjectAttribute(
             Type? underlyingType = null!,
             Conversions conversions = Conversions.Default,
-            Type? throws = null!)
+            Type? throws = null!,
+            Customizations customizations = Customizations.None)
         {
             UnderlyingType = underlyingType;
             Conversions = conversions;
             ValidationExceptionType = throws;
+            Customizations = customizations;
         }
 
         public Type? UnderlyingType { get; }
@@ -27,6 +29,8 @@
         public Type? ValidationExceptionType { get; }
 
         public Conversions Conversions { get; }
+        
+        public Customizations Customizations { get; }
     }
 }
 

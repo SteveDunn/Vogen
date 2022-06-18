@@ -8,7 +8,7 @@ public class ClassGenerator : IGenerateSourceCode
     {
         var className = tds.Identifier;
 
-        var itemUnderlyingType = item.UnderlyingTypeFullName;//.UnderlyingType?.ToString() ?? "global::System.Int32";
+        var itemUnderlyingType = item.UnderlyingTypeFullName;
 
         return $@"
 using Vogen;

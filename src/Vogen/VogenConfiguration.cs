@@ -7,11 +7,13 @@ public readonly struct VogenConfiguration
     public VogenConfiguration(
         INamedTypeSymbol? underlyingType,
         INamedTypeSymbol? validationExceptionType,
-        Conversions conversions)
+        Conversions conversions,
+        Customizations customizations)
     {
         UnderlyingType = underlyingType;
         ValidationExceptionType = validationExceptionType;
         Conversions = conversions;
+        Customizations = customizations;
     }
 
     public static VogenConfiguration Combine(
@@ -26,11 +28,19 @@ public readonly struct VogenConfiguration
             (var specificValue, _) => specificValue
         };
 
+        var customizations = (localValues.Customizations, globalValues?.Customizations) switch
+        {
+            (Customizations.None, null) => DefaultInstance.Customizations,
+            (Customizations.None, Customizations.None) => DefaultInstance.Customizations,
+            (Customizations.None, var globalDefault) => globalDefault.Value,
+            (var specificValue, _) => specificValue
+        };
+
 
         var validationExceptionType = localValues.ValidationExceptionType ?? globalValues?.ValidationExceptionType ?? DefaultInstance.ValidationExceptionType;
         var underlyingType = localValues.UnderlyingType ?? globalValues?.UnderlyingType ?? DefaultInstance.UnderlyingType;
 
-        return new VogenConfiguration(underlyingType, validationExceptionType, conversions);
+        return new VogenConfiguration(underlyingType, validationExceptionType, conversions, customizations);
     }
 
     public INamedTypeSymbol? UnderlyingType { get; }
@@ -38,6 +48,8 @@ public readonly struct VogenConfiguration
     public INamedTypeSymbol? ValidationExceptionType { get; }
 
     public Conversions Conversions { get; }
+    
+    public Customizations Customizations { get; }
 
     // the issue here is that without a physical 'symbol' in the source, we can't
     // get the namedtypesymbol
@@ -46,5 +58,6 @@ public readonly struct VogenConfiguration
         underlyingType: null,
         validationExceptionType: null,
         // ReSharper disable once RedundantNameQualifier
-        conversions: Vogen.Conversions.Default);
+        conversions: Vogen.Conversions.Default,
+        customizations: Customizations.None);
 }

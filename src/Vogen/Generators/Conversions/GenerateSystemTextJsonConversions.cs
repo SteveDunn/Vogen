@@ -21,13 +21,24 @@ internal class GenerateSystemTextJsonConversions : IGenerateConversion
             return string.Empty;
         }
 
-        string code =
-            Templates.TryGetForSpecificType(item.UnderlyingType, "SystemTextJsonConverter") ??
-            Templates.GetForAnyType("SystemTextJsonConverter");
+        string code = ResolveTemplate(item);
+        if (code.Contains("__NORMAL__"))
+        {
+            (string keep, string cut) keepCut =
+                item.Customizations.HasFlag(Customizations.TreatNumberAsStringInSystemTextJson)
+                    ? ("__STRING__", "__NORMAL__") : ("__NORMAL__", "__STRING__");
+
+            code = CodeSections.CutSection(code, keepCut.cut);
+            code = CodeSections.KeepSection(code, keepCut.keep);
+        }
 
         code = code.Replace("VOTYPE", item.VoTypeName);
         code = code.Replace("VOUNDERLYINGTYPE", item.UnderlyingTypeFullName);
         
         return code;
     }
+
+    private string ResolveTemplate(VoWorkItem item) =>
+        Templates.TryGetForSpecificType(item.UnderlyingType, "SystemTextJsonConverter") ??
+        Templates.GetForAnyType("SystemTextJsonConverter");
 }

@@ -73,6 +73,7 @@ internal static class GlobalConfigFilter
         INamedTypeSymbol? invalidExceptionType = null;
         INamedTypeSymbol? underlyingType = null;
         Conversions conversions = Conversions.Default;
+        Customizations customizations= Customizations.None;
         
         bool hasErroredAttributes = false;
 
@@ -91,6 +92,13 @@ internal static class GlobalConfigFilter
 
             switch (args.Length)
             {
+                case 4:
+                    if (args[3].Value != null)
+                    {
+                        customizations = (Customizations) args[3].Value!;
+                    }
+
+                    goto case 3;
                 case 3:
                     invalidExceptionType = (INamedTypeSymbol?)args[2].Value;
 
@@ -132,6 +140,9 @@ internal static class GlobalConfigFilter
                         case "conversions":
                             conversions = (Conversions) (typedConstant.Value ?? Conversions.Default);
                             break;
+                        case "customizations":
+                            customizations = (Customizations) (typedConstant.Value ?? Customizations.None);
+                            break;
                     }
                 }
             }
@@ -152,7 +163,16 @@ internal static class GlobalConfigFilter
             }
         }
 
-        return new VogenConfiguration(underlyingType, invalidExceptionType, conversions);
+        if (!customizations.IsValidFlags())
+        {
+            var syntax = matchingAttribute.ApplicationSyntaxReference?.GetSyntax();
+            if (syntax is not null)
+            {
+                context.ReportDiagnostic(DiagnosticItems.InvalidCustomizations(syntax.GetLocation()));
+            }
+        }
+
+        return new VogenConfiguration(underlyingType, invalidExceptionType, conversions, customizations);
     }
 
     private static void ReportAnyIssuesWithTheException(INamedTypeSymbol? invalidExceptionType, SourceProductionContext context)

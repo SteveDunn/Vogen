@@ -24,6 +24,8 @@ public class VoWorkItem
     public string FullNamespace { get; set; } = string.Empty;
 
     public Conversions Conversions { get; set; }
+    
+    public Customizations Customizations { get; set; }
 
     public INamedTypeSymbol? TypeForValidationExceptions { get; set; } = null!;
 

@@ -96,6 +96,17 @@ namespace Vogen.IntegrationTests.SerializationAndConversionTests.ClassVos
         }
 
         [Fact]
+        public void CanDeserializeFromShort_WithSystemTextJsonProvider_treating_numbers_as_string()
+        {
+            var vo = SystemTextJsonShortVo_Treating_numbers_as_string.From((short) 123);
+            var serializedShort = SystemTextJsonSerializer.Serialize(vo);
+
+            var deserializedVo = SystemTextJsonSerializer.Deserialize<SystemTextJsonShortVo_Treating_numbers_as_string>(serializedShort);
+
+            Assert.Equal(vo, deserializedVo);
+        }
+
+        [Fact]
         public void CanSerializeToShort_WithBothJsonConverters()
         {
             var vo = BothJsonShortVo.From(123);
