@@ -4,7 +4,7 @@
             public LinqToDbValueConverter()
                 : base(
                       v => v.Value,
-                      p => new VOTYPE(p),
+                      p => VOTYPE.From(p),
                       handlesNulls: false)
             { }
         }

@@ -10,8 +10,8 @@
             {
                 return value switch
                 {
-                    global::System.Single floatValue => new VOTYPE(floatValue),
-                    global::System.String stringValue when !global::System.String.IsNullOrEmpty(stringValue) && global::System.Single.TryParse(stringValue, out var result) => new VOTYPE(result),
+                    global::System.Single floatValue => VOTYPE.From(floatValue),
+                    global::System.String stringValue when !global::System.String.IsNullOrEmpty(stringValue) && global::System.Single.TryParse(stringValue, out var result) => VOTYPE.From(result),
                     _ => base.ConvertFrom(context, culture, value),
                 };
             }
