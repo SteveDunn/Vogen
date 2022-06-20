@@ -123,7 +123,7 @@ public System.Guid Value
             public override object ReadJson(Newtonsoft.Json.JsonReader reader, System.Type objectType, object existingValue, Newtonsoft.Json.JsonSerializer serializer)
             {
                 var guid = serializer.Deserialize<System.Guid?>(reader);
-                return guid.HasValue ? new escapedTestsinternal_partial_record_classConversions_NewtonsoftJsonSystem(guid.Value) : null;
+                return guid.HasValue ? escapedTestsinternal_partial_record_classConversions_NewtonsoftJsonSystem.From(guid.Value) : null;
             }
         }
 

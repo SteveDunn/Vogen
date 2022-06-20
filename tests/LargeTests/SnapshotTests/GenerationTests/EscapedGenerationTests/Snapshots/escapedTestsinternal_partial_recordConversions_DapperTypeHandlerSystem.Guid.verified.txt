@@ -120,8 +120,8 @@ public System.Guid Value
             {
                 return value switch
                 {
-                    global::System.Guid guidValue => new escapedTestsinternal_partial_recordConversions_DapperTypeHandlerSystem(guidValue),
-                    global::System.String stringValue when !global::System.String.IsNullOrEmpty(stringValue) && global::System.Guid.TryParse(stringValue, out var result) => new escapedTestsinternal_partial_recordConversions_DapperTypeHandlerSystem(result),
+                    global::System.Guid guidValue => escapedTestsinternal_partial_recordConversions_DapperTypeHandlerSystem.From(guidValue),
+                    global::System.String stringValue when !global::System.String.IsNullOrEmpty(stringValue) && global::System.Guid.TryParse(stringValue, out var result) => escapedTestsinternal_partial_recordConversions_DapperTypeHandlerSystem.From(result),
                     _ => throw new global::System.InvalidCastException($"Unable to cast object of type {value.GetType()} to escapedTestsinternal_partial_recordConversions_DapperTypeHandlerSystem"),
                 };
             }

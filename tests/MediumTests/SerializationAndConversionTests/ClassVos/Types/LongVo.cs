@@ -15,9 +15,6 @@
     [ValueObject(conversions: Conversions.SystemTextJson, underlyingType: typeof(long))]
     public partial class SystemTextJsonLongVo { }
 
-    [ValueObject(conversions: Conversions.SystemTextJson, underlyingType: typeof(long), customizations: Customizations.TreatNumberAsStringInSystemTextJson)]
-    public partial class SystemTextJsonLongVo_Treating_numbers_as_string { }
-
     [ValueObject(conversions: Conversions.NewtonsoftJson | Conversions.SystemTextJson, underlyingType: typeof(long))]
     public partial class BothJsonLongVo { }
 

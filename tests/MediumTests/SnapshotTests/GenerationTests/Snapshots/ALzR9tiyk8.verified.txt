@@ -135,7 +135,7 @@ namespace Whatever
                 var stringValue = value as global::System.String;
                 if (stringValue is not null)
                 {
-                    return new internal_partial_structConversions_TypeConverterstring(stringValue);
+                    return internal_partial_structConversions_TypeConverterstring.From(stringValue);
                 }
 
                 return base.ConvertFrom(context, culture, value);

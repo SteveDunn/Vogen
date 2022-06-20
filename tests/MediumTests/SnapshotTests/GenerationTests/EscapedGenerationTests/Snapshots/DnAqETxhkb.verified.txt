@@ -152,9 +152,9 @@ public double Value
             {
                 return value switch
                 {
-                    global::System.Double doubleValue => new escapedTestspublic_partial_recordConversions_TypeConverter(doubleValue),
-                    global::System.Int64 longValue => new escapedTestspublic_partial_recordConversions_TypeConverter((global::System.Double)longValue),
-                    global::System.String stringValue when !global::System.String.IsNullOrEmpty(stringValue) && global::System.Double.TryParse(stringValue, out var result) => new escapedTestspublic_partial_recordConversions_TypeConverter(result),
+                    global::System.Double doubleValue => escapedTestspublic_partial_recordConversions_TypeConverter.From(doubleValue),
+                    global::System.Int64 longValue => escapedTestspublic_partial_recordConversions_TypeConverter.From((global::System.Double)longValue),
+                    global::System.String stringValue when !global::System.String.IsNullOrEmpty(stringValue) && global::System.Double.TryParse(stringValue, out var result) => escapedTestspublic_partial_recordConversions_TypeConverter.From(result),
                     _ => base.ConvertFrom(context, culture, value),
                 };
             }
@@ -195,10 +195,10 @@ public double Value
             {
                 return value switch
                 {
-                    global::System.Double doubleValue => new escapedTestspublic_partial_recordConversions_TypeConverter(doubleValue),
-                    global::System.Int32 intValue => new escapedTestspublic_partial_recordConversions_TypeConverter(intValue),
-                    global::System.Int64 longValue when longValue < global::System.Double.MaxValue => new escapedTestspublic_partial_recordConversions_TypeConverter((global::System.Double)longValue),
-                    global::System.String stringValue when !global::System.String.IsNullOrEmpty(stringValue) && global::System.Double.TryParse(stringValue, out var result) => new escapedTestspublic_partial_recordConversions_TypeConverter(result),
+                    global::System.Double doubleValue => escapedTestspublic_partial_recordConversions_TypeConverter.From(doubleValue),
+                    global::System.Int32 intValue => escapedTestspublic_partial_recordConversions_TypeConverter.From(intValue),
+                    global::System.Int64 longValue when longValue < global::System.Double.MaxValue => escapedTestspublic_partial_recordConversions_TypeConverter.From((global::System.Double)longValue),
+                    global::System.String stringValue when !global::System.String.IsNullOrEmpty(stringValue) && global::System.Double.TryParse(stringValue, out var result) => escapedTestspublic_partial_recordConversions_TypeConverter.From(result),
                     _ => throw new global::System.InvalidCastException($"Unable to cast object of type {value.GetType()} to escapedTestspublic_partial_recordConversions_TypeConverter"),
                 };
             }
@@ -220,7 +220,7 @@ public double Value
             public LinqToDbValueConverter()
                 : base(
                       v => v.Value,
-                      p => new escapedTestspublic_partial_recordConversions_TypeConverter(p),
+                      p => escapedTestspublic_partial_recordConversions_TypeConverter.From(p),
                       handlesNulls: false)
             { }
         }

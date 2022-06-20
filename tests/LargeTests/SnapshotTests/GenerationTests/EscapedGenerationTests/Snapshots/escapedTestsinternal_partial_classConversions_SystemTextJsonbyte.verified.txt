@@ -160,7 +160,7 @@ public System.Byte Value
         {
             public override escapedTestsinternal_partial_classConversions_SystemTextJsonbyte Read(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {
-                return new escapedTestsinternal_partial_classConversions_SystemTextJsonbyte(reader.GetByte());
+                return escapedTestsinternal_partial_classConversions_SystemTextJsonbyte.From(reader.GetByte());
             }
 
             public override void Write(global::System.Text.Json.Utf8JsonWriter writer, escapedTestsinternal_partial_classConversions_SystemTextJsonbyte value, global::System.Text.Json.JsonSerializerOptions options)

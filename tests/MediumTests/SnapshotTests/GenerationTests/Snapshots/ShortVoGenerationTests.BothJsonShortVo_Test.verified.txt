@@ -126,7 +126,7 @@ namespace Whatever
         {
             public override BothJsonShortVo Read(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {
-                return new BothJsonShortVo(reader.GetInt16());
+                return BothJsonShortVo.From(reader.GetInt16());
             }
 
             public override void Write(System.Text.Json.Utf8JsonWriter writer, BothJsonShortVo value, global::System.Text.Json.JsonSerializerOptions options)
@@ -151,7 +151,7 @@ namespace Whatever
             public override object ReadJson(Newtonsoft.Json.JsonReader reader, System.Type objectType, object existingValue, Newtonsoft.Json.JsonSerializer serializer)
             {
                 var result = serializer.Deserialize<global::System.Int16?>(reader);
-                return result.HasValue ? new BothJsonShortVo(result.Value) : null;
+                return result.HasValue ? BothJsonShortVo.From(result.Value) : null;
             }
         }
 

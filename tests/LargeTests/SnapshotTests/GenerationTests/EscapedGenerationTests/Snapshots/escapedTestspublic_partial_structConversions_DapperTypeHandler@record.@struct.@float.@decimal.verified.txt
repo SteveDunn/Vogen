@@ -135,7 +135,7 @@ namespace @class
                 return value switch
                 {
                     global::System.String stringValue =>
-                        new escapedTestspublic_partial_structConversions_DapperTypeHandler(global::System.Text.Json.JsonSerializer.Deserialize<Bar>(stringValue)),
+                        escapedTestspublic_partial_structConversions_DapperTypeHandler.From(global::System.Text.Json.JsonSerializer.Deserialize<Bar>(stringValue)),
                     _ => throw new global::System.InvalidCastException($"Unable to cast object of type {value.GetType()} to escapedTestspublic_partial_structConversions_DapperTypeHandler"),
                 };
             }

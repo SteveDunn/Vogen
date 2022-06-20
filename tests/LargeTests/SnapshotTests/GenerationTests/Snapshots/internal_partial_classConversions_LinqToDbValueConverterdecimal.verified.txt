@@ -165,7 +165,7 @@ public System.Decimal Value
             public LinqToDbValueConverter()
                 : base(
                       v => v.Value,
-                      p => new internal_partial_classConversions_LinqToDbValueConverterdecimal(p),
+                      p => internal_partial_classConversions_LinqToDbValueConverterdecimal.From(p),
                       handlesNulls: false)
             { }
         }

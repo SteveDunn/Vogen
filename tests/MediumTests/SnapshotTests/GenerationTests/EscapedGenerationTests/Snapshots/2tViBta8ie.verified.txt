@@ -111,7 +111,7 @@ namespace @class
         {
             public override escapedTestspublic_partial_record_structConversions_TypeConverter Read(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {
-                return new escapedTestspublic_partial_record_structConversions_TypeConverter(System.Guid.Parse(reader.GetString()));
+                return escapedTestspublic_partial_record_structConversions_TypeConverter.From(System.Guid.Parse(reader.GetString()));
             }
 
             public override void Write(System.Text.Json.Utf8JsonWriter writer, escapedTestspublic_partial_record_structConversions_TypeConverter value, global::System.Text.Json.JsonSerializerOptions options)
@@ -136,7 +136,7 @@ namespace @class
             public override object ReadJson(Newtonsoft.Json.JsonReader reader, System.Type objectType, object existingValue, Newtonsoft.Json.JsonSerializer serializer)
             {
                 var guid = serializer.Deserialize<System.Guid?>(reader);
-                return guid.HasValue ? new escapedTestspublic_partial_record_structConversions_TypeConverter(guid.Value) : null;
+                return guid.HasValue ? escapedTestspublic_partial_record_structConversions_TypeConverter.From(guid.Value) : null;
             }
         }
 
@@ -151,8 +151,8 @@ namespace @class
             {
                 return value switch
                 {
-                    global::System.Guid guidValue => new escapedTestspublic_partial_record_structConversions_TypeConverter(guidValue),
-                    global::System.String stringValue when !global::System.String.IsNullOrEmpty(stringValue) && global::System.Guid.TryParse(stringValue, out var result) => new escapedTestspublic_partial_record_structConversions_TypeConverter(result),
+                    global::System.Guid guidValue => escapedTestspublic_partial_record_structConversions_TypeConverter.From(guidValue),
+                    global::System.String stringValue when !global::System.String.IsNullOrEmpty(stringValue) && global::System.Guid.TryParse(stringValue, out var result) => escapedTestspublic_partial_record_structConversions_TypeConverter.From(result),
                     _ => base.ConvertFrom(context, culture, value),
                 };
             }
@@ -193,8 +193,8 @@ namespace @class
             {
                 return value switch
                 {
-                    global::System.Guid guidValue => new escapedTestspublic_partial_record_structConversions_TypeConverter(guidValue),
-                    global::System.String stringValue when !global::System.String.IsNullOrEmpty(stringValue) && global::System.Guid.TryParse(stringValue, out var result) => new escapedTestspublic_partial_record_structConversions_TypeConverter(result),
+                    global::System.Guid guidValue => escapedTestspublic_partial_record_structConversions_TypeConverter.From(guidValue),
+                    global::System.String stringValue when !global::System.String.IsNullOrEmpty(stringValue) && global::System.Guid.TryParse(stringValue, out var result) => escapedTestspublic_partial_record_structConversions_TypeConverter.From(result),
                     _ => throw new global::System.InvalidCastException($"Unable to cast object of type {value.GetType()} to escapedTestspublic_partial_record_structConversions_TypeConverter"),
                 };
             }
@@ -206,7 +206,7 @@ namespace @class
             public EfCoreValueConverter(global::Microsoft.EntityFrameworkCore.Storage.ValueConversion.ConverterMappingHints mappingHints = null)
                 : base(
                     vo => vo.Value,
-                    value => new escapedTestspublic_partial_record_structConversions_TypeConverter(value),
+                    value => escapedTestspublic_partial_record_structConversions_TypeConverter.From(value),
                     mappingHints
                 ) { }
         }
@@ -216,7 +216,7 @@ namespace @class
             public LinqToDbValueConverter()
                 : base(
                       v => v.Value,
-                      p => new escapedTestspublic_partial_record_structConversions_TypeConverter(p),
+                      p => escapedTestspublic_partial_record_structConversions_TypeConverter.From(p),
                       handlesNulls: false)
             { }
         }

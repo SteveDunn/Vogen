@@ -128,7 +128,7 @@ public string Value
                 var stringValue = value as global::System.String;
                 if (stringValue is not null)
                 {
-                    return new public_partial_record_classConversions_TypeConverterstring(stringValue);
+                    return public_partial_record_classConversions_TypeConverterstring.From(stringValue);
                 }
 
                 return base.ConvertFrom(context, culture, value);

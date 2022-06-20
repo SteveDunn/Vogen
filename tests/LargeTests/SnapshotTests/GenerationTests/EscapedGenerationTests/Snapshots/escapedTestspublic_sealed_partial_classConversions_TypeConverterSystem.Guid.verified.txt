@@ -169,8 +169,8 @@ public System.Guid Value
             {
                 return value switch
                 {
-                    global::System.Guid guidValue => new escapedTestspublic_sealed_partial_classConversions_TypeConverterSystem(guidValue),
-                    global::System.String stringValue when !global::System.String.IsNullOrEmpty(stringValue) && global::System.Guid.TryParse(stringValue, out var result) => new escapedTestspublic_sealed_partial_classConversions_TypeConverterSystem(result),
+                    global::System.Guid guidValue => escapedTestspublic_sealed_partial_classConversions_TypeConverterSystem.From(guidValue),
+                    global::System.String stringValue when !global::System.String.IsNullOrEmpty(stringValue) && global::System.Guid.TryParse(stringValue, out var result) => escapedTestspublic_sealed_partial_classConversions_TypeConverterSystem.From(result),
                     _ => base.ConvertFrom(context, culture, value),
                 };
             }

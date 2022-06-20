@@ -134,11 +134,11 @@ namespace @class
             {
                 return value switch
                 {
-                    global::System.Byte byteValue => new escapedTestsinternal_partial_structConversions_TypeConverterbyte(byteValue),
-                    global::System.Int16 shortValue => new escapedTestsinternal_partial_structConversions_TypeConverterbyte((global::System.Byte)shortValue),
-                    global::System.Int32 intValue => new escapedTestsinternal_partial_structConversions_TypeConverterbyte((global::System.Byte)intValue),
-                    global::System.Int64 longValue => new escapedTestsinternal_partial_structConversions_TypeConverterbyte((global::System.Byte)longValue),
-                    global::System.String stringValue when  !global::System.String.IsNullOrEmpty(stringValue) && global::System.Byte.TryParse(stringValue, out var result) => new escapedTestsinternal_partial_structConversions_TypeConverterbyte(result),
+                    global::System.Byte byteValue => escapedTestsinternal_partial_structConversions_TypeConverterbyte.From(byteValue),
+                    global::System.Int16 shortValue => escapedTestsinternal_partial_structConversions_TypeConverterbyte.From((global::System.Byte)shortValue),
+                    global::System.Int32 intValue => escapedTestsinternal_partial_structConversions_TypeConverterbyte.From((global::System.Byte)intValue),
+                    global::System.Int64 longValue => escapedTestsinternal_partial_structConversions_TypeConverterbyte.From((global::System.Byte)longValue),
+                    global::System.String stringValue when  !global::System.String.IsNullOrEmpty(stringValue) && global::System.Byte.TryParse(stringValue, out var result) => escapedTestsinternal_partial_structConversions_TypeConverterbyte.From(result),
                     _ => base.ConvertFrom(context, culture, value),
                 };
             }

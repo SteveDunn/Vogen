@@ -118,11 +118,11 @@ namespace Whatever
             {
                 return value switch
                 {
-                    global::System.Byte byteValue => new internal_readonly_partial_record_structConversions_TypeConverterbyte(byteValue),
-                    global::System.Int16 shortValue => new internal_readonly_partial_record_structConversions_TypeConverterbyte((global::System.Byte)shortValue),
-                    global::System.Int32 intValue => new internal_readonly_partial_record_structConversions_TypeConverterbyte((global::System.Byte)intValue),
-                    global::System.Int64 longValue => new internal_readonly_partial_record_structConversions_TypeConverterbyte((global::System.Byte)longValue),
-                    global::System.String stringValue when  !global::System.String.IsNullOrEmpty(stringValue) && global::System.Byte.TryParse(stringValue, out var result) => new internal_readonly_partial_record_structConversions_TypeConverterbyte(result),
+                    global::System.Byte byteValue => internal_readonly_partial_record_structConversions_TypeConverterbyte.From(byteValue),
+                    global::System.Int16 shortValue => internal_readonly_partial_record_structConversions_TypeConverterbyte.From((global::System.Byte)shortValue),
+                    global::System.Int32 intValue => internal_readonly_partial_record_structConversions_TypeConverterbyte.From((global::System.Byte)intValue),
+                    global::System.Int64 longValue => internal_readonly_partial_record_structConversions_TypeConverterbyte.From((global::System.Byte)longValue),
+                    global::System.String stringValue when  !global::System.String.IsNullOrEmpty(stringValue) && global::System.Byte.TryParse(stringValue, out var result) => internal_readonly_partial_record_structConversions_TypeConverterbyte.From(result),
                     _ => base.ConvertFrom(context, culture, value),
                 };
             }

@@ -135,9 +135,9 @@ namespace Whatever
             {
                 return value switch
                 {
-                    global::System.Int32 intValue => new internal_readonly_partial_structConversions_EfCoreValueConverter(intValue),
-                    global::System.Int64 longValue when longValue < global::System.Int32.MaxValue => new internal_readonly_partial_structConversions_EfCoreValueConverter((global::System.Int32)longValue),
-                    global::System.String stringValue when !global::System.String.IsNullOrEmpty(stringValue) && global::System.Int32.TryParse(stringValue, out var result) => new internal_readonly_partial_structConversions_EfCoreValueConverter(result),
+                    global::System.Int32 intValue => internal_readonly_partial_structConversions_EfCoreValueConverter.From(intValue),
+                    global::System.Int64 longValue when longValue < global::System.Int32.MaxValue => internal_readonly_partial_structConversions_EfCoreValueConverter.From((global::System.Int32)longValue),
+                    global::System.String stringValue when !global::System.String.IsNullOrEmpty(stringValue) && global::System.Int32.TryParse(stringValue, out var result) => internal_readonly_partial_structConversions_EfCoreValueConverter.From(result),
                     _ => throw new global::System.InvalidCastException($"Unable to cast object of type {value.GetType()} to internal_readonly_partial_structConversions_EfCoreValueConverter"),
                 };
             }
@@ -149,7 +149,7 @@ namespace Whatever
             public EfCoreValueConverter(global::Microsoft.EntityFrameworkCore.Storage.ValueConversion.ConverterMappingHints mappingHints = null)
                 : base(
                     vo => vo.Value,
-                    value => new internal_readonly_partial_structConversions_EfCoreValueConverter(value),
+                    value => internal_readonly_partial_structConversions_EfCoreValueConverter.From(value),
                     mappingHints
                 ) { }
         }
@@ -159,7 +159,7 @@ namespace Whatever
             public LinqToDbValueConverter()
                 : base(
                       v => v.Value,
-                      p => new internal_readonly_partial_structConversions_EfCoreValueConverter(p),
+                      p => internal_readonly_partial_structConversions_EfCoreValueConverter.From(p),
                       handlesNulls: false)
             { }
         }

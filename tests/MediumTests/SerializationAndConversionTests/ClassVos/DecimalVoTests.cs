@@ -96,17 +96,6 @@ namespace Vogen.IntegrationTests.SerializationAndConversionTests.ClassVos
         }
 
         [Fact]
-        public void CanDeserializeFromLong_WithSystemTextJsonProvider_treating_numbers_as_string()
-        {
-            var vo = SystemTextJsonDecimalVo_Treating_number_as_string.From(123m);
-            var serializedLong = SystemTextJsonSerializer.Serialize(vo);
-
-            var deserializedVo = SystemTextJsonSerializer.Deserialize<SystemTextJsonDecimalVo_Treating_number_as_string>(serializedLong);
-
-            Assert.Equal(vo, deserializedVo);
-        }
-
-        [Fact]
         public void CanSerializeToLong_WithBothJsonConverters()
         {
             var vo = BothJsonDecimalVo.From(123m);
@@ -264,17 +253,6 @@ namespace Vogen.IntegrationTests.SerializationAndConversionTests.ClassVos
 
             string serializedVo = SystemTextJsonSerializer.Serialize(vo);
             var deserializedVo = SystemTextJsonSerializer.Deserialize<SystemTextJsonDecimalVo>(serializedVo)!;
-
-            deserializedVo.Value.Should().Be(123.45m);
-        }
-
-        [Fact]
-        public void RoundTrip_WithStj_Treating_numbers_as_string()
-        {
-            var vo = SystemTextJsonDecimalVo_Treating_number_as_string.From(123.45m);
-
-            string serializedVo = SystemTextJsonSerializer.Serialize(vo);
-            var deserializedVo = SystemTextJsonSerializer.Deserialize<SystemTextJsonDecimalVo_Treating_number_as_string>(serializedVo)!;
 
             deserializedVo.Value.Should().Be(123.45m);
         }

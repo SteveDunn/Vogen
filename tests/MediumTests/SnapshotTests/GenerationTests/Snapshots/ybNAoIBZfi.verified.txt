@@ -120,10 +120,10 @@ public System.DateTimeOffset Value
             {
                 return value switch
                 {
-                    global::System.DateTimeOffset dtValue => new public_partial_recordConversions_EfCoreValueConverter(dtValue),
+                    global::System.DateTimeOffset dtValue => public_partial_recordConversions_EfCoreValueConverter.From(dtValue),
                     global::System.String stringValue when 
                         !global::System.String.IsNullOrEmpty(stringValue) &&
-                        global::System.DateTimeOffset.TryParseExact(stringValue, "yyyy-MM-dd HH:mm:ss.fffffff", global::System.Globalization.CultureInfo.InvariantCulture, global::System.Globalization.DateTimeStyles.None, out var result) => new public_partial_recordConversions_EfCoreValueConverter(result),
+                        global::System.DateTimeOffset.TryParseExact(stringValue, "yyyy-MM-dd HH:mm:ss.fffffff", global::System.Globalization.CultureInfo.InvariantCulture, global::System.Globalization.DateTimeStyles.None, out var result) => public_partial_recordConversions_EfCoreValueConverter.From(result),
                     _ => throw new global::System.InvalidCastException($"Unable to cast object of type {value.GetType()} to public_partial_recordConversions_EfCoreValueConverter"),
                 };
             }
@@ -135,7 +135,7 @@ public System.DateTimeOffset Value
             public EfCoreValueConverter(global::Microsoft.EntityFrameworkCore.Storage.ValueConversion.ConverterMappingHints mappingHints = null)
                 : base(
                     vo => vo.Value,
-                    value => new public_partial_recordConversions_EfCoreValueConverter(value),
+                    value => public_partial_recordConversions_EfCoreValueConverter.From(value),
                     mappingHints
                 ) { }
         }
@@ -145,7 +145,7 @@ public System.DateTimeOffset Value
             public LinqToDbValueConverter()
                 : base(
                       v => v.Value,
-                      p => new public_partial_recordConversions_EfCoreValueConverter(p),
+                      p => public_partial_recordConversions_EfCoreValueConverter.From(p),
                       handlesNulls: false)
             { }
         }

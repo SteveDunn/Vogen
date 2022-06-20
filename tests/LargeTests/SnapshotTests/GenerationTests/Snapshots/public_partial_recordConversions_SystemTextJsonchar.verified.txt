@@ -112,7 +112,7 @@ public char Value
             {
                 var s = reader.GetString();
 
-                return new public_partial_recordConversions_SystemTextJsonchar(s[0]);
+                return public_partial_recordConversions_SystemTextJsonchar.From(s[0]);
             }
 
             public override void Write(System.Text.Json.Utf8JsonWriter writer, public_partial_recordConversions_SystemTextJsonchar value, global::System.Text.Json.JsonSerializerOptions options)

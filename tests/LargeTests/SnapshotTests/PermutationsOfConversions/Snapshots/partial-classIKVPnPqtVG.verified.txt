@@ -161,7 +161,7 @@ public System.Int32 Value
         {
             public override MyIntVo Read(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {
-                return new MyIntVo(reader.GetInt32());
+                return MyIntVo.From(reader.GetInt32());
             }
 
             public override void Write(System.Text.Json.Utf8JsonWriter writer, MyIntVo value, global::System.Text.Json.JsonSerializerOptions options)
@@ -186,7 +186,7 @@ public System.Int32 Value
             public override object ReadJson(Newtonsoft.Json.JsonReader reader, System.Type objectType, object existingValue, Newtonsoft.Json.JsonSerializer serializer)
             {
                 var result = serializer.Deserialize<global::System.Int32?>(reader);
-                return result.HasValue ? new MyIntVo(result.Value) : null;
+                return result.HasValue ? MyIntVo.From(result.Value) : null;
             }
         }
 
@@ -203,9 +203,9 @@ public System.Int32 Value
             {
                 return value switch
                 {
-                    global::System.Int32 intValue => new MyIntVo(intValue),
-                    global::System.Int64 longValue when longValue < global::System.Int32.MaxValue => new MyIntVo((global::System.Int32)longValue),
-                    global::System.String stringValue when !global::System.String.IsNullOrEmpty(stringValue) && global::System.Int32.TryParse(stringValue, out var result) => new MyIntVo(result),
+                    global::System.Int32 intValue => MyIntVo.From(intValue),
+                    global::System.Int64 longValue when longValue < global::System.Int32.MaxValue => MyIntVo.From((global::System.Int32)longValue),
+                    global::System.String stringValue when !global::System.String.IsNullOrEmpty(stringValue) && global::System.Int32.TryParse(stringValue, out var result) => MyIntVo.From(result),
                     _ => throw new global::System.InvalidCastException($"Unable to cast object of type {value.GetType()} to MyIntVo"),
                 };
             }
@@ -217,7 +217,7 @@ public System.Int32 Value
             public EfCoreValueConverter(global::Microsoft.EntityFrameworkCore.Storage.ValueConversion.ConverterMappingHints mappingHints = null)
                 : base(
                     vo => vo.Value,
-                    value => new MyIntVo(value),
+                    value => MyIntVo.From(value),
                     mappingHints
                 ) { }
         }
@@ -227,7 +227,7 @@ public System.Int32 Value
             public LinqToDbValueConverter()
                 : base(
                       v => v.Value,
-                      p => new MyIntVo(p),
+                      p => MyIntVo.From(p),
                       handlesNulls: false)
             { }
         }

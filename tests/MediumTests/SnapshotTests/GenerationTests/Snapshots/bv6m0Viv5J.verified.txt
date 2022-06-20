@@ -119,11 +119,11 @@ public byte Value
             {
                 return value switch
                 {
-                    global::System.Byte byteValue => new internal_sealed_partial_record_classConversions_EfCoreValueConverter(byteValue),
-                    global::System.Int16 shortValue => new internal_sealed_partial_record_classConversions_EfCoreValueConverter((global::System.Byte)shortValue),
-                    global::System.Int32 intValue => new internal_sealed_partial_record_classConversions_EfCoreValueConverter((global::System.Byte)intValue),
-                    global::System.Int64 longValue => new internal_sealed_partial_record_classConversions_EfCoreValueConverter((global::System.Byte)longValue),
-                    global::System.String stringValue when !global::System.String.IsNullOrEmpty(stringValue) && global::System.Byte.TryParse(stringValue, out var result) => new internal_sealed_partial_record_classConversions_EfCoreValueConverter(result),
+                    global::System.Byte byteValue => internal_sealed_partial_record_classConversions_EfCoreValueConverter.From(byteValue),
+                    global::System.Int16 shortValue => internal_sealed_partial_record_classConversions_EfCoreValueConverter.From((global::System.Byte)shortValue),
+                    global::System.Int32 intValue => internal_sealed_partial_record_classConversions_EfCoreValueConverter.From((global::System.Byte)intValue),
+                    global::System.Int64 longValue => internal_sealed_partial_record_classConversions_EfCoreValueConverter.From((global::System.Byte)longValue),
+                    global::System.String stringValue when !global::System.String.IsNullOrEmpty(stringValue) && global::System.Byte.TryParse(stringValue, out var result) => internal_sealed_partial_record_classConversions_EfCoreValueConverter.From(result),
                     _ => throw new global::System.InvalidCastException($"Unable to cast object of type {value.GetType()} to internal_sealed_partial_record_classConversions_EfCoreValueConverter"),
                 };
             }
@@ -135,7 +135,7 @@ public byte Value
             public EfCoreValueConverter(global::Microsoft.EntityFrameworkCore.Storage.ValueConversion.ConverterMappingHints mappingHints = null)
                 : base(
                     vo => vo.Value,
-                    value => new internal_sealed_partial_record_classConversions_EfCoreValueConverter(value),
+                    value => internal_sealed_partial_record_classConversions_EfCoreValueConverter.From(value),
                     mappingHints
                 ) { }
         }
@@ -145,7 +145,7 @@ public byte Value
             public LinqToDbValueConverter()
                 : base(
                       v => v.Value,
-                      p => new internal_sealed_partial_record_classConversions_EfCoreValueConverter(p),
+                      p => internal_sealed_partial_record_classConversions_EfCoreValueConverter.From(p),
                       handlesNulls: false)
             { }
         }

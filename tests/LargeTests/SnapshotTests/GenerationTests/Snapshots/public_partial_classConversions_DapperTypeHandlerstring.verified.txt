@@ -174,7 +174,7 @@ public System.String Value
             {
                 return value switch
                 {
-                    global::System.String stringValue => new public_partial_classConversions_DapperTypeHandlerstring(stringValue),
+                    global::System.String stringValue => public_partial_classConversions_DapperTypeHandlerstring.From(stringValue),
                     _ => throw new global::System.InvalidCastException($"Unable to cast object of type {value.GetType()} to public_partial_classConversions_DapperTypeHandlerstring"),
                 };
             }

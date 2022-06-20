@@ -165,7 +165,7 @@ public System.Int16 Value
             public LinqToDbValueConverter()
                 : base(
                       v => v.Value,
-                      p => new public_partial_classConversions_LinqToDbValueConvertershort(p),
+                      p => public_partial_classConversions_LinqToDbValueConvertershort.From(p),
                       handlesNulls: false)
             { }
         }

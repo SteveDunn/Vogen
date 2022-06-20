@@ -114,7 +114,7 @@ namespace @class
             public EfCoreValueConverter(global::Microsoft.EntityFrameworkCore.Storage.ValueConversion.ConverterMappingHints mappingHints = null)
                 : base(
                     vo => global::System.Text.Json.JsonSerializer.Serialize(vo.Value, default(global::System.Text.Json.JsonSerializerOptions)),
-                    text => new escapedTestspublic_partial_record_structConversions_EfCoreValueConverter(global::System.Text.Json.JsonSerializer.Deserialize<@class.@record.@struct.@float.@decimal>(text, default(global::System.Text.Json.JsonSerializerOptions))),
+                    text => escapedTestspublic_partial_record_structConversions_EfCoreValueConverter.From(global::System.Text.Json.JsonSerializer.Deserialize<@class.@record.@struct.@float.@decimal>(text, default(global::System.Text.Json.JsonSerializerOptions))),
                     mappingHints
                 ) { }
         }

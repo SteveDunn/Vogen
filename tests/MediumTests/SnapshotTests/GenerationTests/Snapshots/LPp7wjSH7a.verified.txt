@@ -169,8 +169,8 @@ public System.Int64 Value
             {
                 return value switch
                 {
-                    global::System.Int64 longValue => new internal_sealed_partial_classConversions_TypeConverterlong(longValue),
-                    global::System.String stringValue when  !global::System.String.IsNullOrEmpty(stringValue) && long.TryParse(stringValue, out var result) => new internal_sealed_partial_classConversions_TypeConverterlong(result),
+                    global::System.Int64 longValue => internal_sealed_partial_classConversions_TypeConverterlong.From(longValue),
+                    global::System.String stringValue when  !global::System.String.IsNullOrEmpty(stringValue) && long.TryParse(stringValue, out var result) => internal_sealed_partial_classConversions_TypeConverterlong.From(result),
                     _ => base.ConvertFrom(context, culture, value),
                 };
             }

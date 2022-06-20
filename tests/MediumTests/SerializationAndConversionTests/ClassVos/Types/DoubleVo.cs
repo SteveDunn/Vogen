@@ -15,9 +15,6 @@
     [ValueObject(conversions: Conversions.SystemTextJson, underlyingType: typeof(double))]
     public partial class SystemTextJsonDoubleVo { }
 
-    [ValueObject(conversions: Conversions.SystemTextJson, underlyingType: typeof(double), customizations: Customizations.TreatNumberAsStringInSystemTextJson)]
-    public partial class SystemTextJsonDoubleVo_number_as_string { }
-
     [ValueObject(conversions: Conversions.NewtonsoftJson | Conversions.SystemTextJson, underlyingType: typeof(double))]
     public partial class BothJsonDoubleVo { }
 

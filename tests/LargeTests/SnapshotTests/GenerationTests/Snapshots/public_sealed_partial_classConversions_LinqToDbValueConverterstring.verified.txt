@@ -169,7 +169,7 @@ public System.String Value
             public LinqToDbValueConverter()
                 : base(
                       v => v.Value,
-                      p => new public_sealed_partial_classConversions_LinqToDbValueConverterstring(p),
+                      p => public_sealed_partial_classConversions_LinqToDbValueConverterstring.From(p),
                       handlesNulls: false)
             { }
         }

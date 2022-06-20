@@ -112,7 +112,7 @@ public @class.record.@struct.@float.decimal Value
             public override escapedTestspublic_sealed_partial_recordConversions_NewtonsoftJson Read(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {
                 var primitive = global::System.Text.Json.JsonSerializer.Deserialize<@class.@record.@struct.@float.@decimal>(ref reader, options);
-                return new escapedTestspublic_sealed_partial_recordConversions_NewtonsoftJson(primitive);
+                return escapedTestspublic_sealed_partial_recordConversions_NewtonsoftJson.From(primitive);
             }
 
             public override void Write(System.Text.Json.Utf8JsonWriter writer, escapedTestspublic_sealed_partial_recordConversions_NewtonsoftJson value, global::System.Text.Json.JsonSerializerOptions options)
@@ -136,7 +136,7 @@ public @class.record.@struct.@float.decimal Value
 
             public override object ReadJson(Newtonsoft.Json.JsonReader reader, System.Type objectType, object existingValue, Newtonsoft.Json.JsonSerializer serializer)
             {
-                return new escapedTestspublic_sealed_partial_recordConversions_NewtonsoftJson(serializer.Deserialize<@class.@record.@struct.@float.@decimal>(reader));
+                return escapedTestspublic_sealed_partial_recordConversions_NewtonsoftJson.From(serializer.Deserialize<@class.@record.@struct.@float.@decimal>(reader));
             }
         }
 

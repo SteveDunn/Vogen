@@ -115,7 +115,7 @@ public byte Value
             public LinqToDbValueConverter()
                 : base(
                       v => v.Value,
-                      p => new internal_partial_recordConversions_LinqToDbValueConverterbyte(p),
+                      p => internal_partial_recordConversions_LinqToDbValueConverterbyte.From(p),
                       handlesNulls: false)
             { }
         }
