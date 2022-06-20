@@ -160,7 +160,7 @@ public System.DateTimeOffset Value
         {
             public override public_sealed_partial_classConversions_SystemTextJsonSystem Read(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {
-                return new public_sealed_partial_classConversions_SystemTextJsonSystem(reader.GetDateTimeOffset());
+                return public_sealed_partial_classConversions_SystemTextJsonSystem.From(reader.GetDateTimeOffset());
             }
 
             public override void Write(System.Text.Json.Utf8JsonWriter writer, public_sealed_partial_classConversions_SystemTextJsonSystem value, global::System.Text.Json.JsonSerializerOptions options)

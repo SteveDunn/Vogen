@@ -118,17 +118,6 @@ namespace Vogen.IntegrationTests.SerializationAndConversionTests.ClassVos
         }
 
         [Fact]
-        public void CanDeserializeFromFloat_WithSystemTextJsonProvider_treating_numbers_as_string()
-        {
-            var vo = SystemTextJsonFloatVo_Treating_numbers_as_string.From(123);
-            var serializedFloat = SystemTextJsonSerializer.Serialize(vo);
-
-            var deserializedVo = SystemTextJsonSerializer.Deserialize<SystemTextJsonFloatVo_Treating_numbers_as_string>(serializedFloat);
-
-            Assert.Equal(vo, deserializedVo);
-        }
-
-        [Fact]
         public void CanSerializeToFloat_WithBothJsonConverters()
         {
             var vo = BothJsonFloatVo.From(123.45f);

@@ -165,7 +165,7 @@ public System.DateTimeOffset Value
             public EfCoreValueConverter(global::Microsoft.EntityFrameworkCore.Storage.ValueConversion.ConverterMappingHints mappingHints = null)
                 : base(
                     vo => vo.Value,
-                    value => new public_partial_classConversions_EfCoreValueConverterSystem(value),
+                    value => public_partial_classConversions_EfCoreValueConverterSystem.From(value),
                     mappingHints
                 ) { }
         }

@@ -120,9 +120,9 @@ public decimal Value
             {
                 return value switch
                 {
-                    global::System.Int32 intValue => new public_sealed_partial_recordConversions_EfCoreValueConverter(intValue),
-                    global::System.Int64 longValue when longValue < global::System.Int32.MaxValue => new public_sealed_partial_recordConversions_EfCoreValueConverter((global::System.Int32)longValue),
-                    global::System.String stringValue when !global::System.String.IsNullOrEmpty(stringValue) && global::System.Decimal.TryParse(stringValue, out var result) => new public_sealed_partial_recordConversions_EfCoreValueConverter(result),
+                    global::System.Int32 intValue => public_sealed_partial_recordConversions_EfCoreValueConverter.From(intValue),
+                    global::System.Int64 longValue when longValue < global::System.Int32.MaxValue => public_sealed_partial_recordConversions_EfCoreValueConverter.From((global::System.Int32)longValue),
+                    global::System.String stringValue when !global::System.String.IsNullOrEmpty(stringValue) && global::System.Decimal.TryParse(stringValue, out var result) => public_sealed_partial_recordConversions_EfCoreValueConverter.From(result),
                     _ => throw new global::System.InvalidCastException($"Unable to cast object of type {value.GetType()} to public_sealed_partial_recordConversions_EfCoreValueConverter"),
                 };
             }
@@ -144,7 +144,7 @@ public decimal Value
             public LinqToDbValueConverter()
                 : base(
                       v => v.Value,
-                      p => new public_sealed_partial_recordConversions_EfCoreValueConverter(p),
+                      p => public_sealed_partial_recordConversions_EfCoreValueConverter.From(p),
                       handlesNulls: false)
             { }
         }

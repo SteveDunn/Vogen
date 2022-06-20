@@ -170,7 +170,7 @@ public @class.@record.@struct.@float.@decimal Value
                 return value switch
                 {
                     global::System.String stringValue =>
-                        new escapedTestsinternal_sealed_partial_classConversions_DapperTypeHandler(global::System.Text.Json.JsonSerializer.Deserialize<Bar>(stringValue)),
+                        escapedTestsinternal_sealed_partial_classConversions_DapperTypeHandler.From(global::System.Text.Json.JsonSerializer.Deserialize<Bar>(stringValue)),
                     _ => throw new global::System.InvalidCastException($"Unable to cast object of type {value.GetType()} to escapedTestsinternal_sealed_partial_classConversions_DapperTypeHandler"),
                 };
             }

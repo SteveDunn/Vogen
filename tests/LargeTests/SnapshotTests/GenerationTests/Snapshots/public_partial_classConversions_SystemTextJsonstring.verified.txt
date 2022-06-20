@@ -164,7 +164,7 @@ public System.String Value
         {
             public override public_partial_classConversions_SystemTextJsonstring Read(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {
-                return new public_partial_classConversions_SystemTextJsonstring(reader.GetString());
+                return public_partial_classConversions_SystemTextJsonstring.From(reader.GetString());
             }
 
             public override void Write(System.Text.Json.Utf8JsonWriter writer, public_partial_classConversions_SystemTextJsonstring value, global::System.Text.Json.JsonSerializerOptions options)

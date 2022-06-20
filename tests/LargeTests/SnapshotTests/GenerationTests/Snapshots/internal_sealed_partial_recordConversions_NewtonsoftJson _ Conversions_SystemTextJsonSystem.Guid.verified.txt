@@ -111,7 +111,7 @@ public System.Guid Value
         {
             public override internal_sealed_partial_recordConversions_NewtonsoftJson Read(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {
-                return new internal_sealed_partial_recordConversions_NewtonsoftJson(System.Guid.Parse(reader.GetString()));
+                return internal_sealed_partial_recordConversions_NewtonsoftJson.From(System.Guid.Parse(reader.GetString()));
             }
 
             public override void Write(System.Text.Json.Utf8JsonWriter writer, internal_sealed_partial_recordConversions_NewtonsoftJson value, global::System.Text.Json.JsonSerializerOptions options)
@@ -136,7 +136,7 @@ public System.Guid Value
             public override object ReadJson(Newtonsoft.Json.JsonReader reader, System.Type objectType, object existingValue, Newtonsoft.Json.JsonSerializer serializer)
             {
                 var guid = serializer.Deserialize<System.Guid?>(reader);
-                return guid.HasValue ? new internal_sealed_partial_recordConversions_NewtonsoftJson(guid.Value) : null;
+                return guid.HasValue ? internal_sealed_partial_recordConversions_NewtonsoftJson.From(guid.Value) : null;
             }
         }
 

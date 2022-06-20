@@ -15,9 +15,6 @@
     [ValueObject(conversions: Conversions.SystemTextJson, underlyingType: typeof(decimal))]
     public partial class SystemTextJsonDecimalVo { }
 
-    [ValueObject(conversions: Conversions.SystemTextJson, underlyingType: typeof(decimal), customizations: Customizations.TreatNumberAsStringInSystemTextJson)]
-    public partial class SystemTextJsonDecimalVo_Treating_number_as_string { }
-
     [ValueObject(conversions: Conversions.NewtonsoftJson | Conversions.SystemTextJson, underlyingType: typeof(decimal))]
     public partial class BothJsonDecimalVo { }
 

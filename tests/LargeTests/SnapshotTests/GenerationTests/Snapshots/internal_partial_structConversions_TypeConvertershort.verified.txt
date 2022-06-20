@@ -134,10 +134,10 @@ namespace Whatever
             {
                 return value switch
                 {
-                    global::System.Int16 shortValue => new internal_partial_structConversions_TypeConvertershort(shortValue),
-                    global::System.Int32 intValue => new internal_partial_structConversions_TypeConvertershort((global::System.Int16)intValue),
-                    global::System.Int64 longValue => new internal_partial_structConversions_TypeConvertershort((global::System.Int16)longValue),
-                    global::System.String stringValue when  !global::System.String.IsNullOrEmpty(stringValue) && global::System.Int16.TryParse(stringValue, out var result) => new internal_partial_structConversions_TypeConvertershort(result),
+                    global::System.Int16 shortValue => internal_partial_structConversions_TypeConvertershort.From(shortValue),
+                    global::System.Int32 intValue => internal_partial_structConversions_TypeConvertershort.From((global::System.Int16)intValue),
+                    global::System.Int64 longValue => internal_partial_structConversions_TypeConvertershort.From((global::System.Int16)longValue),
+                    global::System.String stringValue when  !global::System.String.IsNullOrEmpty(stringValue) && global::System.Int16.TryParse(stringValue, out var result) => internal_partial_structConversions_TypeConvertershort.From(result),
                     _ => base.ConvertFrom(context, culture, value),
                 };
             }

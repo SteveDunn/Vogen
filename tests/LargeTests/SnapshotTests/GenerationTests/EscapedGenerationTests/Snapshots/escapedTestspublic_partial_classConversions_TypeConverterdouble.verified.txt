@@ -169,9 +169,9 @@ public System.Double Value
             {
                 return value switch
                 {
-                    global::System.Double doubleValue => new escapedTestspublic_partial_classConversions_TypeConverterdouble(doubleValue),
-                    global::System.Int64 longValue => new escapedTestspublic_partial_classConversions_TypeConverterdouble((global::System.Double)longValue),
-                    global::System.String stringValue when !global::System.String.IsNullOrEmpty(stringValue) && global::System.Double.TryParse(stringValue, out var result) => new escapedTestspublic_partial_classConversions_TypeConverterdouble(result),
+                    global::System.Double doubleValue => escapedTestspublic_partial_classConversions_TypeConverterdouble.From(doubleValue),
+                    global::System.Int64 longValue => escapedTestspublic_partial_classConversions_TypeConverterdouble.From((global::System.Double)longValue),
+                    global::System.String stringValue when !global::System.String.IsNullOrEmpty(stringValue) && global::System.Double.TryParse(stringValue, out var result) => escapedTestspublic_partial_classConversions_TypeConverterdouble.From(result),
                     _ => base.ConvertFrom(context, culture, value),
                 };
             }

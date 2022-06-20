@@ -119,7 +119,7 @@ public @class.record.@struct.@float.decimal Value
             {
                 @class.@record.@struct.@float.@decimal ut = (@class.@record.@struct.@float.@decimal)value;
 
-                return new escapedTestspublic_sealed_partial_record_classConversions_TypeConverter(ut);
+                return escapedTestspublic_sealed_partial_record_classConversions_TypeConverter.From(ut);
             }
         
             public override bool CanConvertTo(global::System.ComponentModel.ITypeDescriptorContext context, global::System.Type sourceType)

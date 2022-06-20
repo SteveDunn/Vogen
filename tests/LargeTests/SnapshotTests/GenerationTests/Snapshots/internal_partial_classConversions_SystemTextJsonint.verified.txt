@@ -160,7 +160,7 @@ public System.Int32 Value
         {
             public override internal_partial_classConversions_SystemTextJsonint Read(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {
-                return new internal_partial_classConversions_SystemTextJsonint(reader.GetInt32());
+                return internal_partial_classConversions_SystemTextJsonint.From(reader.GetInt32());
             }
 
             public override void Write(System.Text.Json.Utf8JsonWriter writer, internal_partial_classConversions_SystemTextJsonint value, global::System.Text.Json.JsonSerializerOptions options)

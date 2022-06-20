@@ -165,7 +165,7 @@ public System.Char Value
             public EfCoreValueConverter(global::Microsoft.EntityFrameworkCore.Storage.ValueConversion.ConverterMappingHints mappingHints = null)
                 : base(
                     vo => vo.Value,
-                    value => new public_partial_classConversions_EfCoreValueConverterchar(value),
+                    value => public_partial_classConversions_EfCoreValueConverterchar.From(value),
                     mappingHints
                 ) { }
         }

@@ -135,10 +135,10 @@ namespace Whatever
             {
                 return value switch
                 {
-                    global::System.DateTime dtValue => new public_partial_structConversions_DapperTypeHandlerSystem(dtValue),
+                    global::System.DateTime dtValue => public_partial_structConversions_DapperTypeHandlerSystem.From(dtValue),
                     global::System.String stringValue when 
                         !global::System.String.IsNullOrEmpty(stringValue) &&
-                        global::System.DateTime.TryParseExact(stringValue, "yyyy-MM-dd HH:mm:ss.fffffff", global::System.Globalization.CultureInfo.InvariantCulture, global::System.Globalization.DateTimeStyles.None, out var result) => new public_partial_structConversions_DapperTypeHandlerSystem(result),
+                        global::System.DateTime.TryParseExact(stringValue, "yyyy-MM-dd HH:mm:ss.fffffff", global::System.Globalization.CultureInfo.InvariantCulture, global::System.Globalization.DateTimeStyles.None, out var result) => public_partial_structConversions_DapperTypeHandlerSystem.From(result),
                     _ => throw new global::System.InvalidCastException($"Unable to cast object of type {value.GetType()} to public_partial_structConversions_DapperTypeHandlerSystem"),
                 };
             }

@@ -118,11 +118,11 @@ namespace Whatever
             {
                 return value switch
                 {
-                    global::System.Char charValue => new internal_readonly_partial_record_structConversions_EfCoreValueConverter(charValue),
-                    global::System.Int16 shortValue => new internal_readonly_partial_record_structConversions_EfCoreValueConverter((global::System.Char)shortValue),
-                    global::System.Int32 intValue => new internal_readonly_partial_record_structConversions_EfCoreValueConverter((global::System.Char)intValue),
-                    global::System.Int64 longValue => new internal_readonly_partial_record_structConversions_EfCoreValueConverter((global::System.Char)longValue),
-                    global::System.String stringValue when !global::System.String.IsNullOrEmpty(stringValue) && global::System.Char.TryParse(stringValue, out var result) => new internal_readonly_partial_record_structConversions_EfCoreValueConverter(result),
+                    global::System.Char charValue => internal_readonly_partial_record_structConversions_EfCoreValueConverter.From(charValue),
+                    global::System.Int16 shortValue => internal_readonly_partial_record_structConversions_EfCoreValueConverter.From((global::System.Char)shortValue),
+                    global::System.Int32 intValue => internal_readonly_partial_record_structConversions_EfCoreValueConverter.From((global::System.Char)intValue),
+                    global::System.Int64 longValue => internal_readonly_partial_record_structConversions_EfCoreValueConverter.From((global::System.Char)longValue),
+                    global::System.String stringValue when !global::System.String.IsNullOrEmpty(stringValue) && global::System.Char.TryParse(stringValue, out var result) => internal_readonly_partial_record_structConversions_EfCoreValueConverter.From(result),
                     _ => throw new global::System.InvalidCastException($"Unable to cast object of type {value.GetType()} to internal_readonly_partial_record_structConversions_EfCoreValueConverter"),
                 };
             }
@@ -134,7 +134,7 @@ namespace Whatever
             public EfCoreValueConverter(global::Microsoft.EntityFrameworkCore.Storage.ValueConversion.ConverterMappingHints mappingHints = null)
                 : base(
                     vo => vo.Value,
-                    value => new internal_readonly_partial_record_structConversions_EfCoreValueConverter(value),
+                    value => internal_readonly_partial_record_structConversions_EfCoreValueConverter.From(value),
                     mappingHints
                 ) { }
         }
@@ -144,7 +144,7 @@ namespace Whatever
             public LinqToDbValueConverter()
                 : base(
                       v => v.Value,
-                      p => new internal_readonly_partial_record_structConversions_EfCoreValueConverter(p),
+                      p => internal_readonly_partial_record_structConversions_EfCoreValueConverter.From(p),
                       handlesNulls: false)
             { }
         }

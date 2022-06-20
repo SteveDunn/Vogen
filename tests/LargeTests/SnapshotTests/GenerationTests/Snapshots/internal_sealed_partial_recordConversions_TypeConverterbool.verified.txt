@@ -119,8 +119,8 @@ public bool Value
             {
                 return value switch
                 {
-                    global::System.Boolean boolValue => new internal_sealed_partial_recordConversions_TypeConverterbool(boolValue),
-                    global::System.String stringValue when  !global::System.String.IsNullOrEmpty(stringValue) && global::System.Boolean.TryParse(stringValue, out var result) => new internal_sealed_partial_recordConversions_TypeConverterbool(result),
+                    global::System.Boolean boolValue => internal_sealed_partial_recordConversions_TypeConverterbool.From(boolValue),
+                    global::System.String stringValue when  !global::System.String.IsNullOrEmpty(stringValue) && global::System.Boolean.TryParse(stringValue, out var result) => internal_sealed_partial_recordConversions_TypeConverterbool.From(result),
                     _ => base.ConvertFrom(context, culture, value),
                 };
             }

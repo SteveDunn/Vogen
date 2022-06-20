@@ -115,7 +115,7 @@ public short Value
             public LinqToDbValueConverter()
                 : base(
                       v => v.Value,
-                      p => new internal_sealed_partial_recordConversions_LinqToDbValueConvertershort(p),
+                      p => internal_sealed_partial_recordConversions_LinqToDbValueConvertershort.From(p),
                       handlesNulls: false)
             { }
         }

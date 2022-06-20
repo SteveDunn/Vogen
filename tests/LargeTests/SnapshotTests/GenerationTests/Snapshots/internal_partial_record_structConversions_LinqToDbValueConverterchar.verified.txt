@@ -114,7 +114,7 @@ namespace Whatever
             public LinqToDbValueConverter()
                 : base(
                       v => v.Value,
-                      p => new internal_partial_record_structConversions_LinqToDbValueConverterchar(p),
+                      p => internal_partial_record_structConversions_LinqToDbValueConverterchar.From(p),
                       handlesNulls: false)
             { }
         }

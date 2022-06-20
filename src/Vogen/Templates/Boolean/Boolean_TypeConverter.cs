@@ -10,8 +10,8 @@
             {
                 return value switch
                 {
-                    global::System.Boolean boolValue => new VOTYPE(boolValue),
-                    global::System.String stringValue when  !global::System.String.IsNullOrEmpty(stringValue) && global::System.Boolean.TryParse(stringValue, out var result) => new VOTYPE(result),
+                    global::System.Boolean boolValue => VOTYPE.From(boolValue),
+                    global::System.String stringValue when  !global::System.String.IsNullOrEmpty(stringValue) && global::System.Boolean.TryParse(stringValue, out var result) => VOTYPE.From(result),
                     _ => base.ConvertFrom(context, culture, value),
                 };
             }

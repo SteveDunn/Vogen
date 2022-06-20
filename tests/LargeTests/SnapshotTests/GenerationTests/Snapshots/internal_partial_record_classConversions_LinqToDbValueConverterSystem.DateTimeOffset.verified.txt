@@ -115,7 +115,7 @@ public System.DateTimeOffset Value
             public LinqToDbValueConverter()
                 : base(
                       v => v.Value,
-                      p => new internal_partial_record_classConversions_LinqToDbValueConverterSystem(p),
+                      p => internal_partial_record_classConversions_LinqToDbValueConverterSystem.From(p),
                       handlesNulls: false)
             { }
         }

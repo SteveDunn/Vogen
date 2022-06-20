@@ -111,7 +111,7 @@ public byte Value
         {
             public override escapedTestspublic_partial_record_classConversions_NewtonsoftJson Read(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {
-                return new escapedTestspublic_partial_record_classConversions_NewtonsoftJson(reader.GetByte());
+                return escapedTestspublic_partial_record_classConversions_NewtonsoftJson.From(reader.GetByte());
             }
 
             public override void Write(global::System.Text.Json.Utf8JsonWriter writer, escapedTestspublic_partial_record_classConversions_NewtonsoftJson value, global::System.Text.Json.JsonSerializerOptions options)
@@ -136,7 +136,7 @@ public byte Value
             public override object ReadJson(Newtonsoft.Json.JsonReader reader, System.Type objectType, object existingValue, Newtonsoft.Json.JsonSerializer serializer)
             {
                 var result = serializer.Deserialize<global::System.Byte?>(reader);
-                return result.HasValue ? new escapedTestspublic_partial_record_classConversions_NewtonsoftJson(result.Value) : null;
+                return result.HasValue ? escapedTestspublic_partial_record_classConversions_NewtonsoftJson.From(result.Value) : null;
             }
         }
 

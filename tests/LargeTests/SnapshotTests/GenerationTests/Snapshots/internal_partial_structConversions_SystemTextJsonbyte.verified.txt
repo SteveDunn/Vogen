@@ -125,7 +125,7 @@ namespace Whatever
         {
             public override internal_partial_structConversions_SystemTextJsonbyte Read(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {
-                return new internal_partial_structConversions_SystemTextJsonbyte(reader.GetByte());
+                return internal_partial_structConversions_SystemTextJsonbyte.From(reader.GetByte());
             }
 
             public override void Write(global::System.Text.Json.Utf8JsonWriter writer, internal_partial_structConversions_SystemTextJsonbyte value, global::System.Text.Json.JsonSerializerOptions options)

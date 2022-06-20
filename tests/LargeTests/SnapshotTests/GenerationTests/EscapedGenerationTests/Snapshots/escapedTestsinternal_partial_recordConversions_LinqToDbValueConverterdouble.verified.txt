@@ -115,7 +115,7 @@ public double Value
             public LinqToDbValueConverter()
                 : base(
                       v => v.Value,
-                      p => new escapedTestsinternal_partial_recordConversions_LinqToDbValueConverterdouble(p),
+                      p => escapedTestsinternal_partial_recordConversions_LinqToDbValueConverterdouble.From(p),
                       handlesNulls: false)
             { }
         }

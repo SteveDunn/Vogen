@@ -119,11 +119,11 @@ public byte Value
             {
                 return value switch
                 {
-                    global::System.Byte byteValue => new escapedTestsinternal_sealed_partial_record_classConversions_TypeConverterbyte(byteValue),
-                    global::System.Int16 shortValue => new escapedTestsinternal_sealed_partial_record_classConversions_TypeConverterbyte((global::System.Byte)shortValue),
-                    global::System.Int32 intValue => new escapedTestsinternal_sealed_partial_record_classConversions_TypeConverterbyte((global::System.Byte)intValue),
-                    global::System.Int64 longValue => new escapedTestsinternal_sealed_partial_record_classConversions_TypeConverterbyte((global::System.Byte)longValue),
-                    global::System.String stringValue when  !global::System.String.IsNullOrEmpty(stringValue) && global::System.Byte.TryParse(stringValue, out var result) => new escapedTestsinternal_sealed_partial_record_classConversions_TypeConverterbyte(result),
+                    global::System.Byte byteValue => escapedTestsinternal_sealed_partial_record_classConversions_TypeConverterbyte.From(byteValue),
+                    global::System.Int16 shortValue => escapedTestsinternal_sealed_partial_record_classConversions_TypeConverterbyte.From((global::System.Byte)shortValue),
+                    global::System.Int32 intValue => escapedTestsinternal_sealed_partial_record_classConversions_TypeConverterbyte.From((global::System.Byte)intValue),
+                    global::System.Int64 longValue => escapedTestsinternal_sealed_partial_record_classConversions_TypeConverterbyte.From((global::System.Byte)longValue),
+                    global::System.String stringValue when  !global::System.String.IsNullOrEmpty(stringValue) && global::System.Byte.TryParse(stringValue, out var result) => escapedTestsinternal_sealed_partial_record_classConversions_TypeConverterbyte.From(result),
                     _ => base.ConvertFrom(context, culture, value),
                 };
             }

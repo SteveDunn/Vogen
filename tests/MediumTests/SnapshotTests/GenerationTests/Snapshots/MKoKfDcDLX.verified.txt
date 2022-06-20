@@ -170,10 +170,10 @@ public System.Int64 Value
             {
                 return value switch
                 {
-                    global::System.Int64 longValue => new internal_partial_classConversions_EfCoreValueConverter(longValue),
-                    global::System.Int32 intValue => new internal_partial_classConversions_EfCoreValueConverter(intValue),
-                    global::System.Int16 shortValue => new internal_partial_classConversions_EfCoreValueConverter(shortValue),
-                    global::System.String stringValue when  !global::System.String.IsNullOrEmpty(stringValue) && long.TryParse(stringValue, out var result) => new internal_partial_classConversions_EfCoreValueConverter(result),
+                    global::System.Int64 longValue => internal_partial_classConversions_EfCoreValueConverter.From(longValue),
+                    global::System.Int32 intValue => internal_partial_classConversions_EfCoreValueConverter.From(intValue),
+                    global::System.Int16 shortValue => internal_partial_classConversions_EfCoreValueConverter.From(shortValue),
+                    global::System.String stringValue when  !global::System.String.IsNullOrEmpty(stringValue) && long.TryParse(stringValue, out var result) => internal_partial_classConversions_EfCoreValueConverter.From(result),
                     _ => throw new global::System.InvalidCastException($"Unable to cast object of type {value.GetType()} to internal_partial_classConversions_EfCoreValueConverter"),
                 };
             }
@@ -185,7 +185,7 @@ public System.Int64 Value
             public EfCoreValueConverter(global::Microsoft.EntityFrameworkCore.Storage.ValueConversion.ConverterMappingHints mappingHints = null)
                 : base(
                     vo => vo.Value,
-                    value => new internal_partial_classConversions_EfCoreValueConverter(value),
+                    value => internal_partial_classConversions_EfCoreValueConverter.From(value),
                     mappingHints
                 ) { }
         }
@@ -195,7 +195,7 @@ public System.Int64 Value
             public LinqToDbValueConverter()
                 : base(
                       v => v.Value,
-                      p => new internal_partial_classConversions_EfCoreValueConverter(p),
+                      p => internal_partial_classConversions_EfCoreValueConverter.From(p),
                       handlesNulls: false)
             { }
         }

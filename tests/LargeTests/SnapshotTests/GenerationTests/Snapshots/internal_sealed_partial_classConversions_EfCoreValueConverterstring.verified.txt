@@ -169,7 +169,7 @@ public System.String Value
             public EfCoreValueConverter(global::Microsoft.EntityFrameworkCore.Storage.ValueConversion.ConverterMappingHints mappingHints = null)
                 : base(
                     vo => vo.Value,
-                    value => new internal_sealed_partial_classConversions_EfCoreValueConverterstring(value),
+                    value => internal_sealed_partial_classConversions_EfCoreValueConverterstring.From(value),
                     mappingHints
                 ) { }
         }

@@ -86,21 +86,11 @@ namespace Vogen.IntegrationTests.SerializationAndConversionTests.ClassVos
         [Fact]
         public void CanDeserializeFromLong_WithSystemTextJsonProvider()
         {
-            var vo = SystemTextJsonLongVo.From(123L);
-            var serializedLong = SystemTextJsonSerializer.Serialize(vo);
+            var value = 123L;
+            var vo = SystemTextJsonLongVo.From(value);
+            var serializedLong = SystemTextJsonSerializer.Serialize(value);
 
             var deserializedVo = SystemTextJsonSerializer.Deserialize<SystemTextJsonLongVo>(serializedLong);
-
-            Assert.Equal(vo, deserializedVo);
-        }
-
-        [Fact]
-        public void CanDeserializeFromLong_WithSystemTextJsonProvider_treating_numbers_as_string()
-        {
-            var vo = SystemTextJsonLongVo_Treating_numbers_as_string.From(123L);
-            var serializedLong = SystemTextJsonSerializer.Serialize(vo);
-
-            var deserializedVo = SystemTextJsonSerializer.Deserialize<SystemTextJsonLongVo_Treating_numbers_as_string>(serializedLong);
 
             Assert.Equal(vo, deserializedVo);
         }

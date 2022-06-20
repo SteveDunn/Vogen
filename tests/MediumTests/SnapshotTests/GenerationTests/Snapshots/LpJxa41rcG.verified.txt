@@ -170,8 +170,8 @@ public System.Guid Value
             {
                 return value switch
                 {
-                    global::System.Guid guidValue => new internal_sealed_partial_classConversions_EfCoreValueConverter(guidValue),
-                    global::System.String stringValue when !global::System.String.IsNullOrEmpty(stringValue) && global::System.Guid.TryParse(stringValue, out var result) => new internal_sealed_partial_classConversions_EfCoreValueConverter(result),
+                    global::System.Guid guidValue => internal_sealed_partial_classConversions_EfCoreValueConverter.From(guidValue),
+                    global::System.String stringValue when !global::System.String.IsNullOrEmpty(stringValue) && global::System.Guid.TryParse(stringValue, out var result) => internal_sealed_partial_classConversions_EfCoreValueConverter.From(result),
                     _ => throw new global::System.InvalidCastException($"Unable to cast object of type {value.GetType()} to internal_sealed_partial_classConversions_EfCoreValueConverter"),
                 };
             }
@@ -183,7 +183,7 @@ public System.Guid Value
             public EfCoreValueConverter(global::Microsoft.EntityFrameworkCore.Storage.ValueConversion.ConverterMappingHints mappingHints = null)
                 : base(
                     vo => vo.Value,
-                    value => new internal_sealed_partial_classConversions_EfCoreValueConverter(value),
+                    value => internal_sealed_partial_classConversions_EfCoreValueConverter.From(value),
                     mappingHints
                 ) { }
         }
@@ -193,7 +193,7 @@ public System.Guid Value
             public LinqToDbValueConverter()
                 : base(
                       v => v.Value,
-                      p => new internal_sealed_partial_classConversions_EfCoreValueConverter(p),
+                      p => internal_sealed_partial_classConversions_EfCoreValueConverter.From(p),
                       handlesNulls: false)
             { }
         }

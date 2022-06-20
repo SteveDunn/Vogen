@@ -138,7 +138,7 @@ namespace Whatever
             public override object ReadJson(Newtonsoft.Json.JsonReader reader, System.Type objectType, object existingValue, Newtonsoft.Json.JsonSerializer serializer)
             {
                 var guid = serializer.Deserialize<System.Guid?>(reader);
-                return guid.HasValue ? new NewtonsoftJsonGuidVo(guid.Value) : null;
+                return guid.HasValue ? NewtonsoftJsonGuidVo.From(guid.Value) : null;
             }
         }
 

@@ -119,8 +119,8 @@ namespace Whatever
             {
                 return value switch
                 {
-                    global::System.Guid guidValue => new internal_readonly_partial_record_structConversions_DapperTypeHandlerSystem(guidValue),
-                    global::System.String stringValue when !global::System.String.IsNullOrEmpty(stringValue) && global::System.Guid.TryParse(stringValue, out var result) => new internal_readonly_partial_record_structConversions_DapperTypeHandlerSystem(result),
+                    global::System.Guid guidValue => internal_readonly_partial_record_structConversions_DapperTypeHandlerSystem.From(guidValue),
+                    global::System.String stringValue when !global::System.String.IsNullOrEmpty(stringValue) && global::System.Guid.TryParse(stringValue, out var result) => internal_readonly_partial_record_structConversions_DapperTypeHandlerSystem.From(result),
                     _ => throw new global::System.InvalidCastException($"Unable to cast object of type {value.GetType()} to internal_readonly_partial_record_structConversions_DapperTypeHandlerSystem"),
                 };
             }

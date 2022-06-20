@@ -134,8 +134,8 @@ namespace Whatever
             {
                 return value switch
                 {
-                    global::System.Int32 intValue => new NoJsonIntVo(intValue),
-                    global::System.String stringValue when !global::System.String.IsNullOrEmpty(stringValue) && global::System.Int32.TryParse(stringValue, out var result) => new NoJsonIntVo(result),
+                    global::System.Int32 intValue => NoJsonIntVo.From(intValue),
+                    global::System.String stringValue when !global::System.String.IsNullOrEmpty(stringValue) && global::System.Int32.TryParse(stringValue, out var result) => NoJsonIntVo.From(result),
                     _ => base.ConvertFrom(context, culture, value),
                 };
             }
