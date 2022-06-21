@@ -5,7 +5,7 @@
             {
                 var s = reader.GetString();
 
-                return new VOTYPE(s[0]);
+                return VOTYPE.From(s[0]);
             }
 
             public override void Write(System.Text.Json.Utf8JsonWriter writer, VOTYPE value, global::System.Text.Json.JsonSerializerOptions options)
