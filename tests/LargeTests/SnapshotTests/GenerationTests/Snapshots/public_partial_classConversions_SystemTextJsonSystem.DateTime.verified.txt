@@ -160,7 +160,7 @@ public System.DateTime Value
         {
             public override public_partial_classConversions_SystemTextJsonSystem Read(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {
-                return new public_partial_classConversions_SystemTextJsonSystem(reader.GetDateTime());
+                return public_partial_classConversions_SystemTextJsonSystem.From(reader.GetDateTime());
             }
 
             public override void Write(System.Text.Json.Utf8JsonWriter writer, public_partial_classConversions_SystemTextJsonSystem value, global::System.Text.Json.JsonSerializerOptions options)

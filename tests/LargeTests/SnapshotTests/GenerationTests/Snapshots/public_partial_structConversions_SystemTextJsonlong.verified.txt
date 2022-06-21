@@ -125,7 +125,7 @@ namespace Whatever
         {
             public override public_partial_structConversions_SystemTextJsonlong Read(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {
-                return new public_partial_structConversions_SystemTextJsonlong(reader.GetInt64());
+                return public_partial_structConversions_SystemTextJsonlong.From(reader.GetInt64());
             }
 
             public override void Write(System.Text.Json.Utf8JsonWriter writer, public_partial_structConversions_SystemTextJsonlong value, global::System.Text.Json.JsonSerializerOptions options)

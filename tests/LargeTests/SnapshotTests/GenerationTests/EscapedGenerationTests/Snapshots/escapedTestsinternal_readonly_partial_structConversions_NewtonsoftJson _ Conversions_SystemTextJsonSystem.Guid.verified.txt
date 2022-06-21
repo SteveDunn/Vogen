@@ -126,7 +126,7 @@ namespace @class
         {
             public override escapedTestsinternal_readonly_partial_structConversions_NewtonsoftJson Read(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {
-                return new escapedTestsinternal_readonly_partial_structConversions_NewtonsoftJson(System.Guid.Parse(reader.GetString()));
+                return escapedTestsinternal_readonly_partial_structConversions_NewtonsoftJson.From(System.Guid.Parse(reader.GetString()));
             }
 
             public override void Write(System.Text.Json.Utf8JsonWriter writer, escapedTestsinternal_readonly_partial_structConversions_NewtonsoftJson value, global::System.Text.Json.JsonSerializerOptions options)
@@ -151,7 +151,7 @@ namespace @class
             public override object ReadJson(Newtonsoft.Json.JsonReader reader, System.Type objectType, object existingValue, Newtonsoft.Json.JsonSerializer serializer)
             {
                 var guid = serializer.Deserialize<System.Guid?>(reader);
-                return guid.HasValue ? new escapedTestsinternal_readonly_partial_structConversions_NewtonsoftJson(guid.Value) : null;
+                return guid.HasValue ? escapedTestsinternal_readonly_partial_structConversions_NewtonsoftJson.From(guid.Value) : null;
             }
         }
 

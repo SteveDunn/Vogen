@@ -147,8 +147,8 @@ namespace Whatever
             {
                 return value switch
                 {
-                    global::System.Single floatValue => new CustomerId(floatValue),
-                    global::System.String stringValue when !global::System.String.IsNullOrEmpty(stringValue) && global::System.Single.TryParse(stringValue, out var result) => new CustomerId(result),
+                    global::System.Single floatValue => CustomerId.From(floatValue),
+                    global::System.String stringValue when !global::System.String.IsNullOrEmpty(stringValue) && global::System.Single.TryParse(stringValue, out var result) => CustomerId.From(result),
                     _ => base.ConvertFrom(context, culture, value),
                 };
             }

@@ -165,7 +165,7 @@ public System.Single Value
             public LinqToDbValueConverter()
                 : base(
                       v => v.Value,
-                      p => new internal_sealed_partial_classConversions_LinqToDbValueConverterfloat(p),
+                      p => internal_sealed_partial_classConversions_LinqToDbValueConverterfloat.From(p),
                       handlesNulls: false)
             { }
         }

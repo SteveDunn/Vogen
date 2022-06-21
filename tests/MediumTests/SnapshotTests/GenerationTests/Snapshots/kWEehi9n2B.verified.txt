@@ -120,8 +120,8 @@ public System.Guid Value
             {
                 return value switch
                 {
-                    global::System.Guid guidValue => new internal_partial_recordConversions_EfCoreValueConverter(guidValue),
-                    global::System.String stringValue when !global::System.String.IsNullOrEmpty(stringValue) && global::System.Guid.TryParse(stringValue, out var result) => new internal_partial_recordConversions_EfCoreValueConverter(result),
+                    global::System.Guid guidValue => internal_partial_recordConversions_EfCoreValueConverter.From(guidValue),
+                    global::System.String stringValue when !global::System.String.IsNullOrEmpty(stringValue) && global::System.Guid.TryParse(stringValue, out var result) => internal_partial_recordConversions_EfCoreValueConverter.From(result),
                     _ => throw new global::System.InvalidCastException($"Unable to cast object of type {value.GetType()} to internal_partial_recordConversions_EfCoreValueConverter"),
                 };
             }
@@ -133,7 +133,7 @@ public System.Guid Value
             public EfCoreValueConverter(global::Microsoft.EntityFrameworkCore.Storage.ValueConversion.ConverterMappingHints mappingHints = null)
                 : base(
                     vo => vo.Value,
-                    value => new internal_partial_recordConversions_EfCoreValueConverter(value),
+                    value => internal_partial_recordConversions_EfCoreValueConverter.From(value),
                     mappingHints
                 ) { }
         }
@@ -143,7 +143,7 @@ public System.Guid Value
             public LinqToDbValueConverter()
                 : base(
                       v => v.Value,
-                      p => new internal_partial_recordConversions_EfCoreValueConverter(p),
+                      p => internal_partial_recordConversions_EfCoreValueConverter.From(p),
                       handlesNulls: false)
             { }
         }

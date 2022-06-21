@@ -125,7 +125,7 @@ namespace Whatever
         {
             public override SystemTextJsonGuidVo Read(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {
-                return new SystemTextJsonGuidVo(System.Guid.Parse(reader.GetString()));
+                return SystemTextJsonGuidVo.From(System.Guid.Parse(reader.GetString()));
             }
 
             public override void Write(System.Text.Json.Utf8JsonWriter writer, SystemTextJsonGuidVo value, global::System.Text.Json.JsonSerializerOptions options)

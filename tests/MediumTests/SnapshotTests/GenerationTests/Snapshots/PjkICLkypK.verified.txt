@@ -119,9 +119,9 @@ namespace Whatever
             {
                 return value switch
                 {
-                    global::System.Int32 intValue => new public_partial_record_structConversions_EfCoreValueConverter(intValue),
-                    global::System.Int64 longValue when longValue < global::System.Int32.MaxValue => new public_partial_record_structConversions_EfCoreValueConverter((global::System.Int32)longValue),
-                    global::System.String stringValue when !global::System.String.IsNullOrEmpty(stringValue) && global::System.Decimal.TryParse(stringValue, out var result) => new public_partial_record_structConversions_EfCoreValueConverter(result),
+                    global::System.Int32 intValue => public_partial_record_structConversions_EfCoreValueConverter.From(intValue),
+                    global::System.Int64 longValue when longValue < global::System.Int32.MaxValue => public_partial_record_structConversions_EfCoreValueConverter.From((global::System.Int32)longValue),
+                    global::System.String stringValue when !global::System.String.IsNullOrEmpty(stringValue) && global::System.Decimal.TryParse(stringValue, out var result) => public_partial_record_structConversions_EfCoreValueConverter.From(result),
                     _ => throw new global::System.InvalidCastException($"Unable to cast object of type {value.GetType()} to public_partial_record_structConversions_EfCoreValueConverter"),
                 };
             }
@@ -143,7 +143,7 @@ namespace Whatever
             public LinqToDbValueConverter()
                 : base(
                       v => v.Value,
-                      p => new public_partial_record_structConversions_EfCoreValueConverter(p),
+                      p => public_partial_record_structConversions_EfCoreValueConverter.From(p),
                       handlesNulls: false)
             { }
         }

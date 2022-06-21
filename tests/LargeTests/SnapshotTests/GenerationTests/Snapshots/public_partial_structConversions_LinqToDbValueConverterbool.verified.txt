@@ -130,7 +130,7 @@ namespace Whatever
             public LinqToDbValueConverter()
                 : base(
                       v => v.Value,
-                      p => new public_partial_structConversions_LinqToDbValueConverterbool(p),
+                      p => public_partial_structConversions_LinqToDbValueConverterbool.From(p),
                       handlesNulls: false)
             { }
         }

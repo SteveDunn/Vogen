@@ -119,10 +119,10 @@ namespace @class
             {
                 return value switch
                 {
-                    global::System.Double doubleValue => new escapedTestspublic_partial_record_structConversions_DapperTypeHandlerdouble(doubleValue),
-                    global::System.Int32 intValue => new escapedTestspublic_partial_record_structConversions_DapperTypeHandlerdouble(intValue),
-                    global::System.Int64 longValue when longValue < global::System.Double.MaxValue => new escapedTestspublic_partial_record_structConversions_DapperTypeHandlerdouble((global::System.Double)longValue),
-                    global::System.String stringValue when !global::System.String.IsNullOrEmpty(stringValue) && global::System.Double.TryParse(stringValue, out var result) => new escapedTestspublic_partial_record_structConversions_DapperTypeHandlerdouble(result),
+                    global::System.Double doubleValue => escapedTestspublic_partial_record_structConversions_DapperTypeHandlerdouble.From(doubleValue),
+                    global::System.Int32 intValue => escapedTestspublic_partial_record_structConversions_DapperTypeHandlerdouble.From(intValue),
+                    global::System.Int64 longValue when longValue < global::System.Double.MaxValue => escapedTestspublic_partial_record_structConversions_DapperTypeHandlerdouble.From((global::System.Double)longValue),
+                    global::System.String stringValue when !global::System.String.IsNullOrEmpty(stringValue) && global::System.Double.TryParse(stringValue, out var result) => escapedTestspublic_partial_record_structConversions_DapperTypeHandlerdouble.From(result),
                     _ => throw new global::System.InvalidCastException($"Unable to cast object of type {value.GetType()} to escapedTestspublic_partial_record_structConversions_DapperTypeHandlerdouble"),
                 };
             }

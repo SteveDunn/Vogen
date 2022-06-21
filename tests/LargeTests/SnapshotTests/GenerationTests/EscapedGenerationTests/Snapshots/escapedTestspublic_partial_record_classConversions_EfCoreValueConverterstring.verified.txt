@@ -123,7 +123,7 @@ public string Value
             public EfCoreValueConverter(global::Microsoft.EntityFrameworkCore.Storage.ValueConversion.ConverterMappingHints mappingHints = null)
                 : base(
                     vo => vo.Value,
-                    value => new escapedTestspublic_partial_record_classConversions_EfCoreValueConverterstring(value),
+                    value => escapedTestspublic_partial_record_classConversions_EfCoreValueConverterstring.From(value),
                     mappingHints
                 ) { }
         }

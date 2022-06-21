@@ -134,8 +134,8 @@ namespace Whatever
             {
                 return value switch
                 {
-                    global::System.Single floatValue => new public_partial_structConversions_TypeConverterfloat(floatValue),
-                    global::System.String stringValue when !global::System.String.IsNullOrEmpty(stringValue) && global::System.Single.TryParse(stringValue, out var result) => new public_partial_structConversions_TypeConverterfloat(result),
+                    global::System.Single floatValue => public_partial_structConversions_TypeConverterfloat.From(floatValue),
+                    global::System.String stringValue when !global::System.String.IsNullOrEmpty(stringValue) && global::System.Single.TryParse(stringValue, out var result) => public_partial_structConversions_TypeConverterfloat.From(result),
                     _ => base.ConvertFrom(context, culture, value),
                 };
             }

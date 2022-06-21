@@ -119,8 +119,8 @@ public System.DateTime Value
             {
                 return value switch
                 {
-                    global::System.String stringValue when !global::System.String.IsNullOrEmpty(stringValue) && global::System.DateTime.TryParseExact(stringValue, "O", global::System.Globalization.CultureInfo.InvariantCulture, global::System.Globalization.DateTimeStyles.RoundtripKind, out var result) => new internal_partial_recordConversions_TypeConverterSystem(result),
-                    global::System.DateTime dateTimeValue => new internal_partial_recordConversions_TypeConverterSystem(dateTimeValue),
+                    global::System.String stringValue when !global::System.String.IsNullOrEmpty(stringValue) && global::System.DateTime.TryParseExact(stringValue, "O", global::System.Globalization.CultureInfo.InvariantCulture, global::System.Globalization.DateTimeStyles.RoundtripKind, out var result) => internal_partial_recordConversions_TypeConverterSystem.From(result),
+                    global::System.DateTime dateTimeValue => internal_partial_recordConversions_TypeConverterSystem.From(dateTimeValue),
                     _ => base.ConvertFrom(context, culture, value),
                 };
             }

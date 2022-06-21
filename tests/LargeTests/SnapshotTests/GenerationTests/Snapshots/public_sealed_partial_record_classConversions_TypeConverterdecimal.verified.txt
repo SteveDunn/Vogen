@@ -119,8 +119,8 @@ public decimal Value
             {
                 return value switch
                 {
-                    global::System.Decimal decimalValue => new public_sealed_partial_record_classConversions_TypeConverterdecimal(decimalValue),
-                    global::System.String stringValue when !global::System.String.IsNullOrEmpty(stringValue) && global::System.Decimal.TryParse(stringValue, out var result) => new public_sealed_partial_record_classConversions_TypeConverterdecimal(result),
+                    global::System.Decimal decimalValue => public_sealed_partial_record_classConversions_TypeConverterdecimal.From(decimalValue),
+                    global::System.String stringValue when !global::System.String.IsNullOrEmpty(stringValue) && global::System.Decimal.TryParse(stringValue, out var result) => public_sealed_partial_record_classConversions_TypeConverterdecimal.From(result),
                     _ => base.ConvertFrom(context, culture, value),
                 };
             }

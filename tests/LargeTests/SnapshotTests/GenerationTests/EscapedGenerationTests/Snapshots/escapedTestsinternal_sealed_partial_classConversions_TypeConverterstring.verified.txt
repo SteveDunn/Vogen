@@ -174,7 +174,7 @@ public System.String Value
                 var stringValue = value as global::System.String;
                 if (stringValue is not null)
                 {
-                    return new escapedTestsinternal_sealed_partial_classConversions_TypeConverterstring(stringValue);
+                    return escapedTestsinternal_sealed_partial_classConversions_TypeConverterstring.From(stringValue);
                 }
 
                 return base.ConvertFrom(context, culture, value);

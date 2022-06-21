@@ -125,7 +125,7 @@ namespace Whatever
         {
             public override stj_number_as_string_public_readonly_partial_structConversions_SystemTextJsonstring Read(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {
-                return new stj_number_as_string_public_readonly_partial_structConversions_SystemTextJsonstring(reader.GetString());
+                return stj_number_as_string_public_readonly_partial_structConversions_SystemTextJsonstring.From(reader.GetString());
             }
 
             public override void Write(System.Text.Json.Utf8JsonWriter writer, stj_number_as_string_public_readonly_partial_structConversions_SystemTextJsonstring value, global::System.Text.Json.JsonSerializerOptions options)

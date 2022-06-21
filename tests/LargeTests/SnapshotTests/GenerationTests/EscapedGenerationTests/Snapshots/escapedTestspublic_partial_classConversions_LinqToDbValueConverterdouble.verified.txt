@@ -165,7 +165,7 @@ public System.Double Value
             public LinqToDbValueConverter()
                 : base(
                       v => v.Value,
-                      p => new escapedTestspublic_partial_classConversions_LinqToDbValueConverterdouble(p),
+                      p => escapedTestspublic_partial_classConversions_LinqToDbValueConverterdouble.From(p),
                       handlesNulls: false)
             { }
         }

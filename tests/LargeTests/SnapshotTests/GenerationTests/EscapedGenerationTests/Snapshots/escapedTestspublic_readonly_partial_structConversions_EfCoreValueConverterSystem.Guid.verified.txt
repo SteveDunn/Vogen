@@ -130,7 +130,7 @@ namespace @class
             public EfCoreValueConverter(global::Microsoft.EntityFrameworkCore.Storage.ValueConversion.ConverterMappingHints mappingHints = null)
                 : base(
                     vo => vo.Value,
-                    value => new escapedTestspublic_readonly_partial_structConversions_EfCoreValueConverterSystem(value),
+                    value => escapedTestspublic_readonly_partial_structConversions_EfCoreValueConverterSystem.From(value),
                     mappingHints
                 ) { }
         }

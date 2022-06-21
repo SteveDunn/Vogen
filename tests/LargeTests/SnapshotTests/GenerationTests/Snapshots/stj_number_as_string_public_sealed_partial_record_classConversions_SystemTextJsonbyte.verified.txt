@@ -110,7 +110,7 @@ public byte Value
         {
             public override stj_number_as_string_public_sealed_partial_record_classConversions_SystemTextJsonbyte Read(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {
-                return new stj_number_as_string_public_sealed_partial_record_classConversions_SystemTextJsonbyte(reader.GetByte());
+                return stj_number_as_string_public_sealed_partial_record_classConversions_SystemTextJsonbyte.From(reader.GetByte());
             }
 
             public override void Write(global::System.Text.Json.Utf8JsonWriter writer, stj_number_as_string_public_sealed_partial_record_classConversions_SystemTextJsonbyte value, global::System.Text.Json.JsonSerializerOptions options)

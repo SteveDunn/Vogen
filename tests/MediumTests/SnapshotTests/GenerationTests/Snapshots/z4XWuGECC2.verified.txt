@@ -126,7 +126,7 @@ namespace Whatever
         {
             public override internal_partial_structConversions_NewtonsoftJson Read(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {
-                return new internal_partial_structConversions_NewtonsoftJson(reader.GetString());
+                return internal_partial_structConversions_NewtonsoftJson.From(reader.GetString());
             }
 
             public override void Write(System.Text.Json.Utf8JsonWriter writer, internal_partial_structConversions_NewtonsoftJson value, global::System.Text.Json.JsonSerializerOptions options)
@@ -150,7 +150,7 @@ namespace Whatever
 
             public override object ReadJson(Newtonsoft.Json.JsonReader reader, System.Type objectType, object existingValue, Newtonsoft.Json.JsonSerializer serializer)
             {
-                return new internal_partial_structConversions_NewtonsoftJson(serializer.Deserialize<global::System.String>(reader));
+                return internal_partial_structConversions_NewtonsoftJson.From(serializer.Deserialize<global::System.String>(reader));
             }
         }
 

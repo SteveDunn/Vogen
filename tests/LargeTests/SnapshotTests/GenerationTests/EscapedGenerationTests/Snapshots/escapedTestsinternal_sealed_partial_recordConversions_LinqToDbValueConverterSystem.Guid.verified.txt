@@ -115,7 +115,7 @@ public System.Guid Value
             public LinqToDbValueConverter()
                 : base(
                       v => v.Value,
-                      p => new escapedTestsinternal_sealed_partial_recordConversions_LinqToDbValueConverterSystem(p),
+                      p => escapedTestsinternal_sealed_partial_recordConversions_LinqToDbValueConverterSystem.From(p),
                       handlesNulls: false)
             { }
         }

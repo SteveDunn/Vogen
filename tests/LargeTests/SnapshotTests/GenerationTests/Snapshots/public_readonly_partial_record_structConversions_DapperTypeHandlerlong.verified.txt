@@ -119,10 +119,10 @@ namespace Whatever
             {
                 return value switch
                 {
-                    global::System.Int64 longValue => new public_readonly_partial_record_structConversions_DapperTypeHandlerlong(longValue),
-                    global::System.Int32 intValue => new public_readonly_partial_record_structConversions_DapperTypeHandlerlong(intValue),
-                    global::System.Int16 shortValue => new public_readonly_partial_record_structConversions_DapperTypeHandlerlong(shortValue),
-                    global::System.String stringValue when  !global::System.String.IsNullOrEmpty(stringValue) && long.TryParse(stringValue, out var result) => new public_readonly_partial_record_structConversions_DapperTypeHandlerlong(result),
+                    global::System.Int64 longValue => public_readonly_partial_record_structConversions_DapperTypeHandlerlong.From(longValue),
+                    global::System.Int32 intValue => public_readonly_partial_record_structConversions_DapperTypeHandlerlong.From(intValue),
+                    global::System.Int16 shortValue => public_readonly_partial_record_structConversions_DapperTypeHandlerlong.From(shortValue),
+                    global::System.String stringValue when  !global::System.String.IsNullOrEmpty(stringValue) && long.TryParse(stringValue, out var result) => public_readonly_partial_record_structConversions_DapperTypeHandlerlong.From(result),
                     _ => throw new global::System.InvalidCastException($"Unable to cast object of type {value.GetType()} to public_readonly_partial_record_structConversions_DapperTypeHandlerlong"),
                 };
             }

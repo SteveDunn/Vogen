@@ -110,7 +110,7 @@ public short Value
         {
             public override public_sealed_partial_recordConversions_SystemTextJsonshort Read(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {
-                return new public_sealed_partial_recordConversions_SystemTextJsonshort(reader.GetInt16());
+                return public_sealed_partial_recordConversions_SystemTextJsonshort.From(reader.GetInt16());
             }
 
             public override void Write(System.Text.Json.Utf8JsonWriter writer, public_sealed_partial_recordConversions_SystemTextJsonshort value, global::System.Text.Json.JsonSerializerOptions options)

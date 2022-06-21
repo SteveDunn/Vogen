@@ -120,10 +120,10 @@ public System.DateTime Value
             {
                 return value switch
                 {
-                    global::System.DateTime dtValue => new public_sealed_partial_record_classConversions_EfCoreValueConverter(dtValue),
+                    global::System.DateTime dtValue => public_sealed_partial_record_classConversions_EfCoreValueConverter.From(dtValue),
                     global::System.String stringValue when 
                         !global::System.String.IsNullOrEmpty(stringValue) &&
-                        global::System.DateTime.TryParseExact(stringValue, "yyyy-MM-dd HH:mm:ss.fffffff", global::System.Globalization.CultureInfo.InvariantCulture, global::System.Globalization.DateTimeStyles.None, out var result) => new public_sealed_partial_record_classConversions_EfCoreValueConverter(result),
+                        global::System.DateTime.TryParseExact(stringValue, "yyyy-MM-dd HH:mm:ss.fffffff", global::System.Globalization.CultureInfo.InvariantCulture, global::System.Globalization.DateTimeStyles.None, out var result) => public_sealed_partial_record_classConversions_EfCoreValueConverter.From(result),
                     _ => throw new global::System.InvalidCastException($"Unable to cast object of type {value.GetType()} to public_sealed_partial_record_classConversions_EfCoreValueConverter"),
                 };
             }
@@ -135,7 +135,7 @@ public System.DateTime Value
             public EfCoreValueConverter(global::Microsoft.EntityFrameworkCore.Storage.ValueConversion.ConverterMappingHints mappingHints = null)
                 : base(
                     vo => vo.Value,
-                    value => new public_sealed_partial_record_classConversions_EfCoreValueConverter(value),
+                    value => public_sealed_partial_record_classConversions_EfCoreValueConverter.From(value),
                     mappingHints
                 ) { }
         }
@@ -145,7 +145,7 @@ public System.DateTime Value
             public LinqToDbValueConverter()
                 : base(
                       v => v.Value,
-                      p => new public_sealed_partial_record_classConversions_EfCoreValueConverter(p),
+                      p => public_sealed_partial_record_classConversions_EfCoreValueConverter.From(p),
                       handlesNulls: false)
             { }
         }

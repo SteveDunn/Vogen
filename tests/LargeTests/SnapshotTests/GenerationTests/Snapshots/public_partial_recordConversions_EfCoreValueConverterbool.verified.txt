@@ -115,7 +115,7 @@ public bool Value
             public EfCoreValueConverter(global::Microsoft.EntityFrameworkCore.Storage.ValueConversion.ConverterMappingHints mappingHints = null)
                 : base(
                     vo => vo.Value,
-                    value => new public_partial_recordConversions_EfCoreValueConverterbool(value),
+                    value => public_partial_recordConversions_EfCoreValueConverterbool.From(value),
                     mappingHints
                 ) { }
         }

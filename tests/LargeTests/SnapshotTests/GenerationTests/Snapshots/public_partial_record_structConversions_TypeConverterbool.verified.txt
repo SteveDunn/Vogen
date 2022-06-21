@@ -118,8 +118,8 @@ namespace Whatever
             {
                 return value switch
                 {
-                    global::System.Boolean boolValue => new public_partial_record_structConversions_TypeConverterbool(boolValue),
-                    global::System.String stringValue when  !global::System.String.IsNullOrEmpty(stringValue) && global::System.Boolean.TryParse(stringValue, out var result) => new public_partial_record_structConversions_TypeConverterbool(result),
+                    global::System.Boolean boolValue => public_partial_record_structConversions_TypeConverterbool.From(boolValue),
+                    global::System.String stringValue when  !global::System.String.IsNullOrEmpty(stringValue) && global::System.Boolean.TryParse(stringValue, out var result) => public_partial_record_structConversions_TypeConverterbool.From(result),
                     _ => base.ConvertFrom(context, culture, value),
                 };
             }

@@ -110,7 +110,7 @@ public System.DateTimeOffset Value
         {
             public override stj_number_as_string_public_sealed_partial_record_classConversions_SystemTextJsonSystem Read(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {
-                return new stj_number_as_string_public_sealed_partial_record_classConversions_SystemTextJsonSystem(reader.GetDateTimeOffset());
+                return stj_number_as_string_public_sealed_partial_record_classConversions_SystemTextJsonSystem.From(reader.GetDateTimeOffset());
             }
 
             public override void Write(System.Text.Json.Utf8JsonWriter writer, stj_number_as_string_public_sealed_partial_record_classConversions_SystemTextJsonSystem value, global::System.Text.Json.JsonSerializerOptions options)

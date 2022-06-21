@@ -130,7 +130,7 @@ namespace @class
             public LinqToDbValueConverter()
                 : base(
                       v => v.Value,
-                      p => new escapedTestsinternal_partial_structConversions_LinqToDbValueConverterbyte(p),
+                      p => escapedTestsinternal_partial_structConversions_LinqToDbValueConverterbyte.From(p),
                       handlesNulls: false)
             { }
         }

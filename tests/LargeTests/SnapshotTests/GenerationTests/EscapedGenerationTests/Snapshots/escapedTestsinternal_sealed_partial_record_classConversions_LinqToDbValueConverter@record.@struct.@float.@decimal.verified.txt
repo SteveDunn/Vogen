@@ -115,7 +115,7 @@ public @class.record.@struct.@float.decimal Value
             public LinqToDbValueConverter()
                 : base(
                       v => global::System.Text.Json.JsonSerializer.Serialize(v.Value, default(global::System.Text.Json.JsonSerializerOptions)),
-                      p => new escapedTestsinternal_sealed_partial_record_classConversions_LinqToDbValueConverter(global::System.Text.Json.JsonSerializer.Deserialize<@class.@record.@struct.@float.@decimal>(p, default(global::System.Text.Json.JsonSerializerOptions))),
+                      p => escapedTestsinternal_sealed_partial_record_classConversions_LinqToDbValueConverter.From(global::System.Text.Json.JsonSerializer.Deserialize<@class.@record.@struct.@float.@decimal>(p, default(global::System.Text.Json.JsonSerializerOptions))),
                       handlesNulls: false)
             { }
         }
