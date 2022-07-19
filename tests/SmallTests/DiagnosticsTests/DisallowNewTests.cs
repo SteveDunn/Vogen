@@ -2,7 +2,6 @@
 using FluentAssertions;
 using Microsoft.CodeAnalysis;
 using Vogen.Analyzers;
-using Vogen.Tests;
 using Xunit;
 
 namespace SmallTests.DiagnosticsTests;
@@ -373,5 +372,31 @@ public {type} CustomerId {{ }}
         diagnostic.Id.Should().Be("VOG009");
         diagnostic.ToString().Should().Be("(4,51): error VOG009: Type 'CustomerId' cannot be constructed with default as it is prohibited.");
     }
+    
+    
+    [Fact(DisplayName = "Bug https://github.com/SteveDunn/Vogen/issues/182")]
+    public void Analyzer_false_position_for_implicit_new_in_array_initializer()
+    {
+        var source = $@"using System;
+using System.Threading.Tasks;
+using Vogen;
+        var c = Create(new Object[]
+        {{
+            // This call is the issue
+            new()
+        }});
 
+        static Vo Create(Object[] normalObject)
+        {{
+            return Vo.From(10);
+        }}
+
+[ValueObject(typeof(int))]
+partial class Vo {{ }}
+";
+
+        var (diagnostics, _) = TestHelper.GetGeneratedOutput<CreationUsingImplicitNewAnalyzer>(source);
+
+        diagnostics.Should().HaveCount(0);
+    }
 }

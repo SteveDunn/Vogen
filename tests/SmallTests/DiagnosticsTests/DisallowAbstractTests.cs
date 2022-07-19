@@ -3,7 +3,6 @@ using FluentAssertions;
 using FluentAssertions.Execution;
 using Microsoft.CodeAnalysis;
 using Vogen;
-using Vogen.Tests;
 using Xunit;
 
 namespace SmallTests.DiagnosticsTests;
@@ -11,8 +10,8 @@ namespace SmallTests.DiagnosticsTests;
 public class DisallowAbstractTests
 {
     [Theory]
-    [InlineData("partial abstract class")]
-    [InlineData("partial abstract record class")]
+    [InlineData("abstract partial class")]
+    [InlineData("abstract partial record class")]
     public void Disallows_abstract_value_objects(string type)
     {
         var source = $@"using Vogen;
@@ -37,8 +36,8 @@ public {type} CustomerId {{ }}
     }
 
     [Theory]
-    [InlineData("partial abstract class")]
-    [InlineData("partial abstract record class")]
+    [InlineData("abstract partial class")]
+    [InlineData("abstract partial record class")]
     public void Disallows_nested_abstract_value_objects(string type)
     {
         var source = $@"using Vogen;

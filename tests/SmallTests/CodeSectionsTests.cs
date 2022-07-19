@@ -1,4 +1,5 @@
 ﻿using FluentAssertions;
+using Vogen.Generators.Conversions;
 using Xunit;
 
 namespace SmallTests;
@@ -25,7 +26,7 @@ __STRING__                writer.WriteString(value.Value.ToString(global::System
             }
         }";
 
-        string result = Vogen.Generators.Conversions.CodeSections.CutSection(s, "__NORMAL__");
+        string result = CodeSections.CutSection(s, "__NORMAL__").Replace("\r\n", "\n");
 
         result.Should().Be(@"using System.Globalization;
 
@@ -40,7 +41,7 @@ __STRING__                return VOTYPE.From(global::System.Double.Parse(reader.
             {
 __STRING__                writer.WriteString(value.Value.ToString(global::System.CultureInfo.InvariantCulture));
             }
-        }");
+        }".Replace("\r\n", "\n"));
     }
 
     [Fact]
@@ -61,7 +62,7 @@ __STRING__                writer.WriteString(value.Value.ToString(global::System
             }
         }";
 
-        string result = Vogen.Generators.Conversions.CodeSections.KeepSection(s, "__STRING__");
+        string result = CodeSections.KeepSection(s, "__STRING__").Replace("\r\n", "\n");
 
         result.Should().Be(@"using System.Globalization;
 
@@ -76,6 +77,6 @@ __STRING__                writer.WriteString(value.Value.ToString(global::System
             {
                 writer.WriteString(value.Value.ToString(global::System.CultureInfo.InvariantCulture));
             }
-        }");
+        }".Replace("\r\n", "\n"));
     }
 }
