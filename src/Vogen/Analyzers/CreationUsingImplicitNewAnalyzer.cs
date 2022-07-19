@@ -107,7 +107,7 @@ public class CreationUsingImplicitNewAnalyzer : IIncrementalGenerator
     private static FoundItem? TryGetTargetFromSyntax(GeneratorSyntaxContext ctx, SyntaxNode syntax)
     {
         var ancestor = syntax.Ancestors(false)
-            .FirstOrDefault(a => a.IsKind(SyntaxKind.VariableDeclaration));
+            .FirstOrDefault(a => a.IsKind(SyntaxKind.ArrayCreationExpression) || a.IsKind(SyntaxKind.VariableDeclaration));
 
         if (ancestor is VariableDeclarationSyntax variableDeclarationSyntax)
         {

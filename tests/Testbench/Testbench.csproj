@@ -20,6 +20,14 @@
     <CompilerGeneratedFilesOutputPath>Generated</CompilerGeneratedFilesOutputPath>
   </PropertyGroup>
 
+  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net6.0|AnyCPU'">
+    <NoWarn>$(NoWarn);CS1701;CS1702;CS1591;VOG010</NoWarn>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net6.0|AnyCPU'">
+    <NoWarn>$(NoWarn);CS1701;CS1702;CS1591;VOG010</NoWarn>
+  </PropertyGroup>
+
   <ItemGroup>
     <!-- Don't include the output from a previous source generator execution into future runs; the */** trick here ensures that there's
   at least one subdirectory, which is our key that it's coming from a source generator as opposed to something that is coming from

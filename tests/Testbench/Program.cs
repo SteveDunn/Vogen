@@ -1,4 +1,4 @@
-﻿using @class.@struct.@int;
+﻿using System;
 using Vogen;
 
 namespace Whatever
@@ -7,29 +7,22 @@ namespace Whatever
     {
         public static void Main()
         {
-            var r = @float.From(11);
+            GeneratedValueObject c = Create(new Object[]
+            {
+                new()
+            });
+        }
+
+        static GeneratedValueObject Create(Object[] normalObject)
+        {
+            return null!;//GeneratedValueObject.From(10);
         }
     }
     
-    [ValueObject(typeof(int))]
-    public partial class Age
-    {
-    }
+    [ValueObject]
+    partial class GeneratedValueObject {    }
 
+    public abstract partial record class x(string X){}
 }
 
-namespace record.@int
-{
-    public class @decimal
-    {
-    }
-}
 
-namespace @class.@struct.@int
-{
-    [ValueObject(typeof(decimal))]
-    [Instance("onetwothree", 123)]
-    public partial class @float
-    {
-    }
-}

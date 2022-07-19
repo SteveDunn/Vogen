@@ -596,7 +596,7 @@ To get around this, run `Set-ExecutionPolicy -Scope Process -ExecutionPolicy Byp
 This is focused more on IDs. Vogen is focused more of 'Domain Concepts' and the constraints associated with those concepts.
 
 [StringlyTyped](https://github.com/stevedunn/stringlytyped)
-This is my first attempt and is NON source-generated. There is memory overhead because the base type is a class. There are also no analzsers.
+This is my first attempt and is NON source-generated. There is memory overhead because the base type is a class. There are also no analyzers.
 
 [ValueOf](https://github.com/mcintyre321/ValueOf) 
 Similar to StringlyTyped - non source-generated and no analysers. This is also more relaxed and allows composite 'underlying' types.
