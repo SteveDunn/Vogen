@@ -7,22 +7,12 @@ namespace Whatever
     {
         public static void Main()
         {
-            GeneratedValueObject c = Create(new Object[]
-            {
-                new()
-            });
-        }
-
-        static GeneratedValueObject Create(Object[] normalObject)
-        {
-            return null!;//GeneratedValueObject.From(10);
+            // To debug the source generator or analyzer, set the active project to Vogen,
+            // and then select Roslyn as the debug target. This requires the Roslyn SDK
+            // to be installed in the list of Visual Studio components.
         }
     }
-    
-    [ValueObject]
-    partial class GeneratedValueObject {    }
-
-    public abstract partial record class x(string X){}
 }
+
 
 

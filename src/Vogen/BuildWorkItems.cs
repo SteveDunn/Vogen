@@ -55,6 +55,8 @@ internal static class BuildWorkItems
         ReportErrorIfNestedType(target, context, voSymbolInformation);
 
         var instanceProperties = TryBuildInstanceProperties(attributes, voSymbolInformation, context);
+        
+        var hasToString = HasToStringOverload(voSymbolInformation);
 
         MethodDeclarationSyntax? validateMethod = null;
         MethodDeclarationSyntax? normalizeInputMethod = null;
@@ -89,6 +91,7 @@ internal static class BuildWorkItems
             InstanceProperties = instanceProperties.ToList(),
             TypeToAugment = voTypeSyntax,
             IsValueType = isValueType,
+            HasToString = hasToString,
             UnderlyingType = config.UnderlyingType,
             Conversions = config.Conversions,
             Customizations = config.Customizations,
@@ -97,6 +100,50 @@ internal static class BuildWorkItems
             NormalizeInputMethod = normalizeInputMethod,
             FullNamespace = voSymbolInformation.FullNamespace()
         };
+    }
+
+    private static bool HasToStringOverload(ITypeSymbol typeSymbol)
+    {
+        while (true)
+        {
+            var toStringMethods = typeSymbol.GetMembers("ToString").OfType<IMethodSymbol>();
+
+            foreach (IMethodSymbol eachMethod in toStringMethods)
+            {
+                // we could have "public virtual new string ToString() => "xxx" 
+                if (!eachMethod.IsOverride && !eachMethod.IsVirtual)
+                {
+                    continue;
+                }
+
+                // can't change access rights
+                if (eachMethod.DeclaredAccessibility != Accessibility.Public && eachMethod.DeclaredAccessibility != Accessibility.Protected)
+                {
+                    continue;
+                }
+
+                if (eachMethod.Parameters.Length != 0)
+                {
+                    continue;
+                }
+
+                return true;
+            }
+
+            INamedTypeSymbol? baseType = typeSymbol.BaseType;
+
+            if (baseType is null)
+            {
+                return false;
+            }
+            
+            if (baseType.SpecialType == SpecialType.System_Object)
+            {
+                return false;
+            }
+
+            typeSymbol = baseType;
+        }
     }
 
     private static bool IsUnderlyingAValueType(VogenConfiguration config)

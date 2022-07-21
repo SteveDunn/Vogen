@@ -233,4 +233,7 @@ public static class Util
 
     public static string GenerateYourAssemblyName() => typeof(Util).Assembly.GetName().Name;
     public static string GenerateYourAssemblyVersion() => typeof(Util).Assembly.GetName().Version.ToString();
+
+    public static string GenerateToString(VoWorkItem item) => 
+        item.HasToString ? string.Empty : "public override global::System.String ToString() => Value.ToString();";
 }
