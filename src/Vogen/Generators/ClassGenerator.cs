@@ -151,7 +151,7 @@ public {itemUnderlyingType} Value
 
         {Util.GenerateAnyInstances(tds, item)}
 
-        public override global::System.String ToString() => Value.ToString();
+        {Util.GenerateToString(item)}
 
         {Util.GenerateAnyConversionBodies(tds, item)}
 

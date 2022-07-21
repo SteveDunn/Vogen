@@ -34,4 +34,6 @@ public class VoWorkItem
     public string VoTypeName => TypeToAugment.Identifier.ToString();
     
     public string UnderlyingTypeFullName => UnderlyingType.FullName() ?? UnderlyingType?.Name ?? "global::System.Int32";
+
+    public bool HasToString { get; set; } = false;
 }
