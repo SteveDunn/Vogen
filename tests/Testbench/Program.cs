@@ -18,14 +18,6 @@ namespace Whatever
     [ValueObject(typeof(string))]
     public partial record AccountId
     {
-        public sealed override string ToString()
-        {
-            return "!";
-        }
-    }
-
-    public record Foo
-    {
-        public override string ToString() => "foo!";
+        public override sealed string ToString() => "derived2!";
     }
 }

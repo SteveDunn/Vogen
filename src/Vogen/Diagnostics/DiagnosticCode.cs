@@ -25,5 +25,6 @@ public enum DiagnosticCode
     NormalizeInputMethodTakeOneParameterOfUnderlyingType = 16,
     TypeCannotBeAbstract = 17,
     PrimaryConstructorProhibited = 18,
-    InvalidCustomizations = 19
+    InvalidCustomizations = 19,
+    RecordToStringOverloadShouldBeSealed = 20
 }
