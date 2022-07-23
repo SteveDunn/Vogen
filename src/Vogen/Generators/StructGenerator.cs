@@ -99,7 +99,7 @@ using Vogen;
 
         public readonly override global::System.Int32 GetHashCode() => global::System.Collections.Generic.EqualityComparer<{itemUnderlyingType}>.Default.GetHashCode(_value);
 
-        {Util.GenerateToString(item)}
+        {Util.GenerateToStringReadOnly(item)}
 
         private readonly void EnsureInitialized()
         {{
