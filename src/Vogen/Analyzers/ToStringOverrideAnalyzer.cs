@@ -7,7 +7,8 @@ using Vogen.Diagnostics;
 namespace Vogen.Analyzers;
 
 /// <summary>
-/// An analyzer that stops record VOs having a primary constructor.
+/// An analyzer that catches ToString overrides on a record that aren't sealed.
+/// For more information on why, see: https://github.com/SteveDunn/Vogen/wiki/Records#tostring
 /// </summary>
 [Generator]
 public class ToStringOverrideAnalyzer : IIncrementalGenerator
