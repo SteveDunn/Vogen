@@ -127,6 +127,13 @@ internal static class BuildWorkItems
                     continue;
                 }
 
+                // records always have a ToString method. In C# 10, the user can differentiate this
+                // by making the method sealed.
+                if (typeSymbol.IsRecord && !eachMethod.IsSealed)
+                {
+                    continue;
+                }
+
                 return true;
             }
 
@@ -137,7 +144,7 @@ internal static class BuildWorkItems
                 return false;
             }
             
-            if (baseType.SpecialType == SpecialType.System_Object)
+            if (baseType.SpecialType == SpecialType.System_Object || baseType.SpecialType == SpecialType.System_ValueType)
             {
                 return false;
             }
@@ -145,6 +152,49 @@ internal static class BuildWorkItems
             typeSymbol = baseType;
         }
     }
+    // private static bool HasToStringOverload(ITypeSymbol typeSymbol)
+    // {
+    //     while (true)
+    //     {
+    //         var toStringMethods = typeSymbol.GetMembers("ToString").OfType<IMethodSymbol>();
+    //
+    //         foreach (IMethodSymbol eachMethod in toStringMethods)
+    //         {
+    //             // we could have "public virtual new string ToString() => "xxx" 
+    //             if (!eachMethod.IsOverride && !eachMethod.IsVirtual)
+    //             {
+    //                 continue;
+    //             }
+    //
+    //             // can't change access rights
+    //             if (eachMethod.DeclaredAccessibility != Accessibility.Public && eachMethod.DeclaredAccessibility != Accessibility.Protected)
+    //             {
+    //                 continue;
+    //             }
+    //
+    //             if (eachMethod.Parameters.Length != 0)
+    //             {
+    //                 continue;
+    //             }
+    //
+    //             return true;
+    //         }
+    //
+    //         INamedTypeSymbol? baseType = typeSymbol.BaseType;
+    //
+    //         if (baseType is null)
+    //         {
+    //             return false;
+    //         }
+    //         
+    //         if (baseType.SpecialType == SpecialType.System_Object || baseType.SpecialType == SpecialType.System_ValueType)
+    //         {
+    //             return false;
+    //         }
+    //
+    //         typeSymbol = baseType;
+    //     }
+    // }
 
     private static bool IsUnderlyingAValueType(VogenConfiguration config)
     {
