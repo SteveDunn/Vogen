@@ -33,6 +33,11 @@ internal static class DiagnosticItems
         "Primary constructors on Value Objects are prohibited. Creation is done via the From method.",
         "Type '{0}' cannot have a primary constructor");
 
+    private static readonly DiagnosticDescriptor _recordToStringOverloadShouldBeSealed = CreateDescriptor(
+        DiagnosticCode.RecordToStringOverloadShouldBeSealed,
+        "Overrides of ToString on records should be sealed to differentiate it from the C# compiler-generated method. See https://github.com/SteveDunn/Vogen/wiki/Records#tostring for more information.",
+        "ToString overrides should be sealed on records. See https://github.com/SteveDunn/Vogen/wiki/Records#tostring for more information.");
+
     private static readonly DiagnosticDescriptor _cannotHaveUserConstructors = CreateDescriptor(
         DiagnosticCode.CannotHaveUserConstructors,
         "Cannot have user defined constructors",
@@ -132,6 +137,9 @@ internal static class DiagnosticItems
 
     public static Diagnostic PrimaryConstructorProhibited(Location location, string voClassName) => 
         BuildDiagnostic(_primaryConstructorProhibited, voClassName, location);
+
+    public static Diagnostic RecordToStringOverloadShouldBeSealed(Location location, string voClassName) => 
+        BuildDiagnostic(_recordToStringOverloadShouldBeSealed, voClassName, location);
 
     public static Diagnostic CannotHaveUserConstructors(IMethodSymbol constructor) => 
         Create(_cannotHaveUserConstructors, constructor.Locations);
