@@ -35,6 +35,12 @@ internal static class BuildWorkItems
             return null;
         }
 
+        if (!voTypeSyntax.Modifiers.Any(SyntaxKind.PartialKeyword))
+        {
+            context.ReportDiagnostic(DiagnosticItems.TypeShouldBePartial(voTypeSyntax.GetLocation(), voSymbolInformation.Name));
+            return null;
+        }
+
         if (voSymbolInformation.IsAbstract)
         {
             context.ReportDiagnostic(DiagnosticItems.TypeCannotBeAbstract(voSymbolInformation));

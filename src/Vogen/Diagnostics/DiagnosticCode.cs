@@ -26,5 +26,6 @@ public enum DiagnosticCode
     TypeCannotBeAbstract = 17,
     PrimaryConstructorProhibited = 18,
     InvalidCustomizations = 19,
-    RecordToStringOverloadShouldBeSealed = 20
+    RecordToStringOverloadShouldBeSealed = 20,
+    TypeShouldBePartial = 21
 }

@@ -1,6 +1,4 @@
-﻿using System;
-using System.Text.RegularExpressions;
-using Vogen;
+﻿using Vogen;
 
 namespace Whatever
 {
@@ -8,7 +6,7 @@ namespace Whatever
     {
         public static void Main()
         {
-            Console.WriteLine(AccountId.From("xyz").ToString());
+            //Console.WriteLine(AccountId.From("xyz").ToString());
             // To debug the source generator or analyzer, set the active project to Vogen,
             // and then select Roslyn as the debug target. This requires the Roslyn SDK
             // to be installed in the list of Visual Studio components.
@@ -16,7 +14,7 @@ namespace Whatever
     }
 
     [ValueObject(typeof(string))]
-    public partial record AccountId
+    public partial class AccountId
     {
         public override sealed string ToString() => "derived2!";
     }
