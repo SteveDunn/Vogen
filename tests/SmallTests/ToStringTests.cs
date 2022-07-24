@@ -3,35 +3,35 @@ using Vogen;
 using Vogen.Tests.Types;
 using Xunit;
 
-namespace SmallTests;
+namespace SmallTests.ToString;
 
-public class ToString_Derived1
+public class D1
 {
     public override string ToString() => "derived1!";
 }
 
-public class ToString_Derived2 : ToString_Derived1
+public class D2 : D1
 {
     public new virtual string ToString() => "derived2!";
 }
 
-public class ToString_Derived3 : ToString_Derived2
+public class D3 : D2
 {
 }
 
 [ValueObject]
-public partial class ToString_Vo
+public partial class Vo
 {
     public override string ToString() => "ToString_Vo!";
 }
 
 [ValueObject]
-public partial class ToString_Vo_Derived1 : ToString_Derived1
+public partial class Vod1 : D1
 {
 }
 
 [ValueObject]
-public partial class ToString_Vo_Derived2 : ToString_Derived3
+public partial class Vod2 : D3
 {
 }
 
@@ -51,13 +51,13 @@ public class ToStringTests
 
     [Fact]
     public void ToString_uses_users_method() => 
-        ToString_Vo.From(18).ToString().Should().Be("ToString_Vo!");
+        Vo.From(18).ToString().Should().Be("ToString_Vo!");
 
     [Fact]
     public void ToString_uses_derived_method() => 
-        ToString_Vo_Derived1.From(18).ToString().Should().Be("derived1!");
+        Vod1.From(18).ToString().Should().Be("derived1!");
 
     [Fact]
     public void ToString_uses_least_derived_method() => 
-        ToString_Vo_Derived2.From(18).ToString().Should().Be("derived2!");
+        Vod2.From(18).ToString().Should().Be("derived2!");
 }
