@@ -84,12 +84,32 @@ public class MyValidationException : Exception
     }
 
     [Fact]
+    public void DeserializationStrictness_override()
+    {
+        var source = @"using System;
+using Vogen;
+
+[assembly: VogenDefaults(conversions: Conversions.DapperTypeHandler, deserializationStrictness: DeserializationStrictness.AllowAnything)]
+
+
+namespace Whatever;
+
+[ValueObject]
+public partial struct CustomerId { }
+";
+        
+        var (diagnostics, _) = TestHelper.GetGeneratedOutput<ValueObjectGenerator>(source);
+
+        diagnostics.Should().HaveCount(0);
+    }
+
+    [Fact]
     public void Override_all()
     {
         var source = @"using System;
 using Vogen;
 
-[assembly: VogenDefaults(underlyingType: typeof(string), conversions: Conversions.None, throws:typeof(Whatever.MyValidationException))]
+[assembly: VogenDefaults(underlyingType: typeof(string), conversions: Conversions.None, throws:typeof(Whatever.MyValidationException), deserializationStrictness: DeserializationStrictness.AllowAnything))]
 
 namespace Whatever;
 

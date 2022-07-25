@@ -151,6 +151,9 @@ internal static class GlobalConfigFilter
                         case "customizations":
                             customizations = (Customizations) (typedConstant.Value ?? Customizations.None);
                             break;
+                        case "deserializationStrictness":
+                            deserializationStrictness = (DeserializationStrictness) (typedConstant.Value ?? Customizations.None);
+                            break;
                     }
                 }
             }
@@ -177,6 +180,15 @@ internal static class GlobalConfigFilter
             if (syntax is not null)
             {
                 context.ReportDiagnostic(DiagnosticItems.InvalidCustomizations(syntax.GetLocation()));
+            }
+        }
+
+        if (!deserializationStrictness.IsValidFlags())
+        {
+            var syntax = matchingAttribute.ApplicationSyntaxReference?.GetSyntax();
+            if (syntax is not null)
+            {
+                context.ReportDiagnostic(DiagnosticItems.InvalidDeserializationStrictness(syntax.GetLocation()));
             }
         }
 

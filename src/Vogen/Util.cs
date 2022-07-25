@@ -57,7 +57,7 @@ public static class Util
     {
         StringBuilder sb = new StringBuilder();
 
-        if (workItem.DeserializationStrictness.HasFlag(DeserializationStrictness.CompareAgainstKnownInstances))
+        if (workItem.DeserializationStrictness.HasFlag(DeserializationStrictness.AllowKnownInstances))
         {
             foreach (var eachInstance in workItem.InstanceProperties)
             {

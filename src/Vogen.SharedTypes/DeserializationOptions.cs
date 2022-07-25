@@ -13,7 +13,7 @@ public enum DeserializationStrictness
     /// <summary>
     /// If your Value Object has 'Instances', then those are considered valid during deserialization.
     /// </summary>
-    CompareAgainstKnownInstances = 1 << 0,
+    AllowKnownInstances = 1 << 0,
 
     /// <summary>
     /// If your Value Object has a Validate method, it will be called to validate the incoming value during deserialization.
@@ -25,7 +25,7 @@ public enum DeserializationStrictness
     /// If the incoming value doesn't match any known instance, and if your Value Object has a Validate method, it will
     /// be called to validate the incoming value during deserialization. 
     /// </summary>
-    AllowValidAndKnownInstances = CompareAgainstKnownInstances | RunMyValidationMethod,
+    AllowValidAndKnownInstances = AllowKnownInstances | RunMyValidationMethod,
 
     Default = AllowValidAndKnownInstances,
 }

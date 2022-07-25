@@ -15,20 +15,19 @@ public class Program
         await using var connection = new SqliteConnection("DataSource=:memory:");
         await connection.OpenAsync();
 
-        Vo? vo = (await connection.QueryAsync<Vo>("SELECT 0")).AsList()[0];
+        Vo? vo = (await connection.QueryAsync<Vo>("SELECT -1")).AsList()[0];
 
         Console.WriteLine(vo.Value);
     }
 }
 
-[ValueObject(typeof(int), Conversions.DapperTypeHandler | Conversions.EfCoreValueConverter | Conversions.NewtonsoftJson | Conversions.SystemTextJson | Conversions.TypeConverter)]
+[ValueObject(typeof(int), Conversions.DapperTypeHandler, deserializationStrictness: DeserializationStrictness.AllowValidAndKnownInstances)]
+[Instance(name: "Unknown", value: 0)]
+//[Instance(name: "Invalid", value: -1)]
 public partial class Vo
 {
-    private static Validation validate(int value)
-    {
-        if (value > 0)
-            return Validation.Ok;
+    private static int NormalizeInput(int input) => input == -1 ? 0 : input;
 
-        return Validation.Invalid("must be greater than zero");
-    }
+    private static Validation validate(int value) => 
+        value > 0 ? Validation.Ok : Validation.Invalid("must be greater than zero");
 }
