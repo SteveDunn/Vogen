@@ -84,7 +84,6 @@ public System.Int64 Value
             public_sealed_partial_classConversions_EfCoreValueConverterlong instance = new public_sealed_partial_classConversions_EfCoreValueConverterlong(value);
 
             
-
             return instance;
         }
 

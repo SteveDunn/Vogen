@@ -96,7 +96,6 @@ public float Value
             public_partial_record_classConversions_TypeConverterfloat instance = new public_partial_record_classConversions_TypeConverterfloat(value);
 
             
-
             return instance;
         }
 

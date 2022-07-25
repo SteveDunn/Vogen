@@ -83,7 +83,6 @@ namespace @class
             escapedTestspublic_partial_structConversions_Nonestring instance = new escapedTestspublic_partial_structConversions_Nonestring(value);
 
             
-
             return instance;
         }
 

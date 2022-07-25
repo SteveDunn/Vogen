@@ -95,7 +95,6 @@ public double Value
             escapedTestspublic_partial_recordConversions_EfCoreValueConverterdouble instance = new escapedTestspublic_partial_recordConversions_EfCoreValueConverterdouble(value);
 
             
-
             return instance;
         }
 

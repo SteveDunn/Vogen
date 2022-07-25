@@ -107,7 +107,6 @@ public string Value
             escapedTestsinternal_partial_recordConversions_Nonestring instance = new escapedTestsinternal_partial_recordConversions_Nonestring(value);
 
             
-
             return instance;
         }
 

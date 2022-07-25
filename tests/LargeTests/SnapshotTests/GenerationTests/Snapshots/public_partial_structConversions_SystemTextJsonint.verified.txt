@@ -84,7 +84,6 @@ namespace Whatever
             public_partial_structConversions_SystemTextJsonint instance = new public_partial_structConversions_SystemTextJsonint(value);
 
             
-
             return instance;
         }
 

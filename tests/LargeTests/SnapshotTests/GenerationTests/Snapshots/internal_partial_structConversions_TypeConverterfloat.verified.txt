@@ -84,7 +84,6 @@ namespace Whatever
             internal_partial_structConversions_TypeConverterfloat instance = new internal_partial_structConversions_TypeConverterfloat(value);
 
             
-
             return instance;
         }
 

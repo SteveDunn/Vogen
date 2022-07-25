@@ -83,7 +83,6 @@ namespace @class
             escapedTestsinternal_partial_structConversions_DapperTypeHandlerSystem instance = new escapedTestsinternal_partial_structConversions_DapperTypeHandlerSystem(value);
 
             
-
             return instance;
         }
 

@@ -84,7 +84,6 @@ namespace Whatever
             internal_partial_structConversions_SystemTextJsonbool instance = new internal_partial_structConversions_SystemTextJsonbool(value);
 
             
-
             return instance;
         }
 

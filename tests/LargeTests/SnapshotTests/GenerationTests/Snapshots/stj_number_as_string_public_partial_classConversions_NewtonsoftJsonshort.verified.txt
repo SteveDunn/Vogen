@@ -85,7 +85,6 @@ public System.Int16 Value
             stj_number_as_string_public_partial_classConversions_NewtonsoftJsonshort instance = new stj_number_as_string_public_partial_classConversions_NewtonsoftJsonshort(value);
 
             
-
             return instance;
         }
 

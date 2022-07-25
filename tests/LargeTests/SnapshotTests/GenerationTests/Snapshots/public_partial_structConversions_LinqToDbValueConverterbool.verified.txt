@@ -83,7 +83,6 @@ namespace Whatever
             public_partial_structConversions_LinqToDbValueConverterbool instance = new public_partial_structConversions_LinqToDbValueConverterbool(value);
 
             
-
             return instance;
         }
 

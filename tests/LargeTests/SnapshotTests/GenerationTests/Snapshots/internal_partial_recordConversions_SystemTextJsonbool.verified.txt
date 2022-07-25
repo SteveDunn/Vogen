@@ -96,7 +96,6 @@ public bool Value
             internal_partial_recordConversions_SystemTextJsonbool instance = new internal_partial_recordConversions_SystemTextJsonbool(value);
 
             
-
             return instance;
         }
 

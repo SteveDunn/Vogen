@@ -95,7 +95,6 @@ public System.DateTimeOffset Value
             internal_partial_recordConversions_EfCoreValueConverterSystem instance = new internal_partial_recordConversions_EfCoreValueConverterSystem(value);
 
             
-
             return instance;
         }
 

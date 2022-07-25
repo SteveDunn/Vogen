@@ -83,7 +83,6 @@ namespace Whatever
             internal_readonly_partial_structConversions_DapperTypeHandlerint instance = new internal_readonly_partial_structConversions_DapperTypeHandlerint(value);
 
             
-
             return instance;
         }
 

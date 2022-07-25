@@ -84,7 +84,6 @@ public System.Byte Value
             public_sealed_partial_classConversions_LinqToDbValueConverterbyte instance = new public_sealed_partial_classConversions_LinqToDbValueConverterbyte(value);
 
             
-
             return instance;
         }
 

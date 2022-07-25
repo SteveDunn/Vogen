@@ -96,7 +96,6 @@ public byte Value
             stj_number_as_string_public_sealed_partial_recordConversions_NewtonsoftJsonbyte instance = new stj_number_as_string_public_sealed_partial_recordConversions_NewtonsoftJsonbyte(value);
 
             
-
             return instance;
         }
 

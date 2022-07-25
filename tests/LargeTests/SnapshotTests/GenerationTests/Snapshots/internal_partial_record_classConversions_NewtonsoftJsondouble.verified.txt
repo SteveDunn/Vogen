@@ -96,7 +96,6 @@ public double Value
             internal_partial_record_classConversions_NewtonsoftJsondouble instance = new internal_partial_record_classConversions_NewtonsoftJsondouble(value);
 
             
-
             return instance;
         }
 

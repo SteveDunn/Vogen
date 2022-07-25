@@ -85,7 +85,6 @@ namespace Whatever
             MyIntVo instance = new MyIntVo(value);
 
             
-
             return instance;
         }
 

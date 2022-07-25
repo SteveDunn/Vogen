@@ -95,7 +95,6 @@ public bool Value
             stj_number_as_string_public_partial_recordConversions_Nonebool_customized instance = new stj_number_as_string_public_partial_recordConversions_Nonebool_customized(value);
 
             
-
             return instance;
         }
 

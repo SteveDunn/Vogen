@@ -84,7 +84,6 @@ public System.Single Value
             internal_partial_classConversions_Nonefloat instance = new internal_partial_classConversions_Nonefloat(value);
 
             
-
             return instance;
         }
 

@@ -96,7 +96,6 @@ public byte Value
             escapedTestsinternal_sealed_partial_recordConversions_NewtonsoftJsonbyte instance = new escapedTestsinternal_sealed_partial_recordConversions_NewtonsoftJsonbyte(value);
 
             
-
             return instance;
         }
 

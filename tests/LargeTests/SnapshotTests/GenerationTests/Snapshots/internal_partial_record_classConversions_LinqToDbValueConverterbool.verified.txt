@@ -95,7 +95,6 @@ public bool Value
             internal_partial_record_classConversions_LinqToDbValueConverterbool instance = new internal_partial_record_classConversions_LinqToDbValueConverterbool(value);
 
             
-
             return instance;
         }
 

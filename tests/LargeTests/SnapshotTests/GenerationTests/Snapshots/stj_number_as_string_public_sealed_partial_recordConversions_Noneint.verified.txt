@@ -95,7 +95,6 @@ public int Value
             stj_number_as_string_public_sealed_partial_recordConversions_Noneint instance = new stj_number_as_string_public_sealed_partial_recordConversions_Noneint(value);
 
             
-
             return instance;
         }
 

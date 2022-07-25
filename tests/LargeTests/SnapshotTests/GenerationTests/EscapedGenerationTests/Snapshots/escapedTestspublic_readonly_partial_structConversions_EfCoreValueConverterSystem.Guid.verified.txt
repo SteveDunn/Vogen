@@ -83,7 +83,6 @@ namespace @class
             escapedTestspublic_readonly_partial_structConversions_EfCoreValueConverterSystem instance = new escapedTestspublic_readonly_partial_structConversions_EfCoreValueConverterSystem(value);
 
             
-
             return instance;
         }
 

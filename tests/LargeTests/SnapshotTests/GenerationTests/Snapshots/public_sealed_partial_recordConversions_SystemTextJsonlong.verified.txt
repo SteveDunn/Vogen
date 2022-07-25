@@ -96,7 +96,6 @@ public long Value
             public_sealed_partial_recordConversions_SystemTextJsonlong instance = new public_sealed_partial_recordConversions_SystemTextJsonlong(value);
 
             
-
             return instance;
         }
 

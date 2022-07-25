@@ -83,7 +83,6 @@ namespace Whatever
             internal_partial_structConversions_EfCoreValueConverterbool instance = new internal_partial_structConversions_EfCoreValueConverterbool(value);
 
             
-
             return instance;
         }
 

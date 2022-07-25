@@ -96,7 +96,6 @@ public double Value
             internal_sealed_partial_recordConversions_SystemTextJsondouble instance = new internal_sealed_partial_recordConversions_SystemTextJsondouble(value);
 
             
-
             return instance;
         }
 

@@ -96,7 +96,6 @@ public short Value
             stj_number_as_string_public_partial_recordConversions_SystemTextJsonshort instance = new stj_number_as_string_public_partial_recordConversions_SystemTextJsonshort(value);
 
             
-
             return instance;
         }
 

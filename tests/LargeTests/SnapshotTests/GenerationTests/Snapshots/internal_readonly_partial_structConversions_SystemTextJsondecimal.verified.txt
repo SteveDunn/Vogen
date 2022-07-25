@@ -84,7 +84,6 @@ namespace Whatever
             internal_readonly_partial_structConversions_SystemTextJsondecimal instance = new internal_readonly_partial_structConversions_SystemTextJsondecimal(value);
 
             
-
             return instance;
         }
 

@@ -85,7 +85,6 @@ public System.Single Value
             internal_sealed_partial_classConversions_NewtonsoftJsonfloat instance = new internal_sealed_partial_classConversions_NewtonsoftJsonfloat(value);
 
             
-
             return instance;
         }
 

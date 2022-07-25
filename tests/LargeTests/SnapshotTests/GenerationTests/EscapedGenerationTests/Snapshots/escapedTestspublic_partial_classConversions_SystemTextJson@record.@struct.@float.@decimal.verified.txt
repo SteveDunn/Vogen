@@ -85,7 +85,6 @@ public @class.@record.@struct.@float.@decimal Value
             escapedTestspublic_partial_classConversions_SystemTextJson instance = new escapedTestspublic_partial_classConversions_SystemTextJson(value);
 
             
-
             return instance;
         }
 

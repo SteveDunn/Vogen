@@ -95,7 +95,6 @@ public byte Value
             internal_sealed_partial_recordConversions_DapperTypeHandlerbyte instance = new internal_sealed_partial_recordConversions_DapperTypeHandlerbyte(value);
 
             
-
             return instance;
         }
 

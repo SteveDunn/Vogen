@@ -96,7 +96,6 @@ public short Value
             internal_partial_recordConversions_NewtonsoftJsonshort instance = new internal_partial_recordConversions_NewtonsoftJsonshort(value);
 
             
-
             return instance;
         }
 

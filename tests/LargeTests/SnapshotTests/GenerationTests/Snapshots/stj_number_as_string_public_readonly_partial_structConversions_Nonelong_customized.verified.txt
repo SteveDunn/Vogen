@@ -83,7 +83,6 @@ namespace Whatever
             stj_number_as_string_public_readonly_partial_structConversions_Nonelong_customized instance = new stj_number_as_string_public_readonly_partial_structConversions_Nonelong_customized(value);
 
             
-
             return instance;
         }
 

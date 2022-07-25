@@ -84,7 +84,6 @@ namespace Whatever
             internal_readonly_partial_structConversions_TypeConverterint instance = new internal_readonly_partial_structConversions_TypeConverterint(value);
 
             
-
             return instance;
         }
 

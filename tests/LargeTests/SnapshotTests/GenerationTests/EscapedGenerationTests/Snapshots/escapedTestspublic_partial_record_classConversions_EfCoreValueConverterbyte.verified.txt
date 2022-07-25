@@ -95,7 +95,6 @@ public byte Value
             escapedTestspublic_partial_record_classConversions_EfCoreValueConverterbyte instance = new escapedTestspublic_partial_record_classConversions_EfCoreValueConverterbyte(value);
 
             
-
             return instance;
         }
 

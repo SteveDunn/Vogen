@@ -85,7 +85,6 @@ public System.Double Value
             escapedTestspublic_sealed_partial_classConversions_NewtonsoftJsondouble instance = new escapedTestspublic_sealed_partial_classConversions_NewtonsoftJsondouble(value);
 
             
-
             return instance;
         }
 

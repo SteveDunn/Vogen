@@ -108,7 +108,6 @@ public string Value
             stj_number_as_string_public_sealed_partial_recordConversions_NewtonsoftJsonstring_customized instance = new stj_number_as_string_public_sealed_partial_recordConversions_NewtonsoftJsonstring_customized(value);
 
             
-
             return instance;
         }
 

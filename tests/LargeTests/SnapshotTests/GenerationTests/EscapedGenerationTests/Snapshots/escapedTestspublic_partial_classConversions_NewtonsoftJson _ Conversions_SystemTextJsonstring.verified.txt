@@ -94,7 +94,6 @@ public System.String Value
             escapedTestspublic_partial_classConversions_NewtonsoftJson instance = new escapedTestspublic_partial_classConversions_NewtonsoftJson(value);
 
             
-
             return instance;
         }
 

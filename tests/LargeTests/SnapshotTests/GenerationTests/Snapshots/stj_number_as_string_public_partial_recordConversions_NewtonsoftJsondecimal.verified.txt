@@ -96,7 +96,6 @@ public decimal Value
             stj_number_as_string_public_partial_recordConversions_NewtonsoftJsondecimal instance = new stj_number_as_string_public_partial_recordConversions_NewtonsoftJsondecimal(value);
 
             
-
             return instance;
         }
 

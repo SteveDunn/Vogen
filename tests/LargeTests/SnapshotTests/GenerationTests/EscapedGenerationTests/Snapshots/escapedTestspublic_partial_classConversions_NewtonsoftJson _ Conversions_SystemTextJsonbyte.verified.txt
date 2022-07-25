@@ -86,7 +86,6 @@ public System.Byte Value
             escapedTestspublic_partial_classConversions_NewtonsoftJson instance = new escapedTestspublic_partial_classConversions_NewtonsoftJson(value);
 
             
-
             return instance;
         }
 

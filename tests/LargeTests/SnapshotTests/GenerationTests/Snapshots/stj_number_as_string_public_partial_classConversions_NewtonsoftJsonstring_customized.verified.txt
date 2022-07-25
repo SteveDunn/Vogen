@@ -93,7 +93,6 @@ public System.String Value
             stj_number_as_string_public_partial_classConversions_NewtonsoftJsonstring_customized instance = new stj_number_as_string_public_partial_classConversions_NewtonsoftJsonstring_customized(value);
 
             
-
             return instance;
         }
 

@@ -92,7 +92,6 @@ public System.String Value
             internal_partial_classConversions_DapperTypeHandlerstring instance = new internal_partial_classConversions_DapperTypeHandlerstring(value);
 
             
-
             return instance;
         }
 

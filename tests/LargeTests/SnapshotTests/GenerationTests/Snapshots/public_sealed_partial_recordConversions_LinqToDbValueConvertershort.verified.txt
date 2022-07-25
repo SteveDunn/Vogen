@@ -95,7 +95,6 @@ public short Value
             public_sealed_partial_recordConversions_LinqToDbValueConvertershort instance = new public_sealed_partial_recordConversions_LinqToDbValueConvertershort(value);
 
             
-
             return instance;
         }
 

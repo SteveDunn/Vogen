@@ -83,7 +83,6 @@ namespace Whatever
             public_partial_structConversions_EfCoreValueConverterdouble instance = new public_partial_structConversions_EfCoreValueConverterdouble(value);
 
             
-
             return instance;
         }
 

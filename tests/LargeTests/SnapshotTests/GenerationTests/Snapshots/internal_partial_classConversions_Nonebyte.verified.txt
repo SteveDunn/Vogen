@@ -84,7 +84,6 @@ public System.Byte Value
             internal_partial_classConversions_Nonebyte instance = new internal_partial_classConversions_Nonebyte(value);
 
             
-
             return instance;
         }
 

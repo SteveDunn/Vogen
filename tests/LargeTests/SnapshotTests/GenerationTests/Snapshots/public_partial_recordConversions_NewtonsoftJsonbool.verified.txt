@@ -96,7 +96,6 @@ public bool Value
             public_partial_recordConversions_NewtonsoftJsonbool instance = new public_partial_recordConversions_NewtonsoftJsonbool(value);
 
             
-
             return instance;
         }
 

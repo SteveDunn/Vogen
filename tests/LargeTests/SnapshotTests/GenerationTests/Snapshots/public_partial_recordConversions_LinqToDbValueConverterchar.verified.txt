@@ -95,7 +95,6 @@ public char Value
             public_partial_recordConversions_LinqToDbValueConverterchar instance = new public_partial_recordConversions_LinqToDbValueConverterchar(value);
 
             
-
             return instance;
         }
 

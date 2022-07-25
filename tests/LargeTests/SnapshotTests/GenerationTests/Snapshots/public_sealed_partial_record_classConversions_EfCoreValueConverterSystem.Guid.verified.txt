@@ -95,7 +95,6 @@ public System.Guid Value
             public_sealed_partial_record_classConversions_EfCoreValueConverterSystem instance = new public_sealed_partial_record_classConversions_EfCoreValueConverterSystem(value);
 
             
-
             return instance;
         }
 

@@ -95,7 +95,6 @@ public System.Guid Value
             public_sealed_partial_recordConversions_LinqToDbValueConverterSystem instance = new public_sealed_partial_recordConversions_LinqToDbValueConverterSystem(value);
 
             
-
             return instance;
         }
 

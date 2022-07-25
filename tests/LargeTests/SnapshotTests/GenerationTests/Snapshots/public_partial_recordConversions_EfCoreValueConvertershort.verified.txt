@@ -95,7 +95,6 @@ public short Value
             public_partial_recordConversions_EfCoreValueConvertershort instance = new public_partial_recordConversions_EfCoreValueConvertershort(value);
 
             
-
             return instance;
         }
 

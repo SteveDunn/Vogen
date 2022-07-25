@@ -96,7 +96,6 @@ public System.DateTimeOffset Value
             internal_partial_record_classConversions_SystemTextJsonSystem instance = new internal_partial_record_classConversions_SystemTextJsonSystem(value);
 
             
-
             return instance;
         }
 

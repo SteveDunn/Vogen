@@ -84,7 +84,6 @@ namespace Whatever
             public_partial_structConversions_SystemTextJsonfloat instance = new public_partial_structConversions_SystemTextJsonfloat(value);
 
             
-
             return instance;
         }
 

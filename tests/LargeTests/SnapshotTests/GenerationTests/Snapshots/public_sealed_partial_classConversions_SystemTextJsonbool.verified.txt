@@ -85,7 +85,6 @@ public System.Boolean Value
             public_sealed_partial_classConversions_SystemTextJsonbool instance = new public_sealed_partial_classConversions_SystemTextJsonbool(value);
 
             
-
             return instance;
         }
 

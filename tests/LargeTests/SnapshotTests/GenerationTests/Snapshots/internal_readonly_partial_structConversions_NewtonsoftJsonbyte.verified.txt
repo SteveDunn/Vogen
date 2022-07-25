@@ -84,7 +84,6 @@ namespace Whatever
             internal_readonly_partial_structConversions_NewtonsoftJsonbyte instance = new internal_readonly_partial_structConversions_NewtonsoftJsonbyte(value);
 
             
-
             return instance;
         }
 

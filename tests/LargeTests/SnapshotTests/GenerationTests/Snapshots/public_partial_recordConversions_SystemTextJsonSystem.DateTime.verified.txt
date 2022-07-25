@@ -96,7 +96,6 @@ public System.DateTime Value
             public_partial_recordConversions_SystemTextJsonSystem instance = new public_partial_recordConversions_SystemTextJsonSystem(value);
 
             
-
             return instance;
         }
 

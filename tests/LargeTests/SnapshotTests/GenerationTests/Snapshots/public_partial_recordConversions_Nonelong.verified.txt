@@ -95,7 +95,6 @@ public long Value
             public_partial_recordConversions_Nonelong instance = new public_partial_recordConversions_Nonelong(value);
 
             
-
             return instance;
         }
 

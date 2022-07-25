@@ -95,7 +95,6 @@ public float Value
             public_partial_recordConversions_LinqToDbValueConverterfloat instance = new public_partial_recordConversions_LinqToDbValueConverterfloat(value);
 
             
-
             return instance;
         }
 

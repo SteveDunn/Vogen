@@ -96,7 +96,6 @@ public @class.record.@struct.@float.decimal Value
             escapedTestsinternal_partial_record_classConversions_NewtonsoftJson instance = new escapedTestsinternal_partial_record_classConversions_NewtonsoftJson(value);
 
             
-
             return instance;
         }
 

@@ -94,7 +94,6 @@ namespace Whatever
             public_partial_record_structConversions_SystemTextJsonlong instance = new public_partial_record_structConversions_SystemTextJsonlong(value);
 
             
-
             return instance;
         }
 

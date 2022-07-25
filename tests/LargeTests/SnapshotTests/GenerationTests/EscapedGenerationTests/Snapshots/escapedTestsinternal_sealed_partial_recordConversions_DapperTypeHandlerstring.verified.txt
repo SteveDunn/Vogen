@@ -107,7 +107,6 @@ public string Value
             escapedTestsinternal_sealed_partial_recordConversions_DapperTypeHandlerstring instance = new escapedTestsinternal_sealed_partial_recordConversions_DapperTypeHandlerstring(value);
 
             
-
             return instance;
         }
 

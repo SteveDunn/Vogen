@@ -83,7 +83,6 @@ namespace Whatever
             public_partial_structConversions_Nonefloat instance = new public_partial_structConversions_Nonefloat(value);
 
             
-
             return instance;
         }
 

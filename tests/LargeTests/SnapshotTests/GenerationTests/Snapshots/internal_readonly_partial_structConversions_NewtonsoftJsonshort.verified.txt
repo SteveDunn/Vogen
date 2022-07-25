@@ -84,7 +84,6 @@ namespace Whatever
             internal_readonly_partial_structConversions_NewtonsoftJsonshort instance = new internal_readonly_partial_structConversions_NewtonsoftJsonshort(value);
 
             
-
             return instance;
         }
 

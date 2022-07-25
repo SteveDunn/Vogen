@@ -96,7 +96,6 @@ public double Value
             public_sealed_partial_recordConversions_TypeConverterdouble instance = new public_sealed_partial_recordConversions_TypeConverterdouble(value);
 
             
-
             return instance;
         }
 

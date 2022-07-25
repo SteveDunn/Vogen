@@ -95,7 +95,6 @@ public short Value
             public_sealed_partial_recordConversions_Noneshort instance = new public_sealed_partial_recordConversions_Noneshort(value);
 
             
-
             return instance;
         }
 

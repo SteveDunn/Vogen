@@ -93,7 +93,6 @@ namespace Whatever
             public_readonly_partial_record_structConversions_LinqToDbValueConverterbyte instance = new public_readonly_partial_record_structConversions_LinqToDbValueConverterbyte(value);
 
             
-
             return instance;
         }
 

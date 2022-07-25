@@ -94,7 +94,6 @@ public System.String Value
             public_partial_classConversions_NewtonsoftJson instance = new public_partial_classConversions_NewtonsoftJson(value);
 
             
-
             return instance;
         }
 

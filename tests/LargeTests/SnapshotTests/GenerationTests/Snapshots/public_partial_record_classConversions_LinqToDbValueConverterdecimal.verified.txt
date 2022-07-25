@@ -95,7 +95,6 @@ public decimal Value
             public_partial_record_classConversions_LinqToDbValueConverterdecimal instance = new public_partial_record_classConversions_LinqToDbValueConverterdecimal(value);
 
             
-
             return instance;
         }
 

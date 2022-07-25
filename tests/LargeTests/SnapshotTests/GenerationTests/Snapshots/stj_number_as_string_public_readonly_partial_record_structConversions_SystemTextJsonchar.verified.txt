@@ -94,7 +94,6 @@ namespace Whatever
             stj_number_as_string_public_readonly_partial_record_structConversions_SystemTextJsonchar instance = new stj_number_as_string_public_readonly_partial_record_structConversions_SystemTextJsonchar(value);
 
             
-
             return instance;
         }
 

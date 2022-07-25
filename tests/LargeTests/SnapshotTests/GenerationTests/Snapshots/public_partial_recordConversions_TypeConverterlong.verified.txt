@@ -96,7 +96,6 @@ public long Value
             public_partial_recordConversions_TypeConverterlong instance = new public_partial_recordConversions_TypeConverterlong(value);
 
             
-
             return instance;
         }
 

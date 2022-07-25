@@ -96,7 +96,6 @@ public System.Guid Value
             escapedTestspublic_partial_record_classConversions_NewtonsoftJsonSystem instance = new escapedTestspublic_partial_record_classConversions_NewtonsoftJsonSystem(value);
 
             
-
             return instance;
         }
 

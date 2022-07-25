@@ -107,7 +107,6 @@ public string Value
             stj_number_as_string_public_partial_recordConversions_Nonestring instance = new stj_number_as_string_public_partial_recordConversions_Nonestring(value);
 
             
-
             return instance;
         }
 

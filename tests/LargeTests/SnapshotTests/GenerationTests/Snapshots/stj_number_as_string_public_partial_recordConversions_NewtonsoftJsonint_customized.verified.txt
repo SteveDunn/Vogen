@@ -96,7 +96,6 @@ public int Value
             stj_number_as_string_public_partial_recordConversions_NewtonsoftJsonint_customized instance = new stj_number_as_string_public_partial_recordConversions_NewtonsoftJsonint_customized(value);
 
             
-
             return instance;
         }
 

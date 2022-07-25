@@ -96,7 +96,6 @@ public char Value
             public_partial_recordConversions_TypeConverterchar instance = new public_partial_recordConversions_TypeConverterchar(value);
 
             
-
             return instance;
         }
 

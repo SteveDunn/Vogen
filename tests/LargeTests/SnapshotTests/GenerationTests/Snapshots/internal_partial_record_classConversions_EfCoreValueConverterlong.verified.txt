@@ -95,7 +95,6 @@ public long Value
             internal_partial_record_classConversions_EfCoreValueConverterlong instance = new internal_partial_record_classConversions_EfCoreValueConverterlong(value);
 
             
-
             return instance;
         }
 

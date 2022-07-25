@@ -83,7 +83,6 @@ namespace Whatever
             public_partial_structConversions_EfCoreValueConverterint instance = new public_partial_structConversions_EfCoreValueConverterint(value);
 
             
-
             return instance;
         }
 

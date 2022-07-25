@@ -95,7 +95,6 @@ public int Value
             internal_sealed_partial_recordConversions_Noneint instance = new internal_sealed_partial_recordConversions_Noneint(value);
 
             
-
             return instance;
         }
 

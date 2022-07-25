@@ -96,7 +96,6 @@ public byte Value
             internal_partial_record_classConversions_NewtonsoftJsonbyte instance = new internal_partial_record_classConversions_NewtonsoftJsonbyte(value);
 
             
-
             return instance;
         }
 

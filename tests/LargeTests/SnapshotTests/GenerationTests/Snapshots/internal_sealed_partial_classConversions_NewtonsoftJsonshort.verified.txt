@@ -85,7 +85,6 @@ public System.Int16 Value
             internal_sealed_partial_classConversions_NewtonsoftJsonshort instance = new internal_sealed_partial_classConversions_NewtonsoftJsonshort(value);
 
             
-
             return instance;
         }
 

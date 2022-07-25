@@ -84,7 +84,6 @@ public System.Double Value
             public_partial_classConversions_DapperTypeHandlerdouble instance = new public_partial_classConversions_DapperTypeHandlerdouble(value);
 
             
-
             return instance;
         }
 

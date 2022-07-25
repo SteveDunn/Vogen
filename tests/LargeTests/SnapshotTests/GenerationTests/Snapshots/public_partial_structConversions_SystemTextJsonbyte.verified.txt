@@ -84,7 +84,6 @@ namespace Whatever
             public_partial_structConversions_SystemTextJsonbyte instance = new public_partial_structConversions_SystemTextJsonbyte(value);
 
             
-
             return instance;
         }
 

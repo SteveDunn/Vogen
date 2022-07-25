@@ -96,7 +96,6 @@ public byte Value
             escapedTestspublic_partial_recordConversions_SystemTextJsonbyte instance = new escapedTestspublic_partial_recordConversions_SystemTextJsonbyte(value);
 
             
-
             return instance;
         }
 

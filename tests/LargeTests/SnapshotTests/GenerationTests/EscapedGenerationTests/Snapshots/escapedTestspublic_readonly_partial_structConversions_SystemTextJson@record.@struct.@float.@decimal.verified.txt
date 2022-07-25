@@ -84,7 +84,6 @@ namespace @class
             escapedTestspublic_readonly_partial_structConversions_SystemTextJson instance = new escapedTestspublic_readonly_partial_structConversions_SystemTextJson(value);
 
             
-
             return instance;
         }
 

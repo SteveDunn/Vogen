@@ -84,7 +84,6 @@ namespace @class
             escapedTestsinternal_readonly_partial_structConversions_TypeConverterdouble instance = new escapedTestsinternal_readonly_partial_structConversions_TypeConverterdouble(value);
 
             
-
             return instance;
         }
 

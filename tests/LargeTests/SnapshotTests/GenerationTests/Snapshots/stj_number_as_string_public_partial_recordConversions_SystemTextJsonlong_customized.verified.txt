@@ -96,7 +96,6 @@ public long Value
             stj_number_as_string_public_partial_recordConversions_SystemTextJsonlong_customized instance = new stj_number_as_string_public_partial_recordConversions_SystemTextJsonlong_customized(value);
 
             
-
             return instance;
         }
 

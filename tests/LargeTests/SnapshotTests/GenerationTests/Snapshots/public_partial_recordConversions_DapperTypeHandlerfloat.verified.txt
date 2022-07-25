@@ -95,7 +95,6 @@ public float Value
             public_partial_recordConversions_DapperTypeHandlerfloat instance = new public_partial_recordConversions_DapperTypeHandlerfloat(value);
 
             
-
             return instance;
         }
 

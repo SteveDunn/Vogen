@@ -96,7 +96,6 @@ public float Value
             public_sealed_partial_recordConversions_TypeConverterfloat instance = new public_sealed_partial_recordConversions_TypeConverterfloat(value);
 
             
-
             return instance;
         }
 

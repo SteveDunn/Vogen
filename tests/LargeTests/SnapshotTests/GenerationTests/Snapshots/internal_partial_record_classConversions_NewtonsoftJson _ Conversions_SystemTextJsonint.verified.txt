@@ -97,7 +97,6 @@ public int Value
             internal_partial_record_classConversions_NewtonsoftJson instance = new internal_partial_record_classConversions_NewtonsoftJson(value);
 
             
-
             return instance;
         }
 

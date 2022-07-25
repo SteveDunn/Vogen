@@ -95,7 +95,6 @@ public short Value
             internal_partial_record_classConversions_Noneshort instance = new internal_partial_record_classConversions_Noneshort(value);
 
             
-
             return instance;
         }
 

@@ -97,7 +97,6 @@ public char Value
             internal_sealed_partial_recordConversions_NewtonsoftJson instance = new internal_sealed_partial_recordConversions_NewtonsoftJson(value);
 
             
-
             return instance;
         }
 

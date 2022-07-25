@@ -84,7 +84,6 @@ namespace @class
             escapedTestspublic_partial_structConversions_NewtonsoftJson instance = new escapedTestspublic_partial_structConversions_NewtonsoftJson(value);
 
             
-
             return instance;
         }
 

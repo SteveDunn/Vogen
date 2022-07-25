@@ -95,7 +95,6 @@ public int Value
             internal_sealed_partial_recordConversions_DapperTypeHandlerint instance = new internal_sealed_partial_recordConversions_DapperTypeHandlerint(value);
 
             
-
             return instance;
         }
 

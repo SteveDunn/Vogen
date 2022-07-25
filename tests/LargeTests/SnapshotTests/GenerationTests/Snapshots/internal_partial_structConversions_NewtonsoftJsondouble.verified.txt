@@ -84,7 +84,6 @@ namespace Whatever
             internal_partial_structConversions_NewtonsoftJsondouble instance = new internal_partial_structConversions_NewtonsoftJsondouble(value);
 
             
-
             return instance;
         }
 

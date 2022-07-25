@@ -95,7 +95,6 @@ public System.Guid Value
             public_sealed_partial_recordConversions_NoneSystem instance = new public_sealed_partial_recordConversions_NoneSystem(value);
 
             
-
             return instance;
         }
 

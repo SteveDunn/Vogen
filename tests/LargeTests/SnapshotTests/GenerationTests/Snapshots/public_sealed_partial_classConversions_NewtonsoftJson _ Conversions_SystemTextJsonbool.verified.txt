@@ -86,7 +86,6 @@ public System.Boolean Value
             public_sealed_partial_classConversions_NewtonsoftJson instance = new public_sealed_partial_classConversions_NewtonsoftJson(value);
 
             
-
             return instance;
         }
 

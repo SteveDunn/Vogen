@@ -95,7 +95,6 @@ public System.Guid Value
             public_partial_recordConversions_NoneSystem instance = new public_partial_recordConversions_NoneSystem(value);
 
             
-
             return instance;
         }
 

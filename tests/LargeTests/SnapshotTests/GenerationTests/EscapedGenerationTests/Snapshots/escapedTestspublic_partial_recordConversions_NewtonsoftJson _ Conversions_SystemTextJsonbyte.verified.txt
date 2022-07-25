@@ -97,7 +97,6 @@ public byte Value
             escapedTestspublic_partial_recordConversions_NewtonsoftJson instance = new escapedTestspublic_partial_recordConversions_NewtonsoftJson(value);
 
             
-
             return instance;
         }
 

@@ -85,7 +85,6 @@ public System.Double Value
             public_partial_classConversions_SystemTextJsondouble instance = new public_partial_classConversions_SystemTextJsondouble(value);
 
             
-
             return instance;
         }
 

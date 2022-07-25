@@ -95,7 +95,6 @@ public System.Guid Value
             stj_number_as_string_public_partial_recordConversions_NoneSystem instance = new stj_number_as_string_public_partial_recordConversions_NoneSystem(value);
 
             
-
             return instance;
         }
 

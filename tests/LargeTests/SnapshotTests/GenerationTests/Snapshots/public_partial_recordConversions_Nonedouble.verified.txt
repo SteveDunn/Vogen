@@ -95,7 +95,6 @@ public double Value
             public_partial_recordConversions_Nonedouble instance = new public_partial_recordConversions_Nonedouble(value);
 
             
-
             return instance;
         }
 

@@ -96,7 +96,6 @@ public decimal Value
             stj_number_as_string_public_sealed_partial_recordConversions_SystemTextJsondecimal_customized instance = new stj_number_as_string_public_sealed_partial_recordConversions_SystemTextJsondecimal_customized(value);
 
             
-
             return instance;
         }
 

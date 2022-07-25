@@ -96,7 +96,6 @@ public double Value
             escapedTestsinternal_sealed_partial_recordConversions_NewtonsoftJsondouble instance = new escapedTestsinternal_sealed_partial_recordConversions_NewtonsoftJsondouble(value);
 
             
-
             return instance;
         }
 

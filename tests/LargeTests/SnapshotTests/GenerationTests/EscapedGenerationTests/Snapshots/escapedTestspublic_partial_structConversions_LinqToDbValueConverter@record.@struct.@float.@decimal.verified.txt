@@ -83,7 +83,6 @@ namespace @class
             escapedTestspublic_partial_structConversions_LinqToDbValueConverter instance = new escapedTestspublic_partial_structConversions_LinqToDbValueConverter(value);
 
             
-
             return instance;
         }
 

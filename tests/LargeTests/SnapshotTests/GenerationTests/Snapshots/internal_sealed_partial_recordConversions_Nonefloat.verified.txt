@@ -95,7 +95,6 @@ public float Value
             internal_sealed_partial_recordConversions_Nonefloat instance = new internal_sealed_partial_recordConversions_Nonefloat(value);
 
             
-
             return instance;
         }
 

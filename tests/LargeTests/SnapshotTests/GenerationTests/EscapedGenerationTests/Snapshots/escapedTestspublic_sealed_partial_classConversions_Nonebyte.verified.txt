@@ -84,7 +84,6 @@ public System.Byte Value
             escapedTestspublic_sealed_partial_classConversions_Nonebyte instance = new escapedTestspublic_sealed_partial_classConversions_Nonebyte(value);
 
             
-
             return instance;
         }
 

@@ -85,7 +85,6 @@ public System.Byte Value
             escapedTestspublic_partial_classConversions_TypeConverterbyte instance = new escapedTestspublic_partial_classConversions_TypeConverterbyte(value);
 
             
-
             return instance;
         }
 

@@ -92,7 +92,6 @@ public System.String Value
             escapedTestspublic_partial_classConversions_DapperTypeHandlerstring instance = new escapedTestspublic_partial_classConversions_DapperTypeHandlerstring(value);
 
             
-
             return instance;
         }
 

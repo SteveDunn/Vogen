@@ -95,7 +95,6 @@ public bool Value
             internal_partial_recordConversions_EfCoreValueConverterbool instance = new internal_partial_recordConversions_EfCoreValueConverterbool(value);
 
             
-
             return instance;
         }
 

@@ -95,7 +95,6 @@ public decimal Value
             internal_sealed_partial_recordConversions_DapperTypeHandlerdecimal instance = new internal_sealed_partial_recordConversions_DapperTypeHandlerdecimal(value);
 
             
-
             return instance;
         }
 

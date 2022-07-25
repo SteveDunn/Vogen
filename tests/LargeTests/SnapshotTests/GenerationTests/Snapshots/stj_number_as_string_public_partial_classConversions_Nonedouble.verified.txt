@@ -84,7 +84,6 @@ public System.Double Value
             stj_number_as_string_public_partial_classConversions_Nonedouble instance = new stj_number_as_string_public_partial_classConversions_Nonedouble(value);
 
             
-
             return instance;
         }
 

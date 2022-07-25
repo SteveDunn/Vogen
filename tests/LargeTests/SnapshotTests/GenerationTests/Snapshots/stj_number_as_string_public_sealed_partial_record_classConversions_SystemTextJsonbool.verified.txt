@@ -96,7 +96,6 @@ public bool Value
             stj_number_as_string_public_sealed_partial_record_classConversions_SystemTextJsonbool instance = new stj_number_as_string_public_sealed_partial_record_classConversions_SystemTextJsonbool(value);
 
             
-
             return instance;
         }
 

@@ -96,7 +96,6 @@ public double Value
             public_partial_record_classConversions_SystemTextJsondouble instance = new public_partial_record_classConversions_SystemTextJsondouble(value);
 
             
-
             return instance;
         }
 

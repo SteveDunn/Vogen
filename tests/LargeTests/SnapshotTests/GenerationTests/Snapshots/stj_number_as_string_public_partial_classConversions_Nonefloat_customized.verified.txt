@@ -84,7 +84,6 @@ public System.Single Value
             stj_number_as_string_public_partial_classConversions_Nonefloat_customized instance = new stj_number_as_string_public_partial_classConversions_Nonefloat_customized(value);
 
             
-
             return instance;
         }
 

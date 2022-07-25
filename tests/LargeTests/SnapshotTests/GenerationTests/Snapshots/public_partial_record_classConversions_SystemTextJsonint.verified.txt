@@ -96,7 +96,6 @@ public int Value
             public_partial_record_classConversions_SystemTextJsonint instance = new public_partial_record_classConversions_SystemTextJsonint(value);
 
             
-
             return instance;
         }
 

@@ -84,7 +84,6 @@ public System.Decimal Value
             internal_partial_classConversions_LinqToDbValueConverterdecimal instance = new internal_partial_classConversions_LinqToDbValueConverterdecimal(value);
 
             
-
             return instance;
         }
 

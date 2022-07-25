@@ -95,7 +95,6 @@ public byte Value
             stj_number_as_string_public_sealed_partial_record_classConversions_Nonebyte_customized instance = new stj_number_as_string_public_sealed_partial_record_classConversions_Nonebyte_customized(value);
 
             
-
             return instance;
         }
 

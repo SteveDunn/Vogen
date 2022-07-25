@@ -83,7 +83,6 @@ namespace @class
             escapedTestspublic_readonly_partial_structConversions_LinqToDbValueConverterbyte instance = new escapedTestspublic_readonly_partial_structConversions_LinqToDbValueConverterbyte(value);
 
             
-
             return instance;
         }
 

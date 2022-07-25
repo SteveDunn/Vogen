@@ -85,7 +85,6 @@ public System.Decimal Value
             internal_sealed_partial_classConversions_NewtonsoftJsondecimal instance = new internal_sealed_partial_classConversions_NewtonsoftJsondecimal(value);
 
             
-
             return instance;
         }
 

@@ -84,7 +84,6 @@ namespace Whatever
             public_partial_structConversions_TypeConverterbyte instance = new public_partial_structConversions_TypeConverterbyte(value);
 
             
-
             return instance;
         }
 

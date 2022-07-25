@@ -83,7 +83,6 @@ namespace Whatever
             stj_number_as_string_public_readonly_partial_structConversions_Nonedecimal_customized instance = new stj_number_as_string_public_readonly_partial_structConversions_Nonedecimal_customized(value);
 
             
-
             return instance;
         }
 

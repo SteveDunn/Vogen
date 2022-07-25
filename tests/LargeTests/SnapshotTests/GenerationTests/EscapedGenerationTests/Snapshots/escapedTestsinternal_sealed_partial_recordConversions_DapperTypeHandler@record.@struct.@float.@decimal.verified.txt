@@ -95,7 +95,6 @@ public @class.record.@struct.@float.decimal Value
             escapedTestsinternal_sealed_partial_recordConversions_DapperTypeHandler instance = new escapedTestsinternal_sealed_partial_recordConversions_DapperTypeHandler(value);
 
             
-
             return instance;
         }
 

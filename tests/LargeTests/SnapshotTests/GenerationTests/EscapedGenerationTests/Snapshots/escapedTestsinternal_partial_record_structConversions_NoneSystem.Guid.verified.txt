@@ -93,7 +93,6 @@ namespace @class
             escapedTestsinternal_partial_record_structConversions_NoneSystem instance = new escapedTestsinternal_partial_record_structConversions_NoneSystem(value);
 
             
-
             return instance;
         }
 

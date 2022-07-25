@@ -95,7 +95,6 @@ public short Value
             stj_number_as_string_public_partial_recordConversions_Noneshort instance = new stj_number_as_string_public_partial_recordConversions_Noneshort(value);
 
             
-
             return instance;
         }
 

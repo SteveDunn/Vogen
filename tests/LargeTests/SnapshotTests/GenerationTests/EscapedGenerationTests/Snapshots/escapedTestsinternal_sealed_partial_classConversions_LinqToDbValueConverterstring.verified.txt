@@ -92,7 +92,6 @@ public System.String Value
             escapedTestsinternal_sealed_partial_classConversions_LinqToDbValueConverterstring instance = new escapedTestsinternal_sealed_partial_classConversions_LinqToDbValueConverterstring(value);
 
             
-
             return instance;
         }
 

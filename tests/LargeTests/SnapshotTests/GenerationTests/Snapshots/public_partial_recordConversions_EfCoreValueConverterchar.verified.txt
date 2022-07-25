@@ -95,7 +95,6 @@ public char Value
             public_partial_recordConversions_EfCoreValueConverterchar instance = new public_partial_recordConversions_EfCoreValueConverterchar(value);
 
             
-
             return instance;
         }
 

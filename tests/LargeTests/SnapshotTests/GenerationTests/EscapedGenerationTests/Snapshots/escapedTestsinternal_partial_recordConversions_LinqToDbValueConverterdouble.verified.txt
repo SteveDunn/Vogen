@@ -95,7 +95,6 @@ public double Value
             escapedTestsinternal_partial_recordConversions_LinqToDbValueConverterdouble instance = new escapedTestsinternal_partial_recordConversions_LinqToDbValueConverterdouble(value);
 
             
-
             return instance;
         }
 

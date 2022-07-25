@@ -96,7 +96,6 @@ public decimal Value
             public_sealed_partial_recordConversions_NewtonsoftJsondecimal instance = new public_sealed_partial_recordConversions_NewtonsoftJsondecimal(value);
 
             
-
             return instance;
         }
 

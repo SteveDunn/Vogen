@@ -93,7 +93,6 @@ public System.String Value
             internal_partial_classConversions_NewtonsoftJsonstring instance = new internal_partial_classConversions_NewtonsoftJsonstring(value);
 
             
-
             return instance;
         }
 

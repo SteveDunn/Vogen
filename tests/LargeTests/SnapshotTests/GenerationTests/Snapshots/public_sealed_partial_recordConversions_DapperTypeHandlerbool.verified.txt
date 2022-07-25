@@ -95,7 +95,6 @@ public bool Value
             public_sealed_partial_recordConversions_DapperTypeHandlerbool instance = new public_sealed_partial_recordConversions_DapperTypeHandlerbool(value);
 
             
-
             return instance;
         }
 

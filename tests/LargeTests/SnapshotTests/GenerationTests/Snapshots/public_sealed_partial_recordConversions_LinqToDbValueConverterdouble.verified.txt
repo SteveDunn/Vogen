@@ -95,7 +95,6 @@ public double Value
             public_sealed_partial_recordConversions_LinqToDbValueConverterdouble instance = new public_sealed_partial_recordConversions_LinqToDbValueConverterdouble(value);
 
             
-
             return instance;
         }
 

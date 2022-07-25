@@ -85,7 +85,6 @@ public System.Byte Value
             internal_partial_classConversions_SystemTextJsonbyte instance = new internal_partial_classConversions_SystemTextJsonbyte(value);
 
             
-
             return instance;
         }
 

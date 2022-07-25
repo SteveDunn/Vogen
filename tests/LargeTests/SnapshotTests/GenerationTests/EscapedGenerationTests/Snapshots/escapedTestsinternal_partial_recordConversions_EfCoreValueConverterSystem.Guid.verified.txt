@@ -95,7 +95,6 @@ public System.Guid Value
             escapedTestsinternal_partial_recordConversions_EfCoreValueConverterSystem instance = new escapedTestsinternal_partial_recordConversions_EfCoreValueConverterSystem(value);
 
             
-
             return instance;
         }
 

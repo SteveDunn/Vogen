@@ -84,7 +84,6 @@ namespace Whatever
             internal_partial_structConversions_SystemTextJsondouble instance = new internal_partial_structConversions_SystemTextJsondouble(value);
 
             
-
             return instance;
         }
 

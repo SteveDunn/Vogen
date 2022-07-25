@@ -84,7 +84,6 @@ public @class.@record.@struct.@float.@decimal Value
             escapedTestspublic_sealed_partial_classConversions_None instance = new escapedTestspublic_sealed_partial_classConversions_None(value);
 
             
-
             return instance;
         }
 

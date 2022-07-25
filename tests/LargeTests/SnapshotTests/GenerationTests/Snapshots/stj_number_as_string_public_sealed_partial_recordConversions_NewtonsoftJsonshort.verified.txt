@@ -96,7 +96,6 @@ public short Value
             stj_number_as_string_public_sealed_partial_recordConversions_NewtonsoftJsonshort instance = new stj_number_as_string_public_sealed_partial_recordConversions_NewtonsoftJsonshort(value);
 
             
-
             return instance;
         }
 

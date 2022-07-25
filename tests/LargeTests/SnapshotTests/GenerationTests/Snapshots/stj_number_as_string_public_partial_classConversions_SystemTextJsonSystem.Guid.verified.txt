@@ -85,7 +85,6 @@ public System.Guid Value
             stj_number_as_string_public_partial_classConversions_SystemTextJsonSystem instance = new stj_number_as_string_public_partial_classConversions_SystemTextJsonSystem(value);
 
             
-
             return instance;
         }
 

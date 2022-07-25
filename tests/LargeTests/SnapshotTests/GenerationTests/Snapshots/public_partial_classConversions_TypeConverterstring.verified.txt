@@ -93,7 +93,6 @@ public System.String Value
             public_partial_classConversions_TypeConverterstring instance = new public_partial_classConversions_TypeConverterstring(value);
 
             
-
             return instance;
         }
 

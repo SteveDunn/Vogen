@@ -107,7 +107,6 @@ public string Value
             internal_partial_recordConversions_EfCoreValueConverterstring instance = new internal_partial_recordConversions_EfCoreValueConverterstring(value);
 
             
-
             return instance;
         }
 

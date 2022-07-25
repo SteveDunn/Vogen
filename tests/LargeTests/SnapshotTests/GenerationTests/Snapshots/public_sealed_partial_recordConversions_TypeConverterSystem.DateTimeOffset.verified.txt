@@ -96,7 +96,6 @@ public System.DateTimeOffset Value
             public_sealed_partial_recordConversions_TypeConverterSystem instance = new public_sealed_partial_recordConversions_TypeConverterSystem(value);
 
             
-
             return instance;
         }
 

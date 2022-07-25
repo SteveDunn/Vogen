@@ -95,7 +95,6 @@ public char Value
             public_partial_recordConversions_Nonechar instance = new public_partial_recordConversions_Nonechar(value);
 
             
-
             return instance;
         }
 

@@ -85,7 +85,6 @@ public System.Int64 Value
             internal_sealed_partial_classConversions_SystemTextJsonlong instance = new internal_sealed_partial_classConversions_SystemTextJsonlong(value);
 
             
-
             return instance;
         }
 

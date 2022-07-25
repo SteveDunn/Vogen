@@ -84,7 +84,6 @@ public System.Double Value
             internal_partial_classConversions_EfCoreValueConverterdouble instance = new internal_partial_classConversions_EfCoreValueConverterdouble(value);
 
             
-
             return instance;
         }
 

@@ -97,7 +97,6 @@ public long Value
             public_sealed_partial_recordConversions_NewtonsoftJson instance = new public_sealed_partial_recordConversions_NewtonsoftJson(value);
 
             
-
             return instance;
         }
 

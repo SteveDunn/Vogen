@@ -84,7 +84,6 @@ public System.Byte Value
             internal_partial_classConversions_EfCoreValueConverterbyte instance = new internal_partial_classConversions_EfCoreValueConverterbyte(value);
 
             
-
             return instance;
         }
 

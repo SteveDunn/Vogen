@@ -83,7 +83,6 @@ namespace Whatever
             internal_partial_structConversions_LinqToDbValueConverterdecimal instance = new internal_partial_structConversions_LinqToDbValueConverterdecimal(value);
 
             
-
             return instance;
         }
 

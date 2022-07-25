@@ -93,7 +93,6 @@ namespace Whatever
             internal_partial_record_structConversions_DapperTypeHandlerlong instance = new internal_partial_record_structConversions_DapperTypeHandlerlong(value);
 
             
-
             return instance;
         }
 

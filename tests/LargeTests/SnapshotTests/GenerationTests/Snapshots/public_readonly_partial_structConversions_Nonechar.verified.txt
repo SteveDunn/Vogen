@@ -83,7 +83,6 @@ namespace Whatever
             public_readonly_partial_structConversions_Nonechar instance = new public_readonly_partial_structConversions_Nonechar(value);
 
             
-
             return instance;
         }
 

@@ -95,7 +95,6 @@ public @class.record.@struct.@float.decimal Value
             escapedTestsinternal_partial_recordConversions_None instance = new escapedTestsinternal_partial_recordConversions_None(value);
 
             
-
             return instance;
         }
 

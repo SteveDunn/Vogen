@@ -83,7 +83,6 @@ namespace Whatever
             internal_readonly_partial_structConversions_EfCoreValueConverterstring instance = new internal_readonly_partial_structConversions_EfCoreValueConverterstring(value);
 
             
-
             return instance;
         }
 

@@ -84,7 +84,6 @@ namespace Whatever
             internal_readonly_partial_structConversions_SystemTextJsonlong instance = new internal_readonly_partial_structConversions_SystemTextJsonlong(value);
 
             
-
             return instance;
         }
 

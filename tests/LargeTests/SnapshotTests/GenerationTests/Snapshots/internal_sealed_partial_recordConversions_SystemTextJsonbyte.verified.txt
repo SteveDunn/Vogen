@@ -96,7 +96,6 @@ public byte Value
             internal_sealed_partial_recordConversions_SystemTextJsonbyte instance = new internal_sealed_partial_recordConversions_SystemTextJsonbyte(value);
 
             
-
             return instance;
         }
 

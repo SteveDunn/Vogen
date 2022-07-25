@@ -96,7 +96,6 @@ public short Value
             public_partial_record_classConversions_TypeConvertershort instance = new public_partial_record_classConversions_TypeConvertershort(value);
 
             
-
             return instance;
         }
 

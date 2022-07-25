@@ -95,7 +95,6 @@ public decimal Value
             internal_partial_recordConversions_Nonedecimal instance = new internal_partial_recordConversions_Nonedecimal(value);
 
             
-
             return instance;
         }
 

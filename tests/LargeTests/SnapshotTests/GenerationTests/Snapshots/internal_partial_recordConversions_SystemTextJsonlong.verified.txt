@@ -96,7 +96,6 @@ public long Value
             internal_partial_recordConversions_SystemTextJsonlong instance = new internal_partial_recordConversions_SystemTextJsonlong(value);
 
             
-
             return instance;
         }
 

@@ -95,7 +95,6 @@ public float Value
             internal_sealed_partial_recordConversions_LinqToDbValueConverterfloat instance = new internal_sealed_partial_recordConversions_LinqToDbValueConverterfloat(value);
 
             
-
             return instance;
         }
 

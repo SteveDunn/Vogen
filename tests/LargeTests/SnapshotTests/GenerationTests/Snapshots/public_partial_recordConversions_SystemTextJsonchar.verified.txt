@@ -96,7 +96,6 @@ public char Value
             public_partial_recordConversions_SystemTextJsonchar instance = new public_partial_recordConversions_SystemTextJsonchar(value);
 
             
-
             return instance;
         }
 

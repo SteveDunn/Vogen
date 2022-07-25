@@ -83,7 +83,6 @@ namespace Whatever
             public_partial_structConversions_DapperTypeHandlerSystem instance = new public_partial_structConversions_DapperTypeHandlerSystem(value);
 
             
-
             return instance;
         }
 

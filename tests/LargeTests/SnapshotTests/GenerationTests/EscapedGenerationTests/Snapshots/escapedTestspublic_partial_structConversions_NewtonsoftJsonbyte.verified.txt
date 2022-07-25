@@ -84,7 +84,6 @@ namespace @class
             escapedTestspublic_partial_structConversions_NewtonsoftJsonbyte instance = new escapedTestspublic_partial_structConversions_NewtonsoftJsonbyte(value);
 
             
-
             return instance;
         }
 

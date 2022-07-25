@@ -84,7 +84,6 @@ public System.Decimal Value
             public_partial_classConversions_Nonedecimal instance = new public_partial_classConversions_Nonedecimal(value);
 
             
-
             return instance;
         }
 

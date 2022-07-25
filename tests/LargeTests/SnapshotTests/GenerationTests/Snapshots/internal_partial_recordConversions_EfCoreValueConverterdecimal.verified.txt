@@ -95,7 +95,6 @@ public decimal Value
             internal_partial_recordConversions_EfCoreValueConverterdecimal instance = new internal_partial_recordConversions_EfCoreValueConverterdecimal(value);
 
             
-
             return instance;
         }
 

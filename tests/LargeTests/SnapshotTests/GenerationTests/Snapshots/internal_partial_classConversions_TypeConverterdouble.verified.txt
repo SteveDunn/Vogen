@@ -85,7 +85,6 @@ public System.Double Value
             internal_partial_classConversions_TypeConverterdouble instance = new internal_partial_classConversions_TypeConverterdouble(value);
 
             
-
             return instance;
         }
 

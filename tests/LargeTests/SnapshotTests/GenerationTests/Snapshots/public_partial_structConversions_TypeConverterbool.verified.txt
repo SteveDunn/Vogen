@@ -84,7 +84,6 @@ namespace Whatever
             public_partial_structConversions_TypeConverterbool instance = new public_partial_structConversions_TypeConverterbool(value);
 
             
-
             return instance;
         }
 

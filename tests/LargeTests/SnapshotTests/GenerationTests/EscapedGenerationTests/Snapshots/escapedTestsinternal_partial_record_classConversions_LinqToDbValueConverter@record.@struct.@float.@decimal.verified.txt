@@ -95,7 +95,6 @@ public @class.record.@struct.@float.decimal Value
             escapedTestsinternal_partial_record_classConversions_LinqToDbValueConverter instance = new escapedTestsinternal_partial_record_classConversions_LinqToDbValueConverter(value);
 
             
-
             return instance;
         }
 

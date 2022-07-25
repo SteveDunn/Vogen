@@ -95,7 +95,6 @@ public double Value
             internal_sealed_partial_recordConversions_DapperTypeHandlerdouble instance = new internal_sealed_partial_recordConversions_DapperTypeHandlerdouble(value);
 
             
-
             return instance;
         }
 

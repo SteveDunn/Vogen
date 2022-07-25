@@ -96,7 +96,6 @@ public bool Value
             internal_partial_recordConversions_TypeConverterbool instance = new internal_partial_recordConversions_TypeConverterbool(value);
 
             
-
             return instance;
         }
 

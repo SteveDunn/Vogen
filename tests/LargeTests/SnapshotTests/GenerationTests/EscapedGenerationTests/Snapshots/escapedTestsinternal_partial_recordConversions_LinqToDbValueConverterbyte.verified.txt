@@ -95,7 +95,6 @@ public byte Value
             escapedTestsinternal_partial_recordConversions_LinqToDbValueConverterbyte instance = new escapedTestsinternal_partial_recordConversions_LinqToDbValueConverterbyte(value);
 
             
-
             return instance;
         }
 

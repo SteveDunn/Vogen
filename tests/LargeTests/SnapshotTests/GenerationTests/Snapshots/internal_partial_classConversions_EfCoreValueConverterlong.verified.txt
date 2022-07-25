@@ -84,7 +84,6 @@ public System.Int64 Value
             internal_partial_classConversions_EfCoreValueConverterlong instance = new internal_partial_classConversions_EfCoreValueConverterlong(value);
 
             
-
             return instance;
         }
 

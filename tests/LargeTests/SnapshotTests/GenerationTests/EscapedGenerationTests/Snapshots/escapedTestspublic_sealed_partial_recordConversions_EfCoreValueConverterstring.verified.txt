@@ -107,7 +107,6 @@ public string Value
             escapedTestspublic_sealed_partial_recordConversions_EfCoreValueConverterstring instance = new escapedTestspublic_sealed_partial_recordConversions_EfCoreValueConverterstring(value);
 
             
-
             return instance;
         }
 

@@ -108,7 +108,6 @@ public string Value
             escapedTestsinternal_partial_record_classConversions_NewtonsoftJsonstring instance = new escapedTestsinternal_partial_record_classConversions_NewtonsoftJsonstring(value);
 
             
-
             return instance;
         }
 

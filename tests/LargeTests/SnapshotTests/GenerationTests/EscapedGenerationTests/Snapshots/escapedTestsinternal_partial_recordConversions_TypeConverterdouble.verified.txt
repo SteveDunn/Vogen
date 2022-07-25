@@ -96,7 +96,6 @@ public double Value
             escapedTestsinternal_partial_recordConversions_TypeConverterdouble instance = new escapedTestsinternal_partial_recordConversions_TypeConverterdouble(value);
 
             
-
             return instance;
         }
 

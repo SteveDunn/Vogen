@@ -84,7 +84,6 @@ public System.Int16 Value
             internal_partial_classConversions_LinqToDbValueConvertershort instance = new internal_partial_classConversions_LinqToDbValueConvertershort(value);
 
             
-
             return instance;
         }
 

@@ -104,7 +104,7 @@ namespace Whatever
 
         VerifySettings settings = new VerifySettings();
         settings.UseFileName(className);
-        // settings.AutoVerify();
+        //settings.AutoVerify();
         return Verifier.Verify(output, settings).UseDirectory("Snapshots");
     }
 }

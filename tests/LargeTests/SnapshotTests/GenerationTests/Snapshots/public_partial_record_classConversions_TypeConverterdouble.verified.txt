@@ -96,7 +96,6 @@ public double Value
             public_partial_record_classConversions_TypeConverterdouble instance = new public_partial_record_classConversions_TypeConverterdouble(value);
 
             
-
             return instance;
         }
 

@@ -84,7 +84,6 @@ public System.Single Value
             internal_partial_classConversions_DapperTypeHandlerfloat instance = new internal_partial_classConversions_DapperTypeHandlerfloat(value);
 
             
-
             return instance;
         }
 

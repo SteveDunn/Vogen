@@ -108,7 +108,6 @@ public string Value
             escapedTestsinternal_partial_recordConversions_TypeConverterstring instance = new escapedTestsinternal_partial_recordConversions_TypeConverterstring(value);
 
             
-
             return instance;
         }
 

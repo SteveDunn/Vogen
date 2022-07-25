@@ -96,7 +96,6 @@ public short Value
             internal_partial_recordConversions_SystemTextJsonshort instance = new internal_partial_recordConversions_SystemTextJsonshort(value);
 
             
-
             return instance;
         }
 

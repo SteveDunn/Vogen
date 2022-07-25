@@ -96,7 +96,6 @@ public float Value
             public_partial_recordConversions_SystemTextJsonfloat instance = new public_partial_recordConversions_SystemTextJsonfloat(value);
 
             
-
             return instance;
         }
 

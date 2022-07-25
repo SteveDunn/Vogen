@@ -83,7 +83,6 @@ namespace Whatever
             internal_partial_structConversions_Nonedecimal instance = new internal_partial_structConversions_Nonedecimal(value);
 
             
-
             return instance;
         }
 

@@ -84,7 +84,6 @@ public System.Int16 Value
             public_partial_classConversions_Noneshort instance = new public_partial_classConversions_Noneshort(value);
 
             
-
             return instance;
         }
 

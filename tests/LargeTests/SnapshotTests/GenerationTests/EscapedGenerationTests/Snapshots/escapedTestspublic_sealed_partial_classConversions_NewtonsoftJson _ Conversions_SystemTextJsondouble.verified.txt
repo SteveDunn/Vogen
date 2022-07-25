@@ -86,7 +86,6 @@ public System.Double Value
             escapedTestspublic_sealed_partial_classConversions_NewtonsoftJson instance = new escapedTestspublic_sealed_partial_classConversions_NewtonsoftJson(value);
 
             
-
             return instance;
         }
 

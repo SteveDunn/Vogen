@@ -84,7 +84,6 @@ public System.Boolean Value
             stj_number_as_string_public_partial_classConversions_Nonebool_customized instance = new stj_number_as_string_public_partial_classConversions_Nonebool_customized(value);
 
             
-
             return instance;
         }
 

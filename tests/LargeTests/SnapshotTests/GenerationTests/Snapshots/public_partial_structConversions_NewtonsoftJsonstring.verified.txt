@@ -84,7 +84,6 @@ namespace Whatever
             public_partial_structConversions_NewtonsoftJsonstring instance = new public_partial_structConversions_NewtonsoftJsonstring(value);
 
             
-
             return instance;
         }
 

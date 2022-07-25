@@ -108,7 +108,6 @@ public string Value
             internal_partial_recordConversions_NewtonsoftJsonstring instance = new internal_partial_recordConversions_NewtonsoftJsonstring(value);
 
             
-
             return instance;
         }
 

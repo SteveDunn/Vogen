@@ -96,7 +96,6 @@ public decimal Value
             internal_sealed_partial_recordConversions_SystemTextJsondecimal instance = new internal_sealed_partial_recordConversions_SystemTextJsondecimal(value);
 
             
-
             return instance;
         }
 

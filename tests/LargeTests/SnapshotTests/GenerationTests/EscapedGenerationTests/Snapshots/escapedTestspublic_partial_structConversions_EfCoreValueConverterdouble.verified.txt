@@ -83,7 +83,6 @@ namespace @class
             escapedTestspublic_partial_structConversions_EfCoreValueConverterdouble instance = new escapedTestspublic_partial_structConversions_EfCoreValueConverterdouble(value);
 
             
-
             return instance;
         }
 

@@ -96,7 +96,6 @@ public decimal Value
             internal_partial_recordConversions_TypeConverterdecimal instance = new internal_partial_recordConversions_TypeConverterdecimal(value);
 
             
-
             return instance;
         }
 

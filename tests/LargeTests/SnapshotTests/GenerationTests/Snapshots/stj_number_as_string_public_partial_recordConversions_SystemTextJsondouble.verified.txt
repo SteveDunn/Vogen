@@ -96,7 +96,6 @@ public double Value
             stj_number_as_string_public_partial_recordConversions_SystemTextJsondouble instance = new stj_number_as_string_public_partial_recordConversions_SystemTextJsondouble(value);
 
             
-
             return instance;
         }
 

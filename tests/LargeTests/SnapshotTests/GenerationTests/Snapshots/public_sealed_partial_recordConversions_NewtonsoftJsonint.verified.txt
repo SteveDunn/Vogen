@@ -96,7 +96,6 @@ public int Value
             public_sealed_partial_recordConversions_NewtonsoftJsonint instance = new public_sealed_partial_recordConversions_NewtonsoftJsonint(value);
 
             
-
             return instance;
         }
 

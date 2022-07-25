@@ -84,7 +84,6 @@ public System.Byte Value
             escapedTestspublic_partial_classConversions_LinqToDbValueConverterbyte instance = new escapedTestspublic_partial_classConversions_LinqToDbValueConverterbyte(value);
 
             
-
             return instance;
         }
 

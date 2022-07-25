@@ -95,7 +95,6 @@ public System.Guid Value
             escapedTestsinternal_partial_recordConversions_LinqToDbValueConverterSystem instance = new escapedTestsinternal_partial_recordConversions_LinqToDbValueConverterSystem(value);
 
             
-
             return instance;
         }
 

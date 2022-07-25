@@ -96,7 +96,6 @@ public double Value
             escapedTestspublic_partial_recordConversions_SystemTextJsondouble instance = new escapedTestspublic_partial_recordConversions_SystemTextJsondouble(value);
 
             
-
             return instance;
         }
 

@@ -92,7 +92,6 @@ public System.String Value
             escapedTestspublic_partial_classConversions_EfCoreValueConverterstring instance = new escapedTestspublic_partial_classConversions_EfCoreValueConverterstring(value);
 
             
-
             return instance;
         }
 

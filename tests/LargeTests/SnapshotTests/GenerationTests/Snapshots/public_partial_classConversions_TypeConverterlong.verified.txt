@@ -85,7 +85,6 @@ public System.Int64 Value
             public_partial_classConversions_TypeConverterlong instance = new public_partial_classConversions_TypeConverterlong(value);
 
             
-
             return instance;
         }
 

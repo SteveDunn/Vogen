@@ -84,7 +84,6 @@ namespace Whatever
             internal_readonly_partial_structConversions_SystemTextJsonshort instance = new internal_readonly_partial_structConversions_SystemTextJsonshort(value);
 
             
-
             return instance;
         }
 

@@ -95,7 +95,6 @@ public long Value
             internal_partial_record_classConversions_LinqToDbValueConverterlong instance = new internal_partial_record_classConversions_LinqToDbValueConverterlong(value);
 
             
-
             return instance;
         }
 

@@ -83,7 +83,6 @@ namespace Whatever
             public_readonly_partial_structConversions_EfCoreValueConverterbyte instance = new public_readonly_partial_structConversions_EfCoreValueConverterbyte(value);
 
             
-
             return instance;
         }
 

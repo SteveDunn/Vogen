@@ -84,7 +84,6 @@ public System.Decimal Value
             stj_number_as_string_public_partial_classConversions_Nonedecimal_customized instance = new stj_number_as_string_public_partial_classConversions_Nonedecimal_customized(value);
 
             
-
             return instance;
         }
 

@@ -84,7 +84,6 @@ public System.DateTimeOffset Value
             internal_partial_classConversions_DapperTypeHandlerSystem instance = new internal_partial_classConversions_DapperTypeHandlerSystem(value);
 
             
-
             return instance;
         }
 

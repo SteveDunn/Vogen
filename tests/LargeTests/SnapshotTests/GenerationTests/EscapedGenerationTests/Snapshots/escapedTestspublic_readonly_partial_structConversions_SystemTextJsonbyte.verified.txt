@@ -84,7 +84,6 @@ namespace @class
             escapedTestspublic_readonly_partial_structConversions_SystemTextJsonbyte instance = new escapedTestspublic_readonly_partial_structConversions_SystemTextJsonbyte(value);
 
             
-
             return instance;
         }
 

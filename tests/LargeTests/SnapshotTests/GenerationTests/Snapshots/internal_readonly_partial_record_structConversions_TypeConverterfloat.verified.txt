@@ -94,7 +94,6 @@ namespace Whatever
             internal_readonly_partial_record_structConversions_TypeConverterfloat instance = new internal_readonly_partial_record_structConversions_TypeConverterfloat(value);
 
             
-
             return instance;
         }
 

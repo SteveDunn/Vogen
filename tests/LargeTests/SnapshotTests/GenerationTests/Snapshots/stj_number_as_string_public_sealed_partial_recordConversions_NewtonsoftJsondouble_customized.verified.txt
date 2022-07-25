@@ -96,7 +96,6 @@ public double Value
             stj_number_as_string_public_sealed_partial_recordConversions_NewtonsoftJsondouble_customized instance = new stj_number_as_string_public_sealed_partial_recordConversions_NewtonsoftJsondouble_customized(value);
 
             
-
             return instance;
         }
 

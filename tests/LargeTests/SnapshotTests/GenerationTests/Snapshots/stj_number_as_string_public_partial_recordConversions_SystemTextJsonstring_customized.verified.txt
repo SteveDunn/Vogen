@@ -108,7 +108,6 @@ public string Value
             stj_number_as_string_public_partial_recordConversions_SystemTextJsonstring_customized instance = new stj_number_as_string_public_partial_recordConversions_SystemTextJsonstring_customized(value);
 
             
-
             return instance;
         }
 

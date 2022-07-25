@@ -95,7 +95,6 @@ public float Value
             stj_number_as_string_public_sealed_partial_recordConversions_Nonefloat instance = new stj_number_as_string_public_sealed_partial_recordConversions_Nonefloat(value);
 
             
-
             return instance;
         }
 

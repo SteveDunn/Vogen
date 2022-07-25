@@ -95,7 +95,6 @@ public System.DateTimeOffset Value
             public_partial_recordConversions_LinqToDbValueConverterSystem instance = new public_partial_recordConversions_LinqToDbValueConverterSystem(value);
 
             
-
             return instance;
         }
 

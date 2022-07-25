@@ -95,7 +95,6 @@ public long Value
             public_partial_record_classConversions_DapperTypeHandlerlong instance = new public_partial_record_classConversions_DapperTypeHandlerlong(value);
 
             
-
             return instance;
         }
 

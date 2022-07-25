@@ -95,7 +95,6 @@ public short Value
             internal_partial_recordConversions_LinqToDbValueConvertershort instance = new internal_partial_recordConversions_LinqToDbValueConvertershort(value);
 
             
-
             return instance;
         }
 

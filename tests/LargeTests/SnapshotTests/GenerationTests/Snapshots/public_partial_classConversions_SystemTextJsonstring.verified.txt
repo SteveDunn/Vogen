@@ -93,7 +93,6 @@ public System.String Value
             public_partial_classConversions_SystemTextJsonstring instance = new public_partial_classConversions_SystemTextJsonstring(value);
 
             
-
             return instance;
         }
 

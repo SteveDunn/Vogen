@@ -84,7 +84,6 @@ namespace Whatever
             public_partial_structConversions_TypeConvertershort instance = new public_partial_structConversions_TypeConvertershort(value);
 
             
-
             return instance;
         }
 

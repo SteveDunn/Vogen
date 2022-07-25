@@ -95,7 +95,6 @@ public double Value
             escapedTestspublic_partial_recordConversions_DapperTypeHandlerdouble instance = new escapedTestspublic_partial_recordConversions_DapperTypeHandlerdouble(value);
 
             
-
             return instance;
         }
 

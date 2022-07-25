@@ -96,7 +96,6 @@ public System.Guid Value
             internal_partial_recordConversions_SystemTextJsonSystem instance = new internal_partial_recordConversions_SystemTextJsonSystem(value);
 
             
-
             return instance;
         }
 

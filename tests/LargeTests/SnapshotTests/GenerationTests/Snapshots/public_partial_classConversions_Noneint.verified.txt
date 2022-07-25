@@ -84,7 +84,6 @@ public System.Int32 Value
             public_partial_classConversions_Noneint instance = new public_partial_classConversions_Noneint(value);
 
             
-
             return instance;
         }
 

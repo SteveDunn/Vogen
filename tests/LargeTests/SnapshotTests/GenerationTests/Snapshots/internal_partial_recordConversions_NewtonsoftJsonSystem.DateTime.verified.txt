@@ -96,7 +96,6 @@ public System.DateTime Value
             internal_partial_recordConversions_NewtonsoftJsonSystem instance = new internal_partial_recordConversions_NewtonsoftJsonSystem(value);
 
             
-
             return instance;
         }
 

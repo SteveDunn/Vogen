@@ -95,7 +95,6 @@ public byte Value
             escapedTestspublic_partial_recordConversions_Nonebyte instance = new escapedTestspublic_partial_recordConversions_Nonebyte(value);
 
             
-
             return instance;
         }
 

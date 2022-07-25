@@ -83,7 +83,6 @@ namespace Whatever
             public_partial_structConversions_DapperTypeHandlerdecimal instance = new public_partial_structConversions_DapperTypeHandlerdecimal(value);
 
             
-
             return instance;
         }
 

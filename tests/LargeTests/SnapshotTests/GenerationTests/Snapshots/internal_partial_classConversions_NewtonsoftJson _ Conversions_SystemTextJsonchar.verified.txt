@@ -86,7 +86,6 @@ public System.Char Value
             internal_partial_classConversions_NewtonsoftJson instance = new internal_partial_classConversions_NewtonsoftJson(value);
 
             
-
             return instance;
         }
 

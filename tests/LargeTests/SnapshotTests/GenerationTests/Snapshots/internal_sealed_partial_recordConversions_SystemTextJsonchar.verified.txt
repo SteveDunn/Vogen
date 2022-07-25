@@ -96,7 +96,6 @@ public char Value
             internal_sealed_partial_recordConversions_SystemTextJsonchar instance = new internal_sealed_partial_recordConversions_SystemTextJsonchar(value);
 
             
-
             return instance;
         }
 

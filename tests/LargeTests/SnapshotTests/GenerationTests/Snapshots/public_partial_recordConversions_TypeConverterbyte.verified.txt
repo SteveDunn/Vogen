@@ -96,7 +96,6 @@ public byte Value
             public_partial_recordConversions_TypeConverterbyte instance = new public_partial_recordConversions_TypeConverterbyte(value);
 
             
-
             return instance;
         }
 

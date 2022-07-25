@@ -93,7 +93,6 @@ public System.String Value
             escapedTestspublic_sealed_partial_classConversions_SystemTextJsonstring instance = new escapedTestspublic_sealed_partial_classConversions_SystemTextJsonstring(value);
 
             
-
             return instance;
         }
 

@@ -84,7 +84,6 @@ namespace Whatever
             internal_partial_structConversions_SystemTextJsonstring instance = new internal_partial_structConversions_SystemTextJsonstring(value);
 
             
-
             return instance;
         }
 

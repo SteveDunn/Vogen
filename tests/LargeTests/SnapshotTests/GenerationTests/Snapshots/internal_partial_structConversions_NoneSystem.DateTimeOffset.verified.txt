@@ -83,7 +83,6 @@ namespace Whatever
             internal_partial_structConversions_NoneSystem instance = new internal_partial_structConversions_NoneSystem(value);
 
             
-
             return instance;
         }
 
