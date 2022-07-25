@@ -55,11 +55,6 @@ public static class Util
 
     public static string GenerateCallToValidateForDeserializing(VoWorkItem workItem)
     {
-        // if (workItem.DeserializationStrictness.HasFlag(DeserializationStrictness.AllowAnything))
-        // {
-        //     return string.Empty;
-        // }
-
         StringBuilder sb = new StringBuilder();
 
         if (workItem.DeserializationStrictness.HasFlag(DeserializationStrictness.CompareAgainstKnownInstances))
@@ -81,8 +76,7 @@ public static class Util
             if (validation != Vogen.Validation.Ok)
             {{
                 throw new {workItem.ValidationExceptionFullName}(validation.ErrorMessage);
-            }}
-");
+            }}");
         }
 
         return sb.ToString();

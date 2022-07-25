@@ -85,7 +85,6 @@ namespace Whatever
             struct_ExpressionBodiedMethod instance = new struct_ExpressionBodiedMethod(value);
 
             
-
             return instance;
         }
 

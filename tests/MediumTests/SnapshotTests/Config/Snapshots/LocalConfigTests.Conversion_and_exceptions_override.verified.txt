@@ -93,7 +93,6 @@ namespace Whatever
                 throw new Whatever.MyValidationException(validation.ErrorMessage);
             }
 
-
             return instance;
         }
 

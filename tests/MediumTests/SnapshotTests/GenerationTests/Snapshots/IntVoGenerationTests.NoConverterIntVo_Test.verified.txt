@@ -83,7 +83,6 @@ namespace Whatever
             NoConverterIntVo instance = new NoConverterIntVo(value);
 
             
-
             return instance;
         }
 

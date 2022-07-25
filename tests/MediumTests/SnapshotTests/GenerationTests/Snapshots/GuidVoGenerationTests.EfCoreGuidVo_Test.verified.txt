@@ -83,7 +83,6 @@ namespace Whatever
             EfCoreGuidVo instance = new EfCoreGuidVo(value);
 
             
-
             return instance;
         }
 

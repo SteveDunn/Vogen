@@ -85,7 +85,6 @@ namespace Whatever
             struct_Method instance = new struct_Method(value);
 
             
-
             return instance;
         }
 

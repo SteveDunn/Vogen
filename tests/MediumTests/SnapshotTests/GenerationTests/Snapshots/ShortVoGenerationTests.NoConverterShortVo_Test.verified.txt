@@ -83,7 +83,6 @@ namespace Whatever
             NoConverterShortVo instance = new NoConverterShortVo(value);
 
             
-
             return instance;
         }
 

@@ -97,7 +97,6 @@ public global::System.Int32 Value
             record_class_ExpressionBodiedMethod instance = new record_class_ExpressionBodiedMethod(value);
 
             
-
             return instance;
         }
 

@@ -85,7 +85,6 @@ namespace Whatever
             BothJsonLongVo instance = new BothJsonLongVo(value);
 
             
-
             return instance;
         }
 

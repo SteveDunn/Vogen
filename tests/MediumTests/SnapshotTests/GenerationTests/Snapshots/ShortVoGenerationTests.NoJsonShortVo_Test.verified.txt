@@ -84,7 +84,6 @@ namespace Whatever
             NoJsonShortVo instance = new NoJsonShortVo(value);
 
             
-
             return instance;
         }
 

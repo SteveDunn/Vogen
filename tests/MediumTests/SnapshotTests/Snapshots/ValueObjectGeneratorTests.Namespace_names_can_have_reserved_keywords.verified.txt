@@ -89,12 +89,14 @@ namespace @double
 
             @class instance = new @class(value);
 
-            var validation = @class.validate(value);
+                    if(value == @class.Value) return instance;
+        if(value == @event.Value) return instance;
+        if(value == @void.Value) return instance;
+var validation = @class.validate(value);
             if (validation != Vogen.Validation.Ok)
             {
                 throw new global::Vogen.ValueObjectValidationException(validation.ErrorMessage);
             }
-
 
             return instance;
         }

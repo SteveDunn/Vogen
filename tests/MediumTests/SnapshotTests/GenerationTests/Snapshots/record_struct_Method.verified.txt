@@ -95,7 +95,6 @@ namespace Whatever
             record_struct_Method instance = new record_struct_Method(value);
 
             
-
             return instance;
         }
 

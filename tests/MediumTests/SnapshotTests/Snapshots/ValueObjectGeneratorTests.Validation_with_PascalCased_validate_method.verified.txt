@@ -95,7 +95,6 @@ namespace Whatever
                 throw new global::Vogen.ValueObjectValidationException(validation.ErrorMessage);
             }
 
-
             return instance;
         }
 

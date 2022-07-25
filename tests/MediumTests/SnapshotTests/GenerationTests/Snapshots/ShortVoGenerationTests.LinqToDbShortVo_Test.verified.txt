@@ -83,7 +83,6 @@ namespace Whatever
             LinqToDbShortVo instance = new LinqToDbShortVo(value);
 
             
-
             return instance;
         }
 

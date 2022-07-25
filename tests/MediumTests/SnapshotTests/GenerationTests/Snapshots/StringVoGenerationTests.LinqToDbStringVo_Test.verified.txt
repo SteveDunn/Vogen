@@ -83,7 +83,6 @@ namespace Whatever
             LinqToDbStringVo instance = new LinqToDbStringVo(value);
 
             
-
             return instance;
         }
 

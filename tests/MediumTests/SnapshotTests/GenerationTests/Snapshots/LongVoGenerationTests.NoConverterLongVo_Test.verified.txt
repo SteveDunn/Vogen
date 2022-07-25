@@ -83,7 +83,6 @@ namespace Whatever
             NoConverterLongVo instance = new NoConverterLongVo(value);
 
             
-
             return instance;
         }
 

@@ -84,7 +84,6 @@ namespace Whatever
             SystemTextJsonShortVo instance = new SystemTextJsonShortVo(value);
 
             
-
             return instance;
         }
 

@@ -83,7 +83,6 @@ namespace Whatever
             CustomerId instance = new CustomerId(value);
 
             
-
             return instance;
         }
 

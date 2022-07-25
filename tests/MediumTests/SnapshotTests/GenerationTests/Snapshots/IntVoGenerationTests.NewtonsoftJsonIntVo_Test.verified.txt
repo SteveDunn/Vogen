@@ -84,7 +84,6 @@ namespace Whatever
             NewtonsoftJsonIntVo instance = new NewtonsoftJsonIntVo(value);
 
             
-
             return instance;
         }
 

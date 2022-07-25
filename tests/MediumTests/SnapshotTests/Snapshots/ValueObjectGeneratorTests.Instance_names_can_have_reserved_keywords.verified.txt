@@ -89,12 +89,13 @@ namespace Whatever
 
             CustomerId instance = new CustomerId(value);
 
-            var validation = CustomerId.validate(value);
+                    if(value == @class.Value) return instance;
+        if(value == @event.Value) return instance;
+var validation = CustomerId.validate(value);
             if (validation != Vogen.Validation.Ok)
             {
                 throw new global::Vogen.ValueObjectValidationException(validation.ErrorMessage);
             }
-
 
             return instance;
         }

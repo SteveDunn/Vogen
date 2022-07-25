@@ -83,7 +83,6 @@ namespace Whatever
             DapperShortVo instance = new DapperShortVo(value);
 
             
-
             return instance;
         }
 

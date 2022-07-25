@@ -84,7 +84,6 @@ namespace Whatever
             NoJsonGuidVo instance = new NoJsonGuidVo(value);
 
             
-
             return instance;
         }
 

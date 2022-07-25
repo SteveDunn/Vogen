@@ -95,7 +95,6 @@ namespace Whatever
             record_struct_None instance = new record_struct_None(value);
 
             
-
             return instance;
         }
 

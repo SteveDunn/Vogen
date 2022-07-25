@@ -83,7 +83,6 @@ namespace Whatever
             LinqToDbLongVo instance = new LinqToDbLongVo(value);
 
             
-
             return instance;
         }
 

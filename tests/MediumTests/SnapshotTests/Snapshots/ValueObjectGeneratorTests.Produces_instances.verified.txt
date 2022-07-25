@@ -84,7 +84,11 @@ namespace Whatever
 
             CustomerId instance = new CustomerId(value);
 
-            
+                    if(value == Unspecified.Value) return instance;
+        if(value == Unspecified1.Value) return instance;
+        if(value == Unspecified2.Value) return instance;
+        if(value == Unspecified3.Value) return instance;
+        if(value == Cust42.Value) return instance;
 
             return instance;
         }

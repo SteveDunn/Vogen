@@ -84,7 +84,6 @@ namespace Whatever
             SystemTextJsonGuidVo instance = new SystemTextJsonGuidVo(value);
 
             
-
             return instance;
         }
 

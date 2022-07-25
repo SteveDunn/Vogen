@@ -83,7 +83,6 @@ using Vogen;
             CustomerId instance = new CustomerId(value);
 
             
-
             return instance;
         }
 

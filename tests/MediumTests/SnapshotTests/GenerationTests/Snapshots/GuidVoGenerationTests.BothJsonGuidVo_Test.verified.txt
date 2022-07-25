@@ -85,7 +85,6 @@ namespace Whatever
             BothJsonGuidVo instance = new BothJsonGuidVo(value);
 
             
-
             return instance;
         }
 

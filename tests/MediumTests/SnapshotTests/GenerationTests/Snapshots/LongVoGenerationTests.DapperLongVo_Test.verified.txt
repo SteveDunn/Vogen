@@ -83,7 +83,6 @@ namespace Whatever
             DapperLongVo instance = new DapperLongVo(value);
 
             
-
             return instance;
         }
 

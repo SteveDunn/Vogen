@@ -84,7 +84,6 @@ namespace Whatever
             NoJsonIntVo instance = new NoJsonIntVo(value);
 
             
-
             return instance;
         }
 

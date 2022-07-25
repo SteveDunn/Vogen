@@ -98,7 +98,7 @@ namespace Whatever
 
         VerifySettings settings = new VerifySettings();
         settings.UseFileName(TestHelper.ShortenForFilename(className));
-        // settings.AutoVerify();
+        //settings.AutoVerify();
         return Verifier.Verify(output, settings).UseDirectory("Snapshots");
     }
 }

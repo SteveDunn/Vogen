@@ -83,7 +83,6 @@ namespace Whatever
             EfCoreLongVo instance = new EfCoreLongVo(value);
 
             
-
             return instance;
         }
 

@@ -87,7 +87,6 @@ public @class.@record.@struct.@float.@decimal Value
             escapedTestspublic_partial_classConversions_TypeConverter instance = new escapedTestspublic_partial_classConversions_TypeConverter(value);
 
             
-
             return instance;
         }
 

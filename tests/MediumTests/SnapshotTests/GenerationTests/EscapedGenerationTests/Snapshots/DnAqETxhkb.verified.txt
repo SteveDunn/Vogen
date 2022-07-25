@@ -98,7 +98,6 @@ public double Value
             escapedTestspublic_partial_recordConversions_TypeConverter instance = new escapedTestspublic_partial_recordConversions_TypeConverter(value);
 
             
-
             return instance;
         }
 

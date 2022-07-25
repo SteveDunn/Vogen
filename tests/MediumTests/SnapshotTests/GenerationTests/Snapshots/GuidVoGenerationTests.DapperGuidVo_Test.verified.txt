@@ -83,7 +83,6 @@ namespace Whatever
             DapperGuidVo instance = new DapperGuidVo(value);
 
             
-
             return instance;
         }
 

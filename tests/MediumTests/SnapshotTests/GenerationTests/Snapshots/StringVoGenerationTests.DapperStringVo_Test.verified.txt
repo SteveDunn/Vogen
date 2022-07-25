@@ -83,7 +83,6 @@ namespace Whatever
             DapperStringVo instance = new DapperStringVo(value);
 
             
-
             return instance;
         }
 

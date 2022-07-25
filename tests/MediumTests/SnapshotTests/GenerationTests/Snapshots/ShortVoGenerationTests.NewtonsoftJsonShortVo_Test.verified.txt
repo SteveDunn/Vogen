@@ -84,7 +84,6 @@ namespace Whatever
             NewtonsoftJsonShortVo instance = new NewtonsoftJsonShortVo(value);
 
             
-
             return instance;
         }
 

@@ -83,7 +83,6 @@ namespace Whatever
             EfCoreStringVo instance = new EfCoreStringVo(value);
 
             
-
             return instance;
         }
 

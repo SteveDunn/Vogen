@@ -83,7 +83,6 @@ namespace Whatever
             EfCoreShortVo instance = new EfCoreShortVo(value);
 
             
-
             return instance;
         }
 

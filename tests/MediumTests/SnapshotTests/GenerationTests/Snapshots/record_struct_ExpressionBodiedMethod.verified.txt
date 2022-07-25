@@ -95,7 +95,6 @@ namespace Whatever
             record_struct_ExpressionBodiedMethod instance = new record_struct_ExpressionBodiedMethod(value);
 
             
-
             return instance;
         }
 

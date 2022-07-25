@@ -83,7 +83,6 @@ namespace Whatever
             LinqToDbGuidVo instance = new LinqToDbGuidVo(value);
 
             
-
             return instance;
         }
 

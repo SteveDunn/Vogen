@@ -85,7 +85,6 @@ namespace Whatever
             struct_None instance = new struct_None(value);
 
             
-
             return instance;
         }
 
