@@ -122,7 +122,7 @@ namespace Whatever
             public override object ReadJson(Newtonsoft.Json.JsonReader reader, System.Type objectType, object existingValue, Newtonsoft.Json.JsonSerializer serializer)
             {
                 var dt = serializer.Deserialize<global::System.DateTime?>(reader);
-                return dt.HasValue ? new internal_readonly_partial_record_structConversions_NewtonsoftJsonSystem(dt.Value) : null;
+                return dt.HasValue ? internal_readonly_partial_record_structConversions_NewtonsoftJsonSystem.From(dt.Value) : null;
             }
         }
 

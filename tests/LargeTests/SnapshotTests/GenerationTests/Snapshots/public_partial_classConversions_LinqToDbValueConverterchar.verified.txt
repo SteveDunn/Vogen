@@ -165,7 +165,7 @@ public System.Char Value
             public LinqToDbValueConverter()
                 : base(
                       v => v.Value,
-                      p => new public_partial_classConversions_LinqToDbValueConverterchar(p),
+                      p => public_partial_classConversions_LinqToDbValueConverterchar.From(p),
                       handlesNulls: false)
             { }
         }

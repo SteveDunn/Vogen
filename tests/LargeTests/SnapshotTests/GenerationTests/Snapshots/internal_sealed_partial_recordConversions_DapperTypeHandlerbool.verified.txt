@@ -119,10 +119,10 @@ public bool Value
             {
                 return value switch
                 {
-                    global::System.Boolean boolValue => new internal_sealed_partial_recordConversions_DapperTypeHandlerbool(boolValue),
-                    global::System.Int64 longValue when longValue is 0 => new internal_sealed_partial_recordConversions_DapperTypeHandlerbool(false),
-                    global::System.Int64 longValue when longValue is 1 => new internal_sealed_partial_recordConversions_DapperTypeHandlerbool(true),
-                    global::System.String stringValue when !global::System.String.IsNullOrEmpty(stringValue) && global::System.Boolean.TryParse(stringValue, out var result) => new internal_sealed_partial_recordConversions_DapperTypeHandlerbool(result),
+                    global::System.Boolean boolValue => internal_sealed_partial_recordConversions_DapperTypeHandlerbool.From(boolValue),
+                    global::System.Int64 longValue when longValue is 0 => internal_sealed_partial_recordConversions_DapperTypeHandlerbool.From(false),
+                    global::System.Int64 longValue when longValue is 1 => internal_sealed_partial_recordConversions_DapperTypeHandlerbool.From(true),
+                    global::System.String stringValue when !global::System.String.IsNullOrEmpty(stringValue) && global::System.Boolean.TryParse(stringValue, out var result) => internal_sealed_partial_recordConversions_DapperTypeHandlerbool.From(result),
                     _ => throw new global::System.InvalidCastException($"Unable to cast object of type {value.GetType()} to internal_sealed_partial_recordConversions_DapperTypeHandlerbool"),
                 };
             }

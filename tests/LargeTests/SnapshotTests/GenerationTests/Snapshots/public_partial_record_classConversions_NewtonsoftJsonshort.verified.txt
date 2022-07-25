@@ -123,7 +123,7 @@ public short Value
             public override object ReadJson(Newtonsoft.Json.JsonReader reader, System.Type objectType, object existingValue, Newtonsoft.Json.JsonSerializer serializer)
             {
                 var result = serializer.Deserialize<global::System.Int16?>(reader);
-                return result.HasValue ? new public_partial_record_classConversions_NewtonsoftJsonshort(result.Value) : null;
+                return result.HasValue ? public_partial_record_classConversions_NewtonsoftJsonshort.From(result.Value) : null;
             }
         }
 

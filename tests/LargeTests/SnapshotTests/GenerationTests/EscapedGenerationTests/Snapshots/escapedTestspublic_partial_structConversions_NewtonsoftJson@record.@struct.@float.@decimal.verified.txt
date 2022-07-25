@@ -137,7 +137,7 @@ namespace @class
 
             public override object ReadJson(Newtonsoft.Json.JsonReader reader, System.Type objectType, object existingValue, Newtonsoft.Json.JsonSerializer serializer)
             {
-                return new escapedTestspublic_partial_structConversions_NewtonsoftJson(serializer.Deserialize<@class.@record.@struct.@float.@decimal>(reader));
+                return escapedTestspublic_partial_structConversions_NewtonsoftJson.From(serializer.Deserialize<@class.@record.@struct.@float.@decimal>(reader));
             }
         }
 

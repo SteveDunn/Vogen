@@ -114,7 +114,7 @@ namespace @class
             public LinqToDbValueConverter()
                 : base(
                       v => v.Value,
-                      p => new escapedTestspublic_readonly_partial_record_structConversions_LinqToDbValueConverterdouble(p),
+                      p => escapedTestspublic_readonly_partial_record_structConversions_LinqToDbValueConverterdouble.From(p),
                       handlesNulls: false)
             { }
         }

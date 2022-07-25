@@ -126,7 +126,7 @@ namespace Whatever
         {
             public override BothJsonGuidVo Read(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {
-                return new BothJsonGuidVo(System.Guid.Parse(reader.GetString()));
+                return BothJsonGuidVo.From(System.Guid.Parse(reader.GetString()));
             }
 
             public override void Write(System.Text.Json.Utf8JsonWriter writer, BothJsonGuidVo value, global::System.Text.Json.JsonSerializerOptions options)
@@ -151,7 +151,7 @@ namespace Whatever
             public override object ReadJson(Newtonsoft.Json.JsonReader reader, System.Type objectType, object existingValue, Newtonsoft.Json.JsonSerializer serializer)
             {
                 var guid = serializer.Deserialize<System.Guid?>(reader);
-                return guid.HasValue ? new BothJsonGuidVo(guid.Value) : null;
+                return guid.HasValue ? BothJsonGuidVo.From(guid.Value) : null;
             }
         }
 

@@ -130,7 +130,7 @@ namespace Whatever
             public LinqToDbValueConverter()
                 : base(
                       v => v.Value,
-                      p => new LinqToDbLongVo(p),
+                      p => LinqToDbLongVo.From(p),
                       handlesNulls: false)
             { }
         }

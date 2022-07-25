@@ -134,8 +134,8 @@ namespace Whatever
             {
                 return value switch
                 {
-                    global::System.Decimal decimalValue => new internal_partial_structConversions_TypeConverterdecimal(decimalValue),
-                    global::System.String stringValue when !global::System.String.IsNullOrEmpty(stringValue) && global::System.Decimal.TryParse(stringValue, out var result) => new internal_partial_structConversions_TypeConverterdecimal(result),
+                    global::System.Decimal decimalValue => internal_partial_structConversions_TypeConverterdecimal.From(decimalValue),
+                    global::System.String stringValue when !global::System.String.IsNullOrEmpty(stringValue) && global::System.Decimal.TryParse(stringValue, out var result) => internal_partial_structConversions_TypeConverterdecimal.From(result),
                     _ => base.ConvertFrom(context, culture, value),
                 };
             }

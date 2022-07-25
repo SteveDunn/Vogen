@@ -169,8 +169,8 @@ public System.Single Value
             {
                 return value switch
                 {
-                    global::System.Single floatValue => new public_partial_classConversions_TypeConverterfloat(floatValue),
-                    global::System.String stringValue when !global::System.String.IsNullOrEmpty(stringValue) && global::System.Single.TryParse(stringValue, out var result) => new public_partial_classConversions_TypeConverterfloat(result),
+                    global::System.Single floatValue => public_partial_classConversions_TypeConverterfloat.From(floatValue),
+                    global::System.String stringValue when !global::System.String.IsNullOrEmpty(stringValue) && global::System.Single.TryParse(stringValue, out var result) => public_partial_classConversions_TypeConverterfloat.From(result),
                     _ => base.ConvertFrom(context, culture, value),
                 };
             }

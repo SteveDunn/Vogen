@@ -170,9 +170,9 @@ public System.Int32 Value
             {
                 return value switch
                 {
-                    global::System.Int32 intValue => new public_partial_classConversions_EfCoreValueConverter(intValue),
-                    global::System.Int64 longValue when longValue < global::System.Int32.MaxValue => new public_partial_classConversions_EfCoreValueConverter((global::System.Int32)longValue),
-                    global::System.String stringValue when !global::System.String.IsNullOrEmpty(stringValue) && global::System.Int32.TryParse(stringValue, out var result) => new public_partial_classConversions_EfCoreValueConverter(result),
+                    global::System.Int32 intValue => public_partial_classConversions_EfCoreValueConverter.From(intValue),
+                    global::System.Int64 longValue when longValue < global::System.Int32.MaxValue => public_partial_classConversions_EfCoreValueConverter.From((global::System.Int32)longValue),
+                    global::System.String stringValue when !global::System.String.IsNullOrEmpty(stringValue) && global::System.Int32.TryParse(stringValue, out var result) => public_partial_classConversions_EfCoreValueConverter.From(result),
                     _ => throw new global::System.InvalidCastException($"Unable to cast object of type {value.GetType()} to public_partial_classConversions_EfCoreValueConverter"),
                 };
             }
@@ -184,7 +184,7 @@ public System.Int32 Value
             public EfCoreValueConverter(global::Microsoft.EntityFrameworkCore.Storage.ValueConversion.ConverterMappingHints mappingHints = null)
                 : base(
                     vo => vo.Value,
-                    value => new public_partial_classConversions_EfCoreValueConverter(value),
+                    value => public_partial_classConversions_EfCoreValueConverter.From(value),
                     mappingHints
                 ) { }
         }
@@ -194,7 +194,7 @@ public System.Int32 Value
             public LinqToDbValueConverter()
                 : base(
                       v => v.Value,
-                      p => new public_partial_classConversions_EfCoreValueConverter(p),
+                      p => public_partial_classConversions_EfCoreValueConverter.From(p),
                       handlesNulls: false)
             { }
         }

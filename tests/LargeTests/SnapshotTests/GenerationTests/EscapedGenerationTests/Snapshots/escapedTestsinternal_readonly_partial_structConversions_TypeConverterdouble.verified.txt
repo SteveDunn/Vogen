@@ -134,9 +134,9 @@ namespace @class
             {
                 return value switch
                 {
-                    global::System.Double doubleValue => new escapedTestsinternal_readonly_partial_structConversions_TypeConverterdouble(doubleValue),
-                    global::System.Int64 longValue => new escapedTestsinternal_readonly_partial_structConversions_TypeConverterdouble((global::System.Double)longValue),
-                    global::System.String stringValue when !global::System.String.IsNullOrEmpty(stringValue) && global::System.Double.TryParse(stringValue, out var result) => new escapedTestsinternal_readonly_partial_structConversions_TypeConverterdouble(result),
+                    global::System.Double doubleValue => escapedTestsinternal_readonly_partial_structConversions_TypeConverterdouble.From(doubleValue),
+                    global::System.Int64 longValue => escapedTestsinternal_readonly_partial_structConversions_TypeConverterdouble.From((global::System.Double)longValue),
+                    global::System.String stringValue when !global::System.String.IsNullOrEmpty(stringValue) && global::System.Double.TryParse(stringValue, out var result) => escapedTestsinternal_readonly_partial_structConversions_TypeConverterdouble.From(result),
                     _ => base.ConvertFrom(context, culture, value),
                 };
             }

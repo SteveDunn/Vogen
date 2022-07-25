@@ -173,7 +173,7 @@ public System.Boolean Value
             public override object ReadJson(Newtonsoft.Json.JsonReader reader, System.Type objectType, object existingValue, Newtonsoft.Json.JsonSerializer serializer)
             {
                 var result = serializer.Deserialize<global::System.Boolean?>(reader);
-                return result.HasValue ? new internal_partial_classConversions_NewtonsoftJsonbool(result.Value) : null;
+                return result.HasValue ? internal_partial_classConversions_NewtonsoftJsonbool.From(result.Value) : null;
             }
         }
 

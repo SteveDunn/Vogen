@@ -123,7 +123,7 @@ public string Value
             public LinqToDbValueConverter()
                 : base(
                       v => v.Value,
-                      p => new escapedTestspublic_sealed_partial_recordConversions_LinqToDbValueConverterstring(p),
+                      p => escapedTestspublic_sealed_partial_recordConversions_LinqToDbValueConverterstring.From(p),
                       handlesNulls: false)
             { }
         }

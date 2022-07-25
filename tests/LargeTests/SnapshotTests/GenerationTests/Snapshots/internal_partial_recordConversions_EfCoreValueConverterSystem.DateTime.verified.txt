@@ -115,7 +115,7 @@ public System.DateTime Value
             public EfCoreValueConverter(global::Microsoft.EntityFrameworkCore.Storage.ValueConversion.ConverterMappingHints mappingHints = null)
                 : base(
                     vo => vo.Value,
-                    value => new internal_partial_recordConversions_EfCoreValueConverterSystem(value),
+                    value => internal_partial_recordConversions_EfCoreValueConverterSystem.From(value),
                     mappingHints
                 ) { }
         }

@@ -110,7 +110,7 @@ public bool Value
         {
             public override stj_number_as_string_public_partial_recordConversions_SystemTextJsonbool_customized Read(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {
-                return new stj_number_as_string_public_partial_recordConversions_SystemTextJsonbool_customized(reader.GetBoolean());
+                return stj_number_as_string_public_partial_recordConversions_SystemTextJsonbool_customized.From(reader.GetBoolean());
             }
 
             public override void Write(global::System.Text.Json.Utf8JsonWriter writer, stj_number_as_string_public_partial_recordConversions_SystemTextJsonbool_customized value, global::System.Text.Json.JsonSerializerOptions options)

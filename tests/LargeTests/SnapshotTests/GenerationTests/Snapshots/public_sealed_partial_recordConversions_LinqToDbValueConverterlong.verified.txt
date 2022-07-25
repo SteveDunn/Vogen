@@ -115,7 +115,7 @@ public long Value
             public LinqToDbValueConverter()
                 : base(
                       v => v.Value,
-                      p => new public_sealed_partial_recordConversions_LinqToDbValueConverterlong(p),
+                      p => public_sealed_partial_recordConversions_LinqToDbValueConverterlong.From(p),
                       handlesNulls: false)
             { }
         }

@@ -119,8 +119,8 @@ public int Value
             {
                 return value switch
                 {
-                    global::System.Int32 intValue => new internal_partial_recordConversions_TypeConverterint(intValue),
-                    global::System.String stringValue when !global::System.String.IsNullOrEmpty(stringValue) && global::System.Int32.TryParse(stringValue, out var result) => new internal_partial_recordConversions_TypeConverterint(result),
+                    global::System.Int32 intValue => internal_partial_recordConversions_TypeConverterint.From(intValue),
+                    global::System.String stringValue when !global::System.String.IsNullOrEmpty(stringValue) && global::System.Int32.TryParse(stringValue, out var result) => internal_partial_recordConversions_TypeConverterint.From(result),
                     _ => base.ConvertFrom(context, culture, value),
                 };
             }

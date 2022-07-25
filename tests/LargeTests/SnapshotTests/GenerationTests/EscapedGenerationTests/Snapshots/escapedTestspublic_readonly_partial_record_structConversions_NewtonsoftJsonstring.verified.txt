@@ -125,7 +125,7 @@ namespace @class
 
             public override object ReadJson(Newtonsoft.Json.JsonReader reader, System.Type objectType, object existingValue, Newtonsoft.Json.JsonSerializer serializer)
             {
-                return new escapedTestspublic_readonly_partial_record_structConversions_NewtonsoftJsonstring(serializer.Deserialize<global::System.String>(reader));
+                return escapedTestspublic_readonly_partial_record_structConversions_NewtonsoftJsonstring.From(serializer.Deserialize<global::System.String>(reader));
             }
         }
 

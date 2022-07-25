@@ -110,7 +110,7 @@ public long Value
         {
             public override stj_number_as_string_public_partial_recordConversions_SystemTextJsonlong_customized Read(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {
-                return new stj_number_as_string_public_partial_recordConversions_SystemTextJsonlong_customized(global::System.Int64.Parse(reader.GetString(), global::System.Globalization.NumberStyles.Any, global::System.Globalization.CultureInfo.InvariantCulture));
+                return stj_number_as_string_public_partial_recordConversions_SystemTextJsonlong_customized.From(global::System.Int64.Parse(reader.GetString(), global::System.Globalization.NumberStyles.Any, global::System.Globalization.CultureInfo.InvariantCulture));
             }
 
             public override void Write(System.Text.Json.Utf8JsonWriter writer, stj_number_as_string_public_partial_recordConversions_SystemTextJsonlong_customized value, global::System.Text.Json.JsonSerializerOptions options)

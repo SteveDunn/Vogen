@@ -165,7 +165,7 @@ public System.Byte Value
             public LinqToDbValueConverter()
                 : base(
                       v => v.Value,
-                      p => new escapedTestspublic_partial_classConversions_LinqToDbValueConverterbyte(p),
+                      p => escapedTestspublic_partial_classConversions_LinqToDbValueConverterbyte.From(p),
                       handlesNulls: false)
             { }
         }

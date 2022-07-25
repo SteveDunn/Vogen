@@ -165,7 +165,7 @@ public System.Int64 Value
             public EfCoreValueConverter(global::Microsoft.EntityFrameworkCore.Storage.ValueConversion.ConverterMappingHints mappingHints = null)
                 : base(
                     vo => vo.Value,
-                    value => new public_partial_classConversions_EfCoreValueConverterlong(value),
+                    value => public_partial_classConversions_EfCoreValueConverterlong.From(value),
                     mappingHints
                 ) { }
         }

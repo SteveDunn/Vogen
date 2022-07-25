@@ -134,8 +134,8 @@ namespace Whatever
             {
                 return value switch
                 {
-                    global::System.String stringValue when !global::System.String.IsNullOrEmpty(stringValue) && global::System.DateTimeOffset.TryParseExact(stringValue, "O", global::System.Globalization.CultureInfo.InvariantCulture, global::System.Globalization.DateTimeStyles.RoundtripKind, out var result) => new internal_readonly_partial_structConversions_TypeConverterSystem(result),
-                    global::System.DateTimeOffset dateTimeValue => new internal_readonly_partial_structConversions_TypeConverterSystem(dateTimeValue),
+                    global::System.String stringValue when !global::System.String.IsNullOrEmpty(stringValue) && global::System.DateTimeOffset.TryParseExact(stringValue, "O", global::System.Globalization.CultureInfo.InvariantCulture, global::System.Globalization.DateTimeStyles.RoundtripKind, out var result) => internal_readonly_partial_structConversions_TypeConverterSystem.From(result),
+                    global::System.DateTimeOffset dateTimeValue => internal_readonly_partial_structConversions_TypeConverterSystem.From(dateTimeValue),
                     _ => base.ConvertFrom(context, culture, value),
                 };
             }

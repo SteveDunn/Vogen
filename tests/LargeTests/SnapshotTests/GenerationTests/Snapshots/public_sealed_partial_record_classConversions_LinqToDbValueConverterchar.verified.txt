@@ -115,7 +115,7 @@ public char Value
             public LinqToDbValueConverter()
                 : base(
                       v => v.Value,
-                      p => new public_sealed_partial_record_classConversions_LinqToDbValueConverterchar(p),
+                      p => public_sealed_partial_record_classConversions_LinqToDbValueConverterchar.From(p),
                       handlesNulls: false)
             { }
         }

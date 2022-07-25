@@ -161,7 +161,7 @@ public System.DateTimeOffset Value
         {
             public override stj_number_as_string_public_partial_classConversions_NewtonsoftJson Read(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {
-                return new stj_number_as_string_public_partial_classConversions_NewtonsoftJson(reader.GetDateTimeOffset());
+                return stj_number_as_string_public_partial_classConversions_NewtonsoftJson.From(reader.GetDateTimeOffset());
             }
 
             public override void Write(System.Text.Json.Utf8JsonWriter writer, stj_number_as_string_public_partial_classConversions_NewtonsoftJson value, global::System.Text.Json.JsonSerializerOptions options)
@@ -186,7 +186,7 @@ public System.DateTimeOffset Value
             public override object ReadJson(Newtonsoft.Json.JsonReader reader, System.Type objectType, object existingValue, Newtonsoft.Json.JsonSerializer serializer)
             {
                 var dt = serializer.Deserialize<global::System.DateTimeOffset?>(reader);
-                return dt.HasValue ? new stj_number_as_string_public_partial_classConversions_NewtonsoftJson(dt.Value) : null;
+                return dt.HasValue ? stj_number_as_string_public_partial_classConversions_NewtonsoftJson.From(dt.Value) : null;
             }
         }
 

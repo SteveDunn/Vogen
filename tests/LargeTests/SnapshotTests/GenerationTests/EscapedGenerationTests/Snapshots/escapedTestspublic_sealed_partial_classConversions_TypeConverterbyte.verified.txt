@@ -169,11 +169,11 @@ public System.Byte Value
             {
                 return value switch
                 {
-                    global::System.Byte byteValue => new escapedTestspublic_sealed_partial_classConversions_TypeConverterbyte(byteValue),
-                    global::System.Int16 shortValue => new escapedTestspublic_sealed_partial_classConversions_TypeConverterbyte((global::System.Byte)shortValue),
-                    global::System.Int32 intValue => new escapedTestspublic_sealed_partial_classConversions_TypeConverterbyte((global::System.Byte)intValue),
-                    global::System.Int64 longValue => new escapedTestspublic_sealed_partial_classConversions_TypeConverterbyte((global::System.Byte)longValue),
-                    global::System.String stringValue when  !global::System.String.IsNullOrEmpty(stringValue) && global::System.Byte.TryParse(stringValue, out var result) => new escapedTestspublic_sealed_partial_classConversions_TypeConverterbyte(result),
+                    global::System.Byte byteValue => escapedTestspublic_sealed_partial_classConversions_TypeConverterbyte.From(byteValue),
+                    global::System.Int16 shortValue => escapedTestspublic_sealed_partial_classConversions_TypeConverterbyte.From((global::System.Byte)shortValue),
+                    global::System.Int32 intValue => escapedTestspublic_sealed_partial_classConversions_TypeConverterbyte.From((global::System.Byte)intValue),
+                    global::System.Int64 longValue => escapedTestspublic_sealed_partial_classConversions_TypeConverterbyte.From((global::System.Byte)longValue),
+                    global::System.String stringValue when  !global::System.String.IsNullOrEmpty(stringValue) && global::System.Byte.TryParse(stringValue, out var result) => escapedTestspublic_sealed_partial_classConversions_TypeConverterbyte.From(result),
                     _ => base.ConvertFrom(context, culture, value),
                 };
             }

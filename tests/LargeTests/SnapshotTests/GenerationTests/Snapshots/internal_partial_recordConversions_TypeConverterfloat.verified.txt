@@ -119,8 +119,8 @@ public float Value
             {
                 return value switch
                 {
-                    global::System.Single floatValue => new internal_partial_recordConversions_TypeConverterfloat(floatValue),
-                    global::System.String stringValue when !global::System.String.IsNullOrEmpty(stringValue) && global::System.Single.TryParse(stringValue, out var result) => new internal_partial_recordConversions_TypeConverterfloat(result),
+                    global::System.Single floatValue => internal_partial_recordConversions_TypeConverterfloat.From(floatValue),
+                    global::System.String stringValue when !global::System.String.IsNullOrEmpty(stringValue) && global::System.Single.TryParse(stringValue, out var result) => internal_partial_recordConversions_TypeConverterfloat.From(result),
                     _ => base.ConvertFrom(context, culture, value),
                 };
             }

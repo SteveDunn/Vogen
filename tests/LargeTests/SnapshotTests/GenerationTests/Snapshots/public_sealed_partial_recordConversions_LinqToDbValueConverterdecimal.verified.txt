@@ -115,7 +115,7 @@ public decimal Value
             public LinqToDbValueConverter()
                 : base(
                       v => v.Value,
-                      p => new public_sealed_partial_recordConversions_LinqToDbValueConverterdecimal(p),
+                      p => public_sealed_partial_recordConversions_LinqToDbValueConverterdecimal.From(p),
                       handlesNulls: false)
             { }
         }

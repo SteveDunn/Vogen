@@ -115,7 +115,7 @@ public byte Value
             public EfCoreValueConverter(global::Microsoft.EntityFrameworkCore.Storage.ValueConversion.ConverterMappingHints mappingHints = null)
                 : base(
                     vo => vo.Value,
-                    value => new escapedTestspublic_sealed_partial_recordConversions_EfCoreValueConverterbyte(value),
+                    value => escapedTestspublic_sealed_partial_recordConversions_EfCoreValueConverterbyte.From(value),
                     mappingHints
                 ) { }
         }

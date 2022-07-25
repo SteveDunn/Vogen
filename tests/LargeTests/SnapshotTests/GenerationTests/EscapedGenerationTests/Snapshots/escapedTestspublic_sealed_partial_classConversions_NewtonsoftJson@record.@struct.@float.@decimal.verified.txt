@@ -172,7 +172,7 @@ public @class.@record.@struct.@float.@decimal Value
 
             public override object ReadJson(Newtonsoft.Json.JsonReader reader, System.Type objectType, object existingValue, Newtonsoft.Json.JsonSerializer serializer)
             {
-                return new escapedTestspublic_sealed_partial_classConversions_NewtonsoftJson(serializer.Deserialize<@class.@record.@struct.@float.@decimal>(reader));
+                return escapedTestspublic_sealed_partial_classConversions_NewtonsoftJson.From(serializer.Deserialize<@class.@record.@struct.@float.@decimal>(reader));
             }
         }
 
