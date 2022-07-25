@@ -100,6 +100,7 @@ internal static class BuildWorkItems
             HasToString = hasToString,
             UnderlyingType = config.UnderlyingType,
             Conversions = config.Conversions,
+            DeserializationStrictness = config.DeserializationStrictness,
             Customizations = config.Customizations,
             TypeForValidationExceptions = config.ValidationExceptionType,
             ValidateMethod = validateMethod,

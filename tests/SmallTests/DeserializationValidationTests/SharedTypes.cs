@@ -32,6 +32,18 @@ public partial class MyVoString_should_not_bypass_validation
         return Validation.Invalid("length must be greater than ten characters");
     }
 }
+
+[ValueObject(typeof(string), Conversions.DapperTypeHandler | Conversions.EfCoreValueConverter | Conversions.LinqToDbValueConverter | Conversions.NewtonsoftJson | Conversions.SystemTextJson | Conversions.TypeConverter, deserializationStrictness: DeserializationStrictness.AllowAnything)]
+public partial class MyVoString_should_bypass_validation
+{
+    private static Validation validate(string value)
+    {
+        if (value.Length > 10)
+            return Validation.Ok;
+
+        return Validation.Invalid("length must be greater than ten characters");
+    }
+}
 #endregion
 
 #region DBContext

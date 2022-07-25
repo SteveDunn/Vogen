@@ -8,12 +8,14 @@ public readonly struct VogenConfiguration
         INamedTypeSymbol? underlyingType,
         INamedTypeSymbol? validationExceptionType,
         Conversions conversions,
-        Customizations customizations)
+        Customizations customizations,
+        DeserializationStrictness deserializationStrictness)
     {
         UnderlyingType = underlyingType;
         ValidationExceptionType = validationExceptionType;
         Conversions = conversions;
         Customizations = customizations;
+        DeserializationStrictness = deserializationStrictness;
     }
 
     public static VogenConfiguration Combine(
@@ -36,11 +38,19 @@ public readonly struct VogenConfiguration
             (var specificValue, _) => specificValue
         };
 
+        var strictness = (localValues.DeserializationStrictness, globalValues?.DeserializationStrictness) switch
+        {
+            (DeserializationStrictness.Default, null) => DefaultInstance.DeserializationStrictness,
+            (DeserializationStrictness.Default, DeserializationStrictness.Default) => DefaultInstance.DeserializationStrictness,
+            (DeserializationStrictness.Default, var globalDefault) => globalDefault.Value,
+            (var specificValue, _) => specificValue
+        };
+
 
         var validationExceptionType = localValues.ValidationExceptionType ?? globalValues?.ValidationExceptionType ?? DefaultInstance.ValidationExceptionType;
         var underlyingType = localValues.UnderlyingType ?? globalValues?.UnderlyingType ?? DefaultInstance.UnderlyingType;
 
-        return new VogenConfiguration(underlyingType, validationExceptionType, conversions, customizations);
+        return new VogenConfiguration(underlyingType, validationExceptionType, conversions, customizations, strictness);
     }
 
     public INamedTypeSymbol? UnderlyingType { get; }
@@ -50,6 +60,7 @@ public readonly struct VogenConfiguration
     public Conversions Conversions { get; }
     
     public Customizations Customizations { get; }
+    public DeserializationStrictness DeserializationStrictness { get; }
 
     // the issue here is that without a physical 'symbol' in the source, we can't
     // get the namedtypesymbol
@@ -59,5 +70,6 @@ public readonly struct VogenConfiguration
         validationExceptionType: null,
         // ReSharper disable once RedundantNameQualifier
         conversions: Vogen.Conversions.Default,
-        customizations: Customizations.None);
+        customizations: Customizations.None,
+        DeserializationStrictness.Default);
 }

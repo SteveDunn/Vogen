@@ -90,8 +90,7 @@ using Vogen;
 
             {structName} instance = new {structName}(value);
 
-            {Util.GenerateValidation(item)}
-
+            {Util.GenerateCallToValidateForDeserializing(item)}
             return instance;
         }}
 

@@ -53,11 +53,49 @@ public static class Util
         return string.Empty;
     }
 
+    public static string GenerateCallToValidateForDeserializing(VoWorkItem workItem)
+    {
+        // if (workItem.DeserializationStrictness.HasFlag(DeserializationStrictness.AllowAnything))
+        // {
+        //     return string.Empty;
+        // }
+
+        StringBuilder sb = new StringBuilder();
+
+        if (workItem.DeserializationStrictness.HasFlag(DeserializationStrictness.CompareAgainstKnownInstances))
+        {
+            foreach (var eachInstance in workItem.InstanceProperties)
+            {
+                sb.AppendLine($"        if(value == {EscapeIfRequired(eachInstance.Name)}.Value) return instance;");
+            }
+        }
+        
+        if (workItem.ValidateMethod == null)
+        {
+            return sb.ToString();
+        }
+
+        if(workItem.DeserializationStrictness.HasFlag(DeserializationStrictness.RunMyValidationMethod))
+        {
+            sb.AppendLine(@$"var validation = {workItem.TypeToAugment.Identifier}.{workItem.ValidateMethod.Identifier.Value}(value);
+            if (validation != Vogen.Validation.Ok)
+            {{
+                throw new {workItem.ValidationExceptionFullName}(validation.ErrorMessage);
+            }}
+");
+        }
+
+        return sb.ToString();
+    }
+
     public static string GenerateNormalizeInputMethodIfNeeded(VoWorkItem workItem)
     {
         if (workItem.NormalizeInputMethod != null)
+        {
             return @$"value = {workItem.TypeToAugment.Identifier}.{workItem.NormalizeInputMethod.Identifier.Value}(value);
 ";
+        }
+
         return string.Empty;
     }
 

@@ -82,8 +82,7 @@ public {itemUnderlyingType} Value
 
             {className} instance = new {className}(value);
 
-            {Util.GenerateValidation(item)}
-
+            {Util.GenerateCallToValidateForDeserializing(item)}
             return instance;
         }}
 

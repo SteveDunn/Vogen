@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.Threading.Tasks;
 using FluentAssertions;
@@ -7,7 +6,6 @@ using Microsoft.Data.Sqlite;
 using Xunit;
 using Vogen;
 using Dapper;
-using Newtonsoft.Json;
 using NewtonsoftJsonSerializer = Newtonsoft.Json.JsonConvert;
 using SystemTextJsonSerializer = System.Text.Json.JsonSerializer;
 using Microsoft.EntityFrameworkCore;
@@ -17,11 +15,6 @@ namespace SmallTests.DeserializationValidationTests;
 
 public class IntDeserializationValidationTests
 {
-    public IntDeserializationValidationTests()
-    {
-        SqlMapper.AddTypeHandler(new MyVoInt_should_not_bypass_validation.DapperTypeHandler());
-    }
-
     [Fact]
     public async void Deserialization_dapper_should_not_bypass_validation_pass()
     {
