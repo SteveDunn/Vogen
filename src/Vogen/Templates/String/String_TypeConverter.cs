@@ -11,7 +11,7 @@
                 var stringValue = value as global::System.String;
                 if (stringValue is not null)
                 {
-                    return VOTYPE.From(stringValue);
+                    return VOTYPE.Deserialize(stringValue);
                 }
 
                 return base.ConvertFrom(context, culture, value);

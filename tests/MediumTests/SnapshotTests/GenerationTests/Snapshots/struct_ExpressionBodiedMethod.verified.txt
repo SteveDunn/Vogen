@@ -76,6 +76,19 @@ namespace Whatever
             return instance;
         }
 
+        // only called internally when something has been deserialized into
+        // its primitive type.
+        private static struct_ExpressionBodiedMethod Deserialize(global::System.Int32 value)
+        {
+            
+
+            struct_ExpressionBodiedMethod instance = new struct_ExpressionBodiedMethod(value);
+
+            
+
+            return instance;
+        }
+
         public readonly global::System.Boolean Equals(struct_ExpressionBodiedMethod other)
         {
             // It's possible to create uninitialized instances via converters such as EfCore (HasDefaultValue), which call Equals.
@@ -126,7 +139,7 @@ namespace Whatever
         {
             public override struct_ExpressionBodiedMethod Read(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {
-                return new struct_ExpressionBodiedMethod(reader.GetInt32());
+                return struct_ExpressionBodiedMethod.Deserialize(reader.GetInt32());
             }
 
             public override void Write(System.Text.Json.Utf8JsonWriter writer, struct_ExpressionBodiedMethod value, global::System.Text.Json.JsonSerializerOptions options)
@@ -147,8 +160,8 @@ namespace Whatever
             {
                 return value switch
                 {
-                    global::System.Int32 intValue => new struct_ExpressionBodiedMethod(intValue),
-                    global::System.String stringValue when !global::System.String.IsNullOrEmpty(stringValue) && global::System.Int32.TryParse(stringValue, out var result) => new struct_ExpressionBodiedMethod(result),
+                    global::System.Int32 intValue => struct_ExpressionBodiedMethod.Deserialize(intValue),
+                    global::System.String stringValue when !global::System.String.IsNullOrEmpty(stringValue) && global::System.Int32.TryParse(stringValue, out var result) => struct_ExpressionBodiedMethod.Deserialize(result),
                     _ => base.ConvertFrom(context, culture, value),
                 };
             }

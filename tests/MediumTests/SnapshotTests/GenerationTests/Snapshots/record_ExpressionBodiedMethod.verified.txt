@@ -86,6 +86,21 @@ public global::System.Int32 Value
             return instance;
         }
 
+        // only called internally when something has been deserialized into
+        // its primitive type.
+        private static record_ExpressionBodiedMethod Deserialize(global::System.Int32 value)
+        {
+            
+
+            
+
+            record_ExpressionBodiedMethod instance = new record_ExpressionBodiedMethod(value);
+
+            
+
+            return instance;
+        }
+
         private void EnsureInitialized()
         {
             if (!_isInitialized)
@@ -111,7 +126,7 @@ public global::System.Int32 Value
         {
             public override record_ExpressionBodiedMethod Read(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {
-                return new record_ExpressionBodiedMethod(reader.GetInt32());
+                return record_ExpressionBodiedMethod.Deserialize(reader.GetInt32());
             }
 
             public override void Write(System.Text.Json.Utf8JsonWriter writer, record_ExpressionBodiedMethod value, global::System.Text.Json.JsonSerializerOptions options)
@@ -132,8 +147,8 @@ public global::System.Int32 Value
             {
                 return value switch
                 {
-                    global::System.Int32 intValue => new record_ExpressionBodiedMethod(intValue),
-                    global::System.String stringValue when !global::System.String.IsNullOrEmpty(stringValue) && global::System.Int32.TryParse(stringValue, out var result) => new record_ExpressionBodiedMethod(result),
+                    global::System.Int32 intValue => record_ExpressionBodiedMethod.Deserialize(intValue),
+                    global::System.String stringValue when !global::System.String.IsNullOrEmpty(stringValue) && global::System.Int32.TryParse(stringValue, out var result) => record_ExpressionBodiedMethod.Deserialize(result),
                     _ => base.ConvertFrom(context, culture, value),
                 };
             }

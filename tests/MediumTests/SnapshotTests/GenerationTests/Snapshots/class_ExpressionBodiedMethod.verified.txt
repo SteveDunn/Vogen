@@ -75,6 +75,21 @@ public global::System.Int32 Value
             return instance;
         }
 
+        // only called internally when something has been deserialized into
+        // its primitive type.
+        private static class_ExpressionBodiedMethod Deserialize(global::System.Int32 value)
+        {
+            
+
+            
+
+            class_ExpressionBodiedMethod instance = new class_ExpressionBodiedMethod(value);
+
+            
+
+            return instance;
+        }
+
         public global::System.Boolean Equals(class_ExpressionBodiedMethod other)
         {
             if (ReferenceEquals(null, other))
@@ -161,7 +176,7 @@ public global::System.Int32 Value
         {
             public override class_ExpressionBodiedMethod Read(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {
-                return new class_ExpressionBodiedMethod(reader.GetInt32());
+                return class_ExpressionBodiedMethod.Deserialize(reader.GetInt32());
             }
 
             public override void Write(System.Text.Json.Utf8JsonWriter writer, class_ExpressionBodiedMethod value, global::System.Text.Json.JsonSerializerOptions options)
@@ -182,8 +197,8 @@ public global::System.Int32 Value
             {
                 return value switch
                 {
-                    global::System.Int32 intValue => new class_ExpressionBodiedMethod(intValue),
-                    global::System.String stringValue when !global::System.String.IsNullOrEmpty(stringValue) && global::System.Int32.TryParse(stringValue, out var result) => new class_ExpressionBodiedMethod(result),
+                    global::System.Int32 intValue => class_ExpressionBodiedMethod.Deserialize(intValue),
+                    global::System.String stringValue when !global::System.String.IsNullOrEmpty(stringValue) && global::System.Int32.TryParse(stringValue, out var result) => class_ExpressionBodiedMethod.Deserialize(result),
                     _ => base.ConvertFrom(context, culture, value),
                 };
             }

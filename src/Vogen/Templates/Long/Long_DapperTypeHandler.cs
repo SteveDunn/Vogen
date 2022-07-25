@@ -11,10 +11,10 @@
             {
                 return value switch
                 {
-                    global::System.Int64 longValue => VOTYPE.From(longValue),
-                    global::System.Int32 intValue => VOTYPE.From(intValue),
-                    global::System.Int16 shortValue => VOTYPE.From(shortValue),
-                    global::System.String stringValue when  !global::System.String.IsNullOrEmpty(stringValue) && long.TryParse(stringValue, out var result) => VOTYPE.From(result),
+                    global::System.Int64 longValue => VOTYPE.Deserialize(longValue),
+                    global::System.Int32 intValue => VOTYPE.Deserialize(intValue),
+                    global::System.Int16 shortValue => VOTYPE.Deserialize(shortValue),
+                    global::System.String stringValue when  !global::System.String.IsNullOrEmpty(stringValue) && long.TryParse(stringValue, out var result) => VOTYPE.Deserialize(result),
                     _ => throw new global::System.InvalidCastException($"Unable to cast object of type {value.GetType()} to VOTYPE"),
                 };
             }

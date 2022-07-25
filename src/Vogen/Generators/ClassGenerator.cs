@@ -72,6 +72,21 @@ public {itemUnderlyingType} Value
             return instance;
         }}
 
+        // only called internally when something has been deserialized into
+        // its primitive type.
+        private static {className} Deserialize({itemUnderlyingType} value)
+        {{
+            {GenerateNullCheckIfNeeded(item)}
+
+            {Util.GenerateNormalizeInputMethodIfNeeded(item)}
+
+            {className} instance = new {className}(value);
+
+            {Util.GenerateValidation(item)}
+
+            return instance;
+        }}
+
         public global::System.Boolean Equals({className} other)
         {{
             if (ReferenceEquals(null, other))

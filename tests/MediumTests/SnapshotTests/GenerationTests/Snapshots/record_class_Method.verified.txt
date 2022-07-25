@@ -86,6 +86,21 @@ public global::System.Int32 Value
             return instance;
         }
 
+        // only called internally when something has been deserialized into
+        // its primitive type.
+        private static record_class_Method Deserialize(global::System.Int32 value)
+        {
+            
+
+            
+
+            record_class_Method instance = new record_class_Method(value);
+
+            
+
+            return instance;
+        }
+
         private void EnsureInitialized()
         {
             if (!_isInitialized)
@@ -111,7 +126,7 @@ public global::System.Int32 Value
         {
             public override record_class_Method Read(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {
-                return new record_class_Method(reader.GetInt32());
+                return record_class_Method.Deserialize(reader.GetInt32());
             }
 
             public override void Write(System.Text.Json.Utf8JsonWriter writer, record_class_Method value, global::System.Text.Json.JsonSerializerOptions options)
@@ -132,8 +147,8 @@ public global::System.Int32 Value
             {
                 return value switch
                 {
-                    global::System.Int32 intValue => new record_class_Method(intValue),
-                    global::System.String stringValue when !global::System.String.IsNullOrEmpty(stringValue) && global::System.Int32.TryParse(stringValue, out var result) => new record_class_Method(result),
+                    global::System.Int32 intValue => record_class_Method.Deserialize(intValue),
+                    global::System.String stringValue when !global::System.String.IsNullOrEmpty(stringValue) && global::System.Int32.TryParse(stringValue, out var result) => record_class_Method.Deserialize(result),
                     _ => base.ConvertFrom(context, culture, value),
                 };
             }

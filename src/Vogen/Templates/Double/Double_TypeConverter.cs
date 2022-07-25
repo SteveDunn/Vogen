@@ -10,9 +10,9 @@
             {
                 return value switch
                 {
-                    global::System.Double doubleValue => VOTYPE.From(doubleValue),
-                    global::System.Int64 longValue => VOTYPE.From((global::System.Double)longValue),
-                    global::System.String stringValue when !global::System.String.IsNullOrEmpty(stringValue) && global::System.Double.TryParse(stringValue, out var result) => VOTYPE.From(result),
+                    global::System.Double doubleValue => VOTYPE.Deserialize(doubleValue),
+                    global::System.Int64 longValue => VOTYPE.Deserialize((global::System.Double)longValue),
+                    global::System.String stringValue when !global::System.String.IsNullOrEmpty(stringValue) && global::System.Double.TryParse(stringValue, out var result) => VOTYPE.Deserialize(result),
                     _ => base.ConvertFrom(context, culture, value),
                 };
             }

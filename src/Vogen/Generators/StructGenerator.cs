@@ -72,6 +72,19 @@ using Vogen;
             return instance;
         }}
 
+        // only called internally when something has been deserialized into
+        // its primitive type.
+        private static {structName} Deserialize({itemUnderlyingType} value)
+        {{
+            {Util.GenerateNormalizeInputMethodIfNeeded(item)}
+
+            {structName} instance = new {structName}(value);
+
+            {Util.GenerateValidation(item)}
+
+            return instance;
+        }}
+
         public readonly global::System.Boolean Equals({structName} other)
         {{
             // It's possible to create uninitialized instances via converters such as EfCore (HasDefaultValue), which call Equals.

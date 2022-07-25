@@ -10,8 +10,8 @@
             {
                 return value switch
                 {
-                    global::System.Decimal decimalValue => VOTYPE.From(decimalValue),
-                    global::System.String stringValue when !global::System.String.IsNullOrEmpty(stringValue) && global::System.Decimal.TryParse(stringValue, out var result) => VOTYPE.From(result),
+                    global::System.Decimal decimalValue => VOTYPE.Deserialize(decimalValue),
+                    global::System.String stringValue when !global::System.String.IsNullOrEmpty(stringValue) && global::System.Decimal.TryParse(stringValue, out var result) => VOTYPE.Deserialize(result),
                     _ => base.ConvertFrom(context, culture, value),
                 };
             }

@@ -86,6 +86,19 @@ namespace Whatever
             return instance;
         }
 
+        // only called internally when something has been deserialized into
+        // its primitive type.
+        private static record_struct_None Deserialize(global::System.Int32 value)
+        {
+            
+
+            record_struct_None instance = new record_struct_None(value);
+
+            
+
+            return instance;
+        }
+
         private readonly void EnsureInitialized()
         {
             if (!_isInitialized)
@@ -110,7 +123,7 @@ namespace Whatever
         {
             public override record_struct_None Read(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {
-                return new record_struct_None(reader.GetInt32());
+                return record_struct_None.Deserialize(reader.GetInt32());
             }
 
             public override void Write(System.Text.Json.Utf8JsonWriter writer, record_struct_None value, global::System.Text.Json.JsonSerializerOptions options)
@@ -131,8 +144,8 @@ namespace Whatever
             {
                 return value switch
                 {
-                    global::System.Int32 intValue => new record_struct_None(intValue),
-                    global::System.String stringValue when !global::System.String.IsNullOrEmpty(stringValue) && global::System.Int32.TryParse(stringValue, out var result) => new record_struct_None(result),
+                    global::System.Int32 intValue => record_struct_None.Deserialize(intValue),
+                    global::System.String stringValue when !global::System.String.IsNullOrEmpty(stringValue) && global::System.Int32.TryParse(stringValue, out var result) => record_struct_None.Deserialize(result),
                     _ => base.ConvertFrom(context, culture, value),
                 };
             }
