@@ -93,10 +93,9 @@ public decimal Value
 
             
 
-            public_partial_record_classConversions_TypeConverterdecimal instance = new public_partial_record_classConversions_TypeConverterdecimal(value);
-
             
-            return instance;
+
+            return new public_partial_record_classConversions_TypeConverterdecimal(value);
         }
 
         private void EnsureInitialized()

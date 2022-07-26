@@ -93,10 +93,9 @@ public System.Guid Value
 
             
 
-            public_partial_recordConversions_TypeConverterSystem instance = new public_partial_recordConversions_TypeConverterSystem(value);
-
             
-            return instance;
+
+            return new public_partial_recordConversions_TypeConverterSystem(value);
         }
 
         private void EnsureInitialized()

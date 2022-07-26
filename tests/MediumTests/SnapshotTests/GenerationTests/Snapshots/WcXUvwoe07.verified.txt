@@ -92,10 +92,9 @@ public System.DateTimeOffset Value
 
             
 
-            public_partial_record_classConversions_EfCoreValueConverter instance = new public_partial_record_classConversions_EfCoreValueConverter(value);
-
             
-            return instance;
+
+            return new public_partial_record_classConversions_EfCoreValueConverter(value);
         }
 
         private void EnsureInitialized()

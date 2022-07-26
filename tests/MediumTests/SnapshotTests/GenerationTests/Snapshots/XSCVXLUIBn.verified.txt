@@ -80,10 +80,9 @@ namespace Whatever
         {
             
 
-            public_partial_structConversions_Nonedecimal instance = new public_partial_structConversions_Nonedecimal(value);
-
             
-            return instance;
+
+            return new public_partial_structConversions_Nonedecimal(value);
         }
 
         public readonly global::System.Boolean Equals(public_partial_structConversions_Nonedecimal other)

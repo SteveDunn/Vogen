@@ -89,10 +89,9 @@ public System.String Value
 
             
 
-            internal_sealed_partial_classConversions_Nonestring instance = new internal_sealed_partial_classConversions_Nonestring(value);
-
             
-            return instance;
+
+            return new internal_sealed_partial_classConversions_Nonestring(value);
         }
 
         public global::System.Boolean Equals(internal_sealed_partial_classConversions_Nonestring other)

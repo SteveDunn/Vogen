@@ -92,10 +92,9 @@ public System.DateTime Value
 
             
 
-            public_partial_recordConversions_NoneSystem instance = new public_partial_recordConversions_NoneSystem(value);
-
             
-            return instance;
+
+            return new public_partial_recordConversions_NoneSystem(value);
         }
 
         private void EnsureInitialized()

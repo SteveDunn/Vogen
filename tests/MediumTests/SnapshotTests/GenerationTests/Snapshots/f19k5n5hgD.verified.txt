@@ -95,10 +95,9 @@ namespace Whatever
         {
             
 
-            public_partial_record_structConversions_TypeConverterstring instance = new public_partial_record_structConversions_TypeConverterstring(value);
-
             
-            return instance;
+
+            return new public_partial_record_structConversions_TypeConverterstring(value);
         }
 
         private readonly void EnsureInitialized()

@@ -105,10 +105,9 @@ public string Value
 
             
 
-            public_partial_recordConversions_TypeConverterstring instance = new public_partial_recordConversions_TypeConverterstring(value);
-
             
-            return instance;
+
+            return new public_partial_recordConversions_TypeConverterstring(value);
         }
 
         private void EnsureInitialized()

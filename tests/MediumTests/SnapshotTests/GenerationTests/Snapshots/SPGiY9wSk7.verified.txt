@@ -92,10 +92,9 @@ public System.Guid Value
 
             
 
-            public_partial_record_classConversions_NoneSystem instance = new public_partial_record_classConversions_NoneSystem(value);
-
             
-            return instance;
+
+            return new public_partial_record_classConversions_NoneSystem(value);
         }
 
         private void EnsureInitialized()

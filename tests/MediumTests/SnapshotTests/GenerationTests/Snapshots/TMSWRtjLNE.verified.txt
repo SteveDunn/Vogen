@@ -90,10 +90,9 @@ namespace Whatever
         {
             
 
-            internal_readonly_partial_record_structConversions_Noneint instance = new internal_readonly_partial_record_structConversions_Noneint(value);
-
             
-            return instance;
+
+            return new internal_readonly_partial_record_structConversions_Noneint(value);
         }
 
         private readonly void EnsureInitialized()

@@ -106,10 +106,9 @@ public string Value
 
             
 
-            public_partial_recordConversions_NewtonsoftJson instance = new public_partial_recordConversions_NewtonsoftJson(value);
-
             
-            return instance;
+
+            return new public_partial_recordConversions_NewtonsoftJson(value);
         }
 
         private void EnsureInitialized()

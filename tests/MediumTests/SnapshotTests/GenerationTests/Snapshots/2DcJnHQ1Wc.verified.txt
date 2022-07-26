@@ -80,10 +80,9 @@ namespace Whatever
         {
             
 
-            internal_readonly_partial_structConversions_Nonebyte instance = new internal_readonly_partial_structConversions_Nonebyte(value);
-
             
-            return instance;
+
+            return new internal_readonly_partial_structConversions_Nonebyte(value);
         }
 
         public readonly global::System.Boolean Equals(internal_readonly_partial_structConversions_Nonebyte other)

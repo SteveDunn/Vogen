@@ -92,10 +92,9 @@ public int Value
 
             
 
-            public_partial_recordConversions_Noneint instance = new public_partial_recordConversions_Noneint(value);
-
             
-            return instance;
+
+            return new public_partial_recordConversions_Noneint(value);
         }
 
         private void EnsureInitialized()

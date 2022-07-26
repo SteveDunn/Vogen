@@ -82,10 +82,9 @@ public System.DateTimeOffset Value
 
             
 
-            internal_partial_classConversions_TypeConverterSystem instance = new internal_partial_classConversions_TypeConverterSystem(value);
-
             
-            return instance;
+
+            return new internal_partial_classConversions_TypeConverterSystem(value);
         }
 
         public global::System.Boolean Equals(internal_partial_classConversions_TypeConverterSystem other)

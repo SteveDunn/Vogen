@@ -82,10 +82,9 @@ public System.Decimal Value
 
             
 
-            public_partial_classConversions_TypeConverterdecimal instance = new public_partial_classConversions_TypeConverterdecimal(value);
-
             
-            return instance;
+
+            return new public_partial_classConversions_TypeConverterdecimal(value);
         }
 
         public global::System.Boolean Equals(public_partial_classConversions_TypeConverterdecimal other)

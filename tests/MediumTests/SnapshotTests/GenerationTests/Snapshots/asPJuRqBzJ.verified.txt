@@ -92,10 +92,9 @@ public decimal Value
 
             
 
-            public_partial_recordConversions_EfCoreValueConverter instance = new public_partial_recordConversions_EfCoreValueConverter(value);
-
             
-            return instance;
+
+            return new public_partial_recordConversions_EfCoreValueConverter(value);
         }
 
         private void EnsureInitialized()

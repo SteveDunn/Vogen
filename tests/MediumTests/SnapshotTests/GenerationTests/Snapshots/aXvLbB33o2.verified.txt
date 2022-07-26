@@ -90,10 +90,9 @@ namespace Whatever
         {
             
 
-            public_partial_record_structConversions_Nonechar instance = new public_partial_record_structConversions_Nonechar(value);
-
             
-            return instance;
+
+            return new public_partial_record_structConversions_Nonechar(value);
         }
 
         private readonly void EnsureInitialized()

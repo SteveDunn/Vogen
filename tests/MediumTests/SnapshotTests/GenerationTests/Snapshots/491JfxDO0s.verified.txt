@@ -80,10 +80,9 @@ namespace Whatever
         {
             
 
-            public_partial_structConversions_EfCoreValueConverter instance = new public_partial_structConversions_EfCoreValueConverter(value);
-
             
-            return instance;
+
+            return new public_partial_structConversions_EfCoreValueConverter(value);
         }
 
         public readonly global::System.Boolean Equals(public_partial_structConversions_EfCoreValueConverter other)

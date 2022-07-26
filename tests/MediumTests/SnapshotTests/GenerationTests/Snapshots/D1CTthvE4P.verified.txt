@@ -82,10 +82,9 @@ namespace Whatever
         {
             
 
-            internal_partial_structConversions_NewtonsoftJson instance = new internal_partial_structConversions_NewtonsoftJson(value);
-
             
-            return instance;
+
+            return new internal_partial_structConversions_NewtonsoftJson(value);
         }
 
         public readonly global::System.Boolean Equals(internal_partial_structConversions_NewtonsoftJson other)

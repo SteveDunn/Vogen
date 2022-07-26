@@ -81,10 +81,9 @@ namespace Whatever
         {
             
 
-            public_partial_structConversions_TypeConverterdecimal instance = new public_partial_structConversions_TypeConverterdecimal(value);
-
             
-            return instance;
+
+            return new public_partial_structConversions_TypeConverterdecimal(value);
         }
 
         public readonly global::System.Boolean Equals(public_partial_structConversions_TypeConverterdecimal other)

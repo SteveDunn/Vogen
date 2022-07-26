@@ -82,10 +82,9 @@ public System.Byte Value
 
             
 
-            public_partial_classConversions_TypeConverterbyte instance = new public_partial_classConversions_TypeConverterbyte(value);
-
             
-            return instance;
+
+            return new public_partial_classConversions_TypeConverterbyte(value);
         }
 
         public global::System.Boolean Equals(public_partial_classConversions_TypeConverterbyte other)

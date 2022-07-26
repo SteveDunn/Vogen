@@ -93,10 +93,9 @@ public byte Value
 
             
 
-            internal_partial_recordConversions_TypeConverterbyte instance = new internal_partial_recordConversions_TypeConverterbyte(value);
-
             
-            return instance;
+
+            return new internal_partial_recordConversions_TypeConverterbyte(value);
         }
 
         private void EnsureInitialized()

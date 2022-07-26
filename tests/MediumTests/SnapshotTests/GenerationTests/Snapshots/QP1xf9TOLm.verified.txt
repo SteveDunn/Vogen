@@ -92,10 +92,9 @@ public char Value
 
             
 
-            public_sealed_partial_recordConversions_Nonechar instance = new public_sealed_partial_recordConversions_Nonechar(value);
-
             
-            return instance;
+
+            return new public_sealed_partial_recordConversions_Nonechar(value);
         }
 
         private void EnsureInitialized()

@@ -93,10 +93,9 @@ public char Value
 
             
 
-            public_sealed_partial_recordConversions_TypeConverterchar instance = new public_sealed_partial_recordConversions_TypeConverterchar(value);
-
             
-            return instance;
+
+            return new public_sealed_partial_recordConversions_TypeConverterchar(value);
         }
 
         private void EnsureInitialized()

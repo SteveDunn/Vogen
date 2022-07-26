@@ -81,10 +81,9 @@ public System.Int64 Value
 
             
 
-            internal_sealed_partial_classConversions_EfCoreValueConverter instance = new internal_sealed_partial_classConversions_EfCoreValueConverter(value);
-
             
-            return instance;
+
+            return new internal_sealed_partial_classConversions_EfCoreValueConverter(value);
         }
 
         public global::System.Boolean Equals(internal_sealed_partial_classConversions_EfCoreValueConverter other)

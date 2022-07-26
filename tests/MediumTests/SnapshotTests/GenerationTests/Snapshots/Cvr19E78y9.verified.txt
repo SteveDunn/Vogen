@@ -94,10 +94,9 @@ public char Value
 
             
 
-            public_sealed_partial_recordConversions_NewtonsoftJson instance = new public_sealed_partial_recordConversions_NewtonsoftJson(value);
-
             
-            return instance;
+
+            return new public_sealed_partial_recordConversions_NewtonsoftJson(value);
         }
 
         private void EnsureInitialized()

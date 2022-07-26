@@ -80,10 +80,9 @@ namespace Whatever
         {
             
 
-            public_partial_structConversions_Noneint instance = new public_partial_structConversions_Noneint(value);
-
             
-            return instance;
+
+            return new public_partial_structConversions_Noneint(value);
         }
 
         public readonly global::System.Boolean Equals(public_partial_structConversions_Noneint other)

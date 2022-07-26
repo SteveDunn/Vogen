@@ -80,10 +80,9 @@ namespace Whatever
         {
             
 
-            public_partial_structConversions_Nonechar instance = new public_partial_structConversions_Nonechar(value);
-
             
-            return instance;
+
+            return new public_partial_structConversions_Nonechar(value);
         }
 
         public readonly global::System.Boolean Equals(public_partial_structConversions_Nonechar other)

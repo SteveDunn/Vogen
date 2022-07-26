@@ -81,10 +81,9 @@ namespace Whatever
         {
             
 
-            public_readonly_partial_structConversions_TypeConverterlong instance = new public_readonly_partial_structConversions_TypeConverterlong(value);
-
             
-            return instance;
+
+            return new public_readonly_partial_structConversions_TypeConverterlong(value);
         }
 
         public readonly global::System.Boolean Equals(public_readonly_partial_structConversions_TypeConverterlong other)

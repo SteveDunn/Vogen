@@ -81,10 +81,9 @@ public System.Int64 Value
 
             
 
-            public_sealed_partial_classConversions_Nonelong instance = new public_sealed_partial_classConversions_Nonelong(value);
-
             
-            return instance;
+
+            return new public_sealed_partial_classConversions_Nonelong(value);
         }
 
         public global::System.Boolean Equals(public_sealed_partial_classConversions_Nonelong other)

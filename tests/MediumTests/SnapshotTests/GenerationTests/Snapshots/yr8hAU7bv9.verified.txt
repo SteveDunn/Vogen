@@ -92,10 +92,9 @@ public byte Value
 
             
 
-            public_partial_recordConversions_Nonebyte instance = new public_partial_recordConversions_Nonebyte(value);
-
             
-            return instance;
+
+            return new public_partial_recordConversions_Nonebyte(value);
         }
 
         private void EnsureInitialized()

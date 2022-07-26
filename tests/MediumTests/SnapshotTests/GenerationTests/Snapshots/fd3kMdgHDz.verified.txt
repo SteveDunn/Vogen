@@ -83,10 +83,9 @@ public System.Byte Value
 
             
 
-            public_sealed_partial_classConversions_NewtonsoftJson instance = new public_sealed_partial_classConversions_NewtonsoftJson(value);
-
             
-            return instance;
+
+            return new public_sealed_partial_classConversions_NewtonsoftJson(value);
         }
 
         public global::System.Boolean Equals(public_sealed_partial_classConversions_NewtonsoftJson other)
