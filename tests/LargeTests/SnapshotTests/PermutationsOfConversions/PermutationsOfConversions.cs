@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Vogen.IntegrationTests.SnapshotTests.PermutationsOfConversions;
+namespace LargeTests.SnapshotTests.PermutationsOfConversions;
 
 public class Permutations : IEnumerable<string>
 {
