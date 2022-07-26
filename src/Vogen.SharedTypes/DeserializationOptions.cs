@@ -27,5 +27,5 @@ public enum DeserializationStrictness
     /// </summary>
     AllowValidAndKnownInstances = AllowKnownInstances | RunMyValidationMethod,
 
-    Default = AllowValidAndKnownInstances,
+    Default = AllowValidAndKnownInstances
 }

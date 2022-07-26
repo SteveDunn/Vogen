@@ -78,10 +78,9 @@ using Vogen;
         {{
             {Util.GenerateNormalizeInputMethodIfNeeded(item)}
 
-            {structName} instance = new {structName}(value);
-
             {Util.GenerateCallToValidateForDeserializing(item)}
-            return instance;
+
+            return new {structName}(value);
         }}
 
         public readonly global::System.Boolean Equals({structName} other)

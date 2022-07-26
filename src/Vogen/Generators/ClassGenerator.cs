@@ -80,10 +80,9 @@ public {itemUnderlyingType} Value
 
             {Util.GenerateNormalizeInputMethodIfNeeded(item)}
 
-            {className} instance = new {className}(value);
-
             {Util.GenerateCallToValidateForDeserializing(item)}
-            return instance;
+
+            return new {className}(value);
         }}
 
         public global::System.Boolean Equals({className} other)

@@ -91,10 +91,9 @@ public {itemUnderlyingType} Value
 
             {Util.GenerateNormalizeInputMethodIfNeeded(item)}
 
-            {className} instance = new {className}(value);
-
             {Util.GenerateCallToValidateForDeserializing(item)}
-            return instance;
+
+            return new {className}(value);
         }}
 
         private void EnsureInitialized()

@@ -61,7 +61,8 @@ public static class Util
         {
             foreach (var eachInstance in workItem.InstanceProperties)
             {
-                sb.AppendLine($"        if(value == {EscapeIfRequired(eachInstance.Name)}.Value) return instance;");
+                string escapedName = EscapeIfRequired(eachInstance.Name);
+                sb.AppendLine($"        if(value == {escapedName}.Value) return {escapedName};");
             }
         }
         
