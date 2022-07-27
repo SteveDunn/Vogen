@@ -16,12 +16,14 @@
             Type? underlyingType = null!,
             Conversions conversions = Conversions.Default,
             Type? throws = null!,
-            Customizations customizations = Customizations.None)
+            Customizations customizations = Customizations.None,
+            DeserializationStrictness deserializationStrictness = DeserializationStrictness.AllowValidAndKnownInstances)
         {
             UnderlyingType = underlyingType;
             Conversions = conversions;
             ValidationExceptionType = throws;
             Customizations = customizations;
+            DeserializationStrictness = deserializationStrictness;
         }
 
         public Type? UnderlyingType { get; }
@@ -31,6 +33,9 @@
         public Conversions Conversions { get; }
         
         public Customizations Customizations { get; }
+
+        public DeserializationStrictness DeserializationStrictness { get; } =
+            DeserializationStrictness.AllowValidAndKnownInstances;
     }
 }
 

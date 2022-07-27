@@ -85,6 +85,19 @@ public bool Value
             return instance;
         }
 
+        // only called internally when something has been deserialized into
+        // its primitive type.
+        private static internal_sealed_partial_record_classConversions_TypeConverterbool Deserialize(bool value)
+        {
+            
+
+            
+
+            
+
+            return new internal_sealed_partial_record_classConversions_TypeConverterbool(value);
+        }
+
         private void EnsureInitialized()
         {
             if (!_isInitialized)
@@ -119,8 +132,8 @@ public bool Value
             {
                 return value switch
                 {
-                    global::System.Boolean boolValue => internal_sealed_partial_record_classConversions_TypeConverterbool.From(boolValue),
-                    global::System.String stringValue when  !global::System.String.IsNullOrEmpty(stringValue) && global::System.Boolean.TryParse(stringValue, out var result) => internal_sealed_partial_record_classConversions_TypeConverterbool.From(result),
+                    global::System.Boolean boolValue => internal_sealed_partial_record_classConversions_TypeConverterbool.Deserialize(boolValue),
+                    global::System.String stringValue when  !global::System.String.IsNullOrEmpty(stringValue) && global::System.Boolean.TryParse(stringValue, out var result) => internal_sealed_partial_record_classConversions_TypeConverterbool.Deserialize(result),
                     _ => base.ConvertFrom(context, culture, value),
                 };
             }

@@ -84,6 +84,17 @@ namespace @class
             return instance;
         }
 
+        // only called internally when something has been deserialized into
+        // its primitive type.
+        private static escapedTestsinternal_partial_record_structConversions_EfCoreValueConverterSystem Deserialize(System.Guid value)
+        {
+            
+
+            
+
+            return new escapedTestsinternal_partial_record_structConversions_EfCoreValueConverterSystem(value);
+        }
+
         private readonly void EnsureInitialized()
         {
             if (!_isInitialized)
@@ -114,7 +125,7 @@ namespace @class
             public EfCoreValueConverter(global::Microsoft.EntityFrameworkCore.Storage.ValueConversion.ConverterMappingHints mappingHints = null)
                 : base(
                     vo => vo.Value,
-                    value => escapedTestsinternal_partial_record_structConversions_EfCoreValueConverterSystem.From(value),
+                    value => escapedTestsinternal_partial_record_structConversions_EfCoreValueConverterSystem.Deserialize(value),
                     mappingHints
                 ) { }
         }

@@ -74,6 +74,17 @@ namespace @class
             return instance;
         }
 
+        // only called internally when something has been deserialized into
+        // its primitive type.
+        private static escapedTestsinternal_readonly_partial_structConversions_EfCoreValueConverter Deserialize(@class.record.@struct.@float.decimal value)
+        {
+            
+
+            
+
+            return new escapedTestsinternal_readonly_partial_structConversions_EfCoreValueConverter(value);
+        }
+
         public readonly global::System.Boolean Equals(escapedTestsinternal_readonly_partial_structConversions_EfCoreValueConverter other)
         {
             // It's possible to create uninitialized instances via converters such as EfCore (HasDefaultValue), which call Equals.
@@ -130,7 +141,7 @@ namespace @class
             public EfCoreValueConverter(global::Microsoft.EntityFrameworkCore.Storage.ValueConversion.ConverterMappingHints mappingHints = null)
                 : base(
                     vo => global::System.Text.Json.JsonSerializer.Serialize(vo.Value, default(global::System.Text.Json.JsonSerializerOptions)),
-                    text => escapedTestsinternal_readonly_partial_structConversions_EfCoreValueConverter.From(global::System.Text.Json.JsonSerializer.Deserialize<@class.@record.@struct.@float.@decimal>(text, default(global::System.Text.Json.JsonSerializerOptions))),
+                    text => escapedTestsinternal_readonly_partial_structConversions_EfCoreValueConverter.Deserialize(global::System.Text.Json.JsonSerializer.Deserialize<@class.@record.@struct.@float.@decimal>(text, default(global::System.Text.Json.JsonSerializerOptions))),
                     mappingHints
                 ) { }
         }

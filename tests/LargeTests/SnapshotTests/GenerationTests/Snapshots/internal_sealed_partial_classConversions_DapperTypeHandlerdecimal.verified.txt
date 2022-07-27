@@ -73,6 +73,19 @@ public System.Decimal Value
             return instance;
         }
 
+        // only called internally when something has been deserialized into
+        // its primitive type.
+        private static internal_sealed_partial_classConversions_DapperTypeHandlerdecimal Deserialize(System.Decimal value)
+        {
+            
+
+            
+
+            
+
+            return new internal_sealed_partial_classConversions_DapperTypeHandlerdecimal(value);
+        }
+
         public global::System.Boolean Equals(internal_sealed_partial_classConversions_DapperTypeHandlerdecimal other)
         {
             if (ReferenceEquals(null, other))
@@ -170,9 +183,9 @@ public System.Decimal Value
             {
                 return value switch
                 {
-                    global::System.Int32 intValue => internal_sealed_partial_classConversions_DapperTypeHandlerdecimal.From(intValue),
-                    global::System.Int64 longValue when longValue < global::System.Int32.MaxValue => internal_sealed_partial_classConversions_DapperTypeHandlerdecimal.From((global::System.Int32)longValue),
-                    global::System.String stringValue when !global::System.String.IsNullOrEmpty(stringValue) && global::System.Decimal.TryParse(stringValue, out var result) => internal_sealed_partial_classConversions_DapperTypeHandlerdecimal.From(result),
+                    global::System.Int32 intValue => internal_sealed_partial_classConversions_DapperTypeHandlerdecimal.Deserialize(intValue),
+                    global::System.Int64 longValue when longValue < global::System.Int32.MaxValue => internal_sealed_partial_classConversions_DapperTypeHandlerdecimal.Deserialize((global::System.Int32)longValue),
+                    global::System.String stringValue when !global::System.String.IsNullOrEmpty(stringValue) && global::System.Decimal.TryParse(stringValue, out var result) => internal_sealed_partial_classConversions_DapperTypeHandlerdecimal.Deserialize(result),
                     _ => throw new global::System.InvalidCastException($"Unable to cast object of type {value.GetType()} to internal_sealed_partial_classConversions_DapperTypeHandlerdecimal"),
                 };
             }

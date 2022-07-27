@@ -74,6 +74,17 @@ namespace Whatever
             return instance;
         }
 
+        // only called internally when something has been deserialized into
+        // its primitive type.
+        private static NoConverterShortVo Deserialize(short value)
+        {
+            
+
+            
+
+            return new NoConverterShortVo(value);
+        }
+
         public readonly global::System.Boolean Equals(NoConverterShortVo other)
         {
             // It's possible to create uninitialized instances via converters such as EfCore (HasDefaultValue), which call Equals.

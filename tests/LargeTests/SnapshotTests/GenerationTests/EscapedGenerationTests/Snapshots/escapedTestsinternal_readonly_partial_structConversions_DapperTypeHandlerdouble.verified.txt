@@ -74,6 +74,17 @@ namespace @class
             return instance;
         }
 
+        // only called internally when something has been deserialized into
+        // its primitive type.
+        private static escapedTestsinternal_readonly_partial_structConversions_DapperTypeHandlerdouble Deserialize(double value)
+        {
+            
+
+            
+
+            return new escapedTestsinternal_readonly_partial_structConversions_DapperTypeHandlerdouble(value);
+        }
+
         public readonly global::System.Boolean Equals(escapedTestsinternal_readonly_partial_structConversions_DapperTypeHandlerdouble other)
         {
             // It's possible to create uninitialized instances via converters such as EfCore (HasDefaultValue), which call Equals.
@@ -135,10 +146,10 @@ namespace @class
             {
                 return value switch
                 {
-                    global::System.Double doubleValue => escapedTestsinternal_readonly_partial_structConversions_DapperTypeHandlerdouble.From(doubleValue),
-                    global::System.Int32 intValue => escapedTestsinternal_readonly_partial_structConversions_DapperTypeHandlerdouble.From(intValue),
-                    global::System.Int64 longValue when longValue < global::System.Double.MaxValue => escapedTestsinternal_readonly_partial_structConversions_DapperTypeHandlerdouble.From((global::System.Double)longValue),
-                    global::System.String stringValue when !global::System.String.IsNullOrEmpty(stringValue) && global::System.Double.TryParse(stringValue, out var result) => escapedTestsinternal_readonly_partial_structConversions_DapperTypeHandlerdouble.From(result),
+                    global::System.Double doubleValue => escapedTestsinternal_readonly_partial_structConversions_DapperTypeHandlerdouble.Deserialize(doubleValue),
+                    global::System.Int32 intValue => escapedTestsinternal_readonly_partial_structConversions_DapperTypeHandlerdouble.Deserialize(intValue),
+                    global::System.Int64 longValue when longValue < global::System.Double.MaxValue => escapedTestsinternal_readonly_partial_structConversions_DapperTypeHandlerdouble.Deserialize((global::System.Double)longValue),
+                    global::System.String stringValue when !global::System.String.IsNullOrEmpty(stringValue) && global::System.Double.TryParse(stringValue, out var result) => escapedTestsinternal_readonly_partial_structConversions_DapperTypeHandlerdouble.Deserialize(result),
                     _ => throw new global::System.InvalidCastException($"Unable to cast object of type {value.GetType()} to escapedTestsinternal_readonly_partial_structConversions_DapperTypeHandlerdouble"),
                 };
             }

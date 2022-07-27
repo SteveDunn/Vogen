@@ -73,6 +73,19 @@ public System.Byte Value
             return instance;
         }
 
+        // only called internally when something has been deserialized into
+        // its primitive type.
+        private static escapedTestspublic_partial_classConversions_EfCoreValueConverterbyte Deserialize(System.Byte value)
+        {
+            
+
+            
+
+            
+
+            return new escapedTestspublic_partial_classConversions_EfCoreValueConverterbyte(value);
+        }
+
         public global::System.Boolean Equals(escapedTestspublic_partial_classConversions_EfCoreValueConverterbyte other)
         {
             if (ReferenceEquals(null, other))
@@ -165,7 +178,7 @@ public System.Byte Value
             public EfCoreValueConverter(global::Microsoft.EntityFrameworkCore.Storage.ValueConversion.ConverterMappingHints mappingHints = null)
                 : base(
                     vo => vo.Value,
-                    value => escapedTestspublic_partial_classConversions_EfCoreValueConverterbyte.From(value),
+                    value => escapedTestspublic_partial_classConversions_EfCoreValueConverterbyte.Deserialize(value),
                     mappingHints
                 ) { }
         }

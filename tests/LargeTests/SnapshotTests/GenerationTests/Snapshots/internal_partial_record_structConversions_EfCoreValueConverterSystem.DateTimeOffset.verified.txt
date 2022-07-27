@@ -84,6 +84,17 @@ namespace Whatever
             return instance;
         }
 
+        // only called internally when something has been deserialized into
+        // its primitive type.
+        private static internal_partial_record_structConversions_EfCoreValueConverterSystem Deserialize(System.DateTimeOffset value)
+        {
+            
+
+            
+
+            return new internal_partial_record_structConversions_EfCoreValueConverterSystem(value);
+        }
+
         private readonly void EnsureInitialized()
         {
             if (!_isInitialized)
@@ -114,7 +125,7 @@ namespace Whatever
             public EfCoreValueConverter(global::Microsoft.EntityFrameworkCore.Storage.ValueConversion.ConverterMappingHints mappingHints = null)
                 : base(
                     vo => vo.Value,
-                    value => internal_partial_record_structConversions_EfCoreValueConverterSystem.From(value),
+                    value => internal_partial_record_structConversions_EfCoreValueConverterSystem.Deserialize(value),
                     mappingHints
                 ) { }
         }

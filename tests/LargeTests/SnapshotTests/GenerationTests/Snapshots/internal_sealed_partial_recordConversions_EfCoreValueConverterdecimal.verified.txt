@@ -84,6 +84,19 @@ public decimal Value
             return instance;
         }
 
+        // only called internally when something has been deserialized into
+        // its primitive type.
+        private static internal_sealed_partial_recordConversions_EfCoreValueConverterdecimal Deserialize(decimal value)
+        {
+            
+
+            
+
+            
+
+            return new internal_sealed_partial_recordConversions_EfCoreValueConverterdecimal(value);
+        }
+
         private void EnsureInitialized()
         {
             if (!_isInitialized)
@@ -115,7 +128,7 @@ public decimal Value
             public EfCoreValueConverter(global::Microsoft.EntityFrameworkCore.Storage.ValueConversion.ConverterMappingHints mappingHints = null)
                 : base(
                     vo => vo.Value,
-                    value => internal_sealed_partial_recordConversions_EfCoreValueConverterdecimal.From(value),
+                    value => internal_sealed_partial_recordConversions_EfCoreValueConverterdecimal.Deserialize(value),
                     mappingHints
                 ) { }
         }

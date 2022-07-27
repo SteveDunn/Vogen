@@ -84,6 +84,17 @@ namespace Whatever
             return instance;
         }
 
+        // only called internally when something has been deserialized into
+        // its primitive type.
+        private static public_readonly_partial_record_structConversions_NoneSystem Deserialize(System.DateTimeOffset value)
+        {
+            
+
+            
+
+            return new public_readonly_partial_record_structConversions_NoneSystem(value);
+        }
+
         private readonly void EnsureInitialized()
         {
             if (!_isInitialized)

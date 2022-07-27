@@ -86,6 +86,17 @@ namespace @class
             return instance;
         }
 
+        // only called internally when something has been deserialized into
+        // its primitive type.
+        private static escapedTestsinternal_readonly_partial_record_structConversions_NewtonsoftJson Deserialize(double value)
+        {
+            
+
+            
+
+            return new escapedTestsinternal_readonly_partial_record_structConversions_NewtonsoftJson(value);
+        }
+
         private readonly void EnsureInitialized()
         {
             if (!_isInitialized)
@@ -110,7 +121,7 @@ namespace @class
         {
             public override escapedTestsinternal_readonly_partial_record_structConversions_NewtonsoftJson Read(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {
-                return escapedTestsinternal_readonly_partial_record_structConversions_NewtonsoftJson.From(reader.GetDouble());
+                return escapedTestsinternal_readonly_partial_record_structConversions_NewtonsoftJson.Deserialize(reader.GetDouble());
             }
 
             public override void Write(System.Text.Json.Utf8JsonWriter writer, escapedTestsinternal_readonly_partial_record_structConversions_NewtonsoftJson value, global::System.Text.Json.JsonSerializerOptions options)
@@ -135,7 +146,7 @@ namespace @class
             public override object ReadJson(Newtonsoft.Json.JsonReader reader, System.Type objectType, object existingValue, Newtonsoft.Json.JsonSerializer serializer)
             {
                 var result = serializer.Deserialize<global::System.Double?>(reader);
-                return result.HasValue ? escapedTestsinternal_readonly_partial_record_structConversions_NewtonsoftJson.From(result.Value) : null;
+                return result.HasValue ? escapedTestsinternal_readonly_partial_record_structConversions_NewtonsoftJson.Deserialize(result.Value) : null;
             }
         }
 

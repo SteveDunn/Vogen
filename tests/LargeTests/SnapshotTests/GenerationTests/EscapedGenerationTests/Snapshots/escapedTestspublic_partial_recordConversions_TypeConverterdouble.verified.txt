@@ -85,6 +85,19 @@ public double Value
             return instance;
         }
 
+        // only called internally when something has been deserialized into
+        // its primitive type.
+        private static escapedTestspublic_partial_recordConversions_TypeConverterdouble Deserialize(double value)
+        {
+            
+
+            
+
+            
+
+            return new escapedTestspublic_partial_recordConversions_TypeConverterdouble(value);
+        }
+
         private void EnsureInitialized()
         {
             if (!_isInitialized)
@@ -119,9 +132,9 @@ public double Value
             {
                 return value switch
                 {
-                    global::System.Double doubleValue => escapedTestspublic_partial_recordConversions_TypeConverterdouble.From(doubleValue),
-                    global::System.Int64 longValue => escapedTestspublic_partial_recordConversions_TypeConverterdouble.From((global::System.Double)longValue),
-                    global::System.String stringValue when !global::System.String.IsNullOrEmpty(stringValue) && global::System.Double.TryParse(stringValue, out var result) => escapedTestspublic_partial_recordConversions_TypeConverterdouble.From(result),
+                    global::System.Double doubleValue => escapedTestspublic_partial_recordConversions_TypeConverterdouble.Deserialize(doubleValue),
+                    global::System.Int64 longValue => escapedTestspublic_partial_recordConversions_TypeConverterdouble.Deserialize((global::System.Double)longValue),
+                    global::System.String stringValue when !global::System.String.IsNullOrEmpty(stringValue) && global::System.Double.TryParse(stringValue, out var result) => escapedTestspublic_partial_recordConversions_TypeConverterdouble.Deserialize(result),
                     _ => base.ConvertFrom(context, culture, value),
                 };
             }

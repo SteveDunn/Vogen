@@ -81,6 +81,25 @@ namespace @double
             return instance;
         }
 
+        // only called internally when something has been deserialized into
+        // its primitive type.
+        private static @class Deserialize(global::System.Int32 value)
+        {
+            
+
+                    if(value == @class.Value) return @class;
+        if(value == @event.Value) return @event;
+        if(value == @void.Value) return @void;
+var validation = @class.validate(value);
+            if (validation != Vogen.Validation.Ok)
+            {
+                throw new global::Vogen.ValueObjectValidationException(validation.ErrorMessage);
+            }
+
+
+            return new @class(value);
+        }
+
         public readonly global::System.Boolean Equals(@class other)
         {
             // It's possible to create uninitialized instances via converters such as EfCore (HasDefaultValue), which call Equals.
@@ -143,7 +162,7 @@ public static @class @void = new @class(666);
         {
             public override @class Read(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {
-                return @class.From(reader.GetInt32());
+                return @class.Deserialize(reader.GetInt32());
             }
 
             public override void Write(System.Text.Json.Utf8JsonWriter writer, @class value, global::System.Text.Json.JsonSerializerOptions options)
@@ -164,8 +183,8 @@ public static @class @void = new @class(666);
             {
                 return value switch
                 {
-                    global::System.Int32 intValue => @class.From(intValue),
-                    global::System.String stringValue when !global::System.String.IsNullOrEmpty(stringValue) && global::System.Int32.TryParse(stringValue, out var result) => @class.From(result),
+                    global::System.Int32 intValue => @class.Deserialize(intValue),
+                    global::System.String stringValue when !global::System.String.IsNullOrEmpty(stringValue) && global::System.Int32.TryParse(stringValue, out var result) => @class.Deserialize(result),
                     _ => base.ConvertFrom(context, culture, value),
                 };
             }

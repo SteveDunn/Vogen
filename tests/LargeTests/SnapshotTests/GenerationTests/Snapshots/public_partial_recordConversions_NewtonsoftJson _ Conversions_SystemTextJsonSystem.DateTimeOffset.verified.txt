@@ -86,6 +86,19 @@ public System.DateTimeOffset Value
             return instance;
         }
 
+        // only called internally when something has been deserialized into
+        // its primitive type.
+        private static public_partial_recordConversions_NewtonsoftJson Deserialize(System.DateTimeOffset value)
+        {
+            
+
+            
+
+            
+
+            return new public_partial_recordConversions_NewtonsoftJson(value);
+        }
+
         private void EnsureInitialized()
         {
             if (!_isInitialized)
@@ -111,7 +124,7 @@ public System.DateTimeOffset Value
         {
             public override public_partial_recordConversions_NewtonsoftJson Read(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {
-                return public_partial_recordConversions_NewtonsoftJson.From(reader.GetDateTimeOffset());
+                return public_partial_recordConversions_NewtonsoftJson.Deserialize(reader.GetDateTimeOffset());
             }
 
             public override void Write(System.Text.Json.Utf8JsonWriter writer, public_partial_recordConversions_NewtonsoftJson value, global::System.Text.Json.JsonSerializerOptions options)
@@ -136,7 +149,7 @@ public System.DateTimeOffset Value
             public override object ReadJson(Newtonsoft.Json.JsonReader reader, System.Type objectType, object existingValue, Newtonsoft.Json.JsonSerializer serializer)
             {
                 var dt = serializer.Deserialize<global::System.DateTimeOffset?>(reader);
-                return dt.HasValue ? public_partial_recordConversions_NewtonsoftJson.From(dt.Value) : null;
+                return dt.HasValue ? public_partial_recordConversions_NewtonsoftJson.Deserialize(dt.Value) : null;
             }
         }
 

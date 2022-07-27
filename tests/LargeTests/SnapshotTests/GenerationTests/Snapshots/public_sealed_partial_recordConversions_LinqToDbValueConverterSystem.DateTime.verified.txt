@@ -84,6 +84,19 @@ public System.DateTime Value
             return instance;
         }
 
+        // only called internally when something has been deserialized into
+        // its primitive type.
+        private static public_sealed_partial_recordConversions_LinqToDbValueConverterSystem Deserialize(System.DateTime value)
+        {
+            
+
+            
+
+            
+
+            return new public_sealed_partial_recordConversions_LinqToDbValueConverterSystem(value);
+        }
+
         private void EnsureInitialized()
         {
             if (!_isInitialized)
@@ -115,7 +128,7 @@ public System.DateTime Value
             public LinqToDbValueConverter()
                 : base(
                       v => v.Value,
-                      p => public_sealed_partial_recordConversions_LinqToDbValueConverterSystem.From(p),
+                      p => public_sealed_partial_recordConversions_LinqToDbValueConverterSystem.Deserialize(p),
                       handlesNulls: false)
             { }
         }

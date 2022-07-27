@@ -84,6 +84,19 @@ public decimal Value
             return instance;
         }
 
+        // only called internally when something has been deserialized into
+        // its primitive type.
+        private static stj_number_as_string_public_partial_recordConversions_Nonedecimal_customized Deserialize(decimal value)
+        {
+            
+
+            
+
+            
+
+            return new stj_number_as_string_public_partial_recordConversions_Nonedecimal_customized(value);
+        }
+
         private void EnsureInitialized()
         {
             if (!_isInitialized)

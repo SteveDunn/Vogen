@@ -73,6 +73,19 @@ public System.DateTime Value
             return instance;
         }
 
+        // only called internally when something has been deserialized into
+        // its primitive type.
+        private static public_partial_classConversions_EfCoreValueConverterSystem Deserialize(System.DateTime value)
+        {
+            
+
+            
+
+            
+
+            return new public_partial_classConversions_EfCoreValueConverterSystem(value);
+        }
+
         public global::System.Boolean Equals(public_partial_classConversions_EfCoreValueConverterSystem other)
         {
             if (ReferenceEquals(null, other))
@@ -165,7 +178,7 @@ public System.DateTime Value
             public EfCoreValueConverter(global::Microsoft.EntityFrameworkCore.Storage.ValueConversion.ConverterMappingHints mappingHints = null)
                 : base(
                     vo => vo.Value,
-                    value => public_partial_classConversions_EfCoreValueConverterSystem.From(value),
+                    value => public_partial_classConversions_EfCoreValueConverterSystem.Deserialize(value),
                     mappingHints
                 ) { }
         }

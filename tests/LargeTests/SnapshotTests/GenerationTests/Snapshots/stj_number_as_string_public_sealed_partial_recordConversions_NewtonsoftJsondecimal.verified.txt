@@ -85,6 +85,19 @@ public decimal Value
             return instance;
         }
 
+        // only called internally when something has been deserialized into
+        // its primitive type.
+        private static stj_number_as_string_public_sealed_partial_recordConversions_NewtonsoftJsondecimal Deserialize(decimal value)
+        {
+            
+
+            
+
+            
+
+            return new stj_number_as_string_public_sealed_partial_recordConversions_NewtonsoftJsondecimal(value);
+        }
+
         private void EnsureInitialized()
         {
             if (!_isInitialized)
@@ -123,7 +136,7 @@ public decimal Value
             public override object ReadJson(Newtonsoft.Json.JsonReader reader, System.Type objectType, object existingValue, Newtonsoft.Json.JsonSerializer serializer)
             {
                 var result = serializer.Deserialize<global::System.Decimal?>(reader);
-                return result.HasValue ? stj_number_as_string_public_sealed_partial_recordConversions_NewtonsoftJsondecimal.From(result.Value) : null;
+                return result.HasValue ? stj_number_as_string_public_sealed_partial_recordConversions_NewtonsoftJsondecimal.Deserialize(result.Value) : null;
             }
         }
 

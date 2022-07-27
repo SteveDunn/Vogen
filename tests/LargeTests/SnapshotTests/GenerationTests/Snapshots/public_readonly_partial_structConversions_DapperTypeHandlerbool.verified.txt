@@ -74,6 +74,17 @@ namespace Whatever
             return instance;
         }
 
+        // only called internally when something has been deserialized into
+        // its primitive type.
+        private static public_readonly_partial_structConversions_DapperTypeHandlerbool Deserialize(bool value)
+        {
+            
+
+            
+
+            return new public_readonly_partial_structConversions_DapperTypeHandlerbool(value);
+        }
+
         public readonly global::System.Boolean Equals(public_readonly_partial_structConversions_DapperTypeHandlerbool other)
         {
             // It's possible to create uninitialized instances via converters such as EfCore (HasDefaultValue), which call Equals.
@@ -134,10 +145,10 @@ namespace Whatever
             {
                 return value switch
                 {
-                    global::System.Boolean boolValue => public_readonly_partial_structConversions_DapperTypeHandlerbool.From(boolValue),
-                    global::System.Int64 longValue when longValue is 0 => public_readonly_partial_structConversions_DapperTypeHandlerbool.From(false),
-                    global::System.Int64 longValue when longValue is 1 => public_readonly_partial_structConversions_DapperTypeHandlerbool.From(true),
-                    global::System.String stringValue when !global::System.String.IsNullOrEmpty(stringValue) && global::System.Boolean.TryParse(stringValue, out var result) => public_readonly_partial_structConversions_DapperTypeHandlerbool.From(result),
+                    global::System.Boolean boolValue => public_readonly_partial_structConversions_DapperTypeHandlerbool.Deserialize(boolValue),
+                    global::System.Int64 longValue when longValue is 0 => public_readonly_partial_structConversions_DapperTypeHandlerbool.Deserialize(false),
+                    global::System.Int64 longValue when longValue is 1 => public_readonly_partial_structConversions_DapperTypeHandlerbool.Deserialize(true),
+                    global::System.String stringValue when !global::System.String.IsNullOrEmpty(stringValue) && global::System.Boolean.TryParse(stringValue, out var result) => public_readonly_partial_structConversions_DapperTypeHandlerbool.Deserialize(result),
                     _ => throw new global::System.InvalidCastException($"Unable to cast object of type {value.GetType()} to public_readonly_partial_structConversions_DapperTypeHandlerbool"),
                 };
             }

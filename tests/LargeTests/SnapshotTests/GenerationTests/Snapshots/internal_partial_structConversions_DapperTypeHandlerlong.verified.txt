@@ -74,6 +74,17 @@ namespace Whatever
             return instance;
         }
 
+        // only called internally when something has been deserialized into
+        // its primitive type.
+        private static internal_partial_structConversions_DapperTypeHandlerlong Deserialize(long value)
+        {
+            
+
+            
+
+            return new internal_partial_structConversions_DapperTypeHandlerlong(value);
+        }
+
         public readonly global::System.Boolean Equals(internal_partial_structConversions_DapperTypeHandlerlong other)
         {
             // It's possible to create uninitialized instances via converters such as EfCore (HasDefaultValue), which call Equals.
@@ -135,10 +146,10 @@ namespace Whatever
             {
                 return value switch
                 {
-                    global::System.Int64 longValue => internal_partial_structConversions_DapperTypeHandlerlong.From(longValue),
-                    global::System.Int32 intValue => internal_partial_structConversions_DapperTypeHandlerlong.From(intValue),
-                    global::System.Int16 shortValue => internal_partial_structConversions_DapperTypeHandlerlong.From(shortValue),
-                    global::System.String stringValue when  !global::System.String.IsNullOrEmpty(stringValue) && long.TryParse(stringValue, out var result) => internal_partial_structConversions_DapperTypeHandlerlong.From(result),
+                    global::System.Int64 longValue => internal_partial_structConversions_DapperTypeHandlerlong.Deserialize(longValue),
+                    global::System.Int32 intValue => internal_partial_structConversions_DapperTypeHandlerlong.Deserialize(intValue),
+                    global::System.Int16 shortValue => internal_partial_structConversions_DapperTypeHandlerlong.Deserialize(shortValue),
+                    global::System.String stringValue when  !global::System.String.IsNullOrEmpty(stringValue) && long.TryParse(stringValue, out var result) => internal_partial_structConversions_DapperTypeHandlerlong.Deserialize(result),
                     _ => throw new global::System.InvalidCastException($"Unable to cast object of type {value.GetType()} to internal_partial_structConversions_DapperTypeHandlerlong"),
                 };
             }

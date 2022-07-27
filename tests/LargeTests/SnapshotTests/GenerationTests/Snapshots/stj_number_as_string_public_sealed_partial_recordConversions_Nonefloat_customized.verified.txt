@@ -84,6 +84,19 @@ public float Value
             return instance;
         }
 
+        // only called internally when something has been deserialized into
+        // its primitive type.
+        private static stj_number_as_string_public_sealed_partial_recordConversions_Nonefloat_customized Deserialize(float value)
+        {
+            
+
+            
+
+            
+
+            return new stj_number_as_string_public_sealed_partial_recordConversions_Nonefloat_customized(value);
+        }
+
         private void EnsureInitialized()
         {
             if (!_isInitialized)

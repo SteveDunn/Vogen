@@ -82,6 +82,17 @@ using Vogen;
             return instance;
         }}
 
+        // only called internally when something has been deserialized into
+        // its primitive type.
+        private static {structName} Deserialize({itemUnderlyingType} value)
+        {{
+            {Util.GenerateNormalizeInputMethodIfNeeded(item)}
+
+            {Util.GenerateCallToValidateForDeserializing(item)}
+
+            return new {structName}(value);
+        }}
+
         private readonly void EnsureInitialized()
         {{
             if (!_isInitialized)

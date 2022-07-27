@@ -73,6 +73,19 @@ public System.Double Value
             return instance;
         }
 
+        // only called internally when something has been deserialized into
+        // its primitive type.
+        private static internal_sealed_partial_classConversions_DapperTypeHandlerdouble Deserialize(System.Double value)
+        {
+            
+
+            
+
+            
+
+            return new internal_sealed_partial_classConversions_DapperTypeHandlerdouble(value);
+        }
+
         public global::System.Boolean Equals(internal_sealed_partial_classConversions_DapperTypeHandlerdouble other)
         {
             if (ReferenceEquals(null, other))
@@ -170,10 +183,10 @@ public System.Double Value
             {
                 return value switch
                 {
-                    global::System.Double doubleValue => internal_sealed_partial_classConversions_DapperTypeHandlerdouble.From(doubleValue),
-                    global::System.Int32 intValue => internal_sealed_partial_classConversions_DapperTypeHandlerdouble.From(intValue),
-                    global::System.Int64 longValue when longValue < global::System.Double.MaxValue => internal_sealed_partial_classConversions_DapperTypeHandlerdouble.From((global::System.Double)longValue),
-                    global::System.String stringValue when !global::System.String.IsNullOrEmpty(stringValue) && global::System.Double.TryParse(stringValue, out var result) => internal_sealed_partial_classConversions_DapperTypeHandlerdouble.From(result),
+                    global::System.Double doubleValue => internal_sealed_partial_classConversions_DapperTypeHandlerdouble.Deserialize(doubleValue),
+                    global::System.Int32 intValue => internal_sealed_partial_classConversions_DapperTypeHandlerdouble.Deserialize(intValue),
+                    global::System.Int64 longValue when longValue < global::System.Double.MaxValue => internal_sealed_partial_classConversions_DapperTypeHandlerdouble.Deserialize((global::System.Double)longValue),
+                    global::System.String stringValue when !global::System.String.IsNullOrEmpty(stringValue) && global::System.Double.TryParse(stringValue, out var result) => internal_sealed_partial_classConversions_DapperTypeHandlerdouble.Deserialize(result),
                     _ => throw new global::System.InvalidCastException($"Unable to cast object of type {value.GetType()} to internal_sealed_partial_classConversions_DapperTypeHandlerdouble"),
                 };
             }

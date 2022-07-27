@@ -75,6 +75,19 @@ public @class.@record.@struct.@float.@decimal Value
             return instance;
         }
 
+        // only called internally when something has been deserialized into
+        // its primitive type.
+        private static escapedTestspublic_sealed_partial_classConversions_NewtonsoftJson Deserialize(@class.@record.@struct.@float.@decimal value)
+        {
+            
+
+            
+
+            
+
+            return new escapedTestspublic_sealed_partial_classConversions_NewtonsoftJson(value);
+        }
+
         public global::System.Boolean Equals(escapedTestspublic_sealed_partial_classConversions_NewtonsoftJson other)
         {
             if (ReferenceEquals(null, other))
@@ -162,7 +175,7 @@ public @class.@record.@struct.@float.@decimal Value
             public override escapedTestspublic_sealed_partial_classConversions_NewtonsoftJson Read(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {
                 var primitive = global::System.Text.Json.JsonSerializer.Deserialize<@class.@record.@struct.@float.@decimal>(ref reader, options);
-                return escapedTestspublic_sealed_partial_classConversions_NewtonsoftJson.From(primitive);
+                return escapedTestspublic_sealed_partial_classConversions_NewtonsoftJson.Deserialize(primitive);
             }
 
             public override void Write(System.Text.Json.Utf8JsonWriter writer, escapedTestspublic_sealed_partial_classConversions_NewtonsoftJson value, global::System.Text.Json.JsonSerializerOptions options)
@@ -186,7 +199,7 @@ public @class.@record.@struct.@float.@decimal Value
 
             public override object ReadJson(Newtonsoft.Json.JsonReader reader, System.Type objectType, object existingValue, Newtonsoft.Json.JsonSerializer serializer)
             {
-                return escapedTestspublic_sealed_partial_classConversions_NewtonsoftJson.From(serializer.Deserialize<@class.@record.@struct.@float.@decimal>(reader));
+                return escapedTestspublic_sealed_partial_classConversions_NewtonsoftJson.Deserialize(serializer.Deserialize<@class.@record.@struct.@float.@decimal>(reader));
             }
         }
 

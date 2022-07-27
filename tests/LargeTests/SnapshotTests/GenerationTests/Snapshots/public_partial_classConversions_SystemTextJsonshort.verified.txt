@@ -74,6 +74,19 @@ public System.Int16 Value
             return instance;
         }
 
+        // only called internally when something has been deserialized into
+        // its primitive type.
+        private static public_partial_classConversions_SystemTextJsonshort Deserialize(System.Int16 value)
+        {
+            
+
+            
+
+            
+
+            return new public_partial_classConversions_SystemTextJsonshort(value);
+        }
+
         public global::System.Boolean Equals(public_partial_classConversions_SystemTextJsonshort other)
         {
             if (ReferenceEquals(null, other))
@@ -160,7 +173,7 @@ public System.Int16 Value
         {
             public override public_partial_classConversions_SystemTextJsonshort Read(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {
-                return public_partial_classConversions_SystemTextJsonshort.From(reader.GetInt16());
+                return public_partial_classConversions_SystemTextJsonshort.Deserialize(reader.GetInt16());
             }
 
             public override void Write(System.Text.Json.Utf8JsonWriter writer, public_partial_classConversions_SystemTextJsonshort value, global::System.Text.Json.JsonSerializerOptions options)

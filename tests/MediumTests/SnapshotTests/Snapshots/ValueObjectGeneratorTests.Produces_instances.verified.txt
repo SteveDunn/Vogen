@@ -76,6 +76,22 @@ namespace Whatever
             return instance;
         }
 
+        // only called internally when something has been deserialized into
+        // its primitive type.
+        private static CustomerId Deserialize(int value)
+        {
+            
+
+                    if(value == Unspecified.Value) return Unspecified;
+        if(value == Unspecified1.Value) return Unspecified1;
+        if(value == Unspecified2.Value) return Unspecified2;
+        if(value == Unspecified3.Value) return Unspecified3;
+        if(value == Cust42.Value) return Cust42;
+
+
+            return new CustomerId(value);
+        }
+
         public readonly global::System.Boolean Equals(CustomerId other)
         {
             // It's possible to create uninitialized instances via converters such as EfCore (HasDefaultValue), which call Equals.
@@ -152,7 +168,7 @@ public static CustomerId Cust42 = new CustomerId(42);
         {
             public override CustomerId Read(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {
-                return CustomerId.From(reader.GetInt32());
+                return CustomerId.Deserialize(reader.GetInt32());
             }
 
             public override void Write(System.Text.Json.Utf8JsonWriter writer, CustomerId value, global::System.Text.Json.JsonSerializerOptions options)
@@ -173,8 +189,8 @@ public static CustomerId Cust42 = new CustomerId(42);
             {
                 return value switch
                 {
-                    global::System.Int32 intValue => CustomerId.From(intValue),
-                    global::System.String stringValue when !global::System.String.IsNullOrEmpty(stringValue) && global::System.Int32.TryParse(stringValue, out var result) => CustomerId.From(result),
+                    global::System.Int32 intValue => CustomerId.Deserialize(intValue),
+                    global::System.String stringValue when !global::System.String.IsNullOrEmpty(stringValue) && global::System.Int32.TryParse(stringValue, out var result) => CustomerId.Deserialize(result),
                     _ => base.ConvertFrom(context, culture, value),
                 };
             }

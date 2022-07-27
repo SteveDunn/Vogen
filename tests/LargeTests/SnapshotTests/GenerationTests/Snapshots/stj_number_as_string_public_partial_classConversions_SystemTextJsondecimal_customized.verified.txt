@@ -74,6 +74,19 @@ public System.Decimal Value
             return instance;
         }
 
+        // only called internally when something has been deserialized into
+        // its primitive type.
+        private static stj_number_as_string_public_partial_classConversions_SystemTextJsondecimal_customized Deserialize(System.Decimal value)
+        {
+            
+
+            
+
+            
+
+            return new stj_number_as_string_public_partial_classConversions_SystemTextJsondecimal_customized(value);
+        }
+
         public global::System.Boolean Equals(stj_number_as_string_public_partial_classConversions_SystemTextJsondecimal_customized other)
         {
             if (ReferenceEquals(null, other))
@@ -160,7 +173,7 @@ public System.Decimal Value
         {
             public override stj_number_as_string_public_partial_classConversions_SystemTextJsondecimal_customized Read(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {
-                return stj_number_as_string_public_partial_classConversions_SystemTextJsondecimal_customized.From(global::System.Decimal.Parse(reader.GetString(), global::System.Globalization.NumberStyles.Any, global::System.Globalization.CultureInfo.InvariantCulture));
+                return stj_number_as_string_public_partial_classConversions_SystemTextJsondecimal_customized.Deserialize(global::System.Decimal.Parse(reader.GetString(), global::System.Globalization.NumberStyles.Any, global::System.Globalization.CultureInfo.InvariantCulture));
             }
 
             public override void Write(System.Text.Json.Utf8JsonWriter writer, stj_number_as_string_public_partial_classConversions_SystemTextJsondecimal_customized value, global::System.Text.Json.JsonSerializerOptions options)

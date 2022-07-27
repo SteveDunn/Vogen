@@ -73,6 +73,19 @@ public System.Double Value
             return instance;
         }
 
+        // only called internally when something has been deserialized into
+        // its primitive type.
+        private static public_sealed_partial_classConversions_EfCoreValueConverterdouble Deserialize(System.Double value)
+        {
+            
+
+            
+
+            
+
+            return new public_sealed_partial_classConversions_EfCoreValueConverterdouble(value);
+        }
+
         public global::System.Boolean Equals(public_sealed_partial_classConversions_EfCoreValueConverterdouble other)
         {
             if (ReferenceEquals(null, other))
@@ -165,7 +178,7 @@ public System.Double Value
             public EfCoreValueConverter(global::Microsoft.EntityFrameworkCore.Storage.ValueConversion.ConverterMappingHints mappingHints = null)
                 : base(
                     vo => vo.Value,
-                    value => public_sealed_partial_classConversions_EfCoreValueConverterdouble.From(value),
+                    value => public_sealed_partial_classConversions_EfCoreValueConverterdouble.Deserialize(value),
                     mappingHints
                 ) { }
         }

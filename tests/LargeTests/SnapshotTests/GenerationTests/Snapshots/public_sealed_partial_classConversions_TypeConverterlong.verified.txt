@@ -74,6 +74,19 @@ public System.Int64 Value
             return instance;
         }
 
+        // only called internally when something has been deserialized into
+        // its primitive type.
+        private static public_sealed_partial_classConversions_TypeConverterlong Deserialize(System.Int64 value)
+        {
+            
+
+            
+
+            
+
+            return new public_sealed_partial_classConversions_TypeConverterlong(value);
+        }
+
         public global::System.Boolean Equals(public_sealed_partial_classConversions_TypeConverterlong other)
         {
             if (ReferenceEquals(null, other))
@@ -169,8 +182,8 @@ public System.Int64 Value
             {
                 return value switch
                 {
-                    global::System.Int64 longValue => public_sealed_partial_classConversions_TypeConverterlong.From(longValue),
-                    global::System.String stringValue when  !global::System.String.IsNullOrEmpty(stringValue) && long.TryParse(stringValue, out var result) => public_sealed_partial_classConversions_TypeConverterlong.From(result),
+                    global::System.Int64 longValue => public_sealed_partial_classConversions_TypeConverterlong.Deserialize(longValue),
+                    global::System.String stringValue when  !global::System.String.IsNullOrEmpty(stringValue) && long.TryParse(stringValue, out var result) => public_sealed_partial_classConversions_TypeConverterlong.Deserialize(result),
                     _ => base.ConvertFrom(context, culture, value),
                 };
             }

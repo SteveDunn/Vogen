@@ -73,6 +73,19 @@ public System.DateTime Value
             return instance;
         }
 
+        // only called internally when something has been deserialized into
+        // its primitive type.
+        private static internal_partial_classConversions_EfCoreValueConverter Deserialize(System.DateTime value)
+        {
+            
+
+            
+
+            
+
+            return new internal_partial_classConversions_EfCoreValueConverter(value);
+        }
+
         public global::System.Boolean Equals(internal_partial_classConversions_EfCoreValueConverter other)
         {
             if (ReferenceEquals(null, other))
@@ -170,10 +183,10 @@ public System.DateTime Value
             {
                 return value switch
                 {
-                    global::System.DateTime dtValue => internal_partial_classConversions_EfCoreValueConverter.From(dtValue),
+                    global::System.DateTime dtValue => internal_partial_classConversions_EfCoreValueConverter.Deserialize(dtValue),
                     global::System.String stringValue when 
                         !global::System.String.IsNullOrEmpty(stringValue) &&
-                        global::System.DateTime.TryParseExact(stringValue, "yyyy-MM-dd HH:mm:ss.fffffff", global::System.Globalization.CultureInfo.InvariantCulture, global::System.Globalization.DateTimeStyles.None, out var result) => internal_partial_classConversions_EfCoreValueConverter.From(result),
+                        global::System.DateTime.TryParseExact(stringValue, "yyyy-MM-dd HH:mm:ss.fffffff", global::System.Globalization.CultureInfo.InvariantCulture, global::System.Globalization.DateTimeStyles.None, out var result) => internal_partial_classConversions_EfCoreValueConverter.Deserialize(result),
                     _ => throw new global::System.InvalidCastException($"Unable to cast object of type {value.GetType()} to internal_partial_classConversions_EfCoreValueConverter"),
                 };
             }
@@ -185,7 +198,7 @@ public System.DateTime Value
             public EfCoreValueConverter(global::Microsoft.EntityFrameworkCore.Storage.ValueConversion.ConverterMappingHints mappingHints = null)
                 : base(
                     vo => vo.Value,
-                    value => internal_partial_classConversions_EfCoreValueConverter.From(value),
+                    value => internal_partial_classConversions_EfCoreValueConverter.Deserialize(value),
                     mappingHints
                 ) { }
         }
@@ -195,7 +208,7 @@ public System.DateTime Value
             public LinqToDbValueConverter()
                 : base(
                       v => v.Value,
-                      p => internal_partial_classConversions_EfCoreValueConverter.From(p),
+                      p => internal_partial_classConversions_EfCoreValueConverter.Deserialize(p),
                       handlesNulls: false)
             { }
         }

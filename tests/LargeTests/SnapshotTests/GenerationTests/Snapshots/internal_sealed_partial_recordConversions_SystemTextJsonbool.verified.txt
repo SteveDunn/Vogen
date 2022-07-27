@@ -85,6 +85,19 @@ public bool Value
             return instance;
         }
 
+        // only called internally when something has been deserialized into
+        // its primitive type.
+        private static internal_sealed_partial_recordConversions_SystemTextJsonbool Deserialize(bool value)
+        {
+            
+
+            
+
+            
+
+            return new internal_sealed_partial_recordConversions_SystemTextJsonbool(value);
+        }
+
         private void EnsureInitialized()
         {
             if (!_isInitialized)
@@ -110,7 +123,7 @@ public bool Value
         {
             public override internal_sealed_partial_recordConversions_SystemTextJsonbool Read(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {
-                return internal_sealed_partial_recordConversions_SystemTextJsonbool.From(reader.GetBoolean());
+                return internal_sealed_partial_recordConversions_SystemTextJsonbool.Deserialize(reader.GetBoolean());
             }
 
             public override void Write(global::System.Text.Json.Utf8JsonWriter writer, internal_sealed_partial_recordConversions_SystemTextJsonbool value, global::System.Text.Json.JsonSerializerOptions options)

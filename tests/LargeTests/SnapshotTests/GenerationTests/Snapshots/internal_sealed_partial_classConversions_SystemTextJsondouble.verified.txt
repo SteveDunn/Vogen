@@ -74,6 +74,19 @@ public System.Double Value
             return instance;
         }
 
+        // only called internally when something has been deserialized into
+        // its primitive type.
+        private static internal_sealed_partial_classConversions_SystemTextJsondouble Deserialize(System.Double value)
+        {
+            
+
+            
+
+            
+
+            return new internal_sealed_partial_classConversions_SystemTextJsondouble(value);
+        }
+
         public global::System.Boolean Equals(internal_sealed_partial_classConversions_SystemTextJsondouble other)
         {
             if (ReferenceEquals(null, other))
@@ -160,7 +173,7 @@ public System.Double Value
         {
             public override internal_sealed_partial_classConversions_SystemTextJsondouble Read(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {
-                return internal_sealed_partial_classConversions_SystemTextJsondouble.From(reader.GetDouble());
+                return internal_sealed_partial_classConversions_SystemTextJsondouble.Deserialize(reader.GetDouble());
             }
 
             public override void Write(System.Text.Json.Utf8JsonWriter writer, internal_sealed_partial_classConversions_SystemTextJsondouble value, global::System.Text.Json.JsonSerializerOptions options)

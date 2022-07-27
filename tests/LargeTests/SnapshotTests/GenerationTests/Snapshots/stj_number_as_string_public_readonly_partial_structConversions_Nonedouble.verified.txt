@@ -74,6 +74,17 @@ namespace Whatever
             return instance;
         }
 
+        // only called internally when something has been deserialized into
+        // its primitive type.
+        private static stj_number_as_string_public_readonly_partial_structConversions_Nonedouble Deserialize(double value)
+        {
+            
+
+            
+
+            return new stj_number_as_string_public_readonly_partial_structConversions_Nonedouble(value);
+        }
+
         public readonly global::System.Boolean Equals(stj_number_as_string_public_readonly_partial_structConversions_Nonedouble other)
         {
             // It's possible to create uninitialized instances via converters such as EfCore (HasDefaultValue), which call Equals.

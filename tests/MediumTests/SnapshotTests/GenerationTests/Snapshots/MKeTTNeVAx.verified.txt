@@ -85,6 +85,17 @@ namespace Whatever
             return instance;
         }
 
+        // only called internally when something has been deserialized into
+        // its primitive type.
+        private static internal_readonly_partial_record_structConversions_TypeConverterlong Deserialize(long value)
+        {
+            
+
+            
+
+            return new internal_readonly_partial_record_structConversions_TypeConverterlong(value);
+        }
+
         private readonly void EnsureInitialized()
         {
             if (!_isInitialized)
@@ -118,8 +129,8 @@ namespace Whatever
             {
                 return value switch
                 {
-                    global::System.Int64 longValue => internal_readonly_partial_record_structConversions_TypeConverterlong.From(longValue),
-                    global::System.String stringValue when  !global::System.String.IsNullOrEmpty(stringValue) && long.TryParse(stringValue, out var result) => internal_readonly_partial_record_structConversions_TypeConverterlong.From(result),
+                    global::System.Int64 longValue => internal_readonly_partial_record_structConversions_TypeConverterlong.Deserialize(longValue),
+                    global::System.String stringValue when  !global::System.String.IsNullOrEmpty(stringValue) && long.TryParse(stringValue, out var result) => internal_readonly_partial_record_structConversions_TypeConverterlong.Deserialize(result),
                     _ => base.ConvertFrom(context, culture, value),
                 };
             }

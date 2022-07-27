@@ -85,6 +85,19 @@ public short Value
             return instance;
         }
 
+        // only called internally when something has been deserialized into
+        // its primitive type.
+        private static stj_number_as_string_public_sealed_partial_record_classConversions_SystemTextJsonshort Deserialize(short value)
+        {
+            
+
+            
+
+            
+
+            return new stj_number_as_string_public_sealed_partial_record_classConversions_SystemTextJsonshort(value);
+        }
+
         private void EnsureInitialized()
         {
             if (!_isInitialized)
@@ -110,7 +123,7 @@ public short Value
         {
             public override stj_number_as_string_public_sealed_partial_record_classConversions_SystemTextJsonshort Read(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {
-                return stj_number_as_string_public_sealed_partial_record_classConversions_SystemTextJsonshort.From(reader.GetInt16());
+                return stj_number_as_string_public_sealed_partial_record_classConversions_SystemTextJsonshort.Deserialize(reader.GetInt16());
             }
 
             public override void Write(System.Text.Json.Utf8JsonWriter writer, stj_number_as_string_public_sealed_partial_record_classConversions_SystemTextJsonshort value, global::System.Text.Json.JsonSerializerOptions options)

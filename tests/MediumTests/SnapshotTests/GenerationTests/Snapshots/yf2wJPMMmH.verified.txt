@@ -73,6 +73,19 @@ public System.Guid Value
             return instance;
         }
 
+        // only called internally when something has been deserialized into
+        // its primitive type.
+        private static internal_partial_classConversions_EfCoreValueConverter Deserialize(System.Guid value)
+        {
+            
+
+            
+
+            
+
+            return new internal_partial_classConversions_EfCoreValueConverter(value);
+        }
+
         public global::System.Boolean Equals(internal_partial_classConversions_EfCoreValueConverter other)
         {
             if (ReferenceEquals(null, other))
@@ -170,8 +183,8 @@ public System.Guid Value
             {
                 return value switch
                 {
-                    global::System.Guid guidValue => internal_partial_classConversions_EfCoreValueConverter.From(guidValue),
-                    global::System.String stringValue when !global::System.String.IsNullOrEmpty(stringValue) && global::System.Guid.TryParse(stringValue, out var result) => internal_partial_classConversions_EfCoreValueConverter.From(result),
+                    global::System.Guid guidValue => internal_partial_classConversions_EfCoreValueConverter.Deserialize(guidValue),
+                    global::System.String stringValue when !global::System.String.IsNullOrEmpty(stringValue) && global::System.Guid.TryParse(stringValue, out var result) => internal_partial_classConversions_EfCoreValueConverter.Deserialize(result),
                     _ => throw new global::System.InvalidCastException($"Unable to cast object of type {value.GetType()} to internal_partial_classConversions_EfCoreValueConverter"),
                 };
             }
@@ -183,7 +196,7 @@ public System.Guid Value
             public EfCoreValueConverter(global::Microsoft.EntityFrameworkCore.Storage.ValueConversion.ConverterMappingHints mappingHints = null)
                 : base(
                     vo => vo.Value,
-                    value => internal_partial_classConversions_EfCoreValueConverter.From(value),
+                    value => internal_partial_classConversions_EfCoreValueConverter.Deserialize(value),
                     mappingHints
                 ) { }
         }
@@ -193,7 +206,7 @@ public System.Guid Value
             public LinqToDbValueConverter()
                 : base(
                       v => v.Value,
-                      p => internal_partial_classConversions_EfCoreValueConverter.From(p),
+                      p => internal_partial_classConversions_EfCoreValueConverter.Deserialize(p),
                       handlesNulls: false)
             { }
         }

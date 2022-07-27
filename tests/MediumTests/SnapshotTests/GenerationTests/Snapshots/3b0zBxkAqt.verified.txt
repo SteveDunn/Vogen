@@ -84,6 +84,19 @@ public System.DateTimeOffset Value
             return instance;
         }
 
+        // only called internally when something has been deserialized into
+        // its primitive type.
+        private static public_sealed_partial_recordConversions_EfCoreValueConverter Deserialize(System.DateTimeOffset value)
+        {
+            
+
+            
+
+            
+
+            return new public_sealed_partial_recordConversions_EfCoreValueConverter(value);
+        }
+
         private void EnsureInitialized()
         {
             if (!_isInitialized)
@@ -120,10 +133,10 @@ public System.DateTimeOffset Value
             {
                 return value switch
                 {
-                    global::System.DateTimeOffset dtValue => public_sealed_partial_recordConversions_EfCoreValueConverter.From(dtValue),
+                    global::System.DateTimeOffset dtValue => public_sealed_partial_recordConversions_EfCoreValueConverter.Deserialize(dtValue),
                     global::System.String stringValue when 
                         !global::System.String.IsNullOrEmpty(stringValue) &&
-                        global::System.DateTimeOffset.TryParseExact(stringValue, "yyyy-MM-dd HH:mm:ss.fffffff", global::System.Globalization.CultureInfo.InvariantCulture, global::System.Globalization.DateTimeStyles.None, out var result) => public_sealed_partial_recordConversions_EfCoreValueConverter.From(result),
+                        global::System.DateTimeOffset.TryParseExact(stringValue, "yyyy-MM-dd HH:mm:ss.fffffff", global::System.Globalization.CultureInfo.InvariantCulture, global::System.Globalization.DateTimeStyles.None, out var result) => public_sealed_partial_recordConversions_EfCoreValueConverter.Deserialize(result),
                     _ => throw new global::System.InvalidCastException($"Unable to cast object of type {value.GetType()} to public_sealed_partial_recordConversions_EfCoreValueConverter"),
                 };
             }
@@ -135,7 +148,7 @@ public System.DateTimeOffset Value
             public EfCoreValueConverter(global::Microsoft.EntityFrameworkCore.Storage.ValueConversion.ConverterMappingHints mappingHints = null)
                 : base(
                     vo => vo.Value,
-                    value => public_sealed_partial_recordConversions_EfCoreValueConverter.From(value),
+                    value => public_sealed_partial_recordConversions_EfCoreValueConverter.Deserialize(value),
                     mappingHints
                 ) { }
         }
@@ -145,7 +158,7 @@ public System.DateTimeOffset Value
             public LinqToDbValueConverter()
                 : base(
                       v => v.Value,
-                      p => public_sealed_partial_recordConversions_EfCoreValueConverter.From(p),
+                      p => public_sealed_partial_recordConversions_EfCoreValueConverter.Deserialize(p),
                       handlesNulls: false)
             { }
         }

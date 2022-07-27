@@ -85,6 +85,17 @@ namespace Whatever
             return instance;
         }
 
+        // only called internally when something has been deserialized into
+        // its primitive type.
+        private static public_readonly_partial_record_structConversions_TypeConverterbyte Deserialize(byte value)
+        {
+            
+
+            
+
+            return new public_readonly_partial_record_structConversions_TypeConverterbyte(value);
+        }
+
         private readonly void EnsureInitialized()
         {
             if (!_isInitialized)
@@ -118,11 +129,11 @@ namespace Whatever
             {
                 return value switch
                 {
-                    global::System.Byte byteValue => public_readonly_partial_record_structConversions_TypeConverterbyte.From(byteValue),
-                    global::System.Int16 shortValue => public_readonly_partial_record_structConversions_TypeConverterbyte.From((global::System.Byte)shortValue),
-                    global::System.Int32 intValue => public_readonly_partial_record_structConversions_TypeConverterbyte.From((global::System.Byte)intValue),
-                    global::System.Int64 longValue => public_readonly_partial_record_structConversions_TypeConverterbyte.From((global::System.Byte)longValue),
-                    global::System.String stringValue when  !global::System.String.IsNullOrEmpty(stringValue) && global::System.Byte.TryParse(stringValue, out var result) => public_readonly_partial_record_structConversions_TypeConverterbyte.From(result),
+                    global::System.Byte byteValue => public_readonly_partial_record_structConversions_TypeConverterbyte.Deserialize(byteValue),
+                    global::System.Int16 shortValue => public_readonly_partial_record_structConversions_TypeConverterbyte.Deserialize((global::System.Byte)shortValue),
+                    global::System.Int32 intValue => public_readonly_partial_record_structConversions_TypeConverterbyte.Deserialize((global::System.Byte)intValue),
+                    global::System.Int64 longValue => public_readonly_partial_record_structConversions_TypeConverterbyte.Deserialize((global::System.Byte)longValue),
+                    global::System.String stringValue when  !global::System.String.IsNullOrEmpty(stringValue) && global::System.Byte.TryParse(stringValue, out var result) => public_readonly_partial_record_structConversions_TypeConverterbyte.Deserialize(result),
                     _ => base.ConvertFrom(context, culture, value),
                 };
             }

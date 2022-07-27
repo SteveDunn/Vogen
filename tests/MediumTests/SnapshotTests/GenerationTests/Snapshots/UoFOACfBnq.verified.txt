@@ -73,6 +73,19 @@ public System.Int64 Value
             return instance;
         }
 
+        // only called internally when something has been deserialized into
+        // its primitive type.
+        private static public_partial_classConversions_Nonelong Deserialize(System.Int64 value)
+        {
+            
+
+            
+
+            
+
+            return new public_partial_classConversions_Nonelong(value);
+        }
+
         public global::System.Boolean Equals(public_partial_classConversions_Nonelong other)
         {
             if (ReferenceEquals(null, other))

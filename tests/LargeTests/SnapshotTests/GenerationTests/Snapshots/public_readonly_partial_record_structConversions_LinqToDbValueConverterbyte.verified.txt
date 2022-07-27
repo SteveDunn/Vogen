@@ -84,6 +84,17 @@ namespace Whatever
             return instance;
         }
 
+        // only called internally when something has been deserialized into
+        // its primitive type.
+        private static public_readonly_partial_record_structConversions_LinqToDbValueConverterbyte Deserialize(byte value)
+        {
+            
+
+            
+
+            return new public_readonly_partial_record_structConversions_LinqToDbValueConverterbyte(value);
+        }
+
         private readonly void EnsureInitialized()
         {
             if (!_isInitialized)
@@ -114,7 +125,7 @@ namespace Whatever
             public LinqToDbValueConverter()
                 : base(
                       v => v.Value,
-                      p => public_readonly_partial_record_structConversions_LinqToDbValueConverterbyte.From(p),
+                      p => public_readonly_partial_record_structConversions_LinqToDbValueConverterbyte.Deserialize(p),
                       handlesNulls: false)
             { }
         }

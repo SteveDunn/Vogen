@@ -87,6 +87,19 @@ public System.Guid Value
             return instance;
         }
 
+        // only called internally when something has been deserialized into
+        // its primitive type.
+        private static escapedTestspublic_partial_recordConversions_TypeConverter Deserialize(System.Guid value)
+        {
+            
+
+            
+
+            
+
+            return new escapedTestspublic_partial_recordConversions_TypeConverter(value);
+        }
+
         private void EnsureInitialized()
         {
             if (!_isInitialized)
@@ -112,7 +125,7 @@ public System.Guid Value
         {
             public override escapedTestspublic_partial_recordConversions_TypeConverter Read(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {
-                return escapedTestspublic_partial_recordConversions_TypeConverter.From(System.Guid.Parse(reader.GetString()));
+                return escapedTestspublic_partial_recordConversions_TypeConverter.Deserialize(System.Guid.Parse(reader.GetString()));
             }
 
             public override void Write(System.Text.Json.Utf8JsonWriter writer, escapedTestspublic_partial_recordConversions_TypeConverter value, global::System.Text.Json.JsonSerializerOptions options)
@@ -137,7 +150,7 @@ public System.Guid Value
             public override object ReadJson(Newtonsoft.Json.JsonReader reader, System.Type objectType, object existingValue, Newtonsoft.Json.JsonSerializer serializer)
             {
                 var guid = serializer.Deserialize<System.Guid?>(reader);
-                return guid.HasValue ? escapedTestspublic_partial_recordConversions_TypeConverter.From(guid.Value) : null;
+                return guid.HasValue ? escapedTestspublic_partial_recordConversions_TypeConverter.Deserialize(guid.Value) : null;
             }
         }
 
@@ -152,8 +165,8 @@ public System.Guid Value
             {
                 return value switch
                 {
-                    global::System.Guid guidValue => escapedTestspublic_partial_recordConversions_TypeConverter.From(guidValue),
-                    global::System.String stringValue when !global::System.String.IsNullOrEmpty(stringValue) && global::System.Guid.TryParse(stringValue, out var result) => escapedTestspublic_partial_recordConversions_TypeConverter.From(result),
+                    global::System.Guid guidValue => escapedTestspublic_partial_recordConversions_TypeConverter.Deserialize(guidValue),
+                    global::System.String stringValue when !global::System.String.IsNullOrEmpty(stringValue) && global::System.Guid.TryParse(stringValue, out var result) => escapedTestspublic_partial_recordConversions_TypeConverter.Deserialize(result),
                     _ => base.ConvertFrom(context, culture, value),
                 };
             }
@@ -194,8 +207,8 @@ public System.Guid Value
             {
                 return value switch
                 {
-                    global::System.Guid guidValue => escapedTestspublic_partial_recordConversions_TypeConverter.From(guidValue),
-                    global::System.String stringValue when !global::System.String.IsNullOrEmpty(stringValue) && global::System.Guid.TryParse(stringValue, out var result) => escapedTestspublic_partial_recordConversions_TypeConverter.From(result),
+                    global::System.Guid guidValue => escapedTestspublic_partial_recordConversions_TypeConverter.Deserialize(guidValue),
+                    global::System.String stringValue when !global::System.String.IsNullOrEmpty(stringValue) && global::System.Guid.TryParse(stringValue, out var result) => escapedTestspublic_partial_recordConversions_TypeConverter.Deserialize(result),
                     _ => throw new global::System.InvalidCastException($"Unable to cast object of type {value.GetType()} to escapedTestspublic_partial_recordConversions_TypeConverter"),
                 };
             }
@@ -207,7 +220,7 @@ public System.Guid Value
             public EfCoreValueConverter(global::Microsoft.EntityFrameworkCore.Storage.ValueConversion.ConverterMappingHints mappingHints = null)
                 : base(
                     vo => vo.Value,
-                    value => escapedTestspublic_partial_recordConversions_TypeConverter.From(value),
+                    value => escapedTestspublic_partial_recordConversions_TypeConverter.Deserialize(value),
                     mappingHints
                 ) { }
         }
@@ -217,7 +230,7 @@ public System.Guid Value
             public LinqToDbValueConverter()
                 : base(
                       v => v.Value,
-                      p => escapedTestspublic_partial_recordConversions_TypeConverter.From(p),
+                      p => escapedTestspublic_partial_recordConversions_TypeConverter.Deserialize(p),
                       handlesNulls: false)
             { }
         }

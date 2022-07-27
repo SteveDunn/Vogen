@@ -73,6 +73,19 @@ public System.Byte Value
             return instance;
         }
 
+        // only called internally when something has been deserialized into
+        // its primitive type.
+        private static internal_partial_classConversions_Nonebyte Deserialize(System.Byte value)
+        {
+            
+
+            
+
+            
+
+            return new internal_partial_classConversions_Nonebyte(value);
+        }
+
         public global::System.Boolean Equals(internal_partial_classConversions_Nonebyte other)
         {
             if (ReferenceEquals(null, other))

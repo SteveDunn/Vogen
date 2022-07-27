@@ -75,6 +75,17 @@ namespace Whatever
             return instance;
         }
 
+        // only called internally when something has been deserialized into
+        // its primitive type.
+        private static NoJsonGuidVo Deserialize(System.Guid value)
+        {
+            
+
+            
+
+            return new NoJsonGuidVo(value);
+        }
+
         public readonly global::System.Boolean Equals(NoJsonGuidVo other)
         {
             // It's possible to create uninitialized instances via converters such as EfCore (HasDefaultValue), which call Equals.
@@ -134,8 +145,8 @@ namespace Whatever
             {
                 return value switch
                 {
-                    global::System.Guid guidValue => NoJsonGuidVo.From(guidValue),
-                    global::System.String stringValue when !global::System.String.IsNullOrEmpty(stringValue) && global::System.Guid.TryParse(stringValue, out var result) => NoJsonGuidVo.From(result),
+                    global::System.Guid guidValue => NoJsonGuidVo.Deserialize(guidValue),
+                    global::System.String stringValue when !global::System.String.IsNullOrEmpty(stringValue) && global::System.Guid.TryParse(stringValue, out var result) => NoJsonGuidVo.Deserialize(result),
                     _ => base.ConvertFrom(context, culture, value),
                 };
             }

@@ -73,6 +73,19 @@ public System.Single Value
             return instance;
         }
 
+        // only called internally when something has been deserialized into
+        // its primitive type.
+        private static internal_partial_classConversions_DapperTypeHandlerfloat Deserialize(System.Single value)
+        {
+            
+
+            
+
+            
+
+            return new internal_partial_classConversions_DapperTypeHandlerfloat(value);
+        }
+
         public global::System.Boolean Equals(internal_partial_classConversions_DapperTypeHandlerfloat other)
         {
             if (ReferenceEquals(null, other))
@@ -170,11 +183,11 @@ public System.Single Value
             {
                 return value switch
                 {
-                    global::System.Single floatValue => internal_partial_classConversions_DapperTypeHandlerfloat.From(floatValue),
-                    global::System.Double doubleValue when doubleValue < global::System.Single.MaxValue => internal_partial_classConversions_DapperTypeHandlerfloat.From((global::System.Single)doubleValue),
-                    global::System.Int32 intValue => internal_partial_classConversions_DapperTypeHandlerfloat.From(intValue),
-                    global::System.Int64 longValue when longValue < global::System.Single.MaxValue => internal_partial_classConversions_DapperTypeHandlerfloat.From((global::System.Single)longValue),
-                    global::System.String stringValue when !global::System.String.IsNullOrEmpty(stringValue) && global::System.Single.TryParse(stringValue, out var result) => internal_partial_classConversions_DapperTypeHandlerfloat.From(result),
+                    global::System.Single floatValue => internal_partial_classConversions_DapperTypeHandlerfloat.Deserialize(floatValue),
+                    global::System.Double doubleValue when doubleValue < global::System.Single.MaxValue => internal_partial_classConversions_DapperTypeHandlerfloat.Deserialize((global::System.Single)doubleValue),
+                    global::System.Int32 intValue => internal_partial_classConversions_DapperTypeHandlerfloat.Deserialize(intValue),
+                    global::System.Int64 longValue when longValue < global::System.Single.MaxValue => internal_partial_classConversions_DapperTypeHandlerfloat.Deserialize((global::System.Single)longValue),
+                    global::System.String stringValue when !global::System.String.IsNullOrEmpty(stringValue) && global::System.Single.TryParse(stringValue, out var result) => internal_partial_classConversions_DapperTypeHandlerfloat.Deserialize(result),
                     _ => throw new global::System.InvalidCastException($"Unable to cast object of type {value.GetType()} to internal_partial_classConversions_DapperTypeHandlerfloat"),
                 };
             }

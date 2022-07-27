@@ -74,6 +74,17 @@ namespace @class
             return instance;
         }
 
+        // only called internally when something has been deserialized into
+        // its primitive type.
+        private static escapedTestspublic_readonly_partial_structConversions_LinqToDbValueConverterbyte Deserialize(byte value)
+        {
+            
+
+            
+
+            return new escapedTestspublic_readonly_partial_structConversions_LinqToDbValueConverterbyte(value);
+        }
+
         public readonly global::System.Boolean Equals(escapedTestspublic_readonly_partial_structConversions_LinqToDbValueConverterbyte other)
         {
             // It's possible to create uninitialized instances via converters such as EfCore (HasDefaultValue), which call Equals.
@@ -130,7 +141,7 @@ namespace @class
             public LinqToDbValueConverter()
                 : base(
                       v => v.Value,
-                      p => escapedTestspublic_readonly_partial_structConversions_LinqToDbValueConverterbyte.From(p),
+                      p => escapedTestspublic_readonly_partial_structConversions_LinqToDbValueConverterbyte.Deserialize(p),
                       handlesNulls: false)
             { }
         }

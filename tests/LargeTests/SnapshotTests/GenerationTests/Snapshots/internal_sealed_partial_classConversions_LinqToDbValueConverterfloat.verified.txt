@@ -73,6 +73,19 @@ public System.Single Value
             return instance;
         }
 
+        // only called internally when something has been deserialized into
+        // its primitive type.
+        private static internal_sealed_partial_classConversions_LinqToDbValueConverterfloat Deserialize(System.Single value)
+        {
+            
+
+            
+
+            
+
+            return new internal_sealed_partial_classConversions_LinqToDbValueConverterfloat(value);
+        }
+
         public global::System.Boolean Equals(internal_sealed_partial_classConversions_LinqToDbValueConverterfloat other)
         {
             if (ReferenceEquals(null, other))
@@ -165,7 +178,7 @@ public System.Single Value
             public LinqToDbValueConverter()
                 : base(
                       v => v.Value,
-                      p => internal_sealed_partial_classConversions_LinqToDbValueConverterfloat.From(p),
+                      p => internal_sealed_partial_classConversions_LinqToDbValueConverterfloat.Deserialize(p),
                       handlesNulls: false)
             { }
         }

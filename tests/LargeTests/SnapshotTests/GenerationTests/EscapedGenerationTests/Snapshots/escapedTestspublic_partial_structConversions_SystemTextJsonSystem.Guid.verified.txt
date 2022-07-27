@@ -75,6 +75,17 @@ namespace @class
             return instance;
         }
 
+        // only called internally when something has been deserialized into
+        // its primitive type.
+        private static escapedTestspublic_partial_structConversions_SystemTextJsonSystem Deserialize(System.Guid value)
+        {
+            
+
+            
+
+            return new escapedTestspublic_partial_structConversions_SystemTextJsonSystem(value);
+        }
+
         public readonly global::System.Boolean Equals(escapedTestspublic_partial_structConversions_SystemTextJsonSystem other)
         {
             // It's possible to create uninitialized instances via converters such as EfCore (HasDefaultValue), which call Equals.
@@ -125,7 +136,7 @@ namespace @class
         {
             public override escapedTestspublic_partial_structConversions_SystemTextJsonSystem Read(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {
-                return escapedTestspublic_partial_structConversions_SystemTextJsonSystem.From(System.Guid.Parse(reader.GetString()));
+                return escapedTestspublic_partial_structConversions_SystemTextJsonSystem.Deserialize(System.Guid.Parse(reader.GetString()));
             }
 
             public override void Write(System.Text.Json.Utf8JsonWriter writer, escapedTestspublic_partial_structConversions_SystemTextJsonSystem value, global::System.Text.Json.JsonSerializerOptions options)

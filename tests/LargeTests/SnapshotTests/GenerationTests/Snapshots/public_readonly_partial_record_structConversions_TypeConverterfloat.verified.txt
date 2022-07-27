@@ -85,6 +85,17 @@ namespace Whatever
             return instance;
         }
 
+        // only called internally when something has been deserialized into
+        // its primitive type.
+        private static public_readonly_partial_record_structConversions_TypeConverterfloat Deserialize(float value)
+        {
+            
+
+            
+
+            return new public_readonly_partial_record_structConversions_TypeConverterfloat(value);
+        }
+
         private readonly void EnsureInitialized()
         {
             if (!_isInitialized)
@@ -118,8 +129,8 @@ namespace Whatever
             {
                 return value switch
                 {
-                    global::System.Single floatValue => public_readonly_partial_record_structConversions_TypeConverterfloat.From(floatValue),
-                    global::System.String stringValue when !global::System.String.IsNullOrEmpty(stringValue) && global::System.Single.TryParse(stringValue, out var result) => public_readonly_partial_record_structConversions_TypeConverterfloat.From(result),
+                    global::System.Single floatValue => public_readonly_partial_record_structConversions_TypeConverterfloat.Deserialize(floatValue),
+                    global::System.String stringValue when !global::System.String.IsNullOrEmpty(stringValue) && global::System.Single.TryParse(stringValue, out var result) => public_readonly_partial_record_structConversions_TypeConverterfloat.Deserialize(result),
                     _ => base.ConvertFrom(context, culture, value),
                 };
             }

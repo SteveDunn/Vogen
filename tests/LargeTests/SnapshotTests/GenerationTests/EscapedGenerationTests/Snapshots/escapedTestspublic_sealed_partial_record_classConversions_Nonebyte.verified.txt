@@ -84,6 +84,19 @@ public byte Value
             return instance;
         }
 
+        // only called internally when something has been deserialized into
+        // its primitive type.
+        private static escapedTestspublic_sealed_partial_record_classConversions_Nonebyte Deserialize(byte value)
+        {
+            
+
+            
+
+            
+
+            return new escapedTestspublic_sealed_partial_record_classConversions_Nonebyte(value);
+        }
+
         private void EnsureInitialized()
         {
             if (!_isInitialized)

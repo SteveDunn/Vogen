@@ -85,6 +85,19 @@ public float Value
             return instance;
         }
 
+        // only called internally when something has been deserialized into
+        // its primitive type.
+        private static internal_sealed_partial_recordConversions_SystemTextJsonfloat Deserialize(float value)
+        {
+            
+
+            
+
+            
+
+            return new internal_sealed_partial_recordConversions_SystemTextJsonfloat(value);
+        }
+
         private void EnsureInitialized()
         {
             if (!_isInitialized)
@@ -110,7 +123,7 @@ public float Value
         {
             public override internal_sealed_partial_recordConversions_SystemTextJsonfloat Read(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {
-                return internal_sealed_partial_recordConversions_SystemTextJsonfloat.From(reader.GetSingle());
+                return internal_sealed_partial_recordConversions_SystemTextJsonfloat.Deserialize(reader.GetSingle());
             }
 
             public override void Write(System.Text.Json.Utf8JsonWriter writer, internal_sealed_partial_recordConversions_SystemTextJsonfloat value, global::System.Text.Json.JsonSerializerOptions options)

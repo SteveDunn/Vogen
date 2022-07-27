@@ -85,6 +85,17 @@ namespace Whatever
             return instance;
         }
 
+        // only called internally when something has been deserialized into
+        // its primitive type.
+        private static stj_number_as_string_public_readonly_partial_record_structConversions_NewtonsoftJsonint_customized Deserialize(int value)
+        {
+            
+
+            
+
+            return new stj_number_as_string_public_readonly_partial_record_structConversions_NewtonsoftJsonint_customized(value);
+        }
+
         private readonly void EnsureInitialized()
         {
             if (!_isInitialized)
@@ -122,7 +133,7 @@ namespace Whatever
             public override object ReadJson(Newtonsoft.Json.JsonReader reader, System.Type objectType, object existingValue, Newtonsoft.Json.JsonSerializer serializer)
             {
                 var result = serializer.Deserialize<global::System.Int32?>(reader);
-                return result.HasValue ? stj_number_as_string_public_readonly_partial_record_structConversions_NewtonsoftJsonint_customized.From(result.Value) : null;
+                return result.HasValue ? stj_number_as_string_public_readonly_partial_record_structConversions_NewtonsoftJsonint_customized.Deserialize(result.Value) : null;
             }
         }
 

@@ -79,6 +79,22 @@ namespace Whatever
             return instance;
         }
 
+        // only called internally when something has been deserialized into
+        // its primitive type.
+        private static CustomerId Deserialize(string value)
+        {
+            
+
+            var validation = CustomerId.Validate(value);
+            if (validation != Vogen.Validation.Ok)
+            {
+                throw new Whatever.MyValidationException(validation.ErrorMessage);
+            }
+
+
+            return new CustomerId(value);
+        }
+
         public readonly global::System.Boolean Equals(CustomerId other)
         {
             // It's possible to create uninitialized instances via converters such as EfCore (HasDefaultValue), which call Equals.

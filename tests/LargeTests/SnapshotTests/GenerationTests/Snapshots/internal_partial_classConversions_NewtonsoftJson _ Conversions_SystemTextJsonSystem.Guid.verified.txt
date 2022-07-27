@@ -75,6 +75,19 @@ public System.Guid Value
             return instance;
         }
 
+        // only called internally when something has been deserialized into
+        // its primitive type.
+        private static internal_partial_classConversions_NewtonsoftJson Deserialize(System.Guid value)
+        {
+            
+
+            
+
+            
+
+            return new internal_partial_classConversions_NewtonsoftJson(value);
+        }
+
         public global::System.Boolean Equals(internal_partial_classConversions_NewtonsoftJson other)
         {
             if (ReferenceEquals(null, other))
@@ -161,7 +174,7 @@ public System.Guid Value
         {
             public override internal_partial_classConversions_NewtonsoftJson Read(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {
-                return internal_partial_classConversions_NewtonsoftJson.From(System.Guid.Parse(reader.GetString()));
+                return internal_partial_classConversions_NewtonsoftJson.Deserialize(System.Guid.Parse(reader.GetString()));
             }
 
             public override void Write(System.Text.Json.Utf8JsonWriter writer, internal_partial_classConversions_NewtonsoftJson value, global::System.Text.Json.JsonSerializerOptions options)
@@ -186,7 +199,7 @@ public System.Guid Value
             public override object ReadJson(Newtonsoft.Json.JsonReader reader, System.Type objectType, object existingValue, Newtonsoft.Json.JsonSerializer serializer)
             {
                 var guid = serializer.Deserialize<System.Guid?>(reader);
-                return guid.HasValue ? internal_partial_classConversions_NewtonsoftJson.From(guid.Value) : null;
+                return guid.HasValue ? internal_partial_classConversions_NewtonsoftJson.Deserialize(guid.Value) : null;
             }
         }
 

@@ -92,6 +92,23 @@ public string Value
             return instance;
         }
 
+        // only called internally when something has been deserialized into
+        // its primitive type.
+        private static internal_sealed_partial_recordConversions_EfCoreValueConverter Deserialize(string value)
+        {
+                        if (value is null)
+            {
+                throw new global::Vogen.ValueObjectValidationException("Cannot create a value object with null.");
+            }
+
+
+            
+
+            
+
+            return new internal_sealed_partial_recordConversions_EfCoreValueConverter(value);
+        }
+
         private void EnsureInitialized()
         {
             if (!_isInitialized)
@@ -128,7 +145,7 @@ public string Value
             {
                 return value switch
                 {
-                    global::System.String stringValue => internal_sealed_partial_recordConversions_EfCoreValueConverter.From(stringValue),
+                    global::System.String stringValue => internal_sealed_partial_recordConversions_EfCoreValueConverter.Deserialize(stringValue),
                     _ => throw new global::System.InvalidCastException($"Unable to cast object of type {value.GetType()} to internal_sealed_partial_recordConversions_EfCoreValueConverter"),
                 };
             }
@@ -140,7 +157,7 @@ public string Value
             public EfCoreValueConverter(global::Microsoft.EntityFrameworkCore.Storage.ValueConversion.ConverterMappingHints mappingHints = null)
                 : base(
                     vo => vo.Value,
-                    value => internal_sealed_partial_recordConversions_EfCoreValueConverter.From(value),
+                    value => internal_sealed_partial_recordConversions_EfCoreValueConverter.Deserialize(value),
                     mappingHints
                 ) { }
         }
@@ -150,7 +167,7 @@ public string Value
             public LinqToDbValueConverter()
                 : base(
                       v => v.Value,
-                      p => internal_sealed_partial_recordConversions_EfCoreValueConverter.From(p),
+                      p => internal_sealed_partial_recordConversions_EfCoreValueConverter.Deserialize(p),
                       handlesNulls: false)
             { }
         }

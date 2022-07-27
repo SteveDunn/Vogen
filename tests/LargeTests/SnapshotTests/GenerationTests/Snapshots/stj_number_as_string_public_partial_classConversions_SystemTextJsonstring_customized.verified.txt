@@ -78,6 +78,23 @@ public System.String Value
             return instance;
         }
 
+        // only called internally when something has been deserialized into
+        // its primitive type.
+        private static stj_number_as_string_public_partial_classConversions_SystemTextJsonstring_customized Deserialize(System.String value)
+        {
+                        if (value is null)
+            {
+                throw new global::Vogen.ValueObjectValidationException("Cannot create a value object with null.");
+            }
+
+
+            
+
+            
+
+            return new stj_number_as_string_public_partial_classConversions_SystemTextJsonstring_customized(value);
+        }
+
         public global::System.Boolean Equals(stj_number_as_string_public_partial_classConversions_SystemTextJsonstring_customized other)
         {
             if (ReferenceEquals(null, other))
@@ -164,7 +181,7 @@ public System.String Value
         {
             public override stj_number_as_string_public_partial_classConversions_SystemTextJsonstring_customized Read(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {
-                return stj_number_as_string_public_partial_classConversions_SystemTextJsonstring_customized.From(reader.GetString());
+                return stj_number_as_string_public_partial_classConversions_SystemTextJsonstring_customized.Deserialize(reader.GetString());
             }
 
             public override void Write(System.Text.Json.Utf8JsonWriter writer, stj_number_as_string_public_partial_classConversions_SystemTextJsonstring_customized value, global::System.Text.Json.JsonSerializerOptions options)

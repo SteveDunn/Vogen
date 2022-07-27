@@ -84,6 +84,19 @@ public long Value
             return instance;
         }
 
+        // only called internally when something has been deserialized into
+        // its primitive type.
+        private static public_partial_recordConversions_LinqToDbValueConverterlong Deserialize(long value)
+        {
+            
+
+            
+
+            
+
+            return new public_partial_recordConversions_LinqToDbValueConverterlong(value);
+        }
+
         private void EnsureInitialized()
         {
             if (!_isInitialized)
@@ -115,7 +128,7 @@ public long Value
             public LinqToDbValueConverter()
                 : base(
                       v => v.Value,
-                      p => public_partial_recordConversions_LinqToDbValueConverterlong.From(p),
+                      p => public_partial_recordConversions_LinqToDbValueConverterlong.Deserialize(p),
                       handlesNulls: false)
             { }
         }

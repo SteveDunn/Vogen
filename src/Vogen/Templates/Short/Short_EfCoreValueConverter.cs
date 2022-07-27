@@ -5,7 +5,7 @@
             public EfCoreValueConverter(global::Microsoft.EntityFrameworkCore.Storage.ValueConversion.ConverterMappingHints mappingHints = null)
                 : base(
                     vo => vo.Value,
-                    value => VOTYPE.From(value),
+                    value => VOTYPE.Deserialize(value),
                     mappingHints
                 ) { }
         }

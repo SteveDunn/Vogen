@@ -74,6 +74,17 @@ namespace Whatever
             return instance;
         }
 
+        // only called internally when something has been deserialized into
+        // its primitive type.
+        private static internal_readonly_partial_structConversions_EfCoreValueConverter Deserialize(byte value)
+        {
+            
+
+            
+
+            return new internal_readonly_partial_structConversions_EfCoreValueConverter(value);
+        }
+
         public readonly global::System.Boolean Equals(internal_readonly_partial_structConversions_EfCoreValueConverter other)
         {
             // It's possible to create uninitialized instances via converters such as EfCore (HasDefaultValue), which call Equals.
@@ -134,11 +145,11 @@ namespace Whatever
             {
                 return value switch
                 {
-                    global::System.Byte byteValue => internal_readonly_partial_structConversions_EfCoreValueConverter.From(byteValue),
-                    global::System.Int16 shortValue => internal_readonly_partial_structConversions_EfCoreValueConverter.From((global::System.Byte)shortValue),
-                    global::System.Int32 intValue => internal_readonly_partial_structConversions_EfCoreValueConverter.From((global::System.Byte)intValue),
-                    global::System.Int64 longValue => internal_readonly_partial_structConversions_EfCoreValueConverter.From((global::System.Byte)longValue),
-                    global::System.String stringValue when !global::System.String.IsNullOrEmpty(stringValue) && global::System.Byte.TryParse(stringValue, out var result) => internal_readonly_partial_structConversions_EfCoreValueConverter.From(result),
+                    global::System.Byte byteValue => internal_readonly_partial_structConversions_EfCoreValueConverter.Deserialize(byteValue),
+                    global::System.Int16 shortValue => internal_readonly_partial_structConversions_EfCoreValueConverter.Deserialize((global::System.Byte)shortValue),
+                    global::System.Int32 intValue => internal_readonly_partial_structConversions_EfCoreValueConverter.Deserialize((global::System.Byte)intValue),
+                    global::System.Int64 longValue => internal_readonly_partial_structConversions_EfCoreValueConverter.Deserialize((global::System.Byte)longValue),
+                    global::System.String stringValue when !global::System.String.IsNullOrEmpty(stringValue) && global::System.Byte.TryParse(stringValue, out var result) => internal_readonly_partial_structConversions_EfCoreValueConverter.Deserialize(result),
                     _ => throw new global::System.InvalidCastException($"Unable to cast object of type {value.GetType()} to internal_readonly_partial_structConversions_EfCoreValueConverter"),
                 };
             }
@@ -150,7 +161,7 @@ namespace Whatever
             public EfCoreValueConverter(global::Microsoft.EntityFrameworkCore.Storage.ValueConversion.ConverterMappingHints mappingHints = null)
                 : base(
                     vo => vo.Value,
-                    value => internal_readonly_partial_structConversions_EfCoreValueConverter.From(value),
+                    value => internal_readonly_partial_structConversions_EfCoreValueConverter.Deserialize(value),
                     mappingHints
                 ) { }
         }
@@ -160,7 +171,7 @@ namespace Whatever
             public LinqToDbValueConverter()
                 : base(
                       v => v.Value,
-                      p => internal_readonly_partial_structConversions_EfCoreValueConverter.From(p),
+                      p => internal_readonly_partial_structConversions_EfCoreValueConverter.Deserialize(p),
                       handlesNulls: false)
             { }
         }

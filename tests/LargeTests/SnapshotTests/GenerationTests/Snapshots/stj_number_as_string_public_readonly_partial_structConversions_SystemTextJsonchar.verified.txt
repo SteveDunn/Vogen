@@ -75,6 +75,17 @@ namespace Whatever
             return instance;
         }
 
+        // only called internally when something has been deserialized into
+        // its primitive type.
+        private static stj_number_as_string_public_readonly_partial_structConversions_SystemTextJsonchar Deserialize(char value)
+        {
+            
+
+            
+
+            return new stj_number_as_string_public_readonly_partial_structConversions_SystemTextJsonchar(value);
+        }
+
         public readonly global::System.Boolean Equals(stj_number_as_string_public_readonly_partial_structConversions_SystemTextJsonchar other)
         {
             // It's possible to create uninitialized instances via converters such as EfCore (HasDefaultValue), which call Equals.
@@ -127,7 +138,7 @@ namespace Whatever
             {
                 var s = reader.GetString();
 
-                return stj_number_as_string_public_readonly_partial_structConversions_SystemTextJsonchar.From(s[0]);
+                return stj_number_as_string_public_readonly_partial_structConversions_SystemTextJsonchar.Deserialize(s[0]);
             }
 
             public override void Write(System.Text.Json.Utf8JsonWriter writer, stj_number_as_string_public_readonly_partial_structConversions_SystemTextJsonchar value, global::System.Text.Json.JsonSerializerOptions options)

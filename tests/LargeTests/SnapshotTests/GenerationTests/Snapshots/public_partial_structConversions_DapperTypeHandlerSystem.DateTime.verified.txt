@@ -74,6 +74,17 @@ namespace Whatever
             return instance;
         }
 
+        // only called internally when something has been deserialized into
+        // its primitive type.
+        private static public_partial_structConversions_DapperTypeHandlerSystem Deserialize(System.DateTime value)
+        {
+            
+
+            
+
+            return new public_partial_structConversions_DapperTypeHandlerSystem(value);
+        }
+
         public readonly global::System.Boolean Equals(public_partial_structConversions_DapperTypeHandlerSystem other)
         {
             // It's possible to create uninitialized instances via converters such as EfCore (HasDefaultValue), which call Equals.
@@ -135,10 +146,10 @@ namespace Whatever
             {
                 return value switch
                 {
-                    global::System.DateTime dtValue => public_partial_structConversions_DapperTypeHandlerSystem.From(dtValue),
+                    global::System.DateTime dtValue => public_partial_structConversions_DapperTypeHandlerSystem.Deserialize(dtValue),
                     global::System.String stringValue when 
                         !global::System.String.IsNullOrEmpty(stringValue) &&
-                        global::System.DateTime.TryParseExact(stringValue, "yyyy-MM-dd HH:mm:ss.fffffff", global::System.Globalization.CultureInfo.InvariantCulture, global::System.Globalization.DateTimeStyles.None, out var result) => public_partial_structConversions_DapperTypeHandlerSystem.From(result),
+                        global::System.DateTime.TryParseExact(stringValue, "yyyy-MM-dd HH:mm:ss.fffffff", global::System.Globalization.CultureInfo.InvariantCulture, global::System.Globalization.DateTimeStyles.None, out var result) => public_partial_structConversions_DapperTypeHandlerSystem.Deserialize(result),
                     _ => throw new global::System.InvalidCastException($"Unable to cast object of type {value.GetType()} to public_partial_structConversions_DapperTypeHandlerSystem"),
                 };
             }

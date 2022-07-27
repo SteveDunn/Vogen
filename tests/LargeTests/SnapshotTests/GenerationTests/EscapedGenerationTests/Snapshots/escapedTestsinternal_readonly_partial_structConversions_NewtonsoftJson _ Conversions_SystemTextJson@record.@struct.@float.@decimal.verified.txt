@@ -76,6 +76,17 @@ namespace @class
             return instance;
         }
 
+        // only called internally when something has been deserialized into
+        // its primitive type.
+        private static escapedTestsinternal_readonly_partial_structConversions_NewtonsoftJson Deserialize(@class.record.@struct.@float.decimal value)
+        {
+            
+
+            
+
+            return new escapedTestsinternal_readonly_partial_structConversions_NewtonsoftJson(value);
+        }
+
         public readonly global::System.Boolean Equals(escapedTestsinternal_readonly_partial_structConversions_NewtonsoftJson other)
         {
             // It's possible to create uninitialized instances via converters such as EfCore (HasDefaultValue), which call Equals.
@@ -127,7 +138,7 @@ namespace @class
             public override escapedTestsinternal_readonly_partial_structConversions_NewtonsoftJson Read(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {
                 var primitive = global::System.Text.Json.JsonSerializer.Deserialize<@class.@record.@struct.@float.@decimal>(ref reader, options);
-                return escapedTestsinternal_readonly_partial_structConversions_NewtonsoftJson.From(primitive);
+                return escapedTestsinternal_readonly_partial_structConversions_NewtonsoftJson.Deserialize(primitive);
             }
 
             public override void Write(System.Text.Json.Utf8JsonWriter writer, escapedTestsinternal_readonly_partial_structConversions_NewtonsoftJson value, global::System.Text.Json.JsonSerializerOptions options)
@@ -151,7 +162,7 @@ namespace @class
 
             public override object ReadJson(Newtonsoft.Json.JsonReader reader, System.Type objectType, object existingValue, Newtonsoft.Json.JsonSerializer serializer)
             {
-                return escapedTestsinternal_readonly_partial_structConversions_NewtonsoftJson.From(serializer.Deserialize<@class.@record.@struct.@float.@decimal>(reader));
+                return escapedTestsinternal_readonly_partial_structConversions_NewtonsoftJson.Deserialize(serializer.Deserialize<@class.@record.@struct.@float.@decimal>(reader));
             }
         }
 

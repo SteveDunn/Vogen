@@ -74,6 +74,17 @@ namespace Whatever
             return instance;
         }
 
+        // only called internally when something has been deserialized into
+        // its primitive type.
+        private static internal_partial_structConversions_EfCoreValueConverter Deserialize(string value)
+        {
+            
+
+            
+
+            return new internal_partial_structConversions_EfCoreValueConverter(value);
+        }
+
         public readonly global::System.Boolean Equals(internal_partial_structConversions_EfCoreValueConverter other)
         {
             // It's possible to create uninitialized instances via converters such as EfCore (HasDefaultValue), which call Equals.
@@ -135,7 +146,7 @@ namespace Whatever
             {
                 return value switch
                 {
-                    global::System.String stringValue => internal_partial_structConversions_EfCoreValueConverter.From(stringValue),
+                    global::System.String stringValue => internal_partial_structConversions_EfCoreValueConverter.Deserialize(stringValue),
                     _ => throw new global::System.InvalidCastException($"Unable to cast object of type {value.GetType()} to internal_partial_structConversions_EfCoreValueConverter"),
                 };
             }
@@ -147,7 +158,7 @@ namespace Whatever
             public EfCoreValueConverter(global::Microsoft.EntityFrameworkCore.Storage.ValueConversion.ConverterMappingHints mappingHints = null)
                 : base(
                     vo => vo.Value,
-                    value => internal_partial_structConversions_EfCoreValueConverter.From(value),
+                    value => internal_partial_structConversions_EfCoreValueConverter.Deserialize(value),
                     mappingHints
                 ) { }
         }
@@ -157,7 +168,7 @@ namespace Whatever
             public LinqToDbValueConverter()
                 : base(
                       v => v.Value,
-                      p => internal_partial_structConversions_EfCoreValueConverter.From(p),
+                      p => internal_partial_structConversions_EfCoreValueConverter.Deserialize(p),
                       handlesNulls: false)
             { }
         }

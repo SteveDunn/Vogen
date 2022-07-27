@@ -84,6 +84,19 @@ public byte Value
             return instance;
         }
 
+        // only called internally when something has been deserialized into
+        // its primitive type.
+        private static public_sealed_partial_record_classConversions_EfCoreValueConverter Deserialize(byte value)
+        {
+            
+
+            
+
+            
+
+            return new public_sealed_partial_record_classConversions_EfCoreValueConverter(value);
+        }
+
         private void EnsureInitialized()
         {
             if (!_isInitialized)
@@ -119,11 +132,11 @@ public byte Value
             {
                 return value switch
                 {
-                    global::System.Byte byteValue => public_sealed_partial_record_classConversions_EfCoreValueConverter.From(byteValue),
-                    global::System.Int16 shortValue => public_sealed_partial_record_classConversions_EfCoreValueConverter.From((global::System.Byte)shortValue),
-                    global::System.Int32 intValue => public_sealed_partial_record_classConversions_EfCoreValueConverter.From((global::System.Byte)intValue),
-                    global::System.Int64 longValue => public_sealed_partial_record_classConversions_EfCoreValueConverter.From((global::System.Byte)longValue),
-                    global::System.String stringValue when !global::System.String.IsNullOrEmpty(stringValue) && global::System.Byte.TryParse(stringValue, out var result) => public_sealed_partial_record_classConversions_EfCoreValueConverter.From(result),
+                    global::System.Byte byteValue => public_sealed_partial_record_classConversions_EfCoreValueConverter.Deserialize(byteValue),
+                    global::System.Int16 shortValue => public_sealed_partial_record_classConversions_EfCoreValueConverter.Deserialize((global::System.Byte)shortValue),
+                    global::System.Int32 intValue => public_sealed_partial_record_classConversions_EfCoreValueConverter.Deserialize((global::System.Byte)intValue),
+                    global::System.Int64 longValue => public_sealed_partial_record_classConversions_EfCoreValueConverter.Deserialize((global::System.Byte)longValue),
+                    global::System.String stringValue when !global::System.String.IsNullOrEmpty(stringValue) && global::System.Byte.TryParse(stringValue, out var result) => public_sealed_partial_record_classConversions_EfCoreValueConverter.Deserialize(result),
                     _ => throw new global::System.InvalidCastException($"Unable to cast object of type {value.GetType()} to public_sealed_partial_record_classConversions_EfCoreValueConverter"),
                 };
             }
@@ -135,7 +148,7 @@ public byte Value
             public EfCoreValueConverter(global::Microsoft.EntityFrameworkCore.Storage.ValueConversion.ConverterMappingHints mappingHints = null)
                 : base(
                     vo => vo.Value,
-                    value => public_sealed_partial_record_classConversions_EfCoreValueConverter.From(value),
+                    value => public_sealed_partial_record_classConversions_EfCoreValueConverter.Deserialize(value),
                     mappingHints
                 ) { }
         }
@@ -145,7 +158,7 @@ public byte Value
             public LinqToDbValueConverter()
                 : base(
                       v => v.Value,
-                      p => public_sealed_partial_record_classConversions_EfCoreValueConverter.From(p),
+                      p => public_sealed_partial_record_classConversions_EfCoreValueConverter.Deserialize(p),
                       handlesNulls: false)
             { }
         }

@@ -75,6 +75,17 @@ namespace Whatever
             return instance;
         }
 
+        // only called internally when something has been deserialized into
+        // its primitive type.
+        private static public_partial_structConversions_TypeConverterfloat Deserialize(float value)
+        {
+            
+
+            
+
+            return new public_partial_structConversions_TypeConverterfloat(value);
+        }
+
         public readonly global::System.Boolean Equals(public_partial_structConversions_TypeConverterfloat other)
         {
             // It's possible to create uninitialized instances via converters such as EfCore (HasDefaultValue), which call Equals.
@@ -134,8 +145,8 @@ namespace Whatever
             {
                 return value switch
                 {
-                    global::System.Single floatValue => public_partial_structConversions_TypeConverterfloat.From(floatValue),
-                    global::System.String stringValue when !global::System.String.IsNullOrEmpty(stringValue) && global::System.Single.TryParse(stringValue, out var result) => public_partial_structConversions_TypeConverterfloat.From(result),
+                    global::System.Single floatValue => public_partial_structConversions_TypeConverterfloat.Deserialize(floatValue),
+                    global::System.String stringValue when !global::System.String.IsNullOrEmpty(stringValue) && global::System.Single.TryParse(stringValue, out var result) => public_partial_structConversions_TypeConverterfloat.Deserialize(result),
                     _ => base.ConvertFrom(context, culture, value),
                 };
             }

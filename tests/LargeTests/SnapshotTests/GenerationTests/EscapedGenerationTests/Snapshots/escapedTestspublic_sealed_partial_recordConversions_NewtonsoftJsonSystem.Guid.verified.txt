@@ -85,6 +85,19 @@ public System.Guid Value
             return instance;
         }
 
+        // only called internally when something has been deserialized into
+        // its primitive type.
+        private static escapedTestspublic_sealed_partial_recordConversions_NewtonsoftJsonSystem Deserialize(System.Guid value)
+        {
+            
+
+            
+
+            
+
+            return new escapedTestspublic_sealed_partial_recordConversions_NewtonsoftJsonSystem(value);
+        }
+
         private void EnsureInitialized()
         {
             if (!_isInitialized)
@@ -123,7 +136,7 @@ public System.Guid Value
             public override object ReadJson(Newtonsoft.Json.JsonReader reader, System.Type objectType, object existingValue, Newtonsoft.Json.JsonSerializer serializer)
             {
                 var guid = serializer.Deserialize<System.Guid?>(reader);
-                return guid.HasValue ? escapedTestspublic_sealed_partial_recordConversions_NewtonsoftJsonSystem.From(guid.Value) : null;
+                return guid.HasValue ? escapedTestspublic_sealed_partial_recordConversions_NewtonsoftJsonSystem.Deserialize(guid.Value) : null;
             }
         }
 

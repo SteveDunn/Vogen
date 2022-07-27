@@ -73,6 +73,19 @@ public System.Char Value
             return instance;
         }
 
+        // only called internally when something has been deserialized into
+        // its primitive type.
+        private static internal_sealed_partial_classConversions_Nonechar Deserialize(System.Char value)
+        {
+            
+
+            
+
+            
+
+            return new internal_sealed_partial_classConversions_Nonechar(value);
+        }
+
         public global::System.Boolean Equals(internal_sealed_partial_classConversions_Nonechar other)
         {
             if (ReferenceEquals(null, other))

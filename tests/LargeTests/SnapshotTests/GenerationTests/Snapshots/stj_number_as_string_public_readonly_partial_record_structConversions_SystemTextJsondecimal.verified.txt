@@ -85,6 +85,17 @@ namespace Whatever
             return instance;
         }
 
+        // only called internally when something has been deserialized into
+        // its primitive type.
+        private static stj_number_as_string_public_readonly_partial_record_structConversions_SystemTextJsondecimal Deserialize(decimal value)
+        {
+            
+
+            
+
+            return new stj_number_as_string_public_readonly_partial_record_structConversions_SystemTextJsondecimal(value);
+        }
+
         private readonly void EnsureInitialized()
         {
             if (!_isInitialized)
@@ -109,7 +120,7 @@ namespace Whatever
         {
             public override stj_number_as_string_public_readonly_partial_record_structConversions_SystemTextJsondecimal Read(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {
-                return stj_number_as_string_public_readonly_partial_record_structConversions_SystemTextJsondecimal.From(reader.GetDecimal());
+                return stj_number_as_string_public_readonly_partial_record_structConversions_SystemTextJsondecimal.Deserialize(reader.GetDecimal());
             }
 
             public override void Write(System.Text.Json.Utf8JsonWriter writer, stj_number_as_string_public_readonly_partial_record_structConversions_SystemTextJsondecimal value, global::System.Text.Json.JsonSerializerOptions options)

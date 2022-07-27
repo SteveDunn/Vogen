@@ -84,6 +84,19 @@ public @class.record.@struct.@float.decimal Value
             return instance;
         }
 
+        // only called internally when something has been deserialized into
+        // its primitive type.
+        private static escapedTestspublic_sealed_partial_recordConversions_LinqToDbValueConverter Deserialize(@class.record.@struct.@float.decimal value)
+        {
+            
+
+            
+
+            
+
+            return new escapedTestspublic_sealed_partial_recordConversions_LinqToDbValueConverter(value);
+        }
+
         private void EnsureInitialized()
         {
             if (!_isInitialized)
@@ -115,7 +128,7 @@ public @class.record.@struct.@float.decimal Value
             public LinqToDbValueConverter()
                 : base(
                       v => global::System.Text.Json.JsonSerializer.Serialize(v.Value, default(global::System.Text.Json.JsonSerializerOptions)),
-                      p => escapedTestspublic_sealed_partial_recordConversions_LinqToDbValueConverter.From(global::System.Text.Json.JsonSerializer.Deserialize<@class.@record.@struct.@float.@decimal>(p, default(global::System.Text.Json.JsonSerializerOptions))),
+                      p => escapedTestspublic_sealed_partial_recordConversions_LinqToDbValueConverter.Deserialize(global::System.Text.Json.JsonSerializer.Deserialize<@class.@record.@struct.@float.@decimal>(p, default(global::System.Text.Json.JsonSerializerOptions))),
                       handlesNulls: false)
             { }
         }

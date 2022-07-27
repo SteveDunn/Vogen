@@ -63,6 +63,11 @@ internal static class DiagnosticItems
         "Invalid Customizations",
         "The Customizations specified do not match any known customizations - see the Customizations type");
 
+    private static readonly DiagnosticDescriptor _invalidDeserializationStrictness = CreateDescriptor(
+        DiagnosticCode.InvalidDeserializationStrictness,
+        "Invalid Deserialization Strictness",
+        $"The Deserialization Strictness specified does not match any known customizations - see the {nameof(DeserializationStrictness)} type for valid values");
+
     private static readonly DiagnosticDescriptor _underlyingTypeMustNotBeSameAsValueObject = CreateDescriptor(
         DiagnosticCode.UnderlyingTypeMustNotBeSameAsValueObject,
         "Invalid underlying type",
@@ -161,6 +166,8 @@ internal static class DiagnosticItems
     public static Diagnostic InvalidConversions(Location location) => Create(_invalidConversions, location);
     
     public static Diagnostic InvalidCustomizations(Location location) => Create(_invalidCustomizations, location);
+    
+    public static Diagnostic InvalidDeserializationStrictness(Location location) => Create(_invalidDeserializationStrictness, location);
 
     public static Diagnostic InstanceMethodCannotHaveNullArgumentName(INamedTypeSymbol voClass) => 
         Create(_instanceMethodCannotHaveNullArgumentName, voClass.Locations, voClass.Name);

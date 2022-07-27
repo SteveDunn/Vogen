@@ -75,6 +75,17 @@ namespace Whatever
             return instance;
         }
 
+        // only called internally when something has been deserialized into
+        // its primitive type.
+        private static internal_readonly_partial_structConversions_TypeConverterSystem Deserialize(System.Guid value)
+        {
+            
+
+            
+
+            return new internal_readonly_partial_structConversions_TypeConverterSystem(value);
+        }
+
         public readonly global::System.Boolean Equals(internal_readonly_partial_structConversions_TypeConverterSystem other)
         {
             // It's possible to create uninitialized instances via converters such as EfCore (HasDefaultValue), which call Equals.
@@ -134,8 +145,8 @@ namespace Whatever
             {
                 return value switch
                 {
-                    global::System.Guid guidValue => internal_readonly_partial_structConversions_TypeConverterSystem.From(guidValue),
-                    global::System.String stringValue when !global::System.String.IsNullOrEmpty(stringValue) && global::System.Guid.TryParse(stringValue, out var result) => internal_readonly_partial_structConversions_TypeConverterSystem.From(result),
+                    global::System.Guid guidValue => internal_readonly_partial_structConversions_TypeConverterSystem.Deserialize(guidValue),
+                    global::System.String stringValue when !global::System.String.IsNullOrEmpty(stringValue) && global::System.Guid.TryParse(stringValue, out var result) => internal_readonly_partial_structConversions_TypeConverterSystem.Deserialize(result),
                     _ => base.ConvertFrom(context, culture, value),
                 };
             }

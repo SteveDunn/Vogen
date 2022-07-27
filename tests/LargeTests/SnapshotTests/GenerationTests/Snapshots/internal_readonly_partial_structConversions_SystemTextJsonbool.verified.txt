@@ -75,6 +75,17 @@ namespace Whatever
             return instance;
         }
 
+        // only called internally when something has been deserialized into
+        // its primitive type.
+        private static internal_readonly_partial_structConversions_SystemTextJsonbool Deserialize(bool value)
+        {
+            
+
+            
+
+            return new internal_readonly_partial_structConversions_SystemTextJsonbool(value);
+        }
+
         public readonly global::System.Boolean Equals(internal_readonly_partial_structConversions_SystemTextJsonbool other)
         {
             // It's possible to create uninitialized instances via converters such as EfCore (HasDefaultValue), which call Equals.
@@ -125,7 +136,7 @@ namespace Whatever
         {
             public override internal_readonly_partial_structConversions_SystemTextJsonbool Read(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {
-                return internal_readonly_partial_structConversions_SystemTextJsonbool.From(reader.GetBoolean());
+                return internal_readonly_partial_structConversions_SystemTextJsonbool.Deserialize(reader.GetBoolean());
             }
 
             public override void Write(global::System.Text.Json.Utf8JsonWriter writer, internal_readonly_partial_structConversions_SystemTextJsonbool value, global::System.Text.Json.JsonSerializerOptions options)

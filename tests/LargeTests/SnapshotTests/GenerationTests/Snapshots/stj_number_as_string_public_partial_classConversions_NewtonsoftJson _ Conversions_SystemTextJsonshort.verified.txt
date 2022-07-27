@@ -75,6 +75,19 @@ public System.Int16 Value
             return instance;
         }
 
+        // only called internally when something has been deserialized into
+        // its primitive type.
+        private static stj_number_as_string_public_partial_classConversions_NewtonsoftJson Deserialize(System.Int16 value)
+        {
+            
+
+            
+
+            
+
+            return new stj_number_as_string_public_partial_classConversions_NewtonsoftJson(value);
+        }
+
         public global::System.Boolean Equals(stj_number_as_string_public_partial_classConversions_NewtonsoftJson other)
         {
             if (ReferenceEquals(null, other))
@@ -161,7 +174,7 @@ public System.Int16 Value
         {
             public override stj_number_as_string_public_partial_classConversions_NewtonsoftJson Read(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {
-                return stj_number_as_string_public_partial_classConversions_NewtonsoftJson.From(reader.GetInt16());
+                return stj_number_as_string_public_partial_classConversions_NewtonsoftJson.Deserialize(reader.GetInt16());
             }
 
             public override void Write(System.Text.Json.Utf8JsonWriter writer, stj_number_as_string_public_partial_classConversions_NewtonsoftJson value, global::System.Text.Json.JsonSerializerOptions options)
@@ -186,7 +199,7 @@ public System.Int16 Value
             public override object ReadJson(Newtonsoft.Json.JsonReader reader, System.Type objectType, object existingValue, Newtonsoft.Json.JsonSerializer serializer)
             {
                 var result = serializer.Deserialize<global::System.Int16?>(reader);
-                return result.HasValue ? stj_number_as_string_public_partial_classConversions_NewtonsoftJson.From(result.Value) : null;
+                return result.HasValue ? stj_number_as_string_public_partial_classConversions_NewtonsoftJson.Deserialize(result.Value) : null;
             }
         }
 

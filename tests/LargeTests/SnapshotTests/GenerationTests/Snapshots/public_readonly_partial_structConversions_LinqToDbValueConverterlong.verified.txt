@@ -74,6 +74,17 @@ namespace Whatever
             return instance;
         }
 
+        // only called internally when something has been deserialized into
+        // its primitive type.
+        private static public_readonly_partial_structConversions_LinqToDbValueConverterlong Deserialize(long value)
+        {
+            
+
+            
+
+            return new public_readonly_partial_structConversions_LinqToDbValueConverterlong(value);
+        }
+
         public readonly global::System.Boolean Equals(public_readonly_partial_structConversions_LinqToDbValueConverterlong other)
         {
             // It's possible to create uninitialized instances via converters such as EfCore (HasDefaultValue), which call Equals.
@@ -130,7 +141,7 @@ namespace Whatever
             public LinqToDbValueConverter()
                 : base(
                       v => v.Value,
-                      p => public_readonly_partial_structConversions_LinqToDbValueConverterlong.From(p),
+                      p => public_readonly_partial_structConversions_LinqToDbValueConverterlong.Deserialize(p),
                       handlesNulls: false)
             { }
         }

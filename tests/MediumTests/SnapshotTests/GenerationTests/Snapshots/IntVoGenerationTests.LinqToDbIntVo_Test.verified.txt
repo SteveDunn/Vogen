@@ -74,6 +74,17 @@ namespace Whatever
             return instance;
         }
 
+        // only called internally when something has been deserialized into
+        // its primitive type.
+        private static LinqToDbIntVo Deserialize(int value)
+        {
+            
+
+            
+
+            return new LinqToDbIntVo(value);
+        }
+
         public readonly global::System.Boolean Equals(LinqToDbIntVo other)
         {
             // It's possible to create uninitialized instances via converters such as EfCore (HasDefaultValue), which call Equals.
@@ -130,7 +141,7 @@ namespace Whatever
             public LinqToDbValueConverter()
                 : base(
                       v => v.Value,
-                      p => LinqToDbIntVo.From(p),
+                      p => LinqToDbIntVo.Deserialize(p),
                       handlesNulls: false)
             { }
         }

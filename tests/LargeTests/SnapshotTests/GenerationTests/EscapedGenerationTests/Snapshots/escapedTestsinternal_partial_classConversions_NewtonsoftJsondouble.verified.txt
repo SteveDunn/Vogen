@@ -74,6 +74,19 @@ public System.Double Value
             return instance;
         }
 
+        // only called internally when something has been deserialized into
+        // its primitive type.
+        private static escapedTestsinternal_partial_classConversions_NewtonsoftJsondouble Deserialize(System.Double value)
+        {
+            
+
+            
+
+            
+
+            return new escapedTestsinternal_partial_classConversions_NewtonsoftJsondouble(value);
+        }
+
         public global::System.Boolean Equals(escapedTestsinternal_partial_classConversions_NewtonsoftJsondouble other)
         {
             if (ReferenceEquals(null, other))
@@ -173,7 +186,7 @@ public System.Double Value
             public override object ReadJson(Newtonsoft.Json.JsonReader reader, System.Type objectType, object existingValue, Newtonsoft.Json.JsonSerializer serializer)
             {
                 var result = serializer.Deserialize<global::System.Double?>(reader);
-                return result.HasValue ? escapedTestsinternal_partial_classConversions_NewtonsoftJsondouble.From(result.Value) : null;
+                return result.HasValue ? escapedTestsinternal_partial_classConversions_NewtonsoftJsondouble.Deserialize(result.Value) : null;
             }
         }
 

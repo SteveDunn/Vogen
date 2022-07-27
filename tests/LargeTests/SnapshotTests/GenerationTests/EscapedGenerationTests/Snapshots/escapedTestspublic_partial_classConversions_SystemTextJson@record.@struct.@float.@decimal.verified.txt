@@ -74,6 +74,19 @@ public @class.@record.@struct.@float.@decimal Value
             return instance;
         }
 
+        // only called internally when something has been deserialized into
+        // its primitive type.
+        private static escapedTestspublic_partial_classConversions_SystemTextJson Deserialize(@class.@record.@struct.@float.@decimal value)
+        {
+            
+
+            
+
+            
+
+            return new escapedTestspublic_partial_classConversions_SystemTextJson(value);
+        }
+
         public global::System.Boolean Equals(escapedTestspublic_partial_classConversions_SystemTextJson other)
         {
             if (ReferenceEquals(null, other))
@@ -161,7 +174,7 @@ public @class.@record.@struct.@float.@decimal Value
             public override escapedTestspublic_partial_classConversions_SystemTextJson Read(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {
                 var primitive = global::System.Text.Json.JsonSerializer.Deserialize<@class.@record.@struct.@float.@decimal>(ref reader, options);
-                return escapedTestspublic_partial_classConversions_SystemTextJson.From(primitive);
+                return escapedTestspublic_partial_classConversions_SystemTextJson.Deserialize(primitive);
             }
 
             public override void Write(System.Text.Json.Utf8JsonWriter writer, escapedTestspublic_partial_classConversions_SystemTextJson value, global::System.Text.Json.JsonSerializerOptions options)

@@ -77,6 +77,17 @@ namespace @class
             return instance;
         }
 
+        // only called internally when something has been deserialized into
+        // its primitive type.
+        private static escapedTestspublic_partial_structConversions_TypeConverter Deserialize(@class.record.@struct.@float.decimal value)
+        {
+            
+
+            
+
+            return new escapedTestspublic_partial_structConversions_TypeConverter(value);
+        }
+
         public readonly global::System.Boolean Equals(escapedTestspublic_partial_structConversions_TypeConverter other)
         {
             // It's possible to create uninitialized instances via converters such as EfCore (HasDefaultValue), which call Equals.
@@ -128,7 +139,7 @@ namespace @class
             public override escapedTestspublic_partial_structConversions_TypeConverter Read(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {
                 var primitive = global::System.Text.Json.JsonSerializer.Deserialize<@class.@record.@struct.@float.@decimal>(ref reader, options);
-                return escapedTestspublic_partial_structConversions_TypeConverter.From(primitive);
+                return escapedTestspublic_partial_structConversions_TypeConverter.Deserialize(primitive);
             }
 
             public override void Write(System.Text.Json.Utf8JsonWriter writer, escapedTestspublic_partial_structConversions_TypeConverter value, global::System.Text.Json.JsonSerializerOptions options)
@@ -152,7 +163,7 @@ namespace @class
 
             public override object ReadJson(Newtonsoft.Json.JsonReader reader, System.Type objectType, object existingValue, Newtonsoft.Json.JsonSerializer serializer)
             {
-                return escapedTestspublic_partial_structConversions_TypeConverter.From(serializer.Deserialize<@class.@record.@struct.@float.@decimal>(reader));
+                return escapedTestspublic_partial_structConversions_TypeConverter.Deserialize(serializer.Deserialize<@class.@record.@struct.@float.@decimal>(reader));
             }
         }
 
@@ -167,7 +178,7 @@ namespace @class
             {
                 @class.@record.@struct.@float.@decimal ut = (@class.@record.@struct.@float.@decimal)value;
 
-                return escapedTestspublic_partial_structConversions_TypeConverter.From(ut);
+                return escapedTestspublic_partial_structConversions_TypeConverter.Deserialize(ut);
             }
         
             public override bool CanConvertTo(global::System.ComponentModel.ITypeDescriptorContext context, global::System.Type sourceType)
@@ -199,7 +210,7 @@ namespace @class
                 return value switch
                 {
                     global::System.String stringValue =>
-                        escapedTestspublic_partial_structConversions_TypeConverter.From(global::System.Text.Json.JsonSerializer.Deserialize<Bar>(stringValue)),
+                        escapedTestspublic_partial_structConversions_TypeConverter.Deserialize(global::System.Text.Json.JsonSerializer.Deserialize<Bar>(stringValue)),
                     _ => throw new global::System.InvalidCastException($"Unable to cast object of type {value.GetType()} to escapedTestspublic_partial_structConversions_TypeConverter"),
                 };
             }
@@ -211,7 +222,7 @@ namespace @class
             public EfCoreValueConverter(global::Microsoft.EntityFrameworkCore.Storage.ValueConversion.ConverterMappingHints mappingHints = null)
                 : base(
                     vo => global::System.Text.Json.JsonSerializer.Serialize(vo.Value, default(global::System.Text.Json.JsonSerializerOptions)),
-                    text => escapedTestspublic_partial_structConversions_TypeConverter.From(global::System.Text.Json.JsonSerializer.Deserialize<@class.@record.@struct.@float.@decimal>(text, default(global::System.Text.Json.JsonSerializerOptions))),
+                    text => escapedTestspublic_partial_structConversions_TypeConverter.Deserialize(global::System.Text.Json.JsonSerializer.Deserialize<@class.@record.@struct.@float.@decimal>(text, default(global::System.Text.Json.JsonSerializerOptions))),
                     mappingHints
                 ) { }
         }
@@ -221,7 +232,7 @@ namespace @class
             public LinqToDbValueConverter()
                 : base(
                       v => global::System.Text.Json.JsonSerializer.Serialize(v.Value, default(global::System.Text.Json.JsonSerializerOptions)),
-                      p => escapedTestspublic_partial_structConversions_TypeConverter.From(global::System.Text.Json.JsonSerializer.Deserialize<@class.@record.@struct.@float.@decimal>(p, default(global::System.Text.Json.JsonSerializerOptions))),
+                      p => escapedTestspublic_partial_structConversions_TypeConverter.Deserialize(global::System.Text.Json.JsonSerializer.Deserialize<@class.@record.@struct.@float.@decimal>(p, default(global::System.Text.Json.JsonSerializerOptions))),
                       handlesNulls: false)
             { }
         }

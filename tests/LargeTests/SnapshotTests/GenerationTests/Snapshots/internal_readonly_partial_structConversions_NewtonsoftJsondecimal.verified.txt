@@ -75,6 +75,17 @@ namespace Whatever
             return instance;
         }
 
+        // only called internally when something has been deserialized into
+        // its primitive type.
+        private static internal_readonly_partial_structConversions_NewtonsoftJsondecimal Deserialize(decimal value)
+        {
+            
+
+            
+
+            return new internal_readonly_partial_structConversions_NewtonsoftJsondecimal(value);
+        }
+
         public readonly global::System.Boolean Equals(internal_readonly_partial_structConversions_NewtonsoftJsondecimal other)
         {
             // It's possible to create uninitialized instances via converters such as EfCore (HasDefaultValue), which call Equals.
@@ -138,7 +149,7 @@ namespace Whatever
             public override object ReadJson(Newtonsoft.Json.JsonReader reader, System.Type objectType, object existingValue, Newtonsoft.Json.JsonSerializer serializer)
             {
                 var result = serializer.Deserialize<global::System.Decimal?>(reader);
-                return result.HasValue ? internal_readonly_partial_structConversions_NewtonsoftJsondecimal.From(result.Value) : null;
+                return result.HasValue ? internal_readonly_partial_structConversions_NewtonsoftJsondecimal.Deserialize(result.Value) : null;
             }
         }
 

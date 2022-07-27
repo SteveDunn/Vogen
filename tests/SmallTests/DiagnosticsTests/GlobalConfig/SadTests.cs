@@ -2,7 +2,6 @@
 using FluentAssertions;
 using Microsoft.CodeAnalysis;
 using Vogen;
-using Vogen.Tests;
 using Xunit;
 
 namespace SmallTests.DiagnosticsTests.GlobalConfig;
@@ -186,6 +185,31 @@ public partial struct CustomerId { }
             {
                 first.Id.Should().Be("VOG019");
                 first.ToString().Should().Be("(4,12): error VOG019: The Customizations specified do not match any known customizations - see the Customizations type");
+            });
+    }
+
+    [Fact]
+    public void Not_valid_deserialization_strictness()
+    {
+        var source = @"using System;
+using Vogen;
+
+[assembly: VogenDefaults(deserializationStrictness: (DeserializationStrictness)666)]
+
+namespace Whatever;
+
+[ValueObject]
+public partial struct CustomerId { }
+";
+
+        var (diagnostics, _) = TestHelper.GetGeneratedOutput<ValueObjectGenerator>(source);
+
+        diagnostics.Should().HaveCount(1);
+
+        diagnostics.Should().SatisfyRespectively(first =>
+            {
+                first.Id.Should().Be("VOG022");
+                first.ToString().Should().Be("(4,12): error VOG022: The Deserialization Strictness specified does not match any known customizations - see the DeserializationStrictness type for valid values");
             });
     }
 

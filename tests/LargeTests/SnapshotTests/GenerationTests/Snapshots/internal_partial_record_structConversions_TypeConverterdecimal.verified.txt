@@ -85,6 +85,17 @@ namespace Whatever
             return instance;
         }
 
+        // only called internally when something has been deserialized into
+        // its primitive type.
+        private static internal_partial_record_structConversions_TypeConverterdecimal Deserialize(decimal value)
+        {
+            
+
+            
+
+            return new internal_partial_record_structConversions_TypeConverterdecimal(value);
+        }
+
         private readonly void EnsureInitialized()
         {
             if (!_isInitialized)
@@ -118,8 +129,8 @@ namespace Whatever
             {
                 return value switch
                 {
-                    global::System.Decimal decimalValue => internal_partial_record_structConversions_TypeConverterdecimal.From(decimalValue),
-                    global::System.String stringValue when !global::System.String.IsNullOrEmpty(stringValue) && global::System.Decimal.TryParse(stringValue, out var result) => internal_partial_record_structConversions_TypeConverterdecimal.From(result),
+                    global::System.Decimal decimalValue => internal_partial_record_structConversions_TypeConverterdecimal.Deserialize(decimalValue),
+                    global::System.String stringValue when !global::System.String.IsNullOrEmpty(stringValue) && global::System.Decimal.TryParse(stringValue, out var result) => internal_partial_record_structConversions_TypeConverterdecimal.Deserialize(result),
                     _ => base.ConvertFrom(context, culture, value),
                 };
             }

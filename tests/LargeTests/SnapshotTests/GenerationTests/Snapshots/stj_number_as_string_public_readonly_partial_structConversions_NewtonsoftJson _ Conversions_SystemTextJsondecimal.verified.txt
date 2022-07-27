@@ -76,6 +76,17 @@ namespace Whatever
             return instance;
         }
 
+        // only called internally when something has been deserialized into
+        // its primitive type.
+        private static stj_number_as_string_public_readonly_partial_structConversions_NewtonsoftJson Deserialize(decimal value)
+        {
+            
+
+            
+
+            return new stj_number_as_string_public_readonly_partial_structConversions_NewtonsoftJson(value);
+        }
+
         public readonly global::System.Boolean Equals(stj_number_as_string_public_readonly_partial_structConversions_NewtonsoftJson other)
         {
             // It's possible to create uninitialized instances via converters such as EfCore (HasDefaultValue), which call Equals.
@@ -126,7 +137,7 @@ namespace Whatever
         {
             public override stj_number_as_string_public_readonly_partial_structConversions_NewtonsoftJson Read(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {
-                return stj_number_as_string_public_readonly_partial_structConversions_NewtonsoftJson.From(reader.GetDecimal());
+                return stj_number_as_string_public_readonly_partial_structConversions_NewtonsoftJson.Deserialize(reader.GetDecimal());
             }
 
             public override void Write(System.Text.Json.Utf8JsonWriter writer, stj_number_as_string_public_readonly_partial_structConversions_NewtonsoftJson value, global::System.Text.Json.JsonSerializerOptions options)
@@ -151,7 +162,7 @@ namespace Whatever
             public override object ReadJson(Newtonsoft.Json.JsonReader reader, System.Type objectType, object existingValue, Newtonsoft.Json.JsonSerializer serializer)
             {
                 var result = serializer.Deserialize<global::System.Decimal?>(reader);
-                return result.HasValue ? stj_number_as_string_public_readonly_partial_structConversions_NewtonsoftJson.From(result.Value) : null;
+                return result.HasValue ? stj_number_as_string_public_readonly_partial_structConversions_NewtonsoftJson.Deserialize(result.Value) : null;
             }
         }
 

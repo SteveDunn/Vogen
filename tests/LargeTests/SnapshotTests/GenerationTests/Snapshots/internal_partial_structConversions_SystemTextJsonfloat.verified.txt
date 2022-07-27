@@ -75,6 +75,17 @@ namespace Whatever
             return instance;
         }
 
+        // only called internally when something has been deserialized into
+        // its primitive type.
+        private static internal_partial_structConversions_SystemTextJsonfloat Deserialize(float value)
+        {
+            
+
+            
+
+            return new internal_partial_structConversions_SystemTextJsonfloat(value);
+        }
+
         public readonly global::System.Boolean Equals(internal_partial_structConversions_SystemTextJsonfloat other)
         {
             // It's possible to create uninitialized instances via converters such as EfCore (HasDefaultValue), which call Equals.
@@ -125,7 +136,7 @@ namespace Whatever
         {
             public override internal_partial_structConversions_SystemTextJsonfloat Read(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {
-                return internal_partial_structConversions_SystemTextJsonfloat.From(reader.GetSingle());
+                return internal_partial_structConversions_SystemTextJsonfloat.Deserialize(reader.GetSingle());
             }
 
             public override void Write(System.Text.Json.Utf8JsonWriter writer, internal_partial_structConversions_SystemTextJsonfloat value, global::System.Text.Json.JsonSerializerOptions options)

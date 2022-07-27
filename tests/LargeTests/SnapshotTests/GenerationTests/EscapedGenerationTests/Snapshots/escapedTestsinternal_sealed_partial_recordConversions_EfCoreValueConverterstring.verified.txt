@@ -92,6 +92,23 @@ public string Value
             return instance;
         }
 
+        // only called internally when something has been deserialized into
+        // its primitive type.
+        private static escapedTestsinternal_sealed_partial_recordConversions_EfCoreValueConverterstring Deserialize(string value)
+        {
+                        if (value is null)
+            {
+                throw new global::Vogen.ValueObjectValidationException("Cannot create a value object with null.");
+            }
+
+
+            
+
+            
+
+            return new escapedTestsinternal_sealed_partial_recordConversions_EfCoreValueConverterstring(value);
+        }
+
         private void EnsureInitialized()
         {
             if (!_isInitialized)
@@ -123,7 +140,7 @@ public string Value
             public EfCoreValueConverter(global::Microsoft.EntityFrameworkCore.Storage.ValueConversion.ConverterMappingHints mappingHints = null)
                 : base(
                     vo => vo.Value,
-                    value => escapedTestsinternal_sealed_partial_recordConversions_EfCoreValueConverterstring.From(value),
+                    value => escapedTestsinternal_sealed_partial_recordConversions_EfCoreValueConverterstring.Deserialize(value),
                     mappingHints
                 ) { }
         }

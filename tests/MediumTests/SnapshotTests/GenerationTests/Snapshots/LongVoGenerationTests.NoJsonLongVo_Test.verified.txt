@@ -75,6 +75,17 @@ namespace Whatever
             return instance;
         }
 
+        // only called internally when something has been deserialized into
+        // its primitive type.
+        private static NoJsonLongVo Deserialize(long value)
+        {
+            
+
+            
+
+            return new NoJsonLongVo(value);
+        }
+
         public readonly global::System.Boolean Equals(NoJsonLongVo other)
         {
             // It's possible to create uninitialized instances via converters such as EfCore (HasDefaultValue), which call Equals.
@@ -134,8 +145,8 @@ namespace Whatever
             {
                 return value switch
                 {
-                    global::System.Int64 longValue => NoJsonLongVo.From(longValue),
-                    global::System.String stringValue when  !global::System.String.IsNullOrEmpty(stringValue) && long.TryParse(stringValue, out var result) => NoJsonLongVo.From(result),
+                    global::System.Int64 longValue => NoJsonLongVo.Deserialize(longValue),
+                    global::System.String stringValue when  !global::System.String.IsNullOrEmpty(stringValue) && long.TryParse(stringValue, out var result) => NoJsonLongVo.Deserialize(result),
                     _ => base.ConvertFrom(context, culture, value),
                 };
             }

@@ -10,6 +10,78 @@ namespace MediumTests.SnapshotTests.Config;
 public class LocalConfigTests
 {
     [Fact]
+    public Task Defaults()
+    {
+        var source = @"using System;
+using Vogen;
+namespace Whatever;
+
+[ValueObject]
+public partial struct CustomerId
+{
+}";
+
+        var (diagnostics, output) = TestHelper.GetGeneratedOutput<ValueObjectGenerator>(source);
+
+        diagnostics.Should().BeEmpty();
+
+        return Verifier.Verify(output).UseDirectory("Snapshots");
+    }
+
+    [Fact]
+    public Task Defaults_with_validation()
+    {
+        var source = @"using System;
+using Vogen;
+namespace Whatever;
+
+[ValueObject]
+public partial struct CustomerId
+{
+    private static Validation validate(int value)
+    {
+        if (value > 0)
+            return Validation.Ok;
+
+        return Validation.Invalid(""must be greater than zero"");
+    }
+}";
+
+        var (diagnostics, output) = TestHelper.GetGeneratedOutput<ValueObjectGenerator>(source);
+
+        diagnostics.Should().BeEmpty();
+
+        return Verifier.Verify(output).UseDirectory("Snapshots");
+    }
+
+    [Fact]
+    public Task Defaults_with_validation_and_instances()
+    {
+        var source = @"using System;
+using Vogen;
+namespace Whatever;
+
+[ValueObject]
+[Instance(name: ""Zero"", value: 0, tripleSlashComment: ""a short description that'll show up in intellisense"")]
+public partial struct CustomerId
+{
+    private static Validation validate(int value)
+    {
+        if (value > 0)
+            return Validation.Ok;
+
+        return Validation.Invalid(""must be greater than zero"");
+    }
+}";
+
+        var (diagnostics, output) = TestHelper.GetGeneratedOutput<ValueObjectGenerator>(source);
+
+        diagnostics.Should().BeEmpty();
+
+        return Verifier.Verify(output).UseDirectory("Snapshots");
+    }
+
+    [Fact]
     public Task Type_override()
     {
         var source = @"using System;

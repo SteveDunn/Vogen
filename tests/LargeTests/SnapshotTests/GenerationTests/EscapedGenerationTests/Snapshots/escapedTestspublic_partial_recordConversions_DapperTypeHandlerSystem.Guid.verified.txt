@@ -84,6 +84,19 @@ public System.Guid Value
             return instance;
         }
 
+        // only called internally when something has been deserialized into
+        // its primitive type.
+        private static escapedTestspublic_partial_recordConversions_DapperTypeHandlerSystem Deserialize(System.Guid value)
+        {
+            
+
+            
+
+            
+
+            return new escapedTestspublic_partial_recordConversions_DapperTypeHandlerSystem(value);
+        }
+
         private void EnsureInitialized()
         {
             if (!_isInitialized)
@@ -120,8 +133,8 @@ public System.Guid Value
             {
                 return value switch
                 {
-                    global::System.Guid guidValue => escapedTestspublic_partial_recordConversions_DapperTypeHandlerSystem.From(guidValue),
-                    global::System.String stringValue when !global::System.String.IsNullOrEmpty(stringValue) && global::System.Guid.TryParse(stringValue, out var result) => escapedTestspublic_partial_recordConversions_DapperTypeHandlerSystem.From(result),
+                    global::System.Guid guidValue => escapedTestspublic_partial_recordConversions_DapperTypeHandlerSystem.Deserialize(guidValue),
+                    global::System.String stringValue when !global::System.String.IsNullOrEmpty(stringValue) && global::System.Guid.TryParse(stringValue, out var result) => escapedTestspublic_partial_recordConversions_DapperTypeHandlerSystem.Deserialize(result),
                     _ => throw new global::System.InvalidCastException($"Unable to cast object of type {value.GetType()} to escapedTestspublic_partial_recordConversions_DapperTypeHandlerSystem"),
                 };
             }

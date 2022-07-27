@@ -75,6 +75,17 @@ namespace Whatever
             return instance;
         }
 
+        // only called internally when something has been deserialized into
+        // its primitive type.
+        private static SystemTextJsonLongVo Deserialize(long value)
+        {
+            
+
+            
+
+            return new SystemTextJsonLongVo(value);
+        }
+
         public readonly global::System.Boolean Equals(SystemTextJsonLongVo other)
         {
             // It's possible to create uninitialized instances via converters such as EfCore (HasDefaultValue), which call Equals.
@@ -125,7 +136,7 @@ namespace Whatever
         {
             public override SystemTextJsonLongVo Read(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {
-                return SystemTextJsonLongVo.From(reader.GetInt64());
+                return SystemTextJsonLongVo.Deserialize(reader.GetInt64());
             }
 
             public override void Write(System.Text.Json.Utf8JsonWriter writer, SystemTextJsonLongVo value, global::System.Text.Json.JsonSerializerOptions options)

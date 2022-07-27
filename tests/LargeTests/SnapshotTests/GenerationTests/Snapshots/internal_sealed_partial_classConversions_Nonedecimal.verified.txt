@@ -73,6 +73,19 @@ public System.Decimal Value
             return instance;
         }
 
+        // only called internally when something has been deserialized into
+        // its primitive type.
+        private static internal_sealed_partial_classConversions_Nonedecimal Deserialize(System.Decimal value)
+        {
+            
+
+            
+
+            
+
+            return new internal_sealed_partial_classConversions_Nonedecimal(value);
+        }
+
         public global::System.Boolean Equals(internal_sealed_partial_classConversions_Nonedecimal other)
         {
             if (ReferenceEquals(null, other))

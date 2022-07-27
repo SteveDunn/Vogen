@@ -74,6 +74,17 @@ namespace Whatever
             return instance;
         }
 
+        // only called internally when something has been deserialized into
+        // its primitive type.
+        private static internal_readonly_partial_structConversions_Nonebool Deserialize(bool value)
+        {
+            
+
+            
+
+            return new internal_readonly_partial_structConversions_Nonebool(value);
+        }
+
         public readonly global::System.Boolean Equals(internal_readonly_partial_structConversions_Nonebool other)
         {
             // It's possible to create uninitialized instances via converters such as EfCore (HasDefaultValue), which call Equals.

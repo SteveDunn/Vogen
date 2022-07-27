@@ -84,6 +84,19 @@ public byte Value
             return instance;
         }
 
+        // only called internally when something has been deserialized into
+        // its primitive type.
+        private static public_sealed_partial_recordConversions_LinqToDbValueConverterbyte Deserialize(byte value)
+        {
+            
+
+            
+
+            
+
+            return new public_sealed_partial_recordConversions_LinqToDbValueConverterbyte(value);
+        }
+
         private void EnsureInitialized()
         {
             if (!_isInitialized)
@@ -115,7 +128,7 @@ public byte Value
             public LinqToDbValueConverter()
                 : base(
                       v => v.Value,
-                      p => public_sealed_partial_recordConversions_LinqToDbValueConverterbyte.From(p),
+                      p => public_sealed_partial_recordConversions_LinqToDbValueConverterbyte.Deserialize(p),
                       handlesNulls: false)
             { }
         }

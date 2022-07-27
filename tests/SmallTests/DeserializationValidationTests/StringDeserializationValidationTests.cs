@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.Threading.Tasks;
 using FluentAssertions;
@@ -7,7 +6,6 @@ using Microsoft.Data.Sqlite;
 using Xunit;
 using Vogen;
 using Dapper;
-using Newtonsoft.Json;
 using NewtonsoftJsonSerializer = Newtonsoft.Json.JsonConvert;
 using SystemTextJsonSerializer = System.Text.Json.JsonSerializer;
 using Microsoft.EntityFrameworkCore;
@@ -17,11 +15,6 @@ namespace SmallTests.DeserializationValidationTests;
 
 public class StringDeserializationValidationTests
 {
-    public StringDeserializationValidationTests()
-    {
-        SqlMapper.AddTypeHandler(new MyVoString_should_not_bypass_validation.DapperTypeHandler());
-    }
-
     [Fact]
     public async void Deserialization_dapper_should_not_bypass_validation_pass()
     {
@@ -34,7 +27,7 @@ public class StringDeserializationValidationTests
     }
 
     [Fact]
-    public async void Deserialization_dapper_should_not_bypass_validation_fail()
+    public async Task Deserialization_dapper_should_not_bypass_validation_fail()
     {
         using var connection = new SqliteConnection("DataSource=:memory:");
         await connection.OpenAsync();
@@ -42,6 +35,17 @@ public class StringDeserializationValidationTests
         Func<Task<string>> vo = async () => (await connection.QueryAsync<MyVoString_should_not_bypass_validation>("SELECT 'abc'")).AsList()[0].Value;
 
         await vo.Should().ThrowExactlyAsync<ValueObjectValidationException>().WithMessage("length must be greater than ten characters");
+    }
+
+    [Fact]
+    public async Task Deserialization_dapper_should_bypass_validation_fail()
+    {
+        using var connection = new SqliteConnection("DataSource=:memory:");
+        await connection.OpenAsync();
+
+         MyVoString_should_bypass_validation? vo = (await connection.QueryAsync<MyVoString_should_bypass_validation>("SELECT 'abc'")).AsList()[0];
+
+         vo.Value.Should().Be("abc");
     }
 
     [Fact]

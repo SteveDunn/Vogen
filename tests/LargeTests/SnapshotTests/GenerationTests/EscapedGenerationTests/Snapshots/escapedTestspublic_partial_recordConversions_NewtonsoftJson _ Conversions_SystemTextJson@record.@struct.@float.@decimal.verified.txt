@@ -86,6 +86,19 @@ public @class.record.@struct.@float.decimal Value
             return instance;
         }
 
+        // only called internally when something has been deserialized into
+        // its primitive type.
+        private static escapedTestspublic_partial_recordConversions_NewtonsoftJson Deserialize(@class.record.@struct.@float.decimal value)
+        {
+            
+
+            
+
+            
+
+            return new escapedTestspublic_partial_recordConversions_NewtonsoftJson(value);
+        }
+
         private void EnsureInitialized()
         {
             if (!_isInitialized)
@@ -112,7 +125,7 @@ public @class.record.@struct.@float.decimal Value
             public override escapedTestspublic_partial_recordConversions_NewtonsoftJson Read(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {
                 var primitive = global::System.Text.Json.JsonSerializer.Deserialize<@class.@record.@struct.@float.@decimal>(ref reader, options);
-                return escapedTestspublic_partial_recordConversions_NewtonsoftJson.From(primitive);
+                return escapedTestspublic_partial_recordConversions_NewtonsoftJson.Deserialize(primitive);
             }
 
             public override void Write(System.Text.Json.Utf8JsonWriter writer, escapedTestspublic_partial_recordConversions_NewtonsoftJson value, global::System.Text.Json.JsonSerializerOptions options)
@@ -136,7 +149,7 @@ public @class.record.@struct.@float.decimal Value
 
             public override object ReadJson(Newtonsoft.Json.JsonReader reader, System.Type objectType, object existingValue, Newtonsoft.Json.JsonSerializer serializer)
             {
-                return escapedTestspublic_partial_recordConversions_NewtonsoftJson.From(serializer.Deserialize<@class.@record.@struct.@float.@decimal>(reader));
+                return escapedTestspublic_partial_recordConversions_NewtonsoftJson.Deserialize(serializer.Deserialize<@class.@record.@struct.@float.@decimal>(reader));
             }
         }
 

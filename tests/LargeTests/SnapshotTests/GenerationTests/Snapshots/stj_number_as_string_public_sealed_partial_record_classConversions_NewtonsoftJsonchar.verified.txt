@@ -85,6 +85,19 @@ public char Value
             return instance;
         }
 
+        // only called internally when something has been deserialized into
+        // its primitive type.
+        private static stj_number_as_string_public_sealed_partial_record_classConversions_NewtonsoftJsonchar Deserialize(char value)
+        {
+            
+
+            
+
+            
+
+            return new stj_number_as_string_public_sealed_partial_record_classConversions_NewtonsoftJsonchar(value);
+        }
+
         private void EnsureInitialized()
         {
             if (!_isInitialized)
@@ -123,7 +136,7 @@ public char Value
             public override object ReadJson(Newtonsoft.Json.JsonReader reader, System.Type objectType, object existingValue, Newtonsoft.Json.JsonSerializer serializer)
             {
                 var result = serializer.Deserialize<global::System.Char?>(reader);
-                return result.HasValue ? stj_number_as_string_public_sealed_partial_record_classConversions_NewtonsoftJsonchar.From(result.Value) : null;
+                return result.HasValue ? stj_number_as_string_public_sealed_partial_record_classConversions_NewtonsoftJsonchar.Deserialize(result.Value) : null;
             }
         }
 

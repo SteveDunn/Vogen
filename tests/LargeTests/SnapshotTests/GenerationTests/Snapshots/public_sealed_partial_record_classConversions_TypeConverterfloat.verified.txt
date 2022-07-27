@@ -85,6 +85,19 @@ public float Value
             return instance;
         }
 
+        // only called internally when something has been deserialized into
+        // its primitive type.
+        private static public_sealed_partial_record_classConversions_TypeConverterfloat Deserialize(float value)
+        {
+            
+
+            
+
+            
+
+            return new public_sealed_partial_record_classConversions_TypeConverterfloat(value);
+        }
+
         private void EnsureInitialized()
         {
             if (!_isInitialized)
@@ -119,8 +132,8 @@ public float Value
             {
                 return value switch
                 {
-                    global::System.Single floatValue => public_sealed_partial_record_classConversions_TypeConverterfloat.From(floatValue),
-                    global::System.String stringValue when !global::System.String.IsNullOrEmpty(stringValue) && global::System.Single.TryParse(stringValue, out var result) => public_sealed_partial_record_classConversions_TypeConverterfloat.From(result),
+                    global::System.Single floatValue => public_sealed_partial_record_classConversions_TypeConverterfloat.Deserialize(floatValue),
+                    global::System.String stringValue when !global::System.String.IsNullOrEmpty(stringValue) && global::System.Single.TryParse(stringValue, out var result) => public_sealed_partial_record_classConversions_TypeConverterfloat.Deserialize(result),
                     _ => base.ConvertFrom(context, culture, value),
                 };
             }

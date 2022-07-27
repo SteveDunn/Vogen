@@ -84,6 +84,19 @@ public bool Value
             return instance;
         }
 
+        // only called internally when something has been deserialized into
+        // its primitive type.
+        private static internal_partial_record_classConversions_EfCoreValueConverterbool Deserialize(bool value)
+        {
+            
+
+            
+
+            
+
+            return new internal_partial_record_classConversions_EfCoreValueConverterbool(value);
+        }
+
         private void EnsureInitialized()
         {
             if (!_isInitialized)
@@ -115,7 +128,7 @@ public bool Value
             public EfCoreValueConverter(global::Microsoft.EntityFrameworkCore.Storage.ValueConversion.ConverterMappingHints mappingHints = null)
                 : base(
                     vo => vo.Value,
-                    value => internal_partial_record_classConversions_EfCoreValueConverterbool.From(value),
+                    value => internal_partial_record_classConversions_EfCoreValueConverterbool.Deserialize(value),
                     mappingHints
                 ) { }
         }

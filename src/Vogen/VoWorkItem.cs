@@ -25,6 +25,8 @@ public class VoWorkItem
 
     public Conversions Conversions { get; set; }
     
+    public DeserializationStrictness DeserializationStrictness { get; set; }
+    
     public Customizations Customizations { get; set; }
 
     public INamedTypeSymbol? TypeForValidationExceptions { get; set; } = null!;

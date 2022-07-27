@@ -77,6 +77,23 @@ public System.String Value
             return instance;
         }
 
+        // only called internally when something has been deserialized into
+        // its primitive type.
+        private static internal_partial_classConversions_DapperTypeHandlerstring Deserialize(System.String value)
+        {
+                        if (value is null)
+            {
+                throw new global::Vogen.ValueObjectValidationException("Cannot create a value object with null.");
+            }
+
+
+            
+
+            
+
+            return new internal_partial_classConversions_DapperTypeHandlerstring(value);
+        }
+
         public global::System.Boolean Equals(internal_partial_classConversions_DapperTypeHandlerstring other)
         {
             if (ReferenceEquals(null, other))
@@ -174,7 +191,7 @@ public System.String Value
             {
                 return value switch
                 {
-                    global::System.String stringValue => internal_partial_classConversions_DapperTypeHandlerstring.From(stringValue),
+                    global::System.String stringValue => internal_partial_classConversions_DapperTypeHandlerstring.Deserialize(stringValue),
                     _ => throw new global::System.InvalidCastException($"Unable to cast object of type {value.GetType()} to internal_partial_classConversions_DapperTypeHandlerstring"),
                 };
             }

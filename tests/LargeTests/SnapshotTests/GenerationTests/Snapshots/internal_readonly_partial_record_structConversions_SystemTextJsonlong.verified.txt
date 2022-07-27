@@ -85,6 +85,17 @@ namespace Whatever
             return instance;
         }
 
+        // only called internally when something has been deserialized into
+        // its primitive type.
+        private static internal_readonly_partial_record_structConversions_SystemTextJsonlong Deserialize(long value)
+        {
+            
+
+            
+
+            return new internal_readonly_partial_record_structConversions_SystemTextJsonlong(value);
+        }
+
         private readonly void EnsureInitialized()
         {
             if (!_isInitialized)
@@ -109,7 +120,7 @@ namespace Whatever
         {
             public override internal_readonly_partial_record_structConversions_SystemTextJsonlong Read(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {
-                return internal_readonly_partial_record_structConversions_SystemTextJsonlong.From(reader.GetInt64());
+                return internal_readonly_partial_record_structConversions_SystemTextJsonlong.Deserialize(reader.GetInt64());
             }
 
             public override void Write(System.Text.Json.Utf8JsonWriter writer, internal_readonly_partial_record_structConversions_SystemTextJsonlong value, global::System.Text.Json.JsonSerializerOptions options)

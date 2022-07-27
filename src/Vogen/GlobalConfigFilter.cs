@@ -74,6 +74,7 @@ internal static class GlobalConfigFilter
         INamedTypeSymbol? underlyingType = null;
         Conversions conversions = Conversions.Default;
         Customizations customizations= Customizations.None;
+        DeserializationStrictness deserializationStrictness = DeserializationStrictness.Default;
         
         bool hasErroredAttributes = false;
 
@@ -92,6 +93,13 @@ internal static class GlobalConfigFilter
 
             switch (args.Length)
             {
+                case 5:
+                    if (args[4].Value != null)
+                    {
+                        deserializationStrictness = (DeserializationStrictness) args[4].Value!;
+                    }
+
+                    goto case 4;
                 case 4:
                     if (args[3].Value != null)
                     {
@@ -143,6 +151,9 @@ internal static class GlobalConfigFilter
                         case "customizations":
                             customizations = (Customizations) (typedConstant.Value ?? Customizations.None);
                             break;
+                        case "deserializationStrictness":
+                            deserializationStrictness = (DeserializationStrictness) (typedConstant.Value ?? Customizations.None);
+                            break;
                     }
                 }
             }
@@ -172,7 +183,16 @@ internal static class GlobalConfigFilter
             }
         }
 
-        return new VogenConfiguration(underlyingType, invalidExceptionType, conversions, customizations);
+        if (!deserializationStrictness.IsValidFlags())
+        {
+            var syntax = matchingAttribute.ApplicationSyntaxReference?.GetSyntax();
+            if (syntax is not null)
+            {
+                context.ReportDiagnostic(DiagnosticItems.InvalidDeserializationStrictness(syntax.GetLocation()));
+            }
+        }
+
+        return new VogenConfiguration(underlyingType, invalidExceptionType, conversions, customizations, deserializationStrictness);
     }
 
     private static void ReportAnyIssuesWithTheException(INamedTypeSymbol? invalidExceptionType, SourceProductionContext context)

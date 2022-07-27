@@ -74,6 +74,17 @@ namespace Whatever
             return instance;
         }
 
+        // only called internally when something has been deserialized into
+        // its primitive type.
+        private static EfCoreStringVo Deserialize(string value)
+        {
+            
+
+            
+
+            return new EfCoreStringVo(value);
+        }
+
         public readonly global::System.Boolean Equals(EfCoreStringVo other)
         {
             // It's possible to create uninitialized instances via converters such as EfCore (HasDefaultValue), which call Equals.
@@ -130,7 +141,7 @@ namespace Whatever
             public EfCoreValueConverter(global::Microsoft.EntityFrameworkCore.Storage.ValueConversion.ConverterMappingHints mappingHints = null)
                 : base(
                     vo => vo.Value,
-                    value => EfCoreStringVo.From(value),
+                    value => EfCoreStringVo.Deserialize(value),
                     mappingHints
                 ) { }
         }

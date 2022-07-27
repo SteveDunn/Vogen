@@ -85,6 +85,19 @@ public decimal Value
             return instance;
         }
 
+        // only called internally when something has been deserialized into
+        // its primitive type.
+        private static public_sealed_partial_record_classConversions_SystemTextJsondecimal Deserialize(decimal value)
+        {
+            
+
+            
+
+            
+
+            return new public_sealed_partial_record_classConversions_SystemTextJsondecimal(value);
+        }
+
         private void EnsureInitialized()
         {
             if (!_isInitialized)
@@ -110,7 +123,7 @@ public decimal Value
         {
             public override public_sealed_partial_record_classConversions_SystemTextJsondecimal Read(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {
-                return public_sealed_partial_record_classConversions_SystemTextJsondecimal.From(reader.GetDecimal());
+                return public_sealed_partial_record_classConversions_SystemTextJsondecimal.Deserialize(reader.GetDecimal());
             }
 
             public override void Write(System.Text.Json.Utf8JsonWriter writer, public_sealed_partial_record_classConversions_SystemTextJsondecimal value, global::System.Text.Json.JsonSerializerOptions options)

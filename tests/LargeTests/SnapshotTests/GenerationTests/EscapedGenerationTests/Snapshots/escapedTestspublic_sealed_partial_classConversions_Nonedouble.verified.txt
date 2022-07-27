@@ -73,6 +73,19 @@ public System.Double Value
             return instance;
         }
 
+        // only called internally when something has been deserialized into
+        // its primitive type.
+        private static escapedTestspublic_sealed_partial_classConversions_Nonedouble Deserialize(System.Double value)
+        {
+            
+
+            
+
+            
+
+            return new escapedTestspublic_sealed_partial_classConversions_Nonedouble(value);
+        }
+
         public global::System.Boolean Equals(escapedTestspublic_sealed_partial_classConversions_Nonedouble other)
         {
             if (ReferenceEquals(null, other))

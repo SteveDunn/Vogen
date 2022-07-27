@@ -74,6 +74,19 @@ public System.Boolean Value
             return instance;
         }
 
+        // only called internally when something has been deserialized into
+        // its primitive type.
+        private static internal_partial_classConversions_TypeConverterbool Deserialize(System.Boolean value)
+        {
+            
+
+            
+
+            
+
+            return new internal_partial_classConversions_TypeConverterbool(value);
+        }
+
         public global::System.Boolean Equals(internal_partial_classConversions_TypeConverterbool other)
         {
             if (ReferenceEquals(null, other))
@@ -169,8 +182,8 @@ public System.Boolean Value
             {
                 return value switch
                 {
-                    global::System.Boolean boolValue => internal_partial_classConversions_TypeConverterbool.From(boolValue),
-                    global::System.String stringValue when  !global::System.String.IsNullOrEmpty(stringValue) && global::System.Boolean.TryParse(stringValue, out var result) => internal_partial_classConversions_TypeConverterbool.From(result),
+                    global::System.Boolean boolValue => internal_partial_classConversions_TypeConverterbool.Deserialize(boolValue),
+                    global::System.String stringValue when  !global::System.String.IsNullOrEmpty(stringValue) && global::System.Boolean.TryParse(stringValue, out var result) => internal_partial_classConversions_TypeConverterbool.Deserialize(result),
                     _ => base.ConvertFrom(context, culture, value),
                 };
             }

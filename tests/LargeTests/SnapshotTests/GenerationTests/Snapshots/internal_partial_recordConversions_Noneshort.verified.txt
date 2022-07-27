@@ -84,6 +84,19 @@ public short Value
             return instance;
         }
 
+        // only called internally when something has been deserialized into
+        // its primitive type.
+        private static internal_partial_recordConversions_Noneshort Deserialize(short value)
+        {
+            
+
+            
+
+            
+
+            return new internal_partial_recordConversions_Noneshort(value);
+        }
+
         private void EnsureInitialized()
         {
             if (!_isInitialized)

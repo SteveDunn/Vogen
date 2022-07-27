@@ -93,6 +93,23 @@ public string Value
             return instance;
         }
 
+        // only called internally when something has been deserialized into
+        // its primitive type.
+        private static public_partial_recordConversions_TypeConverterstring Deserialize(string value)
+        {
+                        if (value is null)
+            {
+                throw new global::Vogen.ValueObjectValidationException("Cannot create a value object with null.");
+            }
+
+
+            
+
+            
+
+            return new public_partial_recordConversions_TypeConverterstring(value);
+        }
+
         private void EnsureInitialized()
         {
             if (!_isInitialized)
@@ -128,7 +145,7 @@ public string Value
                 var stringValue = value as global::System.String;
                 if (stringValue is not null)
                 {
-                    return public_partial_recordConversions_TypeConverterstring.From(stringValue);
+                    return public_partial_recordConversions_TypeConverterstring.Deserialize(stringValue);
                 }
 
                 return base.ConvertFrom(context, culture, value);

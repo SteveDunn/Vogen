@@ -75,6 +75,17 @@ namespace Whatever
             return instance;
         }
 
+        // only called internally when something has been deserialized into
+        // its primitive type.
+        private static NewtonsoftJsonStringVo Deserialize(string value)
+        {
+            
+
+            
+
+            return new NewtonsoftJsonStringVo(value);
+        }
+
         public readonly global::System.Boolean Equals(NewtonsoftJsonStringVo other)
         {
             // It's possible to create uninitialized instances via converters such as EfCore (HasDefaultValue), which call Equals.
@@ -137,7 +148,7 @@ namespace Whatever
 
             public override object ReadJson(Newtonsoft.Json.JsonReader reader, System.Type objectType, object existingValue, Newtonsoft.Json.JsonSerializer serializer)
             {
-                return NewtonsoftJsonStringVo.From(serializer.Deserialize<global::System.String>(reader));
+                return NewtonsoftJsonStringVo.Deserialize(serializer.Deserialize<global::System.String>(reader));
             }
         }
 

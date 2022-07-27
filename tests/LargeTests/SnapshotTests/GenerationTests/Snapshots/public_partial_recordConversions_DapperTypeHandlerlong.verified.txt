@@ -84,6 +84,19 @@ public long Value
             return instance;
         }
 
+        // only called internally when something has been deserialized into
+        // its primitive type.
+        private static public_partial_recordConversions_DapperTypeHandlerlong Deserialize(long value)
+        {
+            
+
+            
+
+            
+
+            return new public_partial_recordConversions_DapperTypeHandlerlong(value);
+        }
+
         private void EnsureInitialized()
         {
             if (!_isInitialized)
@@ -120,10 +133,10 @@ public long Value
             {
                 return value switch
                 {
-                    global::System.Int64 longValue => public_partial_recordConversions_DapperTypeHandlerlong.From(longValue),
-                    global::System.Int32 intValue => public_partial_recordConversions_DapperTypeHandlerlong.From(intValue),
-                    global::System.Int16 shortValue => public_partial_recordConversions_DapperTypeHandlerlong.From(shortValue),
-                    global::System.String stringValue when  !global::System.String.IsNullOrEmpty(stringValue) && long.TryParse(stringValue, out var result) => public_partial_recordConversions_DapperTypeHandlerlong.From(result),
+                    global::System.Int64 longValue => public_partial_recordConversions_DapperTypeHandlerlong.Deserialize(longValue),
+                    global::System.Int32 intValue => public_partial_recordConversions_DapperTypeHandlerlong.Deserialize(intValue),
+                    global::System.Int16 shortValue => public_partial_recordConversions_DapperTypeHandlerlong.Deserialize(shortValue),
+                    global::System.String stringValue when  !global::System.String.IsNullOrEmpty(stringValue) && long.TryParse(stringValue, out var result) => public_partial_recordConversions_DapperTypeHandlerlong.Deserialize(result),
                     _ => throw new global::System.InvalidCastException($"Unable to cast object of type {value.GetType()} to public_partial_recordConversions_DapperTypeHandlerlong"),
                 };
             }

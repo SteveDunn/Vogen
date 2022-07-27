@@ -73,6 +73,19 @@ public System.Boolean Value
             return instance;
         }
 
+        // only called internally when something has been deserialized into
+        // its primitive type.
+        private static public_sealed_partial_classConversions_DapperTypeHandlerbool Deserialize(System.Boolean value)
+        {
+            
+
+            
+
+            
+
+            return new public_sealed_partial_classConversions_DapperTypeHandlerbool(value);
+        }
+
         public global::System.Boolean Equals(public_sealed_partial_classConversions_DapperTypeHandlerbool other)
         {
             if (ReferenceEquals(null, other))
@@ -169,10 +182,10 @@ public System.Boolean Value
             {
                 return value switch
                 {
-                    global::System.Boolean boolValue => public_sealed_partial_classConversions_DapperTypeHandlerbool.From(boolValue),
-                    global::System.Int64 longValue when longValue is 0 => public_sealed_partial_classConversions_DapperTypeHandlerbool.From(false),
-                    global::System.Int64 longValue when longValue is 1 => public_sealed_partial_classConversions_DapperTypeHandlerbool.From(true),
-                    global::System.String stringValue when !global::System.String.IsNullOrEmpty(stringValue) && global::System.Boolean.TryParse(stringValue, out var result) => public_sealed_partial_classConversions_DapperTypeHandlerbool.From(result),
+                    global::System.Boolean boolValue => public_sealed_partial_classConversions_DapperTypeHandlerbool.Deserialize(boolValue),
+                    global::System.Int64 longValue when longValue is 0 => public_sealed_partial_classConversions_DapperTypeHandlerbool.Deserialize(false),
+                    global::System.Int64 longValue when longValue is 1 => public_sealed_partial_classConversions_DapperTypeHandlerbool.Deserialize(true),
+                    global::System.String stringValue when !global::System.String.IsNullOrEmpty(stringValue) && global::System.Boolean.TryParse(stringValue, out var result) => public_sealed_partial_classConversions_DapperTypeHandlerbool.Deserialize(result),
                     _ => throw new global::System.InvalidCastException($"Unable to cast object of type {value.GetType()} to public_sealed_partial_classConversions_DapperTypeHandlerbool"),
                 };
             }

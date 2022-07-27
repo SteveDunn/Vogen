@@ -85,6 +85,17 @@ namespace @class
             return instance;
         }
 
+        // only called internally when something has been deserialized into
+        // its primitive type.
+        private static escapedTestsinternal_partial_record_structConversions_SystemTextJsonSystem Deserialize(System.Guid value)
+        {
+            
+
+            
+
+            return new escapedTestsinternal_partial_record_structConversions_SystemTextJsonSystem(value);
+        }
+
         private readonly void EnsureInitialized()
         {
             if (!_isInitialized)
@@ -109,7 +120,7 @@ namespace @class
         {
             public override escapedTestsinternal_partial_record_structConversions_SystemTextJsonSystem Read(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {
-                return escapedTestsinternal_partial_record_structConversions_SystemTextJsonSystem.From(System.Guid.Parse(reader.GetString()));
+                return escapedTestsinternal_partial_record_structConversions_SystemTextJsonSystem.Deserialize(System.Guid.Parse(reader.GetString()));
             }
 
             public override void Write(System.Text.Json.Utf8JsonWriter writer, escapedTestsinternal_partial_record_structConversions_SystemTextJsonSystem value, global::System.Text.Json.JsonSerializerOptions options)

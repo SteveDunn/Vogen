@@ -84,6 +84,19 @@ public System.Guid Value
             return instance;
         }
 
+        // only called internally when something has been deserialized into
+        // its primitive type.
+        private static escapedTestsinternal_sealed_partial_record_classConversions_LinqToDbValueConverterSystem Deserialize(System.Guid value)
+        {
+            
+
+            
+
+            
+
+            return new escapedTestsinternal_sealed_partial_record_classConversions_LinqToDbValueConverterSystem(value);
+        }
+
         private void EnsureInitialized()
         {
             if (!_isInitialized)
@@ -115,7 +128,7 @@ public System.Guid Value
             public LinqToDbValueConverter()
                 : base(
                       v => v.Value,
-                      p => escapedTestsinternal_sealed_partial_record_classConversions_LinqToDbValueConverterSystem.From(p),
+                      p => escapedTestsinternal_sealed_partial_record_classConversions_LinqToDbValueConverterSystem.Deserialize(p),
                       handlesNulls: false)
             { }
         }

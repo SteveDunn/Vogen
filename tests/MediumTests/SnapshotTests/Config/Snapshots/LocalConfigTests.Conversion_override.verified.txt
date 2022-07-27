@@ -74,6 +74,17 @@ namespace Whatever
             return instance;
         }
 
+        // only called internally when something has been deserialized into
+        // its primitive type.
+        private static CustomerId Deserialize(global::System.Int32 value)
+        {
+            
+
+            
+
+            return new CustomerId(value);
+        }
+
         public readonly global::System.Boolean Equals(CustomerId other)
         {
             // It's possible to create uninitialized instances via converters such as EfCore (HasDefaultValue), which call Equals.

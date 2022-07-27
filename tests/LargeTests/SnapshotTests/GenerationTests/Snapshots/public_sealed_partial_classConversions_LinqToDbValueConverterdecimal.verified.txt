@@ -73,6 +73,19 @@ public System.Decimal Value
             return instance;
         }
 
+        // only called internally when something has been deserialized into
+        // its primitive type.
+        private static public_sealed_partial_classConversions_LinqToDbValueConverterdecimal Deserialize(System.Decimal value)
+        {
+            
+
+            
+
+            
+
+            return new public_sealed_partial_classConversions_LinqToDbValueConverterdecimal(value);
+        }
+
         public global::System.Boolean Equals(public_sealed_partial_classConversions_LinqToDbValueConverterdecimal other)
         {
             if (ReferenceEquals(null, other))
@@ -165,7 +178,7 @@ public System.Decimal Value
             public LinqToDbValueConverter()
                 : base(
                       v => v.Value,
-                      p => public_sealed_partial_classConversions_LinqToDbValueConverterdecimal.From(p),
+                      p => public_sealed_partial_classConversions_LinqToDbValueConverterdecimal.Deserialize(p),
                       handlesNulls: false)
             { }
         }

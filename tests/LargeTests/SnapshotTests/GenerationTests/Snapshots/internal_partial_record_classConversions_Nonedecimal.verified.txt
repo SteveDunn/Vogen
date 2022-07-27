@@ -84,6 +84,19 @@ public decimal Value
             return instance;
         }
 
+        // only called internally when something has been deserialized into
+        // its primitive type.
+        private static internal_partial_record_classConversions_Nonedecimal Deserialize(decimal value)
+        {
+            
+
+            
+
+            
+
+            return new internal_partial_record_classConversions_Nonedecimal(value);
+        }
+
         private void EnsureInitialized()
         {
             if (!_isInitialized)

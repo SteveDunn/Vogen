@@ -74,6 +74,19 @@ public System.Guid Value
             return instance;
         }
 
+        // only called internally when something has been deserialized into
+        // its primitive type.
+        private static public_partial_classConversions_TypeConverterSystem Deserialize(System.Guid value)
+        {
+            
+
+            
+
+            
+
+            return new public_partial_classConversions_TypeConverterSystem(value);
+        }
+
         public global::System.Boolean Equals(public_partial_classConversions_TypeConverterSystem other)
         {
             if (ReferenceEquals(null, other))
@@ -169,8 +182,8 @@ public System.Guid Value
             {
                 return value switch
                 {
-                    global::System.Guid guidValue => public_partial_classConversions_TypeConverterSystem.From(guidValue),
-                    global::System.String stringValue when !global::System.String.IsNullOrEmpty(stringValue) && global::System.Guid.TryParse(stringValue, out var result) => public_partial_classConversions_TypeConverterSystem.From(result),
+                    global::System.Guid guidValue => public_partial_classConversions_TypeConverterSystem.Deserialize(guidValue),
+                    global::System.String stringValue when !global::System.String.IsNullOrEmpty(stringValue) && global::System.Guid.TryParse(stringValue, out var result) => public_partial_classConversions_TypeConverterSystem.Deserialize(result),
                     _ => base.ConvertFrom(context, culture, value),
                 };
             }

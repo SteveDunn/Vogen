@@ -73,6 +73,19 @@ public System.DateTime Value
             return instance;
         }
 
+        // only called internally when something has been deserialized into
+        // its primitive type.
+        private static internal_partial_classConversions_LinqToDbValueConverterSystem Deserialize(System.DateTime value)
+        {
+            
+
+            
+
+            
+
+            return new internal_partial_classConversions_LinqToDbValueConverterSystem(value);
+        }
+
         public global::System.Boolean Equals(internal_partial_classConversions_LinqToDbValueConverterSystem other)
         {
             if (ReferenceEquals(null, other))
@@ -165,7 +178,7 @@ public System.DateTime Value
             public LinqToDbValueConverter()
                 : base(
                       v => v.Value,
-                      p => internal_partial_classConversions_LinqToDbValueConverterSystem.From(p),
+                      p => internal_partial_classConversions_LinqToDbValueConverterSystem.Deserialize(p),
                       handlesNulls: false)
             { }
         }

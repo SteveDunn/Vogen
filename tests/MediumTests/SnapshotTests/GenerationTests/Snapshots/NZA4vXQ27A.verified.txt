@@ -85,6 +85,17 @@ namespace Whatever
             return instance;
         }
 
+        // only called internally when something has been deserialized into
+        // its primitive type.
+        private static internal_readonly_partial_record_structConversions_TypeConverterint Deserialize(int value)
+        {
+            
+
+            
+
+            return new internal_readonly_partial_record_structConversions_TypeConverterint(value);
+        }
+
         private readonly void EnsureInitialized()
         {
             if (!_isInitialized)
@@ -118,8 +129,8 @@ namespace Whatever
             {
                 return value switch
                 {
-                    global::System.Int32 intValue => internal_readonly_partial_record_structConversions_TypeConverterint.From(intValue),
-                    global::System.String stringValue when !global::System.String.IsNullOrEmpty(stringValue) && global::System.Int32.TryParse(stringValue, out var result) => internal_readonly_partial_record_structConversions_TypeConverterint.From(result),
+                    global::System.Int32 intValue => internal_readonly_partial_record_structConversions_TypeConverterint.Deserialize(intValue),
+                    global::System.String stringValue when !global::System.String.IsNullOrEmpty(stringValue) && global::System.Int32.TryParse(stringValue, out var result) => internal_readonly_partial_record_structConversions_TypeConverterint.Deserialize(result),
                     _ => base.ConvertFrom(context, culture, value),
                 };
             }

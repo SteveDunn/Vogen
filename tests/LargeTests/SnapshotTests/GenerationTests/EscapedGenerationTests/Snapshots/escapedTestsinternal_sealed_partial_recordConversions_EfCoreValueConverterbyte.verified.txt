@@ -84,6 +84,19 @@ public byte Value
             return instance;
         }
 
+        // only called internally when something has been deserialized into
+        // its primitive type.
+        private static escapedTestsinternal_sealed_partial_recordConversions_EfCoreValueConverterbyte Deserialize(byte value)
+        {
+            
+
+            
+
+            
+
+            return new escapedTestsinternal_sealed_partial_recordConversions_EfCoreValueConverterbyte(value);
+        }
+
         private void EnsureInitialized()
         {
             if (!_isInitialized)
@@ -115,7 +128,7 @@ public byte Value
             public EfCoreValueConverter(global::Microsoft.EntityFrameworkCore.Storage.ValueConversion.ConverterMappingHints mappingHints = null)
                 : base(
                     vo => vo.Value,
-                    value => escapedTestsinternal_sealed_partial_recordConversions_EfCoreValueConverterbyte.From(value),
+                    value => escapedTestsinternal_sealed_partial_recordConversions_EfCoreValueConverterbyte.Deserialize(value),
                     mappingHints
                 ) { }
         }

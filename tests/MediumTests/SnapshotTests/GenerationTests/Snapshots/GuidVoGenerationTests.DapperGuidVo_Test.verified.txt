@@ -74,6 +74,17 @@ namespace Whatever
             return instance;
         }
 
+        // only called internally when something has been deserialized into
+        // its primitive type.
+        private static DapperGuidVo Deserialize(System.Guid value)
+        {
+            
+
+            
+
+            return new DapperGuidVo(value);
+        }
+
         public readonly global::System.Boolean Equals(DapperGuidVo other)
         {
             // It's possible to create uninitialized instances via converters such as EfCore (HasDefaultValue), which call Equals.
@@ -135,8 +146,8 @@ namespace Whatever
             {
                 return value switch
                 {
-                    global::System.Guid guidValue => DapperGuidVo.From(guidValue),
-                    global::System.String stringValue when !global::System.String.IsNullOrEmpty(stringValue) && global::System.Guid.TryParse(stringValue, out var result) => DapperGuidVo.From(result),
+                    global::System.Guid guidValue => DapperGuidVo.Deserialize(guidValue),
+                    global::System.String stringValue when !global::System.String.IsNullOrEmpty(stringValue) && global::System.Guid.TryParse(stringValue, out var result) => DapperGuidVo.Deserialize(result),
                     _ => throw new global::System.InvalidCastException($"Unable to cast object of type {value.GetType()} to DapperGuidVo"),
                 };
             }

@@ -75,6 +75,17 @@ namespace Whatever
             return instance;
         }
 
+        // only called internally when something has been deserialized into
+        // its primitive type.
+        private static public_readonly_partial_structConversions_TypeConverterdouble Deserialize(double value)
+        {
+            
+
+            
+
+            return new public_readonly_partial_structConversions_TypeConverterdouble(value);
+        }
+
         public readonly global::System.Boolean Equals(public_readonly_partial_structConversions_TypeConverterdouble other)
         {
             // It's possible to create uninitialized instances via converters such as EfCore (HasDefaultValue), which call Equals.
@@ -134,9 +145,9 @@ namespace Whatever
             {
                 return value switch
                 {
-                    global::System.Double doubleValue => public_readonly_partial_structConversions_TypeConverterdouble.From(doubleValue),
-                    global::System.Int64 longValue => public_readonly_partial_structConversions_TypeConverterdouble.From((global::System.Double)longValue),
-                    global::System.String stringValue when !global::System.String.IsNullOrEmpty(stringValue) && global::System.Double.TryParse(stringValue, out var result) => public_readonly_partial_structConversions_TypeConverterdouble.From(result),
+                    global::System.Double doubleValue => public_readonly_partial_structConversions_TypeConverterdouble.Deserialize(doubleValue),
+                    global::System.Int64 longValue => public_readonly_partial_structConversions_TypeConverterdouble.Deserialize((global::System.Double)longValue),
+                    global::System.String stringValue when !global::System.String.IsNullOrEmpty(stringValue) && global::System.Double.TryParse(stringValue, out var result) => public_readonly_partial_structConversions_TypeConverterdouble.Deserialize(result),
                     _ => base.ConvertFrom(context, culture, value),
                 };
             }

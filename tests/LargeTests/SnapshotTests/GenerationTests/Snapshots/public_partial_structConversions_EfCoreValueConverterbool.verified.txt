@@ -74,6 +74,17 @@ namespace Whatever
             return instance;
         }
 
+        // only called internally when something has been deserialized into
+        // its primitive type.
+        private static public_partial_structConversions_EfCoreValueConverterbool Deserialize(bool value)
+        {
+            
+
+            
+
+            return new public_partial_structConversions_EfCoreValueConverterbool(value);
+        }
+
         public readonly global::System.Boolean Equals(public_partial_structConversions_EfCoreValueConverterbool other)
         {
             // It's possible to create uninitialized instances via converters such as EfCore (HasDefaultValue), which call Equals.
@@ -130,7 +141,7 @@ namespace Whatever
             public EfCoreValueConverter(global::Microsoft.EntityFrameworkCore.Storage.ValueConversion.ConverterMappingHints mappingHints = null)
                 : base(
                     vo => vo.Value,
-                    value => public_partial_structConversions_EfCoreValueConverterbool.From(value),
+                    value => public_partial_structConversions_EfCoreValueConverterbool.Deserialize(value),
                     mappingHints
                 ) { }
         }

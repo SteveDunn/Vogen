@@ -85,6 +85,19 @@ public byte Value
             return instance;
         }
 
+        // only called internally when something has been deserialized into
+        // its primitive type.
+        private static public_partial_recordConversions_SystemTextJsonbyte Deserialize(byte value)
+        {
+            
+
+            
+
+            
+
+            return new public_partial_recordConversions_SystemTextJsonbyte(value);
+        }
+
         private void EnsureInitialized()
         {
             if (!_isInitialized)
@@ -110,7 +123,7 @@ public byte Value
         {
             public override public_partial_recordConversions_SystemTextJsonbyte Read(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {
-                return public_partial_recordConversions_SystemTextJsonbyte.From(reader.GetByte());
+                return public_partial_recordConversions_SystemTextJsonbyte.Deserialize(reader.GetByte());
             }
 
             public override void Write(global::System.Text.Json.Utf8JsonWriter writer, public_partial_recordConversions_SystemTextJsonbyte value, global::System.Text.Json.JsonSerializerOptions options)

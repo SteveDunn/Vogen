@@ -10,8 +10,8 @@
             {
                 return value switch
                 {
-                    global::System.Int64 longValue => VOTYPE.From(longValue),
-                    global::System.String stringValue when  !global::System.String.IsNullOrEmpty(stringValue) && long.TryParse(stringValue, out var result) => VOTYPE.From(result),
+                    global::System.Int64 longValue => VOTYPE.Deserialize(longValue),
+                    global::System.String stringValue when  !global::System.String.IsNullOrEmpty(stringValue) && long.TryParse(stringValue, out var result) => VOTYPE.Deserialize(result),
                     _ => base.ConvertFrom(context, culture, value),
                 };
             }

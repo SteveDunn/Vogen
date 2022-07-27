@@ -73,6 +73,19 @@ public System.DateTime Value
             return instance;
         }
 
+        // only called internally when something has been deserialized into
+        // its primitive type.
+        private static stj_number_as_string_public_partial_classConversions_NoneSystem Deserialize(System.DateTime value)
+        {
+            
+
+            
+
+            
+
+            return new stj_number_as_string_public_partial_classConversions_NoneSystem(value);
+        }
+
         public global::System.Boolean Equals(stj_number_as_string_public_partial_classConversions_NoneSystem other)
         {
             if (ReferenceEquals(null, other))

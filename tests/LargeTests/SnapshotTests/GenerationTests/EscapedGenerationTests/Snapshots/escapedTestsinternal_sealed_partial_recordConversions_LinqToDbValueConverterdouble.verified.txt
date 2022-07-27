@@ -84,6 +84,19 @@ public double Value
             return instance;
         }
 
+        // only called internally when something has been deserialized into
+        // its primitive type.
+        private static escapedTestsinternal_sealed_partial_recordConversions_LinqToDbValueConverterdouble Deserialize(double value)
+        {
+            
+
+            
+
+            
+
+            return new escapedTestsinternal_sealed_partial_recordConversions_LinqToDbValueConverterdouble(value);
+        }
+
         private void EnsureInitialized()
         {
             if (!_isInitialized)
@@ -115,7 +128,7 @@ public double Value
             public LinqToDbValueConverter()
                 : base(
                       v => v.Value,
-                      p => escapedTestsinternal_sealed_partial_recordConversions_LinqToDbValueConverterdouble.From(p),
+                      p => escapedTestsinternal_sealed_partial_recordConversions_LinqToDbValueConverterdouble.Deserialize(p),
                       handlesNulls: false)
             { }
         }

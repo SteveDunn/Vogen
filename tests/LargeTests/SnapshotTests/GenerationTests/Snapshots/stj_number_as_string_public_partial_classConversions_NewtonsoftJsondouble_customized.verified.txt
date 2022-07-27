@@ -74,6 +74,19 @@ public System.Double Value
             return instance;
         }
 
+        // only called internally when something has been deserialized into
+        // its primitive type.
+        private static stj_number_as_string_public_partial_classConversions_NewtonsoftJsondouble_customized Deserialize(System.Double value)
+        {
+            
+
+            
+
+            
+
+            return new stj_number_as_string_public_partial_classConversions_NewtonsoftJsondouble_customized(value);
+        }
+
         public global::System.Boolean Equals(stj_number_as_string_public_partial_classConversions_NewtonsoftJsondouble_customized other)
         {
             if (ReferenceEquals(null, other))
@@ -173,7 +186,7 @@ public System.Double Value
             public override object ReadJson(Newtonsoft.Json.JsonReader reader, System.Type objectType, object existingValue, Newtonsoft.Json.JsonSerializer serializer)
             {
                 var result = serializer.Deserialize<global::System.Double?>(reader);
-                return result.HasValue ? stj_number_as_string_public_partial_classConversions_NewtonsoftJsondouble_customized.From(result.Value) : null;
+                return result.HasValue ? stj_number_as_string_public_partial_classConversions_NewtonsoftJsondouble_customized.Deserialize(result.Value) : null;
             }
         }
 

@@ -84,6 +84,19 @@ public @class.record.@struct.@float.decimal Value
             return instance;
         }
 
+        // only called internally when something has been deserialized into
+        // its primitive type.
+        private static escapedTestspublic_partial_recordConversions_DapperTypeHandler Deserialize(@class.record.@struct.@float.decimal value)
+        {
+            
+
+            
+
+            
+
+            return new escapedTestspublic_partial_recordConversions_DapperTypeHandler(value);
+        }
+
         private void EnsureInitialized()
         {
             if (!_isInitialized)
@@ -120,7 +133,7 @@ public @class.record.@struct.@float.decimal Value
                 return value switch
                 {
                     global::System.String stringValue =>
-                        escapedTestspublic_partial_recordConversions_DapperTypeHandler.From(global::System.Text.Json.JsonSerializer.Deserialize<Bar>(stringValue)),
+                        escapedTestspublic_partial_recordConversions_DapperTypeHandler.Deserialize(global::System.Text.Json.JsonSerializer.Deserialize<Bar>(stringValue)),
                     _ => throw new global::System.InvalidCastException($"Unable to cast object of type {value.GetType()} to escapedTestspublic_partial_recordConversions_DapperTypeHandler"),
                 };
             }

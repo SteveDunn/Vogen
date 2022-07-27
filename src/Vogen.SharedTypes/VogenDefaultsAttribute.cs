@@ -16,16 +16,19 @@ namespace Vogen
         /// <param name="conversions">Any conversions that need to be done for this type, e.g. to be serialized etc.</param>
         /// <param name="throws">The type of exception that is thrown when validation fails.</param>
         /// <param name="customizations">Any customizations, for instance, treating numbers in [de]serialization as strings.</param>
+        /// <param name="deserializationStrictness">The strictness of validation when deserializing.</param>
         public VogenDefaultsAttribute(
             Type? underlyingType = null!,
             Conversions conversions = Conversions.Default,
             Type? throws = null!,
-            Customizations customizations = Customizations.None)
+            Customizations customizations = Customizations.None,
+            DeserializationStrictness deserializationStrictness = DeserializationStrictness.AllowValidAndKnownInstances)
         {
             UnderlyingType = underlyingType ?? typeof(int);
             TypeOfValidationException = throws ?? typeof(ValueObjectValidationException);
             Conversions = conversions;
             Customizations = customizations;
+            DeserializationStrictness = deserializationStrictness;
         }
 
         public Type UnderlyingType { get;  } = typeof(int);
@@ -35,6 +38,9 @@ namespace Vogen
         public Conversions Conversions { get; } = Conversions.Default;
         
         public Customizations Customizations { get; }
+
+        public DeserializationStrictness DeserializationStrictness { get; } =
+            DeserializationStrictness.AllowValidAndKnownInstances;
     }
 }
 

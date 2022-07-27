@@ -4,9 +4,10 @@ using System.Threading.Tasks;
 using FluentAssertions;
 using VerifyTests;
 using VerifyXunit;
+using Vogen;
 using Xunit;
 
-namespace Vogen.IntegrationTests.SnapshotTests.GenerationTests;
+namespace LargeTests.SnapshotTests.GenerationTests;
 
 [UsesVerify] 
 public class GenerationTests

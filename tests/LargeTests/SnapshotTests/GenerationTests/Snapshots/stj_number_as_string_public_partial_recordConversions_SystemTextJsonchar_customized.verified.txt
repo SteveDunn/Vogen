@@ -85,6 +85,19 @@ public char Value
             return instance;
         }
 
+        // only called internally when something has been deserialized into
+        // its primitive type.
+        private static stj_number_as_string_public_partial_recordConversions_SystemTextJsonchar_customized Deserialize(char value)
+        {
+            
+
+            
+
+            
+
+            return new stj_number_as_string_public_partial_recordConversions_SystemTextJsonchar_customized(value);
+        }
+
         private void EnsureInitialized()
         {
             if (!_isInitialized)
@@ -112,7 +125,7 @@ public char Value
             {
                 var s = reader.GetString();
 
-                return stj_number_as_string_public_partial_recordConversions_SystemTextJsonchar_customized.From(s[0]);
+                return stj_number_as_string_public_partial_recordConversions_SystemTextJsonchar_customized.Deserialize(s[0]);
             }
 
             public override void Write(System.Text.Json.Utf8JsonWriter writer, stj_number_as_string_public_partial_recordConversions_SystemTextJsonchar_customized value, global::System.Text.Json.JsonSerializerOptions options)

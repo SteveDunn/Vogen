@@ -73,6 +73,19 @@ public System.Byte Value
             return instance;
         }
 
+        // only called internally when something has been deserialized into
+        // its primitive type.
+        private static escapedTestsinternal_sealed_partial_classConversions_DapperTypeHandlerbyte Deserialize(System.Byte value)
+        {
+            
+
+            
+
+            
+
+            return new escapedTestsinternal_sealed_partial_classConversions_DapperTypeHandlerbyte(value);
+        }
+
         public global::System.Boolean Equals(escapedTestsinternal_sealed_partial_classConversions_DapperTypeHandlerbyte other)
         {
             if (ReferenceEquals(null, other))
@@ -169,11 +182,11 @@ public System.Byte Value
             {
                 return value switch
                 {
-                    global::System.Byte byteValue => escapedTestsinternal_sealed_partial_classConversions_DapperTypeHandlerbyte.From(byteValue),
-                    global::System.Int16 shortValue => escapedTestsinternal_sealed_partial_classConversions_DapperTypeHandlerbyte.From((global::System.Byte)shortValue),
-                    global::System.Int32 intValue => escapedTestsinternal_sealed_partial_classConversions_DapperTypeHandlerbyte.From((global::System.Byte)intValue),
-                    global::System.Int64 longValue => escapedTestsinternal_sealed_partial_classConversions_DapperTypeHandlerbyte.From((global::System.Byte)longValue),
-                    global::System.String stringValue when !global::System.String.IsNullOrEmpty(stringValue) && global::System.Byte.TryParse(stringValue, out var result) => escapedTestsinternal_sealed_partial_classConversions_DapperTypeHandlerbyte.From(result),
+                    global::System.Byte byteValue => escapedTestsinternal_sealed_partial_classConversions_DapperTypeHandlerbyte.Deserialize(byteValue),
+                    global::System.Int16 shortValue => escapedTestsinternal_sealed_partial_classConversions_DapperTypeHandlerbyte.Deserialize((global::System.Byte)shortValue),
+                    global::System.Int32 intValue => escapedTestsinternal_sealed_partial_classConversions_DapperTypeHandlerbyte.Deserialize((global::System.Byte)intValue),
+                    global::System.Int64 longValue => escapedTestsinternal_sealed_partial_classConversions_DapperTypeHandlerbyte.Deserialize((global::System.Byte)longValue),
+                    global::System.String stringValue when !global::System.String.IsNullOrEmpty(stringValue) && global::System.Byte.TryParse(stringValue, out var result) => escapedTestsinternal_sealed_partial_classConversions_DapperTypeHandlerbyte.Deserialize(result),
                     _ => throw new global::System.InvalidCastException($"Unable to cast object of type {value.GetType()} to escapedTestsinternal_sealed_partial_classConversions_DapperTypeHandlerbyte"),
                 };
             }

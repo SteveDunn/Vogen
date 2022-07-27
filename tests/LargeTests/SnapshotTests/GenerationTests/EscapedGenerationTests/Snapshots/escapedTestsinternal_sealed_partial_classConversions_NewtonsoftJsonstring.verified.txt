@@ -78,6 +78,23 @@ public System.String Value
             return instance;
         }
 
+        // only called internally when something has been deserialized into
+        // its primitive type.
+        private static escapedTestsinternal_sealed_partial_classConversions_NewtonsoftJsonstring Deserialize(System.String value)
+        {
+                        if (value is null)
+            {
+                throw new global::Vogen.ValueObjectValidationException("Cannot create a value object with null.");
+            }
+
+
+            
+
+            
+
+            return new escapedTestsinternal_sealed_partial_classConversions_NewtonsoftJsonstring(value);
+        }
+
         public global::System.Boolean Equals(escapedTestsinternal_sealed_partial_classConversions_NewtonsoftJsonstring other)
         {
             if (ReferenceEquals(null, other))
@@ -176,7 +193,7 @@ public System.String Value
 
             public override object ReadJson(Newtonsoft.Json.JsonReader reader, System.Type objectType, object existingValue, Newtonsoft.Json.JsonSerializer serializer)
             {
-                return escapedTestsinternal_sealed_partial_classConversions_NewtonsoftJsonstring.From(serializer.Deserialize<global::System.String>(reader));
+                return escapedTestsinternal_sealed_partial_classConversions_NewtonsoftJsonstring.Deserialize(serializer.Deserialize<global::System.String>(reader));
             }
         }
 

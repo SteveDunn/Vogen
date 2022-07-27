@@ -6,9 +6,10 @@ using System.Threading.Tasks;
 using FluentAssertions;
 using VerifyTests;
 using VerifyXunit;
+using Vogen;
 using Xunit;
 
-namespace Vogen.IntegrationTests.SnapshotTests.PermutationsOfConversions;
+namespace LargeTests.SnapshotTests.PermutationsOfConversions;
 
 public class PermutationsOfConversionsTests
 {

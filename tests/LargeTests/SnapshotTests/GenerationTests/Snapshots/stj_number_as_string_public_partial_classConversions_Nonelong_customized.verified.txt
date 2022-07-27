@@ -73,6 +73,19 @@ public System.Int64 Value
             return instance;
         }
 
+        // only called internally when something has been deserialized into
+        // its primitive type.
+        private static stj_number_as_string_public_partial_classConversions_Nonelong_customized Deserialize(System.Int64 value)
+        {
+            
+
+            
+
+            
+
+            return new stj_number_as_string_public_partial_classConversions_Nonelong_customized(value);
+        }
+
         public global::System.Boolean Equals(stj_number_as_string_public_partial_classConversions_Nonelong_customized other)
         {
             if (ReferenceEquals(null, other))

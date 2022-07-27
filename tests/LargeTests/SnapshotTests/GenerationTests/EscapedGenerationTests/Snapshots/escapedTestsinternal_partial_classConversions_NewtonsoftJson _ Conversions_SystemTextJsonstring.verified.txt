@@ -79,6 +79,23 @@ public System.String Value
             return instance;
         }
 
+        // only called internally when something has been deserialized into
+        // its primitive type.
+        private static escapedTestsinternal_partial_classConversions_NewtonsoftJson Deserialize(System.String value)
+        {
+                        if (value is null)
+            {
+                throw new global::Vogen.ValueObjectValidationException("Cannot create a value object with null.");
+            }
+
+
+            
+
+            
+
+            return new escapedTestsinternal_partial_classConversions_NewtonsoftJson(value);
+        }
+
         public global::System.Boolean Equals(escapedTestsinternal_partial_classConversions_NewtonsoftJson other)
         {
             if (ReferenceEquals(null, other))
@@ -165,7 +182,7 @@ public System.String Value
         {
             public override escapedTestsinternal_partial_classConversions_NewtonsoftJson Read(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {
-                return escapedTestsinternal_partial_classConversions_NewtonsoftJson.From(reader.GetString());
+                return escapedTestsinternal_partial_classConversions_NewtonsoftJson.Deserialize(reader.GetString());
             }
 
             public override void Write(System.Text.Json.Utf8JsonWriter writer, escapedTestsinternal_partial_classConversions_NewtonsoftJson value, global::System.Text.Json.JsonSerializerOptions options)
@@ -189,7 +206,7 @@ public System.String Value
 
             public override object ReadJson(Newtonsoft.Json.JsonReader reader, System.Type objectType, object existingValue, Newtonsoft.Json.JsonSerializer serializer)
             {
-                return escapedTestsinternal_partial_classConversions_NewtonsoftJson.From(serializer.Deserialize<global::System.String>(reader));
+                return escapedTestsinternal_partial_classConversions_NewtonsoftJson.Deserialize(serializer.Deserialize<global::System.String>(reader));
             }
         }
 

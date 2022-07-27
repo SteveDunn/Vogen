@@ -74,6 +74,19 @@ public System.Int64 Value
             return instance;
         }
 
+        // only called internally when something has been deserialized into
+        // its primitive type.
+        private static stj_number_as_string_public_partial_classConversions_SystemTextJsonlong Deserialize(System.Int64 value)
+        {
+            
+
+            
+
+            
+
+            return new stj_number_as_string_public_partial_classConversions_SystemTextJsonlong(value);
+        }
+
         public global::System.Boolean Equals(stj_number_as_string_public_partial_classConversions_SystemTextJsonlong other)
         {
             if (ReferenceEquals(null, other))
@@ -160,7 +173,7 @@ public System.Int64 Value
         {
             public override stj_number_as_string_public_partial_classConversions_SystemTextJsonlong Read(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {
-                return stj_number_as_string_public_partial_classConversions_SystemTextJsonlong.From(reader.GetInt64());
+                return stj_number_as_string_public_partial_classConversions_SystemTextJsonlong.Deserialize(reader.GetInt64());
             }
 
             public override void Write(System.Text.Json.Utf8JsonWriter writer, stj_number_as_string_public_partial_classConversions_SystemTextJsonlong value, global::System.Text.Json.JsonSerializerOptions options)

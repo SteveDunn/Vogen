@@ -74,6 +74,19 @@ public System.DateTimeOffset Value
             return instance;
         }
 
+        // only called internally when something has been deserialized into
+        // its primitive type.
+        private static internal_partial_classConversions_SystemTextJsonSystem Deserialize(System.DateTimeOffset value)
+        {
+            
+
+            
+
+            
+
+            return new internal_partial_classConversions_SystemTextJsonSystem(value);
+        }
+
         public global::System.Boolean Equals(internal_partial_classConversions_SystemTextJsonSystem other)
         {
             if (ReferenceEquals(null, other))
@@ -160,7 +173,7 @@ public System.DateTimeOffset Value
         {
             public override internal_partial_classConversions_SystemTextJsonSystem Read(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {
-                return internal_partial_classConversions_SystemTextJsonSystem.From(reader.GetDateTimeOffset());
+                return internal_partial_classConversions_SystemTextJsonSystem.Deserialize(reader.GetDateTimeOffset());
             }
 
             public override void Write(System.Text.Json.Utf8JsonWriter writer, internal_partial_classConversions_SystemTextJsonSystem value, global::System.Text.Json.JsonSerializerOptions options)

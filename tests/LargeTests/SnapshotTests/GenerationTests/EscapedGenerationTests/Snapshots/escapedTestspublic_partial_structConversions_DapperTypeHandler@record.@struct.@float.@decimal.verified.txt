@@ -74,6 +74,17 @@ namespace @class
             return instance;
         }
 
+        // only called internally when something has been deserialized into
+        // its primitive type.
+        private static escapedTestspublic_partial_structConversions_DapperTypeHandler Deserialize(@class.record.@struct.@float.decimal value)
+        {
+            
+
+            
+
+            return new escapedTestspublic_partial_structConversions_DapperTypeHandler(value);
+        }
+
         public readonly global::System.Boolean Equals(escapedTestspublic_partial_structConversions_DapperTypeHandler other)
         {
             // It's possible to create uninitialized instances via converters such as EfCore (HasDefaultValue), which call Equals.
@@ -135,7 +146,7 @@ namespace @class
                 return value switch
                 {
                     global::System.String stringValue =>
-                        escapedTestspublic_partial_structConversions_DapperTypeHandler.From(global::System.Text.Json.JsonSerializer.Deserialize<Bar>(stringValue)),
+                        escapedTestspublic_partial_structConversions_DapperTypeHandler.Deserialize(global::System.Text.Json.JsonSerializer.Deserialize<Bar>(stringValue)),
                     _ => throw new global::System.InvalidCastException($"Unable to cast object of type {value.GetType()} to escapedTestspublic_partial_structConversions_DapperTypeHandler"),
                 };
             }
