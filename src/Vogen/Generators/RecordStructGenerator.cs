@@ -13,6 +13,7 @@ public class RecordStructGenerator : IGenerateSourceCode
 using Vogen;
 
 {Util.WriteStartNamespace(item.FullNamespace)}
+    [global::System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage] 
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute(""{Util.GenerateYourAssemblyName()}"", ""{Util.GenerateYourAssemblyVersion()}"")]
     {Util.GenerateAnyConversionAttributes(tds, item)}
     [global::System.Diagnostics.DebuggerTypeProxyAttribute(typeof({structName}DebugView))]
