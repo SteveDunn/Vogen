@@ -15,6 +15,7 @@ using Vogen;
 namespace Whatever
 {
 
+    [global::System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage] 
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Vogen", "1.0.0.0")]
     [global::System.Text.Json.Serialization.JsonConverter(typeof(stj_number_as_string_public_sealed_partial_recordConversions_SystemTextJsoncharSystemTextJsonConverter))]
 
