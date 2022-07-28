@@ -15,6 +15,7 @@ using Vogen;
 namespace @class
 {
 
+    [global::System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage] 
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Vogen", "1.0.0.0")]
     
     [global::System.Diagnostics.DebuggerTypeProxyAttribute(typeof(escapedTestspublic_readonly_partial_structConversions_NonedoubleDebugView))]

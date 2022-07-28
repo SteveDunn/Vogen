@@ -14,6 +14,7 @@ public class RecordClassGenerator : IGenerateSourceCode
 using Vogen;
 
 {Util.WriteStartNamespace(item.FullNamespace)}
+    [global::System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage] 
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute(""{Util.GenerateYourAssemblyName()}"", ""{Util.GenerateYourAssemblyVersion()}"")]
     {Util.GenerateAnyConversionAttributes(tds, item)}
     [global::System.Diagnostics.DebuggerTypeProxyAttribute(typeof({className}DebugView))]
