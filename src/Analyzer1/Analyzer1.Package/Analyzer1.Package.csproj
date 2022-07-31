@@ -27,11 +27,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Analyzer1.CodeFixes\Analyzer1.CodeFixes.csproj" />
-    <ProjectReference Include="..\Analyzer1\Analyzer1.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
     <None Update="tools\*.ps1" CopyToOutputDirectory="PreserveNewest" Pack="true" PackagePath="" />
   </ItemGroup>
 
