@@ -26,7 +26,7 @@ namespace Analyzer1.Test
         [TestMethod]
         public async Task TestMethod2()
         {
-            var input = @"
+            var input = LineEndingsHelper.Normalize(@"
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -42,9 +42,9 @@ namespace ConsoleApplication1
     {   
     }
 }
-";
+");
 
-            var output = @"
+            var output = LineEndingsHelper.Normalize(@"
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -64,7 +64,7 @@ namespace ConsoleApplication1
         }
     }
 }
-";
+");
 
             var expected =
                 VerifyCS.Diagnostic("Analyzer1").WithSeverity(DiagnosticSeverity.Info).WithLocation(0).WithArguments("TypeName");
@@ -96,9 +96,32 @@ namespace ConsoleApplication1
 
             //test.TestState.ExpectedDiagnostics.Add(expected);
             test.DisabledDiagnostics.Add("CS1591");
+            test.CodeActionValidationMode = CodeActionValidationMode.None;
+
             await test.RunAsync();
             
             //await VerifyCS.VerifyCodeFixAsync(test, expected, fixtest);
         }
     }
+    
+    public static class LineEndingsHelper
+    {
+        public const string CompiledNewline = @"
+";
+        public static readonly bool s_consistentNewlines = StringComparer.Ordinal.Equals(CompiledNewline, Environment.NewLine);
+
+        static public bool IsNewLineConsistent
+        {
+            get { return s_consistentNewlines; }
+        }
+
+        public static string Normalize(string expected)
+        {
+            if (s_consistentNewlines)
+                return expected;
+
+            return expected.Replace("\r\n", "\n").Replace("\n", Environment.NewLine);
+        }
+    }
+
 }

@@ -25,12 +25,12 @@
     <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="3.1.17" />
     <PackageReference Include="System.Text.Json" Version="4.7.2" />
   </ItemGroup>
-  
+
   <ItemGroup Condition=" '$(TargetFramework)' == 'net461'">
     <PackageReference Include="SQLitePCLRaw.bundle_winsqlite3" Version="2.1.0" />
   </ItemGroup>
-  
-  
+
+
   <ItemGroup>
 		<PackageReference Include="Dapper" Version="2.0.123" />
 		<PackageReference Include="linq2db" Version="3.7.0" />
@@ -49,23 +49,23 @@
 		</PackageReference>
 	</ItemGroup>
 
-	<ItemGroup>
-		<!-- Note that this is not a "normal" ProjectReference.
+  <ItemGroup>
+    <!-- Note that this is not a "normal" ProjectReference.
          It needs the additional 'OutputItemType' and 'ReferenceOutputAssmbly' attributes. -->
     <ProjectReference Include="..\..\src\Vogen.SharedTypes\Vogen.SharedTypes.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="true" />
     <ProjectReference Include="..\..\src\Vogen\Vogen.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="true" />
-	</ItemGroup>
+  </ItemGroup>
 
-	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-		<EmitCompilerGeneratedFiles>true</EmitCompilerGeneratedFiles>
-		<CompilerGeneratedFilesOutputPath>Generated</CompilerGeneratedFilesOutputPath>
-	</PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <EmitCompilerGeneratedFiles>true</EmitCompilerGeneratedFiles>
+    <CompilerGeneratedFilesOutputPath>Generated</CompilerGeneratedFilesOutputPath>
+  </PropertyGroup>
 
-	<ItemGroup>
-		<!-- Don't include the output from a previous source generator execution into future runs; the */** trick here ensures that there's
+  <ItemGroup>
+    <!-- Don't include the output from a previous source generator execution into future runs; the */** trick here ensures that there's
   at least one subdirectory, which is our key that it's coming from a source generator as opposed to something that is coming from
   some other tool. -->
-		<Compile Remove="Generated/*/**/*.cs" />
-	</ItemGroup>
+    <Compile Remove="Generated/*/**/*.cs" />
+  </ItemGroup>
 
 </Project>
