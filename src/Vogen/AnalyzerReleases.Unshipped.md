@@ -5,4 +5,4 @@
 
 Rule ID | Category | Severity | Notes
 --------|----------|----------|-------
-Analyzer1 | Naming | Info | Analyzer1Analyzer
+AddValidationAnalyzer | Usage | Info | AddValidationAnalyzer

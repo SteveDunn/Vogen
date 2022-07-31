@@ -1,22 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.Immutable;
-using System.Linq;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using System.Collections.Immutable;
 using System.Threading.Tasks;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.Testing;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Vogen;
-using VerifyCS = Analyzer1.Test.CSharpCodeFixVerifier<Vogen.Analyzers.Analyzer1Analyzer, Vogen.CodeFixers.Analyzer1CodeFixProvider>;
+using VerifyCS = Analyzer1.Test.CSharpCodeFixVerifier<Vogen.Analyzers.AddValidationAnalyzer, Vogen.CodeFixers.AddValidationAnalyzerCodeFixProvider>;
 
-namespace Analyzer1.Test
+namespace SmallTests.AnalyzerTests
 {
     [TestClass]
-    public class Analyzer1UnitTest
+    public class AddValidationAnalyzerTests
     {
         //No diagnostics expected to show up
         [TestMethod]
-        public async Task TestMethod1()
+        public async Task NoDiagnosticsForEmptyCode()
         {
             var test = @"";
             await VerifyCS.VerifyAnalyzerAsync(test);
@@ -24,7 +21,7 @@ namespace Analyzer1.Test
 
         //Diagnostic and CodeFix both triggered and checked for
         [TestMethod]
-        public async Task TestMethod2()
+        public async Task CodeFixTriggeredForVoWithNoValidateMethod()
         {
             var input = LineEndingsHelper.Normalize(@"
 using System;
@@ -41,8 +38,7 @@ namespace ConsoleApplication1
     public partial class {|#0:TypeName|}
     {   
     }
-}
-");
+}");
 
             var output = LineEndingsHelper.Normalize(@"
 using System;
@@ -63,65 +59,35 @@ namespace ConsoleApplication1
             return input > 0 ? Validation.Ok : Validation.Invalid(""!!"");
         }
     }
-}
-");
+}");
 
             var expected =
-                VerifyCS.Diagnostic("Analyzer1").WithSeverity(DiagnosticSeverity.Info).WithLocation(0).WithArguments("TypeName");
-            
+                VerifyCS.Diagnostic("AddValidationAnalyzer").WithSeverity(DiagnosticSeverity.Info).WithLocation(0).WithArguments("TypeName");
+
             var loc = typeof(ValueObjectAttribute).Assembly.Location;
 
             var referenceAssemblies = ReferenceAssemblies.Default
                 .AddAssemblies(
                     ImmutableArray.Create("Vogen", "Vogen.SharedTypes", loc.Replace(".dll", string.Empty))
                 );
-            
+
             var test = new VerifyCS.Test
             {
                 TestState =
                 {
                     Sources = {input },
-                    //ExpectedDiagnostics = {expected},
-                }, 
+                },
 
                 CompilerDiagnostics = CompilerDiagnostics.Suggestions,
-                //DisabledDiagnostics.Add() = new List<string>() { "CS1591"},
-                // DisabledDiagnostics = { "CS1591" },
-                //DiagnosticVerifier = (d,a,x) => d.Id == "Analyzer1",
                 ReferenceAssemblies = referenceAssemblies,
                 FixedCode = output,
-                ExpectedDiagnostics = { expected }
+                ExpectedDiagnostics = { expected },
             };
 
 
-            //test.TestState.ExpectedDiagnostics.Add(expected);
             test.DisabledDiagnostics.Add("CS1591");
-            test.CodeActionValidationMode = CodeActionValidationMode.None;
 
             await test.RunAsync();
-            
-            //await VerifyCS.VerifyCodeFixAsync(test, expected, fixtest);
         }
     }
-    
-    public static class LineEndingsHelper
-    {
-        public const string CompiledNewline = @"
-";
-        public static readonly bool s_consistentNewlines = StringComparer.Ordinal.Equals(CompiledNewline, Environment.NewLine);
-
-        static public bool IsNewLineConsistent
-        {
-            get { return s_consistentNewlines; }
-        }
-
-        public static string Normalize(string expected)
-        {
-            if (s_consistentNewlines)
-                return expected;
-
-            return expected.Replace("\r\n", "\n").Replace("\n", Environment.NewLine);
-        }
-    }
-
 }

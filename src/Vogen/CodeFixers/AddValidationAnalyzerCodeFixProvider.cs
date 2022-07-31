@@ -14,12 +14,12 @@ using Vogen.Analyzers;
 
 namespace Vogen.CodeFixers
 {
-    [ExportCodeFixProvider(LanguageNames.CSharp, Name = nameof(Analyzer1CodeFixProvider)), Shared]
-    public class Analyzer1CodeFixProvider : CodeFixProvider
+    [ExportCodeFixProvider(LanguageNames.CSharp, Name = nameof(AddValidationAnalyzerCodeFixProvider)), Shared]
+    public class AddValidationAnalyzerCodeFixProvider : CodeFixProvider
     {
         public sealed override ImmutableArray<string> FixableDiagnosticIds
         {
-            get { return ImmutableArray.Create(Analyzer1Analyzer.DiagnosticId); }
+            get { return ImmutableArray.Create(AddValidationAnalyzer.DiagnosticId); }
         }
 
         public sealed override FixAllProvider GetFixAllProvider()
