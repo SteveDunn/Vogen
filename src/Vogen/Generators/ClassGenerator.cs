@@ -136,6 +136,9 @@ public {itemUnderlyingType} Value
         public static global::System.Boolean operator ==({itemUnderlyingType} left, {className} right) => Equals(left, right.Value);
         public static global::System.Boolean operator !=({itemUnderlyingType} left, {className} right) => !Equals(left, right.Value);
 
+        public static explicit operator {className}({itemUnderlyingType} value) => From(value);
+        public static explicit operator {itemUnderlyingType}({className} value) => value.Value;
+
         public override global::System.Int32 GetHashCode()
         {{
             unchecked // Overflow is fine, just wrap
