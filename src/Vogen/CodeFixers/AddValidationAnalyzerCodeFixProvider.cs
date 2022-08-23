@@ -24,8 +24,9 @@ namespace Vogen.CodeFixers
 
         public sealed override FixAllProvider GetFixAllProvider()
         {
-            // See https://github.com/dotnet/roslyn/blob/main/docs/analyzers/FixAllProvider.md for more information on Fix All Providers
-            return WellKnownFixAllProviders.BatchFixer;
+            return null!;
+            // // See https://github.com/dotnet/roslyn/blob/main/docs/analyzers/FixAllProvider.md for more information on Fix All Providers
+            // return WellKnownFixAllProviders.BatchFixer;
         }
 
         public sealed override async Task RegisterCodeFixesAsync(CodeFixContext context)
@@ -42,18 +43,25 @@ namespace Vogen.CodeFixers
             // Register a code action that will invoke the fix.
             context.RegisterCodeFix(
                 CodeAction.Create(
-                    title: Resources.CodeFixTitle,
-                    createChangedDocument: c => MakeUppercaseAsync(context.Document, declaration, c),
-                    // createChangedSolution: c => MakeUppercaseAsync(context.Document, declaration, c),
-                    equivalenceKey: nameof(Resources.CodeFixTitle)),
+                    title: Resources.AddValidationCodeFixTitle,
+                    createChangedDocument: c => GenerateValidationMethodAsync(context.Document, context.Diagnostics, declaration, c),
+                    // createChangedSolution: c => GenerateValidationMethodAsync(context.Document, declaration, c),
+                    equivalenceKey: nameof(Resources.AddValidationCodeFixTitle)),
                 diagnostic);
         }
 
-        private async Task<Document> MakeUppercaseAsync(Document document, TypeDeclarationSyntax typeDecl, CancellationToken cancellationToken)
+        private async Task<Document> GenerateValidationMethodAsync(Document document,
+            ImmutableArray<Diagnostic> contextDiagnostics, 
+            TypeDeclarationSyntax typeDecl,
+            CancellationToken cancellationToken)
         {
+            var properties = contextDiagnostics[0].Properties;
+
+            string returnType = properties["PrimitiveType"]!;
+            
             SyntaxNode root = (await document.GetSyntaxRootAsync(cancellationToken).ConfigureAwait(false))!;
             
-            var newMember = GenerateMethod();
+            var newMember = GenerateMethod(returnType);
             
             var newTypeDecl = typeDecl.AddMembers(newMember);
             
@@ -62,14 +70,14 @@ namespace Vogen.CodeFixers
             return document.WithSyntaxRoot(newRoot);
         }
 
-
-        private static MethodDeclarationSyntax GenerateMethod()
+        private static MethodDeclarationSyntax GenerateMethod(string primitiveType)
         {
             return (MethodDeclarationSyntax) ParseMember(
-@"private static Validation Validate(int input)
-{
-    return input > 0 ? Validation.Ok : Validation.Invalid(""!!"");
-}").WithAdditionalAnnotations(Simplifier.Annotation);
+@$"private static Validation Validate({primitiveType} input)
+{{
+    bool isValid = true ; // todo: your validation
+    return isValid ? Validation.Ok : Validation.Invalid(""[todo: describe the validation]"");
+}}").WithAdditionalAnnotations(Simplifier.Annotation);
         }
         
         private static MemberDeclarationSyntax ParseMember(string member)

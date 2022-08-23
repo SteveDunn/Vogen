@@ -2,17 +2,16 @@
 using System.Threading.Tasks;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.Testing;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Vogen;
+using Xunit;
 using VerifyCS = Analyzer1.Test.CSharpCodeFixVerifier<Vogen.Analyzers.AddValidationAnalyzer, Vogen.CodeFixers.AddValidationAnalyzerCodeFixProvider>;
 
 namespace SmallTests.AnalyzerTests
 {
-    [TestClass]
     public class AddValidationAnalyzerTests
     {
         //No diagnostics expected to show up
-        [TestMethod]
+        [Fact]
         public async Task NoDiagnosticsForEmptyCode()
         {
             var test = @"";
@@ -20,7 +19,7 @@ namespace SmallTests.AnalyzerTests
         }
 
         //Diagnostic and CodeFix both triggered and checked for
-        [TestMethod]
+        [Fact]
         public async Task CodeFixTriggeredForVoWithNoValidateMethod()
         {
             var input = LineEndingsHelper.Normalize(@"
@@ -54,7 +53,7 @@ namespace ConsoleApplication1
     [ValueObject]
     public partial class TypeName
     {
-        private static Validation Validate(int input)
+        private static Validation Validate(int input) 
         {
             return input > 0 ? Validation.Ok : Validation.Invalid(""!!"");
         }

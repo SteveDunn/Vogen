@@ -6,7 +6,7 @@ namespace Testbench;
 
 public class Program
 {
-    public static async Task Main()
+    public static void Main()
     {
         await Task.CompletedTask;
 

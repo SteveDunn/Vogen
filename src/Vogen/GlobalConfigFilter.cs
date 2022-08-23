@@ -5,6 +5,7 @@ using System.Linq;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
+using Microsoft.CodeAnalysis.Diagnostics;
 using Vogen.Diagnostics;
 
 namespace Vogen;
@@ -190,6 +191,122 @@ internal static class GlobalConfigFilter
             {
                 context.ReportDiagnostic(DiagnosticItems.InvalidDeserializationStrictness(syntax.GetLocation()));
             }
+        }
+
+        return new VogenConfiguration(underlyingType, invalidExceptionType, conversions, customizations, deserializationStrictness);
+    }
+
+    // todo: a nicer way to do this without duplication
+    public static VogenConfiguration? BuildConfigurationFromAttributeWithoutAnyDiagnosticErrors(
+        AttributeData matchingAttribute)
+    {
+        INamedTypeSymbol? invalidExceptionType = null;
+        INamedTypeSymbol? underlyingType = null;
+        Conversions conversions = Conversions.Default;
+        Customizations customizations= Customizations.None;
+        DeserializationStrictness deserializationStrictness = DeserializationStrictness.Default;
+        
+        bool hasErroredAttributes = false;
+
+        if (!matchingAttribute.ConstructorArguments.IsEmpty)
+        {
+            // make sure we don't have any errors
+            ImmutableArray<TypedConstant> args = matchingAttribute.ConstructorArguments;
+
+            foreach (TypedConstant arg in args)
+            {
+                if (arg.Kind == TypedConstantKind.Error)
+                {
+                    hasErroredAttributes = true;
+                }
+            }
+
+            switch (args.Length)
+            {
+                case 5:
+                    if (args[4].Value != null)
+                    {
+                        deserializationStrictness = (DeserializationStrictness) args[4].Value!;
+                    }
+
+                    goto case 4;
+                case 4:
+                    if (args[3].Value != null)
+                    {
+                        customizations = (Customizations) args[3].Value!;
+                    }
+
+                    goto case 3;
+                case 3:
+                    invalidExceptionType = (INamedTypeSymbol?)args[2].Value;
+
+                    goto case 2;
+                    
+                case 2:
+                    if (args[1].Value != null)
+                    {
+                        conversions = (Conversions) args[1].Value!;
+                    }
+
+                    goto case 1;
+                case 1:
+                    underlyingType = (INamedTypeSymbol?)args[0].Value;
+                    break;
+            }
+        }
+        
+        if (!matchingAttribute.NamedArguments.IsEmpty)
+        {
+            foreach (KeyValuePair<string, TypedConstant> arg in matchingAttribute.NamedArguments)
+            {
+                TypedConstant typedConstant = arg.Value;
+                if (typedConstant.Kind == TypedConstantKind.Error)
+                {
+                    hasErroredAttributes = true;
+                }
+                else
+                {
+                    switch (arg.Key)
+                    {
+                        case "underlyingType":
+                            underlyingType = (INamedTypeSymbol?) typedConstant.Value!;
+                            break;
+                        case "invalidExceptionType":
+                            invalidExceptionType = (INamedTypeSymbol?) typedConstant.Value!;
+                            break;
+                        case "conversions":
+                            conversions = (Conversions) (typedConstant.Value ?? Conversions.Default);
+                            break;
+                        case "customizations":
+                            customizations = (Customizations) (typedConstant.Value ?? Customizations.None);
+                            break;
+                        case "deserializationStrictness":
+                            deserializationStrictness = (DeserializationStrictness) (typedConstant.Value ?? Customizations.None);
+                            break;
+                    }
+                }
+            }
+        }
+
+        if (hasErroredAttributes)
+        {
+            // skip further generator execution and let compiler generate the errors
+            return null;
+        }
+
+        if (!conversions.IsValidFlags())
+        {
+            return null;
+        }
+
+        if (!customizations.IsValidFlags())
+        {
+            return null;
+        }
+
+        if (!deserializationStrictness.IsValidFlags())
+        {
+            return null;
         }
 
         return new VogenConfiguration(underlyingType, invalidExceptionType, conversions, customizations, deserializationStrictness);

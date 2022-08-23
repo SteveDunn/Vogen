@@ -61,38 +61,38 @@ namespace Vogen {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Type names should be all uppercase..
+        ///   Looks up a localized string similar to Value Objects can have validation..
         /// </summary>
-        internal static string AnalyzerDescription {
+        internal static string AddValidationAnalyzerDescription {
             get {
-                return ResourceManager.GetString("AnalyzerDescription", resourceCulture);
+                return ResourceManager.GetString("AddValidationAnalyzerDescription", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Type name &apos;{0}&apos; contains lowercase letters.
+        ///   Looks up a localized string similar to Type name &apos;{0}&apos; can have validation.
         /// </summary>
-        internal static string AnalyzerMessageFormat {
+        internal static string AddValidationAnalyzerMessageFormat {
             get {
-                return ResourceManager.GetString("AnalyzerMessageFormat", resourceCulture);
+                return ResourceManager.GetString("AddValidationAnalyzerMessageFormat", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Type name contains lowercase letters.
+        ///   Looks up a localized string similar to Value Objects can have validation.
         /// </summary>
-        internal static string AnalyzerTitle {
+        internal static string AddValidationAnalyzerTitle {
             get {
-                return ResourceManager.GetString("AnalyzerTitle", resourceCulture);
+                return ResourceManager.GetString("AddValidationAnalyzerTitle", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Make uppercase.
+        ///   Looks up a localized string similar to Add validation method.
         /// </summary>
-        internal static string CodeFixTitle {
+        internal static string AddValidationCodeFixTitle {
             get {
-                return ResourceManager.GetString("CodeFixTitle", resourceCulture);
+                return ResourceManager.GetString("AddValidationCodeFixTitle", resourceCulture);
             }
         }
     }
