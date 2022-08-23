@@ -86,6 +86,9 @@ public char Value
             return instance;
         }
 
+        public static explicit operator internal_sealed_partial_recordConversions_TypeConverterchar(char value) => From(value);
+        public static explicit operator char(internal_sealed_partial_recordConversions_TypeConverterchar value) => value.Value;
+
         // only called internally when something has been deserialized into
         // its primitive type.
         private static internal_sealed_partial_recordConversions_TypeConverterchar Deserialize(char value)

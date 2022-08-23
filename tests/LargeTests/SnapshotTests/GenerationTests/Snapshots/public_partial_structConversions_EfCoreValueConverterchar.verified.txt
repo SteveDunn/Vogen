@@ -75,6 +75,9 @@ namespace Whatever
             return instance;
         }
 
+        public static explicit operator public_partial_structConversions_EfCoreValueConverterchar(char value) => From(value);
+        public static explicit operator char(public_partial_structConversions_EfCoreValueConverterchar value) => value.Value;
+
         // only called internally when something has been deserialized into
         // its primitive type.
         private static public_partial_structConversions_EfCoreValueConverterchar Deserialize(char value)

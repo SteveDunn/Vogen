@@ -137,6 +137,9 @@ public System.Double Value
         public static global::System.Boolean operator ==(System.Double left, escapedTestsinternal_partial_classConversions_EfCoreValueConverterdouble right) => Equals(left, right.Value);
         public static global::System.Boolean operator !=(System.Double left, escapedTestsinternal_partial_classConversions_EfCoreValueConverterdouble right) => !Equals(left, right.Value);
 
+        public static explicit operator escapedTestsinternal_partial_classConversions_EfCoreValueConverterdouble(System.Double value) => From(value);
+        public static explicit operator System.Double(escapedTestsinternal_partial_classConversions_EfCoreValueConverterdouble value) => value.Value;
+
         public override global::System.Int32 GetHashCode()
         {
             unchecked // Overflow is fine, just wrap

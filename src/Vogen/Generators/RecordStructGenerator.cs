@@ -83,6 +83,9 @@ using Vogen;
             return instance;
         }}
 
+        public static explicit operator {structName}({itemUnderlyingType} value) => From(value);
+        public static explicit operator {itemUnderlyingType}({structName} value) => value.Value;
+
         // only called internally when something has been deserialized into
         // its primitive type.
         private static {structName} Deserialize({itemUnderlyingType} value)

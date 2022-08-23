@@ -138,6 +138,9 @@ public System.Boolean Value
         public static global::System.Boolean operator ==(System.Boolean left, stj_number_as_string_public_partial_classConversions_NewtonsoftJsonbool_customized right) => Equals(left, right.Value);
         public static global::System.Boolean operator !=(System.Boolean left, stj_number_as_string_public_partial_classConversions_NewtonsoftJsonbool_customized right) => !Equals(left, right.Value);
 
+        public static explicit operator stj_number_as_string_public_partial_classConversions_NewtonsoftJsonbool_customized(System.Boolean value) => From(value);
+        public static explicit operator System.Boolean(stj_number_as_string_public_partial_classConversions_NewtonsoftJsonbool_customized value) => value.Value;
+
         public override global::System.Int32 GetHashCode()
         {
             unchecked // Overflow is fine, just wrap

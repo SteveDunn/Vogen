@@ -138,6 +138,9 @@ public System.Guid Value
         public static global::System.Boolean operator ==(System.Guid left, internal_partial_classConversions_NewtonsoftJsonSystem right) => Equals(left, right.Value);
         public static global::System.Boolean operator !=(System.Guid left, internal_partial_classConversions_NewtonsoftJsonSystem right) => !Equals(left, right.Value);
 
+        public static explicit operator internal_partial_classConversions_NewtonsoftJsonSystem(System.Guid value) => From(value);
+        public static explicit operator System.Guid(internal_partial_classConversions_NewtonsoftJsonSystem value) => value.Value;
+
         public override global::System.Int32 GetHashCode()
         {
             unchecked // Overflow is fine, just wrap

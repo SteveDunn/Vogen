@@ -86,6 +86,9 @@ namespace Whatever
             return instance;
         }
 
+        public static explicit operator public_readonly_partial_record_structConversions_NewtonsoftJsonSystem(System.DateTime value) => From(value);
+        public static explicit operator System.DateTime(public_readonly_partial_record_structConversions_NewtonsoftJsonSystem value) => value.Value;
+
         // only called internally when something has been deserialized into
         // its primitive type.
         private static public_readonly_partial_record_structConversions_NewtonsoftJsonSystem Deserialize(System.DateTime value)

@@ -84,6 +84,9 @@ public {itemUnderlyingType} Value
             return instance;
         }}
 
+        public static explicit operator {className}({itemUnderlyingType} value) => From(value);
+        public static explicit operator {itemUnderlyingType}({className} value) => value.Value;
+
         // only called internally when something has been deserialized into
         // its primitive type.
         private static {className} Deserialize({itemUnderlyingType} value)

@@ -76,6 +76,9 @@ namespace Whatever
             return instance;
         }
 
+        public static explicit operator public_readonly_partial_structConversions_NewtonsoftJsonshort(short value) => From(value);
+        public static explicit operator short(public_readonly_partial_structConversions_NewtonsoftJsonshort value) => value.Value;
+
         // only called internally when something has been deserialized into
         // its primitive type.
         private static public_readonly_partial_structConversions_NewtonsoftJsonshort Deserialize(short value)

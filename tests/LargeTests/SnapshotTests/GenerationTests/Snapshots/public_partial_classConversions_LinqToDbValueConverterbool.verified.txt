@@ -137,6 +137,9 @@ public System.Boolean Value
         public static global::System.Boolean operator ==(System.Boolean left, public_partial_classConversions_LinqToDbValueConverterbool right) => Equals(left, right.Value);
         public static global::System.Boolean operator !=(System.Boolean left, public_partial_classConversions_LinqToDbValueConverterbool right) => !Equals(left, right.Value);
 
+        public static explicit operator public_partial_classConversions_LinqToDbValueConverterbool(System.Boolean value) => From(value);
+        public static explicit operator System.Boolean(public_partial_classConversions_LinqToDbValueConverterbool value) => value.Value;
+
         public override global::System.Int32 GetHashCode()
         {
             unchecked // Overflow is fine, just wrap

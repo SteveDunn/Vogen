@@ -138,6 +138,9 @@ public System.Guid Value
         public static global::System.Boolean operator ==(System.Guid left, escapedTestspublic_partial_classConversions_SystemTextJsonSystem right) => Equals(left, right.Value);
         public static global::System.Boolean operator !=(System.Guid left, escapedTestspublic_partial_classConversions_SystemTextJsonSystem right) => !Equals(left, right.Value);
 
+        public static explicit operator escapedTestspublic_partial_classConversions_SystemTextJsonSystem(System.Guid value) => From(value);
+        public static explicit operator System.Guid(escapedTestspublic_partial_classConversions_SystemTextJsonSystem value) => value.Value;
+
         public override global::System.Int32 GetHashCode()
         {
             unchecked // Overflow is fine, just wrap

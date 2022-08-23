@@ -75,6 +75,9 @@ namespace @class
             return instance;
         }
 
+        public static explicit operator escapedTestspublic_partial_structConversions_Nonebyte(byte value) => From(value);
+        public static explicit operator byte(escapedTestspublic_partial_structConversions_Nonebyte value) => value.Value;
+
         // only called internally when something has been deserialized into
         // its primitive type.
         private static escapedTestspublic_partial_structConversions_Nonebyte Deserialize(byte value)

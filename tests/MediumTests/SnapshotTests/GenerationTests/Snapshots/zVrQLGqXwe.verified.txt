@@ -76,6 +76,9 @@ namespace Whatever
             return instance;
         }
 
+        public static explicit operator public_readonly_partial_structConversions_TypeConverterSystem(System.Guid value) => From(value);
+        public static explicit operator System.Guid(public_readonly_partial_structConversions_TypeConverterSystem value) => value.Value;
+
         // only called internally when something has been deserialized into
         // its primitive type.
         private static public_readonly_partial_structConversions_TypeConverterSystem Deserialize(System.Guid value)

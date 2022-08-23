@@ -139,6 +139,9 @@ public global::System.Int32 Value
         public static global::System.Boolean operator ==(global::System.Int32 left, class_None right) => Equals(left, right.Value);
         public static global::System.Boolean operator !=(global::System.Int32 left, class_None right) => !Equals(left, right.Value);
 
+        public static explicit operator class_None(global::System.Int32 value) => From(value);
+        public static explicit operator global::System.Int32(class_None value) => value.Value;
+
         public override global::System.Int32 GetHashCode()
         {
             unchecked // Overflow is fine, just wrap

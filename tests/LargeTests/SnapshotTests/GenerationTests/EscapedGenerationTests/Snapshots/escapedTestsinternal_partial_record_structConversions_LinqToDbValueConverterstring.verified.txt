@@ -89,6 +89,9 @@ namespace @class
             return instance;
         }
 
+        public static explicit operator escapedTestsinternal_partial_record_structConversions_LinqToDbValueConverterstring(string value) => From(value);
+        public static explicit operator string(escapedTestsinternal_partial_record_structConversions_LinqToDbValueConverterstring value) => value.Value;
+
         // only called internally when something has been deserialized into
         // its primitive type.
         private static escapedTestsinternal_partial_record_structConversions_LinqToDbValueConverterstring Deserialize(string value)

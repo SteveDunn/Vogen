@@ -137,6 +137,9 @@ public System.Char Value
         public static global::System.Boolean operator ==(System.Char left, public_sealed_partial_classConversions_EfCoreValueConverterchar right) => Equals(left, right.Value);
         public static global::System.Boolean operator !=(System.Char left, public_sealed_partial_classConversions_EfCoreValueConverterchar right) => !Equals(left, right.Value);
 
+        public static explicit operator public_sealed_partial_classConversions_EfCoreValueConverterchar(System.Char value) => From(value);
+        public static explicit operator System.Char(public_sealed_partial_classConversions_EfCoreValueConverterchar value) => value.Value;
+
         public override global::System.Int32 GetHashCode()
         {
             unchecked // Overflow is fine, just wrap

@@ -85,6 +85,9 @@ public System.Guid Value
             return instance;
         }
 
+        public static explicit operator escapedTestspublic_partial_recordConversions_LinqToDbValueConverterSystem(System.Guid value) => From(value);
+        public static explicit operator System.Guid(escapedTestspublic_partial_recordConversions_LinqToDbValueConverterSystem value) => value.Value;
+
         // only called internally when something has been deserialized into
         // its primitive type.
         private static escapedTestspublic_partial_recordConversions_LinqToDbValueConverterSystem Deserialize(System.Guid value)

@@ -75,6 +75,9 @@ namespace @class
             return instance;
         }
 
+        public static explicit operator escapedTestsinternal_readonly_partial_structConversions_LinqToDbValueConverterbyte(byte value) => From(value);
+        public static explicit operator byte(escapedTestsinternal_readonly_partial_structConversions_LinqToDbValueConverterbyte value) => value.Value;
+
         // only called internally when something has been deserialized into
         // its primitive type.
         private static escapedTestsinternal_readonly_partial_structConversions_LinqToDbValueConverterbyte Deserialize(byte value)

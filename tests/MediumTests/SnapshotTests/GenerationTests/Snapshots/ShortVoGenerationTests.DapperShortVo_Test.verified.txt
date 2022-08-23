@@ -75,6 +75,9 @@ namespace Whatever
             return instance;
         }
 
+        public static explicit operator DapperShortVo(short value) => From(value);
+        public static explicit operator short(DapperShortVo value) => value.Value;
+
         // only called internally when something has been deserialized into
         // its primitive type.
         private static DapperShortVo Deserialize(short value)

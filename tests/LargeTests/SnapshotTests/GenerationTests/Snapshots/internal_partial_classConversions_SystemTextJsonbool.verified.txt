@@ -138,6 +138,9 @@ public System.Boolean Value
         public static global::System.Boolean operator ==(System.Boolean left, internal_partial_classConversions_SystemTextJsonbool right) => Equals(left, right.Value);
         public static global::System.Boolean operator !=(System.Boolean left, internal_partial_classConversions_SystemTextJsonbool right) => !Equals(left, right.Value);
 
+        public static explicit operator internal_partial_classConversions_SystemTextJsonbool(System.Boolean value) => From(value);
+        public static explicit operator System.Boolean(internal_partial_classConversions_SystemTextJsonbool value) => value.Value;
+
         public override global::System.Int32 GetHashCode()
         {
             unchecked // Overflow is fine, just wrap

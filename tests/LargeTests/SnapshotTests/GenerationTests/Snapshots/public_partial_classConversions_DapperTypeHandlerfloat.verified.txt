@@ -137,6 +137,9 @@ public System.Single Value
         public static global::System.Boolean operator ==(System.Single left, public_partial_classConversions_DapperTypeHandlerfloat right) => Equals(left, right.Value);
         public static global::System.Boolean operator !=(System.Single left, public_partial_classConversions_DapperTypeHandlerfloat right) => !Equals(left, right.Value);
 
+        public static explicit operator public_partial_classConversions_DapperTypeHandlerfloat(System.Single value) => From(value);
+        public static explicit operator System.Single(public_partial_classConversions_DapperTypeHandlerfloat value) => value.Value;
+
         public override global::System.Int32 GetHashCode()
         {
             unchecked // Overflow is fine, just wrap

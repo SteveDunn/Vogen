@@ -86,6 +86,9 @@ public double Value
             return instance;
         }
 
+        public static explicit operator escapedTestspublic_partial_record_classConversions_NewtonsoftJsondouble(double value) => From(value);
+        public static explicit operator double(escapedTestspublic_partial_record_classConversions_NewtonsoftJsondouble value) => value.Value;
+
         // only called internally when something has been deserialized into
         // its primitive type.
         private static escapedTestspublic_partial_record_classConversions_NewtonsoftJsondouble Deserialize(double value)

@@ -77,6 +77,9 @@ namespace Whatever
             return instance;
         }
 
+        public static explicit operator struct_Method(global::System.Int32 value) => From(value);
+        public static explicit operator global::System.Int32(struct_Method value) => value.Value;
+
         // only called internally when something has been deserialized into
         // its primitive type.
         private static struct_Method Deserialize(global::System.Int32 value)

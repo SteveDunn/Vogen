@@ -85,6 +85,9 @@ public byte Value
             return instance;
         }
 
+        public static explicit operator escapedTestspublic_sealed_partial_recordConversions_Nonebyte(byte value) => From(value);
+        public static explicit operator byte(escapedTestspublic_sealed_partial_recordConversions_Nonebyte value) => value.Value;
+
         // only called internally when something has been deserialized into
         // its primitive type.
         private static escapedTestspublic_sealed_partial_recordConversions_Nonebyte Deserialize(byte value)

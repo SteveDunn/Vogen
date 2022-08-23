@@ -86,6 +86,9 @@ public System.DateTime Value
             return instance;
         }
 
+        public static explicit operator public_sealed_partial_recordConversions_TypeConverterSystem(System.DateTime value) => From(value);
+        public static explicit operator System.DateTime(public_sealed_partial_recordConversions_TypeConverterSystem value) => value.Value;
+
         // only called internally when something has been deserialized into
         // its primitive type.
         private static public_sealed_partial_recordConversions_TypeConverterSystem Deserialize(System.DateTime value)

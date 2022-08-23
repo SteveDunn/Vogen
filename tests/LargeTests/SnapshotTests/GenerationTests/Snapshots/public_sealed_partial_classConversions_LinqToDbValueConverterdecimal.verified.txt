@@ -137,6 +137,9 @@ public System.Decimal Value
         public static global::System.Boolean operator ==(System.Decimal left, public_sealed_partial_classConversions_LinqToDbValueConverterdecimal right) => Equals(left, right.Value);
         public static global::System.Boolean operator !=(System.Decimal left, public_sealed_partial_classConversions_LinqToDbValueConverterdecimal right) => !Equals(left, right.Value);
 
+        public static explicit operator public_sealed_partial_classConversions_LinqToDbValueConverterdecimal(System.Decimal value) => From(value);
+        public static explicit operator System.Decimal(public_sealed_partial_classConversions_LinqToDbValueConverterdecimal value) => value.Value;
+
         public override global::System.Int32 GetHashCode()
         {
             unchecked // Overflow is fine, just wrap

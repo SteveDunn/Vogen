@@ -77,6 +77,9 @@ namespace Whatever
             return instance;
         }
 
+        public static explicit operator public_readonly_partial_structConversions_NewtonsoftJson(byte value) => From(value);
+        public static explicit operator byte(public_readonly_partial_structConversions_NewtonsoftJson value) => value.Value;
+
         // only called internally when something has been deserialized into
         // its primitive type.
         private static public_readonly_partial_structConversions_NewtonsoftJson Deserialize(byte value)

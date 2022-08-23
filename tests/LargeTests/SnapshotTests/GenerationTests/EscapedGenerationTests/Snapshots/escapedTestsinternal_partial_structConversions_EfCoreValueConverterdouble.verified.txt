@@ -75,6 +75,9 @@ namespace @class
             return instance;
         }
 
+        public static explicit operator escapedTestsinternal_partial_structConversions_EfCoreValueConverterdouble(double value) => From(value);
+        public static explicit operator double(escapedTestsinternal_partial_structConversions_EfCoreValueConverterdouble value) => value.Value;
+
         // only called internally when something has been deserialized into
         // its primitive type.
         private static escapedTestsinternal_partial_structConversions_EfCoreValueConverterdouble Deserialize(double value)

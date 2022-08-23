@@ -75,6 +75,9 @@ namespace Whatever
             return instance;
         }
 
+        public static explicit operator internal_readonly_partial_structConversions_Nonefloat(float value) => From(value);
+        public static explicit operator float(internal_readonly_partial_structConversions_Nonefloat value) => value.Value;
+
         // only called internally when something has been deserialized into
         // its primitive type.
         private static internal_readonly_partial_structConversions_Nonefloat Deserialize(float value)

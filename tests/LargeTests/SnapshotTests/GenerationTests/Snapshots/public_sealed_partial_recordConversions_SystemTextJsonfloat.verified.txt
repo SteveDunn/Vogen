@@ -86,6 +86,9 @@ public float Value
             return instance;
         }
 
+        public static explicit operator public_sealed_partial_recordConversions_SystemTextJsonfloat(float value) => From(value);
+        public static explicit operator float(public_sealed_partial_recordConversions_SystemTextJsonfloat value) => value.Value;
+
         // only called internally when something has been deserialized into
         // its primitive type.
         private static public_sealed_partial_recordConversions_SystemTextJsonfloat Deserialize(float value)

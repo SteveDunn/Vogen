@@ -77,6 +77,9 @@ namespace @class
             return instance;
         }
 
+        public static explicit operator escapedTestspublic_partial_structConversions_NewtonsoftJson(string value) => From(value);
+        public static explicit operator string(escapedTestspublic_partial_structConversions_NewtonsoftJson value) => value.Value;
+
         // only called internally when something has been deserialized into
         // its primitive type.
         private static escapedTestspublic_partial_structConversions_NewtonsoftJson Deserialize(string value)

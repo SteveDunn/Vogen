@@ -76,6 +76,9 @@ namespace Whatever
             return instance;
         }
 
+        public static explicit operator public_readonly_partial_structConversions_NewtonsoftJsonfloat(float value) => From(value);
+        public static explicit operator float(public_readonly_partial_structConversions_NewtonsoftJsonfloat value) => value.Value;
+
         // only called internally when something has been deserialized into
         // its primitive type.
         private static public_readonly_partial_structConversions_NewtonsoftJsonfloat Deserialize(float value)

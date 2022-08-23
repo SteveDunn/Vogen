@@ -86,6 +86,9 @@ public System.Guid Value
             return instance;
         }
 
+        public static explicit operator internal_sealed_partial_recordConversions_NewtonsoftJsonSystem(System.Guid value) => From(value);
+        public static explicit operator System.Guid(internal_sealed_partial_recordConversions_NewtonsoftJsonSystem value) => value.Value;
+
         // only called internally when something has been deserialized into
         // its primitive type.
         private static internal_sealed_partial_recordConversions_NewtonsoftJsonSystem Deserialize(System.Guid value)

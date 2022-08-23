@@ -87,6 +87,9 @@ public global::System.Int32 Value
             return instance;
         }
 
+        public static explicit operator record_Method(global::System.Int32 value) => From(value);
+        public static explicit operator global::System.Int32(record_Method value) => value.Value;
+
         // only called internally when something has been deserialized into
         // its primitive type.
         private static record_Method Deserialize(global::System.Int32 value)

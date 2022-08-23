@@ -85,6 +85,9 @@ public bool Value
             return instance;
         }
 
+        public static explicit operator internal_partial_recordConversions_DapperTypeHandlerbool(bool value) => From(value);
+        public static explicit operator bool(internal_partial_recordConversions_DapperTypeHandlerbool value) => value.Value;
+
         // only called internally when something has been deserialized into
         // its primitive type.
         private static internal_partial_recordConversions_DapperTypeHandlerbool Deserialize(bool value)

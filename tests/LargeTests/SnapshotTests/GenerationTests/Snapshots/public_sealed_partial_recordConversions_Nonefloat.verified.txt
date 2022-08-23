@@ -85,6 +85,9 @@ public float Value
             return instance;
         }
 
+        public static explicit operator public_sealed_partial_recordConversions_Nonefloat(float value) => From(value);
+        public static explicit operator float(public_sealed_partial_recordConversions_Nonefloat value) => value.Value;
+
         // only called internally when something has been deserialized into
         // its primitive type.
         private static public_sealed_partial_recordConversions_Nonefloat Deserialize(float value)

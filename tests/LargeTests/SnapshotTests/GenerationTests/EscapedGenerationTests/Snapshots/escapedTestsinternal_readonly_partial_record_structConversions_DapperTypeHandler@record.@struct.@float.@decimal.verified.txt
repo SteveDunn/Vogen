@@ -85,6 +85,9 @@ namespace @class
             return instance;
         }
 
+        public static explicit operator escapedTestsinternal_readonly_partial_record_structConversions_DapperTypeHandler(@class.record.@struct.@float.decimal value) => From(value);
+        public static explicit operator @class.record.@struct.@float.decimal(escapedTestsinternal_readonly_partial_record_structConversions_DapperTypeHandler value) => value.Value;
+
         // only called internally when something has been deserialized into
         // its primitive type.
         private static escapedTestsinternal_readonly_partial_record_structConversions_DapperTypeHandler Deserialize(@class.record.@struct.@float.decimal value)

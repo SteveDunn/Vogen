@@ -138,6 +138,9 @@ public System.Int16 Value
         public static global::System.Boolean operator ==(System.Int16 left, stj_number_as_string_public_partial_classConversions_SystemTextJsonshort right) => Equals(left, right.Value);
         public static global::System.Boolean operator !=(System.Int16 left, stj_number_as_string_public_partial_classConversions_SystemTextJsonshort right) => !Equals(left, right.Value);
 
+        public static explicit operator stj_number_as_string_public_partial_classConversions_SystemTextJsonshort(System.Int16 value) => From(value);
+        public static explicit operator System.Int16(stj_number_as_string_public_partial_classConversions_SystemTextJsonshort value) => value.Value;
+
         public override global::System.Int32 GetHashCode()
         {
             unchecked // Overflow is fine, just wrap

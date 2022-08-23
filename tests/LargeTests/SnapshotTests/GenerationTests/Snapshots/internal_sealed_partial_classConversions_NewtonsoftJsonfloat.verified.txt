@@ -138,6 +138,9 @@ public System.Single Value
         public static global::System.Boolean operator ==(System.Single left, internal_sealed_partial_classConversions_NewtonsoftJsonfloat right) => Equals(left, right.Value);
         public static global::System.Boolean operator !=(System.Single left, internal_sealed_partial_classConversions_NewtonsoftJsonfloat right) => !Equals(left, right.Value);
 
+        public static explicit operator internal_sealed_partial_classConversions_NewtonsoftJsonfloat(System.Single value) => From(value);
+        public static explicit operator System.Single(internal_sealed_partial_classConversions_NewtonsoftJsonfloat value) => value.Value;
+
         public override global::System.Int32 GetHashCode()
         {
             unchecked // Overflow is fine, just wrap

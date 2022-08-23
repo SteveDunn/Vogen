@@ -75,6 +75,9 @@ namespace Whatever
             return instance;
         }
 
+        public static explicit operator public_partial_structConversions_LinqToDbValueConverterSystem(System.DateTime value) => From(value);
+        public static explicit operator System.DateTime(public_partial_structConversions_LinqToDbValueConverterSystem value) => value.Value;
+
         // only called internally when something has been deserialized into
         // its primitive type.
         private static public_partial_structConversions_LinqToDbValueConverterSystem Deserialize(System.DateTime value)

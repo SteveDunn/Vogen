@@ -75,6 +75,9 @@ namespace Whatever
             return instance;
         }
 
+        public static explicit operator stj_number_as_string_public_readonly_partial_structConversions_NoneSystem(System.DateTime value) => From(value);
+        public static explicit operator System.DateTime(stj_number_as_string_public_readonly_partial_structConversions_NoneSystem value) => value.Value;
+
         // only called internally when something has been deserialized into
         // its primitive type.
         private static stj_number_as_string_public_readonly_partial_structConversions_NoneSystem Deserialize(System.DateTime value)
