@@ -75,6 +75,9 @@ namespace Whatever
             return instance;
         }
 
+        public static explicit operator public_partial_structConversions_NoneSystem(System.Guid value) => From(value);
+        public static explicit operator System.Guid(public_partial_structConversions_NoneSystem value) => value.Value;
+
         // only called internally when something has been deserialized into
         // its primitive type.
         private static public_partial_structConversions_NoneSystem Deserialize(System.Guid value)

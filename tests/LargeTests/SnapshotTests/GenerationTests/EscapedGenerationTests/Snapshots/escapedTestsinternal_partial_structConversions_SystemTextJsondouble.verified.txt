@@ -76,6 +76,9 @@ namespace @class
             return instance;
         }
 
+        public static explicit operator escapedTestsinternal_partial_structConversions_SystemTextJsondouble(double value) => From(value);
+        public static explicit operator double(escapedTestsinternal_partial_structConversions_SystemTextJsondouble value) => value.Value;
+
         // only called internally when something has been deserialized into
         // its primitive type.
         private static escapedTestsinternal_partial_structConversions_SystemTextJsondouble Deserialize(double value)

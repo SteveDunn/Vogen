@@ -87,6 +87,9 @@ public global::System.Int32 Value
             return instance;
         }
 
+        public static explicit operator record_ExpressionBodiedMethod(global::System.Int32 value) => From(value);
+        public static explicit operator global::System.Int32(record_ExpressionBodiedMethod value) => value.Value;
+
         // only called internally when something has been deserialized into
         // its primitive type.
         private static record_ExpressionBodiedMethod Deserialize(global::System.Int32 value)

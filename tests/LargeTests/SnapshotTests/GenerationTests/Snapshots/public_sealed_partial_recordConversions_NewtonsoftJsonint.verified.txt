@@ -86,6 +86,9 @@ public int Value
             return instance;
         }
 
+        public static explicit operator public_sealed_partial_recordConversions_NewtonsoftJsonint(int value) => From(value);
+        public static explicit operator int(public_sealed_partial_recordConversions_NewtonsoftJsonint value) => value.Value;
+
         // only called internally when something has been deserialized into
         // its primitive type.
         private static public_sealed_partial_recordConversions_NewtonsoftJsonint Deserialize(int value)

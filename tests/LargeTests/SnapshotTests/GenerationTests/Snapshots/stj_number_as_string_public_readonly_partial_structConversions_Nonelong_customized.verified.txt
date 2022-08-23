@@ -75,6 +75,9 @@ namespace Whatever
             return instance;
         }
 
+        public static explicit operator stj_number_as_string_public_readonly_partial_structConversions_Nonelong_customized(long value) => From(value);
+        public static explicit operator long(stj_number_as_string_public_readonly_partial_structConversions_Nonelong_customized value) => value.Value;
+
         // only called internally when something has been deserialized into
         // its primitive type.
         private static stj_number_as_string_public_readonly_partial_structConversions_Nonelong_customized Deserialize(long value)

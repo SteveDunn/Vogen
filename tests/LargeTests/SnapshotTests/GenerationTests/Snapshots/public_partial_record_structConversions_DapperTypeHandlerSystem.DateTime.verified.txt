@@ -85,6 +85,9 @@ namespace Whatever
             return instance;
         }
 
+        public static explicit operator public_partial_record_structConversions_DapperTypeHandlerSystem(System.DateTime value) => From(value);
+        public static explicit operator System.DateTime(public_partial_record_structConversions_DapperTypeHandlerSystem value) => value.Value;
+
         // only called internally when something has been deserialized into
         // its primitive type.
         private static public_partial_record_structConversions_DapperTypeHandlerSystem Deserialize(System.DateTime value)

@@ -76,6 +76,9 @@ namespace Whatever
             return instance;
         }
 
+        public static explicit operator public_readonly_partial_structConversions_SystemTextJsonSystem(System.Guid value) => From(value);
+        public static explicit operator System.Guid(public_readonly_partial_structConversions_SystemTextJsonSystem value) => value.Value;
+
         // only called internally when something has been deserialized into
         // its primitive type.
         private static public_readonly_partial_structConversions_SystemTextJsonSystem Deserialize(System.Guid value)

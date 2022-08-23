@@ -76,6 +76,9 @@ namespace @class
             return instance;
         }
 
+        public static explicit operator escapedTestspublic_readonly_partial_structConversions_TypeConverterstring(string value) => From(value);
+        public static explicit operator string(escapedTestspublic_readonly_partial_structConversions_TypeConverterstring value) => value.Value;
+
         // only called internally when something has been deserialized into
         // its primitive type.
         private static escapedTestspublic_readonly_partial_structConversions_TypeConverterstring Deserialize(string value)

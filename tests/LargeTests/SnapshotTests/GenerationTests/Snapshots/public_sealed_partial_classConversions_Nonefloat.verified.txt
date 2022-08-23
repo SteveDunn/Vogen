@@ -137,6 +137,9 @@ public System.Single Value
         public static global::System.Boolean operator ==(System.Single left, public_sealed_partial_classConversions_Nonefloat right) => Equals(left, right.Value);
         public static global::System.Boolean operator !=(System.Single left, public_sealed_partial_classConversions_Nonefloat right) => !Equals(left, right.Value);
 
+        public static explicit operator public_sealed_partial_classConversions_Nonefloat(System.Single value) => From(value);
+        public static explicit operator System.Single(public_sealed_partial_classConversions_Nonefloat value) => value.Value;
+
         public override global::System.Int32 GetHashCode()
         {
             unchecked // Overflow is fine, just wrap

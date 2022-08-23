@@ -138,6 +138,9 @@ public @class.@record.@struct.@float.@decimal Value
         public static global::System.Boolean operator ==(@class.@record.@struct.@float.@decimal left, escapedTestspublic_sealed_partial_classConversions_SystemTextJson right) => Equals(left, right.Value);
         public static global::System.Boolean operator !=(@class.@record.@struct.@float.@decimal left, escapedTestspublic_sealed_partial_classConversions_SystemTextJson right) => !Equals(left, right.Value);
 
+        public static explicit operator escapedTestspublic_sealed_partial_classConversions_SystemTextJson(@class.@record.@struct.@float.@decimal value) => From(value);
+        public static explicit operator @class.@record.@struct.@float.@decimal(escapedTestspublic_sealed_partial_classConversions_SystemTextJson value) => value.Value;
+
         public override global::System.Int32 GetHashCode()
         {
             unchecked // Overflow is fine, just wrap

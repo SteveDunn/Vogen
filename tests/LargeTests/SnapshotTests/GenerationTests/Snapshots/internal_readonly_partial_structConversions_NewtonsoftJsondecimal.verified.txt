@@ -76,6 +76,9 @@ namespace Whatever
             return instance;
         }
 
+        public static explicit operator internal_readonly_partial_structConversions_NewtonsoftJsondecimal(decimal value) => From(value);
+        public static explicit operator decimal(internal_readonly_partial_structConversions_NewtonsoftJsondecimal value) => value.Value;
+
         // only called internally when something has been deserialized into
         // its primitive type.
         private static internal_readonly_partial_structConversions_NewtonsoftJsondecimal Deserialize(decimal value)

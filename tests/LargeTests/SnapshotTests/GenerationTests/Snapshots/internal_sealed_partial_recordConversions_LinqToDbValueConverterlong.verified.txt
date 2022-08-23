@@ -85,6 +85,9 @@ public long Value
             return instance;
         }
 
+        public static explicit operator internal_sealed_partial_recordConversions_LinqToDbValueConverterlong(long value) => From(value);
+        public static explicit operator long(internal_sealed_partial_recordConversions_LinqToDbValueConverterlong value) => value.Value;
+
         // only called internally when something has been deserialized into
         // its primitive type.
         private static internal_sealed_partial_recordConversions_LinqToDbValueConverterlong Deserialize(long value)

@@ -76,6 +76,9 @@ namespace @class
             return instance;
         }
 
+        public static explicit operator escapedTestsinternal_partial_structConversions_TypeConverter(@class.record.@struct.@float.decimal value) => From(value);
+        public static explicit operator @class.record.@struct.@float.decimal(escapedTestsinternal_partial_structConversions_TypeConverter value) => value.Value;
+
         // only called internally when something has been deserialized into
         // its primitive type.
         private static escapedTestsinternal_partial_structConversions_TypeConverter Deserialize(@class.record.@struct.@float.decimal value)

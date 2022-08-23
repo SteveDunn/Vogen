@@ -146,6 +146,9 @@ public System.String Value
         public static global::System.Boolean operator ==(System.String left, public_partial_classConversions_NewtonsoftJsonstring right) => Equals(left, right.Value);
         public static global::System.Boolean operator !=(System.String left, public_partial_classConversions_NewtonsoftJsonstring right) => !Equals(left, right.Value);
 
+        public static explicit operator public_partial_classConversions_NewtonsoftJsonstring(System.String value) => From(value);
+        public static explicit operator System.String(public_partial_classConversions_NewtonsoftJsonstring value) => value.Value;
+
         public override global::System.Int32 GetHashCode()
         {
             unchecked // Overflow is fine, just wrap

@@ -86,6 +86,9 @@ public System.DateTime Value
             return instance;
         }
 
+        public static explicit operator stj_number_as_string_public_partial_recordConversions_SystemTextJsonSystem(System.DateTime value) => From(value);
+        public static explicit operator System.DateTime(stj_number_as_string_public_partial_recordConversions_SystemTextJsonSystem value) => value.Value;
+
         // only called internally when something has been deserialized into
         // its primitive type.
         private static stj_number_as_string_public_partial_recordConversions_SystemTextJsonSystem Deserialize(System.DateTime value)

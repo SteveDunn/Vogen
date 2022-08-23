@@ -85,6 +85,9 @@ namespace Whatever
             return instance;
         }
 
+        public static explicit operator internal_readonly_partial_record_structConversions_DapperTypeHandlerSystem(System.DateTimeOffset value) => From(value);
+        public static explicit operator System.DateTimeOffset(internal_readonly_partial_record_structConversions_DapperTypeHandlerSystem value) => value.Value;
+
         // only called internally when something has been deserialized into
         // its primitive type.
         private static internal_readonly_partial_record_structConversions_DapperTypeHandlerSystem Deserialize(System.DateTimeOffset value)

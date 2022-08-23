@@ -85,6 +85,9 @@ public decimal Value
             return instance;
         }
 
+        public static explicit operator public_partial_recordConversions_EfCoreValueConverterdecimal(decimal value) => From(value);
+        public static explicit operator decimal(public_partial_recordConversions_EfCoreValueConverterdecimal value) => value.Value;
+
         // only called internally when something has been deserialized into
         // its primitive type.
         private static public_partial_recordConversions_EfCoreValueConverterdecimal Deserialize(decimal value)

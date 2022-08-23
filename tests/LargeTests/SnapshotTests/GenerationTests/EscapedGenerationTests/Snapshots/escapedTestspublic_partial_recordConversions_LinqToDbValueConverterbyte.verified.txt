@@ -85,6 +85,9 @@ public byte Value
             return instance;
         }
 
+        public static explicit operator escapedTestspublic_partial_recordConversions_LinqToDbValueConverterbyte(byte value) => From(value);
+        public static explicit operator byte(escapedTestspublic_partial_recordConversions_LinqToDbValueConverterbyte value) => value.Value;
+
         // only called internally when something has been deserialized into
         // its primitive type.
         private static escapedTestspublic_partial_recordConversions_LinqToDbValueConverterbyte Deserialize(byte value)

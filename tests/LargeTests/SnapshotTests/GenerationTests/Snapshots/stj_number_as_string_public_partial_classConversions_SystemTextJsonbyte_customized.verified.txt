@@ -138,6 +138,9 @@ public System.Byte Value
         public static global::System.Boolean operator ==(System.Byte left, stj_number_as_string_public_partial_classConversions_SystemTextJsonbyte_customized right) => Equals(left, right.Value);
         public static global::System.Boolean operator !=(System.Byte left, stj_number_as_string_public_partial_classConversions_SystemTextJsonbyte_customized right) => !Equals(left, right.Value);
 
+        public static explicit operator stj_number_as_string_public_partial_classConversions_SystemTextJsonbyte_customized(System.Byte value) => From(value);
+        public static explicit operator System.Byte(stj_number_as_string_public_partial_classConversions_SystemTextJsonbyte_customized value) => value.Value;
+
         public override global::System.Int32 GetHashCode()
         {
             unchecked // Overflow is fine, just wrap

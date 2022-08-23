@@ -87,6 +87,9 @@ public System.DateTime Value
             return instance;
         }
 
+        public static explicit operator internal_partial_recordConversions_NewtonsoftJson(System.DateTime value) => From(value);
+        public static explicit operator System.DateTime(internal_partial_recordConversions_NewtonsoftJson value) => value.Value;
+
         // only called internally when something has been deserialized into
         // its primitive type.
         private static internal_partial_recordConversions_NewtonsoftJson Deserialize(System.DateTime value)

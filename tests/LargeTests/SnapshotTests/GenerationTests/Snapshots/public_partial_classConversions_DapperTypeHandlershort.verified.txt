@@ -137,6 +137,9 @@ public System.Int16 Value
         public static global::System.Boolean operator ==(System.Int16 left, public_partial_classConversions_DapperTypeHandlershort right) => Equals(left, right.Value);
         public static global::System.Boolean operator !=(System.Int16 left, public_partial_classConversions_DapperTypeHandlershort right) => !Equals(left, right.Value);
 
+        public static explicit operator public_partial_classConversions_DapperTypeHandlershort(System.Int16 value) => From(value);
+        public static explicit operator System.Int16(public_partial_classConversions_DapperTypeHandlershort value) => value.Value;
+
         public override global::System.Int32 GetHashCode()
         {
             unchecked // Overflow is fine, just wrap

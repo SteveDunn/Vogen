@@ -86,6 +86,9 @@ public short Value
             return instance;
         }
 
+        public static explicit operator internal_partial_recordConversions_TypeConvertershort(short value) => From(value);
+        public static explicit operator short(internal_partial_recordConversions_TypeConvertershort value) => value.Value;
+
         // only called internally when something has been deserialized into
         // its primitive type.
         private static internal_partial_recordConversions_TypeConvertershort Deserialize(short value)

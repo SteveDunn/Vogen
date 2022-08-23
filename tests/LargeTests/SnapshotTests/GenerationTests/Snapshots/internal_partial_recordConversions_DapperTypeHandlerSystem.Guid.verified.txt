@@ -85,6 +85,9 @@ public System.Guid Value
             return instance;
         }
 
+        public static explicit operator internal_partial_recordConversions_DapperTypeHandlerSystem(System.Guid value) => From(value);
+        public static explicit operator System.Guid(internal_partial_recordConversions_DapperTypeHandlerSystem value) => value.Value;
+
         // only called internally when something has been deserialized into
         // its primitive type.
         private static internal_partial_recordConversions_DapperTypeHandlerSystem Deserialize(System.Guid value)

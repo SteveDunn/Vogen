@@ -137,6 +137,9 @@ public System.Guid Value
         public static global::System.Boolean operator ==(System.Guid left, public_sealed_partial_classConversions_NoneSystem right) => Equals(left, right.Value);
         public static global::System.Boolean operator !=(System.Guid left, public_sealed_partial_classConversions_NoneSystem right) => !Equals(left, right.Value);
 
+        public static explicit operator public_sealed_partial_classConversions_NoneSystem(System.Guid value) => From(value);
+        public static explicit operator System.Guid(public_sealed_partial_classConversions_NoneSystem value) => value.Value;
+
         public override global::System.Int32 GetHashCode()
         {
             unchecked // Overflow is fine, just wrap

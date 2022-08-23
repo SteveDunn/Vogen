@@ -86,6 +86,9 @@ public byte Value
             return instance;
         }
 
+        public static explicit operator escapedTestspublic_partial_recordConversions_SystemTextJsonbyte(byte value) => From(value);
+        public static explicit operator byte(escapedTestspublic_partial_recordConversions_SystemTextJsonbyte value) => value.Value;
+
         // only called internally when something has been deserialized into
         // its primitive type.
         private static escapedTestspublic_partial_recordConversions_SystemTextJsonbyte Deserialize(byte value)

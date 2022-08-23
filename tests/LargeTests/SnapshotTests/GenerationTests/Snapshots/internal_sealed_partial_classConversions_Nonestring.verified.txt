@@ -145,6 +145,9 @@ public System.String Value
         public static global::System.Boolean operator ==(System.String left, internal_sealed_partial_classConversions_Nonestring right) => Equals(left, right.Value);
         public static global::System.Boolean operator !=(System.String left, internal_sealed_partial_classConversions_Nonestring right) => !Equals(left, right.Value);
 
+        public static explicit operator internal_sealed_partial_classConversions_Nonestring(System.String value) => From(value);
+        public static explicit operator System.String(internal_sealed_partial_classConversions_Nonestring value) => value.Value;
+
         public override global::System.Int32 GetHashCode()
         {
             unchecked // Overflow is fine, just wrap

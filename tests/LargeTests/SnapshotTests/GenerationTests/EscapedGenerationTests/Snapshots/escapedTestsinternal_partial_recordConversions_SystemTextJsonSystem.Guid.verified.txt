@@ -86,6 +86,9 @@ public System.Guid Value
             return instance;
         }
 
+        public static explicit operator escapedTestsinternal_partial_recordConversions_SystemTextJsonSystem(System.Guid value) => From(value);
+        public static explicit operator System.Guid(escapedTestsinternal_partial_recordConversions_SystemTextJsonSystem value) => value.Value;
+
         // only called internally when something has been deserialized into
         // its primitive type.
         private static escapedTestsinternal_partial_recordConversions_SystemTextJsonSystem Deserialize(System.Guid value)

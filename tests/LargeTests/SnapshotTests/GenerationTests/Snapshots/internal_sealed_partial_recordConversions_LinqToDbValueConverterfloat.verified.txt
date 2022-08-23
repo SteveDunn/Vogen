@@ -85,6 +85,9 @@ public float Value
             return instance;
         }
 
+        public static explicit operator internal_sealed_partial_recordConversions_LinqToDbValueConverterfloat(float value) => From(value);
+        public static explicit operator float(internal_sealed_partial_recordConversions_LinqToDbValueConverterfloat value) => value.Value;
+
         // only called internally when something has been deserialized into
         // its primitive type.
         private static internal_sealed_partial_recordConversions_LinqToDbValueConverterfloat Deserialize(float value)

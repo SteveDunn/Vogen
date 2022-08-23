@@ -137,6 +137,9 @@ public System.DateTime Value
         public static global::System.Boolean operator ==(System.DateTime left, internal_partial_classConversions_NoneSystem right) => Equals(left, right.Value);
         public static global::System.Boolean operator !=(System.DateTime left, internal_partial_classConversions_NoneSystem right) => !Equals(left, right.Value);
 
+        public static explicit operator internal_partial_classConversions_NoneSystem(System.DateTime value) => From(value);
+        public static explicit operator System.DateTime(internal_partial_classConversions_NoneSystem value) => value.Value;
+
         public override global::System.Int32 GetHashCode()
         {
             unchecked // Overflow is fine, just wrap

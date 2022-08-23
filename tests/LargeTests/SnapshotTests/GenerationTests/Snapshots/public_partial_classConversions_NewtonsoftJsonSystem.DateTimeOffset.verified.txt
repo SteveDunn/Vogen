@@ -138,6 +138,9 @@ public System.DateTimeOffset Value
         public static global::System.Boolean operator ==(System.DateTimeOffset left, public_partial_classConversions_NewtonsoftJsonSystem right) => Equals(left, right.Value);
         public static global::System.Boolean operator !=(System.DateTimeOffset left, public_partial_classConversions_NewtonsoftJsonSystem right) => !Equals(left, right.Value);
 
+        public static explicit operator public_partial_classConversions_NewtonsoftJsonSystem(System.DateTimeOffset value) => From(value);
+        public static explicit operator System.DateTimeOffset(public_partial_classConversions_NewtonsoftJsonSystem value) => value.Value;
+
         public override global::System.Int32 GetHashCode()
         {
             unchecked // Overflow is fine, just wrap

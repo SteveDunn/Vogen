@@ -85,6 +85,9 @@ public long Value
             return instance;
         }
 
+        public static explicit operator internal_partial_recordConversions_Nonelong(long value) => From(value);
+        public static explicit operator long(internal_partial_recordConversions_Nonelong value) => value.Value;
+
         // only called internally when something has been deserialized into
         // its primitive type.
         private static internal_partial_recordConversions_Nonelong Deserialize(long value)

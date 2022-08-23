@@ -75,6 +75,9 @@ namespace @class
             return instance;
         }
 
+        public static explicit operator escapedTestsinternal_partial_structConversions_EfCoreValueConverterSystem(System.Guid value) => From(value);
+        public static explicit operator System.Guid(escapedTestsinternal_partial_structConversions_EfCoreValueConverterSystem value) => value.Value;
+
         // only called internally when something has been deserialized into
         // its primitive type.
         private static escapedTestsinternal_partial_structConversions_EfCoreValueConverterSystem Deserialize(System.Guid value)

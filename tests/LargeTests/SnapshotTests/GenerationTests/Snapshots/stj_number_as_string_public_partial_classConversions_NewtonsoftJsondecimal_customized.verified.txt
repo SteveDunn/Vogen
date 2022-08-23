@@ -138,6 +138,9 @@ public System.Decimal Value
         public static global::System.Boolean operator ==(System.Decimal left, stj_number_as_string_public_partial_classConversions_NewtonsoftJsondecimal_customized right) => Equals(left, right.Value);
         public static global::System.Boolean operator !=(System.Decimal left, stj_number_as_string_public_partial_classConversions_NewtonsoftJsondecimal_customized right) => !Equals(left, right.Value);
 
+        public static explicit operator stj_number_as_string_public_partial_classConversions_NewtonsoftJsondecimal_customized(System.Decimal value) => From(value);
+        public static explicit operator System.Decimal(stj_number_as_string_public_partial_classConversions_NewtonsoftJsondecimal_customized value) => value.Value;
+
         public override global::System.Int32 GetHashCode()
         {
             unchecked // Overflow is fine, just wrap
