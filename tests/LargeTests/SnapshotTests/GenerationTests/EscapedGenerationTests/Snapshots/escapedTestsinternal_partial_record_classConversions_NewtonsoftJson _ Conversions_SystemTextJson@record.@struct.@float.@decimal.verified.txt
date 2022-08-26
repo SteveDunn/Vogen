@@ -10,6 +10,9 @@
 // Suppress warnings about [Obsolete] member usage in generated code.
 #pragma warning disable CS0618
 
+// Suppress warnings about CS1591: Missing XML comment for publicly visible type or member 'Type_or_Member'
+#pragma warning disable CS1591
+
 using Vogen;
 
 namespace @class
@@ -30,7 +33,10 @@ namespace @class
         private readonly global::System.Boolean _isInitialized;
         private readonly @class.record.@struct.@float.decimal _value;
         
-public @class.record.@struct.@float.decimal Value
+        /// <summary>
+        /// Gets the underlying <see cref="@class.record.@struct.@float.decimal" /> value if set, otherwise a <see cref="ValueObjectValidationException" /> is thrown.
+        /// </summary>
+        public @class.record.@struct.@float.decimal Value
         {
             [global::System.Diagnostics.DebuggerStepThroughAttribute]
             get
@@ -121,7 +127,9 @@ public @class.record.@struct.@float.decimal Value
         
 
         // record enumerates fields - we just want our Value and to throw if it's not initialized.
-        public override global::System.String ToString() => Value.ToString();
+        /// <summary>Returns the string representation of the underlying <see cref="@class.@record.@struct.@float.@decimal" />.</summary>
+    /// <inheritdoc cref="@class.@record.@struct.@float.@decimal.ToString()" />
+    public override global::System.String ToString() => Value.ToString();
 
         
         class escapedTestsinternal_partial_record_classConversions_NewtonsoftJsonSystemTextJsonConverter : global::System.Text.Json.Serialization.JsonConverter<escapedTestsinternal_partial_record_classConversions_NewtonsoftJson>

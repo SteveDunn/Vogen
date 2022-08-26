@@ -267,9 +267,15 @@ public static class Util
     public static string GenerateYourAssemblyName() => typeof(Util).Assembly.GetName().Name;
     public static string GenerateYourAssemblyVersion() => typeof(Util).Assembly.GetName().Version.ToString();
 
-    public static string GenerateToString(VoWorkItem item) => 
-        item.HasToString ? string.Empty : "public override global::System.String ToString() => Value.ToString();";
+    public static string GenerateToString(VoWorkItem item) =>
+        item.HasToString ? string.Empty 
+            : $@"/// <summary>Returns the string representation of the underlying <see cref=""{item.UnderlyingTypeFullName}"" />.</summary>
+    /// <inheritdoc cref=""{item.UnderlyingTypeFullName}.ToString()"" />
+    public override global::System.String ToString() => Value.ToString();";
 
     public static string GenerateToStringReadOnly(VoWorkItem item) => 
-        item.HasToString ? string.Empty : "public readonly override global::System.String ToString() => Value.ToString();";
+        item.HasToString ? string.Empty : 
+            @"/// <summary>Returns the string representation of the underlying type</summary>
+    /// <inheritdoc cref=""{item.UnderlyingTypeFullName}.ToString()"" />
+    public readonly override global::System.String ToString() => Value.ToString();";
 }
