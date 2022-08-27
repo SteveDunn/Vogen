@@ -10,6 +10,9 @@
 // Suppress warnings about [Obsolete] member usage in generated code.
 #pragma warning disable CS0618
 
+// Suppress warnings about CS1591: Missing XML comment for publicly visible type or member 'Type_or_Member'
+#pragma warning disable CS1591
+
 using Vogen;
 
 namespace Whatever
@@ -29,7 +32,10 @@ namespace Whatever
         private readonly global::System.Boolean _isInitialized;
         private readonly float _value;
         
-public float Value
+        /// <summary>
+        /// Gets the underlying <see cref="float" /> value if set, otherwise a <see cref="ValueObjectValidationException" /> is thrown.
+        /// </summary>
+        public float Value
         {
             [global::System.Diagnostics.DebuggerStepThroughAttribute]
             get
@@ -120,7 +126,9 @@ public float Value
         
 
         // record enumerates fields - we just want our Value and to throw if it's not initialized.
-        public override global::System.String ToString() => Value.ToString();
+        /// <summary>Returns the string representation of the underlying <see cref="System.Single" />.</summary>
+    /// <inheritdoc cref="System.Single.ToString()" />
+    public override global::System.String ToString() => Value.ToString();
 
         
         class internal_partial_recordConversions_SystemTextJsonfloatSystemTextJsonConverter : global::System.Text.Json.Serialization.JsonConverter<internal_partial_recordConversions_SystemTextJsonfloat>

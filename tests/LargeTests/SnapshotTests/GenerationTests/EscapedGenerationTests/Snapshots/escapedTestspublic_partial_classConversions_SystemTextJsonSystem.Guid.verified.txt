@@ -10,6 +10,9 @@
 // Suppress warnings about [Obsolete] member usage in generated code.
 #pragma warning disable CS0618
 
+// Suppress warnings about CS1591: Missing XML comment for publicly visible type or member 'Type_or_Member'
+#pragma warning disable CS1591
+
 using Vogen;
 
 namespace @class
@@ -29,6 +32,9 @@ namespace @class
         private readonly global::System.Boolean _isInitialized;
         private readonly System.Guid _value;
         
+/// <summary>
+/// Gets the underlying <see cref="System.Guid" /> value if set, otherwise a <see cref="ValueObjectValidationException" /> is thrown.
+/// </summary>
 public System.Guid Value
         {
             [global::System.Diagnostics.DebuggerStepThroughAttribute]
@@ -170,7 +176,9 @@ public System.Guid Value
 
         
 
-        public override global::System.String ToString() => Value.ToString();
+        /// <summary>Returns the string representation of the underlying <see cref="System.Guid" />.</summary>
+    /// <inheritdoc cref="System.Guid.ToString()" />
+    public override global::System.String ToString() => Value.ToString();
 
         
         class escapedTestspublic_partial_classConversions_SystemTextJsonSystemSystemTextJsonConverter : global::System.Text.Json.Serialization.JsonConverter<escapedTestspublic_partial_classConversions_SystemTextJsonSystem>

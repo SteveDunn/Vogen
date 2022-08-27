@@ -25,7 +25,10 @@ internal static class WriteWorkItems
 // ------------------------------------------------------------------------------
 
 // Suppress warnings about [Obsolete] member usage in generated code.
-#pragma warning disable CS0618".Replace("\r\n", "\n").Replace("\n", Environment.NewLine); // normalize regardless of git checkout policy        
+#pragma warning disable CS0618
+
+// Suppress warnings about CS1591: Missing XML comment for publicly visible type or member 'Type_or_Member'
+#pragma warning disable CS1591".Replace("\r\n", "\n").Replace("\n", Environment.NewLine); // normalize regardless of git checkout policy        
 
     static WriteWorkItems()
     {

@@ -27,6 +27,9 @@ using Vogen;
         private readonly global::System.Boolean _isInitialized;
         private readonly {itemUnderlyingType} _value;
         
+/// <summary>
+/// Gets the underlying <see cref=""{itemUnderlyingType}"" /> value if set, otherwise a <see cref=""{nameof(ValueObjectValidationException)}"" /> is thrown.
+/// </summary>
 public {itemUnderlyingType} Value
         {{
             [global::System.Diagnostics.DebuggerStepThroughAttribute]

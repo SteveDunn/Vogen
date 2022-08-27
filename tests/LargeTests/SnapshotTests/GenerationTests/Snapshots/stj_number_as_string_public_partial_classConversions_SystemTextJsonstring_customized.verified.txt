@@ -10,6 +10,9 @@
 // Suppress warnings about [Obsolete] member usage in generated code.
 #pragma warning disable CS0618
 
+// Suppress warnings about CS1591: Missing XML comment for publicly visible type or member 'Type_or_Member'
+#pragma warning disable CS1591
+
 using Vogen;
 
 namespace Whatever
@@ -29,6 +32,9 @@ namespace Whatever
         private readonly global::System.Boolean _isInitialized;
         private readonly System.String _value;
         
+/// <summary>
+/// Gets the underlying <see cref="System.String" /> value if set, otherwise a <see cref="ValueObjectValidationException" /> is thrown.
+/// </summary>
 public System.String Value
         {
             [global::System.Diagnostics.DebuggerStepThroughAttribute]
@@ -178,7 +184,9 @@ public System.String Value
 
         
 
-        public override global::System.String ToString() => Value.ToString();
+        /// <summary>Returns the string representation of the underlying <see cref="System.String" />.</summary>
+    /// <inheritdoc cref="System.String.ToString()" />
+    public override global::System.String ToString() => Value.ToString();
 
         
         class stj_number_as_string_public_partial_classConversions_SystemTextJsonstring_customizedSystemTextJsonConverter : global::System.Text.Json.Serialization.JsonConverter<stj_number_as_string_public_partial_classConversions_SystemTextJsonstring_customized>
