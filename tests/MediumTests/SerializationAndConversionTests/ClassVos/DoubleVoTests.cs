@@ -7,18 +7,19 @@ using System.Linq;
 using System.Threading.Tasks;
 using Dapper;
 using FluentAssertions;
-using Microsoft.Data.Sqlite;
-using Microsoft.EntityFrameworkCore;
-using Xunit;
-using NewtonsoftJsonSerializer = Newtonsoft.Json.JsonConvert;
-using SystemTextJsonSerializer = System.Text.Json.JsonSerializer;
-using Vogen.IntegrationTests.TestTypes.ClassVos;
 using LinqToDB;
 using LinqToDB.Data;
 using LinqToDB.DataProvider.SQLite;
 using LinqToDB.Mapping;
+using Microsoft.Data.Sqlite;
+using Microsoft.EntityFrameworkCore;
+using Vogen;
+using Vogen.IntegrationTests.TestTypes.ClassVos;
+using Xunit;
+using NewtonsoftJsonSerializer = Newtonsoft.Json.JsonConvert;
+using SystemTextJsonSerializer = System.Text.Json.JsonSerializer;
 
-namespace Vogen.IntegrationTests.SerializationAndConversionTests.ClassVos
+namespace MediumTests.SerializationAndConversionTests.ClassVos
 {
     [ValueObject(underlyingType: typeof(double))]
     public partial struct AnotherDoubleVo { }
@@ -191,10 +192,11 @@ namespace Vogen.IntegrationTests.SerializationAndConversionTests.ClassVos
             using var connection = new SqliteConnection("DataSource=:memory:");
             await connection.OpenAsync();
 
-            IEnumerable<DapperDoubleVo> results = await connection.QueryAsync<DapperDoubleVo>("SELECT 123");
+            var parameters = new { Value = 123.45d };
+            IEnumerable<DapperDoubleVo> results = await connection.QueryAsync<DapperDoubleVo>("SELECT @Value", parameters);
 
             var value = Assert.Single(results);
-            Assert.Equal(DapperDoubleVo.From(123D), value);
+            Assert.Equal(DapperDoubleVo.From(123.45d), value);
         }
 
         [Fact]
