@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
 using Dapper;
@@ -16,6 +17,7 @@ using LinqToDB;
 using LinqToDB.Data;
 using LinqToDB.DataProvider.SQLite;
 using LinqToDB.Mapping;
+using NoJsonFloatVo = Vogen.IntegrationTests.TestTypes.StructVos.NoJsonFloatVo;
 
 namespace Vogen.IntegrationTests.SerializationAndConversionTests.ClassVos
 {
@@ -221,7 +223,7 @@ namespace Vogen.IntegrationTests.SerializationAndConversionTests.ClassVos
                 Assert.Equal(original.Id, retrieved.Id);
             }
         }
-
+        
         [Fact]
         public void TypeConverter_CanConvertToAndFromDecimal()
         {
@@ -237,13 +239,15 @@ namespace Vogen.IntegrationTests.SerializationAndConversionTests.ClassVos
         [Fact]
         public void TypeConverter_CanConvertToAndFrom()
         {
-            var converter = TypeDescriptor.GetConverter(typeof(NoJsonDecimalVo));
-            var id = converter.ConvertFrom("123");
-            Assert.IsType<NoJsonDecimalVo>(id);
-            Assert.Equal(NoJsonDecimalVo.From(123m), id);
+            var culture = new CultureInfo("en-US");
 
-            var reconverted = converter.ConvertTo(id, typeof(string));
-            Assert.Equal("123", reconverted);
+            var converter = TypeDescriptor.GetConverter(typeof(NoJsonDecimalVo));
+            var id = converter.ConvertFrom(null!, culture, "123.45");
+            Assert.IsType<NoJsonDecimalVo>(id);
+            Assert.Equal(NoJsonDecimalVo.From(123.45m), id);
+
+            var reconverted = converter.ConvertTo(null, culture, id, typeof(string));
+            Assert.Equal("123.45", reconverted);
         }
         
         [Fact]

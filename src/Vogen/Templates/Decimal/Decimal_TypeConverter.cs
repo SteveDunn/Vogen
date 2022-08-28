@@ -11,7 +11,7 @@
                 return value switch
                 {
                     global::System.Decimal decimalValue => VOTYPE.Deserialize(decimalValue),
-                    global::System.String stringValue when !global::System.String.IsNullOrEmpty(stringValue) && global::System.Decimal.TryParse(stringValue, out var result) => VOTYPE.Deserialize(result),
+                    global::System.String stringValue when !global::System.String.IsNullOrEmpty(stringValue) && global::System.Decimal.TryParse(stringValue, global::System.Globalization.NumberStyles.Number, culture.NumberFormat, out var result) => VOTYPE.Deserialize(result),
                     _ => base.ConvertFrom(context, culture, value),
                 };
             }
@@ -32,7 +32,7 @@
 
                     if (destinationType == typeof(global::System.String))
                     {
-                        return idValue.Value.ToString();
+                        return idValue.Value.ToString(culture);
                     }
                 }
 

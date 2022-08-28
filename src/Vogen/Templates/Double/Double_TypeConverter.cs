@@ -12,7 +12,7 @@
                 {
                     global::System.Double doubleValue => VOTYPE.Deserialize(doubleValue),
                     global::System.Int64 longValue => VOTYPE.Deserialize((global::System.Double)longValue),
-                    global::System.String stringValue when !global::System.String.IsNullOrEmpty(stringValue) && global::System.Double.TryParse(stringValue, out var result) => VOTYPE.Deserialize(result),
+                    global::System.String stringValue when !global::System.String.IsNullOrEmpty(stringValue) && global::System.Double.TryParse(stringValue, global::System.Globalization.NumberStyles.Float | global::System.Globalization.NumberStyles.AllowThousands, culture.NumberFormat, out var result) => VOTYPE.Deserialize(result),
                     _ => base.ConvertFrom(context, culture, value),
                 };
             }
@@ -33,7 +33,7 @@
 
                     if (destinationType == typeof(global::System.String))
                     {
-                        return idValue.Value.ToString();
+                        return idValue.Value.ToString(culture);
                     }
                 }
 

@@ -145,7 +145,7 @@ namespace Whatever
                 return value switch
                 {
                     global::System.Decimal decimalValue => internal_sealed_partial_recordConversions_TypeConverterdecimal.Deserialize(decimalValue),
-                    global::System.String stringValue when !global::System.String.IsNullOrEmpty(stringValue) && global::System.Decimal.TryParse(stringValue, out var result) => internal_sealed_partial_recordConversions_TypeConverterdecimal.Deserialize(result),
+                    global::System.String stringValue when !global::System.String.IsNullOrEmpty(stringValue) && global::System.Decimal.TryParse(stringValue, global::System.Globalization.NumberStyles.Number, culture.NumberFormat, out var result) => internal_sealed_partial_recordConversions_TypeConverterdecimal.Deserialize(result),
                     _ => base.ConvertFrom(context, culture, value),
                 };
             }
@@ -166,7 +166,7 @@ namespace Whatever
 
                     if (destinationType == typeof(global::System.String))
                     {
-                        return idValue.Value.ToString();
+                        return idValue.Value.ToString(culture);
                     }
                 }
 

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Globalization;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Xml.Linq;
@@ -148,7 +149,7 @@ public static class Util
 
         if (fullName == typeof(float).FullName)
         {
-            return $@"{instancePropertiesValue}f";
+            return ((float)instancePropertiesValue).ToString(CultureInfo.InvariantCulture) + "f";
         }
 
         if (fullName == typeof(double).FullName)
