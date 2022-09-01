@@ -34,7 +34,7 @@
     <PackageReference Include="Dapper" Version="2.0.123" />
     <PackageReference Include="linq2db" Version="3.7.0" />
     <PackageReference Include="FluentAssertions" Version="6.7.0" />
-    <PackageReference Include="Microsoft.CodeAnalysis.Common" Version="4.1.0" />
+    <PackageReference Include="Microsoft.CodeAnalysis.Common" Version="4.3.0" />
     <PackageReference Include="Microsoft.CodeAnalysis.CSharp" Version="4.1.0" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.2.0" />
     <PackageReference Include="Verify.SourceGenerators" Version="1.4.0" />
