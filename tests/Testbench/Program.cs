@@ -12,7 +12,7 @@ public class Program
 }
 
 [ValueObject(typeof(float))]
-[Instance("AbsoluteZero", -273.15f)]
-public readonly partial struct Centigrade
+[Instance(name: "i2", value: "2.34x")]
+public readonly partial struct MyInstance
 {
 }

@@ -133,7 +133,7 @@ using Vogen;
             }}
         }}
 
-        {Util.GenerateAnyInstances(tds, item)}
+        {InstanceGeneration.GenerateAnyInstances(tds, item)}
  
         {Util.GenerateAnyConversionBodies(tds, item)}
 

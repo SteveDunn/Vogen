@@ -60,8 +60,9 @@ internal static class BuildWorkItems
 
         ReportErrorIfNestedType(target, context, voSymbolInformation);
 
-        var instanceProperties = TryBuildInstanceProperties(attributes, voSymbolInformation, context);
-        
+        IEnumerable<InstanceProperties> instanceProperties =
+            TryBuildInstanceProperties(attributes, voSymbolInformation, context, config.UnderlyingType).ToList();
+
         var hasToString = HasToStringOverload(voSymbolInformation);
 
         MethodDeclarationSyntax? validateMethod = null;
@@ -338,7 +339,8 @@ internal static class BuildWorkItems
     private static IEnumerable<InstanceProperties> TryBuildInstanceProperties(
         ImmutableArray<AttributeData> attributes,
         INamedTypeSymbol voClass,
-        SourceProductionContext context)
+        SourceProductionContext context, 
+        INamedTypeSymbol? underlyingType)
     {
         var matchingAttributes =
             attributes.Where(a => a.AttributeClass?.ToString() is "Vogen.InstanceAttribute");
@@ -377,8 +379,14 @@ internal static class BuildWorkItems
             }
             
             var tripleSlashComment = (string?)constructorArguments[2].Value;
+
+            InstanceGeneration.BuildResult result = InstanceGeneration.TryBuildInstanceValueAsText(name, value, underlyingType);
+            if (!result.Success)
+            {
+                context.ReportDiagnostic(DiagnosticItems.InstanceValueCannotBeConverted(voClass, result.ErrorMessage));
+            }
             
-            yield return new InstanceProperties(name, value, tripleSlashComment ?? string.Empty);
+            yield return new InstanceProperties(name, result.Value, value, tripleSlashComment ?? string.Empty);
         }
     }
 }

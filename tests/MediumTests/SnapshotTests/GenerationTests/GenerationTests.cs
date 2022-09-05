@@ -80,8 +80,9 @@ public class GenerationTests
     }
 
     [Theory]
+    [UseCulture("fr-FR")]
     [ClassData(typeof(Types))]
-    public Task GenerationTest(string type, string conversions, string underlyingType, string className)
+    public Task GenerationTests_FR(string type, string conversions, string underlyingType, string className)
     {
         string declaration = $@"
   [ValueObject(conversions: {conversions}, underlyingType: typeof({underlyingType}))]
@@ -99,6 +100,30 @@ namespace Whatever
         VerifySettings settings = new VerifySettings();
         settings.UseFileName(TestHelper.ShortenForFilename(className));
         //settings.AutoVerify();
-        return Verifier.Verify(output, settings).UseDirectory("Snapshots");
+        return Verifier.Verify(output, settings).UseDirectory("Snapshots-fr");
+    }
+
+    [Theory]
+    [UseCulture("en-US")]
+    [ClassData(typeof(Types))]
+    public Task GenerationTests_US(string type, string conversions, string underlyingType, string className)
+    {
+        string declaration = $@"
+  [ValueObject(conversions: {conversions}, underlyingType: typeof({underlyingType}))]
+  {type} {className} {{ }}";
+        var source = @"using Vogen;
+namespace Whatever
+{
+" + declaration + @"
+}";
+
+        var (diagnostics, output) = TestHelper.GetGeneratedOutput<ValueObjectGenerator>(source);
+
+        diagnostics.Should().BeEmpty();
+
+        VerifySettings settings = new VerifySettings();
+        settings.UseFileName(TestHelper.ShortenForFilename(className));
+        //settings.AutoVerify();
+        return Verifier.Verify(output, settings).UseDirectory("Snapshots-us");
     }
 }
