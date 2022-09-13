@@ -39,19 +39,6 @@ public class InstanceFieldTests
     }
 }
 
-[ValueObject(typeof(double))]
-[UseCulture("fr-FR")]
-[Instance(name: "Invalid", value: 123.45f)]
-public partial class DoubleVo
-{
-}
-
-[ValueObject(typeof(decimal))]
-[UseCulture("fr-FR")]
-[Instance(name: "Invalid", value: 123.45)]
-public partial class DecimalVo
-{
-}
 
 [ValueObject(typeof(int))]
 [Instance(name: "Invalid", value: -1)]

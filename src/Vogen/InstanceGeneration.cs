@@ -64,6 +64,18 @@ public static class InstanceGeneration
 
         try
         {
+            if (underlyingType == typeof(DateTime).FullName)
+            {
+                if(propertyValue is string s)
+                    return new(true, $@"global::System.DateTime.Parse(""{s}"", global::System.Globalization.CultureInfo.InvariantCulture, global::System.Globalization.DateTimeStyles.RoundtripKind)");
+
+                if(propertyValue is long l)
+                    return new(true, $@"new global::System.DateTime({l},  global::System.DateTimeKind.Utc)");
+
+                if(propertyValue is int i)
+                    return new(true, $@"new global::System.DateTime({i},  global::System.DateTimeKind.Utc)");
+            }
+
             if (underlyingType == typeof(string).FullName)
             {
                 return new(true, $@"""{propertyValue}""");
@@ -117,7 +129,7 @@ public static class InstanceGeneration
         catch (Exception e)
         {
             return new(false, string.Empty,
-                $"Instance value named {propertyName} has an attribute with a '{propertyValue.GetType()}' of '{propertyValue}' which cannot be converted to the underlying type of '{underlyingType}' - {e}");
+                $"Instance value named {propertyName} has an attribute with a '{propertyValue.GetType()}' of '{propertyValue}' which cannot be converted to the underlying type of '{underlyingType}' - {e.Message}");
         }
     }
 }

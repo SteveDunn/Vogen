@@ -1,9 +1,18 @@
-﻿using Vogen;
+﻿using System;
+using Vogen;
 using Xunit;
 using FluentAssertions;
 using FluentAssertions.Execution;
 
 namespace SmallTests.InstanceTests;
+
+[ValueObject(typeof(DateTime))]
+[Instance(name: "i1", value: "2022-12-13")]
+[Instance(name: "ticks_as_long", value: 638064864000000000L)]
+[Instance(name: "ticks_as_int", value: 2147483647)]
+public readonly partial struct DateTimeInstance
+{
+}
 
 [ValueObject(typeof(float))]
 [Instance(name: "i1", value: 1.23f)]
@@ -54,10 +63,24 @@ public readonly partial struct MyByteInstance
 
 public class InstanceTests
 {
+    public class DateTimeTests
+    {
+        [Fact]
+        public void DateTime()
+        {
+            using var _ = new AssertionScope();
+            DateTimeInstance.i1.Value.Should().Be(new DateTime(2022, 12, 13));
+            DateTimeInstance.ticks_as_long.Value.Should().Be(new DateTime(2022, 12, 13));
+            // ticks as an Int.MaxValue is 2147483647, which is 2,147,483,647 / 10m, which is ~214 seconds, which 3 minutes, 34 seconds
+            DateTimeInstance.ticks_as_int.Value.Should().BeCloseTo(new DateTime(1, 1, 1, 0, 3, 34, 0), TimeSpan.FromTicks(7483647));
+        }
+    }
+
     [Fact]
     public void Basics()
     {
         using var _ = new AssertionScope();
+
         MyFloatInstance.i1.Value.Should().BeApproximately(1.23f, 0.01f);
         MyFloatInstance.i2.Value.Should().BeApproximately(2.34f, 0.01f);
         MyFloatInstance.i3.Value.Should().BeApproximately(3.45f, 0.01f);
