@@ -67,13 +67,35 @@ public static class InstanceGeneration
             if (underlyingType == typeof(DateTime).FullName)
             {
                 if(propertyValue is string s)
-                    return new(true, $@"global::System.DateTime.Parse(""{s}"", global::System.Globalization.CultureInfo.InvariantCulture, global::System.Globalization.DateTimeStyles.RoundtripKind)");
+                {
+                    var parsed = DateTime.Parse(s, CultureInfo.InvariantCulture, DateTimeStyles.RoundtripKind);
+
+                    return new(true,
+                        $@"global::System.DateTime.Parse(""{parsed:O}"", global::System.Globalization.CultureInfo.InvariantCulture, global::System.Globalization.DateTimeStyles.RoundtripKind)");
+                }
 
                 if(propertyValue is long l)
                     return new(true, $@"new global::System.DateTime({l},  global::System.DateTimeKind.Utc)");
 
                 if(propertyValue is int i)
                     return new(true, $@"new global::System.DateTime({i},  global::System.DateTimeKind.Utc)");
+            }
+
+            if (underlyingType == typeof(DateTimeOffset).FullName)
+            {
+                if(propertyValue is string s)
+                {
+                    var parsed = DateTimeOffset.Parse(s, CultureInfo.InvariantCulture, DateTimeStyles.RoundtripKind);
+
+                    return new(true,
+                        $@"global::System.DateTimeOffset.Parse(""{parsed:O}"", null, global::System.Globalization.DateTimeStyles.RoundtripKind)");
+                }
+
+                if(propertyValue is long l)
+                    return new(true, $@"new global::System.DateTimeOffset({l},  global::System.TimeSpan.Zero)");
+
+                if(propertyValue is int i)
+                    return new(true, $@"new global::System.DateTimeOffset({i},  global::System.TimeSpan.Zero)");
             }
 
             if (underlyingType == typeof(string).FullName)

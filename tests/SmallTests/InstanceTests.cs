@@ -7,10 +7,20 @@ using FluentAssertions.Execution;
 namespace SmallTests.InstanceTests;
 
 [ValueObject(typeof(DateTime))]
-[Instance(name: "i1", value: "2022-12-13")]
+[Instance(name: "iso8601_1", value: "2022-12-13")]
+[Instance(name: "iso8601_2", value: "2022-12-13T13:14:15Z")]
 [Instance(name: "ticks_as_long", value: 638064864000000000L)]
 [Instance(name: "ticks_as_int", value: 2147483647)]
 public readonly partial struct DateTimeInstance
+{
+}
+
+[ValueObject(typeof(DateTimeOffset))]
+[Instance(name: "iso8601_1", value: "2022-12-13")]
+[Instance(name: "iso8601_2", value: "2022-12-13T13:14:15Z")]
+[Instance(name: "ticks_as_long", value: 638064864000000000L)]
+[Instance(name: "ticks_as_int", value: 2147483647)]
+public readonly partial struct DateTimeOffsetInstance
 {
 }
 
@@ -69,10 +79,23 @@ public class InstanceTests
         public void DateTime()
         {
             using var _ = new AssertionScope();
-            DateTimeInstance.i1.Value.Should().Be(new DateTime(2022, 12, 13));
+            DateTimeInstance.iso8601_1.Value.Should().Be(new DateTime(2022, 12, 13));
+            DateTimeInstance.iso8601_2.Value.Should().Be(new DateTime(2022, 12, 13, 13, 14, 15));
             DateTimeInstance.ticks_as_long.Value.Should().Be(new DateTime(2022, 12, 13));
             // ticks as an Int.MaxValue is 2147483647, which is 2,147,483,647 / 10m, which is ~214 seconds, which 3 minutes, 34 seconds
             DateTimeInstance.ticks_as_int.Value.Should().BeCloseTo(new DateTime(1, 1, 1, 0, 3, 34, 0), TimeSpan.FromTicks(7483647));
+            //var l = new DateTimeOffset()
+        }
+
+        [Fact]
+        public void DateTimeOffset()
+        {
+            using var _ = new AssertionScope();
+            DateTimeOffsetInstance.iso8601_1.Value.Should().Be(new DateTimeOffset(2022, 12, 13, 0, 0, 0, TimeSpan.Zero));
+            DateTimeOffsetInstance.iso8601_2.Value.Should().Be(new DateTimeOffset(2022, 12, 13, 13, 14, 15, TimeSpan.Zero));
+            DateTimeOffsetInstance.ticks_as_long.Value.Should().Be(new DateTimeOffset(2022, 12, 13, 0, 0, 0, TimeSpan.Zero));
+            // ticks as an Int.MaxValue is 2147483647, which is 2,147,483,647 / 10m, which is ~214 seconds, which 3 minutes, 34 seconds
+            DateTimeOffsetInstance.ticks_as_int.Value.Should().BeCloseTo(new DateTimeOffset(1, 1, 1, 0, 3, 34, 0, TimeSpan.Zero), TimeSpan.FromTicks(7483647));
         }
     }
 

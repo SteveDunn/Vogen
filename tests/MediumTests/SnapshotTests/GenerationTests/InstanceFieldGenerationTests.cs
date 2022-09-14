@@ -14,28 +14,82 @@ namespace MediumTests.SnapshotTests.GenerationTests;
 [UsesVerify] 
 public class InstanceFieldGenerationTests
 {
-    [Fact]
-    public Task When_value_is_text_and_cannot_be_converted_to_underlying()
+    public class When_values_cannot_be_converted_to_their_underlying_types
     {
-        string declaration = $@"using System;
+        [Fact]
+        public Task Malformed_float_causes_compilation_error()
+        {
+            string declaration = $@"using System;
   [ValueObject(underlyingType: typeof(float))]
   [Instance(name: ""Invalid"", value: ""1.23x"")]
   public partial class MyInstanceTests {{ }}";
-        var source = @"using Vogen;
+            var source = @"using Vogen;
 namespace Whatever
 {
 " + declaration + @"
 }";
 
-        var (diagnostics, _) = TestHelper.GetGeneratedOutput<ValueObjectGenerator>(source);
+            var (diagnostics, _) = TestHelper.GetGeneratedOutput<ValueObjectGenerator>(source);
 
-        using var _ = new AssertionScope();
-        diagnostics.Should().HaveCount(1);
-        diagnostics.Single().GetMessage().Should().Be("MyInstanceTests cannot be converted. Instance value named Invalid has an attribute with a 'System.String' of '1.23x' which cannot be converted to the underlying type of 'System.Single' - Input string was not in a correct format.");
+            using var _ = new AssertionScope();
+            diagnostics.Should().HaveCount(1);
+            diagnostics.Single().GetMessage().Should().Be(
+                "MyInstanceTests cannot be converted. Instance value named Invalid has an attribute with a 'System.String' of '1.23x' which cannot be converted to the underlying type of 'System.Single' - Input string was not in a correct format.");
 
-        diagnostics.Single().Id.Should().Be("VOG023");
+            diagnostics.Single().Id.Should().Be("VOG023");
 
-        return Task.CompletedTask;
+            return Task.CompletedTask;
+        }
+
+        [Fact]
+        public Task Malformed_datetime_causes_compilation_error()
+        {
+            var source = @"
+using Vogen;
+using System;
+namespace Whatever
+{
+    [ValueObject(underlyingType: typeof(DateTime))]
+    [Instance(name: ""Invalid"", value: ""x2022-13-99"")]
+    public partial class MyInstanceTests { }
+}";
+
+            var (diagnostics, x) = TestHelper.GetGeneratedOutput<ValueObjectGenerator>(source);
+            
+            using var _ = new AssertionScope();
+            diagnostics.Should().HaveCount(1);
+            diagnostics.Single().GetMessage().Should().Contain(
+                "MyInstanceTests cannot be converted. Instance value named Invalid has an attribute with a 'System.String' of 'x2022-13-99' which cannot be converted to the underlying type of 'System.DateTime'");
+
+            diagnostics.Single().Id.Should().Be("VOG023");
+
+            return Task.CompletedTask;
+        }
+
+        [Fact]
+        public Task Malformed_DateTimeOffset_causes_compilation_error()
+        {
+            var source = @"
+using Vogen;
+using System;
+namespace Whatever
+{
+    [ValueObject(underlyingType: typeof(DateTimeOffset))]
+    [Instance(name: ""Invalid"", value: ""x2022-13-99"")]
+    public partial class MyInstanceTests { }
+}";
+
+            var (diagnostics, x) = TestHelper.GetGeneratedOutput<ValueObjectGenerator>(source);
+            
+            using var _ = new AssertionScope();
+            diagnostics.Should().HaveCount(1);
+            diagnostics.Single().GetMessage().Should().Contain(
+                "MyInstanceTests cannot be converted. Instance value named Invalid has an attribute with a 'System.String' of 'x2022-13-99' which cannot be converted to the underlying type of 'System.DateTimeOffset'");
+
+            diagnostics.Single().Id.Should().Be("VOG023");
+
+            return Task.CompletedTask;
+        }
     }
 
     [Theory]
