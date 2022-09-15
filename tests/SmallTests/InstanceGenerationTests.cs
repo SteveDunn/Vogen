@@ -47,8 +47,8 @@ public class InstanceGenerationTests
                 using var x = new AssertionScope();
                 r.Success.Should().BeFalse();
                 r.ErrorMessage.Should()
-                    .Be(
-                        $"Instance value named foo has an attribute with a '{input.GetType().FullName}' of '{input}' which cannot be converted to the underlying type of '{fullName}' - Ticks must be between DateTime.MinValue.Ticks and DateTime.MaxValue.Ticks. (Parameter 'ticks')");
+                    .Contain(
+                        $"Instance value named foo has an attribute with a '{input.GetType().FullName}' of '{input}' which cannot be converted to the underlying type of '{fullName}' - Ticks must be between DateTime.MinValue.Ticks and DateTime.MaxValue.Ticks");
             }
         }
 
