@@ -380,7 +380,7 @@ internal static class BuildWorkItems
             
             var tripleSlashComment = (string?)constructorArguments[2].Value;
 
-            InstanceGeneration.BuildResult result = InstanceGeneration.TryBuildInstanceValueAsText(name, value, underlyingType);
+            InstanceGeneration.BuildResult result = InstanceGeneration.TryBuildInstanceValueAsText(name, value, underlyingType?.FullName());
             if (!result.Success)
             {
                 context.ReportDiagnostic(DiagnosticItems.InstanceValueCannotBeConverted(voClass, result.ErrorMessage));

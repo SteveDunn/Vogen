@@ -57,11 +57,8 @@ public static class InstanceGeneration
 
     public record BuildResult(bool Success, string Value, string ErrorMessage = "");
 
-    public static BuildResult TryBuildInstanceValueAsText(string propertyName,
-        object propertyValue, INamedTypeSymbol? itemUnderlyingType)
+    public static BuildResult TryBuildInstanceValueAsText(string propertyName, object propertyValue, string? underlyingType)
     {
-        var underlyingType = itemUnderlyingType?.FullName();
-
         try
         {
             if (underlyingType == typeof(DateTime).FullName)
@@ -75,10 +72,18 @@ public static class InstanceGeneration
                 }
 
                 if(propertyValue is long l)
+                {
+                    _ = new DateTime(l, DateTimeKind.Utc);
+
                     return new(true, $@"new global::System.DateTime({l},  global::System.DateTimeKind.Utc)");
+                }
 
                 if(propertyValue is int i)
+                {
+                    _ = new DateTime(i, DateTimeKind.Utc);
+
                     return new(true, $@"new global::System.DateTime({i},  global::System.DateTimeKind.Utc)");
+                }
             }
 
             if (underlyingType == typeof(DateTimeOffset).FullName)
@@ -92,10 +97,16 @@ public static class InstanceGeneration
                 }
 
                 if(propertyValue is long l)
+                {
+                    _ = new DateTimeOffset(l, TimeSpan.Zero);
                     return new(true, $@"new global::System.DateTimeOffset({l},  global::System.TimeSpan.Zero)");
+                }
 
                 if(propertyValue is int i)
+                {
+                    _ = new DateTimeOffset(i, TimeSpan.Zero);
                     return new(true, $@"new global::System.DateTimeOffset({i},  global::System.TimeSpan.Zero)");
+                }
             }
 
             if (underlyingType == typeof(string).FullName)
