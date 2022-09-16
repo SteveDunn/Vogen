@@ -115,12 +115,12 @@ public class InstanceTests
         MyDoubleInstance.i3.Value.Should().BeApproximately(3.45f, 0.01f);
         MyDoubleInstance.i4.Value.Should().BeApproximately(2f, 0.01f);
         
-        MyCharInstance.i1.Value.Should().Be('1');
+        MyCharInstance.i1.Value.Should().Be('');
         MyCharInstance.i2.Value.Should().Be('2');
         MyCharInstance.i3.Value.Should().Be('3');
 
         MyByteInstance.i1.Value.Should().Be(1);
         MyByteInstance.i2.Value.Should().Be(2);
-        MyByteInstance.i3.Value.Should().Be(3);
+        MyByteInstance.i3.Value.Should().Be((byte)'3');
     }
 }

@@ -151,6 +151,9 @@ public static class InstanceGeneration
 
             if (underlyingType == typeof(char).FullName)
             {
+                if(propertyValue is char c)
+                    return new(true, $@"'{c}'");
+
                 var converted = Convert.ToChar(propertyValue);
                 return new(true, $@"'{converted}'");
             }
