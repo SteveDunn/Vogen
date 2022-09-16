@@ -27,3 +27,4 @@ public partial struct MyIntStructWithReservedNames
         return Validation.Invalid("must be greater than zero");
     }
 }
+

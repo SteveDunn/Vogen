@@ -57,6 +57,8 @@ public static class InstanceGeneration
 
     public record BuildResult(bool Success, string Value, string ErrorMessage = "");
 
+    // We don't need to consider a propertyValue of decimal here, as it cannot be passed in
+    // via an attribute in C#
     public static BuildResult TryBuildInstanceValueAsText(string propertyName, object propertyValue, string? underlyingType)
     {
         try
@@ -149,12 +151,15 @@ public static class InstanceGeneration
 
             if (underlyingType == typeof(char).FullName)
             {
-                return new(true, $@"'{propertyValue}'");
+                var converted = Convert.ToChar(propertyValue);
+                return new(true, $@"'{converted}'");
             }
 
             if (underlyingType == typeof(byte).FullName)
             {
-                return new(true, $@"{propertyValue}");
+                var converted = Convert.ToByte(propertyValue);
+
+                return new(true, $@"{converted}");
             }
 
             return new(true, propertyValue.ToString());

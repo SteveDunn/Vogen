@@ -55,8 +55,6 @@ public readonly partial struct MyDoubleInstance
 [Instance(name: "i1", value: 1)]
 [Instance(name: "i2", value: "2")]
 [Instance(name: "i3", value: '3')]
-[Instance(name: "i4", value: 4f)]
-[Instance(name: "i5", value: 5d)]
 public readonly partial struct MyCharInstance
 {
 }
@@ -65,8 +63,6 @@ public readonly partial struct MyCharInstance
 [Instance(name: "i1", value: 1)]
 [Instance(name: "i2", value: "2")]
 [Instance(name: "i3", value: '3')]
-[Instance(name: "i4", value: 4f)]
-[Instance(name: "i5", value: 5d)]
 public readonly partial struct MyByteInstance
 {
 }
@@ -122,14 +118,9 @@ public class InstanceTests
         MyCharInstance.i1.Value.Should().Be('1');
         MyCharInstance.i2.Value.Should().Be('2');
         MyCharInstance.i3.Value.Should().Be('3');
-        MyCharInstance.i4.Value.Should().Be('4');
-        MyCharInstance.i5.Value.Should().Be('5');
 
         MyByteInstance.i1.Value.Should().Be(1);
         MyByteInstance.i2.Value.Should().Be(2);
         MyByteInstance.i3.Value.Should().Be(3);
-        MyByteInstance.i4.Value.Should().Be(4);
-        MyByteInstance.i5.Value.Should().Be(5);
-        
     }
 }
