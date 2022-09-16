@@ -1,8 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
-using Dapper;
-using Microsoft.Data.Sqlite;
 using Vogen;
+#pragma warning disable CS0219
 
 namespace Testbench;
 
@@ -10,24 +9,31 @@ public class Program
 {
     public static async Task Main()
     {
-        SqlMapper.AddTypeHandler(new Vo.DapperTypeHandler());
+        await Task.CompletedTask;
 
-        await using var connection = new SqliteConnection("DataSource=:memory:");
-        await connection.OpenAsync();
 
-        Vo? vo = (await connection.QueryAsync<Vo>("SELECT -1")).AsList()[0];
+        char c = (char)'1';
 
-        Console.WriteLine(vo.Value);
+        var x = MyVo.From(243);
+        
+        Console.WriteLine(x);
+        Console.WriteLine(MyVo.i1);
+        Console.WriteLine(MyVo.i2);
+        Console.WriteLine(MyVo.i4);
+
+        char c1 = '';
+        char c2 = Convert.ToChar(1);
+
+        bool b = c1 == c2;
     }
 }
 
-[ValueObject(typeof(int), Conversions.DapperTypeHandler, deserializationStrictness: DeserializationStrictness.AllowValidAndKnownInstances)]
-[Instance(name: "Unknown", value: 0)]
-//[Instance(name: "Invalid", value: -1)]
-public partial class Vo
+[ValueObject(typeof(byte))]
+[Instance(name: "i1", value: 0)]
+[Instance(name: "i2", value: 255)]
+//[Instance(name: "i3", value: 256)]
+[Instance(name: "i4", value: "255")]
+//[Instance(name: "i5", value: "256")]
+public partial struct MyVo
 {
-    private static int NormalizeInput(int input) => input == -1 ? 0 : input;
-
-    private static Validation validate(int value) => 
-        value > 0 ? Validation.Ok : Validation.Invalid("must be greater than zero");
 }

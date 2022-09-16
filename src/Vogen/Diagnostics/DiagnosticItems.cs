@@ -108,6 +108,11 @@ internal static class DiagnosticItems
         "Instance attribute cannot have null value",
         "{0} cannot have a null value");
 
+    private static readonly DiagnosticDescriptor _instanceValueCannotBeConverted = CreateDescriptor(
+        DiagnosticCode.InstanceValueCannotBeConverted,
+        "Instance attribute has value that cannot be converted",
+        "{0} cannot be converted. {1}");
+
     private static readonly DiagnosticDescriptor _customExceptionMustDeriveFromException = CreateDescriptor(
         DiagnosticCode.CustomExceptionMustDeriveFromException,
         "Invalid custom exception",
@@ -174,6 +179,9 @@ internal static class DiagnosticItems
 
     public static Diagnostic InstanceMethodCannotHaveNullArgumentValue(INamedTypeSymbol voClass) => 
         Create(_instanceMethodCannotHaveNullArgumentValue, voClass.Locations, voClass.Name);
+
+    public static Diagnostic InstanceValueCannotBeConverted(INamedTypeSymbol voClass, string message) => 
+        Create(_instanceValueCannotBeConverted, voClass.Locations, voClass.Name, message);
 
     public static Diagnostic CustomExceptionMustDeriveFromException(INamedTypeSymbol symbol) => 
         Create(_customExceptionMustDeriveFromException, symbol.Locations, symbol.Name);

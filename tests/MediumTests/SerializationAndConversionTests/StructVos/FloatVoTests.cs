@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
 using Dapper;
@@ -212,16 +213,18 @@ namespace Vogen.IntegrationTests.SerializationAndConversionTests.StructVos
         }
 
         [Theory]
-        [InlineData((float)123)]
-        [InlineData("123")]
+        [InlineData((float)123.45)]
+        [InlineData("123.45")]
         public void TypeConverter_CanConvertToAndFrom(object value)
         {
-            var converter = TypeDescriptor.GetConverter(typeof(NoJsonFloatVo));
-            var id = converter.ConvertFrom(value);
-            Assert.IsType<NoJsonFloatVo>(id);
-            Assert.Equal(NoJsonFloatVo.From(123), id);
+            var culture = new CultureInfo("en-US");
 
-            var reconverted = converter.ConvertTo(id, value.GetType());
+            var converter = TypeDescriptor.GetConverter(typeof(NoJsonFloatVo));
+            var id = converter.ConvertFrom(null!, culture, value);
+            Assert.IsType<NoJsonFloatVo>(id);
+            Assert.Equal(NoJsonFloatVo.From(123.45f), id);
+
+            var reconverted = converter.ConvertTo(null, culture, id, value.GetType());
             Assert.Equal(value, reconverted);
         }
 

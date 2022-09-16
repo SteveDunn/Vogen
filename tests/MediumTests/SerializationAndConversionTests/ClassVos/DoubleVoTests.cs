@@ -2,22 +2,24 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
 using Dapper;
 using FluentAssertions;
-using Microsoft.Data.Sqlite;
-using Microsoft.EntityFrameworkCore;
-using Xunit;
-using NewtonsoftJsonSerializer = Newtonsoft.Json.JsonConvert;
-using SystemTextJsonSerializer = System.Text.Json.JsonSerializer;
-using Vogen.IntegrationTests.TestTypes.ClassVos;
 using LinqToDB;
 using LinqToDB.Data;
 using LinqToDB.DataProvider.SQLite;
 using LinqToDB.Mapping;
+using Microsoft.Data.Sqlite;
+using Microsoft.EntityFrameworkCore;
+using Vogen;
+using Vogen.IntegrationTests.TestTypes.ClassVos;
+using Xunit;
+using NewtonsoftJsonSerializer = Newtonsoft.Json.JsonConvert;
+using SystemTextJsonSerializer = System.Text.Json.JsonSerializer;
 
-namespace Vogen.IntegrationTests.SerializationAndConversionTests.ClassVos
+namespace MediumTests.SerializationAndConversionTests.ClassVos
 {
     [ValueObject(underlyingType: typeof(double))]
     public partial struct AnotherDoubleVo { }
@@ -190,10 +192,11 @@ namespace Vogen.IntegrationTests.SerializationAndConversionTests.ClassVos
             using var connection = new SqliteConnection("DataSource=:memory:");
             await connection.OpenAsync();
 
-            IEnumerable<DapperDoubleVo> results = await connection.QueryAsync<DapperDoubleVo>("SELECT 123");
+            var parameters = new { Value = 123.45d };
+            IEnumerable<DapperDoubleVo> results = await connection.QueryAsync<DapperDoubleVo>("SELECT @Value", parameters);
 
             var value = Assert.Single(results);
-            Assert.Equal(DapperDoubleVo.From(123D), value);
+            Assert.Equal(DapperDoubleVo.From(123.45d), value);
         }
 
         [Fact]
@@ -223,16 +226,18 @@ namespace Vogen.IntegrationTests.SerializationAndConversionTests.ClassVos
         }
 
         [Theory]
-        [InlineData(123D)]
-        [InlineData("123")]
+        [InlineData(123.45D)]
+        [InlineData("123.45")]
         public void TypeConverter_CanConvertToAndFrom(object value)
         {
-            var converter = TypeDescriptor.GetConverter(typeof(NoJsonDoubleVo));
-            var id = converter.ConvertFrom(value);
-            Assert.IsType<NoJsonDoubleVo>(id);
-            Assert.Equal(NoJsonDoubleVo.From(123D), id);
+            var culture = new CultureInfo("en-US");
 
-            var reconverted = converter.ConvertTo(id, value.GetType());
+            var converter = TypeDescriptor.GetConverter(typeof(NoJsonDoubleVo));
+            var id = converter.ConvertFrom(null!, culture, value);
+            Assert.IsType<NoJsonDoubleVo>(id);
+            Assert.Equal(NoJsonDoubleVo.From(123.45D), id);
+
+            var reconverted = converter.ConvertTo(null, culture, id, value.GetType());
             Assert.Equal(value, reconverted);
         }
         

@@ -117,7 +117,7 @@ using Vogen;
         // record enumerates fields - we just want our Value and to throw if it's not initialized.
         {Util.GenerateToString(item)}
 
-        { Util.GenerateAnyInstances(tds, item)}
+        { InstanceGeneration.GenerateAnyInstances(tds, item)}
  
         {Util.GenerateAnyConversionBodies(tds, item)}
 

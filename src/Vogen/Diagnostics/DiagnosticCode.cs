@@ -28,5 +28,6 @@ public enum DiagnosticCode
     InvalidCustomizations = 19,
     RecordToStringOverloadShouldBeSealed = 20,
     TypeShouldBePartial = 21,
-    InvalidDeserializationStrictness = 22    
+    InvalidDeserializationStrictness = 22,
+    InstanceValueCannotBeConverted = 23    
 }
