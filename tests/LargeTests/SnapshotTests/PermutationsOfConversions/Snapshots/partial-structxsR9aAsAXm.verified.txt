@@ -26,7 +26,7 @@ namespace Whatever
 
     [global::System.Diagnostics.DebuggerTypeProxyAttribute(typeof(MyIntVoDebugView))]
     [global::System.Diagnostics.DebuggerDisplayAttribute("Underlying type: int, Value = { _value }")]
-    public partial struct MyIntVo : global::System.IEquatable<MyIntVo>
+    public partial struct MyIntVo : global::System.IEquatable<MyIntVo> ,  global::System.IComparable<MyIntVo>
     {
 #if DEBUG    
         private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
@@ -122,6 +122,8 @@ namespace Whatever
 
         public static global::System.Boolean operator ==(int left, MyIntVo right) => Equals(left, right.Value);
         public static global::System.Boolean operator !=(int left, MyIntVo right) => !Equals(left, right.Value);
+
+        public int CompareTo(MyIntVo other) => Value.CompareTo(other.Value);
 
         public readonly override global::System.Int32 GetHashCode() => global::System.Collections.Generic.EqualityComparer<int>.Default.GetHashCode(_value);
 
