@@ -23,7 +23,7 @@ namespace Whatever
     
     [global::System.Diagnostics.DebuggerTypeProxyAttribute(typeof(public_partial_recordConversions_DapperTypeHandlerboolDebugView))]
     [global::System.Diagnostics.DebuggerDisplayAttribute("Underlying type: bool, Value = { _value }")]
-    public partial record class public_partial_recordConversions_DapperTypeHandlerbool
+    public partial record class public_partial_recordConversions_DapperTypeHandlerbool  :  global::System.IComparable<public_partial_recordConversions_DapperTypeHandlerbool>
     {
 #if DEBUG    
         private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
@@ -93,6 +93,8 @@ namespace Whatever
 
         public static explicit operator public_partial_recordConversions_DapperTypeHandlerbool(bool value) => From(value);
         public static explicit operator bool(public_partial_recordConversions_DapperTypeHandlerbool value) => value.Value;
+
+        public int CompareTo(public_partial_recordConversions_DapperTypeHandlerbool other) => Value.CompareTo(other.Value);
 
         // only called internally when something has been deserialized into
         // its primitive type.

@@ -18,7 +18,7 @@ using Vogen;
     {Util.GenerateAnyConversionAttributes(tds, item)}
     [global::System.Diagnostics.DebuggerTypeProxyAttribute(typeof({structName}DebugView))]
     [global::System.Diagnostics.DebuggerDisplayAttribute(""Underlying type: {itemUnderlyingType}, Value = {{ _value }}"")]
-    { Util.GenerateModifiersFor(tds)} struct {structName} : global::System.IEquatable<{structName}>
+    { Util.GenerateModifiersFor(tds)} struct {structName} : global::System.IEquatable<{structName}> {Util.GenerateIComparableHeaderIfNeeded(", ", item, tds)}
     {{
 #if DEBUG    
         private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
@@ -114,6 +114,8 @@ using Vogen;
 
         public static global::System.Boolean operator ==({itemUnderlyingType} left, {structName} right) => Equals(left, right.Value);
         public static global::System.Boolean operator !=({itemUnderlyingType} left, {structName} right) => !Equals(left, right.Value);
+
+        {Util.GenerateIComparableImplementationIfNeeded(item, tds)}
 
         public readonly override global::System.Int32 GetHashCode() => global::System.Collections.Generic.EqualityComparer<{itemUnderlyingType}>.Default.GetHashCode(_value);
 

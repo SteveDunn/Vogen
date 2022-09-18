@@ -24,7 +24,7 @@ namespace Whatever
 
     [global::System.Diagnostics.DebuggerTypeProxyAttribute(typeof(internal_sealed_partial_recordConversions_NewtonsoftJsonfloatDebugView))]
     [global::System.Diagnostics.DebuggerDisplayAttribute("Underlying type: float, Value = { _value }")]
-    internal sealed partial record class internal_sealed_partial_recordConversions_NewtonsoftJsonfloat
+    internal sealed partial record class internal_sealed_partial_recordConversions_NewtonsoftJsonfloat  :  global::System.IComparable<internal_sealed_partial_recordConversions_NewtonsoftJsonfloat>
     {
 #if DEBUG    
         private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
@@ -94,6 +94,8 @@ namespace Whatever
 
         public static explicit operator internal_sealed_partial_recordConversions_NewtonsoftJsonfloat(float value) => From(value);
         public static explicit operator float(internal_sealed_partial_recordConversions_NewtonsoftJsonfloat value) => value.Value;
+
+        public int CompareTo(internal_sealed_partial_recordConversions_NewtonsoftJsonfloat other) => Value.CompareTo(other.Value);
 
         // only called internally when something has been deserialized into
         // its primitive type.

@@ -24,7 +24,7 @@ namespace Whatever
 
     [global::System.Diagnostics.DebuggerTypeProxyAttribute(typeof(internal_partial_record_classConversions_TypeConverterboolDebugView))]
     [global::System.Diagnostics.DebuggerDisplayAttribute("Underlying type: bool, Value = { _value }")]
-    internal partial record class internal_partial_record_classConversions_TypeConverterbool
+    internal partial record class internal_partial_record_classConversions_TypeConverterbool  :  global::System.IComparable<internal_partial_record_classConversions_TypeConverterbool>
     {
 #if DEBUG    
         private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
@@ -94,6 +94,8 @@ namespace Whatever
 
         public static explicit operator internal_partial_record_classConversions_TypeConverterbool(bool value) => From(value);
         public static explicit operator bool(internal_partial_record_classConversions_TypeConverterbool value) => value.Value;
+
+        public int CompareTo(internal_partial_record_classConversions_TypeConverterbool other) => Value.CompareTo(other.Value);
 
         // only called internally when something has been deserialized into
         // its primitive type.

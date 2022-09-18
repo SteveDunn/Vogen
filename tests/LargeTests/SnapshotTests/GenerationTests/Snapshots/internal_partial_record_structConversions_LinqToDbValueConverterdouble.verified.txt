@@ -23,7 +23,7 @@ namespace Whatever
     
     [global::System.Diagnostics.DebuggerTypeProxyAttribute(typeof(internal_partial_record_structConversions_LinqToDbValueConverterdoubleDebugView))]
     [global::System.Diagnostics.DebuggerDisplayAttribute("Underlying type: double, Value = { _value }")]
-    internal partial record struct internal_partial_record_structConversions_LinqToDbValueConverterdouble
+    internal partial record struct internal_partial_record_structConversions_LinqToDbValueConverterdouble  :  global::System.IComparable<internal_partial_record_structConversions_LinqToDbValueConverterdouble>
     {
 #if DEBUG    
         private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
@@ -93,6 +93,8 @@ namespace Whatever
 
         public static explicit operator internal_partial_record_structConversions_LinqToDbValueConverterdouble(double value) => From(value);
         public static explicit operator double(internal_partial_record_structConversions_LinqToDbValueConverterdouble value) => value.Value;
+
+        public int CompareTo(internal_partial_record_structConversions_LinqToDbValueConverterdouble other) => Value.CompareTo(other.Value);
 
         // only called internally when something has been deserialized into
         // its primitive type.

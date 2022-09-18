@@ -23,7 +23,7 @@ namespace Whatever
     
     [global::System.Diagnostics.DebuggerTypeProxyAttribute(typeof(NoConverterShortVoDebugView))]
     [global::System.Diagnostics.DebuggerDisplayAttribute("Underlying type: short, Value = { _value }")]
-    public partial struct NoConverterShortVo : global::System.IEquatable<NoConverterShortVo>
+    public partial struct NoConverterShortVo : global::System.IEquatable<NoConverterShortVo> ,  global::System.IComparable<NoConverterShortVo>
     {
 #if DEBUG    
         private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
@@ -119,6 +119,8 @@ namespace Whatever
 
         public static global::System.Boolean operator ==(short left, NoConverterShortVo right) => Equals(left, right.Value);
         public static global::System.Boolean operator !=(short left, NoConverterShortVo right) => !Equals(left, right.Value);
+
+        public int CompareTo(NoConverterShortVo other) => Value.CompareTo(other.Value);
 
         public readonly override global::System.Int32 GetHashCode() => global::System.Collections.Generic.EqualityComparer<short>.Default.GetHashCode(_value);
 

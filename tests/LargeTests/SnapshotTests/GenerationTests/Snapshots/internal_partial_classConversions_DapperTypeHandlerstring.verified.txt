@@ -23,7 +23,7 @@ namespace Whatever
     
     [global::System.Diagnostics.DebuggerTypeProxyAttribute(typeof(internal_partial_classConversions_DapperTypeHandlerstringDebugView))]
     [global::System.Diagnostics.DebuggerDisplayAttribute("Underlying type: System.String, Value = { _value }")]
-    internal partial class internal_partial_classConversions_DapperTypeHandlerstring : global::System.IEquatable<internal_partial_classConversions_DapperTypeHandlerstring>
+    internal partial class internal_partial_classConversions_DapperTypeHandlerstring : global::System.IEquatable<internal_partial_classConversions_DapperTypeHandlerstring> ,  global::System.IComparable<internal_partial_classConversions_DapperTypeHandlerstring>
     {
 #if DEBUG    
         private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
@@ -153,6 +153,8 @@ public System.String Value
 
         public static explicit operator internal_partial_classConversions_DapperTypeHandlerstring(System.String value) => From(value);
         public static explicit operator System.String(internal_partial_classConversions_DapperTypeHandlerstring value) => value.Value;
+
+        public int CompareTo(internal_partial_classConversions_DapperTypeHandlerstring other) => Value.CompareTo(other.Value);
 
         public override global::System.Int32 GetHashCode()
         {

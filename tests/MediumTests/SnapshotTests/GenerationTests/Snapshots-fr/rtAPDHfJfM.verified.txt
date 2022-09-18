@@ -23,7 +23,7 @@ namespace Whatever
     
     [global::System.Diagnostics.DebuggerTypeProxyAttribute(typeof(internal_partial_record_structConversions_NonestringDebugView))]
     [global::System.Diagnostics.DebuggerDisplayAttribute("Underlying type: string, Value = { _value }")]
-    internal partial record struct internal_partial_record_structConversions_Nonestring
+    internal partial record struct internal_partial_record_structConversions_Nonestring  :  global::System.IComparable<internal_partial_record_structConversions_Nonestring>
     {
 #if DEBUG    
         private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
@@ -97,6 +97,8 @@ namespace Whatever
 
         public static explicit operator internal_partial_record_structConversions_Nonestring(string value) => From(value);
         public static explicit operator string(internal_partial_record_structConversions_Nonestring value) => value.Value;
+
+        public int CompareTo(internal_partial_record_structConversions_Nonestring other) => Value.CompareTo(other.Value);
 
         // only called internally when something has been deserialized into
         // its primitive type.

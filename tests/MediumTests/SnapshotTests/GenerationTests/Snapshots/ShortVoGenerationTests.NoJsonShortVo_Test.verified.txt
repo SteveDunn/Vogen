@@ -24,7 +24,7 @@ namespace Whatever
 
     [global::System.Diagnostics.DebuggerTypeProxyAttribute(typeof(NoJsonShortVoDebugView))]
     [global::System.Diagnostics.DebuggerDisplayAttribute("Underlying type: short, Value = { _value }")]
-    public partial struct NoJsonShortVo : global::System.IEquatable<NoJsonShortVo>
+    public partial struct NoJsonShortVo : global::System.IEquatable<NoJsonShortVo> ,  global::System.IComparable<NoJsonShortVo>
     {
 #if DEBUG    
         private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
@@ -120,6 +120,8 @@ namespace Whatever
 
         public static global::System.Boolean operator ==(short left, NoJsonShortVo right) => Equals(left, right.Value);
         public static global::System.Boolean operator !=(short left, NoJsonShortVo right) => !Equals(left, right.Value);
+
+        public int CompareTo(NoJsonShortVo other) => Value.CompareTo(other.Value);
 
         public readonly override global::System.Int32 GetHashCode() => global::System.Collections.Generic.EqualityComparer<short>.Default.GetHashCode(_value);
 

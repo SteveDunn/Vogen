@@ -23,7 +23,7 @@ namespace Whatever
     
     [global::System.Diagnostics.DebuggerTypeProxyAttribute(typeof(internal_sealed_partial_recordConversions_NonelongDebugView))]
     [global::System.Diagnostics.DebuggerDisplayAttribute("Underlying type: long, Value = { _value }")]
-    internal sealed partial record class internal_sealed_partial_recordConversions_Nonelong
+    internal sealed partial record class internal_sealed_partial_recordConversions_Nonelong  :  global::System.IComparable<internal_sealed_partial_recordConversions_Nonelong>
     {
 #if DEBUG    
         private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
@@ -93,6 +93,8 @@ namespace Whatever
 
         public static explicit operator internal_sealed_partial_recordConversions_Nonelong(long value) => From(value);
         public static explicit operator long(internal_sealed_partial_recordConversions_Nonelong value) => value.Value;
+
+        public int CompareTo(internal_sealed_partial_recordConversions_Nonelong other) => Value.CompareTo(other.Value);
 
         // only called internally when something has been deserialized into
         // its primitive type.

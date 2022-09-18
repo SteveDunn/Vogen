@@ -23,7 +23,7 @@ namespace Whatever
     
     [global::System.Diagnostics.DebuggerTypeProxyAttribute(typeof(stj_number_as_string_public_partial_classConversions_Nonebyte_customizedDebugView))]
     [global::System.Diagnostics.DebuggerDisplayAttribute("Underlying type: System.Byte, Value = { _value }")]
-    public partial class stj_number_as_string_public_partial_classConversions_Nonebyte_customized : global::System.IEquatable<stj_number_as_string_public_partial_classConversions_Nonebyte_customized>
+    public partial class stj_number_as_string_public_partial_classConversions_Nonebyte_customized : global::System.IEquatable<stj_number_as_string_public_partial_classConversions_Nonebyte_customized> ,  global::System.IComparable<stj_number_as_string_public_partial_classConversions_Nonebyte_customized>
     {
 #if DEBUG    
         private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
@@ -145,6 +145,8 @@ public System.Byte Value
 
         public static explicit operator stj_number_as_string_public_partial_classConversions_Nonebyte_customized(System.Byte value) => From(value);
         public static explicit operator System.Byte(stj_number_as_string_public_partial_classConversions_Nonebyte_customized value) => value.Value;
+
+        public int CompareTo(stj_number_as_string_public_partial_classConversions_Nonebyte_customized other) => Value.CompareTo(other.Value);
 
         public override global::System.Int32 GetHashCode()
         {

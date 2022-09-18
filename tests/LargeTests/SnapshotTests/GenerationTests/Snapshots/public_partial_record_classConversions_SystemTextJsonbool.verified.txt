@@ -24,7 +24,7 @@ namespace Whatever
 
     [global::System.Diagnostics.DebuggerTypeProxyAttribute(typeof(public_partial_record_classConversions_SystemTextJsonboolDebugView))]
     [global::System.Diagnostics.DebuggerDisplayAttribute("Underlying type: bool, Value = { _value }")]
-    public partial record class public_partial_record_classConversions_SystemTextJsonbool
+    public partial record class public_partial_record_classConversions_SystemTextJsonbool  :  global::System.IComparable<public_partial_record_classConversions_SystemTextJsonbool>
     {
 #if DEBUG    
         private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
@@ -94,6 +94,8 @@ namespace Whatever
 
         public static explicit operator public_partial_record_classConversions_SystemTextJsonbool(bool value) => From(value);
         public static explicit operator bool(public_partial_record_classConversions_SystemTextJsonbool value) => value.Value;
+
+        public int CompareTo(public_partial_record_classConversions_SystemTextJsonbool other) => Value.CompareTo(other.Value);
 
         // only called internally when something has been deserialized into
         // its primitive type.

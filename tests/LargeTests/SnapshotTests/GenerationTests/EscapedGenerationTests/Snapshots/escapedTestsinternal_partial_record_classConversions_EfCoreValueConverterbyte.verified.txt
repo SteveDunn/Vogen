@@ -23,7 +23,7 @@ namespace @class
     
     [global::System.Diagnostics.DebuggerTypeProxyAttribute(typeof(escapedTestsinternal_partial_record_classConversions_EfCoreValueConverterbyteDebugView))]
     [global::System.Diagnostics.DebuggerDisplayAttribute("Underlying type: byte, Value = { _value }")]
-    internal partial record class escapedTestsinternal_partial_record_classConversions_EfCoreValueConverterbyte
+    internal partial record class escapedTestsinternal_partial_record_classConversions_EfCoreValueConverterbyte  :  global::System.IComparable<escapedTestsinternal_partial_record_classConversions_EfCoreValueConverterbyte>
     {
 #if DEBUG    
         private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
@@ -93,6 +93,8 @@ namespace @class
 
         public static explicit operator escapedTestsinternal_partial_record_classConversions_EfCoreValueConverterbyte(byte value) => From(value);
         public static explicit operator byte(escapedTestsinternal_partial_record_classConversions_EfCoreValueConverterbyte value) => value.Value;
+
+        public int CompareTo(escapedTestsinternal_partial_record_classConversions_EfCoreValueConverterbyte other) => Value.CompareTo(other.Value);
 
         // only called internally when something has been deserialized into
         // its primitive type.

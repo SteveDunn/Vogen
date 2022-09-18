@@ -24,7 +24,7 @@ namespace Whatever
 
     [global::System.Diagnostics.DebuggerTypeProxyAttribute(typeof(public_sealed_partial_record_classConversions_SystemTextJsoncharDebugView))]
     [global::System.Diagnostics.DebuggerDisplayAttribute("Underlying type: char, Value = { _value }")]
-    public sealed partial record class public_sealed_partial_record_classConversions_SystemTextJsonchar
+    public sealed partial record class public_sealed_partial_record_classConversions_SystemTextJsonchar  :  global::System.IComparable<public_sealed_partial_record_classConversions_SystemTextJsonchar>
     {
 #if DEBUG    
         private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
@@ -94,6 +94,8 @@ namespace Whatever
 
         public static explicit operator public_sealed_partial_record_classConversions_SystemTextJsonchar(char value) => From(value);
         public static explicit operator char(public_sealed_partial_record_classConversions_SystemTextJsonchar value) => value.Value;
+
+        public int CompareTo(public_sealed_partial_record_classConversions_SystemTextJsonchar other) => Value.CompareTo(other.Value);
 
         // only called internally when something has been deserialized into
         // its primitive type.

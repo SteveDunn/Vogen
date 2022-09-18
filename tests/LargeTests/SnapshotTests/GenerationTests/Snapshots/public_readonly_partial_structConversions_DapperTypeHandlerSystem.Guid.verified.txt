@@ -23,7 +23,7 @@ namespace Whatever
     
     [global::System.Diagnostics.DebuggerTypeProxyAttribute(typeof(public_readonly_partial_structConversions_DapperTypeHandlerSystemDebugView))]
     [global::System.Diagnostics.DebuggerDisplayAttribute("Underlying type: System.Guid, Value = { _value }")]
-    public readonly partial struct public_readonly_partial_structConversions_DapperTypeHandlerSystem : global::System.IEquatable<public_readonly_partial_structConversions_DapperTypeHandlerSystem>
+    public readonly partial struct public_readonly_partial_structConversions_DapperTypeHandlerSystem : global::System.IEquatable<public_readonly_partial_structConversions_DapperTypeHandlerSystem> ,  global::System.IComparable<public_readonly_partial_structConversions_DapperTypeHandlerSystem>
     {
 #if DEBUG    
         private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
@@ -119,6 +119,8 @@ namespace Whatever
 
         public static global::System.Boolean operator ==(System.Guid left, public_readonly_partial_structConversions_DapperTypeHandlerSystem right) => Equals(left, right.Value);
         public static global::System.Boolean operator !=(System.Guid left, public_readonly_partial_structConversions_DapperTypeHandlerSystem right) => !Equals(left, right.Value);
+
+        public int CompareTo(public_readonly_partial_structConversions_DapperTypeHandlerSystem other) => Value.CompareTo(other.Value);
 
         public readonly override global::System.Int32 GetHashCode() => global::System.Collections.Generic.EqualityComparer<System.Guid>.Default.GetHashCode(_value);
 

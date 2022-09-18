@@ -26,7 +26,7 @@ namespace @class
 
     [global::System.Diagnostics.DebuggerTypeProxyAttribute(typeof(escapedTestspublic_partial_structConversions_TypeConverterDebugView))]
     [global::System.Diagnostics.DebuggerDisplayAttribute("Underlying type: double, Value = { _value }")]
-    public partial struct escapedTestspublic_partial_structConversions_TypeConverter : global::System.IEquatable<escapedTestspublic_partial_structConversions_TypeConverter>
+    public partial struct escapedTestspublic_partial_structConversions_TypeConverter : global::System.IEquatable<escapedTestspublic_partial_structConversions_TypeConverter> ,  global::System.IComparable<escapedTestspublic_partial_structConversions_TypeConverter>
     {
 #if DEBUG    
         private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
@@ -122,6 +122,8 @@ namespace @class
 
         public static global::System.Boolean operator ==(double left, escapedTestspublic_partial_structConversions_TypeConverter right) => Equals(left, right.Value);
         public static global::System.Boolean operator !=(double left, escapedTestspublic_partial_structConversions_TypeConverter right) => !Equals(left, right.Value);
+
+        public int CompareTo(escapedTestspublic_partial_structConversions_TypeConverter other) => Value.CompareTo(other.Value);
 
         public readonly override global::System.Int32 GetHashCode() => global::System.Collections.Generic.EqualityComparer<double>.Default.GetHashCode(_value);
 

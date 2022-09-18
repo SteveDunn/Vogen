@@ -23,7 +23,7 @@ namespace Whatever
     
     [global::System.Diagnostics.DebuggerTypeProxyAttribute(typeof(internal_readonly_partial_record_structConversions_EfCoreValueConverterSystemDebugView))]
     [global::System.Diagnostics.DebuggerDisplayAttribute("Underlying type: System.DateTime, Value = { _value }")]
-    internal readonly partial record struct internal_readonly_partial_record_structConversions_EfCoreValueConverterSystem
+    internal readonly partial record struct internal_readonly_partial_record_structConversions_EfCoreValueConverterSystem  :  global::System.IComparable<internal_readonly_partial_record_structConversions_EfCoreValueConverterSystem>
     {
 #if DEBUG    
         private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
@@ -93,6 +93,8 @@ namespace Whatever
 
         public static explicit operator internal_readonly_partial_record_structConversions_EfCoreValueConverterSystem(System.DateTime value) => From(value);
         public static explicit operator System.DateTime(internal_readonly_partial_record_structConversions_EfCoreValueConverterSystem value) => value.Value;
+
+        public int CompareTo(internal_readonly_partial_record_structConversions_EfCoreValueConverterSystem other) => Value.CompareTo(other.Value);
 
         // only called internally when something has been deserialized into
         // its primitive type.
