@@ -5,13 +5,12 @@ using System.Linq;
 using System.Text;
 using Analyzer.Utilities.Extensions;
 using Microsoft.CodeAnalysis;
-using Microsoft.CodeAnalysis.CSharp.Syntax;
 
 namespace Vogen
 {
     internal static class TryParseGeneration
     {
-        public static string GenerateTryParseIfNeeded(VoWorkItem item, TypeDeclarationSyntax tds)
+        public static string GenerateTryParseIfNeeded(VoWorkItem item)
         {
             INamedTypeSymbol? primitiveSymbol = item.UnderlyingType;
             try
@@ -40,25 +39,43 @@ namespace Vogen
 
         private static void BuildMethod(IMethodSymbol methodSymbol, StringBuilder sb, VoWorkItem item)
         {
-            string parameters = BuildParameters(methodSymbol, item);
-            string parameterNames = BuildParameterNames(methodSymbol, item);
+            string parameters = BuildParameters(methodSymbol);
+            string parameterNames = BuildParameterNames(methodSymbol);
+
+            var inheritDocRef = methodSymbol.ToString().Replace("<", "{").Replace(">", "}");
             
             var ret =
-                @$"/// <inheritdoc />
-public static global::System.Boolean TryParse({parameters}, out {item.VoTypeName} result) {{
-    if({item.UnderlyingTypeFullName}.TryParse({parameterNames}, out var r)) {{
-        result = From(r);
-        return true;
-    }}
+                @$"
+    /// <inheritdoc cref=""{inheritDocRef}""/>
+    /// <summary>
+    /// </summary>
+    /// <returns>
+    /// The value created via the <see cref=""From""/> method.
+    /// </returns>
+    /// <exception cref=""ValueObjectValidationException"">Thrown when the value can be parsed, but is not valid.</exception>
+    public static global::System.Boolean TryParse({parameters}, {GenerateNotNullWhenAttribute()} out {item.VoTypeName} result) {{
+        if({item.UnderlyingTypeFullName}.TryParse({parameterNames}, out var r)) {{
+            result = From(r);
+            return true;
+        }}
 
-    result = default;
-    return false;
-}}";
+        result = default;
+        return false;
+    }}";
 
             sb.AppendLine(ret);
         }
 
-        private static string BuildParameters(IMethodSymbol methodSymbol, VoWorkItem item)
+        private static string GenerateNotNullWhenAttribute()
+        {
+#if NETSTANDARD2_0_OR_GREATER
+            return "[global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)]";
+#else
+            return string.Empty;
+#endif
+        }
+
+        private static string BuildParameters(IMethodSymbol methodSymbol)
         {
             List<string> l = new();
             for (var index = 0; index < methodSymbol.Parameters.Length-1; index++)
@@ -70,7 +87,7 @@ public static global::System.Boolean TryParse({parameters}, out {item.VoTypeName
             return string.Join(", ", l);
         }
 
-        private static string BuildParameterNames(IMethodSymbol methodSymbol, VoWorkItem item)
+        private static string BuildParameterNames(IMethodSymbol methodSymbol)
         {
             List<string> l = new();
             for (var index = 0; index < methodSymbol.Parameters.Length-1; index++)
@@ -92,18 +109,24 @@ public static global::System.Boolean TryParse({parameters}, out {item.VoTypeName
             {
                 if (eachMember is IMethodSymbol s)
                 {
-                    if (!s.IsStatic) continue;
-                    var ps = s.GetParameters();
-                    //if (ps.Length != 2) continue;
-
-                    if (s.ReturnType.Name != nameof(Boolean)) continue;
-                    if (!SymbolEqualityComparer.Default.Equals(ps[ps.Length-1].Type, primitiveSymbol)) continue;
-
-                    //if (ps[0].Type.Name == nameof(ReadOnlySpan<char>) || ps[1].Type.Name == nameof(String))
+                    if (!s.IsStatic)
                     {
-                        yield return s;
-                      //  break;
+                        continue;
                     }
+
+                    var ps = s.GetParameters();
+
+                    if (s.ReturnType.Name != nameof(Boolean))
+                    {
+                        continue;
+                    }
+
+                    if (!SymbolEqualityComparer.Default.Equals(ps[ps.Length-1].Type, primitiveSymbol))
+                    {
+                        continue;
+                    }
+
+                    yield return s;
                 }
             }
         }

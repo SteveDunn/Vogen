@@ -1,4 +1,7 @@
-﻿namespace System.Diagnostics.CodeAnalysis;
+﻿
+#if !NETSTANDARD || !NETCOREAPP
+
+namespace System.Diagnostics.CodeAnalysis;
 
 #if DEBUG
 /// <summary>
@@ -58,3 +61,5 @@ internal sealed class AllowNullAttribute : Attribute
     public AllowNullAttribute() { }
 }
 
+
+#endif
