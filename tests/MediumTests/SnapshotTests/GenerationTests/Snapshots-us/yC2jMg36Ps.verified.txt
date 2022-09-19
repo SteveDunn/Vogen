@@ -25,7 +25,7 @@ namespace Whatever
 
     [global::System.Diagnostics.DebuggerTypeProxyAttribute(typeof(public_sealed_partial_recordConversions_NewtonsoftJsonDebugView))]
     [global::System.Diagnostics.DebuggerDisplayAttribute("Underlying type: decimal, Value = { _value }")]
-    public sealed partial record class public_sealed_partial_recordConversions_NewtonsoftJson
+    public sealed partial record class public_sealed_partial_recordConversions_NewtonsoftJson  :  global::System.IComparable<public_sealed_partial_recordConversions_NewtonsoftJson>
     {
 #if DEBUG    
         private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
@@ -95,6 +95,8 @@ namespace Whatever
 
         public static explicit operator public_sealed_partial_recordConversions_NewtonsoftJson(decimal value) => From(value);
         public static explicit operator decimal(public_sealed_partial_recordConversions_NewtonsoftJson value) => value.Value;
+
+        public int CompareTo(public_sealed_partial_recordConversions_NewtonsoftJson other) => Value.CompareTo(other.Value);
 
         // only called internally when something has been deserialized into
         // its primitive type.

@@ -1,5 +1,7 @@
-﻿using System.Runtime.CompilerServices;
+﻿using System;
+using System.Runtime.CompilerServices;
 using System.Text;
+using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Vogen.Generators.Conversions;
@@ -198,4 +200,37 @@ public static class Util
             @"/// <summary>Returns the string representation of the underlying type</summary>
     /// <inheritdoc cref=""{item.UnderlyingTypeFullName}.ToString()"" />
     public readonly override global::System.String ToString() => Value.ToString();";
+
+    public static string GenerateIComparableHeaderIfNeeded(string precedingText, VoWorkItem item,
+        TypeDeclarationSyntax tds)
+    {
+        if (item.UnderlyingType.ImplementsInterfaceOrBaseClass(typeof(IComparable<>)))
+        {
+            return $"{precedingText} global::System.IComparable<{tds.Identifier}>";
+        }
+
+        return string.Empty;
+    }
+
+    public static string GenerateIComparableImplementationIfNeeded(VoWorkItem item, TypeDeclarationSyntax tds)
+    {
+        INamedTypeSymbol? primitiveSymbol = item.UnderlyingType;
+        if (!primitiveSymbol.ImplementsInterfaceOrBaseClass(typeof(IComparable<>)))
+        {
+            return string.Empty;
+        }
+
+        var primitive = tds.Identifier;
+        var s = @$"public int CompareTo({primitive} other) => Value.CompareTo(other.Value);";
+
+        //todo: https://github.com/SteveDunn/Vogen/issues/222
+//         if (primitiveSymbol!.ImplementsOperator("op_LessThan"))
+//         {
+//             s += $@"
+// public static bool operator <({primitive} left, {primitive} right) => left.Value < right.Value;
+// public static bool operator >({primitive} left, {primitive} right) => left.Value > right.Value;";
+//         }
+//
+         return s;
+    }
 }

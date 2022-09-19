@@ -23,7 +23,7 @@ namespace Whatever
     
     [global::System.Diagnostics.DebuggerTypeProxyAttribute(typeof(public_partial_structConversions_LinqToDbValueConverterlongDebugView))]
     [global::System.Diagnostics.DebuggerDisplayAttribute("Underlying type: long, Value = { _value }")]
-    public partial struct public_partial_structConversions_LinqToDbValueConverterlong : global::System.IEquatable<public_partial_structConversions_LinqToDbValueConverterlong>
+    public partial struct public_partial_structConversions_LinqToDbValueConverterlong : global::System.IEquatable<public_partial_structConversions_LinqToDbValueConverterlong> ,  global::System.IComparable<public_partial_structConversions_LinqToDbValueConverterlong>
     {
 #if DEBUG    
         private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
@@ -119,6 +119,8 @@ namespace Whatever
 
         public static global::System.Boolean operator ==(long left, public_partial_structConversions_LinqToDbValueConverterlong right) => Equals(left, right.Value);
         public static global::System.Boolean operator !=(long left, public_partial_structConversions_LinqToDbValueConverterlong right) => !Equals(left, right.Value);
+
+        public int CompareTo(public_partial_structConversions_LinqToDbValueConverterlong other) => Value.CompareTo(other.Value);
 
         public readonly override global::System.Int32 GetHashCode() => global::System.Collections.Generic.EqualityComparer<long>.Default.GetHashCode(_value);
 

@@ -23,7 +23,7 @@ namespace Whatever
     
     [global::System.Diagnostics.DebuggerTypeProxyAttribute(typeof(public_partial_structConversions_LinqToDbValueConverterintDebugView))]
     [global::System.Diagnostics.DebuggerDisplayAttribute("Underlying type: int, Value = { _value }")]
-    public partial struct public_partial_structConversions_LinqToDbValueConverterint : global::System.IEquatable<public_partial_structConversions_LinqToDbValueConverterint>
+    public partial struct public_partial_structConversions_LinqToDbValueConverterint : global::System.IEquatable<public_partial_structConversions_LinqToDbValueConverterint> ,  global::System.IComparable<public_partial_structConversions_LinqToDbValueConverterint>
     {
 #if DEBUG    
         private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
@@ -119,6 +119,8 @@ namespace Whatever
 
         public static global::System.Boolean operator ==(int left, public_partial_structConversions_LinqToDbValueConverterint right) => Equals(left, right.Value);
         public static global::System.Boolean operator !=(int left, public_partial_structConversions_LinqToDbValueConverterint right) => !Equals(left, right.Value);
+
+        public int CompareTo(public_partial_structConversions_LinqToDbValueConverterint other) => Value.CompareTo(other.Value);
 
         public readonly override global::System.Int32 GetHashCode() => global::System.Collections.Generic.EqualityComparer<int>.Default.GetHashCode(_value);
 

@@ -24,7 +24,7 @@ namespace Whatever
 
     [global::System.Diagnostics.DebuggerTypeProxyAttribute(typeof(NewtonsoftJsonStringVoDebugView))]
     [global::System.Diagnostics.DebuggerDisplayAttribute("Underlying type: string, Value = { _value }")]
-    public partial struct NewtonsoftJsonStringVo : global::System.IEquatable<NewtonsoftJsonStringVo>
+    public partial struct NewtonsoftJsonStringVo : global::System.IEquatable<NewtonsoftJsonStringVo> ,  global::System.IComparable<NewtonsoftJsonStringVo>
     {
 #if DEBUG    
         private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
@@ -120,6 +120,8 @@ namespace Whatever
 
         public static global::System.Boolean operator ==(string left, NewtonsoftJsonStringVo right) => Equals(left, right.Value);
         public static global::System.Boolean operator !=(string left, NewtonsoftJsonStringVo right) => !Equals(left, right.Value);
+
+        public int CompareTo(NewtonsoftJsonStringVo other) => Value.CompareTo(other.Value);
 
         public readonly override global::System.Int32 GetHashCode() => global::System.Collections.Generic.EqualityComparer<string>.Default.GetHashCode(_value);
 

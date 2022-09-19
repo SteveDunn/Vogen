@@ -24,7 +24,7 @@ namespace Whatever
 
     [global::System.Diagnostics.DebuggerTypeProxyAttribute(typeof(public_partial_structConversions_TypeConverterfloatDebugView))]
     [global::System.Diagnostics.DebuggerDisplayAttribute("Underlying type: float, Value = { _value }")]
-    public partial struct public_partial_structConversions_TypeConverterfloat : global::System.IEquatable<public_partial_structConversions_TypeConverterfloat>
+    public partial struct public_partial_structConversions_TypeConverterfloat : global::System.IEquatable<public_partial_structConversions_TypeConverterfloat> ,  global::System.IComparable<public_partial_structConversions_TypeConverterfloat>
     {
 #if DEBUG    
         private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
@@ -120,6 +120,8 @@ namespace Whatever
 
         public static global::System.Boolean operator ==(float left, public_partial_structConversions_TypeConverterfloat right) => Equals(left, right.Value);
         public static global::System.Boolean operator !=(float left, public_partial_structConversions_TypeConverterfloat right) => !Equals(left, right.Value);
+
+        public int CompareTo(public_partial_structConversions_TypeConverterfloat other) => Value.CompareTo(other.Value);
 
         public readonly override global::System.Int32 GetHashCode() => global::System.Collections.Generic.EqualityComparer<float>.Default.GetHashCode(_value);
 

@@ -24,7 +24,7 @@ namespace @class
 
     [global::System.Diagnostics.DebuggerTypeProxyAttribute(typeof(escapedTestsinternal_readonly_partial_record_structConversions_NewtonsoftJsonDebugView))]
     [global::System.Diagnostics.DebuggerDisplayAttribute("Underlying type: @class.record.@struct.@float.decimal, Value = { _value }")]
-    internal readonly partial record struct escapedTestsinternal_readonly_partial_record_structConversions_NewtonsoftJson
+    internal readonly partial record struct escapedTestsinternal_readonly_partial_record_structConversions_NewtonsoftJson 
     {
 #if DEBUG    
         private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
@@ -94,6 +94,8 @@ namespace @class
 
         public static explicit operator escapedTestsinternal_readonly_partial_record_structConversions_NewtonsoftJson(@class.record.@struct.@float.decimal value) => From(value);
         public static explicit operator @class.record.@struct.@float.decimal(escapedTestsinternal_readonly_partial_record_structConversions_NewtonsoftJson value) => value.Value;
+
+        
 
         // only called internally when something has been deserialized into
         // its primitive type.

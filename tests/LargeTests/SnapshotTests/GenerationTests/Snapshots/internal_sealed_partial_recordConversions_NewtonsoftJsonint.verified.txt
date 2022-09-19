@@ -24,7 +24,7 @@ namespace Whatever
 
     [global::System.Diagnostics.DebuggerTypeProxyAttribute(typeof(internal_sealed_partial_recordConversions_NewtonsoftJsonintDebugView))]
     [global::System.Diagnostics.DebuggerDisplayAttribute("Underlying type: int, Value = { _value }")]
-    internal sealed partial record class internal_sealed_partial_recordConversions_NewtonsoftJsonint
+    internal sealed partial record class internal_sealed_partial_recordConversions_NewtonsoftJsonint  :  global::System.IComparable<internal_sealed_partial_recordConversions_NewtonsoftJsonint>
     {
 #if DEBUG    
         private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
@@ -94,6 +94,8 @@ namespace Whatever
 
         public static explicit operator internal_sealed_partial_recordConversions_NewtonsoftJsonint(int value) => From(value);
         public static explicit operator int(internal_sealed_partial_recordConversions_NewtonsoftJsonint value) => value.Value;
+
+        public int CompareTo(internal_sealed_partial_recordConversions_NewtonsoftJsonint other) => Value.CompareTo(other.Value);
 
         // only called internally when something has been deserialized into
         // its primitive type.

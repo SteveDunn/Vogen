@@ -23,7 +23,7 @@ namespace Whatever
     
     [global::System.Diagnostics.DebuggerTypeProxyAttribute(typeof(internal_readonly_partial_record_structConversions_NonedoubleDebugView))]
     [global::System.Diagnostics.DebuggerDisplayAttribute("Underlying type: double, Value = { _value }")]
-    internal readonly partial record struct internal_readonly_partial_record_structConversions_Nonedouble
+    internal readonly partial record struct internal_readonly_partial_record_structConversions_Nonedouble  :  global::System.IComparable<internal_readonly_partial_record_structConversions_Nonedouble>
     {
 #if DEBUG    
         private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
@@ -93,6 +93,8 @@ namespace Whatever
 
         public static explicit operator internal_readonly_partial_record_structConversions_Nonedouble(double value) => From(value);
         public static explicit operator double(internal_readonly_partial_record_structConversions_Nonedouble value) => value.Value;
+
+        public int CompareTo(internal_readonly_partial_record_structConversions_Nonedouble other) => Value.CompareTo(other.Value);
 
         // only called internally when something has been deserialized into
         // its primitive type.

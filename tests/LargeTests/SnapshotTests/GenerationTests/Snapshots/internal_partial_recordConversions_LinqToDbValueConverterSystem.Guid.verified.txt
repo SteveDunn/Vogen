@@ -23,7 +23,7 @@ namespace Whatever
     
     [global::System.Diagnostics.DebuggerTypeProxyAttribute(typeof(internal_partial_recordConversions_LinqToDbValueConverterSystemDebugView))]
     [global::System.Diagnostics.DebuggerDisplayAttribute("Underlying type: System.Guid, Value = { _value }")]
-    internal partial record class internal_partial_recordConversions_LinqToDbValueConverterSystem
+    internal partial record class internal_partial_recordConversions_LinqToDbValueConverterSystem  :  global::System.IComparable<internal_partial_recordConversions_LinqToDbValueConverterSystem>
     {
 #if DEBUG    
         private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
@@ -93,6 +93,8 @@ namespace Whatever
 
         public static explicit operator internal_partial_recordConversions_LinqToDbValueConverterSystem(System.Guid value) => From(value);
         public static explicit operator System.Guid(internal_partial_recordConversions_LinqToDbValueConverterSystem value) => value.Value;
+
+        public int CompareTo(internal_partial_recordConversions_LinqToDbValueConverterSystem other) => Value.CompareTo(other.Value);
 
         // only called internally when something has been deserialized into
         // its primitive type.

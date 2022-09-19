@@ -23,7 +23,7 @@ namespace Whatever
     
     [global::System.Diagnostics.DebuggerTypeProxyAttribute(typeof(internal_partial_classConversions_NoneshortDebugView))]
     [global::System.Diagnostics.DebuggerDisplayAttribute("Underlying type: System.Int16, Value = { _value }")]
-    internal partial class internal_partial_classConversions_Noneshort : global::System.IEquatable<internal_partial_classConversions_Noneshort>
+    internal partial class internal_partial_classConversions_Noneshort : global::System.IEquatable<internal_partial_classConversions_Noneshort> ,  global::System.IComparable<internal_partial_classConversions_Noneshort>
     {
 #if DEBUG    
         private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
@@ -145,6 +145,8 @@ public System.Int16 Value
 
         public static explicit operator internal_partial_classConversions_Noneshort(System.Int16 value) => From(value);
         public static explicit operator System.Int16(internal_partial_classConversions_Noneshort value) => value.Value;
+
+        public int CompareTo(internal_partial_classConversions_Noneshort other) => Value.CompareTo(other.Value);
 
         public override global::System.Int32 GetHashCode()
         {

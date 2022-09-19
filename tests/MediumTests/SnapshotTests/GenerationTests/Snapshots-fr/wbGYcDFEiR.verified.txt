@@ -24,7 +24,7 @@ namespace Whatever
 
     [global::System.Diagnostics.DebuggerTypeProxyAttribute(typeof(internal_partial_recordConversions_TypeConvertercharDebugView))]
     [global::System.Diagnostics.DebuggerDisplayAttribute("Underlying type: char, Value = { _value }")]
-    internal partial record class internal_partial_recordConversions_TypeConverterchar
+    internal partial record class internal_partial_recordConversions_TypeConverterchar  :  global::System.IComparable<internal_partial_recordConversions_TypeConverterchar>
     {
 #if DEBUG    
         private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
@@ -94,6 +94,8 @@ namespace Whatever
 
         public static explicit operator internal_partial_recordConversions_TypeConverterchar(char value) => From(value);
         public static explicit operator char(internal_partial_recordConversions_TypeConverterchar value) => value.Value;
+
+        public int CompareTo(internal_partial_recordConversions_TypeConverterchar other) => Value.CompareTo(other.Value);
 
         // only called internally when something has been deserialized into
         // its primitive type.

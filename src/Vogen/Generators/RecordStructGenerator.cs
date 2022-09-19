@@ -18,7 +18,7 @@ using Vogen;
     {Util.GenerateAnyConversionAttributes(tds, item)}
     [global::System.Diagnostics.DebuggerTypeProxyAttribute(typeof({structName}DebugView))]
     [global::System.Diagnostics.DebuggerDisplayAttribute(""Underlying type: {itemUnderlyingType}, Value = {{ _value }}"")]
-    { Util.GenerateModifiersFor(tds)} record struct {structName}
+    { Util.GenerateModifiersFor(tds)} record struct {structName} {Util.GenerateIComparableHeaderIfNeeded(" : ", item, tds)}
     {{
 #if DEBUG    
         private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
@@ -88,6 +88,8 @@ using Vogen;
 
         public static explicit operator {structName}({itemUnderlyingType} value) => From(value);
         public static explicit operator {itemUnderlyingType}({structName} value) => value.Value;
+
+        {Util.GenerateIComparableImplementationIfNeeded(item, tds)}
 
         // only called internally when something has been deserialized into
         // its primitive type.

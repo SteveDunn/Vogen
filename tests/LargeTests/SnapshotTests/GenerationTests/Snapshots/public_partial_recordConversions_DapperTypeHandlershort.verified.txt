@@ -23,7 +23,7 @@ namespace Whatever
     
     [global::System.Diagnostics.DebuggerTypeProxyAttribute(typeof(public_partial_recordConversions_DapperTypeHandlershortDebugView))]
     [global::System.Diagnostics.DebuggerDisplayAttribute("Underlying type: short, Value = { _value }")]
-    public partial record class public_partial_recordConversions_DapperTypeHandlershort
+    public partial record class public_partial_recordConversions_DapperTypeHandlershort  :  global::System.IComparable<public_partial_recordConversions_DapperTypeHandlershort>
     {
 #if DEBUG    
         private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
@@ -93,6 +93,8 @@ namespace Whatever
 
         public static explicit operator public_partial_recordConversions_DapperTypeHandlershort(short value) => From(value);
         public static explicit operator short(public_partial_recordConversions_DapperTypeHandlershort value) => value.Value;
+
+        public int CompareTo(public_partial_recordConversions_DapperTypeHandlershort other) => Value.CompareTo(other.Value);
 
         // only called internally when something has been deserialized into
         // its primitive type.

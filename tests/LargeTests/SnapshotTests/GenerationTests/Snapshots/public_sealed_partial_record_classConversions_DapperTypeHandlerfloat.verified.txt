@@ -23,7 +23,7 @@ namespace Whatever
     
     [global::System.Diagnostics.DebuggerTypeProxyAttribute(typeof(public_sealed_partial_record_classConversions_DapperTypeHandlerfloatDebugView))]
     [global::System.Diagnostics.DebuggerDisplayAttribute("Underlying type: float, Value = { _value }")]
-    public sealed partial record class public_sealed_partial_record_classConversions_DapperTypeHandlerfloat
+    public sealed partial record class public_sealed_partial_record_classConversions_DapperTypeHandlerfloat  :  global::System.IComparable<public_sealed_partial_record_classConversions_DapperTypeHandlerfloat>
     {
 #if DEBUG    
         private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
@@ -93,6 +93,8 @@ namespace Whatever
 
         public static explicit operator public_sealed_partial_record_classConversions_DapperTypeHandlerfloat(float value) => From(value);
         public static explicit operator float(public_sealed_partial_record_classConversions_DapperTypeHandlerfloat value) => value.Value;
+
+        public int CompareTo(public_sealed_partial_record_classConversions_DapperTypeHandlerfloat other) => Value.CompareTo(other.Value);
 
         // only called internally when something has been deserialized into
         // its primitive type.

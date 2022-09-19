@@ -24,7 +24,7 @@ namespace Whatever
 
     [global::System.Diagnostics.DebuggerTypeProxyAttribute(typeof(public_partial_record_classConversions_SystemTextJsonlongDebugView))]
     [global::System.Diagnostics.DebuggerDisplayAttribute("Underlying type: long, Value = { _value }")]
-    public partial record class public_partial_record_classConversions_SystemTextJsonlong
+    public partial record class public_partial_record_classConversions_SystemTextJsonlong  :  global::System.IComparable<public_partial_record_classConversions_SystemTextJsonlong>
     {
 #if DEBUG    
         private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
@@ -94,6 +94,8 @@ namespace Whatever
 
         public static explicit operator public_partial_record_classConversions_SystemTextJsonlong(long value) => From(value);
         public static explicit operator long(public_partial_record_classConversions_SystemTextJsonlong value) => value.Value;
+
+        public int CompareTo(public_partial_record_classConversions_SystemTextJsonlong other) => Value.CompareTo(other.Value);
 
         // only called internally when something has been deserialized into
         // its primitive type.

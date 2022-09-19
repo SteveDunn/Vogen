@@ -23,7 +23,7 @@ namespace Whatever
     
     [global::System.Diagnostics.DebuggerTypeProxyAttribute(typeof(public_readonly_partial_structConversions_LinqToDbValueConverterboolDebugView))]
     [global::System.Diagnostics.DebuggerDisplayAttribute("Underlying type: bool, Value = { _value }")]
-    public readonly partial struct public_readonly_partial_structConversions_LinqToDbValueConverterbool : global::System.IEquatable<public_readonly_partial_structConversions_LinqToDbValueConverterbool>
+    public readonly partial struct public_readonly_partial_structConversions_LinqToDbValueConverterbool : global::System.IEquatable<public_readonly_partial_structConversions_LinqToDbValueConverterbool> ,  global::System.IComparable<public_readonly_partial_structConversions_LinqToDbValueConverterbool>
     {
 #if DEBUG    
         private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
@@ -119,6 +119,8 @@ namespace Whatever
 
         public static global::System.Boolean operator ==(bool left, public_readonly_partial_structConversions_LinqToDbValueConverterbool right) => Equals(left, right.Value);
         public static global::System.Boolean operator !=(bool left, public_readonly_partial_structConversions_LinqToDbValueConverterbool right) => !Equals(left, right.Value);
+
+        public int CompareTo(public_readonly_partial_structConversions_LinqToDbValueConverterbool other) => Value.CompareTo(other.Value);
 
         public readonly override global::System.Int32 GetHashCode() => global::System.Collections.Generic.EqualityComparer<bool>.Default.GetHashCode(_value);
 

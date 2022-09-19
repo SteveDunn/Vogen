@@ -24,7 +24,7 @@ namespace Whatever
 
     [global::System.Diagnostics.DebuggerTypeProxyAttribute(typeof(stj_number_as_string_public_readonly_partial_record_structConversions_NewtonsoftJsonlong_customizedDebugView))]
     [global::System.Diagnostics.DebuggerDisplayAttribute("Underlying type: long, Value = { _value }")]
-    public readonly partial record struct stj_number_as_string_public_readonly_partial_record_structConversions_NewtonsoftJsonlong_customized
+    public readonly partial record struct stj_number_as_string_public_readonly_partial_record_structConversions_NewtonsoftJsonlong_customized  :  global::System.IComparable<stj_number_as_string_public_readonly_partial_record_structConversions_NewtonsoftJsonlong_customized>
     {
 #if DEBUG    
         private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
@@ -94,6 +94,8 @@ namespace Whatever
 
         public static explicit operator stj_number_as_string_public_readonly_partial_record_structConversions_NewtonsoftJsonlong_customized(long value) => From(value);
         public static explicit operator long(stj_number_as_string_public_readonly_partial_record_structConversions_NewtonsoftJsonlong_customized value) => value.Value;
+
+        public int CompareTo(stj_number_as_string_public_readonly_partial_record_structConversions_NewtonsoftJsonlong_customized other) => Value.CompareTo(other.Value);
 
         // only called internally when something has been deserialized into
         // its primitive type.

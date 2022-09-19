@@ -19,7 +19,7 @@ using Vogen;
     {Util.GenerateAnyConversionAttributes(tds, item)}
     [global::System.Diagnostics.DebuggerTypeProxyAttribute(typeof({className}DebugView))]
     [global::System.Diagnostics.DebuggerDisplayAttribute(""Underlying type: {itemUnderlyingType}, Value = {{ _value }}"")]
-    {Util.GenerateModifiersFor(tds)} record class {className}
+    {Util.GenerateModifiersFor(tds)} record class {className} {Util.GenerateIComparableHeaderIfNeeded(" : ", item, tds)}
     {{
 #if DEBUG    
         private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
@@ -89,6 +89,8 @@ using Vogen;
 
         public static explicit operator {className}({itemUnderlyingType} value) => From(value);
         public static explicit operator {itemUnderlyingType}({className} value) => value.Value;
+
+        {Util.GenerateIComparableImplementationIfNeeded(item, tds)}
 
         // only called internally when something has been deserialized into
         // its primitive type.

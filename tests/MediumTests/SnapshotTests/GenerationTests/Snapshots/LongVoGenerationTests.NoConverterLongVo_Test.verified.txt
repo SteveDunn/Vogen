@@ -23,7 +23,7 @@ namespace Whatever
     
     [global::System.Diagnostics.DebuggerTypeProxyAttribute(typeof(NoConverterLongVoDebugView))]
     [global::System.Diagnostics.DebuggerDisplayAttribute("Underlying type: long, Value = { _value }")]
-    public partial struct NoConverterLongVo : global::System.IEquatable<NoConverterLongVo>
+    public partial struct NoConverterLongVo : global::System.IEquatable<NoConverterLongVo> ,  global::System.IComparable<NoConverterLongVo>
     {
 #if DEBUG    
         private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
@@ -119,6 +119,8 @@ namespace Whatever
 
         public static global::System.Boolean operator ==(long left, NoConverterLongVo right) => Equals(left, right.Value);
         public static global::System.Boolean operator !=(long left, NoConverterLongVo right) => !Equals(left, right.Value);
+
+        public int CompareTo(NoConverterLongVo other) => Value.CompareTo(other.Value);
 
         public readonly override global::System.Int32 GetHashCode() => global::System.Collections.Generic.EqualityComparer<long>.Default.GetHashCode(_value);
 

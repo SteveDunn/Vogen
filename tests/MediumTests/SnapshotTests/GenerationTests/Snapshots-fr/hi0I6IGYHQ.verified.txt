@@ -23,7 +23,7 @@ namespace Whatever
     
     [global::System.Diagnostics.DebuggerTypeProxyAttribute(typeof(internal_sealed_partial_recordConversions_EfCoreValueConverterDebugView))]
     [global::System.Diagnostics.DebuggerDisplayAttribute("Underlying type: string, Value = { _value }")]
-    internal sealed partial record class internal_sealed_partial_recordConversions_EfCoreValueConverter
+    internal sealed partial record class internal_sealed_partial_recordConversions_EfCoreValueConverter  :  global::System.IComparable<internal_sealed_partial_recordConversions_EfCoreValueConverter>
     {
 #if DEBUG    
         private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
@@ -101,6 +101,8 @@ namespace Whatever
 
         public static explicit operator internal_sealed_partial_recordConversions_EfCoreValueConverter(string value) => From(value);
         public static explicit operator string(internal_sealed_partial_recordConversions_EfCoreValueConverter value) => value.Value;
+
+        public int CompareTo(internal_sealed_partial_recordConversions_EfCoreValueConverter other) => Value.CompareTo(other.Value);
 
         // only called internally when something has been deserialized into
         // its primitive type.

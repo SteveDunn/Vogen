@@ -23,7 +23,7 @@ namespace Whatever
     
     [global::System.Diagnostics.DebuggerTypeProxyAttribute(typeof(NoConverterIntVoDebugView))]
     [global::System.Diagnostics.DebuggerDisplayAttribute("Underlying type: int, Value = { _value }")]
-    public partial struct NoConverterIntVo : global::System.IEquatable<NoConverterIntVo>
+    public partial struct NoConverterIntVo : global::System.IEquatable<NoConverterIntVo> ,  global::System.IComparable<NoConverterIntVo>
     {
 #if DEBUG    
         private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
@@ -119,6 +119,8 @@ namespace Whatever
 
         public static global::System.Boolean operator ==(int left, NoConverterIntVo right) => Equals(left, right.Value);
         public static global::System.Boolean operator !=(int left, NoConverterIntVo right) => !Equals(left, right.Value);
+
+        public int CompareTo(NoConverterIntVo other) => Value.CompareTo(other.Value);
 
         public readonly override global::System.Int32 GetHashCode() => global::System.Collections.Generic.EqualityComparer<int>.Default.GetHashCode(_value);
 

@@ -24,7 +24,7 @@ namespace Whatever
 
     [global::System.Diagnostics.DebuggerTypeProxyAttribute(typeof(public_partial_record_structConversions_TypeConverterdecimalDebugView))]
     [global::System.Diagnostics.DebuggerDisplayAttribute("Underlying type: decimal, Value = { _value }")]
-    public partial record struct public_partial_record_structConversions_TypeConverterdecimal
+    public partial record struct public_partial_record_structConversions_TypeConverterdecimal  :  global::System.IComparable<public_partial_record_structConversions_TypeConverterdecimal>
     {
 #if DEBUG    
         private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
@@ -94,6 +94,8 @@ namespace Whatever
 
         public static explicit operator public_partial_record_structConversions_TypeConverterdecimal(decimal value) => From(value);
         public static explicit operator decimal(public_partial_record_structConversions_TypeConverterdecimal value) => value.Value;
+
+        public int CompareTo(public_partial_record_structConversions_TypeConverterdecimal other) => Value.CompareTo(other.Value);
 
         // only called internally when something has been deserialized into
         // its primitive type.
