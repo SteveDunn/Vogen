@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Collections.Immutable;
 using System.Runtime.CompilerServices;
 using System.Text;
+using Analyzer.Utilities.Extensions;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;

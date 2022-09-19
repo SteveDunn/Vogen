@@ -10,5 +10,12 @@ public class Program
     public static async Task Main()
     {
         await Task.CompletedTask;
+
+       bool b = MyIntVo.TryParse("123", out var r);
     }
+}
+
+[ValueObject(typeof(int))]
+public partial struct MyIntVo
+{
 }

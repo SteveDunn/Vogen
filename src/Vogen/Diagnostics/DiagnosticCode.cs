@@ -29,5 +29,6 @@ public enum DiagnosticCode
     RecordToStringOverloadShouldBeSealed = 20,
     TypeShouldBePartial = 21,
     InvalidDeserializationStrictness = 22,
-    InstanceValueCannotBeConverted = 23    
+    InstanceValueCannotBeConverted = 23,
+    DuplicateTypesFound = 24
 }
