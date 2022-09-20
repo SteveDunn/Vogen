@@ -10,6 +10,10 @@
 // Suppress warnings about [Obsolete] member usage in generated code.
 #pragma warning disable CS0618
 
+// Supress warning for 'The annotation for nullable reference types should only be used in code within a '#nullable' annotations context. Auto-generated code requires an explicit '#nullable' directive in source.'
+// The generator copies signatures from the BCL, e.g. for `TryParse`, and some of those have nullable annotations.
+#pragma warning disable CS8669
+
 // Suppress warnings about CS1591: Missing XML comment for publicly visible type or member 'Type_or_Member'
 #pragma warning disable CS1591
 
@@ -121,6 +125,50 @@ namespace Whatever
         public static global::System.Boolean operator !=(bool left, public_partial_structConversions_DapperTypeHandlerbool right) => !Equals(left, right.Value);
 
         public int CompareTo(public_partial_structConversions_DapperTypeHandlerbool other) => Value.CompareTo(other.Value);
+
+        
+    /// <inheritdoc cref="bool.TryParse(string?, out bool)"/>
+    /// <summary>
+    /// </summary>
+    /// <returns>
+    /// The value created via the <see cref="From"/> method.
+    /// </returns>
+    /// <exception cref="ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
+    public static global::System.Boolean TryParse(string? value, 
+#if NETCOREAPP3_0_OR_GREATER
+[global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)]
+#endif
+ out public_partial_structConversions_DapperTypeHandlerbool result) {
+        if(System.Boolean.TryParse(value, out var r)) {
+            result = From(r);
+            return true;
+        }
+
+        result = default;
+        return false;
+    }
+
+    /// <inheritdoc cref="bool.TryParse(System.ReadOnlySpan{char}, out bool)"/>
+    /// <summary>
+    /// </summary>
+    /// <returns>
+    /// The value created via the <see cref="From"/> method.
+    /// </returns>
+    /// <exception cref="ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
+    public static global::System.Boolean TryParse(System.ReadOnlySpan<char> value, 
+#if NETCOREAPP3_0_OR_GREATER
+[global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)]
+#endif
+ out public_partial_structConversions_DapperTypeHandlerbool result) {
+        if(System.Boolean.TryParse(value, out var r)) {
+            result = From(r);
+            return true;
+        }
+
+        result = default;
+        return false;
+    }
+
 
         public readonly override global::System.Int32 GetHashCode() => global::System.Collections.Generic.EqualityComparer<bool>.Default.GetHashCode(_value);
 

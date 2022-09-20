@@ -12,12 +12,12 @@ public class Tests
     public void Integers()
     {
         {
-            IntVo.TryParse("1024", out var ivo).Should().BeTrue();
+            IntVoNoValidation.TryParse("1024", out var ivo).Should().BeTrue();
             ivo.Value.Should().Be(1024);
         }
 
         {
-            IntVo.TryParse("1,000", NumberStyles.AllowThousands, null, out var ivo).Should().BeTrue();
+            IntVoNoValidation.TryParse("1,000", NumberStyles.AllowThousands, null, out var ivo).Should().BeTrue();
             ivo.Value.Should().Be(1000);
         }
     }
@@ -59,7 +59,7 @@ public class Tests
     public void Double()
     {
         DoubleVo.TryParse("123.45", out var ivo).Should().BeTrue();
-        ivo.Value.Should().Be(12.45);
+        ivo.Value.Should().Be(123.45);
     }
 
     [Fact]

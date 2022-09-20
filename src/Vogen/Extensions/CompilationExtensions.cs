@@ -64,7 +64,7 @@ namespace Analyzer.Utilities.Extensions
         // /// <param name="compilation">The compilation.</param>
         // /// <param name="fullTypeName">Namespace + type name, e.g. "System.Exception".</param>
         // /// <returns>The <see cref="INamedTypeSymbol"/> if found, null otherwise.</returns>
-        // internal static bool TryGetOrCreateTypeByMetadataName(this Compilation compilation, string fullTypeName, [NotNullWhen(returnValue: true)] out INamedTypeSymbol? namedTypeSymbol) =>
+        // internal static bool TryGetOrCreateTypeByMetadataName(this Compilation compilation, string fullTypeName, out INamedTypeSymbol? namedTypeSymbol) =>
         //     WellKnownTypeProvider.GetOrCreate(compilation).TryGetOrCreateTypeByMetadataName(fullTypeName, out namedTypeSymbol);
 
         /// <summary>

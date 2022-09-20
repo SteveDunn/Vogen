@@ -44,7 +44,9 @@ public class PermutationsOfConversionsTests
                 // shorten the filename used
                 string parameters = typeHash + Hash(conversions);
                 settings.UseFileName(parameters);
-                //settings.AutoVerify();
+#if AUTO_VERIFY
+        settings.AutoVerify();
+#endif
 
                 await RunTest($@"
   [ValueObject(conversions: {conversions}, underlyingType: typeof(int))]

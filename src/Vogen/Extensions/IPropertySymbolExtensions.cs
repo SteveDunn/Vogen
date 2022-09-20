@@ -19,9 +19,9 @@ namespace Analyzer.Utilities.Extensions
             => propertySymbol.ContainingType.GetMembers().OfType<IFieldSymbol>().Any(f => f.IsImplicitlyDeclared && propertySymbol.Equals(f.AssociatedSymbol));
 
         public static bool IsIsCompletedFromAwaiterPattern(
-            [NotNullWhen(true)] this IPropertySymbol? property,
-            [NotNullWhen(true)] INamedTypeSymbol? inotifyCompletionType,
-            [NotNullWhen(true)] INamedTypeSymbol? icriticalNotifyCompletionType)
+            this IPropertySymbol? property,
+            INamedTypeSymbol? inotifyCompletionType,
+            INamedTypeSymbol? icriticalNotifyCompletionType)
         {
             if (property is null
                 || !property.Name.Equals("IsCompleted", StringComparison.Ordinal)

@@ -113,7 +113,9 @@ namespace Whatever
 
         VerifySettings settings = new VerifySettings();
         settings.UseFileName(TestHelper.ShortenForFilename(className));
-        //settings.AutoVerify();
+#if AUTO_VERIFY
+        settings.AutoVerify();
+#endif
         return Verifier.Verify(output, settings).UseDirectory("Snapshots-fr");
     }
 }

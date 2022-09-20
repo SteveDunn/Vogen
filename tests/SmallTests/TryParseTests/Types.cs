@@ -7,6 +7,11 @@ using Xunit;
 namespace SmallTests.TryParseTests;
 
 [ValueObject(typeof(int))]
+public partial struct IntVoNoValidation
+{
+}
+
+[ValueObject(typeof(int))]
 public partial struct IntVo
 {
     private static Validation Validate(int input) =>

@@ -68,11 +68,12 @@ namespace Vogen
 
         private static string GenerateNotNullWhenAttribute()
         {
-#if NETSTANDARD2_0_OR_GREATER
-            return "[global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)]";
-#else
-            return string.Empty;
+            return @"
+#if NETCOREAPP3_0_OR_GREATER
+[global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)]
 #endif
+";
+
         }
 
         private static string BuildParameters(IMethodSymbol methodSymbol)
