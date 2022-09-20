@@ -4,6 +4,7 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using FluentAssertions;
+using LargeTests.SnapshotTests.GenerationTests;
 using VerifyTests;
 using VerifyXunit;
 using Vogen;
@@ -77,6 +78,6 @@ namespace Whatever
 
         diagnostics.Should().BeEmpty();
 
-        await Verifier.Verify(output, settings).UseDirectory("Snapshots");
+        await Verifier.Verify(output, settings).UseDirectory(SnapshotUtils.GetSnapshotDirectoryName());
     }    
 }

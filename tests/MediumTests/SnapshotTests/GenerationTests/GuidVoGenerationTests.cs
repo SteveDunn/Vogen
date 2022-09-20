@@ -85,6 +85,6 @@ namespace Whatever
 
         diagnostics.Should().BeEmpty();
 
-        return Verifier.Verify(output).UseDirectory("Snapshots");
+        return Verifier.Verify(output).UseDirectory(SnapshotUtils.GetSnapshotDirectoryName());
     }
 }
