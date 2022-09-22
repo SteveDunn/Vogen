@@ -149,27 +149,6 @@ namespace Whatever
         return false;
     }
 
-    /// <inheritdoc cref="bool.TryParse(System.ReadOnlySpan{char}, out bool)"/>
-    /// <summary>
-    /// </summary>
-    /// <returns>
-    /// The value created via the <see cref="From"/> method.
-    /// </returns>
-    /// <exception cref="ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
-    public static global::System.Boolean TryParse(System.ReadOnlySpan<char> value, 
-#if NETCOREAPP3_0_OR_GREATER
-[global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)]
-#endif
- out internal_readonly_partial_structConversions_TypeConverterbool result) {
-        if(System.Boolean.TryParse(value, out var r)) {
-            result = From(r);
-            return true;
-        }
-
-        result = default;
-        return false;
-    }
-
 
         public readonly override global::System.Int32 GetHashCode() => global::System.Collections.Generic.EqualityComparer<bool>.Default.GetHashCode(_value);
 

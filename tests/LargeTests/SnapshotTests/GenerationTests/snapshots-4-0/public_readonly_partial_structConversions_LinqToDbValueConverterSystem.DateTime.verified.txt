@@ -148,27 +148,6 @@ namespace Whatever
         return false;
     }
 
-    /// <inheritdoc cref="System.DateTime.TryParse(System.ReadOnlySpan{char}, out System.DateTime)"/>
-    /// <summary>
-    /// </summary>
-    /// <returns>
-    /// The value created via the <see cref="From"/> method.
-    /// </returns>
-    /// <exception cref="ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
-    public static global::System.Boolean TryParse(System.ReadOnlySpan<char> s, 
-#if NETCOREAPP3_0_OR_GREATER
-[global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)]
-#endif
- out public_readonly_partial_structConversions_LinqToDbValueConverterSystem result) {
-        if(System.DateTime.TryParse(s, out var r)) {
-            result = From(r);
-            return true;
-        }
-
-        result = default;
-        return false;
-    }
-
     /// <inheritdoc cref="System.DateTime.TryParse(string, System.IFormatProvider, System.Globalization.DateTimeStyles, out System.DateTime)"/>
     /// <summary>
     /// </summary>
@@ -177,27 +156,6 @@ namespace Whatever
     /// </returns>
     /// <exception cref="ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
     public static global::System.Boolean TryParse(string s, System.IFormatProvider provider, System.Globalization.DateTimeStyles styles, 
-#if NETCOREAPP3_0_OR_GREATER
-[global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)]
-#endif
- out public_readonly_partial_structConversions_LinqToDbValueConverterSystem result) {
-        if(System.DateTime.TryParse(s, provider, styles, out var r)) {
-            result = From(r);
-            return true;
-        }
-
-        result = default;
-        return false;
-    }
-
-    /// <inheritdoc cref="System.DateTime.TryParse(System.ReadOnlySpan{char}, System.IFormatProvider, System.Globalization.DateTimeStyles, out System.DateTime)"/>
-    /// <summary>
-    /// </summary>
-    /// <returns>
-    /// The value created via the <see cref="From"/> method.
-    /// </returns>
-    /// <exception cref="ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
-    public static global::System.Boolean TryParse(System.ReadOnlySpan<char> s, System.IFormatProvider provider, System.Globalization.DateTimeStyles styles, 
 #if NETCOREAPP3_0_OR_GREATER
 [global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)]
 #endif
