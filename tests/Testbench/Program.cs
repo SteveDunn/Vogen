@@ -10,7 +10,7 @@ public class Program
     {
         await Task.CompletedTask;
 
-        var vo = Activator.CreateInstance<MyIntVo>();
+        // var vo = Activator.CreateInstance<MyIntVo>();
         //var vo = (MyIntVo)Activator.CreateInstance(typeof(MyIntVo))!;
         //Console.WriteLine(vo.Value);
     }
