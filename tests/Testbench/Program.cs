@@ -15,7 +15,5 @@ public class Program
     }
 }
 
-[ValueObject(typeof(int))]
-public partial struct MyIntVo
-{
-}
+[ValueObject(conversions: Conversions.None, underlyingType: typeof(int))]
+public readonly partial struct MyIntVo { }

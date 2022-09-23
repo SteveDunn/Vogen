@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
@@ -22,7 +23,7 @@ public class PermutationsOfConversionsTests
     public class ConversionPermutationTests
     {
         static readonly string[] _permutations = new Permutations().ToArray();
-        static readonly string[] _types = {"partial class", "partial struct", "partial readonly struct"};
+        static readonly string[] _types = {"partial class", "partial struct", "readonly partial struct"};
 
         // These used to be 'ClassData' tests, but they were run sequentially, which was very slow.
         // This test now runs the permutations in parallel.
@@ -75,6 +76,8 @@ namespace Whatever
 }}";
 
         var (diagnostics, output) = TestHelper.GetGeneratedOutput<ValueObjectGenerator>(source);
+
+        output.Should().NotBeEmpty();
 
         diagnostics.Should().BeEmpty();
 

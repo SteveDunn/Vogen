@@ -1,4 +1,7 @@
-﻿namespace LargeTests.SnapshotTests.GenerationTests
+﻿using System.Reflection;
+using System.Runtime.Versioning;
+
+namespace LargeTests.SnapshotTests.GenerationTests
 {
     /// <summary>
     /// We have tests targeting different versions of the framework and different locales.
@@ -8,7 +11,12 @@
     {
         public static string GetSnapshotDirectoryName(string locale = "")
         {
-            var s = $"snapshots-{System.Environment.Version.Major}-{System.Environment.Version.Minor}";
+            var framework = Assembly
+                .GetExecutingAssembly()?
+                .GetCustomAttribute<TargetFrameworkAttribute>()?
+                .FrameworkName;
+
+            var s = $"snapshots-{framework}";
         
             if (locale.Length > 0)
             {
