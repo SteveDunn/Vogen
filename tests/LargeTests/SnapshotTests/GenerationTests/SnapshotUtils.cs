@@ -1,4 +1,5 @@
-﻿using System.Reflection;
+﻿using System;
+using System.Reflection;
 using System.Runtime.Versioning;
 
 namespace LargeTests.SnapshotTests.GenerationTests
@@ -14,9 +15,11 @@ namespace LargeTests.SnapshotTests.GenerationTests
             var framework = Assembly
                 .GetExecutingAssembly()?
                 .GetCustomAttribute<TargetFrameworkAttribute>()?
-                .FrameworkName;
+                .FrameworkName!;
 
-            var s = $"snapshots-{framework}";
+            string shortened = framework.Substring(framework.LastIndexOf("=", StringComparison.Ordinal));
+
+            var s = $"snap-{shortened}";
         
             if (locale.Length > 0)
             {
