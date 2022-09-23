@@ -1,3 +1,5 @@
+#pragma warning disable VOG025
+
 using System;
 using FluentAssertions;
 using Vogen;
@@ -47,7 +49,7 @@ public class RecordClassCreationTests
     [Fact]
     public void Default_vo_throws_at_runtime()
     {
-        MyRecordClassInt vo = (MyRecordClassInt) Activator.CreateInstance(typeof(MyRecordClassInt))!;
+        MyRecordClassInt vo = (MyRecordClassInt) Activator.CreateInstance(Type.GetType("Vogen.Tests.Types.MyRecordClassInt")!)!;
         Func<int> action = () => vo.Value;
 
         action.Should().Throw<ValueObjectValidationException>().WithMessage("Use of uninitialized Value Object*");

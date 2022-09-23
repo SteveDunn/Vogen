@@ -5,7 +5,6 @@ using FluentAssertions;
 using FluentAssertions.Execution;
 using Microsoft.CodeAnalysis;
 using Vogen;
-using Vogen.Tests;
 using Xunit;
 
 namespace SmallTests.DiagnosticsTests;

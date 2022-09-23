@@ -47,7 +47,8 @@ public class RecordStructCreationTests
     [Fact]
     public void Default_vo_throws_at_runtime()
     {
-        MyRecordStructInt vo = (MyRecordStructInt) Activator.CreateInstance(typeof(MyRecordStructInt))!;
+        MyRecordStructInt vo =
+            (MyRecordStructInt) Activator.CreateInstance(Type.GetType("Vogen.Tests.Types.MyRecordStructInt")!)!;
         Func<int> action = () => vo.Value;
 
         action.Should().Throw<ValueObjectValidationException>().WithMessage("Use of uninitialized Value Object*");

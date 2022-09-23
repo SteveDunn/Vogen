@@ -23,6 +23,11 @@ internal static class DiagnosticItems
         "Using default of Value Objects is prohibited",
         "Type '{0}' cannot be constructed with default as it is prohibited.");
 
+    private static readonly DiagnosticDescriptor _usingActivatorProhibited = CreateDescriptor(
+        DiagnosticCode.UsingActivatorProhibited,
+        "Using Reflection to create Value Objects is prohibited",
+        "Type '{0}' cannot be constructed via Reflection as it is prohibited.");
+
     private static readonly DiagnosticDescriptor _usingNewProhibited = CreateDescriptor(
         DiagnosticCode.UsingNewProhibited,
         "Using new to create Value Objects is prohibited. Please use the From method for creation.",
@@ -151,6 +156,9 @@ internal static class DiagnosticItems
 
     public static Diagnostic UsingDefaultProhibited(Location locationOfDefaultStatement, string voClassName) => 
         BuildDiagnostic(_usingDefaultProhibited, voClassName, locationOfDefaultStatement);
+
+    public static Diagnostic UsingActivatorProhibited(Location locationOfDefaultStatement, string voClassName) => 
+        BuildDiagnostic(_usingActivatorProhibited, voClassName, locationOfDefaultStatement);
 
     public static Diagnostic UsingNewProhibited(Location location, string voClassName) => 
         BuildDiagnostic(_usingNewProhibited, voClassName, location);

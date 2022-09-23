@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
 using Vogen;
-#pragma warning disable CS0219
 
 namespace Testbench;
 
@@ -11,7 +10,9 @@ public class Program
     {
         await Task.CompletedTask;
 
-       bool b = MyIntVo.TryParse("123", out var r);
+        var vo = Activator.CreateInstance<MyIntVo>();
+        //var vo = (MyIntVo)Activator.CreateInstance(typeof(MyIntVo))!;
+        //Console.WriteLine(vo.Value);
     }
 }
 

@@ -97,6 +97,7 @@ public partial struct CustomerId {
 ```csharp
 // catches object creation expressions
 var c = new CustomerId(); // error VOG010: Type 'CustomerId' cannot be constructed with 'new' as it is prohibited
+var c = Activator.CreateInstance<CustomerId>(); // error VOG025: Type 'CustomerId' cannot be constructed via Reflection as it is prohibited.
 CustomerId c = default; // error VOG009: Type 'CustomerId' cannot be constructed with default as it is prohibited.
 var c = default(CustomerId); // error VOG009: Type 'CustomerId' cannot be constructed with default as it is prohibited.
 var c = GetCustomerId(); // error VOG010: Type 'CustomerId' cannot be constructed with 'new' as it is prohibited
@@ -648,6 +649,8 @@ To test in VS, you'll have a new 'launch profile':
 ![image showing the new launch profile for Roslyn](/docs/img/2022-02-13-05-45-54.png)
 
 Select the Vogen project as the active project, and from the dropdown, select 'Roslyn'. Then just F5 to start debugging.
+
+To debug an analyzer, write a unit test using `DisallowNewTests` as a template, not forgetting to change `CreationUsingImplicitNewAnalyzer` to the analyzer you want to test.
 
 ### Can I get it to throw my own exception?
 Yes, by specifying the exception type in either the `ValueObject` attribute, or globally, with `VogenConfiguration`.
