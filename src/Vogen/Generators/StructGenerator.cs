@@ -117,6 +117,8 @@ using Vogen;
 
         {Util.GenerateIComparableImplementationIfNeeded(item, tds)}
 
+        {TryParseGeneration.GenerateTryParseIfNeeded(item)}
+
         public readonly override global::System.Int32 GetHashCode() => global::System.Collections.Generic.EqualityComparer<{itemUnderlyingType}>.Default.GetHashCode(_value);
 
         {Util.GenerateToStringReadOnly(item)}

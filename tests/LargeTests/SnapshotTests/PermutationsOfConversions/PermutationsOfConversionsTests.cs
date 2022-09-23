@@ -1,9 +1,11 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using FluentAssertions;
+using LargeTests.SnapshotTests.GenerationTests;
 using VerifyTests;
 using VerifyXunit;
 using Vogen;
@@ -21,7 +23,7 @@ public class PermutationsOfConversionsTests
     public class ConversionPermutationTests
     {
         static readonly string[] _permutations = new Permutations().ToArray();
-        static readonly string[] _types = {"partial class", "partial struct", "partial readonly struct"};
+        static readonly string[] _types = {"partial class", "partial struct", "readonly partial struct"};
 
         // These used to be 'ClassData' tests, but they were run sequentially, which was very slow.
         // This test now runs the permutations in parallel.
@@ -44,7 +46,9 @@ public class PermutationsOfConversionsTests
                 // shorten the filename used
                 string parameters = typeHash + Hash(conversions);
                 settings.UseFileName(parameters);
-                //settings.AutoVerify();
+#if AUTO_VERIFY
+        settings.AutoVerify();
+#endif
 
                 await RunTest($@"
   [ValueObject(conversions: {conversions}, underlyingType: typeof(int))]
@@ -73,8 +77,10 @@ namespace Whatever
 
         var (diagnostics, output) = TestHelper.GetGeneratedOutput<ValueObjectGenerator>(source);
 
+        output.Should().NotBeEmpty();
+
         diagnostics.Should().BeEmpty();
 
-        await Verifier.Verify(output, settings).UseDirectory("Snapshots");
+        await Verifier.Verify(output, settings).UseDirectory(SnapshotUtils.GetSnapshotDirectoryName());
     }    
 }

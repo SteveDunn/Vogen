@@ -148,7 +148,7 @@ namespace Analyzer.Utilities.Extensions
         /// Checks if the given method is an implementation of the given interface method
         /// Substituted with the given typeargument.
         /// </summary>
-        public static bool IsImplementationOfInterfaceMethod(this IMethodSymbol method, ITypeSymbol? typeArgument, [NotNullWhen(returnValue: true)] INamedTypeSymbol? interfaceType, string interfaceMethodName)
+        public static bool IsImplementationOfInterfaceMethod(this IMethodSymbol method, ITypeSymbol? typeArgument, INamedTypeSymbol? interfaceType, string interfaceMethodName)
         {
             INamedTypeSymbol? constructedInterface = typeArgument != null ? interfaceType?.Construct(typeArgument) : interfaceType;
 
@@ -178,7 +178,7 @@ namespace Analyzer.Utilities.Extensions
         /// <summary>
         /// Checks if the given method implements <see cref="IDisposable.Dispose"/> or overrides an implementation of <see cref="IDisposable.Dispose"/>.
         /// </summary>
-        public static bool IsDisposeImplementation([NotNullWhen(returnValue: true)] this IMethodSymbol? method, [NotNullWhen(returnValue: true)] INamedTypeSymbol? iDisposable)
+        public static bool IsDisposeImplementation(this IMethodSymbol? method, INamedTypeSymbol? iDisposable)
         {
             if (method == null)
             {
@@ -200,7 +200,7 @@ namespace Analyzer.Utilities.Extensions
         /// <summary>
         /// Checks if the given method implements "IAsyncDisposable.Dispose" or overrides an implementation of "IAsyncDisposable.Dispose".
         /// </summary>
-        public static bool IsAsyncDisposeImplementation([NotNullWhen(returnValue: true)] this IMethodSymbol? method, [NotNullWhen(returnValue: true)] INamedTypeSymbol? iAsyncDisposable, [NotNullWhen(returnValue: true)] INamedTypeSymbol? valueTaskType)
+        public static bool IsAsyncDisposeImplementation(this IMethodSymbol? method, INamedTypeSymbol? iAsyncDisposable, INamedTypeSymbol? valueTaskType)
         {
             if (method == null)
             {
@@ -288,7 +288,7 @@ namespace Analyzer.Utilities.Extensions
         /// <summary>
         /// Checks if the given method has the signature "override Task DisposeCoreAsync(bool)".
         /// </summary>
-        private static bool HasOverriddenDisposeCoreAsyncMethodSignature(this IMethodSymbol method, [NotNullWhen(returnValue: true)] INamedTypeSymbol? task)
+        private static bool HasOverriddenDisposeCoreAsyncMethodSignature(this IMethodSymbol method, INamedTypeSymbol? task)
         {
             return method.Name == "DisposeCoreAsync" &&
                 method.MethodKind == MethodKind.Ordinary &&
@@ -361,7 +361,7 @@ namespace Analyzer.Utilities.Extensions
         /// <summary>
         /// Checks if the given method implements 'System.Runtime.Serialization.IDeserializationCallback.OnDeserialization' or overrides an implementation of 'System.Runtime.Serialization.IDeserializationCallback.OnDeserialization'/>.
         /// </summary>
-        public static bool IsOnDeserializationImplementation([NotNullWhen(returnValue: true)] this IMethodSymbol? method, [NotNullWhen(returnValue: true)] INamedTypeSymbol? iDeserializationCallback)
+        public static bool IsOnDeserializationImplementation(this IMethodSymbol? method, INamedTypeSymbol? iDeserializationCallback)
         {
             if (method == null)
             {
@@ -381,13 +381,13 @@ namespace Analyzer.Utilities.Extensions
                 method.IsImplementationOfInterfaceMethod(null, iDeserializationCallback, "OnDeserialization");
         }
 
-        public static bool IsSerializationConstructor([NotNullWhen(returnValue: true)] this IMethodSymbol? method, INamedTypeSymbol? serializationInfoType, INamedTypeSymbol? streamingContextType)
+        public static bool IsSerializationConstructor(this IMethodSymbol? method, INamedTypeSymbol? serializationInfoType, INamedTypeSymbol? streamingContextType)
             => method.IsConstructor() &&
                 method.Parameters.Length == 2 &&
                 SymbolEqualityComparer.Default.Equals(method.Parameters[0].Type, serializationInfoType) &&
                 SymbolEqualityComparer.Default.Equals(method.Parameters[1].Type, streamingContextType);
 
-        public static bool IsGetObjectData([NotNullWhen(returnValue: true)] this IMethodSymbol? method, INamedTypeSymbol? serializationInfoType, INamedTypeSymbol? streamingContextType)
+        public static bool IsGetObjectData(this IMethodSymbol? method, INamedTypeSymbol? serializationInfoType, INamedTypeSymbol? streamingContextType)
             => method?.Name == "GetObjectData" &&
                 method.ReturnsVoid &&
                 method.Parameters.Length == 2 &&
@@ -497,7 +497,7 @@ namespace Analyzer.Utilities.Extensions
         /// </summary>
         /// <param name="method">The method to test.</param>
         /// <param name="taskType">Task type.</param>
-        public static bool IsTaskFromResultMethod(this IMethodSymbol method, [NotNullWhen(returnValue: true)] INamedTypeSymbol? taskType)
+        public static bool IsTaskFromResultMethod(this IMethodSymbol method, INamedTypeSymbol? taskType)
             => method.Name.Equals("FromResult", StringComparison.Ordinal) &&
                SymbolEqualityComparer.Default.Equals(method.ContainingType, taskType);
 
@@ -506,7 +506,7 @@ namespace Analyzer.Utilities.Extensions
         /// </summary>
         /// <param name="method">The method to test.</param>
         /// <param name="genericTaskType">Generic task type.</param>
-        public static bool IsTaskConfigureAwaitMethod(this IMethodSymbol method, [NotNullWhen(returnValue: true)] INamedTypeSymbol? genericTaskType)
+        public static bool IsTaskConfigureAwaitMethod(this IMethodSymbol method, INamedTypeSymbol? genericTaskType)
             => method.Name.Equals("ConfigureAwait", StringComparison.Ordinal) &&
                method.Parameters.Length == 1 &&
                method.Parameters[0].Type.SpecialType == SpecialType.System_Boolean &&
@@ -601,7 +601,7 @@ namespace Analyzer.Utilities.Extensions
         /// parameter inherits from or equals <see cref="EventArgs"/> type or
         /// whose name ends with 'EventArgs'.
         /// </summary>
-        public static bool HasEventHandlerSignature(this IMethodSymbol method, [NotNullWhen(returnValue: true)] INamedTypeSymbol? eventArgsType)
+        public static bool HasEventHandlerSignature(this IMethodSymbol method, INamedTypeSymbol? eventArgsType)
             => eventArgsType != null &&
                method.ReturnsVoid &&
                method.Parameters.Length == 2 &&
@@ -611,7 +611,7 @@ namespace Analyzer.Utilities.Extensions
                // See https://github.com/dotnet/roslyn-analyzers/issues/3106
                (method.Parameters[1].Type.DerivesFrom(eventArgsType, baseTypesOnly: true) || method.Parameters[1].Type.Name.EndsWith("EventArgs", StringComparison.Ordinal));
 
-        public static bool IsLockMethod(this IMethodSymbol method, [NotNullWhen(returnValue: true)] INamedTypeSymbol? systemThreadingMonitor)
+        public static bool IsLockMethod(this IMethodSymbol method, INamedTypeSymbol? systemThreadingMonitor)
         {
             // "System.Threading.Monitor.Enter(object)" OR "System.Threading.Monitor.Enter(object, bool)"
             return method.Name == "Enter" &&
@@ -656,7 +656,7 @@ namespace Analyzer.Utilities.Extensions
         /// </summary>
         /// <param name="methodSymbol">The method</param>
         /// <param name="typeSymbol">The type has virtual method</param>
-        public static bool IsOverrideOrVirtualMethodOf([NotNullWhen(returnValue: true)] this IMethodSymbol? methodSymbol, [NotNullWhen(returnValue: true)] INamedTypeSymbol? typeSymbol)
+        public static bool IsOverrideOrVirtualMethodOf(this IMethodSymbol? methodSymbol, INamedTypeSymbol? typeSymbol)
         {
             if (methodSymbol == null)
             {
@@ -711,7 +711,7 @@ namespace Analyzer.Utilities.Extensions
         /// <summary>
         /// Check if the given <paramref name="methodSymbol"/> is an implicitly generated method for top level statements.
         /// </summary>
-        public static bool IsTopLevelStatementsEntryPointMethod([NotNullWhen(true)] this IMethodSymbol? methodSymbol)
+        public static bool IsTopLevelStatementsEntryPointMethod(this IMethodSymbol? methodSymbol)
             => methodSymbol?.IsStatic == true && methodSymbol.Name switch
             {
                 "$Main" => true,
@@ -719,9 +719,9 @@ namespace Analyzer.Utilities.Extensions
                 _ => false
             };
 
-        public static bool IsGetAwaiterFromAwaitablePattern([NotNullWhen(true)] this IMethodSymbol? method,
-            [NotNullWhen(true)] INamedTypeSymbol? inotifyCompletionType,
-            [NotNullWhen(true)] INamedTypeSymbol? icriticalNotifyCompletionType)
+        public static bool IsGetAwaiterFromAwaitablePattern(this IMethodSymbol? method,
+            INamedTypeSymbol? inotifyCompletionType,
+            INamedTypeSymbol? icriticalNotifyCompletionType)
         {
             if (method is null
                 || !method.Name.Equals("GetAwaiter", StringComparison.Ordinal)
@@ -741,9 +741,9 @@ namespace Analyzer.Utilities.Extensions
         }
 
         public static bool IsGetResultFromAwaiterPattern(
-            [NotNullWhen(true)] this IMethodSymbol? method,
-            [NotNullWhen(true)] INamedTypeSymbol? inotifyCompletionType,
-            [NotNullWhen(true)] INamedTypeSymbol? icriticalNotifyCompletionType)
+            this IMethodSymbol? method,
+            INamedTypeSymbol? inotifyCompletionType,
+            INamedTypeSymbol? icriticalNotifyCompletionType)
         {
             if (method is null
                 || !method.Name.Equals("GetResult", StringComparison.Ordinal)

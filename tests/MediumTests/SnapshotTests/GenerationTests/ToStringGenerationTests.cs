@@ -75,8 +75,10 @@ namespace Whatever
 
         VerifySettings settings = new VerifySettings();
         settings.UseFileName(className);
-        //settings.AutoVerify();
-        return Verifier.Verify(output, settings).UseDirectory("Snapshots");
+#if AUTO_VERIFY
+        settings.AutoVerify();
+#endif
+        return Verifier.Verify(output, settings).UseDirectory(SnapshotUtils.GetSnapshotDirectoryName());
     }
 
     private static string WriteToStringMethod(ToStringMethod toStringMethod, bool isARecord)

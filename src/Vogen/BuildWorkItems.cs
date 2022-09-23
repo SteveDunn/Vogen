@@ -27,13 +27,21 @@ internal static class BuildWorkItems
             return null;
         }
 
-        AttributeData? voAttribute = attributes.SingleOrDefault(
-            a => a.AttributeClass?.FullName() is "Vogen.ValueObjectAttribute");
+        var attrs = attributes.Where(
+            a => a.AttributeClass?.FullName() is "Vogen.ValueObjectAttribute").ToList();
 
-        if (voAttribute is null)
+        if (attrs.Count is 0)
         {
             return null;
         }
+
+        if (attrs.Count != 1)
+        {
+            context.ReportDiagnostic(DiagnosticItems.DuplicateTypesFound(voTypeSyntax.GetLocation(), voSymbolInformation.Name));
+            return null;
+        }
+        
+        AttributeData voAttribute = attrs[0];
 
         if (!voTypeSyntax.Modifiers.Any(SyntaxKind.PartialKeyword))
         {

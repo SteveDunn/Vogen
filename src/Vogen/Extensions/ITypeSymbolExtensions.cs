@@ -15,8 +15,8 @@ namespace Analyzer.Utilities.Extensions
     {
 #if CODEANALYSIS_V3_OR_BETTER
         public static bool IsAssignableTo(
-            [NotNullWhen(returnValue: true)] this ITypeSymbol? fromSymbol,
-            [NotNullWhen(returnValue: true)] ITypeSymbol? toSymbol,
+            this ITypeSymbol? fromSymbol,
+            ITypeSymbol? toSymbol,
             Compilation compilation)
             => fromSymbol != null && toSymbol != null && compilation.ClassifyCommonConversion(fromSymbol, toSymbol).IsImplicit;
 #endif
@@ -42,7 +42,7 @@ namespace Analyzer.Utilities.Extensions
             };
         }
 
-        public static bool Inherits([NotNullWhen(returnValue: true)] this ITypeSymbol? type, [NotNullWhen(returnValue: true)] ITypeSymbol? possibleBase)
+        public static bool Inherits(this ITypeSymbol? type, ITypeSymbol? possibleBase)
         {
             if (type == null || possibleBase == null)
             {
@@ -88,7 +88,7 @@ namespace Analyzer.Utilities.Extensions
             }
         }
 
-        public static bool DerivesFrom([NotNullWhen(returnValue: true)] this ITypeSymbol? symbol, [NotNullWhen(returnValue: true)] ITypeSymbol? candidateBaseType, bool baseTypesOnly = false, bool checkTypeParameterConstraints = true)
+        public static bool DerivesFrom(this ITypeSymbol? symbol, ITypeSymbol? candidateBaseType, bool baseTypesOnly = false, bool checkTypeParameterConstraints = true)
         {
             if (candidateBaseType == null || symbol == null)
             {
@@ -290,16 +290,16 @@ namespace Analyzer.Utilities.Extensions
         public static bool HasValueCopySemantics(this ITypeSymbol typeSymbol)
             => typeSymbol.IsValueType || typeSymbol.SpecialType == SpecialType.System_String;
 
-        public static bool IsNonNullableValueType([NotNullWhen(returnValue: true)] this ITypeSymbol? typeSymbol)
+        public static bool IsNonNullableValueType(this ITypeSymbol? typeSymbol)
             => typeSymbol != null && typeSymbol.IsValueType && typeSymbol.OriginalDefinition.SpecialType != SpecialType.System_Nullable_T;
 
-        public static bool IsNullableValueType([NotNullWhen(returnValue: true)] this ITypeSymbol? typeSymbol)
+        public static bool IsNullableValueType(this ITypeSymbol? typeSymbol)
             => typeSymbol != null && typeSymbol.IsValueType && typeSymbol.OriginalDefinition.SpecialType == SpecialType.System_Nullable_T;
 
-        public static bool IsReferenceTypeOrNullableValueType([NotNullWhen(returnValue: true)] this ITypeSymbol? typeSymbol)
+        public static bool IsReferenceTypeOrNullableValueType(this ITypeSymbol? typeSymbol)
             => typeSymbol != null && (typeSymbol.IsReferenceType || typeSymbol.IsNullableValueType());
 
-        public static bool IsNullableOfBoolean([NotNullWhen(returnValue: true)] this ITypeSymbol? typeSymbol)
+        public static bool IsNullableOfBoolean(this ITypeSymbol? typeSymbol)
             => typeSymbol.IsNullableValueType() && ((INamedTypeSymbol)typeSymbol).TypeArguments[0].SpecialType == SpecialType.System_Boolean;
 
         public static ITypeSymbol? GetNullableValueTypeUnderlyingType(this ITypeSymbol? typeSymbol)
@@ -319,7 +319,7 @@ namespace Analyzer.Utilities.Extensions
         // /// <param name="invocationTarget">The type to check</param>
         // /// <param name="wellKnownTypeProvider">An instance of the <see cref="WellKnownTypeProvider"/> used to access the three described known types.</param>
         // /// <returns><c>true</c> when the type contains one of the supported collection count property; otherwise <c>false</c>.</returns>
-        // public static bool HasAnyCollectionCountProperty([NotNullWhen(returnValue: true)] this ITypeSymbol? invocationTarget, WellKnownTypeProvider wellKnownTypeProvider)
+        // public static bool HasAnyCollectionCountProperty(this ITypeSymbol? invocationTarget, WellKnownTypeProvider wellKnownTypeProvider)
         // {
         //     const string countPropertyName = "Count";
         //

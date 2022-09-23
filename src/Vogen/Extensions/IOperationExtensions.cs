@@ -366,7 +366,7 @@ namespace Analyzer.Utilities.Extensions
             return operationBlock.HasAnyOperationDescendant(predicate, out _);
         }
 
-        public static bool HasAnyOperationDescendant(this IOperation operationBlock, Func<IOperation, bool> predicate, [NotNullWhen(returnValue: true)] out IOperation? foundOperation)
+        public static bool HasAnyOperationDescendant(this IOperation operationBlock, Func<IOperation, bool> predicate, out IOperation? foundOperation)
         {
             foreach (var descendant in operationBlock.DescendantsAndSelf())
             {
@@ -423,7 +423,7 @@ namespace Analyzer.Utilities.Extensions
         private static readonly BoundedCache<Compilation, ConcurrentDictionary<IOperation, ControlFlowGraph?>> s_operationToCfgCache
             = new();
 
-        public static bool TryGetEnclosingControlFlowGraph(this IOperation operation, [NotNullWhen(returnValue: true)] out ControlFlowGraph? cfg)
+        public static bool TryGetEnclosingControlFlowGraph(this IOperation operation, out ControlFlowGraph? cfg)
         {
             operation = operation.GetRoot();
             RoslynDebug.Assert(operation.SemanticModel is not null);
@@ -530,13 +530,13 @@ namespace Analyzer.Utilities.Extensions
         private static readonly ImmutableArray<OperationKind> s_LambdaAndLocalFunctionKinds =
             ImmutableArray.Create(OperationKind.AnonymousFunction, OperationKind.LocalFunction);
 
-        public static bool IsWithinLambdaOrLocalFunction(this IOperation operation, [NotNullWhen(true)] out IOperation? containingLambdaOrLocalFunctionOperation)
+        public static bool IsWithinLambdaOrLocalFunction(this IOperation operation, out IOperation? containingLambdaOrLocalFunctionOperation)
         {
             containingLambdaOrLocalFunctionOperation = operation.GetAncestor(s_LambdaAndLocalFunctionKinds);
             return containingLambdaOrLocalFunctionOperation != null;
         }
 
-        public static bool IsWithinExpressionTree(this IOperation operation, [NotNullWhen(true)] INamedTypeSymbol? linqExpressionTreeType)
+        public static bool IsWithinExpressionTree(this IOperation operation, INamedTypeSymbol? linqExpressionTreeType)
             => linqExpressionTreeType != null
                 && operation.GetAncestor(s_LambdaAndLocalFunctionKinds)?.Parent?.Type?.OriginalDefinition is { } lambdaType
                 && linqExpressionTreeType.Equals(lambdaType);
@@ -571,8 +571,8 @@ namespace Analyzer.Utilities.Extensions
         /// which contains the given tupleOperation as a descendant operation.
         /// </summary>
         public static bool TryGetParentTupleOperation(this ITupleOperation tupleOperation,
-            [NotNullWhen(returnValue: true)] out ITupleOperation? parentTupleOperation,
-            [NotNullWhen(returnValue: true)] out IOperation? elementOfParentTupleContainingTuple)
+            out ITupleOperation? parentTupleOperation,
+            out IOperation? elementOfParentTupleContainingTuple)
         {
             parentTupleOperation = null;
             elementOfParentTupleContainingTuple = null;
@@ -752,7 +752,7 @@ namespace Analyzer.Utilities.Extensions
         /// </remarks>
         public static bool HasArgument<TOperation>(
             this IInvocationOperation invocationOperation,
-            [NotNullWhen(returnValue: true)] out TOperation? firstFoundArgument)
+            out TOperation? firstFoundArgument)
             where TOperation : class, IOperation
         {
             firstFoundArgument = null;

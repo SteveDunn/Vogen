@@ -24,7 +24,7 @@ public partial struct CustomerId
 
         diagnostics.Should().BeEmpty();
         
-        return Verifier.Verify(output).UseDirectory("Snapshots");
+        return Verifier.Verify(output).UseDirectory(SnapshotUtils.GetSnapshotDirectoryName());
     }
 
     [Fact]
@@ -41,7 +41,7 @@ public partial struct CustomerId
 
         diagnostics.Should().BeEmpty();
         
-        return Verifier.Verify(output).UseDirectory("Snapshots");
+        return Verifier.Verify(output).UseDirectory(SnapshotUtils.GetSnapshotDirectoryName());
     }
 
 
@@ -66,7 +66,7 @@ public partial struct CustomerId
         var (diagnostics, output) = TestHelper.GetGeneratedOutput<ValueObjectGenerator>(source);
 
         diagnostics.Should().BeEmpty();
-        return Verifier.Verify(output).UseDirectory("Snapshots");
+        return Verifier.Verify(output).UseDirectory(SnapshotUtils.GetSnapshotDirectoryName());
     }
 
     [Fact]
@@ -92,7 +92,7 @@ public partial struct CustomerId
         var (diagnostics, output) = TestHelper.GetGeneratedOutput<ValueObjectGenerator>(source);
 
         diagnostics.Should().BeEmpty();
-        return Verifier.Verify(output).UseDirectory("Snapshots");
+        return Verifier.Verify(output).UseDirectory(SnapshotUtils.GetSnapshotDirectoryName());
     }
 
     [Fact]
@@ -118,7 +118,7 @@ public partial struct CustomerId
         var (diagnostics, output) = TestHelper.GetGeneratedOutput<ValueObjectGenerator>(source);
 
         diagnostics.Should().BeEmpty();
-        return Verifier.Verify(output).UseDirectory("Snapshots");
+        return Verifier.Verify(output).UseDirectory(SnapshotUtils.GetSnapshotDirectoryName());
     }
 
     [Fact]
@@ -146,7 +146,7 @@ public partial struct CustomerId
         var (diagnostics, output) = TestHelper.GetGeneratedOutput<ValueObjectGenerator>(source);
 
         diagnostics.Should().BeEmpty();
-        return Verifier.Verify(output).UseDirectory("Snapshots");
+        return Verifier.Verify(output).UseDirectory(SnapshotUtils.GetSnapshotDirectoryName());
     }
 
     [Fact]
@@ -175,6 +175,6 @@ public partial struct @class
         var (diagnostics, output) = TestHelper.GetGeneratedOutput<ValueObjectGenerator>(source);
 
         diagnostics.Should().BeEmpty();
-        return Verifier.Verify(output).UseDirectory("Snapshots");
+        return Verifier.Verify(output).UseDirectory(SnapshotUtils.GetSnapshotDirectoryName());
     }
 }

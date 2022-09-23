@@ -29,7 +29,7 @@ public partial struct CustomerId
 
         diagnostics.Should().BeEmpty();
         
-        return Verifier.Verify(output).UseDirectory("Snapshots");
+        return Verifier.Verify(output).UseDirectory(SnapshotUtils.GetSnapshotDirectoryName());
     }
 
     [Fact]
@@ -58,7 +58,7 @@ public class MyValidationException : Exception
 
         diagnostics.Should().HaveCount(0);
 
-        return Verifier.Verify(output).UseDirectory("Snapshots");
+        return Verifier.Verify(output).UseDirectory(SnapshotUtils.GetSnapshotDirectoryName());
     }
 
     [Fact]
@@ -79,7 +79,7 @@ public partial struct CustomerId { }
 
         diagnostics.Should().HaveCount(0);
 
-        return Verifier.Verify(output).UseDirectory("Snapshots");
+        return Verifier.Verify(output).UseDirectory(SnapshotUtils.GetSnapshotDirectoryName());
     }
 
     [Fact]
@@ -110,7 +110,7 @@ public class MyValidationException : Exception
 
         diagnostics.Should().HaveCount(0);
 
-        return Verifier.Verify(output).UseDirectory("Snapshots");
+        return Verifier.Verify(output).UseDirectory(SnapshotUtils.GetSnapshotDirectoryName());
     }
 
     [Fact]
@@ -139,6 +139,6 @@ public class MyValidationException : Exception
 
         diagnostics.Should().BeEmpty();
         
-        return Verifier.Verify(output).UseDirectory("Snapshots");
+        return Verifier.Verify(output).UseDirectory(SnapshotUtils.GetSnapshotDirectoryName());
     }
 }

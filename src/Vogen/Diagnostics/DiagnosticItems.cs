@@ -43,6 +43,11 @@ internal static class DiagnosticItems
         "Value Objects should be declared in partial types.",
         "Type {0} is decorated as a Value Object and should be in a partial type.");
 
+    private static readonly DiagnosticDescriptor _duplicateTypesFound = CreateDescriptor(
+        DiagnosticCode.TypeShouldBePartial,
+        "Duplicate Value Object found.",
+        "Type {0} is decorated as a Value Object but is declared multiple times. Remove the duplicate definition or differentiate with a namespace.");
+
     private static readonly DiagnosticDescriptor _cannotHaveUserConstructors = CreateDescriptor(
         DiagnosticCode.CannotHaveUserConstructors,
         "Cannot have user defined constructors",
@@ -158,6 +163,9 @@ internal static class DiagnosticItems
 
     public static Diagnostic TypeShouldBePartial(Location location, string voClassName) => 
         BuildDiagnostic(_typeShouldBePartial, voClassName, location);
+
+    public static Diagnostic DuplicateTypesFound(Location location, string voClassName) => 
+        BuildDiagnostic(_duplicateTypesFound, voClassName, location);
 
     public static Diagnostic CannotHaveUserConstructors(IMethodSymbol constructor) => 
         Create(_cannotHaveUserConstructors, constructor.Locations);
