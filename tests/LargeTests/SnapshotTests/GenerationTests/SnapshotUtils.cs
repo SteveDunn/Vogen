@@ -17,7 +17,7 @@ namespace LargeTests.SnapshotTests.GenerationTests
                 .GetCustomAttribute<TargetFrameworkAttribute>()?
                 .FrameworkName!;
 
-            string shortened = framework.Substring(framework.LastIndexOf("=", StringComparison.Ordinal));
+            string shortened = framework.Substring(framework.LastIndexOf("=", StringComparison.Ordinal) + 1);
 
             var s = $"snap-{shortened}";
         
