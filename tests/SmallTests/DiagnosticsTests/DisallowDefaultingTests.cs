@@ -2,7 +2,6 @@
 using FluentAssertions;
 using Microsoft.CodeAnalysis;
 using Vogen.Analyzers;
-using Vogen.Tests;
 using Xunit;
 
 namespace SmallTests.DiagnosticsTests;
