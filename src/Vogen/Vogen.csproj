@@ -9,6 +9,8 @@
 
     <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
 
+    <SuppressTfmSupportBuildWarnings>true</SuppressTfmSupportBuildWarnings>
+
   </PropertyGroup>
   
   <!-- Uncomment if you're getting unexpected minver results-->  

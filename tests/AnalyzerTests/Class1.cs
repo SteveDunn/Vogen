@@ -1,6 +1,7 @@
 ﻿using System.Collections.Immutable;
 using System.Threading.Tasks;
 using Microsoft.CodeAnalysis;
+using Microsoft.CodeAnalysis.Testing;
 using Microsoft.CSharp;
 using Vogen;
 using Xunit;
@@ -79,7 +80,7 @@ namespace ConsoleApplication1
 
                 CompilerDiagnostics = CompilerDiagnostics.Suggestions,
                 ReferenceAssemblies = referenceAssemblies,
-                FixedCode = output,
+//                FixedCode = output,
                 ExpectedDiagnostics = { expected },
             };
 
