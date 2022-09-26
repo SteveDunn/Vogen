@@ -1,146 +1,92 @@
-﻿using System.Collections.Generic;
-using System.Collections.Immutable;
-using System.Linq;
-using System.Resources;
-using Microsoft.CodeAnalysis;
-using Microsoft.CodeAnalysis.Diagnostics;
-
-namespace Vogen.Analyzers
-{
-    [DiagnosticAnalyzer(LanguageNames.CSharp)]
-    public class AddValidationAnalyzer : DiagnosticAnalyzer
-    {
-        public const string DiagnosticId = "AddValidationAnalyzer";
-
-        // You can change these strings in the Resources.resx file. If you do not want your analyzer to be localize-able, you can use regular strings for Title and MessageFormat.
-        // See https://github.com/dotnet/roslyn/blob/main/docs/analyzers/Localizing%20Analyzers.md for more on localization
-        private static readonly LocalizableString Title = new LocalizableResourceString(nameof(Resources.AddValidationAnalyzerTitle),
-        Resources.ResourceManager, typeof(Resources));
-
-        private static readonly LocalizableString MessageFormat =
-        new LocalizableResourceString(nameof(Resources.AddValidationAnalyzerMessageFormat), Resources.ResourceManager,
-        typeof(Resources));
-        private static readonly LocalizableString Description =
-        new LocalizableResourceString(nameof(Resources.AddValidationAnalyzerDescription), Resources.ResourceManager,
-        typeof(Resources));
-        private const string Category = "Usage";
-
-        private static readonly DiagnosticDescriptor Rule = new DiagnosticDescriptor(DiagnosticId, Title, MessageFormat,
-            Category, DiagnosticSeverity.Info, isEnabledByDefault: true, description: Description);
-
-        public override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics
-        {
-            get { return ImmutableArray.Create(Rule); }
-        }
-
-        public override void Initialize(AnalysisContext context)
-        {
-
-            //context.ConfigureGeneratedCodeAnalysis(GeneratedCodeAnalysisFlags.None);
-            context.ConfigureGeneratedCodeAnalysis(GeneratedCodeAnalysisFlags.Analyze | GeneratedCodeAnalysisFlags.ReportDiagnostics);
-            context.EnableConcurrentExecution();
-
-            // TODO: Consider registering other actions that act on syntax instead of or in addition to symbols
-            // See https://github.com/dotnet/roslyn/blob/main/docs/analyzers/Analyzer%20Actions%20Semantics.md for more information
-            context.RegisterSymbolAction(AnalyzeSymbol, SymbolKind.NamedType);
-        }
-
-        private static void AnalyzeSymbol(SymbolAnalysisContext context)
-        {
-            // TODO: Replace the following code with your own analysis, generating Diagnostic objects for any issues you find
-            var namedTypeSymbol = (INamedTypeSymbol) context.Symbol;
-
-            INamedTypeSymbol voSymbolInformation = namedTypeSymbol;
-
-
-            if (!VoFilter.IsTarget(namedTypeSymbol))
-            {
-                return;
-            }
-
-            ImmutableArray<AttributeData> attributes = voSymbolInformation.GetAttributes();
-
-            if (attributes.Length == 0)
-            {
-                return;
-            }
-
-
-            bool isVo = attributes.Any(a => a.AttributeClass?.FullName() is "Vogen.ValueObjectAttribute");
-
-            if (!isVo)
-            {
-                return;
-            }
-
-            // var localConfig = GlobalConfigFilter.BuildConfigurationFromAttributeWithoutAnyDiagnosticErrors(voAttribute);
-            //
-            // if (localConfig == null)
-            // {
-            //     return;
-            // }
-            //
-            var voTypeSyntax = namedTypeSymbol;
-
-            bool found = false;
-
-            bool foundReturnType = false;
-
-            string retType = "";
-
-            foreach (ISymbol? memberDeclarationSyntax in voTypeSyntax.GetMembers("_value"))
-            {
-                if (memberDeclarationSyntax is IFieldSymbol mds)
-                {
-                    retType = mds.Type.Name + "!!";
-                    foundReturnType = true;
-                    break;
-                }
-            }
-
-            if (!foundReturnType)
-            {
-                return;
-            }
-
-            foreach (ISymbol? memberDeclarationSyntax in voTypeSyntax.GetMembers("Validate"))
-            {
-                if (memberDeclarationSyntax is IMethodSymbol mds)
-                {
-                    if (!IsMethodStatic(mds))
-                    {
-                        continue;
-                    }
-
-                    if (mds.ReturnType.Name == "Validation")
-                    {
-                        found = true;
-                        break;
-                    }
-                }
-            }
-
-            if (found)
-            {
-                return;
-            }
-
-            Dictionary<string, string?> properties = new()
-            {
-                { "PrimitiveType", retType + "#"}
-            };
-
-            var diagnostic = Diagnostic.Create(
-                descriptor: Rule,
-                location: namedTypeSymbol.Locations[0],
-                additionalLocations: null,
-                properties: properties.ToImmutableDictionary(),
-                namedTypeSymbol.Name);
-
-            context.ReportDiagnostic(diagnostic);
-        }
-
-        private static bool IsMethodStatic(IMethodSymbol mds) => mds.IsStatic;
-
-    }
-}
+﻿// using System.Collections.Immutable;
+// using System.Composition;
+// using System.Linq;
+// using System.Reflection.Metadata;
+// using System.Runtime.Serialization;
+// using System.Threading;
+// using System.Threading.Tasks;
+// using System.Xml.Linq;
+// using Microsoft.CodeAnalysis;
+// using Microsoft.CodeAnalysis.CodeActions;
+// using Microsoft.CodeAnalysis.CodeFixes;
+// using Microsoft.CodeAnalysis.CSharp;
+// using Microsoft.CodeAnalysis.CSharp.Syntax;
+// using Microsoft.CodeAnalysis.Formatting;
+// using Microsoft.CodeAnalysis.Simplification;
+// using Vogen.Analyzers;
+//
+// namespace Vogen.CodeFixers
+// {
+//     [ExportCodeFixProvider(LanguageNames.CSharp, Name = nameof(AddValidationAnalyzerCodeFixProvider)), Shared]
+//     public class AddValidationAnalyzerCodeFixProvider : CodeFixProvider
+//     {
+//         public sealed override ImmutableArray<string> FixableDiagnosticIds
+//         {
+//             get { return ImmutableArray.Create(AddValidationAnalyzer.DiagnosticId); }
+//         }
+//
+//         public sealed override FixAllProvider GetFixAllProvider()
+//         {
+//             return null!;
+//             // // See https://github.com/dotnet/roslyn/blob/main/docs/analyzers/FixAllProvider.md for more information on Fix All Providers
+//             // return WellKnownFixAllProviders.BatchFixer;
+//         }
+//
+//         public sealed override async Task RegisterCodeFixesAsync(CodeFixContext context)
+//         {
+//             var root = await context.Document.GetSyntaxRootAsync(context.CancellationToken).ConfigureAwait(false);
+//
+//             // TODO: Replace the following code with your own analysis, generating a CodeAction for each fix to suggest
+//             var diagnostic = context.Diagnostics.First();
+//             var diagnosticSpan = diagnostic.Location.SourceSpan;
+//
+//             // Find the type declaration identified by the diagnostic.
+//             var declaration = root!.FindToken(diagnosticSpan.Start).Parent!.AncestorsAndSelf().OfType<TypeDeclarationSyntax>().First();
+//
+//             // Register a code action that will invoke the fix.
+//             context.RegisterCodeFix(
+//                 CodeAction.Create(
+//                     title: Resources.AddValidationCodeFixTitle,
+//                     createChangedDocument: c => GenerateValidationMethodAsync(context.Document, context.Diagnostics, declaration, c),
+//                     // createChangedSolution: c => GenerateValidationMethodAsync(context.Document, declaration, c),
+//                     equivalenceKey: nameof(Resources.AddValidationCodeFixTitle)),
+//                 diagnostic);
+//         }
+//
+//         private async Task<Document> GenerateValidationMethodAsync(Document document,
+//             ImmutableArray<Diagnostic> contextDiagnostics, 
+//             TypeDeclarationSyntax typeDecl,
+//             CancellationToken cancellationToken)
+//         {
+//             var properties = contextDiagnostics[0].Properties;
+//
+//             string returnType = properties["PrimitiveType"]!;
+//             
+//             SyntaxNode root = (await document.GetSyntaxRootAsync(cancellationToken).ConfigureAwait(false))!;
+//             
+//             var newMember = GenerateMethod(returnType);
+//             
+//             var newTypeDecl = typeDecl.AddMembers(newMember);
+//             
+//             var newRoot = root.ReplaceNode(typeDecl, newTypeDecl);
+//
+//             return document.WithSyntaxRoot(newRoot);
+//         }
+//
+//         private static MethodDeclarationSyntax GenerateMethod(string primitiveType)
+//         {
+//             return (MethodDeclarationSyntax) ParseMember(
+// @$"private static Validation Validate({primitiveType} input)
+// {{
+//     bool isValid = true ; // todo: your validation
+//     return isValid ? Validation.Ok : Validation.Invalid(""[todo: describe the validation]"");
+// }}").WithAdditionalAnnotations(Simplifier.Annotation);
+//         }
+//         
+//         private static MemberDeclarationSyntax ParseMember(string member)
+//         {
+//             MemberDeclarationSyntax decl = ((ClassDeclarationSyntax)SyntaxFactory.ParseCompilationUnit("class x {\r\n" + member + "\r\n}").Members[0]).Members[0];
+//             return decl.WithAdditionalAnnotations(Formatter.Annotation);
+//         }
+//     }
+// }

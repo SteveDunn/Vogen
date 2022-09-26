@@ -6,3 +6,4 @@
 Rule ID | Category | Severity | Notes
 --------|----------|----------|-------
 AddValidationAnalyzer | Usage | Info | AddValidationAnalyzer
+CreationUsingNewAnalyzer2 | Usage | Info | CreationUsingNewAnalyzer2

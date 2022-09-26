@@ -50,8 +50,8 @@ public class CreationUsingNewAnalyzer : IIncrementalGenerator
         {
             if (eachFoundItem is not null)
             {
-                context.ReportDiagnostic(
-                    DiagnosticItems.UsingNewProhibited(eachFoundItem.Value.Location, eachFoundItem.Value.VoClass.Name));
+                // context.ReportDiagnostic(
+                //     DiagnosticItems.UsingNewProhibited(eachFoundItem.Value.Location, eachFoundItem.Value.VoClass.Name));
             }
         }
     }

@@ -8,6 +8,7 @@ public class Program
 {
     public static async Task Main()
     {
+        var x = new MyIntVo();
         await Task.CompletedTask;
 
         // var vo = Activator.CreateInstance<MyIntVo>();
