@@ -240,7 +240,7 @@ Each Value Object can have it's own *optional* configuration. Configuration incl
 If any of those above are not specified, then global configuration is inferred. It looks like this:
 
 ```csharp
-[assembly: VogenDefaults(underlyingType: typeof(int), conversions: Conversions.None, throws: typeof(ValueObjectValidationException))]
+[assembly: VogenDefaults(underlyingType: typeof(int), conversions: Conversions.None, typeOfValidationException: typeof(ValueObjectValidationException))]
 ```
 
 Those again are optional. If they're not specified, then they are defaulted to:

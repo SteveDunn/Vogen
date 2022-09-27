@@ -6,7 +6,7 @@ namespace Vogen
     using System;
 
     [AttributeUsage(AttributeTargets.Assembly, AllowMultiple = false)]
-    public sealed class VogenDefaultsAttribute : Attribute
+    public class VogenDefaultsAttribute : Attribute
     {
         /// <summary>
         /// Creates a new instance of a type that represents the default
@@ -20,12 +20,12 @@ namespace Vogen
         public VogenDefaultsAttribute(
             Type? underlyingType = null,
             Conversions conversions = Conversions.Default,
-            Type? typeOfValidationException = null,
+            Type? throws = null,
             Customizations customizations = Customizations.None,
             DeserializationStrictness deserializationStrictness = DeserializationStrictness.AllowValidAndKnownInstances)
         {
             UnderlyingType = underlyingType ?? typeof(int);
-            TypeOfValidationException = typeOfValidationException ?? typeof(ValueObjectValidationException);
+            TypeOfValidationException = throws ?? typeof(ValueObjectValidationException);
             Conversions = conversions;
             Customizations = customizations;
             DeserializationStrictness = deserializationStrictness;

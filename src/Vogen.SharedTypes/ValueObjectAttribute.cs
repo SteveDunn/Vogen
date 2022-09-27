@@ -7,7 +7,7 @@
     /// source generator can augment the type with equality and validation.
     /// </summary>
     [AttributeUsage(AttributeTargets.Class | AttributeTargets.Struct, AllowMultiple = false)]
-    public sealed class ValueObjectAttribute : Attribute
+    public class ValueObjectAttribute : Attribute
     {
         // keep this signature in-line with `VogenConfiguration`
         // as the syntax/semantics are read in the generator
@@ -15,13 +15,13 @@
         public ValueObjectAttribute(
             Type? underlyingType = null,
             Conversions conversions = Conversions.Default,
-            Type? validationExceptionType = null,
+            Type? throws = null!,
             Customizations customizations = Customizations.None,
             DeserializationStrictness deserializationStrictness = DeserializationStrictness.AllowValidAndKnownInstances)
         {
             UnderlyingType = underlyingType;
             Conversions = conversions;
-            ValidationExceptionType = validationExceptionType;
+            ValidationExceptionType = throws;
             Customizations = customizations;
             DeserializationStrictness = deserializationStrictness;
         }
