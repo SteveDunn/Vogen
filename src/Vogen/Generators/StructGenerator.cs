@@ -18,7 +18,7 @@ using Vogen;
     {Util.GenerateAnyConversionAttributes(tds, item)}
     [global::System.Diagnostics.DebuggerTypeProxyAttribute(typeof({structName}DebugView))]
     [global::System.Diagnostics.DebuggerDisplayAttribute(""Underlying type: {itemUnderlyingType}, Value = {{ _value }}"")]
-    { Util.GenerateModifiersFor(tds)} struct {structName} : global::System.IEquatable<{structName}> {Util.GenerateIComparableHeaderIfNeeded(", ", item, tds)}
+    { Util.GenerateModifiersFor(tds)} struct {structName} : global::System.IEquatable<{structName}>, global::System.IEquatable<{itemUnderlyingType}> {Util.GenerateIComparableHeaderIfNeeded(", ", item, tds)}
     {{
 #if DEBUG    
         private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
