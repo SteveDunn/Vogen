@@ -1,10 +1,20 @@
 <Project>
   <PropertyGroup>
     <LangVersion>preview</LangVersion>
-    <NoWarn>$(NoWarn);CS1701;CS1702;CS1591</NoWarn>
+    <NoWarn>$(NoWarn);CS1701;CS1702;CS1591;CA1014;CS9057</NoWarn>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
     <PackageOutputPath>$(MSBuildThisFileDirectory)\artifacts</PackageOutputPath>
     <CheckEolTargetFramework>false</CheckEolTargetFramework>
+    <AnalysisLevel>latest</AnalysisLevel>
+    <EnableNETAnalyzers>true</EnableNETAnalyzers>
+    <!-- <AnalysisMode>AllEnabledByDefault</AnalysisMode> -->
+    <Deterministic>true</Deterministic>
   </PropertyGroup>
-  
+  <ItemGroup>
+    <PackageReference Include="DotNet.ReproducibleBuilds" Version="1.1.1">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+
 </Project>

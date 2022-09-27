@@ -6,7 +6,7 @@ namespace Vogen
     using System;
 
     [AttributeUsage(AttributeTargets.Assembly, AllowMultiple = false)]
-    public class VogenDefaultsAttribute : Attribute
+    public sealed class VogenDefaultsAttribute : Attribute
     {
         /// <summary>
         /// Creates a new instance of a type that represents the default
@@ -18,14 +18,14 @@ namespace Vogen
         /// <param name="customizations">Any customizations, for instance, treating numbers in [de]serialization as strings.</param>
         /// <param name="deserializationStrictness">The strictness of validation when deserializing.</param>
         public VogenDefaultsAttribute(
-            Type? underlyingType = null!,
+            Type? underlyingType = null,
             Conversions conversions = Conversions.Default,
-            Type? throws = null!,
+            Type? typeOfValidationException = null,
             Customizations customizations = Customizations.None,
             DeserializationStrictness deserializationStrictness = DeserializationStrictness.AllowValidAndKnownInstances)
         {
             UnderlyingType = underlyingType ?? typeof(int);
-            TypeOfValidationException = throws ?? typeof(ValueObjectValidationException);
+            TypeOfValidationException = typeOfValidationException ?? typeof(ValueObjectValidationException);
             Conversions = conversions;
             Customizations = customizations;
             DeserializationStrictness = deserializationStrictness;
