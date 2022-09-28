@@ -27,7 +27,7 @@ namespace Whatever
     
     [global::System.Diagnostics.DebuggerTypeProxyAttribute(typeof(internal_sealed_partial_classConversions_EfCoreValueConverterbyteDebugView))]
     [global::System.Diagnostics.DebuggerDisplayAttribute("Underlying type: System.Byte, Value = { _value }")]
-    internal sealed partial class internal_sealed_partial_classConversions_EfCoreValueConverterbyte : global::System.IEquatable<internal_sealed_partial_classConversions_EfCoreValueConverterbyte> ,  global::System.IComparable<internal_sealed_partial_classConversions_EfCoreValueConverterbyte>
+    internal sealed partial class internal_sealed_partial_classConversions_EfCoreValueConverterbyte : global::System.IEquatable<internal_sealed_partial_classConversions_EfCoreValueConverterbyte>, global::System.IEquatable<System.Byte> ,  global::System.IComparable<internal_sealed_partial_classConversions_EfCoreValueConverterbyte>
     {
 #if DEBUG    
         private readonly global::System.Diagnostics.StackTrace _stackTrace = null;

@@ -29,7 +29,7 @@ namespace Whatever
 
     [global::System.Diagnostics.DebuggerTypeProxyAttribute(typeof(BothJsonLongVoDebugView))]
     [global::System.Diagnostics.DebuggerDisplayAttribute("Underlying type: long, Value = { _value }")]
-    public partial struct BothJsonLongVo : global::System.IEquatable<BothJsonLongVo> ,  global::System.IComparable<BothJsonLongVo>
+    public partial struct BothJsonLongVo : global::System.IEquatable<BothJsonLongVo>, global::System.IEquatable<long> ,  global::System.IComparable<BothJsonLongVo>
     {
 #if DEBUG    
         private readonly global::System.Diagnostics.StackTrace _stackTrace = null;

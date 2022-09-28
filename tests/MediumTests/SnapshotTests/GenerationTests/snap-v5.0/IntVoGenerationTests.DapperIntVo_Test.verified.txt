@@ -27,7 +27,7 @@ namespace Whatever
     
     [global::System.Diagnostics.DebuggerTypeProxyAttribute(typeof(DapperIntVoDebugView))]
     [global::System.Diagnostics.DebuggerDisplayAttribute("Underlying type: int, Value = { _value }")]
-    public partial struct DapperIntVo : global::System.IEquatable<DapperIntVo> ,  global::System.IComparable<DapperIntVo>
+    public partial struct DapperIntVo : global::System.IEquatable<DapperIntVo>, global::System.IEquatable<int> ,  global::System.IComparable<DapperIntVo>
     {
 #if DEBUG    
         private readonly global::System.Diagnostics.StackTrace _stackTrace = null;

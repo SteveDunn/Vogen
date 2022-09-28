@@ -27,7 +27,7 @@ namespace Whatever
     
     [global::System.Diagnostics.DebuggerTypeProxyAttribute(typeof(internal_partial_classConversions_LinqToDbValueConverterSystemDebugView))]
     [global::System.Diagnostics.DebuggerDisplayAttribute("Underlying type: System.Guid, Value = { _value }")]
-    internal partial class internal_partial_classConversions_LinqToDbValueConverterSystem : global::System.IEquatable<internal_partial_classConversions_LinqToDbValueConverterSystem> ,  global::System.IComparable<internal_partial_classConversions_LinqToDbValueConverterSystem>
+    internal partial class internal_partial_classConversions_LinqToDbValueConverterSystem : global::System.IEquatable<internal_partial_classConversions_LinqToDbValueConverterSystem>, global::System.IEquatable<System.Guid> ,  global::System.IComparable<internal_partial_classConversions_LinqToDbValueConverterSystem>
     {
 #if DEBUG    
         private readonly global::System.Diagnostics.StackTrace _stackTrace = null;

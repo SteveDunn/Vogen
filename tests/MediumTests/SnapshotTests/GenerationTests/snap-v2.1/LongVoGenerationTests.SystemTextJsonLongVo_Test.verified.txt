@@ -28,7 +28,7 @@ namespace Whatever
 
     [global::System.Diagnostics.DebuggerTypeProxyAttribute(typeof(SystemTextJsonLongVoDebugView))]
     [global::System.Diagnostics.DebuggerDisplayAttribute("Underlying type: long, Value = { _value }")]
-    public partial struct SystemTextJsonLongVo : global::System.IEquatable<SystemTextJsonLongVo> ,  global::System.IComparable<SystemTextJsonLongVo>
+    public partial struct SystemTextJsonLongVo : global::System.IEquatable<SystemTextJsonLongVo>, global::System.IEquatable<long> ,  global::System.IComparable<SystemTextJsonLongVo>
     {
 #if DEBUG    
         private readonly global::System.Diagnostics.StackTrace _stackTrace = null;

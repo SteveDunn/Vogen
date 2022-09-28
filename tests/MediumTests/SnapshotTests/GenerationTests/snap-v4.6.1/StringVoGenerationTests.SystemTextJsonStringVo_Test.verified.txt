@@ -28,7 +28,7 @@ namespace Whatever
 
     [global::System.Diagnostics.DebuggerTypeProxyAttribute(typeof(SystemTextJsonStringVoDebugView))]
     [global::System.Diagnostics.DebuggerDisplayAttribute("Underlying type: string, Value = { _value }")]
-    public partial struct SystemTextJsonStringVo : global::System.IEquatable<SystemTextJsonStringVo> ,  global::System.IComparable<SystemTextJsonStringVo>
+    public partial struct SystemTextJsonStringVo : global::System.IEquatable<SystemTextJsonStringVo>, global::System.IEquatable<string> ,  global::System.IComparable<SystemTextJsonStringVo>
     {
 #if DEBUG    
         private readonly global::System.Diagnostics.StackTrace _stackTrace = null;

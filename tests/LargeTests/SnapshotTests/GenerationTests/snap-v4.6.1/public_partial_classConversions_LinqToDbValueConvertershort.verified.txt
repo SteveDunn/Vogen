@@ -27,7 +27,7 @@ namespace Whatever
     
     [global::System.Diagnostics.DebuggerTypeProxyAttribute(typeof(public_partial_classConversions_LinqToDbValueConvertershortDebugView))]
     [global::System.Diagnostics.DebuggerDisplayAttribute("Underlying type: System.Int16, Value = { _value }")]
-    public partial class public_partial_classConversions_LinqToDbValueConvertershort : global::System.IEquatable<public_partial_classConversions_LinqToDbValueConvertershort> ,  global::System.IComparable<public_partial_classConversions_LinqToDbValueConvertershort>
+    public partial class public_partial_classConversions_LinqToDbValueConvertershort : global::System.IEquatable<public_partial_classConversions_LinqToDbValueConvertershort>, global::System.IEquatable<System.Int16> ,  global::System.IComparable<public_partial_classConversions_LinqToDbValueConvertershort>
     {
 #if DEBUG    
         private readonly global::System.Diagnostics.StackTrace _stackTrace = null;

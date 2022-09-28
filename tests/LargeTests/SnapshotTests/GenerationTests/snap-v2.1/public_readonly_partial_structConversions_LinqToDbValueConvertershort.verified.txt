@@ -27,7 +27,7 @@ namespace Whatever
     
     [global::System.Diagnostics.DebuggerTypeProxyAttribute(typeof(public_readonly_partial_structConversions_LinqToDbValueConvertershortDebugView))]
     [global::System.Diagnostics.DebuggerDisplayAttribute("Underlying type: short, Value = { _value }")]
-    public readonly partial struct public_readonly_partial_structConversions_LinqToDbValueConvertershort : global::System.IEquatable<public_readonly_partial_structConversions_LinqToDbValueConvertershort> ,  global::System.IComparable<public_readonly_partial_structConversions_LinqToDbValueConvertershort>
+    public readonly partial struct public_readonly_partial_structConversions_LinqToDbValueConvertershort : global::System.IEquatable<public_readonly_partial_structConversions_LinqToDbValueConvertershort>, global::System.IEquatable<short> ,  global::System.IComparable<public_readonly_partial_structConversions_LinqToDbValueConvertershort>
     {
 #if DEBUG    
         private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
