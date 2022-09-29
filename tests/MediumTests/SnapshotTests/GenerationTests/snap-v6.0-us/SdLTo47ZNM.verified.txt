@@ -28,7 +28,7 @@ namespace Whatever
 
     [global::System.Diagnostics.DebuggerTypeProxyAttribute(typeof(internal_sealed_partial_classConversions_TypeConverterSystemDebugView))]
     [global::System.Diagnostics.DebuggerDisplayAttribute("Underlying type: System.DateTime, Value = { _value }")]
-    internal sealed partial class internal_sealed_partial_classConversions_TypeConverterSystem : global::System.IEquatable<internal_sealed_partial_classConversions_TypeConverterSystem> ,  global::System.IComparable<internal_sealed_partial_classConversions_TypeConverterSystem>
+    internal sealed partial class internal_sealed_partial_classConversions_TypeConverterSystem : global::System.IEquatable<internal_sealed_partial_classConversions_TypeConverterSystem>, global::System.IEquatable<System.DateTime> ,  global::System.IComparable<internal_sealed_partial_classConversions_TypeConverterSystem>
     {
 #if DEBUG    
         private readonly global::System.Diagnostics.StackTrace _stackTrace = null;

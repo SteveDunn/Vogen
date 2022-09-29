@@ -27,7 +27,7 @@ namespace Whatever
     
     [global::System.Diagnostics.DebuggerTypeProxyAttribute(typeof(NoConverterGuidVoDebugView))]
     [global::System.Diagnostics.DebuggerDisplayAttribute("Underlying type: System.Guid, Value = { _value }")]
-    public partial struct NoConverterGuidVo : global::System.IEquatable<NoConverterGuidVo> ,  global::System.IComparable<NoConverterGuidVo>
+    public partial struct NoConverterGuidVo : global::System.IEquatable<NoConverterGuidVo>, global::System.IEquatable<System.Guid> ,  global::System.IComparable<NoConverterGuidVo>
     {
 #if DEBUG    
         private readonly global::System.Diagnostics.StackTrace _stackTrace = null;

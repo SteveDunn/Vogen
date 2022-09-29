@@ -28,7 +28,7 @@ namespace Whatever
 
     [global::System.Diagnostics.DebuggerTypeProxyAttribute(typeof(internal_partial_structConversions_TypeConverterfloatDebugView))]
     [global::System.Diagnostics.DebuggerDisplayAttribute("Underlying type: float, Value = { _value }")]
-    internal partial struct internal_partial_structConversions_TypeConverterfloat : global::System.IEquatable<internal_partial_structConversions_TypeConverterfloat> ,  global::System.IComparable<internal_partial_structConversions_TypeConverterfloat>
+    internal partial struct internal_partial_structConversions_TypeConverterfloat : global::System.IEquatable<internal_partial_structConversions_TypeConverterfloat>, global::System.IEquatable<float> ,  global::System.IComparable<internal_partial_structConversions_TypeConverterfloat>
     {
 #if DEBUG    
         private readonly global::System.Diagnostics.StackTrace _stackTrace = null;

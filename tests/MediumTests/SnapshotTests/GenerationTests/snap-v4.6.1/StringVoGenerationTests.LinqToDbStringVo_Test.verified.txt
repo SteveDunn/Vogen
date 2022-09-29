@@ -27,7 +27,7 @@ namespace Whatever
     
     [global::System.Diagnostics.DebuggerTypeProxyAttribute(typeof(LinqToDbStringVoDebugView))]
     [global::System.Diagnostics.DebuggerDisplayAttribute("Underlying type: string, Value = { _value }")]
-    public partial struct LinqToDbStringVo : global::System.IEquatable<LinqToDbStringVo> ,  global::System.IComparable<LinqToDbStringVo>
+    public partial struct LinqToDbStringVo : global::System.IEquatable<LinqToDbStringVo>, global::System.IEquatable<string> ,  global::System.IComparable<LinqToDbStringVo>
     {
 #if DEBUG    
         private readonly global::System.Diagnostics.StackTrace _stackTrace = null;

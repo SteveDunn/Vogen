@@ -28,7 +28,7 @@ namespace @class
 
     [global::System.Diagnostics.DebuggerTypeProxyAttribute(typeof(escapedTestspublic_partial_structConversions_NewtonsoftJsondoubleDebugView))]
     [global::System.Diagnostics.DebuggerDisplayAttribute("Underlying type: double, Value = { _value }")]
-    public partial struct escapedTestspublic_partial_structConversions_NewtonsoftJsondouble : global::System.IEquatable<escapedTestspublic_partial_structConversions_NewtonsoftJsondouble> ,  global::System.IComparable<escapedTestspublic_partial_structConversions_NewtonsoftJsondouble>
+    public partial struct escapedTestspublic_partial_structConversions_NewtonsoftJsondouble : global::System.IEquatable<escapedTestspublic_partial_structConversions_NewtonsoftJsondouble>, global::System.IEquatable<double> ,  global::System.IComparable<escapedTestspublic_partial_structConversions_NewtonsoftJsondouble>
     {
 #if DEBUG    
         private readonly global::System.Diagnostics.StackTrace _stackTrace = null;

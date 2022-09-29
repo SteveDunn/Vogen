@@ -28,7 +28,7 @@ namespace Whatever
 
     [global::System.Diagnostics.DebuggerTypeProxyAttribute(typeof(public_readonly_partial_structConversions_TypeConverterSystemDebugView))]
     [global::System.Diagnostics.DebuggerDisplayAttribute("Underlying type: System.Guid, Value = { _value }")]
-    public readonly partial struct public_readonly_partial_structConversions_TypeConverterSystem : global::System.IEquatable<public_readonly_partial_structConversions_TypeConverterSystem> ,  global::System.IComparable<public_readonly_partial_structConversions_TypeConverterSystem>
+    public readonly partial struct public_readonly_partial_structConversions_TypeConverterSystem : global::System.IEquatable<public_readonly_partial_structConversions_TypeConverterSystem>, global::System.IEquatable<System.Guid> ,  global::System.IComparable<public_readonly_partial_structConversions_TypeConverterSystem>
     {
 #if DEBUG    
         private readonly global::System.Diagnostics.StackTrace _stackTrace = null;

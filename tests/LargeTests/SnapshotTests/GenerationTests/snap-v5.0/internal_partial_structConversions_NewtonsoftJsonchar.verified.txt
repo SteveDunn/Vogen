@@ -28,7 +28,7 @@ namespace Whatever
 
     [global::System.Diagnostics.DebuggerTypeProxyAttribute(typeof(internal_partial_structConversions_NewtonsoftJsoncharDebugView))]
     [global::System.Diagnostics.DebuggerDisplayAttribute("Underlying type: char, Value = { _value }")]
-    internal partial struct internal_partial_structConversions_NewtonsoftJsonchar : global::System.IEquatable<internal_partial_structConversions_NewtonsoftJsonchar> ,  global::System.IComparable<internal_partial_structConversions_NewtonsoftJsonchar>
+    internal partial struct internal_partial_structConversions_NewtonsoftJsonchar : global::System.IEquatable<internal_partial_structConversions_NewtonsoftJsonchar>, global::System.IEquatable<char> ,  global::System.IComparable<internal_partial_structConversions_NewtonsoftJsonchar>
     {
 #if DEBUG    
         private readonly global::System.Diagnostics.StackTrace _stackTrace = null;

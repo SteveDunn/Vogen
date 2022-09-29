@@ -28,7 +28,7 @@ namespace Whatever
 
     [global::System.Diagnostics.DebuggerTypeProxyAttribute(typeof(public_readonly_partial_structConversions_SystemTextJsonstringDebugView))]
     [global::System.Diagnostics.DebuggerDisplayAttribute("Underlying type: string, Value = { _value }")]
-    public readonly partial struct public_readonly_partial_structConversions_SystemTextJsonstring : global::System.IEquatable<public_readonly_partial_structConversions_SystemTextJsonstring> ,  global::System.IComparable<public_readonly_partial_structConversions_SystemTextJsonstring>
+    public readonly partial struct public_readonly_partial_structConversions_SystemTextJsonstring : global::System.IEquatable<public_readonly_partial_structConversions_SystemTextJsonstring>, global::System.IEquatable<string> ,  global::System.IComparable<public_readonly_partial_structConversions_SystemTextJsonstring>
     {
 #if DEBUG    
         private readonly global::System.Diagnostics.StackTrace _stackTrace = null;

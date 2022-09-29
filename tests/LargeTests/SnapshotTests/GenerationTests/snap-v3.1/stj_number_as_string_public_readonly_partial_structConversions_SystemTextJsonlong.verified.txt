@@ -28,7 +28,7 @@ namespace Whatever
 
     [global::System.Diagnostics.DebuggerTypeProxyAttribute(typeof(stj_number_as_string_public_readonly_partial_structConversions_SystemTextJsonlongDebugView))]
     [global::System.Diagnostics.DebuggerDisplayAttribute("Underlying type: long, Value = { _value }")]
-    public readonly partial struct stj_number_as_string_public_readonly_partial_structConversions_SystemTextJsonlong : global::System.IEquatable<stj_number_as_string_public_readonly_partial_structConversions_SystemTextJsonlong> ,  global::System.IComparable<stj_number_as_string_public_readonly_partial_structConversions_SystemTextJsonlong>
+    public readonly partial struct stj_number_as_string_public_readonly_partial_structConversions_SystemTextJsonlong : global::System.IEquatable<stj_number_as_string_public_readonly_partial_structConversions_SystemTextJsonlong>, global::System.IEquatable<long> ,  global::System.IComparable<stj_number_as_string_public_readonly_partial_structConversions_SystemTextJsonlong>
     {
 #if DEBUG    
         private readonly global::System.Diagnostics.StackTrace _stackTrace = null;

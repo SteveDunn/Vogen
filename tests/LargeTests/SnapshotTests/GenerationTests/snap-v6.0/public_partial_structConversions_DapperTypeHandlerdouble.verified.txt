@@ -27,7 +27,7 @@ namespace Whatever
     
     [global::System.Diagnostics.DebuggerTypeProxyAttribute(typeof(public_partial_structConversions_DapperTypeHandlerdoubleDebugView))]
     [global::System.Diagnostics.DebuggerDisplayAttribute("Underlying type: double, Value = { _value }")]
-    public partial struct public_partial_structConversions_DapperTypeHandlerdouble : global::System.IEquatable<public_partial_structConversions_DapperTypeHandlerdouble> ,  global::System.IComparable<public_partial_structConversions_DapperTypeHandlerdouble>
+    public partial struct public_partial_structConversions_DapperTypeHandlerdouble : global::System.IEquatable<public_partial_structConversions_DapperTypeHandlerdouble>, global::System.IEquatable<double> ,  global::System.IComparable<public_partial_structConversions_DapperTypeHandlerdouble>
     {
 #if DEBUG    
         private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
