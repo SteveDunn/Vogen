@@ -27,7 +27,7 @@
   </ItemGroup>
   
   <ItemGroup Condition=" '$(TargetFramework)' == 'net461'">
-    <PackageReference Include="SQLitePCLRaw.bundle_winsqlite3" Version="2.1.0" />
+    <PackageReference Include="SQLitePCLRaw.bundle_winsqlite3" Version="2.1.2" />
   </ItemGroup>
   
   
@@ -41,7 +41,7 @@
 		<!-- <PackageReference Include="Microsoft.CodeAnalysis.Common" Version="4.3.0" /> -->
 		<!-- <PackageReference Include="Microsoft.CodeAnalysis.CSharp" Version="4.3.0" /> -->
 
-    <PackageReference Include="Microsoft.CodeAnalysis.CSharp.Workspaces" />
+    <!-- <PackageReference Include="Microsoft.CodeAnalysis.CSharp.Workspaces" /> -->
 
     <PackageReference Include="GitHubActionsTestLogger" Version="2.0.1">
       <PrivateAssets>all</PrivateAssets>
