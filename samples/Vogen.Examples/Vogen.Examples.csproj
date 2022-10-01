@@ -31,7 +31,12 @@
     <PackageReference Include="linq2db" Version="3.7.0" />
   </ItemGroup>
 
-  <ItemGroup>
+	<ItemGroup Condition=" '$(TargetFramework)' == 'net461'">
+		<PackageReference Include="SQLitePCLRaw.bundle_winsqlite3" Version="2.1.0" />
+	</ItemGroup>
+
+
+	<ItemGroup>
     <!-- Note that this is not a "normal" ProjectReference.
          It needs the additional 'OutputItemType' and 'ReferenceOutputAssmbly' attributes. -->
     <ProjectReference Include="..\..\src\Vogen.SharedTypes\Vogen.SharedTypes.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="true" />
