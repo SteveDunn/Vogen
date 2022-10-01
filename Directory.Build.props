@@ -1,7 +1,7 @@
 <Project>
   <PropertyGroup>
     <LangVersion>preview</LangVersion>
-    <NoWarn>$(NoWarn);CS1701;CS1702;CS1591;CA1014;CS9057</NoWarn>
+    <NoWarn>$(NoWarn);CS1701;CS1702;CS1591;CA1014;CS9057;CA2255</NoWarn>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
     <PackageOutputPath>$(MSBuildThisFileDirectory)\artifacts</PackageOutputPath>
     <CheckEolTargetFramework>false</CheckEolTargetFramework>

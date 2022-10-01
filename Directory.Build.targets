@@ -20,11 +20,14 @@
   </PropertyGroup>
 
   <ItemGroup Condition="$(RoslynVersion) == 'latest'">
+    <PackageReference Include="Microsoft.CodeAnalysis.CSharp" Version="4.4.0-2.final" />
+    <PackageReference Include="Microsoft.CodeAnalysis.CSharp.Common" Version="4.4.0-2.final" />
+    
     <PackageReference Update="Microsoft.CodeAnalysis.Analyzers" Version="3.3.3">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-    <PackageReference Update="Microsoft.CodeAnalysis.CSharp.Workspaces" Version="4.3.0" />
+    <PackageReference Update="Microsoft.CodeAnalysis.CSharp.Workspaces" Version="4.4.0-2.final" />
   </ItemGroup>
   <PropertyGroup Condition="$(RoslynVersion) == 'latest'">
     <DefineConstants>$(DefineConstants);ROSLYN4;CSHARP9_OR_GREATER</DefineConstants>
