@@ -17,9 +17,12 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "_files", "_files", "{72AF0E
 		.gitattributes = .gitattributes
 		.gitignore = .gitignore
 		Build.ps1 = Build.ps1
+		.github\workflows\build.yaml = .github\workflows\build.yaml
+		.github\workflows\codeql-analysis.yml = .github\workflows\codeql-analysis.yml
 		Directory.Build.props = Directory.Build.props
 		Directory.Build.targets = Directory.Build.targets
 		docs\nuget-readme.md = docs\nuget-readme.md
+		.github\workflows\publish.yaml = .github\workflows\publish.yaml
 		README.md = README.md
 	EndProjectSection
 EndProject
@@ -49,7 +52,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MediumTests", "tests\Medium
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LargeTests", "tests\LargeTests\LargeTests.csproj", "{A8CCC616-C56C-4F2A-83BD-898CDAE70B42}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AnalyzerTests", "tests\AnalyzerTests\AnalyzerTests.csproj", "{89E0B1B1-8CCD-4328-A0D2-4F87E1D57023}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AnalyzerTests", "tests\AnalyzerTests\AnalyzerTests.csproj", "{89E0B1B1-8CCD-4328-A0D2-4F87E1D57023}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
