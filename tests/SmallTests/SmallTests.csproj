@@ -10,6 +10,7 @@
   <ItemGroup Condition=" '$(TargetFramework)' == 'net6.0'">
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.0-*" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="6.0.0-*" />
+    <PackageReference Include="SQLitePCLRaw.bundle_winsqlite3" Version="2.1.0" />
     <PackageReference Include="System.Text.Json" Version="6.0.0-*" />
 
   </ItemGroup>
@@ -17,18 +18,20 @@
   <ItemGroup Condition=" '$(TargetFramework)' == 'net5.0'">
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="5.0.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="5.0.0" />
+    <PackageReference Include="SQLitePCLRaw.bundle_winsqlite3" Version="2.1.0" />
     <PackageReference Include="System.Text.Json" Version="4.7.2" />
   </ItemGroup>
 
   <ItemGroup Condition=" '$(TargetFramework)' != 'net5.0' and '$(TargetFramework)' != 'net6.0'">
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.17" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="3.1.17" />
+    <PackageReference Include="SQLitePCLRaw.bundle_winsqlite3" Version="2.1.0" />
     <PackageReference Include="System.Text.Json" Version="4.7.2" />
   </ItemGroup>
   
-  <ItemGroup Condition=" '$(TargetFramework)' == 'net461'">
-    <PackageReference Include="SQLitePCLRaw.bundle_winsqlite3" Version="2.1.2" />
-  </ItemGroup>
+  <!-- <ItemGroup Condition=" '$(TargetFramework)' == 'net461'"> -->
+  <!--   <PackageReference Include="SQLitePCLRaw.bundle_winsqlite3" Version="2.0.7.1395" /> -->
+  <!-- </ItemGroup> -->
   
   
   <ItemGroup>
