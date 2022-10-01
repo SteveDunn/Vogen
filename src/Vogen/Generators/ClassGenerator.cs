@@ -19,7 +19,7 @@ using Vogen;
     {Util.GenerateAnyConversionAttributes(tds, item)}
     [global::System.Diagnostics.DebuggerTypeProxyAttribute(typeof({className}DebugView))]
     [global::System.Diagnostics.DebuggerDisplayAttribute(""Underlying type: {itemUnderlyingType}, Value = {{ _value }}"")]
-    {Util.GenerateModifiersFor(tds)} class {className} : global::System.IEquatable<{className}> {Util.GenerateIComparableHeaderIfNeeded(", ", item, tds)}
+    {Util.GenerateModifiersFor(tds)} class {className} : global::System.IEquatable<{className}>, global::System.IEquatable<{itemUnderlyingType}> {Util.GenerateIComparableHeaderIfNeeded(", ", item, tds)}
     {{
 #if DEBUG    
         private readonly global::System.Diagnostics.StackTrace _stackTrace = null;

@@ -28,7 +28,7 @@ namespace Whatever
 
     [global::System.Diagnostics.DebuggerTypeProxyAttribute(typeof(NoJsonLongVoDebugView))]
     [global::System.Diagnostics.DebuggerDisplayAttribute("Underlying type: long, Value = { _value }")]
-    public partial struct NoJsonLongVo : global::System.IEquatable<NoJsonLongVo> ,  global::System.IComparable<NoJsonLongVo>
+    public partial struct NoJsonLongVo : global::System.IEquatable<NoJsonLongVo>, global::System.IEquatable<long> ,  global::System.IComparable<NoJsonLongVo>
     {
 #if DEBUG    
         private readonly global::System.Diagnostics.StackTrace _stackTrace = null;

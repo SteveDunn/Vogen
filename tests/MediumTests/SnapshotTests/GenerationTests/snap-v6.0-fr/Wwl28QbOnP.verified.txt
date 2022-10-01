@@ -29,7 +29,7 @@ namespace Whatever
 
     [global::System.Diagnostics.DebuggerTypeProxyAttribute(typeof(public_partial_structcharDebugView))]
     [global::System.Diagnostics.DebuggerDisplayAttribute("Underlying type: char, Value = { _value }")]
-    public partial struct public_partial_structchar : global::System.IEquatable<public_partial_structchar> ,  global::System.IComparable<public_partial_structchar>
+    public partial struct public_partial_structchar : global::System.IEquatable<public_partial_structchar>, global::System.IEquatable<char> ,  global::System.IComparable<public_partial_structchar>
     {
 #if DEBUG    
         private readonly global::System.Diagnostics.StackTrace _stackTrace = null;

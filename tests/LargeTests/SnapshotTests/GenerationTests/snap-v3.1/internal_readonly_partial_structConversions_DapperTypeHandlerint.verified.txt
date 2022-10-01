@@ -27,7 +27,7 @@ namespace Whatever
     
     [global::System.Diagnostics.DebuggerTypeProxyAttribute(typeof(internal_readonly_partial_structConversions_DapperTypeHandlerintDebugView))]
     [global::System.Diagnostics.DebuggerDisplayAttribute("Underlying type: int, Value = { _value }")]
-    internal readonly partial struct internal_readonly_partial_structConversions_DapperTypeHandlerint : global::System.IEquatable<internal_readonly_partial_structConversions_DapperTypeHandlerint> ,  global::System.IComparable<internal_readonly_partial_structConversions_DapperTypeHandlerint>
+    internal readonly partial struct internal_readonly_partial_structConversions_DapperTypeHandlerint : global::System.IEquatable<internal_readonly_partial_structConversions_DapperTypeHandlerint>, global::System.IEquatable<int> ,  global::System.IComparable<internal_readonly_partial_structConversions_DapperTypeHandlerint>
     {
 #if DEBUG    
         private readonly global::System.Diagnostics.StackTrace _stackTrace = null;

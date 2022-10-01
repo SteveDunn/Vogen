@@ -27,7 +27,7 @@ namespace Whatever
     
     [global::System.Diagnostics.DebuggerTypeProxyAttribute(typeof(LinqToDbShortVoDebugView))]
     [global::System.Diagnostics.DebuggerDisplayAttribute("Underlying type: short, Value = { _value }")]
-    public partial struct LinqToDbShortVo : global::System.IEquatable<LinqToDbShortVo> ,  global::System.IComparable<LinqToDbShortVo>
+    public partial struct LinqToDbShortVo : global::System.IEquatable<LinqToDbShortVo>, global::System.IEquatable<short> ,  global::System.IComparable<LinqToDbShortVo>
     {
 #if DEBUG    
         private readonly global::System.Diagnostics.StackTrace _stackTrace = null;

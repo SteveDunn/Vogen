@@ -27,7 +27,7 @@ namespace @class
     
     [global::System.Diagnostics.DebuggerTypeProxyAttribute(typeof(escapedTestsinternal_partial_structConversions_NonebyteDebugView))]
     [global::System.Diagnostics.DebuggerDisplayAttribute("Underlying type: byte, Value = { _value }")]
-    internal partial struct escapedTestsinternal_partial_structConversions_Nonebyte : global::System.IEquatable<escapedTestsinternal_partial_structConversions_Nonebyte> ,  global::System.IComparable<escapedTestsinternal_partial_structConversions_Nonebyte>
+    internal partial struct escapedTestsinternal_partial_structConversions_Nonebyte : global::System.IEquatable<escapedTestsinternal_partial_structConversions_Nonebyte>, global::System.IEquatable<byte> ,  global::System.IComparable<escapedTestsinternal_partial_structConversions_Nonebyte>
     {
 #if DEBUG    
         private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
