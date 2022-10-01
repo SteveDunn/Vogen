@@ -13,7 +13,7 @@ namespace Vogen.Examples.SerializationAndConversion
 	public class LinqToDbExamples : IScenario
 	{
 		public Task Run()
-		{
+        {
 			LinqToDbValueConverterUsesValueConverter();
 			return Task.CompletedTask;
 		}

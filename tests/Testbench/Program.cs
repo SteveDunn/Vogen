@@ -8,7 +8,11 @@ public class Program
 {
     public static async Task Main()
     {
-        // var x = new MyIntVo();
+        var x = LinqToDbStringVo.From("123");
+        var y = new LinqToDbStringVo.LinqToDbValueConverter();
+        
+
+            // var x = new MyIntVo();
         await Task.CompletedTask;
 
         // var vo = Activator.CreateInstance<MyIntVo>();
@@ -17,5 +21,9 @@ public class Program
     }
 }
 
-[ValueObject(conversions: Conversions.None, underlyingType: typeof(int))]
-public readonly partial struct MyIntVo { }
+[ValueObject(conversions: Conversions.LinqToDbValueConverter, underlyingType: typeof(string))]
+public partial struct LinqToDbStringVo { }
+
+
+// [ValueObject(conversions: Conversions.None, underlyingType: typeof(int))]
+// public readonly partial struct MyIntVo { }
