@@ -18,9 +18,9 @@ namespace Vogen
         /// <param name="customizations">Any customizations, for instance, treating numbers in [de]serialization as strings.</param>
         /// <param name="deserializationStrictness">The strictness of validation when deserializing.</param>
         public VogenDefaultsAttribute(
-            Type? underlyingType = null,
+            Type? underlyingType = null!,
             Conversions conversions = Conversions.Default,
-            Type? throws = null,
+            Type? throws = null!,
             Customizations customizations = Customizations.None,
             DeserializationStrictness deserializationStrictness = DeserializationStrictness.AllowValidAndKnownInstances)
         {

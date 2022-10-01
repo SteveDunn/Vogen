@@ -3,7 +3,7 @@
 namespace Vogen;
 
 [AttributeUsage(AttributeTargets.Class | AttributeTargets.Struct, AllowMultiple = true)]
-public sealed class InstanceAttribute : Attribute
+public class InstanceAttribute : Attribute
 {
     public object Value { get; }
 
