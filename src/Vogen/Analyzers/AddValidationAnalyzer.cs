@@ -64,10 +64,9 @@ namespace Vogen.Analyzers
                 return;
             }
 
+            AttributeData? attr = attributes.SingleOrDefault(a => a.AttributeClass?.FullName() is "Vogen.ValueObjectAttribute");
 
-            bool isVo = attributes.Any(a => a.AttributeClass?.FullName() is "Vogen.ValueObjectAttribute");
-
-            if (!isVo)
+            if (attr is null)
             {
                 return;
             }
@@ -80,27 +79,16 @@ namespace Vogen.Analyzers
             // }
             //
             var voTypeSyntax = namedTypeSymbol;
+            
+            // the first argument is the type - if it's null, then then it's an int
+            TypedConstant firstArg = attr.ConstructorArguments[0];
+
+            if (firstArg.Kind != TypedConstantKind.Type) return;
+            
+
+            string retType = firstArg.Value?.ToString() ?? "int";
 
             bool found = false;
-
-            bool foundReturnType = false;
-
-            string retType = "";
-
-            foreach (ISymbol? memberDeclarationSyntax in voTypeSyntax.GetMembers("_value"))
-            {
-                if (memberDeclarationSyntax is IFieldSymbol mds)
-                {
-                    retType = mds.Type.Name + "!!";
-                    foundReturnType = true;
-                    break;
-                }
-            }
-
-            if (!foundReturnType)
-            {
-                return;
-            }
 
             foreach (ISymbol? memberDeclarationSyntax in voTypeSyntax.GetMembers("Validate"))
             {
@@ -126,7 +114,7 @@ namespace Vogen.Analyzers
 
             Dictionary<string, string?> properties = new()
             {
-                { "PrimitiveType", retType + "#"}
+                { "PrimitiveType", retType}
             };
 
             var diagnostic = Diagnostic.Create(
