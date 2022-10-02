@@ -20,10 +20,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "_files", "_files", "{72AF0E
 		.github\workflows\build.yaml = .github\workflows\build.yaml
 		.github\workflows\codeql-analysis.yml = .github\workflows\codeql-analysis.yml
 		Directory.Build.props = Directory.Build.props
-		Directory.Build.targets = Directory.Build.targets
 		docs\nuget-readme.md = docs\nuget-readme.md
 		.github\workflows\publish.yaml = .github\workflows\publish.yaml
 		README.md = README.md
+		__Directory.Build.targets__ = __Directory.Build.targets__
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "samples", "samples", "{106ACB2D-8F44-4B80-AC38-3B43CB648774}"
@@ -61,7 +61,6 @@ Global
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{D77B4296-FD1F-469A-B5ED-3EDF4EF3DFDD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D77B4296-FD1F-469A-B5ED-3EDF4EF3DFDD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D77B4296-FD1F-469A-B5ED-3EDF4EF3DFDD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D77B4296-FD1F-469A-B5ED-3EDF4EF3DFDD}.Release|Any CPU.Build.0 = Release|Any CPU
 		{23A799DB-6FCE-462D-8F7D-76F4B1FAD20B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -89,11 +88,9 @@ Global
 		{269BDF34-CF19-4FEB-90F8-48A08236AF6A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{269BDF34-CF19-4FEB-90F8-48A08236AF6A}.Release|Any CPU.Build.0 = Release|Any CPU
 		{A8CCC616-C56C-4F2A-83BD-898CDAE70B42}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{A8CCC616-C56C-4F2A-83BD-898CDAE70B42}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A8CCC616-C56C-4F2A-83BD-898CDAE70B42}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A8CCC616-C56C-4F2A-83BD-898CDAE70B42}.Release|Any CPU.Build.0 = Release|Any CPU
 		{89E0B1B1-8CCD-4328-A0D2-4F87E1D57023}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{89E0B1B1-8CCD-4328-A0D2-4F87E1D57023}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{89E0B1B1-8CCD-4328-A0D2-4F87E1D57023}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{89E0B1B1-8CCD-4328-A0D2-4F87E1D57023}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
