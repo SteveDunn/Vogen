@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
+using Vogen.Analyzers;
 
 namespace Vogen.Diagnostics;
 
@@ -28,7 +29,7 @@ internal static class DiagnosticItems
         "Using Reflection to create Value Objects is prohibited",
         "Type '{0}' cannot be constructed via Reflection as it is prohibited.");
 
-    private static readonly DiagnosticDescriptor _usingNewProhibited = CreateDescriptor(
+    public static readonly DiagnosticDescriptor _usingNewProhibited = CreateDescriptor(
         DiagnosticCode.UsingNewProhibited,
         "Using new to create Value Objects is prohibited. Please use the From method for creation.",
         "Type '{0}' cannot be constructed with 'new' as it is prohibited.");
@@ -212,7 +213,7 @@ internal static class DiagnosticItems
         return new DiagnosticDescriptor(code.Format(), title, messageFormat, "Vogen", severity, isEnabledByDefault: true, customTags: tags);
     }
 
-    private static Diagnostic BuildDiagnostic(DiagnosticDescriptor descriptor, string name, Location location) => 
+    public static Diagnostic BuildDiagnostic(DiagnosticDescriptor descriptor, string name, Location location) => 
         Diagnostic.Create(descriptor, location, name);
 
     private static Diagnostic Create(DiagnosticDescriptor descriptor, IEnumerable<Location> locations, params object?[] args)

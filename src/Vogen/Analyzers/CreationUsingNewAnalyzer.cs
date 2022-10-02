@@ -46,13 +46,15 @@ public class CreationUsingNewAnalyzer : IIncrementalGenerator
 
     static void Execute(ImmutableArray<FoundItem?> typeDeclarations, SourceProductionContext context)
     {
-        foreach (FoundItem? eachFoundItem in typeDeclarations)
-        {
-            if (eachFoundItem is not null)
-            {
-                context.ReportDiagnostic(
-                    DiagnosticItems.UsingNewProhibited(eachFoundItem.Value.Location, eachFoundItem.Value.VoClass.Name));
-            }
-        }
+        return;
+        
+        // foreach (FoundItem? eachFoundItem in typeDeclarations)
+        // {
+        //     if (eachFoundItem is not null)
+        //     {
+        //         context.ReportDiagnostic(
+        //             DiagnosticItems.UsingNewProhibited(eachFoundItem.Value.Location, eachFoundItem.Value.VoClass.Name));
+        //     }
+        // }
     }
 }
