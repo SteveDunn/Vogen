@@ -2,12 +2,11 @@
 using System.Threading.Tasks;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.Testing;
-using Microsoft.CSharp;
+using SmallTests.AnalyzerTests;
 using Vogen;
-using Xunit;
-using VerifyCS = Analyzer1.Test.CSharpAnalyzerVerifier<Vogen.Analyzers.AddValidationAnalyzer>;
+using VerifyCS = Analyzer1.Test.CSharpCodeFixVerifier<Vogen.Analyzers.AddValidationAnalyzer, Vogen.Analyzers.AddValidationAnalyzerCodeFixProvider>;
 
-namespace SmallTests.AnalyzerTests
+namespace AnalyzerTests
 {
     public class AddValidationAnalyzerTests
     {
@@ -80,7 +79,7 @@ namespace ConsoleApplication1
 
                 CompilerDiagnostics = CompilerDiagnostics.Suggestions,
                 ReferenceAssemblies = referenceAssemblies,
-//                FixedCode = output,
+                FixedCode = output,
                 ExpectedDiagnostics = { expected },
             };
 

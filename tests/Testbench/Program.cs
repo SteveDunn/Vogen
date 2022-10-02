@@ -22,8 +22,13 @@ public class Program
 }
 
 [ValueObject(conversions: Conversions.LinqToDbValueConverter, underlyingType: typeof(string))]
-public partial struct LinqToDbStringVo { }
+public partial class LinqToDbStringVo { }
 
 
-// [ValueObject(conversions: Conversions.None, underlyingType: typeof(int))]
-// public readonly partial struct MyIntVo { }
+[ValueObject(conversions: Conversions.None, underlyingType: typeof(int))]
+public readonly partial struct MyIntVo { }
+
+[ValueObject]
+public partial class Age
+{
+}
