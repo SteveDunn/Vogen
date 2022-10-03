@@ -1,18 +1,14 @@
-﻿using System;
-using System.Threading.Tasks;
-using Vogen;
+﻿using Vogen;
 
-Console.WriteLine("!!");
+namespace Whatever;
 
-[ValueObject()]
-public partial class Whatever
+
+CustomerId c = default;
+
+[ValueObject(typeof(int))]
+public partial class CustomerId { }
+
+public class Foo
 {
-    //public void Test(MyVo v = new MyVo()) {}
+    public void DoSomething(CustomerId customerId = default) { }
 }
-
-
-[ValueObject]
-public partial struct MyVo
-{
-}
-

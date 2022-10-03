@@ -28,17 +28,15 @@ public class Foo
 {{
     public void DoSomething(CustomerId customerId = default) {{ }}
 }}
-
-CustomerId c = new();
 ";
         
-        var (diagnostics, _) = TestHelper.GetGeneratedOutput<CreationUsingImplicitNewAnalyzer>(source);
+        var (diagnostics, _) = TestHelper.GetGeneratedOutput<CreationUsingDefaultLiteralAnalyzer>(source);
 
         diagnostics.Should().HaveCount(1);
         Diagnostic diagnostic = diagnostics.Single();
 
-        diagnostic.Id.Should().Be("VOG010");
-        diagnostic.ToString().Should().Match("*error VOG010: Type 'CustomerId' cannot be constructed with 'new' as it is prohibited.");
+        diagnostic.Id.Should().Be("VOG009");
+        diagnostic.ToString().Should().Match("*error VOG009: Type 'CustomerId' cannot be constructed with default as it is prohibited.");
     }
 
     [Fact]
