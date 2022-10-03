@@ -82,7 +82,9 @@ namespace Vogen.Analyzers
         
         private static MemberDeclarationSyntax ParseMember(string member)
         {
-            MemberDeclarationSyntax decl = ((ClassDeclarationSyntax)SyntaxFactory.ParseCompilationUnit("class x {\r\n" + member + "\r\n}").Members[0]).Members[0];
+            MemberDeclarationSyntax decl = ((ClassDeclarationSyntax)SyntaxFactory.ParseCompilationUnit($@"class x {{
+{member}
+}}").Members[0]).Members[0];
             return decl.WithAdditionalAnnotations(Formatter.Annotation);
         }
     }
