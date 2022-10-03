@@ -6,4 +6,5 @@
 Rule ID | Category | Severity | Notes
 --------|----------|----------|-------
 AddValidationAnalyzer | Usage | Info | AddValidationAnalyzer
-VOG010 | Usage | Error | CreationUsingNewAnalyzer2
+VOG010 | Usage | Error | DoNotUseNewAnalyzer
+VOG009 | Usage | Error | DoNotUseDefaultAnalyzer

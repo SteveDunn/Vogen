@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
-using Vogen.Analyzers;
 
 namespace Vogen.Diagnostics;
 
@@ -28,11 +27,6 @@ internal static class DiagnosticItems
         DiagnosticCode.UsingActivatorProhibited,
         "Using Reflection to create Value Objects is prohibited",
         "Type '{0}' cannot be constructed via Reflection as it is prohibited.");
-
-    public static readonly DiagnosticDescriptor _usingNewProhibited = CreateDescriptor(
-        DiagnosticCode.UsingNewProhibited,
-        "Using new to create Value Objects is prohibited. Please use the From method for creation.",
-        "Type '{0}' cannot be constructed with 'new' as it is prohibited.");
 
     private static readonly DiagnosticDescriptor _primaryConstructorProhibited = CreateDescriptor(
         DiagnosticCode.PrimaryConstructorProhibited,
@@ -160,9 +154,6 @@ internal static class DiagnosticItems
 
     public static Diagnostic UsingActivatorProhibited(Location locationOfDefaultStatement, string voClassName) => 
         BuildDiagnostic(_usingActivatorProhibited, voClassName, locationOfDefaultStatement);
-
-    public static Diagnostic UsingNewProhibited(Location location, string voClassName) => 
-        BuildDiagnostic(_usingNewProhibited, voClassName, location);
 
     public static Diagnostic PrimaryConstructorProhibited(Location location, string voClassName) => 
         BuildDiagnostic(_primaryConstructorProhibited, voClassName, location);

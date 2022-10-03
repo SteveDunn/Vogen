@@ -1,14 +1,22 @@
-﻿using Vogen;
+﻿using System;
+using Vogen;
+#pragma warning disable CS0219
 
-namespace Whatever;
-
-
-CustomerId c = default;
+MyVo? c = default;
+MyVo? c2 = default(MyVo);
+Console.WriteLine(c!.Value);
+Console.WriteLine(c2!.Value);
 
 [ValueObject(typeof(int))]
-public partial class CustomerId { }
+public partial class MyVo { }
 
-public class Foo
+public class Test
 {
-    public void DoSomething(CustomerId customerId = default) { }
+    public Test()
+    {
+        MyVo c = default!;
+        MyVo c2 = default(MyVo)!;
+    }
+
+    public MyVo Get() => default!;
 }

@@ -4,7 +4,7 @@
     {
         public MyClass()
         {
-            var _ = Whatever.From(123);
+            var _ = MyVo.From(123);
             //var __ = new Whatever();
         }
     }

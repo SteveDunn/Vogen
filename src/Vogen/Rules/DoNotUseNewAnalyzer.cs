@@ -10,6 +10,7 @@ namespace Vogen.Rules;
 internal static class RuleIdentifiers
 {
     public const string UsingNewProhibited = "VOG010";
+    public const string UsingDefaultProhibited = "VOG009";
 }
 
 internal static class RuleCategories
