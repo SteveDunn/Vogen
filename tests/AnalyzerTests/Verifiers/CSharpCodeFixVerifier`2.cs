@@ -7,7 +7,7 @@ using Microsoft.CodeAnalysis.Testing.Verifiers;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Analyzer1.Test
+namespace AnalyzerTests.Verifiers
 {
     public static partial class CSharpCodeFixVerifier<TAnalyzer, TCodeFix>
         where TAnalyzer : DiagnosticAnalyzer, new()

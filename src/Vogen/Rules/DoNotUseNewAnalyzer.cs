@@ -46,11 +46,8 @@ public class DoNotUseNewAnalyzer : DiagnosticAnalyzer
     public override void Initialize(AnalysisContext context)
     {
 
-        context.ConfigureGeneratedCodeAnalysis(GeneratedCodeAnalysisFlags.ReportDiagnostics);
-        // context.ConfigureGeneratedCodeAnalysis(GeneratedCodeAnalysisFlags.Analyze | GeneratedCodeAnalysisFlags.ReportDiagnostics);
+        context.ConfigureGeneratedCodeAnalysis(GeneratedCodeAnalysisFlags.None);
         context.EnableConcurrentExecution();
-
-        //        context.RegisterSymbolAction(OnSymbolAction, SymbolKind.NamedType);
 
         context.RegisterCompilationStartAction(compilationContext =>
         {
@@ -61,31 +58,20 @@ public class DoNotUseNewAnalyzer : DiagnosticAnalyzer
 
     private void AnalyzeExpression(OperationAnalysisContext context)
     {
-        //var c2 = context.Operation as IObjectCreationOperation;
-        
-        
-        var c = context.Operation as IObjectCreationOperation;
-        if (c == null) return;
-        var t = c.Type as INamedTypeSymbol;
-        if (t == null) return;
+        if (context.Operation is not IObjectCreationOperation c) return;
 
-        ImmutableArray<AttributeData> attributes = t.GetAttributes();
+        if (c.Type is not INamedTypeSymbol symbol) return;
 
-        if (attributes.Length == 0)
-        {
-            return;
-        }
+        ImmutableArray<AttributeData> attributes = symbol.GetAttributes();
+
+        if (attributes.Length == 0) return;
 
         AttributeData? attr = attributes.SingleOrDefault(a => a.AttributeClass?.FullName() is "Vogen.ValueObjectAttribute");
 
-        if (attr is null)
-        {
-            return;
-        }
+        if (attr is null) return;
         
+        var diagnostic = DiagnosticItems.BuildDiagnostic(_rule, symbol.Name, context.Operation.Syntax.GetLocation());
 
-        var d = DiagnosticItems.BuildDiagnostic(_rule, t.Name, context.Operation.Syntax.GetLocation());
-
-        context.ReportDiagnostic(d);
+        context.ReportDiagnostic(diagnostic);
     }
 }
