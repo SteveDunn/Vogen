@@ -208,6 +208,7 @@ Func<CustomerId> f = () => new CustomerId();
 public {type} CustomerId {{ }}
 ";
 
+        //var (diagnostics, _) = TestHelper.GetGeneratedOutput<CreationUsingNewAnalyzer>(source);
         var (diagnostics, _) = TestHelper.GetGeneratedOutput<CreationUsingNewAnalyzer>(source);
 
         diagnostics.Should().HaveCount(1);

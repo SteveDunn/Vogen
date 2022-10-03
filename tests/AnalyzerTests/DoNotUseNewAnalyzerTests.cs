@@ -4,11 +4,11 @@ using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.Testing;
 using SmallTests.AnalyzerTests;
 using Vogen;
-using VerifyCS = Analyzer1.Test.CSharpAnalyzerVerifier<Vogen.Analyzers.CreationUsingNewAnalyzer2>;
+using VerifyCS = AnalyzerTests.Verifiers.CSharpAnalyzerVerifier<Vogen.Rules.DoNotUseNewAnalyzer>;
 
 namespace AnalyzerTests
 {
-    public class CreationUsingNewAnalyzerTests
+    public class DoNotUseNewAnalyzerTests
     {
         //No diagnostics expected to show up
         [Fact]
@@ -40,28 +40,6 @@ namespace ConsoleApplication1
     [ValueObject(typeof(int))]
     public partial class MyVo
     {   
-    }
-}");
-
-            var output = LineEndingsHelper.Normalize(@"
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Diagnostics;
-using Vogen;
-
-namespace ConsoleApplication1
-{
-    [ValueObject(typeof(int))]
-    public partial class TypeName
-    {
-        private static Validation Validate(int input)
-        {
-            bool isValid = true; // todo: your validation
-            return isValid ? Validation.Ok : Validation.Invalid(""[todo: describe the validation]"");
-        }
     }
 }");
 

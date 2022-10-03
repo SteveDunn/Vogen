@@ -1,12 +1,11 @@
-﻿using System;
-using System.Collections.Immutable;
+﻿using System.Collections.Immutable;
 using System.Linq;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.Diagnostics;
 using Microsoft.CodeAnalysis.Operations;
 using Vogen.Diagnostics;
 
-namespace Vogen.Analyzers;
+namespace Vogen.Rules;
 
 internal static class RuleIdentifiers
 {
@@ -25,7 +24,7 @@ internal static class RuleCategories
 
 
 [DiagnosticAnalyzer(LanguageNames.CSharp)]
-public class CreationUsingNewAnalyzer2 : DiagnosticAnalyzer
+public class DoNotUseNewAnalyzer : DiagnosticAnalyzer
 {
     //private static readonly DiagnosticDescriptor _rule = DiagnosticItems._usingNewProhibited;
 
