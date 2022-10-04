@@ -7,7 +7,6 @@ public enum DiagnosticCode
 {
     None = 0,
     TypeCannotBeNested = 1,
-    MustSpecifyUnderlyingType = 1,
     UnderlyingTypeMustNotBeSameAsValueObject = 2,
     UnderlyingTypeCannotBeCollection = 3,
     ValidationMustReturnValidationType = 4,
@@ -16,7 +15,6 @@ public enum DiagnosticCode
     InstanceMethodCannotHaveNullArgumentValue = 7,
     CannotHaveUserConstructors = 8,
     UsingDefaultProhibited = 9,
-    UsingNewProhibited = 10,
     InvalidConversions = 11,
     CustomExceptionMustDeriveFromException = 12,
     CustomExceptionMustHaveValidConstructor = 13,
@@ -24,7 +22,6 @@ public enum DiagnosticCode
     NormalizeInputMethodMustReturnSameUnderlyingType = 15,
     NormalizeInputMethodTakeOneParameterOfUnderlyingType = 16,
     TypeCannotBeAbstract = 17,
-    PrimaryConstructorProhibited = 18,
     InvalidCustomizations = 19,
     RecordToStringOverloadShouldBeSealed = 20,
     TypeShouldBePartial = 21,

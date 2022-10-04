@@ -87,8 +87,8 @@ namespace Whatever
         return toStringMethod switch
         {
             ToStringMethod.None => string.Empty,
-            ToStringMethod.Method => $"{s}ToString() {{return \"!\"; }}",
-            ToStringMethod.ExpressionBodiedMethod => $"{s}ToString() => \"!\"",
+            ToStringMethod.Method => $"{s} {{return \"!\"; }}",
+            ToStringMethod.ExpressionBodiedMethod => $"{s} => \"!\"",
             _ => throw new InvalidOperationException($"Don't know what a {toStringMethod} is!")
         };
     }

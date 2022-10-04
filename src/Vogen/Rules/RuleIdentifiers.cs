@@ -4,7 +4,6 @@
     {
         public const string NoNotUseDefault = "VOG009";
         public const string NoNotUseNew = "VOG010";
-        public const string NoNotUsePrimaryConstructor = "VOG018";
         public const string AddValidationMethod = "AddValidationMethod";
     }
 }

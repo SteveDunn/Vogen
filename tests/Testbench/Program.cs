@@ -7,7 +7,7 @@ using Vogen;
 
 
 [ValueObject(typeof(int))]
-public partial record MyVo()
+public partial class MyVo
 {
     
 };

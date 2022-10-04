@@ -259,45 +259,20 @@ internal static class BuildWorkItems
         INamedTypeSymbol voSymbolInformation)
     {
         bool reported = false;
-        
+
         ImmutableArray<IMethodSymbol> allConstructors = voSymbolInformation.Constructors;
-        
-        if (voSymbolInformation.IsRecord)
+
+        foreach (IMethodSymbol? eachConstructor in allConstructors)
         {
-            // for a record, there is the default constructor and copy constructor.
-            var defaultConstructor = allConstructors.SingleOrDefault(c => c.Parameters.Length == 0);
-            
-            foreach (IMethodSymbol? eachConstructor in allConstructors)
-            {
-                if (SymbolEqualityComparer.Default.Equals(eachConstructor, defaultConstructor)) continue;
-                if (IsCopyConstructor(eachConstructor, target.VoSymbolInformation)) continue;
+            if (eachConstructor.IsImplicitlyDeclared) continue;
 
-                context.ReportDiagnostic(DiagnosticItems.CannotHaveUserConstructors(eachConstructor));
-                reported = true;
-            }
-
-            return reported;
-        }
-
-        foreach (var eachConstructor in allConstructors)
-        {
-            // no need to check for default constructor as it's already defined
-            // and the user will see: error CS0111: Type 'Foo' already defines a member called 'Foo' with the same parameter type
-            if (eachConstructor.Parameters.Length > 0)
-            {
-                context.ReportDiagnostic(DiagnosticItems.CannotHaveUserConstructors(eachConstructor));
-                reported = true;
-            }
+            context.ReportDiagnostic(DiagnosticItems.CannotHaveUserConstructors(eachConstructor));
+            reported = true;
         }
 
         return reported;
-
-        static bool IsCopyConstructor(IMethodSymbol? constructor, INamedTypeSymbol voSymbol)
-        {
-            var typeSymbol = constructor?.Parameters[0].Type;
-            return SymbolEqualityComparer.Default.Equals(typeSymbol, voSymbol);
-        }
     }
+
 
     private static bool TryHandleNormalizeMethod(
         string? methodName, 
