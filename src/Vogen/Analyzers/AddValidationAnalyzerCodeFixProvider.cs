@@ -9,6 +9,7 @@ using Microsoft.CodeAnalysis.CodeFixes;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.CodeAnalysis.Simplification;
+using Vogen.Rules;
 using Document = Microsoft.CodeAnalysis.Document;
 using Formatter = Microsoft.CodeAnalysis.Formatting.Formatter;
 
@@ -19,7 +20,7 @@ namespace Vogen.Analyzers
     {
         public sealed override ImmutableArray<string> FixableDiagnosticIds
         {
-            get { return ImmutableArray.Create(AddValidationAnalyzer.DiagnosticId); }
+            get { return ImmutableArray.Create(RuleIdentifiers.AddValidationMethod); }
         }
 
         public sealed override FixAllProvider GetFixAllProvider()

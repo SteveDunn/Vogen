@@ -62,7 +62,7 @@ namespace ConsoleApplication1
 }");
 
             var expected =
-                VerifyCS.Diagnostic("AddValidationAnalyzer").WithSeverity(DiagnosticSeverity.Info).WithLocation(0).WithArguments("TypeName");
+                VerifyCS.Diagnostic("AddValidationMethod").WithSeverity(DiagnosticSeverity.Info).WithLocation(0).WithArguments("TypeName");
 
             var loc = typeof(ValueObjectAttribute).Assembly.Location;
 

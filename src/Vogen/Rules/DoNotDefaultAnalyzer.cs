@@ -8,11 +8,14 @@ using Vogen.Diagnostics;
 
 namespace Vogen.Rules;
 
+/// <summary>
+/// An analyzer that stops `CustomerId = default;` and `CustomerId = default(CustomerId)`.
+/// </summary>
 [DiagnosticAnalyzer(LanguageNames.CSharp)]
 public class DoNotUseDefaultAnalyzer : DiagnosticAnalyzer
 {
     private static readonly DiagnosticDescriptor _rule = new DiagnosticDescriptor(
-        "VOG009",
+        RuleIdentifiers.NoNotUseDefault,
         "Using default of Value Objects is prohibited",
         "Type '{0}' cannot be constructed with default as it is prohibited",
         RuleCategories.Usage,

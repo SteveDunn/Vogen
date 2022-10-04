@@ -43,7 +43,7 @@ public class ToStringOverrideAnalyzer : IIncrementalGenerator
             return null;
         }
 
-        if (!VoFilter.HasValueObjectAttribute(rds.AttributeLists, ctx))
+        if (!VoFilter.HasValueObjectAttribute(rds.AttributeLists, ctx.SemanticModel))
         {
             return null;
         }

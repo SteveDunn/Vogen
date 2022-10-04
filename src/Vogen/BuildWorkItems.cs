@@ -54,7 +54,10 @@ internal static class BuildWorkItems
             context.ReportDiagnostic(DiagnosticItems.TypeCannotBeAbstract(voSymbolInformation));
         }
 
-        ReportErrorsForAnyUserConstructors(context, voSymbolInformation);
+        if (ReportErrorsForAnyUserConstructors(context, target, voSymbolInformation))
+        {
+            return null;
+        }
 
         // build the configuration but log any diagnostics (we have a separate analyzer that does that)
         var localConfig = GlobalConfigFilter.BuildConfigurationFromAttribute(voAttribute, context);
@@ -252,21 +255,47 @@ internal static class BuildWorkItems
         }
     }
 
-    private static void ReportErrorsForAnyUserConstructors(SourceProductionContext context, INamedTypeSymbol voSymbolInformation)
+    private static bool ReportErrorsForAnyUserConstructors(SourceProductionContext context, VoTarget target,
+        INamedTypeSymbol voSymbolInformation)
     {
+        bool reported = false;
+        
+        ImmutableArray<IMethodSymbol> allConstructors = voSymbolInformation.Constructors;
+        
         if (voSymbolInformation.IsRecord)
         {
-            return;
+            // for a record, there is the default constructor and copy constructor.
+            var defaultConstructor = allConstructors.SingleOrDefault(c => c.Parameters.Length == 0);
+            
+            foreach (IMethodSymbol? eachConstructor in allConstructors)
+            {
+                if (SymbolEqualityComparer.Default.Equals(eachConstructor, defaultConstructor)) continue;
+                if (IsCopyConstructor(eachConstructor, target.VoSymbolInformation)) continue;
+
+                context.ReportDiagnostic(DiagnosticItems.CannotHaveUserConstructors(eachConstructor));
+                reported = true;
+            }
+
+            return reported;
         }
-        
-        foreach (var eachConstructor in voSymbolInformation.Constructors)
+
+        foreach (var eachConstructor in allConstructors)
         {
             // no need to check for default constructor as it's already defined
             // and the user will see: error CS0111: Type 'Foo' already defines a member called 'Foo' with the same parameter type
             if (eachConstructor.Parameters.Length > 0)
             {
                 context.ReportDiagnostic(DiagnosticItems.CannotHaveUserConstructors(eachConstructor));
+                reported = true;
             }
+        }
+
+        return reported;
+
+        static bool IsCopyConstructor(IMethodSymbol? constructor, INamedTypeSymbol voSymbol)
+        {
+            var typeSymbol = constructor?.Parameters[0].Type;
+            return SymbolEqualityComparer.Default.Equals(typeSymbol, voSymbol);
         }
     }
 

@@ -2,21 +2,12 @@
 using Vogen;
 #pragma warning disable CS0219
 
-MyVo? c = default;
-MyVo? c2 = default(MyVo);
-Console.WriteLine(c!.Value);
-Console.WriteLine(c2!.Value);
+// var x = MyVo.From(123);
+ Console.WriteLine("!!");
+
 
 [ValueObject(typeof(int))]
-public partial class MyVo { }
-
-public class Test
+public partial record MyVo()
 {
-    public Test()
-    {
-        MyVo c = default!;
-        MyVo c2 = default(MyVo)!;
-    }
-
-    public MyVo Get() => default!;
-}
+    
+};

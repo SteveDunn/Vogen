@@ -7,30 +7,11 @@ using Vogen.Diagnostics;
 
 namespace Vogen.Rules;
 
-internal static class RuleIdentifiers
-{
-    public const string UsingNewProhibited = "VOG010";
-    public const string UsingDefaultProhibited = "VOG009";
-}
-
-internal static class RuleCategories
-{
-    public const string Design = "Design";
-    public const string Naming = "Naming";
-    public const string Style = "Style";
-    public const string Usage = "Usage";
-    public const string Performance = "Performance";
-    public const string Security = "Security";
-}
-
-
 [DiagnosticAnalyzer(LanguageNames.CSharp)]
 public class DoNotUseNewAnalyzer : DiagnosticAnalyzer
 {
-    //private static readonly DiagnosticDescriptor _rule = DiagnosticItems._usingNewProhibited;
-
     private static readonly DiagnosticDescriptor _rule = new DiagnosticDescriptor(
-        "VOG010",
+        RuleIdentifiers.NoNotUseNew,
         "Using new to create Value Objects is prohibited - use the From method for creation",
         "Type '{0}' cannot be constructed with 'new' as it is prohibited",
         RuleCategories.Usage,

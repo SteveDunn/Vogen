@@ -2,7 +2,7 @@
 using FluentAssertions;
 using FluentAssertions.Execution;
 using Microsoft.CodeAnalysis;
-using Vogen.Analyzers;
+using Vogen;
 using Xunit;
 
 namespace SmallTests.DiagnosticsTests;
@@ -25,7 +25,7 @@ public {type} CustomerId(int SomethingElse)
 }}
 ";
 
-        var (diagnostics, _) = TestHelper.GetGeneratedOutput<PrimaryConstructorAnalyzer>(source);
+        var (diagnostics, _) = TestHelper.GetGeneratedOutput<ValueObjectGenerator>(source);
 
         diagnostics.Should().HaveCount(1);
         Diagnostic diagnostic = diagnostics.Single();
@@ -51,7 +51,7 @@ public {type} CustomerId(int SomethingElse, string Name, int Age)
 }}
 ";
 
-        var (diagnostics, _) = TestHelper.GetGeneratedOutput<PrimaryConstructorAnalyzer>(source);
+        var (diagnostics, _) = TestHelper.GetGeneratedOutput<ValueObjectGenerator>(source);
 
         diagnostics.Should().HaveCount(1);
         Diagnostic diagnostic = diagnostics.Single();
@@ -77,7 +77,7 @@ public {type} CustomerId()
 }}
 ";
 
-        var (diagnostics, _) = TestHelper.GetGeneratedOutput<PrimaryConstructorAnalyzer>(source);
+        var (diagnostics, _) = TestHelper.GetGeneratedOutput<ValueObjectGenerator>(source);
 
         diagnostics.Should().HaveCount(1);
         Diagnostic diagnostic = diagnostics.Single();

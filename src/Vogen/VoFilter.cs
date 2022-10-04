@@ -2,6 +2,7 @@
 using System.Linq;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
+using Microsoft.CodeAnalysis.Diagnostics;
 
 namespace Vogen;
 
@@ -16,13 +17,13 @@ internal static class VoFilter
     public static bool IsTarget(SyntaxNode syntaxNode) =>
         syntaxNode is TypeDeclarationSyntax t && t.AttributeLists.Count > 0;
 
-    public static bool HasValueObjectAttribute(SyntaxList<AttributeListSyntax> attributeList, GeneratorSyntaxContext context)
+    public static bool HasValueObjectAttribute(SyntaxList<AttributeListSyntax> attributeList, SemanticModel semanticModel)
     {
         foreach (AttributeListSyntax attributeListSyntax in attributeList)
         {
             foreach (AttributeSyntax attributeSyntax in attributeListSyntax.Attributes)
             {
-                IMethodSymbol? attributeSymbol = context.SemanticModel.GetSymbolInfo(attributeSyntax).Symbol as IMethodSymbol;
+                IMethodSymbol? attributeSymbol = semanticModel.GetSymbolInfo(attributeSyntax).Symbol as IMethodSymbol;
 
                 if (attributeSymbol == null)
                 {
@@ -42,6 +43,32 @@ internal static class VoFilter
         return false;
     }
 
+    // public static bool HasValueObjectAttribute(SyntaxList<AttributeListSyntax> attributeList, SemanticModel contextSemanticModel)
+    // {
+    //     foreach (AttributeListSyntax attributeListSyntax in attributeList)
+    //     {
+    //         foreach (AttributeSyntax attributeSyntax in attributeListSyntax.Attributes)
+    //         {
+    //             IMethodSymbol? attributeSymbol = contextSemanticModel.GetSymbolInfo(attributeSyntax).Symbol as IMethodSymbol;
+    //
+    //             if (attributeSymbol == null)
+    //             {
+    //                 continue;
+    //             }
+    //
+    //             INamedTypeSymbol attributeContainingTypeSymbol = attributeSymbol.ContainingType;
+    //             string fullName = attributeContainingTypeSymbol.ToDisplayString();
+    //
+    //             if (fullName == "Vogen.ValueObjectAttribute")
+    //             {
+    //                 return true;
+    //             }
+    //         }
+    //     }
+    //
+    //     return false;
+    // }
+
     // This is stage 2 in the pipeline - we filter down to just 1 target
     public static VoTarget? TryGetTarget(GeneratorSyntaxContext context)
     {
@@ -49,7 +76,7 @@ internal static class VoFilter
 
         var voSymbolInformation = (INamedTypeSymbol) context.SemanticModel.GetDeclaredSymbol(context.Node)!;
         
-        if(HasValueObjectAttribute(voSyntaxInformation.AttributeLists, context))
+        if(HasValueObjectAttribute(voSyntaxInformation.AttributeLists, context.SemanticModel))
         {
             return new VoTarget(
                 context.SemanticModel,
