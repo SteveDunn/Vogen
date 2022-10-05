@@ -2,7 +2,7 @@
 using Vogen;
 #pragma warning disable CS0219
 
- var x = MyVo.From(123);
+var x = Activator.CreateInstance<MyVo>();
  Console.WriteLine(x.Value);
 
 

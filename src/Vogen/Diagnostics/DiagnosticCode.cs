@@ -27,6 +27,5 @@ public enum DiagnosticCode
     TypeShouldBePartial = 21,
     InvalidDeserializationStrictness = 22,
     InstanceValueCannotBeConverted = 23,
-    DuplicateTypesFound = 24,
-    UsingActivatorProhibited = 25
+    DuplicateTypesFound = 24
 }

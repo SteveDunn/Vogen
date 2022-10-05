@@ -18,16 +18,6 @@ internal static class DiagnosticItems
         "Types cannot be abstract",
         "Type '{0}' cannot be abstract");
 
-    private static readonly DiagnosticDescriptor _usingDefaultProhibited = CreateDescriptor(
-        DiagnosticCode.UsingDefaultProhibited,
-        "Using default of Value Objects is prohibited",
-        "Type '{0}' cannot be constructed with default as it is prohibited.");
-
-    private static readonly DiagnosticDescriptor _usingActivatorProhibited = CreateDescriptor(
-        DiagnosticCode.UsingActivatorProhibited,
-        "Using Reflection to create Value Objects is prohibited",
-        "Type '{0}' cannot be constructed via Reflection as it is prohibited.");
-
     private static readonly DiagnosticDescriptor _recordToStringOverloadShouldBeSealed = CreateDescriptor(
         DiagnosticCode.RecordToStringOverloadShouldBeSealed,
         "Overrides of ToString on records should be sealed to differentiate it from the C# compiler-generated method. See https://github.com/SteveDunn/Vogen/wiki/Records#tostring for more information.",
@@ -144,12 +134,6 @@ internal static class DiagnosticItems
     public static Diagnostic NormalizeInputMethodMustBeStatic(MethodDeclarationSyntax member) => 
         Create(_normalizeInputMethodMustBeStatic, member.GetLocation(), member.Identifier);
 
-    public static Diagnostic UsingDefaultProhibited(Location locationOfDefaultStatement, string voClassName) => 
-        BuildDiagnostic(_usingDefaultProhibited, voClassName, locationOfDefaultStatement);
-
-    public static Diagnostic UsingActivatorProhibited(Location locationOfDefaultStatement, string voClassName) => 
-        BuildDiagnostic(_usingActivatorProhibited, voClassName, locationOfDefaultStatement);
-
     public static Diagnostic RecordToStringOverloadShouldBeSealed(Location location, string voClassName) => 
         BuildDiagnostic(_recordToStringOverloadShouldBeSealed, voClassName, location);
 
@@ -212,5 +196,6 @@ internal static class DiagnosticItems
         return diagnostic;
     }
 
-    private static Diagnostic Create(DiagnosticDescriptor descriptor, Location? location, params object?[] args) => Diagnostic.Create(descriptor, location ?? Location.None, args);
+    private static Diagnostic Create(DiagnosticDescriptor descriptor, Location? location, params object?[] args) =>
+        Diagnostic.Create(descriptor, location ?? Location.None, args);
 }
