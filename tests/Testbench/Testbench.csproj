@@ -28,7 +28,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="linq2db" Version="3.7.0" />
+    <PackageReference Include="linq2db" Version="4.3.0" />
     <PackageReference Include="Dapper" Version="2.0.123" />
 
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.0-*" />
