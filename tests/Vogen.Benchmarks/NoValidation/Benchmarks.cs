@@ -34,11 +34,11 @@ namespace Vogen.Benchmarks.NoValidation
     [MemoryDiagnoser, Description("The underlying type is string and there is no validation")]
     public class Underlying_string_With_No_Validation
     {
-        private string Combine(string s1, string s2) => $"{s1}-{s2}";
+        private static string Combine(string s1, string s2) => $"{s1}-{s2}";
         
-        public NameAsClass Combine(NameAsClass s1, NameAsClass s2) => NameAsClass.From($"{s1}-{s2}");
+        public static NameAsClass Combine(NameAsClass s1, NameAsClass s2) => NameAsClass.From($"{s1}-{s2}");
         
-        public NameAsStruct Combine(NameAsStruct s1, NameAsStruct s2) => NameAsStruct.From($"{s1}-{s2}");
+        public static NameAsStruct Combine(NameAsStruct s1, NameAsStruct s2) => NameAsStruct.From($"{s1}-{s2}");
         
         [Benchmark(Baseline = true)]
         public string UsingStringNatively() => 

@@ -1,5 +1,4 @@
 ﻿using System.Collections.Immutable;
-using System.Linq;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.Diagnostics;
 using Microsoft.CodeAnalysis.Operations;
@@ -10,6 +9,9 @@ namespace Vogen.Rules;
 [DiagnosticAnalyzer(LanguageNames.CSharp)]
 public class DoNotUseNewAnalyzer : DiagnosticAnalyzer
 {
+    // ReSharper disable once ArrangeObjectCreationWhenTypeEvident - current bug in Roslyn analyzer means it
+    // won't find this and will report:
+    // "error RS2002: Rule 'XYZ123' is part of the next unshipped analyzer release, but is not a supported diagnostic for any analyzer"
     private static readonly DiagnosticDescriptor _rule = new DiagnosticDescriptor(
         RuleIdentifiers.DoNotUseNew,
         "Using new to create Value Objects is prohibited - use the From method for creation",
@@ -34,19 +36,13 @@ public class DoNotUseNewAnalyzer : DiagnosticAnalyzer
         });
     }
 
-    private void AnalyzeExpression(OperationAnalysisContext context)
+    private static void AnalyzeExpression(OperationAnalysisContext context)
     {
         if (context.Operation is not IObjectCreationOperation c) return;
 
         if (c.Type is not INamedTypeSymbol symbol) return;
 
-        ImmutableArray<AttributeData> attributes = symbol.GetAttributes();
-
-        if (attributes.Length == 0) return;
-
-        AttributeData? attr = attributes.SingleOrDefault(a => a.AttributeClass?.FullName() is "Vogen.ValueObjectAttribute");
-
-        if (attr is null) return;
+        if (!VoFilter.IsTarget(symbol)) return;
         
         var diagnostic = DiagnosticItems.BuildDiagnostic(_rule, symbol.Name, context.Operation.Syntax.GetLocation());
 

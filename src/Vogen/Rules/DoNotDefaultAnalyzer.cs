@@ -1,5 +1,4 @@
 ﻿using System.Collections.Immutable;
-using System.Linq;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
@@ -14,6 +13,9 @@ namespace Vogen.Rules;
 [DiagnosticAnalyzer(LanguageNames.CSharp)]
 public class DoNotUseDefaultAnalyzer : DiagnosticAnalyzer
 {
+    // ReSharper disable once ArrangeObjectCreationWhenTypeEvident - current bug in Roslyn analyzer means it
+    // won't find this and will report:
+    // "error RS2002: Rule 'XYZ123' is part of the next unshipped analyzer release, but is not a supported diagnostic for any analyzer"
     private static readonly DiagnosticDescriptor _rule = new DiagnosticDescriptor(
         RuleIdentifiers.DoNotUseDefault,
         "Using default of Value Objects is prohibited",
@@ -24,10 +26,7 @@ public class DoNotUseDefaultAnalyzer : DiagnosticAnalyzer
         description:
         "The value object is created with a default expression. This can lead to invalid value objects in your domain. Use the From method instead.");
 
-    public override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics
-    {
-        get { return ImmutableArray.Create(_rule); }
-    }
+    public override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics => ImmutableArray.Create(_rule);
 
     public override void Initialize(AnalysisContext context)
     {
@@ -37,12 +36,12 @@ public class DoNotUseDefaultAnalyzer : DiagnosticAnalyzer
 
         context.RegisterCompilationStartAction(compilationContext =>
         {
-            compilationContext.RegisterSyntaxNodeAction(AnalyzeExpressionSyntax, SyntaxKind.DefaultLiteralExpression);
-            compilationContext.RegisterSyntaxNodeAction(AnalyzeExpressionSyntax2, SyntaxKind.DefaultExpression);
+            compilationContext.RegisterSyntaxNodeAction(AnalyzeLiteral, SyntaxKind.DefaultLiteralExpression);
+            compilationContext.RegisterSyntaxNodeAction(Analyze, SyntaxKind.DefaultExpression);
         });
     }
 
-    private void AnalyzeExpressionSyntax2(SyntaxNodeAnalysisContext ctx)
+    private static void Analyze(SyntaxNodeAnalysisContext ctx)
     {
         var literalExpressionSyntax = (DefaultExpressionSyntax) ctx.Node;
 
@@ -54,7 +53,7 @@ public class DoNotUseDefaultAnalyzer : DiagnosticAnalyzer
         ReportIfNeeded(ctx, literalExpressionSyntax);
     }
 
-    private void AnalyzeExpressionSyntax(SyntaxNodeAnalysisContext ctx)
+    private static void AnalyzeLiteral(SyntaxNodeAnalysisContext ctx)
     {
         var literalExpressionSyntax = (LiteralExpressionSyntax) ctx.Node;
 
@@ -71,13 +70,7 @@ public class DoNotUseDefaultAnalyzer : DiagnosticAnalyzer
         var typeInfo = ctx.SemanticModel.GetTypeInfo(literalExpressionSyntax).Type;
         if (typeInfo is not INamedTypeSymbol symbol) return;
 
-        ImmutableArray<AttributeData> attributes = symbol.GetAttributes();
-
-        if (attributes.Length == 0) return;
-
-        AttributeData? attr = attributes.SingleOrDefault(a => a.AttributeClass?.FullName() is "Vogen.ValueObjectAttribute");
-
-        if (attr is null) return;
+        if (!VoFilter.IsTarget(symbol)) return;
 
         var diagnostic = DiagnosticItems.BuildDiagnostic(_rule, symbol.Name, literalExpressionSyntax.GetLocation());
 

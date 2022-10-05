@@ -8,12 +8,13 @@ using Vogen.Diagnostics;
 
 namespace Vogen.Rules;
 
-/// <summary>
-/// An analyzer that stops `CustomerId = default;` and `CustomerId = default(CustomerId)`.
-/// </summary>
+// An analyzer that stops: `CustomerId = Activator.CreateInstance<CustomerId>();` and `CustomerId = Activator.CreateInstance(typeof(CustomerId))`.
 [DiagnosticAnalyzer(LanguageNames.CSharp)]
 public class DoNotUseReflectionAnalyzer : DiagnosticAnalyzer
 {
+    // ReSharper disable once ArrangeObjectCreationWhenTypeEvident - current bug in Roslyn analyzer means it
+    // won't find this and will report:
+    // "error RS2002: Rule 'XYZ123' is part of the next unshipped analyzer release, but is not a supported diagnostic for any analyzer"
     private static readonly DiagnosticDescriptor _rule = new DiagnosticDescriptor(
         RuleIdentifiers.DoNotUseReflection,
         "Using Reflection to create Value Objects is prohibited",
@@ -21,13 +22,9 @@ public class DoNotUseReflectionAnalyzer : DiagnosticAnalyzer
         RuleCategories.Usage,
         DiagnosticSeverity.Error,
         isEnabledByDefault: true,
-        description:
-        "Do not use Reflection to create Value Objects.");
+        description: "Do not use Reflection to create Value Objects.");
 
-    public override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics
-    {
-        get { return ImmutableArray.Create(_rule); }
-    }
+    public override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics => ImmutableArray.Create(_rule);
 
     public override void Initialize(AnalysisContext context)
     {
@@ -41,7 +38,7 @@ public class DoNotUseReflectionAnalyzer : DiagnosticAnalyzer
         });
     }
 
-    private void AnalyzeExpressionSyntax(SyntaxNodeAnalysisContext ctx)
+    private static void AnalyzeExpressionSyntax(SyntaxNodeAnalysisContext ctx)
     {
         var invocationSyntax = (InvocationExpressionSyntax) ctx.Node;
 

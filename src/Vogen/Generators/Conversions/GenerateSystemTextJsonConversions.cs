@@ -38,7 +38,7 @@ internal class GenerateSystemTextJsonConversions : IGenerateConversion
         return code;
     }
 
-    private string ResolveTemplate(VoWorkItem item) =>
+    private static string ResolveTemplate(VoWorkItem item) =>
         Templates.TryGetForSpecificType(item.UnderlyingType, "SystemTextJsonConverter") ??
         Templates.GetForAnyType("SystemTextJsonConverter");
 }

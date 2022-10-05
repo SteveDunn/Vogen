@@ -133,7 +133,7 @@ public class Test {{
         [Fact(DisplayName = "Bug https://github.com/SteveDunn/Vogen/issues/182")]
         public async Task Analyzer_false_position_for_implicit_new_in_array_initializer()
         {
-            var source = $@"using System;
+            var source = @"using System;
 using System.Threading.Tasks;
 using Vogen;
 
@@ -164,7 +164,7 @@ public partial class Vo {{ }}";
             foreach (var location in locations)
             {
                 yield return VerifyCS.Diagnostic(code).WithSeverity(severity).WithLocation(location)
-                    .WithArguments("MyVo");
+                    .WithArguments(arguments);
             }
         }
 

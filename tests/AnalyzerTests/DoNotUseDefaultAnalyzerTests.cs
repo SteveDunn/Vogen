@@ -134,8 +134,10 @@ public class Test {{
         {
             foreach (var location in locations)
             {
-                yield return VerifyCS.Diagnostic(code).WithSeverity(severity).WithLocation(location)
-                    .WithArguments("MyVo");
+                yield return VerifyCS.Diagnostic(code)
+                    .WithSeverity(severity)
+                    .WithLocation(location)
+                    .WithArguments(arguments);
             }
         }
 

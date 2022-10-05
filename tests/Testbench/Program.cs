@@ -2,8 +2,9 @@
 using Vogen;
 #pragma warning disable CS0219
 
-var x = Activator.CreateInstance<MyVo>();
- Console.WriteLine(x.Value);
+// var x = Activator.CreateInstance<MyVo>();
+// Console.WriteLine(x.Value);
+Console.WriteLine("Hello world!");
 
 
 [ValueObject(typeof(int))]
