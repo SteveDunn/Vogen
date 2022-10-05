@@ -132,7 +132,7 @@ using Vogen;
 {Util.WriteCloseNamespace(item.FullNamespace)}";
     }
 
-    private string GenerateNullCheckIfNeeded(VoWorkItem voWorkItem) =>
+    private static string GenerateNullCheckIfNeeded(VoWorkItem voWorkItem) =>
         voWorkItem.IsValueType ? string.Empty
             : $@"            if (value is null)
             {{

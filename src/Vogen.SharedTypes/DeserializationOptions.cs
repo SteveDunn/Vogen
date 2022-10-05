@@ -8,7 +8,9 @@ public enum DeserializationStrictness
     /// <summary>
     /// Allows anything to be deserialized into your Value Object.
     /// </summary>
+#pragma warning disable CA1008 // Enums should have zero value
     AllowAnything = 0,
+#pragma warning restore CA1008 // Enums should have zero value
 
     /// <summary>
     /// If your Value Object has 'Instances', then those are considered valid during deserialization.

@@ -17,9 +17,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "_files", "_files", "{72AF0E
 		.gitattributes = .gitattributes
 		.gitignore = .gitignore
 		Build.ps1 = Build.ps1
+		.github\workflows\build.yaml = .github\workflows\build.yaml
+		.github\workflows\codeql-analysis.yml = .github\workflows\codeql-analysis.yml
 		Directory.Build.props = Directory.Build.props
 		docs\nuget-readme.md = docs\nuget-readme.md
+		.github\workflows\publish.yaml = .github\workflows\publish.yaml
 		README.md = README.md
+		__Directory.Build.targets__ = __Directory.Build.targets__
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "samples", "samples", "{106ACB2D-8F44-4B80-AC38-3B43CB648774}"
@@ -47,6 +51,8 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MediumTests", "tests\MediumTests\MediumTests.csproj", "{269BDF34-CF19-4FEB-90F8-48A08236AF6A}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LargeTests", "tests\LargeTests\LargeTests.csproj", "{A8CCC616-C56C-4F2A-83BD-898CDAE70B42}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AnalyzerTests", "tests\AnalyzerTests\AnalyzerTests.csproj", "{89E0B1B1-8CCD-4328-A0D2-4F87E1D57023}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -86,6 +92,10 @@ Global
 		{A8CCC616-C56C-4F2A-83BD-898CDAE70B42}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A8CCC616-C56C-4F2A-83BD-898CDAE70B42}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A8CCC616-C56C-4F2A-83BD-898CDAE70B42}.Release|Any CPU.Build.0 = Release|Any CPU
+		{89E0B1B1-8CCD-4328-A0D2-4F87E1D57023}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{89E0B1B1-8CCD-4328-A0D2-4F87E1D57023}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{89E0B1B1-8CCD-4328-A0D2-4F87E1D57023}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{89E0B1B1-8CCD-4328-A0D2-4F87E1D57023}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -101,6 +111,7 @@ Global
 		{207A4004-C65F-432F-889E-257B6197E3B5} = {9955BB98-6ACF-4EC8-AE59-1B8DDCCBDCC6}
 		{269BDF34-CF19-4FEB-90F8-48A08236AF6A} = {9955BB98-6ACF-4EC8-AE59-1B8DDCCBDCC6}
 		{A8CCC616-C56C-4F2A-83BD-898CDAE70B42} = {9955BB98-6ACF-4EC8-AE59-1B8DDCCBDCC6}
+		{89E0B1B1-8CCD-4328-A0D2-4F87E1D57023} = {9955BB98-6ACF-4EC8-AE59-1B8DDCCBDCC6}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {E4D5DD02-533B-4333-9CF9-ACD294C7F2EE}

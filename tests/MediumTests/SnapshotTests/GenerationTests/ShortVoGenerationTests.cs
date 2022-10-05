@@ -72,7 +72,7 @@ public class ShortVoGenerationTests
     public partial struct LinqToDbShortVo { }");
     }
 
-    private Task RunTest(string declaration)
+    private static Task RunTest(string declaration)
     {
         var source = @"using Vogen;
 namespace Whatever

@@ -170,7 +170,7 @@ internal static class GlobalConfigFilter
             var syntax = matchingAttribute.ApplicationSyntaxReference?.GetSyntax();
             if (syntax is not null)
             {
-                context.ReportDiagnostic(DiagnosticItems.InvalidConversions(syntax.GetLocation()));
+                context.ReportDiagnostic(DiagnosticsCatalogue.InvalidConversions(syntax.GetLocation()));
             }
         }
 
@@ -179,7 +179,7 @@ internal static class GlobalConfigFilter
             var syntax = matchingAttribute.ApplicationSyntaxReference?.GetSyntax();
             if (syntax is not null)
             {
-                context.ReportDiagnostic(DiagnosticItems.InvalidCustomizations(syntax.GetLocation()));
+                context.ReportDiagnostic(DiagnosticsCatalogue.InvalidCustomizations(syntax.GetLocation()));
             }
         }
 
@@ -188,7 +188,7 @@ internal static class GlobalConfigFilter
             var syntax = matchingAttribute.ApplicationSyntaxReference?.GetSyntax();
             if (syntax is not null)
             {
-                context.ReportDiagnostic(DiagnosticItems.InvalidDeserializationStrictness(syntax.GetLocation()));
+                context.ReportDiagnostic(DiagnosticsCatalogue.InvalidDeserializationStrictness(syntax.GetLocation()));
             }
         }
 
@@ -204,7 +204,7 @@ internal static class GlobalConfigFilter
         
         if (!invalidExceptionType.ImplementsInterfaceOrBaseClass(typeof(Exception)))
         {
-            context.ReportDiagnostic(DiagnosticItems.CustomExceptionMustDeriveFromException(invalidExceptionType));
+            context.ReportDiagnostic(DiagnosticsCatalogue.CustomExceptionMustDeriveFromException(invalidExceptionType));
         }
 
         var allConstructors = invalidExceptionType.Constructors.Where(c=>c.DeclaredAccessibility == Accessibility.Public);
@@ -216,7 +216,7 @@ internal static class GlobalConfigFilter
             return;
         }
 
-        context.ReportDiagnostic(DiagnosticItems.CustomExceptionMustHaveValidConstructor(invalidExceptionType));
+        context.ReportDiagnostic(DiagnosticsCatalogue.CustomExceptionMustHaveValidConstructor(invalidExceptionType));
     }
 
     /// <summary>

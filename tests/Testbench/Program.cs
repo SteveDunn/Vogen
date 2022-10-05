@@ -1,20 +1,16 @@
 ﻿using System;
-using System.Threading.Tasks;
 using Vogen;
+#pragma warning disable CS0219
 
-namespace Testbench;
+// var x = Activator.CreateInstance<MyVo>();
+// Console.WriteLine(x.Value);
+Console.WriteLine("Hello world!");
 
-public class Program
+
+//[ValueObject(typeof(int))]
+[ValueObject(typeof(int))]
+public partial record MyVo
 {
-    public static async Task Main()
-    {
-        await Task.CompletedTask;
+    // public override string ToString() => "hello!";
+};
 
-        // var vo = Activator.CreateInstance<MyIntVo>();
-        //var vo = (MyIntVo)Activator.CreateInstance(typeof(MyIntVo))!;
-        //Console.WriteLine(vo.Value);
-    }
-}
-
-[ValueObject(conversions: Conversions.None, underlyingType: typeof(int))]
-public readonly partial struct MyIntVo { }

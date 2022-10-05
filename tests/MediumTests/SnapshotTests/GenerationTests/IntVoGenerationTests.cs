@@ -72,7 +72,7 @@ public class IntVoGenerationTests
     public partial struct LinqToDbIntVo { }");
     }
 
-    private Task RunTest(string declaration)
+    private static Task RunTest(string declaration)
     {
         var source = @"using Vogen;
 namespace Whatever

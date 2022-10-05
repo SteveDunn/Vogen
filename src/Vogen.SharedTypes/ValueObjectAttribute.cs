@@ -38,4 +38,3 @@
             DeserializationStrictness.AllowValidAndKnownInstances;
     }
 }
-

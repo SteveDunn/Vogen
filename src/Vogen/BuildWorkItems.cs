@@ -37,7 +37,7 @@ internal static class BuildWorkItems
 
         if (attrs.Count != 1)
         {
-            context.ReportDiagnostic(DiagnosticItems.DuplicateTypesFound(voTypeSyntax.GetLocation(), voSymbolInformation.Name));
+            context.ReportDiagnostic(DiagnosticsCatalogue.DuplicateTypesFound(voTypeSyntax.GetLocation(), voSymbolInformation.Name));
             return null;
         }
         
@@ -45,16 +45,19 @@ internal static class BuildWorkItems
 
         if (!voTypeSyntax.Modifiers.Any(SyntaxKind.PartialKeyword))
         {
-            context.ReportDiagnostic(DiagnosticItems.TypeShouldBePartial(voTypeSyntax.GetLocation(), voSymbolInformation.Name));
+            context.ReportDiagnostic(DiagnosticsCatalogue.TypeShouldBePartial(voTypeSyntax.GetLocation(), voSymbolInformation.Name));
             return null;
         }
 
         if (voSymbolInformation.IsAbstract)
         {
-            context.ReportDiagnostic(DiagnosticItems.TypeCannotBeAbstract(voSymbolInformation));
+            context.ReportDiagnostic(DiagnosticsCatalogue.TypeCannotBeAbstract(voSymbolInformation));
         }
 
-        ReportErrorsForAnyUserConstructors(context, voSymbolInformation);
+        if (ReportErrorsForAnyUserConstructors(context, target, voSymbolInformation))
+        {
+            return null;
+        }
 
         // build the configuration but log any diagnostics (we have a separate analyzer that does that)
         var localConfig = GlobalConfigFilter.BuildConfigurationFromAttribute(voAttribute, context);
@@ -71,7 +74,9 @@ internal static class BuildWorkItems
         IEnumerable<InstanceProperties> instanceProperties =
             TryBuildInstanceProperties(attributes, voSymbolInformation, context, config.UnderlyingType).ToList();
 
-        var hasToString = HasToStringOverload(voSymbolInformation);
+        var toStringInfo = HasToStringOverload(voSymbolInformation);
+
+        ThrowIfToStringOverrideOnRecordIsUnsealed(target, context, toStringInfo);
 
         MethodDeclarationSyntax? validateMethod = null;
         MethodDeclarationSyntax? normalizeInputMethod = null;
@@ -106,7 +111,7 @@ internal static class BuildWorkItems
             InstanceProperties = instanceProperties.ToList(),
             TypeToAugment = voTypeSyntax,
             IsValueType = isValueType,
-            HasToString = hasToString,
+            HasToString = toStringInfo.HasToString,
             UnderlyingType = config.UnderlyingType,
             Conversions = config.Conversions,
             DeserializationStrictness = config.DeserializationStrictness,
@@ -118,7 +123,21 @@ internal static class BuildWorkItems
         };
     }
 
-    private static bool HasToStringOverload(ITypeSymbol typeSymbol)
+    private static void ThrowIfToStringOverrideOnRecordIsUnsealed(VoTarget target, SourceProductionContext context,
+        ToStringInfo info)
+    {
+        if (info.HasToString && info.IsRecord && !info.IsSealed)
+        {
+            context.ReportDiagnostic(
+                DiagnosticsCatalogue.RecordToStringOverloadShouldBeSealed(
+                    info.Method!.Locations[0],
+                    target.VoSymbolInformation.Name));
+        }
+    }
+
+    private record struct ToStringInfo(bool HasToString, bool IsRecord, bool IsSealed, IMethodSymbol? Method);
+
+    private static ToStringInfo HasToStringOverload(ITypeSymbol typeSymbol)
     {
         while (true)
         {
@@ -143,74 +162,34 @@ internal static class BuildWorkItems
                     continue;
                 }
 
-                // records always have a ToString method. In C# 10, the user can differentiate this
+                // records always have an implicitly declared ToString method. In C# 10, the user can differentiate this
                 // by making the method sealed.
-                if (typeSymbol.IsRecord && !eachMethod.IsSealed)
+                if (typeSymbol.IsRecord && eachMethod.IsImplicitlyDeclared)
                 {
                     continue;
                 }
 
-                return true;
+                // In C# 10, the user can differentiate a ToString overload by making the method sealed.
+                // We report back if it's sealed or not so that we can emit an error if it's not sealed.
+                // The error stops another compilation error; if unsealed, the generator generates a duplicate ToString() method.
+                return new ToStringInfo(HasToString: true, IsRecord: typeSymbol.IsRecord, IsSealed: eachMethod.IsSealed, eachMethod);
             }
 
             INamedTypeSymbol? baseType = typeSymbol.BaseType;
 
             if (baseType is null)
             {
-                return false;
+                return new ToStringInfo(false, false, false, null);
             }
             
             if (baseType.SpecialType == SpecialType.System_Object || baseType.SpecialType == SpecialType.System_ValueType)
             {
-                return false;
+                return new ToStringInfo(false, false, false, null);
             }
 
             typeSymbol = baseType;
         }
     }
-    // private static bool HasToStringOverload(ITypeSymbol typeSymbol)
-    // {
-    //     while (true)
-    //     {
-    //         var toStringMethods = typeSymbol.GetMembers("ToString").OfType<IMethodSymbol>();
-    //
-    //         foreach (IMethodSymbol eachMethod in toStringMethods)
-    //         {
-    //             // we could have "public virtual new string ToString() => "xxx" 
-    //             if (!eachMethod.IsOverride && !eachMethod.IsVirtual)
-    //             {
-    //                 continue;
-    //             }
-    //
-    //             // can't change access rights
-    //             if (eachMethod.DeclaredAccessibility != Accessibility.Public && eachMethod.DeclaredAccessibility != Accessibility.Protected)
-    //             {
-    //                 continue;
-    //             }
-    //
-    //             if (eachMethod.Parameters.Length != 0)
-    //             {
-    //                 continue;
-    //             }
-    //
-    //             return true;
-    //         }
-    //
-    //         INamedTypeSymbol? baseType = typeSymbol.BaseType;
-    //
-    //         if (baseType is null)
-    //         {
-    //             return false;
-    //         }
-    //         
-    //         if (baseType.SpecialType == SpecialType.System_Object || baseType.SpecialType == SpecialType.System_ValueType)
-    //         {
-    //             return false;
-    //         }
-    //
-    //         typeSymbol = baseType;
-    //     }
-    // }
 
     private static bool IsUnderlyingAValueType(VogenConfiguration config)
     {
@@ -229,7 +208,7 @@ internal static class BuildWorkItems
         if (config.UnderlyingType.ImplementsInterfaceOrBaseClass(typeof(ICollection)))
         {
             context.ReportDiagnostic(
-                DiagnosticItems.UnderlyingTypeCannotBeCollection(voSymbolInformation, config.UnderlyingType!));
+                DiagnosticsCatalogue.UnderlyingTypeCannotBeCollection(voSymbolInformation, config.UnderlyingType!));
         }
     }
 
@@ -238,7 +217,7 @@ internal static class BuildWorkItems
     {
         if (SymbolEqualityComparer.Default.Equals(voSymbolInformation, config.UnderlyingType))
         {
-            context.ReportDiagnostic(DiagnosticItems.UnderlyingTypeMustNotBeSameAsValueObjectType(voSymbolInformation));
+            context.ReportDiagnostic(DiagnosticsCatalogue.UnderlyingTypeMustNotBeSameAsValueObjectType(voSymbolInformation));
         }
     }
 
@@ -248,27 +227,28 @@ internal static class BuildWorkItems
         INamedTypeSymbol? containingType = target.ContainingType;
         if (containingType != null)
         {
-            context.ReportDiagnostic(DiagnosticItems.TypeCannotBeNested(voSymbolInformation, containingType));
+            context.ReportDiagnostic(DiagnosticsCatalogue.TypeCannotBeNested(voSymbolInformation, containingType));
         }
     }
 
-    private static void ReportErrorsForAnyUserConstructors(SourceProductionContext context, INamedTypeSymbol voSymbolInformation)
+    private static bool ReportErrorsForAnyUserConstructors(SourceProductionContext context, VoTarget target,
+        INamedTypeSymbol voSymbolInformation)
     {
-        if (voSymbolInformation.IsRecord)
+        bool reported = false;
+
+        ImmutableArray<IMethodSymbol> allConstructors = voSymbolInformation.Constructors;
+
+        foreach (IMethodSymbol? eachConstructor in allConstructors)
         {
-            return;
+            if (eachConstructor.IsImplicitlyDeclared) continue;
+
+            context.ReportDiagnostic(DiagnosticsCatalogue.CannotHaveUserConstructors(eachConstructor));
+            reported = true;
         }
-        
-        foreach (var eachConstructor in voSymbolInformation.Constructors)
-        {
-            // no need to check for default constructor as it's already defined
-            // and the user will see: error CS0111: Type 'Foo' already defines a member called 'Foo' with the same parameter type
-            if (eachConstructor.Parameters.Length > 0)
-            {
-                context.ReportDiagnostic(DiagnosticItems.CannotHaveUserConstructors(eachConstructor));
-            }
-        }
+
+        return reported;
     }
+
 
     private static bool TryHandleNormalizeMethod(
         string? methodName, 
@@ -284,25 +264,25 @@ internal static class BuildWorkItems
 
         if (!(IsMethodStatic(mds)))
         {
-            context.ReportDiagnostic(DiagnosticItems.NormalizeInputMethodMustBeStatic(mds));
+            context.ReportDiagnostic(DiagnosticsCatalogue.NormalizeInputMethodMustBeStatic(mds));
             return false;
         }
 
         if (mds.ParameterList.Parameters.Count != 1)
         {
-            context.ReportDiagnostic(DiagnosticItems.NormalizeInputMethodTakeOneParameterOfUnderlyingType(mds));
+            context.ReportDiagnostic(DiagnosticsCatalogue.NormalizeInputMethodTakeOneParameterOfUnderlyingType(mds));
             return false;
         }
 
         if (!AreSameType(mds.ParameterList.Parameters[0].Type, config.UnderlyingType, target.SemanticModel))
         {
-            context.ReportDiagnostic(DiagnosticItems.NormalizeInputMethodTakeOneParameterOfUnderlyingType(mds));
+            context.ReportDiagnostic(DiagnosticsCatalogue.NormalizeInputMethodTakeOneParameterOfUnderlyingType(mds));
             return false;
         }
 
         if (!AreSameType(mds.ReturnType, config.UnderlyingType, target.SemanticModel))
         {
-            context.ReportDiagnostic(DiagnosticItems.NormalizeInputMethodMustReturnUnderlyingType(mds));
+            context.ReportDiagnostic(DiagnosticsCatalogue.NormalizeInputMethodMustReturnUnderlyingType(mds));
             return false;
         }
 
@@ -318,7 +298,7 @@ internal static class BuildWorkItems
 
         if (!IsMethodStatic(mds))
         {
-            context.ReportDiagnostic(DiagnosticItems.ValidationMustBeStatic(mds));
+            context.ReportDiagnostic(DiagnosticsCatalogue.ValidationMustBeStatic(mds));
             return false;
         }
 
@@ -326,7 +306,7 @@ internal static class BuildWorkItems
 
         if (returnTypeSyntax.ToString() != "Validation")
         {
-            context.ReportDiagnostic(DiagnosticItems.ValidationMustReturnValidationType(mds));
+            context.ReportDiagnostic(DiagnosticsCatalogue.ValidationMustReturnValidationType(mds));
             return false;
         }
 
@@ -371,14 +351,14 @@ internal static class BuildWorkItems
 
             if (name is null)
             {
-                context.ReportDiagnostic(DiagnosticItems.InstanceMethodCannotHaveNullArgumentName(voClass));
+                context.ReportDiagnostic(DiagnosticsCatalogue.InstanceMethodCannotHaveNullArgumentName(voClass));
             }
 
             var value = constructorArguments[1].Value;
 
             if (value is null)
             {
-                context.ReportDiagnostic(DiagnosticItems.InstanceMethodCannotHaveNullArgumentValue(voClass));
+                context.ReportDiagnostic(DiagnosticsCatalogue.InstanceMethodCannotHaveNullArgumentValue(voClass));
             }
 
             if (name is null || value is null)
@@ -391,7 +371,7 @@ internal static class BuildWorkItems
             InstanceGeneration.BuildResult result = InstanceGeneration.TryBuildInstanceValueAsText(name, value, underlyingType?.FullName());
             if (!result.Success)
             {
-                context.ReportDiagnostic(DiagnosticItems.InstanceValueCannotBeConverted(voClass, result.ErrorMessage));
+                context.ReportDiagnostic(DiagnosticsCatalogue.InstanceValueCannotBeConverted(voClass, result.ErrorMessage));
             }
             
             yield return new InstanceProperties(name, result.Value, value, tripleSlashComment ?? string.Empty);
