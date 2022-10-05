@@ -3,9 +3,9 @@ using System.Collections.Immutable;
 using System.Linq;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.Diagnostics;
-using Vogen.Rules;
+using Vogen.Diagnostics;
 
-namespace Vogen.Analyzers
+namespace Vogen.Rules
 {
     [DiagnosticAnalyzer(LanguageNames.CSharp)]
     public class AddValidationAnalyzer : DiagnosticAnalyzer

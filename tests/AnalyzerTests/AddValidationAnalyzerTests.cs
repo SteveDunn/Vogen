@@ -4,7 +4,7 @@ using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.Testing;
 using SmallTests.AnalyzerTests;
 using Vogen;
-using VerifyCS = AnalyzerTests.Verifiers.CSharpCodeFixVerifier<Vogen.Analyzers.AddValidationAnalyzer, Vogen.Analyzers.AddValidationAnalyzerCodeFixProvider>;
+using VerifyCS = AnalyzerTests.Verifiers.CSharpCodeFixVerifier<Vogen.Rules.AddValidationAnalyzer, Vogen.Rules.AddValidationAnalyzerCodeFixProvider>;
 
 namespace AnalyzerTests
 {

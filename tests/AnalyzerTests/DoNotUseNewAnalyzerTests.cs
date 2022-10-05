@@ -137,21 +137,21 @@ public class Test {{
 using System.Threading.Tasks;
 using Vogen;
 
-public class Test {{
+public class Test {
     Vo c = Create(new Object[]
-    {{
+    {
         // This call is the issue
         new()
-    }});
+    });
 
     static Vo Create(Object[] normalObject)
-    {{
+    {
         throw null; // we don't actually generate the VO in this test
-    }}
-}}
+    }
+}
 
 [ValueObject(typeof(int))]
-public partial class Vo {{ }}";
+public partial class Vo { }";
 
             await Run(
                 source,

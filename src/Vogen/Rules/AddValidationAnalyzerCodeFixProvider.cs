@@ -9,11 +9,11 @@ using Microsoft.CodeAnalysis.CodeFixes;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.CodeAnalysis.Simplification;
-using Vogen.Rules;
+using Vogen.Diagnostics;
 using Document = Microsoft.CodeAnalysis.Document;
 using Formatter = Microsoft.CodeAnalysis.Formatting.Formatter;
 
-namespace Vogen.Analyzers
+namespace Vogen.Rules
 {
     [ExportCodeFixProvider(LanguageNames.CSharp, Name = nameof(AddValidationAnalyzerCodeFixProvider)), Shared]
     public class AddValidationAnalyzerCodeFixProvider : CodeFixProvider

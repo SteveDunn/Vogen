@@ -44,7 +44,7 @@ public class DoNotUseNewAnalyzer : DiagnosticAnalyzer
 
         if (!VoFilter.IsTarget(symbol)) return;
         
-        var diagnostic = DiagnosticItems.BuildDiagnostic(_rule, symbol.Name, context.Operation.Syntax.GetLocation());
+        var diagnostic = DiagnosticsCatalogue.BuildDiagnostic(_rule, symbol.Name, context.Operation.Syntax.GetLocation());
 
         context.ReportDiagnostic(diagnostic);
     }

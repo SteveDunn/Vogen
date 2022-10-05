@@ -86,7 +86,7 @@ public class DoNotUseReflectionAnalyzer : DiagnosticAnalyzer
         //
         // if (attr is null) return;
 
-        var diagnostic = DiagnosticItems.BuildDiagnostic(_rule, symbol.Name, location);
+        var diagnostic = DiagnosticsCatalogue.BuildDiagnostic(_rule, symbol.Name, location);
 
         ctx.ReportDiagnostic(diagnostic);
     }

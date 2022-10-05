@@ -72,7 +72,7 @@ public class DoNotUseDefaultAnalyzer : DiagnosticAnalyzer
 
         if (!VoFilter.IsTarget(symbol)) return;
 
-        var diagnostic = DiagnosticItems.BuildDiagnostic(_rule, symbol.Name, literalExpressionSyntax.GetLocation());
+        var diagnostic = DiagnosticsCatalogue.BuildDiagnostic(_rule, symbol.Name, literalExpressionSyntax.GetLocation());
 
         ctx.ReportDiagnostic(diagnostic);
     }

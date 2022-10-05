@@ -6,110 +6,110 @@ using Microsoft.CodeAnalysis.CSharp.Syntax;
 
 namespace Vogen.Diagnostics;
 
-internal static class DiagnosticItems
+internal static class DiagnosticsCatalogue
 {
     private static readonly DiagnosticDescriptor _typeCannotBeNested = CreateDescriptor(
-        DiagnosticCode.TypeCannotBeNested,
+        RuleIdentifiers.TypeCannotBeNested,
         "Types cannot be nested",
         "Type '{0}' cannot be nested - remove it from inside {1}");
 
     private static readonly DiagnosticDescriptor _typeCannotBeAbstract = CreateDescriptor(
-        DiagnosticCode.TypeCannotBeAbstract,
+        RuleIdentifiers.TypeCannotBeAbstract,
         "Types cannot be abstract",
         "Type '{0}' cannot be abstract");
 
     private static readonly DiagnosticDescriptor _recordToStringOverloadShouldBeSealed = CreateDescriptor(
-        DiagnosticCode.RecordToStringOverloadShouldBeSealed,
+        RuleIdentifiers.RecordToStringOverloadShouldBeSealed,
         "Overrides of ToString on records should be sealed to differentiate it from the C# compiler-generated method. See https://github.com/SteveDunn/Vogen/wiki/Records#tostring for more information.",
         "ToString overrides should be sealed on records. See https://github.com/SteveDunn/Vogen/wiki/Records#tostring for more information.");
 
     private static readonly DiagnosticDescriptor _typeShouldBePartial = CreateDescriptor(
-        DiagnosticCode.TypeShouldBePartial,
+        RuleIdentifiers.TypeShouldBePartial,
         "Value Objects should be declared in partial types.",
         "Type {0} is decorated as a Value Object and should be in a partial type.");
 
     private static readonly DiagnosticDescriptor _duplicateTypesFound = CreateDescriptor(
-        DiagnosticCode.TypeShouldBePartial,
+        RuleIdentifiers.DuplicateTypesFound,
         "Duplicate Value Object found.",
         "Type {0} is decorated as a Value Object but is declared multiple times. Remove the duplicate definition or differentiate with a namespace.");
 
     private static readonly DiagnosticDescriptor _cannotHaveUserConstructors = CreateDescriptor(
-        DiagnosticCode.CannotHaveUserConstructors,
+        RuleIdentifiers.CannotHaveUserConstructors,
         "Cannot have user defined constructors",
         "Cannot have user defined constructors, please use the From method for creation.");
 
     private static readonly DiagnosticDescriptor _underlyingTypeCannotBeCollection = CreateDescriptor(
-        DiagnosticCode.UnderlyingTypeCannotBeCollection,
+        RuleIdentifiers.UnderlyingTypeCannotBeCollection,
         "Underlying type cannot be collection",
         "Type '{0}' has an underlying type of {1} which is not valid");
 
     private static readonly DiagnosticDescriptor _invalidConversions = CreateDescriptor(
-        DiagnosticCode.InvalidConversions,
+        RuleIdentifiers.InvalidConversions,
         "Invalid Conversions",
         "The Conversions specified do not match any known conversions - see the Conversions type");
 
     private static readonly DiagnosticDescriptor _invalidCustomizations = CreateDescriptor(
-        DiagnosticCode.InvalidCustomizations,
+        RuleIdentifiers.InvalidCustomizations,
         "Invalid Customizations",
         "The Customizations specified do not match any known customizations - see the Customizations type");
 
     private static readonly DiagnosticDescriptor _invalidDeserializationStrictness = CreateDescriptor(
-        DiagnosticCode.InvalidDeserializationStrictness,
+        RuleIdentifiers.InvalidDeserializationStrictness,
         "Invalid Deserialization Strictness",
         $"The Deserialization Strictness specified does not match any known customizations - see the {nameof(DeserializationStrictness)} type for valid values");
 
     private static readonly DiagnosticDescriptor _underlyingTypeMustNotBeSameAsValueObject = CreateDescriptor(
-        DiagnosticCode.UnderlyingTypeMustNotBeSameAsValueObject,
+        RuleIdentifiers.UnderlyingTypeMustNotBeSameAsValueObject,
         "Invalid underlying type",
         "Type '{0}' has the same underlying type - must specify a primitive underlying type");
 
     private static readonly DiagnosticDescriptor _validationMustReturnValidationType = CreateDescriptor(
-        DiagnosticCode.ValidationMustReturnValidationType,
+        RuleIdentifiers.ValidationMustReturnValidationType,
         "Validation returns incorrect type",
         "{0} must return a Validation type");
 
     private static readonly DiagnosticDescriptor _normalizeInputMethodMustReturnSameUnderlyingType = CreateDescriptor(
-        DiagnosticCode.NormalizeInputMethodMustReturnSameUnderlyingType,
+        RuleIdentifiers.NormalizeInputMethodMustReturnSameUnderlyingType,
         "NormalizeInput returns incorrect type",
         "{0} must return the same underlying type");
     
     private static readonly DiagnosticDescriptor _normalizeInputMethodTakeOneParameterOfUnderlyingType = CreateDescriptor(
-        DiagnosticCode.NormalizeInputMethodTakeOneParameterOfUnderlyingType,
+        RuleIdentifiers.NormalizeInputMethodTakeOneParameterOfUnderlyingType,
         "NormalizeInput accepts wrong type",
         "{0} must accept one parameter of the same type as the underlying type");
 
     private static readonly DiagnosticDescriptor _validationMustBeStatic = CreateDescriptor(
-        DiagnosticCode.ValidationMustBeStatic,
+        RuleIdentifiers.ValidationMustBeStatic,
         "Validation must be static",
         "{0} must be static");
 
     private static readonly DiagnosticDescriptor _normalizeInputMethodMustBeStatic = CreateDescriptor(
-        DiagnosticCode.NormalizeInputMethodMustBeStatic,
+        RuleIdentifiers.NormalizeInputMethodMustBeStatic,
         "NormalizeInput must be static",
         "{0} must be static");
 
     private static readonly DiagnosticDescriptor _instanceMethodCannotHaveNullArgumentName = CreateDescriptor(
-        DiagnosticCode.InstanceMethodCannotHaveNullArgumentName,
+        RuleIdentifiers.InstanceMethodCannotHaveNullArgumentName,
         "Instance attribute cannot have null name",
         "{0} cannot have a null name");
 
     private static readonly DiagnosticDescriptor _instanceMethodCannotHaveNullArgumentValue = CreateDescriptor(
-        DiagnosticCode.InstanceMethodCannotHaveNullArgumentValue,
+        RuleIdentifiers.InstanceMethodCannotHaveNullArgumentValue,
         "Instance attribute cannot have null value",
         "{0} cannot have a null value");
 
     private static readonly DiagnosticDescriptor _instanceValueCannotBeConverted = CreateDescriptor(
-        DiagnosticCode.InstanceValueCannotBeConverted,
+        RuleIdentifiers.InstanceValueCannotBeConverted,
         "Instance attribute has value that cannot be converted",
         "{0} cannot be converted. {1}");
 
     private static readonly DiagnosticDescriptor _customExceptionMustDeriveFromException = CreateDescriptor(
-        DiagnosticCode.CustomExceptionMustDeriveFromException,
+        RuleIdentifiers.CustomExceptionMustDeriveFromException,
         "Invalid custom exception",
         "{0} must derive from System.Exception");
 
     private static readonly DiagnosticDescriptor _customExceptionMustHaveValidConstructor = CreateDescriptor(
-        DiagnosticCode.CustomExceptionMustHaveValidConstructor,
+        RuleIdentifiers.CustomExceptionMustHaveValidConstructor,
         "Invalid custom exception",
         "{0} must have at least 1 public constructor with 1 parameter of type System.String");
 
@@ -140,6 +140,7 @@ internal static class DiagnosticItems
     public static Diagnostic TypeShouldBePartial(Location location, string voClassName) => 
         BuildDiagnostic(_typeShouldBePartial, voClassName, location);
 
+    // Just in case the 'AllowMultiple' is taken off the attribute definition.
     public static Diagnostic DuplicateTypesFound(Location location, string voClassName) => 
         BuildDiagnostic(_duplicateTypesFound, voClassName, location);
 
@@ -173,11 +174,11 @@ internal static class DiagnosticItems
     public static Diagnostic CustomExceptionMustHaveValidConstructor(INamedTypeSymbol symbol) => 
         Create(_customExceptionMustHaveValidConstructor, symbol.Locations, symbol.Name);
 
-    private static DiagnosticDescriptor CreateDescriptor(DiagnosticCode code, string title, string messageFormat, DiagnosticSeverity severity = DiagnosticSeverity.Error)
+    private static DiagnosticDescriptor CreateDescriptor(string code, string title, string messageFormat, DiagnosticSeverity severity = DiagnosticSeverity.Error)
     {
         string[] tags = severity == DiagnosticSeverity.Error ? new[] { WellKnownDiagnosticTags.NotConfigurable } : Array.Empty<string>();
 
-        return new DiagnosticDescriptor(code.Format(), title, messageFormat, "Vogen", severity, isEnabledByDefault: true, customTags: tags);
+        return new DiagnosticDescriptor(code, title, messageFormat, "Vogen", severity, isEnabledByDefault: true, customTags: tags);
     }
 
     public static Diagnostic BuildDiagnostic(DiagnosticDescriptor descriptor, string name, Location location) => 

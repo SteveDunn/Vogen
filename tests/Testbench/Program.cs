@@ -7,8 +7,10 @@ using Vogen;
 Console.WriteLine("Hello world!");
 
 
+//[ValueObject(typeof(int))]
 [ValueObject(typeof(int))]
 public partial record MyVo
 {
     // public override string ToString() => "hello!";
 };
+

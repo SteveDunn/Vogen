@@ -37,7 +37,7 @@ internal static class BuildWorkItems
 
         if (attrs.Count != 1)
         {
-            context.ReportDiagnostic(DiagnosticItems.DuplicateTypesFound(voTypeSyntax.GetLocation(), voSymbolInformation.Name));
+            context.ReportDiagnostic(DiagnosticsCatalogue.DuplicateTypesFound(voTypeSyntax.GetLocation(), voSymbolInformation.Name));
             return null;
         }
         
@@ -45,13 +45,13 @@ internal static class BuildWorkItems
 
         if (!voTypeSyntax.Modifiers.Any(SyntaxKind.PartialKeyword))
         {
-            context.ReportDiagnostic(DiagnosticItems.TypeShouldBePartial(voTypeSyntax.GetLocation(), voSymbolInformation.Name));
+            context.ReportDiagnostic(DiagnosticsCatalogue.TypeShouldBePartial(voTypeSyntax.GetLocation(), voSymbolInformation.Name));
             return null;
         }
 
         if (voSymbolInformation.IsAbstract)
         {
-            context.ReportDiagnostic(DiagnosticItems.TypeCannotBeAbstract(voSymbolInformation));
+            context.ReportDiagnostic(DiagnosticsCatalogue.TypeCannotBeAbstract(voSymbolInformation));
         }
 
         if (ReportErrorsForAnyUserConstructors(context, target, voSymbolInformation))
@@ -129,7 +129,7 @@ internal static class BuildWorkItems
         if (info.HasToString && info.IsRecord && !info.IsSealed)
         {
             context.ReportDiagnostic(
-                DiagnosticItems.RecordToStringOverloadShouldBeSealed(
+                DiagnosticsCatalogue.RecordToStringOverloadShouldBeSealed(
                     info.Method!.Locations[0],
                     target.VoSymbolInformation.Name));
         }
@@ -208,7 +208,7 @@ internal static class BuildWorkItems
         if (config.UnderlyingType.ImplementsInterfaceOrBaseClass(typeof(ICollection)))
         {
             context.ReportDiagnostic(
-                DiagnosticItems.UnderlyingTypeCannotBeCollection(voSymbolInformation, config.UnderlyingType!));
+                DiagnosticsCatalogue.UnderlyingTypeCannotBeCollection(voSymbolInformation, config.UnderlyingType!));
         }
     }
 
@@ -217,7 +217,7 @@ internal static class BuildWorkItems
     {
         if (SymbolEqualityComparer.Default.Equals(voSymbolInformation, config.UnderlyingType))
         {
-            context.ReportDiagnostic(DiagnosticItems.UnderlyingTypeMustNotBeSameAsValueObjectType(voSymbolInformation));
+            context.ReportDiagnostic(DiagnosticsCatalogue.UnderlyingTypeMustNotBeSameAsValueObjectType(voSymbolInformation));
         }
     }
 
@@ -227,7 +227,7 @@ internal static class BuildWorkItems
         INamedTypeSymbol? containingType = target.ContainingType;
         if (containingType != null)
         {
-            context.ReportDiagnostic(DiagnosticItems.TypeCannotBeNested(voSymbolInformation, containingType));
+            context.ReportDiagnostic(DiagnosticsCatalogue.TypeCannotBeNested(voSymbolInformation, containingType));
         }
     }
 
@@ -242,7 +242,7 @@ internal static class BuildWorkItems
         {
             if (eachConstructor.IsImplicitlyDeclared) continue;
 
-            context.ReportDiagnostic(DiagnosticItems.CannotHaveUserConstructors(eachConstructor));
+            context.ReportDiagnostic(DiagnosticsCatalogue.CannotHaveUserConstructors(eachConstructor));
             reported = true;
         }
 
@@ -264,25 +264,25 @@ internal static class BuildWorkItems
 
         if (!(IsMethodStatic(mds)))
         {
-            context.ReportDiagnostic(DiagnosticItems.NormalizeInputMethodMustBeStatic(mds));
+            context.ReportDiagnostic(DiagnosticsCatalogue.NormalizeInputMethodMustBeStatic(mds));
             return false;
         }
 
         if (mds.ParameterList.Parameters.Count != 1)
         {
-            context.ReportDiagnostic(DiagnosticItems.NormalizeInputMethodTakeOneParameterOfUnderlyingType(mds));
+            context.ReportDiagnostic(DiagnosticsCatalogue.NormalizeInputMethodTakeOneParameterOfUnderlyingType(mds));
             return false;
         }
 
         if (!AreSameType(mds.ParameterList.Parameters[0].Type, config.UnderlyingType, target.SemanticModel))
         {
-            context.ReportDiagnostic(DiagnosticItems.NormalizeInputMethodTakeOneParameterOfUnderlyingType(mds));
+            context.ReportDiagnostic(DiagnosticsCatalogue.NormalizeInputMethodTakeOneParameterOfUnderlyingType(mds));
             return false;
         }
 
         if (!AreSameType(mds.ReturnType, config.UnderlyingType, target.SemanticModel))
         {
-            context.ReportDiagnostic(DiagnosticItems.NormalizeInputMethodMustReturnUnderlyingType(mds));
+            context.ReportDiagnostic(DiagnosticsCatalogue.NormalizeInputMethodMustReturnUnderlyingType(mds));
             return false;
         }
 
@@ -298,7 +298,7 @@ internal static class BuildWorkItems
 
         if (!IsMethodStatic(mds))
         {
-            context.ReportDiagnostic(DiagnosticItems.ValidationMustBeStatic(mds));
+            context.ReportDiagnostic(DiagnosticsCatalogue.ValidationMustBeStatic(mds));
             return false;
         }
 
@@ -306,7 +306,7 @@ internal static class BuildWorkItems
 
         if (returnTypeSyntax.ToString() != "Validation")
         {
-            context.ReportDiagnostic(DiagnosticItems.ValidationMustReturnValidationType(mds));
+            context.ReportDiagnostic(DiagnosticsCatalogue.ValidationMustReturnValidationType(mds));
             return false;
         }
 
@@ -351,14 +351,14 @@ internal static class BuildWorkItems
 
             if (name is null)
             {
-                context.ReportDiagnostic(DiagnosticItems.InstanceMethodCannotHaveNullArgumentName(voClass));
+                context.ReportDiagnostic(DiagnosticsCatalogue.InstanceMethodCannotHaveNullArgumentName(voClass));
             }
 
             var value = constructorArguments[1].Value;
 
             if (value is null)
             {
-                context.ReportDiagnostic(DiagnosticItems.InstanceMethodCannotHaveNullArgumentValue(voClass));
+                context.ReportDiagnostic(DiagnosticsCatalogue.InstanceMethodCannotHaveNullArgumentValue(voClass));
             }
 
             if (name is null || value is null)
@@ -371,7 +371,7 @@ internal static class BuildWorkItems
             InstanceGeneration.BuildResult result = InstanceGeneration.TryBuildInstanceValueAsText(name, value, underlyingType?.FullName());
             if (!result.Success)
             {
-                context.ReportDiagnostic(DiagnosticItems.InstanceValueCannotBeConverted(voClass, result.ErrorMessage));
+                context.ReportDiagnostic(DiagnosticsCatalogue.InstanceValueCannotBeConverted(voClass, result.ErrorMessage));
             }
             
             yield return new InstanceProperties(name, result.Value, value, tripleSlashComment ?? string.Empty);
