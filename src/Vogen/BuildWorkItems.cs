@@ -74,7 +74,9 @@ internal static class BuildWorkItems
         IEnumerable<InstanceProperties> instanceProperties =
             TryBuildInstanceProperties(attributes, voSymbolInformation, context, config.UnderlyingType).ToList();
 
-        var hasToString = HasToStringOverload(voSymbolInformation);
+        var toStringInfo = HasToStringOverload(voSymbolInformation);
+
+        ThrowIfToStringOverrideOnRecordIsUnsealed(target, context, toStringInfo);
 
         MethodDeclarationSyntax? validateMethod = null;
         MethodDeclarationSyntax? normalizeInputMethod = null;
@@ -109,7 +111,7 @@ internal static class BuildWorkItems
             InstanceProperties = instanceProperties.ToList(),
             TypeToAugment = voTypeSyntax,
             IsValueType = isValueType,
-            HasToString = hasToString,
+            HasToString = toStringInfo.HasToString,
             UnderlyingType = config.UnderlyingType,
             Conversions = config.Conversions,
             DeserializationStrictness = config.DeserializationStrictness,
@@ -121,7 +123,21 @@ internal static class BuildWorkItems
         };
     }
 
-    private static bool HasToStringOverload(ITypeSymbol typeSymbol)
+    private static void ThrowIfToStringOverrideOnRecordIsUnsealed(VoTarget target, SourceProductionContext context,
+        ToStringInfo info)
+    {
+        if (info.HasToString && info.IsRecord && !info.IsSealed)
+        {
+            context.ReportDiagnostic(
+                DiagnosticItems.RecordToStringOverloadShouldBeSealed(
+                    info.Method!.Locations[0],
+                    target.VoSymbolInformation.Name));
+        }
+    }
+
+    private record struct ToStringInfo(bool HasToString, bool IsRecord, bool IsSealed, IMethodSymbol? Method);
+
+    private static ToStringInfo HasToStringOverload(ITypeSymbol typeSymbol)
     {
         while (true)
         {
@@ -146,74 +162,34 @@ internal static class BuildWorkItems
                     continue;
                 }
 
-                // records always have a ToString method. In C# 10, the user can differentiate this
+                // records always have an implicitly declared ToString method. In C# 10, the user can differentiate this
                 // by making the method sealed.
-                if (typeSymbol.IsRecord && !eachMethod.IsSealed)
+                if (typeSymbol.IsRecord && eachMethod.IsImplicitlyDeclared)
                 {
                     continue;
                 }
 
-                return true;
+                // In C# 10, the user can differentiate a ToString overload by making the method sealed.
+                // We report back if it's sealed or not so that we can emit an error if it's not sealed.
+                // The error stops another compilation error; if unsealed, the generator generates a duplicate ToString() method.
+                return new ToStringInfo(HasToString: true, IsRecord: typeSymbol.IsRecord, IsSealed: eachMethod.IsSealed, eachMethod);
             }
 
             INamedTypeSymbol? baseType = typeSymbol.BaseType;
 
             if (baseType is null)
             {
-                return false;
+                return new ToStringInfo(false, false, false, null);
             }
             
             if (baseType.SpecialType == SpecialType.System_Object || baseType.SpecialType == SpecialType.System_ValueType)
             {
-                return false;
+                return new ToStringInfo(false, false, false, null);
             }
 
             typeSymbol = baseType;
         }
     }
-    // private static bool HasToStringOverload(ITypeSymbol typeSymbol)
-    // {
-    //     while (true)
-    //     {
-    //         var toStringMethods = typeSymbol.GetMembers("ToString").OfType<IMethodSymbol>();
-    //
-    //         foreach (IMethodSymbol eachMethod in toStringMethods)
-    //         {
-    //             // we could have "public virtual new string ToString() => "xxx" 
-    //             if (!eachMethod.IsOverride && !eachMethod.IsVirtual)
-    //             {
-    //                 continue;
-    //             }
-    //
-    //             // can't change access rights
-    //             if (eachMethod.DeclaredAccessibility != Accessibility.Public && eachMethod.DeclaredAccessibility != Accessibility.Protected)
-    //             {
-    //                 continue;
-    //             }
-    //
-    //             if (eachMethod.Parameters.Length != 0)
-    //             {
-    //                 continue;
-    //             }
-    //
-    //             return true;
-    //         }
-    //
-    //         INamedTypeSymbol? baseType = typeSymbol.BaseType;
-    //
-    //         if (baseType is null)
-    //         {
-    //             return false;
-    //         }
-    //         
-    //         if (baseType.SpecialType == SpecialType.System_Object || baseType.SpecialType == SpecialType.System_ValueType)
-    //         {
-    //             return false;
-    //         }
-    //
-    //         typeSymbol = baseType;
-    //     }
-    // }
 
     private static bool IsUnderlyingAValueType(VogenConfiguration config)
     {

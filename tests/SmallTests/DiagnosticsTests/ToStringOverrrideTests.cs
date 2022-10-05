@@ -2,8 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using FluentAssertions;
+using FluentAssertions.Execution;
 using Microsoft.CodeAnalysis;
-using Vogen.Analyzers;
+using Vogen;
 using Xunit;
 
 namespace SmallTests.DiagnosticsTests;
@@ -11,10 +12,10 @@ namespace SmallTests.DiagnosticsTests;
 public class ToStringOverrideTests
 {
     [Theory]
-    [InlineData("public record struct")]
-    [InlineData("public readonly record struct")]
-    [InlineData("public record class")]
-    [InlineData("public record")]
+    [InlineData("public partial record struct")]
+    [InlineData("public readonly partial record struct")]
+    [InlineData("public partial record class")]
+    [InlineData("public partial record")]
     public void WithRecordsThatHaveNoSealedOverride_OutputErrors(string type)
     {
         var source = $@"using Vogen;
@@ -28,8 +29,10 @@ namespace Whatever;
 }}
 ";
         
-        var (diagnostics, _) = TestHelper.GetGeneratedOutput<ToStringOverrideAnalyzer>(source);
+        var (diagnostics, _) = TestHelper.GetGeneratedOutput<ValueObjectGenerator>(source);
 
+        using var _ = new AssertionScope();
+        
         diagnostics.Should().HaveCount(1);
         Diagnostic diagnostic = diagnostics.Single();
 
@@ -38,10 +41,10 @@ namespace Whatever;
     }
 
     [Theory]
-    [InlineData("public record struct")]
-    [InlineData("public readonly record struct")]
-    [InlineData("public record class")]
-    [InlineData("public record")]
+    [InlineData("public partial record struct")]
+    [InlineData("public readonly partial record struct")]
+    [InlineData("public partial record class")]
+    [InlineData("public partial record")]
     public void WithRecordsThatDoHaveSealedOverride_DoNotOutputErrors(string type)
     {
         var source = $@"using Vogen;
@@ -55,7 +58,7 @@ namespace Whatever;
 }}
 ";
         
-        var (diagnostics, _) = TestHelper.GetGeneratedOutput<ToStringOverrideAnalyzer>(source);
+        var (diagnostics, _) = TestHelper.GetGeneratedOutput<ValueObjectGenerator>(source);
 
         diagnostics.Should().HaveCount(0);
     }
@@ -75,7 +78,7 @@ namespace Whatever;
 }}
 ";
         
-        var (diagnostics, _) = TestHelper.GetGeneratedOutput<ToStringOverrideAnalyzer>(source);
+        var (diagnostics, _) = TestHelper.GetGeneratedOutput<ValueObjectGenerator>(source);
 
         diagnostics.Should().HaveCount(0);
     }
@@ -102,11 +105,11 @@ namespace Whatever;
 
         private readonly string[] _types =
         {
-            "public struct",
-            "public readonly struct",
-            "public class",
-            "internal class",
-            "internal readonly struct"
+            "public partial struct",
+            "public readonly partial struct",
+            "public partial class",
+            "internal partial class",
+            "internal readonly partial struct"
         };
 
         IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();

@@ -11,7 +11,7 @@ namespace Vogen.Rules;
 public class DoNotUseNewAnalyzer : DiagnosticAnalyzer
 {
     private static readonly DiagnosticDescriptor _rule = new DiagnosticDescriptor(
-        RuleIdentifiers.NoNotUseNew,
+        RuleIdentifiers.DoNotUseNew,
         "Using new to create Value Objects is prohibited - use the From method for creation",
         "Type '{0}' cannot be constructed with 'new' as it is prohibited",
         RuleCategories.Usage,
@@ -20,10 +20,7 @@ public class DoNotUseNewAnalyzer : DiagnosticAnalyzer
         description:
         "The value object is created with a new expression. This can lead to invalid value objects in your domain. Use the From method instead.");
 
-    public override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics
-    {
-        get { return ImmutableArray.Create(_rule); }
-    }
+    public override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics => ImmutableArray.Create(_rule);
 
     public override void Initialize(AnalysisContext context)
     {
@@ -34,7 +31,6 @@ public class DoNotUseNewAnalyzer : DiagnosticAnalyzer
         context.RegisterCompilationStartAction(compilationContext =>
         {
             compilationContext.RegisterOperationAction(AnalyzeExpression, OperationKind.ObjectCreation);
-            //compilationContext.RegisterOperationAction(AnalyzeExpression, OperationKind.ExpressionStatement);
         });
     }
 

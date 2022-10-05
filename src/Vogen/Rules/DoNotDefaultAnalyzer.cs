@@ -15,7 +15,7 @@ namespace Vogen.Rules;
 public class DoNotUseDefaultAnalyzer : DiagnosticAnalyzer
 {
     private static readonly DiagnosticDescriptor _rule = new DiagnosticDescriptor(
-        RuleIdentifiers.NoNotUseDefault,
+        RuleIdentifiers.DoNotUseDefault,
         "Using default of Value Objects is prohibited",
         "Type '{0}' cannot be constructed with default as it is prohibited",
         RuleCategories.Usage,
