@@ -1,9 +1,12 @@
-﻿using System.Collections.Immutable;
+﻿using System;
+using System.Collections.Immutable;
 using System.Linq;
+using Analyzer.Utilities.Extensions;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.CodeAnalysis.Diagnostics;
+using Microsoft.CodeAnalysis.Operations;
 using Vogen.Diagnostics;
 
 namespace Vogen.Rules;
@@ -32,59 +35,43 @@ public class DoNotUseReflectionAnalyzer : DiagnosticAnalyzer
         context.ConfigureGeneratedCodeAnalysis(GeneratedCodeAnalysisFlags.None);
         context.EnableConcurrentExecution();
 
-        context.RegisterCompilationStartAction(compilationContext =>
+        context.RegisterCompilationStartAction(compStartCtx =>
         {
-            compilationContext.RegisterSyntaxNodeAction(AnalyzeExpressionSyntax, SyntaxKind.InvocationExpression);
+            INamedTypeSymbol? activator = compStartCtx.Compilation.GetTypeByMetadataName("System.Activator");
+            if (activator is null) return;
+
+            var methods = activator.GetMembers("CreateInstance").OfType<IMethodSymbol>().ToList();
+            var nonGeneric = methods.FirstOrDefault(m => m.Parameters.Length == 1 && !m.IsGenericMethod);
+            var generic = methods.FirstOrDefault(m => m.Parameters.Length == 0 && m.IsGenericMethod);
+
+            compStartCtx.RegisterOperationAction(operationCtx =>
+            {
+                var invocation = (IInvocationOperation) operationCtx.Operation;
+
+                var methodSymbol = invocation.TargetMethod;
+
+                if (SymbolEqualityComparer.Default.Equals(methodSymbol.OriginalDefinition, generic?.OriginalDefinition))
+                {
+                    ReportIfNeeded(methodSymbol.ReturnType, operationCtx, invocation.Syntax.GetLocation());
+                    return;
+                }
+
+                if (SymbolEqualityComparer.Default.Equals(methodSymbol, nonGeneric))
+                {
+                    var op = invocation.Arguments[0].Value as ITypeOfOperation;
+                    var typeSymbol = op?.TypeOperand;
+
+                    ReportIfNeeded(typeSymbol, operationCtx, invocation.Syntax.GetLocation());
+                }
+            }, OperationKind.Invocation);
         });
     }
 
-    private static void AnalyzeExpressionSyntax(SyntaxNodeAnalysisContext ctx)
-    {
-        var invocationSyntax = (InvocationExpressionSyntax) ctx.Node;
-
-        if (invocationSyntax.Kind() != SyntaxKind.InvocationExpression)
-        {
-            return;
-        }
-        
-        var methodSymbol = (ctx.SemanticModel.GetSymbolInfo(invocationSyntax).Symbol as IMethodSymbol);
-        if (methodSymbol == null) return;
-        if (methodSymbol.ReceiverType?.FullNamespace() != "System") return;
-        if (methodSymbol.ReceiverType.Name != "Activator") return;
-        if (methodSymbol.Name != "CreateInstance") return;
-
-        if (methodSymbol.Parameters.Length == 0)
-        {
-            if (!methodSymbol.IsGenericMethod) return;
-
-            var typeSymbol = ctx.SemanticModel.GetTypeInfo(invocationSyntax).Type;
-            ReportIfNeeded(typeSymbol, ctx, invocationSyntax.GetLocation());
-        }
-
-        if (methodSymbol.Parameters.Length == 1)
-        {
-            var childNodes = invocationSyntax.DescendantNodes().OfType<TypeOfExpressionSyntax>().ToList();
-
-            if (childNodes.Count != 1) return;
-
-            var typeSymbol = ctx.SemanticModel.GetTypeInfo(childNodes[0].Type).Type;
-            ReportIfNeeded(typeSymbol, ctx, invocationSyntax.GetLocation());
-        }
-    }
-
-    private static void ReportIfNeeded(ITypeSymbol? typeInfo, SyntaxNodeAnalysisContext ctx, Location location)
+    private static void ReportIfNeeded(ISymbol? typeInfo, OperationAnalysisContext ctx, Location location)
     {
         if (typeInfo is not INamedTypeSymbol symbol) return;
-        
-        if (!VoFilter.IsTarget(symbol)) return;
 
-        // ImmutableArray<AttributeData> attributes = symbol.GetAttributes();
-        //
-        // if (attributes.Length == 0) return;
-        //
-        // AttributeData? attr = attributes.SingleOrDefault(a => a.AttributeClass?.FullName() is "Vogen.ValueObjectAttribute");
-        //
-        // if (attr is null) return;
+        if (!VoFilter.IsTarget(symbol)) return;
 
         var diagnostic = DiagnosticsCatalogue.BuildDiagnostic(_rule, symbol.Name, location);
 
