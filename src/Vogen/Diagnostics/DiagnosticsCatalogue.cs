@@ -184,6 +184,9 @@ internal static class DiagnosticsCatalogue
     public static Diagnostic BuildDiagnostic(DiagnosticDescriptor descriptor, string name, Location location) => 
         Diagnostic.Create(descriptor, location, name);
 
+    public static Diagnostic BuildDiagnostic(DiagnosticDescriptor descriptor, string name) => 
+        Diagnostic.Create(descriptor, null, name);
+
     private static Diagnostic Create(DiagnosticDescriptor descriptor, IEnumerable<Location> locations, params object?[] args)
     {
         var locationsList = (locations as IReadOnlyList<Location>) ?? locations.ToList();

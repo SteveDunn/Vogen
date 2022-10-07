@@ -1,14 +1,14 @@
-﻿using System.Collections.Immutable;
-using System.Composition;
-using System.Linq;
-using System.Threading;
-using System.Threading.Tasks;
-using Microsoft.CodeAnalysis;
+﻿using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CodeActions;
 using Microsoft.CodeAnalysis.CodeFixes;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.CodeAnalysis.Simplification;
+using System.Collections.Immutable;
+using System.Composition;
+using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
 using Vogen.Diagnostics;
 using Document = Microsoft.CodeAnalysis.Document;
 using Formatter = Microsoft.CodeAnalysis.Formatting.Formatter;
@@ -52,20 +52,20 @@ namespace Vogen.Rules
         }
 
         private async Task<Document> GenerateValidationMethodAsync(Document document,
-            ImmutableArray<Diagnostic> contextDiagnostics, 
+            ImmutableArray<Diagnostic> contextDiagnostics,
             TypeDeclarationSyntax typeDecl,
             CancellationToken cancellationToken)
         {
             var properties = contextDiagnostics[0].Properties;
 
             string returnType = properties["PrimitiveType"]!;
-            
+
             SyntaxNode root = (await document.GetSyntaxRootAsync(cancellationToken).ConfigureAwait(false))!;
-            
+
             var newMember = GenerateMethod(returnType);
-            
+
             var newTypeDecl = typeDecl.AddMembers(newMember);
-            
+
             var newRoot = root.ReplaceNode(typeDecl, newTypeDecl);
 
             return document.WithSyntaxRoot(newRoot);
@@ -78,12 +78,13 @@ namespace Vogen.Rules
 {{
     bool isValid = true ; // todo: your validation
     return isValid ? Validation.Ok : Validation.Invalid(""[todo: describe the validation]"");
-}}").WithAdditionalAnnotations(Simplifier.Annotation);
+}}
+").WithAdditionalAnnotations(Simplifier.Annotation);
         }
-        
+
         private static MemberDeclarationSyntax ParseMember(string member)
         {
-            MemberDeclarationSyntax decl = ((ClassDeclarationSyntax)SyntaxFactory.ParseCompilationUnit($@"class x {{
+            MemberDeclarationSyntax decl = ((ClassDeclarationSyntax) SyntaxFactory.ParseCompilationUnit($@"class x {{
 {member}
 }}").Members[0]).Members[0];
             return decl.WithAdditionalAnnotations(Formatter.Annotation);
