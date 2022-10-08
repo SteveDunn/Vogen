@@ -78,8 +78,7 @@ namespace Vogen.Rules
 {{
     bool isValid = true ; // todo: your validation
     return isValid ? Validation.Ok : Validation.Invalid(""[todo: describe the validation]"");
-}}
-").WithAdditionalAnnotations(Simplifier.Annotation);
+}}").WithAdditionalAnnotations(Simplifier.Annotation).NormalizeWhitespace();
         }
 
         private static MemberDeclarationSyntax ParseMember(string member)

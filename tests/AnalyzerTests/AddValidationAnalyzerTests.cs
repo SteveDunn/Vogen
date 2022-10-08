@@ -39,7 +39,7 @@ namespace ConsoleApplication1
     }
 }");
 
-            var output = LineEndingsHelper.Normalize(@"
+            var expectedOutput = LineEndingsHelper.Normalize(@"
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -61,7 +61,7 @@ namespace ConsoleApplication1
     }
 }");
 
-            var expected =
+            var expectedDiagnostic =
                 VerifyCS.Diagnostic("AddValidationMethod").WithSeverity(DiagnosticSeverity.Info).WithLocation(0).WithArguments("TypeName");
 
             var loc = typeof(ValueObjectAttribute).Assembly.Location;
@@ -75,15 +75,14 @@ namespace ConsoleApplication1
             {
                 TestState =
                 {
-                    Sources = {input },
+                    Sources = { input },
                 },
 
                 CompilerDiagnostics = CompilerDiagnostics.Suggestions,
                 ReferenceAssemblies = referenceAssemblies,
-                FixedCode = output,
-                ExpectedDiagnostics = { expected },
+                FixedCode = expectedOutput,
+                ExpectedDiagnostics = { expectedDiagnostic },
             };
-
 
             test.DisabledDiagnostics.Add("CS1591");
 
