@@ -457,3 +457,4 @@ $RECYCLE.BIN/
 
 *.received.txt
 BenchmarkDotNet.Artifacts
+/samples/Vogen.Examples/Generated
