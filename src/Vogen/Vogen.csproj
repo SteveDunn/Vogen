@@ -1,8 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>netstandard2.0</TargetFrameworks>
-    <LanguageVersion>10.0</LanguageVersion>
+    <TargetFramework>netstandard2.0</TargetFramework>
     <ImplicitUsings>disable</ImplicitUsings>
     <nullable>enable</nullable>
     <IsRoslynComponent>true</IsRoslynComponent>
@@ -67,7 +66,6 @@
     </PackageReference>
     <PackageReference Include="Microsoft.CodeAnalysis.CSharp" Version="4.2.0" />
     <PackageReference Include="Microsoft.CodeAnalysis.CSharp.Workspaces" Version="4.2.0" />
-
   </ItemGroup>
 
   <ItemGroup>

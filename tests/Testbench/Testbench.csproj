@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
-    <TargetFrameworks>net6.0</TargetFrameworks>
+    <TargetFrameworks>net7.0</TargetFrameworks>
     <ImplicitUsings>disable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <IsPackable>false</IsPackable>
@@ -11,8 +11,8 @@
   <ItemGroup>
     <!-- Note that this is not a "normal" ProjectReference.
          It needs the additional 'OutputItemType' and 'ReferenceOutputAssmbly' attributes. -->
-    <ProjectReference Include="..\..\src\Vogen\Vogen.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="true" />
-    <ProjectReference Include="..\..\src\Vogen.SharedTypes\Vogen.SharedTypes.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="true" />
+    <ProjectReference Include="..\..\src\Vogen\Vogen.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="true" SetTargetFramework="TargetFramework=netstandard2.0" />
+    <ProjectReference Include="..\..\src\Vogen.SharedTypes\Vogen.SharedTypes.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="true" SetTargetFramework="TargetFramework=netstandard2.0" />
   </ItemGroup>
 
   <PropertyGroup>
@@ -31,9 +31,12 @@
     <PackageReference Include="linq2db" Version="3.7.0" />
     <PackageReference Include="Dapper" Version="2.0.123" />
 
-    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.0-*" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="6.0.0-*" />
-    <PackageReference Include="System.Text.Json" Version="6.0.0-*" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.0-rc.1.22426.7" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="7.0.0-rc.1.22426.7" />
+    <PackageReference Include="System.Text.Json" Version="7.0.0-rc.1.22426.10" />
+
+    <!--<PackageReference Include="System.Collections.Immutable" Version="7.0.0-rc.1.22426.10" />-->
+    <!--<PackageReference Include="System.Collections.Immutable" Version="7.0.0.0" />-->
 
 
     <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />

@@ -42,7 +42,7 @@ namespace Vogen
             string parameters = BuildParameters(methodSymbol);
             string parameterNames = BuildParameterNames(methodSymbol);
 
-            var inheritDocRef = methodSymbol.ToString().Replace("<", "{").Replace(">", "}");
+            var inheritDocRef = methodSymbol.ToString()!.Replace("<", "{").Replace(">", "}");
             
             var ret =
                 @$"
