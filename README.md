@@ -220,7 +220,7 @@ public void Process(Person person) {
 We can also specify other instance properties:
 
 ```csharp
-[ValueObject(typeof(int))]
+[ValueObject(typeof(float))]
 [Instance("Freezing", 0)]
 [Instance("Boiling", 100)]
 public readonly partial struct Celsius {
