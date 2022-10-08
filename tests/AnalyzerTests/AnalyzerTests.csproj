@@ -6,13 +6,8 @@
 
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <GenerateBindingRedirectsOutputType>true</GenerateBindingRedirectsOutputType>
+    <Configurations>Debug;Release;Debug - auto verify tests</Configurations>
   </PropertyGroup>
-
-  <!-- <ItemGroup> -->
-  <!--   <PackageReference Include="Microsoft.CodeAnalysis.CSharp" Version="4.2.0" /> -->
-  <!--   <PackageReference Include="Microsoft.CodeAnalysis.CSharp.Workspaces" Version="4.2.0" /> -->
-  <!-- -->
-  <!-- </ItemGroup> -->
 
   <ItemGroup>
     <PackageReference Include="GitHubActionsTestLogger" Version="2.0.1">

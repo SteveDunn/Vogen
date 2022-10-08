@@ -5,6 +5,7 @@
     <Nullable>enable</Nullable>
     <RootNamespace>Vogen</RootNamespace>
     <IsPackable>false</IsPackable>
+    <Configurations>Debug;Release;Debug - auto verify tests</Configurations>
 
   </PropertyGroup>
 

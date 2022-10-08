@@ -10,6 +10,8 @@
 
     <SuppressTfmSupportBuildWarnings>true</SuppressTfmSupportBuildWarnings>
 
+    <Configurations>Debug;Release;Debug - auto verify tests</Configurations>
+
   </PropertyGroup>
   
   <!-- Uncomment if you're getting unexpected minver results-->  
@@ -70,14 +72,6 @@
 
   <ItemGroup>
 
-    <!-- <PackageReference Include="Microsoft.CodeAnalysis.CSharp" Version="4.1.0" PrivateAssets="all" /> -->
-      <!-- <PackageReference Include="Microsoft.CodeAnalysis.BannedApiAnalyzers" Version="3.3.3"> -->
-      <!--   <PrivateAssets>all</PrivateAssets> -->
-      <!--   <IncludeAssets>analyzers</IncludeAssets> -->
-      <!-- </PackageReference> -->
-    <!-- <PackageReference Include="Microsoft.CodeAnalysis.Analyzers" PrivateAssets="all" /> -->
-
-    <!-- <PackageReference Include="Microsoft.CodeAnalysis.CSharp.Workspaces" PrivateAssets="all" /> -->
     <PackageReference Include="MinVer" Version="4.2.0">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
