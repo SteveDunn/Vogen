@@ -102,6 +102,10 @@ CustomerId c = default; // error VOG009: Type 'CustomerId' cannot be constructed
 var c = default(CustomerId); // error VOG009: Type 'CustomerId' cannot be constructed with default as it is prohibited.
 var c = GetCustomerId(); // error VOG010: Type 'CustomerId' cannot be constructed with 'new' as it is prohibited
 
+var c = Activator.CreateInstance<CustomerId>(); // error VOG025: Type 'MyVo' cannot be constructed via Reflection as it is prohibited
+
+var c = Activator.CreateInstance(typeof(CustomerId)); // error VOG025: Type 'MyVo' cannot be constructed via Reflection as it is prohibited
+
 // catches lambda expressions
 Func<CustomerId> f = () => default; // error VOG009: Type 'CustomerId' cannot be constructed with default as it is prohibited.
 
