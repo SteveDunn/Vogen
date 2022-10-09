@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
+    <TargetFrameworks>netstandard2.0</TargetFrameworks>
     <ImplicitUsings>disable</ImplicitUsings>
     <nullable>enable</nullable>
     <IsRoslynComponent>true</IsRoslynComponent>
@@ -10,7 +10,7 @@
 
     <SuppressTfmSupportBuildWarnings>true</SuppressTfmSupportBuildWarnings>
 
-    <Configurations>Debug;Release;Debug - auto verify tests</Configurations>
+    <Configurations>Debug;Release</Configurations>
 
   </PropertyGroup>
   
@@ -110,7 +110,7 @@
     <PackageIcon>gradient_128x128.png</PackageIcon>
     <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
     <PublishRepositoryUrl>true</PublishRepositoryUrl>
-    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <GenerateDocumentationFile>False</GenerateDocumentationFile>
     <RepositoryUrl>https://github.com/SteveDunn/Vogen</RepositoryUrl>
     <Description>
       This package contains a Souce Generator which generates Value Objects that wrap simple primitives such as int, string, double etc.

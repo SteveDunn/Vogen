@@ -1,7 +1,12 @@
 <Project>
   <PropertyGroup>
     <LangVersion>preview</LangVersion>
-    <NoWarn>$(NoWarn);CS1701;CS1702;CS1591;CA1014;CS9057;CA2255</NoWarn>
+    <!--<NoWarn>$(NoWarn);CS1701;CS1702;CS1591;CA1014;CS9057;CA2255</NoWarn>-->
+
+<!--
+ca2255 - module initializer only for apps & advance source gen scenarios
+-->
+    <NoWarn>$(NoWarn);CA2255</NoWarn>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
     <PackageOutputPath>$(MSBuildThisFileDirectory)\artifacts</PackageOutputPath>
     <CheckEolTargetFramework>false</CheckEolTargetFramework>

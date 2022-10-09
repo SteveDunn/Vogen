@@ -10,7 +10,7 @@
     <PlatformTarget>x64</PlatformTarget>
     <SuppressTfmSupportBuildWarnings>true</SuppressTfmSupportBuildWarnings>
     <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
-    <Configurations>Debug;Release;Debug - auto verify tests</Configurations>
+    <Configurations>Debug;Release</Configurations>
   </PropertyGroup>
 
   <ItemGroup Condition=" '$(TargetFramework)' == 'net7.0'">
@@ -94,11 +94,6 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
     <CheckForOverflowUnderflow>False</CheckForOverflowUnderflow>
   </PropertyGroup>
-
-  <PropertyGroup Condition="'$(Configuration)'=='Debug - auto verify tests'">
-    <DefineConstants>$(DefineConstants)TRACE;AUTO_VERIFY</DefineConstants>
-  </PropertyGroup>
-
 
   <ItemGroup>
     <!-- Don't include the output from a previous source generator execution into future runs; the */** trick here ensures that there's
