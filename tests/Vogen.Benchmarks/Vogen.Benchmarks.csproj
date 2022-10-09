@@ -4,7 +4,6 @@
     <OutputType>Exe</OutputType>
     <LangVersion>10</LangVersion>
     <IsPackable>false</IsPackable>
-    <Configurations>Debug;Release</Configurations>
  </PropertyGroup>
   <PropertyGroup>
     <PlatformTarget>AnyCPU</PlatformTarget>

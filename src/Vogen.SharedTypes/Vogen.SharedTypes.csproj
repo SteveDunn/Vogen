@@ -5,7 +5,6 @@
     <Nullable>enable</Nullable>
     <RootNamespace>Vogen</RootNamespace>
     <IsPackable>false</IsPackable>
-    <Configurations>Debug;Release</Configurations>
 
   </PropertyGroup>
 
