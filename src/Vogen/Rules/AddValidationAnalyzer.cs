@@ -80,6 +80,8 @@ namespace Vogen.Rules
             // }
             //
             var voTypeSyntax = namedTypeSymbol;
+
+            if(attr.ConstructorArguments.Length == 0) return;
             
             // the first argument is the type - if it's null, then then it's an int
             TypedConstant firstArg = attr.ConstructorArguments[0];

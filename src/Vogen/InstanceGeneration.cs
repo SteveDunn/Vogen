@@ -165,7 +165,7 @@ public static class InstanceGeneration
                 return new(true, $@"{converted}");
             }
 
-            return new(true, propertyValue.ToString());
+            return new(true, propertyValue.ToString()!);
         }
         catch (Exception e)
         {

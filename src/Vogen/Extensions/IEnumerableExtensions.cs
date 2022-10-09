@@ -214,7 +214,7 @@ namespace Analyzer.Utilities.Extensions
                 _compare = compare;
             }
 
-            public override int Compare(T x, T y)
+            public override int Compare(T? x, T? y)
             {
                 if (x is null)
                     return y is null ? 0 : -1;
