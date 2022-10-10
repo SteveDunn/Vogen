@@ -91,39 +91,10 @@ internal static class GlobalConfigFilter
                 }
             }
 
-            switch (args.Length)
-            {
-                case 5:
-                    if (args[4].Value != null)
-                    {
-                        deserializationStrictness = (DeserializationStrictness) args[4].Value!;
-                    }
-
-                    goto case 4;
-                case 4:
-                    if (args[3].Value != null)
-                    {
-                        customizations = (Customizations) args[3].Value!;
-                    }
-
-                    goto case 3;
-                case 3:
-                    invalidExceptionType = (INamedTypeSymbol?)args[2].Value;
-
-                    ReportAnyIssuesWithTheException(invalidExceptionType, context);
-                    goto case 2;
-                    
-                case 2:
-                    if (args[1].Value != null)
-                    {
-                        conversions = (Conversions) args[1].Value!;
-                    }
-
-                    goto case 1;
-                case 1:
-                    underlyingType = (INamedTypeSymbol?)args[0].Value;
-                    break;
-            }
+            // find which constructor to use, it could be the generic attribute (> C# 11), or the non-generic.
+            deserializationStrictness = matchingAttribute.AttributeClass!.IsGenericType
+                ? PopulateFromGenericAttribute(matchingAttribute, args)
+                : PopulateFromNonGenericAttribute(args);
         }
         
         if (!matchingAttribute.NamedArguments.IsEmpty)
@@ -193,6 +164,86 @@ internal static class GlobalConfigFilter
         }
 
         return new VogenConfiguration(underlyingType, invalidExceptionType, conversions, customizations, deserializationStrictness);
+
+        DeserializationStrictness PopulateFromGenericAttribute(
+            AttributeData attributeData,
+            ImmutableArray<TypedConstant> args)
+        {
+            var type = attributeData.AttributeClass!.TypeArguments[0] as INamedTypeSymbol;
+            switch (args.Length)
+            {
+                case 4:
+                    if (args[3].Value != null)
+                    {
+                        deserializationStrictness = (DeserializationStrictness) args[3].Value!;
+                    }
+
+                    goto case 3;
+                case 3:
+                    if (args[2].Value != null)
+                    {
+                        customizations = (Customizations) args[2].Value!;
+                    }
+
+                    goto case 2;
+                case 2:
+                    invalidExceptionType = (INamedTypeSymbol?) args[1].Value;
+
+                    ReportAnyIssuesWithTheException(invalidExceptionType, context);
+                    goto case 1;
+
+                case 1:
+                    if (args[0].Value != null)
+                    {
+                        conversions = (Conversions) args[0].Value!;
+                    }
+
+                    break;
+            }
+
+            underlyingType = type;
+
+            return deserializationStrictness;
+        }
+
+        DeserializationStrictness PopulateFromNonGenericAttribute(ImmutableArray<TypedConstant> args)
+        {
+            switch (args.Length)
+            {
+                case 5:
+                    if (args[4].Value != null)
+                    {
+                        deserializationStrictness = (DeserializationStrictness) args[4].Value!;
+                    }
+
+                    goto case 4;
+                case 4:
+                    if (args[3].Value != null)
+                    {
+                        customizations = (Customizations) args[3].Value!;
+                    }
+
+                    goto case 3;
+                case 3:
+                    invalidExceptionType = (INamedTypeSymbol?) args[2].Value;
+
+                    ReportAnyIssuesWithTheException(invalidExceptionType, context);
+                    goto case 2;
+
+                case 2:
+                    if (args[1].Value != null)
+                    {
+                        conversions = (Conversions) args[1].Value!;
+                    }
+
+                    goto case 1;
+                case 1:
+                    underlyingType = (INamedTypeSymbol?) args[0].Value;
+                    break;
+            }
+
+            return deserializationStrictness;
+        }
     }
 
     private static void ReportAnyIssuesWithTheException(INamedTypeSymbol? invalidExceptionType, SourceProductionContext context)

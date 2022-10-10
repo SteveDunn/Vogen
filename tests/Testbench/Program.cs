@@ -6,23 +6,13 @@ using Vogen;
 // Console.WriteLine(x.Value);
 Console.WriteLine("Hello world!");
 
-var gt = new GenericThing<MyVo>();
-var vo = gt.GetNewItem();
-    Console.WriteLine(vo.Value);
-//gt.Set(default);
+var vo = CustomerId.From(123);
+Console.WriteLine(vo.Value);
 
-//[ValueObject(typeof(int))]
-[ValueObject(typeof(int))]
-public partial record MyVo
-{
-    // public override string ToString() => "hello!";
-};
+[ValueObject<int>]
+public partial record CustomerId;
 
-public class GenericThing<T> where T : new()
-{
-    public T GetNewItem()
-    {
-        return new T();
-    }
-}
+// [ValueObject(typeof(int))]
+// public partial record MyVo2;
+
 

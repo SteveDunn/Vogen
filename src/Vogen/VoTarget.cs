@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Immutable;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 
@@ -12,12 +13,15 @@ internal class VoTarget
     public VoTarget(
         SemanticModel semanticModel, 
         TypeDeclarationSyntax typeToAugment,
-        INamedTypeSymbol? containingType, INamedTypeSymbol symbolForType)
+        INamedTypeSymbol? containingType, 
+        INamedTypeSymbol symbolForType,
+        ImmutableArray<AttributeData> dataForAttributes)
     {
         SemanticModel = semanticModel;
         VoSyntaxInformation = typeToAugment ?? throw new InvalidOperationException("No type to augment!");
         ContainingType = containingType;
         VoSymbolInformation = symbolForType ?? throw new InvalidOperationException("No symbol for type!");
+        DataForAttributes = dataForAttributes;
     }
 
     public SemanticModel SemanticModel { get; }
@@ -37,4 +41,6 @@ internal class VoTarget
     /// The symbol information for the Value Object
     /// </summary>
     public INamedTypeSymbol VoSymbolInformation { get; set; }
+
+    public ImmutableArray<AttributeData> DataForAttributes { get; }
 }

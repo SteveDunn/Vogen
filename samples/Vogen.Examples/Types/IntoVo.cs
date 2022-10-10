@@ -3,6 +3,9 @@
     [ValueObject(conversions: Conversions.None, underlyingType: typeof(int))]
     public partial struct IntVo { }
 
+    [ValueObject<int>(conversions: Conversions.None)]
+    public partial struct IntGenericVo { }
+
     [ValueObject(conversions: Conversions.None, underlyingType: typeof(int))]
     public partial struct NoConverterIntVo { }
 

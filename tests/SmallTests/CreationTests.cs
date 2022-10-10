@@ -11,6 +11,16 @@ namespace SmallTests;
 public class CreationTests
 {
     [Fact]
+    public void Creation_Happy_Path_MyIntGeneric()
+    {
+        MyIntGeneric vo1 = MyIntGeneric.From(123);
+        MyIntGeneric vo2 = MyIntGeneric.From(123);
+    
+        vo1.Should().Be(vo2);
+        (vo1 == vo2).Should().BeTrue();
+    }
+    
+    [Fact]
     public void Creation_Happy_Path_MyInt()
     {
         MyInt vo1 = MyInt.From(123);
