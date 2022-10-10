@@ -23,16 +23,16 @@ public class GenerationTests
                     foreach (string underlyingType in _underlyingTypes)
                     {
                         var qualifiedType = "public " + type;
-                        yield return new object[] { qualifiedType, conversion, underlyingType, createClassName(qualifiedType, conversion, underlyingType) };
-                        
+                        yield return new object[] { qualifiedType, conversion, underlyingType, CreateClassName(qualifiedType, conversion, underlyingType) };
+
                         qualifiedType = "internal " + type;
-                        yield return new object[] { qualifiedType, conversion, underlyingType, createClassName(qualifiedType, conversion, underlyingType) };
+                        yield return new object[] { qualifiedType, conversion, underlyingType, CreateClassName(qualifiedType, conversion, underlyingType) };
                     }
                 }
             }
         }
 
-        private string createClassName(string type, string conversion, string underlyingType) => 
+        private static string CreateClassName(string type, string conversion, string underlyingType) => 
             type.Replace(" ", "_") + conversion.Replace(".", "_").Replace("|", "_") + underlyingType;
 
         private readonly string[] _types = new[]

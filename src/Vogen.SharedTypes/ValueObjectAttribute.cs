@@ -2,7 +2,7 @@
 {
     using System;
 
-#if true // NET7_0_OR_GREATER
+#if NET7_0_OR_GREATER
     /// <summary>
     /// Marks a type as a Value Object. The type should be partial so that the
     /// source generator can augment the type with equality and validation.

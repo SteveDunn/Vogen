@@ -99,6 +99,9 @@
   at least one subdirectory, which is our key that it's coming from a source generator as opposed to something that is coming from
   some other tool. -->
     <Compile Remove="Generated/*/**/*.cs" />
+    <Compile Remove="SnapshotTests\GenerationTests\Snapshots\**" />
+    <EmbeddedResource Remove="SnapshotTests\GenerationTests\Snapshots\**" />
+    <None Remove="SnapshotTests\GenerationTests\Snapshots\**" />
   </ItemGroup>
 
   <ItemGroup>
@@ -109,10 +112,6 @@
     <Content Include="xunit.runner.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="SnapshotTests\GenerationTests\Snapshots\" />
   </ItemGroup>
 
 </Project>
