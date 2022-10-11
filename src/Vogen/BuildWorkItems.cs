@@ -48,9 +48,16 @@ internal static class BuildWorkItems
 
         AttributeData voAttribute = target.DataForAttributes[0];
 
-        // build the configuration but log any diagnostics (we have a separate analyzer that does that)
-        var localConfig = GlobalConfigFilter.BuildConfigurationFromAttribute(voAttribute, context);
+        // Build the configuration but only log issues as diagnostics if they would cause additional compilation errors,
+        // such as incorrect exceptions, or invalid customizations. For other issues, there are separate analyzers.
+        var buildResult = GlobalConfigFilter.BuildConfigurationFromAttribute(voAttribute);
+        foreach (var diagnostic in buildResult.Diagnostics)
+        {
+            context.ReportDiagnostic(diagnostic);
+        }
 
+        VogenConfiguration? localConfig = buildResult.ResultingConfiguration;
+        
         if (localConfig == null)
         {
             return null;

@@ -54,8 +54,15 @@ namespace Vogen
             }
             
             // if there are some, get the
-            VogenConfiguration? globalConfig =
-                GlobalConfigFilter.GetDefaultConfigFromGlobalAttribute(globalConfigAttributes, compilation, context) ?? null;
+            var buildResult =
+                GlobalConfigFilter.GetDefaultConfigFromGlobalAttribute(globalConfigAttributes, compilation);
+            
+            foreach (var diagnostic in buildResult.Diagnostics)
+            {
+                context.ReportDiagnostic(diagnostic);
+            }
+
+            VogenConfiguration? globalConfig = buildResult.ResultingConfiguration;
 
             // get all of the ValueObject types found.
             List<VoWorkItem> workItems = GetWorkItems(typeDeclarations, context, globalConfig).ToList();

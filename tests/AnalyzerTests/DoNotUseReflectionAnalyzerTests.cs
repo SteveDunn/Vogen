@@ -1,10 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using System.Collections.Immutable;
 using System.Threading.Tasks;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.Testing;
-using Vogen;
 using VerifyCS = AnalyzerTests.Verifiers.CSharpAnalyzerVerifier<Vogen.Rules.DoNotUseReflectionAnalyzer>;
 
 namespace AnalyzerTests
@@ -69,7 +67,7 @@ public {type} MyVo {{ }}
             
             await Run(
                 source,
-                WithDiagnostics("VOG025", DiagnosticSeverity.Error, "MyVo", 0));
+                WithDiagnostics("VOG025", DiagnosticSeverity.Error, 0));
         }
 
         [Theory]
@@ -93,11 +91,10 @@ public {type} MyVo {{ }}
             
             await Run(
                 source,
-                WithDiagnostics("VOG025", DiagnosticSeverity.Error, "MyVo", 0));
+                WithDiagnostics("VOG025", DiagnosticSeverity.Error, 0));
         }
 
-        private static IEnumerable<DiagnosticResult> WithDiagnostics(string code, DiagnosticSeverity severity,
-            string arguments, params int[] locations)
+        private static IEnumerable<DiagnosticResult> WithDiagnostics(string code, DiagnosticSeverity severity, params int[] locations)
         {
             foreach (var location in locations)
             {
@@ -108,13 +105,6 @@ public {type} MyVo {{ }}
 
         private async Task Run(string source, IEnumerable<DiagnosticResult> expected)
         {
-            var loc = typeof(ValueObjectAttribute).Assembly.Location;
-
-            var referenceAssemblies = ReferenceAssemblies.Default
-                .AddAssemblies(
-                    ImmutableArray.Create("Vogen", "Vogen.SharedTypes", loc.Replace(".dll", string.Empty))
-                );
-
             var test = new VerifyCS.Test
             {
                 TestState =
@@ -123,7 +113,7 @@ public {type} MyVo {{ }}
                 },
 
                 CompilerDiagnostics = CompilerDiagnostics.Errors,
-                ReferenceAssemblies = referenceAssemblies,
+                ReferenceAssemblies = References.Net70AndOurs.Value,
             };
 
             test.ExpectedDiagnostics.AddRange(expected);

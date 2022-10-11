@@ -1,4 +1,5 @@
 ﻿using System.Collections.Immutable;
+using System.IO;
 using System.Threading.Tasks;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.Testing;
@@ -64,14 +65,6 @@ namespace ConsoleApplication1
             var expectedDiagnostic =
                 VerifyCS.Diagnostic("AddValidationMethod").WithSeverity(DiagnosticSeverity.Info).WithLocation(0).WithArguments("TypeName");
 
-            var loc = typeof(ValueObjectAttribute).Assembly.Location;
-
-            // var referenceAssemblies = ReferenceAssemblies.Default
-            //     .AddAssemblies(
-            //         ImmutableArray.Create("Vogen", "Vogen.SharedTypes", loc.Replace(".dll", string.Empty))
-            var referenceAssemblies = ReferenceAssemblies.NetStandard.NetStandard20.AddAssemblies(
-                ImmutableArray.Create("Vogen", "Vogen.SharedTypes", loc.Replace(".dll", string.Empty)));
-
             var test = new VerifyCS.Test
             {
                 TestState =
@@ -80,7 +73,7 @@ namespace ConsoleApplication1
                 },
 
                 CompilerDiagnostics = CompilerDiagnostics.Suggestions,
-                ReferenceAssemblies = referenceAssemblies,
+                ReferenceAssemblies = References.Net70AndOurs.Value,
                 FixedCode = expectedOutput,
                 ExpectedDiagnostics = { expectedDiagnostic },
             };
@@ -89,7 +82,6 @@ namespace ConsoleApplication1
 
             await test.RunAsync();
         }
-
 
 #if NET7_0_OR_GREATER
         [Fact]
@@ -107,7 +99,7 @@ using Vogen;
 namespace ConsoleApplication1
 {
     [ValueObject<int>]
-    public partial class {|#0:TypeName|}
+    public partial class {|#0:MyValueObject|}
     {   
     }
 }");
@@ -124,7 +116,7 @@ using Vogen;
 namespace ConsoleApplication1
 {
     [ValueObject<int>]
-    public partial class TypeName
+    public partial class MyValueObject
     {
         private static Validation Validate(int input)
         {
@@ -135,14 +127,7 @@ namespace ConsoleApplication1
 }");
 
             var expectedDiagnostic =
-                VerifyCS.Diagnostic("AddValidationMethod").WithSeverity(DiagnosticSeverity.Info).WithLocation(0).WithArguments("TypeName");
-
-            var loc = typeof(ValueObjectAttribute).Assembly.Location;
-
-            var referenceAssemblies = ReferenceAssemblies.Net.Net60
-                .AddAssemblies(
-                    ImmutableArray.Create("Vogen", "Vogen.SharedTypes", loc.Replace(".dll", string.Empty))
-                );
+                VerifyCS.Diagnostic("AddValidationMethod").WithSeverity(DiagnosticSeverity.Info).WithLocation(0).WithArguments("MyValueObject");
 
             var test = new VerifyCS.Test
             {
@@ -152,7 +137,7 @@ namespace ConsoleApplication1
                 },
 
                 CompilerDiagnostics = CompilerDiagnostics.Suggestions,
-                ReferenceAssemblies = referenceAssemblies,
+                ReferenceAssemblies = References.Net70AndOurs.Value,
                 FixedCode = expectedOutput,
                 ExpectedDiagnostics = { expectedDiagnostic },
             };
@@ -162,6 +147,5 @@ namespace ConsoleApplication1
             await test.RunAsync();
         }
 #endif
-
     }
 }

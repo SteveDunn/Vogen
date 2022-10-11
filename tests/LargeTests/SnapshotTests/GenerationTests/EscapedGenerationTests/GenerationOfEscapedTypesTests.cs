@@ -104,6 +104,10 @@ namespace @class
         diagnostics.Should().BeEmpty();
 
         VerifySettings settings = new VerifySettings();
+        
+        // settings.AutoVerify();
+        // settings.UseFileName(SnapshotUtils.ShortenForFilename(className));
+
         settings.UseFileName(className);
         return Verifier.Verify(output, settings).UseDirectory(SnapshotUtils.GetSnapshotDirectoryName());
     }
