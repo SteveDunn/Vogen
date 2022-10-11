@@ -30,29 +30,27 @@ internal static class GlobalConfigFilter
     /// </summary>
     /// <param name="defaults"></param>
     /// <param name="compilation"></param>
-    /// <param name="context"></param>
     /// <returns></returns>
-    public static VogenConfiguration? GetDefaultConfigFromGlobalAttribute(
+    public static VogenConfigurationBuildResult GetDefaultConfigFromGlobalAttribute(
         ImmutableArray<AttributeSyntax> defaults,
-        Compilation compilation,
-        SourceProductionContext context)
+        Compilation compilation)
     {
         if (defaults.IsDefaultOrEmpty)
         {
             // No global defaults
-            return null;
+            return VogenConfigurationBuildResult.Null;
         }
 
         var assemblyAttributes = compilation.Assembly.GetAttributes();
         if (assemblyAttributes.IsDefaultOrEmpty)
         {
-            return null;
+            return VogenConfigurationBuildResult.Null;
         }
 
         INamedTypeSymbol? allThatMatchByName = compilation.GetTypeByMetadataName("Vogen.VogenDefaultsAttribute");
         if (allThatMatchByName is null)
         {
-            return null;
+            return VogenConfigurationBuildResult.Null;
         }
 
         AttributeData? matchingAttribute = assemblyAttributes.SingleOrDefault(aa =>
@@ -60,22 +58,22 @@ internal static class GlobalConfigFilter
 
         if (matchingAttribute == null)
         {
-            return null;
+            return VogenConfigurationBuildResult.Null;
         }
 
-        return BuildConfigurationFromAttribute(matchingAttribute, context);
+        return BuildConfigurationFromAttribute(matchingAttribute);
     }
-    
-    public static VogenConfiguration? BuildConfigurationFromAttribute(
-        AttributeData matchingAttribute, 
-        SourceProductionContext context)
+
+    public static VogenConfigurationBuildResult BuildConfigurationFromAttribute(AttributeData matchingAttribute)
     {
+        VogenConfigurationBuildResult buildResult = new VogenConfigurationBuildResult();
+
         INamedTypeSymbol? invalidExceptionType = null;
         INamedTypeSymbol? underlyingType = null;
         Conversions conversions = Conversions.Default;
-        Customizations customizations= Customizations.None;
+        Customizations customizations = Customizations.None;
         DeserializationStrictness deserializationStrictness = DeserializationStrictness.Default;
-        
+
         bool hasErroredAttributes = false;
 
         if (!matchingAttribute.ConstructorArguments.IsEmpty)
@@ -91,41 +89,17 @@ internal static class GlobalConfigFilter
                 }
             }
 
-            switch (args.Length)
+            // find which constructor to use, it could be the generic attribute (> C# 11), or the non-generic.
+            if (matchingAttribute.AttributeClass!.IsGenericType)
             {
-                case 5:
-                    if (args[4].Value != null)
-                    {
-                        deserializationStrictness = (DeserializationStrictness) args[4].Value!;
-                    }
-
-                    goto case 4;
-                case 4:
-                    if (args[3].Value != null)
-                    {
-                        customizations = (Customizations) args[3].Value!;
-                    }
-
-                    goto case 3;
-                case 3:
-                    invalidExceptionType = (INamedTypeSymbol?)args[2].Value;
-
-                    ReportAnyIssuesWithTheException(invalidExceptionType, context);
-                    goto case 2;
-                    
-                case 2:
-                    if (args[1].Value != null)
-                    {
-                        conversions = (Conversions) args[1].Value!;
-                    }
-
-                    goto case 1;
-                case 1:
-                    underlyingType = (INamedTypeSymbol?)args[0].Value;
-                    break;
+                PopulateFromGenericAttribute(matchingAttribute, args);
+            }
+            else
+            {
+                PopulateFromNonGenericAttribute(args);
             }
         }
-        
+
         if (!matchingAttribute.NamedArguments.IsEmpty)
         {
             foreach (KeyValuePair<string, TypedConstant> arg in matchingAttribute.NamedArguments)
@@ -162,7 +136,7 @@ internal static class GlobalConfigFilter
         if (hasErroredAttributes)
         {
             // skip further generator execution and let compiler generate the errors
-            return null;
+            return VogenConfigurationBuildResult.Null;
         }
 
         if (!conversions.IsValidFlags())
@@ -170,7 +144,8 @@ internal static class GlobalConfigFilter
             var syntax = matchingAttribute.ApplicationSyntaxReference?.GetSyntax();
             if (syntax is not null)
             {
-                context.ReportDiagnostic(DiagnosticsCatalogue.InvalidConversions(syntax.GetLocation()));
+                buildResult.AddDiagnostic(DiagnosticsCatalogue.InvalidConversions(syntax.GetLocation()));
+                //context.ReportDiagnostic(DiagnosticsCatalogue.InvalidConversions(syntax.GetLocation()));
             }
         }
 
@@ -179,7 +154,8 @@ internal static class GlobalConfigFilter
             var syntax = matchingAttribute.ApplicationSyntaxReference?.GetSyntax();
             if (syntax is not null)
             {
-                context.ReportDiagnostic(DiagnosticsCatalogue.InvalidCustomizations(syntax.GetLocation()));
+                buildResult.AddDiagnostic(DiagnosticsCatalogue.InvalidCustomizations(syntax.GetLocation()));
+                //context.ReportDiagnostic(DiagnosticsCatalogue.InvalidCustomizations(syntax.GetLocation()));
             }
         }
 
@@ -188,35 +164,122 @@ internal static class GlobalConfigFilter
             var syntax = matchingAttribute.ApplicationSyntaxReference?.GetSyntax();
             if (syntax is not null)
             {
-                context.ReportDiagnostic(DiagnosticsCatalogue.InvalidDeserializationStrictness(syntax.GetLocation()));
+                buildResult.AddDiagnostic(DiagnosticsCatalogue.InvalidDeserializationStrictness(syntax.GetLocation()));
+
+                //context.ReportDiagnostic(DiagnosticsCatalogue.InvalidDeserializationStrictness(syntax.GetLocation()));
             }
         }
 
-        return new VogenConfiguration(underlyingType, invalidExceptionType, conversions, customizations, deserializationStrictness);
+        buildResult.ResultingConfiguration = new VogenConfiguration(
+            underlyingType,
+            invalidExceptionType,
+            conversions,
+            customizations,
+            deserializationStrictness);
+
+        return buildResult;
+
+        void PopulateFromGenericAttribute(
+            AttributeData attributeData,
+            ImmutableArray<TypedConstant> args)
+        {
+            var type = attributeData.AttributeClass!.TypeArguments[0] as INamedTypeSymbol;
+            switch (args.Length)
+            {
+                case 4:
+                    if (args[3].Value != null)
+                    {
+                        deserializationStrictness = (DeserializationStrictness) args[3].Value!;
+                    }
+
+                    goto case 3;
+                case 3:
+                    if (args[2].Value != null)
+                    {
+                        customizations = (Customizations) args[2].Value!;
+                    }
+
+                    goto case 2;
+                case 2:
+                    invalidExceptionType = (INamedTypeSymbol?) args[1].Value;
+
+                    BuildAnyIssuesWithTheException(invalidExceptionType, buildResult);
+                    goto case 1;
+
+                case 1:
+                    if (args[0].Value != null)
+                    {
+                        conversions = (Conversions) args[0].Value!;
+                    }
+
+                    break;
+            }
+
+            underlyingType = type;
+        }
+
+        void PopulateFromNonGenericAttribute(ImmutableArray<TypedConstant> args)
+        {
+            switch (args.Length)
+            {
+                case 5:
+                    if (args[4].Value != null)
+                    {
+                        deserializationStrictness = (DeserializationStrictness) args[4].Value!;
+                    }
+
+                    goto case 4;
+                case 4:
+                    if (args[3].Value != null)
+                    {
+                        customizations = (Customizations) args[3].Value!;
+                    }
+
+                    goto case 3;
+                case 3:
+                    invalidExceptionType = (INamedTypeSymbol?) args[2].Value;
+
+                    BuildAnyIssuesWithTheException(invalidExceptionType, buildResult);
+                    goto case 2;
+
+                case 2:
+                    if (args[1].Value != null)
+                    {
+                        conversions = (Conversions) args[1].Value!;
+                    }
+
+                    goto case 1;
+                case 1:
+                    underlyingType = (INamedTypeSymbol?) args[0].Value;
+                    break;
+            }
+        }
     }
 
-    private static void ReportAnyIssuesWithTheException(INamedTypeSymbol? invalidExceptionType, SourceProductionContext context)
+    private static void BuildAnyIssuesWithTheException(INamedTypeSymbol? invalidExceptionType, VogenConfigurationBuildResult buildResult)
     {
         if (invalidExceptionType == null)
         {
             return;
         }
-        
+
         if (!invalidExceptionType.ImplementsInterfaceOrBaseClass(typeof(Exception)))
         {
-            context.ReportDiagnostic(DiagnosticsCatalogue.CustomExceptionMustDeriveFromException(invalidExceptionType));
+            buildResult.AddDiagnostic(DiagnosticsCatalogue.CustomExceptionMustDeriveFromException(invalidExceptionType));
+            //context.ReportDiagnostic(DiagnosticsCatalogue.CustomExceptionMustDeriveFromException(invalidExceptionType));
         }
 
-        var allConstructors = invalidExceptionType.Constructors.Where(c=>c.DeclaredAccessibility == Accessibility.Public);
-        
+        var allConstructors = invalidExceptionType.Constructors.Where(c => c.DeclaredAccessibility == Accessibility.Public);
+
         var singleParameterConstructors = allConstructors.Where(c => c.Parameters.Length == 1);
-        
+
         if (singleParameterConstructors.Any(c => c.Parameters.Single().Type.Name == "String"))
         {
             return;
         }
 
-        context.ReportDiagnostic(DiagnosticsCatalogue.CustomExceptionMustHaveValidConstructor(invalidExceptionType));
+        buildResult.AddDiagnostic(DiagnosticsCatalogue.CustomExceptionMustHaveValidConstructor(invalidExceptionType));
+        //context.ReportDiagnostic(DiagnosticsCatalogue.CustomExceptionMustHaveValidConstructor(invalidExceptionType));
     }
 
     /// <summary>
@@ -247,4 +310,15 @@ internal static class GlobalConfigFilter
 
         return null;
     }
+}
+
+internal sealed class VogenConfigurationBuildResult
+{
+    public VogenConfiguration? ResultingConfiguration { get; set; }
+
+    public List<Diagnostic> Diagnostics { get; set; } = new();
+
+    public static VogenConfigurationBuildResult Null => new();
+
+    public void AddDiagnostic(Diagnostic diagnostic) => Diagnostics.Add(diagnostic);
 }

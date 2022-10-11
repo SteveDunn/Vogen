@@ -33,9 +33,14 @@ namespace Whatever
 
             using var _ = new AssertionScope();
             diagnostics.Should().HaveCount(1);
+#if NET7_0_OR_GREATER
+            diagnostics.Single().GetMessage().Should().Be(
+                "MyInstanceTests cannot be converted. Instance value named Invalid has an attribute with a 'System.String' of '1.23x' which cannot be converted to the underlying type of 'System.Single' - The input string '1.23x' was not in a correct format.");
+#else
             diagnostics.Single().GetMessage().Should().Be(
                 "MyInstanceTests cannot be converted. Instance value named Invalid has an attribute with a 'System.String' of '1.23x' which cannot be converted to the underlying type of 'System.Single' - Input string was not in a correct format.");
 
+#endif
             diagnostics.Single().Id.Should().Be("VOG023");
 
             return Task.CompletedTask;
@@ -113,9 +118,9 @@ namespace Whatever
 
         VerifySettings settings = new VerifySettings();
         settings.UseFileName(TestHelper.ShortenForFilename(className));
-#if AUTO_VERIFY
-        settings.AutoVerify();
-#endif
+
+        // settings.AutoVerify();
+
         return Verifier.Verify(output, settings).UseDirectory(SnapshotUtils.GetSnapshotDirectoryName("fr"));
     }
 }

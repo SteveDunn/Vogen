@@ -23,7 +23,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "_files", "_files", "{72AF0E
 		docs\nuget-readme.md = docs\nuget-readme.md
 		.github\workflows\publish.yaml = .github\workflows\publish.yaml
 		README.md = README.md
-		__Directory.Build.targets__ = __Directory.Build.targets__
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "samples", "samples", "{106ACB2D-8F44-4B80-AC38-3B43CB648774}"

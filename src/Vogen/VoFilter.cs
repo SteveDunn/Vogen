@@ -1,8 +1,8 @@
-﻿using System.Collections.Immutable;
+﻿using System.Collections.Generic;
+using System.Collections.Immutable;
 using System.Linq;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
-using Microsoft.CodeAnalysis.Diagnostics;
 
 namespace Vogen;
 
@@ -15,74 +15,38 @@ internal static class VoFilter
     /// <param name="syntaxNode"></param>
     /// <returns></returns>
     public static bool IsTarget(SyntaxNode syntaxNode) =>
-        syntaxNode is TypeDeclarationSyntax t && t.AttributeLists.Count > 0;
+        syntaxNode is TypeDeclarationSyntax {AttributeLists.Count: > 0};
 
-    public static bool HasValueObjectAttribute(SyntaxList<AttributeListSyntax> attributeList, SemanticModel semanticModel)
+    // We return all value object attributes here. There can only be one, but we report
+    // it later with the location from the syntax.
+    public static IEnumerable<AttributeData> TryGetValueObjectAttributes(INamedTypeSymbol voSymbolInformation)
     {
-        foreach (AttributeListSyntax attributeListSyntax in attributeList)
-        {
-            foreach (AttributeSyntax attributeSyntax in attributeListSyntax.Attributes)
-            {
-                IMethodSymbol? attributeSymbol = semanticModel.GetSymbolInfo(attributeSyntax).Symbol as IMethodSymbol;
-
-                if (attributeSymbol == null)
-                {
-                    continue;
-                }
-
-                INamedTypeSymbol attributeContainingTypeSymbol = attributeSymbol.ContainingType;
-                string fullName = attributeContainingTypeSymbol.ToDisplayString();
-
-                if (fullName == "Vogen.ValueObjectAttribute")
-                {
-                    return true;
-                }
-            }
-        }
-
-        return false;
+        var attrs = voSymbolInformation.GetAttributes();
+        
+        return attrs.Where(
+            a => a.AttributeClass?.FullName() == "Vogen.ValueObjectAttribute"
+                 || a.AttributeClass?.BaseType?.FullName() == "Vogen.ValueObjectAttribute");
     }
-
-    // public static bool HasValueObjectAttribute(SyntaxList<AttributeListSyntax> attributeList, SemanticModel contextSemanticModel)
-    // {
-    //     foreach (AttributeListSyntax attributeListSyntax in attributeList)
-    //     {
-    //         foreach (AttributeSyntax attributeSyntax in attributeListSyntax.Attributes)
-    //         {
-    //             IMethodSymbol? attributeSymbol = contextSemanticModel.GetSymbolInfo(attributeSyntax).Symbol as IMethodSymbol;
-    //
-    //             if (attributeSymbol == null)
-    //             {
-    //                 continue;
-    //             }
-    //
-    //             INamedTypeSymbol attributeContainingTypeSymbol = attributeSymbol.ContainingType;
-    //             string fullName = attributeContainingTypeSymbol.ToDisplayString();
-    //
-    //             if (fullName == "Vogen.ValueObjectAttribute")
-    //             {
-    //                 return true;
-    //             }
-    //         }
-    //     }
-    //
-    //     return false;
-    // }
 
     // This is stage 2 in the pipeline - we filter down to just 1 target
     public static VoTarget? TryGetTarget(GeneratorSyntaxContext context)
     {
         var voSyntaxInformation = (TypeDeclarationSyntax) context.Node;
 
-        var voSymbolInformation = (INamedTypeSymbol) context.SemanticModel.GetDeclaredSymbol(context.Node)!;
+        var semanticModel = context.SemanticModel;
         
-        if(HasValueObjectAttribute(voSyntaxInformation.AttributeLists, context.SemanticModel))
+        var voSymbolInformation = (INamedTypeSymbol) semanticModel.GetDeclaredSymbol(context.Node)!;
+
+        var attributeData = TryGetValueObjectAttributes(voSymbolInformation).ToImmutableArray();
+        
+        if(attributeData.Length > 0)
         {
             return new VoTarget(
-                context.SemanticModel,
+                semanticModel,
                 voSyntaxInformation, 
-                context.SemanticModel.GetDeclaredSymbol(context.Node)!.ContainingType,
-                voSymbolInformation);
+                semanticModel.GetDeclaredSymbol(context.Node)!.ContainingType,
+                voSymbolInformation,
+                attributeData);
         }
 
         return null;
@@ -106,14 +70,5 @@ internal static class VoFilter
             attributes.SingleOrDefault(a => a.AttributeClass?.FullName() is "Vogen.ValueObjectAttribute");
 
         return voAttribute is not null;
-    }
-
-    public static INamedTypeSymbol? TryGetValueObjectClass(GeneratorSyntaxContext context, SyntaxNode syntaxNode)
-    {
-        SymbolInfo typeSymbolInfo = context.SemanticModel.GetSymbolInfo(syntaxNode);
-
-        var symbol = typeSymbolInfo.Symbol as INamedTypeSymbol;
-        
-        return IsTarget(symbol) ? symbol : null;
     }
 }

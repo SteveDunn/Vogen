@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.Collections.Immutable;
-using System.Linq;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.Diagnostics;
 using Vogen.Diagnostics;
@@ -10,8 +9,6 @@ namespace Vogen.Rules
     [DiagnosticAnalyzer(LanguageNames.CSharp)]
     public class AddValidationAnalyzer : DiagnosticAnalyzer
     {
-        //public const string DiagnosticId = "AddValidationAnalyzer";
-
         // You can change these strings in the Resources.resx file. If you do not want your analyzer to be localize-able, you can use regular strings for Title and MessageFormat.
         // See https://github.com/dotnet/roslyn/blob/main/docs/analyzers/Localizing%20Analyzers.md for more on localization
         private static readonly LocalizableString Title = new LocalizableResourceString(nameof(Resources.AddValidationAnalyzerTitle),
@@ -52,25 +49,36 @@ namespace Vogen.Rules
 
             INamedTypeSymbol voSymbolInformation = namedTypeSymbol;
 
+            var attrs = VoFilter.TryGetValueObjectAttributes(voSymbolInformation).ToImmutableArray();
 
-            if (!VoFilter.IsTarget(namedTypeSymbol))
-            {
-                return;
-            }
+            if (attrs.Length != 1) return;
 
-            ImmutableArray<AttributeData> attributes = voSymbolInformation.GetAttributes();
+            VogenConfigurationBuildResult x = GlobalConfigFilter.BuildConfigurationFromAttribute(attrs[0]);
+            VogenConfiguration? vogenConfig = x.ResultingConfiguration;
+            if (!vogenConfig.HasValue) return;
+            if (x.Diagnostics.Count > 0) return;
 
-            if (attributes.Length == 0)
-            {
-                return;
-            }
+            string retType = vogenConfig.Value.UnderlyingType!.Name;//..Value?.ToString() ?? "int";
 
-            AttributeData? attr = attributes.SingleOrDefault(a => a.AttributeClass?.FullName() is "Vogen.ValueObjectAttribute");
 
-            if (attr is null)
-            {
-                return;
-            }
+            // if (!VoFilter.IsTarget(namedTypeSymbol))
+            // {
+            //     return;
+            // }
+            //
+            // ImmutableArray<AttributeData> attributes = voSymbolInformation.GetAttributes();
+            //
+            // if (attributes.Length == 0)
+            // {
+            //     return;
+            // }
+            //
+            // AttributeData? attr = attributes.SingleOrDefault(a => a.AttributeClass?.FullName() is "Vogen.ValueObjectAttribute");
+            //
+            // if (attr is null)
+            // {
+            //     return;
+            // }
 
             // var localConfig = GlobalConfigFilter.BuildConfigurationFromAttributeWithoutAnyDiagnosticErrors(voAttribute);
             //
@@ -80,14 +88,14 @@ namespace Vogen.Rules
             // }
             //
             var voTypeSyntax = namedTypeSymbol;
-            
-            // the first argument is the type - if it's null, then then it's an int
-            TypedConstant firstArg = attr.ConstructorArguments[0];
 
-            if (firstArg.Kind != TypedConstantKind.Type) return;
-            
-
-            string retType = firstArg.Value?.ToString() ?? "int";
+            // if(attr.ConstructorArguments.Length == 0) return;
+            //
+            // // the first argument is the type - if it's null, then then it's an int
+            // TypedConstant firstArg = attr.ConstructorArguments[0];
+            //
+            // if (firstArg.Kind != TypedConstantKind.Type) return;
+            //
 
             bool found = false;
 

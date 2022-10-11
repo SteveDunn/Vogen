@@ -15,6 +15,15 @@ public class IntVoGenerationTests
   [ValueObject(conversions: Conversions.None, underlyingType: typeof(int))]
   public partial struct NoConverterIntVo { }");
 
+#if NET7_0_OR_GREATER
+    
+    [Fact]
+    public Task NoConverterIntVo_Generic_Test() =>
+        RunTest(@"
+  [ValueObject<int>(conversions: Conversions.None)]
+  public partial struct NoConverterIntVo { }");
+#endif
+
     [Fact]
     public Task NoJsonIntVo_Test()
     {

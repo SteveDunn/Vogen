@@ -1,11 +1,10 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using System.Collections.Immutable;
 using System.Threading.Tasks;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.Testing;
-using Vogen;
 using VerifyCS = AnalyzerTests.Verifiers.CSharpAnalyzerVerifier<Vogen.Rules.DoNotUseDefaultAnalyzer>;
+// ReSharper disable CoVariantArrayConversion
 
 namespace AnalyzerTests
 {
@@ -143,13 +142,6 @@ public class Test {{
 
         private async Task Run(string source, IEnumerable<DiagnosticResult> expected)
         {
-            var loc = typeof(ValueObjectAttribute).Assembly.Location;
-
-            var referenceAssemblies = ReferenceAssemblies.Default
-                .AddAssemblies(
-                    ImmutableArray.Create("Vogen", "Vogen.SharedTypes", loc.Replace(".dll", string.Empty))
-                );
-
             var test = new VerifyCS.Test
             {
                 TestState =
@@ -158,7 +150,7 @@ public class Test {{
                 },
 
                 CompilerDiagnostics = CompilerDiagnostics.Errors,
-                ReferenceAssemblies = referenceAssemblies,
+                ReferenceAssemblies = References.Net70AndOurs.Value,
             };
 
             test.ExpectedDiagnostics.AddRange(expected);

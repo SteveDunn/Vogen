@@ -20,29 +20,16 @@ internal static class BuildWorkItems
 
         INamedTypeSymbol voSymbolInformation = target.VoSymbolInformation;
 
+        if (target.DataForAttributes.Length == 0) return null;
+
         ImmutableArray<AttributeData> attributes = voSymbolInformation.GetAttributes();
 
-        if (attributes.Length == 0)
-        {
-            return null;
-        }
-
-        var attrs = attributes.Where(
-            a => a.AttributeClass?.FullName() is "Vogen.ValueObjectAttribute").ToList();
-
-        if (attrs.Count is 0)
-        {
-            return null;
-        }
-
-        if (attrs.Count != 1)
+        if (target.DataForAttributes.Length != 1)
         {
             context.ReportDiagnostic(DiagnosticsCatalogue.DuplicateTypesFound(voTypeSyntax.GetLocation(), voSymbolInformation.Name));
             return null;
         }
         
-        AttributeData voAttribute = attrs[0];
-
         if (!voTypeSyntax.Modifiers.Any(SyntaxKind.PartialKeyword))
         {
             context.ReportDiagnostic(DiagnosticsCatalogue.TypeShouldBePartial(voTypeSyntax.GetLocation(), voSymbolInformation.Name));
@@ -54,14 +41,23 @@ internal static class BuildWorkItems
             context.ReportDiagnostic(DiagnosticsCatalogue.TypeCannotBeAbstract(voSymbolInformation));
         }
 
-        if (ReportErrorsForAnyUserConstructors(context, target, voSymbolInformation))
+        if (ReportErrorsForAnyUserConstructors(context, voSymbolInformation))
         {
             return null;
         }
 
-        // build the configuration but log any diagnostics (we have a separate analyzer that does that)
-        var localConfig = GlobalConfigFilter.BuildConfigurationFromAttribute(voAttribute, context);
+        AttributeData voAttribute = target.DataForAttributes[0];
 
+        // Build the configuration but only log issues as diagnostics if they would cause additional compilation errors,
+        // such as incorrect exceptions, or invalid customizations. For other issues, there are separate analyzers.
+        var buildResult = GlobalConfigFilter.BuildConfigurationFromAttribute(voAttribute);
+        foreach (var diagnostic in buildResult.Diagnostics)
+        {
+            context.ReportDiagnostic(diagnostic);
+        }
+
+        VogenConfiguration? localConfig = buildResult.ResultingConfiguration;
+        
         if (localConfig == null)
         {
             return null;
@@ -231,8 +227,7 @@ internal static class BuildWorkItems
         }
     }
 
-    private static bool ReportErrorsForAnyUserConstructors(SourceProductionContext context, VoTarget target,
-        INamedTypeSymbol voSymbolInformation)
+    private static bool ReportErrorsForAnyUserConstructors(SourceProductionContext context, INamedTypeSymbol voSymbolInformation)
     {
         bool reported = false;
 

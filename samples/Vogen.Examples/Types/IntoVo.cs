@@ -3,6 +3,11 @@
     [ValueObject(conversions: Conversions.None, underlyingType: typeof(int))]
     public partial struct IntVo { }
 
+#if NET7_0_OR_GREATER
+    [ValueObject<int>(conversions: Conversions.None)]
+    public partial struct IntGenericVo { }
+#endif
+
     [ValueObject(conversions: Conversions.None, underlyingType: typeof(int))]
     public partial struct NoConverterIntVo { }
 

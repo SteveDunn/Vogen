@@ -14,7 +14,7 @@
 
 ## Overview
 
-This is a .NET source generator and code analyzer for .NET. It's compatible with .NET Framework 4.6.1 and onwards, and .NET 5+. For .NET Framework, please see the FAQ section on how to get set up correctly.
+This is a .NET source generator and code analyzer for .NET. 
 
 The generator generates strongly typed **domain ideas**. You provide this:
 
@@ -101,6 +101,10 @@ var c = Activator.CreateInstance<CustomerId>(); // error VOG025: Type 'CustomerI
 CustomerId c = default; // error VOG009: Type 'CustomerId' cannot be constructed with default as it is prohibited.
 var c = default(CustomerId); // error VOG009: Type 'CustomerId' cannot be constructed with default as it is prohibited.
 var c = GetCustomerId(); // error VOG010: Type 'CustomerId' cannot be constructed with 'new' as it is prohibited
+
+var c = Activator.CreateInstance<CustomerId>(); // error VOG025: Type 'MyVo' cannot be constructed via Reflection as it is prohibited
+
+var c = Activator.CreateInstance(typeof(CustomerId)); // error VOG025: Type 'MyVo' cannot be constructed via Reflection as it is prohibited
 
 // catches lambda expressions
 Func<CustomerId> f = () => default; // error VOG009: Type 'CustomerId' cannot be constructed with default as it is prohibited.
@@ -220,7 +224,7 @@ public void Process(Person person) {
 We can also specify other instance properties:
 
 ```csharp
-[ValueObject(typeof(int))]
+[ValueObject(typeof(float))]
 [Instance("Freezing", 0)]
 [Instance("Boiling", 100)]
 public readonly partial struct Celsius {
@@ -334,8 +338,9 @@ See the examples folder for more information.
 
 ### What versions of .NET are supported?
 
-.NET Framework 4.6.1 and onwards and .NET 5+ are supported.
-If you're using .NET Framework and the old style C# projects (the one before the 'SDK style' projects), then you'll need to do a few things differently:
+The source generator is .NET Standard 2.0. The code it generates supports all C# language versions from 6.0 and onwards 
+
+If you're using the generator in .NET Framework project using and the old style projects (the one before the 'SDK style' projects), then you'll need to do a few things differently:
 
 * add the reference using `PackageReference` in the .csproj file:
 
@@ -353,6 +358,18 @@ If you're using .NET Framework and the old style C# projects (the one before the
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
 
 ```
+
+### Does it support C# 11 features?
+Yes. It understands generic attributes:
+
+```csharp
+[ValueObject<int>]
+public partial struct Age { }
+```
+
+Even though it supports C# 11, the source it generates is mostly C# 6 for compatibility. But if you use features from a later language version, for instance `records` from C# 9, then it will also generate records.
+
+###
 
 ### Why are they called 'Value Objects'?
 

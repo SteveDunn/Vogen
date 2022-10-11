@@ -1,4 +1,5 @@
 ﻿using System.Collections.Immutable;
+using System.IO;
 using System.Threading.Tasks;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.Testing;
@@ -64,12 +65,69 @@ namespace ConsoleApplication1
             var expectedDiagnostic =
                 VerifyCS.Diagnostic("AddValidationMethod").WithSeverity(DiagnosticSeverity.Info).WithLocation(0).WithArguments("TypeName");
 
-            var loc = typeof(ValueObjectAttribute).Assembly.Location;
+            var test = new VerifyCS.Test
+            {
+                TestState =
+                {
+                    Sources = { input },
+                },
 
-            var referenceAssemblies = ReferenceAssemblies.Default
-                .AddAssemblies(
-                    ImmutableArray.Create("Vogen", "Vogen.SharedTypes", loc.Replace(".dll", string.Empty))
-                );
+                CompilerDiagnostics = CompilerDiagnostics.Suggestions,
+                ReferenceAssemblies = References.Net70AndOurs.Value,
+                FixedCode = expectedOutput,
+                ExpectedDiagnostics = { expectedDiagnostic },
+            };
+
+            test.DisabledDiagnostics.Add("CS1591");
+
+            await test.RunAsync();
+        }
+
+#if NET7_0_OR_GREATER
+        [Fact]
+        public async Task Generic_CodeFixTriggeredForVoWithNoValidateMethod()
+        {
+            var input = LineEndingsHelper.Normalize(@"
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Diagnostics;
+using Vogen;
+
+namespace ConsoleApplication1
+{
+    [ValueObject<int>]
+    public partial class {|#0:MyValueObject|}
+    {   
+    }
+}");
+
+            var expectedOutput = LineEndingsHelper.Normalize(@"
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Diagnostics;
+using Vogen;
+
+namespace ConsoleApplication1
+{
+    [ValueObject<int>]
+    public partial class MyValueObject
+    {
+        private static Validation Validate(int input)
+        {
+            bool isValid = true; // todo: your validation
+            return isValid ? Validation.Ok : Validation.Invalid(""[todo: describe the validation]"");
+        }
+    }
+}");
+
+            var expectedDiagnostic =
+                VerifyCS.Diagnostic("AddValidationMethod").WithSeverity(DiagnosticSeverity.Info).WithLocation(0).WithArguments("MyValueObject");
 
             var test = new VerifyCS.Test
             {
@@ -79,7 +137,7 @@ namespace ConsoleApplication1
                 },
 
                 CompilerDiagnostics = CompilerDiagnostics.Suggestions,
-                ReferenceAssemblies = referenceAssemblies,
+                ReferenceAssemblies = References.Net70AndOurs.Value,
                 FixedCode = expectedOutput,
                 ExpectedDiagnostics = { expectedDiagnostic },
             };
@@ -88,5 +146,6 @@ namespace ConsoleApplication1
 
             await test.RunAsync();
         }
+#endif
     }
 }
