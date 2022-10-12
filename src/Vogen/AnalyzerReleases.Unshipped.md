@@ -5,7 +5,3 @@
 
 Rule ID | Category | Severity | Notes
 --------|----------|----------|-------
-AddValidationMethod | Usage | Info | AddValidationAnalyzer
-VOG010 | Usage | Error | DoNotUseNewAnalyzer
-VOG009 | Usage | Error | DoNotUseDefaultAnalyzer
-VOG025 | Usage | Error | DoNotUseReflection
