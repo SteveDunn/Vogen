@@ -47,6 +47,7 @@
     <PackageReference Include="linq2db" Version="3.7.0" />
     <PackageReference Include="FluentAssertions" Version="6.7.0" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.3.2" />
+    <PackageReference Include="Vogen" Version="3.0.2-alpha.4" />
     <PackageReference Include="xunit" Version="2.4.2" />
     <PackageReference Include="xunit.runner.visualstudio" Version="2.4.3">
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
@@ -59,11 +60,15 @@
   </ItemGroup>
 
   <ItemGroup>
-    <!-- Note that this is not a "normal" ProjectReference.
-         It needs the additional 'OutputItemType' and 'ReferenceOutputAssmbly' attributes. -->
+    <!--<ProjectReference Include="..\..\src\Vogen.SharedTypes\Vogen.SharedTypes.csproj" ReferenceOutputAssembly="false" />
+    <ProjectReference Include="..\..\src\Vogen\Vogen.csproj" ReferenceOutputAssembly="false" />-->
+  </ItemGroup>
+  <!--<ItemGroup>
+    --><!-- Note that this is not a "normal" ProjectReference.
+         It needs the additional 'OutputItemType' and 'ReferenceOutputAssmbly' attributes. --><!--
     <ProjectReference Include="..\..\src\Vogen.SharedTypes\Vogen.SharedTypes.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="true" />
     <ProjectReference Include="..\..\src\Vogen\Vogen.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="true" />
-  </ItemGroup>
+  </ItemGroup>-->
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <EmitCompilerGeneratedFiles>true</EmitCompilerGeneratedFiles>
@@ -75,6 +80,12 @@
   at least one subdirectory, which is our key that it's coming from a source generator as opposed to something that is coming from
   some other tool. -->
     <Compile Remove="Generated/*/**/*.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="nuget.local-packages.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 
 </Project>

@@ -13,6 +13,11 @@ using Vogen.Generators.Conversions;
 
 namespace Vogen;
 
+public class RemoveMe
+{
+    public string GetSomething() => "foo!";
+}
+
 public static class Util
 {
     static readonly IGenerateConversion[] _conversionGenerators =

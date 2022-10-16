@@ -1,13 +1,13 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>netstandard2.0</TargetFrameworks>
+    <TargetFrameworks>net7.0;netstandard2.0</TargetFrameworks>
     <LanguageVersion>10.0</LanguageVersion>
     <ImplicitUsings>disable</ImplicitUsings>
     <nullable>enable</nullable>
     <IsRoslynComponent>true</IsRoslynComponent>
 
-    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+    <AppendTargetFrameworkToOutputPath>true</AppendTargetFrameworkToOutputPath>
 
     <SuppressTfmSupportBuildWarnings>true</SuppressTfmSupportBuildWarnings>
 
@@ -21,7 +21,7 @@
   <!-- only used at compile time and not run time-->
   <PropertyGroup>
     <IncludeBuildOutput>false</IncludeBuildOutput>
-    <!-- <GeneratePackageOnBuild>True</GeneratePackageOnBuild> -->
+     <!--<GeneratePackageOnBuild>True</GeneratePackageOnBuild>--> 
     <PackageReadmeFile>nuget-readme.md</PackageReadmeFile>
   </PropertyGroup>
   <ItemGroup>
@@ -50,9 +50,11 @@
 
   <ItemGroup>
     <None Include="..\..\docs\nuget-readme.md" Pack="true" PackagePath="\" />
-    <None Include="$(OutputPath)\$(AssemblyName).dll" Pack="true" PackagePath="analyzers/dotnet/cs" Visible="false" />
-    <None Include="$(OutputPath)\Vogen.SharedTypes.dll" Pack="true" PackagePath="analyzers/dotnet/cs" Visible="false" />
-    <None Include="$(OutputPath)\Vogen.SharedTypes.dll" Pack="true" PackagePath="lib\netstandard2.0" Visible="true" />
+    <None Include="$(OutputPath)\netstandard2.0\$(AssemblyName).dll" Pack="true" PackagePath="analyzers/dotnet/cs" Visible="false" />
+    <None Include="$(OutputPath)\netstandard2.0\Vogen.SharedTypes.dll" Pack="true" PackagePath="analyzers/dotnet/cs" Visible="false" />
+    
+    <None Include="$(OutputPath)\netstandard2.0\Vogen.SharedTypes.dll" Pack="true" PackagePath="lib\netstandard2.0" Visible="true" />
+    <None Include="$(OutputPath)\net7.0\Vogen.SharedTypes.dll" Pack="true" PackagePath="lib\net7.0" Visible="true" />
 
   </ItemGroup>
 

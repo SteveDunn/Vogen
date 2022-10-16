@@ -1,0 +1,25 @@
+FROM mcr.microsoft.com/dotnet/sdk:7.0
+
+
+WORKDIR /app
+
+
+ADD ./tests/SmallTests ./smalltests
+ADD ./Directory.Build.props ./smalltests
+ADD ./artifacts ./smalltests/artifacts
+COPY ./nuget.config ./smalltests
+
+
+# COPY ./tests/smalltests/ .
+
+#  COPY ../../artifacts local-packages
+# WORKDIR /app/local-packages
+
+WORKDIR smalltests
+
+RUN dotnet restore # --configfile nuget.local-packages.config
+
+RUN bash #dotnet test
+
+ENTRYPOINT bash
+# ENTRYPOINT ["dotnet", "test"]

@@ -146,7 +146,7 @@ public {itemUnderlyingType} Value
 
         public override global::System.Int32 GetHashCode()
         {{
-            unchecked // Overflow is fine, just wrap
+            unchecked // Overflow is fine, just wrap!
             {{
                 global::System.Int32 hash = (global::System.Int32) 2166136261;
                 hash = (hash * 16777619) ^ Value.GetHashCode();

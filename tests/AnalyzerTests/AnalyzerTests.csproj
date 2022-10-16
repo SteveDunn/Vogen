@@ -25,6 +25,7 @@
     <PackageReference Include="Microsoft.CodeAnalysis.CSharp.Analyzer.Testing.MSTest" Version="1.1.1" />
     <PackageReference Include="Microsoft.CodeAnalysis.CSharp.CodeFix.Testing.MSTest" Version="1.1.1" />
     <PackageReference Include="Microsoft.CodeAnalysis.CSharp.CodeRefactoring.Testing.MSTest" Version="1.1.1" />
+    <!--<PackageReference Include="Vogen" Version="3.0.2-alpha.3" />-->
 
     <PackageReference Include="xunit" Version="2.4.2" />
     <PackageReference Include="xunit.runner.visualstudio" Version="2.4.5" />
@@ -36,13 +37,20 @@
 
   </ItemGroup>
 
+  <!--<ItemGroup>
+    --><!-- Note that this is not a "normal" ProjectReference.
+         It needs the additional 'OutputItemType' and 'ReferenceOutputAssmbly' attributes. --><!--
+    <ProjectReference Include="..\..\src\Vogen.SharedTypes\Vogen.SharedTypes.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="true" />
+    <ProjectReference Include="..\..\src\Vogen\Vogen.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="true" />
+  </ItemGroup>-->
+
   <ItemGroup>
     <!-- Note that this is not a "normal" ProjectReference.
          It needs the additional 'OutputItemType' and 'ReferenceOutputAssmbly' attributes. -->
-    <ProjectReference Include="..\..\src\Vogen.SharedTypes\Vogen.SharedTypes.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="true" />
-    <ProjectReference Include="..\..\src\Vogen\Vogen.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="true" />
+    <ProjectReference Include="..\..\src\Vogen.SharedTypes\Vogen.SharedTypes.csproj" />
+    <ProjectReference Include="..\..\src\Vogen\Vogen.csproj" />
   </ItemGroup>
-  
+
 
   <ItemGroup>
     <!-- Don't include the output from a previous source generator execution into future runs; the */** trick here ensures that there's

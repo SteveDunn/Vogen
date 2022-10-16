@@ -8,13 +8,6 @@
     <IsPackable>false</IsPackable>
   </PropertyGroup>
 
-  <ItemGroup>
-    <!-- Note that this is not a "normal" ProjectReference.
-         It needs the additional 'OutputItemType' and 'ReferenceOutputAssmbly' attributes. -->
-    <ProjectReference Include="..\..\src\Vogen\Vogen.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="true" />
-    <ProjectReference Include="..\..\src\Vogen.SharedTypes\Vogen.SharedTypes.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="true" />
-  </ItemGroup>
-
   <PropertyGroup>
     <EmitCompilerGeneratedFiles>true</EmitCompilerGeneratedFiles>
     <CompilerGeneratedFilesOutputPath>Generated</CompilerGeneratedFilesOutputPath>
@@ -37,6 +30,9 @@
 
 
     <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+
+
+    <PackageReference Include="Vogen" Version="3.0.2-alpha.3" />
   </ItemGroup>
 
 </Project>
