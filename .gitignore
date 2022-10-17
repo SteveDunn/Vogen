@@ -462,3 +462,4 @@ BenchmarkDotNet.Artifacts
 /tests/MediumTests/Generated
 /tests/SmallTests/Generated
 /tests/Testbench/Generated
+/local-global-packages
