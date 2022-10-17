@@ -37,6 +37,9 @@
     <PackageReference Include="SQLitePCLRaw.bundle_winsqlite3" Version="2.1.0" />
   </ItemGroup>
 
+  <!--Note the high version number: these tests are supposed to run using
+  the NuGet dependency rather than a direct project dependency.
+  Run the tests with `.\test.ps1` in the root folder.-->
 
   <ItemGroup>
     <PackageReference Include="Dapper" Version="2.0.123" />
@@ -47,7 +50,7 @@
     <PackageReference Include="linq2db" Version="3.7.0" />
     <PackageReference Include="FluentAssertions" Version="6.7.0" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.3.2" />
-    <PackageReference Include="Vogen" Version="3.0.2-alpha.4" />
+    <PackageReference Include="Vogen" Version="999.9.*" />
     <PackageReference Include="xunit" Version="2.4.2" />
     <PackageReference Include="xunit.runner.visualstudio" Version="2.4.3">
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
@@ -64,8 +67,10 @@
     <ProjectReference Include="..\..\src\Vogen\Vogen.csproj" ReferenceOutputAssembly="false" />-->
   </ItemGroup>
   <!--<ItemGroup>
-    --><!-- Note that this is not a "normal" ProjectReference.
-         It needs the additional 'OutputItemType' and 'ReferenceOutputAssmbly' attributes. --><!--
+    -->
+  <!-- Note that this is not a "normal" ProjectReference.
+         It needs the additional 'OutputItemType' and 'ReferenceOutputAssmbly' attributes. -->
+  <!--
     <ProjectReference Include="..\..\src\Vogen.SharedTypes\Vogen.SharedTypes.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="true" />
     <ProjectReference Include="..\..\src\Vogen\Vogen.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="true" />
   </ItemGroup>-->

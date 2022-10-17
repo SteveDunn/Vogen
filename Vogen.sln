@@ -22,6 +22,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "_files", "_files", "{72AF0E
 		Dockerfile = Dockerfile
 		docs\nuget-readme.md = docs\nuget-readme.md
 		nuget.config = nuget.config
+		nuget.private.config = nuget.private.config
 		.github\workflows\publish.yaml = .github\workflows\publish.yaml
 		README.md = README.md
 		test.ps1 = test.ps1
