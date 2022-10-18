@@ -65,7 +65,7 @@ WriteStage("Building NuGet for local version of Vogen that will be used to run e
 
 $localPackages = ".\local-global-packages"
 
-Remove-Item $localPackages\vogen.* -Force
+if(Test-Path $localPackages) { Remove-Item $localPackages\vogen.* -Force -ErrorAction SilentlyContinue }
 
 $date1 = Get-Date("2022-10-17");
 $date2 = Get-Date;
