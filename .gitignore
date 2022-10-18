@@ -463,3 +463,4 @@ BenchmarkDotNet.Artifacts
 /tests/SmallTests/Generated
 /tests/Testbench/Generated
 /local-global-packages
+/tests/SmallTests/msbuild.binlog
