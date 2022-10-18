@@ -82,7 +82,7 @@ $version = "999.9." + $patch;
 
 dotnet restore ./src/Vogen --packages $localPackages --no-cache --verbosity $verbosity
 
-dotnet pack -c Debug -o:$localPackages /p:ForceVersion=$version --include-symbols --version-suffix:dev --no-restore --verbosity $verbosity
+dotnet pack ./src/Vogen -c Debug -o:$localPackages /p:ForceVersion=$version --include-symbols --version-suffix:dev --no-restore --verbosity $verbosity
 
 # Restore the project using the custom config file, restoring packages to a local folder
 dotnet restore ./tests/SmallTests -p UseLocallyBuiltPackage=true --force --no-cache --packages $localPackages --configfile: ./nuget.private.config --verbosity $verbosity
