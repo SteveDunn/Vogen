@@ -100,13 +100,18 @@ dotnet test ./tests/SmallTests -c Debug --no-build --no-restore --verbosity $ver
 WriteStage("Building samples using the local version of the NuGet package...")
 
 
-$samples = Get-ChildItem .\samples\Vogen.Examples.*
+$samples = Get-ChildItem .\samples -Directory
+
+WriteStage("Samples found are " + $samples)
 
 foreach ($sample in $samples) {
-    Push-Location -Path $sample
+    Push-Location -Path .\samples\$sample
+
+    WriteStage("Running sample " + $sample)
+
 
     try {
-        exec { & dotnet run -c Release --no-build --no-restore }
+        exec { & dotnet run -c Debug --no-build --no-restore }
     } catch {
     } finally {
         Pop-Location
