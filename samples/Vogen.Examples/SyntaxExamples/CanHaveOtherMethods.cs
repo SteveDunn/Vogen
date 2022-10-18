@@ -2,7 +2,7 @@
 
 namespace Vogen.Examples
 {
-     [ValueObject(typeof(TimeSpan))]
+     [ValueObject<TimeSpan>]
      public partial struct Duration
      {
          private static Validation Validate(TimeSpan timeSpan) =>

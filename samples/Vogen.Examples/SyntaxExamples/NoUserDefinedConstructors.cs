@@ -5,7 +5,7 @@
         any validation you might have added.
     */
 
-    [ValueObject(typeof(int))]
+    [ValueObject]
     public partial struct CustomerId
     {
         private static Validation Validate(in int value) =>
@@ -21,7 +21,7 @@
         // public CustomerId(int v1, int v2) : this(v1) { }
     }
 
-    [ValueObject(typeof(int))]
+    [ValueObject]
     public partial class VendorId
     {
         private static Validation Validate(in int value) =>

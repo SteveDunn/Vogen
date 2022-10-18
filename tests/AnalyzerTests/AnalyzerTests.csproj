@@ -34,15 +34,7 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
-
   </ItemGroup>
-
-  <!--<ItemGroup>
-    --><!-- Note that this is not a "normal" ProjectReference.
-         It needs the additional 'OutputItemType' and 'ReferenceOutputAssmbly' attributes. --><!--
-    <ProjectReference Include="..\..\src\Vogen.SharedTypes\Vogen.SharedTypes.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="true" />
-    <ProjectReference Include="..\..\src\Vogen\Vogen.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="true" />
-  </ItemGroup>-->
 
   <ItemGroup>
     <!-- Note that this is not a "normal" ProjectReference.
@@ -50,16 +42,6 @@
     <ProjectReference Include="..\..\src\Vogen.SharedTypes\Vogen.SharedTypes.csproj" />
     <ProjectReference Include="..\..\src\Vogen\Vogen.csproj" />
   </ItemGroup>
-
-
-  <ItemGroup>
-    <!-- Don't include the output from a previous source generator execution into future runs; the */** trick here ensures that there's
-  at least one subdirectory, which is our key that it's coming from a source generator as opposed to something that is coming from
-  some other tool. -->
-    <Compile Remove="Generated/*/**/*.cs" />
-  </ItemGroup>
-
-
 </Project>
 
 

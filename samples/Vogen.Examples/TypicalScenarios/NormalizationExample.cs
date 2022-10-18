@@ -7,7 +7,7 @@ namespace Vogen.Examples.TypicalScenarios
     // It cannot be empty, or start / end with whitespace.
     // We have a normalization method that first normalizes the string, then the
     // validation method that validates it.
-    [ValueObject(typeof(string))]
+    [ValueObject<string>]
     public partial class ScrapedString
     {
         private static Validation Validate(string value)

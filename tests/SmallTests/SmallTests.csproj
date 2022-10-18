@@ -37,6 +37,15 @@
     <PackageReference Include="SQLitePCLRaw.bundle_winsqlite3" Version="2.1.0" />
   </ItemGroup>
 
+  <ItemGroup Condition=" '$(UseLocallyBuiltPackage)' != ''">
+    <PackageReference Include="Vogen" Version="999.9.*" />
+  </ItemGroup>
+
+  <ItemGroup Condition=" '$(UseLocallyBuiltPackage)' == ''">
+    <PackageReference Include="Vogen" Version="3.0.2-alpha.2" />
+  </ItemGroup>
+
+
   <!--Note the high version number: these tests are supposed to run using
   the NuGet dependency rather than a direct project dependency.
   Run the tests with `.\test.ps1` in the root folder.-->
@@ -50,7 +59,6 @@
     <PackageReference Include="linq2db" Version="3.7.0" />
     <PackageReference Include="FluentAssertions" Version="6.7.0" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.3.2" />
-    <PackageReference Include="Vogen" Version="999.9.*" />
     <PackageReference Include="xunit" Version="2.4.2" />
     <PackageReference Include="xunit.runner.visualstudio" Version="2.4.3">
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>

@@ -27,7 +27,7 @@ namespace Vogen.Examples.TypicalScenarios
     }
 
 
-    [ValueObject(typeof(float))]
+    [ValueObject<float>]
     [Instance("Freezing", 0.0f)]
     [Instance("Boiling", 100.0f)]
     [Instance("AbsoluteZero", -273.15f)]
@@ -42,7 +42,7 @@ namespace Vogen.Examples.TypicalScenarios
      * that nobody else can. This is useful for creating special instances
      * that represent concepts such as 'invalid' and 'unspecified'.
      */
-    [ValueObject(typeof(int))]
+    [ValueObject]
     [Instance("Unspecified", -1)]
     [Instance("Invalid", -2)]
     public readonly partial struct Age
@@ -51,7 +51,7 @@ namespace Vogen.Examples.TypicalScenarios
             value > 0 ? Validation.Ok : Validation.Invalid("Must be greater than zero.");
     }
 
-    [ValueObject(typeof(int))]
+    [ValueObject]
     [Instance("Unspecified", 0)]
     [Instance("Invalid", -1)]
     public partial class VendorId
@@ -60,7 +60,7 @@ namespace Vogen.Examples.TypicalScenarios
             value > 0 ? Validation.Ok : Validation.Invalid("Must be greater than zero.");
     }
 
-    [ValueObject(typeof(string))]
+    [ValueObject<string>]
     [Instance("Invalid", "[INVALID]")]
     public partial class VendorName
     {

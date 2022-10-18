@@ -1,32 +1,32 @@
 ﻿namespace Vogen.Examples.Types
 {
-    [ValueObject(conversions: Conversions.NewtonsoftJson | Conversions.SystemTextJson, underlyingType: typeof(float))]
+    [ValueObject<float>(conversions: Conversions.NewtonsoftJson | Conversions.SystemTextJson)]
     public readonly partial struct Celsius { }
 
-    [ValueObject(conversions: Conversions.None, underlyingType: typeof(float))]
+    [ValueObject<float>(conversions: Conversions.None)]
     public partial struct FloatVo { }
 
-    [ValueObject(conversions: Conversions.None, underlyingType: typeof(float))]
+    [ValueObject<float>(conversions: Conversions.None)]
     public partial struct NoConverterFloatVo { }
 
-    [ValueObject(conversions: Conversions.TypeConverter, underlyingType: typeof(float))]
+    [ValueObject<float>(conversions: Conversions.TypeConverter)]
     public partial struct NoJsonFloatVo { }
 
-    [ValueObject(conversions: Conversions.NewtonsoftJson, underlyingType: typeof(float))]
+    [ValueObject<float>(conversions: Conversions.NewtonsoftJson)]
     public partial struct NewtonsoftJsonFloatVo { }
 
-    [ValueObject(conversions: Conversions.SystemTextJson, underlyingType: typeof(float))]
+    [ValueObject<float>(conversions: Conversions.SystemTextJson)]
     public partial struct SystemTextJsonFloatVo { }
 
-    [ValueObject(conversions: Conversions.NewtonsoftJson | Conversions.SystemTextJson, underlyingType: typeof(float))]
+    [ValueObject<float>(conversions: Conversions.NewtonsoftJson | Conversions.SystemTextJson)]
     public partial struct BothJsonFloatVo { }
 
-    [ValueObject(conversions: Conversions.EfCoreValueConverter, underlyingType: typeof(float))]
+    [ValueObject<float>(conversions: Conversions.EfCoreValueConverter)]
     public partial struct EfCoreFloatVo { }
 
-    [ValueObject(conversions: Conversions.DapperTypeHandler, underlyingType: typeof(float))]
+    [ValueObject<float>(conversions: Conversions.DapperTypeHandler)]
     public partial struct DapperFloatVo { }
 
-    [ValueObject(conversions: Conversions.LinqToDbValueConverter, underlyingType: typeof(float))]
+    [ValueObject<float>(conversions: Conversions.LinqToDbValueConverter)]
     public partial struct LinqToDbFloatVo { }
 }

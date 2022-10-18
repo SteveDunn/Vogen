@@ -24,35 +24,35 @@ namespace Vogen.Examples.TypicalScenarios
     }
 
     // can be internal structs
-    [ValueObject(typeof(int))]
+    [ValueObject]
     internal partial struct Centimeter
     {
     }
 
     // can be internal classes
-    [ValueObject(typeof(int))]
+    [ValueObject]
     internal partial class Meter
     {
     }
 
     // can be readonly internal 
-    [ValueObject(typeof(int))]
+    [ValueObject]
     internal readonly partial struct Furlong
     {
     }
 
     // can be internal sealed
-    [ValueObject(typeof(int))]
+    [ValueObject]
     internal sealed partial class Lumens
     {
     }
 
-    [ValueObject(typeof(int))]
+    [ValueObject]
     public partial class CustomerId
     {
     }
 
-    [ValueObject(typeof(int))]
+    [ValueObject]
     public partial class SupplierId
     {
     }

@@ -10,6 +10,7 @@ using Vogen.Generators.Conversions;
 
 [assembly: InternalsVisibleTo("SmallTests")]
 [assembly: InternalsVisibleTo("MediumTests")]
+[assembly: InternalsVisibleTo("Vogen.Tests")]
 
 namespace Vogen;
 

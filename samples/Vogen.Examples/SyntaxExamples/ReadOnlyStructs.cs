@@ -1,6 +1,6 @@
 ﻿namespace Vogen.Examples
 {
-    [ValueObject(typeof(int))]
+    [ValueObject]
     public readonly partial struct MyReadOnlyVo
     {
     }

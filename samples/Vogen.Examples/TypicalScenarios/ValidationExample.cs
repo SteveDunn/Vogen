@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 
 namespace Vogen.Examples.TypicalScenarios
 {
-    [ValueObject(typeof(string))]
+    [ValueObject<string>]
 
     public partial class Dave
     {

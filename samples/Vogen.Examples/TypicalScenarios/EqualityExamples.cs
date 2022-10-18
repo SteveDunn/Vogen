@@ -25,9 +25,9 @@ namespace Vogen.Examples.TypicalScenarios.Equality
         }
     }
 
-    [ValueObject(typeof(int))]
+    [ValueObject]
     public readonly partial struct Age {}
 
-    [ValueObject(typeof(float))]
+    [ValueObject<float>]
     public readonly partial struct Centigrade { }
 }

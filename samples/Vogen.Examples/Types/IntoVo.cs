@@ -1,34 +1,32 @@
 ﻿namespace Vogen.Examples.Types
 {
-    [ValueObject(conversions: Conversions.None, underlyingType: typeof(int))]
+    [ValueObject(conversions: Conversions.None)]
     public partial struct IntVo { }
 
-#if NET7_0_OR_GREATER
     [ValueObject<int>(conversions: Conversions.None)]
     public partial struct IntGenericVo { }
-#endif
 
-    [ValueObject(conversions: Conversions.None, underlyingType: typeof(int))]
+    [ValueObject<int>(conversions: Conversions.None)]
     public partial struct NoConverterIntVo { }
 
-    [ValueObject(conversions: Conversions.TypeConverter, underlyingType: typeof(int))]
+    [ValueObject(conversions: Conversions.TypeConverter)]
     public partial struct NoJsonIntVo { }
 
-    [ValueObject(conversions: Conversions.NewtonsoftJson, underlyingType: typeof(int))]
+    [ValueObject(conversions: Conversions.NewtonsoftJson)]
     public partial struct NewtonsoftJsonIntVo { }
 
-    [ValueObject(conversions: Conversions.SystemTextJson, underlyingType: typeof(int))]
+    [ValueObject(conversions: Conversions.SystemTextJson)]
     public partial struct SystemTextJsonIntVo { }
 
-    [ValueObject(conversions: Conversions.NewtonsoftJson | Conversions.SystemTextJson, underlyingType: typeof(int))]
+    [ValueObject(conversions: Conversions.NewtonsoftJson | Conversions.SystemTextJson)]
     public partial struct BothJsonIntVo { }
 
-    [ValueObject(conversions: Conversions.EfCoreValueConverter, underlyingType: typeof(int))]
+    [ValueObject(conversions: Conversions.EfCoreValueConverter)]
     public partial struct EfCoreIntVo { }
 
-    [ValueObject(conversions: Conversions.DapperTypeHandler, underlyingType: typeof(int))]
+    [ValueObject(conversions: Conversions.DapperTypeHandler)]
     public partial struct DapperIntVo { }
 
-    [ValueObject(conversions: Conversions.LinqToDbValueConverter, underlyingType: typeof(int))]
+    [ValueObject(conversions: Conversions.LinqToDbValueConverter)]
     public partial struct LinqToDbIntVo { }
 }

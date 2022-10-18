@@ -12,7 +12,7 @@ namespace Vogen.Examples.Nesting
     {
         namespace Namespace2
         {
-            [ValueObject(typeof(int))]
+            [ValueObject]
             public partial struct NestedType
             {
             }

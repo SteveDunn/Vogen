@@ -50,9 +50,9 @@ namespace Vogen.Examples.NoDefaulting
         
     }
 
-    [ValueObject(typeof(int))]
+    [ValueObject]
     public partial struct CustomerId { }
 
-    [ValueObject(typeof(int))]
+    [ValueObject]
     public partial class VendorId { }
 }
