@@ -116,5 +116,5 @@ foreach ($sample in $samples) {
 WriteStage("Finally, packing the release version into " + $artifacts)
 
 
-exec { & dotnet pack src/vogen -c Release -o $artifacts --no-build --verbosity $verbosity }
+exec { & dotnet pack src/Vogen -c Release -o $artifacts --no-build --verbosity $verbosity }
 
