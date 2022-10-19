@@ -107,3 +107,5 @@ WriteStage("Finally, packing the release version into " + $artifacts)
 
 exec { & dotnet pack src/Vogen -c Release -o $artifacts --no-build --verbosity $verbosity }
 
+WriteStage("Done! Package generated at " + $artifacts)
+
