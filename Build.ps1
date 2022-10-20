@@ -86,10 +86,10 @@ exec { & dotnet pack ./src/Vogen -c Debug -o:$localPackages /p:ForceVersion=$ver
 # Restore the project using the custom config file, restoring packages to a local folder
 exec { & dotnet restore ./tests/SmallTests -p UseLocallyBuiltPackage=true --force --no-cache --packages $localPackages --configfile: ./nuget.private.config --verbosity $verbosity }
 
-exec { & dotnet restore ./Samples/Vogen.Examples -p UseLocallyBuiltPackage=true --force --no-cache --packages $localPackages --configfile: ./nuget.private.config --verbosity $verbosity }
+exec { & dotnet restore ./samples/Vogen.Examples -p UseLocallyBuiltPackage=true --force --no-cache --packages $localPackages --configfile: ./nuget.private.config --verbosity $verbosity }
 
 exec { & dotnet build ./tests/SmallTests -c Debug --no-restore --verbosity $verbosity }
-exec { & dotnet build ./Samples/Vogen.Examples -c Debug --no-restore --verbosity $verbosity }
+exec { & dotnet build ./samples/Vogen.Examples -c Debug --no-restore --verbosity $verbosity }
 
 WriteStage("Running end to end tests with the local version of the NuGet package:" +$version)
 
@@ -99,7 +99,7 @@ exec { & dotnet test ./tests/SmallTests -c Debug --no-build --no-restore --verbo
 WriteStage("Building samples using the local version of the NuGet package...")
 
 
-exec { & dotnet run --project Samples/Vogen.Examples/Vogen.Examples.csproj -c Debug --no-build --no-restore }
+exec { & dotnet run --project samples/Vogen.Examples/Vogen.Examples.csproj -c Debug --no-build --no-restore }
 
 
 WriteStage("Finally, packing the release version into " + $artifacts)
