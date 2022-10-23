@@ -127,27 +127,6 @@ namespace Whatever
         public int CompareTo(public_readonly_partial_structConversions_EfCoreValueConverter other) => Value.CompareTo(other.Value);
 
         
-    /// <inheritdoc cref="System.Guid.TryParse(string?, out System.Guid)"/>
-    /// <summary>
-    /// </summary>
-    /// <returns>
-    /// The value created via the <see cref="From"/> method.
-    /// </returns>
-    /// <exception cref="ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
-    public static global::System.Boolean TryParse(string? input, 
-#if NETCOREAPP3_0_OR_GREATER
-[global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)]
-#endif
- out public_readonly_partial_structConversions_EfCoreValueConverter result) {
-        if(System.Guid.TryParse(input, out var r)) {
-            result = From(r);
-            return true;
-        }
-
-        result = default;
-        return false;
-    }
-
     /// <inheritdoc cref="System.Guid.TryParse(System.ReadOnlySpan{char}, out System.Guid)"/>
     /// <summary>
     /// </summary>
@@ -169,14 +148,14 @@ namespace Whatever
         return false;
     }
 
-    /// <inheritdoc cref="System.Guid.TryParse(string?, System.IFormatProvider?, out System.Guid)"/>
+    /// <inheritdoc cref="System.Guid.TryParse(System.ReadOnlySpan{char}, System.IFormatProvider?, out System.Guid)"/>
     /// <summary>
     /// </summary>
     /// <returns>
     /// The value created via the <see cref="From"/> method.
     /// </returns>
     /// <exception cref="ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
-    public static global::System.Boolean TryParse(string? s, System.IFormatProvider? provider, 
+    public static global::System.Boolean TryParse(System.ReadOnlySpan<char> s, System.IFormatProvider? provider, 
 #if NETCOREAPP3_0_OR_GREATER
 [global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)]
 #endif
@@ -190,14 +169,35 @@ namespace Whatever
         return false;
     }
 
-    /// <inheritdoc cref="System.Guid.TryParse(System.ReadOnlySpan{char}, System.IFormatProvider?, out System.Guid)"/>
+    /// <inheritdoc cref="System.Guid.TryParse(string?, out System.Guid)"/>
     /// <summary>
     /// </summary>
     /// <returns>
     /// The value created via the <see cref="From"/> method.
     /// </returns>
     /// <exception cref="ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
-    public static global::System.Boolean TryParse(System.ReadOnlySpan<char> s, System.IFormatProvider? provider, 
+    public static global::System.Boolean TryParse(string? input, 
+#if NETCOREAPP3_0_OR_GREATER
+[global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)]
+#endif
+ out public_readonly_partial_structConversions_EfCoreValueConverter result) {
+        if(System.Guid.TryParse(input, out var r)) {
+            result = From(r);
+            return true;
+        }
+
+        result = default;
+        return false;
+    }
+
+    /// <inheritdoc cref="System.Guid.TryParse(string?, System.IFormatProvider?, out System.Guid)"/>
+    /// <summary>
+    /// </summary>
+    /// <returns>
+    /// The value created via the <see cref="From"/> method.
+    /// </returns>
+    /// <exception cref="ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
+    public static global::System.Boolean TryParse(string? s, System.IFormatProvider? provider, 
 #if NETCOREAPP3_0_OR_GREATER
 [global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)]
 #endif

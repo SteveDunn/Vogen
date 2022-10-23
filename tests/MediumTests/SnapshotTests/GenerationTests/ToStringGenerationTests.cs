@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using FluentAssertions;
+using MediumTests.DiagnosticsTests;
 using VerifyTests;
 using VerifyXunit;
 using Vogen;
@@ -22,27 +23,27 @@ public class ToStringGenerationTests
                 yield return new object[]
                 {
                     type,
-                    createClassName(type, ToStringMethod.None),
+                    CreateClassName(type, ToStringMethod.None),
                     ToStringMethod.None,
                 };
 
                 yield return new object[]
                 {
                     type,
-                    createClassName(type, ToStringMethod.Method),
+                    CreateClassName(type, ToStringMethod.Method),
                     ToStringMethod.Method,
                 };
 
                 yield return new object[]
                 {
                     type,
-                    createClassName(type, ToStringMethod.ExpressionBodiedMethod),
+                    CreateClassName(type, ToStringMethod.ExpressionBodiedMethod),
                     ToStringMethod.ExpressionBodiedMethod,
                 };
             }
         }
 
-        private string createClassName(string type, ToStringMethod toStringMethod) => type.Replace(" ", "_") + "_" + toStringMethod;
+        private static string CreateClassName(string type, ToStringMethod toStringMethod) => type.Replace(" ", "_") + "_" + toStringMethod;
 
         private readonly string[] _types =
         {
@@ -69,16 +70,10 @@ namespace Whatever
 " + declaration + @"
 }";
 
-        var (diagnostics, output) = TestHelper.GetGeneratedOutput<ValueObjectGenerator>(source);
-
-        diagnostics.Should().BeEmpty();
-
-        VerifySettings settings = new VerifySettings();
-        settings.UseFileName(className);
-
-        // settings.AutoVerify();
-
-        return Verifier.Verify(output, settings).UseDirectory(SnapshotUtils.GetSnapshotDirectoryName());
+        return new SnapshotRunner<ValueObjectGenerator>()
+            .WithSource(source)
+            .CustomizeSettings(s => s.UseFileName(className))
+            .RunOnAllFrameworks();
     }
 
     private static string WriteToStringMethod(ToStringMethod toStringMethod, bool isARecord)

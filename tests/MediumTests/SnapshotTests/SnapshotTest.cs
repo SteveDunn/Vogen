@@ -1,12 +1,14 @@
-﻿using System.Threading.Tasks;
+﻿using System.Runtime.CompilerServices;
+using System.Threading.Tasks;
 using FluentAssertions;
+using MediumTests.DiagnosticsTests;
 using VerifyXunit;
 using Vogen;
 using Xunit;
 
 namespace MediumTests.SnapshotTests;
 
-[UsesVerify] 
+[UsesVerify]
 public class ValueObjectGeneratorTests
 {
     [Fact]
@@ -23,13 +25,26 @@ public partial struct CustomerId
         return RunTest(source);
     }
 
-    private static Task RunTest(string source)
+    private static async Task RunTest(string source)
     {
-        var (diagnostics, output) = TestHelper.GetGeneratedOutput<ValueObjectGenerator>(source);
+        // await RunTest(source, TargetFramework.NetStandard2_0); // works!
+        // await RunTest(source, TargetFramework.NetStandard2_1); // works!
+        // await RunTest(source, TargetFramework.NetCoreApp3_1); // does not work (when host is net7)!
+        // await RunTest(source, TargetFramework.Net4_6_1); // works!
+        // await RunTest(source, TargetFramework.Net4_8); // works!
+        // await RunTest(source, TargetFramework.Net5_0); // does not work (when host is net7)
+        // await RunTest(source, TargetFramework.Net6_0); // does not work (when host is net7)
+        await RunTest(source, TargetFramework.Net7_0); // works!
+    }
+
+    private static Task RunTest(string source, TargetFramework targetFramework)
+    {
+        var (diagnostics, output) = TestHelper.GetGeneratedOutput<ValueObjectGenerator>(source, targetFramework);
 
         diagnostics.Should().BeEmpty();
 
-        return Verifier.Verify(output).UseDirectory(SnapshotUtils.GetSnapshotDirectoryName());
+        return Verifier.Verify(output)
+            .UseDirectory(SnapshotUtils.GetSnapshotDirectoryName(targetFramework));
     }
 
     [Fact]
@@ -127,6 +142,20 @@ public partial struct CustomerId
     }
 
     [Fact]
+    public Task Basic_test()
+    {
+        return RunTest(@"using Vogen;
+
+namespace Whatever;
+
+[ValueObject(typeof(string))]
+public partial struct CustomerId
+{
+}
+");
+    }
+
+    [Fact]
     public Task Namespace_names_can_have_reserved_keywords()
     {
         return RunTest(@"using Vogen;
@@ -151,10 +180,10 @@ public partial struct @class
     }
 }
 
-[UsesVerify] 
+[UsesVerify]
 public class ValueObjectGeneratorTests_GenerateFromGenericAttribute
 {
-    #if NET7_0_OR_GREATER
+#if NET7_0_OR_GREATER
     [Fact]
     public Task Partial_struct_created_successfully()
     {

@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Collections.Immutable;
 using System.Linq;
 using FluentAssertions;
 using FluentAssertions.Execution;
@@ -7,7 +8,7 @@ using Microsoft.CodeAnalysis;
 using Vogen;
 using Xunit;
 
-namespace SmallTests.DiagnosticsTests;
+namespace MediumTests.DiagnosticsTests;
 
 public class ToStringOverrideTests
 {
@@ -28,16 +29,21 @@ namespace Whatever;
     public override string ToString() => string.Empty;
 }}
 ";
-        
-        var (diagnostics, _) = TestHelper.GetGeneratedOutput<ValueObjectGenerator>(source);
 
-        using var _ = new AssertionScope();
-        
-        diagnostics.Should().HaveCount(1);
-        Diagnostic diagnostic = diagnostics.Single();
+        new TestRunner<ValueObjectGenerator>()
+            .WithSource(source)
+            .ValidateWith(Validate)
+            .RunOnAllFrameworks();
 
-        diagnostic.Id.Should().Be("VOG020");
-        diagnostic.ToString().Should().Match("*: error VOG020: ToString overrides should be sealed on records. See https://github.com/SteveDunn/Vogen/wiki/Records#tostring for more information.");
+        void Validate(ImmutableArray<Diagnostic> diagnostics)
+        {
+            diagnostics.Should().HaveCount(1);
+            Diagnostic diagnostic = diagnostics.Single();
+
+            diagnostic.Id.Should().Be("VOG020");
+            diagnostic.ToString().Should().Match(
+                "*: error VOG020: ToString overrides should be sealed on records. See https://github.com/SteveDunn/Vogen/wiki/Records#tostring for more information.");
+        }
     }
 
     [Theory]
@@ -57,10 +63,11 @@ namespace Whatever;
     public override sealed string ToString() => string.Empty;
 }}
 ";
-        
-        var (diagnostics, _) = TestHelper.GetGeneratedOutput<ValueObjectGenerator>(source);
 
-        diagnostics.Should().HaveCount(0);
+        new TestRunner<ValueObjectGenerator>()
+            .WithSource(source)
+            .ValidateWith(d => d.Should().HaveCount(0))
+            .RunOnAllFrameworks();
     }
 
     [Theory]
@@ -77,10 +84,14 @@ namespace Whatever;
     public override {sealedOrNot} string ToString() => string.Empty;
 }}
 ";
-        
+
         var (diagnostics, _) = TestHelper.GetGeneratedOutput<ValueObjectGenerator>(source);
 
-        diagnostics.Should().HaveCount(0);
+
+        new TestRunner<ValueObjectGenerator>()
+            .WithSource(source)
+            .ValidateWith(d => d.Should().HaveCount(0))
+            .RunOnAllFrameworks();
     }
     
     private class Types : IEnumerable<object[]>

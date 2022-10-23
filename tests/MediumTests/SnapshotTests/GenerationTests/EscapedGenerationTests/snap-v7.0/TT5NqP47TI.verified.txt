@@ -130,14 +130,14 @@ namespace @class
         public int CompareTo(escapedTestspublic_partial_structConversions_TypeConverter other) => Value.CompareTo(other.Value);
 
         
-    /// <inheritdoc cref="double.TryParse(string?, out double)"/>
+    /// <inheritdoc cref="double.TryParse(System.ReadOnlySpan{char}, out double)"/>
     /// <summary>
     /// </summary>
     /// <returns>
     /// The value created via the <see cref="From"/> method.
     /// </returns>
     /// <exception cref="ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
-    public static global::System.Boolean TryParse(string? s, 
+    public static global::System.Boolean TryParse(System.ReadOnlySpan<char> s, 
 #if NETCOREAPP3_0_OR_GREATER
 [global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)]
 #endif
@@ -151,14 +151,56 @@ namespace @class
         return false;
     }
 
-    /// <inheritdoc cref="double.TryParse(System.ReadOnlySpan{char}, out double)"/>
+    /// <inheritdoc cref="double.TryParse(System.ReadOnlySpan{char}, System.Globalization.NumberStyles, System.IFormatProvider?, out double)"/>
     /// <summary>
     /// </summary>
     /// <returns>
     /// The value created via the <see cref="From"/> method.
     /// </returns>
     /// <exception cref="ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
-    public static global::System.Boolean TryParse(System.ReadOnlySpan<char> s, 
+    public static global::System.Boolean TryParse(System.ReadOnlySpan<char> s, System.Globalization.NumberStyles style, System.IFormatProvider? provider, 
+#if NETCOREAPP3_0_OR_GREATER
+[global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)]
+#endif
+ out escapedTestspublic_partial_structConversions_TypeConverter result) {
+        if(System.Double.TryParse(s, style, provider, out var r)) {
+            result = From(r);
+            return true;
+        }
+
+        result = default;
+        return false;
+    }
+
+    /// <inheritdoc cref="double.TryParse(System.ReadOnlySpan{char}, System.IFormatProvider?, out double)"/>
+    /// <summary>
+    /// </summary>
+    /// <returns>
+    /// The value created via the <see cref="From"/> method.
+    /// </returns>
+    /// <exception cref="ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
+    public static global::System.Boolean TryParse(System.ReadOnlySpan<char> s, System.IFormatProvider? provider, 
+#if NETCOREAPP3_0_OR_GREATER
+[global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)]
+#endif
+ out escapedTestspublic_partial_structConversions_TypeConverter result) {
+        if(System.Double.TryParse(s, provider, out var r)) {
+            result = From(r);
+            return true;
+        }
+
+        result = default;
+        return false;
+    }
+
+    /// <inheritdoc cref="double.TryParse(string?, out double)"/>
+    /// <summary>
+    /// </summary>
+    /// <returns>
+    /// The value created via the <see cref="From"/> method.
+    /// </returns>
+    /// <exception cref="ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
+    public static global::System.Boolean TryParse(string? s, 
 #if NETCOREAPP3_0_OR_GREATER
 [global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)]
 #endif
@@ -193,27 +235,6 @@ namespace @class
         return false;
     }
 
-    /// <inheritdoc cref="double.TryParse(System.ReadOnlySpan{char}, System.Globalization.NumberStyles, System.IFormatProvider?, out double)"/>
-    /// <summary>
-    /// </summary>
-    /// <returns>
-    /// The value created via the <see cref="From"/> method.
-    /// </returns>
-    /// <exception cref="ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
-    public static global::System.Boolean TryParse(System.ReadOnlySpan<char> s, System.Globalization.NumberStyles style, System.IFormatProvider? provider, 
-#if NETCOREAPP3_0_OR_GREATER
-[global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)]
-#endif
- out escapedTestspublic_partial_structConversions_TypeConverter result) {
-        if(System.Double.TryParse(s, style, provider, out var r)) {
-            result = From(r);
-            return true;
-        }
-
-        result = default;
-        return false;
-    }
-
     /// <inheritdoc cref="double.TryParse(string?, System.IFormatProvider?, out double)"/>
     /// <summary>
     /// </summary>
@@ -222,27 +243,6 @@ namespace @class
     /// </returns>
     /// <exception cref="ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
     public static global::System.Boolean TryParse(string? s, System.IFormatProvider? provider, 
-#if NETCOREAPP3_0_OR_GREATER
-[global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)]
-#endif
- out escapedTestspublic_partial_structConversions_TypeConverter result) {
-        if(System.Double.TryParse(s, provider, out var r)) {
-            result = From(r);
-            return true;
-        }
-
-        result = default;
-        return false;
-    }
-
-    /// <inheritdoc cref="double.TryParse(System.ReadOnlySpan{char}, System.IFormatProvider?, out double)"/>
-    /// <summary>
-    /// </summary>
-    /// <returns>
-    /// The value created via the <see cref="From"/> method.
-    /// </returns>
-    /// <exception cref="ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
-    public static global::System.Boolean TryParse(System.ReadOnlySpan<char> s, System.IFormatProvider? provider, 
 #if NETCOREAPP3_0_OR_GREATER
 [global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)]
 #endif

@@ -1,41 +1,43 @@
 ﻿using System;
 using System.Collections.Immutable;
 using System.Linq;
+using System.Security.Cryptography;
+using System.Text;
 using Microsoft.CodeAnalysis;
-using Microsoft.CodeAnalysis.CSharp;
-using Vogen;
 
-namespace SmallTests.DiagnosticsTests;
+namespace MediumTests.DiagnosticsTests;
 
 public static class TestHelper
 {
     public static (ImmutableArray<Diagnostic> Diagnostics, string Output) GetGeneratedOutput<T>(string source)
         where T : IIncrementalGenerator, new()
     {
-        var syntaxTree = CSharpSyntaxTree.ParseText(source);
-        var references = AppDomain.CurrentDomain.GetAssemblies()
-            .Where(_ => !_.IsDynamic && !string.IsNullOrWhiteSpace(_.Location))
-            .Select(_ => MetadataReference.CreateFromFile(_.Location))
-            .Concat(new[]
-            {
-                MetadataReference.CreateFromFile(typeof(T).Assembly.Location),
-                MetadataReference.CreateFromFile(typeof(ValueObjectAttribute).Assembly.Location)
-            });
+        var results = new ProjectBuilder()
+            .WithSource(source)
+            .WithTargetFramework(TargetFramework.Net6_0)
+            .GetGeneratedOutput<T>();
+        
+        return results;
+    }
 
-        var compilation = CSharpCompilation.Create(
-            "generator",
-            new[] { syntaxTree },
-            references,
-            new CSharpCompilationOptions(OutputKind.DynamicallyLinkedLibrary));
+    public static (ImmutableArray<Diagnostic> Diagnostics, string Output) GetGeneratedOutput<T>(string source, TargetFramework targetFramework)
+        where T : IIncrementalGenerator, new()
+    {
+        var results = new ProjectBuilder()
+            .WithSource(source)
+            .WithTargetFramework(targetFramework)
+            .GetGeneratedOutput<T>();
+        
+        return results;
+    }
 
-        var originalTreeCount = compilation.SyntaxTrees.Length;
-        var generator = new T();
+    public static string ShortenForFilename(string input)
+    {
+        using var sha1 = SHA1.Create();
+        var hash = sha1.ComputeHash(Encoding.UTF8.GetBytes(input));
 
-        var driver = CSharpGeneratorDriver.Create(generator);
-        driver.RunGeneratorsAndUpdateCompilation(compilation, out var outputCompilation, out var diagnostics);
+        //make sure the hash is only alpha numeric to prevent characters that may break the url
+        return string.Concat(Convert.ToBase64String(hash).ToCharArray().Where(char.IsLetterOrDigit).Take(10));
 
-        var trees = outputCompilation.SyntaxTrees.ToList();
-
-        return (diagnostics, trees.Count != originalTreeCount ? trees[trees.Count - 1].ToString() : string.Empty);
     }
 }

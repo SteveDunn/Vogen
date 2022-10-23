@@ -10,6 +10,15 @@ function WriteStage([string]$message)
     Write-Output ""
 }
 
+function Get999VersionWithUniquePatch()
+{
+    $date1 = Get-Date("2022-10-17");
+    $date2 = Get-Date;
+    $patch = [int64]((New-TimeSpan -Start $date1 -End $date2)).TotalSeconds
+    return "999.9." + $patch;
+}
+
+
 <#
 .SYNOPSIS
   Taken from psake https://github.com/psake/psake
@@ -43,12 +52,9 @@ exec { & dotnet clean Consumers.sln -c Release --verbosity $verbosity}
 
 exec { & dotnet build Vogen.sln -c Release --verbosity $verbosity}
 
-WriteStage("Running analyzer and code generation tests...")
-
-
 # run the analyzer and code generation tests
+WriteStage("Running analyzer and code generation tests...")
 exec { & dotnet test Vogen.sln -c Release --no-build -l trx -l "GitHubActions;report-warnings=false" --verbosity $verbosity }
-
 
 ################################################################
 
@@ -66,13 +72,7 @@ $localPackages = ".\local-global-packages"
 
 if(Test-Path $localPackages) { Remove-Item $localPackages\vogen.* -Force -ErrorAction SilentlyContinue }
 
-$date1 = Get-Date("2022-10-17");
-$date2 = Get-Date;
-$patch = [int64]((New-TimeSpan -Start $date1 -End $date2)).TotalSeconds
-$version = "999.9." + $patch;
-
-
-# dotnet clean src/Vogen
+$version = Get999VersionWithUniquePatch
 
 # Build **just** Vogen first to generate the NuGet package. In the next step,
 # we'll build the consumers of package, namely the e2e tests and samples projects.
@@ -80,7 +80,6 @@ $version = "999.9." + $patch;
 # **NOTE** - we don't want these 999.9.9.x packages ending up in %userprofile%\.nuget\packages because it'll polute it.
 
 exec { & dotnet restore ./src/Vogen --packages $localPackages --no-cache --verbosity $verbosity }
-
 exec { & dotnet pack ./src/Vogen -c Debug -o:$localPackages /p:ForceVersion=$version --include-symbols --version-suffix:dev --no-restore --verbosity $verbosity }
 
 # Restore the project using the custom config file, restoring packages to a local folder

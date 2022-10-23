@@ -1,11 +1,12 @@
-﻿using System.Linq;
+﻿using System.Collections.Immutable;
+using System.Linq;
 using FluentAssertions;
 using FluentAssertions.Execution;
 using Microsoft.CodeAnalysis;
 using Vogen;
 using Xunit;
 
-namespace SmallTests.DiagnosticsTests;
+namespace MediumTests.DiagnosticsTests;
 
 public class DoNotUseConstructorTests
 {
@@ -27,15 +28,21 @@ public {type} CustomerId(int SomethingElse)
 }}
 ";
 
-            var (diagnostics, _) = TestHelper.GetGeneratedOutput<ValueObjectGenerator>(source);
+            new TestRunner<ValueObjectGenerator>()
+                .WithSource(source)
+                .ValidateWith(Validate)
+                .RunOnAllFrameworks();
 
-            diagnostics.Should().HaveCount(1);
-            Diagnostic diagnostic = diagnostics.Single();
+            void Validate(ImmutableArray<Diagnostic> diagnostics)
+            {
+                diagnostics.Should().HaveCount(1);
+                Diagnostic diagnostic = diagnostics.Single();
 
-            using var scope = new AssertionScope();
-            diagnostic.Id.Should().Be("VOG008");
-            diagnostic.ToString().Should().Match(
-                "*VOG008: Cannot have user defined constructors, please use the From method for creation.");
+                using var scope = new AssertionScope();
+                diagnostic.Id.Should().Be("VOG008");
+                diagnostic.ToString().Should().Match(
+                    "*VOG008: Cannot have user defined constructors, please use the From method for creation.");
+            }
         }
 
         [Theory]
@@ -54,15 +61,21 @@ public {type} CustomerId(int SomethingElse, string Name, int Age)
 }}
 ";
 
-            var (diagnostics, _) = TestHelper.GetGeneratedOutput<ValueObjectGenerator>(source);
+            new TestRunner<ValueObjectGenerator>()
+                .WithSource(source)
+                .ValidateWith(Validate)
+                .RunOnAllFrameworks();
 
-            diagnostics.Should().HaveCount(1);
-            Diagnostic diagnostic = diagnostics.Single();
+            void Validate(ImmutableArray<Diagnostic> diagnostics)
+            {
+                diagnostics.Should().HaveCount(1);
+                Diagnostic diagnostic = diagnostics.Single();
 
-            using var scope = new AssertionScope();
-            diagnostic.Id.Should().Be("VOG008");
-            diagnostic.ToString().Should().Match(
-                "*VOG008: Cannot have user defined constructors, please use the From method for creation.");
+                using var scope = new AssertionScope();
+                diagnostic.Id.Should().Be("VOG008");
+                diagnostic.ToString().Should().Match(
+                    "*VOG008: Cannot have user defined constructors, please use the From method for creation.");
+            }
         }
 
         [Theory]
@@ -81,15 +94,21 @@ public {type} CustomerId()
 }}
 ";
 
-            var (diagnostics, _) = TestHelper.GetGeneratedOutput<ValueObjectGenerator>(source);
+            new TestRunner<ValueObjectGenerator>()
+                .WithSource(source)
+                .ValidateWith(Validate)
+                .RunOnAllFrameworks();
 
-            diagnostics.Should().HaveCount(1);
-            Diagnostic diagnostic = diagnostics.Single();
+            void Validate(ImmutableArray<Diagnostic> diagnostics)
+            {
+                diagnostics.Should().HaveCount(1);
+                Diagnostic diagnostic = diagnostics.Single();
 
-            using var scope = new AssertionScope();
-            diagnostic.Id.Should().Be("VOG008");
-            diagnostic.ToString().Should().Match(
-                "*VOG008: Cannot have user defined constructors, please use the From method for creation.");
+                using var scope = new AssertionScope();
+                diagnostic.Id.Should().Be("VOG008");
+                diagnostic.ToString().Should().Match(
+                    "*VOG008: Cannot have user defined constructors, please use the From method for creation.");
+            }
         }
     }
 
@@ -114,15 +133,22 @@ public {type} CustomerId
 }}
 ";
 
-            var (diagnostics, _) = TestHelper.GetGeneratedOutput<ValueObjectGenerator>(source);
+            new TestRunner<ValueObjectGenerator>()
+                .WithSource(source)
+                .ValidateWith(Validate)
+                .RunOnAllFrameworks();
 
-            diagnostics.Should().HaveCount(1);
-            Diagnostic diagnostic = diagnostics.Single();
+            void Validate(ImmutableArray<Diagnostic> diagnostics)
+            {
 
-            using var scope = new AssertionScope();
-            diagnostic.Id.Should().Be("VOG008");
-            diagnostic.ToString().Should().Match(
-                "*VOG008: Cannot have user defined constructors, please use the From method for creation.");
+                diagnostics.Should().HaveCount(1);
+                Diagnostic diagnostic = diagnostics.Single();
+
+                using var scope = new AssertionScope();
+                diagnostic.Id.Should().Be("VOG008");
+                diagnostic.ToString().Should().Match(
+                    "*VOG008: Cannot have user defined constructors, please use the From method for creation.");
+            }
         }
 
         [Theory]
@@ -144,15 +170,22 @@ public {type} CustomerId
 }}
 ";
 
-            var (diagnostics, _) = TestHelper.GetGeneratedOutput<ValueObjectGenerator>(source);
+            new TestRunner<ValueObjectGenerator>()
+                .WithSource(source)
+                .ValidateWith(Validate)
+                .RunOnAllFrameworks();
 
-            diagnostics.Should().HaveCount(1);
-            Diagnostic diagnostic = diagnostics.Single();
+            void Validate(ImmutableArray<Diagnostic> diagnostics)
+            {
 
-            using var scope = new AssertionScope();
-            diagnostic.Id.Should().Be("VOG008");
-            diagnostic.ToString().Should().Match(
-                "*VOG008: Cannot have user defined constructors, please use the From method for creation.");
+                diagnostics.Should().HaveCount(1);
+                Diagnostic diagnostic = diagnostics.Single();
+
+                using var scope = new AssertionScope();
+                diagnostic.Id.Should().Be("VOG008");
+                diagnostic.ToString().Should().Match(
+                    "*VOG008: Cannot have user defined constructors, please use the From method for creation.");
+            }
         }
 
         [Theory]
@@ -173,16 +206,22 @@ public {type} CustomerId
     public CustomerId() {{ }}
 }}
 ";
+            new TestRunner<ValueObjectGenerator>()
+                .WithSource(source)
+                .ValidateWith(Validate)
+                .RunOnAllFrameworks();
 
-            var (diagnostics, _) = TestHelper.GetGeneratedOutput<ValueObjectGenerator>(source);
+            void Validate(ImmutableArray<Diagnostic> diagnostics)
+            {
 
-            diagnostics.Should().HaveCount(1);
-            Diagnostic diagnostic = diagnostics.Single();
+                diagnostics.Should().HaveCount(1);
+                Diagnostic diagnostic = diagnostics.Single();
 
-            using var scope = new AssertionScope();
-            diagnostic.Id.Should().Be("VOG008");
-            diagnostic.ToString().Should().Match(
-                "*VOG008: Cannot have user defined constructors, please use the From method for creation.");
+                using var scope = new AssertionScope();
+                diagnostic.Id.Should().Be("VOG008");
+                diagnostic.ToString().Should().Match(
+                    "*VOG008: Cannot have user defined constructors, please use the From method for creation.");
+            }
         }
     }
 }

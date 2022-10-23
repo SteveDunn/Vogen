@@ -1,11 +1,11 @@
-﻿using System.Linq;
+﻿using System.Collections.Immutable;
+using System.Linq;
 using FluentAssertions;
-using FluentAssertions.Execution;
 using Microsoft.CodeAnalysis;
 using Vogen;
 using Xunit;
 
-namespace SmallTests.DiagnosticsTests;
+namespace MediumTests.DiagnosticsTests;
 
 public class DisallowAbstractTests
 {
@@ -22,18 +22,23 @@ namespace Whatever;
 public {type} CustomerId {{ }}
 ";
         
-        var (diagnostics, _) = TestHelper.GetGeneratedOutput<ValueObjectGenerator>(source);
-
-        using (new AssertionScope())
+        new TestRunner<ValueObjectGenerator>()
+            .WithSource(source)
+            .ValidateWith(Validate)
+            .RunOnAllFrameworks();
+        
+        void Validate(ImmutableArray<Diagnostic> diagnostics)
         {
             diagnostics.Should().HaveCount(1);
             Diagnostic diagnostic = diagnostics.Single();
 
             diagnostic.Id.Should().Be("VOG017");
-            diagnostic.ToString().Should()
+            diagnostic.ToString()
+                .Should()
                 .Match("* error VOG017: Type 'CustomerId' cannot be abstract");
         }
     }
+
 
     [Theory]
     [InlineData("abstract partial class")]
@@ -49,10 +54,13 @@ public class MyContainer {{
     public {type} CustomerId {{ }}
 }}
 ";
-        
-        var (diagnostics, _) = TestHelper.GetGeneratedOutput<ValueObjectGenerator>(source);
 
-        using (new AssertionScope())
+        new TestRunner<ValueObjectGenerator>()
+            .WithSource(source)
+            .ValidateWith(Validate)
+            .RunOnAllFrameworks();
+
+        void Validate(ImmutableArray<Diagnostic> diagnostics)
         {
             diagnostics.Should().HaveCount(2);
             Diagnostic diagnostic = diagnostics.ElementAt(0);

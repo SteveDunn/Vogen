@@ -1,5 +1,6 @@
 ﻿using System.Threading.Tasks;
 using FluentAssertions;
+using MediumTests.DiagnosticsTests;
 using VerifyXunit;
 using Vogen;
 using Xunit;
@@ -24,12 +25,17 @@ namespace Whatever;
 public partial struct CustomerId
 {
 }";
-        
-        var (diagnostics, output) = TestHelper.GetGeneratedOutput<ValueObjectGenerator>(source);
 
-        diagnostics.Should().BeEmpty();
-        
-        return Verifier.Verify(output).UseDirectory(SnapshotUtils.GetSnapshotDirectoryName());
+        return new SnapshotRunner<ValueObjectGenerator>()
+            .WithSource(source)
+            .RunOnAllFrameworks();
+
+        //
+        //     var (diagnostics, output) = TestHelper.GetGeneratedOutput<ValueObjectGenerator>(source);
+        //
+        // diagnostics.Should().BeEmpty();
+        //
+        // return Verifier.Verify(output).UseDirectory(SnapshotUtils.GetSnapshotDirectoryName());
     }
 
     [Fact]
@@ -54,11 +60,9 @@ public class MyValidationException : Exception
 }
 ";
 
-        var (diagnostics, output) = TestHelper.GetGeneratedOutput<ValueObjectGenerator>(source);
-
-        diagnostics.Should().HaveCount(0);
-
-        return Verifier.Verify(output).UseDirectory(SnapshotUtils.GetSnapshotDirectoryName());
+        return new SnapshotRunner<ValueObjectGenerator>()
+            .WithSource(source)
+            .RunOnAllFrameworks();
     }
 
     [Fact]
@@ -75,11 +79,9 @@ namespace Whatever;
 public partial struct CustomerId { }
 ";
 
-        var (diagnostics, output) = TestHelper.GetGeneratedOutput<ValueObjectGenerator>(source);
-
-        diagnostics.Should().HaveCount(0);
-
-        return Verifier.Verify(output).UseDirectory(SnapshotUtils.GetSnapshotDirectoryName());
+        return new SnapshotRunner<ValueObjectGenerator>()
+            .WithSource(source)
+            .RunOnAllFrameworks();
     }
 
     [Fact]
@@ -105,12 +107,10 @@ public class MyValidationException : Exception
     public MyValidationException(string message) : base(message) { }
 }
 ";
-        
-        var (diagnostics, output) = TestHelper.GetGeneratedOutput<ValueObjectGenerator>(source);
 
-        diagnostics.Should().HaveCount(0);
-
-        return Verifier.Verify(output).UseDirectory(SnapshotUtils.GetSnapshotDirectoryName());
+        return new SnapshotRunner<ValueObjectGenerator>()
+            .WithSource(source)
+            .RunOnAllFrameworks();
     }
 
     [Fact]
@@ -134,11 +134,9 @@ public class MyValidationException : Exception
     public MyValidationException(string message) : base(message) { }
 }
 ";
-        
-        var (diagnostics, output) = TestHelper.GetGeneratedOutput<ValueObjectGenerator>(source);
 
-        diagnostics.Should().BeEmpty();
-        
-        return Verifier.Verify(output).UseDirectory(SnapshotUtils.GetSnapshotDirectoryName());
+        return new SnapshotRunner<ValueObjectGenerator>()
+            .WithSource(source)
+            .RunOnAllFrameworks();
     }
 }

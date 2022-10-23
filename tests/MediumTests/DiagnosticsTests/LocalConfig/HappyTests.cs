@@ -1,8 +1,10 @@
-﻿using FluentAssertions;
+﻿using System.Collections.Immutable;
+using FluentAssertions;
+using Microsoft.CodeAnalysis;
 using Vogen;
 using Xunit;
 
-namespace SmallTests.DiagnosticsTests.LocalConfig;
+namespace MediumTests.DiagnosticsTests.LocalConfig;
 
 public class HappyTests
 {
@@ -21,10 +23,16 @@ namespace Whatever;
 
 [ValueObject(typeof(float))]
 public {type} CustomerId {{ }}";
-        
-        var (diagnostics, _) = TestHelper.GetGeneratedOutput<ValueObjectGenerator>(source);
 
-        diagnostics.Should().BeEmpty();
+        new TestRunner<ValueObjectGenerator>()
+            .WithSource(source)
+            .ValidateWith(Validate)
+            .RunOnAllFrameworks();
+
+        void Validate(ImmutableArray<Diagnostic> diagnostics)
+        {
+            diagnostics.Should().BeEmpty();
+        }
     }
 
     [Theory]
@@ -52,9 +60,15 @@ public class MyValidationException : Exception
 }}
 ";
 
-        var (diagnostics, _) = TestHelper.GetGeneratedOutput<ValueObjectGenerator>(source);
+        new TestRunner<ValueObjectGenerator>()
+            .WithSource(source)
+            .ValidateWith(Validate)
+            .RunOnAllFrameworks();
 
-        diagnostics.Should().HaveCount(0);
+        void Validate(ImmutableArray<Diagnostic> diagnostics)
+        {
+            diagnostics.Should().HaveCount(0);
+        }
     }
 
     [Theory]
@@ -72,10 +86,16 @@ namespace Whatever;
 
 [ValueObject(conversions: Conversions.None)]
 public {type} CustomerId {{ }}";
-        
-        var (diagnostics, _) = TestHelper.GetGeneratedOutput<ValueObjectGenerator>(source);
 
-        diagnostics.Should().BeEmpty();
+        new TestRunner<ValueObjectGenerator>()
+            .WithSource(source)
+            .ValidateWith(Validate)
+            .RunOnAllFrameworks();
+
+        void Validate(ImmutableArray<Diagnostic> diagnostics)
+        {
+            diagnostics.Should().BeEmpty();
+        }
     }
 
     [Theory]
@@ -103,10 +123,16 @@ public class MyValidationException : Exception
     public MyValidationException(string message) : base(message) {{ }}
 }}
 ";
-        
-        var (diagnostics, _) = TestHelper.GetGeneratedOutput<ValueObjectGenerator>(source);
 
-        diagnostics.Should().HaveCount(0);
+        new TestRunner<ValueObjectGenerator>()
+            .WithSource(source)
+            .ValidateWith(Validate)
+            .RunOnAllFrameworks();
+
+        void Validate(ImmutableArray<Diagnostic> diagnostics)
+        {
+            diagnostics.Should().HaveCount(0);
+        }
     }
 
     [Theory]
@@ -136,9 +162,15 @@ public class MyValidationException : Exception
     public MyValidationException(string message) : base(message) {{ }}
 }}
 ";
-        
-        var (diagnostics, _) = TestHelper.GetGeneratedOutput<ValueObjectGenerator>(source);
 
-        diagnostics.Should().BeEmpty();
+        new TestRunner<ValueObjectGenerator>()
+            .WithSource(source)
+            .ValidateWith(Validate)
+            .RunOnAllFrameworks();
+
+        void Validate(ImmutableArray<Diagnostic> diagnostics)
+        {
+            diagnostics.Should().BeEmpty();
+        }
     }
 }

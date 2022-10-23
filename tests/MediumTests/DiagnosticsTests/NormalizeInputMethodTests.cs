@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Collections.Immutable;
 using System.Linq;
 using FluentAssertions;
 using FluentAssertions.Execution;
@@ -7,7 +8,7 @@ using Microsoft.CodeAnalysis;
 using Vogen;
 using Xunit;
 
-namespace SmallTests.DiagnosticsTests;
+namespace MediumTests.DiagnosticsTests;
 
 public class NormalizeInputMethodTests
 {
@@ -44,15 +45,19 @@ public class NormalizeInputMethodTests
     {
         var source = BuildSource(type);
 
-        var (diagnostics, _) = TestHelper.GetGeneratedOutput<ValueObjectGenerator>(source);
+        new TestRunner<ValueObjectGenerator>()
+            .WithSource(source)
+            .ValidateWith(Validate)
+            .RunOnAllFrameworks();
 
-        diagnostics.Should().HaveCount(1);
-        Diagnostic diagnostic = diagnostics.Single();
-        
-        using (new AssertionScope())
+        void Validate(ImmutableArray<Diagnostic> diagnostics)
         {
+            diagnostics.Should().HaveCount(1);
+            Diagnostic diagnostic = diagnostics.Single();
+
             diagnostic.Id.Should().Be("VOG016");
-            diagnostic.ToString().Should().Be("(7,5): error VOG016: NormalizeInput must accept one parameter of the same type as the underlying type");
+            diagnostic.ToString().Should().Be(
+                "(7,5): error VOG016: NormalizeInput must accept one parameter of the same type as the underlying type");
         }
 
         static string BuildSource(string type) =>
@@ -72,15 +77,20 @@ namespace Whatever;
     {
         var source = BuildSource(type);
 
-        var (diagnostics, _) = TestHelper.GetGeneratedOutput<ValueObjectGenerator>(source);
+        new TestRunner<ValueObjectGenerator>()
+            .WithSource(source)
+            .ValidateWith(Validate)
+            .RunOnAllFrameworks();
 
-        diagnostics.Should().HaveCount(1);
-        Diagnostic diagnostic = diagnostics.Single();
-        
-        using (new AssertionScope())
+        void Validate(ImmutableArray<Diagnostic> diagnostics)
         {
+            diagnostics.Should().HaveCount(1);
+            Diagnostic diagnostic = diagnostics.Single();
+
+
             diagnostic.Id.Should().Be("VOG015");
-            diagnostic.ToString().Should().Be("(7,5): error VOG015: NormalizeInput must return the same underlying type");
+            diagnostic.ToString().Should()
+                .Be("(7,5): error VOG015: NormalizeInput must return the same underlying type");
         }
 
         static string BuildSource(string type) =>
@@ -100,13 +110,16 @@ public {type} CustomerId
     {
         var source = BuildSource(type);
 
-        var (diagnostics, _) = TestHelper.GetGeneratedOutput<ValueObjectGenerator>(source);
+        new TestRunner<ValueObjectGenerator>()
+            .WithSource(source)
+            .ValidateWith(Validate)
+            .RunOnAllFrameworks();
 
-        diagnostics.Should().HaveCount(1);
-        Diagnostic diagnostic = diagnostics.Single();
-        
-        using (new AssertionScope())
+        void Validate(ImmutableArray<Diagnostic> diagnostics)
         {
+            diagnostics.Should().HaveCount(1);
+            Diagnostic diagnostic = diagnostics.Single();
+
             diagnostic.Id.Should().Be("VOG014");
             diagnostic.ToString().Should().Be("(7,5): error VOG014: NormalizeInput must be static");
         }

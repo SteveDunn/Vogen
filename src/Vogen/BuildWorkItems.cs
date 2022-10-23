@@ -22,7 +22,7 @@ internal static class BuildWorkItems
 
         if (target.DataForAttributes.Length == 0) return null;
 
-        ImmutableArray<AttributeData> attributes = voSymbolInformation.GetAttributes();
+        ImmutableArray<AttributeData> allAttributes = voSymbolInformation.GetAttributes();
 
         if (target.DataForAttributes.Length != 1)
         {
@@ -68,7 +68,7 @@ internal static class BuildWorkItems
         ReportErrorIfNestedType(target, context, voSymbolInformation);
 
         IEnumerable<InstanceProperties> instanceProperties =
-            TryBuildInstanceProperties(attributes, voSymbolInformation, context, config.UnderlyingType).ToList();
+            TryBuildInstanceProperties(allAttributes, voSymbolInformation, context, config.UnderlyingType).ToList();
 
         var toStringInfo = HasToStringOverload(voSymbolInformation);
 
@@ -325,51 +325,11 @@ internal static class BuildWorkItems
         SourceProductionContext context, 
         INamedTypeSymbol? underlyingType)
     {
-        var matchingAttributes =
-            attributes.Where(a => a.AttributeClass?.ToString() is "Vogen.InstanceAttribute");
+        IEnumerable<AttributeData> matchingAttributes =
+            attributes.Where(a => a.AttributeClass?.FullName() is "Vogen.InstanceAttribute");
 
-        foreach (AttributeData? eachAttribute in matchingAttributes)
-        {
-            if (eachAttribute is null)
-            {
-                continue;
-            }
-
-            ImmutableArray<TypedConstant> constructorArguments = eachAttribute.ConstructorArguments;
-
-            if (constructorArguments.Length == 0)
-            {
-                continue;
-            }
-
-            var name = (string?) constructorArguments[0].Value;
-
-            if (name is null)
-            {
-                context.ReportDiagnostic(DiagnosticsCatalogue.InstanceMethodCannotHaveNullArgumentName(voClass));
-            }
-
-            var value = constructorArguments[1].Value;
-
-            if (value is null)
-            {
-                context.ReportDiagnostic(DiagnosticsCatalogue.InstanceMethodCannotHaveNullArgumentValue(voClass));
-            }
-
-            if (name is null || value is null)
-            {
-                continue;
-            }
-            
-            var tripleSlashComment = (string?)constructorArguments[2].Value;
-
-            InstanceGeneration.BuildResult result = InstanceGeneration.TryBuildInstanceValueAsText(name, value, underlyingType?.FullName());
-            if (!result.Success)
-            {
-                context.ReportDiagnostic(DiagnosticsCatalogue.InstanceValueCannotBeConverted(voClass, result.ErrorMessage));
-            }
-            
-            yield return new InstanceProperties(name, result.Value, value, tripleSlashComment ?? string.Empty);
-        }
+        var props = BuildInstanceProperties.Build(matchingAttributes, context, voClass, underlyingType);
+        
+        return props.Where(a => a is not null)!;
     }
 }

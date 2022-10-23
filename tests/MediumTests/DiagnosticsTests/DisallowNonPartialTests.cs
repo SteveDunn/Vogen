@@ -1,11 +1,12 @@
-﻿using System.Linq;
+﻿using System.Collections.Immutable;
+using System.Linq;
 using FluentAssertions;
 using FluentAssertions.Execution;
 using Microsoft.CodeAnalysis;
 using Vogen;
 using Xunit;
 
-namespace SmallTests.DiagnosticsTests;
+namespace MediumTests.DiagnosticsTests;
 
 public class DisallowNonPartialTests
 {
@@ -21,10 +22,12 @@ namespace Whatever;
 [ValueObject]
 public {type} CustomerId {{ }}
 ";
-        
-        var (diagnostics, _) = TestHelper.GetGeneratedOutput<ValueObjectGenerator>(source);
+        new TestRunner<ValueObjectGenerator>()
+            .WithSource(source)
+            .ValidateWith(Validate)
+            .RunOnAllFrameworks();
 
-        using (new AssertionScope())
+        void Validate(ImmutableArray<Diagnostic> diagnostics)
         {
             diagnostics.Should().HaveCount(1);
             Diagnostic diagnostic = diagnostics.Single();

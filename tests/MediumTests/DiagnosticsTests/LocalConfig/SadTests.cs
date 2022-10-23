@@ -1,10 +1,11 @@
-﻿using System.Linq;
+﻿using System.Collections.Immutable;
+using System.Linq;
 using FluentAssertions;
 using Microsoft.CodeAnalysis;
 using Vogen;
 using Xunit;
 
-namespace SmallTests.DiagnosticsTests.LocalConfig;
+namespace MediumTests.DiagnosticsTests.LocalConfig;
 
 public class SadTests
 {
@@ -30,14 +31,21 @@ public {type} CustomerId
 public class MyValidationException : Exception {{ }}
 ";
 
-        var (diagnostics, _) = TestHelper.GetGeneratedOutput<ValueObjectGenerator>(source);
+        new TestRunner<ValueObjectGenerator>()
+            .WithSource(source)
+            .ValidateWith(Validate)
+            .RunOnAllFrameworks();
 
-        diagnostics.Should().HaveCount(1);
+        void Validate(ImmutableArray<Diagnostic> diagnostics)
+        {
+            diagnostics.Should().HaveCount(1);
 
-        Diagnostic diagnostic = diagnostics.Single();
+            Diagnostic diagnostic = diagnostics.Single();
 
-        diagnostic.Id.Should().Be("VOG013");
-        diagnostic.ToString().Should().Be("(11,14): error VOG013: MyValidationException must have at least 1 public constructor with 1 parameter of type System.String");
+            diagnostic.Id.Should().Be("VOG013");
+            diagnostic.ToString().Should().Be(
+                "(11,14): error VOG013: MyValidationException must have at least 1 public constructor with 1 parameter of type System.String");
+        }
     }
 
     [Theory]
@@ -65,14 +73,21 @@ public class MyValidationException : Exception
 }}
 ";
 
-        var (diagnostics, _) = TestHelper.GetGeneratedOutput<ValueObjectGenerator>(source);
+        new TestRunner<ValueObjectGenerator>()
+            .WithSource(source)
+            .ValidateWith(Validate)
+            .RunOnAllFrameworks();
 
-        diagnostics.Should().HaveCount(1);
+        void Validate(ImmutableArray<Diagnostic> diagnostics)
+        {
+            diagnostics.Should().HaveCount(1);
 
-        Diagnostic diagnostic = diagnostics.Single();
+            Diagnostic diagnostic = diagnostics.Single();
 
-        diagnostic.Id.Should().Be("VOG013");
-        diagnostic.ToString().Should().Be("(11,14): error VOG013: MyValidationException must have at least 1 public constructor with 1 parameter of type System.String");
+            diagnostic.Id.Should().Be("VOG013");
+            diagnostic.ToString().Should().Be(
+                "(11,14): error VOG013: MyValidationException must have at least 1 public constructor with 1 parameter of type System.String");
+        }
     }
 
     [Theory]
@@ -100,14 +115,21 @@ public class MyValidationException : Exception
 }}
 ";
 
-        var (diagnostics, _) = TestHelper.GetGeneratedOutput<ValueObjectGenerator>(source);
+        new TestRunner<ValueObjectGenerator>()
+            .WithSource(source)
+            .ValidateWith(Validate)
+            .RunOnAllFrameworks();
 
-        diagnostics.Should().HaveCount(1);
+        void Validate(ImmutableArray<Diagnostic> diagnostics)
+        {
+            diagnostics.Should().HaveCount(1);
 
-        Diagnostic diagnostic = diagnostics.Single();
+            Diagnostic diagnostic = diagnostics.Single();
 
-        diagnostic.Id.Should().Be("VOG013");
-        diagnostic.ToString().Should().Be("(11,14): error VOG013: MyValidationException must have at least 1 public constructor with 1 parameter of type System.String");
+            diagnostic.Id.Should().Be("VOG013");
+            diagnostic.ToString().Should().Be(
+                "(11,14): error VOG013: MyValidationException must have at least 1 public constructor with 1 parameter of type System.String");
+        }
     }
 
     [Theory]
@@ -132,20 +154,29 @@ public {type} CustomerId
 public class MyValidationException {{ }} // NOT AN EXCEPTION!
 ";
 
-        var (diagnostics, _) = TestHelper.GetGeneratedOutput<ValueObjectGenerator>(source);
+        new TestRunner<ValueObjectGenerator>()
+            .WithSource(source)
+            .ValidateWith(Validate)
+            .RunOnAllFrameworks();
 
-        diagnostics.Should().HaveCount(2);
+        void Validate(ImmutableArray<Diagnostic> diagnostics)
+        {
+            diagnostics.Should().HaveCount(2);
 
-        diagnostics.Should().SatisfyRespectively(first =>
-            {
-                first.Id.Should().Be("VOG012");
-                first.ToString().Should().Be("(11,14): error VOG012: MyValidationException must derive from System.Exception");
-            },
-            second =>
-            {
-                second.Id.Should().Be("VOG013");
-                second.ToString().Should().Be("(11,14): error VOG013: MyValidationException must have at least 1 public constructor with 1 parameter of type System.String");
-            });
+            diagnostics.Should().SatisfyRespectively(
+                first =>
+                {
+                    first.Id.Should().Be("VOG012");
+                    first.ToString().Should().Be(
+                        "(11,14): error VOG012: MyValidationException must derive from System.Exception");
+                },
+                second =>
+                {
+                    second.Id.Should().Be("VOG013");
+                    second.ToString().Should().Be(
+                        "(11,14): error VOG013: MyValidationException must have at least 1 public constructor with 1 parameter of type System.String");
+                });
+        }
     }
 
     [Theory]
@@ -166,14 +197,22 @@ namespace Whatever;
 public {type} CustomerId {{ }}
 ";
 
-        var (diagnostics, _) = TestHelper.GetGeneratedOutput<ValueObjectGenerator>(source);
+        new TestRunner<ValueObjectGenerator>()
+            .WithSource(source)
+            .ValidateWith(Validate)
+            .RunOnAllFrameworks();
 
-        diagnostics.Should().HaveCount(1);
-
-        diagnostics.Should().SatisfyRespectively(first =>
+        void Validate(ImmutableArray<Diagnostic> diagnostics)
         {
-            first.Id.Should().Be("VOG011");
-            first.ToString().Should().Be("(6,2): error VOG011: The Conversions specified do not match any known conversions - see the Conversions type");
-        });
+            diagnostics.Should().HaveCount(1);
+
+            diagnostics.Should().SatisfyRespectively(
+                first =>
+                {
+                    first.Id.Should().Be("VOG011");
+                    first.ToString().Should().Be(
+                        "(6,2): error VOG011: The Conversions specified do not match any known conversions - see the Conversions type");
+                });
+        }
     }
 }

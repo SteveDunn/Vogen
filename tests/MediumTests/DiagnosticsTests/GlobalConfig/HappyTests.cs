@@ -1,8 +1,10 @@
-﻿using FluentAssertions;
+﻿using System.Collections.Immutable;
+using FluentAssertions;
+using Microsoft.CodeAnalysis;
 using Vogen;
 using Xunit;
 
-namespace SmallTests.DiagnosticsTests.GlobalConfig;
+namespace MediumTests.DiagnosticsTests.GlobalConfig;
 
 public class HappyTests
 {
@@ -21,10 +23,16 @@ namespace Whatever;
 public partial struct CustomerId
 {
 }";
-        
-        var (diagnostics, _) = TestHelper.GetGeneratedOutput<ValueObjectGenerator>(source);
 
-        diagnostics.Should().BeEmpty();
+        new TestRunner<ValueObjectGenerator>()
+            .WithSource(source)
+            .ValidateWith(Validate)
+            .RunOnAllFrameworks();
+
+        void Validate(ImmutableArray<Diagnostic> diagnostics)
+        {
+            diagnostics.Should().BeEmpty();
+        }
     }
 
     [Fact]
@@ -49,9 +57,15 @@ public class MyValidationException : Exception
 }
 ";
 
-        var (diagnostics, _) = TestHelper.GetGeneratedOutput<ValueObjectGenerator>(source);
+        new TestRunner<ValueObjectGenerator>()
+            .WithSource(source)
+            .ValidateWith(Validate)
+            .RunOnAllFrameworks();
 
-        diagnostics.Should().HaveCount(0);
+        void Validate(ImmutableArray<Diagnostic> diagnostics)
+        {
+            diagnostics.Should().HaveCount(0);
+        }
     }
 
     [Fact]
@@ -77,10 +91,16 @@ public class MyValidationException : Exception
     public MyValidationException(string message) : base(message) { }
 }
 ";
-        
-        var (diagnostics, _) = TestHelper.GetGeneratedOutput<ValueObjectGenerator>(source);
 
-        diagnostics.Should().HaveCount(0);
+        new TestRunner<ValueObjectGenerator>()
+            .WithSource(source)
+            .ValidateWith(Validate)
+            .RunOnAllFrameworks();
+
+        void Validate(ImmutableArray<Diagnostic> diagnostics)
+        {
+            diagnostics.Should().HaveCount(0);
+        }
     }
 
     [Fact]
@@ -97,10 +117,16 @@ namespace Whatever;
 [ValueObject]
 public partial struct CustomerId { }
 ";
-        
-        var (diagnostics, _) = TestHelper.GetGeneratedOutput<ValueObjectGenerator>(source);
 
-        diagnostics.Should().HaveCount(0);
+        new TestRunner<ValueObjectGenerator>()
+            .WithSource(source)
+            .ValidateWith(Validate)
+            .RunOnAllFrameworks();
+
+        void Validate(ImmutableArray<Diagnostic> diagnostics)
+        {
+            diagnostics.Should().HaveCount(0);
+        }
     }
 
     [Fact]
@@ -124,9 +150,15 @@ public class MyValidationException : Exception
     public MyValidationException(string message) : base(message) { }
 }
 ";
-        
-        var (diagnostics, _) = TestHelper.GetGeneratedOutput<ValueObjectGenerator>(source);
 
-        diagnostics.Should().BeEmpty();
+        new TestRunner<ValueObjectGenerator>()
+            .WithSource(source)
+            .ValidateWith(Validate)
+            .RunOnAllFrameworks();
+
+        void Validate(ImmutableArray<Diagnostic> diagnostics)
+        {
+            diagnostics.Should().BeEmpty();
+        }
     }
 }

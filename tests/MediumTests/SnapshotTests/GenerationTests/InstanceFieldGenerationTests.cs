@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using FluentAssertions;
 using FluentAssertions.Execution;
+using MediumTests.DiagnosticsTests;
 using VerifyTests;
 using VerifyXunit;
 using Vogen;
@@ -112,16 +113,11 @@ namespace Whatever
 " + declaration + @"
 }";
 
-        var (diagnostics, output) = TestHelper.GetGeneratedOutput<ValueObjectGenerator>(source);
-
-        diagnostics.Should().BeEmpty();
-
-        VerifySettings settings = new VerifySettings();
-        settings.UseFileName(TestHelper.ShortenForFilename(className));
-
-        // settings.AutoVerify();
-
-        return Verifier.Verify(output, settings).UseDirectory(SnapshotUtils.GetSnapshotDirectoryName("fr"));
+        return new SnapshotRunner<ValueObjectGenerator>()
+            .WithSource(source)
+            .WithLocale("fr")
+            .CustomizeSettings(s => s.UseFileName(TestHelper.ShortenForFilename(className)))
+            .RunOnAllFrameworks();
     }
 }
 

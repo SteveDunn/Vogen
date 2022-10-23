@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using FluentAssertions;
+using MediumTests.DiagnosticsTests;
 using VerifyTests;
 using VerifyXunit;
 using Vogen;
@@ -9,7 +10,7 @@ using Xunit;
 
 namespace MediumTests.SnapshotTests.GenerationTests;
 
-[UsesVerify] 
+[UsesVerify]
 public class GenerationTests
 {
     public class Types : IEnumerable<object[]>
@@ -32,20 +33,20 @@ public class GenerationTests
             }
         }
 
-        private static string CreateClassName(string type, string conversion, string underlyingType) => 
+        private static string CreateClassName(string type, string conversion, string underlyingType) =>
             type.Replace(" ", "_") + conversion.Replace(".", "_").Replace("|", "_") + underlyingType;
 
         private readonly string[] _types = new[]
         {
             "partial struct",
             "readonly partial struct",
-            
+
             "partial class",
             "sealed partial class",
 
             "partial record struct",
             "readonly partial record struct",
-            
+
             "partial record class",
             "sealed partial record class",
 
@@ -75,7 +76,7 @@ public class GenerationTests
             "long",
             "string",
         };
-        
+
         IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
     }
 
@@ -93,16 +94,11 @@ namespace Whatever
 " + declaration + @"
 }";
 
-        var (diagnostics, output) = TestHelper.GetGeneratedOutput<ValueObjectGenerator>(source);
-
-        diagnostics.Should().BeEmpty();
-
-        VerifySettings settings = new VerifySettings();
-        settings.UseFileName(TestHelper.ShortenForFilename(className));
-
-        // settings.AutoVerify();
-
-        return Verifier.Verify(output, settings).UseDirectory(SnapshotUtils.GetSnapshotDirectoryName("fr"));
+        return new SnapshotRunner<ValueObjectGenerator>()
+            .WithSource(source)
+            .WithLocale("fr")
+            .CustomizeSettings(s => s.UseFileName(TestHelper.ShortenForFilename(className)))
+            .RunOnAllFrameworks();
     }
 
     [Theory]
@@ -119,15 +115,10 @@ namespace Whatever
 " + declaration + @"
 }";
 
-        var (diagnostics, output) = TestHelper.GetGeneratedOutput<ValueObjectGenerator>(source);
-
-        diagnostics.Should().BeEmpty();
-
-        VerifySettings settings = new VerifySettings();
-        settings.UseFileName(TestHelper.ShortenForFilename(className));
-
-        // settings.AutoVerify();
-
-        return Verifier.Verify(output, settings).UseDirectory(SnapshotUtils.GetSnapshotDirectoryName("us"));
+        return new SnapshotRunner<ValueObjectGenerator>()
+            .WithSource(source)
+            .WithLocale("us")
+            .CustomizeSettings(s => s.UseFileName(TestHelper.ShortenForFilename(className)))
+            .RunOnAllFrameworks();
     }
 }

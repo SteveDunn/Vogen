@@ -1,5 +1,6 @@
 ﻿using System.Threading.Tasks;
 using FluentAssertions;
+using MediumTests.DiagnosticsTests;
 using VerifyXunit;
 using Vogen;
 using Xunit;
@@ -89,10 +90,8 @@ namespace Whatever
 " + declaration + @"
 }";
 
-        var (diagnostics, output) = TestHelper.GetGeneratedOutput<ValueObjectGenerator>(source);
-
-        diagnostics.Should().BeEmpty();
-
-        return Verifier.Verify(output).UseDirectory(SnapshotUtils.GetSnapshotDirectoryName());
+        return new SnapshotRunner<ValueObjectGenerator>()
+            .WithSource(source)
+            .RunOnAllFrameworks();
     }
 }

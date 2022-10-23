@@ -128,14 +128,14 @@ namespace Whatever
         public int CompareTo(internal_readonly_partial_structConversions_TypeConverterdecimal other) => Value.CompareTo(other.Value);
 
         
-    /// <inheritdoc cref="decimal.TryParse(string?, out decimal)"/>
+    /// <inheritdoc cref="decimal.TryParse(System.ReadOnlySpan{char}, out decimal)"/>
     /// <summary>
     /// </summary>
     /// <returns>
     /// The value created via the <see cref="From"/> method.
     /// </returns>
     /// <exception cref="ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
-    public static global::System.Boolean TryParse(string? s, 
+    public static global::System.Boolean TryParse(System.ReadOnlySpan<char> s, 
 #if NETCOREAPP3_0_OR_GREATER
 [global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)]
 #endif
@@ -149,14 +149,56 @@ namespace Whatever
         return false;
     }
 
-    /// <inheritdoc cref="decimal.TryParse(System.ReadOnlySpan{char}, out decimal)"/>
+    /// <inheritdoc cref="decimal.TryParse(System.ReadOnlySpan{char}, System.Globalization.NumberStyles, System.IFormatProvider?, out decimal)"/>
     /// <summary>
     /// </summary>
     /// <returns>
     /// The value created via the <see cref="From"/> method.
     /// </returns>
     /// <exception cref="ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
-    public static global::System.Boolean TryParse(System.ReadOnlySpan<char> s, 
+    public static global::System.Boolean TryParse(System.ReadOnlySpan<char> s, System.Globalization.NumberStyles style, System.IFormatProvider? provider, 
+#if NETCOREAPP3_0_OR_GREATER
+[global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)]
+#endif
+ out internal_readonly_partial_structConversions_TypeConverterdecimal result) {
+        if(System.Decimal.TryParse(s, style, provider, out var r)) {
+            result = From(r);
+            return true;
+        }
+
+        result = default;
+        return false;
+    }
+
+    /// <inheritdoc cref="decimal.TryParse(System.ReadOnlySpan{char}, System.IFormatProvider?, out decimal)"/>
+    /// <summary>
+    /// </summary>
+    /// <returns>
+    /// The value created via the <see cref="From"/> method.
+    /// </returns>
+    /// <exception cref="ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
+    public static global::System.Boolean TryParse(System.ReadOnlySpan<char> s, System.IFormatProvider? provider, 
+#if NETCOREAPP3_0_OR_GREATER
+[global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)]
+#endif
+ out internal_readonly_partial_structConversions_TypeConverterdecimal result) {
+        if(System.Decimal.TryParse(s, provider, out var r)) {
+            result = From(r);
+            return true;
+        }
+
+        result = default;
+        return false;
+    }
+
+    /// <inheritdoc cref="decimal.TryParse(string?, out decimal)"/>
+    /// <summary>
+    /// </summary>
+    /// <returns>
+    /// The value created via the <see cref="From"/> method.
+    /// </returns>
+    /// <exception cref="ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
+    public static global::System.Boolean TryParse(string? s, 
 #if NETCOREAPP3_0_OR_GREATER
 [global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)]
 #endif
@@ -191,27 +233,6 @@ namespace Whatever
         return false;
     }
 
-    /// <inheritdoc cref="decimal.TryParse(System.ReadOnlySpan{char}, System.Globalization.NumberStyles, System.IFormatProvider?, out decimal)"/>
-    /// <summary>
-    /// </summary>
-    /// <returns>
-    /// The value created via the <see cref="From"/> method.
-    /// </returns>
-    /// <exception cref="ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
-    public static global::System.Boolean TryParse(System.ReadOnlySpan<char> s, System.Globalization.NumberStyles style, System.IFormatProvider? provider, 
-#if NETCOREAPP3_0_OR_GREATER
-[global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)]
-#endif
- out internal_readonly_partial_structConversions_TypeConverterdecimal result) {
-        if(System.Decimal.TryParse(s, style, provider, out var r)) {
-            result = From(r);
-            return true;
-        }
-
-        result = default;
-        return false;
-    }
-
     /// <inheritdoc cref="decimal.TryParse(string?, System.IFormatProvider?, out decimal)"/>
     /// <summary>
     /// </summary>
@@ -220,27 +241,6 @@ namespace Whatever
     /// </returns>
     /// <exception cref="ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
     public static global::System.Boolean TryParse(string? s, System.IFormatProvider? provider, 
-#if NETCOREAPP3_0_OR_GREATER
-[global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)]
-#endif
- out internal_readonly_partial_structConversions_TypeConverterdecimal result) {
-        if(System.Decimal.TryParse(s, provider, out var r)) {
-            result = From(r);
-            return true;
-        }
-
-        result = default;
-        return false;
-    }
-
-    /// <inheritdoc cref="decimal.TryParse(System.ReadOnlySpan{char}, System.IFormatProvider?, out decimal)"/>
-    /// <summary>
-    /// </summary>
-    /// <returns>
-    /// The value created via the <see cref="From"/> method.
-    /// </returns>
-    /// <exception cref="ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
-    public static global::System.Boolean TryParse(System.ReadOnlySpan<char> s, System.IFormatProvider? provider, 
 #if NETCOREAPP3_0_OR_GREATER
 [global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)]
 #endif
