@@ -17,6 +17,7 @@ namespace AnalyzerTests
 
     public class DoNotUseReflectionAnalyzerTests
     {
+        //todo: move to end-to-end tests
         [Fact]
         public void Allows_using_Activate_CreateInstance_from_another_namespace()
         {

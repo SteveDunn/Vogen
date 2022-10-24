@@ -79,6 +79,7 @@
          It needs the additional 'OutputItemType' and 'ReferenceOutputAssmbly' attributes. -->
     <ProjectReference Include="..\..\src\Vogen.SharedTypes\Vogen.SharedTypes.csproj" />
     <ProjectReference Include="..\..\src\Vogen\Vogen.csproj" />
+    <ProjectReference Include="..\Shared\Shared.csproj" />
   </ItemGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
