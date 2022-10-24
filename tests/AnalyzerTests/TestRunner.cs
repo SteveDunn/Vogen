@@ -1,8 +1,10 @@
-﻿using System.Collections.Immutable;
+﻿using System;
+using System.Collections.Immutable;
 using FluentAssertions.Execution;
+using MediumTests.DiagnosticsTests;
 using Microsoft.CodeAnalysis;
 
-namespace MediumTests.DiagnosticsTests
+namespace AnalyzerTests
 {
     public class TestRunner<T> where T : IIncrementalGenerator, new()
     {

@@ -1,10 +1,7 @@
-﻿using System.Collections.Immutable;
-using System.IO;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.Testing;
 using SmallTests.AnalyzerTests;
-using Vogen;
 using VerifyCS = AnalyzerTests.Verifiers.CSharpCodeFixVerifier<Vogen.Rules.AddValidationAnalyzer, Vogen.Rules.AddValidationAnalyzerCodeFixProvider>;
 
 namespace AnalyzerTests

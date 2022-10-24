@@ -1,10 +1,11 @@
 ﻿using System.Collections.Immutable;
+using System.Linq;
 using FluentAssertions;
 using FluentAssertions.Execution;
 using Microsoft.CodeAnalysis;
 using Vogen;
 
-namespace MediumTests.DiagnosticsTests;
+namespace AnalyzerTests;
 
 public class DoNotUseConstructorTests
 {

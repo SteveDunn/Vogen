@@ -1,9 +1,10 @@
 ﻿using System.Collections.Immutable;
+using System.Linq;
 using FluentAssertions;
 using Microsoft.CodeAnalysis;
 using Vogen;
 
-namespace MediumTests.DiagnosticsTests.GlobalConfig;
+namespace AnalyzerTests.GlobalConfig;
 
 public class SadTests
 {

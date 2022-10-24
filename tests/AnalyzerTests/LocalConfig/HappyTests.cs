@@ -3,9 +3,9 @@ using FluentAssertions;
 using Microsoft.CodeAnalysis;
 using Vogen;
 
-namespace MediumTests.DiagnosticsTests.LocalConfig;
+namespace AnalyzerTests.LocalConfig;
 
-public class SadTests
+public class HappyTests
 {
     [Theory]
     [InlineData("partial class")]
@@ -14,20 +14,14 @@ public class SadTests
     [InlineData("partial record class")]
     [InlineData("partial record struct")]
     [InlineData("readonly partial record struct")]
-    public void Missing_any_constructors(string type)
+    public void Type_override(string type)
     {
         var source = $@"using System;
 using Vogen;
 namespace Whatever;
 
-[ValueObject(throws: typeof(MyValidationException))]
-public {type} CustomerId
-{{
-    private static Validation Validate(int value) => value > 0 ? Validation.Ok : Validation.Invalid(""xxxx"");
-}}
-
-public class MyValidationException : Exception {{ }}
-";
+[ValueObject(typeof(float))]
+public {type} CustomerId {{ }}";
 
         new TestRunner<ValueObjectGenerator>()
             .WithSource(source)
@@ -36,13 +30,7 @@ public class MyValidationException : Exception {{ }}
 
         void Validate(ImmutableArray<Diagnostic> diagnostics)
         {
-            diagnostics.Should().HaveCount(1);
-
-            Diagnostic diagnostic = diagnostics.Single();
-
-            diagnostic.Id.Should().Be("VOG013");
-            diagnostic.ToString().Should().Be(
-                "(11,14): error VOG013: MyValidationException must have at least 1 public constructor with 1 parameter of type System.String");
+            diagnostics.Should().BeEmpty();
         }
     }
 
@@ -53,49 +41,7 @@ public class MyValidationException : Exception {{ }}
     [InlineData("partial record class")]
     [InlineData("partial record struct")]
     [InlineData("readonly partial record struct")]
-    public void Missing_string_constructor(string path)
-    {
-        var source = $@"using System;
-using Vogen;
-namespace Whatever;
-
-[ValueObject(throws: typeof(MyValidationException))]
-public {path} CustomerId
-{{
-    private static Validation Validate(int value) => value > 0 ? Validation.Ok : Validation.Invalid(""xxxx"");
-}}
-
-public class MyValidationException : Exception
-{{
-    public MyValidationException(object o) : base(o.ToString() {{ }}
-}}
-";
-
-        new TestRunner<ValueObjectGenerator>()
-            .WithSource(source)
-            .ValidateWith(Validate)
-            .RunOnAllFrameworks();
-
-        void Validate(ImmutableArray<Diagnostic> diagnostics)
-        {
-            diagnostics.Should().HaveCount(1);
-
-            Diagnostic diagnostic = diagnostics.Single();
-
-            diagnostic.Id.Should().Be("VOG013");
-            diagnostic.ToString().Should().Be(
-                "(11,14): error VOG013: MyValidationException must have at least 1 public constructor with 1 parameter of type System.String");
-        }
-    }
-
-    [Theory]
-    [InlineData("partial class")]
-    [InlineData("partial struct")]
-    [InlineData("readonly partial struct")]
-    [InlineData("partial record class")]
-    [InlineData("partial record struct")]
-    [InlineData("readonly partial record struct")]
-    public void Missing_public_string_constructor_on_exception(string type)
+    public void Exception_override(string type)
     {
         var source = $@"using System;
 using Vogen;
@@ -109,7 +55,7 @@ public {type} CustomerId
 
 public class MyValidationException : Exception
 {{
-    private MyValidationException(object o) : base(o.ToString() {{ }} // PRIVATE!
+    public MyValidationException(string message) : base(message) {{ }}
 }}
 ";
 
@@ -120,13 +66,7 @@ public class MyValidationException : Exception
 
         void Validate(ImmutableArray<Diagnostic> diagnostics)
         {
-            diagnostics.Should().HaveCount(1);
-
-            Diagnostic diagnostic = diagnostics.Single();
-
-            diagnostic.Id.Should().Be("VOG013");
-            diagnostic.ToString().Should().Be(
-                "(11,14): error VOG013: MyValidationException must have at least 1 public constructor with 1 parameter of type System.String");
+            diagnostics.Should().HaveCount(0);
         }
     }
 
@@ -137,19 +77,50 @@ public class MyValidationException : Exception
     [InlineData("partial record class")]
     [InlineData("partial record struct")]
     [InlineData("readonly partial record struct")]
-    public void Not_an_exception(string type)
+    public void Conversion_override(string type)
     {
         var source = $@"using System;
 using Vogen;
 namespace Whatever;
 
-[ValueObject(throws: typeof(MyValidationException))]
+[ValueObject(conversions: Conversions.None)]
+public {type} CustomerId {{ }}";
+
+        new TestRunner<ValueObjectGenerator>()
+            .WithSource(source)
+            .ValidateWith(Validate)
+            .RunOnAllFrameworks();
+
+        void Validate(ImmutableArray<Diagnostic> diagnostics)
+        {
+            diagnostics.Should().BeEmpty();
+        }
+    }
+
+    [Theory]
+    [InlineData("partial class")]
+    [InlineData("partial struct")]
+    [InlineData("readonly partial struct")]
+    [InlineData("partial record class")]
+    [InlineData("partial record struct")]
+    [InlineData("readonly partial record struct")]
+    public void Conversion_and_exceptions_override(string type)
+    {
+        var source = $@"using System;
+using Vogen;
+namespace Whatever;
+
+[ValueObject(conversions: Conversions.DapperTypeHandler, throws: typeof(Whatever.MyValidationException))]
 public {type} CustomerId
 {{
     private static Validation Validate(int value) => value > 0 ? Validation.Ok : Validation.Invalid(""xxxx"");
 }}
 
-public class MyValidationException {{ }} // NOT AN EXCEPTION!
+
+public class MyValidationException : Exception
+{{
+    public MyValidationException(string message) : base(message) {{ }}
+}}
 ";
 
         new TestRunner<ValueObjectGenerator>()
@@ -159,21 +130,7 @@ public class MyValidationException {{ }} // NOT AN EXCEPTION!
 
         void Validate(ImmutableArray<Diagnostic> diagnostics)
         {
-            diagnostics.Should().HaveCount(2);
-
-            diagnostics.Should().SatisfyRespectively(
-                first =>
-                {
-                    first.Id.Should().Be("VOG012");
-                    first.ToString().Should().Be(
-                        "(11,14): error VOG012: MyValidationException must derive from System.Exception");
-                },
-                second =>
-                {
-                    second.Id.Should().Be("VOG013");
-                    second.ToString().Should().Be(
-                        "(11,14): error VOG013: MyValidationException must have at least 1 public constructor with 1 parameter of type System.String");
-                });
+            diagnostics.Should().HaveCount(0);
         }
     }
 
@@ -184,15 +141,25 @@ public class MyValidationException {{ }} // NOT AN EXCEPTION!
     [InlineData("partial record class")]
     [InlineData("partial record struct")]
     [InlineData("readonly partial record struct")]
-    public void Not_valid_conversion(string type)
+    public void Override_global_config_locally(string type)
     {
         var source = $@"using System;
 using Vogen;
 
+[assembly: VogenDefaults(underlyingType: typeof(string), conversions: Conversions.None, throws:typeof(Whatever.MyValidationException))]
+
 namespace Whatever;
 
-[ValueObject(conversions: (Conversions)666)]
-public {type} CustomerId {{ }}
+[ValueObject(underlyingType:typeof(float))]
+public {type} CustomerId
+{{
+    private static Validation Validate(float value) => value > 0 ? Validation.Ok : Validation.Invalid(""xxxx"");
+}}
+
+public class MyValidationException : Exception
+{{
+    public MyValidationException(string message) : base(message) {{ }}
+}}
 ";
 
         new TestRunner<ValueObjectGenerator>()
@@ -202,15 +169,7 @@ public {type} CustomerId {{ }}
 
         void Validate(ImmutableArray<Diagnostic> diagnostics)
         {
-            diagnostics.Should().HaveCount(1);
-
-            diagnostics.Should().SatisfyRespectively(
-                first =>
-                {
-                    first.Id.Should().Be("VOG011");
-                    first.ToString().Should().Be(
-                        "(6,2): error VOG011: The Conversions specified do not match any known conversions - see the Conversions type");
-                });
+            diagnostics.Should().BeEmpty();
         }
     }
 }

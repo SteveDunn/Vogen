@@ -1,10 +1,12 @@
 ﻿using System.Collections;
+using System.Collections.Generic;
 using System.Collections.Immutable;
+using System.Linq;
 using FluentAssertions;
 using Microsoft.CodeAnalysis;
 using Vogen;
 
-namespace MediumTests.DiagnosticsTests;
+namespace AnalyzerTests;
 
 public class ToStringOverrideTests
 {
@@ -80,9 +82,6 @@ namespace Whatever;
     public override {sealedOrNot} string ToString() => string.Empty;
 }}
 ";
-
-        var (diagnostics, _) = TestHelper.GetGeneratedOutput<ValueObjectGenerator>(source);
-
 
         new TestRunner<ValueObjectGenerator>()
             .WithSource(source)
