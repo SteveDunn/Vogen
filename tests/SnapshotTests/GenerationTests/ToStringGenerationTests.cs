@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using Shared;
 using Vogen;
 
 namespace MediumTests.SnapshotTests.GenerationTests;

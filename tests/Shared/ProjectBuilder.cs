@@ -14,7 +14,7 @@ using Microsoft.CodeAnalysis.CSharp;
 using Vogen;
 using Xunit;
 
-namespace MediumTests.DiagnosticsTests
+namespace Shared
 {
     public class ProjectBuilder
     {

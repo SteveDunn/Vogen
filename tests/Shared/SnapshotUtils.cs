@@ -1,7 +1,6 @@
 ﻿using System;
-using MediumTests.DiagnosticsTests;
 
-namespace MediumTests.SnapshotTests
+namespace Shared
 {
     /// <summary>
     /// We have tests targeting different versions of the framework and different locales.

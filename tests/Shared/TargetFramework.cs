@@ -1,4 +1,4 @@
-﻿namespace MediumTests.DiagnosticsTests
+﻿namespace Shared
 {
     public enum TargetFramework
     {

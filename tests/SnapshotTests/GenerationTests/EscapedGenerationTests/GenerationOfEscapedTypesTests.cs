@@ -1,5 +1,5 @@
 ﻿using System.Collections;
-using MediumTests.DiagnosticsTests;
+using Shared;
 using Vogen;
 
 namespace MediumTests.SnapshotTests.GenerationTests.EscapedGenerationTests;

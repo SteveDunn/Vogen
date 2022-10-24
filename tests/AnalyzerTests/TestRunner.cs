@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Immutable;
 using FluentAssertions.Execution;
-using MediumTests.DiagnosticsTests;
 using Microsoft.CodeAnalysis;
+using Shared;
 
 namespace AnalyzerTests
 {

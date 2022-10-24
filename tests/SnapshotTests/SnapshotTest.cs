@@ -1,5 +1,5 @@
 ﻿using FluentAssertions;
-using MediumTests.DiagnosticsTests;
+using Shared;
 using Vogen;
 
 namespace MediumTests.SnapshotTests;

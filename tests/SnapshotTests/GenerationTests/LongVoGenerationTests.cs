@@ -1,4 +1,5 @@
-﻿using Vogen;
+﻿using Shared;
+using Vogen;
 
 namespace MediumTests.SnapshotTests.GenerationTests;
 

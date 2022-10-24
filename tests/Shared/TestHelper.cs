@@ -5,7 +5,7 @@ using System.Security.Cryptography;
 using System.Text;
 using Microsoft.CodeAnalysis;
 
-namespace MediumTests.DiagnosticsTests;
+namespace Shared;
 
 public static class TestHelper
 {
