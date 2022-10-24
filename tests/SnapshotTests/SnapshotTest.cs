@@ -2,7 +2,7 @@
 using Shared;
 using Vogen;
 
-namespace MediumTests.SnapshotTests;
+namespace SnapshotTests;
 
 [UsesVerify]
 public class ValueObjectGeneratorTests

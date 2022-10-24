@@ -1,7 +1,7 @@
 ﻿using Shared;
 using Vogen;
 
-namespace MediumTests.SnapshotTests.GenerationTests;
+namespace SnapshotTests.GenerationTests;
 
 [UsesVerify]
 public class IntVoGenerationTests

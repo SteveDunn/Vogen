@@ -1,7 +1,7 @@
 ﻿using Shared;
 using Vogen;
 
-namespace MediumTests.SnapshotTests.Config;
+namespace SnapshotTests.Config;
 
 [UsesVerify] 
 public class GlobalConfigTests

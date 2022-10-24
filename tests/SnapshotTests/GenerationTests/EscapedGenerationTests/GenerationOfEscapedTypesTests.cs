@@ -2,7 +2,7 @@
 using Shared;
 using Vogen;
 
-namespace MediumTests.SnapshotTests.GenerationTests.EscapedGenerationTests;
+namespace SnapshotTests.GenerationTests.EscapedGenerationTests;
 
 [UsesVerify]
 public class GenerationOfEscapedTypesTests

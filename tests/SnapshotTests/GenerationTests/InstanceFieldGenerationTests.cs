@@ -4,7 +4,7 @@ using FluentAssertions.Execution;
 using Shared;
 using Vogen;
 
-namespace MediumTests.SnapshotTests.GenerationTests;
+namespace SnapshotTests.GenerationTests;
 
 [UsesVerify] 
 public class InstanceFieldGenerationTests
