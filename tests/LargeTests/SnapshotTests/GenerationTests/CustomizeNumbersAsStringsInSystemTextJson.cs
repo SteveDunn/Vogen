@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using FluentAssertions;
+using Shared;
 using VerifyTests;
 using VerifyXunit;
 using Vogen;

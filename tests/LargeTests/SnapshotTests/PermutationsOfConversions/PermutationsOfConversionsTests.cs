@@ -1,11 +1,10 @@
 ﻿using System;
-using System.Diagnostics;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using FluentAssertions;
-using LargeTests.SnapshotTests.GenerationTests;
+using Shared;
 using VerifyTests;
 using VerifyXunit;
 using Vogen;
