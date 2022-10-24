@@ -128,27 +128,6 @@ namespace Whatever
         public int CompareTo(stj_number_as_string_public_readonly_partial_structConversions_SystemTextJsonSystem other) => Value.CompareTo(other.Value);
 
         
-    /// <inheritdoc cref="System.DateTimeOffset.TryParse(string?, out System.DateTimeOffset)"/>
-    /// <summary>
-    /// </summary>
-    /// <returns>
-    /// The value created via the <see cref="From"/> method.
-    /// </returns>
-    /// <exception cref="ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
-    public static global::System.Boolean TryParse(string? input, 
-#if NETCOREAPP3_0_OR_GREATER
-[global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)]
-#endif
- out stj_number_as_string_public_readonly_partial_structConversions_SystemTextJsonSystem result) {
-        if(System.DateTimeOffset.TryParse(input, out var r)) {
-            result = From(r);
-            return true;
-        }
-
-        result = default;
-        return false;
-    }
-
     /// <inheritdoc cref="System.DateTimeOffset.TryParse(System.ReadOnlySpan{char}, out System.DateTimeOffset)"/>
     /// <summary>
     /// </summary>
@@ -170,14 +149,14 @@ namespace Whatever
         return false;
     }
 
-    /// <inheritdoc cref="System.DateTimeOffset.TryParse(string?, System.IFormatProvider?, System.Globalization.DateTimeStyles, out System.DateTimeOffset)"/>
+    /// <inheritdoc cref="System.DateTimeOffset.TryParse(System.ReadOnlySpan{char}, System.IFormatProvider?, System.Globalization.DateTimeStyles, out System.DateTimeOffset)"/>
     /// <summary>
     /// </summary>
     /// <returns>
     /// The value created via the <see cref="From"/> method.
     /// </returns>
     /// <exception cref="ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
-    public static global::System.Boolean TryParse(string? input, System.IFormatProvider? formatProvider, System.Globalization.DateTimeStyles styles, 
+    public static global::System.Boolean TryParse(System.ReadOnlySpan<char> input, System.IFormatProvider? formatProvider, System.Globalization.DateTimeStyles styles, 
 #if NETCOREAPP3_0_OR_GREATER
 [global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)]
 #endif
@@ -191,14 +170,35 @@ namespace Whatever
         return false;
     }
 
-    /// <inheritdoc cref="System.DateTimeOffset.TryParse(System.ReadOnlySpan{char}, System.IFormatProvider?, System.Globalization.DateTimeStyles, out System.DateTimeOffset)"/>
+    /// <inheritdoc cref="System.DateTimeOffset.TryParse(string?, out System.DateTimeOffset)"/>
     /// <summary>
     /// </summary>
     /// <returns>
     /// The value created via the <see cref="From"/> method.
     /// </returns>
     /// <exception cref="ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
-    public static global::System.Boolean TryParse(System.ReadOnlySpan<char> input, System.IFormatProvider? formatProvider, System.Globalization.DateTimeStyles styles, 
+    public static global::System.Boolean TryParse(string? input, 
+#if NETCOREAPP3_0_OR_GREATER
+[global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)]
+#endif
+ out stj_number_as_string_public_readonly_partial_structConversions_SystemTextJsonSystem result) {
+        if(System.DateTimeOffset.TryParse(input, out var r)) {
+            result = From(r);
+            return true;
+        }
+
+        result = default;
+        return false;
+    }
+
+    /// <inheritdoc cref="System.DateTimeOffset.TryParse(string?, System.IFormatProvider?, System.Globalization.DateTimeStyles, out System.DateTimeOffset)"/>
+    /// <summary>
+    /// </summary>
+    /// <returns>
+    /// The value created via the <see cref="From"/> method.
+    /// </returns>
+    /// <exception cref="ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
+    public static global::System.Boolean TryParse(string? input, System.IFormatProvider? formatProvider, System.Globalization.DateTimeStyles styles, 
 #if NETCOREAPP3_0_OR_GREATER
 [global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)]
 #endif

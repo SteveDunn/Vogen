@@ -106,19 +106,23 @@ namespace @class
         //     .CustomizeSettings(s => s.UseFileName(TestHelper.ShortenForFilename(className)))
         //     .RunOnAllFrameworks();
 
-
-
-
-        var (diagnostics, output) = TestHelper.GetGeneratedOutput<ValueObjectGenerator>(source);
-
-        diagnostics.Should().BeEmpty();
-
-        VerifySettings settings = new VerifySettings();
-        
-        // settings.AutoVerify();
-        // settings.UseFileName(SnapshotUtils.ShortenForFilename(className));
-
-        settings.UseFileName(className);
-        return Verifier.Verify(output, settings).UseDirectory(SnapshotUtils.GetSnapshotDirectoryName());
+        return new SnapshotRunner<ValueObjectGenerator>()
+            .WithSource(source)
+            .CustomizeSettings(s => s.UseFileName(className))
+            .RunOnAllFrameworks();
+        //
+        //
+        //
+        // var (diagnostics, output) = TestHelper.GetGeneratedOutput<ValueObjectGenerator>(source);
+        //
+        // diagnostics.Should().BeEmpty();
+        //
+        // VerifySettings settings = new VerifySettings();
+        //
+        // // settings.AutoVerify();
+        // // settings.UseFileName(SnapshotUtils.ShortenForFilename(className));
+        //
+        // settings.UseFileName(className);
+        // return Verifier.Verify(output, settings).UseDirectory(SnapshotUtils.GetSnapshotDirectoryName());
     }
 }

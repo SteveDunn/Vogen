@@ -129,14 +129,14 @@ namespace Whatever
         public int CompareTo(internal_partial_structConversions_NewtonsoftJson other) => Value.CompareTo(other.Value);
 
         
-    /// <inheritdoc cref="bool.TryParse(string?, out bool)"/>
+    /// <inheritdoc cref="bool.TryParse(System.ReadOnlySpan{char}, out bool)"/>
     /// <summary>
     /// </summary>
     /// <returns>
     /// The value created via the <see cref="From"/> method.
     /// </returns>
     /// <exception cref="ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
-    public static global::System.Boolean TryParse(string? value, 
+    public static global::System.Boolean TryParse(System.ReadOnlySpan<char> value, 
 #if NETCOREAPP3_0_OR_GREATER
 [global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)]
 #endif
@@ -150,14 +150,14 @@ namespace Whatever
         return false;
     }
 
-    /// <inheritdoc cref="bool.TryParse(System.ReadOnlySpan{char}, out bool)"/>
+    /// <inheritdoc cref="bool.TryParse(string?, out bool)"/>
     /// <summary>
     /// </summary>
     /// <returns>
     /// The value created via the <see cref="From"/> method.
     /// </returns>
     /// <exception cref="ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
-    public static global::System.Boolean TryParse(System.ReadOnlySpan<char> value, 
+    public static global::System.Boolean TryParse(string? value, 
 #if NETCOREAPP3_0_OR_GREATER
 [global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)]
 #endif

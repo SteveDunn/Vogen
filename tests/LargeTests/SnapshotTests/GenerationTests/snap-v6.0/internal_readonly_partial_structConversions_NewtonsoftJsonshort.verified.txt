@@ -128,19 +128,19 @@ namespace Whatever
         public int CompareTo(internal_readonly_partial_structConversions_NewtonsoftJsonshort other) => Value.CompareTo(other.Value);
 
         
-    /// <inheritdoc cref="short.TryParse(string?, out short)"/>
+    /// <inheritdoc cref="short.TryParse(System.ReadOnlySpan{char}, System.Globalization.NumberStyles, System.IFormatProvider?, out short)"/>
     /// <summary>
     /// </summary>
     /// <returns>
     /// The value created via the <see cref="From"/> method.
     /// </returns>
     /// <exception cref="ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
-    public static global::System.Boolean TryParse(string? s, 
+    public static global::System.Boolean TryParse(System.ReadOnlySpan<char> s, System.Globalization.NumberStyles style, System.IFormatProvider? provider, 
 #if NETCOREAPP3_0_OR_GREATER
 [global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)]
 #endif
  out internal_readonly_partial_structConversions_NewtonsoftJsonshort result) {
-        if(System.Int16.TryParse(s, out var r)) {
+        if(System.Int16.TryParse(s, style, provider, out var r)) {
             result = From(r);
             return true;
         }
@@ -191,19 +191,19 @@ namespace Whatever
         return false;
     }
 
-    /// <inheritdoc cref="short.TryParse(System.ReadOnlySpan{char}, System.Globalization.NumberStyles, System.IFormatProvider?, out short)"/>
+    /// <inheritdoc cref="short.TryParse(string?, out short)"/>
     /// <summary>
     /// </summary>
     /// <returns>
     /// The value created via the <see cref="From"/> method.
     /// </returns>
     /// <exception cref="ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
-    public static global::System.Boolean TryParse(System.ReadOnlySpan<char> s, System.Globalization.NumberStyles style, System.IFormatProvider? provider, 
+    public static global::System.Boolean TryParse(string? s, 
 #if NETCOREAPP3_0_OR_GREATER
 [global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)]
 #endif
  out internal_readonly_partial_structConversions_NewtonsoftJsonshort result) {
-        if(System.Int16.TryParse(s, style, provider, out var r)) {
+        if(System.Int16.TryParse(s, out var r)) {
             result = From(r);
             return true;
         }

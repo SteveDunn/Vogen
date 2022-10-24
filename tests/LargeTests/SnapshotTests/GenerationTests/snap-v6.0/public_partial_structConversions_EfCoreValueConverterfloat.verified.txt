@@ -127,19 +127,19 @@ namespace Whatever
         public int CompareTo(public_partial_structConversions_EfCoreValueConverterfloat other) => Value.CompareTo(other.Value);
 
         
-    /// <inheritdoc cref="float.TryParse(string?, out float)"/>
+    /// <inheritdoc cref="float.TryParse(System.ReadOnlySpan{char}, System.Globalization.NumberStyles, System.IFormatProvider?, out float)"/>
     /// <summary>
     /// </summary>
     /// <returns>
     /// The value created via the <see cref="From"/> method.
     /// </returns>
     /// <exception cref="ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
-    public static global::System.Boolean TryParse(string? s, 
+    public static global::System.Boolean TryParse(System.ReadOnlySpan<char> s, System.Globalization.NumberStyles style, System.IFormatProvider? provider, 
 #if NETCOREAPP3_0_OR_GREATER
 [global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)]
 #endif
  out public_partial_structConversions_EfCoreValueConverterfloat result) {
-        if(System.Single.TryParse(s, out var r)) {
+        if(System.Single.TryParse(s, style, provider, out var r)) {
             result = From(r);
             return true;
         }
@@ -190,19 +190,19 @@ namespace Whatever
         return false;
     }
 
-    /// <inheritdoc cref="float.TryParse(System.ReadOnlySpan{char}, System.Globalization.NumberStyles, System.IFormatProvider?, out float)"/>
+    /// <inheritdoc cref="float.TryParse(string?, out float)"/>
     /// <summary>
     /// </summary>
     /// <returns>
     /// The value created via the <see cref="From"/> method.
     /// </returns>
     /// <exception cref="ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
-    public static global::System.Boolean TryParse(System.ReadOnlySpan<char> s, System.Globalization.NumberStyles style, System.IFormatProvider? provider, 
+    public static global::System.Boolean TryParse(string? s, 
 #if NETCOREAPP3_0_OR_GREATER
 [global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)]
 #endif
  out public_partial_structConversions_EfCoreValueConverterfloat result) {
-        if(System.Single.TryParse(s, style, provider, out var r)) {
+        if(System.Single.TryParse(s, out var r)) {
             result = From(r);
             return true;
         }

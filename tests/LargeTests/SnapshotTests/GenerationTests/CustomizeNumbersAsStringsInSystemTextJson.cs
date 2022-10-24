@@ -98,15 +98,21 @@ namespace Whatever
 " + declaration + @"
 }";
 
-        var (diagnostics, output) = TestHelper.GetGeneratedOutput<ValueObjectGenerator>(source);
+        return new SnapshotRunner<ValueObjectGenerator>()
+            .WithSource(source)
+            .CustomizeSettings(s => s.UseFileName(className))
+            .RunOnAllFrameworks();
 
-        diagnostics.Should().BeEmpty();
 
-        VerifySettings settings = new VerifySettings();
-        settings.UseFileName(className);
-
-        // settings.AutoVerify();
-
-        return Verifier.Verify(output, settings).UseDirectory(SnapshotUtils.GetSnapshotDirectoryName());
+        // var (diagnostics, output) = TestHelper.GetGeneratedOutput<ValueObjectGenerator>(source);
+        //
+        // diagnostics.Should().BeEmpty();
+        //
+        // VerifySettings settings = new VerifySettings();
+        // settings.UseFileName(className);
+        //
+        // // settings.AutoVerify();
+        //
+        // return Verifier.Verify(output, settings).UseDirectory(SnapshotUtils.GetSnapshotDirectoryName());
     }
 }

@@ -1,11 +1,6 @@
-﻿using System;
-using System.Linq;
-using System.Security.Cryptography;
-using System.Text;
+﻿using System.Linq;
 using System.Threading.Tasks;
-using FluentAssertions;
 using Shared;
-using VerifyTests;
 using VerifyXunit;
 using Vogen;
 using Xunit;
@@ -36,35 +31,17 @@ public class PermutationsOfConversionsTests
 
         private static async Task Run(string type)
         {
-            var typeHash = type.Replace(' ', '-');
 
             foreach(var conversions in _permutations)
             {
-                var settings = new VerifySettings();
-
-                // shorten the filename used
-                string parameters = typeHash + Hash(conversions);
-                settings.UseFileName(parameters);
-
-        // settings.AutoVerify();
-
                 await RunTest($@"
   [ValueObject(conversions: {conversions}, underlyingType: typeof(int))]
-  public {type} MyIntVo {{ }}", settings);
+  public {type} MyIntVo {{ }}", type, conversions);
             }
         }
     }
     
-    private static object Hash(string input)
-    {
-        using var sha1 = SHA1.Create();
-        var hash = sha1.ComputeHash(Encoding.UTF8.GetBytes(input));
-
-        //make sure the hash is only alpha numeric to prevent characters that may break the url
-        return string.Concat(Convert.ToBase64String(hash).ToCharArray().Where(char.IsLetterOrDigit).Take(10));
-    }
-
-    private static async Task RunTest(string declaration, VerifySettings? settings = null)
+    private static Task RunTest(string declaration, string type, string conversions)
     {
         var source = $@"using System;
 using Vogen;
@@ -73,12 +50,25 @@ namespace Whatever
 {declaration}
 }}";
 
-        var (diagnostics, output) = TestHelper.GetGeneratedOutput<ValueObjectGenerator>(source);
+        return new SnapshotRunner<ValueObjectGenerator>()
+            .WithSource(source)
+            .CustomizeSettings(
+                s =>
+                {
+                    var typeHash = type.Replace(' ', '-');
+                    string parameters = typeHash + TestHelper.ShortenForFilename(conversions);
+                    s.UseFileName(parameters);
 
-        output.Should().NotBeEmpty();
+                })
+            .RunOnAllFrameworks();
 
-        diagnostics.Should().BeEmpty();
 
-        await Verifier.Verify(output, settings).UseDirectory(SnapshotUtils.GetSnapshotDirectoryName());
+        // var (diagnostics, output) = TestHelper.GetGeneratedOutput<ValueObjectGenerator>(source);
+        //
+        // output.Should().NotBeEmpty();
+        //
+        // diagnostics.Should().BeEmpty();
+        //
+        // await Verifier.Verify(output, settings).UseDirectory(SnapshotUtils.GetSnapshotDirectoryName());
     }    
 }
