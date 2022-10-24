@@ -7,14 +7,6 @@ using VerifyCS = AnalyzerTests.Verifiers.CSharpAnalyzerVerifier<Vogen.Rules.DoNo
 
 namespace AnalyzerTests
 {
-    namespace NotSystem
-    {
-        public static class Activator
-        {
-            public static T? CreateInstance<T>() => default(T);
-        }
-    }
-
     public class DoNotUseReflectionAnalyzerTests
     {
         private class Types : IEnumerable<object[]>

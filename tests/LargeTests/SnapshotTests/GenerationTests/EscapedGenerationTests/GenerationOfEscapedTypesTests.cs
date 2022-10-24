@@ -99,6 +99,15 @@ namespace @class
 " + declaration + @"
 }";
 
+        // return new SnapshotRunner<ValueObjectGenerator>()
+        //     .WithSource(source)
+        //     .WithLocale("fr")
+        //     .CustomizeSettings(s => s.UseFileName(TestHelper.ShortenForFilename(className)))
+        //     .RunOnAllFrameworks();
+
+
+
+
         var (diagnostics, output) = TestHelper.GetGeneratedOutput<ValueObjectGenerator>(source);
 
         diagnostics.Should().BeEmpty();

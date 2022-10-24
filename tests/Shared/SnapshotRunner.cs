@@ -1,8 +1,13 @@
-﻿using System.Runtime.CompilerServices;
+﻿using System;
+using System.IO;
+using System.Runtime.CompilerServices;
+using System.Threading.Tasks;
 using FluentAssertions;
 using FluentAssertions.Execution;
 using MediumTests.DiagnosticsTests;
 using Microsoft.CodeAnalysis;
+using VerifyTests;
+using VerifyXunit;
 
 namespace MediumTests.SnapshotTests
 {

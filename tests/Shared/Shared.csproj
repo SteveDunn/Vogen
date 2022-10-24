@@ -2,6 +2,7 @@
 
   <PropertyGroup>
     <TargetFrameworks>net6.0;netstandard2.0</TargetFrameworks>
+    <nullable>enable</nullable>
   </PropertyGroup>
 
   <ItemGroup>
@@ -10,6 +11,9 @@
 
   <ItemGroup>
     <PackageReference Include="xunit" Version="2.4.2" />
+    <PackageReference Include="FluentAssertions" Version="6.7.0" />
+    <PackageReference Include="Verify.SourceGenerators" Version="1.5.0" />
+    <PackageReference Include="Verify.Xunit" Version="17.10.2" />
   </ItemGroup>
 
   <ItemGroup>

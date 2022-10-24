@@ -1,4 +1,5 @@
-﻿using MediumTests.DiagnosticsTests;
+﻿using System;
+using MediumTests.DiagnosticsTests;
 
 namespace MediumTests.SnapshotTests
 {
