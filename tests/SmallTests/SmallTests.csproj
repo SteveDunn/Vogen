@@ -6,6 +6,8 @@
     <Nullable>enable</Nullable>
     <IsPackable>false</IsPackable>
     <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
+    <UseLocallyBuiltPackage>true</UseLocallyBuiltPackage>
+    <LangVersion>preview</LangVersion>
   </PropertyGroup>
 
   <ItemGroup Condition=" '$(TargetFramework)' == 'net7.0'">
@@ -37,6 +39,10 @@
     <PackageReference Include="SQLitePCLRaw.bundle_winsqlite3" Version="2.1.0" />
   </ItemGroup>
 
+  <PropertyGroup Condition=" '$(TargetFramework)' == 'net461'">
+    <LangVersion>latest</LangVersion>
+  </PropertyGroup>
+
   <ItemGroup Condition=" '$(UseLocallyBuiltPackage)' != ''">
     <PackageReference Include="Vogen" Version="999.9.*" />
   </ItemGroup>
@@ -51,6 +57,7 @@
   Run the tests with `.\test.ps1` in the root folder.-->
 
   <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
     <PackageReference Include="Dapper" Version="2.0.123" />
     <PackageReference Include="GitHubActionsTestLogger" Version="2.0.1">
       <PrivateAssets>all</PrivateAssets>

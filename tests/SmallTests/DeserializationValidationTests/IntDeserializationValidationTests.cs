@@ -144,7 +144,7 @@ public class IntDeserializationValidationTests
     {
         var validValue = NewtonsoftJsonSerializer.SerializeObject(MyVoInt_should_not_bypass_validation.From(1));
 
-        var actual = NewtonsoftJsonSerializer.DeserializeObject<MyVoInt_should_not_bypass_validation>(validValue).Value;
+        var actual = NewtonsoftJsonSerializer.DeserializeObject<MyVoInt_should_not_bypass_validation>(validValue)!.Value;
         
         actual.Should().Be(1);
     }
@@ -154,7 +154,7 @@ public class IntDeserializationValidationTests
     {
         var invalidValue = NewtonsoftJsonSerializer.SerializeObject(MyVoInt_should_not_bypass_validation.From(1)).Replace("1", "0");
 
-        Func<int> vo = () => NewtonsoftJsonSerializer.DeserializeObject<MyVoInt_should_not_bypass_validation>(invalidValue).Value;
+        Func<int> vo = () => NewtonsoftJsonSerializer.DeserializeObject<MyVoInt_should_not_bypass_validation>(invalidValue)!.Value;
 
         vo.Should().ThrowExactly<ValueObjectValidationException>().WithMessage("must be greater than zero");
     }

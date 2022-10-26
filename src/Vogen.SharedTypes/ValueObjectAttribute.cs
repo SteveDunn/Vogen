@@ -2,7 +2,7 @@
 {
     using System;
 
-#if NET7_0_OR_GREATER
+#if NETCOREAPP
     /// <summary>
     /// Marks a type as a Value Object. The type should be partial so that the
     /// source generator can augment the type with equality and validation.
@@ -23,7 +23,6 @@
         }
     }
 #endif
-
 
     /// <summary>
     /// Marks a type as a Value Object. The type should be partial so that the

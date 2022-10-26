@@ -8,8 +8,7 @@ namespace AnalyzerTests
 {
     public class TestRunner<T> where T : IIncrementalGenerator, new()
     {
-        private readonly TargetFramework[] _allFrameworks = new[]
-        {
+        private readonly TargetFramework[] _allFrameworks = {
             TargetFramework.Net6_0,
             TargetFramework.Net7_0,
         };
@@ -17,10 +16,7 @@ namespace AnalyzerTests
         private Action<ImmutableArray<Diagnostic>>? _validationMethod;
         private string? _source;
 
-        public void RunOnAllFrameworks()
-        {
-            RunOn(_allFrameworks);
-        }
+        public void RunOnAllFrameworks() => RunOn(_allFrameworks);
 
         public TestRunner<T> WithSource(string source)
         {
@@ -44,10 +40,21 @@ namespace AnalyzerTests
             {
                 using var scope = new AssertionScope();
 
-                var (diagnostics, _) = TestHelper.GetGeneratedOutput<T>(_source, eachFramework);
+                var (diagnostics, _) = GetGeneratedOutput(_source, eachFramework);
 
                 _validationMethod(diagnostics);
             }
         }
+
+        internal static (ImmutableArray<Diagnostic> Diagnostics, string Output) GetGeneratedOutput(string source, TargetFramework targetFramework)
+        {
+            var results = new ProjectBuilder()
+                .WithSource(source)
+                .WithTargetFramework(targetFramework)
+                .GetGeneratedOutput<T>();
+
+            return results;
+        }
+
     }
 }

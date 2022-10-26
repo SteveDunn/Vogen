@@ -10,11 +10,11 @@ namespace SmallTests.HashCodes
 {
     [ValueObject(typeof(int))]
     public partial struct MyStructInt { }
-    
-    #if NET7_0_OR_GREATER
+
+#if NET7_0_OR_GREATER
     [ValueObject<int>]
     public partial struct MyGenericStructInt { }
-    #endif
+#endif
 
     [ValueObject(typeof(int))]
     public partial struct MyStructInt2 { }

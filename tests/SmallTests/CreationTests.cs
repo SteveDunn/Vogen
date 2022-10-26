@@ -19,7 +19,7 @@ namespace SmallTests
     public class CreationTests
     {
 #if NET7_0_OR_GREATER
-    [Fact]
+        [Fact]
     public void Creation_Happy_Path_MyIntGeneric()
     {
         MyIntGeneric vo1 = MyIntGeneric.From(123);

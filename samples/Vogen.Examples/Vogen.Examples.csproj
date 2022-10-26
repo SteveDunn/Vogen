@@ -4,6 +4,8 @@
 		<OutputType>Exe</OutputType>
 		<TargetFramework>net7.0</TargetFramework>
 		<IsPackable>false</IsPackable>
+		<LangVersion>preview</LangVersion>
+		<UseLocallyBuiltPackage>true</UseLocallyBuiltPackage>
 	</PropertyGroup>
 
 	<ItemGroup>

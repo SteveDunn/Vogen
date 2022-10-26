@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Immutable;
 using System.IO;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
@@ -16,7 +17,7 @@ namespace Shared
         {
             int n = caller.LastIndexOf('\\');
             n = n > 0 ? n : caller.LastIndexOf('/');
-            _path = caller.Substring(0, n);
+            _path = Path.Combine(caller.Substring(0, n), "snapshots");
         }
 
         private readonly TargetFramework[] _allFrameworks = new[]
@@ -67,13 +68,27 @@ namespace Shared
 
                 using var scope = new AssertionScope();
 
-                var (diagnostics, output) = TestHelper.GetGeneratedOutput<T>(_source, eachFramework);
+                var (diagnostics, output) = GetGeneratedOutput(_source, eachFramework);
                 diagnostics.Should().BeEmpty();
 
                 var outputFolder = Path.Combine(_path, SnapshotUtils.GetSnapshotDirectoryName(eachFramework, _locale));
 
+                // verifySettings ??= new VerifySettings();
+                // verifySettings.AutoVerify();
+
                 await Verifier.Verify(output, verifySettings).UseDirectory(outputFolder);
             }
         }
+
+        private static (ImmutableArray<Diagnostic> Diagnostics, string Output) GetGeneratedOutput(string source, TargetFramework targetFramework)
+        {
+            var results = new ProjectBuilder()
+                .WithSource(source)
+                .WithTargetFramework(targetFramework)
+                .GetGeneratedOutput<T>();
+
+            return results;
+        }
+
     }
 }

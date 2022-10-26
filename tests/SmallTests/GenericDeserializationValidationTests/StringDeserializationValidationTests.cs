@@ -156,7 +156,7 @@ public class StringDeserializationValidationTests
     {
         var validValue = NewtonsoftJsonSerializer.SerializeObject(MyVoString_should_not_bypass_validation.From("abcdefghijk"));
 
-        var actual = NewtonsoftJsonSerializer.DeserializeObject<MyVoString_should_not_bypass_validation>(validValue).Value;
+        var actual = NewtonsoftJsonSerializer.DeserializeObject<MyVoString_should_not_bypass_validation>(validValue)!.Value;
 
         actual.Should().Be("abcdefghijk");
     }
@@ -166,7 +166,7 @@ public class StringDeserializationValidationTests
     {
         var invalidValue = NewtonsoftJsonSerializer.SerializeObject(MyVoString_should_not_bypass_validation.From("abcdefghijk")).Replace("abcdefghijk", "abc");
 
-        Func<string> vo = () => NewtonsoftJsonSerializer.DeserializeObject<MyVoString_should_not_bypass_validation>(invalidValue).Value;
+        Func<string> vo = () => NewtonsoftJsonSerializer.DeserializeObject<MyVoString_should_not_bypass_validation>(invalidValue)!.Value;
 
         vo.Should().ThrowExactly<ValueObjectValidationException>().WithMessage("length must be greater than ten characters");
     }
