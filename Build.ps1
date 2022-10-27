@@ -56,12 +56,12 @@ if(Test-Path $localPackages) { Remove-Item $localPackages\vogen.* -Force -ErrorA
 WriteStage("Cleaning, restoring, and building release version of Vogen...")
 
 exec { & dotnet clean Vogen.sln -c Release --verbosity $verbosity}
-exec { & dotnet restore ./src/Vogen --no-cache --verbosity $verbosity }
+exec { & dotnet restore Vogen.sln --no-cache --verbosity $verbosity }
 exec { & dotnet build Vogen.sln -c Release -p THOROUGH --no-restore --verbosity $verbosity}
 
 # run the analyzer and code generation tests
 WriteStage("Running analyzer and code generation tests...")
-# exec { & dotnet test Vogen.sln -c Release --no-build -l trx -l "GitHubActions;report-warnings=false" --verbosity $verbosity }
+## exec { & dotnet test Vogen.sln -c Release --no-build -l trx -l "GitHubActions;report-warnings=false" --verbosity $verbosity }
 
 ################################################################
 
@@ -82,7 +82,7 @@ $version = Get999VersionWithUniquePatch
 
 # **NOTE** - we don't want these 999.9.9.x packages ending up in %userprofile%\.nuget\packages because it'll polute it.
 
-exec { & dotnet restore ./src/Vogen --packages $localPackages --no-cache --verbosity $verbosity }
+exec { & dotnet restore Vogen.sln --packages $localPackages --no-cache --verbosity $verbosity }
 exec { & dotnet pack ./src/Vogen -c Debug -o:$localPackages /p:ForceVersion=$version --include-symbols --version-suffix:dev --no-restore --verbosity $verbosity }
 
 WriteStage("Cleaning and building consumers (tests and samples)")
