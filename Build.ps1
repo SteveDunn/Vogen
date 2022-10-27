@@ -1,6 +1,7 @@
 param($verbosity = "minimal") #quite|q, minimal|m, normal|n, detailed|d
 
 $artifacts = ".\artifacts"
+$localPackages = ".\local-global-packages"
 
 function WriteStage([string]$message)
 {
@@ -47,14 +48,17 @@ WriteStage("Building release version of Vogen...")
 if(Test-Path $artifacts) { Remove-Item $artifacts -Force -Recurse }
 New-Item -Path $artifacts -ItemType Directory
 
-exec { & dotnet clean Vogen.sln -c Release --verbosity $verbosity}
-exec { & dotnet clean Consumers.sln -c Release --verbosity $verbosity}
+if(Test-Path $localPackages) { Remove-Item $localPackages\vogen.* -Force -ErrorAction SilentlyContinue }
 
-exec { & dotnet build Vogen.sln -c Release --verbosity $verbosity}
+WriteStage("Cleaning, restoring, and building release version of Vogen...")
+
+exec { & dotnet clean Vogen.sln -c Release --verbosity $verbosity}
+exec { & dotnet restore ./src/Vogen --no-cache --verbosity $verbosity }
+exec { & dotnet build Vogen.sln -c Release --no-restore --verbosity $verbosity}
 
 # run the analyzer and code generation tests
 WriteStage("Running analyzer and code generation tests...")
-exec { & dotnet test Vogen.sln -c Release --no-build -l trx -l "GitHubActions;report-warnings=false" --verbosity $verbosity }
+## exec { & dotnet test Vogen.sln -c Release --no-build -l trx -l "GitHubActions;report-warnings=false" --verbosity $verbosity }
 
 ################################################################
 
@@ -68,10 +72,6 @@ exec { & dotnet test Vogen.sln -c Release --no-build -l trx -l "GitHubActions;re
 
 WriteStage("Building NuGet for local version of Vogen that will be used to run end to end tests and samples...")
 
-$localPackages = ".\local-global-packages"
-
-if(Test-Path $localPackages) { Remove-Item $localPackages\vogen.* -Force -ErrorAction SilentlyContinue }
-
 $version = Get999VersionWithUniquePatch
 
 # Build **just** Vogen first to generate the NuGet package. In the next step,
@@ -79,16 +79,21 @@ $version = Get999VersionWithUniquePatch
 
 # **NOTE** - we don't want these 999.9.9.x packages ending up in %userprofile%\.nuget\packages because it'll polute it.
 
+New-Item -Path $localPackages -ItemType Directory
+
 exec { & dotnet restore ./src/Vogen --packages $localPackages --no-cache --verbosity $verbosity }
 exec { & dotnet pack ./src/Vogen -c Debug -o:$localPackages /p:ForceVersion=$version --include-symbols --version-suffix:dev --no-restore --verbosity $verbosity }
 
+WriteStage("Cleaning and building consumers (tests and samples)")
+
+exec { & dotnet restore Consumers.sln --no-cache --verbosity $verbosity }
+exec { & dotnet clean Consumers.sln -c Release --verbosity $verbosity}
+
+
 # Restore the project using the custom config file, restoring packages to a local folder
-exec { & dotnet restore ./tests/ConsumerTests -p UseLocallyBuiltPackage=true --force --no-cache --packages $localPackages --configfile: ./nuget.private.config --verbosity $verbosity }
+exec { & dotnet restore Consumers.sln -p UseLocallyBuiltPackage=true --force --no-cache --packages $localPackages --configfile ./nuget.private.config --verbosity $verbosity }
 
-exec { & dotnet restore ./samples/Vogen.Examples -p UseLocallyBuiltPackage=true --force --no-cache --packages $localPackages --configfile: ./nuget.private.config --verbosity $verbosity }
-
-exec { & dotnet build ./tests/ConsumerTests -c Debug --no-restore --verbosity $verbosity }
-exec { & dotnet build ./samples/Vogen.Examples -c Debug --no-restore --verbosity $verbosity }
+exec { & dotnet build Consumers.sln -c Debug --no-restore --verbosity $verbosity }
 
 WriteStage("Running end to end tests with the local version of the NuGet package:" +$version)
 
