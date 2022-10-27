@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace LargeTests.PermutationsOfConversions;
+namespace LargeTests.ConversionPermutations;
 
 public class Permutations : IEnumerable<string>
 {
-    static readonly string[] inputs =
+    static readonly string[] _inputs =
     {
         "Conversions.TypeConverter", "Conversions.DapperTypeHandler", "Conversions.EfCoreValueConverter",
         "Conversions.NewtonsoftJson", "Conversions.SystemTextJson", "Conversions.LinqToDbValueConverter",
@@ -16,9 +16,9 @@ public class Permutations : IEnumerable<string>
     {
         yield return "Conversions.None";
 
-        for (int i = 0; i < inputs.Length - 2; i++)
+        for (int i = 0; i < _inputs.Length - 2; i++)
         {
-            var subset = inputs.Skip(i).ToArray();
+            var subset = _inputs.Skip(i).ToArray();
             var permutations = Permute(subset);
             foreach (var perms in permutations)
             {

@@ -5,7 +5,7 @@ using VerifyXunit;
 using Vogen;
 using Xunit;
 
-namespace LargeTests.PermutationsOfConversions;
+namespace LargeTests.ConversionPermutations;
 
 public class PermutationsOfConversionsTests
 {
@@ -17,14 +17,13 @@ public class PermutationsOfConversionsTests
     public class ConversionPermutationTests
     {
         static readonly string[] _permutations = new Permutations().ToArray();
-        static readonly string[] _types = {"partial class", "partial struct", "readonly partial struct"};
 
         // These used to be 'ClassData' tests, but they were run sequentially, which was very slow.
         // This test now runs the permutations in parallel.
         [Fact]
         public async Task CompilesWithAnyCombinationOfConverters()
         {
-            var tasks = _types.Select(t => Task.Run(() => Run(t))).ToArray();
+            var tasks = Factory.TypeVariations.Select(t => Task.Run(() => Run(t))).ToArray();
             
             await Task.WhenAll(tasks);
         }

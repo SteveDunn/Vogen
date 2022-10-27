@@ -6,7 +6,7 @@ using VerifyXunit;
 using Vogen;
 using Xunit;
 
-namespace LargeTests.GenerationTests;
+namespace LargeTests.JsonNumberCustomizations;
 
 /// <summary>
 /// These tests verify that types containing <see cref="Customizations.TreatNumberAsStringInSystemTextJson"/> are written correctly.
@@ -18,36 +18,35 @@ public class CustomizeNumbersAsStringsInSystemTextJson
     {
         public IEnumerator<object[]> GetEnumerator()
         {
-            foreach (string type in _types)
+            foreach (string type in Factory.TypeVariations)
             {
                 foreach (string conversion in _conversions)
                 {
-                    foreach (string underlyingType in _underlyingTypes)
+                    foreach (string underlyingType in Factory.UnderlyingTypes)
                     {
                         var qualifiedType = "public " + type;
-                        yield return new object[] { qualifiedType, conversion, underlyingType, createClassName(qualifiedType, conversion, underlyingType, true), true };
-                        yield return new object[] { qualifiedType, conversion, underlyingType, createClassName(qualifiedType, conversion, underlyingType, false), false };
+                        yield return new object[]
+                        {
+                            qualifiedType, conversion, underlyingType,
+                            CreateClassName(qualifiedType, conversion, underlyingType, customized: true), true
+                        };
+
+                        yield return new object[]
+                        {
+                            qualifiedType, conversion, underlyingType,
+                            CreateClassName(qualifiedType, conversion, underlyingType, customized: false), false
+                        };
                     }
                 }
             }
         }
 
-        private string createClassName(string type, string conversion, string underlyingType, bool customized) => 
-            "stj_number_as_string_" + type.Replace(" ", "_") + conversion.Replace(".", "_").Replace("|", "_") + underlyingType + (customized ? "_customized" : "");
-
-        private readonly string[] _types = new[]
-        {
-            "readonly partial struct",
-            
-            "partial class",
-
-            "readonly partial record struct",
-            
-            "sealed partial record class",
-
-            "partial record",
-            "sealed partial record",
-        };
+        private static string CreateClassName(string type, string conversion, string underlyingType, bool customized) =>
+            "stj_number_as_string_" + 
+            type.Replace(" ", "_") + 
+            conversion.Replace(".", "_").Replace("|", "_") +
+            underlyingType + 
+            (customized ? "_customized" : "");
 
         // for each of the types above, create classes for each one of these attributes
         private readonly string[] _conversions = new[]
@@ -58,24 +57,6 @@ public class CustomizeNumbersAsStringsInSystemTextJson
             "Conversions.NewtonsoftJson | Conversions.SystemTextJson"
         };
 
-        // for each of the attributes above, use this underlying type
-        private readonly string[] _underlyingTypes = new[]
-        {
-            "byte",
-            "char",
-            "bool",
-            "System.DateTimeOffset",
-            "System.DateTime",
-            "decimal",
-            "double",
-            "float",
-            "int",
-            "System.Guid",
-            "long",
-            "short",
-            "string",
-        };
-        
         IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
     }
 

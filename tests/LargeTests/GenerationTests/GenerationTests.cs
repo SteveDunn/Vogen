@@ -15,18 +15,20 @@ public class GenerationTests
     {
         public IEnumerator<object[]> GetEnumerator()
         {
-            foreach (string type in _types)
+            foreach (string type in Factory.TypeVariations)
             {
                 foreach (string conversion in _conversions)
                 {
-                    foreach (string underlyingType in _underlyingTypes)
+                    foreach (string underlyingType in Factory.UnderlyingTypes)
                     {
                         foreach (string accessModifier in _accessModifiers)
                         {
                             var qualifiedType = $"{accessModifier} {type}";
                             yield return new object[]
                             {
-                                qualifiedType, conversion, underlyingType,
+                                qualifiedType, 
+                                conversion, 
+                                underlyingType,
                                 CreateClassName(qualifiedType, conversion, underlyingType)
                             };
                         }
@@ -38,8 +40,6 @@ public class GenerationTests
         private static string CreateClassName(string type, string conversion, string underlyingType) => 
             type.Replace(" ", "_") + conversion.Replace(".", "_").Replace("|", "_") + underlyingType;
 
-        
-        
         private readonly string[] _accessModifiers =
         {
             "public"
@@ -48,27 +48,6 @@ public class GenerationTests
 #endif
         };
         
-        private readonly string[] _types = 
-        {
-            "partial class",
-            "partial record",
-            "partial struct",
-
-#if THOROUGH
-            "readonly partial struct",
-            
-            "sealed partial class",
-
-            "partial record struct",
-            "readonly partial record struct",
-            
-            "partial record class",
-            "sealed partial record class",
-
-            "sealed partial record",
-#endif
-        };
-
         // for each of the types above, create classes for each one of these attributes
         private readonly string[] _conversions = 
         {
@@ -84,26 +63,6 @@ public class GenerationTests
 #endif
         };
 
-        // for each of the attributes above, use this underlying type
-        private readonly string[] _underlyingTypes = 
-        {
-            "int",
-            "string",
-            "decimal",
-#if THOROUGH
-            "byte",
-            "char",
-            "bool",
-            "System.DateTimeOffset",
-            "System.DateTime",
-            "double",
-            "float",
-            "System.Guid",
-            "long",
-            "short"
-#endif
-        };
-        
         IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
     }
 

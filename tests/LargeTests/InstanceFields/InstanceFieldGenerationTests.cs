@@ -1,8 +1,12 @@
 ﻿using System.Collections;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 using Shared;
+using VerifyXunit;
 using Vogen;
+using Xunit;
 
-namespace SnapshotTests.GenerationTests;
+namespace LargeTests.InstanceFields;
 
 [UsesVerify] 
 public class InstanceFieldGenerationTests
@@ -34,7 +38,7 @@ public class TestData : IEnumerable<object[]>
 {
     public IEnumerator<object[]> GetEnumerator()
     {
-        foreach (string type in _types)
+        foreach (string type in Factory.TypeVariations)
         {
             {
                 foreach ((string underlyingType, string instanceValue) in _underlyingTypes)
@@ -53,24 +57,6 @@ public class TestData : IEnumerable<object[]>
 
     private static string CreateClassName(string type, string underlyingType) =>
         type.Replace(" ", "_") + underlyingType;
-
-    private readonly string[] _types = new[]
-    {
-        "partial struct",
-        "readonly partial struct",
-
-        "partial class",
-        "sealed partial class",
-
-        "partial record struct",
-        "readonly partial record struct",
-
-        "partial record class",
-        "sealed partial record class",
-
-        "partial record",
-        "sealed partial record",
-    };
 
     // for each of the attributes above, use this underlying type
     private readonly (string underlyingType, string instanceValue)[] _underlyingTypes = new[]

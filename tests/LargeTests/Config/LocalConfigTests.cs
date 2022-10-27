@@ -1,7 +1,10 @@
-﻿using Shared;
+﻿using System.Threading.Tasks;
+using Shared;
+using VerifyXunit;
 using Vogen;
+using Xunit;
 
-namespace SnapshotTests.Config;
+namespace LargeTests.Config;
 
 [UsesVerify]
 public class LocalConfigTests

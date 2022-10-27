@@ -15,17 +15,25 @@ public class GenerationOfEscapedTypesTests
     {
         public IEnumerator<object[]> GetEnumerator()
         {
-            foreach (string type in _types)
+            foreach (string type in Factory.TypeVariations)
             {
                 foreach (string conversion in _conversions)
                 {
                     foreach (string underlyingType in _underlyingTypes)
                     {
                         var qualifiedType = "public " + type;
-                        yield return new object[] { qualifiedType, conversion, underlyingType, CreateClassName(qualifiedType, conversion, underlyingType) };
+                        yield return new object[]
+                        {
+                            qualifiedType, conversion, underlyingType,
+                            CreateClassName(qualifiedType, conversion, underlyingType)
+                        };
 
                         qualifiedType = "internal " + type;
-                        yield return new object[] { qualifiedType, conversion, underlyingType, CreateClassName(qualifiedType, conversion, underlyingType) };
+                        yield return new object[]
+                        {
+                            qualifiedType, conversion, underlyingType,
+                            CreateClassName(qualifiedType, conversion, underlyingType)
+                        };
                     }
                 }
             }
@@ -33,24 +41,6 @@ public class GenerationOfEscapedTypesTests
 
         private static string CreateClassName(string type, string conversion, string underlyingType) =>
             "escapedTests" + type.Replace(" ", "_") + conversion.Replace(".", "_").Replace("|", "_") + underlyingType;
-
-        private readonly string[] _types = new[]
-        {
-            "partial struct",
-            "readonly partial struct",
-
-            "partial class",
-            "sealed partial class",
-
-            "partial record struct",
-            "readonly partial record struct",
-
-            "partial record class",
-            "sealed partial record class",
-
-            "partial record",
-            "sealed partial record",
-        };
 
         // for each of the types above, create classes for each one of these attributes
         private readonly string[] _conversions = new[]

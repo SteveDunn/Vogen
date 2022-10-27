@@ -1,8 +1,13 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 using Shared;
+using VerifyXunit;
 using Vogen;
+using Xunit;
 
-namespace SnapshotTests.GenerationTests;
+namespace LargeTests.ToString;
 
 [UsesVerify]
 public class ToStringGenerationTests
@@ -11,7 +16,7 @@ public class ToStringGenerationTests
     {
         public IEnumerator<object[]> GetEnumerator()
         {
-            foreach (string type in _types)
+            foreach (string type in Factory.TypeVariations)
             {
                 yield return new object[]
                 {
@@ -36,27 +41,19 @@ public class ToStringGenerationTests
             }
         }
 
-        private static string CreateClassName(string type, ToStringMethod toStringMethod) => type.Replace(" ", "_") + "_" + toStringMethod;
-
-        private readonly string[] _types =
-        {
-            "struct",
-            "class",
-            "record struct",
-            "record class",
-            "record",
-        };
+        private static string CreateClassName(string type, ToStringMethod toStringMethod) =>
+            type.Replace(" ", "_") + "_" + toStringMethod;
 
         IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
     }
 
     [Theory]
     [ClassData(typeof(Types))]
-    public Task GenerationTest(string type, string className, ToStringMethod addToStringMethod)
+    public Task Test(string type, string className, ToStringMethod addToStringMethod)
     {
         string declaration = $@"
   [ValueObject]
-  public partial {type} {className} {{ {WriteToStringMethod(addToStringMethod, type.Contains("record"))} }}";
+  public {type} {className} {{ {WriteToStringMethod(addToStringMethod, type.Contains("record"))} }}";
         var source = @"using Vogen;
 namespace Whatever
 {
