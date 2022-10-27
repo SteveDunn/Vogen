@@ -31,13 +31,13 @@ dotnet restore Vogen.sln --packages $localPackages --no-cache
 dotnet pack Vogen.sln -c Debug -o:$localPackages /p:ForceVersion=$version --include-symbols --version-suffix:dev --no-restore
 
 # Restore the project using the custom config file, restoring packages to a local folder
-dotnet restore ./tests/SmallTests -p UseLocallyBuiltPackage=true --force --no-cache --packages $localPackages --configfile: ./nuget.private.config
+dotnet restore ./tests/ConsumerTests -p UseLocallyBuiltPackage=true --force --no-cache --packages $localPackages --configfile: ./nuget.private.config
 
 dotnet restore ./Samples/Vogen.Examples -p UseLocallyBuiltPackage=true --force --no-cache --packages $localPackages --configfile: ./nuget.private.config
 
-dotnet build ./tests/SmallTests -c Debug --no-restore
+dotnet build ./tests/ConsumerTests -c Debug --no-restore
 dotnet build ./Samples/Vogen.Examples -c Debug --no-restore
 
-dotnet test ./tests/SmallTests -c Debug --no-build --no-restore 
+dotnet test ./tests/ConsumerTests -c Debug --no-build --no-restore 
 
 

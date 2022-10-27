@@ -458,8 +458,6 @@ $RECYCLE.BIN/
 *.received.txt
 BenchmarkDotNet.Artifacts
 /samples/Vogen.Examples/Generated
-/tests/LargeTests/Generated
-/tests/MediumTests/Generated
 /tests/SmallTests/Generated
 /tests/Testbench/Generated
 /local-global-packages
