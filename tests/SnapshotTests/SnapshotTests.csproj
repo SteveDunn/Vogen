@@ -11,6 +11,10 @@
     <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
   </PropertyGroup>
 
+  <PropertyGroup>
+    <DefineConstants>$(DefineConstants);THOROUGH</DefineConstants>
+  </PropertyGroup>
+
   <ItemGroup>
     <PackageReference Include="GitHubActionsTestLogger" Version="2.0.1">
       <PrivateAssets>all</PrivateAssets>
