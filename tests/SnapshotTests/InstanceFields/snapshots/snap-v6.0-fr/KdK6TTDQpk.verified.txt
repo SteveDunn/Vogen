@@ -96,7 +96,7 @@ namespace Whatever
         {
             
 
-                    if(value == Invalid.Value) return Invalid;
+                    if(value == MyValue.Value) return MyValue;
 
 
             return new internal_partial_structbyte(value);
@@ -238,7 +238,7 @@ namespace Whatever
         
 // instance...
 
-public static internal_partial_structbyte Invalid = new internal_partial_structbyte(42);
+public static internal_partial_structbyte MyValue = new internal_partial_structbyte(42);
 
  
         

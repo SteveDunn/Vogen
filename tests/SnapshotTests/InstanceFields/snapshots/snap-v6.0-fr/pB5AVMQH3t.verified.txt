@@ -96,7 +96,7 @@ namespace Whatever
         {
             
 
-                    if(value == Invalid.Value) return Invalid;
+                    if(value == MyValue.Value) return MyValue;
 
 
             return new public_partial_structdouble(value);
@@ -238,7 +238,7 @@ namespace Whatever
         
 // instance...
 
-public static public_partial_structdouble Invalid = new public_partial_structdouble(123.45d);
+public static public_partial_structdouble MyValue = new public_partial_structdouble(123.45d);
 
  
         

@@ -96,7 +96,7 @@ namespace Whatever
         {
             
 
-                    if(value == Invalid.Value) return Invalid;
+                    if(value == MyValue.Value) return MyValue;
 
 
             return new public_partial_structfloat(value);
@@ -238,7 +238,7 @@ namespace Whatever
         
 // instance...
 
-public static public_partial_structfloat Invalid = new public_partial_structfloat(123.45f);
+public static public_partial_structfloat MyValue = new public_partial_structfloat(123.45f);
 
  
         

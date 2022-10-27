@@ -96,7 +96,7 @@ namespace Whatever
         {
             
 
-                    if(value == Invalid.Value) return Invalid;
+                    if(value == MyValue.Value) return MyValue;
 
 
             return new public_partial_structint(value);
@@ -238,7 +238,7 @@ namespace Whatever
         
 // instance...
 
-public static public_partial_structint Invalid = new public_partial_structint(123);
+public static public_partial_structint MyValue = new public_partial_structint(123);
 
  
         
