@@ -61,7 +61,7 @@ exec { & dotnet build Vogen.sln -c Release -p THOROUGH --no-restore --verbosity 
 
 # run the analyzer and code generation tests
 WriteStage("Running analyzer and code generation tests...")
-## exec { & dotnet test Vogen.sln -c Release --no-build -l trx -l "GitHubActions;report-warnings=false" --verbosity $verbosity }
+exec { & dotnet test Vogen.sln -c Release --no-build -l trx -l "GitHubActions;report-warnings=false" --verbosity $verbosity }
 
 ################################################################
 

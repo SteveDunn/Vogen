@@ -653,23 +653,18 @@ public partial struct SpecialMeasurement { }
 
 ### I've added a feature but the 'Snapshot' tests are failing in the build - what do I do?
 
-When the integration tests are run, it uses snapshot tests to compare the current output to the expected output.
+When the  tests are run, it uses snapshot tests to compare the current output to the expected output.
 If your feature/fix changes the output, the snapshot tests will bring up your configured code diff tool, for instance, Beyond Compare, and
 shows you the differences. You can accept the differences in that tool, or, if there's lot's of differencs (and they're all expected!), you have various options depending on your platform and tooling. Those are [described here](https://github.com/VerifyTests/Verify/blob/main/docs/clipboard.md). 
 
 ### How do I debug the source generator?
 
-To test the source generator,  install the Roslyn SDK.
+The easiest way is to debug the SnapshotTests. Put a breakpoint in the code, and then just debug a test somewhere.
 
-After that, in VS, you'll now have a new 'launch profile':
-
-![image showing the new launch profile for Roslyn](/docs/img/2022-02-13-05-45-54.png)
-
-Select the Vogen project as the active project, and from the dropdown, select 'Roslyn'. Then just F5 to start debugging.
-
-To debug an analyzer, write a unit test using `DisallowNewTests` as a template, not forgetting to change `CreationUsingImplicitNewAnalyzer` to the analyzer you want to test.
+To debug an analyzer, select or write a test in the AnalyzerTests. There are tests that exercise the various analyzers and code-fixers.
 
 ### Can I get it to throw my own exception?
+
 Yes, by specifying the exception type in either the `ValueObject` attribute, or globally, with `VogenConfiguration`.
 
 ## Attribution
