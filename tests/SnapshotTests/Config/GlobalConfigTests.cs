@@ -1,9 +1,8 @@
 ﻿using System.Threading.Tasks;
 using VerifyXunit;
 using Vogen;
-using Xunit;
 
-namespace LargeTests.Config;
+namespace SnapshotTests.Config;
 
 [UsesVerify] 
 public class GlobalConfigTests

@@ -4,9 +4,8 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using VerifyXunit;
 using Vogen;
-using Xunit;
 
-namespace LargeTests.ToString;
+namespace SnapshotTests.ToString;
 
 [UsesVerify]
 public class ToStringGenerationTests

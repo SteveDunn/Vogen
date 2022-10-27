@@ -1,7 +1,7 @@
 ﻿using System.Runtime.CompilerServices;
 using VerifyTests;
 
-namespace LargeTests;
+namespace SnapshotTests;
 
 public static class ModuleInitializer
 {

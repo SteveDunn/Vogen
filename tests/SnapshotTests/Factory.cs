@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Collections.Immutable;
 
-namespace LargeTests
+namespace SnapshotTests
 {
     public static class Factory
     {

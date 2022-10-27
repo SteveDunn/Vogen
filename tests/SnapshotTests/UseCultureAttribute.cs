@@ -6,6 +6,8 @@ using System.Reflection;
 using System.Threading;
 using Xunit.Sdk;
 
+namespace SnapshotTests;
+
 /// <summary>
 /// Apply this attribute to your test method to replace the
 /// <see cref="Thread.CurrentThread" /> <see cref="CultureInfo.CurrentCulture" /> and

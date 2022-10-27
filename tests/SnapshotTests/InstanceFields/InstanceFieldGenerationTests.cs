@@ -3,9 +3,8 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using VerifyXunit;
 using Vogen;
-using Xunit;
 
-namespace LargeTests.InstanceFields;
+namespace SnapshotTests.InstanceFields;
 
 [UsesVerify] 
 public class InstanceFieldGenerationTests

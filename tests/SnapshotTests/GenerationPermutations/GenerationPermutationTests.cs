@@ -3,9 +3,8 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using VerifyXunit;
 using Vogen;
-using Xunit;
 
-namespace LargeTests.GenerationPermutations;
+namespace SnapshotTests.GenerationPermutations;
 
 [UsesVerify] 
 public class GenerationPermutationTests

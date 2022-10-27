@@ -3,9 +3,8 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using VerifyXunit;
 using Vogen;
-using Xunit;
 
-namespace LargeTests.JsonNumberCustomizations;
+namespace SnapshotTests.JsonNumberCustomizations;
 
 /// <summary>
 /// These tests verify that types containing <see cref="Customizations.TreatNumberAsStringInSystemTextJson"/> are written correctly.

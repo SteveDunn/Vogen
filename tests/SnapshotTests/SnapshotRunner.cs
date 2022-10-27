@@ -10,7 +10,7 @@ using Shared;
 using VerifyTests;
 using VerifyXunit;
 
-namespace LargeTests
+namespace SnapshotTests
 {
     public class SnapshotRunner<T> where T : IIncrementalGenerator, new()
     {

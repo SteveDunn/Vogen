@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace LargeTests.ConversionPermutations;
+namespace SnapshotTests.ConversionPermutations;
 
 public class Permutations : IEnumerable<string>
 {

@@ -2,9 +2,8 @@
 using System.Threading.Tasks;
 using VerifyXunit;
 using Vogen;
-using Xunit;
 
-namespace LargeTests.ConversionPermutations;
+namespace SnapshotTests.ConversionPermutations;
 
 public class PermutationsOfConversionsTests
 {

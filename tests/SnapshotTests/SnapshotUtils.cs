@@ -1,7 +1,7 @@
 ﻿using System;
 using Shared;
 
-namespace LargeTests
+namespace SnapshotTests
 {
     /// <summary>
     /// We have tests targeting different versions of the framework and different locales.
