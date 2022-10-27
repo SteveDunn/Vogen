@@ -360,16 +360,16 @@ If you're using the generator in .NET Framework project using and the old style 
 ```
 
 ### Does it support C# 11 features?
-Yes. It understands generic attributes:
+This is primarily a source generator. The source it generates is mostly C# 6 for compatibility. But if you use features from a later language version, for instance `records` from C# 9, then it will also generate records.
+
+Source generatio is driven by attributes, and, if you're using .NET 7 or above, the generic version of the `ValueObject` attribute is exposed:
 
 ```csharp
 [ValueObject<int>]
 public partial struct Age { }
 ```
 
-Even though it supports C# 11, the source it generates is mostly C# 6 for compatibility. But if you use features from a later language version, for instance `records` from C# 9, then it will also generate records.
-
-###
+Even though it supports C# 11, . But if you use features from a later language version, for instance `records` from C# 9, then it will also generate records.
 
 ### Why are they called 'Value Objects'?
 
@@ -512,7 +512,7 @@ Although it can be confusing. Let's say there's a type like this (and imagine th
 
 ```csharp
 [ValueObject(typeof(int))]
-public readonly partial struct Age
+public readonly partial struct Age {
     public static Validation Validate(int n) => n >= 0 ? Validation.Ok : Validation.Invalid("Must be zero or more");
 }
 ```
@@ -526,7 +526,7 @@ var age10 = age20 / 2;
 age10 -= 12; // bang - goes negative??
 ```
 
-But no...  the implicit cast in `var age10 = age20 / 2` results in an `int` and not an `Age`. Changing it to `Age age10 = age20 / 2` fixes it. But this does go to show that it can be confusing.
+The implicit cast in `var age10 = age20 / 2` results in an `int` and not an `Age`. Changing it to `Age age10 = age20 / 2` fixes it. But this does go to show that it can be confusing.
 
 ### Why is there no interface?
 
@@ -534,7 +534,7 @@ But no...  the implicit cast in `var age10 = age20 / 2` results in an `int` and 
 
 Just like primitives have no interfaces, there's no need to have interfaces on Value Objects. The receiver that takes a `CustomerId` knows that it's a Value Object.  If it were instead to take an `IValidated<int>`, then it wouldn't have any more information; you'd still have to know to call `Value` to get the value.
 
-It might also relax type safety. Without the interface, we'd have signatures such as this:
+It might also relax type safety. Without the interface, we have signatures such as this:
 
 ```csharp
 public void SomSomething(CustomerId customerId, SupplierId supplierId, ProductId productId);
@@ -587,7 +587,7 @@ public void CanEnter(Age age) {
 }
 ```
 
-### Why isn't the part of the language?
+### Why isn't this concept part of the C# language?
 
 It would be great if it was, but it's not currently. I [wrote an article about it](https://dunnhq.com/posts/2022/non-defaultable-value-types/), but in summary, there is a [long-standing language proposal](https://github.com/dotnet/csharplang/issues/146) focusing on non-defaultable value types.
 Having non-defaultable value types is a great first step, but it would also be handy to have something in the language to enforce validate.
@@ -614,7 +614,7 @@ To get around this, run `Set-ExecutionPolicy -Scope Process -ExecutionPolicy Byp
 This is focused more on IDs. Vogen is focused more of 'Domain Concepts' and the constraints associated with those concepts.
 
 [StringlyTyped](https://github.com/stevedunn/stringlytyped)
-This is my first attempt and is NON source-generated. There is memory overhead because the base type is a class. There are also no analyzers.
+This is my first attempt and is NON source-generated. There is memory overhead because the base type is a class. There are also no analyzers. It is now marked as depracated in favor of Vogen.
 
 [ValueOf](https://github.com/mcintyre321/ValueOf) 
 Similar to StringlyTyped - non source-generated and no analysers. This is also more relaxed and allows composite 'underlying' types.
@@ -659,9 +659,9 @@ shows you the differences. You can accept the differences in that tool, or, if t
 
 ### How do I debug the source generator?
 
-To test the source generator,  install the Roslyn SDK and then. 
+To test the source generator,  install the Roslyn SDK.
 
-To test in VS, you'll have a new 'launch profile':
+After that, in VS, you'll now have a new 'launch profile':
 
 ![image showing the new launch profile for Roslyn](/docs/img/2022-02-13-05-45-54.png)
 
@@ -671,3 +671,9 @@ To debug an analyzer, write a unit test using `DisallowNewTests` as a template, 
 
 ### Can I get it to throw my own exception?
 Yes, by specifying the exception type in either the `ValueObject` attribute, or globally, with `VogenConfiguration`.
+
+## Attribution
+
+I took a lot of inspiration from [Andrew Lock's](https://github.com/andrewlock) [StronglyTypedId](https://github.com/andrewlock/StronglyTypedId).
+
+I also got some great ideas from [Gérald Barré's](https://github.com/meziantou) [Meziantou.Analyzer](https://github.com/meziantou/Meziantou.Analyzer)

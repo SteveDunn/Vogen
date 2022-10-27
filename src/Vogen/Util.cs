@@ -1,23 +1,16 @@
 ﻿using System;
-using System.Collections.Immutable;
 using System.Runtime.CompilerServices;
 using System.Text;
-using Analyzer.Utilities.Extensions;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Vogen.Generators.Conversions;
 
 [assembly: InternalsVisibleTo("SmallTests")]
-[assembly: InternalsVisibleTo("MediumTests")]
 [assembly: InternalsVisibleTo("Vogen.Tests")]
 
 namespace Vogen;
 
-public class RemoveMe
-{
-    public string GetSomething() => "foo!";
-}
 
 public static class Util
 {

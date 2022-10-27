@@ -20,9 +20,9 @@ namespace Shared
     {
         private static readonly ConcurrentDictionary<string, Lazy<Task<string[]>>> s_cache = new(StringComparer.Ordinal);
 
-    public IList<MetadataReference> References { get; } = new List<MetadataReference>();
+        public IList<MetadataReference> References { get; } = new List<MetadataReference>();
 
-    public TargetFramework TargetFramework { get; private set; } = TargetFramework.Net6_0;
+        public TargetFramework TargetFramework { get; private set; } = TargetFramework.Net6_0;
 
         public ProjectBuilder WithTargetFramework(TargetFramework targetFramework)
         {
@@ -98,7 +98,6 @@ namespace Shared
 
             AddNuGetReference("Microsoft.CSharp", "4.7.0", "lib/netstandard2.0/");  // To support dynamic type
         }
-
 
         private static Task<string[]> GetNuGetReferences(string packageName, string version, string path)
         {
@@ -177,18 +176,18 @@ namespace Shared
 
             MetadataReference r = MetadataReference.CreateFromFile(typeof(ValueObjectAttribute).Assembly.Location);
             //var rr = MetadataReference.CreateFromFile(typeof(T).Assembly.Location);
-            
+
 
             References.Add(r);
             //References.Add(rr);
-            
+
             // foreach (var portableExecutableReference in rrr)
             // {
             //     References.Add(portableExecutableReference);
             // }
-            
+
             AddNuGetReferences();
-            
+
             var compilation = CSharpCompilation.Create(
                 "generator",
                 new[] { syntaxTree },

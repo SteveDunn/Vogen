@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using Shared;
 using VerifyXunit;
 using Vogen;
 using Xunit;
@@ -11,15 +10,60 @@ namespace LargeTests.InstanceFields;
 [UsesVerify] 
 public class InstanceFieldGenerationTests
 {
+    [Fact]
+    public Task Instance_names_can_have_reserved_keywords()
+    {
+        var source = @"using Vogen;
+
+namespace Whatever;
+
+[ValueObject]
+[Instance(name: ""@class"", value: 42)]
+[Instance(name: ""@event"", value: 69)]
+public partial struct CustomerId
+{
+    private static Validation validate(int value)
+    {
+        if (value > 0)
+            return Validation.Ok;
+
+        return Validation.Invalid(""must be greater than zero"");
+    }
+}
+";
+
+        return new SnapshotRunner<ValueObjectGenerator>()
+            .WithSource(source)
+            .RunOnAllFrameworks();
+    }
+
     [Theory]
     [UseCulture("fr-FR")]
     [ClassData(typeof(TestData))]
-    public Task GenerationTest_FR(string type, string underlyingType, string instanceValue, string className)
+    public Task GenerationTest_FR(string type, string underlyingType, string instanceValue,
+        string className) => Run(
+        type,
+        underlyingType,
+        instanceValue,
+        className,
+        "fr");
+
+    [Theory]
+    [ClassData(typeof(TestData))]
+    public Task GenerationTest(string type, string underlyingType, string instanceValue,
+        string className) => Run(
+        type,
+        underlyingType,
+        instanceValue,
+        className,
+        "");
+
+    private Task Run(string type, string underlyingType, string instanceValue, string className, string locale)
     {
         string declaration = $@"
   [ValueObject(underlyingType: typeof({underlyingType}))]
-  [Instance(name: ""Invalid"", value: {instanceValue})]
-  {type} {className} {{ }}";
+  [Instance(name: ""MyValue"", value: {instanceValue})]
+  {type} {className} {{}}";
         var source = @"using Vogen;
 namespace Whatever
 {
@@ -28,7 +72,7 @@ namespace Whatever
 
         return new SnapshotRunner<ValueObjectGenerator>()
             .WithSource(source)
-            .WithLocale("fr")
+            .WithLocale(locale)
             .CustomizeSettings(s => s.UseFileName(TestHelper.ShortenForFilename(className)))
             .RunOnAllFrameworks();
     }

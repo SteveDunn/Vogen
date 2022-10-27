@@ -11,6 +11,12 @@ namespace AnalyzerTests
         private readonly TargetFramework[] _allFrameworks = {
             TargetFramework.Net6_0,
             TargetFramework.Net7_0,
+#if THOROUGH
+            TargetFramework.Net4_6_1,
+            TargetFramework.Net4_8,
+            TargetFramework.NetCoreApp3_1,
+            TargetFramework.Net5_0,
+#endif
         };
 
         private Action<ImmutableArray<Diagnostic>>? _validationMethod;
@@ -31,7 +37,7 @@ namespace AnalyzerTests
             return this;
         }
 
-        public void RunOn(params TargetFramework[] frameworks)
+        private void RunOn(params TargetFramework[] frameworks)
         {
             _ = _source ?? throw new InvalidOperationException("No source!");
             _ = _validationMethod ?? throw new InvalidOperationException("No validation method!");
