@@ -2,7 +2,7 @@
 using Vogen;
 using Xunit;
 
-namespace SmallTests.ToStringTests;
+namespace ConsumerTests.ToStringTests;
 
 public class Derivation
 {

@@ -3,7 +3,7 @@ using FluentAssertions;
 using Vogen;
 using Xunit;
 
-namespace SmallTests.RecordTests;
+namespace ConsumerTests.RecordTests;
 
 public class RecordStructTests
 {

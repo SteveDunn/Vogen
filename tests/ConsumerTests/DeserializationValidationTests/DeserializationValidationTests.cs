@@ -4,7 +4,7 @@ using FluentAssertions;
 using Vogen;
 using Xunit;
 
-namespace SmallTests.DeserializationValidationTests;
+namespace ConsumerTests.DeserializationValidationTests;
 
 [ValueObject(typeof(int), Conversions.TypeConverter, deserializationStrictness: DeserializationStrictness.AllowAnything)]
 public partial class Vo_AllowAnything

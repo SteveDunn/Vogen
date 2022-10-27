@@ -6,7 +6,7 @@ using Vogen;
 using Vogen.Tests.Types;
 using Xunit;
 
-namespace SmallTests.HashCodes
+namespace ConsumerTests.HashCodes
 {
     [ValueObject(typeof(int))]
     public partial struct MyStructInt { }

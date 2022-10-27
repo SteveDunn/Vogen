@@ -4,7 +4,7 @@ using FluentAssertions;
 using Vogen;
 using Xunit;
 
-namespace SmallTests.TryParseTests;
+namespace ConsumerTests.TryParseTests;
 
 [ValueObject(typeof(int))]
 public partial struct IntVoNoValidation

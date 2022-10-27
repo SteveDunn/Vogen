@@ -6,7 +6,7 @@ using Vogen;
 using Vogen.Tests.Types;
 using Xunit;
 
-namespace SmallTests.RecordTests;
+namespace ConsumerTests.RecordTests;
 
 public class RecordClassCreationTests
 {

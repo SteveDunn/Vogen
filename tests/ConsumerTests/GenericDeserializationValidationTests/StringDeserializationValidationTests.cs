@@ -11,7 +11,7 @@ using SystemTextJsonSerializer = System.Text.Json.JsonSerializer;
 using Microsoft.EntityFrameworkCore;
 using LinqToDB;
 
-namespace SmallTests.GenericDeserializationValidationTests;
+namespace ConsumerTests.GenericDeserializationValidationTests;
 
 #if NET7_0_OR_GREATER
 public class StringDeserializationValidationTests

@@ -3,7 +3,7 @@ using FluentAssertions;
 using Vogen;
 using Xunit;
 
-namespace SmallTests.NormalizeInput;
+namespace ConsumerTests.NormalizeInput;
 
 public class NormalizeInputTests_Class
 {

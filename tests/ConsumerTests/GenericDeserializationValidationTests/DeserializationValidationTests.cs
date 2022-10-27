@@ -4,7 +4,7 @@ using FluentAssertions;
 using Vogen;
 using Xunit;
 
-namespace SmallTests.GenericDeserializationValidationTests;
+namespace ConsumerTests.GenericDeserializationValidationTests;
 
 #if NET7_0_OR_GREATER
 [ValueObject<int>(Conversions.TypeConverter, deserializationStrictness: DeserializationStrictness.AllowAnything)]

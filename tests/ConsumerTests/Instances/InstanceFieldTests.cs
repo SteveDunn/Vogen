@@ -2,7 +2,7 @@
 using Vogen.Tests.Types;
 using Xunit;
 
-namespace SmallTests.Instances;
+namespace ConsumerTests.Instances;
 
 public class InstanceFieldTests
 {

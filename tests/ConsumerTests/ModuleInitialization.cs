@@ -1,21 +1,21 @@
 ﻿using System.Runtime.CompilerServices;
 using Dapper;
 
-namespace SmallTests;
+namespace ConsumerTests;
 
 public static class ModuleInitialization
 {
     [ModuleInitializer]
     public static void Init()
     {
-        SqlMapper.AddTypeHandler(new SmallTests.DeserializationValidationTests.MyVoInt_should_not_bypass_validation.DapperTypeHandler());
-        SqlMapper.AddTypeHandler(new SmallTests.DeserializationValidationTests.MyVoString_should_not_bypass_validation.DapperTypeHandler());
-        SqlMapper.AddTypeHandler(new SmallTests.DeserializationValidationTests.MyVoString_should_bypass_validation.DapperTypeHandler());
+        SqlMapper.AddTypeHandler(new ConsumerTests.DeserializationValidationTests.MyVoInt_should_not_bypass_validation.DapperTypeHandler());
+        SqlMapper.AddTypeHandler(new ConsumerTests.DeserializationValidationTests.MyVoString_should_not_bypass_validation.DapperTypeHandler());
+        SqlMapper.AddTypeHandler(new ConsumerTests.DeserializationValidationTests.MyVoString_should_bypass_validation.DapperTypeHandler());
 
 #if NET7_0_OR_GREATER
-        SqlMapper.AddTypeHandler(new SmallTests.GenericDeserializationValidationTests.MyVoInt_should_not_bypass_validation.DapperTypeHandler());
-        SqlMapper.AddTypeHandler(new SmallTests.GenericDeserializationValidationTests.MyVoString_should_not_bypass_validation.DapperTypeHandler());
-        SqlMapper.AddTypeHandler(new SmallTests.GenericDeserializationValidationTests.MyVoString_should_bypass_validation.DapperTypeHandler());
+        SqlMapper.AddTypeHandler(new ConsumerTests.GenericDeserializationValidationTests.MyVoInt_should_not_bypass_validation.DapperTypeHandler());
+        SqlMapper.AddTypeHandler(new ConsumerTests.GenericDeserializationValidationTests.MyVoString_should_not_bypass_validation.DapperTypeHandler());
+        SqlMapper.AddTypeHandler(new ConsumerTests.GenericDeserializationValidationTests.MyVoString_should_bypass_validation.DapperTypeHandler());
 #endif
 
         SqlMapper.AddTypeHandler(new Vogen.IntegrationTests.TestTypes.ClassVos.DapperFooVo.DapperTypeHandler());

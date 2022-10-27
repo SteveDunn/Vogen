@@ -12,7 +12,7 @@ using FluentAssertions;
 using Vogen.Tests.Types;
 using Xunit;
 
-namespace SmallTests
+namespace ConsumerTests
 {
     public class EqualityTests
     {

@@ -3,7 +3,7 @@ using FluentAssertions;
 using Vogen;
 using Xunit;
 
-namespace SmallTests.IComparableTests
+namespace ConsumerTests.IComparableTests
 {
     [ValueObject(typeof(int))]
     public partial struct S1 { }

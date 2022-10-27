@@ -4,7 +4,7 @@ using Xunit;
 using FluentAssertions;
 using FluentAssertions.Execution;
 
-namespace SmallTests.Instances;
+namespace ConsumerTests.Instances;
 
 [ValueObject(typeof(DateTime))]
 [Instance(name: "iso8601_1", value: "2022-12-13")]

@@ -14,7 +14,7 @@ namespace NotSystem
     }
 }
 
-namespace SmallTests
+namespace ConsumerTests
 {
     public class CreationTests
     {

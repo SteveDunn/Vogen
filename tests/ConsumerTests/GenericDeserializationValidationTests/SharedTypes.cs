@@ -6,7 +6,7 @@ using Microsoft.Data.Sqlite;
 using Microsoft.EntityFrameworkCore;
 using Vogen;
 
-namespace SmallTests.GenericDeserializationValidationTests;
+namespace ConsumerTests.GenericDeserializationValidationTests;
 
 #if NET7_0_OR_GREATER
 

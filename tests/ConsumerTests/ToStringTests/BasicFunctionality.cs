@@ -1,8 +1,9 @@
-﻿using FluentAssertions;
+﻿
+using FluentAssertions;
 using Vogen.Tests.Types;
 using Xunit;
 
-namespace SmallTests.ToStringTests;
+namespace ConsumerTests.ToStringTests;
 
 public class BasicFunctionality
 {

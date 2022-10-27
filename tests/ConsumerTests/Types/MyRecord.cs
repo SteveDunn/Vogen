@@ -1,6 +1,6 @@
 using Vogen;
 
-namespace SmallTests.Types;
+namespace ConsumerTests.Types;
 
 [ValueObject]
 public partial record MyRecord

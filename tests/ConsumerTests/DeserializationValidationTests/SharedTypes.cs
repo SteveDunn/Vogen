@@ -6,7 +6,7 @@ using Microsoft.Data.Sqlite;
 using Microsoft.EntityFrameworkCore;
 using Vogen;
 
-namespace SmallTests.DeserializationValidationTests;
+namespace ConsumerTests.DeserializationValidationTests;
 
 #region Value Objects
 [ValueObject(typeof(int), Conversions.DapperTypeHandler | Conversions.EfCoreValueConverter | Conversions.LinqToDbValueConverter | Conversions.NewtonsoftJson | Conversions.SystemTextJson | Conversions.TypeConverter)]
