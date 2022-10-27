@@ -48,17 +48,20 @@ WriteStage("Building release version of Vogen...")
 if(Test-Path $artifacts) { Remove-Item $artifacts -Force -Recurse }
 New-Item -Path $artifacts -ItemType Directory
 
+New-Item -Path $localPackages -ItemType Directory -ErrorAction SilentlyContinue
+
+
 if(Test-Path $localPackages) { Remove-Item $localPackages\vogen.* -Force -ErrorAction SilentlyContinue }
 
 WriteStage("Cleaning, restoring, and building release version of Vogen...")
 
 exec { & dotnet clean Vogen.sln -c Release --verbosity $verbosity}
 exec { & dotnet restore ./src/Vogen --no-cache --verbosity $verbosity }
-exec { & dotnet build Vogen.sln -c Release --no-restore --verbosity $verbosity}
+exec { & dotnet build Vogen.sln -c Release -p THOROUGH --no-restore --verbosity $verbosity}
 
 # run the analyzer and code generation tests
 WriteStage("Running analyzer and code generation tests...")
-## exec { & dotnet test Vogen.sln -c Release --no-build -l trx -l "GitHubActions;report-warnings=false" --verbosity $verbosity }
+# exec { & dotnet test Vogen.sln -c Release --no-build -l trx -l "GitHubActions;report-warnings=false" --verbosity $verbosity }
 
 ################################################################
 
@@ -78,8 +81,6 @@ $version = Get999VersionWithUniquePatch
 # we'll build the consumers of package, namely the e2e tests and samples projects.
 
 # **NOTE** - we don't want these 999.9.9.x packages ending up in %userprofile%\.nuget\packages because it'll polute it.
-
-New-Item -Path $localPackages -ItemType Directory
 
 exec { & dotnet restore ./src/Vogen --packages $localPackages --no-cache --verbosity $verbosity }
 exec { & dotnet pack ./src/Vogen -c Debug -o:$localPackages /p:ForceVersion=$version --include-symbols --version-suffix:dev --no-restore --verbosity $verbosity }
