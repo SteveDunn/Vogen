@@ -1,4 +1,20 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <Target Name="main" DependsOnTargets="EnsureLocalPackagesFolderExists">
+    <!-- Msbuild will process the first target in the file by default.
+            By creating this target, and making it depend on the two following targets,
+            we can ensure that they will all be executed
+            -->
+  </Target>
+
+  <PropertyGroup>
+    <!-- Test directory-->
+    <LocalPackagesDirectory>$(MSBuildProjectDirectory)\..\..\local-global-packages</LocalPackagesDirectory>
+  </PropertyGroup>
+  
+    <Target Name="EnsureLocalPackagesFolderExists" BeforeTargets="Restore;CollectPackageReferences" Condition="'$(BuildingInsideVisualStudio)' == 'true'">
+      <Error Condition="!Exists('$(LocalPackagesDirectory)')" Text="Run Test.ps1 to create the local packages folder that this project consumes" />
+    </Target>
 
   <PropertyGroup>
     <TargetFrameworks Condition=" '$(OS)' == 'Windows_NT' ">net461;netcoreapp3.1;net5.0;net6.0;net7.0</TargetFrameworks>
@@ -9,6 +25,13 @@
     <UseLocallyBuiltPackage>true</UseLocallyBuiltPackage>
     <LangVersion>preview</LangVersion>
   </PropertyGroup>
+
+  <ItemGroup>
+    <TestPath Include="../../local-global-packages" />
+  </ItemGroup>
+  <Target Name="OnlyIfExists" Condition="Exists(@(TestPath))">
+    <Message Text="Please run Test.ps1 to build the latest local nuget package that these tests consume" Importance="high" />
+  </Target>
 
   <ItemGroup Condition=" '$(TargetFramework)' == 'net7.0'">
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.0-rc.1.22426.7" />

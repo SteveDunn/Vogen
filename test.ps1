@@ -8,17 +8,35 @@
 $artifacts = ".\artifacts"
 $localPackages = ".\local-global-packages"
 
+function WriteStage([string]$message)
+{
+    Write-Host "############################################" -ForegroundColor Cyan
+    Write-Host "**** " $message -ForegroundColor Cyan
+    Write-Host "############################################" -ForegroundColor Cyan
+    Write-Output ""
+}
+
+function Get999VersionWithUniquePatch()
+{
+    $date1 = Get-Date("2022-10-17");
+    $date2 = Get-Date;
+    $patch = [int64]((New-TimeSpan -Start $date1 -End $date2)).TotalSeconds
+    return "999.9." + $patch;
+}
+
 if(Test-Path $artifacts) { Remove-Item $artifacts -Force -Recurse }
 
 New-Item -Path $artifacts -ItemType Directory
 
+New-Item -Path $localPackages -ItemType Directory -ErrorAction SilentlyContinue
+
 Remove-Item $localPackages\vogen.* -Force
 
-$date1 = Get-Date("2022-10-17");
-$date2 = Get-Date;
-$patch = [int64]((New-TimeSpan -Start $date1 -End $date2)).TotalSeconds
-$version = "999.9." + $patch;
+$version = Get999VersionWithUniquePatch
 
+
+
+dotnet restore Vogen.sln --packages $localPackages --no-cache
 dotnet clean Vogen.sln
 
 # Build **just** Vogen first to generate the NuGet package. In the next step,
@@ -26,7 +44,8 @@ dotnet clean Vogen.sln
 
 # **NOTE** - we don't want these 999.9.9.x packages ending up in %userprofile%\.nuget\packages because it'll polute it.
 
-dotnet restore Vogen.sln --packages $localPackages --no-cache
+WriteStage("Packing the Vogen NuGet package version " +$version + " into " + $localPackages)
+
 
 dotnet pack Vogen.sln -c Debug -o:$localPackages /p:ForceVersion=$version --include-symbols --version-suffix:dev --no-restore
 
