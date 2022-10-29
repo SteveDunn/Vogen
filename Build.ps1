@@ -57,11 +57,11 @@ WriteStage("Cleaning, restoring, and building release version of Vogen...")
 
 exec { & dotnet clean Vogen.sln -c Release --verbosity $verbosity}
 exec { & dotnet restore Vogen.sln --no-cache --verbosity $verbosity }
-exec { & dotnet build Vogen.sln -c Release -p THOROUGH --no-restore --verbosity $verbosity}
+exec { & dotnet build Vogen.sln -c Release -p XXXXXXXXTHOROUGH --no-restore --verbosity $verbosity}
 
 # run the analyzer and code generation tests
 WriteStage("Running analyzer and code generation tests...")
-# exec { & dotnet test Vogen.sln -c Release --no-build -l trx -l "GitHubActions;report-warnings=false" --verbosity $verbosity }
+exec { & dotnet test Vogen.sln -c Release --no-build -l trx -l "GitHubActions;report-warnings=false" --verbosity $verbosity }
 
 ################################################################
 
