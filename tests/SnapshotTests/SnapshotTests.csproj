@@ -12,7 +12,8 @@
   </PropertyGroup>
 
   <PropertyGroup>
-    <DefineConstants>$(DefineConstants);THOROUGH</DefineConstants>
+    <DefineConstants>$(DefineConstants);</DefineConstants>
+    <!--<DefineConstants>$(DefineConstants);THOROUGH</DefineConstants>-->
   </PropertyGroup>
 
   <ItemGroup>
