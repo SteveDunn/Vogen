@@ -44,8 +44,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <!-- Note that this is not a "normal" ProjectReference.
-         It needs the additional 'OutputItemType' and 'ReferenceOutputAssmbly' attributes. -->
     <ProjectReference Include="..\..\src\Vogen.SharedTypes\Vogen.SharedTypes.csproj" />
     <ProjectReference Include="..\..\src\Vogen\Vogen.csproj" />
     <ProjectReference Include="..\Shared\Shared.csproj" />

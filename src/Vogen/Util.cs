@@ -224,14 +224,6 @@ public static class Util
         var primitive = tds.Identifier;
         var s = @$"public int CompareTo({primitive} other) => Value.CompareTo(other.Value);";
 
-        //todo: https://github.com/SteveDunn/Vogen/issues/222
-//         if (primitiveSymbol!.ImplementsOperator("op_LessThan"))
-//         {
-//             s += $@"
-// public static bool operator <({primitive} left, {primitive} right) => left.Value < right.Value;
-// public static bool operator >({primitive} left, {primitive} right) => left.Value > right.Value;";
-//         }
-//
          return s;
     }
 }
