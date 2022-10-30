@@ -12,7 +12,6 @@ using System.Threading.Tasks;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
 using Vogen;
-using Xunit;
 
 namespace Shared
 {
@@ -146,7 +145,11 @@ namespace Shared
                     }
                 }
 
-                Assert.NotEmpty(result);
+                if(result.Count == 0)
+                {
+                    throw new InvalidOperationException("Did not add any DLLs as references!");
+                }
+
                 return result.ToArray();
             }
         }
@@ -165,26 +168,9 @@ namespace Shared
         {
             var syntaxTree = CSharpSyntaxTree.ParseText(Source);
 
-            // var rrr = AppDomain.CurrentDomain.GetAssemblies()
-            //     .Where(_ => !_.IsDynamic && !string.IsNullOrWhiteSpace(_.Location))
-            //     .Select(_ => MetadataReference.CreateFromFile(_.Location))
-            //     .Concat(new[]
-            //     {
-            //         MetadataReference.CreateFromFile(typeof(T).Assembly.Location),
-            //         MetadataReference.CreateFromFile(typeof(ValueObjectAttribute).Assembly.Location)
-            //     });
-
             MetadataReference r = MetadataReference.CreateFromFile(typeof(ValueObjectAttribute).Assembly.Location);
-            //var rr = MetadataReference.CreateFromFile(typeof(T).Assembly.Location);
-
 
             References.Add(r);
-            //References.Add(rr);
-
-            // foreach (var portableExecutableReference in rrr)
-            // {
-            //     References.Add(portableExecutableReference);
-            // }
 
             AddNuGetReferences();
 
