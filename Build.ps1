@@ -57,16 +57,13 @@ WriteStage("Cleaning, restoring, and building release version of Vogen...")
 
 exec { & dotnet clean Vogen.sln -c Release --verbosity $verbosity}
 exec { & dotnet restore Vogen.sln --no-cache --verbosity $verbosity }
-exec { & dotnet build Vogen.sln -c Release -p XXXXXXXXTHOROUGH --no-restore --verbosity $verbosity}
+exec { & dotnet build Vogen.sln -c Release -p THOROUGH --no-restore --verbosity $verbosity}
 
 # run the analyzer and code generation tests
 WriteStage("Running analyzer and code generation tests...")
 exec { & dotnet test Vogen.sln -c Release --no-build -l trx -l "GitHubActions;report-warnings=false" --verbosity $verbosity }
 
-WriteStage("                              Finished runn tests......................")
-
 ################################################################
-
 
 # Run the end to end tests. The tests can't have project references to Vogen. This is because, in Visual Studio, 
 # it causes conflicts caused by the difference in runtime; VS uses netstandard2.0 to load and run the analyzers, but the 
