@@ -11,10 +11,9 @@
     <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
   </PropertyGroup>
 
-  <PropertyGroup>
-    <DefineConstants>$(DefineConstants);</DefineConstants>
-    <!--<DefineConstants>$(DefineConstants);THOROUGH</DefineConstants>-->
-  </PropertyGroup>
+<PropertyGroup Condition="'$(Thorough)'=='true'">
+    <DefineConstants>$(DefineConstants);THOROUGH</DefineConstants>
+</PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="GitHubActionsTestLogger" Version="2.0.1">
