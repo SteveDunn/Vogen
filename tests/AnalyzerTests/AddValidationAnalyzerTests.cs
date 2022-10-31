@@ -66,7 +66,7 @@ namespace ConsoleApplication1
             {
                 TestState =
                 {
-                    Sources = { input },
+                    Sources = { input }
                 },
 
                 CompilerDiagnostics = CompilerDiagnostics.Suggestions,
@@ -80,7 +80,11 @@ namespace ConsoleApplication1
             await test.RunAsync();
         }
 
-#if NET7_0_OR_GREATER
+        // todo: figure out a way of include Vogen.SharedTypes, but the .NET 7 version that contains the
+        // generic attribute. The test below defines that attribute in the source to get around the compilation error
+        // that it's not defined.
+
+        //Diagnostic and CodeFix both triggered and checked for
         [Fact]
         public async Task Generic_CodeFixTriggeredForVoWithNoValidateMethod()
         {
@@ -96,10 +100,27 @@ using Vogen;
 namespace ConsoleApplication1
 {
     [ValueObject<int>]
-    public partial class {|#0:MyValueObject|}
+    public partial class {|#0:TypeName|}
     {   
     }
-}");
+}
+
+namespace Vogen
+{
+    [AttributeUsage(AttributeTargets.Class | AttributeTargets.Struct, AllowMultiple = false)]
+    public class ValueObjectAttribute<T> : ValueObjectAttribute
+    {
+        public ValueObjectAttribute(
+            Conversions conversions = Conversions.Default,
+            Type throws = null,
+            Customizations customizations = Customizations.None,
+            DeserializationStrictness deserializationStrictness = DeserializationStrictness.AllowValidAndKnownInstances)
+            : base(typeof(T), conversions, throws, customizations, deserializationStrictness)
+        {
+        }
+    }
+}
+");
 
             var expectedOutput = LineEndingsHelper.Normalize(@"
 using System;
@@ -113,7 +134,7 @@ using Vogen;
 namespace ConsoleApplication1
 {
     [ValueObject<int>]
-    public partial class MyValueObject
+    public partial class TypeName
     {
         private static Validation Validate(int input)
         {
@@ -121,16 +142,34 @@ namespace ConsoleApplication1
             return isValid ? Validation.Ok : Validation.Invalid(""[todo: describe the validation]"");
         }
     }
-}");
+}
+
+namespace Vogen
+{
+    [AttributeUsage(AttributeTargets.Class | AttributeTargets.Struct, AllowMultiple = false)]
+    public class ValueObjectAttribute<T> : ValueObjectAttribute
+    {
+        public ValueObjectAttribute(
+            Conversions conversions = Conversions.Default,
+            Type throws = null,
+            Customizations customizations = Customizations.None,
+            DeserializationStrictness deserializationStrictness = DeserializationStrictness.AllowValidAndKnownInstances)
+            : base(typeof(T), conversions, throws, customizations, deserializationStrictness)
+        {
+        }
+    }
+}
+");
 
             var expectedDiagnostic =
-                VerifyCS.Diagnostic("AddValidationMethod").WithSeverity(DiagnosticSeverity.Info).WithLocation(0).WithArguments("MyValueObject");
+                VerifyCS.Diagnostic("AddValidationMethod").WithSeverity(DiagnosticSeverity.Info).WithLocation(0).WithArguments("TypeName");
 
             var test = new VerifyCS.Test
             {
                 TestState =
                 {
                     Sources = { input },
+                    ReferenceAssemblies = References.Net70AndOurs.Value
                 },
 
                 CompilerDiagnostics = CompilerDiagnostics.Suggestions,
@@ -143,6 +182,5 @@ namespace ConsoleApplication1
 
             await test.RunAsync();
         }
-#endif
     }
 }
