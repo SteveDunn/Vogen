@@ -8,7 +8,7 @@ body:
       label: "Describe the bug"
       description: "A clear and concise description of what the bug is. Please include the exact version of Visual Studio / Rider/ other IDE (or command line), and exactly what target framework(s) it fails on."
       placeholder: |
-        Using Visual Studio / Rider / VSCode / the command line (and the exact version of the IDE), I was targetting the following TFMS: [x,y,z]
+        Using Visual Studio / Rider / VSCode / the command line (and the exact version of the IDE), I was targetting the following Frameworks: [x,y,z]
         Anything else that you think might be useful.
     validations:
       required: true
