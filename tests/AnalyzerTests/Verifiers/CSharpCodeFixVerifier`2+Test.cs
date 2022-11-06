@@ -20,9 +20,6 @@ namespace AnalyzerTests.Verifiers
                     compilationOptions = compilationOptions.WithSpecificDiagnosticOptions(
                         compilationOptions.SpecificDiagnosticOptions.SetItems(CSharpVerifierHelper.NullableWarnings));
 
-                    // compilationOptions = compilationOptions.WithSpecificDiagnosticOptions(
-                    //     compilationOptions.SpecificDiagnosticOptions.SetItem("Analyzer1", ReportDiagnostic.Error));
-                    
                     solution = solution.WithProjectCompilationOptions(projectId, compilationOptions);
 
                     return solution;
