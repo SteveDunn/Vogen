@@ -10,6 +10,10 @@
   <img src="./assets/cavey.png">
 </p>
 
+[![Sparkline](https://stars.medv.io/stevedunn/vogen.svg)](https://stars.medv.io/stevedunn/vogen)
+## Give a Star! :star:
+If you like or are using this project please give it a star. Thanks!
+
 # Vogen: cure your Primitive Obsession
 
 ## Overview
@@ -238,13 +242,13 @@ public readonly partial struct Celsius {
 Each Value Object can have it's own *optional* configuration. Configuration includes:
 
 * The underlying type
-* Any 'conversions' (Dapper, System.Text.Json, Newtonsoft.Json, etc.)
+* Any 'conversions' (Dapper, System.Text.Json, Newtonsoft.Json, etc.) - see [the Integrations page](https://github.com/SteveDunn/Vogen/wiki/Integration) in the wiki for more information
 * The type of the exception that is thrown when validation fails
 
 If any of those above are not specified, then global configuration is inferred. It looks like this:
 
 ```csharp
-[assembly: VogenDefaults(underlyingType: typeof(int), conversions: Conversions.None, throws: typeof(ValueObjectValidationException))]
+[assembly: VogenDefaults(underlyingType: typeof(int), conversions: Conversions.Default, throws: typeof(ValueObjectValidationException))]
 ```
 
 Those again are optional. If they're not specified, then they are defaulted to:
