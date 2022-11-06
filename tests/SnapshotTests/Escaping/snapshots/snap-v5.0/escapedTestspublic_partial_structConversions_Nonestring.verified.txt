@@ -131,7 +131,7 @@ namespace @class
         public readonly override global::System.Int32 GetHashCode() => global::System.Collections.Generic.EqualityComparer<string>.Default.GetHashCode(_value);
 
         /// <summary>Returns the string representation of the underlying type</summary>
-    /// <inheritdoc cref="{item.UnderlyingTypeFullName}.ToString()" />
+    /// <inheritdoc cref="System.String.ToString()" />
     public readonly override global::System.String ToString() => Value.ToString();
 
         private readonly void EnsureInitialized()
