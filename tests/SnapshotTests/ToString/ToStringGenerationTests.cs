@@ -51,7 +51,7 @@ public class ToStringGenerationTests
     {
         string declaration = $@"
   [ValueObject]
-  public {type} {className} {{ {WriteToStringMethod(addToStringMethod, type.Contains("record"))} }}";
+  public {type} {className} {{ {WriteToStringMethod(addToStringMethod, type.EndsWith("record class") || type.EndsWith("record"))} }}";
         var source = @"using Vogen;
 namespace Whatever
 {
@@ -64,14 +64,14 @@ namespace Whatever
             .RunOnAllFrameworks();
     }
 
-    private static string WriteToStringMethod(ToStringMethod toStringMethod, bool isARecord)
+    private static string WriteToStringMethod(ToStringMethod toStringMethod, bool isARecordClass)
     {
-        string s = isARecord ? "public override sealed string ToString()" : "public override string ToString()";
+        string s = isARecordClass ? "public override sealed string ToString()" : "public override string ToString()";
         return toStringMethod switch
         {
             ToStringMethod.None => string.Empty,
             ToStringMethod.Method => $"{s} {{return \"!\"; }}",
-            ToStringMethod.ExpressionBodiedMethod => $"{s} => \"!\"",
+            ToStringMethod.ExpressionBodiedMethod => $"{s} => \"!\";",
             _ => throw new InvalidOperationException($"Don't know what a {toStringMethod} is!")
         };
     }

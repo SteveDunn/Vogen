@@ -3,12 +3,17 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using VerifyXunit;
 using Vogen;
+using Xunit.Abstractions;
 
 namespace SnapshotTests.GenerationPermutations;
 
 [UsesVerify] 
 public class GenerationPermutationTests
 {
+    private readonly ITestOutputHelper _logger;
+
+    public GenerationPermutationTests(ITestOutputHelper logger) => _logger = logger;
+
     public class Types : IEnumerable<object[]>
     {
         public IEnumerator<object[]> GetEnumerator()
@@ -35,8 +40,11 @@ public class GenerationPermutationTests
             }
         }
 
-        private static string CreateClassName(string type, string conversion, string underlyingType) => 
-            type.Replace(" ", "_") + conversion.Replace(".", "_").Replace("|", "_") + underlyingType;
+        private static string CreateClassName(string type, string conversion, string underlyingType) =>
+            Normalize($"{type}{conversion}{underlyingType}");
+
+        private static string Normalize(string input) => input.Replace(" ", "_").Replace("|", "_").Replace(".", "_").Replace("@", "_");
+
 
         private readonly string[] _accessModifiers =
         {
@@ -66,6 +74,7 @@ public class GenerationPermutationTests
 
     private Task Run(string type, string conversions, string underlyingType, string className, string locale)
     {
+        _logger.WriteLine($"Running permutation, type: {type}, conversion: {conversions}, underlyingType: {underlyingType}, className: {className}, locale: {locale}");
         string declaration = $@"
   [ValueObject(conversions: {conversions}, underlyingType: typeof({underlyingType}))]
   {type} {className} {{ }}";
@@ -76,6 +85,7 @@ namespace Whatever
 }";
 
         return new SnapshotRunner<ValueObjectGenerator>()
+            .WithLogger(_logger)
             .WithSource(source)
             .WithLocale(locale)
             .CustomizeSettings(s => s.UseFileName(TestHelper.ShortenForFilename(className)))

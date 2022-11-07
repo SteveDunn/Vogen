@@ -11,8 +11,6 @@ namespace AnalyzerTests;
 public class ToStringOverrideTests
 {
     [Theory]
-    [InlineData("public partial record struct")]
-    [InlineData("public readonly partial record struct")]
     [InlineData("public partial record class")]
     [InlineData("public partial record")]
     public void WithRecordsThatHaveNoSealedOverride_OutputErrors(string type)
@@ -45,8 +43,6 @@ namespace Whatever;
     }
 
     [Theory]
-    [InlineData("public partial record struct")]
-    [InlineData("public readonly partial record struct")]
     [InlineData("public partial record class")]
     [InlineData("public partial record")]
     public void WithRecordsThatDoHaveSealedOverride_DoNotOutputErrors(string type)
@@ -59,6 +55,26 @@ namespace Whatever;
 {type} CustomerId 
 {{
     public override sealed string ToString() => string.Empty;
+}}
+";
+
+        new TestRunner<ValueObjectGenerator>()
+            .WithSource(source)
+            .ValidateWith(d => d.Should().HaveCount(0))
+            .RunOnAllFrameworks();
+    }
+    
+    [Fact]
+    public void RecordStruct_DoesNotRequireSealedToString()
+    {
+        var source = $@"using Vogen;
+
+namespace Whatever;
+
+[ValueObject]
+public partial record struct CustomerId 
+{{
+    public override string ToString() => string.Empty;
 }}
 ";
 
@@ -111,11 +127,8 @@ namespace Whatever;
 
         private readonly string[] _types =
         {
-            "public partial struct",
-            "public readonly partial struct",
             "public partial class",
-            "internal partial class",
-            "internal readonly partial struct"
+            "internal partial class"
         };
 
         IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();

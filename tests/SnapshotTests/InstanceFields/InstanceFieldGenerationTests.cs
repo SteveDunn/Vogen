@@ -109,8 +109,7 @@ public class TestData : IEnumerable<object[]>
         ("double", "123.45d"),
         ("float", "123.45f"),
         ("int", "123"),
-        ("System.Guid", "Guid.Empty"),
-        ("long", "123l"),
+        ("long", "123L"),
         ("string", """123"""),
     };
 

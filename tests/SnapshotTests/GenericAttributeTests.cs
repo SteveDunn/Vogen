@@ -1,4 +1,5 @@
 ﻿using System.Threading.Tasks;
+using Shared;
 using VerifyXunit;
 using Vogen;
 
@@ -24,7 +25,8 @@ public partial struct CustomerId
     private static Task RunTest(string source) =>
         new SnapshotRunner<ValueObjectGenerator>()
             .WithSource(source)
-            .RunOnAllFrameworks();
+            .IgnoreInitialCompilationErrors()
+            .RunOn(TargetFramework.Net7_0);
 
     [Fact]
     public Task No_namespace() =>

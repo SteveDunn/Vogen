@@ -64,7 +64,7 @@ public partial struct CustomerId
 
 public class MyValidationException : Exception
 {
-    public MyValidationException(object o) : base(o.ToString() { }
+    public MyValidationException(object o) : base(o.ToString()) { }
 }
 ";
 
@@ -88,7 +88,7 @@ public class MyValidationException : Exception
     [Fact]
     public void Missing_public_string_constructor_on_exception()
     {
-        var source = @"using System;
+        const string source = @"using System;
 using Vogen;
 
 [assembly: VogenDefaults(throws: typeof(Whatever.MyValidationException))]
@@ -103,7 +103,7 @@ public partial struct CustomerId
 
 public class MyValidationException : Exception
 {
-    private MyValidationException(object o) : base(o.ToString() { } // PRIVATE!
+    private MyValidationException(object o) : base(o.ToString()) { } // PRIVATE!
 }
 ";
 
