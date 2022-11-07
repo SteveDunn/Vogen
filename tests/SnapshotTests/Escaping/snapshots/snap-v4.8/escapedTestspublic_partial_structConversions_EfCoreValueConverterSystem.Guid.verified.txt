@@ -152,7 +152,7 @@ namespace @class
         public readonly override global::System.Int32 GetHashCode() => global::System.Collections.Generic.EqualityComparer<System.Guid>.Default.GetHashCode(_value);
 
         /// <summary>Returns the string representation of the underlying type</summary>
-    /// <inheritdoc cref="{item.UnderlyingTypeFullName}.ToString()" />
+    /// <inheritdoc cref="System.Guid.ToString()" />
     public readonly override global::System.String ToString() => Value.ToString();
 
         private readonly void EnsureInitialized()
