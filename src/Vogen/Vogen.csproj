@@ -80,13 +80,6 @@
 
   </ItemGroup>
 
-  <!--<ItemGroup>
-    <PackageReference Include="MinVer" Version="4.2.0">
-      <PrivateAssets>all</PrivateAssets>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-    </PackageReference>
-  </ItemGroup>-->
-
   <ItemGroup>
     <PackageReference Include="MinVer" Version="4.2.0">
       <PrivateAssets>all</PrivateAssets>

@@ -26,13 +26,6 @@ public partial struct CustomerId
         return new SnapshotRunner<ValueObjectGenerator>()
             .WithSource(source)
             .RunOnAllFrameworks();
-
-        //
-        //     var (diagnostics, output) = TestHelper.GetGeneratedOutput<ValueObjectGenerator>(source);
-        //
-        // diagnostics.Should().BeEmpty();
-        //
-        // return Verifier.Verify(output).UseDirectory(SnapshotUtils.GetSnapshotDirectoryName());
     }
 
     [Fact]

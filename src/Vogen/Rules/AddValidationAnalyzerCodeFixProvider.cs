@@ -23,12 +23,7 @@ namespace Vogen.Rules
             get { return ImmutableArray.Create(RuleIdentifiers.AddValidationMethod); }
         }
 
-        public sealed override FixAllProvider GetFixAllProvider()
-        {
-            return null!;
-            // // See https://github.com/dotnet/roslyn/blob/main/docs/analyzers/FixAllProvider.md for more information on Fix All Providers
-            // return WellKnownFixAllProviders.BatchFixer;
-        }
+        public sealed override FixAllProvider GetFixAllProvider() => null!;
 
         public sealed override async Task RegisterCodeFixesAsync(CodeFixContext context)
         {

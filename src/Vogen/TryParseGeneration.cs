@@ -17,7 +17,6 @@ namespace Vogen
             {
                 if (primitiveSymbol is null) return string.Empty;
 
-                //var found = FindMatches(primitiveSymbol).OrderByDescending(x => x.Parameters.Length).ToList();
                 var found = FindMatches(primitiveSymbol).ToList();
 
                 if (found.Count == 0) return string.Empty;

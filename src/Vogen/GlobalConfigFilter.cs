@@ -145,7 +145,6 @@ internal static class GlobalConfigFilter
             if (syntax is not null)
             {
                 buildResult.AddDiagnostic(DiagnosticsCatalogue.InvalidConversions(syntax.GetLocation()));
-                //context.ReportDiagnostic(DiagnosticsCatalogue.InvalidConversions(syntax.GetLocation()));
             }
         }
 
@@ -155,7 +154,6 @@ internal static class GlobalConfigFilter
             if (syntax is not null)
             {
                 buildResult.AddDiagnostic(DiagnosticsCatalogue.InvalidCustomizations(syntax.GetLocation()));
-                //context.ReportDiagnostic(DiagnosticsCatalogue.InvalidCustomizations(syntax.GetLocation()));
             }
         }
 
@@ -165,8 +163,6 @@ internal static class GlobalConfigFilter
             if (syntax is not null)
             {
                 buildResult.AddDiagnostic(DiagnosticsCatalogue.InvalidDeserializationStrictness(syntax.GetLocation()));
-
-                //context.ReportDiagnostic(DiagnosticsCatalogue.InvalidDeserializationStrictness(syntax.GetLocation()));
             }
         }
 
@@ -266,7 +262,6 @@ internal static class GlobalConfigFilter
         if (!invalidExceptionType.ImplementsInterfaceOrBaseClass(typeof(Exception)))
         {
             buildResult.AddDiagnostic(DiagnosticsCatalogue.CustomExceptionMustDeriveFromException(invalidExceptionType));
-            //context.ReportDiagnostic(DiagnosticsCatalogue.CustomExceptionMustDeriveFromException(invalidExceptionType));
         }
 
         var allConstructors = invalidExceptionType.Constructors.Where(c => c.DeclaredAccessibility == Accessibility.Public);
@@ -279,7 +274,6 @@ internal static class GlobalConfigFilter
         }
 
         buildResult.AddDiagnostic(DiagnosticsCatalogue.CustomExceptionMustHaveValidConstructor(invalidExceptionType));
-        //context.ReportDiagnostic(DiagnosticsCatalogue.CustomExceptionMustHaveValidConstructor(invalidExceptionType));
     }
 
     /// <summary>
