@@ -1,8 +1,6 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <DefineConstants>$(DefineConstants);THOROUGH</DefineConstants>
-
     <TargetFramework>net6.0</TargetFramework>
     <Nullable>enable</Nullable>
 
