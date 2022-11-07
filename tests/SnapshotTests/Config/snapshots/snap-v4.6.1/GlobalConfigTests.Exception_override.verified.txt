@@ -85,7 +85,7 @@ namespace Whatever
             var validation = CustomerId.Validate(value);
             if (validation != Vogen.Validation.Ok)
             {
-                throw new global::Vogen.ValueObjectValidationException(validation.ErrorMessage);
+                throw new Whatever.MyValidationException(validation.ErrorMessage);
             }
 
 
@@ -104,7 +104,7 @@ namespace Whatever
             var validation = CustomerId.Validate(value);
             if (validation != Vogen.Validation.Ok)
             {
-                throw new global::Vogen.ValueObjectValidationException(validation.ErrorMessage);
+                throw new Whatever.MyValidationException(validation.ErrorMessage);
             }
 
 
@@ -156,7 +156,7 @@ namespace Whatever
                 global::System.String message = "Use of uninitialized Value Object.";
 #endif
 
-                throw new global::Vogen.ValueObjectValidationException(message);
+                throw new Whatever.MyValidationException(message);
             }
         }
 

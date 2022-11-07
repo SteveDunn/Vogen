@@ -101,7 +101,8 @@ namespace Whatever
         {
             
 
-            var validation = CustomerId.validate(value);
+                    if(value == Zero.Value) return Zero;
+var validation = CustomerId.validate(value);
             if (validation != Vogen.Validation.Ok)
             {
                 throw new global::Vogen.ValueObjectValidationException(validation.ErrorMessage);
@@ -161,6 +162,13 @@ namespace Whatever
         }
 
         
+// instance...
+
+    
+/// <summary>a short description that'll show up in intellisense</summary>
+/// <returns>An immutable shared instance of "T:Whatever.CustomerId"</returns>
+public static CustomerId Zero = new CustomerId(0);
+
  
         
         class CustomerIdSystemTextJsonConverter : global::System.Text.Json.Serialization.JsonConverter<CustomerId>

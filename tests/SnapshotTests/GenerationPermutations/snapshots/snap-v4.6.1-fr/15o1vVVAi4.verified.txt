@@ -24,12 +24,11 @@ namespace Whatever
 
     [global::System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage] 
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Vogen", "1.0.0.0")]
-    [global::System.Text.Json.Serialization.JsonConverter(typeof(internal_partial_record_structConversions_NewtonsoftJsonlongSystemTextJsonConverter))]
-[global::System.ComponentModel.TypeConverter(typeof(internal_partial_record_structConversions_NewtonsoftJsonlongTypeConverter))]
+    [global::Newtonsoft.Json.JsonConverter(typeof(internal_partial_record_structConversions_NewtonsoftJsonlongNewtonsoftJsonConverter))]
 
     [global::System.Diagnostics.DebuggerTypeProxyAttribute(typeof(internal_partial_record_structConversions_NewtonsoftJsonlongDebugView))]
-    [global::System.Diagnostics.DebuggerDisplayAttribute("Underlying type: global::System.Int32, Value = { _value }")]
-    internal partial record struct internal_partial_record_structConversions_NewtonsoftJsonlong 
+    [global::System.Diagnostics.DebuggerDisplayAttribute("Underlying type: long, Value = { _value }")]
+    internal partial record struct internal_partial_record_structConversions_NewtonsoftJsonlong  :  global::System.IComparable<internal_partial_record_structConversions_NewtonsoftJsonlong>
     {
 #if DEBUG    
         private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
@@ -37,12 +36,12 @@ namespace Whatever
 
         private readonly global::System.Boolean _isInitialized;
         
-        private readonly global::System.Int32 _value;
+        private readonly long _value;
 
         /// <summary>
-        /// Gets the underlying <see cref="global::System.Int32" /> value if set, otherwise a <see cref="ValueObjectValidationException" /> is thrown.
+        /// Gets the underlying <see cref="long" /> value if set, otherwise a <see cref="ValueObjectValidationException" /> is thrown.
         /// </summary>
-        public readonly global::System.Int32 Value
+        public readonly long Value
         {
             [global::System.Diagnostics.DebuggerStepThroughAttribute]
             get
@@ -75,7 +74,7 @@ namespace Whatever
         }
 
         [global::System.Diagnostics.DebuggerStepThroughAttribute]
-        private internal_partial_record_structConversions_NewtonsoftJsonlong(global::System.Int32 value) 
+        private internal_partial_record_structConversions_NewtonsoftJsonlong(long value) 
         {
             _value = value;
             _isInitialized = true;
@@ -86,7 +85,7 @@ namespace Whatever
         /// </summary>
         /// <param name="value">The underlying type.</param>
         /// <returns>An instance of this type.</returns>
-        public static internal_partial_record_structConversions_NewtonsoftJsonlong From(global::System.Int32 value)
+        public static internal_partial_record_structConversions_NewtonsoftJsonlong From(long value)
         {
             
 
@@ -97,14 +96,14 @@ namespace Whatever
             return instance;
         }
 
-        public static explicit operator internal_partial_record_structConversions_NewtonsoftJsonlong(global::System.Int32 value) => From(value);
-        public static explicit operator global::System.Int32(internal_partial_record_structConversions_NewtonsoftJsonlong value) => value.Value;
+        public static explicit operator internal_partial_record_structConversions_NewtonsoftJsonlong(long value) => From(value);
+        public static explicit operator long(internal_partial_record_structConversions_NewtonsoftJsonlong value) => value.Value;
 
-        
+        public int CompareTo(internal_partial_record_structConversions_NewtonsoftJsonlong other) => Value.CompareTo(other.Value);
 
         // only called internally when something has been deserialized into
         // its primitive type.
-        private static internal_partial_record_structConversions_NewtonsoftJsonlong Deserialize(global::System.Int32 value)
+        private static internal_partial_record_structConversions_NewtonsoftJsonlong Deserialize(long value)
         {
             
 
@@ -128,67 +127,34 @@ namespace Whatever
         }
 
         // record enumerates fields - we just want our Value and to throw if it's not initialized.
-        /// <summary>Returns the string representation of the underlying <see cref="global::System.Int32" />.</summary>
-    /// <inheritdoc cref="global::System.Int32.ToString()" />
+        /// <summary>Returns the string representation of the underlying <see cref="System.Int64" />.</summary>
+    /// <inheritdoc cref="System.Int64.ToString()" />
     public override global::System.String ToString() => Value.ToString();
 
         
  
         
-        class internal_partial_record_structConversions_NewtonsoftJsonlongSystemTextJsonConverter : global::System.Text.Json.Serialization.JsonConverter<internal_partial_record_structConversions_NewtonsoftJsonlong>
+
+        class internal_partial_record_structConversions_NewtonsoftJsonlongNewtonsoftJsonConverter : Newtonsoft.Json.JsonConverter
         {
-            public override internal_partial_record_structConversions_NewtonsoftJsonlong Read(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
+            public override bool CanConvert(System.Type objectType)
             {
-                return internal_partial_record_structConversions_NewtonsoftJsonlong.Deserialize(reader.GetInt32());
+                return objectType == typeof(internal_partial_record_structConversions_NewtonsoftJsonlong);
             }
 
-            public override void Write(System.Text.Json.Utf8JsonWriter writer, internal_partial_record_structConversions_NewtonsoftJsonlong value, global::System.Text.Json.JsonSerializerOptions options)
+            public override void WriteJson(Newtonsoft.Json.JsonWriter writer, object value, Newtonsoft.Json.JsonSerializer serializer)
             {
-                writer.WriteNumberValue(value.Value);
+                var id = (internal_partial_record_structConversions_NewtonsoftJsonlong)value;
+                serializer.Serialize(writer, id.Value);
+            }
+
+            public override object ReadJson(Newtonsoft.Json.JsonReader reader, System.Type objectType, object existingValue, Newtonsoft.Json.JsonSerializer serializer)
+            {
+                var result = serializer.Deserialize<global::System.Int64?>(reader);
+                return result.HasValue ? internal_partial_record_structConversions_NewtonsoftJsonlong.Deserialize(result.Value) : null;
             }
         }
 
-
-        class internal_partial_record_structConversions_NewtonsoftJsonlongTypeConverter : global::System.ComponentModel.TypeConverter
-        {
-            public override global::System.Boolean CanConvertFrom(global::System.ComponentModel.ITypeDescriptorContext context, global::System.Type sourceType)
-            {
-                return sourceType == typeof(global::System.Int32) || sourceType == typeof(global::System.String) || base.CanConvertFrom(context, sourceType);
-            }
-
-            public override global::System.Object ConvertFrom(global::System.ComponentModel.ITypeDescriptorContext context, global::System.Globalization.CultureInfo culture, global::System.Object value)
-            {
-                return value switch
-                {
-                    global::System.Int32 intValue => internal_partial_record_structConversions_NewtonsoftJsonlong.Deserialize(intValue),
-                    global::System.String stringValue when !global::System.String.IsNullOrEmpty(stringValue) && global::System.Int32.TryParse(stringValue, out var result) => internal_partial_record_structConversions_NewtonsoftJsonlong.Deserialize(result),
-                    _ => base.ConvertFrom(context, culture, value),
-                };
-            }
-
-            public override bool CanConvertTo(global::System.ComponentModel.ITypeDescriptorContext context, global::System.Type sourceType)
-            {
-                return sourceType == typeof(global::System.Int32) || sourceType == typeof(global::System.String) || base.CanConvertTo(context, sourceType);
-            }
-
-            public override object ConvertTo(global::System.ComponentModel.ITypeDescriptorContext context, global::System.Globalization.CultureInfo culture, global::System.Object value, global::System.Type destinationType)
-            {
-                if (value is internal_partial_record_structConversions_NewtonsoftJsonlong idValue)
-                {
-                    if (destinationType == typeof(global::System.Int32))
-                    {
-                        return idValue.Value;
-                    }
-
-                    if (destinationType == typeof(global::System.String))
-                    {
-                        return idValue.Value.ToString();
-                    }
-                }
-
-                return base.ConvertTo(context, culture, value, destinationType);
-            }
-        }
 
 
 
@@ -204,14 +170,14 @@ namespace Whatever
             }
 
             public global::System.Boolean IsInitialized => _t._isInitialized;
-            public global::System.String UnderlyingType => "global::System.Int32";
+            public global::System.String UnderlyingType => "System.Int64";
             public global::System.String Value => _t._isInitialized ? _t._value.ToString() : "[not initialized]" ;
 
             #if DEBUG
             public global::System.String CreatedWith => _t._stackTrace?.ToString() ?? "the From method";
             #endif
 
-            public global::System.String Conversions => @"Default";
+            public global::System.String Conversions => @"NewtonsoftJson";
                 }
 
 }

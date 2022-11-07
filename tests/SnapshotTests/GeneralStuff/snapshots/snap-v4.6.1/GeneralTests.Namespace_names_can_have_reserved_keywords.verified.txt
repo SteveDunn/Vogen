@@ -101,7 +101,10 @@ namespace @double
         {
             
 
-            var validation = @class.validate(value);
+                    if(value == @class.Value) return @class;
+        if(value == @event.Value) return @event;
+        if(value == @void.Value) return @void;
+var validation = @class.validate(value);
             if (validation != Vogen.Validation.Ok)
             {
                 throw new global::Vogen.ValueObjectValidationException(validation.ErrorMessage);
@@ -161,6 +164,18 @@ namespace @double
         }
 
         
+// instance...
+
+public static @class @class = new @class(42);
+
+// instance...
+
+public static @class @event = new @class(69);
+
+// instance...
+
+public static @class @void = new @class(666);
+
  
         
         class @classSystemTextJsonConverter : global::System.Text.Json.Serialization.JsonConverter<@class>

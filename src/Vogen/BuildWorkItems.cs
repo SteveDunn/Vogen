@@ -122,7 +122,7 @@ internal static class BuildWorkItems
     private static void ThrowIfToStringOverrideOnRecordIsUnsealed(VoTarget target, SourceProductionContext context,
         ToStringInfo info)
     {
-        if (info.HasToString && info.IsRecord && !info.IsSealed)
+        if (info.HasToString && info.IsRecordClass  && !info.IsSealed)
         {
             context.ReportDiagnostic(
                 DiagnosticsCatalogue.RecordToStringOverloadShouldBeSealed(
@@ -131,7 +131,7 @@ internal static class BuildWorkItems
         }
     }
 
-    private record struct ToStringInfo(bool HasToString, bool IsRecord, bool IsSealed, IMethodSymbol? Method);
+    private record struct ToStringInfo(bool HasToString, bool IsRecordClass, bool IsSealed, IMethodSymbol? Method);
 
     private static ToStringInfo HasToStringOverload(ITypeSymbol typeSymbol)
     {
@@ -168,7 +168,7 @@ internal static class BuildWorkItems
                 // In C# 10, the user can differentiate a ToString overload by making the method sealed.
                 // We report back if it's sealed or not so that we can emit an error if it's not sealed.
                 // The error stops another compilation error; if unsealed, the generator generates a duplicate ToString() method.
-                return new ToStringInfo(HasToString: true, IsRecord: typeSymbol.IsRecord, IsSealed: eachMethod.IsSealed, eachMethod);
+                return new ToStringInfo(HasToString: true, IsRecordClass: typeSymbol.IsRecord && typeSymbol.IsReferenceType, IsSealed: eachMethod.IsSealed, eachMethod);
             }
 
             INamedTypeSymbol? baseType = typeSymbol.BaseType;

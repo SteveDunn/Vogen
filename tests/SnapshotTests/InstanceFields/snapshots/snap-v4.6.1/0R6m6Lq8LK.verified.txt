@@ -28,8 +28,8 @@ namespace Whatever
 [global::System.ComponentModel.TypeConverter(typeof(public_partial_record_structlongTypeConverter))]
 
     [global::System.Diagnostics.DebuggerTypeProxyAttribute(typeof(public_partial_record_structlongDebugView))]
-    [global::System.Diagnostics.DebuggerDisplayAttribute("Underlying type: global::System.Int32, Value = { _value }")]
-    public partial record struct public_partial_record_structlong 
+    [global::System.Diagnostics.DebuggerDisplayAttribute("Underlying type: long, Value = { _value }")]
+    public partial record struct public_partial_record_structlong  :  global::System.IComparable<public_partial_record_structlong>
     {
 #if DEBUG    
         private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
@@ -37,12 +37,12 @@ namespace Whatever
 
         private readonly global::System.Boolean _isInitialized;
         
-        private readonly global::System.Int32 _value;
+        private readonly long _value;
 
         /// <summary>
-        /// Gets the underlying <see cref="global::System.Int32" /> value if set, otherwise a <see cref="ValueObjectValidationException" /> is thrown.
+        /// Gets the underlying <see cref="long" /> value if set, otherwise a <see cref="ValueObjectValidationException" /> is thrown.
         /// </summary>
-        public readonly global::System.Int32 Value
+        public readonly long Value
         {
             [global::System.Diagnostics.DebuggerStepThroughAttribute]
             get
@@ -75,7 +75,7 @@ namespace Whatever
         }
 
         [global::System.Diagnostics.DebuggerStepThroughAttribute]
-        private public_partial_record_structlong(global::System.Int32 value) 
+        private public_partial_record_structlong(long value) 
         {
             _value = value;
             _isInitialized = true;
@@ -86,7 +86,7 @@ namespace Whatever
         /// </summary>
         /// <param name="value">The underlying type.</param>
         /// <returns>An instance of this type.</returns>
-        public static public_partial_record_structlong From(global::System.Int32 value)
+        public static public_partial_record_structlong From(long value)
         {
             
 
@@ -97,18 +97,19 @@ namespace Whatever
             return instance;
         }
 
-        public static explicit operator public_partial_record_structlong(global::System.Int32 value) => From(value);
-        public static explicit operator global::System.Int32(public_partial_record_structlong value) => value.Value;
+        public static explicit operator public_partial_record_structlong(long value) => From(value);
+        public static explicit operator long(public_partial_record_structlong value) => value.Value;
 
-        
+        public int CompareTo(public_partial_record_structlong other) => Value.CompareTo(other.Value);
 
         // only called internally when something has been deserialized into
         // its primitive type.
-        private static public_partial_record_structlong Deserialize(global::System.Int32 value)
+        private static public_partial_record_structlong Deserialize(long value)
         {
             
 
-            
+                    if(value == MyValue.Value) return MyValue;
+
 
             return new public_partial_record_structlong(value);
         }
@@ -128,18 +129,22 @@ namespace Whatever
         }
 
         // record enumerates fields - we just want our Value and to throw if it's not initialized.
-        /// <summary>Returns the string representation of the underlying <see cref="global::System.Int32" />.</summary>
-    /// <inheritdoc cref="global::System.Int32.ToString()" />
+        /// <summary>Returns the string representation of the underlying <see cref="System.Int64" />.</summary>
+    /// <inheritdoc cref="System.Int64.ToString()" />
     public override global::System.String ToString() => Value.ToString();
 
         
+// instance...
+
+public static public_partial_record_structlong MyValue = new public_partial_record_structlong(123);
+
  
         
         class public_partial_record_structlongSystemTextJsonConverter : global::System.Text.Json.Serialization.JsonConverter<public_partial_record_structlong>
         {
             public override public_partial_record_structlong Read(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {
-                return public_partial_record_structlong.Deserialize(reader.GetInt32());
+                return public_partial_record_structlong.Deserialize(reader.GetInt64());
             }
 
             public override void Write(System.Text.Json.Utf8JsonWriter writer, public_partial_record_structlong value, global::System.Text.Json.JsonSerializerOptions options)
@@ -153,29 +158,29 @@ namespace Whatever
         {
             public override global::System.Boolean CanConvertFrom(global::System.ComponentModel.ITypeDescriptorContext context, global::System.Type sourceType)
             {
-                return sourceType == typeof(global::System.Int32) || sourceType == typeof(global::System.String) || base.CanConvertFrom(context, sourceType);
+                return sourceType == typeof(global::System.Int64) || sourceType == typeof(global::System.String) || base.CanConvertFrom(context, sourceType);
             }
 
             public override global::System.Object ConvertFrom(global::System.ComponentModel.ITypeDescriptorContext context, global::System.Globalization.CultureInfo culture, global::System.Object value)
             {
                 return value switch
                 {
-                    global::System.Int32 intValue => public_partial_record_structlong.Deserialize(intValue),
-                    global::System.String stringValue when !global::System.String.IsNullOrEmpty(stringValue) && global::System.Int32.TryParse(stringValue, out var result) => public_partial_record_structlong.Deserialize(result),
+                    global::System.Int64 longValue => public_partial_record_structlong.Deserialize(longValue),
+                    global::System.String stringValue when  !global::System.String.IsNullOrEmpty(stringValue) && long.TryParse(stringValue, out var result) => public_partial_record_structlong.Deserialize(result),
                     _ => base.ConvertFrom(context, culture, value),
                 };
             }
 
             public override bool CanConvertTo(global::System.ComponentModel.ITypeDescriptorContext context, global::System.Type sourceType)
             {
-                return sourceType == typeof(global::System.Int32) || sourceType == typeof(global::System.String) || base.CanConvertTo(context, sourceType);
+                return sourceType == typeof(global::System.Int64) || sourceType == typeof(global::System.String) || base.CanConvertTo(context, sourceType);
             }
 
             public override object ConvertTo(global::System.ComponentModel.ITypeDescriptorContext context, global::System.Globalization.CultureInfo culture, global::System.Object value, global::System.Type destinationType)
             {
                 if (value is public_partial_record_structlong idValue)
                 {
-                    if (destinationType == typeof(global::System.Int32))
+                    if (destinationType == typeof(global::System.Int64))
                     {
                         return idValue.Value;
                     }
@@ -204,7 +209,7 @@ namespace Whatever
             }
 
             public global::System.Boolean IsInitialized => _t._isInitialized;
-            public global::System.String UnderlyingType => "global::System.Int32";
+            public global::System.String UnderlyingType => "System.Int64";
             public global::System.String Value => _t._isInitialized ? _t._value.ToString() : "[not initialized]" ;
 
             #if DEBUG

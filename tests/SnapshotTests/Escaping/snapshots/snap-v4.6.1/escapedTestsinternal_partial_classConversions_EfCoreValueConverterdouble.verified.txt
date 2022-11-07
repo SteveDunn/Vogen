@@ -24,23 +24,21 @@ namespace @class
 
     [global::System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage] 
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Vogen", "1.0.0.0")]
-    [global::System.Text.Json.Serialization.JsonConverter(typeof(escapedTestsinternal_partial_classConversions_EfCoreValueConverterdoubleSystemTextJsonConverter))]
-[global::System.ComponentModel.TypeConverter(typeof(escapedTestsinternal_partial_classConversions_EfCoreValueConverterdoubleTypeConverter))]
-
+    
     [global::System.Diagnostics.DebuggerTypeProxyAttribute(typeof(escapedTestsinternal_partial_classConversions_EfCoreValueConverterdoubleDebugView))]
-    [global::System.Diagnostics.DebuggerDisplayAttribute("Underlying type: global::System.Int32, Value = { _value }")]
-    internal partial class escapedTestsinternal_partial_classConversions_EfCoreValueConverterdouble : global::System.IEquatable<escapedTestsinternal_partial_classConversions_EfCoreValueConverterdouble>, global::System.IEquatable<global::System.Int32> 
+    [global::System.Diagnostics.DebuggerDisplayAttribute("Underlying type: System.Double, Value = { _value }")]
+    internal partial class escapedTestsinternal_partial_classConversions_EfCoreValueConverterdouble : global::System.IEquatable<escapedTestsinternal_partial_classConversions_EfCoreValueConverterdouble>, global::System.IEquatable<System.Double> ,  global::System.IComparable<escapedTestsinternal_partial_classConversions_EfCoreValueConverterdouble>
     {
 #if DEBUG    
         private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
 #endif
         private readonly global::System.Boolean _isInitialized;
-        private readonly global::System.Int32 _value;
+        private readonly System.Double _value;
         
 /// <summary>
-/// Gets the underlying <see cref="global::System.Int32" /> value if set, otherwise a <see cref="ValueObjectValidationException" /> is thrown.
+/// Gets the underlying <see cref="System.Double" /> value if set, otherwise a <see cref="ValueObjectValidationException" /> is thrown.
 /// </summary>
-public global::System.Int32 Value
+public System.Double Value
         {
             [global::System.Diagnostics.DebuggerStepThroughAttribute]
             get
@@ -62,7 +60,7 @@ public global::System.Int32 Value
         }
 
         [global::System.Diagnostics.DebuggerStepThroughAttribute]
-        private escapedTestsinternal_partial_classConversions_EfCoreValueConverterdouble(global::System.Int32 value)
+        private escapedTestsinternal_partial_classConversions_EfCoreValueConverterdouble(System.Double value)
         {
             _value = value;
             _isInitialized = true;
@@ -73,7 +71,7 @@ public global::System.Int32 Value
         /// </summary>
         /// <param name="value">The underlying type.</param>
         /// <returns>An instance of this type.</returns>
-        public static escapedTestsinternal_partial_classConversions_EfCoreValueConverterdouble From(global::System.Int32 value)
+        public static escapedTestsinternal_partial_classConversions_EfCoreValueConverterdouble From(System.Double value)
         {
             
 
@@ -88,7 +86,7 @@ public global::System.Int32 Value
 
         // only called internally when something has been deserialized into
         // its primitive type.
-        private static escapedTestsinternal_partial_classConversions_EfCoreValueConverterdouble Deserialize(global::System.Int32 value)
+        private static escapedTestsinternal_partial_classConversions_EfCoreValueConverterdouble Deserialize(System.Double value)
         {
             
 
@@ -115,10 +113,10 @@ public global::System.Int32 Value
                 return true;
             }
 
-            return GetType() == other.GetType() && global::System.Collections.Generic.EqualityComparer<global::System.Int32>.Default.Equals(Value, other.Value);
+            return GetType() == other.GetType() && global::System.Collections.Generic.EqualityComparer<System.Double>.Default.Equals(Value, other.Value);
         }
 
-        public global::System.Boolean Equals(global::System.Int32 primitive) => Value.Equals(primitive);
+        public global::System.Boolean Equals(System.Double primitive) => Value.Equals(primitive);
 
         public override global::System.Boolean Equals(global::System.Object obj)
         {
@@ -143,16 +141,16 @@ public global::System.Int32 Value
         public static global::System.Boolean operator ==(escapedTestsinternal_partial_classConversions_EfCoreValueConverterdouble left, escapedTestsinternal_partial_classConversions_EfCoreValueConverterdouble right) => Equals(left, right);
         public static global::System.Boolean operator !=(escapedTestsinternal_partial_classConversions_EfCoreValueConverterdouble left, escapedTestsinternal_partial_classConversions_EfCoreValueConverterdouble right) => !Equals(left, right);
 
-        public static global::System.Boolean operator ==(escapedTestsinternal_partial_classConversions_EfCoreValueConverterdouble left, global::System.Int32 right) => Equals(left.Value, right);
-        public static global::System.Boolean operator !=(escapedTestsinternal_partial_classConversions_EfCoreValueConverterdouble left, global::System.Int32 right) => !Equals(left.Value, right);
+        public static global::System.Boolean operator ==(escapedTestsinternal_partial_classConversions_EfCoreValueConverterdouble left, System.Double right) => Equals(left.Value, right);
+        public static global::System.Boolean operator !=(escapedTestsinternal_partial_classConversions_EfCoreValueConverterdouble left, System.Double right) => !Equals(left.Value, right);
 
-        public static global::System.Boolean operator ==(global::System.Int32 left, escapedTestsinternal_partial_classConversions_EfCoreValueConverterdouble right) => Equals(left, right.Value);
-        public static global::System.Boolean operator !=(global::System.Int32 left, escapedTestsinternal_partial_classConversions_EfCoreValueConverterdouble right) => !Equals(left, right.Value);
+        public static global::System.Boolean operator ==(System.Double left, escapedTestsinternal_partial_classConversions_EfCoreValueConverterdouble right) => Equals(left, right.Value);
+        public static global::System.Boolean operator !=(System.Double left, escapedTestsinternal_partial_classConversions_EfCoreValueConverterdouble right) => !Equals(left, right.Value);
 
-        public static explicit operator escapedTestsinternal_partial_classConversions_EfCoreValueConverterdouble(global::System.Int32 value) => From(value);
-        public static explicit operator global::System.Int32(escapedTestsinternal_partial_classConversions_EfCoreValueConverterdouble value) => value.Value;
+        public static explicit operator escapedTestsinternal_partial_classConversions_EfCoreValueConverterdouble(System.Double value) => From(value);
+        public static explicit operator System.Double(escapedTestsinternal_partial_classConversions_EfCoreValueConverterdouble value) => value.Value;
 
-        
+        public int CompareTo(escapedTestsinternal_partial_classConversions_EfCoreValueConverterdouble other) => Value.CompareTo(other.Value);
 
         public override global::System.Int32 GetHashCode()
         {
@@ -161,7 +159,7 @@ public global::System.Int32 Value
                 global::System.Int32 hash = (global::System.Int32) 2166136261;
                 hash = (hash * 16777619) ^ Value.GetHashCode();
                 hash = (hash * 16777619) ^ GetType().GetHashCode();
-                hash = (hash * 16777619) ^ global::System.Collections.Generic.EqualityComparer<global::System.Int32>.Default.GetHashCode();
+                hash = (hash * 16777619) ^ global::System.Collections.Generic.EqualityComparer<System.Double>.Default.GetHashCode();
                 return hash;
             }
         }
@@ -183,67 +181,25 @@ public global::System.Int32 Value
 
         
 
-        /// <summary>Returns the string representation of the underlying <see cref="global::System.Int32" />.</summary>
-    /// <inheritdoc cref="global::System.Int32.ToString()" />
+        /// <summary>Returns the string representation of the underlying <see cref="System.Double" />.</summary>
+    /// <inheritdoc cref="System.Double.ToString()" />
     public override global::System.String ToString() => Value.ToString();
 
         
-        class escapedTestsinternal_partial_classConversions_EfCoreValueConverterdoubleSystemTextJsonConverter : global::System.Text.Json.Serialization.JsonConverter<escapedTestsinternal_partial_classConversions_EfCoreValueConverterdouble>
+
+
+
+
+        public class EfCoreValueConverter : global::Microsoft.EntityFrameworkCore.Storage.ValueConversion.ValueConverter<escapedTestsinternal_partial_classConversions_EfCoreValueConverterdouble, global::System.Double>
         {
-            public override escapedTestsinternal_partial_classConversions_EfCoreValueConverterdouble Read(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
-            {
-                return escapedTestsinternal_partial_classConversions_EfCoreValueConverterdouble.Deserialize(reader.GetInt32());
-            }
-
-            public override void Write(System.Text.Json.Utf8JsonWriter writer, escapedTestsinternal_partial_classConversions_EfCoreValueConverterdouble value, global::System.Text.Json.JsonSerializerOptions options)
-            {
-                writer.WriteNumberValue(value.Value);
-            }
+            public EfCoreValueConverter() : this(null) { }
+            public EfCoreValueConverter(global::Microsoft.EntityFrameworkCore.Storage.ValueConversion.ConverterMappingHints mappingHints = null)
+                : base(
+                    vo => vo.Value,
+                    value => escapedTestsinternal_partial_classConversions_EfCoreValueConverterdouble.Deserialize(value),
+                    mappingHints
+                ) { }
         }
-
-
-        class escapedTestsinternal_partial_classConversions_EfCoreValueConverterdoubleTypeConverter : global::System.ComponentModel.TypeConverter
-        {
-            public override global::System.Boolean CanConvertFrom(global::System.ComponentModel.ITypeDescriptorContext context, global::System.Type sourceType)
-            {
-                return sourceType == typeof(global::System.Int32) || sourceType == typeof(global::System.String) || base.CanConvertFrom(context, sourceType);
-            }
-
-            public override global::System.Object ConvertFrom(global::System.ComponentModel.ITypeDescriptorContext context, global::System.Globalization.CultureInfo culture, global::System.Object value)
-            {
-                return value switch
-                {
-                    global::System.Int32 intValue => escapedTestsinternal_partial_classConversions_EfCoreValueConverterdouble.Deserialize(intValue),
-                    global::System.String stringValue when !global::System.String.IsNullOrEmpty(stringValue) && global::System.Int32.TryParse(stringValue, out var result) => escapedTestsinternal_partial_classConversions_EfCoreValueConverterdouble.Deserialize(result),
-                    _ => base.ConvertFrom(context, culture, value),
-                };
-            }
-
-            public override bool CanConvertTo(global::System.ComponentModel.ITypeDescriptorContext context, global::System.Type sourceType)
-            {
-                return sourceType == typeof(global::System.Int32) || sourceType == typeof(global::System.String) || base.CanConvertTo(context, sourceType);
-            }
-
-            public override object ConvertTo(global::System.ComponentModel.ITypeDescriptorContext context, global::System.Globalization.CultureInfo culture, global::System.Object value, global::System.Type destinationType)
-            {
-                if (value is escapedTestsinternal_partial_classConversions_EfCoreValueConverterdouble idValue)
-                {
-                    if (destinationType == typeof(global::System.Int32))
-                    {
-                        return idValue.Value;
-                    }
-
-                    if (destinationType == typeof(global::System.String))
-                    {
-                        return idValue.Value.ToString();
-                    }
-                }
-
-                return base.ConvertTo(context, culture, value, destinationType);
-            }
-        }
-
-
 
 
 
@@ -256,12 +212,10 @@ public global::System.Int32 Value
                 _t = t;
             }
 
-            public global::System.String UnderlyingType => "global::System.Int32";
-            public global::System.Int32 Value => _t.Value ;
+            public global::System.String UnderlyingType => "System.Double";
+            public System.Double Value => _t.Value ;
 
-            public global::System.String Conversions => @"[global::System.Text.Json.Serialization.JsonConverter(typeof(escapedTestsinternal_partial_classConversions_EfCoreValueConverterdoubleSystemTextJsonConverter))]
-[global::System.ComponentModel.TypeConverter(typeof(escapedTestsinternal_partial_classConversions_EfCoreValueConverterdoubleTypeConverter))]
-";
+            public global::System.String Conversions => @"";
                 }
     }
 }

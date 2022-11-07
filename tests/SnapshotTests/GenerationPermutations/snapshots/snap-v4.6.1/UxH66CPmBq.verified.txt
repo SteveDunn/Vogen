@@ -24,23 +24,21 @@ namespace Whatever
 
     [global::System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage] 
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Vogen", "1.0.0.0")]
-    [global::System.Text.Json.Serialization.JsonConverter(typeof(internal_sealed_partial_classConversions_LinqToDbValueConverterbyteSystemTextJsonConverter))]
-[global::System.ComponentModel.TypeConverter(typeof(internal_sealed_partial_classConversions_LinqToDbValueConverterbyteTypeConverter))]
-
+    
     [global::System.Diagnostics.DebuggerTypeProxyAttribute(typeof(internal_sealed_partial_classConversions_LinqToDbValueConverterbyteDebugView))]
-    [global::System.Diagnostics.DebuggerDisplayAttribute("Underlying type: global::System.Int32, Value = { _value }")]
-    internal sealed partial class internal_sealed_partial_classConversions_LinqToDbValueConverterbyte : global::System.IEquatable<internal_sealed_partial_classConversions_LinqToDbValueConverterbyte>, global::System.IEquatable<global::System.Int32> 
+    [global::System.Diagnostics.DebuggerDisplayAttribute("Underlying type: System.Byte, Value = { _value }")]
+    internal sealed partial class internal_sealed_partial_classConversions_LinqToDbValueConverterbyte : global::System.IEquatable<internal_sealed_partial_classConversions_LinqToDbValueConverterbyte>, global::System.IEquatable<System.Byte> ,  global::System.IComparable<internal_sealed_partial_classConversions_LinqToDbValueConverterbyte>
     {
 #if DEBUG    
         private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
 #endif
         private readonly global::System.Boolean _isInitialized;
-        private readonly global::System.Int32 _value;
+        private readonly System.Byte _value;
         
 /// <summary>
-/// Gets the underlying <see cref="global::System.Int32" /> value if set, otherwise a <see cref="ValueObjectValidationException" /> is thrown.
+/// Gets the underlying <see cref="System.Byte" /> value if set, otherwise a <see cref="ValueObjectValidationException" /> is thrown.
 /// </summary>
-public global::System.Int32 Value
+public System.Byte Value
         {
             [global::System.Diagnostics.DebuggerStepThroughAttribute]
             get
@@ -62,7 +60,7 @@ public global::System.Int32 Value
         }
 
         [global::System.Diagnostics.DebuggerStepThroughAttribute]
-        private internal_sealed_partial_classConversions_LinqToDbValueConverterbyte(global::System.Int32 value)
+        private internal_sealed_partial_classConversions_LinqToDbValueConverterbyte(System.Byte value)
         {
             _value = value;
             _isInitialized = true;
@@ -73,7 +71,7 @@ public global::System.Int32 Value
         /// </summary>
         /// <param name="value">The underlying type.</param>
         /// <returns>An instance of this type.</returns>
-        public static internal_sealed_partial_classConversions_LinqToDbValueConverterbyte From(global::System.Int32 value)
+        public static internal_sealed_partial_classConversions_LinqToDbValueConverterbyte From(System.Byte value)
         {
             
 
@@ -88,7 +86,7 @@ public global::System.Int32 Value
 
         // only called internally when something has been deserialized into
         // its primitive type.
-        private static internal_sealed_partial_classConversions_LinqToDbValueConverterbyte Deserialize(global::System.Int32 value)
+        private static internal_sealed_partial_classConversions_LinqToDbValueConverterbyte Deserialize(System.Byte value)
         {
             
 
@@ -115,10 +113,10 @@ public global::System.Int32 Value
                 return true;
             }
 
-            return GetType() == other.GetType() && global::System.Collections.Generic.EqualityComparer<global::System.Int32>.Default.Equals(Value, other.Value);
+            return GetType() == other.GetType() && global::System.Collections.Generic.EqualityComparer<System.Byte>.Default.Equals(Value, other.Value);
         }
 
-        public global::System.Boolean Equals(global::System.Int32 primitive) => Value.Equals(primitive);
+        public global::System.Boolean Equals(System.Byte primitive) => Value.Equals(primitive);
 
         public override global::System.Boolean Equals(global::System.Object obj)
         {
@@ -143,16 +141,16 @@ public global::System.Int32 Value
         public static global::System.Boolean operator ==(internal_sealed_partial_classConversions_LinqToDbValueConverterbyte left, internal_sealed_partial_classConversions_LinqToDbValueConverterbyte right) => Equals(left, right);
         public static global::System.Boolean operator !=(internal_sealed_partial_classConversions_LinqToDbValueConverterbyte left, internal_sealed_partial_classConversions_LinqToDbValueConverterbyte right) => !Equals(left, right);
 
-        public static global::System.Boolean operator ==(internal_sealed_partial_classConversions_LinqToDbValueConverterbyte left, global::System.Int32 right) => Equals(left.Value, right);
-        public static global::System.Boolean operator !=(internal_sealed_partial_classConversions_LinqToDbValueConverterbyte left, global::System.Int32 right) => !Equals(left.Value, right);
+        public static global::System.Boolean operator ==(internal_sealed_partial_classConversions_LinqToDbValueConverterbyte left, System.Byte right) => Equals(left.Value, right);
+        public static global::System.Boolean operator !=(internal_sealed_partial_classConversions_LinqToDbValueConverterbyte left, System.Byte right) => !Equals(left.Value, right);
 
-        public static global::System.Boolean operator ==(global::System.Int32 left, internal_sealed_partial_classConversions_LinqToDbValueConverterbyte right) => Equals(left, right.Value);
-        public static global::System.Boolean operator !=(global::System.Int32 left, internal_sealed_partial_classConversions_LinqToDbValueConverterbyte right) => !Equals(left, right.Value);
+        public static global::System.Boolean operator ==(System.Byte left, internal_sealed_partial_classConversions_LinqToDbValueConverterbyte right) => Equals(left, right.Value);
+        public static global::System.Boolean operator !=(System.Byte left, internal_sealed_partial_classConversions_LinqToDbValueConverterbyte right) => !Equals(left, right.Value);
 
-        public static explicit operator internal_sealed_partial_classConversions_LinqToDbValueConverterbyte(global::System.Int32 value) => From(value);
-        public static explicit operator global::System.Int32(internal_sealed_partial_classConversions_LinqToDbValueConverterbyte value) => value.Value;
+        public static explicit operator internal_sealed_partial_classConversions_LinqToDbValueConverterbyte(System.Byte value) => From(value);
+        public static explicit operator System.Byte(internal_sealed_partial_classConversions_LinqToDbValueConverterbyte value) => value.Value;
 
-        
+        public int CompareTo(internal_sealed_partial_classConversions_LinqToDbValueConverterbyte other) => Value.CompareTo(other.Value);
 
         public override global::System.Int32 GetHashCode()
         {
@@ -161,7 +159,7 @@ public global::System.Int32 Value
                 global::System.Int32 hash = (global::System.Int32) 2166136261;
                 hash = (hash * 16777619) ^ Value.GetHashCode();
                 hash = (hash * 16777619) ^ GetType().GetHashCode();
-                hash = (hash * 16777619) ^ global::System.Collections.Generic.EqualityComparer<global::System.Int32>.Default.GetHashCode();
+                hash = (hash * 16777619) ^ global::System.Collections.Generic.EqualityComparer<System.Byte>.Default.GetHashCode();
                 return hash;
             }
         }
@@ -183,68 +181,25 @@ public global::System.Int32 Value
 
         
 
-        /// <summary>Returns the string representation of the underlying <see cref="global::System.Int32" />.</summary>
-    /// <inheritdoc cref="global::System.Int32.ToString()" />
+        /// <summary>Returns the string representation of the underlying <see cref="System.Byte" />.</summary>
+    /// <inheritdoc cref="System.Byte.ToString()" />
     public override global::System.String ToString() => Value.ToString();
 
         
-        class internal_sealed_partial_classConversions_LinqToDbValueConverterbyteSystemTextJsonConverter : global::System.Text.Json.Serialization.JsonConverter<internal_sealed_partial_classConversions_LinqToDbValueConverterbyte>
+
+
+
+
+
+        public class LinqToDbValueConverter : global::LinqToDB.Common.ValueConverter<internal_sealed_partial_classConversions_LinqToDbValueConverterbyte, global::System.Byte>
         {
-            public override internal_sealed_partial_classConversions_LinqToDbValueConverterbyte Read(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
-            {
-                return internal_sealed_partial_classConversions_LinqToDbValueConverterbyte.Deserialize(reader.GetInt32());
-            }
-
-            public override void Write(System.Text.Json.Utf8JsonWriter writer, internal_sealed_partial_classConversions_LinqToDbValueConverterbyte value, global::System.Text.Json.JsonSerializerOptions options)
-            {
-                writer.WriteNumberValue(value.Value);
-            }
+            public LinqToDbValueConverter()
+                : base(
+                      v => v.Value,
+                      p => internal_sealed_partial_classConversions_LinqToDbValueConverterbyte.Deserialize(p),
+                      handlesNulls: false)
+            { }
         }
-
-
-        class internal_sealed_partial_classConversions_LinqToDbValueConverterbyteTypeConverter : global::System.ComponentModel.TypeConverter
-        {
-            public override global::System.Boolean CanConvertFrom(global::System.ComponentModel.ITypeDescriptorContext context, global::System.Type sourceType)
-            {
-                return sourceType == typeof(global::System.Int32) || sourceType == typeof(global::System.String) || base.CanConvertFrom(context, sourceType);
-            }
-
-            public override global::System.Object ConvertFrom(global::System.ComponentModel.ITypeDescriptorContext context, global::System.Globalization.CultureInfo culture, global::System.Object value)
-            {
-                return value switch
-                {
-                    global::System.Int32 intValue => internal_sealed_partial_classConversions_LinqToDbValueConverterbyte.Deserialize(intValue),
-                    global::System.String stringValue when !global::System.String.IsNullOrEmpty(stringValue) && global::System.Int32.TryParse(stringValue, out var result) => internal_sealed_partial_classConversions_LinqToDbValueConverterbyte.Deserialize(result),
-                    _ => base.ConvertFrom(context, culture, value),
-                };
-            }
-
-            public override bool CanConvertTo(global::System.ComponentModel.ITypeDescriptorContext context, global::System.Type sourceType)
-            {
-                return sourceType == typeof(global::System.Int32) || sourceType == typeof(global::System.String) || base.CanConvertTo(context, sourceType);
-            }
-
-            public override object ConvertTo(global::System.ComponentModel.ITypeDescriptorContext context, global::System.Globalization.CultureInfo culture, global::System.Object value, global::System.Type destinationType)
-            {
-                if (value is internal_sealed_partial_classConversions_LinqToDbValueConverterbyte idValue)
-                {
-                    if (destinationType == typeof(global::System.Int32))
-                    {
-                        return idValue.Value;
-                    }
-
-                    if (destinationType == typeof(global::System.String))
-                    {
-                        return idValue.Value.ToString();
-                    }
-                }
-
-                return base.ConvertTo(context, culture, value, destinationType);
-            }
-        }
-
-
-
 
 
         internal sealed class internal_sealed_partial_classConversions_LinqToDbValueConverterbyteDebugView
@@ -256,12 +211,10 @@ public global::System.Int32 Value
                 _t = t;
             }
 
-            public global::System.String UnderlyingType => "global::System.Int32";
-            public global::System.Int32 Value => _t.Value ;
+            public global::System.String UnderlyingType => "System.Byte";
+            public System.Byte Value => _t.Value ;
 
-            public global::System.String Conversions => @"[global::System.Text.Json.Serialization.JsonConverter(typeof(internal_sealed_partial_classConversions_LinqToDbValueConverterbyteSystemTextJsonConverter))]
-[global::System.ComponentModel.TypeConverter(typeof(internal_sealed_partial_classConversions_LinqToDbValueConverterbyteTypeConverter))]
-";
+            public global::System.String Conversions => @"";
                 }
     }
 }

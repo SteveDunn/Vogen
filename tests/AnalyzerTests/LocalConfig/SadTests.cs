@@ -68,7 +68,7 @@ public {path} CustomerId
 
 public class MyValidationException : Exception
 {{
-    public MyValidationException(object o) : base(o.ToString() {{ }}
+    public MyValidationException(object o) : base(o.ToString()) {{ }}
 }}
 ";
 
@@ -110,7 +110,7 @@ public {type} CustomerId
 
 public class MyValidationException : Exception
 {{
-    private MyValidationException(object o) : base(o.ToString() {{ }} // PRIVATE!
+    private MyValidationException(object o) : base(o.ToString()) {{ }} // PRIVATE!
 }}
 ";
 

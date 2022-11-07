@@ -59,7 +59,13 @@ public record R1
 }
 
 [ValueObject]
+public partial record struct RS1
+{
+    public override string ToString() => "RS1!";
+}
+
+[ValueObject]
 public partial record Vor1 : R1
 {
-    public override sealed string ToString() => "Vor1!";
+    public sealed override string ToString() => "Vor1!";
 }

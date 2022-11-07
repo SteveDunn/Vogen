@@ -9,6 +9,7 @@ using Microsoft.CodeAnalysis;
 using Shared;
 using VerifyTests;
 using VerifyXunit;
+using Xunit.Abstractions;
 
 namespace SnapshotTests
 {
@@ -43,6 +44,8 @@ namespace SnapshotTests
         private Action<VerifySettings>? _customizesSettings;
         
         private string _locale = string.Empty;
+        private bool _ignoreInitialCompilationErrors;
+        private ITestOutputHelper? _logger;
 
         public async Task RunOnAllFrameworks() => await RunOn(_allFrameworks);
 
@@ -52,18 +55,25 @@ namespace SnapshotTests
             return this;
         }
 
+        public SnapshotRunner<T> IgnoreInitialCompilationErrors()
+        {
+            _ignoreInitialCompilationErrors = true;
+            return this;
+        }
+
         public SnapshotRunner<T> CustomizeSettings(Action<VerifySettings> settings)
         {
             _customizesSettings = settings;
             return this;
         }
 
-        private async Task RunOn(params TargetFramework[] frameworks)
+        public async Task RunOn(params TargetFramework[] frameworks)
         {
             _ = _source ?? throw new InvalidOperationException("No source!");
 
             foreach (var eachFramework in frameworks)
             {
+                _logger?.WriteLine($"Running on {eachFramework}");
                 VerifySettings? verifySettings = null;
 
                 if (_customizesSettings is not null)
@@ -75,7 +85,7 @@ namespace SnapshotTests
                 using var scope = new AssertionScope();
 
                 var (diagnostics, output) = GetGeneratedOutput(_source, eachFramework);
-                diagnostics.Should().BeEmpty();
+                diagnostics.Should().BeEmpty("because the following source code should be valid: " + _source);
 
                 var outputFolder = Path.Combine(_path, SnapshotUtils.GetSnapshotDirectoryName(eachFramework, _locale));
 
@@ -86,15 +96,21 @@ namespace SnapshotTests
             }
         }
 
-        private static (ImmutableArray<Diagnostic> Diagnostics, string Output) GetGeneratedOutput(string source, TargetFramework targetFramework)
+        private (ImmutableArray<Diagnostic> Diagnostics, string Output) GetGeneratedOutput(string source, TargetFramework targetFramework)
         {
             var results = new ProjectBuilder()
                 .WithSource(source)
                 .WithTargetFramework(targetFramework)
-                .GetGeneratedOutput<T>();
+                .GetGeneratedOutput<T>(_ignoreInitialCompilationErrors);
 
             return results;
         }
 
+        public SnapshotRunner<T> WithLogger(ITestOutputHelper logger)
+        {
+            _logger = logger;
+
+            return this;
+        }
     }
 }

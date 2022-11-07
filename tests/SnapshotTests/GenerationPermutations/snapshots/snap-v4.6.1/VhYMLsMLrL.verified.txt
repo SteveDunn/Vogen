@@ -24,12 +24,10 @@ namespace Whatever
 
     [global::System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage] 
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Vogen", "1.0.0.0")]
-    [global::System.Text.Json.Serialization.JsonConverter(typeof(public_partial_structConversions_NonelongSystemTextJsonConverter))]
-[global::System.ComponentModel.TypeConverter(typeof(public_partial_structConversions_NonelongTypeConverter))]
-
+    
     [global::System.Diagnostics.DebuggerTypeProxyAttribute(typeof(public_partial_structConversions_NonelongDebugView))]
-    [global::System.Diagnostics.DebuggerDisplayAttribute("Underlying type: global::System.Int32, Value = { _value }")]
-    public partial struct public_partial_structConversions_Nonelong : global::System.IEquatable<public_partial_structConversions_Nonelong>, global::System.IEquatable<global::System.Int32> 
+    [global::System.Diagnostics.DebuggerDisplayAttribute("Underlying type: long, Value = { _value }")]
+    public partial struct public_partial_structConversions_Nonelong : global::System.IEquatable<public_partial_structConversions_Nonelong>, global::System.IEquatable<long> ,  global::System.IComparable<public_partial_structConversions_Nonelong>
     {
 #if DEBUG    
         private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
@@ -37,12 +35,12 @@ namespace Whatever
 
         private readonly global::System.Boolean _isInitialized;
         
-        private readonly global::System.Int32 _value;
+        private readonly long _value;
 
         /// <summary>
-        /// Gets the underlying <see cref="global::System.Int32" /> value if set, otherwise a <see cref="ValueObjectValidationException" /> is thrown.
+        /// Gets the underlying <see cref="long" /> value if set, otherwise a <see cref="ValueObjectValidationException" /> is thrown.
         /// </summary>
-        public readonly global::System.Int32 Value
+        public readonly long Value
         {
             [global::System.Diagnostics.DebuggerStepThroughAttribute]
             get
@@ -65,7 +63,7 @@ namespace Whatever
         }
 
         [global::System.Diagnostics.DebuggerStepThroughAttribute]
-        private public_partial_structConversions_Nonelong(global::System.Int32 value) 
+        private public_partial_structConversions_Nonelong(long value) 
         {
             _value = value;
             _isInitialized = true;
@@ -76,7 +74,7 @@ namespace Whatever
         /// </summary>
         /// <param name="value">The underlying type.</param>
         /// <returns>An instance of this type.</returns>
-        public static public_partial_structConversions_Nonelong From(global::System.Int32 value)
+        public static public_partial_structConversions_Nonelong From(long value)
         {
             
 
@@ -87,12 +85,12 @@ namespace Whatever
             return instance;
         }
 
-        public static explicit operator public_partial_structConversions_Nonelong(global::System.Int32 value) => From(value);
-        public static explicit operator global::System.Int32(public_partial_structConversions_Nonelong value) => value.Value;
+        public static explicit operator public_partial_structConversions_Nonelong(long value) => From(value);
+        public static explicit operator long(public_partial_structConversions_Nonelong value) => value.Value;
 
         // only called internally when something has been deserialized into
         // its primitive type.
-        private static public_partial_structConversions_Nonelong Deserialize(global::System.Int32 value)
+        private static public_partial_structConversions_Nonelong Deserialize(long value)
         {
             
 
@@ -107,10 +105,10 @@ namespace Whatever
             // We treat anything uninitialized as not equal to anything, even other uninitialized instances of this type.
             if(!_isInitialized || !other._isInitialized) return false;
 
-            return global::System.Collections.Generic.EqualityComparer<global::System.Int32>.Default.Equals(Value, other.Value);
+            return global::System.Collections.Generic.EqualityComparer<long>.Default.Equals(Value, other.Value);
         }
 
-        public readonly global::System.Boolean Equals(global::System.Int32 primitive) => Value.Equals(primitive);
+        public readonly global::System.Boolean Equals(long primitive) => Value.Equals(primitive);
 
         public readonly override global::System.Boolean Equals(global::System.Object obj)
         {
@@ -120,20 +118,62 @@ namespace Whatever
         public static global::System.Boolean operator ==(public_partial_structConversions_Nonelong left, public_partial_structConversions_Nonelong right) => Equals(left, right);
         public static global::System.Boolean operator !=(public_partial_structConversions_Nonelong left, public_partial_structConversions_Nonelong right) => !(left == right);
 
-        public static global::System.Boolean operator ==(public_partial_structConversions_Nonelong left, global::System.Int32 right) => Equals(left.Value, right);
-        public static global::System.Boolean operator !=(public_partial_structConversions_Nonelong left, global::System.Int32 right) => !Equals(left.Value, right);
+        public static global::System.Boolean operator ==(public_partial_structConversions_Nonelong left, long right) => Equals(left.Value, right);
+        public static global::System.Boolean operator !=(public_partial_structConversions_Nonelong left, long right) => !Equals(left.Value, right);
 
-        public static global::System.Boolean operator ==(global::System.Int32 left, public_partial_structConversions_Nonelong right) => Equals(left, right.Value);
-        public static global::System.Boolean operator !=(global::System.Int32 left, public_partial_structConversions_Nonelong right) => !Equals(left, right.Value);
+        public static global::System.Boolean operator ==(long left, public_partial_structConversions_Nonelong right) => Equals(left, right.Value);
+        public static global::System.Boolean operator !=(long left, public_partial_structConversions_Nonelong right) => !Equals(left, right.Value);
+
+        public int CompareTo(public_partial_structConversions_Nonelong other) => Value.CompareTo(other.Value);
 
         
+    /// <inheritdoc cref="long.TryParse(string, System.Globalization.NumberStyles, System.IFormatProvider, out long)"/>
+    /// <summary>
+    /// </summary>
+    /// <returns>
+    /// The value created via the <see cref="From"/> method.
+    /// </returns>
+    /// <exception cref="ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
+    public static global::System.Boolean TryParse(string s, System.Globalization.NumberStyles style, System.IFormatProvider provider, 
+#if NETCOREAPP3_0_OR_GREATER
+[global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)]
+#endif
+ out public_partial_structConversions_Nonelong result) {
+        if(System.Int64.TryParse(s, style, provider, out var r)) {
+            result = From(r);
+            return true;
+        }
 
-        
+        result = default;
+        return false;
+    }
 
-        public readonly override global::System.Int32 GetHashCode() => global::System.Collections.Generic.EqualityComparer<global::System.Int32>.Default.GetHashCode(_value);
+    /// <inheritdoc cref="long.TryParse(string, out long)"/>
+    /// <summary>
+    /// </summary>
+    /// <returns>
+    /// The value created via the <see cref="From"/> method.
+    /// </returns>
+    /// <exception cref="ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
+    public static global::System.Boolean TryParse(string s, 
+#if NETCOREAPP3_0_OR_GREATER
+[global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)]
+#endif
+ out public_partial_structConversions_Nonelong result) {
+        if(System.Int64.TryParse(s, out var r)) {
+            result = From(r);
+            return true;
+        }
+
+        result = default;
+        return false;
+    }
+
+
+        public readonly override global::System.Int32 GetHashCode() => global::System.Collections.Generic.EqualityComparer<long>.Default.GetHashCode(_value);
 
         /// <summary>Returns the string representation of the underlying type</summary>
-    /// <inheritdoc cref="global::System.Int32.ToString()" />
+    /// <inheritdoc cref="System.Int64.ToString()" />
     public readonly override global::System.String ToString() => Value.ToString();
 
         private readonly void EnsureInitialized()
@@ -153,60 +193,8 @@ namespace Whatever
         
  
         
-        class public_partial_structConversions_NonelongSystemTextJsonConverter : global::System.Text.Json.Serialization.JsonConverter<public_partial_structConversions_Nonelong>
-        {
-            public override public_partial_structConversions_Nonelong Read(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
-            {
-                return public_partial_structConversions_Nonelong.Deserialize(reader.GetInt32());
-            }
-
-            public override void Write(System.Text.Json.Utf8JsonWriter writer, public_partial_structConversions_Nonelong value, global::System.Text.Json.JsonSerializerOptions options)
-            {
-                writer.WriteNumberValue(value.Value);
-            }
-        }
 
 
-        class public_partial_structConversions_NonelongTypeConverter : global::System.ComponentModel.TypeConverter
-        {
-            public override global::System.Boolean CanConvertFrom(global::System.ComponentModel.ITypeDescriptorContext context, global::System.Type sourceType)
-            {
-                return sourceType == typeof(global::System.Int32) || sourceType == typeof(global::System.String) || base.CanConvertFrom(context, sourceType);
-            }
-
-            public override global::System.Object ConvertFrom(global::System.ComponentModel.ITypeDescriptorContext context, global::System.Globalization.CultureInfo culture, global::System.Object value)
-            {
-                return value switch
-                {
-                    global::System.Int32 intValue => public_partial_structConversions_Nonelong.Deserialize(intValue),
-                    global::System.String stringValue when !global::System.String.IsNullOrEmpty(stringValue) && global::System.Int32.TryParse(stringValue, out var result) => public_partial_structConversions_Nonelong.Deserialize(result),
-                    _ => base.ConvertFrom(context, culture, value),
-                };
-            }
-
-            public override bool CanConvertTo(global::System.ComponentModel.ITypeDescriptorContext context, global::System.Type sourceType)
-            {
-                return sourceType == typeof(global::System.Int32) || sourceType == typeof(global::System.String) || base.CanConvertTo(context, sourceType);
-            }
-
-            public override object ConvertTo(global::System.ComponentModel.ITypeDescriptorContext context, global::System.Globalization.CultureInfo culture, global::System.Object value, global::System.Type destinationType)
-            {
-                if (value is public_partial_structConversions_Nonelong idValue)
-                {
-                    if (destinationType == typeof(global::System.Int32))
-                    {
-                        return idValue.Value;
-                    }
-
-                    if (destinationType == typeof(global::System.String))
-                    {
-                        return idValue.Value.ToString();
-                    }
-                }
-
-                return base.ConvertTo(context, culture, value, destinationType);
-            }
-        }
 
 
 
@@ -222,14 +210,14 @@ namespace Whatever
             }
 
             public global::System.Boolean IsInitialized => _t._isInitialized;
-            public global::System.String UnderlyingType => "global::System.Int32";
+            public global::System.String UnderlyingType => "System.Int64";
             public global::System.String Value => _t._isInitialized ? _t._value.ToString() : "[not initialized]" ;
 
             #if DEBUG
             public global::System.String CreatedWith => _t._stackTrace?.ToString() ?? "the From method";
             #endif
 
-            public global::System.String Conversions => @"Default";
+            public global::System.String Conversions => @"None";
                 }
 
 }

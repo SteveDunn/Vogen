@@ -96,9 +96,9 @@ namespace Whatever;
 namespace Whatever;
 
 [ValueObject(typeof(int))]
-public {type} CustomerId
+{type} CustomerId
 {{
-    private static bool NormalizeInput(int value) => 0;
+    private static bool NormalizeInput(int value) => false;
 }}";
     }
 

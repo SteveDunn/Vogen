@@ -101,7 +101,9 @@ namespace Whatever
         {
             
 
-            var validation = CustomerId.validate(value);
+                    if(value == @class.Value) return @class;
+        if(value == @event.Value) return @event;
+var validation = CustomerId.validate(value);
             if (validation != Vogen.Validation.Ok)
             {
                 throw new global::Vogen.ValueObjectValidationException(validation.ErrorMessage);
@@ -161,6 +163,14 @@ namespace Whatever
         }
 
         
+// instance...
+
+public static CustomerId @class = new CustomerId(42);
+
+// instance...
+
+public static CustomerId @event = new CustomerId(69);
+
  
         
         class CustomerIdSystemTextJsonConverter : global::System.Text.Json.Serialization.JsonConverter<CustomerId>

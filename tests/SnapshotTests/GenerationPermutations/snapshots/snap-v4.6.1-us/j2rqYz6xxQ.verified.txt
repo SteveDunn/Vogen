@@ -24,12 +24,10 @@ namespace Whatever
 
     [global::System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage] 
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Vogen", "1.0.0.0")]
-    [global::System.Text.Json.Serialization.JsonConverter(typeof(internal_readonly_partial_record_structConversions_LinqToDbValueConverterstringSystemTextJsonConverter))]
-[global::System.ComponentModel.TypeConverter(typeof(internal_readonly_partial_record_structConversions_LinqToDbValueConverterstringTypeConverter))]
-
+    
     [global::System.Diagnostics.DebuggerTypeProxyAttribute(typeof(internal_readonly_partial_record_structConversions_LinqToDbValueConverterstringDebugView))]
-    [global::System.Diagnostics.DebuggerDisplayAttribute("Underlying type: global::System.Int32, Value = { _value }")]
-    internal readonly partial record struct internal_readonly_partial_record_structConversions_LinqToDbValueConverterstring 
+    [global::System.Diagnostics.DebuggerDisplayAttribute("Underlying type: string, Value = { _value }")]
+    internal readonly partial record struct internal_readonly_partial_record_structConversions_LinqToDbValueConverterstring  :  global::System.IComparable<internal_readonly_partial_record_structConversions_LinqToDbValueConverterstring>
     {
 #if DEBUG    
         private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
@@ -37,12 +35,12 @@ namespace Whatever
 
         private readonly global::System.Boolean _isInitialized;
         
-        private readonly global::System.Int32 _value;
+        private readonly string _value;
 
         /// <summary>
-        /// Gets the underlying <see cref="global::System.Int32" /> value if set, otherwise a <see cref="ValueObjectValidationException" /> is thrown.
+        /// Gets the underlying <see cref="string" /> value if set, otherwise a <see cref="ValueObjectValidationException" /> is thrown.
         /// </summary>
-        public readonly global::System.Int32 Value
+        public readonly string Value
         {
             [global::System.Diagnostics.DebuggerStepThroughAttribute]
             get
@@ -52,7 +50,11 @@ namespace Whatever
             }
             init
             {
-                
+                            if (value is null)
+            {
+                throw new global::Vogen.ValueObjectValidationException("Cannot create a value object with null.");
+            }
+
 
                 
 
@@ -75,7 +77,7 @@ namespace Whatever
         }
 
         [global::System.Diagnostics.DebuggerStepThroughAttribute]
-        private internal_readonly_partial_record_structConversions_LinqToDbValueConverterstring(global::System.Int32 value) 
+        private internal_readonly_partial_record_structConversions_LinqToDbValueConverterstring(string value) 
         {
             _value = value;
             _isInitialized = true;
@@ -86,7 +88,7 @@ namespace Whatever
         /// </summary>
         /// <param name="value">The underlying type.</param>
         /// <returns>An instance of this type.</returns>
-        public static internal_readonly_partial_record_structConversions_LinqToDbValueConverterstring From(global::System.Int32 value)
+        public static internal_readonly_partial_record_structConversions_LinqToDbValueConverterstring From(string value)
         {
             
 
@@ -97,14 +99,14 @@ namespace Whatever
             return instance;
         }
 
-        public static explicit operator internal_readonly_partial_record_structConversions_LinqToDbValueConverterstring(global::System.Int32 value) => From(value);
-        public static explicit operator global::System.Int32(internal_readonly_partial_record_structConversions_LinqToDbValueConverterstring value) => value.Value;
+        public static explicit operator internal_readonly_partial_record_structConversions_LinqToDbValueConverterstring(string value) => From(value);
+        public static explicit operator string(internal_readonly_partial_record_structConversions_LinqToDbValueConverterstring value) => value.Value;
 
-        
+        public int CompareTo(internal_readonly_partial_record_structConversions_LinqToDbValueConverterstring other) => Value.CompareTo(other.Value);
 
         // only called internally when something has been deserialized into
         // its primitive type.
-        private static internal_readonly_partial_record_structConversions_LinqToDbValueConverterstring Deserialize(global::System.Int32 value)
+        private static internal_readonly_partial_record_structConversions_LinqToDbValueConverterstring Deserialize(string value)
         {
             
 
@@ -128,70 +130,27 @@ namespace Whatever
         }
 
         // record enumerates fields - we just want our Value and to throw if it's not initialized.
-        /// <summary>Returns the string representation of the underlying <see cref="global::System.Int32" />.</summary>
-    /// <inheritdoc cref="global::System.Int32.ToString()" />
+        /// <summary>Returns the string representation of the underlying <see cref="System.String" />.</summary>
+    /// <inheritdoc cref="System.String.ToString()" />
     public override global::System.String ToString() => Value.ToString();
 
         
  
         
-        class internal_readonly_partial_record_structConversions_LinqToDbValueConverterstringSystemTextJsonConverter : global::System.Text.Json.Serialization.JsonConverter<internal_readonly_partial_record_structConversions_LinqToDbValueConverterstring>
+
+
+
+
+
+        public class LinqToDbValueConverter : global::LinqToDB.Common.ValueConverter<internal_readonly_partial_record_structConversions_LinqToDbValueConverterstring, global::System.String>
         {
-            public override internal_readonly_partial_record_structConversions_LinqToDbValueConverterstring Read(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
-            {
-                return internal_readonly_partial_record_structConversions_LinqToDbValueConverterstring.Deserialize(reader.GetInt32());
-            }
-
-            public override void Write(System.Text.Json.Utf8JsonWriter writer, internal_readonly_partial_record_structConversions_LinqToDbValueConverterstring value, global::System.Text.Json.JsonSerializerOptions options)
-            {
-                writer.WriteNumberValue(value.Value);
-            }
+            public LinqToDbValueConverter()
+                : base(
+                      v => v.Value,
+                      p => internal_readonly_partial_record_structConversions_LinqToDbValueConverterstring.Deserialize(p),
+                      handlesNulls: false)
+            { }
         }
-
-
-        class internal_readonly_partial_record_structConversions_LinqToDbValueConverterstringTypeConverter : global::System.ComponentModel.TypeConverter
-        {
-            public override global::System.Boolean CanConvertFrom(global::System.ComponentModel.ITypeDescriptorContext context, global::System.Type sourceType)
-            {
-                return sourceType == typeof(global::System.Int32) || sourceType == typeof(global::System.String) || base.CanConvertFrom(context, sourceType);
-            }
-
-            public override global::System.Object ConvertFrom(global::System.ComponentModel.ITypeDescriptorContext context, global::System.Globalization.CultureInfo culture, global::System.Object value)
-            {
-                return value switch
-                {
-                    global::System.Int32 intValue => internal_readonly_partial_record_structConversions_LinqToDbValueConverterstring.Deserialize(intValue),
-                    global::System.String stringValue when !global::System.String.IsNullOrEmpty(stringValue) && global::System.Int32.TryParse(stringValue, out var result) => internal_readonly_partial_record_structConversions_LinqToDbValueConverterstring.Deserialize(result),
-                    _ => base.ConvertFrom(context, culture, value),
-                };
-            }
-
-            public override bool CanConvertTo(global::System.ComponentModel.ITypeDescriptorContext context, global::System.Type sourceType)
-            {
-                return sourceType == typeof(global::System.Int32) || sourceType == typeof(global::System.String) || base.CanConvertTo(context, sourceType);
-            }
-
-            public override object ConvertTo(global::System.ComponentModel.ITypeDescriptorContext context, global::System.Globalization.CultureInfo culture, global::System.Object value, global::System.Type destinationType)
-            {
-                if (value is internal_readonly_partial_record_structConversions_LinqToDbValueConverterstring idValue)
-                {
-                    if (destinationType == typeof(global::System.Int32))
-                    {
-                        return idValue.Value;
-                    }
-
-                    if (destinationType == typeof(global::System.String))
-                    {
-                        return idValue.Value.ToString();
-                    }
-                }
-
-                return base.ConvertTo(context, culture, value, destinationType);
-            }
-        }
-
-
-
 
 
         internal sealed class internal_readonly_partial_record_structConversions_LinqToDbValueConverterstringDebugView
@@ -204,14 +163,14 @@ namespace Whatever
             }
 
             public global::System.Boolean IsInitialized => _t._isInitialized;
-            public global::System.String UnderlyingType => "global::System.Int32";
+            public global::System.String UnderlyingType => "System.String";
             public global::System.String Value => _t._isInitialized ? _t._value.ToString() : "[not initialized]" ;
 
             #if DEBUG
             public global::System.String CreatedWith => _t._stackTrace?.ToString() ?? "the From method";
             #endif
 
-            public global::System.String Conversions => @"Default";
+            public global::System.String Conversions => @"LinqToDbValueConverter";
                 }
 
 }

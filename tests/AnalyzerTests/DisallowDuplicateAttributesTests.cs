@@ -31,9 +31,9 @@ public {type} CustomerId {{ }}
             diagnostics.Should().HaveCount(1);
             Diagnostic diagnostic = diagnostics.Single();
 
-            diagnostic.Id.Should().Be("VOG024");
+            diagnostic.Id.Should().Be("CS0579");
             diagnostic.ToString().Should()
-                .Match("* error VOG024: Type CustomerId is decorated as a Value Object but is declared multiple times. Remove the duplicate definition or differentiate with a namespace.");
+                .Match("* error CS0579: Duplicate 'ValueObject' attribute");
         }
     }
 }

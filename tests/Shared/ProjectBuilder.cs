@@ -19,6 +19,11 @@ namespace Shared
     {
         private static readonly ConcurrentDictionary<string, Lazy<Task<string[]>>> s_cache = new(StringComparer.Ordinal);
 
+        private static readonly KeyValuePair<string, ReportDiagnostic>[] _suppressedDiagnostics =
+        {
+            new("CS8019", ReportDiagnostic.Suppress) // Unnecessary using directive
+        };
+
         public IList<MetadataReference> References { get; } = new List<MetadataReference>();
 
         public TargetFramework TargetFramework { get; private set; } = TargetFramework.Net6_0;
@@ -55,6 +60,7 @@ namespace Shared
 
                 case TargetFramework.Net4_6_1:
                     AddNuGetReference("Microsoft.NETFramework.ReferenceAssemblies.net461", "1.0.0", "build/.NETFramework/v4.6.1/");
+                    AddNuGetReference("NETStandard.Library", "2.0.3", "build/netstandard2.0/ref/");
                     break;
 
                 case TargetFramework.Net4_8:
@@ -163,7 +169,7 @@ namespace Shared
 
         public string Source { get; private set; } = string.Empty;
 
-        public (ImmutableArray<Diagnostic> Diagnostics, string Output) GetGeneratedOutput<T>()
+        public (ImmutableArray<Diagnostic> Diagnostics, string Output) GetGeneratedOutput<T>(bool ignoreInitialCompilationErrors = false)
             where T : IIncrementalGenerator, new()
         {
             var syntaxTree = CSharpSyntaxTree.ParseText(Source);
@@ -178,7 +184,13 @@ namespace Shared
                 "generator",
                 new[] { syntaxTree },
                 References,
-                new CSharpCompilationOptions(OutputKind.DynamicallyLinkedLibrary));
+                new CSharpCompilationOptions(OutputKind.DynamicallyLinkedLibrary, specificDiagnosticOptions: _suppressedDiagnostics));
+
+            var dd = compilation.GetDiagnostics();
+            if (dd.Length != 0 && !ignoreInitialCompilationErrors)
+            {
+                return (dd, string.Empty);
+            }
 
             var originalTreeCount = compilation.SyntaxTrees.Length;
             var generator = new T();
@@ -190,6 +202,5 @@ namespace Shared
 
             return (diagnostics, trees.Count != originalTreeCount ? trees[trees.Count - 1].ToString() : string.Empty);
         }
-
     }
 }

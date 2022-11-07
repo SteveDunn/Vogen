@@ -134,7 +134,7 @@ public partial struct CustomerId { }
         var source = @"using System;
 using Vogen;
 
-[assembly: VogenDefaults(underlyingType: typeof(string), conversions: Conversions.None, throws:typeof(Whatever.MyValidationException), deserializationStrictness: DeserializationStrictness.AllowAnything))]
+[assembly: VogenDefaults(underlyingType: typeof(string), conversions: Conversions.None, throws:typeof(Whatever.MyValidationException), deserializationStrictness: DeserializationStrictness.AllowAnything)]
 
 namespace Whatever;
 

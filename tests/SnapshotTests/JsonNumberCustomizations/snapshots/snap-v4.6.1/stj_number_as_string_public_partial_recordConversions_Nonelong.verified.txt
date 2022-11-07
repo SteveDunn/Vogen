@@ -24,23 +24,21 @@ namespace Whatever
 
     [global::System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage] 
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Vogen", "1.0.0.0")]
-    [global::System.Text.Json.Serialization.JsonConverter(typeof(stj_number_as_string_public_partial_recordConversions_NonelongSystemTextJsonConverter))]
-[global::System.ComponentModel.TypeConverter(typeof(stj_number_as_string_public_partial_recordConversions_NonelongTypeConverter))]
-
+    
     [global::System.Diagnostics.DebuggerTypeProxyAttribute(typeof(stj_number_as_string_public_partial_recordConversions_NonelongDebugView))]
-    [global::System.Diagnostics.DebuggerDisplayAttribute("Underlying type: global::System.Int32, Value = { _value }")]
-    public partial record class stj_number_as_string_public_partial_recordConversions_Nonelong 
+    [global::System.Diagnostics.DebuggerDisplayAttribute("Underlying type: long, Value = { _value }")]
+    public partial record class stj_number_as_string_public_partial_recordConversions_Nonelong  :  global::System.IComparable<stj_number_as_string_public_partial_recordConversions_Nonelong>
     {
 #if DEBUG    
         private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
 #endif
         private readonly global::System.Boolean _isInitialized;
-        private readonly global::System.Int32 _value;
+        private readonly long _value;
         
         /// <summary>
-        /// Gets the underlying <see cref="global::System.Int32" /> value if set, otherwise a <see cref="ValueObjectValidationException" /> is thrown.
+        /// Gets the underlying <see cref="long" /> value if set, otherwise a <see cref="ValueObjectValidationException" /> is thrown.
         /// </summary>
-        public global::System.Int32 Value
+        public long Value
         {
             [global::System.Diagnostics.DebuggerStepThroughAttribute]
             get
@@ -73,7 +71,7 @@ namespace Whatever
         }
 
         [global::System.Diagnostics.DebuggerStepThroughAttribute]
-        private stj_number_as_string_public_partial_recordConversions_Nonelong(global::System.Int32 value)
+        private stj_number_as_string_public_partial_recordConversions_Nonelong(long value)
         {
             _value = value;
             _isInitialized = true;
@@ -84,7 +82,7 @@ namespace Whatever
         /// </summary>
         /// <param name="value">The underlying type.</param>
         /// <returns>An instance of this type.</returns>
-        public static stj_number_as_string_public_partial_recordConversions_Nonelong From(global::System.Int32 value)
+        public static stj_number_as_string_public_partial_recordConversions_Nonelong From(long value)
         {
             
 
@@ -97,14 +95,14 @@ namespace Whatever
             return instance;
         }
 
-        public static explicit operator stj_number_as_string_public_partial_recordConversions_Nonelong(global::System.Int32 value) => From(value);
-        public static explicit operator global::System.Int32(stj_number_as_string_public_partial_recordConversions_Nonelong value) => value.Value;
+        public static explicit operator stj_number_as_string_public_partial_recordConversions_Nonelong(long value) => From(value);
+        public static explicit operator long(stj_number_as_string_public_partial_recordConversions_Nonelong value) => value.Value;
 
-        
+        public int CompareTo(stj_number_as_string_public_partial_recordConversions_Nonelong other) => Value.CompareTo(other.Value);
 
         // only called internally when something has been deserialized into
         // its primitive type.
-        private static stj_number_as_string_public_partial_recordConversions_Nonelong Deserialize(global::System.Int32 value)
+        private static stj_number_as_string_public_partial_recordConversions_Nonelong Deserialize(long value)
         {
             
 
@@ -133,65 +131,13 @@ namespace Whatever
         
 
         // record enumerates fields - we just want our Value and to throw if it's not initialized.
-        /// <summary>Returns the string representation of the underlying <see cref="global::System.Int32" />.</summary>
-    /// <inheritdoc cref="global::System.Int32.ToString()" />
+        /// <summary>Returns the string representation of the underlying <see cref="System.Int64" />.</summary>
+    /// <inheritdoc cref="System.Int64.ToString()" />
     public override global::System.String ToString() => Value.ToString();
 
         
-        class stj_number_as_string_public_partial_recordConversions_NonelongSystemTextJsonConverter : global::System.Text.Json.Serialization.JsonConverter<stj_number_as_string_public_partial_recordConversions_Nonelong>
-        {
-            public override stj_number_as_string_public_partial_recordConversions_Nonelong Read(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
-            {
-                return stj_number_as_string_public_partial_recordConversions_Nonelong.Deserialize(reader.GetInt32());
-            }
-
-            public override void Write(System.Text.Json.Utf8JsonWriter writer, stj_number_as_string_public_partial_recordConversions_Nonelong value, global::System.Text.Json.JsonSerializerOptions options)
-            {
-                writer.WriteNumberValue(value.Value);
-            }
-        }
 
 
-        class stj_number_as_string_public_partial_recordConversions_NonelongTypeConverter : global::System.ComponentModel.TypeConverter
-        {
-            public override global::System.Boolean CanConvertFrom(global::System.ComponentModel.ITypeDescriptorContext context, global::System.Type sourceType)
-            {
-                return sourceType == typeof(global::System.Int32) || sourceType == typeof(global::System.String) || base.CanConvertFrom(context, sourceType);
-            }
-
-            public override global::System.Object ConvertFrom(global::System.ComponentModel.ITypeDescriptorContext context, global::System.Globalization.CultureInfo culture, global::System.Object value)
-            {
-                return value switch
-                {
-                    global::System.Int32 intValue => stj_number_as_string_public_partial_recordConversions_Nonelong.Deserialize(intValue),
-                    global::System.String stringValue when !global::System.String.IsNullOrEmpty(stringValue) && global::System.Int32.TryParse(stringValue, out var result) => stj_number_as_string_public_partial_recordConversions_Nonelong.Deserialize(result),
-                    _ => base.ConvertFrom(context, culture, value),
-                };
-            }
-
-            public override bool CanConvertTo(global::System.ComponentModel.ITypeDescriptorContext context, global::System.Type sourceType)
-            {
-                return sourceType == typeof(global::System.Int32) || sourceType == typeof(global::System.String) || base.CanConvertTo(context, sourceType);
-            }
-
-            public override object ConvertTo(global::System.ComponentModel.ITypeDescriptorContext context, global::System.Globalization.CultureInfo culture, global::System.Object value, global::System.Type destinationType)
-            {
-                if (value is stj_number_as_string_public_partial_recordConversions_Nonelong idValue)
-                {
-                    if (destinationType == typeof(global::System.Int32))
-                    {
-                        return idValue.Value;
-                    }
-
-                    if (destinationType == typeof(global::System.String))
-                    {
-                        return idValue.Value.ToString();
-                    }
-                }
-
-                return base.ConvertTo(context, culture, value, destinationType);
-            }
-        }
 
 
 
@@ -206,12 +152,10 @@ namespace Whatever
                 _t = t;
             }
 
-            public global::System.String UnderlyingType => "global::System.Int32";
-            public global::System.Int32 Value => _t.Value ;
+            public global::System.String UnderlyingType => "System.Int64";
+            public System.Int64 Value => _t.Value ;
 
-            public global::System.String Conversions => @"[global::System.Text.Json.Serialization.JsonConverter(typeof(stj_number_as_string_public_partial_recordConversions_NonelongSystemTextJsonConverter))]
-[global::System.ComponentModel.TypeConverter(typeof(stj_number_as_string_public_partial_recordConversions_NonelongTypeConverter))]
-";
+            public global::System.String Conversions => @"";
                 }
     }
 }

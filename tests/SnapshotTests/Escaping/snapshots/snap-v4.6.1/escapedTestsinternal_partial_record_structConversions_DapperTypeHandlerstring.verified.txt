@@ -24,12 +24,10 @@ namespace @class
 
     [global::System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage] 
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Vogen", "1.0.0.0")]
-    [global::System.Text.Json.Serialization.JsonConverter(typeof(escapedTestsinternal_partial_record_structConversions_DapperTypeHandlerstringSystemTextJsonConverter))]
-[global::System.ComponentModel.TypeConverter(typeof(escapedTestsinternal_partial_record_structConversions_DapperTypeHandlerstringTypeConverter))]
-
+    
     [global::System.Diagnostics.DebuggerTypeProxyAttribute(typeof(escapedTestsinternal_partial_record_structConversions_DapperTypeHandlerstringDebugView))]
-    [global::System.Diagnostics.DebuggerDisplayAttribute("Underlying type: global::System.Int32, Value = { _value }")]
-    internal partial record struct escapedTestsinternal_partial_record_structConversions_DapperTypeHandlerstring 
+    [global::System.Diagnostics.DebuggerDisplayAttribute("Underlying type: string, Value = { _value }")]
+    internal partial record struct escapedTestsinternal_partial_record_structConversions_DapperTypeHandlerstring  :  global::System.IComparable<escapedTestsinternal_partial_record_structConversions_DapperTypeHandlerstring>
     {
 #if DEBUG    
         private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
@@ -37,12 +35,12 @@ namespace @class
 
         private readonly global::System.Boolean _isInitialized;
         
-        private readonly global::System.Int32 _value;
+        private readonly string _value;
 
         /// <summary>
-        /// Gets the underlying <see cref="global::System.Int32" /> value if set, otherwise a <see cref="ValueObjectValidationException" /> is thrown.
+        /// Gets the underlying <see cref="string" /> value if set, otherwise a <see cref="ValueObjectValidationException" /> is thrown.
         /// </summary>
-        public readonly global::System.Int32 Value
+        public readonly string Value
         {
             [global::System.Diagnostics.DebuggerStepThroughAttribute]
             get
@@ -52,7 +50,11 @@ namespace @class
             }
             init
             {
-                
+                            if (value is null)
+            {
+                throw new global::Vogen.ValueObjectValidationException("Cannot create a value object with null.");
+            }
+
 
                 
 
@@ -75,7 +77,7 @@ namespace @class
         }
 
         [global::System.Diagnostics.DebuggerStepThroughAttribute]
-        private escapedTestsinternal_partial_record_structConversions_DapperTypeHandlerstring(global::System.Int32 value) 
+        private escapedTestsinternal_partial_record_structConversions_DapperTypeHandlerstring(string value) 
         {
             _value = value;
             _isInitialized = true;
@@ -86,7 +88,7 @@ namespace @class
         /// </summary>
         /// <param name="value">The underlying type.</param>
         /// <returns>An instance of this type.</returns>
-        public static escapedTestsinternal_partial_record_structConversions_DapperTypeHandlerstring From(global::System.Int32 value)
+        public static escapedTestsinternal_partial_record_structConversions_DapperTypeHandlerstring From(string value)
         {
             
 
@@ -97,14 +99,14 @@ namespace @class
             return instance;
         }
 
-        public static explicit operator escapedTestsinternal_partial_record_structConversions_DapperTypeHandlerstring(global::System.Int32 value) => From(value);
-        public static explicit operator global::System.Int32(escapedTestsinternal_partial_record_structConversions_DapperTypeHandlerstring value) => value.Value;
+        public static explicit operator escapedTestsinternal_partial_record_structConversions_DapperTypeHandlerstring(string value) => From(value);
+        public static explicit operator string(escapedTestsinternal_partial_record_structConversions_DapperTypeHandlerstring value) => value.Value;
 
-        
+        public int CompareTo(escapedTestsinternal_partial_record_structConversions_DapperTypeHandlerstring other) => Value.CompareTo(other.Value);
 
         // only called internally when something has been deserialized into
         // its primitive type.
-        private static escapedTestsinternal_partial_record_structConversions_DapperTypeHandlerstring Deserialize(global::System.Int32 value)
+        private static escapedTestsinternal_partial_record_structConversions_DapperTypeHandlerstring Deserialize(string value)
         {
             
 
@@ -128,68 +130,33 @@ namespace @class
         }
 
         // record enumerates fields - we just want our Value and to throw if it's not initialized.
-        /// <summary>Returns the string representation of the underlying <see cref="global::System.Int32" />.</summary>
-    /// <inheritdoc cref="global::System.Int32.ToString()" />
+        /// <summary>Returns the string representation of the underlying <see cref="System.String" />.</summary>
+    /// <inheritdoc cref="System.String.ToString()" />
     public override global::System.String ToString() => Value.ToString();
 
         
  
         
-        class escapedTestsinternal_partial_record_structConversions_DapperTypeHandlerstringSystemTextJsonConverter : global::System.Text.Json.Serialization.JsonConverter<escapedTestsinternal_partial_record_structConversions_DapperTypeHandlerstring>
+
+
+
+        public class DapperTypeHandler : global::Dapper.SqlMapper.TypeHandler<escapedTestsinternal_partial_record_structConversions_DapperTypeHandlerstring>
         {
-            public override escapedTestsinternal_partial_record_structConversions_DapperTypeHandlerstring Read(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
+            public override void SetValue(global::System.Data.IDbDataParameter parameter, escapedTestsinternal_partial_record_structConversions_DapperTypeHandlerstring value)
             {
-                return escapedTestsinternal_partial_record_structConversions_DapperTypeHandlerstring.Deserialize(reader.GetInt32());
+                parameter.DbType = global::System.Data.DbType.String;
+                parameter.Value = value.Value;
             }
 
-            public override void Write(System.Text.Json.Utf8JsonWriter writer, escapedTestsinternal_partial_record_structConversions_DapperTypeHandlerstring value, global::System.Text.Json.JsonSerializerOptions options)
-            {
-                writer.WriteNumberValue(value.Value);
-            }
-        }
-
-
-        class escapedTestsinternal_partial_record_structConversions_DapperTypeHandlerstringTypeConverter : global::System.ComponentModel.TypeConverter
-        {
-            public override global::System.Boolean CanConvertFrom(global::System.ComponentModel.ITypeDescriptorContext context, global::System.Type sourceType)
-            {
-                return sourceType == typeof(global::System.Int32) || sourceType == typeof(global::System.String) || base.CanConvertFrom(context, sourceType);
-            }
-
-            public override global::System.Object ConvertFrom(global::System.ComponentModel.ITypeDescriptorContext context, global::System.Globalization.CultureInfo culture, global::System.Object value)
+            public override escapedTestsinternal_partial_record_structConversions_DapperTypeHandlerstring Parse(object value)
             {
                 return value switch
                 {
-                    global::System.Int32 intValue => escapedTestsinternal_partial_record_structConversions_DapperTypeHandlerstring.Deserialize(intValue),
-                    global::System.String stringValue when !global::System.String.IsNullOrEmpty(stringValue) && global::System.Int32.TryParse(stringValue, out var result) => escapedTestsinternal_partial_record_structConversions_DapperTypeHandlerstring.Deserialize(result),
-                    _ => base.ConvertFrom(context, culture, value),
+                    global::System.String stringValue => escapedTestsinternal_partial_record_structConversions_DapperTypeHandlerstring.Deserialize(stringValue),
+                    _ => throw new global::System.InvalidCastException($"Unable to cast object of type {value.GetType()} to escapedTestsinternal_partial_record_structConversions_DapperTypeHandlerstring"),
                 };
             }
-
-            public override bool CanConvertTo(global::System.ComponentModel.ITypeDescriptorContext context, global::System.Type sourceType)
-            {
-                return sourceType == typeof(global::System.Int32) || sourceType == typeof(global::System.String) || base.CanConvertTo(context, sourceType);
-            }
-
-            public override object ConvertTo(global::System.ComponentModel.ITypeDescriptorContext context, global::System.Globalization.CultureInfo culture, global::System.Object value, global::System.Type destinationType)
-            {
-                if (value is escapedTestsinternal_partial_record_structConversions_DapperTypeHandlerstring idValue)
-                {
-                    if (destinationType == typeof(global::System.Int32))
-                    {
-                        return idValue.Value;
-                    }
-
-                    if (destinationType == typeof(global::System.String))
-                    {
-                        return idValue.Value.ToString();
-                    }
-                }
-
-                return base.ConvertTo(context, culture, value, destinationType);
-            }
         }
-
 
 
 
@@ -204,14 +171,14 @@ namespace @class
             }
 
             public global::System.Boolean IsInitialized => _t._isInitialized;
-            public global::System.String UnderlyingType => "global::System.Int32";
+            public global::System.String UnderlyingType => "System.String";
             public global::System.String Value => _t._isInitialized ? _t._value.ToString() : "[not initialized]" ;
 
             #if DEBUG
             public global::System.String CreatedWith => _t._stackTrace?.ToString() ?? "the From method";
             #endif
 
-            public global::System.String Conversions => @"Default";
+            public global::System.String Conversions => @"DapperTypeHandler";
                 }
 
 }

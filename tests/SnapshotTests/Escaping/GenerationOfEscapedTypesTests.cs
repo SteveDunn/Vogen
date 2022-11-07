@@ -38,8 +38,10 @@ public class GenerationOfEscapedTypesTests
         }
 
         private static string CreateClassName(string type, string conversion, string underlyingType) =>
-            "escapedTests" + type.Replace(" ", "_") + conversion.Replace(".", "_").Replace("|", "_") + underlyingType;
+            Normalize($"escapedTests{type}{conversion}{underlyingType}");
 
+        private static string Normalize(string input) => input.Replace(" ", "_").Replace("|", "_").Replace(".", "_").Replace("@", "_");
+        
         // for each of the types above, create classes for each one of these attributes
         private readonly string[] _conversions = new[]
         {
