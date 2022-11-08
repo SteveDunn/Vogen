@@ -78,7 +78,15 @@ SendInvoice(customerId);
 public void SendInvoice(CustomerId customerId) { ... }
 ```
 
-`int` is the default type for Value Objects, but you individually or globally configure them to be other types. See the Configuration section later in the document.
+`int` is the default type for Value Objects, but you can, individually, or globally, configure them to be other types. See the Configuration section later in the document, but here's some examples:
+
+```csharp
+[ValueObject<decimal>] // C# 11 generic attributes
+public partial struct AccountBalance { }
+
+[ValueObject(typeof(string))]
+public partial class LegalEntityName { }
+```
 
 To ensure the validity of your value objects, the code analyser helps you to avoid mistakes.
 
