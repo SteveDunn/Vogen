@@ -11,6 +11,7 @@ namespace Vogen.Examples.TypicalScenarios.Equality
             Console.WriteLine((bool) (Age.From(1) == Age.From(1))); // true
             Console.WriteLine(Age.From(1) == 1); // true
             Console.WriteLine(1 == Age.From(1)); // true
+            Console.WriteLine(Age.From(1) == 1); // true
 
             Console.WriteLine((bool) (Age.From(1) != Age.From(2))); // true
             Console.WriteLine(Age.From(1) != 2); // true

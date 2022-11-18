@@ -1,10 +1,16 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using FluentAssertions;
 using Vogen;
 using Xunit;
 
 namespace ConsumerTests.IComparableTests
 {
+#if NET6_0_OR_GREATER
+    [ValueObject(typeof(DateOnly))]
+    public partial struct DOS1 { }
+#endif
+
     [ValueObject(typeof(int))]
     public partial struct S1 { }
 
@@ -21,6 +27,27 @@ namespace ConsumerTests.IComparableTests
     {
         public class StructTests
         {
+#if NET6_0_OR_GREATER
+            [Fact]
+            public void Underlying_type_of_DateOnly_means_the_vo_is_IComparable()
+            {
+                var first = new DateOnly(2020, 1, 1);
+                var second = new DateOnly(2020, 1, 2);
+                var third = new DateOnly(2020, 1, 3);
+
+                var l = new List<DOS1>(new[] { DOS1.From(first), DOS1.From(third), DOS1.From(second) });
+                l[0].Value.Should().Be(first);
+                l[1].Value.Should().Be(third);
+                l[2].Value.Should().Be(second);
+
+                l.Sort();
+
+                l[0].Value.Should().Be(first);
+                l[1].Value.Should().Be(second);
+                l[2].Value.Should().Be(third);
+            }
+#endif
+
             [Fact]
             public void Underlying_type_of_int_means_the_vo_is_IComparable()
             {
