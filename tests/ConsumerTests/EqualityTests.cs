@@ -21,6 +21,10 @@ namespace ConsumerTests
         {
             Age.From(18).Equals(Age.From(18)).Should().BeTrue();
             (Age.From(18) == Age.From(18)).Should().BeTrue();
+            
+            // uses the generated IEquatable<> 
+            (Age.From(18) == 18).Should().BeTrue();
+            (18 == Age.From(18)).Should().BeTrue();
 
             (Age.From(18) != Age.From(19)).Should().BeTrue();
             (Age.From(18) == Age.From(19)).Should().BeFalse();
