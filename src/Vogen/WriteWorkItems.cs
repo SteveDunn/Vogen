@@ -27,7 +27,13 @@ internal static class WriteWorkItems
 // Suppress warnings about [Obsolete] member usage in generated code.
 #pragma warning disable CS0618
 
-// Supress warning for 'The annotation for nullable reference types should only be used in code within a '#nullable' annotations context. Auto-generated code requires an explicit '#nullable' directive in source.'
+// Suppress warnings for 'Override methods on comparable types'.
+#pragma warning disable CA1036
+
+// Suppress Error MA0097 : A class that implements IComparable<T> or IComparable should override comparison operators
+#pragma warning disable MA0097
+
+// Suppress warning for 'The annotation for nullable reference types should only be used in code within a '#nullable' annotations context. Auto-generated code requires an explicit '#nullable' directive in source.'
 // The generator copies signatures from the BCL, e.g. for `TryParse`, and some of those have nullable annotations.
 #pragma warning disable CS8669
 
