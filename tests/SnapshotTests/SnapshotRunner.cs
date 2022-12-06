@@ -9,6 +9,7 @@ using Microsoft.CodeAnalysis;
 using Shared;
 using VerifyTests;
 using VerifyXunit;
+using Vogen;
 using Xunit.Abstractions;
 
 namespace SnapshotTests
@@ -70,7 +71,7 @@ namespace SnapshotTests
         public async Task RunOn(params TargetFramework[] frameworks)
         {
             _ = _source ?? throw new InvalidOperationException("No source!");
-
+            
             foreach (var eachFramework in frameworks)
             {
                 _logger?.WriteLine($"Running on {eachFramework}");
@@ -98,10 +99,12 @@ namespace SnapshotTests
 
         private (ImmutableArray<Diagnostic> Diagnostics, string Output) GetGeneratedOutput(string source, TargetFramework targetFramework)
         {
+            var r = MetadataReference.CreateFromFile(typeof(ValueObjectAttribute).Assembly.Location);
+            
             var results = new ProjectBuilder()
                 .WithSource(source)
                 .WithTargetFramework(targetFramework)
-                .GetGeneratedOutput<T>(_ignoreInitialCompilationErrors);
+                .GetGeneratedOutput<T>(_ignoreInitialCompilationErrors, r);
 
             return results;
         }

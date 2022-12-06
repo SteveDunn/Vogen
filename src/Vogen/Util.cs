@@ -79,8 +79,13 @@ public static class Util
     }
 
 
-    public static string EscapeIfRequired(string name) =>
-        SyntaxFacts.GetKeywordKind(name) != SyntaxKind.None || SyntaxFacts.GetContextualKeywordKind(name) != SyntaxKind.None ? "@" + name : name;
+    public static string EscapeIfRequired(string name)
+    {
+        bool match = SyntaxFacts.GetKeywordKind(name) != SyntaxKind.None ||
+                     SyntaxFacts.GetContextualKeywordKind(name) != SyntaxKind.None;
+
+        return match ? "@" + name : name;
+    }
 
     public static string GenerateModifiersFor(TypeDeclarationSyntax tds) => string.Join(" ", tds.Modifiers);
 

@@ -10,6 +10,26 @@ namespace SnapshotTests.InstanceFields;
 public class InstanceFieldGenerationTests
 {
     [Fact]
+    public Task Instances_can_be_booleans()
+    {
+        var source = """
+using Vogen;
+
+namespace Whatever;
+
+[ValueObject(typeof(bool))]
+[Instance("Invalid", false)]
+public partial struct BooleanThing
+{
+}
+""";
+
+        return new SnapshotRunner<ValueObjectGenerator>()
+            .WithSource(source)
+            .RunOnAllFrameworks();
+    }
+
+    [Fact]
     public Task Instance_names_can_have_reserved_keywords()
     {
         var source = @"using Vogen;

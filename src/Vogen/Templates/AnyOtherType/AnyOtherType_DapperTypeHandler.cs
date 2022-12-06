@@ -11,7 +11,7 @@
                 return value switch
                 {
                     global::System.String stringValue =>
-                        VOTYPE.Deserialize(global::System.Text.Json.JsonSerializer.Deserialize<Bar>(stringValue)),
+                        VOTYPE.Deserialize(global::System.Text.Json.JsonSerializer.Deserialize<VOUNDERLYINGTYPE>(stringValue)),
                     _ => throw new global::System.InvalidCastException($"Unable to cast object of type {value.GetType()} to VOTYPE"),
                 };
             }

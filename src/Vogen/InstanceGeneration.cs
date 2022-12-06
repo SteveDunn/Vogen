@@ -165,6 +165,13 @@ public static class InstanceGeneration
                 return new(true, $@"{converted}");
             }
 
+            if (underlyingType == typeof(bool).FullName)
+            {
+                var converted = propertyValue?.ToString()?.ToLower();
+            
+                return new(true, $@"{converted}");
+            }
+
             return new(true, propertyValue.ToString()!);
         }
         catch (Exception e)

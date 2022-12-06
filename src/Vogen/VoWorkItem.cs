@@ -6,11 +6,21 @@ namespace Vogen;
 
 public class VoWorkItem
 {
+    private INamedTypeSymbol? _underlyingType = null!;
+    private string _underlyingTypeFullName = null!;
     public MethodDeclarationSyntax? NormalizeInputMethod { get; set; }
     
     public MethodDeclarationSyntax? ValidateMethod { get; set; }
 
-    public INamedTypeSymbol? UnderlyingType { get; set; } = null!;
+    public INamedTypeSymbol? UnderlyingType
+    {
+        get => _underlyingType;
+        set
+        {
+            _underlyingType = value;
+            _underlyingTypeFullName = value.FullName() ?? value?.Name ?? "global::System.Int32";
+        }
+    }
 
     /// <summary>
     /// The syntax information for the type to augment.
@@ -35,7 +45,7 @@ public class VoWorkItem
 
     public string VoTypeName => TypeToAugment.Identifier.ToString();
     
-    public string UnderlyingTypeFullName => UnderlyingType.FullName() ?? UnderlyingType?.Name ?? "global::System.Int32";
+    public string UnderlyingTypeFullName => _underlyingTypeFullName;
 
     public bool HasToString { get; set; }
 }

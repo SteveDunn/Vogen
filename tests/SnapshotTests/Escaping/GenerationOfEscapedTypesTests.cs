@@ -40,7 +40,8 @@ public class GenerationOfEscapedTypesTests
         private static string CreateClassName(string type, string conversion, string underlyingType) =>
             Normalize($"escapedTests{type}{conversion}{underlyingType}");
 
-        private static string Normalize(string input) => input.Replace(" ", "_").Replace("|", "_").Replace(".", "_").Replace("@", "_");
+        private static string Normalize(string input) => 
+            input.Replace(" ", "_").Replace("|", "_").Replace(".", "_").Replace("@", "_");
         
         // for each of the types above, create classes for each one of these attributes
         private readonly string[] _conversions = new[]
@@ -62,7 +63,9 @@ public class GenerationOfEscapedTypesTests
             "double",
             "System.Guid",
             "string",
-            "@record.@struct.@float.@decimal",
+            "record.@struct.@float.@decimal",
+            "record.@struct.@float.@event2",
+            "record.@struct.@float.@event",
         };
 
         IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
@@ -77,11 +80,13 @@ public class GenerationOfEscapedTypesTests
 namespace record.@struct.@float
 {{
     public readonly record struct @decimal();
+    public readonly record struct @event2();
+    public readonly record struct @event();
 }}
-
 
   [ValueObject(conversions: {conversions}, underlyingType: typeof({underlyingType}))]
   {type} {className} {{ }}";
+        
         var source = @"using Vogen;
 namespace @class
 {
@@ -91,6 +96,56 @@ namespace @class
         return new SnapshotRunner<ValueObjectGenerator>()
             .WithSource(source)
             .CustomizeSettings(s => s.UseFileName(className))
+            .RunOnAllFrameworks();
+    }
+
+    [Fact]
+    public Task MixtureOfKeywords()
+    {
+        string declaration = """
+using Vogen;
+
+namespace record.@struct.@float
+{
+    public readonly record struct @decimal();
+}
+
+namespace @double
+{
+    public readonly record struct @decimal();
+
+    [ValueObject(typeof(@decimal))]
+    public partial class classFromEscapedNamespaceWithReservedUnderlyingType
+    {
+    }
+
+    [ValueObject]
+    public partial class classFromEscapedNamespace
+    {
+    }
+}
+
+namespace @bool.@byte.@short.@float.@object
+{
+    [ValueObject]
+    public partial class @class
+    {
+    }
+
+    [ValueObject]
+    public partial class @event
+    {
+    }
+
+    [ValueObject(typeof(record.@struct.@float.@decimal))]
+    public partial class @event2
+    {
+    }
+}
+""";
+        
+        return new SnapshotRunner<ValueObjectGenerator>()
+            .WithSource(declaration)
             .RunOnAllFrameworks();
     }
 }

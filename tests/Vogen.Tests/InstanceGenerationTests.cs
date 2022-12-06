@@ -1,13 +1,28 @@
 ﻿using System;
 using FluentAssertions;
 using FluentAssertions.Execution;
-using Vogen;
 using Xunit;
 
-namespace SmallTests.Instances;
+namespace Vogen.Tests;
 
 public class InstanceGenerationTests
 {
+    public class With_underlying_Boolean_instance
+    {
+        [Theory]
+        [InlineData(true)]
+        [InlineData(false)]
+        public void It_generates_a_successful_result(object input)
+        {
+            InstanceGeneration.BuildResult r =
+                InstanceGeneration.TryBuildInstanceValueAsText("foo", input, "System.Boolean");
+
+            using var x = new AssertionScope();
+            r.Success.Should().BeTrue();
+            r.Value.Should().Be($"{input!.ToString()!.ToLower()}");
+        }
+    }
+
     public class With_underlying_Decimal_instance
     {
         [Theory]
