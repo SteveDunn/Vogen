@@ -126,7 +126,6 @@ namespace Shared
 
 
             AddNuGetReference("Microsoft.CSharp", "4.7.0", "lib/netstandard2.0/");  // To support dynamic type
-            //AddNuGetReference("Dapper", "2.0.123", "lib/netstandard2.0/");
             AddNuGetReference("Newtonsoft.Json", "13.0.2", "lib/netstandard2.0/"); 
         }
 
