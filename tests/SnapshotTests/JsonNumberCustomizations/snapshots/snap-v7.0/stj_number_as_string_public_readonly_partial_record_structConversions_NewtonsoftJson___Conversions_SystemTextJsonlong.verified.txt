@@ -34,7 +34,7 @@ namespace Whatever
 [global::Newtonsoft.Json.JsonConverter(typeof(stj_number_as_string_public_readonly_partial_record_structConversions_NewtonsoftJson___Conversions_SystemTextJsonlongNewtonsoftJsonConverter))]
 
     [global::System.Diagnostics.DebuggerTypeProxyAttribute(typeof(stj_number_as_string_public_readonly_partial_record_structConversions_NewtonsoftJson___Conversions_SystemTextJsonlongDebugView))]
-    [global::System.Diagnostics.DebuggerDisplayAttribute("Underlying type: long, Value = { _value }")]
+    [global::System.Diagnostics.DebuggerDisplayAttribute("Underlying type: System.Int64, Value = { _value }")]
     public readonly partial record struct stj_number_as_string_public_readonly_partial_record_structConversions_NewtonsoftJson___Conversions_SystemTextJsonlong  :  global::System.IComparable<stj_number_as_string_public_readonly_partial_record_structConversions_NewtonsoftJson___Conversions_SystemTextJsonlong>
     {
 #if DEBUG    
@@ -43,12 +43,12 @@ namespace Whatever
 
         private readonly global::System.Boolean _isInitialized;
         
-        private readonly long _value;
+        private readonly System.Int64 _value;
 
         /// <summary>
-        /// Gets the underlying <see cref="long" /> value if set, otherwise a <see cref="ValueObjectValidationException" /> is thrown.
+        /// Gets the underlying <see cref="System.Int64" /> value if set, otherwise a <see cref="ValueObjectValidationException" /> is thrown.
         /// </summary>
-        public readonly long Value
+        public readonly System.Int64 Value
         {
             [global::System.Diagnostics.DebuggerStepThroughAttribute]
             get
@@ -81,7 +81,7 @@ namespace Whatever
         }
 
         [global::System.Diagnostics.DebuggerStepThroughAttribute]
-        private stj_number_as_string_public_readonly_partial_record_structConversions_NewtonsoftJson___Conversions_SystemTextJsonlong(long value) 
+        private stj_number_as_string_public_readonly_partial_record_structConversions_NewtonsoftJson___Conversions_SystemTextJsonlong(System.Int64 value) 
         {
             _value = value;
             _isInitialized = true;
@@ -92,7 +92,7 @@ namespace Whatever
         /// </summary>
         /// <param name="value">The underlying type.</param>
         /// <returns>An instance of this type.</returns>
-        public static stj_number_as_string_public_readonly_partial_record_structConversions_NewtonsoftJson___Conversions_SystemTextJsonlong From(long value)
+        public static stj_number_as_string_public_readonly_partial_record_structConversions_NewtonsoftJson___Conversions_SystemTextJsonlong From(System.Int64 value)
         {
             
 
@@ -103,14 +103,14 @@ namespace Whatever
             return instance;
         }
 
-        public static explicit operator stj_number_as_string_public_readonly_partial_record_structConversions_NewtonsoftJson___Conversions_SystemTextJsonlong(long value) => From(value);
-        public static explicit operator long(stj_number_as_string_public_readonly_partial_record_structConversions_NewtonsoftJson___Conversions_SystemTextJsonlong value) => value.Value;
+        public static explicit operator stj_number_as_string_public_readonly_partial_record_structConversions_NewtonsoftJson___Conversions_SystemTextJsonlong(System.Int64 value) => From(value);
+        public static explicit operator System.Int64(stj_number_as_string_public_readonly_partial_record_structConversions_NewtonsoftJson___Conversions_SystemTextJsonlong value) => value.Value;
 
         public int CompareTo(stj_number_as_string_public_readonly_partial_record_structConversions_NewtonsoftJson___Conversions_SystemTextJsonlong other) => Value.CompareTo(other.Value);
 
         // only called internally when something has been deserialized into
         // its primitive type.
-        private static stj_number_as_string_public_readonly_partial_record_structConversions_NewtonsoftJson___Conversions_SystemTextJsonlong Deserialize(long value)
+        private static stj_number_as_string_public_readonly_partial_record_structConversions_NewtonsoftJson___Conversions_SystemTextJsonlong Deserialize(System.Int64 value)
         {
             
 

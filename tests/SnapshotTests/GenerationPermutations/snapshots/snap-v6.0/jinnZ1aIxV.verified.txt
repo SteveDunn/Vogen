@@ -33,19 +33,19 @@ namespace Whatever
     [global::System.Text.Json.Serialization.JsonConverter(typeof(public_sealed_partial_recordConversions_SystemTextJsondecimalSystemTextJsonConverter))]
 
     [global::System.Diagnostics.DebuggerTypeProxyAttribute(typeof(public_sealed_partial_recordConversions_SystemTextJsondecimalDebugView))]
-    [global::System.Diagnostics.DebuggerDisplayAttribute("Underlying type: decimal, Value = { _value }")]
+    [global::System.Diagnostics.DebuggerDisplayAttribute("Underlying type: System.Decimal, Value = { _value }")]
     public sealed partial record class public_sealed_partial_recordConversions_SystemTextJsondecimal  :  global::System.IComparable<public_sealed_partial_recordConversions_SystemTextJsondecimal>
     {
 #if DEBUG    
         private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
 #endif
         private readonly global::System.Boolean _isInitialized;
-        private readonly decimal _value;
+        private readonly System.Decimal _value;
         
         /// <summary>
-        /// Gets the underlying <see cref="decimal" /> value if set, otherwise a <see cref="ValueObjectValidationException" /> is thrown.
+        /// Gets the underlying <see cref="System.Decimal" /> value if set, otherwise a <see cref="ValueObjectValidationException" /> is thrown.
         /// </summary>
-        public decimal Value
+        public System.Decimal Value
         {
             [global::System.Diagnostics.DebuggerStepThroughAttribute]
             get
@@ -78,7 +78,7 @@ namespace Whatever
         }
 
         [global::System.Diagnostics.DebuggerStepThroughAttribute]
-        private public_sealed_partial_recordConversions_SystemTextJsondecimal(decimal value)
+        private public_sealed_partial_recordConversions_SystemTextJsondecimal(System.Decimal value)
         {
             _value = value;
             _isInitialized = true;
@@ -89,7 +89,7 @@ namespace Whatever
         /// </summary>
         /// <param name="value">The underlying type.</param>
         /// <returns>An instance of this type.</returns>
-        public static public_sealed_partial_recordConversions_SystemTextJsondecimal From(decimal value)
+        public static public_sealed_partial_recordConversions_SystemTextJsondecimal From(System.Decimal value)
         {
             
 
@@ -102,14 +102,14 @@ namespace Whatever
             return instance;
         }
 
-        public static explicit operator public_sealed_partial_recordConversions_SystemTextJsondecimal(decimal value) => From(value);
-        public static explicit operator decimal(public_sealed_partial_recordConversions_SystemTextJsondecimal value) => value.Value;
+        public static explicit operator public_sealed_partial_recordConversions_SystemTextJsondecimal(System.Decimal value) => From(value);
+        public static explicit operator System.Decimal(public_sealed_partial_recordConversions_SystemTextJsondecimal value) => value.Value;
 
         public int CompareTo(public_sealed_partial_recordConversions_SystemTextJsondecimal other) => Value.CompareTo(other.Value);
 
         // only called internally when something has been deserialized into
         // its primitive type.
-        private static public_sealed_partial_recordConversions_SystemTextJsondecimal Deserialize(decimal value)
+        private static public_sealed_partial_recordConversions_SystemTextJsondecimal Deserialize(System.Decimal value)
         {
             
 

@@ -61,6 +61,7 @@ namespace Shared
                     AddNuGetReference("Microsoft.EntityFrameworkCore", "3.1.31", "lib/netstandard2.0/");
                     AddNuGetReference("Dapper", "2.0.123", "lib/net461/");
                     AddNuGetReference("System.Text.Json", "7.0.0", "lib/net462/");
+                    AddNuGetReference("System.Memory", "4.5.5", "lib/net461/");
                     break;
 
                 case TargetFramework.Net4_8:
@@ -69,6 +70,7 @@ namespace Shared
                     AddNuGetReference("Microsoft.EntityFrameworkCore", "5.0.17", "lib/netstandard2.1/");
                     AddNuGetReference("Dapper", "2.0.123", "lib/netstandard2.0/");
                     AddNuGetReference("System.Text.Json", "7.0.0", "lib/netstandard2.0/");
+                    AddNuGetReference("System.Memory", "4.5.5", "lib/netstandard2.0");
                     break;
 
                 case TargetFramework.Net5_0:
@@ -122,6 +124,7 @@ namespace Shared
             if (TargetFramework != TargetFramework.Net7_0)
             {
                 AddNuGetReference("System.Numerics.Vectors", "4.5.0", "ref/netstandard2.0/");
+//                AddNuGetReference("System.Memory", "4.5.5", "lib/net462/");
             }
 
 

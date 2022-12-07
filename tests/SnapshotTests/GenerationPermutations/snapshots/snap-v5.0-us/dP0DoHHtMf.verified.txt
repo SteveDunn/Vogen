@@ -33,7 +33,7 @@ namespace Whatever
     [global::System.Text.Json.Serialization.JsonConverter(typeof(internal_partial_record_structConversions_SystemTextJsonstringSystemTextJsonConverter))]
 
     [global::System.Diagnostics.DebuggerTypeProxyAttribute(typeof(internal_partial_record_structConversions_SystemTextJsonstringDebugView))]
-    [global::System.Diagnostics.DebuggerDisplayAttribute("Underlying type: string, Value = { _value }")]
+    [global::System.Diagnostics.DebuggerDisplayAttribute("Underlying type: System.String, Value = { _value }")]
     internal partial record struct internal_partial_record_structConversions_SystemTextJsonstring  :  global::System.IComparable<internal_partial_record_structConversions_SystemTextJsonstring>
     {
 #if DEBUG    
@@ -42,12 +42,12 @@ namespace Whatever
 
         private readonly global::System.Boolean _isInitialized;
         
-        private readonly string _value;
+        private readonly System.String _value;
 
         /// <summary>
-        /// Gets the underlying <see cref="string" /> value if set, otherwise a <see cref="ValueObjectValidationException" /> is thrown.
+        /// Gets the underlying <see cref="System.String" /> value if set, otherwise a <see cref="ValueObjectValidationException" /> is thrown.
         /// </summary>
-        public readonly string Value
+        public readonly System.String Value
         {
             [global::System.Diagnostics.DebuggerStepThroughAttribute]
             get
@@ -84,7 +84,7 @@ namespace Whatever
         }
 
         [global::System.Diagnostics.DebuggerStepThroughAttribute]
-        private internal_partial_record_structConversions_SystemTextJsonstring(string value) 
+        private internal_partial_record_structConversions_SystemTextJsonstring(System.String value) 
         {
             _value = value;
             _isInitialized = true;
@@ -95,7 +95,7 @@ namespace Whatever
         /// </summary>
         /// <param name="value">The underlying type.</param>
         /// <returns>An instance of this type.</returns>
-        public static internal_partial_record_structConversions_SystemTextJsonstring From(string value)
+        public static internal_partial_record_structConversions_SystemTextJsonstring From(System.String value)
         {
             
 
@@ -106,14 +106,14 @@ namespace Whatever
             return instance;
         }
 
-        public static explicit operator internal_partial_record_structConversions_SystemTextJsonstring(string value) => From(value);
-        public static explicit operator string(internal_partial_record_structConversions_SystemTextJsonstring value) => value.Value;
+        public static explicit operator internal_partial_record_structConversions_SystemTextJsonstring(System.String value) => From(value);
+        public static explicit operator System.String(internal_partial_record_structConversions_SystemTextJsonstring value) => value.Value;
 
         public int CompareTo(internal_partial_record_structConversions_SystemTextJsonstring other) => Value.CompareTo(other.Value);
 
         // only called internally when something has been deserialized into
         // its primitive type.
-        private static internal_partial_record_structConversions_SystemTextJsonstring Deserialize(string value)
+        private static internal_partial_record_structConversions_SystemTextJsonstring Deserialize(System.String value)
         {
             
 

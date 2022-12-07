@@ -33,19 +33,19 @@ namespace Whatever
     [global::Newtonsoft.Json.JsonConverter(typeof(public_partial_record_classConversions_NewtonsoftJsonintNewtonsoftJsonConverter))]
 
     [global::System.Diagnostics.DebuggerTypeProxyAttribute(typeof(public_partial_record_classConversions_NewtonsoftJsonintDebugView))]
-    [global::System.Diagnostics.DebuggerDisplayAttribute("Underlying type: int, Value = { _value }")]
+    [global::System.Diagnostics.DebuggerDisplayAttribute("Underlying type: System.Int32, Value = { _value }")]
     public partial record class public_partial_record_classConversions_NewtonsoftJsonint  :  global::System.IComparable<public_partial_record_classConversions_NewtonsoftJsonint>
     {
 #if DEBUG    
         private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
 #endif
         private readonly global::System.Boolean _isInitialized;
-        private readonly int _value;
+        private readonly System.Int32 _value;
         
         /// <summary>
-        /// Gets the underlying <see cref="int" /> value if set, otherwise a <see cref="ValueObjectValidationException" /> is thrown.
+        /// Gets the underlying <see cref="System.Int32" /> value if set, otherwise a <see cref="ValueObjectValidationException" /> is thrown.
         /// </summary>
-        public int Value
+        public System.Int32 Value
         {
             [global::System.Diagnostics.DebuggerStepThroughAttribute]
             get
@@ -78,7 +78,7 @@ namespace Whatever
         }
 
         [global::System.Diagnostics.DebuggerStepThroughAttribute]
-        private public_partial_record_classConversions_NewtonsoftJsonint(int value)
+        private public_partial_record_classConversions_NewtonsoftJsonint(System.Int32 value)
         {
             _value = value;
             _isInitialized = true;
@@ -89,7 +89,7 @@ namespace Whatever
         /// </summary>
         /// <param name="value">The underlying type.</param>
         /// <returns>An instance of this type.</returns>
-        public static public_partial_record_classConversions_NewtonsoftJsonint From(int value)
+        public static public_partial_record_classConversions_NewtonsoftJsonint From(System.Int32 value)
         {
             
 
@@ -102,14 +102,14 @@ namespace Whatever
             return instance;
         }
 
-        public static explicit operator public_partial_record_classConversions_NewtonsoftJsonint(int value) => From(value);
-        public static explicit operator int(public_partial_record_classConversions_NewtonsoftJsonint value) => value.Value;
+        public static explicit operator public_partial_record_classConversions_NewtonsoftJsonint(System.Int32 value) => From(value);
+        public static explicit operator System.Int32(public_partial_record_classConversions_NewtonsoftJsonint value) => value.Value;
 
         public int CompareTo(public_partial_record_classConversions_NewtonsoftJsonint other) => Value.CompareTo(other.Value);
 
         // only called internally when something has been deserialized into
         // its primitive type.
-        private static public_partial_record_classConversions_NewtonsoftJsonint Deserialize(int value)
+        private static public_partial_record_classConversions_NewtonsoftJsonint Deserialize(System.Int32 value)
         {
             
 

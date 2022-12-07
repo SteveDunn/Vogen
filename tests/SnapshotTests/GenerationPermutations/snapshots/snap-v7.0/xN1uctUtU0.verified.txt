@@ -32,7 +32,7 @@ namespace Whatever
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Vogen", "1.0.0.0")]
     
     [global::System.Diagnostics.DebuggerTypeProxyAttribute(typeof(public_readonly_partial_record_structConversions_DapperTypeHandlerlongDebugView))]
-    [global::System.Diagnostics.DebuggerDisplayAttribute("Underlying type: long, Value = { _value }")]
+    [global::System.Diagnostics.DebuggerDisplayAttribute("Underlying type: System.Int64, Value = { _value }")]
     public readonly partial record struct public_readonly_partial_record_structConversions_DapperTypeHandlerlong  :  global::System.IComparable<public_readonly_partial_record_structConversions_DapperTypeHandlerlong>
     {
 #if DEBUG    
@@ -41,12 +41,12 @@ namespace Whatever
 
         private readonly global::System.Boolean _isInitialized;
         
-        private readonly long _value;
+        private readonly System.Int64 _value;
 
         /// <summary>
-        /// Gets the underlying <see cref="long" /> value if set, otherwise a <see cref="ValueObjectValidationException" /> is thrown.
+        /// Gets the underlying <see cref="System.Int64" /> value if set, otherwise a <see cref="ValueObjectValidationException" /> is thrown.
         /// </summary>
-        public readonly long Value
+        public readonly System.Int64 Value
         {
             [global::System.Diagnostics.DebuggerStepThroughAttribute]
             get
@@ -79,7 +79,7 @@ namespace Whatever
         }
 
         [global::System.Diagnostics.DebuggerStepThroughAttribute]
-        private public_readonly_partial_record_structConversions_DapperTypeHandlerlong(long value) 
+        private public_readonly_partial_record_structConversions_DapperTypeHandlerlong(System.Int64 value) 
         {
             _value = value;
             _isInitialized = true;
@@ -90,7 +90,7 @@ namespace Whatever
         /// </summary>
         /// <param name="value">The underlying type.</param>
         /// <returns>An instance of this type.</returns>
-        public static public_readonly_partial_record_structConversions_DapperTypeHandlerlong From(long value)
+        public static public_readonly_partial_record_structConversions_DapperTypeHandlerlong From(System.Int64 value)
         {
             
 
@@ -101,14 +101,14 @@ namespace Whatever
             return instance;
         }
 
-        public static explicit operator public_readonly_partial_record_structConversions_DapperTypeHandlerlong(long value) => From(value);
-        public static explicit operator long(public_readonly_partial_record_structConversions_DapperTypeHandlerlong value) => value.Value;
+        public static explicit operator public_readonly_partial_record_structConversions_DapperTypeHandlerlong(System.Int64 value) => From(value);
+        public static explicit operator System.Int64(public_readonly_partial_record_structConversions_DapperTypeHandlerlong value) => value.Value;
 
         public int CompareTo(public_readonly_partial_record_structConversions_DapperTypeHandlerlong other) => Value.CompareTo(other.Value);
 
         // only called internally when something has been deserialized into
         // its primitive type.
-        private static public_readonly_partial_record_structConversions_DapperTypeHandlerlong Deserialize(long value)
+        private static public_readonly_partial_record_structConversions_DapperTypeHandlerlong Deserialize(System.Int64 value)
         {
             
 

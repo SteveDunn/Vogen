@@ -34,19 +34,19 @@ namespace Whatever
 [global::System.ComponentModel.TypeConverter(typeof(public_sealed_partial_recordbyteTypeConverter))]
 
     [global::System.Diagnostics.DebuggerTypeProxyAttribute(typeof(public_sealed_partial_recordbyteDebugView))]
-    [global::System.Diagnostics.DebuggerDisplayAttribute("Underlying type: byte, Value = { _value }")]
+    [global::System.Diagnostics.DebuggerDisplayAttribute("Underlying type: System.Byte, Value = { _value }")]
     public sealed partial record class public_sealed_partial_recordbyte  :  global::System.IComparable<public_sealed_partial_recordbyte>
     {
 #if DEBUG    
         private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
 #endif
         private readonly global::System.Boolean _isInitialized;
-        private readonly byte _value;
+        private readonly System.Byte _value;
         
         /// <summary>
-        /// Gets the underlying <see cref="byte" /> value if set, otherwise a <see cref="ValueObjectValidationException" /> is thrown.
+        /// Gets the underlying <see cref="System.Byte" /> value if set, otherwise a <see cref="ValueObjectValidationException" /> is thrown.
         /// </summary>
-        public byte Value
+        public System.Byte Value
         {
             [global::System.Diagnostics.DebuggerStepThroughAttribute]
             get
@@ -79,7 +79,7 @@ namespace Whatever
         }
 
         [global::System.Diagnostics.DebuggerStepThroughAttribute]
-        private public_sealed_partial_recordbyte(byte value)
+        private public_sealed_partial_recordbyte(System.Byte value)
         {
             _value = value;
             _isInitialized = true;
@@ -90,7 +90,7 @@ namespace Whatever
         /// </summary>
         /// <param name="value">The underlying type.</param>
         /// <returns>An instance of this type.</returns>
-        public static public_sealed_partial_recordbyte From(byte value)
+        public static public_sealed_partial_recordbyte From(System.Byte value)
         {
             
 
@@ -103,14 +103,14 @@ namespace Whatever
             return instance;
         }
 
-        public static explicit operator public_sealed_partial_recordbyte(byte value) => From(value);
-        public static explicit operator byte(public_sealed_partial_recordbyte value) => value.Value;
+        public static explicit operator public_sealed_partial_recordbyte(System.Byte value) => From(value);
+        public static explicit operator System.Byte(public_sealed_partial_recordbyte value) => value.Value;
 
         public int CompareTo(public_sealed_partial_recordbyte other) => Value.CompareTo(other.Value);
 
         // only called internally when something has been deserialized into
         // its primitive type.
-        private static public_sealed_partial_recordbyte Deserialize(byte value)
+        private static public_sealed_partial_recordbyte Deserialize(System.Byte value)
         {
             
 

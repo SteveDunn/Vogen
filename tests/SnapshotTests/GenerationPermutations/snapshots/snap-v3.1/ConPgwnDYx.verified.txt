@@ -33,19 +33,19 @@ namespace Whatever
     [global::System.ComponentModel.TypeConverter(typeof(public_partial_record_classConversions_TypeConverterboolTypeConverter))]
 
     [global::System.Diagnostics.DebuggerTypeProxyAttribute(typeof(public_partial_record_classConversions_TypeConverterboolDebugView))]
-    [global::System.Diagnostics.DebuggerDisplayAttribute("Underlying type: bool, Value = { _value }")]
+    [global::System.Diagnostics.DebuggerDisplayAttribute("Underlying type: System.Boolean, Value = { _value }")]
     public partial record class public_partial_record_classConversions_TypeConverterbool  :  global::System.IComparable<public_partial_record_classConversions_TypeConverterbool>
     {
 #if DEBUG    
         private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
 #endif
         private readonly global::System.Boolean _isInitialized;
-        private readonly bool _value;
+        private readonly System.Boolean _value;
         
         /// <summary>
-        /// Gets the underlying <see cref="bool" /> value if set, otherwise a <see cref="ValueObjectValidationException" /> is thrown.
+        /// Gets the underlying <see cref="System.Boolean" /> value if set, otherwise a <see cref="ValueObjectValidationException" /> is thrown.
         /// </summary>
-        public bool Value
+        public System.Boolean Value
         {
             [global::System.Diagnostics.DebuggerStepThroughAttribute]
             get
@@ -78,7 +78,7 @@ namespace Whatever
         }
 
         [global::System.Diagnostics.DebuggerStepThroughAttribute]
-        private public_partial_record_classConversions_TypeConverterbool(bool value)
+        private public_partial_record_classConversions_TypeConverterbool(System.Boolean value)
         {
             _value = value;
             _isInitialized = true;
@@ -89,7 +89,7 @@ namespace Whatever
         /// </summary>
         /// <param name="value">The underlying type.</param>
         /// <returns>An instance of this type.</returns>
-        public static public_partial_record_classConversions_TypeConverterbool From(bool value)
+        public static public_partial_record_classConversions_TypeConverterbool From(System.Boolean value)
         {
             
 
@@ -102,14 +102,14 @@ namespace Whatever
             return instance;
         }
 
-        public static explicit operator public_partial_record_classConversions_TypeConverterbool(bool value) => From(value);
-        public static explicit operator bool(public_partial_record_classConversions_TypeConverterbool value) => value.Value;
+        public static explicit operator public_partial_record_classConversions_TypeConverterbool(System.Boolean value) => From(value);
+        public static explicit operator System.Boolean(public_partial_record_classConversions_TypeConverterbool value) => value.Value;
 
         public int CompareTo(public_partial_record_classConversions_TypeConverterbool other) => Value.CompareTo(other.Value);
 
         // only called internally when something has been deserialized into
         // its primitive type.
-        private static public_partial_record_classConversions_TypeConverterbool Deserialize(bool value)
+        private static public_partial_record_classConversions_TypeConverterbool Deserialize(System.Boolean value)
         {
             
 

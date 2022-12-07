@@ -33,8 +33,8 @@ namespace Whatever
     [global::System.Text.Json.Serialization.JsonConverter(typeof(public_readonly_partial_structConversions_SystemTextJsoncharSystemTextJsonConverter))]
 
     [global::System.Diagnostics.DebuggerTypeProxyAttribute(typeof(public_readonly_partial_structConversions_SystemTextJsoncharDebugView))]
-    [global::System.Diagnostics.DebuggerDisplayAttribute("Underlying type: char, Value = { _value }")]
-    public readonly partial struct public_readonly_partial_structConversions_SystemTextJsonchar : global::System.IEquatable<public_readonly_partial_structConversions_SystemTextJsonchar>, global::System.IEquatable<char> ,  global::System.IComparable<public_readonly_partial_structConversions_SystemTextJsonchar>
+    [global::System.Diagnostics.DebuggerDisplayAttribute("Underlying type: System.Char, Value = { _value }")]
+    public readonly partial struct public_readonly_partial_structConversions_SystemTextJsonchar : global::System.IEquatable<public_readonly_partial_structConversions_SystemTextJsonchar>, global::System.IEquatable<System.Char> ,  global::System.IComparable<public_readonly_partial_structConversions_SystemTextJsonchar>
     {
 #if DEBUG    
         private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
@@ -42,12 +42,12 @@ namespace Whatever
 
         private readonly global::System.Boolean _isInitialized;
         
-        private readonly char _value;
+        private readonly System.Char _value;
 
         /// <summary>
-        /// Gets the underlying <see cref="char" /> value if set, otherwise a <see cref="ValueObjectValidationException" /> is thrown.
+        /// Gets the underlying <see cref="System.Char" /> value if set, otherwise a <see cref="ValueObjectValidationException" /> is thrown.
         /// </summary>
-        public readonly char Value
+        public readonly System.Char Value
         {
             [global::System.Diagnostics.DebuggerStepThroughAttribute]
             get
@@ -70,7 +70,7 @@ namespace Whatever
         }
 
         [global::System.Diagnostics.DebuggerStepThroughAttribute]
-        private public_readonly_partial_structConversions_SystemTextJsonchar(char value) 
+        private public_readonly_partial_structConversions_SystemTextJsonchar(System.Char value) 
         {
             _value = value;
             _isInitialized = true;
@@ -81,7 +81,7 @@ namespace Whatever
         /// </summary>
         /// <param name="value">The underlying type.</param>
         /// <returns>An instance of this type.</returns>
-        public static public_readonly_partial_structConversions_SystemTextJsonchar From(char value)
+        public static public_readonly_partial_structConversions_SystemTextJsonchar From(System.Char value)
         {
             
 
@@ -92,12 +92,12 @@ namespace Whatever
             return instance;
         }
 
-        public static explicit operator public_readonly_partial_structConversions_SystemTextJsonchar(char value) => From(value);
-        public static explicit operator char(public_readonly_partial_structConversions_SystemTextJsonchar value) => value.Value;
+        public static explicit operator public_readonly_partial_structConversions_SystemTextJsonchar(System.Char value) => From(value);
+        public static explicit operator System.Char(public_readonly_partial_structConversions_SystemTextJsonchar value) => value.Value;
 
         // only called internally when something has been deserialized into
         // its primitive type.
-        private static public_readonly_partial_structConversions_SystemTextJsonchar Deserialize(char value)
+        private static public_readonly_partial_structConversions_SystemTextJsonchar Deserialize(System.Char value)
         {
             
 
@@ -112,10 +112,10 @@ namespace Whatever
             // We treat anything uninitialized as not equal to anything, even other uninitialized instances of this type.
             if(!_isInitialized || !other._isInitialized) return false;
 
-            return global::System.Collections.Generic.EqualityComparer<char>.Default.Equals(Value, other.Value);
+            return global::System.Collections.Generic.EqualityComparer<System.Char>.Default.Equals(Value, other.Value);
         }
 
-        public readonly global::System.Boolean Equals(char primitive) => Value.Equals(primitive);
+        public readonly global::System.Boolean Equals(System.Char primitive) => Value.Equals(primitive);
 
         public readonly override global::System.Boolean Equals(global::System.Object obj)
         {
@@ -125,11 +125,11 @@ namespace Whatever
         public static global::System.Boolean operator ==(public_readonly_partial_structConversions_SystemTextJsonchar left, public_readonly_partial_structConversions_SystemTextJsonchar right) => Equals(left, right);
         public static global::System.Boolean operator !=(public_readonly_partial_structConversions_SystemTextJsonchar left, public_readonly_partial_structConversions_SystemTextJsonchar right) => !(left == right);
 
-        public static global::System.Boolean operator ==(public_readonly_partial_structConversions_SystemTextJsonchar left, char right) => Equals(left.Value, right);
-        public static global::System.Boolean operator !=(public_readonly_partial_structConversions_SystemTextJsonchar left, char right) => !Equals(left.Value, right);
+        public static global::System.Boolean operator ==(public_readonly_partial_structConversions_SystemTextJsonchar left, System.Char right) => Equals(left.Value, right);
+        public static global::System.Boolean operator !=(public_readonly_partial_structConversions_SystemTextJsonchar left, System.Char right) => !Equals(left.Value, right);
 
-        public static global::System.Boolean operator ==(char left, public_readonly_partial_structConversions_SystemTextJsonchar right) => Equals(left, right.Value);
-        public static global::System.Boolean operator !=(char left, public_readonly_partial_structConversions_SystemTextJsonchar right) => !Equals(left, right.Value);
+        public static global::System.Boolean operator ==(System.Char left, public_readonly_partial_structConversions_SystemTextJsonchar right) => Equals(left, right.Value);
+        public static global::System.Boolean operator !=(System.Char left, public_readonly_partial_structConversions_SystemTextJsonchar right) => !Equals(left, right.Value);
 
         public int CompareTo(public_readonly_partial_structConversions_SystemTextJsonchar other) => Value.CompareTo(other.Value);
 
@@ -156,7 +156,7 @@ namespace Whatever
     }
 
 
-        public readonly override global::System.Int32 GetHashCode() => global::System.Collections.Generic.EqualityComparer<char>.Default.GetHashCode(_value);
+        public readonly override global::System.Int32 GetHashCode() => global::System.Collections.Generic.EqualityComparer<System.Char>.Default.GetHashCode(_value);
 
         /// <summary>Returns the string representation of the underlying type</summary>
     /// <inheritdoc cref="System.Char.ToString()" />

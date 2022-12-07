@@ -33,7 +33,7 @@ namespace Whatever
     [global::Newtonsoft.Json.JsonConverter(typeof(stj_number_as_string_public_partial_record_structConversions_NewtonsoftJsonlong_customizedNewtonsoftJsonConverter))]
 
     [global::System.Diagnostics.DebuggerTypeProxyAttribute(typeof(stj_number_as_string_public_partial_record_structConversions_NewtonsoftJsonlong_customizedDebugView))]
-    [global::System.Diagnostics.DebuggerDisplayAttribute("Underlying type: long, Value = { _value }")]
+    [global::System.Diagnostics.DebuggerDisplayAttribute("Underlying type: System.Int64, Value = { _value }")]
     public partial record struct stj_number_as_string_public_partial_record_structConversions_NewtonsoftJsonlong_customized  :  global::System.IComparable<stj_number_as_string_public_partial_record_structConversions_NewtonsoftJsonlong_customized>
     {
 #if DEBUG    
@@ -42,12 +42,12 @@ namespace Whatever
 
         private readonly global::System.Boolean _isInitialized;
         
-        private readonly long _value;
+        private readonly System.Int64 _value;
 
         /// <summary>
-        /// Gets the underlying <see cref="long" /> value if set, otherwise a <see cref="ValueObjectValidationException" /> is thrown.
+        /// Gets the underlying <see cref="System.Int64" /> value if set, otherwise a <see cref="ValueObjectValidationException" /> is thrown.
         /// </summary>
-        public readonly long Value
+        public readonly System.Int64 Value
         {
             [global::System.Diagnostics.DebuggerStepThroughAttribute]
             get
@@ -80,7 +80,7 @@ namespace Whatever
         }
 
         [global::System.Diagnostics.DebuggerStepThroughAttribute]
-        private stj_number_as_string_public_partial_record_structConversions_NewtonsoftJsonlong_customized(long value) 
+        private stj_number_as_string_public_partial_record_structConversions_NewtonsoftJsonlong_customized(System.Int64 value) 
         {
             _value = value;
             _isInitialized = true;
@@ -91,7 +91,7 @@ namespace Whatever
         /// </summary>
         /// <param name="value">The underlying type.</param>
         /// <returns>An instance of this type.</returns>
-        public static stj_number_as_string_public_partial_record_structConversions_NewtonsoftJsonlong_customized From(long value)
+        public static stj_number_as_string_public_partial_record_structConversions_NewtonsoftJsonlong_customized From(System.Int64 value)
         {
             
 
@@ -102,14 +102,14 @@ namespace Whatever
             return instance;
         }
 
-        public static explicit operator stj_number_as_string_public_partial_record_structConversions_NewtonsoftJsonlong_customized(long value) => From(value);
-        public static explicit operator long(stj_number_as_string_public_partial_record_structConversions_NewtonsoftJsonlong_customized value) => value.Value;
+        public static explicit operator stj_number_as_string_public_partial_record_structConversions_NewtonsoftJsonlong_customized(System.Int64 value) => From(value);
+        public static explicit operator System.Int64(stj_number_as_string_public_partial_record_structConversions_NewtonsoftJsonlong_customized value) => value.Value;
 
         public int CompareTo(stj_number_as_string_public_partial_record_structConversions_NewtonsoftJsonlong_customized other) => Value.CompareTo(other.Value);
 
         // only called internally when something has been deserialized into
         // its primitive type.
-        private static stj_number_as_string_public_partial_record_structConversions_NewtonsoftJsonlong_customized Deserialize(long value)
+        private static stj_number_as_string_public_partial_record_structConversions_NewtonsoftJsonlong_customized Deserialize(System.Int64 value)
         {
             
 

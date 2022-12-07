@@ -33,8 +33,8 @@ namespace Whatever
     [global::System.Text.Json.Serialization.JsonConverter(typeof(stj_number_as_string_public_partial_structConversions_SystemTextJsonshortSystemTextJsonConverter))]
 
     [global::System.Diagnostics.DebuggerTypeProxyAttribute(typeof(stj_number_as_string_public_partial_structConversions_SystemTextJsonshortDebugView))]
-    [global::System.Diagnostics.DebuggerDisplayAttribute("Underlying type: short, Value = { _value }")]
-    public partial struct stj_number_as_string_public_partial_structConversions_SystemTextJsonshort : global::System.IEquatable<stj_number_as_string_public_partial_structConversions_SystemTextJsonshort>, global::System.IEquatable<short> ,  global::System.IComparable<stj_number_as_string_public_partial_structConversions_SystemTextJsonshort>
+    [global::System.Diagnostics.DebuggerDisplayAttribute("Underlying type: System.Int16, Value = { _value }")]
+    public partial struct stj_number_as_string_public_partial_structConversions_SystemTextJsonshort : global::System.IEquatable<stj_number_as_string_public_partial_structConversions_SystemTextJsonshort>, global::System.IEquatable<System.Int16> ,  global::System.IComparable<stj_number_as_string_public_partial_structConversions_SystemTextJsonshort>
     {
 #if DEBUG    
         private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
@@ -42,12 +42,12 @@ namespace Whatever
 
         private readonly global::System.Boolean _isInitialized;
         
-        private readonly short _value;
+        private readonly System.Int16 _value;
 
         /// <summary>
-        /// Gets the underlying <see cref="short" /> value if set, otherwise a <see cref="ValueObjectValidationException" /> is thrown.
+        /// Gets the underlying <see cref="System.Int16" /> value if set, otherwise a <see cref="ValueObjectValidationException" /> is thrown.
         /// </summary>
-        public readonly short Value
+        public readonly System.Int16 Value
         {
             [global::System.Diagnostics.DebuggerStepThroughAttribute]
             get
@@ -70,7 +70,7 @@ namespace Whatever
         }
 
         [global::System.Diagnostics.DebuggerStepThroughAttribute]
-        private stj_number_as_string_public_partial_structConversions_SystemTextJsonshort(short value) 
+        private stj_number_as_string_public_partial_structConversions_SystemTextJsonshort(System.Int16 value) 
         {
             _value = value;
             _isInitialized = true;
@@ -81,7 +81,7 @@ namespace Whatever
         /// </summary>
         /// <param name="value">The underlying type.</param>
         /// <returns>An instance of this type.</returns>
-        public static stj_number_as_string_public_partial_structConversions_SystemTextJsonshort From(short value)
+        public static stj_number_as_string_public_partial_structConversions_SystemTextJsonshort From(System.Int16 value)
         {
             
 
@@ -92,12 +92,12 @@ namespace Whatever
             return instance;
         }
 
-        public static explicit operator stj_number_as_string_public_partial_structConversions_SystemTextJsonshort(short value) => From(value);
-        public static explicit operator short(stj_number_as_string_public_partial_structConversions_SystemTextJsonshort value) => value.Value;
+        public static explicit operator stj_number_as_string_public_partial_structConversions_SystemTextJsonshort(System.Int16 value) => From(value);
+        public static explicit operator System.Int16(stj_number_as_string_public_partial_structConversions_SystemTextJsonshort value) => value.Value;
 
         // only called internally when something has been deserialized into
         // its primitive type.
-        private static stj_number_as_string_public_partial_structConversions_SystemTextJsonshort Deserialize(short value)
+        private static stj_number_as_string_public_partial_structConversions_SystemTextJsonshort Deserialize(System.Int16 value)
         {
             
 
@@ -112,10 +112,10 @@ namespace Whatever
             // We treat anything uninitialized as not equal to anything, even other uninitialized instances of this type.
             if(!_isInitialized || !other._isInitialized) return false;
 
-            return global::System.Collections.Generic.EqualityComparer<short>.Default.Equals(Value, other.Value);
+            return global::System.Collections.Generic.EqualityComparer<System.Int16>.Default.Equals(Value, other.Value);
         }
 
-        public readonly global::System.Boolean Equals(short primitive) => Value.Equals(primitive);
+        public readonly global::System.Boolean Equals(System.Int16 primitive) => Value.Equals(primitive);
 
         public readonly override global::System.Boolean Equals(global::System.Object obj)
         {
@@ -125,11 +125,11 @@ namespace Whatever
         public static global::System.Boolean operator ==(stj_number_as_string_public_partial_structConversions_SystemTextJsonshort left, stj_number_as_string_public_partial_structConversions_SystemTextJsonshort right) => Equals(left, right);
         public static global::System.Boolean operator !=(stj_number_as_string_public_partial_structConversions_SystemTextJsonshort left, stj_number_as_string_public_partial_structConversions_SystemTextJsonshort right) => !(left == right);
 
-        public static global::System.Boolean operator ==(stj_number_as_string_public_partial_structConversions_SystemTextJsonshort left, short right) => Equals(left.Value, right);
-        public static global::System.Boolean operator !=(stj_number_as_string_public_partial_structConversions_SystemTextJsonshort left, short right) => !Equals(left.Value, right);
+        public static global::System.Boolean operator ==(stj_number_as_string_public_partial_structConversions_SystemTextJsonshort left, System.Int16 right) => Equals(left.Value, right);
+        public static global::System.Boolean operator !=(stj_number_as_string_public_partial_structConversions_SystemTextJsonshort left, System.Int16 right) => !Equals(left.Value, right);
 
-        public static global::System.Boolean operator ==(short left, stj_number_as_string_public_partial_structConversions_SystemTextJsonshort right) => Equals(left, right.Value);
-        public static global::System.Boolean operator !=(short left, stj_number_as_string_public_partial_structConversions_SystemTextJsonshort right) => !Equals(left, right.Value);
+        public static global::System.Boolean operator ==(System.Int16 left, stj_number_as_string_public_partial_structConversions_SystemTextJsonshort right) => Equals(left, right.Value);
+        public static global::System.Boolean operator !=(System.Int16 left, stj_number_as_string_public_partial_structConversions_SystemTextJsonshort right) => !Equals(left, right.Value);
 
         public int CompareTo(stj_number_as_string_public_partial_structConversions_SystemTextJsonshort other) => Value.CompareTo(other.Value);
 
@@ -177,7 +177,7 @@ namespace Whatever
     }
 
 
-        public readonly override global::System.Int32 GetHashCode() => global::System.Collections.Generic.EqualityComparer<short>.Default.GetHashCode(_value);
+        public readonly override global::System.Int32 GetHashCode() => global::System.Collections.Generic.EqualityComparer<System.Int16>.Default.GetHashCode(_value);
 
         /// <summary>Returns the string representation of the underlying type</summary>
     /// <inheritdoc cref="System.Int16.ToString()" />

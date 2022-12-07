@@ -33,19 +33,19 @@ namespace Whatever
     [global::Newtonsoft.Json.JsonConverter(typeof(stj_number_as_string_public_sealed_partial_record_classConversions_NewtonsoftJsonstringNewtonsoftJsonConverter))]
 
     [global::System.Diagnostics.DebuggerTypeProxyAttribute(typeof(stj_number_as_string_public_sealed_partial_record_classConversions_NewtonsoftJsonstringDebugView))]
-    [global::System.Diagnostics.DebuggerDisplayAttribute("Underlying type: string, Value = { _value }")]
+    [global::System.Diagnostics.DebuggerDisplayAttribute("Underlying type: System.String, Value = { _value }")]
     public sealed partial record class stj_number_as_string_public_sealed_partial_record_classConversions_NewtonsoftJsonstring  :  global::System.IComparable<stj_number_as_string_public_sealed_partial_record_classConversions_NewtonsoftJsonstring>
     {
 #if DEBUG    
         private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
 #endif
         private readonly global::System.Boolean _isInitialized;
-        private readonly string _value;
+        private readonly System.String _value;
         
         /// <summary>
-        /// Gets the underlying <see cref="string" /> value if set, otherwise a <see cref="ValueObjectValidationException" /> is thrown.
+        /// Gets the underlying <see cref="System.String" /> value if set, otherwise a <see cref="ValueObjectValidationException" /> is thrown.
         /// </summary>
-        public string Value
+        public System.String Value
         {
             [global::System.Diagnostics.DebuggerStepThroughAttribute]
             get
@@ -82,7 +82,7 @@ namespace Whatever
         }
 
         [global::System.Diagnostics.DebuggerStepThroughAttribute]
-        private stj_number_as_string_public_sealed_partial_record_classConversions_NewtonsoftJsonstring(string value)
+        private stj_number_as_string_public_sealed_partial_record_classConversions_NewtonsoftJsonstring(System.String value)
         {
             _value = value;
             _isInitialized = true;
@@ -93,7 +93,7 @@ namespace Whatever
         /// </summary>
         /// <param name="value">The underlying type.</param>
         /// <returns>An instance of this type.</returns>
-        public static stj_number_as_string_public_sealed_partial_record_classConversions_NewtonsoftJsonstring From(string value)
+        public static stj_number_as_string_public_sealed_partial_record_classConversions_NewtonsoftJsonstring From(System.String value)
         {
                         if (value is null)
             {
@@ -110,14 +110,14 @@ namespace Whatever
             return instance;
         }
 
-        public static explicit operator stj_number_as_string_public_sealed_partial_record_classConversions_NewtonsoftJsonstring(string value) => From(value);
-        public static explicit operator string(stj_number_as_string_public_sealed_partial_record_classConversions_NewtonsoftJsonstring value) => value.Value;
+        public static explicit operator stj_number_as_string_public_sealed_partial_record_classConversions_NewtonsoftJsonstring(System.String value) => From(value);
+        public static explicit operator System.String(stj_number_as_string_public_sealed_partial_record_classConversions_NewtonsoftJsonstring value) => value.Value;
 
         public int CompareTo(stj_number_as_string_public_sealed_partial_record_classConversions_NewtonsoftJsonstring other) => Value.CompareTo(other.Value);
 
         // only called internally when something has been deserialized into
         // its primitive type.
-        private static stj_number_as_string_public_sealed_partial_record_classConversions_NewtonsoftJsonstring Deserialize(string value)
+        private static stj_number_as_string_public_sealed_partial_record_classConversions_NewtonsoftJsonstring Deserialize(System.String value)
         {
                         if (value is null)
             {

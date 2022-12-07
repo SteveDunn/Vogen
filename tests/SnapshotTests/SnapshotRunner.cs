@@ -86,12 +86,12 @@ namespace SnapshotTests
                 using var scope = new AssertionScope();
 
                 var (diagnostics, output) = GetGeneratedOutput(_source, eachFramework);
-                diagnostics.Should().BeEmpty("because the following source code should be valid: " + _source);
+                diagnostics.Should().BeEmpty(@$"because the following source code should compile on {eachFramework}: " + _source);
 
                 var outputFolder = Path.Combine(_path, SnapshotUtils.GetSnapshotDirectoryName(eachFramework, _locale));
 
-                // verifySettings ??= new VerifySettings();
-                // verifySettings.AutoVerify();
+                verifySettings ??= new VerifySettings();
+                verifySettings.AutoVerify();
 
                 await Verifier.Verify(output, verifySettings).UseDirectory(outputFolder);
             }

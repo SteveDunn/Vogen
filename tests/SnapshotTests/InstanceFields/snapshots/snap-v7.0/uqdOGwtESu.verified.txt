@@ -34,19 +34,19 @@ namespace Whatever
 [global::System.ComponentModel.TypeConverter(typeof(internal_sealed_partial_record_classbyteTypeConverter))]
 
     [global::System.Diagnostics.DebuggerTypeProxyAttribute(typeof(internal_sealed_partial_record_classbyteDebugView))]
-    [global::System.Diagnostics.DebuggerDisplayAttribute("Underlying type: byte, Value = { _value }")]
+    [global::System.Diagnostics.DebuggerDisplayAttribute("Underlying type: System.Byte, Value = { _value }")]
     internal sealed partial record class internal_sealed_partial_record_classbyte  :  global::System.IComparable<internal_sealed_partial_record_classbyte>
     {
 #if DEBUG    
         private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
 #endif
         private readonly global::System.Boolean _isInitialized;
-        private readonly byte _value;
+        private readonly System.Byte _value;
         
         /// <summary>
-        /// Gets the underlying <see cref="byte" /> value if set, otherwise a <see cref="ValueObjectValidationException" /> is thrown.
+        /// Gets the underlying <see cref="System.Byte" /> value if set, otherwise a <see cref="ValueObjectValidationException" /> is thrown.
         /// </summary>
-        public byte Value
+        public System.Byte Value
         {
             [global::System.Diagnostics.DebuggerStepThroughAttribute]
             get
@@ -79,7 +79,7 @@ namespace Whatever
         }
 
         [global::System.Diagnostics.DebuggerStepThroughAttribute]
-        private internal_sealed_partial_record_classbyte(byte value)
+        private internal_sealed_partial_record_classbyte(System.Byte value)
         {
             _value = value;
             _isInitialized = true;
@@ -90,7 +90,7 @@ namespace Whatever
         /// </summary>
         /// <param name="value">The underlying type.</param>
         /// <returns>An instance of this type.</returns>
-        public static internal_sealed_partial_record_classbyte From(byte value)
+        public static internal_sealed_partial_record_classbyte From(System.Byte value)
         {
             
 
@@ -103,14 +103,14 @@ namespace Whatever
             return instance;
         }
 
-        public static explicit operator internal_sealed_partial_record_classbyte(byte value) => From(value);
-        public static explicit operator byte(internal_sealed_partial_record_classbyte value) => value.Value;
+        public static explicit operator internal_sealed_partial_record_classbyte(System.Byte value) => From(value);
+        public static explicit operator System.Byte(internal_sealed_partial_record_classbyte value) => value.Value;
 
         public int CompareTo(internal_sealed_partial_record_classbyte other) => Value.CompareTo(other.Value);
 
         // only called internally when something has been deserialized into
         // its primitive type.
-        private static internal_sealed_partial_record_classbyte Deserialize(byte value)
+        private static internal_sealed_partial_record_classbyte Deserialize(System.Byte value)
         {
             
 

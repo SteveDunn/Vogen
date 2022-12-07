@@ -32,7 +32,7 @@ namespace Whatever
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Vogen", "1.0.0.0")]
     
     [global::System.Diagnostics.DebuggerTypeProxyAttribute(typeof(public_partial_record_structConversions_EfCoreValueConverterdoubleDebugView))]
-    [global::System.Diagnostics.DebuggerDisplayAttribute("Underlying type: double, Value = { _value }")]
+    [global::System.Diagnostics.DebuggerDisplayAttribute("Underlying type: System.Double, Value = { _value }")]
     public partial record struct public_partial_record_structConversions_EfCoreValueConverterdouble  :  global::System.IComparable<public_partial_record_structConversions_EfCoreValueConverterdouble>
     {
 #if DEBUG    
@@ -41,12 +41,12 @@ namespace Whatever
 
         private readonly global::System.Boolean _isInitialized;
         
-        private readonly double _value;
+        private readonly System.Double _value;
 
         /// <summary>
-        /// Gets the underlying <see cref="double" /> value if set, otherwise a <see cref="ValueObjectValidationException" /> is thrown.
+        /// Gets the underlying <see cref="System.Double" /> value if set, otherwise a <see cref="ValueObjectValidationException" /> is thrown.
         /// </summary>
-        public readonly double Value
+        public readonly System.Double Value
         {
             [global::System.Diagnostics.DebuggerStepThroughAttribute]
             get
@@ -79,7 +79,7 @@ namespace Whatever
         }
 
         [global::System.Diagnostics.DebuggerStepThroughAttribute]
-        private public_partial_record_structConversions_EfCoreValueConverterdouble(double value) 
+        private public_partial_record_structConversions_EfCoreValueConverterdouble(System.Double value) 
         {
             _value = value;
             _isInitialized = true;
@@ -90,7 +90,7 @@ namespace Whatever
         /// </summary>
         /// <param name="value">The underlying type.</param>
         /// <returns>An instance of this type.</returns>
-        public static public_partial_record_structConversions_EfCoreValueConverterdouble From(double value)
+        public static public_partial_record_structConversions_EfCoreValueConverterdouble From(System.Double value)
         {
             
 
@@ -101,14 +101,14 @@ namespace Whatever
             return instance;
         }
 
-        public static explicit operator public_partial_record_structConversions_EfCoreValueConverterdouble(double value) => From(value);
-        public static explicit operator double(public_partial_record_structConversions_EfCoreValueConverterdouble value) => value.Value;
+        public static explicit operator public_partial_record_structConversions_EfCoreValueConverterdouble(System.Double value) => From(value);
+        public static explicit operator System.Double(public_partial_record_structConversions_EfCoreValueConverterdouble value) => value.Value;
 
         public int CompareTo(public_partial_record_structConversions_EfCoreValueConverterdouble other) => Value.CompareTo(other.Value);
 
         // only called internally when something has been deserialized into
         // its primitive type.
-        private static public_partial_record_structConversions_EfCoreValueConverterdouble Deserialize(double value)
+        private static public_partial_record_structConversions_EfCoreValueConverterdouble Deserialize(System.Double value)
         {
             
 

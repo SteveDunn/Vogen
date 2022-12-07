@@ -32,7 +32,7 @@ namespace Whatever
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Vogen", "1.0.0.0")]
     
     [global::System.Diagnostics.DebuggerTypeProxyAttribute(typeof(public_partial_record_structConversions_DapperTypeHandlercharDebugView))]
-    [global::System.Diagnostics.DebuggerDisplayAttribute("Underlying type: char, Value = { _value }")]
+    [global::System.Diagnostics.DebuggerDisplayAttribute("Underlying type: System.Char, Value = { _value }")]
     public partial record struct public_partial_record_structConversions_DapperTypeHandlerchar  :  global::System.IComparable<public_partial_record_structConversions_DapperTypeHandlerchar>
     {
 #if DEBUG    
@@ -41,12 +41,12 @@ namespace Whatever
 
         private readonly global::System.Boolean _isInitialized;
         
-        private readonly char _value;
+        private readonly System.Char _value;
 
         /// <summary>
-        /// Gets the underlying <see cref="char" /> value if set, otherwise a <see cref="ValueObjectValidationException" /> is thrown.
+        /// Gets the underlying <see cref="System.Char" /> value if set, otherwise a <see cref="ValueObjectValidationException" /> is thrown.
         /// </summary>
-        public readonly char Value
+        public readonly System.Char Value
         {
             [global::System.Diagnostics.DebuggerStepThroughAttribute]
             get
@@ -79,7 +79,7 @@ namespace Whatever
         }
 
         [global::System.Diagnostics.DebuggerStepThroughAttribute]
-        private public_partial_record_structConversions_DapperTypeHandlerchar(char value) 
+        private public_partial_record_structConversions_DapperTypeHandlerchar(System.Char value) 
         {
             _value = value;
             _isInitialized = true;
@@ -90,7 +90,7 @@ namespace Whatever
         /// </summary>
         /// <param name="value">The underlying type.</param>
         /// <returns>An instance of this type.</returns>
-        public static public_partial_record_structConversions_DapperTypeHandlerchar From(char value)
+        public static public_partial_record_structConversions_DapperTypeHandlerchar From(System.Char value)
         {
             
 
@@ -101,14 +101,14 @@ namespace Whatever
             return instance;
         }
 
-        public static explicit operator public_partial_record_structConversions_DapperTypeHandlerchar(char value) => From(value);
-        public static explicit operator char(public_partial_record_structConversions_DapperTypeHandlerchar value) => value.Value;
+        public static explicit operator public_partial_record_structConversions_DapperTypeHandlerchar(System.Char value) => From(value);
+        public static explicit operator System.Char(public_partial_record_structConversions_DapperTypeHandlerchar value) => value.Value;
 
         public int CompareTo(public_partial_record_structConversions_DapperTypeHandlerchar other) => Value.CompareTo(other.Value);
 
         // only called internally when something has been deserialized into
         // its primitive type.
-        private static public_partial_record_structConversions_DapperTypeHandlerchar Deserialize(char value)
+        private static public_partial_record_structConversions_DapperTypeHandlerchar Deserialize(System.Char value)
         {
             
 
