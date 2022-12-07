@@ -51,6 +51,7 @@ namespace Shared
                     AddNuGetReference("Microsoft.NETCore.App.Ref", "3.1.0", "ref/netcoreapp3.1/");
                     AddNuGetReference("linq2db", "3.7.0", "lib/netcoreapp3.1/");
                     AddNuGetReference("Microsoft.EntityFrameworkCore", "5.0.17", "lib/netstandard2.1/");
+                    AddNuGetReference("System.Memory", "4.5.5", "lib/netstandard2.0");
                     AddNuGetReference("Dapper", "2.0.123", "lib/netstandard2.0/");
                     break;
 
