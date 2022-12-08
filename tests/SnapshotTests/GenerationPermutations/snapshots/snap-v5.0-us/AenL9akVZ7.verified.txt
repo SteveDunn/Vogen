@@ -32,8 +32,8 @@ namespace Whatever
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Vogen", "1.0.0.0")]
     
     [global::System.Diagnostics.DebuggerTypeProxyAttribute(typeof(internal_partial_structConversions_EfCoreValueConverterboolDebugView))]
-    [global::System.Diagnostics.DebuggerDisplayAttribute("Underlying type: bool, Value = { _value }")]
-    internal partial struct internal_partial_structConversions_EfCoreValueConverterbool : global::System.IEquatable<internal_partial_structConversions_EfCoreValueConverterbool>, global::System.IEquatable<bool> ,  global::System.IComparable<internal_partial_structConversions_EfCoreValueConverterbool>
+    [global::System.Diagnostics.DebuggerDisplayAttribute("Underlying type: System.Boolean, Value = { _value }")]
+    internal partial struct internal_partial_structConversions_EfCoreValueConverterbool : global::System.IEquatable<internal_partial_structConversions_EfCoreValueConverterbool>, global::System.IEquatable<System.Boolean> ,  global::System.IComparable<internal_partial_structConversions_EfCoreValueConverterbool>
     {
 #if DEBUG    
         private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
@@ -41,12 +41,12 @@ namespace Whatever
 
         private readonly global::System.Boolean _isInitialized;
         
-        private readonly bool _value;
+        private readonly System.Boolean _value;
 
         /// <summary>
-        /// Gets the underlying <see cref="bool" /> value if set, otherwise a <see cref="ValueObjectValidationException" /> is thrown.
+        /// Gets the underlying <see cref="System.Boolean" /> value if set, otherwise a <see cref="ValueObjectValidationException" /> is thrown.
         /// </summary>
-        public readonly bool Value
+        public readonly System.Boolean Value
         {
             [global::System.Diagnostics.DebuggerStepThroughAttribute]
             get
@@ -69,7 +69,7 @@ namespace Whatever
         }
 
         [global::System.Diagnostics.DebuggerStepThroughAttribute]
-        private internal_partial_structConversions_EfCoreValueConverterbool(bool value) 
+        private internal_partial_structConversions_EfCoreValueConverterbool(System.Boolean value) 
         {
             _value = value;
             _isInitialized = true;
@@ -80,7 +80,7 @@ namespace Whatever
         /// </summary>
         /// <param name="value">The underlying type.</param>
         /// <returns>An instance of this type.</returns>
-        public static internal_partial_structConversions_EfCoreValueConverterbool From(bool value)
+        public static internal_partial_structConversions_EfCoreValueConverterbool From(System.Boolean value)
         {
             
 
@@ -91,12 +91,12 @@ namespace Whatever
             return instance;
         }
 
-        public static explicit operator internal_partial_structConversions_EfCoreValueConverterbool(bool value) => From(value);
-        public static explicit operator bool(internal_partial_structConversions_EfCoreValueConverterbool value) => value.Value;
+        public static explicit operator internal_partial_structConversions_EfCoreValueConverterbool(System.Boolean value) => From(value);
+        public static explicit operator System.Boolean(internal_partial_structConversions_EfCoreValueConverterbool value) => value.Value;
 
         // only called internally when something has been deserialized into
         // its primitive type.
-        private static internal_partial_structConversions_EfCoreValueConverterbool Deserialize(bool value)
+        private static internal_partial_structConversions_EfCoreValueConverterbool Deserialize(System.Boolean value)
         {
             
 
@@ -111,10 +111,10 @@ namespace Whatever
             // We treat anything uninitialized as not equal to anything, even other uninitialized instances of this type.
             if(!_isInitialized || !other._isInitialized) return false;
 
-            return global::System.Collections.Generic.EqualityComparer<bool>.Default.Equals(Value, other.Value);
+            return global::System.Collections.Generic.EqualityComparer<System.Boolean>.Default.Equals(Value, other.Value);
         }
 
-        public readonly global::System.Boolean Equals(bool primitive) => Value.Equals(primitive);
+        public readonly global::System.Boolean Equals(System.Boolean primitive) => Value.Equals(primitive);
 
         public readonly override global::System.Boolean Equals(global::System.Object obj)
         {
@@ -124,11 +124,11 @@ namespace Whatever
         public static global::System.Boolean operator ==(internal_partial_structConversions_EfCoreValueConverterbool left, internal_partial_structConversions_EfCoreValueConverterbool right) => Equals(left, right);
         public static global::System.Boolean operator !=(internal_partial_structConversions_EfCoreValueConverterbool left, internal_partial_structConversions_EfCoreValueConverterbool right) => !(left == right);
 
-        public static global::System.Boolean operator ==(internal_partial_structConversions_EfCoreValueConverterbool left, bool right) => Equals(left.Value, right);
-        public static global::System.Boolean operator !=(internal_partial_structConversions_EfCoreValueConverterbool left, bool right) => !Equals(left.Value, right);
+        public static global::System.Boolean operator ==(internal_partial_structConversions_EfCoreValueConverterbool left, System.Boolean right) => Equals(left.Value, right);
+        public static global::System.Boolean operator !=(internal_partial_structConversions_EfCoreValueConverterbool left, System.Boolean right) => !Equals(left.Value, right);
 
-        public static global::System.Boolean operator ==(bool left, internal_partial_structConversions_EfCoreValueConverterbool right) => Equals(left, right.Value);
-        public static global::System.Boolean operator !=(bool left, internal_partial_structConversions_EfCoreValueConverterbool right) => !Equals(left, right.Value);
+        public static global::System.Boolean operator ==(System.Boolean left, internal_partial_structConversions_EfCoreValueConverterbool right) => Equals(left, right.Value);
+        public static global::System.Boolean operator !=(System.Boolean left, internal_partial_structConversions_EfCoreValueConverterbool right) => !Equals(left, right.Value);
 
         public int CompareTo(internal_partial_structConversions_EfCoreValueConverterbool other) => Value.CompareTo(other.Value);
 
@@ -176,7 +176,7 @@ namespace Whatever
     }
 
 
-        public readonly override global::System.Int32 GetHashCode() => global::System.Collections.Generic.EqualityComparer<bool>.Default.GetHashCode(_value);
+        public readonly override global::System.Int32 GetHashCode() => global::System.Collections.Generic.EqualityComparer<System.Boolean>.Default.GetHashCode(_value);
 
         /// <summary>Returns the string representation of the underlying type</summary>
     /// <inheritdoc cref="System.Boolean.ToString()" />

@@ -34,7 +34,7 @@ namespace Whatever
 [global::Newtonsoft.Json.JsonConverter(typeof(stj_number_as_string_public_readonly_partial_record_structConversions_NewtonsoftJson___Conversions_SystemTextJsonintNewtonsoftJsonConverter))]
 
     [global::System.Diagnostics.DebuggerTypeProxyAttribute(typeof(stj_number_as_string_public_readonly_partial_record_structConversions_NewtonsoftJson___Conversions_SystemTextJsonintDebugView))]
-    [global::System.Diagnostics.DebuggerDisplayAttribute("Underlying type: int, Value = { _value }")]
+    [global::System.Diagnostics.DebuggerDisplayAttribute("Underlying type: System.Int32, Value = { _value }")]
     public readonly partial record struct stj_number_as_string_public_readonly_partial_record_structConversions_NewtonsoftJson___Conversions_SystemTextJsonint  :  global::System.IComparable<stj_number_as_string_public_readonly_partial_record_structConversions_NewtonsoftJson___Conversions_SystemTextJsonint>
     {
 #if DEBUG    
@@ -43,12 +43,12 @@ namespace Whatever
 
         private readonly global::System.Boolean _isInitialized;
         
-        private readonly int _value;
+        private readonly System.Int32 _value;
 
         /// <summary>
-        /// Gets the underlying <see cref="int" /> value if set, otherwise a <see cref="ValueObjectValidationException" /> is thrown.
+        /// Gets the underlying <see cref="System.Int32" /> value if set, otherwise a <see cref="ValueObjectValidationException" /> is thrown.
         /// </summary>
-        public readonly int Value
+        public readonly System.Int32 Value
         {
             [global::System.Diagnostics.DebuggerStepThroughAttribute]
             get
@@ -81,7 +81,7 @@ namespace Whatever
         }
 
         [global::System.Diagnostics.DebuggerStepThroughAttribute]
-        private stj_number_as_string_public_readonly_partial_record_structConversions_NewtonsoftJson___Conversions_SystemTextJsonint(int value) 
+        private stj_number_as_string_public_readonly_partial_record_structConversions_NewtonsoftJson___Conversions_SystemTextJsonint(System.Int32 value) 
         {
             _value = value;
             _isInitialized = true;
@@ -92,7 +92,7 @@ namespace Whatever
         /// </summary>
         /// <param name="value">The underlying type.</param>
         /// <returns>An instance of this type.</returns>
-        public static stj_number_as_string_public_readonly_partial_record_structConversions_NewtonsoftJson___Conversions_SystemTextJsonint From(int value)
+        public static stj_number_as_string_public_readonly_partial_record_structConversions_NewtonsoftJson___Conversions_SystemTextJsonint From(System.Int32 value)
         {
             
 
@@ -103,14 +103,14 @@ namespace Whatever
             return instance;
         }
 
-        public static explicit operator stj_number_as_string_public_readonly_partial_record_structConversions_NewtonsoftJson___Conversions_SystemTextJsonint(int value) => From(value);
-        public static explicit operator int(stj_number_as_string_public_readonly_partial_record_structConversions_NewtonsoftJson___Conversions_SystemTextJsonint value) => value.Value;
+        public static explicit operator stj_number_as_string_public_readonly_partial_record_structConversions_NewtonsoftJson___Conversions_SystemTextJsonint(System.Int32 value) => From(value);
+        public static explicit operator System.Int32(stj_number_as_string_public_readonly_partial_record_structConversions_NewtonsoftJson___Conversions_SystemTextJsonint value) => value.Value;
 
         public int CompareTo(stj_number_as_string_public_readonly_partial_record_structConversions_NewtonsoftJson___Conversions_SystemTextJsonint other) => Value.CompareTo(other.Value);
 
         // only called internally when something has been deserialized into
         // its primitive type.
-        private static stj_number_as_string_public_readonly_partial_record_structConversions_NewtonsoftJson___Conversions_SystemTextJsonint Deserialize(int value)
+        private static stj_number_as_string_public_readonly_partial_record_structConversions_NewtonsoftJson___Conversions_SystemTextJsonint Deserialize(System.Int32 value)
         {
             
 

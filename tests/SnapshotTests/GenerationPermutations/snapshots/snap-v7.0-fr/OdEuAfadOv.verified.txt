@@ -33,8 +33,8 @@ namespace Whatever
     [global::System.Text.Json.Serialization.JsonConverter(typeof(public_partial_structConversions_SystemTextJsondecimalSystemTextJsonConverter))]
 
     [global::System.Diagnostics.DebuggerTypeProxyAttribute(typeof(public_partial_structConversions_SystemTextJsondecimalDebugView))]
-    [global::System.Diagnostics.DebuggerDisplayAttribute("Underlying type: decimal, Value = { _value }")]
-    public partial struct public_partial_structConversions_SystemTextJsondecimal : global::System.IEquatable<public_partial_structConversions_SystemTextJsondecimal>, global::System.IEquatable<decimal> ,  global::System.IComparable<public_partial_structConversions_SystemTextJsondecimal>
+    [global::System.Diagnostics.DebuggerDisplayAttribute("Underlying type: System.Decimal, Value = { _value }")]
+    public partial struct public_partial_structConversions_SystemTextJsondecimal : global::System.IEquatable<public_partial_structConversions_SystemTextJsondecimal>, global::System.IEquatable<System.Decimal> ,  global::System.IComparable<public_partial_structConversions_SystemTextJsondecimal>
     {
 #if DEBUG    
         private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
@@ -42,12 +42,12 @@ namespace Whatever
 
         private readonly global::System.Boolean _isInitialized;
         
-        private readonly decimal _value;
+        private readonly System.Decimal _value;
 
         /// <summary>
-        /// Gets the underlying <see cref="decimal" /> value if set, otherwise a <see cref="ValueObjectValidationException" /> is thrown.
+        /// Gets the underlying <see cref="System.Decimal" /> value if set, otherwise a <see cref="ValueObjectValidationException" /> is thrown.
         /// </summary>
-        public readonly decimal Value
+        public readonly System.Decimal Value
         {
             [global::System.Diagnostics.DebuggerStepThroughAttribute]
             get
@@ -70,7 +70,7 @@ namespace Whatever
         }
 
         [global::System.Diagnostics.DebuggerStepThroughAttribute]
-        private public_partial_structConversions_SystemTextJsondecimal(decimal value) 
+        private public_partial_structConversions_SystemTextJsondecimal(System.Decimal value) 
         {
             _value = value;
             _isInitialized = true;
@@ -81,7 +81,7 @@ namespace Whatever
         /// </summary>
         /// <param name="value">The underlying type.</param>
         /// <returns>An instance of this type.</returns>
-        public static public_partial_structConversions_SystemTextJsondecimal From(decimal value)
+        public static public_partial_structConversions_SystemTextJsondecimal From(System.Decimal value)
         {
             
 
@@ -92,12 +92,12 @@ namespace Whatever
             return instance;
         }
 
-        public static explicit operator public_partial_structConversions_SystemTextJsondecimal(decimal value) => From(value);
-        public static explicit operator decimal(public_partial_structConversions_SystemTextJsondecimal value) => value.Value;
+        public static explicit operator public_partial_structConversions_SystemTextJsondecimal(System.Decimal value) => From(value);
+        public static explicit operator System.Decimal(public_partial_structConversions_SystemTextJsondecimal value) => value.Value;
 
         // only called internally when something has been deserialized into
         // its primitive type.
-        private static public_partial_structConversions_SystemTextJsondecimal Deserialize(decimal value)
+        private static public_partial_structConversions_SystemTextJsondecimal Deserialize(System.Decimal value)
         {
             
 
@@ -112,10 +112,10 @@ namespace Whatever
             // We treat anything uninitialized as not equal to anything, even other uninitialized instances of this type.
             if(!_isInitialized || !other._isInitialized) return false;
 
-            return global::System.Collections.Generic.EqualityComparer<decimal>.Default.Equals(Value, other.Value);
+            return global::System.Collections.Generic.EqualityComparer<System.Decimal>.Default.Equals(Value, other.Value);
         }
 
-        public readonly global::System.Boolean Equals(decimal primitive) => Value.Equals(primitive);
+        public readonly global::System.Boolean Equals(System.Decimal primitive) => Value.Equals(primitive);
 
         public readonly override global::System.Boolean Equals(global::System.Object obj)
         {
@@ -125,11 +125,11 @@ namespace Whatever
         public static global::System.Boolean operator ==(public_partial_structConversions_SystemTextJsondecimal left, public_partial_structConversions_SystemTextJsondecimal right) => Equals(left, right);
         public static global::System.Boolean operator !=(public_partial_structConversions_SystemTextJsondecimal left, public_partial_structConversions_SystemTextJsondecimal right) => !(left == right);
 
-        public static global::System.Boolean operator ==(public_partial_structConversions_SystemTextJsondecimal left, decimal right) => Equals(left.Value, right);
-        public static global::System.Boolean operator !=(public_partial_structConversions_SystemTextJsondecimal left, decimal right) => !Equals(left.Value, right);
+        public static global::System.Boolean operator ==(public_partial_structConversions_SystemTextJsondecimal left, System.Decimal right) => Equals(left.Value, right);
+        public static global::System.Boolean operator !=(public_partial_structConversions_SystemTextJsondecimal left, System.Decimal right) => !Equals(left.Value, right);
 
-        public static global::System.Boolean operator ==(decimal left, public_partial_structConversions_SystemTextJsondecimal right) => Equals(left, right.Value);
-        public static global::System.Boolean operator !=(decimal left, public_partial_structConversions_SystemTextJsondecimal right) => !Equals(left, right.Value);
+        public static global::System.Boolean operator ==(System.Decimal left, public_partial_structConversions_SystemTextJsondecimal right) => Equals(left, right.Value);
+        public static global::System.Boolean operator !=(System.Decimal left, public_partial_structConversions_SystemTextJsondecimal right) => !Equals(left, right.Value);
 
         public int CompareTo(public_partial_structConversions_SystemTextJsondecimal other) => Value.CompareTo(other.Value);
 
@@ -261,7 +261,7 @@ namespace Whatever
     }
 
 
-        public readonly override global::System.Int32 GetHashCode() => global::System.Collections.Generic.EqualityComparer<decimal>.Default.GetHashCode(_value);
+        public readonly override global::System.Int32 GetHashCode() => global::System.Collections.Generic.EqualityComparer<System.Decimal>.Default.GetHashCode(_value);
 
         /// <summary>Returns the string representation of the underlying type</summary>
     /// <inheritdoc cref="System.Decimal.ToString()" />

@@ -33,8 +33,8 @@ namespace Whatever
     [global::Newtonsoft.Json.JsonConverter(typeof(internal_partial_structConversions_NewtonsoftJsonbyteNewtonsoftJsonConverter))]
 
     [global::System.Diagnostics.DebuggerTypeProxyAttribute(typeof(internal_partial_structConversions_NewtonsoftJsonbyteDebugView))]
-    [global::System.Diagnostics.DebuggerDisplayAttribute("Underlying type: byte, Value = { _value }")]
-    internal partial struct internal_partial_structConversions_NewtonsoftJsonbyte : global::System.IEquatable<internal_partial_structConversions_NewtonsoftJsonbyte>, global::System.IEquatable<byte> ,  global::System.IComparable<internal_partial_structConversions_NewtonsoftJsonbyte>
+    [global::System.Diagnostics.DebuggerDisplayAttribute("Underlying type: System.Byte, Value = { _value }")]
+    internal partial struct internal_partial_structConversions_NewtonsoftJsonbyte : global::System.IEquatable<internal_partial_structConversions_NewtonsoftJsonbyte>, global::System.IEquatable<System.Byte> ,  global::System.IComparable<internal_partial_structConversions_NewtonsoftJsonbyte>
     {
 #if DEBUG    
         private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
@@ -42,12 +42,12 @@ namespace Whatever
 
         private readonly global::System.Boolean _isInitialized;
         
-        private readonly byte _value;
+        private readonly System.Byte _value;
 
         /// <summary>
-        /// Gets the underlying <see cref="byte" /> value if set, otherwise a <see cref="ValueObjectValidationException" /> is thrown.
+        /// Gets the underlying <see cref="System.Byte" /> value if set, otherwise a <see cref="ValueObjectValidationException" /> is thrown.
         /// </summary>
-        public readonly byte Value
+        public readonly System.Byte Value
         {
             [global::System.Diagnostics.DebuggerStepThroughAttribute]
             get
@@ -70,7 +70,7 @@ namespace Whatever
         }
 
         [global::System.Diagnostics.DebuggerStepThroughAttribute]
-        private internal_partial_structConversions_NewtonsoftJsonbyte(byte value) 
+        private internal_partial_structConversions_NewtonsoftJsonbyte(System.Byte value) 
         {
             _value = value;
             _isInitialized = true;
@@ -81,7 +81,7 @@ namespace Whatever
         /// </summary>
         /// <param name="value">The underlying type.</param>
         /// <returns>An instance of this type.</returns>
-        public static internal_partial_structConversions_NewtonsoftJsonbyte From(byte value)
+        public static internal_partial_structConversions_NewtonsoftJsonbyte From(System.Byte value)
         {
             
 
@@ -92,12 +92,12 @@ namespace Whatever
             return instance;
         }
 
-        public static explicit operator internal_partial_structConversions_NewtonsoftJsonbyte(byte value) => From(value);
-        public static explicit operator byte(internal_partial_structConversions_NewtonsoftJsonbyte value) => value.Value;
+        public static explicit operator internal_partial_structConversions_NewtonsoftJsonbyte(System.Byte value) => From(value);
+        public static explicit operator System.Byte(internal_partial_structConversions_NewtonsoftJsonbyte value) => value.Value;
 
         // only called internally when something has been deserialized into
         // its primitive type.
-        private static internal_partial_structConversions_NewtonsoftJsonbyte Deserialize(byte value)
+        private static internal_partial_structConversions_NewtonsoftJsonbyte Deserialize(System.Byte value)
         {
             
 
@@ -112,10 +112,10 @@ namespace Whatever
             // We treat anything uninitialized as not equal to anything, even other uninitialized instances of this type.
             if(!_isInitialized || !other._isInitialized) return false;
 
-            return global::System.Collections.Generic.EqualityComparer<byte>.Default.Equals(Value, other.Value);
+            return global::System.Collections.Generic.EqualityComparer<System.Byte>.Default.Equals(Value, other.Value);
         }
 
-        public readonly global::System.Boolean Equals(byte primitive) => Value.Equals(primitive);
+        public readonly global::System.Boolean Equals(System.Byte primitive) => Value.Equals(primitive);
 
         public readonly override global::System.Boolean Equals(global::System.Object obj)
         {
@@ -125,11 +125,11 @@ namespace Whatever
         public static global::System.Boolean operator ==(internal_partial_structConversions_NewtonsoftJsonbyte left, internal_partial_structConversions_NewtonsoftJsonbyte right) => Equals(left, right);
         public static global::System.Boolean operator !=(internal_partial_structConversions_NewtonsoftJsonbyte left, internal_partial_structConversions_NewtonsoftJsonbyte right) => !(left == right);
 
-        public static global::System.Boolean operator ==(internal_partial_structConversions_NewtonsoftJsonbyte left, byte right) => Equals(left.Value, right);
-        public static global::System.Boolean operator !=(internal_partial_structConversions_NewtonsoftJsonbyte left, byte right) => !Equals(left.Value, right);
+        public static global::System.Boolean operator ==(internal_partial_structConversions_NewtonsoftJsonbyte left, System.Byte right) => Equals(left.Value, right);
+        public static global::System.Boolean operator !=(internal_partial_structConversions_NewtonsoftJsonbyte left, System.Byte right) => !Equals(left.Value, right);
 
-        public static global::System.Boolean operator ==(byte left, internal_partial_structConversions_NewtonsoftJsonbyte right) => Equals(left, right.Value);
-        public static global::System.Boolean operator !=(byte left, internal_partial_structConversions_NewtonsoftJsonbyte right) => !Equals(left, right.Value);
+        public static global::System.Boolean operator ==(System.Byte left, internal_partial_structConversions_NewtonsoftJsonbyte right) => Equals(left, right.Value);
+        public static global::System.Boolean operator !=(System.Byte left, internal_partial_structConversions_NewtonsoftJsonbyte right) => !Equals(left, right.Value);
 
         public int CompareTo(internal_partial_structConversions_NewtonsoftJsonbyte other) => Value.CompareTo(other.Value);
 
@@ -261,7 +261,7 @@ namespace Whatever
     }
 
 
-        public readonly override global::System.Int32 GetHashCode() => global::System.Collections.Generic.EqualityComparer<byte>.Default.GetHashCode(_value);
+        public readonly override global::System.Int32 GetHashCode() => global::System.Collections.Generic.EqualityComparer<System.Byte>.Default.GetHashCode(_value);
 
         /// <summary>Returns the string representation of the underlying type</summary>
     /// <inheritdoc cref="System.Byte.ToString()" />

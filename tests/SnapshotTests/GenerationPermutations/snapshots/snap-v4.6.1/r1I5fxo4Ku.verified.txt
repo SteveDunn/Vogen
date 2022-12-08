@@ -33,19 +33,19 @@ namespace Whatever
     [global::System.Text.Json.Serialization.JsonConverter(typeof(internal_sealed_partial_record_classConversions_SystemTextJsoncharSystemTextJsonConverter))]
 
     [global::System.Diagnostics.DebuggerTypeProxyAttribute(typeof(internal_sealed_partial_record_classConversions_SystemTextJsoncharDebugView))]
-    [global::System.Diagnostics.DebuggerDisplayAttribute("Underlying type: char, Value = { _value }")]
+    [global::System.Diagnostics.DebuggerDisplayAttribute("Underlying type: System.Char, Value = { _value }")]
     internal sealed partial record class internal_sealed_partial_record_classConversions_SystemTextJsonchar  :  global::System.IComparable<internal_sealed_partial_record_classConversions_SystemTextJsonchar>
     {
 #if DEBUG    
         private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
 #endif
         private readonly global::System.Boolean _isInitialized;
-        private readonly char _value;
+        private readonly System.Char _value;
         
         /// <summary>
-        /// Gets the underlying <see cref="char" /> value if set, otherwise a <see cref="ValueObjectValidationException" /> is thrown.
+        /// Gets the underlying <see cref="System.Char" /> value if set, otherwise a <see cref="ValueObjectValidationException" /> is thrown.
         /// </summary>
-        public char Value
+        public System.Char Value
         {
             [global::System.Diagnostics.DebuggerStepThroughAttribute]
             get
@@ -78,7 +78,7 @@ namespace Whatever
         }
 
         [global::System.Diagnostics.DebuggerStepThroughAttribute]
-        private internal_sealed_partial_record_classConversions_SystemTextJsonchar(char value)
+        private internal_sealed_partial_record_classConversions_SystemTextJsonchar(System.Char value)
         {
             _value = value;
             _isInitialized = true;
@@ -89,7 +89,7 @@ namespace Whatever
         /// </summary>
         /// <param name="value">The underlying type.</param>
         /// <returns>An instance of this type.</returns>
-        public static internal_sealed_partial_record_classConversions_SystemTextJsonchar From(char value)
+        public static internal_sealed_partial_record_classConversions_SystemTextJsonchar From(System.Char value)
         {
             
 
@@ -102,14 +102,14 @@ namespace Whatever
             return instance;
         }
 
-        public static explicit operator internal_sealed_partial_record_classConversions_SystemTextJsonchar(char value) => From(value);
-        public static explicit operator char(internal_sealed_partial_record_classConversions_SystemTextJsonchar value) => value.Value;
+        public static explicit operator internal_sealed_partial_record_classConversions_SystemTextJsonchar(System.Char value) => From(value);
+        public static explicit operator System.Char(internal_sealed_partial_record_classConversions_SystemTextJsonchar value) => value.Value;
 
         public int CompareTo(internal_sealed_partial_record_classConversions_SystemTextJsonchar other) => Value.CompareTo(other.Value);
 
         // only called internally when something has been deserialized into
         // its primitive type.
-        private static internal_sealed_partial_record_classConversions_SystemTextJsonchar Deserialize(char value)
+        private static internal_sealed_partial_record_classConversions_SystemTextJsonchar Deserialize(System.Char value)
         {
             
 

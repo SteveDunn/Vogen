@@ -32,7 +32,7 @@ namespace Whatever
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Vogen", "1.0.0.0")]
     
     [global::System.Diagnostics.DebuggerTypeProxyAttribute(typeof(internal_readonly_partial_record_structConversions_EfCoreValueConvertershortDebugView))]
-    [global::System.Diagnostics.DebuggerDisplayAttribute("Underlying type: short, Value = { _value }")]
+    [global::System.Diagnostics.DebuggerDisplayAttribute("Underlying type: System.Int16, Value = { _value }")]
     internal readonly partial record struct internal_readonly_partial_record_structConversions_EfCoreValueConvertershort  :  global::System.IComparable<internal_readonly_partial_record_structConversions_EfCoreValueConvertershort>
     {
 #if DEBUG    
@@ -41,12 +41,12 @@ namespace Whatever
 
         private readonly global::System.Boolean _isInitialized;
         
-        private readonly short _value;
+        private readonly System.Int16 _value;
 
         /// <summary>
-        /// Gets the underlying <see cref="short" /> value if set, otherwise a <see cref="ValueObjectValidationException" /> is thrown.
+        /// Gets the underlying <see cref="System.Int16" /> value if set, otherwise a <see cref="ValueObjectValidationException" /> is thrown.
         /// </summary>
-        public readonly short Value
+        public readonly System.Int16 Value
         {
             [global::System.Diagnostics.DebuggerStepThroughAttribute]
             get
@@ -79,7 +79,7 @@ namespace Whatever
         }
 
         [global::System.Diagnostics.DebuggerStepThroughAttribute]
-        private internal_readonly_partial_record_structConversions_EfCoreValueConvertershort(short value) 
+        private internal_readonly_partial_record_structConversions_EfCoreValueConvertershort(System.Int16 value) 
         {
             _value = value;
             _isInitialized = true;
@@ -90,7 +90,7 @@ namespace Whatever
         /// </summary>
         /// <param name="value">The underlying type.</param>
         /// <returns>An instance of this type.</returns>
-        public static internal_readonly_partial_record_structConversions_EfCoreValueConvertershort From(short value)
+        public static internal_readonly_partial_record_structConversions_EfCoreValueConvertershort From(System.Int16 value)
         {
             
 
@@ -101,14 +101,14 @@ namespace Whatever
             return instance;
         }
 
-        public static explicit operator internal_readonly_partial_record_structConversions_EfCoreValueConvertershort(short value) => From(value);
-        public static explicit operator short(internal_readonly_partial_record_structConversions_EfCoreValueConvertershort value) => value.Value;
+        public static explicit operator internal_readonly_partial_record_structConversions_EfCoreValueConvertershort(System.Int16 value) => From(value);
+        public static explicit operator System.Int16(internal_readonly_partial_record_structConversions_EfCoreValueConvertershort value) => value.Value;
 
         public int CompareTo(internal_readonly_partial_record_structConversions_EfCoreValueConvertershort other) => Value.CompareTo(other.Value);
 
         // only called internally when something has been deserialized into
         // its primitive type.
-        private static internal_readonly_partial_record_structConversions_EfCoreValueConvertershort Deserialize(short value)
+        private static internal_readonly_partial_record_structConversions_EfCoreValueConvertershort Deserialize(System.Int16 value)
         {
             
 

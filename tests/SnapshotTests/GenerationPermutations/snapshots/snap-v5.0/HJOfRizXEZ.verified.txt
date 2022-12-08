@@ -32,7 +32,7 @@ namespace Whatever
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Vogen", "1.0.0.0")]
     
     [global::System.Diagnostics.DebuggerTypeProxyAttribute(typeof(internal_partial_record_structConversions_LinqToDbValueConverterstringDebugView))]
-    [global::System.Diagnostics.DebuggerDisplayAttribute("Underlying type: string, Value = { _value }")]
+    [global::System.Diagnostics.DebuggerDisplayAttribute("Underlying type: System.String, Value = { _value }")]
     internal partial record struct internal_partial_record_structConversions_LinqToDbValueConverterstring  :  global::System.IComparable<internal_partial_record_structConversions_LinqToDbValueConverterstring>
     {
 #if DEBUG    
@@ -41,12 +41,12 @@ namespace Whatever
 
         private readonly global::System.Boolean _isInitialized;
         
-        private readonly string _value;
+        private readonly System.String _value;
 
         /// <summary>
-        /// Gets the underlying <see cref="string" /> value if set, otherwise a <see cref="ValueObjectValidationException" /> is thrown.
+        /// Gets the underlying <see cref="System.String" /> value if set, otherwise a <see cref="ValueObjectValidationException" /> is thrown.
         /// </summary>
-        public readonly string Value
+        public readonly System.String Value
         {
             [global::System.Diagnostics.DebuggerStepThroughAttribute]
             get
@@ -83,7 +83,7 @@ namespace Whatever
         }
 
         [global::System.Diagnostics.DebuggerStepThroughAttribute]
-        private internal_partial_record_structConversions_LinqToDbValueConverterstring(string value) 
+        private internal_partial_record_structConversions_LinqToDbValueConverterstring(System.String value) 
         {
             _value = value;
             _isInitialized = true;
@@ -94,7 +94,7 @@ namespace Whatever
         /// </summary>
         /// <param name="value">The underlying type.</param>
         /// <returns>An instance of this type.</returns>
-        public static internal_partial_record_structConversions_LinqToDbValueConverterstring From(string value)
+        public static internal_partial_record_structConversions_LinqToDbValueConverterstring From(System.String value)
         {
             
 
@@ -105,14 +105,14 @@ namespace Whatever
             return instance;
         }
 
-        public static explicit operator internal_partial_record_structConversions_LinqToDbValueConverterstring(string value) => From(value);
-        public static explicit operator string(internal_partial_record_structConversions_LinqToDbValueConverterstring value) => value.Value;
+        public static explicit operator internal_partial_record_structConversions_LinqToDbValueConverterstring(System.String value) => From(value);
+        public static explicit operator System.String(internal_partial_record_structConversions_LinqToDbValueConverterstring value) => value.Value;
 
         public int CompareTo(internal_partial_record_structConversions_LinqToDbValueConverterstring other) => Value.CompareTo(other.Value);
 
         // only called internally when something has been deserialized into
         // its primitive type.
-        private static internal_partial_record_structConversions_LinqToDbValueConverterstring Deserialize(string value)
+        private static internal_partial_record_structConversions_LinqToDbValueConverterstring Deserialize(System.String value)
         {
             
 

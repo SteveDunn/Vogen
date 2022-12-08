@@ -33,8 +33,8 @@ namespace @class
     [global::System.ComponentModel.TypeConverter(typeof(escapedTestsinternal_readonly_partial_structConversions_TypeConverterdoubleTypeConverter))]
 
     [global::System.Diagnostics.DebuggerTypeProxyAttribute(typeof(escapedTestsinternal_readonly_partial_structConversions_TypeConverterdoubleDebugView))]
-    [global::System.Diagnostics.DebuggerDisplayAttribute("Underlying type: double, Value = { _value }")]
-    internal readonly partial struct escapedTestsinternal_readonly_partial_structConversions_TypeConverterdouble : global::System.IEquatable<escapedTestsinternal_readonly_partial_structConversions_TypeConverterdouble>, global::System.IEquatable<double> ,  global::System.IComparable<escapedTestsinternal_readonly_partial_structConversions_TypeConverterdouble>
+    [global::System.Diagnostics.DebuggerDisplayAttribute("Underlying type: System.Double, Value = { _value }")]
+    internal readonly partial struct escapedTestsinternal_readonly_partial_structConversions_TypeConverterdouble : global::System.IEquatable<escapedTestsinternal_readonly_partial_structConversions_TypeConverterdouble>, global::System.IEquatable<System.Double> ,  global::System.IComparable<escapedTestsinternal_readonly_partial_structConversions_TypeConverterdouble>
     {
 #if DEBUG    
         private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
@@ -42,12 +42,12 @@ namespace @class
 
         private readonly global::System.Boolean _isInitialized;
         
-        private readonly double _value;
+        private readonly System.Double _value;
 
         /// <summary>
-        /// Gets the underlying <see cref="double" /> value if set, otherwise a <see cref="ValueObjectValidationException" /> is thrown.
+        /// Gets the underlying <see cref="System.Double" /> value if set, otherwise a <see cref="ValueObjectValidationException" /> is thrown.
         /// </summary>
-        public readonly double Value
+        public readonly System.Double Value
         {
             [global::System.Diagnostics.DebuggerStepThroughAttribute]
             get
@@ -70,7 +70,7 @@ namespace @class
         }
 
         [global::System.Diagnostics.DebuggerStepThroughAttribute]
-        private escapedTestsinternal_readonly_partial_structConversions_TypeConverterdouble(double value) 
+        private escapedTestsinternal_readonly_partial_structConversions_TypeConverterdouble(System.Double value) 
         {
             _value = value;
             _isInitialized = true;
@@ -81,7 +81,7 @@ namespace @class
         /// </summary>
         /// <param name="value">The underlying type.</param>
         /// <returns>An instance of this type.</returns>
-        public static escapedTestsinternal_readonly_partial_structConversions_TypeConverterdouble From(double value)
+        public static escapedTestsinternal_readonly_partial_structConversions_TypeConverterdouble From(System.Double value)
         {
             
 
@@ -92,12 +92,12 @@ namespace @class
             return instance;
         }
 
-        public static explicit operator escapedTestsinternal_readonly_partial_structConversions_TypeConverterdouble(double value) => From(value);
-        public static explicit operator double(escapedTestsinternal_readonly_partial_structConversions_TypeConverterdouble value) => value.Value;
+        public static explicit operator escapedTestsinternal_readonly_partial_structConversions_TypeConverterdouble(System.Double value) => From(value);
+        public static explicit operator System.Double(escapedTestsinternal_readonly_partial_structConversions_TypeConverterdouble value) => value.Value;
 
         // only called internally when something has been deserialized into
         // its primitive type.
-        private static escapedTestsinternal_readonly_partial_structConversions_TypeConverterdouble Deserialize(double value)
+        private static escapedTestsinternal_readonly_partial_structConversions_TypeConverterdouble Deserialize(System.Double value)
         {
             
 
@@ -112,10 +112,10 @@ namespace @class
             // We treat anything uninitialized as not equal to anything, even other uninitialized instances of this type.
             if(!_isInitialized || !other._isInitialized) return false;
 
-            return global::System.Collections.Generic.EqualityComparer<double>.Default.Equals(Value, other.Value);
+            return global::System.Collections.Generic.EqualityComparer<System.Double>.Default.Equals(Value, other.Value);
         }
 
-        public readonly global::System.Boolean Equals(double primitive) => Value.Equals(primitive);
+        public readonly global::System.Boolean Equals(System.Double primitive) => Value.Equals(primitive);
 
         public readonly override global::System.Boolean Equals(global::System.Object obj)
         {
@@ -125,11 +125,11 @@ namespace @class
         public static global::System.Boolean operator ==(escapedTestsinternal_readonly_partial_structConversions_TypeConverterdouble left, escapedTestsinternal_readonly_partial_structConversions_TypeConverterdouble right) => Equals(left, right);
         public static global::System.Boolean operator !=(escapedTestsinternal_readonly_partial_structConversions_TypeConverterdouble left, escapedTestsinternal_readonly_partial_structConversions_TypeConverterdouble right) => !(left == right);
 
-        public static global::System.Boolean operator ==(escapedTestsinternal_readonly_partial_structConversions_TypeConverterdouble left, double right) => Equals(left.Value, right);
-        public static global::System.Boolean operator !=(escapedTestsinternal_readonly_partial_structConversions_TypeConverterdouble left, double right) => !Equals(left.Value, right);
+        public static global::System.Boolean operator ==(escapedTestsinternal_readonly_partial_structConversions_TypeConverterdouble left, System.Double right) => Equals(left.Value, right);
+        public static global::System.Boolean operator !=(escapedTestsinternal_readonly_partial_structConversions_TypeConverterdouble left, System.Double right) => !Equals(left.Value, right);
 
-        public static global::System.Boolean operator ==(double left, escapedTestsinternal_readonly_partial_structConversions_TypeConverterdouble right) => Equals(left, right.Value);
-        public static global::System.Boolean operator !=(double left, escapedTestsinternal_readonly_partial_structConversions_TypeConverterdouble right) => !Equals(left, right.Value);
+        public static global::System.Boolean operator ==(System.Double left, escapedTestsinternal_readonly_partial_structConversions_TypeConverterdouble right) => Equals(left, right.Value);
+        public static global::System.Boolean operator !=(System.Double left, escapedTestsinternal_readonly_partial_structConversions_TypeConverterdouble right) => !Equals(left, right.Value);
 
         public int CompareTo(escapedTestsinternal_readonly_partial_structConversions_TypeConverterdouble other) => Value.CompareTo(other.Value);
 
@@ -219,7 +219,7 @@ namespace @class
     }
 
 
-        public readonly override global::System.Int32 GetHashCode() => global::System.Collections.Generic.EqualityComparer<double>.Default.GetHashCode(_value);
+        public readonly override global::System.Int32 GetHashCode() => global::System.Collections.Generic.EqualityComparer<System.Double>.Default.GetHashCode(_value);
 
         /// <summary>Returns the string representation of the underlying type</summary>
     /// <inheritdoc cref="System.Double.ToString()" />

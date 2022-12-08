@@ -32,7 +32,7 @@ namespace Whatever
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Vogen", "1.0.0.0")]
     
     [global::System.Diagnostics.DebuggerTypeProxyAttribute(typeof(public_partial_record_structConversions_NoneboolDebugView))]
-    [global::System.Diagnostics.DebuggerDisplayAttribute("Underlying type: bool, Value = { _value }")]
+    [global::System.Diagnostics.DebuggerDisplayAttribute("Underlying type: System.Boolean, Value = { _value }")]
     public partial record struct public_partial_record_structConversions_Nonebool  :  global::System.IComparable<public_partial_record_structConversions_Nonebool>
     {
 #if DEBUG    
@@ -41,12 +41,12 @@ namespace Whatever
 
         private readonly global::System.Boolean _isInitialized;
         
-        private readonly bool _value;
+        private readonly System.Boolean _value;
 
         /// <summary>
-        /// Gets the underlying <see cref="bool" /> value if set, otherwise a <see cref="ValueObjectValidationException" /> is thrown.
+        /// Gets the underlying <see cref="System.Boolean" /> value if set, otherwise a <see cref="ValueObjectValidationException" /> is thrown.
         /// </summary>
-        public readonly bool Value
+        public readonly System.Boolean Value
         {
             [global::System.Diagnostics.DebuggerStepThroughAttribute]
             get
@@ -79,7 +79,7 @@ namespace Whatever
         }
 
         [global::System.Diagnostics.DebuggerStepThroughAttribute]
-        private public_partial_record_structConversions_Nonebool(bool value) 
+        private public_partial_record_structConversions_Nonebool(System.Boolean value) 
         {
             _value = value;
             _isInitialized = true;
@@ -90,7 +90,7 @@ namespace Whatever
         /// </summary>
         /// <param name="value">The underlying type.</param>
         /// <returns>An instance of this type.</returns>
-        public static public_partial_record_structConversions_Nonebool From(bool value)
+        public static public_partial_record_structConversions_Nonebool From(System.Boolean value)
         {
             
 
@@ -101,14 +101,14 @@ namespace Whatever
             return instance;
         }
 
-        public static explicit operator public_partial_record_structConversions_Nonebool(bool value) => From(value);
-        public static explicit operator bool(public_partial_record_structConversions_Nonebool value) => value.Value;
+        public static explicit operator public_partial_record_structConversions_Nonebool(System.Boolean value) => From(value);
+        public static explicit operator System.Boolean(public_partial_record_structConversions_Nonebool value) => value.Value;
 
         public int CompareTo(public_partial_record_structConversions_Nonebool other) => Value.CompareTo(other.Value);
 
         // only called internally when something has been deserialized into
         // its primitive type.
-        private static public_partial_record_structConversions_Nonebool Deserialize(bool value)
+        private static public_partial_record_structConversions_Nonebool Deserialize(System.Boolean value)
         {
             
 

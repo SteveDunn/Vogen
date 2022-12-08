@@ -2,7 +2,7 @@
 using Vogen.Generators.Conversions;
 using Xunit;
 
-namespace SmallTests;
+namespace Vogen.Tests;
 
 public class CodeSectionsTests
 {

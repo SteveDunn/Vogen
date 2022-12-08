@@ -32,8 +32,8 @@ namespace Whatever
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Vogen", "1.0.0.0")]
     
     [global::System.Diagnostics.DebuggerTypeProxyAttribute(typeof(stj_number_as_string_public_partial_structConversions_Nonedouble_customizedDebugView))]
-    [global::System.Diagnostics.DebuggerDisplayAttribute("Underlying type: double, Value = { _value }")]
-    public partial struct stj_number_as_string_public_partial_structConversions_Nonedouble_customized : global::System.IEquatable<stj_number_as_string_public_partial_structConversions_Nonedouble_customized>, global::System.IEquatable<double> ,  global::System.IComparable<stj_number_as_string_public_partial_structConversions_Nonedouble_customized>
+    [global::System.Diagnostics.DebuggerDisplayAttribute("Underlying type: System.Double, Value = { _value }")]
+    public partial struct stj_number_as_string_public_partial_structConversions_Nonedouble_customized : global::System.IEquatable<stj_number_as_string_public_partial_structConversions_Nonedouble_customized>, global::System.IEquatable<System.Double> ,  global::System.IComparable<stj_number_as_string_public_partial_structConversions_Nonedouble_customized>
     {
 #if DEBUG    
         private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
@@ -41,12 +41,12 @@ namespace Whatever
 
         private readonly global::System.Boolean _isInitialized;
         
-        private readonly double _value;
+        private readonly System.Double _value;
 
         /// <summary>
-        /// Gets the underlying <see cref="double" /> value if set, otherwise a <see cref="ValueObjectValidationException" /> is thrown.
+        /// Gets the underlying <see cref="System.Double" /> value if set, otherwise a <see cref="ValueObjectValidationException" /> is thrown.
         /// </summary>
-        public readonly double Value
+        public readonly System.Double Value
         {
             [global::System.Diagnostics.DebuggerStepThroughAttribute]
             get
@@ -69,7 +69,7 @@ namespace Whatever
         }
 
         [global::System.Diagnostics.DebuggerStepThroughAttribute]
-        private stj_number_as_string_public_partial_structConversions_Nonedouble_customized(double value) 
+        private stj_number_as_string_public_partial_structConversions_Nonedouble_customized(System.Double value) 
         {
             _value = value;
             _isInitialized = true;
@@ -80,7 +80,7 @@ namespace Whatever
         /// </summary>
         /// <param name="value">The underlying type.</param>
         /// <returns>An instance of this type.</returns>
-        public static stj_number_as_string_public_partial_structConversions_Nonedouble_customized From(double value)
+        public static stj_number_as_string_public_partial_structConversions_Nonedouble_customized From(System.Double value)
         {
             
 
@@ -91,12 +91,12 @@ namespace Whatever
             return instance;
         }
 
-        public static explicit operator stj_number_as_string_public_partial_structConversions_Nonedouble_customized(double value) => From(value);
-        public static explicit operator double(stj_number_as_string_public_partial_structConversions_Nonedouble_customized value) => value.Value;
+        public static explicit operator stj_number_as_string_public_partial_structConversions_Nonedouble_customized(System.Double value) => From(value);
+        public static explicit operator System.Double(stj_number_as_string_public_partial_structConversions_Nonedouble_customized value) => value.Value;
 
         // only called internally when something has been deserialized into
         // its primitive type.
-        private static stj_number_as_string_public_partial_structConversions_Nonedouble_customized Deserialize(double value)
+        private static stj_number_as_string_public_partial_structConversions_Nonedouble_customized Deserialize(System.Double value)
         {
             
 
@@ -111,10 +111,10 @@ namespace Whatever
             // We treat anything uninitialized as not equal to anything, even other uninitialized instances of this type.
             if(!_isInitialized || !other._isInitialized) return false;
 
-            return global::System.Collections.Generic.EqualityComparer<double>.Default.Equals(Value, other.Value);
+            return global::System.Collections.Generic.EqualityComparer<System.Double>.Default.Equals(Value, other.Value);
         }
 
-        public readonly global::System.Boolean Equals(double primitive) => Value.Equals(primitive);
+        public readonly global::System.Boolean Equals(System.Double primitive) => Value.Equals(primitive);
 
         public readonly override global::System.Boolean Equals(global::System.Object obj)
         {
@@ -124,11 +124,11 @@ namespace Whatever
         public static global::System.Boolean operator ==(stj_number_as_string_public_partial_structConversions_Nonedouble_customized left, stj_number_as_string_public_partial_structConversions_Nonedouble_customized right) => Equals(left, right);
         public static global::System.Boolean operator !=(stj_number_as_string_public_partial_structConversions_Nonedouble_customized left, stj_number_as_string_public_partial_structConversions_Nonedouble_customized right) => !(left == right);
 
-        public static global::System.Boolean operator ==(stj_number_as_string_public_partial_structConversions_Nonedouble_customized left, double right) => Equals(left.Value, right);
-        public static global::System.Boolean operator !=(stj_number_as_string_public_partial_structConversions_Nonedouble_customized left, double right) => !Equals(left.Value, right);
+        public static global::System.Boolean operator ==(stj_number_as_string_public_partial_structConversions_Nonedouble_customized left, System.Double right) => Equals(left.Value, right);
+        public static global::System.Boolean operator !=(stj_number_as_string_public_partial_structConversions_Nonedouble_customized left, System.Double right) => !Equals(left.Value, right);
 
-        public static global::System.Boolean operator ==(double left, stj_number_as_string_public_partial_structConversions_Nonedouble_customized right) => Equals(left, right.Value);
-        public static global::System.Boolean operator !=(double left, stj_number_as_string_public_partial_structConversions_Nonedouble_customized right) => !Equals(left, right.Value);
+        public static global::System.Boolean operator ==(System.Double left, stj_number_as_string_public_partial_structConversions_Nonedouble_customized right) => Equals(left, right.Value);
+        public static global::System.Boolean operator !=(System.Double left, stj_number_as_string_public_partial_structConversions_Nonedouble_customized right) => !Equals(left, right.Value);
 
         public int CompareTo(stj_number_as_string_public_partial_structConversions_Nonedouble_customized other) => Value.CompareTo(other.Value);
 
@@ -218,7 +218,7 @@ namespace Whatever
     }
 
 
-        public readonly override global::System.Int32 GetHashCode() => global::System.Collections.Generic.EqualityComparer<double>.Default.GetHashCode(_value);
+        public readonly override global::System.Int32 GetHashCode() => global::System.Collections.Generic.EqualityComparer<System.Double>.Default.GetHashCode(_value);
 
         /// <summary>Returns the string representation of the underlying type</summary>
     /// <inheritdoc cref="System.Double.ToString()" />

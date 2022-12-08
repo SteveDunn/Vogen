@@ -33,8 +33,8 @@ namespace Whatever
     [global::Newtonsoft.Json.JsonConverter(typeof(public_partial_structConversions_NewtonsoftJsonfloatNewtonsoftJsonConverter))]
 
     [global::System.Diagnostics.DebuggerTypeProxyAttribute(typeof(public_partial_structConversions_NewtonsoftJsonfloatDebugView))]
-    [global::System.Diagnostics.DebuggerDisplayAttribute("Underlying type: float, Value = { _value }")]
-    public partial struct public_partial_structConversions_NewtonsoftJsonfloat : global::System.IEquatable<public_partial_structConversions_NewtonsoftJsonfloat>, global::System.IEquatable<float> ,  global::System.IComparable<public_partial_structConversions_NewtonsoftJsonfloat>
+    [global::System.Diagnostics.DebuggerDisplayAttribute("Underlying type: System.Single, Value = { _value }")]
+    public partial struct public_partial_structConversions_NewtonsoftJsonfloat : global::System.IEquatable<public_partial_structConversions_NewtonsoftJsonfloat>, global::System.IEquatable<System.Single> ,  global::System.IComparable<public_partial_structConversions_NewtonsoftJsonfloat>
     {
 #if DEBUG    
         private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
@@ -42,12 +42,12 @@ namespace Whatever
 
         private readonly global::System.Boolean _isInitialized;
         
-        private readonly float _value;
+        private readonly System.Single _value;
 
         /// <summary>
-        /// Gets the underlying <see cref="float" /> value if set, otherwise a <see cref="ValueObjectValidationException" /> is thrown.
+        /// Gets the underlying <see cref="System.Single" /> value if set, otherwise a <see cref="ValueObjectValidationException" /> is thrown.
         /// </summary>
-        public readonly float Value
+        public readonly System.Single Value
         {
             [global::System.Diagnostics.DebuggerStepThroughAttribute]
             get
@@ -70,7 +70,7 @@ namespace Whatever
         }
 
         [global::System.Diagnostics.DebuggerStepThroughAttribute]
-        private public_partial_structConversions_NewtonsoftJsonfloat(float value) 
+        private public_partial_structConversions_NewtonsoftJsonfloat(System.Single value) 
         {
             _value = value;
             _isInitialized = true;
@@ -81,7 +81,7 @@ namespace Whatever
         /// </summary>
         /// <param name="value">The underlying type.</param>
         /// <returns>An instance of this type.</returns>
-        public static public_partial_structConversions_NewtonsoftJsonfloat From(float value)
+        public static public_partial_structConversions_NewtonsoftJsonfloat From(System.Single value)
         {
             
 
@@ -92,12 +92,12 @@ namespace Whatever
             return instance;
         }
 
-        public static explicit operator public_partial_structConversions_NewtonsoftJsonfloat(float value) => From(value);
-        public static explicit operator float(public_partial_structConversions_NewtonsoftJsonfloat value) => value.Value;
+        public static explicit operator public_partial_structConversions_NewtonsoftJsonfloat(System.Single value) => From(value);
+        public static explicit operator System.Single(public_partial_structConversions_NewtonsoftJsonfloat value) => value.Value;
 
         // only called internally when something has been deserialized into
         // its primitive type.
-        private static public_partial_structConversions_NewtonsoftJsonfloat Deserialize(float value)
+        private static public_partial_structConversions_NewtonsoftJsonfloat Deserialize(System.Single value)
         {
             
 
@@ -112,10 +112,10 @@ namespace Whatever
             // We treat anything uninitialized as not equal to anything, even other uninitialized instances of this type.
             if(!_isInitialized || !other._isInitialized) return false;
 
-            return global::System.Collections.Generic.EqualityComparer<float>.Default.Equals(Value, other.Value);
+            return global::System.Collections.Generic.EqualityComparer<System.Single>.Default.Equals(Value, other.Value);
         }
 
-        public readonly global::System.Boolean Equals(float primitive) => Value.Equals(primitive);
+        public readonly global::System.Boolean Equals(System.Single primitive) => Value.Equals(primitive);
 
         public readonly override global::System.Boolean Equals(global::System.Object obj)
         {
@@ -125,11 +125,11 @@ namespace Whatever
         public static global::System.Boolean operator ==(public_partial_structConversions_NewtonsoftJsonfloat left, public_partial_structConversions_NewtonsoftJsonfloat right) => Equals(left, right);
         public static global::System.Boolean operator !=(public_partial_structConversions_NewtonsoftJsonfloat left, public_partial_structConversions_NewtonsoftJsonfloat right) => !(left == right);
 
-        public static global::System.Boolean operator ==(public_partial_structConversions_NewtonsoftJsonfloat left, float right) => Equals(left.Value, right);
-        public static global::System.Boolean operator !=(public_partial_structConversions_NewtonsoftJsonfloat left, float right) => !Equals(left.Value, right);
+        public static global::System.Boolean operator ==(public_partial_structConversions_NewtonsoftJsonfloat left, System.Single right) => Equals(left.Value, right);
+        public static global::System.Boolean operator !=(public_partial_structConversions_NewtonsoftJsonfloat left, System.Single right) => !Equals(left.Value, right);
 
-        public static global::System.Boolean operator ==(float left, public_partial_structConversions_NewtonsoftJsonfloat right) => Equals(left, right.Value);
-        public static global::System.Boolean operator !=(float left, public_partial_structConversions_NewtonsoftJsonfloat right) => !Equals(left, right.Value);
+        public static global::System.Boolean operator ==(System.Single left, public_partial_structConversions_NewtonsoftJsonfloat right) => Equals(left, right.Value);
+        public static global::System.Boolean operator !=(System.Single left, public_partial_structConversions_NewtonsoftJsonfloat right) => !Equals(left, right.Value);
 
         public int CompareTo(public_partial_structConversions_NewtonsoftJsonfloat other) => Value.CompareTo(other.Value);
 
@@ -219,7 +219,7 @@ namespace Whatever
     }
 
 
-        public readonly override global::System.Int32 GetHashCode() => global::System.Collections.Generic.EqualityComparer<float>.Default.GetHashCode(_value);
+        public readonly override global::System.Int32 GetHashCode() => global::System.Collections.Generic.EqualityComparer<System.Single>.Default.GetHashCode(_value);
 
         /// <summary>Returns the string representation of the underlying type</summary>
     /// <inheritdoc cref="System.Single.ToString()" />

@@ -34,19 +34,19 @@ namespace Whatever
 [global::Newtonsoft.Json.JsonConverter(typeof(stj_number_as_string_public_partial_record_classConversions_NewtonsoftJson___Conversions_SystemTextJsonbyte_customizedNewtonsoftJsonConverter))]
 
     [global::System.Diagnostics.DebuggerTypeProxyAttribute(typeof(stj_number_as_string_public_partial_record_classConversions_NewtonsoftJson___Conversions_SystemTextJsonbyte_customizedDebugView))]
-    [global::System.Diagnostics.DebuggerDisplayAttribute("Underlying type: byte, Value = { _value }")]
+    [global::System.Diagnostics.DebuggerDisplayAttribute("Underlying type: System.Byte, Value = { _value }")]
     public partial record class stj_number_as_string_public_partial_record_classConversions_NewtonsoftJson___Conversions_SystemTextJsonbyte_customized  :  global::System.IComparable<stj_number_as_string_public_partial_record_classConversions_NewtonsoftJson___Conversions_SystemTextJsonbyte_customized>
     {
 #if DEBUG    
         private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
 #endif
         private readonly global::System.Boolean _isInitialized;
-        private readonly byte _value;
+        private readonly System.Byte _value;
         
         /// <summary>
-        /// Gets the underlying <see cref="byte" /> value if set, otherwise a <see cref="ValueObjectValidationException" /> is thrown.
+        /// Gets the underlying <see cref="System.Byte" /> value if set, otherwise a <see cref="ValueObjectValidationException" /> is thrown.
         /// </summary>
-        public byte Value
+        public System.Byte Value
         {
             [global::System.Diagnostics.DebuggerStepThroughAttribute]
             get
@@ -79,7 +79,7 @@ namespace Whatever
         }
 
         [global::System.Diagnostics.DebuggerStepThroughAttribute]
-        private stj_number_as_string_public_partial_record_classConversions_NewtonsoftJson___Conversions_SystemTextJsonbyte_customized(byte value)
+        private stj_number_as_string_public_partial_record_classConversions_NewtonsoftJson___Conversions_SystemTextJsonbyte_customized(System.Byte value)
         {
             _value = value;
             _isInitialized = true;
@@ -90,7 +90,7 @@ namespace Whatever
         /// </summary>
         /// <param name="value">The underlying type.</param>
         /// <returns>An instance of this type.</returns>
-        public static stj_number_as_string_public_partial_record_classConversions_NewtonsoftJson___Conversions_SystemTextJsonbyte_customized From(byte value)
+        public static stj_number_as_string_public_partial_record_classConversions_NewtonsoftJson___Conversions_SystemTextJsonbyte_customized From(System.Byte value)
         {
             
 
@@ -103,14 +103,14 @@ namespace Whatever
             return instance;
         }
 
-        public static explicit operator stj_number_as_string_public_partial_record_classConversions_NewtonsoftJson___Conversions_SystemTextJsonbyte_customized(byte value) => From(value);
-        public static explicit operator byte(stj_number_as_string_public_partial_record_classConversions_NewtonsoftJson___Conversions_SystemTextJsonbyte_customized value) => value.Value;
+        public static explicit operator stj_number_as_string_public_partial_record_classConversions_NewtonsoftJson___Conversions_SystemTextJsonbyte_customized(System.Byte value) => From(value);
+        public static explicit operator System.Byte(stj_number_as_string_public_partial_record_classConversions_NewtonsoftJson___Conversions_SystemTextJsonbyte_customized value) => value.Value;
 
         public int CompareTo(stj_number_as_string_public_partial_record_classConversions_NewtonsoftJson___Conversions_SystemTextJsonbyte_customized other) => Value.CompareTo(other.Value);
 
         // only called internally when something has been deserialized into
         // its primitive type.
-        private static stj_number_as_string_public_partial_record_classConversions_NewtonsoftJson___Conversions_SystemTextJsonbyte_customized Deserialize(byte value)
+        private static stj_number_as_string_public_partial_record_classConversions_NewtonsoftJson___Conversions_SystemTextJsonbyte_customized Deserialize(System.Byte value)
         {
             
 

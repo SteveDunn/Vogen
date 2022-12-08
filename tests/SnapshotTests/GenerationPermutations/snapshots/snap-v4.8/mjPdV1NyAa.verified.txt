@@ -33,7 +33,7 @@ namespace Whatever
     [global::System.ComponentModel.TypeConverter(typeof(public_readonly_partial_record_structConversions_TypeConverterfloatTypeConverter))]
 
     [global::System.Diagnostics.DebuggerTypeProxyAttribute(typeof(public_readonly_partial_record_structConversions_TypeConverterfloatDebugView))]
-    [global::System.Diagnostics.DebuggerDisplayAttribute("Underlying type: float, Value = { _value }")]
+    [global::System.Diagnostics.DebuggerDisplayAttribute("Underlying type: System.Single, Value = { _value }")]
     public readonly partial record struct public_readonly_partial_record_structConversions_TypeConverterfloat  :  global::System.IComparable<public_readonly_partial_record_structConversions_TypeConverterfloat>
     {
 #if DEBUG    
@@ -42,12 +42,12 @@ namespace Whatever
 
         private readonly global::System.Boolean _isInitialized;
         
-        private readonly float _value;
+        private readonly System.Single _value;
 
         /// <summary>
-        /// Gets the underlying <see cref="float" /> value if set, otherwise a <see cref="ValueObjectValidationException" /> is thrown.
+        /// Gets the underlying <see cref="System.Single" /> value if set, otherwise a <see cref="ValueObjectValidationException" /> is thrown.
         /// </summary>
-        public readonly float Value
+        public readonly System.Single Value
         {
             [global::System.Diagnostics.DebuggerStepThroughAttribute]
             get
@@ -80,7 +80,7 @@ namespace Whatever
         }
 
         [global::System.Diagnostics.DebuggerStepThroughAttribute]
-        private public_readonly_partial_record_structConversions_TypeConverterfloat(float value) 
+        private public_readonly_partial_record_structConversions_TypeConverterfloat(System.Single value) 
         {
             _value = value;
             _isInitialized = true;
@@ -91,7 +91,7 @@ namespace Whatever
         /// </summary>
         /// <param name="value">The underlying type.</param>
         /// <returns>An instance of this type.</returns>
-        public static public_readonly_partial_record_structConversions_TypeConverterfloat From(float value)
+        public static public_readonly_partial_record_structConversions_TypeConverterfloat From(System.Single value)
         {
             
 
@@ -102,14 +102,14 @@ namespace Whatever
             return instance;
         }
 
-        public static explicit operator public_readonly_partial_record_structConversions_TypeConverterfloat(float value) => From(value);
-        public static explicit operator float(public_readonly_partial_record_structConversions_TypeConverterfloat value) => value.Value;
+        public static explicit operator public_readonly_partial_record_structConversions_TypeConverterfloat(System.Single value) => From(value);
+        public static explicit operator System.Single(public_readonly_partial_record_structConversions_TypeConverterfloat value) => value.Value;
 
         public int CompareTo(public_readonly_partial_record_structConversions_TypeConverterfloat other) => Value.CompareTo(other.Value);
 
         // only called internally when something has been deserialized into
         // its primitive type.
-        private static public_readonly_partial_record_structConversions_TypeConverterfloat Deserialize(float value)
+        private static public_readonly_partial_record_structConversions_TypeConverterfloat Deserialize(System.Single value)
         {
             
 

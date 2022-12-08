@@ -107,7 +107,8 @@ namespace @double
         {
             
 
-                    if(value == @class.Value) return @class;
+                    if(value == @struct.Value) return @struct;
+        if(value == @double.Value) return @double;
         if(value == @event.Value) return @event;
         if(value == @void.Value) return @void;
 var validation = @class.validate(value);
@@ -172,7 +173,11 @@ var validation = @class.validate(value);
         
 // instance...
 
-public static @class @class = new @class(42);
+public static @class @struct = new @class(42);
+
+// instance...
+
+public static @class @double = new @class(52);
 
 // instance...
 

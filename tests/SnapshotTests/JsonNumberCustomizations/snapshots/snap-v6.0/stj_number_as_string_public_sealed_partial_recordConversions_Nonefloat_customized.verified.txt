@@ -32,19 +32,19 @@ namespace Whatever
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Vogen", "1.0.0.0")]
     
     [global::System.Diagnostics.DebuggerTypeProxyAttribute(typeof(stj_number_as_string_public_sealed_partial_recordConversions_Nonefloat_customizedDebugView))]
-    [global::System.Diagnostics.DebuggerDisplayAttribute("Underlying type: float, Value = { _value }")]
+    [global::System.Diagnostics.DebuggerDisplayAttribute("Underlying type: System.Single, Value = { _value }")]
     public sealed partial record class stj_number_as_string_public_sealed_partial_recordConversions_Nonefloat_customized  :  global::System.IComparable<stj_number_as_string_public_sealed_partial_recordConversions_Nonefloat_customized>
     {
 #if DEBUG    
         private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
 #endif
         private readonly global::System.Boolean _isInitialized;
-        private readonly float _value;
+        private readonly System.Single _value;
         
         /// <summary>
-        /// Gets the underlying <see cref="float" /> value if set, otherwise a <see cref="ValueObjectValidationException" /> is thrown.
+        /// Gets the underlying <see cref="System.Single" /> value if set, otherwise a <see cref="ValueObjectValidationException" /> is thrown.
         /// </summary>
-        public float Value
+        public System.Single Value
         {
             [global::System.Diagnostics.DebuggerStepThroughAttribute]
             get
@@ -77,7 +77,7 @@ namespace Whatever
         }
 
         [global::System.Diagnostics.DebuggerStepThroughAttribute]
-        private stj_number_as_string_public_sealed_partial_recordConversions_Nonefloat_customized(float value)
+        private stj_number_as_string_public_sealed_partial_recordConversions_Nonefloat_customized(System.Single value)
         {
             _value = value;
             _isInitialized = true;
@@ -88,7 +88,7 @@ namespace Whatever
         /// </summary>
         /// <param name="value">The underlying type.</param>
         /// <returns>An instance of this type.</returns>
-        public static stj_number_as_string_public_sealed_partial_recordConversions_Nonefloat_customized From(float value)
+        public static stj_number_as_string_public_sealed_partial_recordConversions_Nonefloat_customized From(System.Single value)
         {
             
 
@@ -101,14 +101,14 @@ namespace Whatever
             return instance;
         }
 
-        public static explicit operator stj_number_as_string_public_sealed_partial_recordConversions_Nonefloat_customized(float value) => From(value);
-        public static explicit operator float(stj_number_as_string_public_sealed_partial_recordConversions_Nonefloat_customized value) => value.Value;
+        public static explicit operator stj_number_as_string_public_sealed_partial_recordConversions_Nonefloat_customized(System.Single value) => From(value);
+        public static explicit operator System.Single(stj_number_as_string_public_sealed_partial_recordConversions_Nonefloat_customized value) => value.Value;
 
         public int CompareTo(stj_number_as_string_public_sealed_partial_recordConversions_Nonefloat_customized other) => Value.CompareTo(other.Value);
 
         // only called internally when something has been deserialized into
         // its primitive type.
-        private static stj_number_as_string_public_sealed_partial_recordConversions_Nonefloat_customized Deserialize(float value)
+        private static stj_number_as_string_public_sealed_partial_recordConversions_Nonefloat_customized Deserialize(System.Single value)
         {
             
 

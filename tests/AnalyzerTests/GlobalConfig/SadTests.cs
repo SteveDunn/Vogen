@@ -11,23 +11,25 @@ public class SadTests
     [Fact]
     public void Missing_any_constructors()
     {
-        var source = @"using System;
-using Vogen;
+        var source = """
+            using System;
+            using Vogen;
+            
+            [assembly: VogenDefaults(throws: typeof(Whatever.MyValidationException))]
+            
+            namespace Whatever;
+            
+            [ValueObject]
+            public partial struct CustomerId
+            {
+                private static Validation Validate(int value) => value > 0 ? Validation.Ok : Validation.Invalid("xxxx");
+            }
+            
+            public class MyValidationException : Exception
+            {
+            }
 
-[assembly: VogenDefaults(throws: typeof(Whatever.MyValidationException))]
-
-namespace Whatever;
-
-[ValueObject]
-public partial struct CustomerId
-{
-    private static Validation Validate(int value) => value > 0 ? Validation.Ok : Validation.Invalid(""xxxx"");
-}
-
-public class MyValidationException : Exception
-{
-}
-";
+            """;
 
         new TestRunner<ValueObjectGenerator>()
             .WithSource(source)

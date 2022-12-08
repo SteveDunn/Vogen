@@ -7,7 +7,8 @@ public class RecordStructGenerator : IGenerateSourceCode
     public string BuildClass(VoWorkItem item, TypeDeclarationSyntax tds)
     {
         var structName = tds.Identifier;
-        var itemUnderlyingType = item.UnderlyingType?.ToString() ?? "global::System.Int32";
+
+        var itemUnderlyingType = item.UnderlyingTypeFullName;
 
         return $@"
 using Vogen;
