@@ -12,11 +12,10 @@ namespace Vogen
     {
         public static string GenerateTryParseIfNeeded(VoWorkItem item)
         {
-            INamedTypeSymbol? primitiveSymbol = item.UnderlyingType;
+            INamedTypeSymbol primitiveSymbol = item.UnderlyingType;
+
             try
             {
-                if (primitiveSymbol is null) return string.Empty;
-
                 var found = FindMatches(primitiveSymbol).ToList();
 
                 if (found.Count == 0) return string.Empty;

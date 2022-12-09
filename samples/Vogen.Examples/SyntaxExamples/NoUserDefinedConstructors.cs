@@ -1,4 +1,4 @@
-﻿namespace Vogen.Examples.NoUserDefinedConstructors
+﻿namespace Vogen.Examples.SyntaxExamples.NoUserDefinedConstructors
 {
     /*
         You shouldn't be allowed to use a default constructor as it could bypass

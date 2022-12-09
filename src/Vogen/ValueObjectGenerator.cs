@@ -2,6 +2,7 @@
 using System.Collections.Immutable;
 using System.Linq;
 using Microsoft.CodeAnalysis;
+using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 
 namespace Vogen
@@ -32,7 +33,7 @@ namespace Vogen
                 .Where(static m => m is not null)!;
 
             IncrementalValuesProvider<AttributeSyntax> globalConfigFilter = context.SyntaxProvider.CreateSyntaxProvider(
-                    predicate: static (s, _) => GlobalConfigFilter.IsTarget(s),
+                    predicate: static (s, _) => IsTarget(s),
                     transform: static (ctx, _) => GlobalConfigFilter.GetAssemblyLevelAttributeForConfiguration(ctx))
                 .Where(static m => m is not null)!;
 
@@ -65,7 +66,7 @@ namespace Vogen
             VogenConfiguration? globalConfig = buildResult.ResultingConfiguration;
 
             // get all of the ValueObject types found.
-            List<VoWorkItem> workItems = GetWorkItems(typeDeclarations, context, globalConfig).ToList();
+            List<VoWorkItem> workItems = GetWorkItems(typeDeclarations, context, globalConfig, compilation).ToList();
 
             if (workItems.Count > 0)
             {
@@ -78,7 +79,8 @@ namespace Vogen
 
         static IEnumerable<VoWorkItem> GetWorkItems(ImmutableArray<VoTarget> targets,
             SourceProductionContext context,
-            VogenConfiguration? globalConfig)
+            VogenConfiguration? globalConfig,
+            Compilation compilation)
         {
             if (targets.IsDefaultOrEmpty)
             {
@@ -92,7 +94,7 @@ namespace Vogen
                     continue;
                 }
                 
-                var ret = BuildWorkItems.TryBuild(eachTarget, context, globalConfig);
+                var ret = BuildWorkItems.TryBuild(eachTarget, context, globalConfig, compilation);
                 
                 if (ret is not null)
                 {
@@ -100,5 +102,10 @@ namespace Vogen
                 }
             }
         }
+
+        private static bool IsTarget(SyntaxNode node) =>
+            node is AttributeListSyntax attributeList
+            && attributeList.Target is not null
+            && attributeList.Target.Identifier.IsKind(SyntaxKind.AssemblyKeyword);
     }
 }

@@ -2,7 +2,7 @@
 // ReSharper disable ArrangeConstructorOrDestructorBody
 // ReSharper disable PartialTypeWithSinglePart
 
-namespace Vogen.Examples.Nesting
+namespace Vogen.Examples.SyntaxExamples
 {
     /*
      * Value Objects can be in nested namespaces, but cannot be in a nested class.

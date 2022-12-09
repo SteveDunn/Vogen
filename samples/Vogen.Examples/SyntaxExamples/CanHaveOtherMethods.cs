@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Vogen.Examples
+namespace Vogen.Examples.SyntaxExamples
 {
      [ValueObject<TimeSpan>]
      public partial struct Duration

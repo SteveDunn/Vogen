@@ -44,6 +44,12 @@ public partial struct Struct_NormalizedToMax128
     private static Int32 NormalizeInput(int input) => Math.Min(128, input);
 }
 
+[ValueObject]
+public partial struct Struct_WithDefaultedUnderlyingType
+{
+    private static int NormalizeInput(int input) => Math.Min(128, input);
+}
+
 [ValueObject(underlyingType:typeof(int))]
 public partial struct Struct_Normalized_WithSynonymousInputParam
 {

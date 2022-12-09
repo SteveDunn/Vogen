@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 
-namespace Vogen.Examples.TypicalScenarios
+namespace Vogen.Examples.TypicalScenarios.ValidationExamples
 {
     [ValueObject<string>]
 

@@ -1,6 +1,5 @@
 ﻿using System.Linq;
 using System.Threading.Tasks;
-using Shared;
 using VerifyXunit;
 using Vogen;
 
@@ -29,7 +28,6 @@ public class PermutationsOfConversionsTests
 
         private static async Task Run(string type)
         {
-
             foreach(var conversions in _permutations)
             {
                 await RunTest($@"

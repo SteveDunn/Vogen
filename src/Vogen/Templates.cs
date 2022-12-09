@@ -28,7 +28,7 @@ internal static class Templates
         return reader.ReadToEnd();
     }
 
-    public static string? TryGetForSpecificType(INamedTypeSymbol? type, string restOfTemplateName)
+    public static string? TryGetForSpecificType(INamedTypeSymbol type, string restOfTemplateName)
     {
         var typeName = TypeResolver.ResolveTemplateNameFromTypeName(type);
 
@@ -86,16 +86,8 @@ internal static class Templates
         /// </summary>
         /// <param name="nts"></param>
         /// <returns></returns>
-        public static string ResolveTemplateNameFromTypeName(INamedTypeSymbol? nts)
+        public static string ResolveTemplateNameFromTypeName(INamedTypeSymbol nts)
         {
-            // the symbol might be null, which means it wasn't provided in the source
-            // (either in ValueObjectAttribute or in the VogenConfigurationAttribute)
-            // so we default it to int
-            if (nts == null)
-            {
-                return "Int";
-            }
-
             if (nts.SpecialType != SpecialType.None)
             {
                 var s = nts.SpecialType.ToString();

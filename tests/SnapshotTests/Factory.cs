@@ -26,8 +26,9 @@ namespace SnapshotTests
 #endif
         }.ToImmutableHashSet();
 
-        public static ImmutableHashSet<string> UnderlyingTypes = new List<string>()
+        public static readonly ImmutableHashSet<string> UnderlyingTypes = new List<string>()
         {
+            "", // don't include underlying type - should default to int
             "int",
             "string",
             "decimal",

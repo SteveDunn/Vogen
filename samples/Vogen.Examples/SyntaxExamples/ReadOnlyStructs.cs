@@ -1,4 +1,4 @@
-﻿namespace Vogen.Examples
+﻿namespace Vogen.Examples.SyntaxExamples
 {
     [ValueObject]
     public readonly partial struct MyReadOnlyVo

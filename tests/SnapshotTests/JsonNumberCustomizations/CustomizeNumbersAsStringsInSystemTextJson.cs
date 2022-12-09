@@ -63,10 +63,23 @@ public class CustomizeNumbersAsStringsInSystemTextJson
         var customization = treatNumberAsString
             ? "Customizations.TreatNumberAsStringInSystemTextJson"
             : "Customizations.None";
+
+        string declaration = "";
         
-        string declaration = $@"
+        if (underlyingType.Length == 0)
+        {
+            declaration = $@"
+  [ValueObject(conversions: {conversions}, customizations: {customization})]
+  {type} {className} {{ }}";
+        }
+        else
+        {
+            declaration = $@"
   [ValueObject(conversions: {conversions}, underlyingType: typeof({underlyingType}), customizations: {customization})]
   {type} {className} {{ }}";
+
+        }
+
         var source = @"using Vogen;
 namespace Whatever
 {

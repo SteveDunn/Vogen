@@ -57,7 +57,7 @@ public class GenerationOfEscapedTypesTests
         };
 
         // for each of the attributes above, use this underlying type
-        private readonly string[] _underlyingTypes = new[]
+        private readonly string[] _underlyingTypes = 
         {
             "byte",
             "double",

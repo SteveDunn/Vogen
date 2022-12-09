@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 
-namespace Vogen.Examples.TypicalScenarios
+namespace Vogen.Examples.TypicalScenarios.Basic
 {
     internal class BasicExamples : IScenario
     {

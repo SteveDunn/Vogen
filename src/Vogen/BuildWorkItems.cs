@@ -14,7 +14,8 @@ internal static class BuildWorkItems
 {
     public static VoWorkItem? TryBuild(VoTarget target,
         SourceProductionContext context,
-        VogenConfiguration? globalConfig)
+        VogenConfiguration? globalConfig,
+        Compilation compilation)
     {
         TypeDeclarationSyntax voTypeSyntax = target.VoSyntaxInformation;
 
@@ -50,20 +51,20 @@ internal static class BuildWorkItems
 
         // Build the configuration but only log issues as diagnostics if they would cause additional compilation errors,
         // such as incorrect exceptions, or invalid customizations. For other issues, there are separate analyzers.
-        var buildResult = GlobalConfigFilter.BuildConfigurationFromAttribute(voAttribute);
-        foreach (var diagnostic in buildResult.Diagnostics)
+        var localBuildResult = GlobalConfigFilter.TryBuildConfigurationFromAttribute(voAttribute);
+        foreach (var diagnostic in localBuildResult.Diagnostics)
         {
             context.ReportDiagnostic(diagnostic);
         }
 
-        VogenConfiguration? localConfig = buildResult.ResultingConfiguration;
+        VogenConfiguration? localConfig = localBuildResult.ResultingConfiguration;
         
         if (localConfig == null)
         {
             return null;
         }
 
-        var config = VogenConfiguration.Combine(localConfig.Value, globalConfig);
+        var config = VogenConfiguration.Combine(localConfig.Value, globalConfig, () => compilation.GetSpecialType(SpecialType.System_Int32));
 
         ReportErrorIfNestedType(target, context, voSymbolInformation);
 
@@ -108,7 +109,7 @@ internal static class BuildWorkItems
             TypeToAugment = voTypeSyntax,
             IsValueType = isValueType,
             HasToString = toStringInfo.HasToString,
-            UnderlyingType = config.UnderlyingType,
+            UnderlyingType = config.UnderlyingType ?? throw new InvalidOperationException("No underlying type"),
             Conversions = config.Conversions,
             DeserializationStrictness = config.DeserializationStrictness,
             Customizations = config.Customizations,

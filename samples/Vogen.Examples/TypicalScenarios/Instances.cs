@@ -2,7 +2,7 @@
 using System.Threading.Tasks;
 // ReSharper disable RedundantCast
 
-namespace Vogen.Examples.TypicalScenarios
+namespace Vogen.Examples.TypicalScenarios.Instances
 {
 
     /*
