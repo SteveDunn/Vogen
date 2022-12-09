@@ -67,12 +67,12 @@
   </PropertyGroup>
 
   <ItemGroup Condition=" '$(UseLocallyBuiltPackage)' != ''">
-    <PackageReference Include="Vogen" Version="999.9.4603039" />
+    <PackageReference Include="Vogen" Version="999.9.*" />
   </ItemGroup>
 
-  <!-- <ItemGroup Condition=" '$(UseLocallyBuiltPackage)' == ''"> -->
-  <!--   <PackageReference Include="Vogen" Version="3.0.2-alpha.2" /> -->
-  <!-- </ItemGroup> -->
+  <ItemGroup Condition=" '$(UseLocallyBuiltPackage)' == ''">
+    <PackageReference Include="Vogen" Version="3.0.2-alpha.2" />
+  </ItemGroup>
 
 
   <!--Note the high version number: these tests are supposed to run using
@@ -99,19 +99,6 @@
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
   </ItemGroup>
-
-  <ItemGroup>
-    <!--<ProjectReference Include="..\..\src\Vogen.SharedTypes\Vogen.SharedTypes.csproj" ReferenceOutputAssembly="false" />
-    <ProjectReference Include="..\..\src\Vogen\Vogen.csproj" ReferenceOutputAssembly="false" />-->
-  </ItemGroup>
-  <!--<ItemGroup>
-    -->
-  <!-- Note that this is not a "normal" ProjectReference.
-         It needs the additional 'OutputItemType' and 'ReferenceOutputAssmbly' attributes. -->
-  <!--
-    <ProjectReference Include="..\..\src\Vogen.SharedTypes\Vogen.SharedTypes.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="true" />
-    <ProjectReference Include="..\..\src\Vogen\Vogen.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="true" />
-  </ItemGroup>-->
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <EmitCompilerGeneratedFiles>true</EmitCompilerGeneratedFiles>
