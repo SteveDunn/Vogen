@@ -8,8 +8,11 @@ namespace Vogen
 {
     internal static class BuildInstanceProperties
     {
-        public static IEnumerable<InstanceProperties?> Build(IEnumerable<AttributeData> allAttributes,
-            SourceProductionContext context, INamedTypeSymbol voClass, INamedTypeSymbol? underlyingType)
+        public static IEnumerable<InstanceProperties?> Build(
+            IEnumerable<AttributeData> allAttributes,
+            SourceProductionContext context, 
+            INamedTypeSymbol voClass, 
+            INamedTypeSymbol? underlyingType)
         {
             return allAttributes.Select(a => Build(a, context, voClass, underlyingType));
         }

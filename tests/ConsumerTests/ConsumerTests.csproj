@@ -100,19 +100,6 @@
     </PackageReference>
   </ItemGroup>
 
-  <ItemGroup>
-    <!--<ProjectReference Include="..\..\src\Vogen.SharedTypes\Vogen.SharedTypes.csproj" ReferenceOutputAssembly="false" />
-    <ProjectReference Include="..\..\src\Vogen\Vogen.csproj" ReferenceOutputAssembly="false" />-->
-  </ItemGroup>
-  <!--<ItemGroup>
-    -->
-  <!-- Note that this is not a "normal" ProjectReference.
-         It needs the additional 'OutputItemType' and 'ReferenceOutputAssmbly' attributes. -->
-  <!--
-    <ProjectReference Include="..\..\src\Vogen.SharedTypes\Vogen.SharedTypes.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="true" />
-    <ProjectReference Include="..\..\src\Vogen\Vogen.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="true" />
-  </ItemGroup>-->
-
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <EmitCompilerGeneratedFiles>true</EmitCompilerGeneratedFiles>
     <CompilerGeneratedFilesOutputPath>Generated</CompilerGeneratedFilesOutputPath>

@@ -30,11 +30,4 @@ namespace Vogen.Examples
             Console.WriteLine($"Running {eachScenarioType.Name}");
         }
     }
-
-    public class GenericAttribute<T, T2> : Attribute { }
-
-    [Generic<int, string>]
-    public class Foo
-    {
-    }
 }

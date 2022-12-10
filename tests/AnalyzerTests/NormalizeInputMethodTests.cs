@@ -132,4 +132,27 @@ namespace Whatever;
     private int NormalizeInput(int value) => 0;
 }}";
     }
+
+    [Fact]
+    public void NormalizeInput_CopesWhenUnderlyingTypeIsDefaulted()
+    {
+        var source = @"using Vogen;
+namespace Whatever;
+
+[ValueObject]
+public partial struct Struct_WithDefaultedUnderlyingType
+{
+    private static int NormalizeInput(int input) => System.Math.Min(128, input);
+}";
+
+        new TestRunner<ValueObjectGenerator>()
+            .WithSource(source)
+            .ValidateWith(Validate)
+            .RunOnAllFrameworks();
+
+        void Validate(ImmutableArray<Diagnostic> diagnostics)
+        {
+            diagnostics.Should().HaveCount(0);
+        }
+    }
 }

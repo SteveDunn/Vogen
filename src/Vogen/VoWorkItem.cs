@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 
@@ -6,19 +7,20 @@ namespace Vogen;
 
 public class VoWorkItem
 {
-    private INamedTypeSymbol? _underlyingType = null!;
+    private INamedTypeSymbol _underlyingType = null!;
     private string _underlyingTypeFullName = null!;
     public MethodDeclarationSyntax? NormalizeInputMethod { get; set; }
     
     public MethodDeclarationSyntax? ValidateMethod { get; set; }
 
-    public INamedTypeSymbol? UnderlyingType
+    public INamedTypeSymbol UnderlyingType
     {
         get => _underlyingType;
         set
         {
             _underlyingType = value;
-            _underlyingTypeFullName = value.FullName() ?? value?.Name ?? "global::System.Int32";
+            _underlyingTypeFullName = value.FullName() ?? value?.Name ?? throw new InvalidOperationException(
+                "No underlying type specified - please file a bug at https://github.com/SteveDunn/Vogen/issues/new?assignees=&labels=bug&template=BUG_REPORT.yml");
         }
     }
 

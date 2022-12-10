@@ -75,9 +75,22 @@ public class GenerationPermutationTests
     private Task Run(string type, string conversions, string underlyingType, string className, string locale)
     {
         _logger.WriteLine($"Running permutation, type: {type}, conversion: {conversions}, underlyingType: {underlyingType}, className: {className}, locale: {locale}");
-        string declaration = $@"
+
+        string declaration = "";
+
+        if (underlyingType.Length == 0)
+        {
+            declaration = $@"
+  [ValueObject(conversions: {conversions})]
+  {type} {className} {{ }}";
+        }
+        else
+        {
+            declaration = $@"
   [ValueObject(conversions: {conversions}, underlyingType: typeof({underlyingType}))]
   {type} {className} {{ }}";
+        }
+
         var source = @"using Vogen;
 namespace Whatever
 {

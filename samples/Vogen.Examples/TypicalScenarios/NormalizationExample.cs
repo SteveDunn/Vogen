@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 
-namespace Vogen.Examples.TypicalScenarios
+namespace Vogen.Examples.TypicalScenarios.Normalization
 {
     // Represent a string scraped from some other text, e.g. a web-page, online article, etc.
     // It cannot be empty, or start / end with whitespace.

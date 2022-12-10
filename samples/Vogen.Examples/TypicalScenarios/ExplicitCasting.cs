@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 
-namespace Vogen.Examples.ExplcitCasting
+namespace Vogen.Examples.TypicalScenarios.ExplicitCasting
 {
     internal class ExplicitCastingScenario : IScenario
     {

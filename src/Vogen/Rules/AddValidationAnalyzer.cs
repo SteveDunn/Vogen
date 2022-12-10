@@ -26,8 +26,14 @@ namespace Vogen.Rules
         
         private const string Category = "Usage";
 
-        private static readonly DiagnosticDescriptor Rule = new DiagnosticDescriptor(RuleIdentifiers.AddValidationMethod, Title, MessageFormat,
-            RuleCategories.Usage, DiagnosticSeverity.Info, isEnabledByDefault: true, description: Description);
+        private static readonly DiagnosticDescriptor Rule = new DiagnosticDescriptor(
+            RuleIdentifiers.AddValidationMethod,
+            Title,
+            MessageFormat,
+            RuleCategories.Usage,
+            DiagnosticSeverity.Info,
+            isEnabledByDefault: true,
+            description: Description);
 
         public override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics
         {
@@ -52,10 +58,16 @@ namespace Vogen.Rules
 
             if (attrs.Length != 1) return;
 
-            VogenConfigurationBuildResult x = GlobalConfigFilter.BuildConfigurationFromAttribute(attrs[0]);
-            VogenConfiguration? vogenConfig = x.ResultingConfiguration;
+            VogenConfigurationBuildResult buildResult = GlobalConfigFilter.TryBuildConfigurationFromAttribute(attrs[0]);
+            
+            VogenConfiguration? vogenConfig = buildResult.ResultingConfiguration;
+            
             if (!vogenConfig.HasValue) return;
-            if (x.Diagnostics.Count > 0) return;
+            
+            if (buildResult.Diagnostics.Count > 0)
+            {
+                return;
+            }
 
             string retType = vogenConfig.Value.UnderlyingType!.Name;
 
@@ -101,6 +113,5 @@ namespace Vogen.Rules
         }
 
         private static bool IsMethodStatic(IMethodSymbol mds) => mds.IsStatic;
-
     }
 }

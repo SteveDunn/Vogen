@@ -9,6 +9,10 @@ public class NormalizeInputTests_Class
 {
     
     [Fact]
+    public void WithUnderlyingTypeInferred_AnalyzerDoesNotReportIssueWithUnderlyingType() =>
+        Struct_WithDefaultedUnderlyingType.From(129).Value.Should().Be(128);
+
+    [Fact]
     public void WhenInputIsNormalized_ReturnsTheNormalizedValue() => Struct_NormalizedToMax128.From(129).Value.Should().Be(128);
 
     [Fact]

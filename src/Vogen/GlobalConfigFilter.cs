@@ -11,16 +11,6 @@ namespace Vogen;
 
 internal static class GlobalConfigFilter
 {
-    /// <summary>
-    /// This is stage 1 in the pipeline - the 'quick filter'.  We find out is it a type declaration and does it have any attributes? - don't allocate anything
-    /// here as this is called a **lot** (every time the editor is changed, i.e. key-presses).
-    /// </summary>
-    /// <param name="node"></param>
-    /// <returns></returns>
-    public static bool IsTarget(SyntaxNode node) =>
-        node is AttributeListSyntax attributeList
-        && attributeList.Target is not null
-        && attributeList.Target.Identifier.IsKind(SyntaxKind.AssemblyKeyword);
 
     /// <summary>
     /// Gets global default configuration from any global (assembly) attribute.
@@ -61,10 +51,12 @@ internal static class GlobalConfigFilter
             return VogenConfigurationBuildResult.Null;
         }
 
-        return BuildConfigurationFromAttribute(matchingAttribute);
+        VogenConfigurationBuildResult globalConfig = TryBuildConfigurationFromAttribute(matchingAttribute);
+
+        return globalConfig;
     }
 
-    public static VogenConfigurationBuildResult BuildConfigurationFromAttribute(AttributeData matchingAttribute)
+    public static VogenConfigurationBuildResult TryBuildConfigurationFromAttribute(AttributeData matchingAttribute)
     {
         VogenConfigurationBuildResult buildResult = new VogenConfigurationBuildResult();
 

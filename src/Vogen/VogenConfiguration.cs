@@ -1,4 +1,5 @@
-﻿using Microsoft.CodeAnalysis;
+﻿using System;
+using Microsoft.CodeAnalysis;
 
 namespace Vogen;
 
@@ -20,7 +21,8 @@ public readonly struct VogenConfiguration
 
     public static VogenConfiguration Combine(
         VogenConfiguration localValues,
-        VogenConfiguration? globalValues)
+        VogenConfiguration? globalValues,
+        Func<INamedTypeSymbol>? funcForDefaultUnderlyingType = null)
     {
         var conversions = (localValues.Conversions, globalValues?.Conversions) switch
         {
@@ -48,7 +50,7 @@ public readonly struct VogenConfiguration
 
 
         var validationExceptionType = localValues.ValidationExceptionType ?? globalValues?.ValidationExceptionType ?? DefaultInstance.ValidationExceptionType;
-        var underlyingType = localValues.UnderlyingType ?? globalValues?.UnderlyingType ?? DefaultInstance.UnderlyingType;
+        var underlyingType = localValues.UnderlyingType ?? globalValues?.UnderlyingType ?? funcForDefaultUnderlyingType?.Invoke();
 
         return new VogenConfiguration(underlyingType, validationExceptionType, conversions, customizations, strictness);
     }

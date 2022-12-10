@@ -14,14 +14,26 @@ namespace ConsumerTests.IComparableTests
     [ValueObject(typeof(int))]
     public partial struct S1 { }
 
+    [ValueObject]
+    public partial struct S2 { }
+
     [ValueObject(typeof(int))]
     public partial record struct RS1 { }
+
+    [ValueObject]
+    public partial record struct RS2 { }
 
     [ValueObject(typeof(int))]
     public partial record struct RC1 { }
 
+    [ValueObject]
+    public partial record struct RC2 { }
+
     [ValueObject(typeof(int))]
     public partial class C1 { }
+
+    [ValueObject]
+    public partial class C2 { }
 
     public class IComparableTests
     {
@@ -69,6 +81,21 @@ namespace ConsumerTests.IComparableTests
                 l2[1].Value.Should().Be(2);
                 l2[2].Value.Should().Be(3);
             }
+
+            [Fact]
+            public void Underlying_type_of_default_int_means_the_vo_is_IComparable()
+            {
+                var l2 = new List<S2>(new[] { S2.From(1), S2.From(3), S2.From(2)});
+                l2[0].Value.Should().Be(1);
+                l2[1].Value.Should().Be(3);
+                l2[2].Value.Should().Be(2);
+
+                l2.Sort();
+
+                l2[0].Value.Should().Be(1);
+                l2[1].Value.Should().Be(2);
+                l2[2].Value.Should().Be(3);
+            }
         }
 
         public class RecordStructTests
@@ -77,6 +104,21 @@ namespace ConsumerTests.IComparableTests
             public void Underlying_type_of_int_means_the_vo_is_IComparable()
             {
                 var l = new List<RS1>(new[] {RS1.From(1), RS1.From(3), RS1.From(2)});
+                l[0].Value.Should().Be(1);
+                l[1].Value.Should().Be(3);
+                l[2].Value.Should().Be(2);
+
+                l.Sort();
+
+                l[0].Value.Should().Be(1);
+                l[1].Value.Should().Be(2);
+                l[2].Value.Should().Be(3);
+            }
+
+            [Fact]
+            public void Underlying_type_of_default_int_means_the_vo_is_IComparable()
+            {
+                var l = new List<RS2>(new[] { RS2.From(1), RS2.From(3), RS2.From(2)});
                 l[0].Value.Should().Be(1);
                 l[1].Value.Should().Be(3);
                 l[2].Value.Should().Be(2);
@@ -105,6 +147,21 @@ namespace ConsumerTests.IComparableTests
                 l[1].Value.Should().Be(2);
                 l[2].Value.Should().Be(3);
             }
+
+            [Fact]
+            public void Underlying_type_of_default_int_means_the_vo_is_IComparable()
+            {
+                var l = new List<RC2>(new[] { RC2.From(1), RC2.From(3), RC2.From(2)});
+                l[0].Value.Should().Be(1);
+                l[1].Value.Should().Be(3);
+                l[2].Value.Should().Be(2);
+
+                l.Sort();
+
+                l[0].Value.Should().Be(1);
+                l[1].Value.Should().Be(2);
+                l[2].Value.Should().Be(3);
+            }
         }
 
         public class ClassTests
@@ -122,9 +179,42 @@ namespace ConsumerTests.IComparableTests
                 l[0].Value.Should().Be(1);
                 l[1].Value.Should().Be(2);
                 l[2].Value.Should().Be(3);
+            }
 
-                // (C1.From(1) < C1.From(2)).Should().BeTrue();
+            [Fact]
+            public void Underlying_type_of_default_int_means_the_vo_is_IComparable()
+            {
+                var l = new List<C2>(new[] { C2.From(1), C2.From(3), C2.From(2)});
+                l[0].Value.Should().Be(1);
+                l[1].Value.Should().Be(3);
+                l[2].Value.Should().Be(2);
+
+                l.Sort();
+
+                l[0].Value.Should().Be(1);
+                l[1].Value.Should().Be(2);
+                l[2].Value.Should().Be(3);
             }
         }
+
+        public class ExplicitCompareToCalls
+        {
+            [Fact]
+            public void Underlying_type_of_int_means_the_vo_is_IComparable()
+            {
+                var c1 = C1.From(123);
+                var cc1 = C1.From(123);
+                c1.CompareTo(cc1).Should().Be(0);
+            }
+
+            [Fact]
+            public void Underlying_type_of_default_int_means_the_vo_is_IComparable()
+            {
+                var c1 = C2.From(123);
+                var cc1 = C2.From(123);
+                c1.CompareTo(cc1).Should().Be(0);
+            }
+        }
+        
     }
 }

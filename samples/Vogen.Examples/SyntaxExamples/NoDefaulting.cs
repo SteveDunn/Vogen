@@ -1,7 +1,7 @@
 ﻿// ReSharper disable UnusedVariable
 #pragma warning disable CS0219
 
-namespace Vogen.Examples.NoDefaulting
+namespace Vogen.Examples.SyntaxExamples.NoDefaulting
 {
     /*
         You shouldn't be allowed to `default` a Value Object as it bypasses
@@ -46,8 +46,6 @@ namespace Vogen.Examples.NoDefaulting
         //  error VOG010: Type 'CustomerId' cannot be constructed with 'new' as it is prohibited.
         // public CustomerId GetCustomerId() => new();
         // public CustomerId GetCustomerId() => new CustomerId();
-        
-        
     }
 
     [ValueObject]
