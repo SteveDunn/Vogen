@@ -50,4 +50,6 @@ public class VoWorkItem
     public string UnderlyingTypeFullName => _underlyingTypeFullName;
 
     public bool HasToString { get; set; }
+    
+    public bool OmitDebugAttributes { get; set; }
 }

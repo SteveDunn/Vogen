@@ -22,11 +22,11 @@
 	</ItemGroup>
 
 	<ItemGroup Condition=" '$(UseLocallyBuiltPackage)' != ''">
-		<PackageReference Include="Vogen" Version="999.9.*" />
+		<PackageReference Include="Vogen" Version="999.9.5007323" />
 	</ItemGroup>
 
 	<ItemGroup Condition=" '$(UseLocallyBuiltPackage)' == ''">
-		<PackageReference Include="Vogen" Version="3.0.2-alpha.2" />
+		<PackageReference Include="Vogen" Version="999.9.5007323" />
 	</ItemGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">

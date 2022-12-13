@@ -231,4 +231,24 @@ public static class Util
 
          return s;
     }
+
+    public static string GenerateDebugAttributes(VoWorkItem item, SyntaxToken className, string itemUnderlyingType)
+    {
+        var source = $$"""
+[global::System.Diagnostics.DebuggerTypeProxyAttribute(typeof({{className}}DebugView))]
+    [global::System.Diagnostics.DebuggerDisplayAttribute("Underlying type: {{itemUnderlyingType}}, Value = { _value }")]
+""";
+        if (item.OmitDebugAttributes)
+        {
+            return $@"/* Debug attributes omitted because the 'OmitDebugAttributes' flag is set on the Vogen attribute.
+This is usually set to avoid issues in Rider where it doesn't fully handle the attributes support by Visual Studio and
+causes Rider's debugger to crash
+
+{source}
+
+*/";
+        }
+    
+        return source;
+    }
 }

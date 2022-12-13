@@ -65,6 +65,7 @@ internal static class GlobalConfigFilter
         Conversions conversions = Conversions.Default;
         Customizations customizations = Customizations.None;
         DeserializationStrictness deserializationStrictness = DeserializationStrictness.Default;
+        bool? omitDebugAttributes = null;
 
         bool hasErroredAttributes = false;
 
@@ -120,6 +121,9 @@ internal static class GlobalConfigFilter
                         case "deserializationStrictness":
                             deserializationStrictness = (DeserializationStrictness) (typedConstant.Value ?? Customizations.None);
                             break;
+                        case "omitDebugAttributes":
+                            omitDebugAttributes = (bool) (typedConstant.Value ?? false);
+                            break;
                     }
                 }
             }
@@ -163,7 +167,8 @@ internal static class GlobalConfigFilter
             invalidExceptionType,
             conversions,
             customizations,
-            deserializationStrictness);
+            deserializationStrictness,
+            omitDebugAttributes);
 
         return buildResult;
 
@@ -174,6 +179,13 @@ internal static class GlobalConfigFilter
             var type = attributeData.AttributeClass!.TypeArguments[0] as INamedTypeSymbol;
             switch (args.Length)
             {
+                case 5:
+                    if (args[4].Value != null)
+                    {
+                        omitDebugAttributes = (bool) args[4].Value!;
+                    }
+
+                    goto case 4;
                 case 4:
                     if (args[3].Value != null)
                     {
@@ -210,6 +222,13 @@ internal static class GlobalConfigFilter
         {
             switch (args.Length)
             {
+                case 6:
+                    if (args[5].Value != null)
+                    {
+                        omitDebugAttributes = (bool) args[5].Value!;
+                    }
+
+                    goto case 5;
                 case 5:
                     if (args[4].Value != null)
                     {

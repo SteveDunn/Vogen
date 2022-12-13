@@ -112,6 +112,7 @@ internal static class BuildWorkItems
             UnderlyingType = config.UnderlyingType ?? throw new InvalidOperationException("No underlying type"),
             Conversions = config.Conversions,
             DeserializationStrictness = config.DeserializationStrictness,
+            OmitDebugAttributes = config.OmitDebugAttributes ?? false,
             Customizations = config.Customizations,
             TypeForValidationExceptions = config.ValidationExceptionType,
             ValidateMethod = validateMethod,

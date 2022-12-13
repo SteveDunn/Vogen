@@ -17,8 +17,7 @@ using Vogen;
     [global::System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage] 
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute(""{Util.GenerateYourAssemblyName()}"", ""{Util.GenerateYourAssemblyVersion()}"")]
     {Util.GenerateAnyConversionAttributes(tds, item)}
-    [global::System.Diagnostics.DebuggerTypeProxyAttribute(typeof({structName}DebugView))]
-    [global::System.Diagnostics.DebuggerDisplayAttribute(""Underlying type: {itemUnderlyingType}, Value = {{ _value }}"")]
+    {Util.GenerateDebugAttributes(item, structName, itemUnderlyingType)}
     { Util.GenerateModifiersFor(tds)} record struct {structName} {Util.GenerateIComparableHeaderIfNeeded(" : ", item, tds)}
     {{
 #if DEBUG    

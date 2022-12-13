@@ -9,7 +9,7 @@ public class ClassGenerator : IGenerateSourceCode
         var className = tds.Identifier;
 
         var itemUnderlyingType = item.UnderlyingTypeFullName;
-
+        
         return $@"
 using Vogen;
 
@@ -17,8 +17,7 @@ using Vogen;
     [global::System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage] 
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute(""{Util.GenerateYourAssemblyName()}"", ""{Util.GenerateYourAssemblyVersion()}"")]
     {Util.GenerateAnyConversionAttributes(tds, item)}
-    [global::System.Diagnostics.DebuggerTypeProxyAttribute(typeof({className}DebugView))]
-    [global::System.Diagnostics.DebuggerDisplayAttribute(""Underlying type: {itemUnderlyingType}, Value = {{ _value }}"")]
+    {Util.GenerateDebugAttributes(item, className, itemUnderlyingType)}
     {Util.GenerateModifiersFor(tds)} class {className} : global::System.IEquatable<{className}>, global::System.IEquatable<{itemUnderlyingType}> {Util.GenerateIComparableHeaderIfNeeded(", ", item, tds)}
     {{
 #if DEBUG    
