@@ -9,9 +9,8 @@ using Vogen.Diagnostics;
 
 namespace Vogen;
 
-internal static class GlobalConfigFilter
+internal static class ManageAttributes
 {
-
     /// <summary>
     /// Gets global default configuration from any global (assembly) attribute.
     /// If none are specified, then the default configuration is used.
@@ -263,7 +262,9 @@ internal static class GlobalConfigFilter
         }
     }
 
-    private static void BuildAnyIssuesWithTheException(INamedTypeSymbol? invalidExceptionType, VogenConfigurationBuildResult buildResult)
+    private static void BuildAnyIssuesWithTheException(
+        INamedTypeSymbol? invalidExceptionType, 
+        VogenConfigurationBuildResult buildResult)
     {
         if (invalidExceptionType == null)
         {
@@ -291,8 +292,8 @@ internal static class GlobalConfigFilter
     /// Tries to get the syntax element for any matching attribute that might exist in the provided context.
     /// </summary>
     /// <param name="context"></param>
-    /// <returns></returns>
-    public static AttributeSyntax? GetAssemblyLevelAttributeForConfiguration(GeneratorSyntaxContext context)
+    /// <returns>The syntax of the attribute if it matches the global defaults attribute, otherwise null.</returns>
+    public static AttributeSyntax? TryGetAssemblyLevelDefaultsAttribute(GeneratorSyntaxContext context)
     {
         // we know the node is a AttributeListSyntax thanks to IsSyntaxTargetForGeneration
         var attributeListSyntax = (AttributeListSyntax) context.Node;
@@ -315,15 +316,4 @@ internal static class GlobalConfigFilter
 
         return null;
     }
-}
-
-internal sealed class VogenConfigurationBuildResult
-{
-    public VogenConfiguration? ResultingConfiguration { get; set; }
-
-    public List<Diagnostic> Diagnostics { get; set; } = new();
-
-    public static VogenConfigurationBuildResult Null => new();
-
-    public void AddDiagnostic(Diagnostic diagnostic) => Diagnostics.Add(diagnostic);
 }

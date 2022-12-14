@@ -33,8 +33,14 @@ namespace Whatever
     [global::System.Text.Json.Serialization.JsonConverter(typeof(CustomerIdSystemTextJsonConverter))]
 [global::System.ComponentModel.TypeConverter(typeof(CustomerIdTypeConverter))]
 
-    [global::System.Diagnostics.DebuggerTypeProxyAttribute(typeof(CustomerIdDebugView))]
+    /* Debug attributes omitted because the 'OmitDebugAttributes' flag is set on the Vogen attribute.
+This is usually set to avoid issues in Rider where it doesn't fully handle the attributes support by Visual Studio and
+causes Rider's debugger to crash
+
+[global::System.Diagnostics.DebuggerTypeProxyAttribute(typeof(CustomerIdDebugView))]
     [global::System.Diagnostics.DebuggerDisplayAttribute("Underlying type: System.Int32, Value = { _value }")]
+
+*/
     public partial struct CustomerId : global::System.IEquatable<CustomerId>, global::System.IEquatable<System.Int32> ,  global::System.IComparable<CustomerId>
     {
 #if DEBUG    

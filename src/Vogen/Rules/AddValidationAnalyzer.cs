@@ -58,7 +58,7 @@ namespace Vogen.Rules
 
             if (attrs.Length != 1) return;
 
-            VogenConfigurationBuildResult buildResult = GlobalConfigFilter.TryBuildConfigurationFromAttribute(attrs[0]);
+            VogenConfigurationBuildResult buildResult = ManageAttributes.TryBuildConfigurationFromAttribute(attrs[0]);
             
             VogenConfiguration? vogenConfig = buildResult.ResultingConfiguration;
             

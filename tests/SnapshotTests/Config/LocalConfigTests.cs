@@ -8,6 +8,23 @@ namespace SnapshotTests.Config;
 public class LocalConfigTests
 {
     [Fact]
+    public Task OmitDebugAttributes_override()
+    {
+        var source = @"using System;
+using Vogen;
+namespace Whatever;
+
+[ValueObject(omitDebugAttributes: true)]
+public partial struct CustomerId
+{
+}";
+
+        return new SnapshotRunner<ValueObjectGenerator>()
+            .WithSource(source)
+            .RunOnAllFrameworks();
+    }
+
+    [Fact]
     public Task Defaults()
     {
         var source = @"using System;
