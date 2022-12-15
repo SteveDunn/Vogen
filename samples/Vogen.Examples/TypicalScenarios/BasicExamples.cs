@@ -70,7 +70,7 @@ namespace Vogen.Examples.TypicalScenarios.Basic
         {
         }
     }
-    [assembly: VogenDefaults(omitDebugAttributes: true)]
+    
     internal class CustomerProcessor
     {
         internal void Process(CustomerId customerId, SupplierId supplierId, Amount amount) =>
