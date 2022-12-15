@@ -29,6 +29,27 @@ public partial struct CustomerId
     }
 
     [Fact]
+    public Task OmitDebugAttributes_override()
+    {
+        var source = @"using System;
+using Vogen;
+
+[assembly: VogenDefaults(omitDebugAttributes: true)]
+
+
+namespace Whatever;
+
+[ValueObject]
+public partial struct CustomerId
+{
+}";
+
+        return new SnapshotRunner<ValueObjectGenerator>()
+            .WithSource(source)
+            .RunOnAllFrameworks();
+    }
+
+    [Fact]
     public Task Exception_override()
     {
         var source = @"using System;

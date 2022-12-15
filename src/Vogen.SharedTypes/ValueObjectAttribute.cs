@@ -1,4 +1,5 @@
-﻿namespace Vogen
+﻿// ReSharper disable UnusedParameter.Local
+namespace Vogen
 {
     using System;
 
@@ -17,16 +18,17 @@
             Conversions conversions = Conversions.Default,
             Type? throws = null!,
             Customizations customizations = Customizations.None,
-            DeserializationStrictness deserializationStrictness = DeserializationStrictness.AllowValidAndKnownInstances)
-            : base(typeof(T), conversions, throws, customizations, deserializationStrictness)
+            DeserializationStrictness deserializationStrictness = DeserializationStrictness.AllowValidAndKnownInstances,
+            bool omitDebugAttributes = false)
+            : base(typeof(T), conversions, throws, customizations, deserializationStrictness, omitDebugAttributes)
         {
         }
     }
 #endif
 
     /// <summary>
-    /// Marks a type as a Value Object. The type should be partial so that the
-    /// source generator can augment the type with equality and validation.
+    /// Marks a type as a Value Object. The type that this is applied to should be partial so that the
+    /// source generator can augment it with equality, creation barriers, and any conversions.
     /// </summary>
     [AttributeUsage(AttributeTargets.Class | AttributeTargets.Struct, AllowMultiple = false)]
     public class ValueObjectAttribute : Attribute
@@ -39,24 +41,28 @@
             Conversions conversions = Conversions.Default,
             Type? throws = null!,
             Customizations customizations = Customizations.None,
-            DeserializationStrictness deserializationStrictness = DeserializationStrictness.AllowValidAndKnownInstances)
+            DeserializationStrictness deserializationStrictness = DeserializationStrictness.AllowValidAndKnownInstances,
+            bool omitDebugAttributes = false)
         {
-            UnderlyingType = underlyingType;
-            Conversions = conversions;
-            ValidationExceptionType = throws;
-            Customizations = customizations;
-            DeserializationStrictness = deserializationStrictness;
+            // UnderlyingType = underlyingType;
+            // Conversions = conversions;
+            // ValidationExceptionType = throws;
+            // Customizations = customizations;
+            // DeserializationStrictness = deserializationStrictness;
+            // OmitDebugAttributes = omitDebugAttributes;
         }
 
-        public Type? UnderlyingType { get; }
-        
-        public Type? ValidationExceptionType { get; }
-
-        public Conversions Conversions { get; }
-        
-        public Customizations Customizations { get; }
-
-        public DeserializationStrictness DeserializationStrictness { get; } =
-            DeserializationStrictness.AllowValidAndKnownInstances;
+        // public Type? UnderlyingType { get; }
+        //
+        // public Type? ValidationExceptionType { get; }
+        //
+        // public Conversions Conversions { get; }
+        //
+        // public Customizations Customizations { get; }
+        //
+        // public DeserializationStrictness DeserializationStrictness { get; } =
+        //     DeserializationStrictness.AllowValidAndKnownInstances;
+        //
+        // public bool OmitDebugAttributes { get; }
     }
 }

@@ -51,7 +51,7 @@ internal static class BuildWorkItems
 
         // Build the configuration but only log issues as diagnostics if they would cause additional compilation errors,
         // such as incorrect exceptions, or invalid customizations. For other issues, there are separate analyzers.
-        var localBuildResult = GlobalConfigFilter.TryBuildConfigurationFromAttribute(voAttribute);
+        var localBuildResult = ManageAttributes.TryBuildConfigurationFromAttribute(voAttribute);
         foreach (var diagnostic in localBuildResult.Diagnostics)
         {
             context.ReportDiagnostic(diagnostic);
@@ -112,6 +112,7 @@ internal static class BuildWorkItems
             UnderlyingType = config.UnderlyingType ?? throw new InvalidOperationException("No underlying type"),
             Conversions = config.Conversions,
             DeserializationStrictness = config.DeserializationStrictness,
+            OmitDebugAttributes = config.OmitDebugAttributes ?? false,
             Customizations = config.Customizations,
             TypeForValidationExceptions = config.ValidationExceptionType,
             ValidateMethod = validateMethod,

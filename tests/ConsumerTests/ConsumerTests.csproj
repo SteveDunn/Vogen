@@ -66,13 +66,13 @@
     <LangVersion>latest</LangVersion>
   </PropertyGroup>
 
-  <ItemGroup Condition=" '$(UseLocallyBuiltPackage)' != ''">
-    <PackageReference Include="Vogen" Version="999.9.*" />
-  </ItemGroup>
+	<ItemGroup Condition=" '$(UseLocallyBuiltPackage)' != ''">
+		<PackageReference Include="Vogen" Version="999.9.*" />
+	</ItemGroup>
 
-  <ItemGroup Condition=" '$(UseLocallyBuiltPackage)' == ''">
-    <PackageReference Include="Vogen" Version="3.0.2-alpha.2" />
-  </ItemGroup>
+	<ItemGroup Condition=" '$(UseLocallyBuiltPackage)' == ''">
+		<PackageReference Include="Vogen" Version="3.0.6" />
+	</ItemGroup>
 
 
   <!--Note the high version number: these tests are supposed to run using

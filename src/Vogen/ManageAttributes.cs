@@ -9,9 +9,8 @@ using Vogen.Diagnostics;
 
 namespace Vogen;
 
-internal static class GlobalConfigFilter
+internal static class ManageAttributes
 {
-
     /// <summary>
     /// Gets global default configuration from any global (assembly) attribute.
     /// If none are specified, then the default configuration is used.
@@ -65,6 +64,7 @@ internal static class GlobalConfigFilter
         Conversions conversions = Conversions.Default;
         Customizations customizations = Customizations.None;
         DeserializationStrictness deserializationStrictness = DeserializationStrictness.Default;
+        bool? omitDebugAttributes = null;
 
         bool hasErroredAttributes = false;
 
@@ -120,6 +120,9 @@ internal static class GlobalConfigFilter
                         case "deserializationStrictness":
                             deserializationStrictness = (DeserializationStrictness) (typedConstant.Value ?? Customizations.None);
                             break;
+                        case "omitDebugAttributes":
+                            omitDebugAttributes = (bool) (typedConstant.Value ?? false);
+                            break;
                     }
                 }
             }
@@ -163,7 +166,8 @@ internal static class GlobalConfigFilter
             invalidExceptionType,
             conversions,
             customizations,
-            deserializationStrictness);
+            deserializationStrictness,
+            omitDebugAttributes);
 
         return buildResult;
 
@@ -174,6 +178,13 @@ internal static class GlobalConfigFilter
             var type = attributeData.AttributeClass!.TypeArguments[0] as INamedTypeSymbol;
             switch (args.Length)
             {
+                case 5:
+                    if (args[4].Value != null)
+                    {
+                        omitDebugAttributes = (bool) args[4].Value!;
+                    }
+
+                    goto case 4;
                 case 4:
                     if (args[3].Value != null)
                     {
@@ -210,6 +221,13 @@ internal static class GlobalConfigFilter
         {
             switch (args.Length)
             {
+                case 6:
+                    if (args[5].Value != null)
+                    {
+                        omitDebugAttributes = (bool) args[5].Value!;
+                    }
+
+                    goto case 5;
                 case 5:
                     if (args[4].Value != null)
                     {
@@ -244,7 +262,9 @@ internal static class GlobalConfigFilter
         }
     }
 
-    private static void BuildAnyIssuesWithTheException(INamedTypeSymbol? invalidExceptionType, VogenConfigurationBuildResult buildResult)
+    private static void BuildAnyIssuesWithTheException(
+        INamedTypeSymbol? invalidExceptionType, 
+        VogenConfigurationBuildResult buildResult)
     {
         if (invalidExceptionType == null)
         {
@@ -272,8 +292,8 @@ internal static class GlobalConfigFilter
     /// Tries to get the syntax element for any matching attribute that might exist in the provided context.
     /// </summary>
     /// <param name="context"></param>
-    /// <returns></returns>
-    public static AttributeSyntax? GetAssemblyLevelAttributeForConfiguration(GeneratorSyntaxContext context)
+    /// <returns>The syntax of the attribute if it matches the global defaults attribute, otherwise null.</returns>
+    public static AttributeSyntax? TryGetAssemblyLevelDefaultsAttribute(GeneratorSyntaxContext context)
     {
         // we know the node is a AttributeListSyntax thanks to IsSyntaxTargetForGeneration
         var attributeListSyntax = (AttributeListSyntax) context.Node;
@@ -296,15 +316,4 @@ internal static class GlobalConfigFilter
 
         return null;
     }
-}
-
-internal sealed class VogenConfigurationBuildResult
-{
-    public VogenConfiguration? ResultingConfiguration { get; set; }
-
-    public List<Diagnostic> Diagnostics { get; set; } = new();
-
-    public static VogenConfigurationBuildResult Null => new();
-
-    public void AddDiagnostic(Diagnostic diagnostic) => Diagnostics.Add(diagnostic);
 }

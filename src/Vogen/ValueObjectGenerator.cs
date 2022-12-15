@@ -34,7 +34,7 @@ namespace Vogen
 
             IncrementalValuesProvider<AttributeSyntax> globalConfigFilter = context.SyntaxProvider.CreateSyntaxProvider(
                     predicate: static (s, _) => IsTarget(s),
-                    transform: static (ctx, _) => GlobalConfigFilter.GetAssemblyLevelAttributeForConfiguration(ctx))
+                    transform: static (ctx, _) => ManageAttributes.TryGetAssemblyLevelDefaultsAttribute(ctx))
                 .Where(static m => m is not null)!;
 
             IncrementalValueProvider<(ImmutableArray<VoTarget> Left, ImmutableArray<AttributeSyntax> Right)> targetsAndDefaultAttributes
@@ -56,7 +56,7 @@ namespace Vogen
             
             // if there are some, get the
             var buildResult =
-                GlobalConfigFilter.GetDefaultConfigFromGlobalAttribute(globalConfigAttributes, compilation);
+                ManageAttributes.GetDefaultConfigFromGlobalAttribute(globalConfigAttributes, compilation);
             
             foreach (var diagnostic in buildResult.Diagnostics)
             {
