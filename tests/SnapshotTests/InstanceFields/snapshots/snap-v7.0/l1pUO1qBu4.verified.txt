@@ -191,7 +191,7 @@ public System.Single Value
         
 // instance...
 
-public static internal_partial_classfloat MyValue = new internal_partial_classfloat(123.45f);
+public static readonly internal_partial_classfloat MyValue = new internal_partial_classfloat(123.45f);
 
 
         /// <summary>Returns the string representation of the underlying <see cref="System.Single" />.</summary>

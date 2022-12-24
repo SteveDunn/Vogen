@@ -202,7 +202,7 @@ namespace Whatever
         
 // instance...
 
-public static public_partial_structbyte MyValue = new public_partial_structbyte(42);
+public static readonly public_partial_structbyte MyValue = new public_partial_structbyte(42);
 
  
         

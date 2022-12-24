@@ -251,26 +251,26 @@ namespace Whatever
     
 /// <summary>a short description that'll show up in intellisense</summary>
 /// <returns>An immutable shared instance of "T:Whatever.CustomerId"</returns>
-public static CustomerId Unspecified = new CustomerId(-1);
+public static readonly CustomerId Unspecified = new CustomerId(-1);
 
 // instance...
 
-public static CustomerId Unspecified1 = new CustomerId(-2);
+public static readonly CustomerId Unspecified1 = new CustomerId(-2);
 
 // instance...
 
     
 /// <summary>&lt;some_xml&gt;whatever&lt;/some_xml</summary>
 /// <returns>An immutable shared instance of "T:Whatever.CustomerId"</returns>
-public static CustomerId Unspecified2 = new CustomerId(-3);
+public static readonly CustomerId Unspecified2 = new CustomerId(-3);
 
 // instance...
 
-public static CustomerId Unspecified3 = new CustomerId(-4);
+public static readonly CustomerId Unspecified3 = new CustomerId(-4);
 
 // instance...
 
-public static CustomerId Cust42 = new CustomerId(42);
+public static readonly CustomerId Cust42 = new CustomerId(42);
 
  
         

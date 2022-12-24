@@ -36,7 +36,7 @@ public static class InstanceGeneration
         return $@"
 // instance...
 
-{BuildInstanceComment(classDeclarationSyntax.Identifier, instanceProperties.TripleSlashComments, itemFullNamespace)}public static {classDeclarationSyntax.Identifier} {Util.EscapeIfRequired(instanceProperties.Name)} = new {classDeclarationSyntax.Identifier}({instanceValue});";
+{BuildInstanceComment(classDeclarationSyntax.Identifier, instanceProperties.TripleSlashComments, itemFullNamespace)}public static readonly {classDeclarationSyntax.Identifier} {Util.EscapeIfRequired(instanceProperties.Name)} = new {classDeclarationSyntax.Identifier}({instanceValue});";
     }
 
     private static string BuildInstanceComment(SyntaxToken syntaxToken, string? commentText, string fullNamespace)

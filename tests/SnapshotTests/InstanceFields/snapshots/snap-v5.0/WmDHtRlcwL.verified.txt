@@ -142,7 +142,7 @@ namespace Whatever
         
 // instance...
 
-public static public_partial_record_structchar MyValue = new public_partial_record_structchar('x');
+public static readonly public_partial_record_structchar MyValue = new public_partial_record_structchar('x');
 
  
         

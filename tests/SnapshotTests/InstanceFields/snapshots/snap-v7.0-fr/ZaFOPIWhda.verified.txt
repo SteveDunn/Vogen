@@ -286,7 +286,7 @@ namespace Whatever
         
 // instance...
 
-public static internal_partial_structfloat MyValue = new internal_partial_structfloat(123.45f);
+public static readonly internal_partial_structfloat MyValue = new internal_partial_structfloat(123.45f);
 
  
         

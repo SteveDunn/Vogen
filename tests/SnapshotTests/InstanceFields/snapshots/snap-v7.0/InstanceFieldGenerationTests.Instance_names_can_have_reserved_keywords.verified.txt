@@ -297,11 +297,11 @@ var validation = CustomerId.validate(value);
         
 // instance...
 
-public static CustomerId @class = new CustomerId(42);
+public static readonly CustomerId @class = new CustomerId(42);
 
 // instance...
 
-public static CustomerId @event = new CustomerId(69);
+public static readonly CustomerId @event = new CustomerId(69);
 
  
         

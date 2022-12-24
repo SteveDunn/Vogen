@@ -191,7 +191,7 @@ public System.Char Value
         
 // instance...
 
-public static internal_sealed_partial_classchar MyValue = new internal_sealed_partial_classchar('x');
+public static readonly internal_sealed_partial_classchar MyValue = new internal_sealed_partial_classchar('x');
 
 
         /// <summary>Returns the string representation of the underlying <see cref="System.Char" />.</summary>

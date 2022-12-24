@@ -202,7 +202,7 @@ namespace Whatever
         
 // instance...
 
-public static public_readonly_partial_structdouble MyValue = new public_readonly_partial_structdouble(123.45d);
+public static readonly public_readonly_partial_structdouble MyValue = new public_readonly_partial_structdouble(123.45d);
 
  
         

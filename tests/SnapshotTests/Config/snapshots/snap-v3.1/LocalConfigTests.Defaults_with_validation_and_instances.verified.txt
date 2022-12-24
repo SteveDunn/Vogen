@@ -257,7 +257,7 @@ var validation = CustomerId.validate(value);
     
 /// <summary>a short description that'll show up in intellisense</summary>
 /// <returns>An immutable shared instance of "T:Whatever.CustomerId"</returns>
-public static CustomerId Zero = new CustomerId(0);
+public static readonly CustomerId Zero = new CustomerId(0);
 
  
         

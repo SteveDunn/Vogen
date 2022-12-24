@@ -199,7 +199,7 @@ public System.String Value
         
 // instance...
 
-public static internal_partial_classstring MyValue = new internal_partial_classstring("123");
+public static readonly internal_partial_classstring MyValue = new internal_partial_classstring("123");
 
 
         /// <summary>Returns the string representation of the underlying <see cref="System.String" />.</summary>

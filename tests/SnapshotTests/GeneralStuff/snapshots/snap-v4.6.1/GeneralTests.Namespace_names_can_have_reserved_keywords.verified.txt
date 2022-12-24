@@ -215,19 +215,19 @@ var validation = @class.validate(value);
         
 // instance...
 
-public static @class @struct = new @class(42);
+public static readonly @class @struct = new @class(42);
 
 // instance...
 
-public static @class @double = new @class(52);
+public static readonly @class @double = new @class(52);
 
 // instance...
 
-public static @class @event = new @class(69);
+public static readonly @class @event = new @class(69);
 
 // instance...
 
-public static @class @void = new @class(666);
+public static readonly @class @void = new @class(666);
 
  
         
