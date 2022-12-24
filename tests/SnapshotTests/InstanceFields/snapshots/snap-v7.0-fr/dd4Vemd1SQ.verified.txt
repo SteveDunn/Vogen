@@ -142,7 +142,7 @@ namespace Whatever
         
 // instance...
 
-public static internal_partial_record_structint MyValue = new internal_partial_record_structint(123);
+public static readonly internal_partial_record_structint MyValue = new internal_partial_record_structint(123);
 
  
         

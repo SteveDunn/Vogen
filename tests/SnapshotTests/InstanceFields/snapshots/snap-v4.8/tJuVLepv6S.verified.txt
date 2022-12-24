@@ -152,7 +152,7 @@ namespace Whatever
         
 // instance...
 
-public static public_partial_record_classstring MyValue = new public_partial_record_classstring("123");
+public static readonly public_partial_record_classstring MyValue = new public_partial_record_classstring("123");
 
 
         // record enumerates fields - we just want our Value and to throw if it's not initialized.

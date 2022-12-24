@@ -202,7 +202,7 @@ namespace Whatever
         
 // instance...
 
-public static public_partial_structint MyValue = new public_partial_structint(123);
+public static readonly public_partial_structint MyValue = new public_partial_structint(123);
 
  
         

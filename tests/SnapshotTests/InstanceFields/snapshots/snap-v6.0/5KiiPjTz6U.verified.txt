@@ -191,7 +191,7 @@ public System.Byte Value
         
 // instance...
 
-public static public_partial_classbyte MyValue = new public_partial_classbyte(42);
+public static readonly public_partial_classbyte MyValue = new public_partial_classbyte(42);
 
 
         /// <summary>Returns the string representation of the underlying <see cref="System.Byte" />.</summary>

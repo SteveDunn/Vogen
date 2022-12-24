@@ -286,7 +286,7 @@ namespace Whatever
         
 // instance...
 
-public static internal_readonly_partial_structint MyValue = new internal_readonly_partial_structint(123);
+public static readonly internal_readonly_partial_structint MyValue = new internal_readonly_partial_structint(123);
 
  
         

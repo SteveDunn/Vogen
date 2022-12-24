@@ -244,7 +244,7 @@ namespace Whatever
         
 // instance...
 
-public static internal_partial_structdouble MyValue = new internal_partial_structdouble(123.45d);
+public static readonly internal_partial_structdouble MyValue = new internal_partial_structdouble(123.45d);
 
  
         

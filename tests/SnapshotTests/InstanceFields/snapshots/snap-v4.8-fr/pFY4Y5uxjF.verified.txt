@@ -191,7 +191,7 @@ public System.Int32 Value
         
 // instance...
 
-public static internal_partial_classint MyValue = new internal_partial_classint(123);
+public static readonly internal_partial_classint MyValue = new internal_partial_classint(123);
 
 
         /// <summary>Returns the string representation of the underlying <see cref="System.Int32" />.</summary>

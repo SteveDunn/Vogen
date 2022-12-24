@@ -140,7 +140,7 @@ namespace Whatever
         
 // instance...
 
-public static public_sealed_partial_record_classchar MyValue = new public_sealed_partial_record_classchar('x');
+public static readonly public_sealed_partial_record_classchar MyValue = new public_sealed_partial_record_classchar('x');
 
 
         // record enumerates fields - we just want our Value and to throw if it's not initialized.

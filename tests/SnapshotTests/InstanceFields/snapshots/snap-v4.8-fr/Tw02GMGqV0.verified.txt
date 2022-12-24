@@ -181,7 +181,7 @@ namespace Whatever
         
 // instance...
 
-public static public_readonly_partial_structchar MyValue = new public_readonly_partial_structchar('x');
+public static readonly public_readonly_partial_structchar MyValue = new public_readonly_partial_structchar('x');
 
  
         

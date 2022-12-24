@@ -202,7 +202,7 @@ namespace Whatever
         
 // instance...
 
-public static internal_partial_structlong MyValue = new internal_partial_structlong(123);
+public static readonly internal_partial_structlong MyValue = new internal_partial_structlong(123);
 
  
         

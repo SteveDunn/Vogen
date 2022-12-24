@@ -286,7 +286,7 @@ namespace Whatever
         
 // instance...
 
-public static public_partial_structlong MyValue = new public_partial_structlong(123);
+public static readonly public_partial_structlong MyValue = new public_partial_structlong(123);
 
  
         
