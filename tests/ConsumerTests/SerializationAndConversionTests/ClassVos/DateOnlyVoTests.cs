@@ -228,7 +228,7 @@ namespace Vogen.IntegrationTests.SerializationAndConversionTests.ClassVos
         }
 
         [Theory]
-        [InlineData("2022-01-15T19:08:49.5413764+00:00")]
+        [InlineData("2022-01-15")]
         public void TypeConverter_CanConvertToAndFrom(string value)
         {
             var converter = TypeDescriptor.GetConverter(typeof(NoJsonDateOnlyVo));
@@ -268,7 +268,7 @@ namespace Vogen.IntegrationTests.SerializationAndConversionTests.ClassVos
 
         public class LinqToDbTestEntity
         {
-            [Column(DataType = DataType.DateTime)]
+            [Column(DataType = DataType.Date)]
             [ValueConverter(ConverterType = typeof(LinqToDbDateOnlyVo.LinqToDbValueConverter))]
             public LinqToDbDateOnlyVo Id { get; set; }
         }

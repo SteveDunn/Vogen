@@ -12,6 +12,10 @@ public static class ModuleInitialization
         SqlMapper.AddTypeHandler(new ConsumerTests.DeserializationValidationTests.MyVoString_should_not_bypass_validation.DapperTypeHandler());
         SqlMapper.AddTypeHandler(new ConsumerTests.DeserializationValidationTests.MyVoString_should_bypass_validation.DapperTypeHandler());
 
+#if NET6_0_OR_GREATER
+        SqlMapper.AddTypeHandler(new Vogen.IntegrationTests.TestTypes.ClassVos.DapperDateOnlyVo.DapperTypeHandler());
+#endif
+
 #if NET7_0_OR_GREATER
         SqlMapper.AddTypeHandler(new ConsumerTests.GenericDeserializationValidationTests.MyVoInt_should_not_bypass_validation.DapperTypeHandler());
         SqlMapper.AddTypeHandler(new ConsumerTests.GenericDeserializationValidationTests.MyVoString_should_not_bypass_validation.DapperTypeHandler());

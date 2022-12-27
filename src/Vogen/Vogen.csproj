@@ -1,6 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-  <Target Name="MyTarget" AfterTargets="MinVer" Condition="'$(ForceVersion)' != ''" >
+  <Target Name="MyTarget" AfterTargets="MinVer" Condition="'$(ForceVersion)' != ''">
     <Message Condition="'$(ForceVersion)' != ''" Importance="High" Text="** Forcing package version to be '$(ForceVersion)' **" />
     <PropertyGroup>
       <PackageVersion>$(ForceVersion)</PackageVersion>
