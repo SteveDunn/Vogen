@@ -58,6 +58,9 @@ internal static class Templates
         public static string? ResolveTemplateNameFromTypeName(Type? nts)
         {
             if (nts == null) return null;
+
+            var name = nts.Name;
+            
             if (nts.IsSpecialName)
             {
                 var s = nts.Name;
@@ -67,14 +70,13 @@ internal static class Templates
                     return s;
                 }
 
-                var newString = s.Substring(underscore + 1);
-                if (newString == "Int64") return "Long";
-                if (newString == "Int32") return "Int";
-                if (newString == "Int16") return "Short";
-
-                return newString;
+                name = s.Substring(underscore + 1);
             }
 
+            if (name == "Int64") return "Long";
+            if (name == "Int32") return "Int";
+            if (name == "Int16") return "Short";
+            
             return nts.Name;
         }
 

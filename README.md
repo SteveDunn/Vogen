@@ -352,7 +352,7 @@ See the examples folder for more information.
 
 The source generator is .NET Standard 2.0. The code it generates supports all C# language versions from 6.0 and onwards 
 
-If you're using the generator in .NET Framework project using and the old style projects (the one before the 'SDK style' projects), then you'll need to do a few things differently:
+If you're using the generator in a .NET Framework project and using the old style projects (the one before the 'SDK style' projects), then you'll need to do a few things differently:
 
 * add the reference using `PackageReference` in the .csproj file:
 
@@ -374,18 +374,16 @@ If you're using the generator in .NET Framework project using and the old style 
 ### Does it support C# 11 features?
 This is primarily a source generator. The source it generates is mostly C# 6 for compatibility. But if you use features from a later language version, for instance `records` from C# 9, then it will also generate records.
 
-Source generatio is driven by attributes, and, if you're using .NET 7 or above, the generic version of the `ValueObject` attribute is exposed:
+Source generation is driven by attributes, and, if you're using .NET 7 or above, the generic version of the `ValueObject` attribute is exposed:
 
 ```csharp
 [ValueObject<int>]
 public partial struct Age { }
 ```
 
-Even though it supports C# 11, . But if you use features from a later language version, for instance `records` from C# 9, then it will also generate records.
-
 ### Why are they called 'Value Objects'?
 
-The term Value Object represents a small object whos equality is based on value and not identity. From [Wikipedia](https://en.wikipedia.org/wiki/Value_object)
+The term Value Object represents a small object who's equality is based on value and not identity. From [Wikipedia](https://en.wikipedia.org/wiki/Value_object)
 
 > _In computer science, a value object is a small object that represents a simple entity whose equality is not based on identity: i.e. two value objects are equal when they have the same value, not necessarily being the same object._
 
@@ -442,7 +440,7 @@ var c2 = default(CustomerId);
 
 ### Can I serialize and deserialize them?
 
-Yes. By default, each VO is decoarated with a `TypeConverter` and `System.Text.Json` (STJ) serializer. There are other converters/serialiazer for:
+Yes. By default, each VO is decorated with a `TypeConverter` and `System.Text.Json` (STJ) serializer. There are other converters/serializers for:
 
 * Newtonsoft.Json (NSJ)
 * Dapper
@@ -560,7 +558,7 @@ public void SomSomething(IValidate<int> customerId, IValidated<int> supplierId, 
 
 So, callers could mess things up by calling `DoSomething(productId, supplierId, customerId)`)
 
-There would also be no need to know if it's validated, as, if it's in your domain, it's valid (there's no way to manually create invalid instances).  And with that said, there'd also be no point in exposing the 'Validate' method via the interface because validation is done at creation.
+There would also be no need to know if it's validated, as, if it's in your domain, **it's valid** (there's no way to manually create invalid instances).  And with that said, there would also be no point in exposing the 'Validate' method via the interface because validation is done at creation.
 
 ### Can I represent special values
 
@@ -572,7 +570,7 @@ Yes. You might want to represent special values for things like invalid or unspe
 * that nobody else can. This is useful for creating special instances
 * that represent concepts such as 'invalid' and 'unspecified'.
 */
-[ValueObject(typeof(int))]
+[ValueObject]
 [Instance("Unspecified", -1)]
 [Instance("Invalid", -2)]
 public readonly partial struct Age
@@ -649,12 +647,15 @@ Any type can be wrapped. Serialisation and type conversions have implementations
 * double
 
 * DateTime
+* DateOnly
+* TimeOnly
 * DateTimeOffset
+
 * Guid
 
 * bool
 
-For other types, a generic type conversion and serialiser is applied. If you are supplying your own converters for type conversion and serialization, then specify `None` for converters and decorate your type with attributes for your own types, e.g.
+For other types, a generic type conversion and serializer is applied. If you are supplying your own converters for type conversion and serialization, then specify `None` for converters and decorate your type with attributes for your own types, e.g.
 
 ```csharp
 [ValueObject(typeof(SpecialPrimitive), conversions: Conversions.None)]
@@ -678,6 +679,12 @@ To debug an analyzer, select or write a test in the AnalyzerTests. There are tes
 ### Can I get it to throw my own exception?
 
 Yes, by specifying the exception type in either the `ValueObject` attribute, or globally, with `VogenConfiguration`.
+
+### I get an error from Linq2DB when I use a ValueObject that wraps a `TimeOnly` saying that `DateTime` cannot be converted to `TimeOnly` - what should I do?
+
+Linq2DB 4.0 or greater supports `DateOnly` and `TimeOnly`. Vogen generates value converters for Linq2DB; for `DateOnly`, it just works, but for `TimeOnly, you need to add this to your application:
+
+`MappingSchema.Default.SetConverter<DateTime, TimeOnly>(dt => TimeOnly.FromDateTime(dt));`
 
 ## Attribution
 
