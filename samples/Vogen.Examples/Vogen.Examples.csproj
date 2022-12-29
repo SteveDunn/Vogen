@@ -18,7 +18,7 @@
 		<PackageReference Include="System.Text.Json" Version="7.0.0-rc.1.22426.10" />
 		<PackageReference Include="Newtonsoft.Json" Version="13.0.2" />
 		<PackageReference Include="Dapper" Version="2.0.123" />
-		<PackageReference Include="linq2db" Version="3.7.0" />
+		<PackageReference Include="linq2db" Version="4.4.0" />
 	</ItemGroup>
 
 	<ItemGroup Condition=" '$(UseLocallyBuiltPackage)' != ''">

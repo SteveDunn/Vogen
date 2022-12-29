@@ -56,7 +56,7 @@
   </ItemGroup>
 
   <ItemGroup Condition=" '$(TargetFramework)' != 'net5.0' and '$(TargetFramework)' != 'net6.0' and '$(TargetFramework)' != 'net7.0'">
-    <PackageReference Include="linq2db" Version="3.7.0" />
+    <PackageReference Include="linq2db" Version="4.4.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.17" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="3.1.17" />
     <PackageReference Include="System.Text.Json" Version="4.7.2" />
