@@ -3,7 +3,7 @@
         {
             public override void SetValue(global::System.Data.IDbDataParameter parameter, VOTYPE value)
             {
-                parameter.DbType = global::System.Data.DbType.Date;
+                parameter.DbType = global::System.Data.DbType.Time;
                 parameter.Value = value.Value;
             }
 
@@ -11,10 +11,10 @@
             {
                 return value switch
                 {
-                    global::System.DateOnly dtValue => VOTYPE.Deserialize(dtValue),
+                    global::System.TimeOnly dtValue => VOTYPE.Deserialize(dtValue),
                     global::System.String stringValue when 
                         !global::System.String.IsNullOrEmpty(stringValue) &&
-                        global::System.DateOnly.TryParseExact(stringValue, "yyyy-MM-dd", global::System.Globalization.CultureInfo.InvariantCulture, global::System.Globalization.DateTimeStyles.None, out var result) => VOTYPE.Deserialize(result),
+                        global::System.TimeOnly.TryParse(stringValue, global::System.Globalization.CultureInfo.InvariantCulture, global::System.Globalization.DateTimeStyles.None, out var result) => VOTYPE.Deserialize(result),
                     _ => throw new global::System.InvalidCastException($"Unable to cast object of type {value.GetType()} to VOTYPE"),
                 };
             }

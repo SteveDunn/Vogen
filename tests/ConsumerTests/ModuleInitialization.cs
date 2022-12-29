@@ -1,5 +1,7 @@
-﻿using System.Runtime.CompilerServices;
+﻿using System;
+using System.Runtime.CompilerServices;
 using Dapper;
+using LinqToDB.Mapping;
 
 namespace ConsumerTests;
 
@@ -13,7 +15,9 @@ public static class ModuleInitialization
         SqlMapper.AddTypeHandler(new ConsumerTests.DeserializationValidationTests.MyVoString_should_bypass_validation.DapperTypeHandler());
 
 #if NET6_0_OR_GREATER
+        MappingSchema.Default.SetConverter<DateTime, TimeOnly>(dt => TimeOnly.FromDateTime(dt));
         SqlMapper.AddTypeHandler(new Vogen.IntegrationTests.TestTypes.ClassVos.DapperDateOnlyVo.DapperTypeHandler());
+        SqlMapper.AddTypeHandler(new Vogen.IntegrationTests.TestTypes.ClassVos.DapperTimeOnlyVo.DapperTypeHandler());
 #endif
 
 #if NET7_0_OR_GREATER
