@@ -80,8 +80,8 @@ public class DeserializationValidationDbContext : DbContext
 
 public class DeserializationValidationDataConnection : DataConnection
 {
-    public ITable<DeserializationValidationTestIntEntity> IntEntities => GetTable<DeserializationValidationTestIntEntity>();
-    public ITable<DeserializationValidationTestStringEntity> StringEntities => GetTable<DeserializationValidationTestStringEntity>();
+    // public ITable<DeserializationValidationTestIntEntity> IntEntities => GetTable<DeserializationValidationTestIntEntity>();
+    // public ITable<DeserializationValidationTestStringEntity> StringEntities => GetTable<DeserializationValidationTestStringEntity>();
 
     public DeserializationValidationDataConnection(SqliteConnection connection)
         : base(
