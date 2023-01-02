@@ -1,4 +1,4 @@
-﻿using System.Threading.Tasks;
+using System.Threading.Tasks;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.Testing;
 using SmallTests.AnalyzerTests;
@@ -103,24 +103,7 @@ namespace ConsoleApplication1
     public partial class {|#0:TypeName|}
     {   
     }
-}
-
-namespace Vogen
-{
-    [AttributeUsage(AttributeTargets.Class | AttributeTargets.Struct, AllowMultiple = false)]
-    public class ValueObjectAttribute<T> : ValueObjectAttribute
-    {
-        public ValueObjectAttribute(
-            Conversions conversions = Conversions.Default,
-            Type throws = null,
-            Customizations customizations = Customizations.None,
-            DeserializationStrictness deserializationStrictness = DeserializationStrictness.AllowValidAndKnownInstances)
-            : base(typeof(T), conversions, throws, customizations, deserializationStrictness)
-        {
-        }
-    }
-}
-");
+}");
 
             var expectedOutput = LineEndingsHelper.Normalize(@"
 using System;
@@ -142,24 +125,7 @@ namespace ConsoleApplication1
             return isValid ? Validation.Ok : Validation.Invalid(""[todo: describe the validation]"");
         }
     }
-}
-
-namespace Vogen
-{
-    [AttributeUsage(AttributeTargets.Class | AttributeTargets.Struct, AllowMultiple = false)]
-    public class ValueObjectAttribute<T> : ValueObjectAttribute
-    {
-        public ValueObjectAttribute(
-            Conversions conversions = Conversions.Default,
-            Type throws = null,
-            Customizations customizations = Customizations.None,
-            DeserializationStrictness deserializationStrictness = DeserializationStrictness.AllowValidAndKnownInstances)
-            : base(typeof(T), conversions, throws, customizations, deserializationStrictness)
-        {
-        }
-    }
-}
-");
+}");
 
             var expectedDiagnostic =
                 VerifyCS.Diagnostic("AddValidationMethod").WithSeverity(DiagnosticSeverity.Info).WithLocation(0).WithArguments("TypeName");
