@@ -132,7 +132,7 @@ public partial struct CustomerId
 namespace @double;
 
 [ValueObject<int>]
-[Instance(name: ""@class"", value: 42)]
+[Instance(name: ""@struct"", value: 42)]
 [Instance(name: ""@event"", value: 69)]
 [Instance(name: ""@void"", value: 666)]
 public partial struct @class
