@@ -1,4 +1,4 @@
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.Testing;
 using SmallTests.AnalyzerTests;
@@ -80,14 +80,14 @@ namespace ConsoleApplication1
             await test.RunAsync();
         }
 
-        // todo: figure out a way of include Vogen.SharedTypes, but the .NET 7 version that contains the
-        // generic attribute. The test below defines that attribute in the source to get around the compilation error
-        // that it's not defined.
-
         //Diagnostic and CodeFix both triggered and checked for
-        [Fact]
+        [SkippableFact]
         public async Task Generic_CodeFixTriggeredForVoWithNoValidateMethod()
         {
+#if !NET7_0_OR_GREATER
+            Skip.If(true);
+#endif
+
             var input = LineEndingsHelper.Normalize(@"
 using System;
 using System.Collections.Generic;
