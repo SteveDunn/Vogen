@@ -82,6 +82,10 @@ namespace SnapshotTests
             frameworks = frameworks.Where(framework => framework != TargetFramework.Net7_0).ToArray();
 #endif
 
+            // Skips tests targeting specific frameworks that were excluded above
+            // NOTE: Requires [SkippableFact] attribute to be added to single-framework tests
+            Skip.If(frameworks.Length == 0);
+
             foreach (var eachFramework in frameworks)
             {
                 _logger?.WriteLine($"Running on {eachFramework}");

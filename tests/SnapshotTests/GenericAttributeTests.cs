@@ -8,7 +8,7 @@ namespace SnapshotTests;
 [UsesVerify]
 public class GenericAttributeTests
 {
-    [Fact]
+    [SkippableFact]
     public Task Partial_struct_created_successfully()
     {
         var source = @"using Vogen;
@@ -28,7 +28,7 @@ public partial struct CustomerId
             .IgnoreInitialCompilationErrors()
             .RunOn(TargetFramework.Net7_0);
 
-    [Fact]
+    [SkippableFact]
     public Task No_namespace() =>
         RunTest(@"using Vogen;
 
@@ -38,7 +38,7 @@ public partial struct CustomerId
 }");
 
 
-    [Fact]
+    [SkippableFact]
     public Task Produces_instances()
     {
         return RunTest(@"using Vogen;
@@ -57,7 +57,7 @@ public partial struct CustomerId
 ");
     }
 
-    [Fact]
+    [SkippableFact]
     public Task Validation_with_PascalCased_validate_method()
     {
         return RunTest(@"using Vogen;
@@ -78,7 +78,7 @@ public partial struct CustomerId
 ");
     }
 
-    [Fact]
+    [SkippableFact]
     public Task Validation_with_camelCased_validate_method()
     {
         return RunTest(@"using Vogen;
@@ -99,7 +99,7 @@ public partial struct CustomerId
 ");
     }
 
-    [Fact]
+    [SkippableFact]
     public Task Instance_names_can_have_reserved_keywords()
     {
         return RunTest("""
@@ -124,7 +124,7 @@ public partial struct CustomerId
             """);
     }
 
-    [Fact]
+    [SkippableFact]
     public Task Namespace_names_can_have_reserved_keywords()
     {
         return RunTest(@"using Vogen;
