@@ -80,14 +80,14 @@ namespace ConsoleApplication1
             await test.RunAsync();
         }
 
-        // todo: figure out a way of include Vogen.SharedTypes, but the .NET 7 version that contains the
-        // generic attribute. The test below defines that attribute in the source to get around the compilation error
-        // that it's not defined.
-
         //Diagnostic and CodeFix both triggered and checked for
-        [Fact]
+        [SkippableFact]
         public async Task Generic_CodeFixTriggeredForVoWithNoValidateMethod()
         {
+#if !NET7_0_OR_GREATER
+            Skip.If(true);
+#endif
+
             var input = LineEndingsHelper.Normalize(@"
 using System;
 using System.Collections.Generic;
@@ -103,24 +103,7 @@ namespace ConsoleApplication1
     public partial class {|#0:TypeName|}
     {   
     }
-}
-
-namespace Vogen
-{
-    [AttributeUsage(AttributeTargets.Class | AttributeTargets.Struct, AllowMultiple = false)]
-    public class ValueObjectAttribute<T> : ValueObjectAttribute
-    {
-        public ValueObjectAttribute(
-            Conversions conversions = Conversions.Default,
-            Type throws = null,
-            Customizations customizations = Customizations.None,
-            DeserializationStrictness deserializationStrictness = DeserializationStrictness.AllowValidAndKnownInstances)
-            : base(typeof(T), conversions, throws, customizations, deserializationStrictness)
-        {
-        }
-    }
-}
-");
+}");
 
             var expectedOutput = LineEndingsHelper.Normalize(@"
 using System;
@@ -142,24 +125,7 @@ namespace ConsoleApplication1
             return isValid ? Validation.Ok : Validation.Invalid(""[todo: describe the validation]"");
         }
     }
-}
-
-namespace Vogen
-{
-    [AttributeUsage(AttributeTargets.Class | AttributeTargets.Struct, AllowMultiple = false)]
-    public class ValueObjectAttribute<T> : ValueObjectAttribute
-    {
-        public ValueObjectAttribute(
-            Conversions conversions = Conversions.Default,
-            Type throws = null,
-            Customizations customizations = Customizations.None,
-            DeserializationStrictness deserializationStrictness = DeserializationStrictness.AllowValidAndKnownInstances)
-            : base(typeof(T), conversions, throws, customizations, deserializationStrictness)
-        {
-        }
-    }
-}
-");
+}");
 
             var expectedDiagnostic =
                 VerifyCS.Diagnostic("AddValidationMethod").WithSeverity(DiagnosticSeverity.Info).WithLocation(0).WithArguments("TypeName");

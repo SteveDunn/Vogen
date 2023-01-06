@@ -1,5 +1,6 @@
-﻿using System;
+using System;
 using System.Collections.Immutable;
+using System.Linq;
 using FluentAssertions.Execution;
 using Microsoft.CodeAnalysis;
 using Shared;
@@ -47,6 +48,19 @@ namespace AnalyzerTests
         {
             _ = _source ?? throw new InvalidOperationException("No source!");
             _ = _validationMethod ?? throw new InvalidOperationException("No validation method!");
+
+#if NET7_0
+            // Only run .NET 7 tests when using the .NET 7 SDK (prevents assembly versioning issues with <6.0)
+            frameworks = frameworks.Where(framework => framework == TargetFramework.Net7_0).ToArray();
+#elif NET6_0
+            // Alternatively, only run non-net7 tests when using the .NET 6 target
+            // as .NET 6 will use the .NET standard Vogen binary (without C#11 support)
+            frameworks = frameworks.Where(framework => framework != TargetFramework.Net7_0).ToArray();
+#endif
+
+            // Skips tests targeting specific frameworks that were excluded above
+            // NOTE: Requires [SkippableFact] attribute to be added to single-framework tests
+            Skip.If(frameworks.Length == 0);
 
             foreach (var eachFramework in frameworks)
             {
