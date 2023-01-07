@@ -1,4 +1,4 @@
-﻿using System.Threading.Tasks;
+using System.Threading.Tasks;
 using Shared;
 using VerifyXunit;
 using Vogen;
@@ -57,6 +57,28 @@ public partial struct CustomerId
 ");
     }
 
+    [SkippableFact]
+    public Task Produces_instances_with_derived_attribute()
+    {
+        return RunTest(@"using Vogen;
+
+namespace Whatever;
+
+public class CustomGenericAttribute : ValueObjectAttribute<int> {
+}
+
+[CustomGenericAttribute]
+[Instance(name: ""Unspecified"", value: -1, tripleSlashComment: ""a short description that'll show up in intellisense"")]
+[Instance(name: ""Unspecified1"", value: -2)]
+[Instance(name: ""Unspecified2"", value: -3, tripleSlashComment: ""<some_xml>whatever</some_xml"")]
+[Instance(name: ""Unspecified3"", value: -4)]
+[Instance(name: ""Cust42"", value: 42)]
+public partial struct CustomerId
+{
+}
+");
+    }
+    
     [SkippableFact]
     public Task Validation_with_PascalCased_validate_method()
     {
