@@ -22,10 +22,11 @@ internal static class VoFilter
     public static IEnumerable<AttributeData> TryGetValueObjectAttributes(INamedTypeSymbol voSymbolInformation)
     {
         var attrs = voSymbolInformation.GetAttributes();
-        
+
         return attrs.Where(
-            a => a.AttributeClass?.FullName() == "Vogen.ValueObjectAttribute"
-                 || a.AttributeClass?.BaseType?.FullName() == "Vogen.ValueObjectAttribute");
+                a => a.AttributeClass?.FullName() == "Vogen.ValueObjectAttribute"
+                     || a.AttributeClass?.BaseType?.FullName() == "Vogen.ValueObjectAttribute"
+                     || a.AttributeClass?.BaseType?.BaseType?.FullName() == "Vogen.ValueObjectAttribute");
     }
 
     // This is stage 2 in the pipeline - we filter down to just 1 target
@@ -34,16 +35,16 @@ internal static class VoFilter
         var voSyntaxInformation = (TypeDeclarationSyntax) context.Node;
 
         var semanticModel = context.SemanticModel;
-        
+
         var voSymbolInformation = (INamedTypeSymbol) semanticModel.GetDeclaredSymbol(context.Node)!;
 
         var attributeData = TryGetValueObjectAttributes(voSymbolInformation).ToImmutableArray();
-        
+
         if(attributeData.Length > 0)
         {
             return new VoTarget(
                 semanticModel,
-                voSyntaxInformation, 
+                voSyntaxInformation,
                 semanticModel.GetDeclaredSymbol(context.Node)!.ContainingType,
                 voSymbolInformation,
                 attributeData);
