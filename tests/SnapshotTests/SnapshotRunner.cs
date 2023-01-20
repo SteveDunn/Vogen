@@ -104,8 +104,9 @@ namespace SnapshotTests
 
                 var outputFolder = Path.Combine(_path, SnapshotUtils.GetSnapshotDirectoryName(eachFramework, _locale));
 
-                // verifySettings ??= new VerifySettings();
-                // verifySettings.AutoVerify();
+                //todo: don't check in.
+                verifySettings ??= new VerifySettings();
+                verifySettings.AutoVerify();
 
                 await Verifier.Verify(output, verifySettings).UseDirectory(outputFolder);
             }

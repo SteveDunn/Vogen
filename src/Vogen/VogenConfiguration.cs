@@ -10,14 +10,14 @@ public readonly struct VogenConfiguration
         Conversions conversions,
         Customizations customizations,
         DeserializationStrictness deserializationStrictness,
-        bool? omitDebugAttributes)
+        DebuggerAttributeGeneration debuggerAttributes)
     {
         UnderlyingType = underlyingType;
         ValidationExceptionType = validationExceptionType;
         Conversions = conversions;
         Customizations = customizations;
         DeserializationStrictness = deserializationStrictness;
-        OmitDebugAttributes = omitDebugAttributes;
+        DebuggerAttributes = debuggerAttributes;
     }
 
     public static VogenConfiguration Combine(
@@ -49,11 +49,18 @@ public readonly struct VogenConfiguration
             (var specificValue, _) => specificValue
         };
 
+        var debuggerAttributes = (localValues.DebuggerAttributes, globalValues?.DebuggerAttributes) switch
+        {
+            (DebuggerAttributeGeneration.Default, null) => DefaultInstance.DebuggerAttributes,
+            (DebuggerAttributeGeneration.Default, DebuggerAttributeGeneration.Default) => DefaultInstance.DebuggerAttributes,
+            (DebuggerAttributeGeneration.Default, var globalDefault) => globalDefault.Value,
+            (var specificValue, _) => specificValue
+        };
+
         var validationExceptionType = localValues.ValidationExceptionType ?? globalValues?.ValidationExceptionType ?? DefaultInstance.ValidationExceptionType;
         var underlyingType = localValues.UnderlyingType ?? globalValues?.UnderlyingType ?? funcForDefaultUnderlyingType?.Invoke();
-        var omitDebugAttributes = localValues.OmitDebugAttributes ?? globalValues?.OmitDebugAttributes ?? false;
 
-        return new VogenConfiguration(underlyingType, validationExceptionType, conversions, customizations, strictness, omitDebugAttributes);
+        return new VogenConfiguration(underlyingType, validationExceptionType, conversions, customizations, strictness, debuggerAttributes);
     }
 
     public INamedTypeSymbol? UnderlyingType { get; }
@@ -65,7 +72,7 @@ public readonly struct VogenConfiguration
     public Customizations Customizations { get; }
     public DeserializationStrictness DeserializationStrictness { get; }
     
-    public bool? OmitDebugAttributes { get; }
+    public DebuggerAttributeGeneration DebuggerAttributes { get; }
 
     // the issue here is that without a physical 'symbol' in the source, we can't
     // get the namedtypesymbol
@@ -77,5 +84,5 @@ public readonly struct VogenConfiguration
         conversions: Vogen.Conversions.Default,
         customizations: Customizations.None,
         deserializationStrictness: DeserializationStrictness.Default,
-        omitDebugAttributes: false);
+        debuggerAttributes: DebuggerAttributeGeneration.Full);
 }

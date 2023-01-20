@@ -51,5 +51,5 @@ public class VoWorkItem
 
     public bool HasToString { get; set; }
     
-    public bool OmitDebugAttributes { get; set; }
+    public DebuggerAttributeGeneration DebuggerAttributes { get; set; }
 }

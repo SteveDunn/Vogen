@@ -14,7 +14,7 @@ public class LocalConfigTests
 using Vogen;
 namespace Whatever;
 
-[ValueObject(omitDebugAttributes: true)]
+[ValueObject(debuggerAttributes: DebuggerAttributeGeneration.Basic)]
 public partial struct CustomerId
 {
 }";

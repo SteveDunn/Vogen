@@ -19,8 +19,8 @@ namespace Vogen
             Type? throws = null!,
             Customizations customizations = Customizations.None,
             DeserializationStrictness deserializationStrictness = DeserializationStrictness.AllowValidAndKnownInstances,
-            bool omitDebugAttributes = false)
-            : base(typeof(T), conversions, throws, customizations, deserializationStrictness, omitDebugAttributes)
+            DebuggerAttributeGeneration debuggerAttributes = DebuggerAttributeGeneration.Default)
+            : base(typeof(T), conversions, throws, customizations, deserializationStrictness, debuggerAttributes)
         {
         }
     }
@@ -35,14 +35,14 @@ namespace Vogen
     {
         // keep this signature in-line with `VogenConfiguration`
         // as the syntax/semantics are read in the generator
-        // using parameter indexes (i.e. it expected param 0 to be the underlying type etc.
+        // using parameter indexes (i.e. it expected param 0 to be the underlying type etc).
         public ValueObjectAttribute(
             Type? underlyingType = null!,
             Conversions conversions = Conversions.Default,
             Type? throws = null!,
             Customizations customizations = Customizations.None,
             DeserializationStrictness deserializationStrictness = DeserializationStrictness.AllowValidAndKnownInstances,
-            bool omitDebugAttributes = false)
+            DebuggerAttributeGeneration debuggerAttributes = DebuggerAttributeGeneration.Default)
         {
             // UnderlyingType = underlyingType;
             // Conversions = conversions;
