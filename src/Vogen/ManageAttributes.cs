@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Linq;
@@ -68,7 +68,8 @@ internal static class ManageAttributes
 
         bool hasErroredAttributes = false;
 
-        if (!matchingAttribute.ConstructorArguments.IsEmpty)
+        var isBaseGenericType = matchingAttribute.AttributeClass!.BaseType!.IsGenericType;
+        if (!matchingAttribute.ConstructorArguments.IsEmpty || isBaseGenericType)
         {
             // make sure we don't have any errors
             ImmutableArray<TypedConstant> args = matchingAttribute.ConstructorArguments;
@@ -82,7 +83,7 @@ internal static class ManageAttributes
             }
 
             // find which constructor to use, it could be the generic attribute (> C# 11), or the non-generic.
-            if (matchingAttribute.AttributeClass!.IsGenericType)
+            if (matchingAttribute.AttributeClass!.IsGenericType || isBaseGenericType)
             {
                 PopulateFromGenericAttribute(matchingAttribute, args);
             }
@@ -175,7 +176,14 @@ internal static class ManageAttributes
             AttributeData attributeData,
             ImmutableArray<TypedConstant> args)
         {
-            var type = attributeData.AttributeClass!.TypeArguments[0] as INamedTypeSymbol;
+            var isDerivedFromGenericAttribute =
+                attributeData.AttributeClass!.BaseType!.FullName()!.StartsWith("Vogen.ValueObjectAttribute<");
+            
+            // Extracts the generic argument from the base type when the derived type isn't generic
+            // e.g. MyCustomVoAttribute : ValueObjectAttribute<long>
+            var type = isDerivedFromGenericAttribute && attributeData.AttributeClass!.TypeArguments.IsEmpty
+                ? attributeData.AttributeClass!.BaseType!.TypeArguments[0] as INamedTypeSymbol
+                : attributeData.AttributeClass!.TypeArguments[0] as INamedTypeSymbol;
             switch (args.Length)
             {
                 case 5:
