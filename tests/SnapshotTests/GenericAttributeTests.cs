@@ -64,7 +64,11 @@ public partial struct CustomerId
 
 namespace Whatever;
 
-public class CustomGenericAttribute : ValueObjectAttribute<int> {
+public class CustomGenericAttribute : ValueObjectAttribute<long>
+{
+    public CustomGenericAttribute(Conversions conversions = Conversions.Default | Conversions.EfCoreValueConverter)
+    {
+    }
 }
 
 [CustomGenericAttribute]
