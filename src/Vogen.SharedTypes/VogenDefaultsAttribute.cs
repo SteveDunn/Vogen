@@ -18,14 +18,14 @@ namespace Vogen
         /// <param name="throws">The type of exception that is thrown when validation fails.</param>
         /// <param name="customizations">Any customizations, for instance, treating numbers in [de]serialization as strings.</param>
         /// <param name="deserializationStrictness">The strictness of validation when deserializing.</param>
-        /// <param name="omitDebugAttributes">If set, then no debugger attributes are generated. This is useful in Rider where the attributes crash Rider's debugger.</param>
+        /// <param name="debuggerAttributes">Controls how debugger attributes are generated. This is useful in Rider where the attributes crash Rider's debugger.</param>
         public VogenDefaultsAttribute(
             Type? underlyingType = null,
             Conversions conversions = Conversions.Default,
             Type? throws = null,
             Customizations customizations = Customizations.None,
             DeserializationStrictness deserializationStrictness = DeserializationStrictness.AllowValidAndKnownInstances,
-            bool omitDebugAttributes = false)
+            DebuggerAttributeGeneration debuggerAttributes = DebuggerAttributeGeneration.Default)
         {
             // UnderlyingType = underlyingType ?? typeof(int);
             // TypeOfValidationException = throws ?? typeof(ValueObjectValidationException);

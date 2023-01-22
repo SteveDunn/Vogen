@@ -64,7 +64,7 @@ internal static class ManageAttributes
         Conversions conversions = Conversions.Default;
         Customizations customizations = Customizations.None;
         DeserializationStrictness deserializationStrictness = DeserializationStrictness.Default;
-        bool? omitDebugAttributes = null;
+        DebuggerAttributeGeneration debuggerAttributes = DebuggerAttributeGeneration.Default;
 
         bool hasErroredAttributes = false;
 
@@ -120,8 +120,8 @@ internal static class ManageAttributes
                         case "deserializationStrictness":
                             deserializationStrictness = (DeserializationStrictness) (typedConstant.Value ?? Customizations.None);
                             break;
-                        case "omitDebugAttributes":
-                            omitDebugAttributes = (bool) (typedConstant.Value ?? false);
+                        case "debuggerAttributes":
+                            debuggerAttributes = (DebuggerAttributeGeneration) (typedConstant.Value ?? DebuggerAttributeGeneration.Full);
                             break;
                     }
                 }
@@ -167,7 +167,7 @@ internal static class ManageAttributes
             conversions,
             customizations,
             deserializationStrictness,
-            omitDebugAttributes);
+            debuggerAttributes);
 
         return buildResult;
 
@@ -181,7 +181,7 @@ internal static class ManageAttributes
                 case 5:
                     if (args[4].Value != null)
                     {
-                        omitDebugAttributes = (bool) args[4].Value!;
+                        debuggerAttributes = (DebuggerAttributeGeneration) args[4].Value!;
                     }
 
                     goto case 4;
@@ -224,7 +224,7 @@ internal static class ManageAttributes
                 case 6:
                     if (args[5].Value != null)
                     {
-                        omitDebugAttributes = (bool) args[5].Value!;
+                        debuggerAttributes = (DebuggerAttributeGeneration) args[5].Value!;
                     }
 
                     goto case 5;

@@ -34,7 +34,7 @@ public partial struct CustomerId
         var source = @"using System;
 using Vogen;
 
-[assembly: VogenDefaults(omitDebugAttributes: true)]
+[assembly: VogenDefaults(debuggerAttributes: DebuggerAttributeGeneration.Basic)]
 
 
 namespace Whatever;
