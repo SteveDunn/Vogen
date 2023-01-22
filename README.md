@@ -597,6 +597,20 @@ public void CanEnter(Age age) {
 }
 ```
 
+### Can I create custom value object attributes with my own defaults?
+
+Yes, but (at the moment) it requires that you put your defaults in your attribute's constructor - not in the call to the base class' constructor (see [this comment](https://github.com/SteveDunn/Vogen/pull/321#issuecomment-1399324832)).
+
+```csharp
+public class CustomValueObjectAttribute : ValueObjectAttribute<long>
+{
+    // This attribute will default to having both the default conversions and EF Core type conversions
+    public CustomValueObjectAttribute(Conversions conversions = Conversions.Default | Conversions.EfCoreValueConverter) { }
+}
+```
+
+NOTE: *custom attributes must extend a ValueObjectAttribute class; you cannot layer custom attributes on top of each other*
+
 ### Why isn't this concept part of the C# language?
 
 It would be great if it was, but it's not currently. I [wrote an article about it](https://dunnhq.com/posts/2022/non-defaultable-value-types/), but in summary, there is a [long-standing language proposal](https://github.com/dotnet/csharplang/issues/146) focusing on non-defaultable value types.
