@@ -599,7 +599,7 @@ public void CanEnter(Age age) {
 
 ### Can I create custom value object attributes with my own defaults?
 
-Yes, but (at the moment) it requires that you put your defaults in your attribute's primary constructor - not in the call to the base class' constructor (see [this comment](https://github.com/SteveDunn/Vogen/pull/321#issuecomment-1399324832)).
+Yes, but (at the moment) it requires that you put your defaults in your attribute's constructor - not in the call to the base class' constructor (see [this comment](https://github.com/SteveDunn/Vogen/pull/321#issuecomment-1399324832)).
 
 ```csharp
 public class CustomValueObjectAttribute : ValueObjectAttribute<long>
