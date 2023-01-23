@@ -10,6 +10,25 @@ namespace Vogen
 {
     internal static class TryParseGeneration
     {
+        private static readonly SymbolDisplayFormat _parameterNameDisplayFormat = new(
+            globalNamespaceStyle: SymbolDisplayGlobalNamespaceStyle.Included,
+            genericsOptions: SymbolDisplayGenericsOptions.IncludeTypeParameters,
+            memberOptions:
+            SymbolDisplayMemberOptions.IncludeParameters |
+            SymbolDisplayMemberOptions.IncludeRef |
+            SymbolDisplayMemberOptions.IncludeContainingType,
+            kindOptions:
+            SymbolDisplayKindOptions.IncludeMemberKeyword,
+            parameterOptions:
+            SymbolDisplayParameterOptions.IncludeName |
+            SymbolDisplayParameterOptions.IncludeParamsRefOut |
+            SymbolDisplayParameterOptions.IncludeDefaultValue,
+            localOptions: SymbolDisplayLocalOptions.IncludeType,
+            miscellaneousOptions:
+            SymbolDisplayMiscellaneousOptions.EscapeKeywordIdentifiers |
+            SymbolDisplayMiscellaneousOptions.UseSpecialTypes |
+            SymbolDisplayMiscellaneousOptions.IncludeNullableReferenceTypeModifier);
+
         public static string GenerateTryParseIfNeeded(VoWorkItem item)
         {
             INamedTypeSymbol primitiveSymbol = item.UnderlyingType;
@@ -78,41 +97,31 @@ namespace Vogen
         private static string BuildParameters(IMethodSymbol methodSymbol)
         {
             List<string> l = new();
+
             for (var index = 0; index < methodSymbol.Parameters.Length-1; index++)
             {
-                var eachParameter = methodSymbol.Parameters[index];
-
-                //var displayStringWithTypeAndNameWithEscapingAndRefsAndNullabilityEtc = eachParameter.ToDisplayString(SymbolDisplayFormat.MinimallyQualifiedFormat);
-                SymbolDisplayFormat nameFormat = new SymbolDisplayFormat(
-                    globalNamespaceStyle: SymbolDisplayGlobalNamespaceStyle.Included,
-                    genericsOptions: SymbolDisplayGenericsOptions.IncludeTypeParameters,
-                    
-                    memberOptions:
-                    SymbolDisplayMemberOptions.IncludeParameters |
-                    SymbolDisplayMemberOptions.IncludeRef |
-                    SymbolDisplayMemberOptions.IncludeContainingType,
-                    kindOptions:
-                    SymbolDisplayKindOptions.IncludeMemberKeyword,
-                    parameterOptions:
-                    SymbolDisplayParameterOptions.IncludeName |
-                    SymbolDisplayParameterOptions.IncludeParamsRefOut |
-                    SymbolDisplayParameterOptions.IncludeDefaultValue,
-                    localOptions: SymbolDisplayLocalOptions.IncludeType,
-                    miscellaneousOptions:
-                    SymbolDisplayMiscellaneousOptions.EscapeKeywordIdentifiers |
-                    SymbolDisplayMiscellaneousOptions.UseSpecialTypes |
-                    SymbolDisplayMiscellaneousOptions.IncludeNullableReferenceTypeModifier);
-
-                SymbolDisplayFormat typeFormat = SymbolDisplayFormat.FullyQualifiedFormat;
-                var typeAsText = eachParameter.Type.ToDisplayString(typeFormat);
-
-                var nameWithWithEscapingAndRefsAndNullabilityEtc = eachParameter.ToDisplayString(nameFormat);
+                IParameterSymbol eachParameter = methodSymbol.Parameters[index];
                 
-                l.Add($"{typeAsText} {nameWithWithEscapingAndRefsAndNullabilityEtc}");
+                string refKind = BuildRefKind(eachParameter.RefKind);
+
+                string type = eachParameter.Type.ToDisplayString(SymbolDisplayFormat.FullyQualifiedFormat);
+
+                string name = Util.EscapeIfRequired(eachParameter.Name);
+
+                l.Add($"{refKind}{type} {name}");
             }
 
             return string.Join(", ", l);
         }
+
+        private static string BuildRefKind(RefKind refKind) =>
+            refKind switch
+            {
+                RefKind.In => "in ",
+                RefKind.Out => "out ",
+                RefKind.Ref => "ref ",
+                _ => ""
+            };
 
         private static string BuildParameterNames(IMethodSymbol methodSymbol)
         {
