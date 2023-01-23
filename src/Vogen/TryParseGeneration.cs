@@ -10,25 +10,6 @@ namespace Vogen
 {
     internal static class TryParseGeneration
     {
-        private static readonly SymbolDisplayFormat _parameterNameDisplayFormat = new(
-            globalNamespaceStyle: SymbolDisplayGlobalNamespaceStyle.Included,
-            genericsOptions: SymbolDisplayGenericsOptions.IncludeTypeParameters,
-            memberOptions:
-            SymbolDisplayMemberOptions.IncludeParameters |
-            SymbolDisplayMemberOptions.IncludeRef |
-            SymbolDisplayMemberOptions.IncludeContainingType,
-            kindOptions:
-            SymbolDisplayKindOptions.IncludeMemberKeyword,
-            parameterOptions:
-            SymbolDisplayParameterOptions.IncludeName |
-            SymbolDisplayParameterOptions.IncludeParamsRefOut |
-            SymbolDisplayParameterOptions.IncludeDefaultValue,
-            localOptions: SymbolDisplayLocalOptions.IncludeType,
-            miscellaneousOptions:
-            SymbolDisplayMiscellaneousOptions.EscapeKeywordIdentifiers |
-            SymbolDisplayMiscellaneousOptions.UseSpecialTypes |
-            SymbolDisplayMiscellaneousOptions.IncludeNullableReferenceTypeModifier);
-
         public static string GenerateTryParseIfNeeded(VoWorkItem item)
         {
             INamedTypeSymbol primitiveSymbol = item.UnderlyingType;
