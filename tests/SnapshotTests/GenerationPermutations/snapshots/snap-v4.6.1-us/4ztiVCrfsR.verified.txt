@@ -162,7 +162,7 @@ namespace Whatever
     /// The value created via the <see cref="From"/> method.
     /// </returns>
     /// <exception cref="ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
-    public static global::System.Boolean TryParse(string s, System.IFormatProvider provider, System.Globalization.DateTimeStyles styles, 
+    public static global::System.Boolean TryParse(string s, global::System.IFormatProvider provider, global::System.Globalization.DateTimeStyles styles, 
 #if NETCOREAPP3_0_OR_GREATER
 [global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)]
 #endif

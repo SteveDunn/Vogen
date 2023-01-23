@@ -81,7 +81,34 @@ namespace Vogen
             for (var index = 0; index < methodSymbol.Parameters.Length-1; index++)
             {
                 var eachParameter = methodSymbol.Parameters[index];
-                l.Add($"{eachParameter} {eachParameter.Name}");
+
+                //var displayStringWithTypeAndNameWithEscapingAndRefsAndNullabilityEtc = eachParameter.ToDisplayString(SymbolDisplayFormat.MinimallyQualifiedFormat);
+                SymbolDisplayFormat nameFormat = new SymbolDisplayFormat(
+                    globalNamespaceStyle: SymbolDisplayGlobalNamespaceStyle.Included,
+                    genericsOptions: SymbolDisplayGenericsOptions.IncludeTypeParameters,
+                    
+                    memberOptions:
+                    SymbolDisplayMemberOptions.IncludeParameters |
+                    SymbolDisplayMemberOptions.IncludeRef |
+                    SymbolDisplayMemberOptions.IncludeContainingType,
+                    kindOptions:
+                    SymbolDisplayKindOptions.IncludeMemberKeyword,
+                    parameterOptions:
+                    SymbolDisplayParameterOptions.IncludeName |
+                    SymbolDisplayParameterOptions.IncludeParamsRefOut |
+                    SymbolDisplayParameterOptions.IncludeDefaultValue,
+                    localOptions: SymbolDisplayLocalOptions.IncludeType,
+                    miscellaneousOptions:
+                    SymbolDisplayMiscellaneousOptions.EscapeKeywordIdentifiers |
+                    SymbolDisplayMiscellaneousOptions.UseSpecialTypes |
+                    SymbolDisplayMiscellaneousOptions.IncludeNullableReferenceTypeModifier);
+
+                SymbolDisplayFormat typeFormat = SymbolDisplayFormat.FullyQualifiedFormat;
+                var typeAsText = eachParameter.Type.ToDisplayString(typeFormat);
+
+                var nameWithWithEscapingAndRefsAndNullabilityEtc = eachParameter.ToDisplayString(nameFormat);
+                
+                l.Add($"{typeAsText} {nameWithWithEscapingAndRefsAndNullabilityEtc}");
             }
 
             return string.Join(", ", l);
