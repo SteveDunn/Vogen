@@ -142,7 +142,7 @@ namespace Whatever
     /// The value created via the <see cref="From"/> method.
     /// </returns>
     /// <exception cref="ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
-    public static global::System.Boolean TryParse(System.ReadOnlySpan<char> input, 
+    public static global::System.Boolean TryParse(global::System.ReadOnlySpan<char> input, 
 #if NETCOREAPP3_0_OR_GREATER
 [global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)]
 #endif
@@ -163,7 +163,7 @@ namespace Whatever
     /// The value created via the <see cref="From"/> method.
     /// </returns>
     /// <exception cref="ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
-    public static global::System.Boolean TryParse(System.ReadOnlySpan<char> s, System.IFormatProvider? provider, 
+    public static global::System.Boolean TryParse(global::System.ReadOnlySpan<char> s, global::System.IFormatProvider provider, 
 #if NETCOREAPP3_0_OR_GREATER
 [global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)]
 #endif
@@ -184,7 +184,7 @@ namespace Whatever
     /// The value created via the <see cref="From"/> method.
     /// </returns>
     /// <exception cref="ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
-    public static global::System.Boolean TryParse(System.ReadOnlySpan<char> input, System.IFormatProvider? formatProvider, System.Globalization.DateTimeStyles styles, 
+    public static global::System.Boolean TryParse(global::System.ReadOnlySpan<char> input, global::System.IFormatProvider formatProvider, global::System.Globalization.DateTimeStyles styles, 
 #if NETCOREAPP3_0_OR_GREATER
 [global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)]
 #endif
@@ -205,7 +205,7 @@ namespace Whatever
     /// The value created via the <see cref="From"/> method.
     /// </returns>
     /// <exception cref="ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
-    public static global::System.Boolean TryParse(string? input, 
+    public static global::System.Boolean TryParse(string input, 
 #if NETCOREAPP3_0_OR_GREATER
 [global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)]
 #endif
@@ -226,7 +226,7 @@ namespace Whatever
     /// The value created via the <see cref="From"/> method.
     /// </returns>
     /// <exception cref="ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
-    public static global::System.Boolean TryParse(string? s, System.IFormatProvider? provider, 
+    public static global::System.Boolean TryParse(string s, global::System.IFormatProvider provider, 
 #if NETCOREAPP3_0_OR_GREATER
 [global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)]
 #endif
@@ -247,7 +247,7 @@ namespace Whatever
     /// The value created via the <see cref="From"/> method.
     /// </returns>
     /// <exception cref="ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
-    public static global::System.Boolean TryParse(string? input, System.IFormatProvider? formatProvider, System.Globalization.DateTimeStyles styles, 
+    public static global::System.Boolean TryParse(string input, global::System.IFormatProvider formatProvider, global::System.Globalization.DateTimeStyles styles, 
 #if NETCOREAPP3_0_OR_GREATER
 [global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)]
 #endif

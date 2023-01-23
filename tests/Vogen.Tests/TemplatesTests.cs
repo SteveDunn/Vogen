@@ -14,7 +14,7 @@ public class TemplatesTests
         private readonly Type[] _types = new[]
         {
             typeof(bool), typeof(byte), typeof(char), typeof(DateOnly), typeof(DateTime), typeof(DateTimeOffset), typeof(decimal),
-            typeof(double), typeof(float), typeof(Guid), typeof(System.Int32), typeof(long), typeof(short), typeof(Single), typeof(string),
+            typeof(double), typeof(float), typeof(Guid), typeof(System.Int32), typeof(long), typeof(short), typeof(string),
             typeof(TimeOnly)
         };
 

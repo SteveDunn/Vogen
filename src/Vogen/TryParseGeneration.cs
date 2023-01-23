@@ -78,14 +78,31 @@ namespace Vogen
         private static string BuildParameters(IMethodSymbol methodSymbol)
         {
             List<string> l = new();
+
             for (var index = 0; index < methodSymbol.Parameters.Length-1; index++)
             {
-                var eachParameter = methodSymbol.Parameters[index];
-                l.Add($"{eachParameter} {eachParameter.Name}");
+                IParameterSymbol eachParameter = methodSymbol.Parameters[index];
+                
+                string refKind = BuildRefKind(eachParameter.RefKind);
+
+                string type = eachParameter.Type.ToDisplayString(SymbolDisplayFormat.FullyQualifiedFormat);
+
+                string name = Util.EscapeIfRequired(eachParameter.Name);
+
+                l.Add($"{refKind}{type} {name}");
             }
 
             return string.Join(", ", l);
         }
+
+        private static string BuildRefKind(RefKind refKind) =>
+            refKind switch
+            {
+                RefKind.In => "in ",
+                RefKind.Out => "out ",
+                RefKind.Ref => "ref ",
+                _ => ""
+            };
 
         private static string BuildParameterNames(IMethodSymbol methodSymbol)
         {
