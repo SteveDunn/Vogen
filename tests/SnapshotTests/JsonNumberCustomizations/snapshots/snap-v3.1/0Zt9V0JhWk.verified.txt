@@ -171,7 +171,8 @@ namespace Whatever
 
             public override object ReadJson(Newtonsoft.Json.JsonReader reader, System.Type objectType, object existingValue, Newtonsoft.Json.JsonSerializer serializer)
             {
-                return stj_number_as_string_public_sealed_partial_recordConversions_NewtonsoftJsonstring_customized.Deserialize(serializer.Deserialize<global::System.String>(reader));
+                var result = serializer.Deserialize<global::System.String>(reader);
+                return result != null ? stj_number_as_string_public_sealed_partial_recordConversions_NewtonsoftJsonstring_customized.Deserialize(result) : null;
             }
         }
 
