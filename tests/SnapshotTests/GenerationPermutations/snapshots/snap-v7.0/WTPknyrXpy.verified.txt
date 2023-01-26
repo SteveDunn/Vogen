@@ -34,7 +34,7 @@ namespace Whatever
 
     [global::System.Diagnostics.DebuggerTypeProxyAttribute(typeof(public_partial_classConversions_NewtonsoftJsonboolDebugView))]
     [global::System.Diagnostics.DebuggerDisplayAttribute("Underlying type: System.Boolean, Value = { _value }")]
-    public partial class public_partial_classConversions_NewtonsoftJsonbool : global::System.IEquatable<public_partial_classConversions_NewtonsoftJsonbool>, global::System.IEquatable<System.Boolean> ,  global::System.IComparable<public_partial_classConversions_NewtonsoftJsonbool>
+    public partial class public_partial_classConversions_NewtonsoftJsonbool : global::System.IEquatable<public_partial_classConversions_NewtonsoftJsonbool>, global::System.IEquatable<System.Boolean> ,  global::System.IComparable<public_partial_classConversions_NewtonsoftJsonbool>, global::System.IComparable
     {
 #if DEBUG    
         private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
@@ -158,6 +158,11 @@ public System.Boolean Value
         public static explicit operator System.Boolean(public_partial_classConversions_NewtonsoftJsonbool value) => value.Value;
 
         public int CompareTo(public_partial_classConversions_NewtonsoftJsonbool other) => Value.CompareTo(other.Value);
+        public int CompareTo(object other) {
+            if(other == null) return 1;
+            if(other is public_partial_classConversions_NewtonsoftJsonbool x) return CompareTo(x);
+            throw new global::System.ArgumentException("Cannot compare to object as it is not of type public_partial_classConversions_NewtonsoftJsonbool", nameof(other));
+        }
 
         public override global::System.Int32 GetHashCode()
         {

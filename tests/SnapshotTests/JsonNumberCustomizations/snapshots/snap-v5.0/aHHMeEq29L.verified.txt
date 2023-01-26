@@ -35,7 +35,7 @@ namespace Whatever
 
     [global::System.Diagnostics.DebuggerTypeProxyAttribute(typeof(stj_number_as_string_public_partial_structConversions_NewtonsoftJson___Conversions_SystemTextJsonSystem_DateTimeOffset_customizedDebugView))]
     [global::System.Diagnostics.DebuggerDisplayAttribute("Underlying type: System.DateTimeOffset, Value = { _value }")]
-    public partial struct stj_number_as_string_public_partial_structConversions_NewtonsoftJson___Conversions_SystemTextJsonSystem_DateTimeOffset_customized : global::System.IEquatable<stj_number_as_string_public_partial_structConversions_NewtonsoftJson___Conversions_SystemTextJsonSystem_DateTimeOffset_customized>, global::System.IEquatable<System.DateTimeOffset> ,  global::System.IComparable<stj_number_as_string_public_partial_structConversions_NewtonsoftJson___Conversions_SystemTextJsonSystem_DateTimeOffset_customized>
+    public partial struct stj_number_as_string_public_partial_structConversions_NewtonsoftJson___Conversions_SystemTextJsonSystem_DateTimeOffset_customized : global::System.IEquatable<stj_number_as_string_public_partial_structConversions_NewtonsoftJson___Conversions_SystemTextJsonSystem_DateTimeOffset_customized>, global::System.IEquatable<System.DateTimeOffset> ,  global::System.IComparable<stj_number_as_string_public_partial_structConversions_NewtonsoftJson___Conversions_SystemTextJsonSystem_DateTimeOffset_customized>, global::System.IComparable
     {
 #if DEBUG    
         private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
@@ -133,6 +133,11 @@ namespace Whatever
         public static global::System.Boolean operator !=(System.DateTimeOffset left, stj_number_as_string_public_partial_structConversions_NewtonsoftJson___Conversions_SystemTextJsonSystem_DateTimeOffset_customized right) => !Equals(left, right.Value);
 
         public int CompareTo(stj_number_as_string_public_partial_structConversions_NewtonsoftJson___Conversions_SystemTextJsonSystem_DateTimeOffset_customized other) => Value.CompareTo(other.Value);
+        public int CompareTo(object other) {
+            if(other == null) return 1;
+            if(other is stj_number_as_string_public_partial_structConversions_NewtonsoftJson___Conversions_SystemTextJsonSystem_DateTimeOffset_customized x) return CompareTo(x);
+            throw new global::System.ArgumentException("Cannot compare to object as it is not of type stj_number_as_string_public_partial_structConversions_NewtonsoftJson___Conversions_SystemTextJsonSystem_DateTimeOffset_customized", nameof(other));
+        }
 
         
     /// <inheritdoc cref="System.DateTimeOffset.TryParse(System.ReadOnlySpan{char}, out System.DateTimeOffset)"/>

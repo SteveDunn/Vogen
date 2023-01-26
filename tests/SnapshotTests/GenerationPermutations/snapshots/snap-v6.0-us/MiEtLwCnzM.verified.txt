@@ -33,7 +33,7 @@ namespace Whatever
     
     [global::System.Diagnostics.DebuggerTypeProxyAttribute(typeof(public_readonly_partial_structConversions_DapperTypeHandlerboolDebugView))]
     [global::System.Diagnostics.DebuggerDisplayAttribute("Underlying type: System.Boolean, Value = { _value }")]
-    public readonly partial struct public_readonly_partial_structConversions_DapperTypeHandlerbool : global::System.IEquatable<public_readonly_partial_structConversions_DapperTypeHandlerbool>, global::System.IEquatable<System.Boolean> ,  global::System.IComparable<public_readonly_partial_structConversions_DapperTypeHandlerbool>
+    public readonly partial struct public_readonly_partial_structConversions_DapperTypeHandlerbool : global::System.IEquatable<public_readonly_partial_structConversions_DapperTypeHandlerbool>, global::System.IEquatable<System.Boolean> ,  global::System.IComparable<public_readonly_partial_structConversions_DapperTypeHandlerbool>, global::System.IComparable
     {
 #if DEBUG    
         private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
@@ -131,6 +131,11 @@ namespace Whatever
         public static global::System.Boolean operator !=(System.Boolean left, public_readonly_partial_structConversions_DapperTypeHandlerbool right) => !Equals(left, right.Value);
 
         public int CompareTo(public_readonly_partial_structConversions_DapperTypeHandlerbool other) => Value.CompareTo(other.Value);
+        public int CompareTo(object other) {
+            if(other == null) return 1;
+            if(other is public_readonly_partial_structConversions_DapperTypeHandlerbool x) return CompareTo(x);
+            throw new global::System.ArgumentException("Cannot compare to object as it is not of type public_readonly_partial_structConversions_DapperTypeHandlerbool", nameof(other));
+        }
 
         
     /// <inheritdoc cref="bool.TryParse(System.ReadOnlySpan{char}, out bool)"/>

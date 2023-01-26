@@ -33,7 +33,7 @@ namespace @class
     
     [global::System.Diagnostics.DebuggerTypeProxyAttribute(typeof(escapedTestspublic_partial_structConversions_EfCoreValueConverterSystem_GuidDebugView))]
     [global::System.Diagnostics.DebuggerDisplayAttribute("Underlying type: System.Guid, Value = { _value }")]
-    public partial struct escapedTestspublic_partial_structConversions_EfCoreValueConverterSystem_Guid : global::System.IEquatable<escapedTestspublic_partial_structConversions_EfCoreValueConverterSystem_Guid>, global::System.IEquatable<System.Guid> ,  global::System.IComparable<escapedTestspublic_partial_structConversions_EfCoreValueConverterSystem_Guid>
+    public partial struct escapedTestspublic_partial_structConversions_EfCoreValueConverterSystem_Guid : global::System.IEquatable<escapedTestspublic_partial_structConversions_EfCoreValueConverterSystem_Guid>, global::System.IEquatable<System.Guid> ,  global::System.IComparable<escapedTestspublic_partial_structConversions_EfCoreValueConverterSystem_Guid>, global::System.IComparable
     {
 #if DEBUG    
         private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
@@ -131,6 +131,11 @@ namespace @class
         public static global::System.Boolean operator !=(System.Guid left, escapedTestspublic_partial_structConversions_EfCoreValueConverterSystem_Guid right) => !Equals(left, right.Value);
 
         public int CompareTo(escapedTestspublic_partial_structConversions_EfCoreValueConverterSystem_Guid other) => Value.CompareTo(other.Value);
+        public int CompareTo(object other) {
+            if(other == null) return 1;
+            if(other is escapedTestspublic_partial_structConversions_EfCoreValueConverterSystem_Guid x) return CompareTo(x);
+            throw new global::System.ArgumentException("Cannot compare to object as it is not of type escapedTestspublic_partial_structConversions_EfCoreValueConverterSystem_Guid", nameof(other));
+        }
 
         
     /// <inheritdoc cref="System.Guid.TryParse(string, out System.Guid)"/>

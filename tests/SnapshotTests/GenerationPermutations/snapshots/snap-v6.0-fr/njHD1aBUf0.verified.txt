@@ -34,7 +34,7 @@ namespace Whatever
 
     [global::System.Diagnostics.DebuggerTypeProxyAttribute(typeof(internal_sealed_partial_classConversions_SystemTextJsonfloatDebugView))]
     [global::System.Diagnostics.DebuggerDisplayAttribute("Underlying type: System.Single, Value = { _value }")]
-    internal sealed partial class internal_sealed_partial_classConversions_SystemTextJsonfloat : global::System.IEquatable<internal_sealed_partial_classConversions_SystemTextJsonfloat>, global::System.IEquatable<System.Single> ,  global::System.IComparable<internal_sealed_partial_classConversions_SystemTextJsonfloat>
+    internal sealed partial class internal_sealed_partial_classConversions_SystemTextJsonfloat : global::System.IEquatable<internal_sealed_partial_classConversions_SystemTextJsonfloat>, global::System.IEquatable<System.Single> ,  global::System.IComparable<internal_sealed_partial_classConversions_SystemTextJsonfloat>, global::System.IComparable
     {
 #if DEBUG    
         private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
@@ -158,6 +158,11 @@ public System.Single Value
         public static explicit operator System.Single(internal_sealed_partial_classConversions_SystemTextJsonfloat value) => value.Value;
 
         public int CompareTo(internal_sealed_partial_classConversions_SystemTextJsonfloat other) => Value.CompareTo(other.Value);
+        public int CompareTo(object other) {
+            if(other == null) return 1;
+            if(other is internal_sealed_partial_classConversions_SystemTextJsonfloat x) return CompareTo(x);
+            throw new global::System.ArgumentException("Cannot compare to object as it is not of type internal_sealed_partial_classConversions_SystemTextJsonfloat", nameof(other));
+        }
 
         public override global::System.Int32 GetHashCode()
         {

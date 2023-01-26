@@ -35,7 +35,7 @@ namespace Whatever
 
     [global::System.Diagnostics.DebuggerTypeProxyAttribute(typeof(stj_number_as_string_public_partial_classConversions_NewtonsoftJson___Conversions_SystemTextJsonbyteDebugView))]
     [global::System.Diagnostics.DebuggerDisplayAttribute("Underlying type: System.Byte, Value = { _value }")]
-    public partial class stj_number_as_string_public_partial_classConversions_NewtonsoftJson___Conversions_SystemTextJsonbyte : global::System.IEquatable<stj_number_as_string_public_partial_classConversions_NewtonsoftJson___Conversions_SystemTextJsonbyte>, global::System.IEquatable<System.Byte> ,  global::System.IComparable<stj_number_as_string_public_partial_classConversions_NewtonsoftJson___Conversions_SystemTextJsonbyte>
+    public partial class stj_number_as_string_public_partial_classConversions_NewtonsoftJson___Conversions_SystemTextJsonbyte : global::System.IEquatable<stj_number_as_string_public_partial_classConversions_NewtonsoftJson___Conversions_SystemTextJsonbyte>, global::System.IEquatable<System.Byte> ,  global::System.IComparable<stj_number_as_string_public_partial_classConversions_NewtonsoftJson___Conversions_SystemTextJsonbyte>, global::System.IComparable
     {
 #if DEBUG    
         private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
@@ -159,6 +159,11 @@ public System.Byte Value
         public static explicit operator System.Byte(stj_number_as_string_public_partial_classConversions_NewtonsoftJson___Conversions_SystemTextJsonbyte value) => value.Value;
 
         public int CompareTo(stj_number_as_string_public_partial_classConversions_NewtonsoftJson___Conversions_SystemTextJsonbyte other) => Value.CompareTo(other.Value);
+        public int CompareTo(object other) {
+            if(other == null) return 1;
+            if(other is stj_number_as_string_public_partial_classConversions_NewtonsoftJson___Conversions_SystemTextJsonbyte x) return CompareTo(x);
+            throw new global::System.ArgumentException("Cannot compare to object as it is not of type stj_number_as_string_public_partial_classConversions_NewtonsoftJson___Conversions_SystemTextJsonbyte", nameof(other));
+        }
 
         public override global::System.Int32 GetHashCode()
         {

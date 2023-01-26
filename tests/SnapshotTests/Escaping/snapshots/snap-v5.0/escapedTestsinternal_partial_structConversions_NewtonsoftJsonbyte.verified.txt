@@ -34,7 +34,7 @@ namespace @class
 
     [global::System.Diagnostics.DebuggerTypeProxyAttribute(typeof(escapedTestsinternal_partial_structConversions_NewtonsoftJsonbyteDebugView))]
     [global::System.Diagnostics.DebuggerDisplayAttribute("Underlying type: System.Byte, Value = { _value }")]
-    internal partial struct escapedTestsinternal_partial_structConversions_NewtonsoftJsonbyte : global::System.IEquatable<escapedTestsinternal_partial_structConversions_NewtonsoftJsonbyte>, global::System.IEquatable<System.Byte> ,  global::System.IComparable<escapedTestsinternal_partial_structConversions_NewtonsoftJsonbyte>
+    internal partial struct escapedTestsinternal_partial_structConversions_NewtonsoftJsonbyte : global::System.IEquatable<escapedTestsinternal_partial_structConversions_NewtonsoftJsonbyte>, global::System.IEquatable<System.Byte> ,  global::System.IComparable<escapedTestsinternal_partial_structConversions_NewtonsoftJsonbyte>, global::System.IComparable
     {
 #if DEBUG    
         private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
@@ -132,6 +132,11 @@ namespace @class
         public static global::System.Boolean operator !=(System.Byte left, escapedTestsinternal_partial_structConversions_NewtonsoftJsonbyte right) => !Equals(left, right.Value);
 
         public int CompareTo(escapedTestsinternal_partial_structConversions_NewtonsoftJsonbyte other) => Value.CompareTo(other.Value);
+        public int CompareTo(object other) {
+            if(other == null) return 1;
+            if(other is escapedTestsinternal_partial_structConversions_NewtonsoftJsonbyte x) return CompareTo(x);
+            throw new global::System.ArgumentException("Cannot compare to object as it is not of type escapedTestsinternal_partial_structConversions_NewtonsoftJsonbyte", nameof(other));
+        }
 
         
     /// <inheritdoc cref="byte.TryParse(System.ReadOnlySpan{char}, out byte)"/>

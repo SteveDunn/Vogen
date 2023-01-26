@@ -208,6 +208,30 @@ namespace ConsumerTests.IComparableTests
             }
 
             [Fact]
+            public void Underlying_type_of_int_means_the_vo_is_IComparable_with_object_version_of_same_type()
+            {
+                var c1 = C1.From(123);
+                var cc1 = C1.From(123);
+                c1.CompareTo((object)cc1).Should().Be(0);
+            }
+
+            [Fact]
+            public void Underlying_type_of_int_means_the_vo_is_not_IComparable_with_object_version_of_different_type()
+            {
+                var c1 = C1.From(123);
+                Action a = () => c1.CompareTo((object)123).Should().Be(0);
+
+                a.Should().ThrowExactly<ArgumentException>().WithMessage("Cannot compare to object as it is not of type C1*");
+            }
+
+            [Fact]
+            public void Underlying_type_of_int_means_the_vo_is_IComparable_with_object_version_of_null_and_behaves_the_same_way_of_returning_1()
+            {
+                var c1 = C1.From(123);
+                c1.CompareTo((object?)null).Should().Be(1);
+            }
+
+            [Fact]
             public void Underlying_type_of_default_int_means_the_vo_is_IComparable()
             {
                 var c1 = C2.From(123);

@@ -33,7 +33,7 @@ namespace @class
     
     [global::System.Diagnostics.DebuggerTypeProxyAttribute(typeof(escapedTestsinternal_sealed_partial_record_classConversions_LinqToDbValueConverterdoubleDebugView))]
     [global::System.Diagnostics.DebuggerDisplayAttribute("Underlying type: System.Double, Value = { _value }")]
-    internal sealed partial record class escapedTestsinternal_sealed_partial_record_classConversions_LinqToDbValueConverterdouble  :  global::System.IComparable<escapedTestsinternal_sealed_partial_record_classConversions_LinqToDbValueConverterdouble>
+    internal sealed partial record class escapedTestsinternal_sealed_partial_record_classConversions_LinqToDbValueConverterdouble  :  global::System.IComparable<escapedTestsinternal_sealed_partial_record_classConversions_LinqToDbValueConverterdouble>, global::System.IComparable
     {
 #if DEBUG    
         private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
@@ -105,6 +105,11 @@ namespace @class
         public static explicit operator System.Double(escapedTestsinternal_sealed_partial_record_classConversions_LinqToDbValueConverterdouble value) => value.Value;
 
         public int CompareTo(escapedTestsinternal_sealed_partial_record_classConversions_LinqToDbValueConverterdouble other) => Value.CompareTo(other.Value);
+        public int CompareTo(object other) {
+            if(other == null) return 1;
+            if(other is escapedTestsinternal_sealed_partial_record_classConversions_LinqToDbValueConverterdouble x) return CompareTo(x);
+            throw new global::System.ArgumentException("Cannot compare to object as it is not of type escapedTestsinternal_sealed_partial_record_classConversions_LinqToDbValueConverterdouble", nameof(other));
+        }
 
         // only called internally when something has been deserialized into
         // its primitive type.

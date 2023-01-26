@@ -33,7 +33,7 @@ namespace @class
     
     [global::System.Diagnostics.DebuggerTypeProxyAttribute(typeof(escapedTestsinternal_readonly_partial_record_structConversions_LinqToDbValueConverterstringDebugView))]
     [global::System.Diagnostics.DebuggerDisplayAttribute("Underlying type: System.String, Value = { _value }")]
-    internal readonly partial record struct escapedTestsinternal_readonly_partial_record_structConversions_LinqToDbValueConverterstring  :  global::System.IComparable<escapedTestsinternal_readonly_partial_record_structConversions_LinqToDbValueConverterstring>
+    internal readonly partial record struct escapedTestsinternal_readonly_partial_record_structConversions_LinqToDbValueConverterstring  :  global::System.IComparable<escapedTestsinternal_readonly_partial_record_structConversions_LinqToDbValueConverterstring>, global::System.IComparable
     {
 #if DEBUG    
         private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
@@ -109,6 +109,11 @@ namespace @class
         public static explicit operator System.String(escapedTestsinternal_readonly_partial_record_structConversions_LinqToDbValueConverterstring value) => value.Value;
 
         public int CompareTo(escapedTestsinternal_readonly_partial_record_structConversions_LinqToDbValueConverterstring other) => Value.CompareTo(other.Value);
+        public int CompareTo(object other) {
+            if(other == null) return 1;
+            if(other is escapedTestsinternal_readonly_partial_record_structConversions_LinqToDbValueConverterstring x) return CompareTo(x);
+            throw new global::System.ArgumentException("Cannot compare to object as it is not of type escapedTestsinternal_readonly_partial_record_structConversions_LinqToDbValueConverterstring", nameof(other));
+        }
 
         // only called internally when something has been deserialized into
         // its primitive type.

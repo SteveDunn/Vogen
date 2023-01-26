@@ -34,7 +34,7 @@ namespace Whatever
 
     [global::System.Diagnostics.DebuggerTypeProxyAttribute(typeof(internal_readonly_partial_structConversions_NewtonsoftJsonintDebugView))]
     [global::System.Diagnostics.DebuggerDisplayAttribute("Underlying type: System.Int32, Value = { _value }")]
-    internal readonly partial struct internal_readonly_partial_structConversions_NewtonsoftJsonint : global::System.IEquatable<internal_readonly_partial_structConversions_NewtonsoftJsonint>, global::System.IEquatable<System.Int32> ,  global::System.IComparable<internal_readonly_partial_structConversions_NewtonsoftJsonint>
+    internal readonly partial struct internal_readonly_partial_structConversions_NewtonsoftJsonint : global::System.IEquatable<internal_readonly_partial_structConversions_NewtonsoftJsonint>, global::System.IEquatable<System.Int32> ,  global::System.IComparable<internal_readonly_partial_structConversions_NewtonsoftJsonint>, global::System.IComparable
     {
 #if DEBUG    
         private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
@@ -132,6 +132,11 @@ namespace Whatever
         public static global::System.Boolean operator !=(System.Int32 left, internal_readonly_partial_structConversions_NewtonsoftJsonint right) => !Equals(left, right.Value);
 
         public int CompareTo(internal_readonly_partial_structConversions_NewtonsoftJsonint other) => Value.CompareTo(other.Value);
+        public int CompareTo(object other) {
+            if(other == null) return 1;
+            if(other is internal_readonly_partial_structConversions_NewtonsoftJsonint x) return CompareTo(x);
+            throw new global::System.ArgumentException("Cannot compare to object as it is not of type internal_readonly_partial_structConversions_NewtonsoftJsonint", nameof(other));
+        }
 
         
     /// <inheritdoc cref="int.TryParse(string, out int)"/>

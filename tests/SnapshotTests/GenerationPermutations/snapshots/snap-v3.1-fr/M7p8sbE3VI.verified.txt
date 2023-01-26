@@ -33,7 +33,7 @@ namespace Whatever
     
     [global::System.Diagnostics.DebuggerTypeProxyAttribute(typeof(internal_partial_structConversions_NoneboolDebugView))]
     [global::System.Diagnostics.DebuggerDisplayAttribute("Underlying type: System.Boolean, Value = { _value }")]
-    internal partial struct internal_partial_structConversions_Nonebool : global::System.IEquatable<internal_partial_structConversions_Nonebool>, global::System.IEquatable<System.Boolean> ,  global::System.IComparable<internal_partial_structConversions_Nonebool>
+    internal partial struct internal_partial_structConversions_Nonebool : global::System.IEquatable<internal_partial_structConversions_Nonebool>, global::System.IEquatable<System.Boolean> ,  global::System.IComparable<internal_partial_structConversions_Nonebool>, global::System.IComparable
     {
 #if DEBUG    
         private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
@@ -131,6 +131,11 @@ namespace Whatever
         public static global::System.Boolean operator !=(System.Boolean left, internal_partial_structConversions_Nonebool right) => !Equals(left, right.Value);
 
         public int CompareTo(internal_partial_structConversions_Nonebool other) => Value.CompareTo(other.Value);
+        public int CompareTo(object other) {
+            if(other == null) return 1;
+            if(other is internal_partial_structConversions_Nonebool x) return CompareTo(x);
+            throw new global::System.ArgumentException("Cannot compare to object as it is not of type internal_partial_structConversions_Nonebool", nameof(other));
+        }
 
         
     /// <inheritdoc cref="bool.TryParse(System.ReadOnlySpan{char}, out bool)"/>

@@ -33,7 +33,7 @@ namespace Whatever
     
     [global::System.Diagnostics.DebuggerTypeProxyAttribute(typeof(public_partial_structConversions_EfCoreValueConverterboolDebugView))]
     [global::System.Diagnostics.DebuggerDisplayAttribute("Underlying type: System.Boolean, Value = { _value }")]
-    public partial struct public_partial_structConversions_EfCoreValueConverterbool : global::System.IEquatable<public_partial_structConversions_EfCoreValueConverterbool>, global::System.IEquatable<System.Boolean> ,  global::System.IComparable<public_partial_structConversions_EfCoreValueConverterbool>
+    public partial struct public_partial_structConversions_EfCoreValueConverterbool : global::System.IEquatable<public_partial_structConversions_EfCoreValueConverterbool>, global::System.IEquatable<System.Boolean> ,  global::System.IComparable<public_partial_structConversions_EfCoreValueConverterbool>, global::System.IComparable
     {
 #if DEBUG    
         private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
@@ -131,6 +131,11 @@ namespace Whatever
         public static global::System.Boolean operator !=(System.Boolean left, public_partial_structConversions_EfCoreValueConverterbool right) => !Equals(left, right.Value);
 
         public int CompareTo(public_partial_structConversions_EfCoreValueConverterbool other) => Value.CompareTo(other.Value);
+        public int CompareTo(object other) {
+            if(other == null) return 1;
+            if(other is public_partial_structConversions_EfCoreValueConverterbool x) return CompareTo(x);
+            throw new global::System.ArgumentException("Cannot compare to object as it is not of type public_partial_structConversions_EfCoreValueConverterbool", nameof(other));
+        }
 
         
     /// <inheritdoc cref="bool.TryParse(string, out bool)"/>

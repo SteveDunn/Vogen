@@ -35,7 +35,7 @@ namespace Whatever
 
     [global::System.Diagnostics.DebuggerTypeProxyAttribute(typeof(stj_number_as_string_public_sealed_partial_recordConversions_NewtonsoftJson___Conversions_SystemTextJsonboolDebugView))]
     [global::System.Diagnostics.DebuggerDisplayAttribute("Underlying type: System.Boolean, Value = { _value }")]
-    public sealed partial record class stj_number_as_string_public_sealed_partial_recordConversions_NewtonsoftJson___Conversions_SystemTextJsonbool  :  global::System.IComparable<stj_number_as_string_public_sealed_partial_recordConversions_NewtonsoftJson___Conversions_SystemTextJsonbool>
+    public sealed partial record class stj_number_as_string_public_sealed_partial_recordConversions_NewtonsoftJson___Conversions_SystemTextJsonbool  :  global::System.IComparable<stj_number_as_string_public_sealed_partial_recordConversions_NewtonsoftJson___Conversions_SystemTextJsonbool>, global::System.IComparable
     {
 #if DEBUG    
         private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
@@ -107,6 +107,11 @@ namespace Whatever
         public static explicit operator System.Boolean(stj_number_as_string_public_sealed_partial_recordConversions_NewtonsoftJson___Conversions_SystemTextJsonbool value) => value.Value;
 
         public int CompareTo(stj_number_as_string_public_sealed_partial_recordConversions_NewtonsoftJson___Conversions_SystemTextJsonbool other) => Value.CompareTo(other.Value);
+        public int CompareTo(object other) {
+            if(other == null) return 1;
+            if(other is stj_number_as_string_public_sealed_partial_recordConversions_NewtonsoftJson___Conversions_SystemTextJsonbool x) return CompareTo(x);
+            throw new global::System.ArgumentException("Cannot compare to object as it is not of type stj_number_as_string_public_sealed_partial_recordConversions_NewtonsoftJson___Conversions_SystemTextJsonbool", nameof(other));
+        }
 
         // only called internally when something has been deserialized into
         // its primitive type.

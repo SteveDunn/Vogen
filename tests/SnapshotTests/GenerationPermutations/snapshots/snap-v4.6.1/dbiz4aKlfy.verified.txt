@@ -34,7 +34,7 @@ namespace Whatever
 
     [global::System.Diagnostics.DebuggerTypeProxyAttribute(typeof(internal_partial_record_classConversions_SystemTextJsonboolDebugView))]
     [global::System.Diagnostics.DebuggerDisplayAttribute("Underlying type: System.Boolean, Value = { _value }")]
-    internal partial record class internal_partial_record_classConversions_SystemTextJsonbool  :  global::System.IComparable<internal_partial_record_classConversions_SystemTextJsonbool>
+    internal partial record class internal_partial_record_classConversions_SystemTextJsonbool  :  global::System.IComparable<internal_partial_record_classConversions_SystemTextJsonbool>, global::System.IComparable
     {
 #if DEBUG    
         private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
@@ -106,6 +106,11 @@ namespace Whatever
         public static explicit operator System.Boolean(internal_partial_record_classConversions_SystemTextJsonbool value) => value.Value;
 
         public int CompareTo(internal_partial_record_classConversions_SystemTextJsonbool other) => Value.CompareTo(other.Value);
+        public int CompareTo(object other) {
+            if(other == null) return 1;
+            if(other is internal_partial_record_classConversions_SystemTextJsonbool x) return CompareTo(x);
+            throw new global::System.ArgumentException("Cannot compare to object as it is not of type internal_partial_record_classConversions_SystemTextJsonbool", nameof(other));
+        }
 
         // only called internally when something has been deserialized into
         // its primitive type.

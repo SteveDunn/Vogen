@@ -35,7 +35,7 @@ namespace Whatever
 
     [global::System.Diagnostics.DebuggerTypeProxyAttribute(typeof(stj_number_as_string_public_partial_record_structConversions_NewtonsoftJson___Conversions_SystemTextJsonchar_customizedDebugView))]
     [global::System.Diagnostics.DebuggerDisplayAttribute("Underlying type: System.Char, Value = { _value }")]
-    public partial record struct stj_number_as_string_public_partial_record_structConversions_NewtonsoftJson___Conversions_SystemTextJsonchar_customized  :  global::System.IComparable<stj_number_as_string_public_partial_record_structConversions_NewtonsoftJson___Conversions_SystemTextJsonchar_customized>
+    public partial record struct stj_number_as_string_public_partial_record_structConversions_NewtonsoftJson___Conversions_SystemTextJsonchar_customized  :  global::System.IComparable<stj_number_as_string_public_partial_record_structConversions_NewtonsoftJson___Conversions_SystemTextJsonchar_customized>, global::System.IComparable
     {
 #if DEBUG    
         private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
@@ -107,6 +107,11 @@ namespace Whatever
         public static explicit operator System.Char(stj_number_as_string_public_partial_record_structConversions_NewtonsoftJson___Conversions_SystemTextJsonchar_customized value) => value.Value;
 
         public int CompareTo(stj_number_as_string_public_partial_record_structConversions_NewtonsoftJson___Conversions_SystemTextJsonchar_customized other) => Value.CompareTo(other.Value);
+        public int CompareTo(object other) {
+            if(other == null) return 1;
+            if(other is stj_number_as_string_public_partial_record_structConversions_NewtonsoftJson___Conversions_SystemTextJsonchar_customized x) return CompareTo(x);
+            throw new global::System.ArgumentException("Cannot compare to object as it is not of type stj_number_as_string_public_partial_record_structConversions_NewtonsoftJson___Conversions_SystemTextJsonchar_customized", nameof(other));
+        }
 
         // only called internally when something has been deserialized into
         // its primitive type.
