@@ -45,16 +45,6 @@ jobs:
       uses: actions/setup-dotnet@v3.0.3
       with:
         dotnet-version: '7.0.x'
-    - name: Setup dotnet 6.0
-      uses: actions/setup-dotnet@v3.0.3
-      with:
-        dotnet-version: '6.0.x'
-    - uses: actions/setup-dotnet@v3.0.3
-      with:
-        dotnet-version: '5.0.x'
-    - uses: actions/setup-dotnet@v3.0.3
-      with:
-        dotnet-version: '3.1.x'
 
     # Initializes the CodeQL tools for scanning.
     - name: Initialize CodeQL
@@ -68,8 +58,8 @@ jobs:
 
     # Autobuild attempts to build any compiled languages  (C/C++, C#, or Java).
     # If this step fails, then you should remove it and run the build manually (see below)
-    - name: Build and Test
-      run: ./Build.ps1
+    - name: Build
+      run: dotnet build
       shell: pwsh
 
 
