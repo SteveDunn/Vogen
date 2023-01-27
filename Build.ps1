@@ -1,4 +1,4 @@
-param($verbosity = "minimal", $skiptests = "false") #quite|q, minimal|m, normal|n, detailed|d
+param($verbosity = "minimal", [switch] $skiptests = $false) #quite|q, minimal|m, normal|n, detailed|d
 
 $artifacts = ".\artifacts"
 $localPackages = ".\local-global-packages"

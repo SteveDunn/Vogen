@@ -69,7 +69,7 @@ jobs:
     # Autobuild attempts to build any compiled languages  (C/C++, C#, or Java).
     # If this step fails, then you should remove it and run the build manually (see below)
     - name: Build and Test
-      run: ./Build.ps1 -skiptests    
+      run: ./Build.ps1 -v "minimal" -skiptests    
       shell: pwsh
 
     # ℹ️ Command-line programs to run using the OS shell.
