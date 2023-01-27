@@ -1,4 +1,4 @@
-param($verbosity = "minimal") #quite|q, minimal|m, normal|n, detailed|d
+param($verbosity = "minimal", $skiptests = "false") #quite|q, minimal|m, normal|n, detailed|d
 
 $artifacts = ".\artifacts"
 $localPackages = ".\local-global-packages"
@@ -58,6 +58,11 @@ WriteStage("Cleaning, restoring, and building release version of Vogen...")
 exec { & dotnet clean Vogen.sln -c Release --verbosity $verbosity}
 exec { & dotnet restore Vogen.sln --no-cache --verbosity $verbosity }
 exec { & dotnet build Vogen.sln -c Release -p Thorough=true --no-restore --verbosity $verbosity}
+
+if($skiptests) 
+{ 
+    exit; 
+}
 
 # run the analyzer and code generation tests
 WriteStage("Running analyzer and code generation tests...")
