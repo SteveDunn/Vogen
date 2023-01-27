@@ -34,7 +34,7 @@ namespace Whatever
 
     [global::System.Diagnostics.DebuggerTypeProxyAttribute(typeof(internal_readonly_partial_structConversions_SystemTextJsoncharDebugView))]
     [global::System.Diagnostics.DebuggerDisplayAttribute("Underlying type: System.Char, Value = { _value }")]
-    internal readonly partial struct internal_readonly_partial_structConversions_SystemTextJsonchar : global::System.IEquatable<internal_readonly_partial_structConversions_SystemTextJsonchar>, global::System.IEquatable<System.Char> ,  global::System.IComparable<internal_readonly_partial_structConversions_SystemTextJsonchar>
+    internal readonly partial struct internal_readonly_partial_structConversions_SystemTextJsonchar : global::System.IEquatable<internal_readonly_partial_structConversions_SystemTextJsonchar>, global::System.IEquatable<System.Char> ,  global::System.IComparable<internal_readonly_partial_structConversions_SystemTextJsonchar>, global::System.IComparable
     {
 #if DEBUG    
         private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
@@ -132,6 +132,11 @@ namespace Whatever
         public static global::System.Boolean operator !=(System.Char left, internal_readonly_partial_structConversions_SystemTextJsonchar right) => !Equals(left, right.Value);
 
         public int CompareTo(internal_readonly_partial_structConversions_SystemTextJsonchar other) => Value.CompareTo(other.Value);
+        public int CompareTo(object other) {
+            if(other == null) return 1;
+            if(other is internal_readonly_partial_structConversions_SystemTextJsonchar x) return CompareTo(x);
+            throw new global::System.ArgumentException("Cannot compare to object as it is not of type internal_readonly_partial_structConversions_SystemTextJsonchar", nameof(other));
+        }
 
         
     /// <inheritdoc cref="char.TryParse(string, out char)"/>

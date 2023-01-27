@@ -33,7 +33,7 @@ namespace Whatever
     
     [global::System.Diagnostics.DebuggerTypeProxyAttribute(typeof(internal_readonly_partial_structConversions_NoneDebugView))]
     [global::System.Diagnostics.DebuggerDisplayAttribute("Underlying type: System.Int32, Value = { _value }")]
-    internal readonly partial struct internal_readonly_partial_structConversions_None : global::System.IEquatable<internal_readonly_partial_structConversions_None>, global::System.IEquatable<System.Int32> ,  global::System.IComparable<internal_readonly_partial_structConversions_None>
+    internal readonly partial struct internal_readonly_partial_structConversions_None : global::System.IEquatable<internal_readonly_partial_structConversions_None>, global::System.IEquatable<System.Int32> ,  global::System.IComparable<internal_readonly_partial_structConversions_None>, global::System.IComparable
     {
 #if DEBUG    
         private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
@@ -131,6 +131,11 @@ namespace Whatever
         public static global::System.Boolean operator !=(System.Int32 left, internal_readonly_partial_structConversions_None right) => !Equals(left, right.Value);
 
         public int CompareTo(internal_readonly_partial_structConversions_None other) => Value.CompareTo(other.Value);
+        public int CompareTo(object other) {
+            if(other == null) return 1;
+            if(other is internal_readonly_partial_structConversions_None x) return CompareTo(x);
+            throw new global::System.ArgumentException("Cannot compare to object as it is not of type internal_readonly_partial_structConversions_None", nameof(other));
+        }
 
         
     /// <inheritdoc cref="int.TryParse(string, System.Globalization.NumberStyles, System.IFormatProvider, out int)"/>

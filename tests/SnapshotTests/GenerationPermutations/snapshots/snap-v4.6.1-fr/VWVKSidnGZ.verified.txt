@@ -34,7 +34,7 @@ namespace Whatever
 
     [global::System.Diagnostics.DebuggerTypeProxyAttribute(typeof(internal_partial_structConversions_NewtonsoftJsondecimalDebugView))]
     [global::System.Diagnostics.DebuggerDisplayAttribute("Underlying type: System.Decimal, Value = { _value }")]
-    internal partial struct internal_partial_structConversions_NewtonsoftJsondecimal : global::System.IEquatable<internal_partial_structConversions_NewtonsoftJsondecimal>, global::System.IEquatable<System.Decimal> ,  global::System.IComparable<internal_partial_structConversions_NewtonsoftJsondecimal>
+    internal partial struct internal_partial_structConversions_NewtonsoftJsondecimal : global::System.IEquatable<internal_partial_structConversions_NewtonsoftJsondecimal>, global::System.IEquatable<System.Decimal> ,  global::System.IComparable<internal_partial_structConversions_NewtonsoftJsondecimal>, global::System.IComparable
     {
 #if DEBUG    
         private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
@@ -132,6 +132,11 @@ namespace Whatever
         public static global::System.Boolean operator !=(System.Decimal left, internal_partial_structConversions_NewtonsoftJsondecimal right) => !Equals(left, right.Value);
 
         public int CompareTo(internal_partial_structConversions_NewtonsoftJsondecimal other) => Value.CompareTo(other.Value);
+        public int CompareTo(object other) {
+            if(other == null) return 1;
+            if(other is internal_partial_structConversions_NewtonsoftJsondecimal x) return CompareTo(x);
+            throw new global::System.ArgumentException("Cannot compare to object as it is not of type internal_partial_structConversions_NewtonsoftJsondecimal", nameof(other));
+        }
 
         
     /// <inheritdoc cref="decimal.TryParse(string, out decimal)"/>

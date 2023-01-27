@@ -1,13 +1,13 @@
-| Name            | Operating System      | Status | History |
-| :---            | :---                  | :---   | :---    |
-| GitHub Actions  | Ubuntu, Mac & Windows | ![Build](https://github.com/stevedunn/vogen/actions/workflows/build.yaml/badge.svg) | [![GitHub Actions Build History](https://buildstats.info/github/chart/SteveDunn/Vogen?branch=main&includeBuildsFromPullRequest=false)](https://github.com/SteveDunn/Vogen/actions) |
+| Name           | Operating System      | Status                                                                              | History                                                                                                                                                                            |
+|:---------------|:----------------------|:------------------------------------------------------------------------------------|:-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| GitHub Actions | Ubuntu, Mac & Windows | ![Build](https://github.com/stevedunn/vogen/actions/workflows/build.yaml/badge.svg) | [![GitHub Actions Build History](https://buildstats.info/github/chart/SteveDunn/Vogen?branch=main&includeBuildsFromPullRequest=false)](https://github.com/SteveDunn/Vogen/actions) |
 
  [![GitHub release](https://img.shields.io/github/release/stevedunn/vogen.svg)](https://GitHub.com/stevedunn/vogen/releases/) [![GitHub license](https://img.shields.io/github/license/stevedunn/vogen.svg)](https://github.com/SteveDunn/Vogen/blob/main/LICENSE) 
 [![GitHub issues](https://img.shields.io/github/issues/Naereen/StrapDown.js.svg)](https://GitHub.com/stevedunn/vogen/issues/) [![GitHub issues-closed](https://img.shields.io/github/issues-closed/Naereen/StrapDown.js.svg)](https://GitHub.com/stevedunn/vogen/issues?q=is%3Aissue+is%3Aclosed) 
 [![NuGet Badge](https://buildstats.info/nuget/Vogen)](https://www.nuget.org/packages/Vogen/)
 
 <p align="center">
-  <img src="./assets/cavey.png">
+  <img src="./assets/cavey.png" alt="Picture of caveman holding the number '1'">
 </p>
 
 [![Sparkline](https://stars.medv.io/stevedunn/vogen.svg)](https://stars.medv.io/stevedunn/vogen)
@@ -202,7 +202,7 @@ So far, we've used as an example, a customer ID of value `42`.  In C#, it may co
 (SuppliedId.From(42) == VendorId.From(42)) // compilation error
 ```
 
-But sometimes, we need to denote that a Value Object isn't valid or hasn't been set. We don't want anyone _outside_ of the object doing this as it could be used accidentally.  It's common to have `Unspecified` instances, e.g.
+But sometimes, we need to denote that a Value Object isn't valid or has not been set. We don't want anyone _outside_ of the object doing this as it could be used accidentally.  It's common to have `Unspecified` instances, e.g.
 
 ```csharp
 public class Person {
@@ -290,12 +290,12 @@ WarmupCount=3
 
 ```
 
-|                  Method |     Mean |    Error |   StdDev | Ratio | Allocated |
-|------------------------ |---------:|---------:|---------:|------:|----------:|
-|        UsingIntNatively | 13.57 ns | 0.086 ns | 0.005 ns |  1.00 |         - |
-|  UsingValueObjectStruct | 14.08 ns | 1.131 ns | 0.062 ns |  1.04 |         - |
+| Method                 |     Mean |    Error |   StdDev | Ratio | Allocated |
+|------------------------|---------:|---------:|---------:|------:|----------:|
+| UsingIntNatively       | 13.57 ns | 0.086 ns | 0.005 ns |  1.00 |         - |
+| UsingValueObjectStruct | 14.08 ns | 1.131 ns | 0.062 ns |  1.04 |         - |
 
-There is no discernable difference between using a native int and a VO struct; both are pretty much the same in terms of speed and memory.
+There is no discernible difference between using a native int and a VO struct; both are pretty much the same in terms of speed and memory.
 
 The next most common scenario is using a VO class to represent a native `String`.  These results are:
 
@@ -311,16 +311,16 @@ WarmupCount=3
 
 ```
 
-|                   Method |     Mean |     Error |   StdDev | Ratio | RatioSD |  Gen 0 | Allocated |
-|------------------------- |---------:|----------:|---------:|------:|--------:|-------:|----------:|
-|      UsingStringNatively | 135.4 ns |  16.89 ns |  0.93 ns |  1.00 |    0.00 | 0.0153 |     256 B |
-| UsingValueObjectAsStruct | 171.8 ns |  14.40 ns |  0.79 ns |  1.27 |    0.01 | 0.0153 |     256 B |
+| Method                   |     Mean |    Error |  StdDev | Ratio | RatioSD |  Gen 0 | Allocated |
+|--------------------------|---------:|---------:|--------:|------:|--------:|-------:|----------:|
+| UsingStringNatively      | 135.4 ns | 16.89 ns | 0.93 ns |  1.00 |    0.00 | 0.0153 |     256 B |
+| UsingValueObjectAsStruct | 171.8 ns | 14.40 ns | 0.79 ns |  1.27 |    0.01 | 0.0153 |     256 B |
 
 There is a tiny amount of performance overhead, but these measurements are incredibly small. There is no memory overhead.
 
 ## Serialisation and type conversion
 
-By default, each VO is decoarated with a `TypeConverter` and `System.Text.Json` (STJ) serializer. There are other converters/serialiazer for:
+By default, each VO is decorated with a `TypeConverter` and `System.Text.Json` (STJ) serializer. There are other converters/serializer for:
 
 * Newtonsoft.Json (NSJ)
 * Dapper
@@ -336,7 +336,7 @@ public readonly partial struct Celsius { }
 
 If you don't want any conversions, then specify `Conversions.None`.
 
-If you want your own conversion, then again specify none, and implement them yourself, just like any other type.  But be aware that even serialisers will get the same compilation errors for `new` and `default` when trying to create VOs.
+If you want your own conversion, then again specify none, and implement them yourself, just like any other type.  But be aware that even serializers will get the same compilation errors for `new` and `default` when trying to create VOs.
 
 If you want to use Dapper, remember to register it - something like this:
 
@@ -347,6 +347,11 @@ SqlMapper.AddTypeHandler(new Customer.DapperTypeHandler());
 See the examples folder for more information.
 
 ## FAQ
+
+### Is there a Wiki for this project?
+
+Yes, it's here: https://github.com/SteveDunn/Vogen/wiki
+
 
 ### What versions of .NET are supported?
 
@@ -407,7 +412,8 @@ Add this to your `.csproj` file:
 ```
 
 Then, you can view the generated files in the `Generated` folder. In Visual Studio, you need to select 'Show all files' in the Solution Explorer window:
-![the solution explorer window showing the 'show all files' option](/docs/img/20220425061514.png)
+
+![the solution explorer window showing the 'show all files' option](./docs/img/20220425061514.png)
 
 Here's an example from the included `Samples` project:
 
@@ -638,7 +644,7 @@ To get around this, run `Set-ExecutionPolicy -Scope Process -ExecutionPolicy Byp
 This is focused more on IDs. Vogen is focused more of 'Domain Concepts' and the constraints associated with those concepts.
 
 [StringlyTyped](https://github.com/stevedunn/stringlytyped)
-This is my first attempt and is NON source-generated. There is memory overhead because the base type is a class. There are also no analyzers. It is now marked as depracated in favor of Vogen.
+This is my first attempt and is NON source-generated. There is memory overhead because the base type is a class. There are also no analyzers. It is now marked as deprecated in favor of Vogen.
 
 [ValueOf](https://github.com/mcintyre321/ValueOf) 
 Similar to StringlyTyped - non source-generated and no analysers. This is also more relaxed and allows composite 'underlying' types.
@@ -682,7 +688,7 @@ public partial struct SpecialMeasurement { }
 
 When the  tests are run, it uses snapshot tests to compare the current output to the expected output.
 If your feature/fix changes the output, the snapshot tests will bring up your configured code diff tool, for instance, Beyond Compare, and
-shows you the differences. You can accept the differences in that tool, or, if there's lot's of differencs (and they're all expected!), you have various options depending on your platform and tooling. Those are [described here](https://github.com/VerifyTests/Verify/blob/main/docs/clipboard.md). 
+shows you the differences. You can accept the differences in that tool, or, if there's lot's of differences (and they're all expected!), you have various options depending on your platform and tooling. Those are [described here](https://github.com/VerifyTests/Verify/blob/main/docs/clipboard.md). 
 
 ### How do I debug the source generator?
 

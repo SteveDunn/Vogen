@@ -34,7 +34,7 @@ namespace Whatever
 
     [global::System.Diagnostics.DebuggerTypeProxyAttribute(typeof(internal_sealed_partial_recordConversions_SystemTextJsonintDebugView))]
     [global::System.Diagnostics.DebuggerDisplayAttribute("Underlying type: System.Int32, Value = { _value }")]
-    internal sealed partial record class internal_sealed_partial_recordConversions_SystemTextJsonint  :  global::System.IComparable<internal_sealed_partial_recordConversions_SystemTextJsonint>
+    internal sealed partial record class internal_sealed_partial_recordConversions_SystemTextJsonint  :  global::System.IComparable<internal_sealed_partial_recordConversions_SystemTextJsonint>, global::System.IComparable
     {
 #if DEBUG    
         private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
@@ -106,6 +106,11 @@ namespace Whatever
         public static explicit operator System.Int32(internal_sealed_partial_recordConversions_SystemTextJsonint value) => value.Value;
 
         public int CompareTo(internal_sealed_partial_recordConversions_SystemTextJsonint other) => Value.CompareTo(other.Value);
+        public int CompareTo(object other) {
+            if(other == null) return 1;
+            if(other is internal_sealed_partial_recordConversions_SystemTextJsonint x) return CompareTo(x);
+            throw new global::System.ArgumentException("Cannot compare to object as it is not of type internal_sealed_partial_recordConversions_SystemTextJsonint", nameof(other));
+        }
 
         // only called internally when something has been deserialized into
         // its primitive type.

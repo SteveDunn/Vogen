@@ -33,7 +33,7 @@ namespace @class
     
     [global::System.Diagnostics.DebuggerTypeProxyAttribute(typeof(escapedTestspublic_partial_record_structConversions_EfCoreValueConverterbyteDebugView))]
     [global::System.Diagnostics.DebuggerDisplayAttribute("Underlying type: System.Byte, Value = { _value }")]
-    public partial record struct escapedTestspublic_partial_record_structConversions_EfCoreValueConverterbyte  :  global::System.IComparable<escapedTestspublic_partial_record_structConversions_EfCoreValueConverterbyte>
+    public partial record struct escapedTestspublic_partial_record_structConversions_EfCoreValueConverterbyte  :  global::System.IComparable<escapedTestspublic_partial_record_structConversions_EfCoreValueConverterbyte>, global::System.IComparable
     {
 #if DEBUG    
         private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
@@ -105,6 +105,11 @@ namespace @class
         public static explicit operator System.Byte(escapedTestspublic_partial_record_structConversions_EfCoreValueConverterbyte value) => value.Value;
 
         public int CompareTo(escapedTestspublic_partial_record_structConversions_EfCoreValueConverterbyte other) => Value.CompareTo(other.Value);
+        public int CompareTo(object other) {
+            if(other == null) return 1;
+            if(other is escapedTestspublic_partial_record_structConversions_EfCoreValueConverterbyte x) return CompareTo(x);
+            throw new global::System.ArgumentException("Cannot compare to object as it is not of type escapedTestspublic_partial_record_structConversions_EfCoreValueConverterbyte", nameof(other));
+        }
 
         // only called internally when something has been deserialized into
         // its primitive type.

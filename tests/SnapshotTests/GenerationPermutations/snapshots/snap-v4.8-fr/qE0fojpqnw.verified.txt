@@ -33,7 +33,7 @@ namespace Whatever
     
     [global::System.Diagnostics.DebuggerTypeProxyAttribute(typeof(public_partial_structConversions_LinqToDbValueConvertershortDebugView))]
     [global::System.Diagnostics.DebuggerDisplayAttribute("Underlying type: System.Int16, Value = { _value }")]
-    public partial struct public_partial_structConversions_LinqToDbValueConvertershort : global::System.IEquatable<public_partial_structConversions_LinqToDbValueConvertershort>, global::System.IEquatable<System.Int16> ,  global::System.IComparable<public_partial_structConversions_LinqToDbValueConvertershort>
+    public partial struct public_partial_structConversions_LinqToDbValueConvertershort : global::System.IEquatable<public_partial_structConversions_LinqToDbValueConvertershort>, global::System.IEquatable<System.Int16> ,  global::System.IComparable<public_partial_structConversions_LinqToDbValueConvertershort>, global::System.IComparable
     {
 #if DEBUG    
         private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
@@ -131,6 +131,11 @@ namespace Whatever
         public static global::System.Boolean operator !=(System.Int16 left, public_partial_structConversions_LinqToDbValueConvertershort right) => !Equals(left, right.Value);
 
         public int CompareTo(public_partial_structConversions_LinqToDbValueConvertershort other) => Value.CompareTo(other.Value);
+        public int CompareTo(object other) {
+            if(other == null) return 1;
+            if(other is public_partial_structConversions_LinqToDbValueConvertershort x) return CompareTo(x);
+            throw new global::System.ArgumentException("Cannot compare to object as it is not of type public_partial_structConversions_LinqToDbValueConvertershort", nameof(other));
+        }
 
         
     /// <inheritdoc cref="short.TryParse(string, out short)"/>

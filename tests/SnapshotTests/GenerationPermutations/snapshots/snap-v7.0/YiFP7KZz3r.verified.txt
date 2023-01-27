@@ -33,7 +33,7 @@ namespace Whatever
     
     [global::System.Diagnostics.DebuggerTypeProxyAttribute(typeof(public_partial_record_structConversions_EfCoreValueConverterstringDebugView))]
     [global::System.Diagnostics.DebuggerDisplayAttribute("Underlying type: System.String, Value = { _value }")]
-    public partial record struct public_partial_record_structConversions_EfCoreValueConverterstring  :  global::System.IComparable<public_partial_record_structConversions_EfCoreValueConverterstring>
+    public partial record struct public_partial_record_structConversions_EfCoreValueConverterstring  :  global::System.IComparable<public_partial_record_structConversions_EfCoreValueConverterstring>, global::System.IComparable
     {
 #if DEBUG    
         private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
@@ -109,6 +109,11 @@ namespace Whatever
         public static explicit operator System.String(public_partial_record_structConversions_EfCoreValueConverterstring value) => value.Value;
 
         public int CompareTo(public_partial_record_structConversions_EfCoreValueConverterstring other) => Value.CompareTo(other.Value);
+        public int CompareTo(object other) {
+            if(other == null) return 1;
+            if(other is public_partial_record_structConversions_EfCoreValueConverterstring x) return CompareTo(x);
+            throw new global::System.ArgumentException("Cannot compare to object as it is not of type public_partial_record_structConversions_EfCoreValueConverterstring", nameof(other));
+        }
 
         // only called internally when something has been deserialized into
         // its primitive type.

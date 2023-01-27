@@ -35,7 +35,7 @@ namespace Whatever
 
     [global::System.Diagnostics.DebuggerTypeProxyAttribute(typeof(internal_partial_structfloatDebugView))]
     [global::System.Diagnostics.DebuggerDisplayAttribute("Underlying type: System.Single, Value = { _value }")]
-    internal partial struct internal_partial_structfloat : global::System.IEquatable<internal_partial_structfloat>, global::System.IEquatable<System.Single> ,  global::System.IComparable<internal_partial_structfloat>
+    internal partial struct internal_partial_structfloat : global::System.IEquatable<internal_partial_structfloat>, global::System.IEquatable<System.Single> ,  global::System.IComparable<internal_partial_structfloat>, global::System.IComparable
     {
 #if DEBUG    
         private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
@@ -134,6 +134,11 @@ namespace Whatever
         public static global::System.Boolean operator !=(System.Single left, internal_partial_structfloat right) => !Equals(left, right.Value);
 
         public int CompareTo(internal_partial_structfloat other) => Value.CompareTo(other.Value);
+        public int CompareTo(object other) {
+            if(other == null) return 1;
+            if(other is internal_partial_structfloat x) return CompareTo(x);
+            throw new global::System.ArgumentException("Cannot compare to object as it is not of type internal_partial_structfloat", nameof(other));
+        }
 
         
     /// <inheritdoc cref="float.TryParse(string, System.Globalization.NumberStyles, System.IFormatProvider, out float)"/>

@@ -33,7 +33,7 @@ namespace @class
     
     [global::System.Diagnostics.DebuggerTypeProxyAttribute(typeof(escapedTestspublic_readonly_partial_structConversions_EfCoreValueConverterdoubleDebugView))]
     [global::System.Diagnostics.DebuggerDisplayAttribute("Underlying type: System.Double, Value = { _value }")]
-    public readonly partial struct escapedTestspublic_readonly_partial_structConversions_EfCoreValueConverterdouble : global::System.IEquatable<escapedTestspublic_readonly_partial_structConversions_EfCoreValueConverterdouble>, global::System.IEquatable<System.Double> ,  global::System.IComparable<escapedTestspublic_readonly_partial_structConversions_EfCoreValueConverterdouble>
+    public readonly partial struct escapedTestspublic_readonly_partial_structConversions_EfCoreValueConverterdouble : global::System.IEquatable<escapedTestspublic_readonly_partial_structConversions_EfCoreValueConverterdouble>, global::System.IEquatable<System.Double> ,  global::System.IComparable<escapedTestspublic_readonly_partial_structConversions_EfCoreValueConverterdouble>, global::System.IComparable
     {
 #if DEBUG    
         private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
@@ -131,6 +131,11 @@ namespace @class
         public static global::System.Boolean operator !=(System.Double left, escapedTestspublic_readonly_partial_structConversions_EfCoreValueConverterdouble right) => !Equals(left, right.Value);
 
         public int CompareTo(escapedTestspublic_readonly_partial_structConversions_EfCoreValueConverterdouble other) => Value.CompareTo(other.Value);
+        public int CompareTo(object other) {
+            if(other == null) return 1;
+            if(other is escapedTestspublic_readonly_partial_structConversions_EfCoreValueConverterdouble x) return CompareTo(x);
+            throw new global::System.ArgumentException("Cannot compare to object as it is not of type escapedTestspublic_readonly_partial_structConversions_EfCoreValueConverterdouble", nameof(other));
+        }
 
         
     /// <inheritdoc cref="double.TryParse(string, out double)"/>

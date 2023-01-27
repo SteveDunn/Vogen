@@ -33,7 +33,7 @@ namespace Whatever
     
     [global::System.Diagnostics.DebuggerTypeProxyAttribute(typeof(public_sealed_partial_classConversions_NoneSystem_GuidDebugView))]
     [global::System.Diagnostics.DebuggerDisplayAttribute("Underlying type: System.Guid, Value = { _value }")]
-    public sealed partial class public_sealed_partial_classConversions_NoneSystem_Guid : global::System.IEquatable<public_sealed_partial_classConversions_NoneSystem_Guid>, global::System.IEquatable<System.Guid> ,  global::System.IComparable<public_sealed_partial_classConversions_NoneSystem_Guid>
+    public sealed partial class public_sealed_partial_classConversions_NoneSystem_Guid : global::System.IEquatable<public_sealed_partial_classConversions_NoneSystem_Guid>, global::System.IEquatable<System.Guid> ,  global::System.IComparable<public_sealed_partial_classConversions_NoneSystem_Guid>, global::System.IComparable
     {
 #if DEBUG    
         private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
@@ -157,6 +157,11 @@ public System.Guid Value
         public static explicit operator System.Guid(public_sealed_partial_classConversions_NoneSystem_Guid value) => value.Value;
 
         public int CompareTo(public_sealed_partial_classConversions_NoneSystem_Guid other) => Value.CompareTo(other.Value);
+        public int CompareTo(object other) {
+            if(other == null) return 1;
+            if(other is public_sealed_partial_classConversions_NoneSystem_Guid x) return CompareTo(x);
+            throw new global::System.ArgumentException("Cannot compare to object as it is not of type public_sealed_partial_classConversions_NoneSystem_Guid", nameof(other));
+        }
 
         public override global::System.Int32 GetHashCode()
         {

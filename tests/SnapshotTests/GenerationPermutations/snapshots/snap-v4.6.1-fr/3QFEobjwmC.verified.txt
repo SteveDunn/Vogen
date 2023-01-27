@@ -33,7 +33,7 @@ namespace Whatever
     
     [global::System.Diagnostics.DebuggerTypeProxyAttribute(typeof(internal_readonly_partial_structConversions_NonelongDebugView))]
     [global::System.Diagnostics.DebuggerDisplayAttribute("Underlying type: System.Int64, Value = { _value }")]
-    internal readonly partial struct internal_readonly_partial_structConversions_Nonelong : global::System.IEquatable<internal_readonly_partial_structConversions_Nonelong>, global::System.IEquatable<System.Int64> ,  global::System.IComparable<internal_readonly_partial_structConversions_Nonelong>
+    internal readonly partial struct internal_readonly_partial_structConversions_Nonelong : global::System.IEquatable<internal_readonly_partial_structConversions_Nonelong>, global::System.IEquatable<System.Int64> ,  global::System.IComparable<internal_readonly_partial_structConversions_Nonelong>, global::System.IComparable
     {
 #if DEBUG    
         private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
@@ -131,6 +131,11 @@ namespace Whatever
         public static global::System.Boolean operator !=(System.Int64 left, internal_readonly_partial_structConversions_Nonelong right) => !Equals(left, right.Value);
 
         public int CompareTo(internal_readonly_partial_structConversions_Nonelong other) => Value.CompareTo(other.Value);
+        public int CompareTo(object other) {
+            if(other == null) return 1;
+            if(other is internal_readonly_partial_structConversions_Nonelong x) return CompareTo(x);
+            throw new global::System.ArgumentException("Cannot compare to object as it is not of type internal_readonly_partial_structConversions_Nonelong", nameof(other));
+        }
 
         
     /// <inheritdoc cref="long.TryParse(string, System.Globalization.NumberStyles, System.IFormatProvider, out long)"/>
