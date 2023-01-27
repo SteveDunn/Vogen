@@ -70,7 +70,6 @@ jobs:
     # If this step fails, then you should remove it and run the build manually (see below)
     - name: Build and Test
       run: |
-        dotnet build Vogen.sln
         dotnet clean Vogen.sln -c Release
         dotnet restore Vogen.sln --no-cache
         dotnet build Vogen.sln -c Release --no-restore      
