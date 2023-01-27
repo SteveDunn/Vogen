@@ -69,9 +69,12 @@ jobs:
     # Autobuild attempts to build any compiled languages  (C/C++, C#, or Java).
     # If this step fails, then you should remove it and run the build manually (see below)
     - name: Build and Test
-      run: dotnet build Vogen.sln
+      run: |
+        dotnet build Vogen.sln
+        dotnet clean Vogen.sln -c Release
+        dotnet restore Vogen.sln --no-cache
+        dotnet build Vogen.sln -c Release --no-restore      
       shell: pwsh
-
 
     # ℹ️ Command-line programs to run using the OS shell.
     # 📚 https://git.io/JvXDl
