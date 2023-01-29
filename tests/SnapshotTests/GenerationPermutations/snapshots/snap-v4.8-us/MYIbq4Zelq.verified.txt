@@ -217,7 +217,8 @@ public System.String Value
 
             public override object ReadJson(Newtonsoft.Json.JsonReader reader, System.Type objectType, object existingValue, Newtonsoft.Json.JsonSerializer serializer)
             {
-                return public_partial_classConversions_NewtonsoftJsonstring.Deserialize(serializer.Deserialize<global::System.String>(reader));
+                var result = serializer.Deserialize<global::System.String>(reader);
+                return result != null ? public_partial_classConversions_NewtonsoftJsonstring.Deserialize(result) : null;
             }
         }
 

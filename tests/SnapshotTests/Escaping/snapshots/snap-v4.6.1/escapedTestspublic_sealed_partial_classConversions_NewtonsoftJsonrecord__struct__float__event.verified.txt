@@ -209,7 +209,8 @@ public @class.@record.@struct.@float.@event Value
 
             public override object ReadJson(Newtonsoft.Json.JsonReader reader, System.Type objectType, object existingValue, Newtonsoft.Json.JsonSerializer serializer)
             {
-                return escapedTestspublic_sealed_partial_classConversions_NewtonsoftJsonrecord__struct__float__event.Deserialize(serializer.Deserialize<@class.@record.@struct.@float.@event>(reader));
+                var result = serializer.Deserialize<@class.@record.@struct.@float.@event?>(reader);
+                return result.HasValue ? escapedTestspublic_sealed_partial_classConversions_NewtonsoftJsonrecord__struct__float__event.Deserialize(result.Value) : null;
             }
         }
 
