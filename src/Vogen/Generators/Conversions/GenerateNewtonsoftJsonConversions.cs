@@ -21,9 +21,12 @@ internal class GenerateNewtonsoftJsonConversions : IGenerateConversion
             return string.Empty;
         }
 
-        string code =
-            Templates.TryGetForSpecificType(item.UnderlyingType, "NewtonsoftJsonConverter") ??
-            Templates.GetForAnyType("NewtonsoftJsonConverter");
+        string? code =
+            Templates.TryGetForSpecificType(item.UnderlyingType, "NewtonsoftJsonConverter");
+        if (code is null)
+        {
+            code = item.UnderlyingType.IsValueType ? Templates.GetForAnyType("NewtonsoftJsonConverterValueType") : Templates.GetForAnyType("NewtonsoftJsonConverterReferenceType");
+        }
 
         code = code.Replace("VOTYPE", item.VoTypeName);
         code = code.Replace("VOUNDERLYINGTYPE", item.UnderlyingTypeFullName);

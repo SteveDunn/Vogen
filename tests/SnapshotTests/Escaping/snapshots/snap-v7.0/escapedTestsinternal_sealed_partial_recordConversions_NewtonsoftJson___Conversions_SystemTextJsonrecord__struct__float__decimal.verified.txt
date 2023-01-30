@@ -173,7 +173,8 @@ namespace @class
 
             public override object ReadJson(Newtonsoft.Json.JsonReader reader, System.Type objectType, object existingValue, Newtonsoft.Json.JsonSerializer serializer)
             {
-                return escapedTestsinternal_sealed_partial_recordConversions_NewtonsoftJson___Conversions_SystemTextJsonrecord__struct__float__decimal.Deserialize(serializer.Deserialize<@class.@record.@struct.@float.@decimal>(reader));
+                var result = serializer.Deserialize<@class.@record.@struct.@float.@decimal?>(reader);
+                return result.HasValue ? escapedTestsinternal_sealed_partial_recordConversions_NewtonsoftJson___Conversions_SystemTextJsonrecord__struct__float__decimal.Deserialize(result.Value) : null;
             }
         }
 
