@@ -44,7 +44,7 @@ namespace Vogen
             DeserializationStrictness deserializationStrictness = DeserializationStrictness.AllowValidAndKnownInstances,
             DebuggerAttributeGeneration debuggerAttributes = DebuggerAttributeGeneration.Default)
         {
-            // UnderlyingType = underlyingType;
+            UnderlyingType = underlyingType;
             // Conversions = conversions;
             // ValidationExceptionType = throws;
             // Customizations = customizations;
@@ -52,7 +52,7 @@ namespace Vogen
             // OmitDebugAttributes = omitDebugAttributes;
         }
 
-        // public Type? UnderlyingType { get; }
+        public Type? UnderlyingType { get; }
         //
         // public Type? ValidationExceptionType { get; }
         //
