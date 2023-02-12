@@ -16,26 +16,25 @@ If you like or are using this project please give it a star. Thanks!
 
 # Vogen: cure your Primitive Obsession
 
+Vogen is a .NET Source Generator and analyzer. It turns your primitives (ints, decimals etc.) into Value Objects that 
+represent domain concepts (CustomerId, AccountBalance etc.)
+
+It adds new C# compilation errors to help stop the creation of invalid Value Objects. 
+
 ## Overview
 
-This is a .NET source generator and code analyzer for .NET. 
-
-The generator generates strongly typed **domain ideas**. You provide this:
+The source generator generates strongly typed **domain concepts**. You provide this:
 
 ```csharp
 [ValueObject]
 public partial struct CustomerId {
-    // optional
-    private static Validation Validate(int value) => value > 0 
-        ? Validation.Ok 
-        : Validation.Invalid("Customer IDs must be a positive number.");
 }
 ```
 
-... and Vogen generates this:
+... and Vogen generates source similar to this:
 
 ```csharp
-    public partial struct CustomerId : System.IEquatable<CustomerId> {
+    public partial struct CustomerId : System.IEquatable<CustomerId>, System.IComparable<CustomerId>, System.IComparable {
         private readonly int _value;
 
         public readonly int Value => _value;
@@ -72,13 +71,13 @@ You then use `CustomerId` instead of `int` in your domain in the full knowledge 
 ```csharp
 CustomerId customerId = CustomerId.From(123);
 SendInvoice(customerId);
-
 ...
 
 public void SendInvoice(CustomerId customerId) { ... }
 ```
 
-`int` is the default type for Value Objects, but you can, individually, or globally, configure them to be other types. See the Configuration section later in the document, but here's some examples:
+`int` is the default type for Value Objects, but you can, individually, or globally, 
+configure them to be other types. See the Configuration section later in the document, but here's some brief examples:
 
 ```csharp
 [ValueObject<decimal>] // C# 11 generic attributes
@@ -88,14 +87,17 @@ public partial struct AccountBalance { }
 public partial class LegalEntityName { }
 ```
 
-To ensure the validity of your value objects, the code analyser helps you to avoid mistakes.
+The main goal of Vogen is to **ensure the validity of your Value Objects**, the code analyser helps you to avoid mistakes which 
+might leave you with uninitialized Value Objects in your domain.
 
-It does this by adding new constraints in the form of new compilation errors. For example, the analyser will spot issues when you declare a value object:
+It does this by **adding new constraints in the form of new C# compilation errors**. There are a few ways you could end up
+with uninitialized Value Objects. One way is by giving your type constructors. Providing your own constructors
+could mean that you forget to set a value, so **Vogen doesn't allow you to have user defined constructors**:
 
 ```csharp
 [ValueObject]
 public partial struct CustomerId {
-    // Vogen already generates this as a private constructor to that you can't use it:
+    // Vogen deliberately generates this so that you can't create your own:
     // error CS0111: Type 'CustomerId' already defines a member called 'CustomerId' with the same parameter type
     public CustomerId() { }
 
@@ -104,18 +106,17 @@ public partial struct CustomerId {
 }
 ```
 
-... and it will spot issues when creating or consuming value objects:
+In addition, Vogen will spot issues when **creating** or **consuming** Value Objects:
 
 ```csharp
 // catches object creation expressions
 var c = new CustomerId(); // error VOG010: Type 'CustomerId' cannot be constructed with 'new' as it is prohibited
-var c = Activator.CreateInstance<CustomerId>(); // error VOG025: Type 'CustomerId' cannot be constructed via Reflection as it is prohibited.
 CustomerId c = default; // error VOG009: Type 'CustomerId' cannot be constructed with default as it is prohibited.
+
 var c = default(CustomerId); // error VOG009: Type 'CustomerId' cannot be constructed with default as it is prohibited.
 var c = GetCustomerId(); // error VOG010: Type 'CustomerId' cannot be constructed with 'new' as it is prohibited
 
-var c = Activator.CreateInstance<CustomerId>(); // error VOG025: Type 'MyVo' cannot be constructed via Reflection as it is prohibited
-
+var c = Activator.CreateInstance<CustomerId>(); // error VOG025: Type 'CustomerId' cannot be constructed via Reflection as it is prohibited.
 var c = Activator.CreateInstance(typeof(CustomerId)); // error VOG025: Type 'MyVo' cannot be constructed via Reflection as it is prohibited
 
 // catches lambda expressions
@@ -132,14 +133,51 @@ Task<CustomerId> t = Task.FromResult<CustomerId>(new()); // error VOG010: Type '
 void Process(CustomerId customerId = default) { } // error VOG009: Type 'CustomerId' cannot be constructed with default as it is prohibited.
 ```
 
-The main goal of this project is to achieve **almost the same speed and memory performance as using primitives directly**.
+One of the main goals of this project is to achieve **almost the same speed and memory performance as using primitives directly**.
+Put another way, if your `decimal` primitive represents an Account Balance, then there is **extremely** low overhead of 
+using an `AccountBalance` Value Object instead. Please see the [performance metrics below](#Performance). 
 
 ___
 
-## What is the repository?
+## Installation
 
-This is a Nuget package that contains a **source generator** and a **code analyser**. The analyser disallows code that could evade validation, meaning your types have more safety from invalid data.
+Vogen is a [Nuget package](https://www.nuget.org/packages/Vogen). Install it with:
 
+`dotnet add package Vogen`
+
+When added to your project, the **source generator** generates the wrappers for your primitives and and the **code analyser**
+will let you know if you try to create invalid Value Objects.
+
+## Usage
+
+Think about your _domain concepts_ and how you use primitives to represent them, e.g. instead of this:
+
+```csharp
+public void HandlePayment(int customerId, int accountId, decimal paymentAmount)
+```
+
+... have this:
+
+```csharp
+public void HandlePayment(CustomerId customerId, AccountId accountId, PaymentAmount paymentAmount)
+```
+
+
+It's as simple as creating types like this:
+
+```csharp
+[ValueObject] 
+public partial struct CustomerId { }
+
+[ValueObject] 
+public partial struct AccountId { }
+
+[ValueObject<decimal>] 
+public partial struct PaymentAmount { }
+```
+
+
+## More on Primitive Obsession
 The source generator generates [Value Objects](https://wiki.c2.com/?ValueObject). Value Objects help combat Primitive Obsession by wrapping simple primitives such as `int`, `string`, `double` etc. in a strongly-typed type.
 
 Primitive Obsession (AKA StringlyTyped) means being obsessed with primitives.  It is a Code Smell that degrades the quality of software.
@@ -158,7 +196,8 @@ The source generator is opinionated. The opinions help ensure consistency. The o
 * A VO, if validated, is validated with a static method named `Validate` that returns a `Validation` result
 * Any validation that is not `Validation.Ok` results in a `ValueObjectValidationException` being thrown
 
-It is common to represent domain ideas as primitives, but primitives might not be able to fully describe the domain idea.  To use Value Objects instead of primitives, we simply swap code like this:
+It is common to represent domain ideas as primitives, but primitives might not be able to fully describe the domain idea.  
+To use Value Objects instead of primitives, we simply swap code like this:
 
 ```csharp
 public class CustomerInfo {
@@ -175,7 +214,6 @@ public class CustomerInfo {
     public CustomerInfo(CustomerId id) => _id = id;
 }
 ```
-
 ## Tell me more about the Code Smell
 
 There's a blog post [here](https://dunnhq.com/posts/2021/primitive-obsession/) that describes it, but to summarise:
@@ -276,7 +314,7 @@ There are several code analysis warnings for invalid configuration, including:
 (to run these yourself: `dotnet run -c Release -- --job short --framework net6.0 --filter *` in the `benchmarks` folders)
 
 As mentioned previously, the goal of Vogen is to achieve very similar performance compare to using primitives themselves.
-Here's a benchmark comparing the use of a validated value object with underlying type of int vs using an int natively (*primitively* 🤓)
+Here's a benchmark comparing the use of a validated Value Object with underlying type of int vs using an int natively (*primitively* 🤓)
 
 ``` ini
 BenchmarkDotNet=v0.12.1, OS=Windows 10.0.22000
@@ -390,11 +428,11 @@ public partial struct Age { }
 
 The term Value Object represents a small object who's equality is based on value and not identity. From [Wikipedia](https://en.wikipedia.org/wiki/Value_object)
 
-> _In computer science, a value object is a small object that represents a simple entity whose equality is not based on identity: i.e. two value objects are equal when they have the same value, not necessarily being the same object._
+> _In computer science, a Value Object is a small object that represents a simple entity whose equality is not based on identity: i.e. two Value Objects are equal when they have the same value, not necessarily being the same object._
 
 In DDD, a Value Object is (again, from [Wikipedia](https://en.wikipedia.org/wiki/Domain-driven_design#Building_blocks))
 
->  _... a value object is an immutable object that contains attributes but has no conceptual identity_
+>  _... a Value Object is an immutable object that contains attributes but has no conceptual identity_
 
 ### How can I view the code that is generated?
 
@@ -603,7 +641,7 @@ public void CanEnter(Age age) {
 }
 ```
 
-### Can I create custom value object attributes with my own defaults?
+### Can I create custom Value Object attributes with my own defaults?
 
 Yes, but (at the moment) it requires that you put your defaults in your attribute's constructor - not in the call to the base class' constructor (see [this comment](https://github.com/SteveDunn/Vogen/pull/321#issuecomment-1399324832)).
 
