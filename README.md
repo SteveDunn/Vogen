@@ -311,48 +311,45 @@ There are several code analysis warnings for invalid configuration, including:
 
 ## Performance
 
-(to run these yourself: `dotnet run -c Release -- --job short --framework net6.0 --filter *` in the `benchmarks` folders)
+(to run these yourself: `dotnet run -c Release --framework net7.0  -- --job short --filter *` in the `Vogen.Benchmarks` folder)
 
 As mentioned previously, the goal of Vogen is to achieve very similar performance compare to using primitives themselves.
 Here's a benchmark comparing the use of a validated Value Object with underlying type of int vs using an int natively (*primitively* 🤓)
 
 ``` ini
-BenchmarkDotNet=v0.12.1, OS=Windows 10.0.22000
+BenchmarkDotNet=v0.13.2, OS=Windows 11 (10.0.22621.1194)
 AMD Ryzen 9 5950X, 1 CPU, 32 logical and 16 physical cores
-.NET Core SDK=6.0.100
-  [Host]   : .NET Core 5.0.12 (CoreCLR 5.0.1221.52207, CoreFX 5.0.1221.52207), X64 RyuJIT
-  ShortRun : .NET Core 5.0.12 (CoreCLR 5.0.1221.52207, CoreFX 5.0.1221.52207), X64 RyuJIT
-
+.NET SDK=7.0.102
+  [Host]   : .NET 7.0.2 (7.0.222.60605), X64 RyuJIT AVX2
+  ShortRun : .NET 7.0.2 (7.0.222.60605), X64 RyuJIT AVX2
 Job=ShortRun  IterationCount=3  LaunchCount=1  
-WarmupCount=3  
+WarmupCount=3    
 
 ```
-
-| Method                 |     Mean |    Error |   StdDev | Ratio | Allocated |
-|------------------------|---------:|---------:|---------:|------:|----------:|
-| UsingIntNatively       | 13.57 ns | 0.086 ns | 0.005 ns |  1.00 |         - |
-| UsingValueObjectStruct | 14.08 ns | 1.131 ns | 0.062 ns |  1.04 |         - |
+| Method | Mean | Error | StdDev | Ratio | RatioSD | Gen0 | Allocated |
+| :----: | :--: | :---: | :----: | :---: | :-----: | :--: | :-------: |
+| UsingIntNatively | 14.55 ns | 1.443 ns | 0.079 ns | 1.00 | 0.00 | - | - |
+| UsingValueObjectStruct | 14.88 ns | 3.639 ns | 0.199 ns | 1.02 | 0.02 | - | - |
 
 There is no discernible difference between using a native int and a VO struct; both are pretty much the same in terms of speed and memory.
 
 The next most common scenario is using a VO class to represent a native `String`.  These results are:
 
 ``` ini
-BenchmarkDotNet=v0.12.1, OS=Windows 10.0.22000
+BenchmarkDotNet=v0.13.2, OS=Windows 11 (10.0.22621.1194)
 AMD Ryzen 9 5950X, 1 CPU, 32 logical and 16 physical cores
-.NET Core SDK=6.0.100
-  [Host]   : .NET Core 5.0.12 (CoreCLR 5.0.1221.52207, CoreFX 5.0.1221.52207), X64 RyuJIT
-  ShortRun : .NET Core 5.0.12 (CoreCLR 5.0.1221.52207, CoreFX 5.0.1221.52207), X64 RyuJIT
-
+.NET SDK=7.0.102
+  [Host]   : .NET 7.0.2 (7.0.222.60605), X64 RyuJIT AVX2
+  ShortRun : .NET 7.0.2 (7.0.222.60605), X64 RyuJIT AVX2
 Job=ShortRun  IterationCount=3  LaunchCount=1  
-WarmupCount=3  
+WarmupCount=3 
 
 ```
+| Method                 | Mean     | Error  | StdDev | Ratio | RatioSD | Gen0 | Allocated | Alloc Ratio |
+|------------------------|----------|--------|--------|-------|---------|------|-----------|-------------|
+| UsingStringNatively    | 151.8 ns | 32.19  | 1.76   | 1.00  | 0.00    | 0.0153 | 256 B     | 1.00        |
+| UsingValueObjectAsStruct | 184.8 ns | 12.19  | 0.67   | 1.22  | 0.02    | 0.0153 | 256 B     | 1.00        |
 
-| Method                   |     Mean |    Error |  StdDev | Ratio | RatioSD |  Gen 0 | Allocated |
-|--------------------------|---------:|---------:|--------:|------:|--------:|-------:|----------:|
-| UsingStringNatively      | 135.4 ns | 16.89 ns | 0.93 ns |  1.00 |    0.00 | 0.0153 |     256 B |
-| UsingValueObjectAsStruct | 171.8 ns | 14.40 ns | 0.79 ns |  1.27 |    0.01 | 0.0153 |     256 B |
 
 There is a tiny amount of performance overhead, but these measurements are incredibly small. There is no memory overhead.
 
