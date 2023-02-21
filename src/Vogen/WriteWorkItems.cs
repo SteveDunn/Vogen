@@ -1,4 +1,7 @@
-﻿using System;
+﻿// The symbol 'Environment' is banned for use by analyzers: see https://github.com/dotnet/roslyn-analyzers/issues/6467 
+#pragma warning disable RS1035 
+
+using System;
 using System.Text;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
