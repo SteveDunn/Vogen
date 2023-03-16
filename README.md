@@ -638,6 +638,15 @@ public void CanEnter(Age age) {
 }
 ```
 
+### Can I normalize value when VO is created
+
+Yes, add NormalizeInput method, e.g.
+```csharp
+    private static string NormalizeInput(string input) => input.Trim();
+```
+See [wiki](https://github.com/SteveDunn/Vogen/wiki/Normalization) for more information.
+
+
 ### Can I create custom Value Object attributes with my own defaults?
 
 Yes, but (at the moment) it requires that you put your defaults in your attribute's constructor - not in the call to the base class' constructor (see [this comment](https://github.com/SteveDunn/Vogen/pull/321#issuecomment-1399324832)).
