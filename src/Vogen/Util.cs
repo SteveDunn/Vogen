@@ -28,14 +28,23 @@ public static class Util
     public static string GenerateValidation(VoWorkItem workItem)
     {
         if (workItem.ValidateMethod != null)
+        {
             return @$"var validation = {workItem.TypeToAugment.Identifier}.{workItem.ValidateMethod.Identifier.Value}(value);
             if (validation != Vogen.Validation.Ok)
             {{
-                throw new {workItem.ValidationExceptionFullName}(validation.ErrorMessage) {{
-                    Data = validation.Data
-                }};
+                var ex = new {workItem.ValidationExceptionFullName}(validation.ErrorMessage);
+                if (validation.Data != null) 
+                {{
+                    foreach (var kvp in validation.Data)
+                    {{
+                        ex.Data[kvp.Key] = kvp.Value;
+                    }}
+                }}
+                throw ex;
             }}
 ";
+        }
+
         return string.Empty;
     }
 

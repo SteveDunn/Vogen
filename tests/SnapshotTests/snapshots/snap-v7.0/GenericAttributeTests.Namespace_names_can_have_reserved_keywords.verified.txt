@@ -91,7 +91,13 @@ namespace @double
             var validation = @class.validate(value);
             if (validation != Vogen.Validation.Ok)
             {
-                throw new global::Vogen.ValueObjectValidationException(validation.ErrorMessage);
+                var ex = new global::Vogen.ValueObjectValidationException(validation.ErrorMessage);
+                if (validation.Data != null) {
+                    foreach (var kvp in validation.Data) {
+                        ex.Data[kvp.Key] = kvp.Value;
+                    }
+                }
+                throw ex;
             }
 
 

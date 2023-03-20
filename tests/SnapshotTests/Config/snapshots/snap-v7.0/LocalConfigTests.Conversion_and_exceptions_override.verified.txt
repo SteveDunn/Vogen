@@ -89,7 +89,13 @@ namespace Whatever
             var validation = CustomerId.Validate(value);
             if (validation != Vogen.Validation.Ok)
             {
-                throw new Whatever.MyValidationException(validation.ErrorMessage);
+                var ex = new Whatever.MyValidationException(validation.ErrorMessage);
+                if (validation.Data != null) {
+                    foreach (var kvp in validation.Data) {
+                        ex.Data[kvp.Key] = kvp.Value;
+                    }
+                }
+                throw ex;
             }
 
 

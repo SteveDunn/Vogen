@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace Vogen;
 
@@ -10,7 +9,7 @@ public class Validation
     /// <summary>
     /// Contains data related to validation.
     /// </summary>
-    public Dictionary<object, object> Data { get; } = new Dictionary<object, object>();
+    public Dictionary<object, object>? Data { get; private set; }
 
     public static readonly Validation Ok = new Validation(string.Empty);
 
@@ -35,6 +34,7 @@ public class Validation
     /// <returns>Validation.</returns>
     public Validation WithData(object key, object value)
     {
+        Data ??= new();
         Data[key] = value;
         return this;
     }
