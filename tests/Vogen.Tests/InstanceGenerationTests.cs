@@ -280,6 +280,12 @@ public class InstanceGenerationTests
             [Fact]
             public void It_generates_a_valid_item_when_given_a_valid_DateTimeOffset_input()
             {
+                var timezoneOffset = TimeZoneInfo.Local.BaseUtcOffset;
+                var timezoneOffsetExpected
+                    = timezoneOffset.Ticks < 0
+                    ? $"-{timezoneOffset:hh}:{timezoneOffset:mm}"
+                    : $"+{timezoneOffset:hh}:{timezoneOffset:mm}";
+
                 InstanceGeneration.BuildResult r =
                     InstanceGeneration.TryBuildInstanceValueAsText("foo", "2020-12-13", typeof(DateTimeOffset).FullName);
 
@@ -287,7 +293,7 @@ public class InstanceGenerationTests
                 r.Success.Should().BeTrue();
                 r.Value.Should()
                     .Be(
-                        "global::System.DateTimeOffset.Parse(\"2020-12-13T00:00:00.0000000+00:00\", null, global::System.Globalization.DateTimeStyles.RoundtripKind)");
+                        $"global::System.DateTimeOffset.Parse(\"2020-12-13T00:00:00.0000000{timezoneOffsetExpected}\", null, global::System.Globalization.DateTimeStyles.RoundtripKind)");
                 r.ErrorMessage.Should().BeEmpty();
             }
         }
