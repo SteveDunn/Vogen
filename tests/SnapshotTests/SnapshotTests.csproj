@@ -63,17 +63,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Update="SnapshotTests\Snapshots\ValueObjectGeneratorTests.Validation_with_camelCased_validate_method.verified.txt">
-      <ParentFile>$([System.String]::Copy('%(FileName)').Split('.')[0])</ParentFile>
-      <DependentUpon>%(ParentFile).cs</DependentUpon>
-    </None>
-    <None Update="SnapshotTests\Snapshots\ValueObjectGeneratorTests.Validation_with_PacalCased_validate_method.verified.txt">
-      <ParentFile>$([System.String]::Copy('%(FileName)').Split('.')[0])</ParentFile>
-      <DependentUpon>%(ParentFile).cs</DependentUpon>
-    </None>
-  </ItemGroup>
-
-  <ItemGroup>
     <Folder Include="InstanceFields\" />
   </ItemGroup>
 
