@@ -92,8 +92,10 @@ namespace Whatever
             if (validation != Vogen.Validation.Ok)
             {
                 var ex = new Whatever.MyValidationException(validation.ErrorMessage);
-                if (validation.Data != null) {
-                    foreach (var kvp in validation.Data) {
+                if (validation.Data != null) 
+                {
+                    foreach (var kvp in validation.Data)
+                    {
                         ex.Data[kvp.Key] = kvp.Value;
                     }
                 }
