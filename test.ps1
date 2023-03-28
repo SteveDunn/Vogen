@@ -47,7 +47,7 @@ dotnet clean Vogen.sln
 WriteStage("Packing the Vogen NuGet package version " +$version + " into " + $localPackages)
 
 
-dotnet pack Vogen.sln -c Debug -o:$localPackages /p:ForceVersion=$version --include-symbols --version-suffix:dev --no-restore
+dotnet pack Vogen.sln -c Debug /p:PackageOutputPath=$localPackages /p:ForceVersion=$version --include-symbols --version-suffix:dev --no-restore
 
 # Restore the project using the custom config file, restoring packages to a local folder
 dotnet restore ./tests/ConsumerTests -p UseLocallyBuiltPackage=true --force --no-cache --packages $localPackages --configfile: ./nuget.private.config
