@@ -217,6 +217,18 @@ public System.String Value
             {
                 writer.WriteStringValue(value.Value);
             }
+
+#if NET6_0_OR_GREATER
+            public override escapedTestsinternal_sealed_partial_classConversions_SystemTextJsonstring ReadAsPropertyName(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
+            {
+                return escapedTestsinternal_sealed_partial_classConversions_SystemTextJsonstring.Deserialize(reader.GetString());
+            }
+
+            public override void WriteAsPropertyName(System.Text.Json.Utf8JsonWriter writer, escapedTestsinternal_sealed_partial_classConversions_SystemTextJsonstring value, global::System.Text.Json.JsonSerializerOptions options)
+            {
+                writer.WritePropertyName(value.Value);
+            }
+#endif            
         }
 
 

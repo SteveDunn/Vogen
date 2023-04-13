@@ -259,6 +259,18 @@ namespace Whatever
             {
                 writer.WriteNumberValue(value.Value);
             }
+            
+#if NET6_0_OR_GREATER
+            public override stj_number_as_string_public_readonly_partial_structConversions_NewtonsoftJson___Conversions_SystemTextJsonfloat ReadAsPropertyName(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
+            {
+                return stj_number_as_string_public_readonly_partial_structConversions_NewtonsoftJson___Conversions_SystemTextJsonfloat.Deserialize(global::System.Single.Parse(reader.GetString(), global::System.Globalization.NumberStyles.Any, global::System.Globalization.CultureInfo.InvariantCulture));
+            }
+
+            public override void WriteAsPropertyName(System.Text.Json.Utf8JsonWriter writer, stj_number_as_string_public_readonly_partial_structConversions_NewtonsoftJson___Conversions_SystemTextJsonfloat value, global::System.Text.Json.JsonSerializerOptions options)
+            {
+                writer.WritePropertyName(value.Value.ToString(global::System.Globalization.CultureInfo.InvariantCulture));
+            }
+#endif            
         }
 
         class stj_number_as_string_public_readonly_partial_structConversions_NewtonsoftJson___Conversions_SystemTextJsonfloatNewtonsoftJsonConverter : Newtonsoft.Json.JsonConverter

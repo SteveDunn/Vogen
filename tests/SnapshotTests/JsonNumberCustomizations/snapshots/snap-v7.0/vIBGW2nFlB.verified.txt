@@ -300,6 +300,18 @@ namespace Whatever
             {
                 writer.WriteStringValue(value.Value);
             }
+
+#if NET6_0_OR_GREATER
+            public override stj_number_as_string_public_readonly_partial_structConversions_SystemTextJsonSystem_DateTime ReadAsPropertyName(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
+            {
+                return stj_number_as_string_public_readonly_partial_structConversions_SystemTextJsonSystem_DateTime.Deserialize(global::System.DateTime.ParseExact(reader.GetString(), "O", global::System.Globalization.CultureInfo.InvariantCulture));
+            }
+
+            public override void WriteAsPropertyName(System.Text.Json.Utf8JsonWriter writer, stj_number_as_string_public_readonly_partial_structConversions_SystemTextJsonSystem_DateTime value, global::System.Text.Json.JsonSerializerOptions options)
+            {
+                writer.WritePropertyName(value.Value.ToString("O"));
+            }
+#endif            
         }
 
 

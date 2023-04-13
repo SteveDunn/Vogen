@@ -160,6 +160,18 @@ namespace Whatever
             {
                 writer.WriteBooleanValue(value.Value);
             }
+
+#if NET6_0_OR_GREATER
+            public override stj_number_as_string_public_sealed_partial_record_classConversions_NewtonsoftJson___Conversions_SystemTextJsonbool_customized ReadAsPropertyName(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
+            {
+                return stj_number_as_string_public_sealed_partial_record_classConversions_NewtonsoftJson___Conversions_SystemTextJsonbool_customized.Deserialize(bool.Parse(reader.GetString()));
+            }
+
+            public override void WriteAsPropertyName(global::System.Text.Json.Utf8JsonWriter writer, stj_number_as_string_public_sealed_partial_record_classConversions_NewtonsoftJson___Conversions_SystemTextJsonbool_customized value, global::System.Text.Json.JsonSerializerOptions options)
+            {
+                writer.WritePropertyName(value.Value.ToString());
+            }
+#endif            
         }
 
         class stj_number_as_string_public_sealed_partial_record_classConversions_NewtonsoftJson___Conversions_SystemTextJsonbool_customizedNewtonsoftJsonConverter : Newtonsoft.Json.JsonConverter

@@ -223,6 +223,18 @@ public static readonly internal_partial_classstring MyValue = new internal_parti
             {
                 writer.WriteStringValue(value.Value);
             }
+
+#if NET6_0_OR_GREATER
+            public override internal_partial_classstring ReadAsPropertyName(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
+            {
+                return internal_partial_classstring.Deserialize(reader.GetString());
+            }
+
+            public override void WriteAsPropertyName(System.Text.Json.Utf8JsonWriter writer, internal_partial_classstring value, global::System.Text.Json.JsonSerializerOptions options)
+            {
+                writer.WritePropertyName(value.Value);
+            }
+#endif            
         }
 
 

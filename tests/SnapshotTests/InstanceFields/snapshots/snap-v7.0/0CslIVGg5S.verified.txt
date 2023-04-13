@@ -165,6 +165,18 @@ public static readonly public_sealed_partial_recordbyte MyValue = new public_sea
             {
                 writer.WriteNumberValue(value.Value);
             }
+
+#if NET6_0_OR_GREATER
+            public override public_sealed_partial_recordbyte ReadAsPropertyName(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
+            {
+                return public_sealed_partial_recordbyte.Deserialize(global::System.Byte.Parse(reader.GetString(), global::System.Globalization.NumberStyles.Any, global::System.Globalization.CultureInfo.InvariantCulture));
+            }
+
+            public override void WriteAsPropertyName(global::System.Text.Json.Utf8JsonWriter writer, public_sealed_partial_recordbyte value, global::System.Text.Json.JsonSerializerOptions options)
+            {
+                writer.WritePropertyName(value.Value.ToString(global::System.Globalization.CultureInfo.InvariantCulture));
+            }
+#endif            
         }
 
 

@@ -306,6 +306,18 @@ public static readonly internal_partial_structbyte MyValue = new internal_partia
             {
                 writer.WriteNumberValue(value.Value);
             }
+
+#if NET6_0_OR_GREATER
+            public override internal_partial_structbyte ReadAsPropertyName(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
+            {
+                return internal_partial_structbyte.Deserialize(global::System.Byte.Parse(reader.GetString(), global::System.Globalization.NumberStyles.Any, global::System.Globalization.CultureInfo.InvariantCulture));
+            }
+
+            public override void WriteAsPropertyName(global::System.Text.Json.Utf8JsonWriter writer, internal_partial_structbyte value, global::System.Text.Json.JsonSerializerOptions options)
+            {
+                writer.WritePropertyName(value.Value.ToString(global::System.Globalization.CultureInfo.InvariantCulture));
+            }
+#endif            
         }
 
 

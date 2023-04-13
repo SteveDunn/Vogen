@@ -259,6 +259,18 @@ namespace Whatever
             {
                 writer.WriteStringValue(value.Value);
             }
+
+#if NET6_0_OR_GREATER
+            public override public_readonly_partial_structConversions_NewtonsoftJson___Conversions_SystemTextJsonSystem_DateTimeOffset ReadAsPropertyName(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
+            {
+                return public_readonly_partial_structConversions_NewtonsoftJson___Conversions_SystemTextJsonSystem_DateTimeOffset.Deserialize(global::System.DateTimeOffset.ParseExact(reader.GetString(), "O", global::System.Globalization.CultureInfo.InvariantCulture));
+            }
+
+            public override void WriteAsPropertyName(System.Text.Json.Utf8JsonWriter writer, public_readonly_partial_structConversions_NewtonsoftJson___Conversions_SystemTextJsonSystem_DateTimeOffset value, global::System.Text.Json.JsonSerializerOptions options)
+            {
+                writer.WritePropertyName(value.Value.ToString("O"));
+            }
+#endif            
         }
 
         class public_readonly_partial_structConversions_NewtonsoftJson___Conversions_SystemTextJsonSystem_DateTimeOffsetNewtonsoftJsonConverter : Newtonsoft.Json.JsonConverter

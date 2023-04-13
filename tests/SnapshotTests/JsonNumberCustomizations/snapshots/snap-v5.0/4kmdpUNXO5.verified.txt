@@ -210,6 +210,18 @@ public System.DateTimeOffset Value
             {
                 writer.WriteStringValue(value.Value);
             }
+
+#if NET6_0_OR_GREATER
+            public override stj_number_as_string_public_sealed_partial_classConversions_NewtonsoftJson___Conversions_SystemTextJsonSystem_DateTimeOffset ReadAsPropertyName(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
+            {
+                return stj_number_as_string_public_sealed_partial_classConversions_NewtonsoftJson___Conversions_SystemTextJsonSystem_DateTimeOffset.Deserialize(global::System.DateTimeOffset.ParseExact(reader.GetString(), "O", global::System.Globalization.CultureInfo.InvariantCulture));
+            }
+
+            public override void WriteAsPropertyName(System.Text.Json.Utf8JsonWriter writer, stj_number_as_string_public_sealed_partial_classConversions_NewtonsoftJson___Conversions_SystemTextJsonSystem_DateTimeOffset value, global::System.Text.Json.JsonSerializerOptions options)
+            {
+                writer.WritePropertyName(value.Value.ToString("O"));
+            }
+#endif            
         }
 
         class stj_number_as_string_public_sealed_partial_classConversions_NewtonsoftJson___Conversions_SystemTextJsonSystem_DateTimeOffsetNewtonsoftJsonConverter : Newtonsoft.Json.JsonConverter

@@ -206,6 +206,19 @@ public @record.@struct.@float.@decimal Value
             {
                 global::System.Text.Json.JsonSerializer.Serialize(writer, value.Value);
             }
+
+#if NET6_0_OR_GREATER
+            public override @event2 ReadAsPropertyName(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
+            {
+                var primitive = global::System.Text.Json.JsonSerializer.Deserialize<@record.@struct.@float.@decimal>(ref reader, options);
+                return @event2.Deserialize(primitive);
+            }
+
+            public override void WriteAsPropertyName(System.Text.Json.Utf8JsonWriter writer, @event2 value, global::System.Text.Json.JsonSerializerOptions options)
+            {
+                writer.WritePropertyName(global::System.Text.Json.JsonSerializer.Serialize(value.Value));
+            }
+#endif            
         }
 
 

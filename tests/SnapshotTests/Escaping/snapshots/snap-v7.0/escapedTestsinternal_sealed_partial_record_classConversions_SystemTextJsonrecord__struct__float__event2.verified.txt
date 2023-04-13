@@ -155,6 +155,19 @@ namespace @class
             {
                 global::System.Text.Json.JsonSerializer.Serialize(writer, value.Value);
             }
+
+#if NET6_0_OR_GREATER
+            public override escapedTestsinternal_sealed_partial_record_classConversions_SystemTextJsonrecord__struct__float__event2 ReadAsPropertyName(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
+            {
+                var primitive = global::System.Text.Json.JsonSerializer.Deserialize<@class.@record.@struct.@float.event2>(ref reader, options);
+                return escapedTestsinternal_sealed_partial_record_classConversions_SystemTextJsonrecord__struct__float__event2.Deserialize(primitive);
+            }
+
+            public override void WriteAsPropertyName(System.Text.Json.Utf8JsonWriter writer, escapedTestsinternal_sealed_partial_record_classConversions_SystemTextJsonrecord__struct__float__event2 value, global::System.Text.Json.JsonSerializerOptions options)
+            {
+                writer.WritePropertyName(global::System.Text.Json.JsonSerializer.Serialize(value.Value));
+            }
+#endif            
         }
 
 
