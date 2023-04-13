@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Linq;
 using Microsoft.CodeAnalysis;
@@ -68,7 +69,7 @@ internal static class VoFilter
         }
 
         AttributeData? voAttribute =
-            attributes.SingleOrDefault(a => a.AttributeClass?.FullName() is "Vogen.ValueObjectAttribute");
+            attributes.SingleOrDefault(a => a.AttributeClass?.FullName()?.StartsWith("Vogen.ValueObjectAttribute", StringComparison.Ordinal) == true);
 
         return voAttribute is not null;
     }
