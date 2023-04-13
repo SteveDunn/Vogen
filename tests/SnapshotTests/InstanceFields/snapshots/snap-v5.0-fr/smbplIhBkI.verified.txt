@@ -264,6 +264,18 @@ public static readonly public_partial_structbyte MyValue = new public_partial_st
             {
                 writer.WriteNumberValue(value.Value);
             }
+
+#if NET6_0_OR_GREATER
+            public override public_partial_structbyte ReadAsPropertyName(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
+            {
+                return public_partial_structbyte.Deserialize(global::System.Byte.Parse(reader.GetString(), global::System.Globalization.NumberStyles.Any, global::System.Globalization.CultureInfo.InvariantCulture));
+            }
+
+            public override void WriteAsPropertyName(global::System.Text.Json.Utf8JsonWriter writer, public_partial_structbyte value, global::System.Text.Json.JsonSerializerOptions options)
+            {
+                writer.WritePropertyName(value.Value.ToString(global::System.Globalization.CultureInfo.InvariantCulture));
+            }
+#endif            
         }
 
 

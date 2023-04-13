@@ -172,6 +172,18 @@ namespace Whatever
             {
                 writer.WriteStringValue(value.Value);
             }
+
+#if NET6_0_OR_GREATER
+            public override public_sealed_partial_record_classConversions_NewtonsoftJson___Conversions_SystemTextJsonstring ReadAsPropertyName(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
+            {
+                return public_sealed_partial_record_classConversions_NewtonsoftJson___Conversions_SystemTextJsonstring.Deserialize(reader.GetString());
+            }
+
+            public override void WriteAsPropertyName(System.Text.Json.Utf8JsonWriter writer, public_sealed_partial_record_classConversions_NewtonsoftJson___Conversions_SystemTextJsonstring value, global::System.Text.Json.JsonSerializerOptions options)
+            {
+                writer.WritePropertyName(value.Value);
+            }
+#endif            
         }
 
         class public_sealed_partial_record_classConversions_NewtonsoftJson___Conversions_SystemTextJsonstringNewtonsoftJsonConverter : Newtonsoft.Json.JsonConverter

@@ -216,6 +216,18 @@ namespace @class
             {
                 writer.WriteStringValue(value.Value);
             }
+
+#if NET6_0_OR_GREATER
+            public override escapedTestsinternal_readonly_partial_structConversions_SystemTextJsonSystem_Guid ReadAsPropertyName(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
+            {
+                return escapedTestsinternal_readonly_partial_structConversions_SystemTextJsonSystem_Guid.Deserialize(System.Guid.Parse(reader.GetString()));
+            }
+
+            public override void WriteAsPropertyName(System.Text.Json.Utf8JsonWriter writer, escapedTestsinternal_readonly_partial_structConversions_SystemTextJsonSystem_Guid value, global::System.Text.Json.JsonSerializerOptions options)
+            {
+                writer.WritePropertyName(value.Value.ToString());
+            }
+#endif            
         }
 
 

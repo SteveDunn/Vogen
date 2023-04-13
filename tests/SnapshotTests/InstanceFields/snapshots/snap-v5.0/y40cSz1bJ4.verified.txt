@@ -177,6 +177,18 @@ public static readonly internal_partial_recordstring MyValue = new internal_part
             {
                 writer.WriteStringValue(value.Value);
             }
+
+#if NET6_0_OR_GREATER
+            public override internal_partial_recordstring ReadAsPropertyName(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
+            {
+                return internal_partial_recordstring.Deserialize(reader.GetString());
+            }
+
+            public override void WriteAsPropertyName(System.Text.Json.Utf8JsonWriter writer, internal_partial_recordstring value, global::System.Text.Json.JsonSerializerOptions options)
+            {
+                writer.WritePropertyName(value.Value);
+            }
+#endif            
         }
 
 

@@ -203,6 +203,20 @@ public static readonly public_partial_structchar MyValue = new public_partial_st
             {
                 writer.WriteStringValue(value.Value.ToString());
             }
+
+#if NET6_0_OR_GREATER
+            public override public_partial_structchar ReadAsPropertyName(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
+            {
+                var s = reader.GetString();
+
+                return public_partial_structchar.Deserialize(s[0]);
+            }
+
+            public override void WriteAsPropertyName(System.Text.Json.Utf8JsonWriter writer, public_partial_structchar value, global::System.Text.Json.JsonSerializerOptions options)
+            {
+                writer.WritePropertyName(value.Value.ToString());
+            }
+#endif            
         }
 
 

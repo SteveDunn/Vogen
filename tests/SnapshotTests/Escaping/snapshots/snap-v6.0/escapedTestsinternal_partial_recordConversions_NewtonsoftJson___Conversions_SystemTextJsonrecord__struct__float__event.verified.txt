@@ -156,6 +156,19 @@ namespace @class
             {
                 global::System.Text.Json.JsonSerializer.Serialize(writer, value.Value);
             }
+
+#if NET6_0_OR_GREATER
+            public override escapedTestsinternal_partial_recordConversions_NewtonsoftJson___Conversions_SystemTextJsonrecord__struct__float__event ReadAsPropertyName(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
+            {
+                var primitive = global::System.Text.Json.JsonSerializer.Deserialize<@class.@record.@struct.@float.@event>(ref reader, options);
+                return escapedTestsinternal_partial_recordConversions_NewtonsoftJson___Conversions_SystemTextJsonrecord__struct__float__event.Deserialize(primitive);
+            }
+
+            public override void WriteAsPropertyName(System.Text.Json.Utf8JsonWriter writer, escapedTestsinternal_partial_recordConversions_NewtonsoftJson___Conversions_SystemTextJsonrecord__struct__float__event value, global::System.Text.Json.JsonSerializerOptions options)
+            {
+                writer.WritePropertyName(global::System.Text.Json.JsonSerializer.Serialize(value.Value));
+            }
+#endif            
         }
 
         class escapedTestsinternal_partial_recordConversions_NewtonsoftJson___Conversions_SystemTextJsonrecord__struct__float__eventNewtonsoftJsonConverter : Newtonsoft.Json.JsonConverter
