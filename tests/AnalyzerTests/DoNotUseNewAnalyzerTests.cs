@@ -33,7 +33,29 @@ namespace AnalyzerTests
             var test = @"";
             await VerifyCS.VerifyAnalyzerAsync(test);
         }
+#if NET7_0_OR_GREATER
+        [Theory(DisplayName = "Bug https://github.com/SteveDunn/Vogen/issues/389")]
+        [ClassData(typeof(Types))]
+        public async Task Disallow_new_for_creating_value_objects_using_generic_attribute(string type)
+        {
+            var source = $@"using Vogen;
+namespace Whatever;
 
+[ValueObject<int>()]
+public {type} MyVo {{ }}
+
+public class Test {{
+    public Test() {{
+        var c = {{|#0:new MyVo()|}};
+        MyVo c2 = {{|#1:new()|}};
+    }}
+}}
+";
+            await Run(
+                source,
+                WithDiagnostics("VOG010", DiagnosticSeverity.Error, "MyVo", 0, 1));
+        }
+#endif
         [Theory]
         [ClassData(typeof(Types))]
         public async Task Disallow_new_for_creating_value_objects(string type)

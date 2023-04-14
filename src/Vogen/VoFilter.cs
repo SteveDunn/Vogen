@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Linq;
 using Microsoft.CodeAnalysis;
@@ -53,23 +54,6 @@ internal static class VoFilter
         return null;
     }
 
-    public static bool IsTarget(INamedTypeSymbol? voClass)
-    {
-        if (voClass == null)
-        {
-            return false;
-        }
-
-        ImmutableArray<AttributeData> attributes = voClass.GetAttributes();
-
-        if (attributes.Length == 0)
-        {
-            return false;
-        }
-
-        AttributeData? voAttribute =
-            attributes.SingleOrDefault(a => a.AttributeClass?.FullName() is "Vogen.ValueObjectAttribute");
-
-        return voAttribute is not null;
-    }
+    public static bool IsTarget(INamedTypeSymbol? voClass) => 
+        voClass is not null && TryGetValueObjectAttributes(voClass).Any();
 }
