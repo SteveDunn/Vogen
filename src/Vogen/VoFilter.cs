@@ -54,23 +54,6 @@ internal static class VoFilter
         return null;
     }
 
-    public static bool IsTarget(INamedTypeSymbol? voClass)
-    {
-        if (voClass == null)
-        {
-            return false;
-        }
-
-        ImmutableArray<AttributeData> attributes = voClass.GetAttributes();
-
-        if (attributes.Length == 0)
-        {
-            return false;
-        }
-
-        AttributeData? voAttribute =
-            attributes.SingleOrDefault(a => a.AttributeClass?.FullName()?.StartsWith("Vogen.ValueObjectAttribute", StringComparison.Ordinal) == true);
-
-        return voAttribute is not null;
-    }
+    public static bool IsTarget(INamedTypeSymbol? voClass) => 
+        voClass is not null && TryGetValueObjectAttributes(voClass).Any();
 }
