@@ -26,7 +26,7 @@ It adds new C# compilation errors to help stop the creation of invalid Value Obj
 The source generator generates strongly typed **domain concepts**. You provide this:
 
 ```csharp
-[ValueObject]
+[ValueObject<int>]
 public partial struct CustomerId {
 }
 ```
@@ -76,11 +76,13 @@ SendInvoice(customerId);
 public void SendInvoice(CustomerId customerId) { ... }
 ```
 
-`int` is the default type for Value Objects, but you can, individually, or globally, 
-configure them to be other types. See the Configuration section later in the document, but here's some brief examples:
+**Note:**    
+> `int` is the default type for Value Objects, but it is generally a good idea to explicitly declare each type
+> for clarity. Plus, although `int` is the default, you can - individually or globally - configure them to be 
+> other types. See the Configuration section later in the document, but here's some brief examples:
 
 ```csharp
-[ValueObject<decimal>] // C# 11 generic attributes
+[ValueObject<decimal>] 
 public partial struct AccountBalance { }
 
 [ValueObject(typeof(string))]
