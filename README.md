@@ -389,7 +389,6 @@ See the examples folder for more information.
 
 Yes, it's here: https://github.com/SteveDunn/Vogen/wiki
 
-
 ### What versions of .NET are supported?
 
 The source generator is .NET Standard 2.0. The code it generates supports all C# language versions from 6.0 and onwards 
@@ -489,6 +488,24 @@ Yes. By default, each VO is decorated with a `TypeConverter` and `System.Text.Js
 * Dapper
 * EFCore
 * LINQ to DB
+
+### Can I use them in EFCore?
+
+Yes, although there are certain considerations. [Please see the EFCore page on the Wiki](https://github.com/SteveDunn/Vogen/wiki/Value-Objects-in-EFCore), 
+but the TL;DR is:
+
+* If the Value Object on your entity is a struct, then you don't need to do anything special
+
+* But if it is a class, then you need a conversion to be generated, e.g. `[ValueObject<string>(conversions: Conversions.EfCoreValueConverter)]` 
+and you need to tell EFCore to use that converter in the `OnModelCreating` method, e.g.:
+
+```csharp
+        builder.Entity<SomeEntity>(b =>
+        {
+            b.Property(e => e.Name).HasConversion(new Name.EfCoreValueConverter());
+        });
+```
+
 
 ### It seems like a lot of overhead; I can validate the value myself when I use it!
 
