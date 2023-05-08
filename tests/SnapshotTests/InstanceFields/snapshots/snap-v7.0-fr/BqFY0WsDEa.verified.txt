@@ -151,7 +151,7 @@ public static readonly internal_sealed_partial_recordchar MyValue = new internal
         // record enumerates fields - we just want our Value and to throw if it's not initialized.
         /// <summary>Returns the string representation of the underlying <see cref="System.Char" />.</summary>
     /// <inheritdoc cref="System.Char.ToString()" />
-    public override global::System.String ToString() => Value.ToString();
+    public override global::System.String ToString() => _isInitialized ? Value.ToString() : "[UNINITIALIZED]";
 
         
         class internal_sealed_partial_recordcharSystemTextJsonConverter : global::System.Text.Json.Serialization.JsonConverter<internal_sealed_partial_recordchar>

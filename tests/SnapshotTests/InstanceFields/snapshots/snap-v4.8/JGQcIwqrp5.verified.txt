@@ -201,7 +201,7 @@ public static readonly public_partial_classint MyValue = new public_partial_clas
 
         /// <summary>Returns the string representation of the underlying <see cref="System.Int32" />.</summary>
     /// <inheritdoc cref="System.Int32.ToString()" />
-    public override global::System.String ToString() => Value.ToString();
+    public override global::System.String ToString() => _isInitialized ? Value.ToString() : "[UNINITIALIZED]";
 
         
         class public_partial_classintSystemTextJsonConverter : global::System.Text.Json.Serialization.JsonConverter<public_partial_classint>

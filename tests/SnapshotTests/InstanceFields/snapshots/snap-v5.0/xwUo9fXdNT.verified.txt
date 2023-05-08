@@ -201,7 +201,7 @@ public static readonly public_partial_classfloat MyValue = new public_partial_cl
 
         /// <summary>Returns the string representation of the underlying <see cref="System.Single" />.</summary>
     /// <inheritdoc cref="System.Single.ToString()" />
-    public override global::System.String ToString() => Value.ToString();
+    public override global::System.String ToString() => _isInitialized ? Value.ToString() : "[UNINITIALIZED]";
 
         
         class public_partial_classfloatSystemTextJsonConverter : global::System.Text.Json.Serialization.JsonConverter<public_partial_classfloat>

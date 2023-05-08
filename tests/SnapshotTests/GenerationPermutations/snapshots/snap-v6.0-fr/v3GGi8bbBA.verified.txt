@@ -146,7 +146,7 @@ namespace Whatever
         // record enumerates fields - we just want our Value and to throw if it's not initialized.
         /// <summary>Returns the string representation of the underlying <see cref="System.Boolean" />.</summary>
     /// <inheritdoc cref="System.Boolean.ToString()" />
-    public override global::System.String ToString() => Value.ToString();
+    public override global::System.String ToString() => _isInitialized ? Value.ToString() : "[UNINITIALIZED]";
 
         
         class public_partial_recordConversions_NewtonsoftJson___Conversions_SystemTextJsonboolSystemTextJsonConverter : global::System.Text.Json.Serialization.JsonConverter<public_partial_recordConversions_NewtonsoftJson___Conversions_SystemTextJsonbool>
