@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Vogen.Tests.Types;
+﻿namespace Vogen.Tests.Types;
 
 [ValueObject(typeof(string))]
 public partial class Dave

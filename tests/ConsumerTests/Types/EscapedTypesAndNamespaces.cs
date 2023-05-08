@@ -1,6 +1,4 @@
 ﻿#pragma warning disable IDE1006 // Naming Styles
-using Vogen;
-
 namespace record.@struct.@float
 {
     public readonly record struct @decimal();

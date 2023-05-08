@@ -1,7 +1,4 @@
 ﻿#nullable disable
-using FluentAssertions;
-using Vogen;
-using Xunit;
 using JsonSerializer = System.Text.Json.JsonSerializer;
 
 namespace MediumTests.SerializationAndConversionTests;

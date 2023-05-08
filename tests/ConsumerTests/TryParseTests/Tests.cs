@@ -1,8 +1,4 @@
-﻿using System;
-using System.Globalization;
-using FluentAssertions;
-using Vogen;
-using Xunit;
+﻿using System.Globalization;
 
 namespace ConsumerTests.TryParseTests;
 

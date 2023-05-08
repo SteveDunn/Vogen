@@ -1,8 +1,4 @@
-﻿using FluentAssertions;
-using Vogen;
-using Xunit;
-
-namespace ConsumerTests.ToStringTests;
+﻿namespace ConsumerTests.ToStringTests;
 
 public class Derivation
 {

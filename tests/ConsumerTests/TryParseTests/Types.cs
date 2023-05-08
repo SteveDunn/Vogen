@@ -1,10 +1,4 @@
-﻿using System;
-using System.Globalization;
-using FluentAssertions;
-using Vogen;
-using Xunit;
-
-namespace ConsumerTests.TryParseTests;
+﻿namespace ConsumerTests.TryParseTests;
 
 [ValueObject(typeof(int))]
 public partial struct IntVoNoValidation

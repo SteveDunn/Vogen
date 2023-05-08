@@ -1,5 +1,3 @@
-using Vogen;
-
 namespace ConsumerTests.Types;
 
 [ValueObject]

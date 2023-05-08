@@ -1,8 +1,4 @@
-﻿using System;
-using Vogen;
-using Xunit;
-using FluentAssertions;
-using FluentAssertions.Execution;
+﻿using FluentAssertions.Execution;
 
 namespace ConsumerTests.Instances;
 

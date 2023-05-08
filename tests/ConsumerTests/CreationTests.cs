@@ -1,10 +1,6 @@
-using System;
 using @double;
 using @bool.@byte.@short.@float.@object;
-using FluentAssertions;
-using Vogen;
 using Vogen.Tests.Types;
-using Xunit;
 
 namespace NotSystem
 {

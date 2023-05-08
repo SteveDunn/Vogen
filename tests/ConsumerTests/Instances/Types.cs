@@ -1,6 +1,4 @@
-﻿using Vogen;
-
-namespace ConsumerTests.Instances;
+﻿namespace ConsumerTests.Instances;
 
 [ValueObject(typeof(int))]
 [Instance(name: "Invalid", value: -1)]

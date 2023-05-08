@@ -1,8 +1,4 @@
-﻿using System;
-using System.ComponentModel;
-using FluentAssertions;
-using Vogen;
-using Xunit;
+﻿using System.ComponentModel;
 
 namespace ConsumerTests.GenericDeserializationValidationTests;
 

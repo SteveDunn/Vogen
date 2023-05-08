@@ -1,12 +1,14 @@
-﻿
-using FluentAssertions;
-using Vogen.Tests.Types;
-using Xunit;
+﻿using Vogen.Tests.Types;
 
 namespace ConsumerTests.ToStringTests;
 
 public class BasicFunctionality
 {
+    // [Fact]
+    // public void ToString_uses_generated_method()
+    // {
+    // }
+
     [Fact]
     public void ToString_uses_generated_method()
     {

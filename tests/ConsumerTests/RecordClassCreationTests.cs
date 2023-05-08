@@ -1,10 +1,6 @@
 #pragma warning disable VOG025
 
-using System;
-using FluentAssertions;
-using Vogen;
 using Vogen.Tests.Types;
-using Xunit;
 
 namespace ConsumerTests.RecordTests;
 
