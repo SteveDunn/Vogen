@@ -201,7 +201,7 @@ public static readonly internal_partial_classlong MyValue = new internal_partial
 
         /// <summary>Returns the string representation of the underlying <see cref="System.Int64" />.</summary>
     /// <inheritdoc cref="System.Int64.ToString()" />
-    public override global::System.String ToString() => Value.ToString();
+    public override global::System.String ToString() => _isInitialized ? Value.ToString() : "[UNINITIALIZED]";
 
         
         class internal_partial_classlongSystemTextJsonConverter : global::System.Text.Json.Serialization.JsonConverter<internal_partial_classlong>

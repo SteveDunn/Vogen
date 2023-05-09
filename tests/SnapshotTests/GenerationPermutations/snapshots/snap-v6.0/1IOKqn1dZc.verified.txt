@@ -196,7 +196,7 @@ public System.Boolean Value
 
         /// <summary>Returns the string representation of the underlying <see cref="System.Boolean" />.</summary>
     /// <inheritdoc cref="System.Boolean.ToString()" />
-    public override global::System.String ToString() => Value.ToString();
+    public override global::System.String ToString() => _isInitialized ? Value.ToString() : "[UNINITIALIZED]";
 
         
         class public_sealed_partial_classConversions_NewtonsoftJson___Conversions_SystemTextJsonboolSystemTextJsonConverter : global::System.Text.Json.Serialization.JsonConverter<public_sealed_partial_classConversions_NewtonsoftJson___Conversions_SystemTextJsonbool>

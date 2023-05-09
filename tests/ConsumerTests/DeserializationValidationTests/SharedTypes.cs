@@ -4,7 +4,6 @@ using LinqToDB.DataProvider.SQLite;
 using LinqToDB.Mapping;
 using Microsoft.Data.Sqlite;
 using Microsoft.EntityFrameworkCore;
-using Vogen;
 
 namespace ConsumerTests.DeserializationValidationTests;
 

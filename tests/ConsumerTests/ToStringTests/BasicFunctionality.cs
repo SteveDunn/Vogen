@@ -1,12 +1,18 @@
-﻿
-using FluentAssertions;
-using Vogen.Tests.Types;
-using Xunit;
+﻿using Vogen.Tests.Types;
 
 namespace ConsumerTests.ToStringTests;
 
 public class BasicFunctionality
 {
+    [Fact]
+    public void ToString_does_not_throw_for_something_uninitialized()
+    {
+#pragma warning disable VOG010
+        Age age = new Age();
+        age.ToString().Should().Be("[UNINITIALIZED]");
+#pragma warning restore VOG010
+    }
+
     [Fact]
     public void ToString_uses_generated_method()
     {

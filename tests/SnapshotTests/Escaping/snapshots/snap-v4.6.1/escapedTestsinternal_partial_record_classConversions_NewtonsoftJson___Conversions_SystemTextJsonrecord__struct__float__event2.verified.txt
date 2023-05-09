@@ -141,7 +141,7 @@ namespace @class
         // record enumerates fields - we just want our Value and to throw if it's not initialized.
         /// <summary>Returns the string representation of the underlying <see cref="@class.@record.@struct.@float.event2" />.</summary>
     /// <inheritdoc cref="@class.@record.@struct.@float.event2.ToString()" />
-    public override global::System.String ToString() => Value.ToString();
+    public override global::System.String ToString() => _isInitialized ? Value.ToString() : "[UNINITIALIZED]";
 
         
         class escapedTestsinternal_partial_record_classConversions_NewtonsoftJson___Conversions_SystemTextJsonrecord__struct__float__event2SystemTextJsonConverter : global::System.Text.Json.Serialization.JsonConverter<escapedTestsinternal_partial_record_classConversions_NewtonsoftJson___Conversions_SystemTextJsonrecord__struct__float__event2>

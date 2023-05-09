@@ -146,7 +146,7 @@ namespace Whatever
         // record enumerates fields - we just want our Value and to throw if it's not initialized.
         /// <summary>Returns the string representation of the underlying <see cref="System.Guid" />.</summary>
     /// <inheritdoc cref="System.Guid.ToString()" />
-    public override global::System.String ToString() => Value.ToString();
+    public override global::System.String ToString() => _isInitialized ? Value.ToString() : "[UNINITIALIZED]";
 
         
         class public_sealed_partial_recordConversions_NewtonsoftJson___Conversions_SystemTextJsonSystem_GuidSystemTextJsonConverter : global::System.Text.Json.Serialization.JsonConverter<public_sealed_partial_recordConversions_NewtonsoftJson___Conversions_SystemTextJsonSystem_Guid>

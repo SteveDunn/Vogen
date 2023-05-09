@@ -1,8 +1,3 @@
-using System;
-using FluentAssertions;
-using Vogen;
-using Xunit;
-
 namespace ConsumerTests.RecordTests;
 
 public class RecordStructTests

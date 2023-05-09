@@ -1,6 +1,4 @@
-﻿using FluentAssertions;
-using Vogen.Tests.Types;
-using Xunit;
+﻿using Vogen.Tests.Types;
 
 namespace ConsumerTests.Instances;
 

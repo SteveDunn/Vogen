@@ -271,7 +271,7 @@ namespace Whatever
 
         /// <summary>Returns the string representation of the underlying type</summary>
     /// <inheritdoc cref="System.DateTime.ToString()" />
-    public readonly override global::System.String ToString() => Value.ToString();
+    public readonly override global::System.String ToString() =>_isInitialized ? Value.ToString() : "[UNINITIALIZED]";
 
         private readonly void EnsureInitialized()
         {

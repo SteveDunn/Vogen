@@ -1,10 +1,4 @@
-﻿using System;
-using System.ComponentModel;
-using FluentAssertions;
-using Vogen;
-using Xunit;
-
-namespace ConsumerTests.DeserializationValidationTests;
+﻿namespace ConsumerTests.DeserializationValidationTests;
 
 [ValueObject(typeof(int), Conversions.TypeConverter, deserializationStrictness: DeserializationStrictness.AllowAnything)]
 public partial class Vo_AllowAnything

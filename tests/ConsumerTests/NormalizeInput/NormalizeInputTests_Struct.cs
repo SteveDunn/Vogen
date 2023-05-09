@@ -1,8 +1,3 @@
-using System;
-using FluentAssertions;
-using Vogen;
-using Xunit;
-
 namespace ConsumerTests.NormalizeInput;
 
 public class NormalizeInputTests_Struct

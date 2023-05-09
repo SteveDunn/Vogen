@@ -195,7 +195,7 @@ public System.Int64 Value
 
         /// <summary>Returns the string representation of the underlying <see cref="System.Int64" />.</summary>
     /// <inheritdoc cref="System.Int64.ToString()" />
-    public override global::System.String ToString() => Value.ToString();
+    public override global::System.String ToString() => _isInitialized ? Value.ToString() : "[UNINITIALIZED]";
 
         
         class stj_number_as_string_public_partial_classConversions_SystemTextJsonlong_customizedSystemTextJsonConverter : global::System.Text.Json.Serialization.JsonConverter<stj_number_as_string_public_partial_classConversions_SystemTextJsonlong_customized>
