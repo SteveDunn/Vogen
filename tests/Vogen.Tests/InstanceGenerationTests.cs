@@ -40,7 +40,7 @@ public class InstanceGenerationTests
 
             using var x = new AssertionScope();
             r.Success.Should().BeTrue();
-            r.Value.Should().Be($"{input}m");
+            r.Value.Should().Be(FormattableString.Invariant($"{input}m"));
         }
     }
 
@@ -62,7 +62,7 @@ public class InstanceGenerationTests
 
             using var x = new AssertionScope();
             r.Success.Should().BeTrue();
-            r.Value.Should().Be($"{input}d");
+            r.Value.Should().Be(FormattableString.Invariant($"{input}d"));
         }
     }
 
@@ -84,7 +84,7 @@ public class InstanceGenerationTests
 
             using var x = new AssertionScope();
             r.Success.Should().BeTrue();
-            r.Value.Should().Be($"{input}f");
+            r.Value.Should().Be(FormattableString.Invariant($"{input}f"));
         }
     }
 
