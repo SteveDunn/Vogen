@@ -59,15 +59,12 @@ exec { & dotnet clean Vogen.sln -c Release --verbosity $verbosity}
 exec { & dotnet restore Vogen.sln --no-cache --verbosity $verbosity }
 exec { & dotnet build Vogen.sln -c Release -p Thorough=true --no-restore --verbosity $verbosity}
 
-if($skiptests) 
+if(!$skiptests) 
 { 
-    exit; 
+    # run the analyzer and code generation tests
+    WriteStage("Running analyzer and code generation tests...")
+    exec { & dotnet test Vogen.sln -c Release --no-build -l trx -l "GitHubActions;report-warnings=false" --verbosity $verbosity }
 }
-
-# run the analyzer and code generation tests
-WriteStage("Running analyzer and code generation tests...")
-exec { & dotnet test Vogen.sln -c Release --no-build -l trx -l "GitHubActions;report-warnings=false" --verbosity $verbosity }
-
 ################################################################
 
 # Run the end to end tests. The tests can't have project references to Vogen. This is because, in Visual Studio, 
