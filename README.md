@@ -6,6 +6,7 @@
 [![GitHub issues](https://img.shields.io/github/issues/Naereen/StrapDown.js.svg)](https://GitHub.com/stevedunn/vogen/issues/) [![GitHub issues-closed](https://img.shields.io/github/issues-closed/Naereen/StrapDown.js.svg)](https://GitHub.com/stevedunn/vogen/issues?q=is%3Aissue+is%3Aclosed) 
 [![NuGet Badge](https://buildstats.info/nuget/Vogen)](https://www.nuget.org/packages/Vogen/)
 
+<!--suppress HtmlDeprecatedAttribute -->
 <p align="center">
   <img src="./assets/cavey.png" alt="Picture of caveman holding the number '1'">
 </p>
@@ -326,12 +327,12 @@ AMD Ryzen 9 5950X, 1 CPU, 32 logical and 16 physical cores
   ShortRun : .NET 7.0.2 (7.0.222.60605), X64 RyuJIT AVX2
 Job=ShortRun  IterationCount=3  LaunchCount=1  
 WarmupCount=3    
-
 ```
-| Method | Mean | Error | StdDev | Ratio | RatioSD | Gen0 | Allocated |
-| :----: | :--: | :---: | :----: | :---: | :-----: | :--: | :-------: |
-| UsingIntNatively | 14.55 ns | 1.443 ns | 0.079 ns | 1.00 | 0.00 | - | - |
-| UsingValueObjectStruct | 14.88 ns | 3.639 ns | 0.199 ns | 1.02 | 0.02 | - | - |
+
+|         Method         |   Mean   |  Error   |  StdDev  | Ratio | RatioSD | Gen0 | Allocated |
+|:----------------------:|:--------:|:--------:|:--------:|:-----:|:-------:|:----:|:---------:|
+|    UsingIntNatively    | 14.55 ns | 1.443 ns | 0.079 ns | 1.00  |  0.00   |  -   |     -     |
+| UsingValueObjectStruct | 14.88 ns | 3.639 ns | 0.199 ns | 1.02  |  0.02   |  -   |     -     |
 
 There is no discernible difference between using a native int and a VO struct; both are pretty much the same in terms of speed and memory.
 
@@ -345,12 +346,12 @@ AMD Ryzen 9 5950X, 1 CPU, 32 logical and 16 physical cores
   ShortRun : .NET 7.0.2 (7.0.222.60605), X64 RyuJIT AVX2
 Job=ShortRun  IterationCount=3  LaunchCount=1  
 WarmupCount=3 
-
 ```
-| Method                 | Mean     | Error  | StdDev | Ratio | RatioSD | Gen0 | Allocated | Alloc Ratio |
-|------------------------|----------|--------|--------|-------|---------|------|-----------|-------------|
-| UsingStringNatively    | 151.8 ns | 32.19  | 1.76   | 1.00  | 0.00    | 0.0153 | 256 B     | 1.00        |
-| UsingValueObjectAsStruct | 184.8 ns | 12.19  | 0.67   | 1.22  | 0.02    | 0.0153 | 256 B     | 1.00        |
+
+| Method                   | Mean     | Error | StdDev | Ratio | RatioSD | Gen0   | Allocated | Alloc Ratio |
+|--------------------------|----------|-------|--------|-------|---------|--------|-----------|-------------|
+| UsingStringNatively      | 151.8 ns | 32.19 | 1.76   | 1.00  | 0.00    | 0.0153 | 256 B     | 1.00        |
+| UsingValueObjectAsStruct | 184.8 ns | 12.19 | 0.67   | 1.22  | 0.02    | 0.0153 | 256 B     | 1.00        |
 
 
 There is a tiny amount of performance overhead, but these measurements are incredibly small. There is no memory overhead.
@@ -657,7 +658,8 @@ public void CanEnter(Age age) {
 }
 ```
 
-### Can I normalize value when VO is created
+### Can I normalize the value when a VO is created?
+I'd like normalize/sanitize the values used, for example, trimming the input. Is this possible?
 
 Yes, add NormalizeInput method, e.g.
 ```csharp
@@ -668,7 +670,8 @@ See [wiki](https://github.com/SteveDunn/Vogen/wiki/Normalization) for more infor
 
 ### Can I create custom Value Object attributes with my own defaults?
 
-Yes, but (at the moment) it requires that you put your defaults in your attribute's constructor - not in the call to the base class' constructor (see [this comment](https://github.com/SteveDunn/Vogen/pull/321#issuecomment-1399324832)).
+Yes, but (at the moment) it requires that you put your defaults in your attribute's constructor - not in the call to 
+the base class' constructor (see [this comment](https://github.com/SteveDunn/Vogen/pull/321#issuecomment-1399324832)).
 
 ```csharp
 public class CustomValueObjectAttribute : ValueObjectAttribute<long>
@@ -775,6 +778,15 @@ Don't forget to re-comment the lines afterwards though!
 The easiest way is to debug the SnapshotTests. Put a breakpoint in the code, and then just debug a test somewhere.
 
 To debug an analyzer, select or write a test in the AnalyzerTests. There are tests that exercise the various analyzers and code-fixers.
+
+### How do I run the tests that actually use the source generator?
+
+It is difficult to run tests that _use_ the source generator in the same project **as** the source generator, so there 
+is a separate solution for this. It's called `Consumers.sln`. What happens is that `build.ps1` builds the generator, runs 
+the tests, and creates the NuGet package _in a private local folder_. The package is version `999.9.xxx` and the consumer 
+references the latest version. The consumer can then really use the source generator, just like anything else.
+
+> Note: if you don't want to run the lengthy snapshot tests when building the local nuget package, run `.\Build.ps1 -v "minimal" -skiptests $true`
 
 ### Can I get it to throw my own exception?
 
