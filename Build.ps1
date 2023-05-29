@@ -1,4 +1,4 @@
-param($verbosity = "minimal", [switch] $skiptests = $false) #quite|q, minimal|m, normal|n, detailed|d
+param($verbosity = "minimal", [switch] $skiptests = $false, [switch] $resetSnapshots = $false) #quite|q, minimal|m, normal|n, detailed|d
 
 $artifacts = ".\artifacts"
 $localPackages = ".\local-global-packages"
@@ -19,6 +19,14 @@ function Get999VersionWithUniquePatch()
     return "999.9." + $patch;
 }
 
+function Remove-SnapshotsFolders($path) {
+    $folders = Get-ChildItem -Path $path -Directory -Filter "snapshots" -Recurse
+    
+    foreach ($folder in $folders) {
+        Write-Host "Deleting folder: $($folder.FullName)"
+        Remove-Item -Path $folder.FullName -Recurse -Force
+    }
+}
 
 <#
 .SYNOPSIS
@@ -43,13 +51,28 @@ function Exec
     }
 }
 
+if ($env:GITHUB_ACTIONS -eq 'true' -and $resetSnapshots) {
+    throw "Cannot reset snapshots in GitHub, only locally."
+}
+
+if ($skiptests -and $resetSnapshots)
+{
+    throw "Cannot skip tests if resetting snapshots, as the tests need to run."
+}
+
 WriteStage("Building release version of Vogen...")
 
 if(Test-Path $artifacts) { Remove-Item $artifacts -Force -Recurse }
+
+if($resetSnapshots) 
+{
+    WriteStage("Resetting snapshots...")
+    Remove-SnapshotsFolders(".\");
+}
+
 New-Item -Path $artifacts -ItemType Directory
 
 New-Item -Path $localPackages -ItemType Directory -ErrorAction SilentlyContinue
-
 
 if(Test-Path $localPackages) { Remove-Item $localPackages\vogen.* -Force -ErrorAction SilentlyContinue }
 
@@ -57,7 +80,15 @@ WriteStage("Cleaning, restoring, and building release version of Vogen...")
 
 exec { & dotnet clean Vogen.sln -c Release --verbosity $verbosity}
 exec { & dotnet restore Vogen.sln --no-cache --verbosity $verbosity }
-exec { & dotnet build Vogen.sln -c Release -p Thorough=true --no-restore --verbosity $verbosity}
+
+if($resetSnapshots)
+{
+    exec { & dotnet build Vogen.sln -c Release -p Thorough=true -p ResetSnapshots=true --no-restore --verbosity $verbosity}
+}
+else
+{
+    exec { & dotnet build Vogen.sln -c Release -p Thorough=true --no-restore --verbosity $verbosity}
+}
 
 if(!$skiptests) 
 { 
