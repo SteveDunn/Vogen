@@ -64,13 +64,39 @@ internal static class WriteWorkItems
         
         var unsanitized = $"{item.FullNamespace}_{voClass.Identifier}.g.cs";
 
-        string filename = SanitizeToALegalFilename(unsanitized);
+        string filename = sanitizeToALegalFilename(unsanitized);
 
-        context.AddSource(filename, sourceText);
+        tryWriteUsingUniqueFilename();
+        
+        return;
 
-        string SanitizeToALegalFilename(string input)
+        static string sanitizeToALegalFilename(string input)
         {
             return input.Replace('@', '_');
+        }
+
+        void tryWriteUsingUniqueFilename()
+        {
+            int count = 0;
+            string uniqueFilename = filename;
+
+            while (true)
+            {
+                try
+                {
+                    context.AddSource(uniqueFilename, sourceText);
+                    return;
+                }
+                catch(ArgumentException)
+                {
+                    if (++count >= 10)
+                    {
+                        throw;
+                    }
+
+                    uniqueFilename = $"{count}{filename}";
+                }
+            }
         }
     }
 
