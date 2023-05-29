@@ -17,14 +17,15 @@ namespace SnapshotTests
 {
     public class SnapshotRunner<T> where T : IIncrementalGenerator, new()
     {
-        public SnapshotRunner([CallerFilePath]string caller = "")
+        public SnapshotRunner([CallerFilePath] string caller = "")
         {
             int n = caller.LastIndexOf('\\');
             n = n > 0 ? n : caller.LastIndexOf('/');
             _path = Path.Combine(caller.Substring(0, n), "snapshots");
         }
 
-        private readonly TargetFramework[] _allFrameworks = {
+        private readonly TargetFramework[] _allFrameworks =
+        {
             TargetFramework.Net6_0,
             TargetFramework.Net7_0,
 #if THOROUGH
@@ -44,7 +45,7 @@ namespace SnapshotTests
         private string? _source;
         private readonly string _path;
         private Action<VerifySettings>? _customizesSettings;
-        
+
         private string _locale = string.Empty;
         private bool _ignoreInitialCompilationErrors;
         private ITestOutputHelper? _logger;
@@ -104,8 +105,12 @@ namespace SnapshotTests
 
                 var outputFolder = Path.Combine(_path, SnapshotUtils.GetSnapshotDirectoryName(eachFramework, _locale));
 
-                // verifySettings ??= new VerifySettings();
-                // verifySettings.AutoVerify();
+#if RESET_SNAPSHOTS
+                _logger?.WriteLine("** Auto verifying snapshots as RESET_SNAPSHOTS is true!");
+                    
+                    verifySettings ??= new VerifySettings();
+                    verifySettings.AutoVerify();
+#endif
 
                 await Verifier.Verify(output, verifySettings).UseDirectory(outputFolder);
             }
@@ -114,7 +119,7 @@ namespace SnapshotTests
         private (ImmutableArray<Diagnostic> Diagnostics, string Output) GetGeneratedOutput(string source, TargetFramework targetFramework)
         {
             var r = MetadataReference.CreateFromFile(typeof(ValueObjectAttribute).Assembly.Location);
-            
+
             var results = new ProjectBuilder()
                 .WithSource(source)
                 .WithTargetFramework(targetFramework)
