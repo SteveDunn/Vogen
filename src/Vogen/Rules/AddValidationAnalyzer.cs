@@ -24,7 +24,7 @@ namespace Vogen.Rules
             Resources.ResourceManager,
             typeof(Resources));
         
-        private const string Category = "Usage";
+        // private const string Category = "Usage";
 
         private static readonly DiagnosticDescriptor Rule = new DiagnosticDescriptor(
             RuleIdentifiers.AddValidationMethod,

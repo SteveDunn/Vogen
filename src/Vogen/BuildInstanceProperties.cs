@@ -17,10 +17,13 @@ namespace Vogen
             return allAttributes.Select(a => Build(a, context, voClass, underlyingType));
         }
 
-        private static InstanceProperties? Build(AttributeData matchingAttribute, SourceProductionContext context, INamedTypeSymbol voClass, INamedTypeSymbol? underlyingType)
+        private static InstanceProperties? Build(AttributeData matchingAttribute,
+            SourceProductionContext context,
+            INamedTypeSymbol voClass,
+            INamedTypeSymbol? underlyingType)
         {
             // try build it from non-named arguments
-            
+
             if (!matchingAttribute.ConstructorArguments.IsEmpty)
             {
                 // make sure we don't have any errors
@@ -33,7 +36,7 @@ namespace Vogen
                         return null;
                     }
                 }
-                
+
                 return TryBuild(args[0], args[1], args[2], voClass, context, underlyingType);
             }
 

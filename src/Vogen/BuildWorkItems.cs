@@ -121,14 +121,15 @@ internal static class BuildWorkItems
         };
     }
 
-    private static void ThrowIfToStringOverrideOnRecordIsUnsealed(VoTarget target, SourceProductionContext context,
+    private static void ThrowIfToStringOverrideOnRecordIsUnsealed(VoTarget target,
+        SourceProductionContext context,
         ToStringInfo info)
     {
-        if (info.HasToString && info.IsRecordClass  && !info.IsSealed)
+        if (info is { HasToString: true, Method: not null, IsRecordClass: true, IsSealed: false })
         {
             context.ReportDiagnostic(
                 DiagnosticsCatalogue.RecordToStringOverloadShouldBeSealed(
-                    info.Method!.Locations[0],
+                    info.Method.Locations[0],
                     target.VoSymbolInformation.Name));
         }
     }
@@ -170,7 +171,11 @@ internal static class BuildWorkItems
                 // In C# 10, the user can differentiate a ToString overload by making the method sealed.
                 // We report back if it's sealed or not so that we can emit an error if it's not sealed.
                 // The error stops another compilation error; if unsealed, the generator generates a duplicate ToString() method.
-                return new ToStringInfo(HasToString: true, IsRecordClass: typeSymbol.IsRecord && typeSymbol.IsReferenceType, IsSealed: eachMethod.IsSealed, eachMethod);
+                return new ToStringInfo(
+                    HasToString: true,
+                    IsRecordClass: typeSymbol is { IsRecord: true, IsReferenceType: true },
+                    IsSealed: eachMethod.IsSealed,
+                    eachMethod);
             }
 
             INamedTypeSymbol? baseType = typeSymbol.BaseType;
@@ -200,7 +205,8 @@ internal static class BuildWorkItems
         return isValueType;
     }
 
-    private static void ReportErrorIfUnderlyingTypeIsCollection(SourceProductionContext context, VogenConfiguration config,
+    private static void ReportErrorIfUnderlyingTypeIsCollection(SourceProductionContext context,
+        VogenConfiguration config,
         INamedTypeSymbol voSymbolInformation)
     {
         if (config.UnderlyingType.ImplementsInterfaceOrBaseClass(typeof(ICollection)))
@@ -259,7 +265,7 @@ internal static class BuildWorkItems
             return false;
         }
 
-        if (!(IsMethodStatic(mds)))
+        if (!IsMethodStatic(mds))
         {
             context.ReportDiagnostic(DiagnosticsCatalogue.NormalizeInputMethodMustBeStatic(mds));
             return false;

@@ -10,27 +10,27 @@ namespace AnalyzerTests;
 
 public class NormalizeInputMethodTests
 {
-        public class MyClassData : IEnumerable<object[]>
+    public class MyClassData : IEnumerable<object[]>
     {
         public IEnumerator<object[]> GetEnumerator()
         {
-            yield return new[] {"public partial class"};
-            yield return new[] {"public sealed partial class"};
-            yield return new[] {"public partial struct"};
-            yield return new[] {"public readonly partial struct"};
-            yield return new[] {"public sealed partial record class"};
-            yield return new[] {"public sealed partial record"};
-            yield return new[] {"public partial record struct"};
-            yield return new[] {"public readonly partial record struct"};
+            yield return new[] { "public partial class" };
+            yield return new[] { "public sealed partial class" };
+            yield return new[] { "public partial struct" };
+            yield return new[] { "public readonly partial struct" };
+            yield return new[] { "public sealed partial record class" };
+            yield return new[] { "public sealed partial record" };
+            yield return new[] { "public partial record struct" };
+            yield return new[] { "public readonly partial record struct" };
 
-            yield return new[] {"internal partial class"};
-            yield return new[] {"internal sealed partial class"};
-            yield return new[] {"internal partial struct"};
-            yield return new[] {"internal readonly partial struct"};
-            yield return new[] {"internal sealed partial record class"};
-            yield return new[] {"internal sealed partial record"};
-            yield return new[] {"internal partial record struct"};
-            yield return new[] {"internal readonly partial record struct"};
+            yield return new[] { "internal partial class" };
+            yield return new[] { "internal sealed partial class" };
+            yield return new[] { "internal partial struct" };
+            yield return new[] { "internal readonly partial struct" };
+            yield return new[] { "internal sealed partial record class" };
+            yield return new[] { "internal sealed partial record" };
+            yield return new[] { "internal partial record struct" };
+            yield return new[] { "internal readonly partial record struct" };
         }
 
 
@@ -143,6 +143,52 @@ namespace Whatever;
 public partial struct Struct_WithDefaultedUnderlyingType
 {
     private static int NormalizeInput(int input) => System.Math.Min(128, input);
+}";
+
+        new TestRunner<ValueObjectGenerator>()
+            .WithSource(source)
+            .ValidateWith(Validate)
+            .RunOnAllFrameworks();
+
+        void Validate(ImmutableArray<Diagnostic> diagnostics)
+        {
+            diagnostics.Should().HaveCount(0);
+        }
+    }
+
+    [Fact]
+    public void NormalizeInput_CopesWhenReturningFullyQualifiedNames()
+    {
+        var source = @"
+namespace Whatever;
+
+[Vogen.ValueObject]
+public partial struct Struct_WithDefaultedUnderlyingType
+{
+    private static System.Int32 NormalizeInput(int input) => System.Math.Min(128, input);
+}";
+
+        new TestRunner<ValueObjectGenerator>()
+            .WithSource(source)
+            .ValidateWith(Validate)
+            .RunOnAllFrameworks();
+
+        void Validate(ImmutableArray<Diagnostic> diagnostics)
+        {
+            diagnostics.Should().HaveCount(0);
+        }
+    }
+
+    [Fact]
+    public void NormalizeInput_CopesWhenReceivingFullyQualifiedNames()
+    {
+        var source = @"
+namespace Whatever;
+
+[Vogen.ValueObject]
+public partial struct Struct_WithDefaultedUnderlyingType
+{
+    private static int NormalizeInput(System.Int32 input) => System.Math.Min(128, input);
 }";
 
         new TestRunner<ValueObjectGenerator>()
