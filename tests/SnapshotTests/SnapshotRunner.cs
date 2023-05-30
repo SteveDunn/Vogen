@@ -87,23 +87,29 @@ namespace SnapshotTests
             // NOTE: Requires [SkippableFact] attribute to be added to single-framework tests
             Skip.If(frameworks.Length == 0);
 
-            foreach (var eachFramework in frameworks)
+            VerifySettings? verifySettings = null;
+
+            if (_customizesSettings is not null)
             {
-                _logger?.WriteLine($"Running on {eachFramework}");
-                VerifySettings? verifySettings = null;
+                verifySettings = new();
+                _customizesSettings(verifySettings);
+            }
 
-                if (_customizesSettings is not null)
-                {
-                    verifySettings = new();
-                    _customizesSettings(verifySettings);
-                }
+            await Parallel.ForEachAsync(frameworks, async (fx, _) => await Run(fx, verifySettings));
+        }
 
-                using var scope = new AssertionScope();
+        private async Task Run(TargetFramework framework, VerifySettings? verifySettings)
+        {
+            _ = _source ?? throw new InvalidOperationException("No source!");
 
-                var (diagnostics, output) = GetGeneratedOutput(_source, eachFramework);
-                diagnostics.Should().BeEmpty(@$"because the following source code should compile on {eachFramework}: " + _source);
+            _logger?.WriteLine($"Running on {framework}");
 
-                var outputFolder = Path.Combine(_path, SnapshotUtils.GetSnapshotDirectoryName(eachFramework, _locale));
+            using var scope = new AssertionScope();
+
+            var (diagnostics, output) = GetGeneratedOutput(_source, framework);
+            diagnostics.Should().BeEmpty(@$"because the following source code should compile on {framework}: " + _source);
+
+            var outputFolder = Path.Combine(_path, SnapshotUtils.GetSnapshotDirectoryName(framework, _locale));
 
 #if RESET_SNAPSHOTS
                 _logger?.WriteLine("** Auto verifying snapshots as RESET_SNAPSHOTS is true!");
@@ -112,8 +118,7 @@ namespace SnapshotTests
                     verifySettings.AutoVerify();
 #endif
 
-                await Verifier.Verify(output, verifySettings).UseDirectory(outputFolder);
-            }
+            await Verifier.Verify(output, verifySettings).UseDirectory(outputFolder);
         }
 
         private (ImmutableArray<Diagnostic> Diagnostics, string Output) GetGeneratedOutput(string source, TargetFramework targetFramework)
