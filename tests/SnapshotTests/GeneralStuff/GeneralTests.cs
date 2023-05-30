@@ -91,6 +91,25 @@ public partial struct CustomerId
 }
 ");
 
+        [Fact]
+        public Task Validation_can_have_fully_qualified_return_type() =>
+            RunTest(@"using Vogen;
+
+namespace Whatever;
+
+[ValueObject(typeof(int))]
+public partial struct CustomerId
+{
+    private static Vogen.Validation validate(int value)
+    {
+        if (value > 0)
+            return Validation.Ok;
+
+        return Validation.Invalid(""must be greater than zero"");
+    }
+}
+");
+
 
         [Fact]
         public Task Namespace_names_can_have_reserved_keywords() =>

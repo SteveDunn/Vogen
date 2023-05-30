@@ -85,7 +85,7 @@ internal static class BuildWorkItems
             {
                 string? methodName = mds.Identifier.Value?.ToString();
 
-                if (TryHandleValidateMethod(methodName, mds, context))
+                if (TryHandleValidateMethod(methodName, mds, context, compilation))
                 {
                     validateMethod = mds;
                 }
@@ -286,7 +286,10 @@ internal static class BuildWorkItems
         return true;
     }
 
-    private static bool TryHandleValidateMethod(string? methodName, MethodDeclarationSyntax mds, SourceProductionContext context)
+    private static bool TryHandleValidateMethod(string? methodName,
+        MethodDeclarationSyntax mds,
+        SourceProductionContext context,
+        Compilation compilation)
     {
         if (StringComparer.OrdinalIgnoreCase.Compare(methodName, "validate") != 0)
         {
@@ -299,9 +302,15 @@ internal static class BuildWorkItems
             return false;
         }
 
-        TypeSyntax returnTypeSyntax = mds.ReturnType;
+        SemanticModel model = compilation.GetSemanticModel(mds.SyntaxTree);
 
-        if (returnTypeSyntax.ToString() != "Validation")
+        IMethodSymbol? method = model.GetDeclaredSymbol(mds);
+        if (method is null)
+        {
+            return false;
+        }
+        
+        if(method.ReturnType is INamedTypeSymbol s && s.FullName() != "Vogen.Validation")
         {
             context.ReportDiagnostic(DiagnosticsCatalogue.ValidationMustReturnValidationType(mds));
             return false;

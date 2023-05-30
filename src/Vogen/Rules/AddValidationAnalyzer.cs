@@ -71,11 +71,11 @@ namespace Vogen.Rules
 
             string retType = vogenConfig.Value.UnderlyingType!.Name;
 
-            var voTypeSyntax = namedTypeSymbol;
+            var voSymbol = namedTypeSymbol;
 
             bool found = false;
 
-            foreach (ISymbol? memberDeclarationSyntax in voTypeSyntax.GetMembers("Validate"))
+            foreach (ISymbol? memberDeclarationSyntax in voSymbol.GetMembers("Validate"))
             {
                 if (memberDeclarationSyntax is IMethodSymbol mds)
                 {
@@ -84,7 +84,7 @@ namespace Vogen.Rules
                         continue;
                     }
 
-                    if (mds.ReturnType.Name == "Validation")
+                    if (mds.ReturnType is INamedTypeSymbol s && s.FullName() == "Vogen.Validation")
                     {
                         found = true;
                         break;

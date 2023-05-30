@@ -18,6 +18,79 @@ namespace AnalyzerTests
 
         //Diagnostic and CodeFix both triggered and checked for
         [Fact]
+        public async Task CodeFixNotTriggeredForVoWithValidateMethod()
+        {
+            var input = LineEndingsHelper.Normalize(
+                @"
+using System;
+using Vogen;
+
+namespace ConsoleApplication1
+{
+    [ValueObject(typeof(int))]
+    public partial class {|#0:TypeName|}
+    {   
+        private static Validation Validate(int input)
+        {
+            bool isValid = true; // todo: your validation
+            return isValid ? Validation.Ok : Validation.Invalid(""[todo: describe the validation]"");
+        }
+    }
+}");
+
+            var test = new VerifyCS.Test
+            {
+                TestState =
+                {
+                    Sources = { input }
+                },
+
+                CompilerDiagnostics = CompilerDiagnostics.Suggestions,
+                ReferenceAssemblies = References.Net70AndOurs.Value,
+            };
+
+            test.DisabledDiagnostics.Add("CS1591");
+
+            await test.RunAsync();
+        }
+
+        [Fact]
+        public async Task CodeFixNotTriggeredForFullQualifiedVoWithValidateMethod()
+        {
+            var input = LineEndingsHelper.Normalize(
+                @"
+using System;
+
+namespace ConsoleApplication1
+{
+    [Vogen.ValueObject(typeof(int))]
+    public partial class {|#0:TypeName|}
+    {   
+        private static Vogen.Validation Validate(int input)
+        {
+            bool isValid = true; // todo: your validation
+            return isValid ? Vogen.Validation.Ok : Vogen.Validation.Invalid(""[todo: describe the validation]"");
+        }
+    }
+}");
+
+            var test = new VerifyCS.Test
+            {
+                TestState =
+                {
+                    Sources = { input }
+                },
+
+                CompilerDiagnostics = CompilerDiagnostics.Suggestions,
+                ReferenceAssemblies = References.Net70AndOurs.Value,
+            };
+
+            test.DisabledDiagnostics.Add("CS1591");
+
+            await test.RunAsync();
+        }
+
+        [Fact]
         public async Task CodeFixTriggeredForVoWithNoValidateMethod()
         {
             var input = LineEndingsHelper.Normalize(@"
