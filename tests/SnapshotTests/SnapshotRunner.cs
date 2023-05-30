@@ -17,6 +17,9 @@ namespace SnapshotTests
 {
     public class SnapshotRunner<T> where T : IIncrementalGenerator, new()
     {
+        // ReSharper disable once StaticMemberInGenericType
+        private static readonly PortableExecutableReference _metadataRef = MetadataReference.CreateFromFile(typeof(ValueObjectAttribute).Assembly.Location);
+
         public SnapshotRunner([CallerFilePath] string caller = "")
         {
             int n = caller.LastIndexOf('\\');
@@ -123,12 +126,10 @@ namespace SnapshotTests
 
         private (ImmutableArray<Diagnostic> Diagnostics, string Output) GetGeneratedOutput(string source, TargetFramework targetFramework)
         {
-            var r = MetadataReference.CreateFromFile(typeof(ValueObjectAttribute).Assembly.Location);
-
             var results = new ProjectBuilder()
                 .WithSource(source)
                 .WithTargetFramework(targetFramework)
-                .GetGeneratedOutput<T>(_ignoreInitialCompilationErrors, r);
+                .GetGeneratedOutput<T>(_ignoreInitialCompilationErrors, _metadataRef);
 
             return results;
         }

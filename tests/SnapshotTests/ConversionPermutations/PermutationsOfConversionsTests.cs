@@ -28,12 +28,9 @@ public class PermutationsOfConversionsTests
 
         private static async Task Run(string type)
         {
-            foreach(var conversions in _permutations)
-            {
-                await RunTest($@"
-  [ValueObject(conversions: {conversions}, underlyingType: typeof(int))]
-  public {type} MyIntVo {{ }}", type, conversions);
-            }
+            await Parallel.ForEachAsync(_permutations, async (p, _) => await RunTest($@"
+  [ValueObject(conversions: {p}, underlyingType: typeof(int))]
+  public {type} MyIntVo {{ }}", type, p));
         }
     }
     
