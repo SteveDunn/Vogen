@@ -3,6 +3,7 @@ using System.ComponentModel;
 using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
+using ConsumerTests;
 using Dapper;
 using Microsoft.Data.Sqlite;
 using Microsoft.EntityFrameworkCore;
@@ -13,6 +14,8 @@ using LinqToDB;
 using LinqToDB.Data;
 using LinqToDB.DataProvider.SQLite;
 using LinqToDB.Mapping;
+using MediumTests.SerializationAndConversionTests;
+
 // ReSharper disable EqualExpressionComparison
 // ReSharper disable RedundantCast
 // ReSharper disable ArrangeMethodOrOperatorBody
@@ -185,11 +188,13 @@ public class DateTimeVoTests
         using var connection = new SqliteConnection("DataSource=:memory:");
         await connection.OpenAsync();
 
-        IEnumerable<DapperDateTimeVo> results = await connection.QueryAsync<DapperDateTimeVo>("SELECT '2022-01-15 19:08:49.5413764'");
+        IEnumerable<DapperDateTimeVo> results =
+            await connection.QueryAsync<DapperDateTimeVo>("SELECT '2022-01-15 19:08:49.5413764'");
 
         DapperDateTimeVo actual = Assert.Single(results);
 
-        var expected = DapperDateTimeVo.From(new DateTime(2022,01,15,19,08,49,DateTimeKind.Utc).AddTicks(5413764));
+        var expected =
+            DapperDateTimeVo.From(new DateTime(2022, 01, 15, 19, 08, 49, DateTimeKind.Utc).AddTicks(5413764));
         actual.Should().Be(expected);
     }
 
@@ -220,7 +225,7 @@ public class DateTimeVoTests
     }
 
     [Theory]
-    [InlineData("2022-01-15T19:08:49.5413764+00:00")]
+    [InlineData("2022-01-15T19:08:49.5413764")]
     public void TypeConverter_CanConvertToAndFrom(string value)
     {
         var converter = TypeDescriptor.GetConverter(typeof(NoJsonDateTimeVo));

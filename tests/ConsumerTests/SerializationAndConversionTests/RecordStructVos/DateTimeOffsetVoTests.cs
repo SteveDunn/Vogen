@@ -3,6 +3,7 @@ using System.ComponentModel;
 using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
+using ConsumerTests;
 using Dapper;
 using Microsoft.Data.Sqlite;
 using Microsoft.EntityFrameworkCore;
@@ -13,6 +14,8 @@ using LinqToDB;
 using LinqToDB.Data;
 using LinqToDB.DataProvider.SQLite;
 using LinqToDB.Mapping;
+using MediumTests.SerializationAndConversionTests;
+
 // ReSharper disable EqualExpressionComparison
 // ReSharper disable RedundantCast
 // ReSharper disable ArrangeMethodOrOperatorBody
@@ -84,7 +87,8 @@ public class DateTimeOffsetVoTests
         var vo = NewtonsoftJsonDateTimeOffsetVo.From(value);
         var serializedString = NewtonsoftJsonSerializer.SerializeObject(value);
 
-        var deserializedVo = NewtonsoftJsonSerializer.DeserializeObject<NewtonsoftJsonDateTimeOffsetVo>(serializedString);
+        var deserializedVo =
+            NewtonsoftJsonSerializer.DeserializeObject<NewtonsoftJsonDateTimeOffsetVo>(serializedString);
 
         Assert.Equal(vo, deserializedVo);
     }
@@ -185,11 +189,14 @@ public class DateTimeOffsetVoTests
         using var connection = new SqliteConnection("DataSource=:memory:");
         await connection.OpenAsync();
 
-        IEnumerable<DapperDateTimeOffsetVo> results = await connection.QueryAsync<DapperDateTimeOffsetVo>("SELECT '2022-01-15 19:08:49.5413764'");
+        IEnumerable<DapperDateTimeOffsetVo> results =
+            await connection.QueryAsync<DapperDateTimeOffsetVo>("SELECT '2022-01-15 19:08:49.5413764'");
 
         DapperDateTimeOffsetVo actual = Assert.Single(results);
 
-        var expected = DapperDateTimeOffsetVo.From(new DateTimeOffset(2022,01,15,19,08,49, TimeSpan.Zero).AddTicks(5413764));
+        var expected =
+            DapperDateTimeOffsetVo.From(
+                new DateTimeOffset(2022, 01, 15, 19, 08, 49, TimeZoneInfo.Local.BaseUtcOffset).AddTicks(5413764));
         actual.Should().Be(expected);
     }
 

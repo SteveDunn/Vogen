@@ -13,7 +13,7 @@ public class Tests
         }
 
         {
-            IntVoNoValidation.TryParse("1,000", NumberStyles.AllowThousands, null, out var ivo).Should().BeTrue();
+            IntVoNoValidation.TryParse("1,000", NumberStyles.AllowThousands, CultureInfo.InvariantCulture, out var ivo).Should().BeTrue();
             ivo.Value.Should().Be(1000);
         }
     }
@@ -22,12 +22,12 @@ public class Tests
     public void Decimals()
     {
         {
-            DecimalVo.TryParse("1024.56", out var ivo).Should().BeTrue();
+            DecimalVo.TryParse("1024.56", NumberStyles.Any, CultureInfo.InvariantCulture, out var ivo).Should().BeTrue();
             ivo.Value.Should().Be(1024.56m);
         }
 
         {
-            DecimalVo.TryParse("1,000.25", NumberStyles.Number, null, out var ivo).Should().BeTrue();
+            DecimalVo.TryParse("1,000.25", NumberStyles.Number, CultureInfo.InvariantCulture, out var ivo).Should().BeTrue();
             ivo.Value.Should().Be(1000.25m);
         }
 
@@ -54,7 +54,7 @@ public class Tests
     [Fact]
     public void Double()
     {
-        DoubleVo.TryParse("123.45", out var ivo).Should().BeTrue();
+        DoubleVo.TryParse("123.45", NumberStyles.Any, CultureInfo.InvariantCulture, out var ivo).Should().BeTrue();
         ivo.Value.Should().Be(123.45);
     }
 
