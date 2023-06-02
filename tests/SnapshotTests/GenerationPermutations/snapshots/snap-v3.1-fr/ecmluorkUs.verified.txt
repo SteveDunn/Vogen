@@ -85,9 +85,9 @@ namespace Whatever
         {
             
 
-            internal_readonly_partial_structConversions_NewtonsoftJsondecimal instance = new internal_readonly_partial_structConversions_NewtonsoftJsondecimal(value);
-
             
+
+            internal_readonly_partial_structConversions_NewtonsoftJsondecimal instance = new internal_readonly_partial_structConversions_NewtonsoftJsondecimal(value);
 
             return instance;
         }

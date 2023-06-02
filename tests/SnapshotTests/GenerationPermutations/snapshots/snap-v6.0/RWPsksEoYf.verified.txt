@@ -94,9 +94,9 @@ namespace Whatever
 
             
 
-            public_sealed_partial_recordConversions_EfCoreValueConverterbool instance = new public_sealed_partial_recordConversions_EfCoreValueConverterbool(value);
-
             
+
+            public_sealed_partial_recordConversions_EfCoreValueConverterbool instance = new public_sealed_partial_recordConversions_EfCoreValueConverterbool(value);
 
             return instance;
         }

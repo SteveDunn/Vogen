@@ -96,9 +96,9 @@ namespace Whatever
         {
             
 
-            public_partial_record_structfloat instance = new public_partial_record_structfloat(value);
-
             
+
+            public_partial_record_structfloat instance = new public_partial_record_structfloat(value);
 
             return instance;
         }

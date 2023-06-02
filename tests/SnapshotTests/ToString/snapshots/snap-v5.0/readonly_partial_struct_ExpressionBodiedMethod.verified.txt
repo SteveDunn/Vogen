@@ -86,9 +86,9 @@ namespace Whatever
         {
             
 
-            readonly_partial_struct_ExpressionBodiedMethod instance = new readonly_partial_struct_ExpressionBodiedMethod(value);
-
             
+
+            readonly_partial_struct_ExpressionBodiedMethod instance = new readonly_partial_struct_ExpressionBodiedMethod(value);
 
             return instance;
         }

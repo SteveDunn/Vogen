@@ -99,9 +99,9 @@ namespace @class
         {
             
 
-            escapedTestspublic_partial_record_structConversions_TypeConverterstring instance = new escapedTestspublic_partial_record_structConversions_TypeConverterstring(value);
-
             
+
+            escapedTestspublic_partial_record_structConversions_TypeConverterstring instance = new escapedTestspublic_partial_record_structConversions_TypeConverterstring(value);
 
             return instance;
         }

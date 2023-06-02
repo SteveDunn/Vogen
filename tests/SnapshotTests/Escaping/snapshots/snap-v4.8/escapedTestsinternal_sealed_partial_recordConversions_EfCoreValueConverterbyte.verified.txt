@@ -94,9 +94,9 @@ namespace @class
 
             
 
-            escapedTestsinternal_sealed_partial_recordConversions_EfCoreValueConverterbyte instance = new escapedTestsinternal_sealed_partial_recordConversions_EfCoreValueConverterbyte(value);
-
             
+
+            escapedTestsinternal_sealed_partial_recordConversions_EfCoreValueConverterbyte instance = new escapedTestsinternal_sealed_partial_recordConversions_EfCoreValueConverterbyte(value);
 
             return instance;
         }

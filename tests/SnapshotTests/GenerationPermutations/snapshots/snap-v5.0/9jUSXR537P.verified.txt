@@ -94,9 +94,9 @@ namespace Whatever
 
             
 
-            internal_sealed_partial_record_classConversions_EfCoreValueConverterSystem_DateTimeOffset instance = new internal_sealed_partial_record_classConversions_EfCoreValueConverterSystem_DateTimeOffset(value);
-
             
+
+            internal_sealed_partial_record_classConversions_EfCoreValueConverterSystem_DateTimeOffset instance = new internal_sealed_partial_record_classConversions_EfCoreValueConverterSystem_DateTimeOffset(value);
 
             return instance;
         }

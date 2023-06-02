@@ -94,9 +94,9 @@ namespace @class
 
             
 
-            escapedTestspublic_partial_record_classConversions_Nonedouble instance = new escapedTestspublic_partial_record_classConversions_Nonedouble(value);
-
             
+
+            escapedTestspublic_partial_record_classConversions_Nonedouble instance = new escapedTestspublic_partial_record_classConversions_Nonedouble(value);
 
             return instance;
         }

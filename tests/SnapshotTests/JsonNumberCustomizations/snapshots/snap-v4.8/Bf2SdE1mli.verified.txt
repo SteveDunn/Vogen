@@ -84,9 +84,9 @@ public System.Int16 Value
 
             
 
-            stj_number_as_string_public_partial_classConversions_SystemTextJsonshort_customized instance = new stj_number_as_string_public_partial_classConversions_SystemTextJsonshort_customized(value);
-
             
+
+            stj_number_as_string_public_partial_classConversions_SystemTextJsonshort_customized instance = new stj_number_as_string_public_partial_classConversions_SystemTextJsonshort_customized(value);
 
             return instance;
         }

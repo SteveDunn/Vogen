@@ -86,9 +86,9 @@ namespace Whatever
         {
             
 
-            public_partial_structfloat instance = new public_partial_structfloat(value);
-
             
+
+            public_partial_structfloat instance = new public_partial_structfloat(value);
 
             return instance;
         }

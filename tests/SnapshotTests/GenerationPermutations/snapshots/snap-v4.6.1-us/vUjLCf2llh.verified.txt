@@ -84,9 +84,9 @@ namespace Whatever
         {
             
 
-            internal_partial_structConversions_EfCoreValueConverterfloat instance = new internal_partial_structConversions_EfCoreValueConverterfloat(value);
-
             
+
+            internal_partial_structConversions_EfCoreValueConverterfloat instance = new internal_partial_structConversions_EfCoreValueConverterfloat(value);
 
             return instance;
         }

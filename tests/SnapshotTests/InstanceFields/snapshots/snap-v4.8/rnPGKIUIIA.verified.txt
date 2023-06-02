@@ -85,9 +85,9 @@ public System.Double Value
 
             
 
-            public_partial_classdouble instance = new public_partial_classdouble(value);
-
             
+
+            public_partial_classdouble instance = new public_partial_classdouble(value);
 
             return instance;
         }

@@ -87,9 +87,9 @@ public System.String Value
 
             
 
-            public_partial_classConversions_Nonestring instance = new public_partial_classConversions_Nonestring(value);
-
             
+
+            public_partial_classConversions_Nonestring instance = new public_partial_classConversions_Nonestring(value);
 
             return instance;
         }

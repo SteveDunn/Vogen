@@ -85,9 +85,9 @@ public System.Byte Value
 
             
 
-            public_partial_classbyte instance = new public_partial_classbyte(value);
-
             
+
+            public_partial_classbyte instance = new public_partial_classbyte(value);
 
             return instance;
         }

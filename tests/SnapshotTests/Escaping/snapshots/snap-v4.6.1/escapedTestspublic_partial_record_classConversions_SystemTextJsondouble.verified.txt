@@ -95,9 +95,9 @@ namespace @class
 
             
 
-            escapedTestspublic_partial_record_classConversions_SystemTextJsondouble instance = new escapedTestspublic_partial_record_classConversions_SystemTextJsondouble(value);
-
             
+
+            escapedTestspublic_partial_record_classConversions_SystemTextJsondouble instance = new escapedTestspublic_partial_record_classConversions_SystemTextJsondouble(value);
 
             return instance;
         }

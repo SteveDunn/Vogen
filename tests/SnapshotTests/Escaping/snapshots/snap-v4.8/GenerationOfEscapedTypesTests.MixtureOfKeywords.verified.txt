@@ -85,9 +85,9 @@ public @record.@struct.@float.@decimal Value
 
             
 
-            @event2 instance = new @event2(value);
-
             
+
+            @event2 instance = new @event2(value);
 
             return instance;
         }

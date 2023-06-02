@@ -84,9 +84,9 @@ namespace Whatever
         {
             
 
-            internal_readonly_partial_structConversions_LinqToDbValueConverterSystem_DateTime instance = new internal_readonly_partial_structConversions_LinqToDbValueConverterSystem_DateTime(value);
-
             
+
+            internal_readonly_partial_structConversions_LinqToDbValueConverterSystem_DateTime instance = new internal_readonly_partial_structConversions_LinqToDbValueConverterSystem_DateTime(value);
 
             return instance;
         }

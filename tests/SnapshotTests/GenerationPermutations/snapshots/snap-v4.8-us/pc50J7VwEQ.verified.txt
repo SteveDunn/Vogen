@@ -84,9 +84,9 @@ namespace Whatever
         {
             
 
-            internal_readonly_partial_structConversions_DapperTypeHandlerbool instance = new internal_readonly_partial_structConversions_DapperTypeHandlerbool(value);
-
             
+
+            internal_readonly_partial_structConversions_DapperTypeHandlerbool instance = new internal_readonly_partial_structConversions_DapperTypeHandlerbool(value);
 
             return instance;
         }

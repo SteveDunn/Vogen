@@ -86,9 +86,9 @@ namespace Whatever
         {
             
 
-            public_partial_structConversions_NewtonsoftJson___Conversions_SystemTextJsonlong instance = new public_partial_structConversions_NewtonsoftJson___Conversions_SystemTextJsonlong(value);
-
             
+
+            public_partial_structConversions_NewtonsoftJson___Conversions_SystemTextJsonlong instance = new public_partial_structConversions_NewtonsoftJson___Conversions_SystemTextJsonlong(value);
 
             return instance;
         }

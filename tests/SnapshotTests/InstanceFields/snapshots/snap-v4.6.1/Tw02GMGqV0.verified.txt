@@ -86,9 +86,9 @@ namespace Whatever
         {
             
 
-            public_readonly_partial_structchar instance = new public_readonly_partial_structchar(value);
-
             
+
+            public_readonly_partial_structchar instance = new public_readonly_partial_structchar(value);
 
             return instance;
         }

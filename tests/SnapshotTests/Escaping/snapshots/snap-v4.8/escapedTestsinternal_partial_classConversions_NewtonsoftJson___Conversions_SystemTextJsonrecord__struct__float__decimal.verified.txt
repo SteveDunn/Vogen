@@ -85,9 +85,9 @@ public @class.@record.@struct.@float.@decimal Value
 
             
 
-            escapedTestsinternal_partial_classConversions_NewtonsoftJson___Conversions_SystemTextJsonrecord__struct__float__decimal instance = new escapedTestsinternal_partial_classConversions_NewtonsoftJson___Conversions_SystemTextJsonrecord__struct__float__decimal(value);
-
             
+
+            escapedTestsinternal_partial_classConversions_NewtonsoftJson___Conversions_SystemTextJsonrecord__struct__float__decimal instance = new escapedTestsinternal_partial_classConversions_NewtonsoftJson___Conversions_SystemTextJsonrecord__struct__float__decimal(value);
 
             return instance;
         }

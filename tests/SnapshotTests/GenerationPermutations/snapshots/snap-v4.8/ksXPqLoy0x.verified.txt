@@ -94,9 +94,9 @@ namespace Whatever
 
             
 
-            internal_partial_recordConversions_DapperTypeHandlerdecimal instance = new internal_partial_recordConversions_DapperTypeHandlerdecimal(value);
-
             
+
+            internal_partial_recordConversions_DapperTypeHandlerdecimal instance = new internal_partial_recordConversions_DapperTypeHandlerdecimal(value);
 
             return instance;
         }

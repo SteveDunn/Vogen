@@ -84,9 +84,9 @@ public System.Char Value
 
             
 
-            public_sealed_partial_classConversions_TypeConverterchar instance = new public_sealed_partial_classConversions_TypeConverterchar(value);
-
             
+
+            public_sealed_partial_classConversions_TypeConverterchar instance = new public_sealed_partial_classConversions_TypeConverterchar(value);
 
             return instance;
         }

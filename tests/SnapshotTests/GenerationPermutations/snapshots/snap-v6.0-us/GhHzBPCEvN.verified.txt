@@ -94,9 +94,9 @@ namespace Whatever
 
             
 
-            public_partial_record_classConversions_DapperTypeHandlerfloat instance = new public_partial_record_classConversions_DapperTypeHandlerfloat(value);
-
             
+
+            public_partial_record_classConversions_DapperTypeHandlerfloat instance = new public_partial_record_classConversions_DapperTypeHandlerfloat(value);
 
             return instance;
         }

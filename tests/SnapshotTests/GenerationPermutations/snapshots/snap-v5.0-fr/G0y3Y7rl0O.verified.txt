@@ -95,9 +95,9 @@ namespace Whatever
 
             
 
-            internal_partial_record_classConversions_SystemTextJsonint instance = new internal_partial_record_classConversions_SystemTextJsonint(value);
-
             
+
+            internal_partial_record_classConversions_SystemTextJsonint instance = new internal_partial_record_classConversions_SystemTextJsonint(value);
 
             return instance;
         }

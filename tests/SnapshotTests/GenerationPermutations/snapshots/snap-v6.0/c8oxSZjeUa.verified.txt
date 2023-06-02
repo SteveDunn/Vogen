@@ -84,9 +84,9 @@ namespace Whatever
         {
             
 
-            internal_partial_structConversions_LinqToDbValueConverterSystem_DateTimeOffset instance = new internal_partial_structConversions_LinqToDbValueConverterSystem_DateTimeOffset(value);
-
             
+
+            internal_partial_structConversions_LinqToDbValueConverterSystem_DateTimeOffset instance = new internal_partial_structConversions_LinqToDbValueConverterSystem_DateTimeOffset(value);
 
             return instance;
         }

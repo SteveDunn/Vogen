@@ -85,9 +85,9 @@ namespace Whatever
         {
             
 
-            public_partial_structConversions_TypeConverterSystem_DateTimeOffset instance = new public_partial_structConversions_TypeConverterSystem_DateTimeOffset(value);
-
             
+
+            public_partial_structConversions_TypeConverterSystem_DateTimeOffset instance = new public_partial_structConversions_TypeConverterSystem_DateTimeOffset(value);
 
             return instance;
         }

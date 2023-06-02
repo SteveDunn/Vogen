@@ -102,9 +102,9 @@ namespace Whatever
 
             
 
-            stj_number_as_string_public_sealed_partial_recordConversions_Nonestring instance = new stj_number_as_string_public_sealed_partial_recordConversions_Nonestring(value);
-
             
+
+            stj_number_as_string_public_sealed_partial_recordConversions_Nonestring instance = new stj_number_as_string_public_sealed_partial_recordConversions_Nonestring(value);
 
             return instance;
         }

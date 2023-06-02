@@ -84,9 +84,9 @@ namespace Whatever
         {
             
 
-            public_readonly_partial_structConversions_LinqToDbValueConverterchar instance = new public_readonly_partial_structConversions_LinqToDbValueConverterchar(value);
-
             
+
+            public_readonly_partial_structConversions_LinqToDbValueConverterchar instance = new public_readonly_partial_structConversions_LinqToDbValueConverterchar(value);
 
             return instance;
         }

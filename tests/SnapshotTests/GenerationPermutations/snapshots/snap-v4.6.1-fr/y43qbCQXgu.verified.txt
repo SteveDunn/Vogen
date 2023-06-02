@@ -102,9 +102,9 @@ namespace Whatever
 
             
 
-            public_sealed_partial_recordConversions_LinqToDbValueConverterstring instance = new public_sealed_partial_recordConversions_LinqToDbValueConverterstring(value);
-
             
+
+            public_sealed_partial_recordConversions_LinqToDbValueConverterstring instance = new public_sealed_partial_recordConversions_LinqToDbValueConverterstring(value);
 
             return instance;
         }

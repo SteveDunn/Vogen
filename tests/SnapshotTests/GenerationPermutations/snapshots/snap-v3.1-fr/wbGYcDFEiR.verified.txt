@@ -95,9 +95,9 @@ namespace Whatever
 
             
 
-            internal_partial_recordConversions_TypeConverterchar instance = new internal_partial_recordConversions_TypeConverterchar(value);
-
             
+
+            internal_partial_recordConversions_TypeConverterchar instance = new internal_partial_recordConversions_TypeConverterchar(value);
 
             return instance;
         }

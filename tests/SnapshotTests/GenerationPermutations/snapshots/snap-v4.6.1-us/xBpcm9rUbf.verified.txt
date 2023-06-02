@@ -94,9 +94,9 @@ namespace Whatever
 
             
 
-            internal_partial_recordConversions_LinqToDbValueConverterSystem_DateTime instance = new internal_partial_recordConversions_LinqToDbValueConverterSystem_DateTime(value);
-
             
+
+            internal_partial_recordConversions_LinqToDbValueConverterSystem_DateTime instance = new internal_partial_recordConversions_LinqToDbValueConverterSystem_DateTime(value);
 
             return instance;
         }

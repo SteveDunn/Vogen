@@ -98,9 +98,9 @@ namespace @class
         {
             
 
-            escapedTestsinternal_readonly_partial_record_structConversions_DapperTypeHandlerstring instance = new escapedTestsinternal_readonly_partial_record_structConversions_DapperTypeHandlerstring(value);
-
             
+
+            escapedTestsinternal_readonly_partial_record_structConversions_DapperTypeHandlerstring instance = new escapedTestsinternal_readonly_partial_record_structConversions_DapperTypeHandlerstring(value);
 
             return instance;
         }

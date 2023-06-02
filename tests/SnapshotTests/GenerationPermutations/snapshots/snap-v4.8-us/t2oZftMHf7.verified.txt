@@ -94,9 +94,9 @@ namespace Whatever
 
             
 
-            internal_sealed_partial_recordConversions_Nonebyte instance = new internal_sealed_partial_recordConversions_Nonebyte(value);
-
             
+
+            internal_sealed_partial_recordConversions_Nonebyte instance = new internal_sealed_partial_recordConversions_Nonebyte(value);
 
             return instance;
         }

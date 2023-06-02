@@ -83,9 +83,9 @@ public System.Int32 Value
 
             
 
-            internal_sealed_partial_classConversions_None instance = new internal_sealed_partial_classConversions_None(value);
-
             
+
+            internal_sealed_partial_classConversions_None instance = new internal_sealed_partial_classConversions_None(value);
 
             return instance;
         }

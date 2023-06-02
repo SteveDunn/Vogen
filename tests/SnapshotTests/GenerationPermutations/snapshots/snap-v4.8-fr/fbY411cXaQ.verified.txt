@@ -94,9 +94,9 @@ namespace Whatever
 
             
 
-            public_partial_recordConversions_Nonefloat instance = new public_partial_recordConversions_Nonefloat(value);
-
             
+
+            public_partial_recordConversions_Nonefloat instance = new public_partial_recordConversions_Nonefloat(value);
 
             return instance;
         }

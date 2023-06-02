@@ -95,9 +95,9 @@ namespace Whatever
         {
             
 
-            public_partial_record_structConversions_SystemTextJsonshort instance = new public_partial_record_structConversions_SystemTextJsonshort(value);
-
             
+
+            public_partial_record_structConversions_SystemTextJsonshort instance = new public_partial_record_structConversions_SystemTextJsonshort(value);
 
             return instance;
         }

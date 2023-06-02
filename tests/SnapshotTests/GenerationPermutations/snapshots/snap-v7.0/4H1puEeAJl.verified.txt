@@ -84,9 +84,9 @@ public System.Char Value
 
             
 
-            public_sealed_partial_classConversions_SystemTextJsonchar instance = new public_sealed_partial_classConversions_SystemTextJsonchar(value);
-
             
+
+            public_sealed_partial_classConversions_SystemTextJsonchar instance = new public_sealed_partial_classConversions_SystemTextJsonchar(value);
 
             return instance;
         }

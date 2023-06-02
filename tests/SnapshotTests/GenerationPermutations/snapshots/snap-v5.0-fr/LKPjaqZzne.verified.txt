@@ -84,9 +84,9 @@ namespace Whatever
         {
             
 
-            public_readonly_partial_structConversions_EfCoreValueConverterbool instance = new public_readonly_partial_structConversions_EfCoreValueConverterbool(value);
-
             
+
+            public_readonly_partial_structConversions_EfCoreValueConverterbool instance = new public_readonly_partial_structConversions_EfCoreValueConverterbool(value);
 
             return instance;
         }

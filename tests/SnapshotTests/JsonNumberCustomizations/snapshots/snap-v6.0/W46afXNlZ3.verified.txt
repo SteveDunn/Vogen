@@ -94,9 +94,9 @@ namespace Whatever
 
             
 
-            stj_number_as_string_public_sealed_partial_recordConversions_Nonedouble instance = new stj_number_as_string_public_sealed_partial_recordConversions_Nonedouble(value);
-
             
+
+            stj_number_as_string_public_sealed_partial_recordConversions_Nonedouble instance = new stj_number_as_string_public_sealed_partial_recordConversions_Nonedouble(value);
 
             return instance;
         }

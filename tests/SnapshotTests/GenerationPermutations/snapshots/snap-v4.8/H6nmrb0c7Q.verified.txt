@@ -96,9 +96,9 @@ namespace Whatever
 
             
 
-            public_sealed_partial_recordConversions_NewtonsoftJson___Conversions_SystemTextJsonSystem_DateTimeOffset instance = new public_sealed_partial_recordConversions_NewtonsoftJson___Conversions_SystemTextJsonSystem_DateTimeOffset(value);
-
             
+
+            public_sealed_partial_recordConversions_NewtonsoftJson___Conversions_SystemTextJsonSystem_DateTimeOffset instance = new public_sealed_partial_recordConversions_NewtonsoftJson___Conversions_SystemTextJsonSystem_DateTimeOffset(value);
 
             return instance;
         }

@@ -95,9 +95,9 @@ namespace Whatever
 
             
 
-            internal_partial_recordConversions_NewtonsoftJsonSystem_DateTimeOffset instance = new internal_partial_recordConversions_NewtonsoftJsonSystem_DateTimeOffset(value);
-
             
+
+            internal_partial_recordConversions_NewtonsoftJsonSystem_DateTimeOffset instance = new internal_partial_recordConversions_NewtonsoftJsonSystem_DateTimeOffset(value);
 
             return instance;
         }

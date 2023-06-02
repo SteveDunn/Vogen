@@ -83,9 +83,9 @@ public System.Char Value
 
             
 
-            internal_sealed_partial_classConversions_EfCoreValueConverterchar instance = new internal_sealed_partial_classConversions_EfCoreValueConverterchar(value);
-
             
+
+            internal_sealed_partial_classConversions_EfCoreValueConverterchar instance = new internal_sealed_partial_classConversions_EfCoreValueConverterchar(value);
 
             return instance;
         }

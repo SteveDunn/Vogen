@@ -85,9 +85,9 @@ namespace Whatever
         {
             
 
-            public_readonly_partial_structConversions_NewtonsoftJsonint instance = new public_readonly_partial_structConversions_NewtonsoftJsonint(value);
-
             
+
+            public_readonly_partial_structConversions_NewtonsoftJsonint instance = new public_readonly_partial_structConversions_NewtonsoftJsonint(value);
 
             return instance;
         }

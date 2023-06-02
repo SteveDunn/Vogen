@@ -89,9 +89,9 @@ public System.String Value
 
             
 
-            public_partial_classstring instance = new public_partial_classstring(value);
-
             
+
+            public_partial_classstring instance = new public_partial_classstring(value);
 
             return instance;
         }

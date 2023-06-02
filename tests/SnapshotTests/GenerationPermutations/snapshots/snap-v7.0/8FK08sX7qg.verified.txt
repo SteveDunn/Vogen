@@ -83,9 +83,9 @@ public System.Single Value
 
             
 
-            public_partial_classConversions_EfCoreValueConverterfloat instance = new public_partial_classConversions_EfCoreValueConverterfloat(value);
-
             
+
+            public_partial_classConversions_EfCoreValueConverterfloat instance = new public_partial_classConversions_EfCoreValueConverterfloat(value);
 
             return instance;
         }

@@ -86,9 +86,9 @@ namespace Whatever
         {
             
 
-            public_partial_structbyte instance = new public_partial_structbyte(value);
-
             
+
+            public_partial_structbyte instance = new public_partial_structbyte(value);
 
             return instance;
         }

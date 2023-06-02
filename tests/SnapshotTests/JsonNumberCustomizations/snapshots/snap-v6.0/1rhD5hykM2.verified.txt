@@ -95,9 +95,9 @@ namespace Whatever
 
             
 
-            stj_number_as_string_public_partial_recordConversions_SystemTextJsonlong instance = new stj_number_as_string_public_partial_recordConversions_SystemTextJsonlong(value);
-
             
+
+            stj_number_as_string_public_partial_recordConversions_SystemTextJsonlong instance = new stj_number_as_string_public_partial_recordConversions_SystemTextJsonlong(value);
 
             return instance;
         }

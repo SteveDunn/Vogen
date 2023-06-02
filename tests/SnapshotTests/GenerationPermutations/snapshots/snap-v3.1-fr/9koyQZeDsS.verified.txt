@@ -85,9 +85,9 @@ namespace Whatever
         {
             
 
-            public_readonly_partial_structConversions_TypeConverterSystem_Guid instance = new public_readonly_partial_structConversions_TypeConverterSystem_Guid(value);
-
             
+
+            public_readonly_partial_structConversions_TypeConverterSystem_Guid instance = new public_readonly_partial_structConversions_TypeConverterSystem_Guid(value);
 
             return instance;
         }

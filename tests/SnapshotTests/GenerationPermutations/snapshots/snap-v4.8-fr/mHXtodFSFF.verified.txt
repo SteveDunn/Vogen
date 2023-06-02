@@ -94,9 +94,9 @@ namespace Whatever
         {
             
 
-            public_readonly_partial_record_structConversions_LinqToDbValueConverterSystem_DateTime instance = new public_readonly_partial_record_structConversions_LinqToDbValueConverterSystem_DateTime(value);
-
             
+
+            public_readonly_partial_record_structConversions_LinqToDbValueConverterSystem_DateTime instance = new public_readonly_partial_record_structConversions_LinqToDbValueConverterSystem_DateTime(value);
 
             return instance;
         }

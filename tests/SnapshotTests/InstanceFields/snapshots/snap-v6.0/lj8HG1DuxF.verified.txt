@@ -100,9 +100,9 @@ namespace Whatever
         {
             
 
-            public_partial_record_structstring instance = new public_partial_record_structstring(value);
-
             
+
+            public_partial_record_structstring instance = new public_partial_record_structstring(value);
 
             return instance;
         }

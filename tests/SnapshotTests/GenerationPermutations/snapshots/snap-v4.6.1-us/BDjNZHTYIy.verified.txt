@@ -84,9 +84,9 @@ public System.Int16 Value
 
             
 
-            public_sealed_partial_classConversions_SystemTextJsonshort instance = new public_sealed_partial_classConversions_SystemTextJsonshort(value);
-
             
+
+            public_sealed_partial_classConversions_SystemTextJsonshort instance = new public_sealed_partial_classConversions_SystemTextJsonshort(value);
 
             return instance;
         }

@@ -83,9 +83,9 @@ public System.Boolean Value
 
             
 
-            internal_partial_classConversions_DapperTypeHandlerbool instance = new internal_partial_classConversions_DapperTypeHandlerbool(value);
-
             
+
+            internal_partial_classConversions_DapperTypeHandlerbool instance = new internal_partial_classConversions_DapperTypeHandlerbool(value);
 
             return instance;
         }

@@ -98,9 +98,9 @@ namespace @class
         {
             
 
-            escapedTestspublic_partial_record_structConversions_LinqToDbValueConverterstring instance = new escapedTestspublic_partial_record_structConversions_LinqToDbValueConverterstring(value);
-
             
+
+            escapedTestspublic_partial_record_structConversions_LinqToDbValueConverterstring instance = new escapedTestspublic_partial_record_structConversions_LinqToDbValueConverterstring(value);
 
             return instance;
         }

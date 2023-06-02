@@ -86,9 +86,9 @@ namespace Whatever
         {
             
 
-            public_partial_structstring instance = new public_partial_structstring(value);
-
             
+
+            public_partial_structstring instance = new public_partial_structstring(value);
 
             return instance;
         }

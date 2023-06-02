@@ -86,9 +86,9 @@ namespace Whatever
         {
             
 
-            partial_struct_Method instance = new partial_struct_Method(value);
-
             
+
+            partial_struct_Method instance = new partial_struct_Method(value);
 
             return instance;
         }

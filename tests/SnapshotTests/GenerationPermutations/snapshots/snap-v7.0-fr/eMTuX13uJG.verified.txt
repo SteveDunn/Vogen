@@ -83,9 +83,9 @@ public System.Double Value
 
             
 
-            internal_partial_classConversions_Nonedouble instance = new internal_partial_classConversions_Nonedouble(value);
-
             
+
+            internal_partial_classConversions_Nonedouble instance = new internal_partial_classConversions_Nonedouble(value);
 
             return instance;
         }

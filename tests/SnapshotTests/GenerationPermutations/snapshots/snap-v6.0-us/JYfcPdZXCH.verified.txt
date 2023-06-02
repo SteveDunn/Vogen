@@ -94,9 +94,9 @@ namespace Whatever
 
             
 
-            internal_sealed_partial_recordConversions_DapperTypeHandlerchar instance = new internal_sealed_partial_recordConversions_DapperTypeHandlerchar(value);
-
             
+
+            internal_sealed_partial_recordConversions_DapperTypeHandlerchar instance = new internal_sealed_partial_recordConversions_DapperTypeHandlerchar(value);
 
             return instance;
         }

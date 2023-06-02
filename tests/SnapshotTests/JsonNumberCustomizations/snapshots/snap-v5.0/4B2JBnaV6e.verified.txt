@@ -83,9 +83,9 @@ public System.DateTime Value
 
             
 
-            stj_number_as_string_public_partial_classConversions_NoneSystem_DateTime instance = new stj_number_as_string_public_partial_classConversions_NoneSystem_DateTime(value);
-
             
+
+            stj_number_as_string_public_partial_classConversions_NoneSystem_DateTime instance = new stj_number_as_string_public_partial_classConversions_NoneSystem_DateTime(value);
 
             return instance;
         }

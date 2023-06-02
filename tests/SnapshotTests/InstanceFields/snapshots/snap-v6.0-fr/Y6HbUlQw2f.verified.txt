@@ -96,9 +96,9 @@ namespace Whatever
 
             
 
-            public_partial_recordbyte instance = new public_partial_recordbyte(value);
-
             
+
+            public_partial_recordbyte instance = new public_partial_recordbyte(value);
 
             return instance;
         }

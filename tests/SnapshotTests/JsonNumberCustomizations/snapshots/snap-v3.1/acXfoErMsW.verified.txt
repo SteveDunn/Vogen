@@ -85,9 +85,9 @@ public System.Double Value
 
             
 
-            stj_number_as_string_public_partial_classConversions_NewtonsoftJson___Conversions_SystemTextJsondouble_customized instance = new stj_number_as_string_public_partial_classConversions_NewtonsoftJson___Conversions_SystemTextJsondouble_customized(value);
-
             
+
+            stj_number_as_string_public_partial_classConversions_NewtonsoftJson___Conversions_SystemTextJsondouble_customized instance = new stj_number_as_string_public_partial_classConversions_NewtonsoftJson___Conversions_SystemTextJsondouble_customized(value);
 
             return instance;
         }

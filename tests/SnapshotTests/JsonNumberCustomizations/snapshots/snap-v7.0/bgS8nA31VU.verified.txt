@@ -86,9 +86,9 @@ namespace Whatever
         {
             
 
-            stj_number_as_string_public_readonly_partial_structConversions_NewtonsoftJson___Conversions_SystemTextJsonSystem_DateTime_customized instance = new stj_number_as_string_public_readonly_partial_structConversions_NewtonsoftJson___Conversions_SystemTextJsonSystem_DateTime_customized(value);
-
             
+
+            stj_number_as_string_public_readonly_partial_structConversions_NewtonsoftJson___Conversions_SystemTextJsonSystem_DateTime_customized instance = new stj_number_as_string_public_readonly_partial_structConversions_NewtonsoftJson___Conversions_SystemTextJsonSystem_DateTime_customized(value);
 
             return instance;
         }
@@ -289,28 +289,27 @@ namespace Whatever
 
         
  
-        
-        class stj_number_as_string_public_readonly_partial_structConversions_NewtonsoftJson___Conversions_SystemTextJsonSystem_DateTime_customizedSystemTextJsonConverter : global::System.Text.Json.Serialization.JsonConverter<stj_number_as_string_public_readonly_partial_structConversions_NewtonsoftJson___Conversions_SystemTextJsonSystem_DateTime_customized>
+                class stj_number_as_string_public_readonly_partial_structConversions_NewtonsoftJson___Conversions_SystemTextJsonSystem_DateTime_customizedSystemTextJsonConverter : global::System.Text.Json.Serialization.JsonConverter<stj_number_as_string_public_readonly_partial_structConversions_NewtonsoftJson___Conversions_SystemTextJsonSystem_DateTime_customized>
         {
             public override stj_number_as_string_public_readonly_partial_structConversions_NewtonsoftJson___Conversions_SystemTextJsonSystem_DateTime_customized Read(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {
-                return stj_number_as_string_public_readonly_partial_structConversions_NewtonsoftJson___Conversions_SystemTextJsonSystem_DateTime_customized.Deserialize(reader.GetDateTime());
+                return stj_number_as_string_public_readonly_partial_structConversions_NewtonsoftJson___Conversions_SystemTextJsonSystem_DateTime_customized.Deserialize(reader.GetDateTime().ToUniversalTime());
             }
 
             public override void Write(System.Text.Json.Utf8JsonWriter writer, stj_number_as_string_public_readonly_partial_structConversions_NewtonsoftJson___Conversions_SystemTextJsonSystem_DateTime_customized value, global::System.Text.Json.JsonSerializerOptions options)
             {
-                writer.WriteStringValue(value.Value);
+                writer.WriteStringValue(value.Value.ToUniversalTime());
             }
 
 #if NET6_0_OR_GREATER
             public override stj_number_as_string_public_readonly_partial_structConversions_NewtonsoftJson___Conversions_SystemTextJsonSystem_DateTime_customized ReadAsPropertyName(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {
-                return stj_number_as_string_public_readonly_partial_structConversions_NewtonsoftJson___Conversions_SystemTextJsonSystem_DateTime_customized.Deserialize(global::System.DateTime.ParseExact(reader.GetString(), "O", global::System.Globalization.CultureInfo.InvariantCulture));
+                return stj_number_as_string_public_readonly_partial_structConversions_NewtonsoftJson___Conversions_SystemTextJsonSystem_DateTime_customized.Deserialize(global::System.DateTime.ParseExact(reader.GetString(), "O", global::System.Globalization.CultureInfo.InvariantCulture, global::System.Globalization.DateTimeStyles.RoundtripKind));
             }
 
             public override void WriteAsPropertyName(System.Text.Json.Utf8JsonWriter writer, stj_number_as_string_public_readonly_partial_structConversions_NewtonsoftJson___Conversions_SystemTextJsonSystem_DateTime_customized value, global::System.Text.Json.JsonSerializerOptions options)
             {
-                writer.WritePropertyName(value.Value.ToString("O"));
+                writer.WritePropertyName(value.Value.ToUniversalTime().ToString("O", global::System.Globalization.CultureInfo.InvariantCulture));
             }
 #endif            
         }

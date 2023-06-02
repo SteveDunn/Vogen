@@ -99,9 +99,9 @@ namespace Whatever
         {
             
 
-            public_partial_record_structConversions_NewtonsoftJsonstring instance = new public_partial_record_structConversions_NewtonsoftJsonstring(value);
-
             
+
+            public_partial_record_structConversions_NewtonsoftJsonstring instance = new public_partial_record_structConversions_NewtonsoftJsonstring(value);
 
             return instance;
         }

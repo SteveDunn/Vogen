@@ -84,9 +84,9 @@ public System.Int16 Value
 
             
 
-            public_sealed_partial_classConversions_TypeConvertershort instance = new public_sealed_partial_classConversions_TypeConvertershort(value);
-
             
+
+            public_sealed_partial_classConversions_TypeConvertershort instance = new public_sealed_partial_classConversions_TypeConvertershort(value);
 
             return instance;
         }

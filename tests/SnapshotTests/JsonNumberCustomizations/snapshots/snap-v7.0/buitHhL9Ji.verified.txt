@@ -96,9 +96,9 @@ namespace Whatever
         {
             
 
-            stj_number_as_string_public_readonly_partial_record_structConversions_NewtonsoftJson___Conversions_SystemTextJsonshort instance = new stj_number_as_string_public_readonly_partial_record_structConversions_NewtonsoftJson___Conversions_SystemTextJsonshort(value);
-
             
+
+            stj_number_as_string_public_readonly_partial_record_structConversions_NewtonsoftJson___Conversions_SystemTextJsonshort instance = new stj_number_as_string_public_readonly_partial_record_structConversions_NewtonsoftJson___Conversions_SystemTextJsonshort(value);
 
             return instance;
         }

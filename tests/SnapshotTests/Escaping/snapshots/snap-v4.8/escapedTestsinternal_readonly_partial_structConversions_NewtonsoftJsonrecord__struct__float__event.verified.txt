@@ -85,9 +85,9 @@ namespace @class
         {
             
 
-            escapedTestsinternal_readonly_partial_structConversions_NewtonsoftJsonrecord__struct__float__event instance = new escapedTestsinternal_readonly_partial_structConversions_NewtonsoftJsonrecord__struct__float__event(value);
-
             
+
+            escapedTestsinternal_readonly_partial_structConversions_NewtonsoftJsonrecord__struct__float__event instance = new escapedTestsinternal_readonly_partial_structConversions_NewtonsoftJsonrecord__struct__float__event(value);
 
             return instance;
         }

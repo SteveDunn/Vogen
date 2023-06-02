@@ -95,9 +95,9 @@ namespace Whatever
 
             
 
-            internal_sealed_partial_recordConversions_SystemTextJson instance = new internal_sealed_partial_recordConversions_SystemTextJson(value);
-
             
+
+            internal_sealed_partial_recordConversions_SystemTextJson instance = new internal_sealed_partial_recordConversions_SystemTextJson(value);
 
             return instance;
         }

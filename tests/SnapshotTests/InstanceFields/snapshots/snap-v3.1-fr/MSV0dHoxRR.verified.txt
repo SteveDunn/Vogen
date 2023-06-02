@@ -85,9 +85,9 @@ public System.Single Value
 
             
 
-            public_sealed_partial_classfloat instance = new public_sealed_partial_classfloat(value);
-
             
+
+            public_sealed_partial_classfloat instance = new public_sealed_partial_classfloat(value);
 
             return instance;
         }

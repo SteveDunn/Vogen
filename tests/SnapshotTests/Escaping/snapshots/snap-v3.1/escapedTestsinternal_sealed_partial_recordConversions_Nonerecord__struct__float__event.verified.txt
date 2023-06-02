@@ -94,9 +94,9 @@ namespace @class
 
             
 
-            escapedTestsinternal_sealed_partial_recordConversions_Nonerecord__struct__float__event instance = new escapedTestsinternal_sealed_partial_recordConversions_Nonerecord__struct__float__event(value);
-
             
+
+            escapedTestsinternal_sealed_partial_recordConversions_Nonerecord__struct__float__event instance = new escapedTestsinternal_sealed_partial_recordConversions_Nonerecord__struct__float__event(value);
 
             return instance;
         }

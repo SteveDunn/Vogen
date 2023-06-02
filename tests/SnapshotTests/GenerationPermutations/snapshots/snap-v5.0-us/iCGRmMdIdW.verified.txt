@@ -84,9 +84,9 @@ public System.Byte Value
 
             
 
-            public_sealed_partial_classConversions_TypeConverterbyte instance = new public_sealed_partial_classConversions_TypeConverterbyte(value);
-
             
+
+            public_sealed_partial_classConversions_TypeConverterbyte instance = new public_sealed_partial_classConversions_TypeConverterbyte(value);
 
             return instance;
         }

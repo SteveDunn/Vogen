@@ -96,9 +96,9 @@ namespace Whatever
 
             
 
-            public_sealed_partial_recordfloat instance = new public_sealed_partial_recordfloat(value);
-
             
+
+            public_sealed_partial_recordfloat instance = new public_sealed_partial_recordfloat(value);
 
             return instance;
         }

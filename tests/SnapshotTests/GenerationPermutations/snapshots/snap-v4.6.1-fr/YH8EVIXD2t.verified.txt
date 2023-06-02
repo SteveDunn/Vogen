@@ -94,9 +94,9 @@ namespace Whatever
 
             
 
-            public_sealed_partial_recordConversions_NoneSystem_DateTime instance = new public_sealed_partial_recordConversions_NoneSystem_DateTime(value);
-
             
+
+            public_sealed_partial_recordConversions_NoneSystem_DateTime instance = new public_sealed_partial_recordConversions_NoneSystem_DateTime(value);
 
             return instance;
         }

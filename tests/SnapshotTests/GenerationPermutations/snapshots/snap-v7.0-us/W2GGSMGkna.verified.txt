@@ -95,9 +95,9 @@ namespace Whatever
 
             
 
-            public_sealed_partial_recordConversions_SystemTextJsonfloat instance = new public_sealed_partial_recordConversions_SystemTextJsonfloat(value);
-
             
+
+            public_sealed_partial_recordConversions_SystemTextJsonfloat instance = new public_sealed_partial_recordConversions_SystemTextJsonfloat(value);
 
             return instance;
         }

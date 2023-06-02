@@ -94,9 +94,9 @@ namespace Whatever
 
             
 
-            internal_partial_recordConversions_Nonechar instance = new internal_partial_recordConversions_Nonechar(value);
-
             
+
+            internal_partial_recordConversions_Nonechar instance = new internal_partial_recordConversions_Nonechar(value);
 
             return instance;
         }

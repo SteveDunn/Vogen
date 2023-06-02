@@ -84,9 +84,9 @@ namespace Whatever
         {
             
 
-            stj_number_as_string_public_partial_structConversions_Nonestring_customized instance = new stj_number_as_string_public_partial_structConversions_Nonestring_customized(value);
-
             
+
+            stj_number_as_string_public_partial_structConversions_Nonestring_customized instance = new stj_number_as_string_public_partial_structConversions_Nonestring_customized(value);
 
             return instance;
         }

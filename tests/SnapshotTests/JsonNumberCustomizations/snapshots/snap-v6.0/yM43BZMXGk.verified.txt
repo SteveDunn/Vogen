@@ -84,9 +84,9 @@ public System.DateTimeOffset Value
 
             
 
-            stj_number_as_string_public_sealed_partial_classConversions_SystemTextJsonSystem_DateTimeOffset instance = new stj_number_as_string_public_sealed_partial_classConversions_SystemTextJsonSystem_DateTimeOffset(value);
-
             
+
+            stj_number_as_string_public_sealed_partial_classConversions_SystemTextJsonSystem_DateTimeOffset instance = new stj_number_as_string_public_sealed_partial_classConversions_SystemTextJsonSystem_DateTimeOffset(value);
 
             return instance;
         }

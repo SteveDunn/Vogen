@@ -84,9 +84,9 @@ public System.Int32 Value
 
             
 
-            public_partial_classConversions_NewtonsoftJsonint instance = new public_partial_classConversions_NewtonsoftJsonint(value);
-
             
+
+            public_partial_classConversions_NewtonsoftJsonint instance = new public_partial_classConversions_NewtonsoftJsonint(value);
 
             return instance;
         }

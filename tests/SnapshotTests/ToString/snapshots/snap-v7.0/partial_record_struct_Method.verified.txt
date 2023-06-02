@@ -96,9 +96,9 @@ namespace Whatever
         {
             
 
-            partial_record_struct_Method instance = new partial_record_struct_Method(value);
-
             
+
+            partial_record_struct_Method instance = new partial_record_struct_Method(value);
 
             return instance;
         }

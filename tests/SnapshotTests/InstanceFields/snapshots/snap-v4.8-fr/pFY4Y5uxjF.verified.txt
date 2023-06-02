@@ -85,9 +85,9 @@ public System.Int32 Value
 
             
 
-            internal_partial_classint instance = new internal_partial_classint(value);
-
             
+
+            internal_partial_classint instance = new internal_partial_classint(value);
 
             return instance;
         }

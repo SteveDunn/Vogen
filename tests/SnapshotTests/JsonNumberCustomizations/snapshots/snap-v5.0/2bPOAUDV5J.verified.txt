@@ -85,9 +85,9 @@ namespace Whatever
         {
             
 
-            stj_number_as_string_public_partial_structConversions_NewtonsoftJsonbyte instance = new stj_number_as_string_public_partial_structConversions_NewtonsoftJsonbyte(value);
-
             
+
+            stj_number_as_string_public_partial_structConversions_NewtonsoftJsonbyte instance = new stj_number_as_string_public_partial_structConversions_NewtonsoftJsonbyte(value);
 
             return instance;
         }

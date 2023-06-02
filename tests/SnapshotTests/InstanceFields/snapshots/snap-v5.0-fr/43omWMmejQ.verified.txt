@@ -89,9 +89,9 @@ public System.String Value
 
             
 
-            internal_sealed_partial_classstring instance = new internal_sealed_partial_classstring(value);
-
             
+
+            internal_sealed_partial_classstring instance = new internal_sealed_partial_classstring(value);
 
             return instance;
         }

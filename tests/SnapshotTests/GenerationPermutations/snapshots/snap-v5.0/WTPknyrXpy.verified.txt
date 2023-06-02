@@ -84,9 +84,9 @@ public System.Boolean Value
 
             
 
-            public_partial_classConversions_NewtonsoftJsonbool instance = new public_partial_classConversions_NewtonsoftJsonbool(value);
-
             
+
+            public_partial_classConversions_NewtonsoftJsonbool instance = new public_partial_classConversions_NewtonsoftJsonbool(value);
 
             return instance;
         }

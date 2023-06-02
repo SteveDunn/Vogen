@@ -96,9 +96,9 @@ namespace Whatever
 
             
 
-            public_sealed_partial_recordchar instance = new public_sealed_partial_recordchar(value);
-
             
+
+            public_sealed_partial_recordchar instance = new public_sealed_partial_recordchar(value);
 
             return instance;
         }

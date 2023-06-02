@@ -84,9 +84,9 @@ public System.Guid Value
 
             
 
-            escapedTestsinternal_partial_classConversions_SystemTextJsonSystem_Guid instance = new escapedTestsinternal_partial_classConversions_SystemTextJsonSystem_Guid(value);
-
             
+
+            escapedTestsinternal_partial_classConversions_SystemTextJsonSystem_Guid instance = new escapedTestsinternal_partial_classConversions_SystemTextJsonSystem_Guid(value);
 
             return instance;
         }

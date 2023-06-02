@@ -85,9 +85,9 @@ namespace Whatever
         {
             
 
-            internal_readonly_partial_structConversions_SystemTextJsonSystem_DateTimeOffset instance = new internal_readonly_partial_structConversions_SystemTextJsonSystem_DateTimeOffset(value);
-
             
+
+            internal_readonly_partial_structConversions_SystemTextJsonSystem_DateTimeOffset instance = new internal_readonly_partial_structConversions_SystemTextJsonSystem_DateTimeOffset(value);
 
             return instance;
         }

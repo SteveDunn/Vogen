@@ -85,9 +85,9 @@ namespace Whatever
         {
             
 
-            public_partial_structConversions_SystemTextJsondecimal instance = new public_partial_structConversions_SystemTextJsondecimal(value);
-
             
+
+            public_partial_structConversions_SystemTextJsondecimal instance = new public_partial_structConversions_SystemTextJsondecimal(value);
 
             return instance;
         }

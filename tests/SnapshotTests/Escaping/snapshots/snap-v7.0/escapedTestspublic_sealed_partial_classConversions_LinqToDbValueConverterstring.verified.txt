@@ -87,9 +87,9 @@ public System.String Value
 
             
 
-            escapedTestspublic_sealed_partial_classConversions_LinqToDbValueConverterstring instance = new escapedTestspublic_sealed_partial_classConversions_LinqToDbValueConverterstring(value);
-
             
+
+            escapedTestspublic_sealed_partial_classConversions_LinqToDbValueConverterstring instance = new escapedTestspublic_sealed_partial_classConversions_LinqToDbValueConverterstring(value);
 
             return instance;
         }

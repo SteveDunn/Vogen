@@ -94,9 +94,9 @@ namespace Whatever
 
             
 
-            internal_sealed_partial_recordConversions_NoneSystem_DateTimeOffset instance = new internal_sealed_partial_recordConversions_NoneSystem_DateTimeOffset(value);
-
             
+
+            internal_sealed_partial_recordConversions_NoneSystem_DateTimeOffset instance = new internal_sealed_partial_recordConversions_NoneSystem_DateTimeOffset(value);
 
             return instance;
         }

@@ -95,9 +95,9 @@ namespace @class
 
             
 
-            escapedTestsinternal_partial_record_classConversions_TypeConverterdouble instance = new escapedTestsinternal_partial_record_classConversions_TypeConverterdouble(value);
-
             
+
+            escapedTestsinternal_partial_record_classConversions_TypeConverterdouble instance = new escapedTestsinternal_partial_record_classConversions_TypeConverterdouble(value);
 
             return instance;
         }

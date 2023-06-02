@@ -96,9 +96,9 @@ namespace Whatever
         {
             
 
-            readonly_partial_record_struct_None instance = new readonly_partial_record_struct_None(value);
-
             
+
+            readonly_partial_record_struct_None instance = new readonly_partial_record_struct_None(value);
 
             return instance;
         }

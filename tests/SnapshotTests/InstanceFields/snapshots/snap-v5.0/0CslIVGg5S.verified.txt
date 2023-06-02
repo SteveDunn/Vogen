@@ -96,9 +96,9 @@ namespace Whatever
 
             
 
-            public_sealed_partial_recordbyte instance = new public_sealed_partial_recordbyte(value);
-
             
+
+            public_sealed_partial_recordbyte instance = new public_sealed_partial_recordbyte(value);
 
             return instance;
         }

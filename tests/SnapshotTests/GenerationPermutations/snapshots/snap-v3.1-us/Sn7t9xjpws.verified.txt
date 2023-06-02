@@ -87,9 +87,9 @@ public System.String Value
 
             
 
-            internal_sealed_partial_classConversions_DapperTypeHandlerstring instance = new internal_sealed_partial_classConversions_DapperTypeHandlerstring(value);
-
             
+
+            internal_sealed_partial_classConversions_DapperTypeHandlerstring instance = new internal_sealed_partial_classConversions_DapperTypeHandlerstring(value);
 
             return instance;
         }

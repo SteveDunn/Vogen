@@ -84,9 +84,9 @@ namespace Whatever
         {
             
 
-            internal_readonly_partial_structConversions_NoneSystem_DateTimeOffset instance = new internal_readonly_partial_structConversions_NoneSystem_DateTimeOffset(value);
-
             
+
+            internal_readonly_partial_structConversions_NoneSystem_DateTimeOffset instance = new internal_readonly_partial_structConversions_NoneSystem_DateTimeOffset(value);
 
             return instance;
         }

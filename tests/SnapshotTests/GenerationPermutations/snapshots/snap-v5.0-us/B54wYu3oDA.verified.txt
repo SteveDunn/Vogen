@@ -85,9 +85,9 @@ namespace Whatever
         {
             
 
-            public_partial_structConversions_TypeConverterdouble instance = new public_partial_structConversions_TypeConverterdouble(value);
-
             
+
+            public_partial_structConversions_TypeConverterdouble instance = new public_partial_structConversions_TypeConverterdouble(value);
 
             return instance;
         }

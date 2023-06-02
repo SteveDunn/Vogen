@@ -84,9 +84,9 @@ namespace Whatever
         {
             
 
-            public_partial_structConversions_DapperTypeHandlerSystem_DateTime instance = new public_partial_structConversions_DapperTypeHandlerSystem_DateTime(value);
-
             
+
+            public_partial_structConversions_DapperTypeHandlerSystem_DateTime instance = new public_partial_structConversions_DapperTypeHandlerSystem_DateTime(value);
 
             return instance;
         }

@@ -84,9 +84,9 @@ public System.Char Value
 
             
 
-            stj_number_as_string_public_partial_classConversions_NewtonsoftJsonchar instance = new stj_number_as_string_public_partial_classConversions_NewtonsoftJsonchar(value);
-
             
+
+            stj_number_as_string_public_partial_classConversions_NewtonsoftJsonchar instance = new stj_number_as_string_public_partial_classConversions_NewtonsoftJsonchar(value);
 
             return instance;
         }

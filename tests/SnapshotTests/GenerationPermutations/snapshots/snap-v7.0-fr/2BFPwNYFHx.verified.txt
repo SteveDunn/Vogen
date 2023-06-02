@@ -84,9 +84,9 @@ namespace Whatever
         {
             
 
-            public_partial_structConversions_NoneSystem_Guid instance = new public_partial_structConversions_NoneSystem_Guid(value);
-
             
+
+            public_partial_structConversions_NoneSystem_Guid instance = new public_partial_structConversions_NoneSystem_Guid(value);
 
             return instance;
         }

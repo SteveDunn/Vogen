@@ -85,9 +85,9 @@ namespace Whatever
         {
             
 
-            internal_partial_structConversions_TypeConverterbool instance = new internal_partial_structConversions_TypeConverterbool(value);
-
             
+
+            internal_partial_structConversions_TypeConverterbool instance = new internal_partial_structConversions_TypeConverterbool(value);
 
             return instance;
         }

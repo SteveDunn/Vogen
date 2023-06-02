@@ -103,9 +103,9 @@ namespace Whatever
 
             
 
-            public_sealed_partial_recordConversions_TypeConverterstring instance = new public_sealed_partial_recordConversions_TypeConverterstring(value);
-
             
+
+            public_sealed_partial_recordConversions_TypeConverterstring instance = new public_sealed_partial_recordConversions_TypeConverterstring(value);
 
             return instance;
         }

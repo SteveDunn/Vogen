@@ -95,9 +95,9 @@ namespace @class
 
             
 
-            escapedTestsinternal_partial_record_classConversions_TypeConverterrecord__struct__float__event2 instance = new escapedTestsinternal_partial_record_classConversions_TypeConverterrecord__struct__float__event2(value);
-
             
+
+            escapedTestsinternal_partial_record_classConversions_TypeConverterrecord__struct__float__event2 instance = new escapedTestsinternal_partial_record_classConversions_TypeConverterrecord__struct__float__event2(value);
 
             return instance;
         }

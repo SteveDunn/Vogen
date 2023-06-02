@@ -94,9 +94,9 @@ namespace @class
 
             
 
-            escapedTestspublic_sealed_partial_record_classConversions_LinqToDbValueConverterrecord__struct__float__decimal instance = new escapedTestspublic_sealed_partial_record_classConversions_LinqToDbValueConverterrecord__struct__float__decimal(value);
-
             
+
+            escapedTestspublic_sealed_partial_record_classConversions_LinqToDbValueConverterrecord__struct__float__decimal instance = new escapedTestspublic_sealed_partial_record_classConversions_LinqToDbValueConverterrecord__struct__float__decimal(value);
 
             return instance;
         }

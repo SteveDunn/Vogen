@@ -102,9 +102,9 @@ namespace @class
 
             
 
-            escapedTestsinternal_partial_record_classConversions_DapperTypeHandlerstring instance = new escapedTestsinternal_partial_record_classConversions_DapperTypeHandlerstring(value);
-
             
+
+            escapedTestsinternal_partial_record_classConversions_DapperTypeHandlerstring instance = new escapedTestsinternal_partial_record_classConversions_DapperTypeHandlerstring(value);
 
             return instance;
         }

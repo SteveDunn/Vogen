@@ -95,9 +95,9 @@ namespace @class
 
             
 
-            escapedTestspublic_sealed_partial_recordConversions_NewtonsoftJsonbyte instance = new escapedTestspublic_sealed_partial_recordConversions_NewtonsoftJsonbyte(value);
-
             
+
+            escapedTestspublic_sealed_partial_recordConversions_NewtonsoftJsonbyte instance = new escapedTestspublic_sealed_partial_recordConversions_NewtonsoftJsonbyte(value);
 
             return instance;
         }

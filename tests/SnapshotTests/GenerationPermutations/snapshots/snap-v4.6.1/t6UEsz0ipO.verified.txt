@@ -96,9 +96,9 @@ namespace Whatever
         {
             
 
-            public_readonly_partial_record_structConversions_NewtonsoftJson___Conversions_SystemTextJsondecimal instance = new public_readonly_partial_record_structConversions_NewtonsoftJson___Conversions_SystemTextJsondecimal(value);
-
             
+
+            public_readonly_partial_record_structConversions_NewtonsoftJson___Conversions_SystemTextJsondecimal instance = new public_readonly_partial_record_structConversions_NewtonsoftJson___Conversions_SystemTextJsondecimal(value);
 
             return instance;
         }

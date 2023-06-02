@@ -84,9 +84,9 @@ public System.DateTime Value
 
             
 
-            stj_number_as_string_public_partial_classConversions_NewtonsoftJsonSystem_DateTime_customized instance = new stj_number_as_string_public_partial_classConversions_NewtonsoftJsonSystem_DateTime_customized(value);
-
             
+
+            stj_number_as_string_public_partial_classConversions_NewtonsoftJsonSystem_DateTime_customized instance = new stj_number_as_string_public_partial_classConversions_NewtonsoftJsonSystem_DateTime_customized(value);
 
             return instance;
         }

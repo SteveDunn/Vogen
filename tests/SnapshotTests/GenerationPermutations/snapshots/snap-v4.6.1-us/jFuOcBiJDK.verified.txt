@@ -94,9 +94,9 @@ namespace Whatever
 
             
 
-            public_sealed_partial_recordConversions_DapperTypeHandlerlong instance = new public_sealed_partial_recordConversions_DapperTypeHandlerlong(value);
-
             
+
+            public_sealed_partial_recordConversions_DapperTypeHandlerlong instance = new public_sealed_partial_recordConversions_DapperTypeHandlerlong(value);
 
             return instance;
         }

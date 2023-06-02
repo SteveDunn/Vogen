@@ -83,9 +83,9 @@ public System.Int32 Value
 
             
 
-            public_partial_classConversions_None instance = new public_partial_classConversions_None(value);
-
             
+
+            public_partial_classConversions_None instance = new public_partial_classConversions_None(value);
 
             return instance;
         }

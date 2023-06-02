@@ -94,9 +94,9 @@ namespace Whatever
 
             
 
-            internal_partial_recordConversions_Noneshort instance = new internal_partial_recordConversions_Noneshort(value);
-
             
+
+            internal_partial_recordConversions_Noneshort instance = new internal_partial_recordConversions_Noneshort(value);
 
             return instance;
         }

@@ -84,9 +84,9 @@ namespace Whatever
         {
             
 
-            public_partial_structConversions_DapperTypeHandlerSystem_Guid instance = new public_partial_structConversions_DapperTypeHandlerSystem_Guid(value);
-
             
+
+            public_partial_structConversions_DapperTypeHandlerSystem_Guid instance = new public_partial_structConversions_DapperTypeHandlerSystem_Guid(value);
 
             return instance;
         }

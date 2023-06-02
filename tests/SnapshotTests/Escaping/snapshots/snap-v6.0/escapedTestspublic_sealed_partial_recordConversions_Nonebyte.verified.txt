@@ -94,9 +94,9 @@ namespace @class
 
             
 
-            escapedTestspublic_sealed_partial_recordConversions_Nonebyte instance = new escapedTestspublic_sealed_partial_recordConversions_Nonebyte(value);
-
             
+
+            escapedTestspublic_sealed_partial_recordConversions_Nonebyte instance = new escapedTestspublic_sealed_partial_recordConversions_Nonebyte(value);
 
             return instance;
         }

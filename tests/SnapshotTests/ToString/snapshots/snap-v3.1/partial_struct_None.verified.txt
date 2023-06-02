@@ -86,9 +86,9 @@ namespace Whatever
         {
             
 
-            partial_struct_None instance = new partial_struct_None(value);
-
             
+
+            partial_struct_None instance = new partial_struct_None(value);
 
             return instance;
         }

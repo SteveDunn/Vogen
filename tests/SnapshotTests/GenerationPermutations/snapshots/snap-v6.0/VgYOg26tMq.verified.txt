@@ -94,9 +94,9 @@ namespace Whatever
 
             
 
-            internal_partial_recordConversions_EfCoreValueConverterint instance = new internal_partial_recordConversions_EfCoreValueConverterint(value);
-
             
+
+            internal_partial_recordConversions_EfCoreValueConverterint instance = new internal_partial_recordConversions_EfCoreValueConverterint(value);
 
             return instance;
         }

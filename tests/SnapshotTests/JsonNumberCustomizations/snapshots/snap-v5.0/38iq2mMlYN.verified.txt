@@ -95,9 +95,9 @@ namespace Whatever
 
             
 
-            stj_number_as_string_public_sealed_partial_record_classConversions_NewtonsoftJsonSystem_DateTime instance = new stj_number_as_string_public_sealed_partial_record_classConversions_NewtonsoftJsonSystem_DateTime(value);
-
             
+
+            stj_number_as_string_public_sealed_partial_record_classConversions_NewtonsoftJsonSystem_DateTime instance = new stj_number_as_string_public_sealed_partial_record_classConversions_NewtonsoftJsonSystem_DateTime(value);
 
             return instance;
         }

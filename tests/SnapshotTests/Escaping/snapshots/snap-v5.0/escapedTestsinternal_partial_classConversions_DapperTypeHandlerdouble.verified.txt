@@ -83,9 +83,9 @@ public System.Double Value
 
             
 
-            escapedTestsinternal_partial_classConversions_DapperTypeHandlerdouble instance = new escapedTestsinternal_partial_classConversions_DapperTypeHandlerdouble(value);
-
             
+
+            escapedTestsinternal_partial_classConversions_DapperTypeHandlerdouble instance = new escapedTestsinternal_partial_classConversions_DapperTypeHandlerdouble(value);
 
             return instance;
         }

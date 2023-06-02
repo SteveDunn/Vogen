@@ -95,9 +95,9 @@ namespace Whatever
 
             
 
-            internal_partial_recordConversions_NewtonsoftJsonint instance = new internal_partial_recordConversions_NewtonsoftJsonint(value);
-
             
+
+            internal_partial_recordConversions_NewtonsoftJsonint instance = new internal_partial_recordConversions_NewtonsoftJsonint(value);
 
             return instance;
         }

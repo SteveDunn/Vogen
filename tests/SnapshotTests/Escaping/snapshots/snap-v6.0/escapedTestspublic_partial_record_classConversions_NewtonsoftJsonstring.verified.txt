@@ -103,9 +103,9 @@ namespace @class
 
             
 
-            escapedTestspublic_partial_record_classConversions_NewtonsoftJsonstring instance = new escapedTestspublic_partial_record_classConversions_NewtonsoftJsonstring(value);
-
             
+
+            escapedTestspublic_partial_record_classConversions_NewtonsoftJsonstring instance = new escapedTestspublic_partial_record_classConversions_NewtonsoftJsonstring(value);
 
             return instance;
         }

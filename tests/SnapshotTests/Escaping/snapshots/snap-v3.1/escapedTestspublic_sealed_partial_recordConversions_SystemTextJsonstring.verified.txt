@@ -103,9 +103,9 @@ namespace @class
 
             
 
-            escapedTestspublic_sealed_partial_recordConversions_SystemTextJsonstring instance = new escapedTestspublic_sealed_partial_recordConversions_SystemTextJsonstring(value);
-
             
+
+            escapedTestspublic_sealed_partial_recordConversions_SystemTextJsonstring instance = new escapedTestspublic_sealed_partial_recordConversions_SystemTextJsonstring(value);
 
             return instance;
         }

@@ -85,9 +85,9 @@ namespace Whatever
         {
             
 
-            internal_partial_structConversions_SystemTextJsonshort instance = new internal_partial_structConversions_SystemTextJsonshort(value);
-
             
+
+            internal_partial_structConversions_SystemTextJsonshort instance = new internal_partial_structConversions_SystemTextJsonshort(value);
 
             return instance;
         }

@@ -102,9 +102,9 @@ namespace @class
 
             
 
-            escapedTestspublic_sealed_partial_recordConversions_LinqToDbValueConverterstring instance = new escapedTestspublic_sealed_partial_recordConversions_LinqToDbValueConverterstring(value);
-
             
+
+            escapedTestspublic_sealed_partial_recordConversions_LinqToDbValueConverterstring instance = new escapedTestspublic_sealed_partial_recordConversions_LinqToDbValueConverterstring(value);
 
             return instance;
         }

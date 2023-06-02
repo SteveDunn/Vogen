@@ -85,9 +85,9 @@ public System.Int32 Value
 
             
 
-            sealed_partial_class_None instance = new sealed_partial_class_None(value);
-
             
+
+            sealed_partial_class_None instance = new sealed_partial_class_None(value);
 
             return instance;
         }

@@ -84,9 +84,9 @@ public System.Int32 Value
 
             
 
-            internal_partial_classConversions_SystemTextJson instance = new internal_partial_classConversions_SystemTextJson(value);
-
             
+
+            internal_partial_classConversions_SystemTextJson instance = new internal_partial_classConversions_SystemTextJson(value);
 
             return instance;
         }

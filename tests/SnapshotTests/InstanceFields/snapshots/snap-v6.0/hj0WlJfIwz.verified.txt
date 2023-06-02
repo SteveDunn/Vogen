@@ -85,9 +85,9 @@ public System.Int64 Value
 
             
 
-            internal_partial_classlong instance = new internal_partial_classlong(value);
-
             
+
+            internal_partial_classlong instance = new internal_partial_classlong(value);
 
             return instance;
         }

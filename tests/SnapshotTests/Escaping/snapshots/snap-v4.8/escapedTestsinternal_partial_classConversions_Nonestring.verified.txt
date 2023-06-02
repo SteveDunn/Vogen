@@ -87,9 +87,9 @@ public System.String Value
 
             
 
-            escapedTestsinternal_partial_classConversions_Nonestring instance = new escapedTestsinternal_partial_classConversions_Nonestring(value);
-
             
+
+            escapedTestsinternal_partial_classConversions_Nonestring instance = new escapedTestsinternal_partial_classConversions_Nonestring(value);
 
             return instance;
         }

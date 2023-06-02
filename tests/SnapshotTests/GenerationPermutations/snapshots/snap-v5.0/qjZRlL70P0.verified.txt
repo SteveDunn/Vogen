@@ -94,9 +94,9 @@ namespace Whatever
 
             
 
-            internal_sealed_partial_recordConversions_EfCoreValueConverterbyte instance = new internal_sealed_partial_recordConversions_EfCoreValueConverterbyte(value);
-
             
+
+            internal_sealed_partial_recordConversions_EfCoreValueConverterbyte instance = new internal_sealed_partial_recordConversions_EfCoreValueConverterbyte(value);
 
             return instance;
         }

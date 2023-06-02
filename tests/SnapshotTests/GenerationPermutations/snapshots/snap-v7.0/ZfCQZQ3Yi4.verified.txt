@@ -85,9 +85,9 @@ namespace Whatever
         {
             
 
-            public_readonly_partial_structConversions_NewtonsoftJsonfloat instance = new public_readonly_partial_structConversions_NewtonsoftJsonfloat(value);
-
             
+
+            public_readonly_partial_structConversions_NewtonsoftJsonfloat instance = new public_readonly_partial_structConversions_NewtonsoftJsonfloat(value);
 
             return instance;
         }

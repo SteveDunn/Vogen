@@ -84,9 +84,9 @@ namespace Whatever
         {
             
 
-            public_partial_structConversions_DapperTypeHandlerSystem_DateTimeOffset instance = new public_partial_structConversions_DapperTypeHandlerSystem_DateTimeOffset(value);
-
             
+
+            public_partial_structConversions_DapperTypeHandlerSystem_DateTimeOffset instance = new public_partial_structConversions_DapperTypeHandlerSystem_DateTimeOffset(value);
 
             return instance;
         }

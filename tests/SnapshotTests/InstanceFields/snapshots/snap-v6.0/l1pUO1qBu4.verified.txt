@@ -85,9 +85,9 @@ public System.Single Value
 
             
 
-            internal_partial_classfloat instance = new internal_partial_classfloat(value);
-
             
+
+            internal_partial_classfloat instance = new internal_partial_classfloat(value);
 
             return instance;
         }

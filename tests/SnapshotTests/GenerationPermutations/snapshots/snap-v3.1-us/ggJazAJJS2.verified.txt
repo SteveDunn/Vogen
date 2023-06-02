@@ -94,9 +94,9 @@ namespace Whatever
         {
             
 
-            public_partial_record_structConversions_DapperTypeHandlerdecimal instance = new public_partial_record_structConversions_DapperTypeHandlerdecimal(value);
-
             
+
+            public_partial_record_structConversions_DapperTypeHandlerdecimal instance = new public_partial_record_structConversions_DapperTypeHandlerdecimal(value);
 
             return instance;
         }

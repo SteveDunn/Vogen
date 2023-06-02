@@ -84,9 +84,9 @@ namespace Whatever
         {
             
 
-            internal_partial_structConversions_Noneint instance = new internal_partial_structConversions_Noneint(value);
-
             
+
+            internal_partial_structConversions_Noneint instance = new internal_partial_structConversions_Noneint(value);
 
             return instance;
         }

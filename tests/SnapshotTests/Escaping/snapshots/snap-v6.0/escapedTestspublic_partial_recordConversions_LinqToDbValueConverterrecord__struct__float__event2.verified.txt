@@ -94,9 +94,9 @@ namespace @class
 
             
 
-            escapedTestspublic_partial_recordConversions_LinqToDbValueConverterrecord__struct__float__event2 instance = new escapedTestspublic_partial_recordConversions_LinqToDbValueConverterrecord__struct__float__event2(value);
-
             
+
+            escapedTestspublic_partial_recordConversions_LinqToDbValueConverterrecord__struct__float__event2 instance = new escapedTestspublic_partial_recordConversions_LinqToDbValueConverterrecord__struct__float__event2(value);
 
             return instance;
         }

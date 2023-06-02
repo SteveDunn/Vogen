@@ -84,9 +84,9 @@ public System.Byte Value
 
             
 
-            internal_partial_classConversions_NewtonsoftJsonbyte instance = new internal_partial_classConversions_NewtonsoftJsonbyte(value);
-
             
+
+            internal_partial_classConversions_NewtonsoftJsonbyte instance = new internal_partial_classConversions_NewtonsoftJsonbyte(value);
 
             return instance;
         }

@@ -94,9 +94,9 @@ namespace Whatever
 
             
 
-            public_partial_record_classConversions_EfCoreValueConverterdecimal instance = new public_partial_record_classConversions_EfCoreValueConverterdecimal(value);
-
             
+
+            public_partial_record_classConversions_EfCoreValueConverterdecimal instance = new public_partial_record_classConversions_EfCoreValueConverterdecimal(value);
 
             return instance;
         }

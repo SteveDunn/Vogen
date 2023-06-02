@@ -85,9 +85,9 @@ public System.Byte Value
 
             
 
-            escapedTestsinternal_partial_classConversions_NewtonsoftJson___Conversions_SystemTextJsonbyte instance = new escapedTestsinternal_partial_classConversions_NewtonsoftJson___Conversions_SystemTextJsonbyte(value);
-
             
+
+            escapedTestsinternal_partial_classConversions_NewtonsoftJson___Conversions_SystemTextJsonbyte instance = new escapedTestsinternal_partial_classConversions_NewtonsoftJson___Conversions_SystemTextJsonbyte(value);
 
             return instance;
         }

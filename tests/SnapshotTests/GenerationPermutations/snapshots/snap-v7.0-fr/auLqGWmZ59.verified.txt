@@ -95,9 +95,9 @@ namespace Whatever
 
             
 
-            public_partial_recordConversions_TypeConverterint instance = new public_partial_recordConversions_TypeConverterint(value);
-
             
+
+            public_partial_recordConversions_TypeConverterint instance = new public_partial_recordConversions_TypeConverterint(value);
 
             return instance;
         }

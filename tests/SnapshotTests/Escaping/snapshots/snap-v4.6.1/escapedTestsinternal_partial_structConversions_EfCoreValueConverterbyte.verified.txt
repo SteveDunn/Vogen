@@ -84,9 +84,9 @@ namespace @class
         {
             
 
-            escapedTestsinternal_partial_structConversions_EfCoreValueConverterbyte instance = new escapedTestsinternal_partial_structConversions_EfCoreValueConverterbyte(value);
-
             
+
+            escapedTestsinternal_partial_structConversions_EfCoreValueConverterbyte instance = new escapedTestsinternal_partial_structConversions_EfCoreValueConverterbyte(value);
 
             return instance;
         }

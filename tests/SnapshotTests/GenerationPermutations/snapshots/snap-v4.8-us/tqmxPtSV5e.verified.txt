@@ -85,9 +85,9 @@ namespace Whatever
         {
             
 
-            internal_partial_structConversions_TypeConverterint instance = new internal_partial_structConversions_TypeConverterint(value);
-
             
+
+            internal_partial_structConversions_TypeConverterint instance = new internal_partial_structConversions_TypeConverterint(value);
 
             return instance;
         }

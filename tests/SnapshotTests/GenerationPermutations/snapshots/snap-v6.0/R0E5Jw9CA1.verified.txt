@@ -83,9 +83,9 @@ public System.Char Value
 
             
 
-            public_partial_classConversions_Nonechar instance = new public_partial_classConversions_Nonechar(value);
-
             
+
+            public_partial_classConversions_Nonechar instance = new public_partial_classConversions_Nonechar(value);
 
             return instance;
         }

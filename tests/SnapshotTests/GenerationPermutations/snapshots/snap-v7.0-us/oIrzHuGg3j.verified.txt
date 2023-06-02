@@ -84,9 +84,9 @@ public System.DateTime Value
 
             
 
-            internal_sealed_partial_classConversions_NewtonsoftJsonSystem_DateTime instance = new internal_sealed_partial_classConversions_NewtonsoftJsonSystem_DateTime(value);
-
             
+
+            internal_sealed_partial_classConversions_NewtonsoftJsonSystem_DateTime instance = new internal_sealed_partial_classConversions_NewtonsoftJsonSystem_DateTime(value);
 
             return instance;
         }

@@ -85,9 +85,9 @@ public @class.@record.@struct.@float.@event Value
 
             
 
-            escapedTestspublic_partial_classConversions_NewtonsoftJson___Conversions_SystemTextJsonrecord__struct__float__event instance = new escapedTestspublic_partial_classConversions_NewtonsoftJson___Conversions_SystemTextJsonrecord__struct__float__event(value);
-
             
+
+            escapedTestspublic_partial_classConversions_NewtonsoftJson___Conversions_SystemTextJsonrecord__struct__float__event instance = new escapedTestspublic_partial_classConversions_NewtonsoftJson___Conversions_SystemTextJsonrecord__struct__float__event(value);
 
             return instance;
         }

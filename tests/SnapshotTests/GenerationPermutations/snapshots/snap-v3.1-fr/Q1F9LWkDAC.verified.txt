@@ -83,9 +83,9 @@ public System.Boolean Value
 
             
 
-            internal_partial_classConversions_LinqToDbValueConverterbool instance = new internal_partial_classConversions_LinqToDbValueConverterbool(value);
-
             
+
+            internal_partial_classConversions_LinqToDbValueConverterbool instance = new internal_partial_classConversions_LinqToDbValueConverterbool(value);
 
             return instance;
         }
