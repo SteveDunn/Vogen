@@ -94,9 +94,9 @@ namespace Whatever
 
             
 
-            public_sealed_partial_recordConversions_Nonefloat instance = new public_sealed_partial_recordConversions_Nonefloat(value);
-
             
+
+            public_sealed_partial_recordConversions_Nonefloat instance = new public_sealed_partial_recordConversions_Nonefloat(value);
 
             return instance;
         }

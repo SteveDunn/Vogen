@@ -84,9 +84,9 @@ public System.Int32 Value
 
             
 
-            stj_number_as_string_public_sealed_partial_classConversions_SystemTextJsonint instance = new stj_number_as_string_public_sealed_partial_classConversions_SystemTextJsonint(value);
-
             
+
+            stj_number_as_string_public_sealed_partial_classConversions_SystemTextJsonint instance = new stj_number_as_string_public_sealed_partial_classConversions_SystemTextJsonint(value);
 
             return instance;
         }

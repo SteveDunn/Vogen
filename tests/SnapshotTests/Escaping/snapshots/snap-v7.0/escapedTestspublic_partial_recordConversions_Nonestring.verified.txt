@@ -102,9 +102,9 @@ namespace @class
 
             
 
-            escapedTestspublic_partial_recordConversions_Nonestring instance = new escapedTestspublic_partial_recordConversions_Nonestring(value);
-
             
+
+            escapedTestspublic_partial_recordConversions_Nonestring instance = new escapedTestspublic_partial_recordConversions_Nonestring(value);
 
             return instance;
         }

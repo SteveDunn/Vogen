@@ -83,9 +83,9 @@ public @class.@record.@struct.@float.event2 Value
 
             
 
-            escapedTestsinternal_partial_classConversions_Nonerecord__struct__float__event2 instance = new escapedTestsinternal_partial_classConversions_Nonerecord__struct__float__event2(value);
-
             
+
+            escapedTestsinternal_partial_classConversions_Nonerecord__struct__float__event2 instance = new escapedTestsinternal_partial_classConversions_Nonerecord__struct__float__event2(value);
 
             return instance;
         }

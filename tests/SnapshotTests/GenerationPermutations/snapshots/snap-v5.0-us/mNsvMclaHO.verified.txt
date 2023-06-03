@@ -94,9 +94,9 @@ namespace Whatever
 
             
 
-            internal_partial_recordConversions_LinqToDbValueConverterdecimal instance = new internal_partial_recordConversions_LinqToDbValueConverterdecimal(value);
-
             
+
+            internal_partial_recordConversions_LinqToDbValueConverterdecimal instance = new internal_partial_recordConversions_LinqToDbValueConverterdecimal(value);
 
             return instance;
         }

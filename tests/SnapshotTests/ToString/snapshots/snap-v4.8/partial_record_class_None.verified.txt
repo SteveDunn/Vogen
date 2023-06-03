@@ -96,9 +96,9 @@ namespace Whatever
 
             
 
-            partial_record_class_None instance = new partial_record_class_None(value);
-
             
+
+            partial_record_class_None instance = new partial_record_class_None(value);
 
             return instance;
         }

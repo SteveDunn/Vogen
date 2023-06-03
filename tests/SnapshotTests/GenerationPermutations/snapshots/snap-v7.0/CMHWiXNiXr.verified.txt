@@ -94,9 +94,9 @@ namespace Whatever
 
             
 
-            public_sealed_partial_recordConversions_LinqToDbValueConverterbyte instance = new public_sealed_partial_recordConversions_LinqToDbValueConverterbyte(value);
-
             
+
+            public_sealed_partial_recordConversions_LinqToDbValueConverterbyte instance = new public_sealed_partial_recordConversions_LinqToDbValueConverterbyte(value);
 
             return instance;
         }

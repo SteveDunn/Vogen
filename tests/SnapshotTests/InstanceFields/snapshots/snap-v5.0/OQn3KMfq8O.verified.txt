@@ -96,9 +96,9 @@ namespace Whatever
 
             
 
-            public_partial_recorddouble instance = new public_partial_recorddouble(value);
-
             
+
+            public_partial_recorddouble instance = new public_partial_recorddouble(value);
 
             return instance;
         }

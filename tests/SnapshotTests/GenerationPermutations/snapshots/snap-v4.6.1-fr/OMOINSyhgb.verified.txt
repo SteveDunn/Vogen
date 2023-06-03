@@ -85,9 +85,9 @@ namespace Whatever
         {
             
 
-            internal_readonly_partial_structConversions_TypeConverterchar instance = new internal_readonly_partial_structConversions_TypeConverterchar(value);
-
             
+
+            internal_readonly_partial_structConversions_TypeConverterchar instance = new internal_readonly_partial_structConversions_TypeConverterchar(value);
 
             return instance;
         }

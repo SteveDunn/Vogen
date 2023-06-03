@@ -94,9 +94,9 @@ namespace @class
 
             
 
-            escapedTestsinternal_sealed_partial_recordConversions_EfCoreValueConverterrecord__struct__float__decimal instance = new escapedTestsinternal_sealed_partial_recordConversions_EfCoreValueConverterrecord__struct__float__decimal(value);
-
             
+
+            escapedTestsinternal_sealed_partial_recordConversions_EfCoreValueConverterrecord__struct__float__decimal instance = new escapedTestsinternal_sealed_partial_recordConversions_EfCoreValueConverterrecord__struct__float__decimal(value);
 
             return instance;
         }

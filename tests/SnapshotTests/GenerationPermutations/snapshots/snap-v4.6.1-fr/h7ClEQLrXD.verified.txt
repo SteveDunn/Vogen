@@ -94,9 +94,9 @@ namespace Whatever
         {
             
 
-            public_partial_record_structConversions_Noneint instance = new public_partial_record_structConversions_Noneint(value);
-
             
+
+            public_partial_record_structConversions_Noneint instance = new public_partial_record_structConversions_Noneint(value);
 
             return instance;
         }

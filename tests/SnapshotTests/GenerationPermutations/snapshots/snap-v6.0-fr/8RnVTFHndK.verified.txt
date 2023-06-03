@@ -84,9 +84,9 @@ public System.DateTimeOffset Value
 
             
 
-            internal_sealed_partial_classConversions_TypeConverterSystem_DateTimeOffset instance = new internal_sealed_partial_classConversions_TypeConverterSystem_DateTimeOffset(value);
-
             
+
+            internal_sealed_partial_classConversions_TypeConverterSystem_DateTimeOffset instance = new internal_sealed_partial_classConversions_TypeConverterSystem_DateTimeOffset(value);
 
             return instance;
         }

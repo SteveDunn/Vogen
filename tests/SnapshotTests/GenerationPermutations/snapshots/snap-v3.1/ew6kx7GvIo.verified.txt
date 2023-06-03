@@ -94,9 +94,9 @@ namespace Whatever
 
             
 
-            internal_sealed_partial_recordConversions_LinqToDbValueConverterlong instance = new internal_sealed_partial_recordConversions_LinqToDbValueConverterlong(value);
-
             
+
+            internal_sealed_partial_recordConversions_LinqToDbValueConverterlong instance = new internal_sealed_partial_recordConversions_LinqToDbValueConverterlong(value);
 
             return instance;
         }

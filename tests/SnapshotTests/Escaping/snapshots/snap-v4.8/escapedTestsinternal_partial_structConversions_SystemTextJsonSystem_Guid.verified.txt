@@ -85,9 +85,9 @@ namespace @class
         {
             
 
-            escapedTestsinternal_partial_structConversions_SystemTextJsonSystem_Guid instance = new escapedTestsinternal_partial_structConversions_SystemTextJsonSystem_Guid(value);
-
             
+
+            escapedTestsinternal_partial_structConversions_SystemTextJsonSystem_Guid instance = new escapedTestsinternal_partial_structConversions_SystemTextJsonSystem_Guid(value);
 
             return instance;
         }

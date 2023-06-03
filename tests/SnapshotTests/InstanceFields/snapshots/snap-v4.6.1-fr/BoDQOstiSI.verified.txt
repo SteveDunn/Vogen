@@ -96,9 +96,9 @@ namespace Whatever
 
             
 
-            public_partial_record_classint instance = new public_partial_record_classint(value);
-
             
+
+            public_partial_record_classint instance = new public_partial_record_classint(value);
 
             return instance;
         }

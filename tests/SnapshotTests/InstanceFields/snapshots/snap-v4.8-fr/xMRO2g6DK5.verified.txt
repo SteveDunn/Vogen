@@ -96,9 +96,9 @@ namespace Whatever
         {
             
 
-            public_readonly_partial_record_structbyte instance = new public_readonly_partial_record_structbyte(value);
-
             
+
+            public_readonly_partial_record_structbyte instance = new public_readonly_partial_record_structbyte(value);
 
             return instance;
         }

@@ -86,9 +86,9 @@ namespace Whatever
         {
             
 
-            partial_struct_ExpressionBodiedMethod instance = new partial_struct_ExpressionBodiedMethod(value);
-
             
+
+            partial_struct_ExpressionBodiedMethod instance = new partial_struct_ExpressionBodiedMethod(value);
 
             return instance;
         }

@@ -95,9 +95,9 @@ namespace Whatever
 
             
 
-            public_partial_recordConversions_SystemTextJsonSystem_Guid instance = new public_partial_recordConversions_SystemTextJsonSystem_Guid(value);
-
             
+
+            public_partial_recordConversions_SystemTextJsonSystem_Guid instance = new public_partial_recordConversions_SystemTextJsonSystem_Guid(value);
 
             return instance;
         }

@@ -94,9 +94,9 @@ namespace Whatever
 
             
 
-            internal_partial_recordConversions_DapperTypeHandlerSystem_DateTimeOffset instance = new internal_partial_recordConversions_DapperTypeHandlerSystem_DateTimeOffset(value);
-
             
+
+            internal_partial_recordConversions_DapperTypeHandlerSystem_DateTimeOffset instance = new internal_partial_recordConversions_DapperTypeHandlerSystem_DateTimeOffset(value);
 
             return instance;
         }

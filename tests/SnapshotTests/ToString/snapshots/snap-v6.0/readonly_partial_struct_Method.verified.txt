@@ -86,9 +86,9 @@ namespace Whatever
         {
             
 
-            readonly_partial_struct_Method instance = new readonly_partial_struct_Method(value);
-
             
+
+            readonly_partial_struct_Method instance = new readonly_partial_struct_Method(value);
 
             return instance;
         }

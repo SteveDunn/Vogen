@@ -68,23 +68,19 @@ public static class InstanceGeneration
                 if(propertyValue is string s)
                 {
                     var parsed = DateTime.Parse(s, CultureInfo.InvariantCulture, DateTimeStyles.RoundtripKind);
-
-                    return new(true,
-                        $@"global::System.DateTime.Parse(""{parsed:O}"", global::System.Globalization.CultureInfo.InvariantCulture, global::System.Globalization.DateTimeStyles.RoundtripKind)");
+                    return new(true, FormattableString.Invariant($@"global::System.DateTime.Parse(""{parsed:O}"", global::System.Globalization.CultureInfo.InvariantCulture, global::System.Globalization.DateTimeStyles.RoundtripKind)"));
                 }
 
                 if(propertyValue is long l)
                 {
                     _ = new DateTime(l, DateTimeKind.Utc);
-
-                    return new(true, $@"new global::System.DateTime({l},  global::System.DateTimeKind.Utc)");
+                    return new(true, FormattableString.Invariant($"new global::System.DateTime({l}, global::System.DateTimeKind.Utc)"));
                 }
 
                 if(propertyValue is int i)
                 {
                     _ = new DateTime(i, DateTimeKind.Utc);
-
-                    return new(true, $@"new global::System.DateTime({i},  global::System.DateTimeKind.Utc)");
+                    return new(true, FormattableString.Invariant($"new global::System.DateTime({i}, global::System.DateTimeKind.Utc)"));
                 }
             }
 
@@ -93,83 +89,73 @@ public static class InstanceGeneration
                 if(propertyValue is string s)
                 {
                     var parsed = DateTimeOffset.Parse(s, CultureInfo.InvariantCulture, DateTimeStyles.RoundtripKind);
-
-                    return new(true,
-                        $@"global::System.DateTimeOffset.Parse(""{parsed:O}"", null, global::System.Globalization.DateTimeStyles.RoundtripKind)");
+                    return new(true, FormattableString.Invariant($@"global::System.DateTimeOffset.Parse(""{parsed:O}"", null, global::System.Globalization.DateTimeStyles.RoundtripKind)"));
                 }
 
                 if(propertyValue is long l)
                 {
                     _ = new DateTimeOffset(l, TimeSpan.Zero);
-                    return new(true, $@"new global::System.DateTimeOffset({l},  global::System.TimeSpan.Zero)");
+                    return new(true, FormattableString.Invariant($"new global::System.DateTimeOffset({l}, global::System.TimeSpan.Zero)"));
                 }
 
                 if(propertyValue is int i)
                 {
                     _ = new DateTimeOffset(i, TimeSpan.Zero);
-                    return new(true, $@"new global::System.DateTimeOffset({i},  global::System.TimeSpan.Zero)");
+                    return new(true, FormattableString.Invariant($"new global::System.DateTimeOffset({i}, global::System.TimeSpan.Zero)"));
                 }
             }
 
             if (underlyingType == typeof(string).FullName)
             {
-                return new(true, $@"""{propertyValue}""");
+                return new(true, FormattableString.Invariant($@"""{propertyValue}"""));
             }
 
             if (underlyingType == typeof(decimal).FullName)
             {
                 if (propertyValue is char c)
                 {
-                    return new(true, string.Format(@"{0}m", c, CultureInfo.InvariantCulture));
+                    return new(true, FormattableString.Invariant($"{c}m"));
                 }
 
-                return new(true,
-                    Convert.ToDecimal(propertyValue).ToString(CultureInfo.InvariantCulture) + "m");
+                return new(true, FormattableString.Invariant($"{Convert.ToDecimal(propertyValue, CultureInfo.InvariantCulture)}m"));
             }
 
             if (underlyingType == typeof(double).FullName)
             {
                 if (propertyValue is char c)
                 {
-                    return new(true, string.Format(@"{0}d", c, CultureInfo.InvariantCulture));
+                    return new(true, FormattableString.Invariant($"{c}d"));
                 }
 
-                return new(true,
-                    Convert.ToDecimal(propertyValue).ToString(CultureInfo.InvariantCulture) + "d");
+                return new(true, FormattableString.Invariant($"{Convert.ToDouble(propertyValue, CultureInfo.InvariantCulture)}d"));
             }
 
             if (underlyingType == typeof(float).FullName)
             {
                 if (propertyValue is char c)
                 {
-                    return new(true, string.Format(@"{0}f", c, CultureInfo.InvariantCulture));
+                    return new(true, FormattableString.Invariant($"{c}f"));
                 }
 
-                return new(true,
-                    Convert.ToSingle(propertyValue).ToString(CultureInfo.InvariantCulture) + "f");
+                return new(true, FormattableString.Invariant($"{Convert.ToSingle(propertyValue, CultureInfo.InvariantCulture)}f"));
             }
 
             if (underlyingType == typeof(char).FullName)
             {
                 if(propertyValue is char c)
-                    return new(true, $@"'{c}'");
-
-                var converted = Convert.ToChar(propertyValue);
-                return new(true, $@"'{converted}'");
+                    return new(true, FormattableString.Invariant($"'{c}'"));
+                
+                return new(true, FormattableString.Invariant($"'{Convert.ToChar(propertyValue, CultureInfo.InvariantCulture)}'"));
             }
 
             if (underlyingType == typeof(byte).FullName)
             {
-                var converted = Convert.ToByte(propertyValue);
-
-                return new(true, $@"{converted}");
+                return new(true, FormattableString.Invariant($"{Convert.ToByte(propertyValue, CultureInfo.InvariantCulture)}"));
             }
 
             if (underlyingType == typeof(bool).FullName)
             {
-                var converted = propertyValue?.ToString()?.ToLower();
-            
-                return new(true, $@"{converted}");
+                return new(true, FormattableString.Invariant($"{Convert.ToBoolean(propertyValue, CultureInfo.InvariantCulture)}").ToLowerInvariant());
             }
 
             return new(true, propertyValue.ToString()!);

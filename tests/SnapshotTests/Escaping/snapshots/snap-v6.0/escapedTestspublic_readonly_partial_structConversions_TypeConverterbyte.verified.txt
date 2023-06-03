@@ -85,9 +85,9 @@ namespace @class
         {
             
 
-            escapedTestspublic_readonly_partial_structConversions_TypeConverterbyte instance = new escapedTestspublic_readonly_partial_structConversions_TypeConverterbyte(value);
-
             
+
+            escapedTestspublic_readonly_partial_structConversions_TypeConverterbyte instance = new escapedTestspublic_readonly_partial_structConversions_TypeConverterbyte(value);
 
             return instance;
         }

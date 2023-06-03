@@ -85,9 +85,9 @@ namespace Whatever
         {
             
 
-            public_partial_structConversions_TypeConverterfloat instance = new public_partial_structConversions_TypeConverterfloat(value);
-
             
+
+            public_partial_structConversions_TypeConverterfloat instance = new public_partial_structConversions_TypeConverterfloat(value);
 
             return instance;
         }

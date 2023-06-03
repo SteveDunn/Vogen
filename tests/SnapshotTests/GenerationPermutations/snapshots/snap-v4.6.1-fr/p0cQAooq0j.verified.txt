@@ -94,9 +94,9 @@ namespace Whatever
 
             
 
-            internal_partial_recordConversions_EfCoreValueConverterchar instance = new internal_partial_recordConversions_EfCoreValueConverterchar(value);
-
             
+
+            internal_partial_recordConversions_EfCoreValueConverterchar instance = new internal_partial_recordConversions_EfCoreValueConverterchar(value);
 
             return instance;
         }

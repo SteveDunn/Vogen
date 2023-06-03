@@ -85,9 +85,9 @@ namespace Whatever
         {
             
 
-            public_partial_structConversions_NewtonsoftJsonshort instance = new public_partial_structConversions_NewtonsoftJsonshort(value);
-
             
+
+            public_partial_structConversions_NewtonsoftJsonshort instance = new public_partial_structConversions_NewtonsoftJsonshort(value);
 
             return instance;
         }

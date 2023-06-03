@@ -96,9 +96,9 @@ namespace Whatever
         {
             
 
-            internal_partial_record_structConversions_NewtonsoftJson___Conversions_SystemTextJsonSystem_DateTime instance = new internal_partial_record_structConversions_NewtonsoftJson___Conversions_SystemTextJsonSystem_DateTime(value);
-
             
+
+            internal_partial_record_structConversions_NewtonsoftJson___Conversions_SystemTextJsonSystem_DateTime instance = new internal_partial_record_structConversions_NewtonsoftJson___Conversions_SystemTextJsonSystem_DateTime(value);
 
             return instance;
         }
@@ -145,28 +145,27 @@ namespace Whatever
 
         
  
-        
-        class internal_partial_record_structConversions_NewtonsoftJson___Conversions_SystemTextJsonSystem_DateTimeSystemTextJsonConverter : global::System.Text.Json.Serialization.JsonConverter<internal_partial_record_structConversions_NewtonsoftJson___Conversions_SystemTextJsonSystem_DateTime>
+                class internal_partial_record_structConversions_NewtonsoftJson___Conversions_SystemTextJsonSystem_DateTimeSystemTextJsonConverter : global::System.Text.Json.Serialization.JsonConverter<internal_partial_record_structConversions_NewtonsoftJson___Conversions_SystemTextJsonSystem_DateTime>
         {
             public override internal_partial_record_structConversions_NewtonsoftJson___Conversions_SystemTextJsonSystem_DateTime Read(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {
-                return internal_partial_record_structConversions_NewtonsoftJson___Conversions_SystemTextJsonSystem_DateTime.Deserialize(reader.GetDateTime());
+                return internal_partial_record_structConversions_NewtonsoftJson___Conversions_SystemTextJsonSystem_DateTime.Deserialize(reader.GetDateTime().ToUniversalTime());
             }
 
             public override void Write(System.Text.Json.Utf8JsonWriter writer, internal_partial_record_structConversions_NewtonsoftJson___Conversions_SystemTextJsonSystem_DateTime value, global::System.Text.Json.JsonSerializerOptions options)
             {
-                writer.WriteStringValue(value.Value);
+                writer.WriteStringValue(value.Value.ToUniversalTime());
             }
 
 #if NET6_0_OR_GREATER
             public override internal_partial_record_structConversions_NewtonsoftJson___Conversions_SystemTextJsonSystem_DateTime ReadAsPropertyName(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {
-                return internal_partial_record_structConversions_NewtonsoftJson___Conversions_SystemTextJsonSystem_DateTime.Deserialize(global::System.DateTime.ParseExact(reader.GetString(), "O", global::System.Globalization.CultureInfo.InvariantCulture));
+                return internal_partial_record_structConversions_NewtonsoftJson___Conversions_SystemTextJsonSystem_DateTime.Deserialize(global::System.DateTime.ParseExact(reader.GetString(), "O", global::System.Globalization.CultureInfo.InvariantCulture, global::System.Globalization.DateTimeStyles.RoundtripKind));
             }
 
             public override void WriteAsPropertyName(System.Text.Json.Utf8JsonWriter writer, internal_partial_record_structConversions_NewtonsoftJson___Conversions_SystemTextJsonSystem_DateTime value, global::System.Text.Json.JsonSerializerOptions options)
             {
-                writer.WritePropertyName(value.Value.ToString("O"));
+                writer.WritePropertyName(value.Value.ToUniversalTime().ToString("O", global::System.Globalization.CultureInfo.InvariantCulture));
             }
 #endif            
         }

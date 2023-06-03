@@ -84,9 +84,9 @@ public System.Char Value
 
             
 
-            internal_sealed_partial_classConversions_NewtonsoftJsonchar instance = new internal_sealed_partial_classConversions_NewtonsoftJsonchar(value);
-
             
+
+            internal_sealed_partial_classConversions_NewtonsoftJsonchar instance = new internal_sealed_partial_classConversions_NewtonsoftJsonchar(value);
 
             return instance;
         }

@@ -85,9 +85,9 @@ public System.Decimal Value
 
             
 
-            public_partial_classConversions_NewtonsoftJson___Conversions_SystemTextJsondecimal instance = new public_partial_classConversions_NewtonsoftJson___Conversions_SystemTextJsondecimal(value);
-
             
+
+            public_partial_classConversions_NewtonsoftJson___Conversions_SystemTextJsondecimal instance = new public_partial_classConversions_NewtonsoftJson___Conversions_SystemTextJsondecimal(value);
 
             return instance;
         }

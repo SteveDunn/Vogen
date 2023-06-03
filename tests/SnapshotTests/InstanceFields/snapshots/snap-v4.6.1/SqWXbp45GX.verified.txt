@@ -96,9 +96,9 @@ namespace Whatever
 
             
 
-            public_partial_recordlong instance = new public_partial_recordlong(value);
-
             
+
+            public_partial_recordlong instance = new public_partial_recordlong(value);
 
             return instance;
         }

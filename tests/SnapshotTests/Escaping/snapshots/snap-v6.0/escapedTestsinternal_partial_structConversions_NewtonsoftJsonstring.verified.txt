@@ -85,9 +85,9 @@ namespace @class
         {
             
 
-            escapedTestsinternal_partial_structConversions_NewtonsoftJsonstring instance = new escapedTestsinternal_partial_structConversions_NewtonsoftJsonstring(value);
-
             
+
+            escapedTestsinternal_partial_structConversions_NewtonsoftJsonstring instance = new escapedTestsinternal_partial_structConversions_NewtonsoftJsonstring(value);
 
             return instance;
         }

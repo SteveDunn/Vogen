@@ -94,9 +94,9 @@ namespace Whatever
 
             
 
-            internal_sealed_partial_recordConversions_LinqToDbValueConverterSystem_Guid instance = new internal_sealed_partial_recordConversions_LinqToDbValueConverterSystem_Guid(value);
-
             
+
+            internal_sealed_partial_recordConversions_LinqToDbValueConverterSystem_Guid instance = new internal_sealed_partial_recordConversions_LinqToDbValueConverterSystem_Guid(value);
 
             return instance;
         }

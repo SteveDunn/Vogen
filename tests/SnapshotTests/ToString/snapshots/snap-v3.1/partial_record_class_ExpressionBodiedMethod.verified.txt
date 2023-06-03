@@ -96,9 +96,9 @@ namespace Whatever
 
             
 
-            partial_record_class_ExpressionBodiedMethod instance = new partial_record_class_ExpressionBodiedMethod(value);
-
             
+
+            partial_record_class_ExpressionBodiedMethod instance = new partial_record_class_ExpressionBodiedMethod(value);
 
             return instance;
         }

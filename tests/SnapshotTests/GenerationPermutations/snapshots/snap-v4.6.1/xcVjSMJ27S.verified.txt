@@ -84,9 +84,9 @@ public System.Double Value
 
             
 
-            public_sealed_partial_classConversions_TypeConverterdouble instance = new public_sealed_partial_classConversions_TypeConverterdouble(value);
-
             
+
+            public_sealed_partial_classConversions_TypeConverterdouble instance = new public_sealed_partial_classConversions_TypeConverterdouble(value);
 
             return instance;
         }

@@ -104,9 +104,9 @@ namespace Whatever
 
             
 
-            internal_sealed_partial_recordstring instance = new internal_sealed_partial_recordstring(value);
-
             
+
+            internal_sealed_partial_recordstring instance = new internal_sealed_partial_recordstring(value);
 
             return instance;
         }

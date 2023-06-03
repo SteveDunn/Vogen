@@ -95,9 +95,9 @@ namespace Whatever
         {
             
 
-            public_partial_record_structConversions_NewtonsoftJsonfloat instance = new public_partial_record_structConversions_NewtonsoftJsonfloat(value);
-
             
+
+            public_partial_record_structConversions_NewtonsoftJsonfloat instance = new public_partial_record_structConversions_NewtonsoftJsonfloat(value);
 
             return instance;
         }

@@ -84,9 +84,9 @@ namespace @class
         {
             
 
-            escapedTestsinternal_readonly_partial_structConversions_EfCoreValueConverterdouble instance = new escapedTestsinternal_readonly_partial_structConversions_EfCoreValueConverterdouble(value);
-
             
+
+            escapedTestsinternal_readonly_partial_structConversions_EfCoreValueConverterdouble instance = new escapedTestsinternal_readonly_partial_structConversions_EfCoreValueConverterdouble(value);
 
             return instance;
         }

@@ -94,9 +94,9 @@ namespace @class
 
             
 
-            escapedTestspublic_partial_recordConversions_DapperTypeHandlerbyte instance = new escapedTestspublic_partial_recordConversions_DapperTypeHandlerbyte(value);
-
             
+
+            escapedTestspublic_partial_recordConversions_DapperTypeHandlerbyte instance = new escapedTestspublic_partial_recordConversions_DapperTypeHandlerbyte(value);
 
             return instance;
         }

@@ -95,9 +95,9 @@ namespace @class
 
             
 
-            escapedTestspublic_partial_recordConversions_NewtonsoftJsondouble instance = new escapedTestspublic_partial_recordConversions_NewtonsoftJsondouble(value);
-
             
+
+            escapedTestspublic_partial_recordConversions_NewtonsoftJsondouble instance = new escapedTestspublic_partial_recordConversions_NewtonsoftJsondouble(value);
 
             return instance;
         }

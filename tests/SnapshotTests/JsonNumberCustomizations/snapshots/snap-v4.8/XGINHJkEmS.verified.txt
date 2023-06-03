@@ -95,9 +95,9 @@ namespace Whatever
 
             
 
-            stj_number_as_string_public_sealed_partial_recordConversions_NewtonsoftJsonchar instance = new stj_number_as_string_public_sealed_partial_recordConversions_NewtonsoftJsonchar(value);
-
             
+
+            stj_number_as_string_public_sealed_partial_recordConversions_NewtonsoftJsonchar instance = new stj_number_as_string_public_sealed_partial_recordConversions_NewtonsoftJsonchar(value);
 
             return instance;
         }

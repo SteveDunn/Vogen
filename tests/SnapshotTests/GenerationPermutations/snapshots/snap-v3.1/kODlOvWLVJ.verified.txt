@@ -85,9 +85,9 @@ namespace Whatever
         {
             
 
-            public_partial_structConversions_NewtonsoftJsondecimal instance = new public_partial_structConversions_NewtonsoftJsondecimal(value);
-
             
+
+            public_partial_structConversions_NewtonsoftJsondecimal instance = new public_partial_structConversions_NewtonsoftJsondecimal(value);
 
             return instance;
         }

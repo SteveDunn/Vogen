@@ -94,9 +94,9 @@ namespace Whatever
 
             
 
-            public_partial_record_classConversions_LinqToDbValueConverterbool instance = new public_partial_record_classConversions_LinqToDbValueConverterbool(value);
-
             
+
+            public_partial_record_classConversions_LinqToDbValueConverterbool instance = new public_partial_record_classConversions_LinqToDbValueConverterbool(value);
 
             return instance;
         }

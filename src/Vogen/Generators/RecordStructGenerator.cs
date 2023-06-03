@@ -79,9 +79,9 @@ using Vogen;
         {{
             {Util.GenerateNormalizeInputMethodIfNeeded(item)}
 
-            {structName} instance = new {structName}(value);
-
             {Util.GenerateValidation(item)}
+
+            {structName} instance = new {structName}(value);
 
             return instance;
         }}

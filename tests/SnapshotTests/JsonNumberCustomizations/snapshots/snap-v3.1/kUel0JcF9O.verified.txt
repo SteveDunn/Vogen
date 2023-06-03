@@ -87,9 +87,9 @@ public System.String Value
 
             
 
-            stj_number_as_string_public_partial_classConversions_Nonestring instance = new stj_number_as_string_public_partial_classConversions_Nonestring(value);
-
             
+
+            stj_number_as_string_public_partial_classConversions_Nonestring instance = new stj_number_as_string_public_partial_classConversions_Nonestring(value);
 
             return instance;
         }

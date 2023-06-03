@@ -88,9 +88,9 @@ public System.String Value
 
             
 
-            escapedTestspublic_partial_classConversions_TypeConverterstring instance = new escapedTestspublic_partial_classConversions_TypeConverterstring(value);
-
             
+
+            escapedTestspublic_partial_classConversions_TypeConverterstring instance = new escapedTestspublic_partial_classConversions_TypeConverterstring(value);
 
             return instance;
         }

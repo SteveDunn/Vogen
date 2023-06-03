@@ -103,9 +103,9 @@ namespace @class
 
             
 
-            escapedTestspublic_partial_recordConversions_TypeConverterstring instance = new escapedTestspublic_partial_recordConversions_TypeConverterstring(value);
-
             
+
+            escapedTestspublic_partial_recordConversions_TypeConverterstring instance = new escapedTestspublic_partial_recordConversions_TypeConverterstring(value);
 
             return instance;
         }

@@ -94,9 +94,9 @@ namespace @class
 
             
 
-            escapedTestspublic_partial_recordConversions_EfCoreValueConverterbyte instance = new escapedTestspublic_partial_recordConversions_EfCoreValueConverterbyte(value);
-
             
+
+            escapedTestspublic_partial_recordConversions_EfCoreValueConverterbyte instance = new escapedTestspublic_partial_recordConversions_EfCoreValueConverterbyte(value);
 
             return instance;
         }

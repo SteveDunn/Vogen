@@ -94,9 +94,9 @@ namespace @class
 
             
 
-            escapedTestsinternal_sealed_partial_recordConversions_DapperTypeHandlerdouble instance = new escapedTestsinternal_sealed_partial_recordConversions_DapperTypeHandlerdouble(value);
-
             
+
+            escapedTestsinternal_sealed_partial_recordConversions_DapperTypeHandlerdouble instance = new escapedTestsinternal_sealed_partial_recordConversions_DapperTypeHandlerdouble(value);
 
             return instance;
         }

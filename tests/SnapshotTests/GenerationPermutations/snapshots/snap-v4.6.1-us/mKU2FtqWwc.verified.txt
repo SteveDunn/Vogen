@@ -84,9 +84,9 @@ namespace Whatever
         {
             
 
-            public_partial_structConversions_Nonebyte instance = new public_partial_structConversions_Nonebyte(value);
-
             
+
+            public_partial_structConversions_Nonebyte instance = new public_partial_structConversions_Nonebyte(value);
 
             return instance;
         }

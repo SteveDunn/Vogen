@@ -83,9 +83,9 @@ public System.Byte Value
 
             
 
-            escapedTestspublic_partial_classConversions_DapperTypeHandlerbyte instance = new escapedTestspublic_partial_classConversions_DapperTypeHandlerbyte(value);
-
             
+
+            escapedTestspublic_partial_classConversions_DapperTypeHandlerbyte instance = new escapedTestspublic_partial_classConversions_DapperTypeHandlerbyte(value);
 
             return instance;
         }

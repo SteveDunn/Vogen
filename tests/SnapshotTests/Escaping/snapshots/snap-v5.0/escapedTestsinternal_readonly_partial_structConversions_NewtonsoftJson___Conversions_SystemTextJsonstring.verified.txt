@@ -86,9 +86,9 @@ namespace @class
         {
             
 
-            escapedTestsinternal_readonly_partial_structConversions_NewtonsoftJson___Conversions_SystemTextJsonstring instance = new escapedTestsinternal_readonly_partial_structConversions_NewtonsoftJson___Conversions_SystemTextJsonstring(value);
-
             
+
+            escapedTestsinternal_readonly_partial_structConversions_NewtonsoftJson___Conversions_SystemTextJsonstring instance = new escapedTestsinternal_readonly_partial_structConversions_NewtonsoftJson___Conversions_SystemTextJsonstring(value);
 
             return instance;
         }

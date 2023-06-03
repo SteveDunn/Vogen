@@ -84,9 +84,9 @@ public System.DateTimeOffset Value
 
             
 
-            internal_partial_classConversions_NewtonsoftJsonSystem_DateTimeOffset instance = new internal_partial_classConversions_NewtonsoftJsonSystem_DateTimeOffset(value);
-
             
+
+            internal_partial_classConversions_NewtonsoftJsonSystem_DateTimeOffset instance = new internal_partial_classConversions_NewtonsoftJsonSystem_DateTimeOffset(value);
 
             return instance;
         }

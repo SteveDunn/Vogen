@@ -84,9 +84,9 @@ public System.Single Value
 
             
 
-            public_partial_classConversions_SystemTextJsonfloat instance = new public_partial_classConversions_SystemTextJsonfloat(value);
-
             
+
+            public_partial_classConversions_SystemTextJsonfloat instance = new public_partial_classConversions_SystemTextJsonfloat(value);
 
             return instance;
         }

@@ -86,8 +86,6 @@ namespace @double
         {
             
 
-            @class instance = new @class(value);
-
             var validation = @class.validate(value);
             if (validation != Vogen.Validation.Ok)
             {
@@ -102,6 +100,8 @@ namespace @double
                 throw ex;
             }
 
+
+            @class instance = new @class(value);
 
             return instance;
         }

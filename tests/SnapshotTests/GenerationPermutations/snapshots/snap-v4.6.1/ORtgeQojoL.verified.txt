@@ -85,9 +85,9 @@ public System.Double Value
 
             
 
-            internal_partial_classConversions_NewtonsoftJson___Conversions_SystemTextJsondouble instance = new internal_partial_classConversions_NewtonsoftJson___Conversions_SystemTextJsondouble(value);
-
             
+
+            internal_partial_classConversions_NewtonsoftJson___Conversions_SystemTextJsondouble instance = new internal_partial_classConversions_NewtonsoftJson___Conversions_SystemTextJsondouble(value);
 
             return instance;
         }

@@ -3,6 +3,7 @@ using System.ComponentModel;
 using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
+using ConsumerTests;
 using Dapper;
 using LinqToDB;
 using LinqToDB.Data;
@@ -182,13 +183,15 @@ public class DecimalVoTests
     }
 
     [Fact]
+    [UseCulture("")]
     public async Task WhenDapperValueConverterUsesValueConverter()
     {
         using var connection = new SqliteConnection("DataSource=:memory:");
         await connection.OpenAsync();
 
         var parameters = new { Value = 123.45m };
-        IEnumerable<DapperDecimalVo> results = await connection.QueryAsync<DapperDecimalVo>("SELECT @Value", parameters);
+        IEnumerable<DapperDecimalVo> results =
+            await connection.QueryAsync<DapperDecimalVo>("SELECT @Value", parameters);
 
         DapperDecimalVo value = Assert.Single(results);
         Assert.Equal(DapperDecimalVo.From(123.45m), value);

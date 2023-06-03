@@ -98,9 +98,9 @@ namespace @class
         {
             
 
-            escapedTestsinternal_partial_record_structConversions_Nonestring instance = new escapedTestsinternal_partial_record_structConversions_Nonestring(value);
-
             
+
+            escapedTestsinternal_partial_record_structConversions_Nonestring instance = new escapedTestsinternal_partial_record_structConversions_Nonestring(value);
 
             return instance;
         }

@@ -85,9 +85,9 @@ public System.Char Value
 
             
 
-            internal_sealed_partial_classchar instance = new internal_sealed_partial_classchar(value);
-
             
+
+            internal_sealed_partial_classchar instance = new internal_sealed_partial_classchar(value);
 
             return instance;
         }

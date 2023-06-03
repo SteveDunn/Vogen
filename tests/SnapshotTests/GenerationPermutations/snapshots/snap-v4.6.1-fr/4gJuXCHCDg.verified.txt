@@ -95,9 +95,9 @@ namespace Whatever
 
             
 
-            public_partial_record_classConversions_NewtonsoftJson instance = new public_partial_record_classConversions_NewtonsoftJson(value);
-
             
+
+            public_partial_record_classConversions_NewtonsoftJson instance = new public_partial_record_classConversions_NewtonsoftJson(value);
 
             return instance;
         }

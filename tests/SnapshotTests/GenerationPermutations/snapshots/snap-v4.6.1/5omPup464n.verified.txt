@@ -95,9 +95,9 @@ namespace Whatever
 
             
 
-            public_sealed_partial_recordConversions_NewtonsoftJsonbyte instance = new public_sealed_partial_recordConversions_NewtonsoftJsonbyte(value);
-
             
+
+            public_sealed_partial_recordConversions_NewtonsoftJsonbyte instance = new public_sealed_partial_recordConversions_NewtonsoftJsonbyte(value);
 
             return instance;
         }

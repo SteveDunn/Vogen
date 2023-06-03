@@ -84,9 +84,9 @@ namespace @class
         {
             
 
-            escapedTestspublic_readonly_partial_structConversions_Nonedouble instance = new escapedTestspublic_readonly_partial_structConversions_Nonedouble(value);
-
             
+
+            escapedTestspublic_readonly_partial_structConversions_Nonedouble instance = new escapedTestspublic_readonly_partial_structConversions_Nonedouble(value);
 
             return instance;
         }

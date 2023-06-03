@@ -99,9 +99,9 @@ namespace Whatever
         {
             
 
-            public_readonly_partial_record_structConversions_SystemTextJsonstring instance = new public_readonly_partial_record_structConversions_SystemTextJsonstring(value);
-
             
+
+            public_readonly_partial_record_structConversions_SystemTextJsonstring instance = new public_readonly_partial_record_structConversions_SystemTextJsonstring(value);
 
             return instance;
         }

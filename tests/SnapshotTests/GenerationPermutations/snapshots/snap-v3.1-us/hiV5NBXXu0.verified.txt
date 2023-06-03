@@ -95,9 +95,9 @@ namespace Whatever
 
             
 
-            public_partial_recordConversions_SystemTextJsonbyte instance = new public_partial_recordConversions_SystemTextJsonbyte(value);
-
             
+
+            public_partial_recordConversions_SystemTextJsonbyte instance = new public_partial_recordConversions_SystemTextJsonbyte(value);
 
             return instance;
         }

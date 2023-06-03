@@ -84,9 +84,9 @@ public System.Decimal Value
 
             
 
-            internal_partial_classConversions_TypeConverterdecimal instance = new internal_partial_classConversions_TypeConverterdecimal(value);
-
             
+
+            internal_partial_classConversions_TypeConverterdecimal instance = new internal_partial_classConversions_TypeConverterdecimal(value);
 
             return instance;
         }

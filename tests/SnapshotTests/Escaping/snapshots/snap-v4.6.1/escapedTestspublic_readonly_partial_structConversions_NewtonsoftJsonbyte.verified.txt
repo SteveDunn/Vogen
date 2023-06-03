@@ -85,9 +85,9 @@ namespace @class
         {
             
 
-            escapedTestspublic_readonly_partial_structConversions_NewtonsoftJsonbyte instance = new escapedTestspublic_readonly_partial_structConversions_NewtonsoftJsonbyte(value);
-
             
+
+            escapedTestspublic_readonly_partial_structConversions_NewtonsoftJsonbyte instance = new escapedTestspublic_readonly_partial_structConversions_NewtonsoftJsonbyte(value);
 
             return instance;
         }

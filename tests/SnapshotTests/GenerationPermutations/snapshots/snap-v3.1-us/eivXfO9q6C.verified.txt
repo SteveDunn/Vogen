@@ -87,9 +87,9 @@ public System.String Value
 
             
 
-            internal_partial_classConversions_LinqToDbValueConverterstring instance = new internal_partial_classConversions_LinqToDbValueConverterstring(value);
-
             
+
+            internal_partial_classConversions_LinqToDbValueConverterstring instance = new internal_partial_classConversions_LinqToDbValueConverterstring(value);
 
             return instance;
         }

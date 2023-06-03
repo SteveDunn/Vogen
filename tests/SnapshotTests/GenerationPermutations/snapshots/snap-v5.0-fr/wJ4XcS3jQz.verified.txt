@@ -85,9 +85,9 @@ namespace Whatever
         {
             
 
-            internal_partial_structConversions_SystemTextJsonSystem_Guid instance = new internal_partial_structConversions_SystemTextJsonSystem_Guid(value);
-
             
+
+            internal_partial_structConversions_SystemTextJsonSystem_Guid instance = new internal_partial_structConversions_SystemTextJsonSystem_Guid(value);
 
             return instance;
         }

@@ -85,9 +85,9 @@ public System.Single Value
 
             
 
-            internal_partial_classConversions_NewtonsoftJson___Conversions_SystemTextJsonfloat instance = new internal_partial_classConversions_NewtonsoftJson___Conversions_SystemTextJsonfloat(value);
-
             
+
+            internal_partial_classConversions_NewtonsoftJson___Conversions_SystemTextJsonfloat instance = new internal_partial_classConversions_NewtonsoftJson___Conversions_SystemTextJsonfloat(value);
 
             return instance;
         }

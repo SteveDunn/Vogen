@@ -83,9 +83,9 @@ public System.Guid Value
 
             
 
-            escapedTestspublic_partial_classConversions_DapperTypeHandlerSystem_Guid instance = new escapedTestspublic_partial_classConversions_DapperTypeHandlerSystem_Guid(value);
-
             
+
+            escapedTestspublic_partial_classConversions_DapperTypeHandlerSystem_Guid instance = new escapedTestspublic_partial_classConversions_DapperTypeHandlerSystem_Guid(value);
 
             return instance;
         }

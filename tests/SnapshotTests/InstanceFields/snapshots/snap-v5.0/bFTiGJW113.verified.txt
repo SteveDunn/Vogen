@@ -85,9 +85,9 @@ public System.Int32 Value
 
             
 
-            internal_sealed_partial_classint instance = new internal_sealed_partial_classint(value);
-
             
+
+            internal_sealed_partial_classint instance = new internal_sealed_partial_classint(value);
 
             return instance;
         }

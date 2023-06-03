@@ -83,9 +83,9 @@ public System.Int32 Value
 
             
 
-            internal_partial_classConversions_DapperTypeHandler instance = new internal_partial_classConversions_DapperTypeHandler(value);
-
             
+
+            internal_partial_classConversions_DapperTypeHandler instance = new internal_partial_classConversions_DapperTypeHandler(value);
 
             return instance;
         }

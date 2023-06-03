@@ -84,9 +84,9 @@ namespace Whatever
         {
             
 
-            public_readonly_partial_structConversions_Nonebool instance = new public_readonly_partial_structConversions_Nonebool(value);
-
             
+
+            public_readonly_partial_structConversions_Nonebool instance = new public_readonly_partial_structConversions_Nonebool(value);
 
             return instance;
         }

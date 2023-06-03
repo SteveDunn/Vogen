@@ -102,9 +102,9 @@ namespace Whatever
 
             
 
-            public_partial_recordConversions_DapperTypeHandlerstring instance = new public_partial_recordConversions_DapperTypeHandlerstring(value);
-
             
+
+            public_partial_recordConversions_DapperTypeHandlerstring instance = new public_partial_recordConversions_DapperTypeHandlerstring(value);
 
             return instance;
         }

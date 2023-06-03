@@ -95,9 +95,9 @@ namespace Whatever
 
             
 
-            public_sealed_partial_record_classConversions_NewtonsoftJsonint instance = new public_sealed_partial_record_classConversions_NewtonsoftJsonint(value);
-
             
+
+            public_sealed_partial_record_classConversions_NewtonsoftJsonint instance = new public_sealed_partial_record_classConversions_NewtonsoftJsonint(value);
 
             return instance;
         }

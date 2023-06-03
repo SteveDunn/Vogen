@@ -84,9 +84,9 @@ namespace Whatever
         {
             
 
-            public_partial_structConversions_LinqToDbValueConverterdecimal instance = new public_partial_structConversions_LinqToDbValueConverterdecimal(value);
-
             
+
+            public_partial_structConversions_LinqToDbValueConverterdecimal instance = new public_partial_structConversions_LinqToDbValueConverterdecimal(value);
 
             return instance;
         }

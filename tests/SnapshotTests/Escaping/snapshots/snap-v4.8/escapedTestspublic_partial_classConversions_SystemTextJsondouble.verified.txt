@@ -84,9 +84,9 @@ public System.Double Value
 
             
 
-            escapedTestspublic_partial_classConversions_SystemTextJsondouble instance = new escapedTestspublic_partial_classConversions_SystemTextJsondouble(value);
-
             
+
+            escapedTestspublic_partial_classConversions_SystemTextJsondouble instance = new escapedTestspublic_partial_classConversions_SystemTextJsondouble(value);
 
             return instance;
         }

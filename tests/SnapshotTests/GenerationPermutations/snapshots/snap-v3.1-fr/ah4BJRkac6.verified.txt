@@ -94,9 +94,9 @@ namespace Whatever
 
             
 
-            public_partial_record_classConversions_Noneint instance = new public_partial_record_classConversions_Noneint(value);
-
             
+
+            public_partial_record_classConversions_Noneint instance = new public_partial_record_classConversions_Noneint(value);
 
             return instance;
         }

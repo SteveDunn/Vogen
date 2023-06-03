@@ -95,9 +95,9 @@ namespace Whatever
 
             
 
-            stj_number_as_string_public_partial_recordConversions_NewtonsoftJsonSystem_DateTimeOffset instance = new stj_number_as_string_public_partial_recordConversions_NewtonsoftJsonSystem_DateTimeOffset(value);
-
             
+
+            stj_number_as_string_public_partial_recordConversions_NewtonsoftJsonSystem_DateTimeOffset instance = new stj_number_as_string_public_partial_recordConversions_NewtonsoftJsonSystem_DateTimeOffset(value);
 
             return instance;
         }

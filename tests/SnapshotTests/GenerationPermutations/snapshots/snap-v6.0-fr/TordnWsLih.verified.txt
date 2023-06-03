@@ -83,9 +83,9 @@ public System.Decimal Value
 
             
 
-            public_sealed_partial_classConversions_EfCoreValueConverterdecimal instance = new public_sealed_partial_classConversions_EfCoreValueConverterdecimal(value);
-
             
+
+            public_sealed_partial_classConversions_EfCoreValueConverterdecimal instance = new public_sealed_partial_classConversions_EfCoreValueConverterdecimal(value);
 
             return instance;
         }

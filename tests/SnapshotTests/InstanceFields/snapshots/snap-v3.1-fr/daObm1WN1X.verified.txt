@@ -96,9 +96,9 @@ namespace Whatever
         {
             
 
-            internal_readonly_partial_record_structbyte instance = new internal_readonly_partial_record_structbyte(value);
-
             
+
+            internal_readonly_partial_record_structbyte instance = new internal_readonly_partial_record_structbyte(value);
 
             return instance;
         }

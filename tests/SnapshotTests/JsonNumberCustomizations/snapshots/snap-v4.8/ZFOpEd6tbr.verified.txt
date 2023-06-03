@@ -83,9 +83,9 @@ public System.Byte Value
 
             
 
-            stj_number_as_string_public_partial_classConversions_Nonebyte instance = new stj_number_as_string_public_partial_classConversions_Nonebyte(value);
-
             
+
+            stj_number_as_string_public_partial_classConversions_Nonebyte instance = new stj_number_as_string_public_partial_classConversions_Nonebyte(value);
 
             return instance;
         }

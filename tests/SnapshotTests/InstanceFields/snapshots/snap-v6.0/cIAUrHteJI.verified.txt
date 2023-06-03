@@ -85,9 +85,9 @@ public System.Int64 Value
 
             
 
-            public_sealed_partial_classlong instance = new public_sealed_partial_classlong(value);
-
             
+
+            public_sealed_partial_classlong instance = new public_sealed_partial_classlong(value);
 
             return instance;
         }

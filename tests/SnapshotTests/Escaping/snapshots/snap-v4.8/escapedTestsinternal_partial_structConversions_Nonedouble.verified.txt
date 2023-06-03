@@ -84,9 +84,9 @@ namespace @class
         {
             
 
-            escapedTestsinternal_partial_structConversions_Nonedouble instance = new escapedTestsinternal_partial_structConversions_Nonedouble(value);
-
             
+
+            escapedTestsinternal_partial_structConversions_Nonedouble instance = new escapedTestsinternal_partial_structConversions_Nonedouble(value);
 
             return instance;
         }

@@ -94,9 +94,9 @@ namespace Whatever
 
             
 
-            internal_sealed_partial_recordConversions_Nonedouble instance = new internal_sealed_partial_recordConversions_Nonedouble(value);
-
             
+
+            internal_sealed_partial_recordConversions_Nonedouble instance = new internal_sealed_partial_recordConversions_Nonedouble(value);
 
             return instance;
         }

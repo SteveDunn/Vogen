@@ -83,9 +83,9 @@ public System.Double Value
 
             
 
-            internal_partial_classConversions_LinqToDbValueConverterdouble instance = new internal_partial_classConversions_LinqToDbValueConverterdouble(value);
-
             
+
+            internal_partial_classConversions_LinqToDbValueConverterdouble instance = new internal_partial_classConversions_LinqToDbValueConverterdouble(value);
 
             return instance;
         }

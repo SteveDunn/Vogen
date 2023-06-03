@@ -84,9 +84,9 @@ namespace Whatever
         {
             
 
-            public_partial_structConversions_NoneSystem_DateTime instance = new public_partial_structConversions_NoneSystem_DateTime(value);
-
             
+
+            public_partial_structConversions_NoneSystem_DateTime instance = new public_partial_structConversions_NoneSystem_DateTime(value);
 
             return instance;
         }

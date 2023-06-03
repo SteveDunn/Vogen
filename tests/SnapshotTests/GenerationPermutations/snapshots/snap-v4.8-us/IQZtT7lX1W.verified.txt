@@ -84,9 +84,9 @@ namespace Whatever
         {
             
 
-            internal_partial_structConversions_EfCoreValueConverterSystem_DateTimeOffset instance = new internal_partial_structConversions_EfCoreValueConverterSystem_DateTimeOffset(value);
-
             
+
+            internal_partial_structConversions_EfCoreValueConverterSystem_DateTimeOffset instance = new internal_partial_structConversions_EfCoreValueConverterSystem_DateTimeOffset(value);
 
             return instance;
         }

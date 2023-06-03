@@ -95,9 +95,9 @@ namespace Whatever
         {
             
 
-            public_partial_record_structConversions_TypeConverterdecimal instance = new public_partial_record_structConversions_TypeConverterdecimal(value);
-
             
+
+            public_partial_record_structConversions_TypeConverterdecimal instance = new public_partial_record_structConversions_TypeConverterdecimal(value);
 
             return instance;
         }

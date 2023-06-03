@@ -94,9 +94,9 @@ namespace Whatever
 
             
 
-            internal_partial_recordConversions_EfCoreValueConverterSystem_Guid instance = new internal_partial_recordConversions_EfCoreValueConverterSystem_Guid(value);
-
             
+
+            internal_partial_recordConversions_EfCoreValueConverterSystem_Guid instance = new internal_partial_recordConversions_EfCoreValueConverterSystem_Guid(value);
 
             return instance;
         }

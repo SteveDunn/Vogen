@@ -83,9 +83,9 @@ public System.Byte Value
 
             
 
-            escapedTestspublic_sealed_partial_classConversions_EfCoreValueConverterbyte instance = new escapedTestspublic_sealed_partial_classConversions_EfCoreValueConverterbyte(value);
-
             
+
+            escapedTestspublic_sealed_partial_classConversions_EfCoreValueConverterbyte instance = new escapedTestspublic_sealed_partial_classConversions_EfCoreValueConverterbyte(value);
 
             return instance;
         }

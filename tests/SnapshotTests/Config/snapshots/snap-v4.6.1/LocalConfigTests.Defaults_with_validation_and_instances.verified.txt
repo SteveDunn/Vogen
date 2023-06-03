@@ -86,8 +86,6 @@ namespace Whatever
         {
             
 
-            CustomerId instance = new CustomerId(value);
-
             var validation = CustomerId.validate(value);
             if (validation != Vogen.Validation.Ok)
             {
@@ -102,6 +100,8 @@ namespace Whatever
                 throw ex;
             }
 
+
+            CustomerId instance = new CustomerId(value);
 
             return instance;
         }

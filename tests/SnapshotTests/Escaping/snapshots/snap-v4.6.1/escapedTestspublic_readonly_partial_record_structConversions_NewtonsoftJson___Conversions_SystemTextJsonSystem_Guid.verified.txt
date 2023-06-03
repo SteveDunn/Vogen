@@ -96,9 +96,9 @@ namespace @class
         {
             
 
-            escapedTestspublic_readonly_partial_record_structConversions_NewtonsoftJson___Conversions_SystemTextJsonSystem_Guid instance = new escapedTestspublic_readonly_partial_record_structConversions_NewtonsoftJson___Conversions_SystemTextJsonSystem_Guid(value);
-
             
+
+            escapedTestspublic_readonly_partial_record_structConversions_NewtonsoftJson___Conversions_SystemTextJsonSystem_Guid instance = new escapedTestspublic_readonly_partial_record_structConversions_NewtonsoftJson___Conversions_SystemTextJsonSystem_Guid(value);
 
             return instance;
         }

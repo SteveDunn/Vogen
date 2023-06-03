@@ -94,9 +94,9 @@ namespace @class
 
             
 
-            escapedTestsinternal_sealed_partial_recordConversions_DapperTypeHandlerbyte instance = new escapedTestsinternal_sealed_partial_recordConversions_DapperTypeHandlerbyte(value);
-
             
+
+            escapedTestsinternal_sealed_partial_recordConversions_DapperTypeHandlerbyte instance = new escapedTestsinternal_sealed_partial_recordConversions_DapperTypeHandlerbyte(value);
 
             return instance;
         }

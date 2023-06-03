@@ -96,9 +96,9 @@ namespace Whatever
 
             
 
-            internal_sealed_partial_record_classint instance = new internal_sealed_partial_record_classint(value);
-
             
+
+            internal_sealed_partial_record_classint instance = new internal_sealed_partial_record_classint(value);
 
             return instance;
         }

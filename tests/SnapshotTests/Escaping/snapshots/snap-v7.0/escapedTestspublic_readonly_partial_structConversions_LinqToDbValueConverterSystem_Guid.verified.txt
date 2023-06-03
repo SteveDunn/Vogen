@@ -84,9 +84,9 @@ namespace @class
         {
             
 
-            escapedTestspublic_readonly_partial_structConversions_LinqToDbValueConverterSystem_Guid instance = new escapedTestspublic_readonly_partial_structConversions_LinqToDbValueConverterSystem_Guid(value);
-
             
+
+            escapedTestspublic_readonly_partial_structConversions_LinqToDbValueConverterSystem_Guid instance = new escapedTestspublic_readonly_partial_structConversions_LinqToDbValueConverterSystem_Guid(value);
 
             return instance;
         }

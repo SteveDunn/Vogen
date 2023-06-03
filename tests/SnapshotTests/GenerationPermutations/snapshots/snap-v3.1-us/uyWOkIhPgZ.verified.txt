@@ -95,9 +95,9 @@ namespace Whatever
 
             
 
-            public_partial_recordConversions_NewtonsoftJsonSystem_Guid instance = new public_partial_recordConversions_NewtonsoftJsonSystem_Guid(value);
-
             
+
+            public_partial_recordConversions_NewtonsoftJsonSystem_Guid instance = new public_partial_recordConversions_NewtonsoftJsonSystem_Guid(value);
 
             return instance;
         }

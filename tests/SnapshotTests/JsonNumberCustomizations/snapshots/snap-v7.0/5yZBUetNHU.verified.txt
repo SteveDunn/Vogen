@@ -86,9 +86,9 @@ namespace Whatever
         {
             
 
-            stj_number_as_string_public_partial_structConversions_NewtonsoftJson___Conversions_SystemTextJsondecimal instance = new stj_number_as_string_public_partial_structConversions_NewtonsoftJson___Conversions_SystemTextJsondecimal(value);
-
             
+
+            stj_number_as_string_public_partial_structConversions_NewtonsoftJson___Conversions_SystemTextJsondecimal instance = new stj_number_as_string_public_partial_structConversions_NewtonsoftJson___Conversions_SystemTextJsondecimal(value);
 
             return instance;
         }

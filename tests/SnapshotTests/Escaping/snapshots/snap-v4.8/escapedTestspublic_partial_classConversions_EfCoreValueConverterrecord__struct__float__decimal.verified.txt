@@ -83,9 +83,9 @@ public @class.@record.@struct.@float.@decimal Value
 
             
 
-            escapedTestspublic_partial_classConversions_EfCoreValueConverterrecord__struct__float__decimal instance = new escapedTestspublic_partial_classConversions_EfCoreValueConverterrecord__struct__float__decimal(value);
-
             
+
+            escapedTestspublic_partial_classConversions_EfCoreValueConverterrecord__struct__float__decimal instance = new escapedTestspublic_partial_classConversions_EfCoreValueConverterrecord__struct__float__decimal(value);
 
             return instance;
         }

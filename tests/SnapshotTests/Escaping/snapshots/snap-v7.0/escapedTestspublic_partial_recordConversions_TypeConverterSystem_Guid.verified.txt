@@ -95,9 +95,9 @@ namespace @class
 
             
 
-            escapedTestspublic_partial_recordConversions_TypeConverterSystem_Guid instance = new escapedTestspublic_partial_recordConversions_TypeConverterSystem_Guid(value);
-
             
+
+            escapedTestspublic_partial_recordConversions_TypeConverterSystem_Guid instance = new escapedTestspublic_partial_recordConversions_TypeConverterSystem_Guid(value);
 
             return instance;
         }

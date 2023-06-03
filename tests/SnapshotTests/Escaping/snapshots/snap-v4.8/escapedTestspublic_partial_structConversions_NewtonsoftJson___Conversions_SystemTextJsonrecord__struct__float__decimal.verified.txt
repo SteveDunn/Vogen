@@ -86,9 +86,9 @@ namespace @class
         {
             
 
-            escapedTestspublic_partial_structConversions_NewtonsoftJson___Conversions_SystemTextJsonrecord__struct__float__decimal instance = new escapedTestspublic_partial_structConversions_NewtonsoftJson___Conversions_SystemTextJsonrecord__struct__float__decimal(value);
-
             
+
+            escapedTestspublic_partial_structConversions_NewtonsoftJson___Conversions_SystemTextJsonrecord__struct__float__decimal instance = new escapedTestspublic_partial_structConversions_NewtonsoftJson___Conversions_SystemTextJsonrecord__struct__float__decimal(value);
 
             return instance;
         }

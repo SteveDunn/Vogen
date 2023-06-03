@@ -86,9 +86,9 @@ namespace Whatever
         {
             
 
-            internal_partial_structlong instance = new internal_partial_structlong(value);
-
             
+
+            internal_partial_structlong instance = new internal_partial_structlong(value);
 
             return instance;
         }

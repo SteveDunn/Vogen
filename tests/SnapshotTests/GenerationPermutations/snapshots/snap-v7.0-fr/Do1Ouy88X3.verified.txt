@@ -83,9 +83,9 @@ public System.Int16 Value
 
             
 
-            internal_partial_classConversions_EfCoreValueConvertershort instance = new internal_partial_classConversions_EfCoreValueConvertershort(value);
-
             
+
+            internal_partial_classConversions_EfCoreValueConvertershort instance = new internal_partial_classConversions_EfCoreValueConvertershort(value);
 
             return instance;
         }

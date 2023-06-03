@@ -86,9 +86,9 @@ namespace Whatever
         {
             
 
-            BooleanThing instance = new BooleanThing(value);
-
             
+
+            BooleanThing instance = new BooleanThing(value);
 
             return instance;
         }

@@ -94,9 +94,9 @@ namespace Whatever
 
             
 
-            internal_partial_recordConversions_LinqToDbValueConverterint instance = new internal_partial_recordConversions_LinqToDbValueConverterint(value);
-
             
+
+            internal_partial_recordConversions_LinqToDbValueConverterint instance = new internal_partial_recordConversions_LinqToDbValueConverterint(value);
 
             return instance;
         }

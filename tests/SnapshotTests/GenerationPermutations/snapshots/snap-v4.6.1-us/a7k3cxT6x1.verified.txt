@@ -95,9 +95,9 @@ namespace Whatever
 
             
 
-            public_sealed_partial_recordConversions_SystemTextJsonbyte instance = new public_sealed_partial_recordConversions_SystemTextJsonbyte(value);
-
             
+
+            public_sealed_partial_recordConversions_SystemTextJsonbyte instance = new public_sealed_partial_recordConversions_SystemTextJsonbyte(value);
 
             return instance;
         }

@@ -84,9 +84,9 @@ public System.Boolean Value
 
             
 
-            internal_partial_classConversions_TypeConverterbool instance = new internal_partial_classConversions_TypeConverterbool(value);
-
             
+
+            internal_partial_classConversions_TypeConverterbool instance = new internal_partial_classConversions_TypeConverterbool(value);
 
             return instance;
         }

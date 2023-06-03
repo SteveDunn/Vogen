@@ -83,9 +83,9 @@ public System.Guid Value
 
             
 
-            escapedTestsinternal_partial_classConversions_LinqToDbValueConverterSystem_Guid instance = new escapedTestsinternal_partial_classConversions_LinqToDbValueConverterSystem_Guid(value);
-
             
+
+            escapedTestsinternal_partial_classConversions_LinqToDbValueConverterSystem_Guid instance = new escapedTestsinternal_partial_classConversions_LinqToDbValueConverterSystem_Guid(value);
 
             return instance;
         }

@@ -84,9 +84,9 @@ public System.Double Value
 
             
 
-            escapedTestsinternal_partial_classConversions_TypeConverterdouble instance = new escapedTestsinternal_partial_classConversions_TypeConverterdouble(value);
-
             
+
+            escapedTestsinternal_partial_classConversions_TypeConverterdouble instance = new escapedTestsinternal_partial_classConversions_TypeConverterdouble(value);
 
             return instance;
         }

@@ -95,9 +95,9 @@ namespace @class
 
             
 
-            escapedTestspublic_sealed_partial_recordConversions_SystemTextJsonSystem_Guid instance = new escapedTestspublic_sealed_partial_recordConversions_SystemTextJsonSystem_Guid(value);
-
             
+
+            escapedTestspublic_sealed_partial_recordConversions_SystemTextJsonSystem_Guid instance = new escapedTestspublic_sealed_partial_recordConversions_SystemTextJsonSystem_Guid(value);
 
             return instance;
         }

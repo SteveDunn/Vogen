@@ -83,9 +83,9 @@ public System.DateTimeOffset Value
 
             
 
-            public_sealed_partial_classConversions_LinqToDbValueConverterSystem_DateTimeOffset instance = new public_sealed_partial_classConversions_LinqToDbValueConverterSystem_DateTimeOffset(value);
-
             
+
+            public_sealed_partial_classConversions_LinqToDbValueConverterSystem_DateTimeOffset instance = new public_sealed_partial_classConversions_LinqToDbValueConverterSystem_DateTimeOffset(value);
 
             return instance;
         }

@@ -95,9 +95,9 @@ namespace @class
 
             
 
-            escapedTestsinternal_sealed_partial_recordConversions_SystemTextJsonrecord__struct__float__event2 instance = new escapedTestsinternal_sealed_partial_recordConversions_SystemTextJsonrecord__struct__float__event2(value);
-
             
+
+            escapedTestsinternal_sealed_partial_recordConversions_SystemTextJsonrecord__struct__float__event2 instance = new escapedTestsinternal_sealed_partial_recordConversions_SystemTextJsonrecord__struct__float__event2(value);
 
             return instance;
         }

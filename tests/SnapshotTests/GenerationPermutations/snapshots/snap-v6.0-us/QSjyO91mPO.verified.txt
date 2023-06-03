@@ -102,9 +102,9 @@ namespace Whatever
 
             
 
-            public_partial_recordConversions_Nonestring instance = new public_partial_recordConversions_Nonestring(value);
-
             
+
+            public_partial_recordConversions_Nonestring instance = new public_partial_recordConversions_Nonestring(value);
 
             return instance;
         }

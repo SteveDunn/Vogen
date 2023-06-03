@@ -95,9 +95,9 @@ namespace @class
 
             
 
-            escapedTestsinternal_partial_recordConversions_SystemTextJsonbyte instance = new escapedTestsinternal_partial_recordConversions_SystemTextJsonbyte(value);
-
             
+
+            escapedTestsinternal_partial_recordConversions_SystemTextJsonbyte instance = new escapedTestsinternal_partial_recordConversions_SystemTextJsonbyte(value);
 
             return instance;
         }

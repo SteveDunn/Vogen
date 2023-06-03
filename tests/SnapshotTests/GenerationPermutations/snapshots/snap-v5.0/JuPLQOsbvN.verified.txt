@@ -84,9 +84,9 @@ public System.Guid Value
 
             
 
-            internal_sealed_partial_classConversions_TypeConverterSystem_Guid instance = new internal_sealed_partial_classConversions_TypeConverterSystem_Guid(value);
-
             
+
+            internal_sealed_partial_classConversions_TypeConverterSystem_Guid instance = new internal_sealed_partial_classConversions_TypeConverterSystem_Guid(value);
 
             return instance;
         }

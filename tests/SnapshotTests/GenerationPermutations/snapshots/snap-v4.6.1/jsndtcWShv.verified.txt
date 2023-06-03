@@ -95,9 +95,9 @@ namespace Whatever
         {
             
 
-            public_readonly_partial_record_structConversions_TypeConverterdouble instance = new public_readonly_partial_record_structConversions_TypeConverterdouble(value);
-
             
+
+            public_readonly_partial_record_structConversions_TypeConverterdouble instance = new public_readonly_partial_record_structConversions_TypeConverterdouble(value);
 
             return instance;
         }

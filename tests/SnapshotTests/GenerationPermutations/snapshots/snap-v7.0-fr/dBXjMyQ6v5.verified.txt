@@ -84,9 +84,9 @@ namespace Whatever
         {
             
 
-            public_partial_structConversions_DapperTypeHandlerlong instance = new public_partial_structConversions_DapperTypeHandlerlong(value);
-
             
+
+            public_partial_structConversions_DapperTypeHandlerlong instance = new public_partial_structConversions_DapperTypeHandlerlong(value);
 
             return instance;
         }

@@ -84,9 +84,9 @@ namespace Whatever
         {
             
 
-            stj_number_as_string_public_readonly_partial_structConversions_Noneshort instance = new stj_number_as_string_public_readonly_partial_structConversions_Noneshort(value);
-
             
+
+            stj_number_as_string_public_readonly_partial_structConversions_Noneshort instance = new stj_number_as_string_public_readonly_partial_structConversions_Noneshort(value);
 
             return instance;
         }

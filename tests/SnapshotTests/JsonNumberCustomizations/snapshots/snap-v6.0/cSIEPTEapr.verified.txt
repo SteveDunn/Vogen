@@ -84,9 +84,9 @@ public System.Int64 Value
 
             
 
-            stj_number_as_string_public_partial_classConversions_NewtonsoftJsonlong_customized instance = new stj_number_as_string_public_partial_classConversions_NewtonsoftJsonlong_customized(value);
-
             
+
+            stj_number_as_string_public_partial_classConversions_NewtonsoftJsonlong_customized instance = new stj_number_as_string_public_partial_classConversions_NewtonsoftJsonlong_customized(value);
 
             return instance;
         }

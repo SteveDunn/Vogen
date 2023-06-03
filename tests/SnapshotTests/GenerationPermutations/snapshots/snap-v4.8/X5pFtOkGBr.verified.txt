@@ -87,9 +87,9 @@ public System.String Value
 
             
 
-            public_sealed_partial_classConversions_EfCoreValueConverterstring instance = new public_sealed_partial_classConversions_EfCoreValueConverterstring(value);
-
             
+
+            public_sealed_partial_classConversions_EfCoreValueConverterstring instance = new public_sealed_partial_classConversions_EfCoreValueConverterstring(value);
 
             return instance;
         }

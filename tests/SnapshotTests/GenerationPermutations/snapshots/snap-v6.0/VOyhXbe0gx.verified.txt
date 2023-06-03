@@ -94,9 +94,9 @@ namespace Whatever
 
             
 
-            internal_partial_record_classConversions_EfCoreValueConverterfloat instance = new internal_partial_record_classConversions_EfCoreValueConverterfloat(value);
-
             
+
+            internal_partial_record_classConversions_EfCoreValueConverterfloat instance = new internal_partial_record_classConversions_EfCoreValueConverterfloat(value);
 
             return instance;
         }

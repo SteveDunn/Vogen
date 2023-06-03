@@ -85,9 +85,9 @@ namespace @class
         {
             
 
-            escapedTestsinternal_partial_structConversions_TypeConverterSystem_Guid instance = new escapedTestsinternal_partial_structConversions_TypeConverterSystem_Guid(value);
-
             
+
+            escapedTestsinternal_partial_structConversions_TypeConverterSystem_Guid instance = new escapedTestsinternal_partial_structConversions_TypeConverterSystem_Guid(value);
 
             return instance;
         }

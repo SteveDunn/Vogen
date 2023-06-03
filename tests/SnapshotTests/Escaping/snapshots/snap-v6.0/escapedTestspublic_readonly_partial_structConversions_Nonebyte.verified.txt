@@ -84,9 +84,9 @@ namespace @class
         {
             
 
-            escapedTestspublic_readonly_partial_structConversions_Nonebyte instance = new escapedTestspublic_readonly_partial_structConversions_Nonebyte(value);
-
             
+
+            escapedTestspublic_readonly_partial_structConversions_Nonebyte instance = new escapedTestspublic_readonly_partial_structConversions_Nonebyte(value);
 
             return instance;
         }

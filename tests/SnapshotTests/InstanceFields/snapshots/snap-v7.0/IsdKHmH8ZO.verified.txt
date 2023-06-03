@@ -86,9 +86,9 @@ namespace Whatever
         {
             
 
-            internal_readonly_partial_structdouble instance = new internal_readonly_partial_structdouble(value);
-
             
+
+            internal_readonly_partial_structdouble instance = new internal_readonly_partial_structdouble(value);
 
             return instance;
         }

@@ -85,9 +85,9 @@ namespace Whatever
         {
             
 
-            internal_readonly_partial_structConversions_NewtonsoftJsonSystem_DateTimeOffset instance = new internal_readonly_partial_structConversions_NewtonsoftJsonSystem_DateTimeOffset(value);
-
             
+
+            internal_readonly_partial_structConversions_NewtonsoftJsonSystem_DateTimeOffset instance = new internal_readonly_partial_structConversions_NewtonsoftJsonSystem_DateTimeOffset(value);
 
             return instance;
         }

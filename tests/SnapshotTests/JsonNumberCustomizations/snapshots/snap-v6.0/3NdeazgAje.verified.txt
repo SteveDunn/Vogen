@@ -95,9 +95,9 @@ namespace Whatever
 
             
 
-            stj_number_as_string_public_partial_recordConversions_NewtonsoftJsonint instance = new stj_number_as_string_public_partial_recordConversions_NewtonsoftJsonint(value);
-
             
+
+            stj_number_as_string_public_partial_recordConversions_NewtonsoftJsonint instance = new stj_number_as_string_public_partial_recordConversions_NewtonsoftJsonint(value);
 
             return instance;
         }

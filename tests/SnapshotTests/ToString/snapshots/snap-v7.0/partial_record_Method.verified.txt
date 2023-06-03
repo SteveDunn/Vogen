@@ -96,9 +96,9 @@ namespace Whatever
 
             
 
-            partial_record_Method instance = new partial_record_Method(value);
-
             
+
+            partial_record_Method instance = new partial_record_Method(value);
 
             return instance;
         }

@@ -94,9 +94,9 @@ namespace @class
         {
             
 
-            escapedTestsinternal_readonly_partial_record_structConversions_Nonebyte instance = new escapedTestsinternal_readonly_partial_record_structConversions_Nonebyte(value);
-
             
+
+            escapedTestsinternal_readonly_partial_record_structConversions_Nonebyte instance = new escapedTestsinternal_readonly_partial_record_structConversions_Nonebyte(value);
 
             return instance;
         }

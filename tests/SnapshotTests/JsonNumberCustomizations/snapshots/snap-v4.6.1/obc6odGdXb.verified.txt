@@ -83,9 +83,9 @@ public System.Int64 Value
 
             
 
-            stj_number_as_string_public_partial_classConversions_Nonelong instance = new stj_number_as_string_public_partial_classConversions_Nonelong(value);
-
             
+
+            stj_number_as_string_public_partial_classConversions_Nonelong instance = new stj_number_as_string_public_partial_classConversions_Nonelong(value);
 
             return instance;
         }

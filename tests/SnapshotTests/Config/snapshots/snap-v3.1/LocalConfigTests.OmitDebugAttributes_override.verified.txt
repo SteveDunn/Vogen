@@ -92,9 +92,9 @@ causes Rider's debugger to crash.
         {
             
 
-            CustomerId instance = new CustomerId(value);
-
             
+
+            CustomerId instance = new CustomerId(value);
 
             return instance;
         }

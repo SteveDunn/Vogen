@@ -85,9 +85,9 @@ namespace @class
         {
             
 
-            escapedTestspublic_partial_structConversions_TypeConverterdouble instance = new escapedTestspublic_partial_structConversions_TypeConverterdouble(value);
-
             
+
+            escapedTestspublic_partial_structConversions_TypeConverterdouble instance = new escapedTestspublic_partial_structConversions_TypeConverterdouble(value);
 
             return instance;
         }

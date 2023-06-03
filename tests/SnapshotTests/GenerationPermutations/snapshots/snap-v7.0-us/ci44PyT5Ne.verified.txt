@@ -88,9 +88,9 @@ public System.String Value
 
             
 
-            internal_partial_classConversions_SystemTextJsonstring instance = new internal_partial_classConversions_SystemTextJsonstring(value);
-
             
+
+            internal_partial_classConversions_SystemTextJsonstring instance = new internal_partial_classConversions_SystemTextJsonstring(value);
 
             return instance;
         }

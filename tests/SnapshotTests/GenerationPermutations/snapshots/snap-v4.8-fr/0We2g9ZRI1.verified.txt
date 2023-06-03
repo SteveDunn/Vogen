@@ -84,9 +84,9 @@ namespace Whatever
         {
             
 
-            public_partial_structConversions_DapperTypeHandlerfloat instance = new public_partial_structConversions_DapperTypeHandlerfloat(value);
-
             
+
+            public_partial_structConversions_DapperTypeHandlerfloat instance = new public_partial_structConversions_DapperTypeHandlerfloat(value);
 
             return instance;
         }

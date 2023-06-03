@@ -84,9 +84,9 @@ namespace Whatever
         {
             
 
-            internal_partial_structConversions_DapperTypeHandlershort instance = new internal_partial_structConversions_DapperTypeHandlershort(value);
-
             
+
+            internal_partial_structConversions_DapperTypeHandlershort instance = new internal_partial_structConversions_DapperTypeHandlershort(value);
 
             return instance;
         }

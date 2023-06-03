@@ -95,9 +95,9 @@ namespace Whatever
 
             
 
-            internal_partial_recordConversions_TypeConverterSystem_DateTimeOffset instance = new internal_partial_recordConversions_TypeConverterSystem_DateTimeOffset(value);
-
             
+
+            internal_partial_recordConversions_TypeConverterSystem_DateTimeOffset instance = new internal_partial_recordConversions_TypeConverterSystem_DateTimeOffset(value);
 
             return instance;
         }

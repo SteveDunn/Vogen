@@ -89,9 +89,9 @@ public System.String Value
 
             
 
-            public_partial_classConversions_NewtonsoftJson___Conversions_SystemTextJsonstring instance = new public_partial_classConversions_NewtonsoftJson___Conversions_SystemTextJsonstring(value);
-
             
+
+            public_partial_classConversions_NewtonsoftJson___Conversions_SystemTextJsonstring instance = new public_partial_classConversions_NewtonsoftJson___Conversions_SystemTextJsonstring(value);
 
             return instance;
         }

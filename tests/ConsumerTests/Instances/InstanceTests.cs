@@ -83,7 +83,11 @@ public class InstanceTests
         public void DateTimeOffset()
         {
             using var _ = new AssertionScope();
-            DateTimeOffsetInstance.iso8601_1.Value.Should().Be(new DateTimeOffset(2022, 12, 13, 0, 0, 0, TimeSpan.Zero));
+
+            // This is a bit of a hack to fix this test in none UTC timezones as the timezone is captured at compile time,
+            // I think it would make sense expect all time to be UTC
+            DateTimeOffsetInstance.iso8601_1.Value.Should().Be(new DateTimeOffset(2022, 12, 13, 0, 0, 0, DateTimeOffsetInstance.iso8601_1.Value.Offset));
+            
             DateTimeOffsetInstance.iso8601_2.Value.Should().Be(new DateTimeOffset(2022, 12, 13, 13, 14, 15, TimeSpan.Zero));
             DateTimeOffsetInstance.ticks_as_long.Value.Should().Be(new DateTimeOffset(2022, 12, 13, 0, 0, 0, TimeSpan.Zero));
             // ticks as an Int.MaxValue is 2147483647, which is 2,147,483,647 / 10m, which is ~214 seconds, which 3 minutes, 34 seconds

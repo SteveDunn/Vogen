@@ -85,9 +85,9 @@ public System.Double Value
 
             
 
-            escapedTestsinternal_sealed_partial_classConversions_NewtonsoftJson___Conversions_SystemTextJsondouble instance = new escapedTestsinternal_sealed_partial_classConversions_NewtonsoftJson___Conversions_SystemTextJsondouble(value);
-
             
+
+            escapedTestsinternal_sealed_partial_classConversions_NewtonsoftJson___Conversions_SystemTextJsondouble instance = new escapedTestsinternal_sealed_partial_classConversions_NewtonsoftJson___Conversions_SystemTextJsondouble(value);
 
             return instance;
         }

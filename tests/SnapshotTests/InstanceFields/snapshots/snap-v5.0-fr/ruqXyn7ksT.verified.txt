@@ -96,9 +96,9 @@ namespace Whatever
         {
             
 
-            internal_readonly_partial_record_structlong instance = new internal_readonly_partial_record_structlong(value);
-
             
+
+            internal_readonly_partial_record_structlong instance = new internal_readonly_partial_record_structlong(value);
 
             return instance;
         }

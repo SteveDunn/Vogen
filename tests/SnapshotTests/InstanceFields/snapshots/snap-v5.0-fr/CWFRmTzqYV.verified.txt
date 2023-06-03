@@ -104,9 +104,9 @@ namespace Whatever
 
             
 
-            public_partial_recordstring instance = new public_partial_recordstring(value);
-
             
+
+            public_partial_recordstring instance = new public_partial_recordstring(value);
 
             return instance;
         }

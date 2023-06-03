@@ -85,9 +85,9 @@ namespace Whatever
         {
             
 
-            public_partial_structConversions_TypeConverterlong instance = new public_partial_structConversions_TypeConverterlong(value);
-
             
+
+            public_partial_structConversions_TypeConverterlong instance = new public_partial_structConversions_TypeConverterlong(value);
 
             return instance;
         }

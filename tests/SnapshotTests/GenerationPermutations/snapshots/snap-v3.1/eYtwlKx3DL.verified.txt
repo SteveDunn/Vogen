@@ -84,9 +84,9 @@ namespace Whatever
         {
             
 
-            internal_readonly_partial_structConversions_DapperTypeHandlerdouble instance = new internal_readonly_partial_structConversions_DapperTypeHandlerdouble(value);
-
             
+
+            internal_readonly_partial_structConversions_DapperTypeHandlerdouble instance = new internal_readonly_partial_structConversions_DapperTypeHandlerdouble(value);
 
             return instance;
         }

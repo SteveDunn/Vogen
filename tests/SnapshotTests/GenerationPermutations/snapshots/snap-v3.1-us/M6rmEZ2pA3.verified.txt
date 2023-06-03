@@ -88,9 +88,9 @@ public System.String Value
 
             
 
-            internal_partial_classConversions_TypeConverterstring instance = new internal_partial_classConversions_TypeConverterstring(value);
-
             
+
+            internal_partial_classConversions_TypeConverterstring instance = new internal_partial_classConversions_TypeConverterstring(value);
 
             return instance;
         }

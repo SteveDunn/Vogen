@@ -84,9 +84,9 @@ public System.Byte Value
 
             
 
-            stj_number_as_string_public_sealed_partial_classConversions_SystemTextJsonbyte instance = new stj_number_as_string_public_sealed_partial_classConversions_SystemTextJsonbyte(value);
-
             
+
+            stj_number_as_string_public_sealed_partial_classConversions_SystemTextJsonbyte instance = new stj_number_as_string_public_sealed_partial_classConversions_SystemTextJsonbyte(value);
 
             return instance;
         }

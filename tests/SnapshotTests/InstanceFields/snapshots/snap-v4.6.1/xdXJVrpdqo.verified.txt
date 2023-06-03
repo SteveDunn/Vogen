@@ -86,9 +86,9 @@ namespace Whatever
         {
             
 
-            public_partial_structlong instance = new public_partial_structlong(value);
-
             
+
+            public_partial_structlong instance = new public_partial_structlong(value);
 
             return instance;
         }

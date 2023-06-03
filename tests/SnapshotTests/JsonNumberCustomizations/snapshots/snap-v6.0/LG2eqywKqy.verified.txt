@@ -85,9 +85,9 @@ public System.DateTime Value
 
             
 
-            stj_number_as_string_public_sealed_partial_classConversions_NewtonsoftJson___Conversions_SystemTextJsonSystem_DateTime instance = new stj_number_as_string_public_sealed_partial_classConversions_NewtonsoftJson___Conversions_SystemTextJsonSystem_DateTime(value);
-
             
+
+            stj_number_as_string_public_sealed_partial_classConversions_NewtonsoftJson___Conversions_SystemTextJsonSystem_DateTime instance = new stj_number_as_string_public_sealed_partial_classConversions_NewtonsoftJson___Conversions_SystemTextJsonSystem_DateTime(value);
 
             return instance;
         }
@@ -198,28 +198,27 @@ public System.DateTime Value
     /// <inheritdoc cref="System.DateTime.ToString()" />
     public override global::System.String ToString() => _isInitialized ? Value.ToString() : "[UNINITIALIZED]";
 
-        
-        class stj_number_as_string_public_sealed_partial_classConversions_NewtonsoftJson___Conversions_SystemTextJsonSystem_DateTimeSystemTextJsonConverter : global::System.Text.Json.Serialization.JsonConverter<stj_number_as_string_public_sealed_partial_classConversions_NewtonsoftJson___Conversions_SystemTextJsonSystem_DateTime>
+                class stj_number_as_string_public_sealed_partial_classConversions_NewtonsoftJson___Conversions_SystemTextJsonSystem_DateTimeSystemTextJsonConverter : global::System.Text.Json.Serialization.JsonConverter<stj_number_as_string_public_sealed_partial_classConversions_NewtonsoftJson___Conversions_SystemTextJsonSystem_DateTime>
         {
             public override stj_number_as_string_public_sealed_partial_classConversions_NewtonsoftJson___Conversions_SystemTextJsonSystem_DateTime Read(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {
-                return stj_number_as_string_public_sealed_partial_classConversions_NewtonsoftJson___Conversions_SystemTextJsonSystem_DateTime.Deserialize(reader.GetDateTime());
+                return stj_number_as_string_public_sealed_partial_classConversions_NewtonsoftJson___Conversions_SystemTextJsonSystem_DateTime.Deserialize(reader.GetDateTime().ToUniversalTime());
             }
 
             public override void Write(System.Text.Json.Utf8JsonWriter writer, stj_number_as_string_public_sealed_partial_classConversions_NewtonsoftJson___Conversions_SystemTextJsonSystem_DateTime value, global::System.Text.Json.JsonSerializerOptions options)
             {
-                writer.WriteStringValue(value.Value);
+                writer.WriteStringValue(value.Value.ToUniversalTime());
             }
 
 #if NET6_0_OR_GREATER
             public override stj_number_as_string_public_sealed_partial_classConversions_NewtonsoftJson___Conversions_SystemTextJsonSystem_DateTime ReadAsPropertyName(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {
-                return stj_number_as_string_public_sealed_partial_classConversions_NewtonsoftJson___Conversions_SystemTextJsonSystem_DateTime.Deserialize(global::System.DateTime.ParseExact(reader.GetString(), "O", global::System.Globalization.CultureInfo.InvariantCulture));
+                return stj_number_as_string_public_sealed_partial_classConversions_NewtonsoftJson___Conversions_SystemTextJsonSystem_DateTime.Deserialize(global::System.DateTime.ParseExact(reader.GetString(), "O", global::System.Globalization.CultureInfo.InvariantCulture, global::System.Globalization.DateTimeStyles.RoundtripKind));
             }
 
             public override void WriteAsPropertyName(System.Text.Json.Utf8JsonWriter writer, stj_number_as_string_public_sealed_partial_classConversions_NewtonsoftJson___Conversions_SystemTextJsonSystem_DateTime value, global::System.Text.Json.JsonSerializerOptions options)
             {
-                writer.WritePropertyName(value.Value.ToString("O"));
+                writer.WritePropertyName(value.Value.ToUniversalTime().ToString("O", global::System.Globalization.CultureInfo.InvariantCulture));
             }
 #endif            
         }

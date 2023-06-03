@@ -98,9 +98,9 @@ namespace @class
         {
             
 
-            escapedTestsinternal_partial_record_structConversions_EfCoreValueConverterstring instance = new escapedTestsinternal_partial_record_structConversions_EfCoreValueConverterstring(value);
-
             
+
+            escapedTestsinternal_partial_record_structConversions_EfCoreValueConverterstring instance = new escapedTestsinternal_partial_record_structConversions_EfCoreValueConverterstring(value);
 
             return instance;
         }

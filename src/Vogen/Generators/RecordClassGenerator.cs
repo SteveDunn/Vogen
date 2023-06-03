@@ -79,9 +79,9 @@ using Vogen;
 
             {Util.GenerateNormalizeInputMethodIfNeeded(item)}
 
-            {className} instance = new {className}(value);
-
             {Util.GenerateValidation(item)}
+
+            {className} instance = new {className}(value);
 
             return instance;
         }}

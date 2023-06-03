@@ -94,9 +94,9 @@ namespace @class
 
             
 
-            escapedTestspublic_partial_recordConversions_LinqToDbValueConverterdouble instance = new escapedTestspublic_partial_recordConversions_LinqToDbValueConverterdouble(value);
-
             
+
+            escapedTestspublic_partial_recordConversions_LinqToDbValueConverterdouble instance = new escapedTestspublic_partial_recordConversions_LinqToDbValueConverterdouble(value);
 
             return instance;
         }

@@ -95,9 +95,9 @@ namespace Whatever
 
             
 
-            internal_sealed_partial_recordConversions_NewtonsoftJsonshort instance = new internal_sealed_partial_recordConversions_NewtonsoftJsonshort(value);
-
             
+
+            internal_sealed_partial_recordConversions_NewtonsoftJsonshort instance = new internal_sealed_partial_recordConversions_NewtonsoftJsonshort(value);
 
             return instance;
         }
