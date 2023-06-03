@@ -3,7 +3,6 @@ using System.ComponentModel;
 using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
-using ConsumerTests;
 using Dapper;
 using Microsoft.Data.Sqlite;
 using Microsoft.EntityFrameworkCore;
@@ -14,7 +13,6 @@ using LinqToDB;
 using LinqToDB.Data;
 using LinqToDB.DataProvider.SQLite;
 using LinqToDB.Mapping;
-
 // ReSharper disable EqualExpressionComparison
 // ReSharper disable RedundantCast
 // ReSharper disable ArrangeMethodOrOperatorBody
@@ -224,16 +222,22 @@ public class DateTimeVoTests
     }
 
     [Theory]
-    [InlineData("2022-01-15T19:08:49.5413764")]
-    public void TypeConverter_CanConvertToAndFrom(string value)
+    [InlineData("2022-01-15T19:08:49.5413764+00:00")]
+    public void TypeConverter_CanConvertToAndFrom(string inputText)
     {
-        var converter = TypeDescriptor.GetConverter(typeof(NoJsonDateTimeVo));
-        var id = converter.ConvertFrom(value);
-        Assert.IsType<NoJsonDateTimeVo>(id);
-        Assert.Equal(NoJsonDateTimeVo.From(DateTime.ParseExact(value, "O", CultureInfo.InvariantCulture)), id);
+        var sut = TypeDescriptor.GetConverter(typeof(NoJsonDateTimeVo));
+        
+        var vo = sut.ConvertFrom(inputText);
+        Assert.IsType<NoJsonDateTimeVo>(vo);
 
-        var reconverted = converter.ConvertTo(id, value.GetType());
-        Assert.Equal(value, reconverted);
+        var inputAsDateTime = DateTime.ParseExact(inputText, "O", CultureInfo.InvariantCulture);
+        Assert.Equal(NoJsonDateTimeVo.From(inputAsDateTime), vo);
+
+        // local time string
+        string reconverted = (string)sut.ConvertTo(vo, typeof(string))!;
+        DateTime actual = DateTime.ParseExact(reconverted, "O", CultureInfo.InvariantCulture); 
+        
+        Assert.Equal(actual, inputAsDateTime);
     }
 
     public class TestDbContext : DbContext
