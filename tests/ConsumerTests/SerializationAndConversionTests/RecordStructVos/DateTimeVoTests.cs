@@ -224,16 +224,23 @@ public class DateTimeVoTests
     }
 
     [Theory]
-    [InlineData("2022-01-15T19:08:49.5413764")]
-    public void TypeConverter_CanConvertToAndFrom(string value)
+    [InlineData("2022-01-15T19:08:49.5413764Z")]
+    public void TypeConverter_CanConvertToAndFrom(string dateAsText)
     {
-        var converter = TypeDescriptor.GetConverter(typeof(NoJsonDateTimeVo));
-        var id = converter.ConvertFrom(value);
-        Assert.IsType<NoJsonDateTimeVo>(id);
-        Assert.Equal(NoJsonDateTimeVo.From(DateTime.ParseExact(value, "O", CultureInfo.InvariantCulture)), id);
+        var expectedLocal = new DateTime(2022, 1, 15, 19, 08, 49).AddTicks(5413764);
 
-        var reconverted = converter.ConvertTo(id, value.GetType());
-        Assert.Equal(value, reconverted);
+        // get the converter and convert to local DateTime
+        var converter = TypeDescriptor.GetConverter(typeof(NoJsonDateTimeVo));
+        var convertedVoInLocal = (NoJsonDateTimeVo)converter.ConvertFrom(dateAsText)!;
+
+        // the local DateTime should be equal
+        Assert.Equal(NoJsonDateTimeVo.From(expectedLocal), convertedVoInLocal);
+
+        // convert to UTC, then ToString, and compare with the UTC string provided
+        var convertedInUtc = NoJsonDateTimeVo.From(convertedVoInLocal.Value.ToUniversalTime());
+
+        object reconverted = converter.ConvertTo(convertedInUtc, typeof(string));
+        Assert.Equal(dateAsText, reconverted);
     }
 
     public class TestDbContext : DbContext

@@ -10,7 +10,7 @@
             {
                 return value switch
                 {
-                    global::System.String stringValue when !global::System.String.IsNullOrEmpty(stringValue) && global::System.DateTime.TryParseExact(stringValue, "O", global::System.Globalization.CultureInfo.InvariantCulture, global::System.Globalization.DateTimeStyles.RoundtripKind, out var result) => VOTYPE.Deserialize(result),
+                    global::System.String stringValue when !global::System.String.IsNullOrEmpty(stringValue) && global::System.DateTime.TryParseExact(stringValue, "O", culture, global::System.Globalization.DateTimeStyles.RoundtripKind, out var result) => VOTYPE.Deserialize(result),
                     global::System.DateTime dateTimeValue => VOTYPE.Deserialize(dateTimeValue),
                     _ => base.ConvertFrom(context, culture, value),
                 };
@@ -32,7 +32,7 @@
 
                     if (destinationType == typeof(global::System.String))
                     {
-                        return idValue.Value.ToString("O");
+                        return idValue.Value.ToString("O", culture);
                     }
                 }
 

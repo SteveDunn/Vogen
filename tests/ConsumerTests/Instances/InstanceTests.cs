@@ -1,4 +1,5 @@
-﻿using FluentAssertions.Execution;
+﻿using System.Globalization;
+using FluentAssertions.Execution;
 
 namespace ConsumerTests.Instances;
 
@@ -68,7 +69,7 @@ public class InstanceTests
     public class DateTimeTests
     {
         [Fact]
-        public void DateTime()
+        public void DateTimes()
         {
             using var _ = new AssertionScope();
             DateTimeInstance.iso8601_1.Value.Should().Be(new DateTime(2022, 12, 13));
@@ -80,18 +81,15 @@ public class InstanceTests
         }
 
         [Fact]
-        public void DateTimeOffset()
+        public void DateTimeOffsets()
         {
             using var _ = new AssertionScope();
 
-            // This is a bit of a hack to fix this test in none UTC timezones as the timezone is captured at compile time,
-            // I think it would make sense expect all time to be UTC
-            DateTimeOffsetInstance.iso8601_1.Value.Should().Be(new DateTimeOffset(2022, 12, 13, 0, 0, 0, DateTimeOffsetInstance.iso8601_1.Value.Offset));
-            
+            DateTimeOffsetInstance.iso8601_1.Value.UtcDateTime.Should()
+                .Be(DateTime.Parse("2022-12-13", null, DateTimeStyles.RoundtripKind));
             DateTimeOffsetInstance.iso8601_2.Value.Should().Be(new DateTimeOffset(2022, 12, 13, 13, 14, 15, TimeSpan.Zero));
             DateTimeOffsetInstance.ticks_as_long.Value.Should().Be(new DateTimeOffset(2022, 12, 13, 0, 0, 0, TimeSpan.Zero));
-            // ticks as an Int.MaxValue is 2147483647, which is 2,147,483,647 / 10m, which is ~214 seconds, which 3 minutes, 34 seconds
-            DateTimeOffsetInstance.ticks_as_int.Value.Should().BeCloseTo(new DateTimeOffset(1, 1, 1, 0, 3, 34, 0, TimeSpan.Zero), TimeSpan.FromTicks(7483647));
+            DateTimeOffsetInstance.ticks_as_int.Value.Should().Be(new DateTimeOffset(2147483647, TimeSpan.Zero));
         }
     }
 
@@ -109,18 +107,18 @@ public class InstanceTests
         MyDecimalInstance.i2.Value.Should().Be(2.34m);
         MyDecimalInstance.i3.Value.Should().Be(3.45m);
         MyDecimalInstance.i4.Value.Should().Be(2m);
-        
+
         MyDoubleInstance.i1.Value.Should().BeApproximately(1.23f, 0.01f);
         MyDoubleInstance.i2.Value.Should().BeApproximately(2.34f, 0.01f);
         MyDoubleInstance.i3.Value.Should().BeApproximately(3.45f, 0.01f);
         MyDoubleInstance.i4.Value.Should().BeApproximately(2f, 0.01f);
-        
+
         MyCharInstance.i1.Value.Should().Be('');
         MyCharInstance.i2.Value.Should().Be('2');
         MyCharInstance.i3.Value.Should().Be('3');
 
         MyByteInstance.i1.Value.Should().Be(1);
         MyByteInstance.i2.Value.Should().Be(2);
-        MyByteInstance.i3.Value.Should().Be((byte)'3');
+        MyByteInstance.i3.Value.Should().Be((byte) '3');
     }
 }

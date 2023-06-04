@@ -218,7 +218,7 @@ namespace Whatever
             {
                 return value switch
                 {
-                    global::System.String stringValue when !global::System.String.IsNullOrEmpty(stringValue) && global::System.DateTime.TryParseExact(stringValue, "O", global::System.Globalization.CultureInfo.InvariantCulture, global::System.Globalization.DateTimeStyles.RoundtripKind, out var result) => internal_partial_structConversions_TypeConverterSystem_DateTime.Deserialize(result),
+                    global::System.String stringValue when !global::System.String.IsNullOrEmpty(stringValue) && global::System.DateTime.TryParseExact(stringValue, "O", culture, global::System.Globalization.DateTimeStyles.RoundtripKind, out var result) => internal_partial_structConversions_TypeConverterSystem_DateTime.Deserialize(result),
                     global::System.DateTime dateTimeValue => internal_partial_structConversions_TypeConverterSystem_DateTime.Deserialize(dateTimeValue),
                     _ => base.ConvertFrom(context, culture, value),
                 };
@@ -240,7 +240,7 @@ namespace Whatever
 
                     if (destinationType == typeof(global::System.String))
                     {
-                        return idValue.Value.ToString("O");
+                        return idValue.Value.ToString("O", culture);
                     }
                 }
 
