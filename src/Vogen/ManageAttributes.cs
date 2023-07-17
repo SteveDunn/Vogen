@@ -30,6 +30,20 @@ internal static class ManageAttributes
             return VogenConfigurationBuildResult.Null;
         }
 
+        return GetDefaultConfigFromGlobalAttribute(compilation);
+    }
+
+    /// <summary>
+    /// Gets global default configuration from any global (assembly) attribute.
+    /// If none are specified, then the default configuration is used.
+    /// If some are specified, then they are validated.
+    /// If anything is invalid, a compilation error is raised.
+    /// </summary>
+    /// <param name="compilation"></param>
+    /// <returns></returns>
+    public static VogenConfigurationBuildResult GetDefaultConfigFromGlobalAttribute(
+        Compilation compilation)
+    {
         var assemblyAttributes = compilation.Assembly.GetAttributes();
         if (assemblyAttributes.IsDefaultOrEmpty)
         {

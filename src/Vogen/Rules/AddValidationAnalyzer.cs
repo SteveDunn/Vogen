@@ -52,54 +52,18 @@ namespace Vogen.Rules
         {
             var namedTypeSymbol = (INamedTypeSymbol) context.Symbol;
 
-            INamedTypeSymbol voSymbolInformation = namedTypeSymbol;
+            var ulType = TryResolveUnderlyingType(namedTypeSymbol, context);
 
-            var attrs = VoFilter.TryGetValueObjectAttributes(voSymbolInformation).ToImmutableArray();
+            if (ulType is null) return;
 
-            if (attrs.Length != 1) return;
-
-            VogenConfigurationBuildResult buildResult = ManageAttributes.TryBuildConfigurationFromAttribute(attrs[0]);
-            
-            VogenConfiguration? vogenConfig = buildResult.ResultingConfiguration;
-            
-            if (!vogenConfig.HasValue) return;
-            
-            if (buildResult.Diagnostics.Count > 0)
-            {
-                return;
-            }
-
-            string retType = vogenConfig.Value.UnderlyingType!.Name;
-
-            var voSymbol = namedTypeSymbol;
-
-            bool found = false;
-
-            foreach (ISymbol? memberDeclarationSyntax in voSymbol.GetMembers("Validate"))
-            {
-                if (memberDeclarationSyntax is IMethodSymbol mds)
-                {
-                    if (!IsMethodStatic(mds))
-                    {
-                        continue;
-                    }
-
-                    if (mds.ReturnType is INamedTypeSymbol s && s.FullName() == "Vogen.Validation")
-                    {
-                        found = true;
-                        break;
-                    }
-                }
-            }
-
-            if (found)
+            if (AlreadyContainsAValidationMethod(namedTypeSymbol))
             {
                 return;
             }
 
             Dictionary<string, string?> properties = new()
             {
-                { "PrimitiveType", retType}
+                { "PrimitiveType", ulType.Name}
             };
 
             var diagnostic = Diagnostic.Create(
@@ -110,6 +74,69 @@ namespace Vogen.Rules
                 namedTypeSymbol.Name);
 
             context.ReportDiagnostic(diagnostic);
+        }
+
+        private static INamedTypeSymbol? TryResolveUnderlyingType(INamedTypeSymbol namedTypeSymbol, SymbolAnalysisContext context)
+        {
+            INamedTypeSymbol voSymbolInformation = namedTypeSymbol;
+
+            var attrs = VoFilter.TryGetValueObjectAttributes(voSymbolInformation).ToImmutableArray();
+            
+            if (attrs.Length != 1) return null;
+
+            VogenConfigurationBuildResult buildResult = ManageAttributes.TryBuildConfigurationFromAttribute(attrs[0]);
+            
+            VogenConfiguration? vogenConfig = buildResult.ResultingConfiguration;
+            
+            if (!vogenConfig.HasValue) return null;
+            
+            if (buildResult.Diagnostics.Count > 0)
+            {
+                return null;
+            }
+
+            INamedTypeSymbol? ulType = vogenConfig.Value.UnderlyingType;
+
+            return ulType ?? 
+                   TryGetFromGlobalAttribute(context.Compilation) ?? 
+                   context.Compilation.GetSpecialType(SpecialType.System_Int32);
+        }
+
+        private static INamedTypeSymbol? TryGetFromGlobalAttribute(Compilation compilation)
+        {
+            var v = ManageAttributes.GetDefaultConfigFromGlobalAttribute(compilation);
+            
+            return v.ResultingConfiguration?.UnderlyingType;
+        }
+
+        private static bool AlreadyContainsAValidationMethod(INamedTypeSymbol namedTypeSymbol)
+        {
+            bool found = false;
+
+            ImmutableArray<ISymbol> members = namedTypeSymbol.GetMembers("Validate");
+
+            foreach (ISymbol? eachMemberSyntax in members)
+            {
+                if (eachMemberSyntax is not IMethodSymbol mds)
+                {
+                    continue;
+                }
+
+                if (!IsMethodStatic(mds))
+                {
+                    continue;
+                }
+
+                if (mds.ReturnType is not INamedTypeSymbol s || s.FullName() != "Vogen.Validation")
+                {
+                    continue;
+                }
+
+                found = true;
+                break;
+            }
+
+            return found;
         }
 
         private static bool IsMethodStatic(IMethodSymbol mds) => mds.IsStatic;

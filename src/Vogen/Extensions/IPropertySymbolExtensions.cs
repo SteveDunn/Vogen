@@ -3,7 +3,6 @@
 #pragma warning disable RS1024
 
 using System;
-using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using Microsoft.CodeAnalysis;
 

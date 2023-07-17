@@ -7,7 +7,6 @@ using System.Linq;
 using Microsoft.CodeAnalysis.Diagnostics;
 #endif
 
-using System.Diagnostics.CodeAnalysis;
 using Microsoft.CodeAnalysis;
 
 namespace Analyzer.Utilities.Extensions
