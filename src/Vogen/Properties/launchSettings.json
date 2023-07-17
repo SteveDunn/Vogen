@@ -3,7 +3,7 @@
     "Vogen": {
       "commandName": "Project"
     },
-    "Roslyn": {
+    "Generators": {
       "commandName": "DebugRoslynComponent",
       "targetProject": "..\\..\\tests\\Testbench\\Testbench.csproj"
     }

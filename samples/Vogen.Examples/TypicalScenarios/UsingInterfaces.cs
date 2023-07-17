@@ -28,12 +28,12 @@ namespace Vogen.Examples.TypicalScenarios.UsingInterfaces
     }
 
     // defaults to int
-    [ValueObject]
+    [ValueObject<int>]
     internal readonly partial struct CustomerId : IHaveAnId<int>
     {
     }
 
-    [ValueObject]
+    [ValueObject<int>]
     internal partial struct AccountId : IHaveAnId<int>
     {
     }
@@ -42,7 +42,7 @@ namespace Vogen.Examples.TypicalScenarios.UsingInterfaces
     // then be aware that there could be severe overhead of wrapping a reference type
     // as a value type. One of the  goals of Vogen is to not add too much overhead
     // (in terms of memory/speed) over using the primitive type itself.
-    [ValueObject]
+    [ValueObject<int>]
     internal partial class Id : IHaveAnId<int> { }
     
     internal class DerivedId1 : Id { }
