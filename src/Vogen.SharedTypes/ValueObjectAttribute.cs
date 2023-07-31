@@ -19,8 +19,9 @@ namespace Vogen
             Type? throws = null!,
             Customizations customizations = Customizations.None,
             DeserializationStrictness deserializationStrictness = DeserializationStrictness.AllowValidAndKnownInstances,
-            DebuggerAttributeGeneration debuggerAttributes = DebuggerAttributeGeneration.Default)
-            : base(typeof(T), conversions, throws, customizations, deserializationStrictness, debuggerAttributes)
+            DebuggerAttributeGeneration debuggerAttributes = DebuggerAttributeGeneration.Default,
+            ComparisonGeneration comparison = ComparisonGeneration.Default)
+            : base(typeof(T), conversions, throws, customizations, deserializationStrictness, debuggerAttributes, comparison)
         {
         }
     }
@@ -42,7 +43,8 @@ namespace Vogen
             Type? throws = null!,
             Customizations customizations = Customizations.None,
             DeserializationStrictness deserializationStrictness = DeserializationStrictness.AllowValidAndKnownInstances,
-            DebuggerAttributeGeneration debuggerAttributes = DebuggerAttributeGeneration.Default)
+            DebuggerAttributeGeneration debuggerAttributes = DebuggerAttributeGeneration.Default,
+            ComparisonGeneration comparison = ComparisonGeneration.Default)
         {
             // UnderlyingType = underlyingType;
             // Conversions = conversions;

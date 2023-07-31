@@ -1,5 +1,4 @@
-﻿using System;
-using System.Runtime.CompilerServices;
+﻿using System.Runtime.CompilerServices;
 using System.Text;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
@@ -10,7 +9,6 @@ using Vogen.Generators.Conversions;
 [assembly: InternalsVisibleTo("Vogen.Tests")]
 
 namespace Vogen;
-
 
 public static class Util
 {
@@ -217,36 +215,6 @@ public static class Util
             $@"/// <summary>Returns the string representation of the underlying type</summary>
     /// <inheritdoc cref=""{item.UnderlyingTypeFullName}.ToString()"" />
     public readonly override global::System.String ToString() =>_isInitialized ? Value.ToString() : ""[UNINITIALIZED]"";";
-
-    public static string GenerateIComparableHeaderIfNeeded(string precedingText, VoWorkItem item,
-        TypeDeclarationSyntax tds)
-    {
-        if (item.UnderlyingType.ImplementsInterfaceOrBaseClass(typeof(IComparable<>)))
-        {
-            return $"{precedingText} global::System.IComparable<{tds.Identifier}>, global::System.IComparable";
-        }
-    
-        return string.Empty;
-    }
-
-    public static string GenerateIComparableImplementationIfNeeded(VoWorkItem item, TypeDeclarationSyntax tds)
-    {
-        INamedTypeSymbol? primitiveSymbol = item.UnderlyingType;
-        if (!primitiveSymbol.ImplementsInterfaceOrBaseClass(typeof(IComparable<>)))
-        {
-            return string.Empty;
-        }
-    
-        var primitive = tds.Identifier;
-        var s = @$"public int CompareTo({primitive} other) => Value.CompareTo(other.Value);
-        public int CompareTo(object other) {{
-            if(other == null) return 1;
-            if(other is {primitive} x) return CompareTo(x);
-            throw new global::System.ArgumentException(""Cannot compare to object as it is not of type {primitive}"", nameof(other));
-        }}";
-    
-         return s;
-    }
 
     public static string GenerateDebugAttributes(VoWorkItem item, SyntaxToken className, string itemUnderlyingType)
     {

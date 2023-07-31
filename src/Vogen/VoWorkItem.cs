@@ -52,4 +52,6 @@ public class VoWorkItem
     public bool HasToString { get; set; }
     
     public DebuggerAttributeGeneration DebuggerAttributes { get; set; }
+    
+    public ComparisonGeneration ComparisonGeneration { get; set; }
 }

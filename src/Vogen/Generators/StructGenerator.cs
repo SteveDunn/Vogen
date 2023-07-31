@@ -18,7 +18,7 @@ using Vogen;
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute(""{Util.GenerateYourAssemblyName()}"", ""{Util.GenerateYourAssemblyVersion()}"")]
     {Util.GenerateAnyConversionAttributes(tds, item)}
     {Util.GenerateDebugAttributes(item, structName, itemUnderlyingType)}
-    { Util.GenerateModifiersFor(tds)} struct {structName} : global::System.IEquatable<{structName}>, global::System.IEquatable<{itemUnderlyingType}> {Util.GenerateIComparableHeaderIfNeeded(", ", item, tds)}
+    { Util.GenerateModifiersFor(tds)} struct {structName} : global::System.IEquatable<{structName}>, global::System.IEquatable<{itemUnderlyingType}> {GenerateComparableCode.GenerateIComparableHeaderIfNeeded(", ", item, tds)}
     {{
 #if DEBUG    
         private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
@@ -115,7 +115,7 @@ using Vogen;
         public static global::System.Boolean operator ==({itemUnderlyingType} left, {structName} right) => Equals(left, right.Value);
         public static global::System.Boolean operator !=({itemUnderlyingType} left, {structName} right) => !Equals(left, right.Value);
 
-        {Util.GenerateIComparableImplementationIfNeeded(item, tds)}
+        {GenerateComparableCode.GenerateIComparableImplementationIfNeeded(item, tds)}
 
         {TryParseGeneration.GenerateTryParseIfNeeded(item)}
 
