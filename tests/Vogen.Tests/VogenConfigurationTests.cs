@@ -62,25 +62,23 @@ namespace Vogen.Tests
             [Fact]
             public void Local_beats_global_when_specified()
             {
-                var result = VogenConfiguration.Combine(new ConfigBuilder().WithComparable(ComparisonGeneration.Omit).Build(), new ConfigBuilder().WithComparable(ComparisonGeneration.PreferOrdinalAndIgnoreCase).Build());
+                var result = VogenConfiguration.Combine(new ConfigBuilder().WithComparable(ComparisonGeneration.Omit).Build(), new ConfigBuilder().WithComparable(ComparisonGeneration.UseUnderlying).Build());
 
                 result.Comparison.Should().Be(ComparisonGeneration.Omit);
             }
 
-            private static VogenConfiguration ConfigWithOmitConversionsAs(Conversions conversions) =>
-                new VogenConfiguration(
-                    null,
-                    null,
-                    conversions,
-                    Customizations.None,
-                    DeserializationStrictness.Default,
-                    DebuggerAttributeGeneration.Full,
-                    ComparisonGeneration.UseUnderlying);
+            [Fact]
+            public void Global_beats_local_when_local_is_not_specified()
+            {
+                var result = VogenConfiguration.Combine(new ConfigBuilder().Build(), new ConfigBuilder().WithComparable(ComparisonGeneration.Omit).Build());
+
+                result.Comparison.Should().Be(ComparisonGeneration.Omit);
+            }
         }
 
         public class ConfigBuilder
         {
-            private VogenConfiguration _c = new();
+            private VogenConfiguration _c;
             
             public ConfigBuilder WithComparable(ComparisonGeneration comparable)
             {

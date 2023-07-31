@@ -1,14 +1,19 @@
+using System.ComponentModel;
+
 namespace Vogen
 {
     public enum ComparisonGeneration
     {
         /// <summary>
-        /// Use the default 
+        /// Use the default, which is <see cref="UseUnderlying"/>. This entry generally isn't used but is present
+        /// to signify a default value which has not been specified in the attributes. 
         /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         Default,
 
         /// <summary>
-        /// Omits the IComparable interfaces and implementation. 
+        /// Omits the IComparable interface and implementation. Useful for opaque types such as tokens or IDs where comparison
+        /// doesn't make sense.
         /// </summary>
         Omit,
         
@@ -16,15 +21,5 @@ namespace Vogen
         /// Uses the default IComparable from the underlying type.
         /// </summary>
         UseUnderlying,
-
-        /// <summary>
-        /// Prefers orginal comparison if a string, but if not a string, uses the <see cref="UseUnderlying"/> comparisons.
-        /// </summary>
-        PreferOrdinal,
-        
-        /// <summary>
-        /// Prefers orginal ignore case comparison if a string, but if not a string, uses the <see cref="UseUnderlying"/> comparisons.
-        /// </summary>
-        PreferOrdinalAndIgnoreCase
     }
 }
