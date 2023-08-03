@@ -115,6 +115,7 @@ internal static class BuildWorkItems
             DebuggerAttributes = config.DebuggerAttributes,
             Customizations = config.Customizations,
             TypeForValidationExceptions = config.ValidationExceptionType,
+            ComparisonGeneration = config.Comparison,
             ValidateMethod = validateMethod,
             NormalizeInputMethod = normalizeInputMethod,
             FullNamespace = voSymbolInformation.FullNamespace()

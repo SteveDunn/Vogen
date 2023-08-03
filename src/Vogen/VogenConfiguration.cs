@@ -10,7 +10,8 @@ public readonly struct VogenConfiguration
         Conversions conversions,
         Customizations customizations,
         DeserializationStrictness deserializationStrictness,
-        DebuggerAttributeGeneration debuggerAttributes)
+        DebuggerAttributeGeneration debuggerAttributes,
+        ComparisonGeneration comparison)
     {
         UnderlyingType = underlyingType;
         ValidationExceptionType = validationExceptionType;
@@ -18,6 +19,7 @@ public readonly struct VogenConfiguration
         Customizations = customizations;
         DeserializationStrictness = deserializationStrictness;
         DebuggerAttributes = debuggerAttributes;
+        Comparison = comparison;
     }
 
     public static VogenConfiguration Combine(
@@ -57,10 +59,18 @@ public readonly struct VogenConfiguration
             (var specificValue, _) => specificValue
         };
 
+        var comparison = (localValues.Comparison, globalValues?.Comparison) switch
+        {
+            (ComparisonGeneration.Default, null) => DefaultInstance.Comparison,
+            (ComparisonGeneration.Default, ComparisonGeneration.Default) => DefaultInstance.Comparison,
+            (ComparisonGeneration.Default, var globalDefault) => globalDefault.Value,
+            (var specificValue, _) => specificValue
+        };
+
         var validationExceptionType = localValues.ValidationExceptionType ?? globalValues?.ValidationExceptionType ?? DefaultInstance.ValidationExceptionType;
         var underlyingType = localValues.UnderlyingType ?? globalValues?.UnderlyingType ?? funcForDefaultUnderlyingType?.Invoke();
-
-        return new VogenConfiguration(underlyingType, validationExceptionType, conversions, customizations, strictness, debuggerAttributes);
+        
+        return new VogenConfiguration(underlyingType, validationExceptionType, conversions, customizations, strictness, debuggerAttributes, comparison);
     }
 
     public INamedTypeSymbol? UnderlyingType { get; }
@@ -73,6 +83,8 @@ public readonly struct VogenConfiguration
     public DeserializationStrictness DeserializationStrictness { get; }
     
     public DebuggerAttributeGeneration DebuggerAttributes { get; }
+    
+    public ComparisonGeneration Comparison { get; }
 
     // the issue here is that without a physical 'symbol' in the source, we can't
     // get the namedtypesymbol
@@ -84,5 +96,6 @@ public readonly struct VogenConfiguration
         conversions: Vogen.Conversions.Default,
         customizations: Customizations.None,
         deserializationStrictness: DeserializationStrictness.Default,
-        debuggerAttributes: DebuggerAttributeGeneration.Full);
+        debuggerAttributes: DebuggerAttributeGeneration.Full,
+        comparison: ComparisonGeneration.UseUnderlying);
 }

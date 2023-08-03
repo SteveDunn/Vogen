@@ -18,7 +18,7 @@ using Vogen;
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute(""{Util.GenerateYourAssemblyName()}"", ""{Util.GenerateYourAssemblyVersion()}"")]
     {Util.GenerateAnyConversionAttributes(tds, item)}
     {Util.GenerateDebugAttributes(item, structName, itemUnderlyingType)}
-    { Util.GenerateModifiersFor(tds)} record struct {structName} {Util.GenerateIComparableHeaderIfNeeded(" : ", item, tds)}
+    { Util.GenerateModifiersFor(tds)} record struct {structName} {GenerateComparableCode.GenerateIComparableHeaderIfNeeded(" : ", item, tds)}
     {{
 #if DEBUG    
         private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
@@ -89,7 +89,7 @@ using Vogen;
         public static explicit operator {structName}({itemUnderlyingType} value) => From(value);
         public static explicit operator {itemUnderlyingType}({structName} value) => value.Value;
 
-        {Util.GenerateIComparableImplementationIfNeeded(item, tds)}
+        {GenerateComparableCode.GenerateIComparableImplementationIfNeeded(item, tds)}
 
         // only called internally when something has been deserialized into
         // its primitive type.

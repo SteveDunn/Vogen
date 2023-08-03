@@ -79,6 +79,7 @@ internal static class ManageAttributes
         Customizations customizations = Customizations.None;
         DeserializationStrictness deserializationStrictness = DeserializationStrictness.Default;
         DebuggerAttributeGeneration debuggerAttributes = DebuggerAttributeGeneration.Default;
+        ComparisonGeneration comparisonGeneration = ComparisonGeneration.Default;
 
         bool hasErroredAttributes = false;
 
@@ -138,6 +139,9 @@ internal static class ManageAttributes
                         case "debuggerAttributes":
                             debuggerAttributes = (DebuggerAttributeGeneration) (typedConstant.Value ?? DebuggerAttributeGeneration.Full);
                             break;
+                        case "comparable":
+                            comparisonGeneration = (ComparisonGeneration) (typedConstant.Value ?? ComparisonGeneration.UseUnderlying);
+                            break;
                     }
                 }
             }
@@ -182,7 +186,8 @@ internal static class ManageAttributes
             conversions,
             customizations,
             deserializationStrictness,
-            debuggerAttributes);
+            debuggerAttributes,
+            comparisonGeneration);
 
         return buildResult;
 
@@ -200,6 +205,13 @@ internal static class ManageAttributes
                 : attributeData.AttributeClass!.TypeArguments[0] as INamedTypeSymbol;
             switch (args.Length)
             {
+                case 6:
+                    if (args[5].Value != null)
+                    {
+                        comparisonGeneration = (ComparisonGeneration) args[5].Value!;
+                    }
+
+                    goto case 5;
                 case 5:
                     if (args[4].Value != null)
                     {
@@ -243,6 +255,13 @@ internal static class ManageAttributes
         {
             switch (args.Length)
             {
+                case 7:
+                    if (args[6].Value != null)
+                    {
+                        comparisonGeneration = (ComparisonGeneration) args[6].Value!;
+                    }
+
+                    goto case 6;
                 case 6:
                     if (args[5].Value != null)
                     {

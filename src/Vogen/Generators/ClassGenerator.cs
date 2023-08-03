@@ -18,7 +18,7 @@ using Vogen;
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute(""{Util.GenerateYourAssemblyName()}"", ""{Util.GenerateYourAssemblyVersion()}"")]
     {Util.GenerateAnyConversionAttributes(tds, item)}
     {Util.GenerateDebugAttributes(item, className, itemUnderlyingType)}
-    {Util.GenerateModifiersFor(tds)} class {className} : global::System.IEquatable<{className}>, global::System.IEquatable<{itemUnderlyingType}> {Util.GenerateIComparableHeaderIfNeeded(", ", item, tds)}
+    {Util.GenerateModifiersFor(tds)} class {className} : global::System.IEquatable<{className}>, global::System.IEquatable<{itemUnderlyingType}> {GenerateComparableCode.GenerateIComparableHeaderIfNeeded(", ", item, tds)}
     {{
 #if DEBUG    
         private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
@@ -141,7 +141,7 @@ public {itemUnderlyingType} Value
         public static explicit operator {className}({itemUnderlyingType} value) => From(value);
         public static explicit operator {itemUnderlyingType}({className} value) => value.Value;
 
-        {Util.GenerateIComparableImplementationIfNeeded(item, tds)}
+        {GenerateComparableCode.GenerateIComparableImplementationIfNeeded(item, tds)}
 
         public override global::System.Int32 GetHashCode()
         {{
