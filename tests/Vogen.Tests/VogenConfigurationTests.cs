@@ -1,3 +1,4 @@
+using System;
 using FluentAssertions;
 using Xunit;
 
@@ -33,7 +34,8 @@ namespace Vogen.Tests
                     Customizations.None,
                     DeserializationStrictness.Default,
                     debuggerAttributes,
-                    ComparisonGeneration.UseUnderlying);
+                    ComparisonGeneration.UseUnderlying,
+                    null);
         }
 
         public class Conversion
@@ -54,7 +56,8 @@ namespace Vogen.Tests
                     Customizations.None,
                     DeserializationStrictness.Default,
                     DebuggerAttributeGeneration.Full,
-                    ComparisonGeneration.UseUnderlying);
+                    ComparisonGeneration.UseUnderlying,
+                    null);
         }
 
         public class Comparable
@@ -76,6 +79,29 @@ namespace Vogen.Tests
             }
         }
 
+        public class StringComparisonTests
+        {
+            [Fact]
+            public void Local_beats_global_when_specified()
+            {
+                var result = VogenConfiguration.Combine(
+                    localValues: new ConfigBuilder().WithStringComparison(StringComparison.Ordinal).Build(), 
+                    globalValues: new ConfigBuilder().WithStringComparison(null).Build());
+
+                result.StringComparison.Should().Be(StringComparison.Ordinal);
+            }
+
+            [Fact]
+            public void Global_beats_local_when_local_is_not_specified()
+            {
+                var result = VogenConfiguration.Combine(
+                    localValues: new ConfigBuilder().Build(), 
+                    globalValues: new ConfigBuilder().WithStringComparison(StringComparison.OrdinalIgnoreCase).Build());
+
+                result.StringComparison.Should().Be(StringComparison.OrdinalIgnoreCase);
+            }
+        }
+
         public class ConfigBuilder
         {
             private VogenConfiguration _c;
@@ -89,6 +115,22 @@ namespace Vogen.Tests
                     _c.Customizations,
                     _c.DeserializationStrictness,
                     _c.DebuggerAttributes,
+                    comparable,
+                    _c.StringComparison);
+                
+                return this;
+            }
+
+            public ConfigBuilder WithStringComparison(StringComparison? comparable)
+            {
+                _c = new VogenConfiguration(
+                    _c.UnderlyingType,
+                    _c.ValidationExceptionType,
+                    _c.Conversions,
+                    _c.Customizations,
+                    _c.DeserializationStrictness,
+                    _c.DebuggerAttributes,
+                    _c.Comparison,
                     comparable);
                 
                 return this;

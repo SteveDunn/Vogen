@@ -88,46 +88,7 @@ public {itemUnderlyingType} Value
             return new {className}(value);
         }}
 
-        public global::System.Boolean Equals({className} other)
-        {{
-            if (ReferenceEquals(null, other))
-            {{
-                return false;
-            }}
-
-            // It's possible to create uninitialized instances via converters such as EfCore (HasDefaultValue), which call Equals.
-            // We treat anything uninitialized as not equal to anything, even other uninitialized instances of this type.
-            if(!_isInitialized || !other._isInitialized) return false;
-	    	
-            if (ReferenceEquals(this, other))
-            {{
-                return true;
-            }}
-
-            return GetType() == other.GetType() && global::System.Collections.Generic.EqualityComparer<{itemUnderlyingType}>.Default.Equals(Value, other.Value);
-        }}
-
-        public global::System.Boolean Equals({itemUnderlyingType} primitive) => Value.Equals(primitive);
-
-        public override global::System.Boolean Equals(global::System.Object obj)
-        {{
-            if (ReferenceEquals(null, obj))
-            {{
-                return false;
-            }}
-
-            if (ReferenceEquals(this, obj))
-            {{
-                return true;
-            }}
-
-            if (obj.GetType() != GetType())
-            {{
-                return false;
-            }}
-
-            return Equals(({className}) obj);
-        }}
+        {GenerateEquatableCode.GenerateForAClass(item, tds)}
 
         public static global::System.Boolean operator ==({className} left, {className} right) => Equals(left, right);
         public static global::System.Boolean operator !=({className} left, {className} right) => !Equals(left, right);

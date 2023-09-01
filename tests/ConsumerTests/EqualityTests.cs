@@ -7,6 +7,7 @@
 // ReSharper disable PossibleNullReferenceException
 #pragma warning disable 252,253
 
+using System.Collections;
 using System.Diagnostics;
 using Vogen.Tests.Types;
 
@@ -77,6 +78,54 @@ public class EqualityTests
 
         (age == (object) "??").Should().BeFalse();
         (age != (object) "??").Should().BeTrue();
+    }
+
+    public class MyThing : IEquatable<MyThing>
+    {
+        public bool Equals(MyThing? other) => throw new NotImplementedException();
+
+        public override bool Equals(object? obj)
+        {
+            if (ReferenceEquals(null, obj))
+            {
+                return false;
+            }
+
+            if (ReferenceEquals(this, obj))
+            {
+                return true;
+            }
+
+            if (obj.GetType() != this.GetType())
+            {
+                return false;
+            }
+
+            return Equals((MyThing) obj);
+        }
+
+        public override int GetHashCode() => throw new NotImplementedException();
+    }
+
+    [Fact]
+    public void equality_with_custom_IEqualityComparer()
+    {
+        Dictionary<Name, int> ages = new(10, new StringOrdinalIgnoreCaseComparer())
+        {
+            { Name.From("Steve"), 18 },
+            { Name.From("Bob"), 19 },
+            { Name.From("Alice"), 20 },
+        };
+        
+        ages[Name.From("steve")].Should().Be(18);
+        ages[Name.From("Steve")].Should().Be(18);
+    }
+    
+    public class StringOrdinalIgnoreCaseComparer : IEqualityComparer<Name>
+    {
+        public bool Equals(Name? x, Name? y) => StringComparer.OrdinalIgnoreCase.Equals(x?.Value, y?.Value);
+
+        public int GetHashCode(Name obj) => StringComparer.OrdinalIgnoreCase.GetHashCode(obj.Value);
     }
 
     [Fact]

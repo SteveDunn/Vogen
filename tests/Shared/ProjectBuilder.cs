@@ -12,6 +12,7 @@ using System.Threading.Tasks;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
 using Vogen;
+using StringComparison = System.StringComparison;
 
 namespace Shared
 {

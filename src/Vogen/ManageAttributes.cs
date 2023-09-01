@@ -80,6 +80,7 @@ internal static class ManageAttributes
         DeserializationStrictness deserializationStrictness = DeserializationStrictness.Default;
         DebuggerAttributeGeneration debuggerAttributes = DebuggerAttributeGeneration.Default;
         ComparisonGeneration comparisonGeneration = ComparisonGeneration.Default;
+        StringComparison? stringComparison = null;
 
         bool hasErroredAttributes = false;
 
@@ -142,6 +143,9 @@ internal static class ManageAttributes
                         case "comparable":
                             comparisonGeneration = (ComparisonGeneration) (typedConstant.Value ?? ComparisonGeneration.UseUnderlying);
                             break;
+                        case "stringComparison":
+                            stringComparison = (StringComparison) (typedConstant.Value ?? StringComparison.CurrentCulture);
+                            break;
                     }
                 }
             }
@@ -187,7 +191,8 @@ internal static class ManageAttributes
             customizations,
             deserializationStrictness,
             debuggerAttributes,
-            comparisonGeneration);
+            comparisonGeneration,
+            stringComparison);
 
         return buildResult;
 
@@ -205,6 +210,13 @@ internal static class ManageAttributes
                 : attributeData.AttributeClass!.TypeArguments[0] as INamedTypeSymbol;
             switch (args.Length)
             {
+                case 7:
+                    if (args[6].Value != null)
+                    {
+                        stringComparison = (StringComparison) args[6].Value!;
+                    }
+
+                    goto case 6;
                 case 6:
                     if (args[5].Value != null)
                     {
@@ -255,6 +267,13 @@ internal static class ManageAttributes
         {
             switch (args.Length)
             {
+                case 8:
+                    if (args[7].Value != null)
+                    {
+                        stringComparison = (StringComparison) args[7].Value!;
+                    }
+
+                    goto case 7;
                 case 7:
                     if (args[6].Value != null)
                     {
