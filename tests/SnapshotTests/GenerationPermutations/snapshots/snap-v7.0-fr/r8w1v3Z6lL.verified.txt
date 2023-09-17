@@ -104,22 +104,22 @@ namespace Whatever
 
             return new internal_partial_structConversions_DapperTypeHandlerdouble(value);
         }
+        
+public readonly global::System.Boolean Equals(internal_partial_structConversions_DapperTypeHandlerdouble other)
+{
+    // It's possible to create uninitialized instances via converters such as EfCore (HasDefaultValue), which call Equals.
+    // We treat anything uninitialized as not equal to anything, even other uninitialized instances of this type.
+    if(!_isInitialized || !other._isInitialized) return false;
 
-        public readonly global::System.Boolean Equals(internal_partial_structConversions_DapperTypeHandlerdouble other)
-        {
-            // It's possible to create uninitialized instances via converters such as EfCore (HasDefaultValue), which call Equals.
-            // We treat anything uninitialized as not equal to anything, even other uninitialized instances of this type.
-            if(!_isInitialized || !other._isInitialized) return false;
+    return global::System.Collections.Generic.EqualityComparer<System.Double>.Default.Equals(Value, other.Value);
+}
 
-            return global::System.Collections.Generic.EqualityComparer<System.Double>.Default.Equals(Value, other.Value);
-        }
+public readonly global::System.Boolean Equals(System.Double primitive) => Value.Equals(primitive);
 
-        public readonly global::System.Boolean Equals(System.Double primitive) => Value.Equals(primitive);
-
-        public readonly override global::System.Boolean Equals(global::System.Object obj)
-        {
-            return obj is internal_partial_structConversions_DapperTypeHandlerdouble && Equals((internal_partial_structConversions_DapperTypeHandlerdouble) obj);
-        }
+public readonly override global::System.Boolean Equals(global::System.Object obj)
+{
+    return obj is internal_partial_structConversions_DapperTypeHandlerdouble && Equals((internal_partial_structConversions_DapperTypeHandlerdouble) obj);
+}
 
         public static global::System.Boolean operator ==(internal_partial_structConversions_DapperTypeHandlerdouble left, internal_partial_structConversions_DapperTypeHandlerdouble right) => Equals(left, right);
         public static global::System.Boolean operator !=(internal_partial_structConversions_DapperTypeHandlerdouble left, internal_partial_structConversions_DapperTypeHandlerdouble right) => !(left == right);

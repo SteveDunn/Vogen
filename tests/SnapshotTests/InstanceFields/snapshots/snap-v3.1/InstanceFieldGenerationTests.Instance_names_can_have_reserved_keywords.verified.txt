@@ -126,22 +126,22 @@ var validation = CustomerId.validate(value);
 
             return new CustomerId(value);
         }
+        
+public readonly global::System.Boolean Equals(CustomerId other)
+{
+    // It's possible to create uninitialized instances via converters such as EfCore (HasDefaultValue), which call Equals.
+    // We treat anything uninitialized as not equal to anything, even other uninitialized instances of this type.
+    if(!_isInitialized || !other._isInitialized) return false;
 
-        public readonly global::System.Boolean Equals(CustomerId other)
-        {
-            // It's possible to create uninitialized instances via converters such as EfCore (HasDefaultValue), which call Equals.
-            // We treat anything uninitialized as not equal to anything, even other uninitialized instances of this type.
-            if(!_isInitialized || !other._isInitialized) return false;
+    return global::System.Collections.Generic.EqualityComparer<System.Int32>.Default.Equals(Value, other.Value);
+}
 
-            return global::System.Collections.Generic.EqualityComparer<System.Int32>.Default.Equals(Value, other.Value);
-        }
+public readonly global::System.Boolean Equals(System.Int32 primitive) => Value.Equals(primitive);
 
-        public readonly global::System.Boolean Equals(System.Int32 primitive) => Value.Equals(primitive);
-
-        public readonly override global::System.Boolean Equals(global::System.Object obj)
-        {
-            return obj is CustomerId && Equals((CustomerId) obj);
-        }
+public readonly override global::System.Boolean Equals(global::System.Object obj)
+{
+    return obj is CustomerId && Equals((CustomerId) obj);
+}
 
         public static global::System.Boolean operator ==(CustomerId left, CustomerId right) => Equals(left, right);
         public static global::System.Boolean operator !=(CustomerId left, CustomerId right) => !(left == right);

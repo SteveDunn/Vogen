@@ -87,7 +87,6 @@ public {itemUnderlyingType} Value
 
             return new {className}(value);
         }}
-
         {GenerateEquatableCode.GenerateForAClass(item, tds)}
 
         public static global::System.Boolean operator ==({className} left, {className} right) => Equals(left, right);

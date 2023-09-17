@@ -103,47 +103,47 @@ public System.Int64 Value
 
             return new stj_number_as_string_public_sealed_partial_classConversions_SystemTextJsonlong_customized(value);
         }
+         
+ public global::System.Boolean Equals(stj_number_as_string_public_sealed_partial_classConversions_SystemTextJsonlong_customized other)
+ {
+     if (ReferenceEquals(null, other))
+     {
+         return false;
+     }
 
-        public global::System.Boolean Equals(stj_number_as_string_public_sealed_partial_classConversions_SystemTextJsonlong_customized other)
-        {
-            if (ReferenceEquals(null, other))
-            {
-                return false;
-            }
+     // It's possible to create uninitialized instances via converters such as EfCore (HasDefaultValue), which call Equals.
+     // We treat anything uninitialized as not equal to anything, even other uninitialized instances of this type.
+     if(!_isInitialized || !other._isInitialized) return false;
 
-            // It's possible to create uninitialized instances via converters such as EfCore (HasDefaultValue), which call Equals.
-            // We treat anything uninitialized as not equal to anything, even other uninitialized instances of this type.
-            if(!_isInitialized || !other._isInitialized) return false;
-	    	
-            if (ReferenceEquals(this, other))
-            {
-                return true;
-            }
+     if (ReferenceEquals(this, other))
+     {
+         return true;
+     }
 
-            return GetType() == other.GetType() && global::System.Collections.Generic.EqualityComparer<System.Int64>.Default.Equals(Value, other.Value);
-        }
+     return GetType() == other.GetType() && global::System.Collections.Generic.EqualityComparer<System.Int64>.Default.Equals(Value, other.Value);
+ }
 
-        public global::System.Boolean Equals(System.Int64 primitive) => Value.Equals(primitive);
+ public global::System.Boolean Equals(System.Int64 primitive) => Value.Equals(primitive);
 
-        public override global::System.Boolean Equals(global::System.Object obj)
-        {
-            if (ReferenceEquals(null, obj))
-            {
-                return false;
-            }
+ public override global::System.Boolean Equals(global::System.Object obj)
+ {
+     if (ReferenceEquals(null, obj))
+     {
+         return false;
+     }
 
-            if (ReferenceEquals(this, obj))
-            {
-                return true;
-            }
+     if (ReferenceEquals(this, obj))
+     {
+         return true;
+     }
 
-            if (obj.GetType() != GetType())
-            {
-                return false;
-            }
+     if (obj.GetType() != GetType())
+     {
+         return false;
+     }
 
-            return Equals((stj_number_as_string_public_sealed_partial_classConversions_SystemTextJsonlong_customized) obj);
-        }
+     return Equals((stj_number_as_string_public_sealed_partial_classConversions_SystemTextJsonlong_customized) obj);
+ }
 
         public static global::System.Boolean operator ==(stj_number_as_string_public_sealed_partial_classConversions_SystemTextJsonlong_customized left, stj_number_as_string_public_sealed_partial_classConversions_SystemTextJsonlong_customized right) => Equals(left, right);
         public static global::System.Boolean operator !=(stj_number_as_string_public_sealed_partial_classConversions_SystemTextJsonlong_customized left, stj_number_as_string_public_sealed_partial_classConversions_SystemTextJsonlong_customized right) => !Equals(left, right);

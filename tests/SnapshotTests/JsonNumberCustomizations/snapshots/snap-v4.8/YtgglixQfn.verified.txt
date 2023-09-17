@@ -106,22 +106,22 @@ namespace Whatever
 
             return new stj_number_as_string_public_readonly_partial_structConversions_NewtonsoftJson___Conversions_SystemTextJsonbyte(value);
         }
+        
+public readonly global::System.Boolean Equals(stj_number_as_string_public_readonly_partial_structConversions_NewtonsoftJson___Conversions_SystemTextJsonbyte other)
+{
+    // It's possible to create uninitialized instances via converters such as EfCore (HasDefaultValue), which call Equals.
+    // We treat anything uninitialized as not equal to anything, even other uninitialized instances of this type.
+    if(!_isInitialized || !other._isInitialized) return false;
 
-        public readonly global::System.Boolean Equals(stj_number_as_string_public_readonly_partial_structConversions_NewtonsoftJson___Conversions_SystemTextJsonbyte other)
-        {
-            // It's possible to create uninitialized instances via converters such as EfCore (HasDefaultValue), which call Equals.
-            // We treat anything uninitialized as not equal to anything, even other uninitialized instances of this type.
-            if(!_isInitialized || !other._isInitialized) return false;
+    return global::System.Collections.Generic.EqualityComparer<System.Byte>.Default.Equals(Value, other.Value);
+}
 
-            return global::System.Collections.Generic.EqualityComparer<System.Byte>.Default.Equals(Value, other.Value);
-        }
+public readonly global::System.Boolean Equals(System.Byte primitive) => Value.Equals(primitive);
 
-        public readonly global::System.Boolean Equals(System.Byte primitive) => Value.Equals(primitive);
-
-        public readonly override global::System.Boolean Equals(global::System.Object obj)
-        {
-            return obj is stj_number_as_string_public_readonly_partial_structConversions_NewtonsoftJson___Conversions_SystemTextJsonbyte && Equals((stj_number_as_string_public_readonly_partial_structConversions_NewtonsoftJson___Conversions_SystemTextJsonbyte) obj);
-        }
+public readonly override global::System.Boolean Equals(global::System.Object obj)
+{
+    return obj is stj_number_as_string_public_readonly_partial_structConversions_NewtonsoftJson___Conversions_SystemTextJsonbyte && Equals((stj_number_as_string_public_readonly_partial_structConversions_NewtonsoftJson___Conversions_SystemTextJsonbyte) obj);
+}
 
         public static global::System.Boolean operator ==(stj_number_as_string_public_readonly_partial_structConversions_NewtonsoftJson___Conversions_SystemTextJsonbyte left, stj_number_as_string_public_readonly_partial_structConversions_NewtonsoftJson___Conversions_SystemTextJsonbyte right) => Equals(left, right);
         public static global::System.Boolean operator !=(stj_number_as_string_public_readonly_partial_structConversions_NewtonsoftJson___Conversions_SystemTextJsonbyte left, stj_number_as_string_public_readonly_partial_structConversions_NewtonsoftJson___Conversions_SystemTextJsonbyte right) => !(left == right);

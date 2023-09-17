@@ -106,22 +106,22 @@ namespace Whatever
 
             return new internal_readonly_partial_structConversions_NewtonsoftJson___Conversions_SystemTextJsonlong(value);
         }
+        
+public readonly global::System.Boolean Equals(internal_readonly_partial_structConversions_NewtonsoftJson___Conversions_SystemTextJsonlong other)
+{
+    // It's possible to create uninitialized instances via converters such as EfCore (HasDefaultValue), which call Equals.
+    // We treat anything uninitialized as not equal to anything, even other uninitialized instances of this type.
+    if(!_isInitialized || !other._isInitialized) return false;
 
-        public readonly global::System.Boolean Equals(internal_readonly_partial_structConversions_NewtonsoftJson___Conversions_SystemTextJsonlong other)
-        {
-            // It's possible to create uninitialized instances via converters such as EfCore (HasDefaultValue), which call Equals.
-            // We treat anything uninitialized as not equal to anything, even other uninitialized instances of this type.
-            if(!_isInitialized || !other._isInitialized) return false;
+    return global::System.Collections.Generic.EqualityComparer<System.Int64>.Default.Equals(Value, other.Value);
+}
 
-            return global::System.Collections.Generic.EqualityComparer<System.Int64>.Default.Equals(Value, other.Value);
-        }
+public readonly global::System.Boolean Equals(System.Int64 primitive) => Value.Equals(primitive);
 
-        public readonly global::System.Boolean Equals(System.Int64 primitive) => Value.Equals(primitive);
-
-        public readonly override global::System.Boolean Equals(global::System.Object obj)
-        {
-            return obj is internal_readonly_partial_structConversions_NewtonsoftJson___Conversions_SystemTextJsonlong && Equals((internal_readonly_partial_structConversions_NewtonsoftJson___Conversions_SystemTextJsonlong) obj);
-        }
+public readonly override global::System.Boolean Equals(global::System.Object obj)
+{
+    return obj is internal_readonly_partial_structConversions_NewtonsoftJson___Conversions_SystemTextJsonlong && Equals((internal_readonly_partial_structConversions_NewtonsoftJson___Conversions_SystemTextJsonlong) obj);
+}
 
         public static global::System.Boolean operator ==(internal_readonly_partial_structConversions_NewtonsoftJson___Conversions_SystemTextJsonlong left, internal_readonly_partial_structConversions_NewtonsoftJson___Conversions_SystemTextJsonlong right) => Equals(left, right);
         public static global::System.Boolean operator !=(internal_readonly_partial_structConversions_NewtonsoftJson___Conversions_SystemTextJsonlong left, internal_readonly_partial_structConversions_NewtonsoftJson___Conversions_SystemTextJsonlong right) => !(left == right);

@@ -106,22 +106,22 @@ namespace @class
 
             return new escapedTestspublic_partial_structConversions_NewtonsoftJson___Conversions_SystemTextJsonrecord__struct__float__decimal(value);
         }
+        
+public readonly global::System.Boolean Equals(escapedTestspublic_partial_structConversions_NewtonsoftJson___Conversions_SystemTextJsonrecord__struct__float__decimal other)
+{
+    // It's possible to create uninitialized instances via converters such as EfCore (HasDefaultValue), which call Equals.
+    // We treat anything uninitialized as not equal to anything, even other uninitialized instances of this type.
+    if(!_isInitialized || !other._isInitialized) return false;
 
-        public readonly global::System.Boolean Equals(escapedTestspublic_partial_structConversions_NewtonsoftJson___Conversions_SystemTextJsonrecord__struct__float__decimal other)
-        {
-            // It's possible to create uninitialized instances via converters such as EfCore (HasDefaultValue), which call Equals.
-            // We treat anything uninitialized as not equal to anything, even other uninitialized instances of this type.
-            if(!_isInitialized || !other._isInitialized) return false;
+    return global::System.Collections.Generic.EqualityComparer<@class.@record.@struct.@float.@decimal>.Default.Equals(Value, other.Value);
+}
 
-            return global::System.Collections.Generic.EqualityComparer<@class.@record.@struct.@float.@decimal>.Default.Equals(Value, other.Value);
-        }
+public readonly global::System.Boolean Equals(@class.@record.@struct.@float.@decimal primitive) => Value.Equals(primitive);
 
-        public readonly global::System.Boolean Equals(@class.@record.@struct.@float.@decimal primitive) => Value.Equals(primitive);
-
-        public readonly override global::System.Boolean Equals(global::System.Object obj)
-        {
-            return obj is escapedTestspublic_partial_structConversions_NewtonsoftJson___Conversions_SystemTextJsonrecord__struct__float__decimal && Equals((escapedTestspublic_partial_structConversions_NewtonsoftJson___Conversions_SystemTextJsonrecord__struct__float__decimal) obj);
-        }
+public readonly override global::System.Boolean Equals(global::System.Object obj)
+{
+    return obj is escapedTestspublic_partial_structConversions_NewtonsoftJson___Conversions_SystemTextJsonrecord__struct__float__decimal && Equals((escapedTestspublic_partial_structConversions_NewtonsoftJson___Conversions_SystemTextJsonrecord__struct__float__decimal) obj);
+}
 
         public static global::System.Boolean operator ==(escapedTestspublic_partial_structConversions_NewtonsoftJson___Conversions_SystemTextJsonrecord__struct__float__decimal left, escapedTestspublic_partial_structConversions_NewtonsoftJson___Conversions_SystemTextJsonrecord__struct__float__decimal right) => Equals(left, right);
         public static global::System.Boolean operator !=(escapedTestspublic_partial_structConversions_NewtonsoftJson___Conversions_SystemTextJsonrecord__struct__float__decimal left, escapedTestspublic_partial_structConversions_NewtonsoftJson___Conversions_SystemTextJsonrecord__struct__float__decimal right) => !(left == right);

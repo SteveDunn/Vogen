@@ -763,7 +763,7 @@ platform and tooling. Those are [described here](https://github.com/VerifyTests/
 **NOTE: If the change to the source generators expectedly changes the majority of the snapshot tests, then you can tell the 
 snapshot runner to overwrite the expected files with the actual files that are generated.**
 
-To do this, run `Build.ps1 -resetSnapshots $true`. This deletes all `snaphsot` folders under the `tests` folder
+To do this, run `.\Build.ps1 -v "Minimal" -resetSnapshots $true`. This deletes all `snaphsot` folders under the `tests` folder
 and treats everything that's generated as the new baseline for future comparisons.
 
 This will mean that there are potentially **thousands** of changed files that will end up in the commit, but it's expected and unavoidable.

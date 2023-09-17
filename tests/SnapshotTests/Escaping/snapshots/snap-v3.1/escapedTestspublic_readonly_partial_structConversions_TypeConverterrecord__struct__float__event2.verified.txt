@@ -105,22 +105,22 @@ namespace @class
 
             return new escapedTestspublic_readonly_partial_structConversions_TypeConverterrecord__struct__float__event2(value);
         }
+        
+public readonly global::System.Boolean Equals(escapedTestspublic_readonly_partial_structConversions_TypeConverterrecord__struct__float__event2 other)
+{
+    // It's possible to create uninitialized instances via converters such as EfCore (HasDefaultValue), which call Equals.
+    // We treat anything uninitialized as not equal to anything, even other uninitialized instances of this type.
+    if(!_isInitialized || !other._isInitialized) return false;
 
-        public readonly global::System.Boolean Equals(escapedTestspublic_readonly_partial_structConversions_TypeConverterrecord__struct__float__event2 other)
-        {
-            // It's possible to create uninitialized instances via converters such as EfCore (HasDefaultValue), which call Equals.
-            // We treat anything uninitialized as not equal to anything, even other uninitialized instances of this type.
-            if(!_isInitialized || !other._isInitialized) return false;
+    return global::System.Collections.Generic.EqualityComparer<@class.@record.@struct.@float.event2>.Default.Equals(Value, other.Value);
+}
 
-            return global::System.Collections.Generic.EqualityComparer<@class.@record.@struct.@float.event2>.Default.Equals(Value, other.Value);
-        }
+public readonly global::System.Boolean Equals(@class.@record.@struct.@float.event2 primitive) => Value.Equals(primitive);
 
-        public readonly global::System.Boolean Equals(@class.@record.@struct.@float.event2 primitive) => Value.Equals(primitive);
-
-        public readonly override global::System.Boolean Equals(global::System.Object obj)
-        {
-            return obj is escapedTestspublic_readonly_partial_structConversions_TypeConverterrecord__struct__float__event2 && Equals((escapedTestspublic_readonly_partial_structConversions_TypeConverterrecord__struct__float__event2) obj);
-        }
+public readonly override global::System.Boolean Equals(global::System.Object obj)
+{
+    return obj is escapedTestspublic_readonly_partial_structConversions_TypeConverterrecord__struct__float__event2 && Equals((escapedTestspublic_readonly_partial_structConversions_TypeConverterrecord__struct__float__event2) obj);
+}
 
         public static global::System.Boolean operator ==(escapedTestspublic_readonly_partial_structConversions_TypeConverterrecord__struct__float__event2 left, escapedTestspublic_readonly_partial_structConversions_TypeConverterrecord__struct__float__event2 right) => Equals(left, right);
         public static global::System.Boolean operator !=(escapedTestspublic_readonly_partial_structConversions_TypeConverterrecord__struct__float__event2 left, escapedTestspublic_readonly_partial_structConversions_TypeConverterrecord__struct__float__event2 right) => !(left == right);

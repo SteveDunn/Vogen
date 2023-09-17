@@ -78,16 +78,26 @@ if(Test-Path $localPackages) { Remove-Item $localPackages\vogen.* -Force -ErrorA
 
 WriteStage("Cleaning, restoring, and building release version of Vogen...")
 
+WriteStage("... clean ...")
 exec { & dotnet clean Vogen.sln -c Release --verbosity $verbosity}
+
+WriteStage("... restore ...")
 exec { & dotnet restore Vogen.sln --no-cache --verbosity $verbosity }
 
 if($resetSnapshots)
 {
+    WriteStage("... resetting snapshots ...")
     exec { & dotnet build Vogen.sln -c Release -p Thorough=true -p ResetSnapshots=true --no-restore --verbosity $verbosity}
 }
 else
 {
     exec { & dotnet build Vogen.sln -c Release -p Thorough=true --no-restore --verbosity $verbosity}
+}
+
+if($skiptests) 
+{ 
+    # run the analyzer and code generation tests
+    WriteStage("Skipping tests")
 }
 
 if(!$skiptests) 

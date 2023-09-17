@@ -104,47 +104,47 @@ public System.Decimal Value
 
             return new stj_number_as_string_public_partial_classConversions_NewtonsoftJson___Conversions_SystemTextJsondecimal(value);
         }
+         
+ public global::System.Boolean Equals(stj_number_as_string_public_partial_classConversions_NewtonsoftJson___Conversions_SystemTextJsondecimal other)
+ {
+     if (ReferenceEquals(null, other))
+     {
+         return false;
+     }
 
-        public global::System.Boolean Equals(stj_number_as_string_public_partial_classConversions_NewtonsoftJson___Conversions_SystemTextJsondecimal other)
-        {
-            if (ReferenceEquals(null, other))
-            {
-                return false;
-            }
+     // It's possible to create uninitialized instances via converters such as EfCore (HasDefaultValue), which call Equals.
+     // We treat anything uninitialized as not equal to anything, even other uninitialized instances of this type.
+     if(!_isInitialized || !other._isInitialized) return false;
 
-            // It's possible to create uninitialized instances via converters such as EfCore (HasDefaultValue), which call Equals.
-            // We treat anything uninitialized as not equal to anything, even other uninitialized instances of this type.
-            if(!_isInitialized || !other._isInitialized) return false;
-	    	
-            if (ReferenceEquals(this, other))
-            {
-                return true;
-            }
+     if (ReferenceEquals(this, other))
+     {
+         return true;
+     }
 
-            return GetType() == other.GetType() && global::System.Collections.Generic.EqualityComparer<System.Decimal>.Default.Equals(Value, other.Value);
-        }
+     return GetType() == other.GetType() && global::System.Collections.Generic.EqualityComparer<System.Decimal>.Default.Equals(Value, other.Value);
+ }
 
-        public global::System.Boolean Equals(System.Decimal primitive) => Value.Equals(primitive);
+ public global::System.Boolean Equals(System.Decimal primitive) => Value.Equals(primitive);
 
-        public override global::System.Boolean Equals(global::System.Object obj)
-        {
-            if (ReferenceEquals(null, obj))
-            {
-                return false;
-            }
+ public override global::System.Boolean Equals(global::System.Object obj)
+ {
+     if (ReferenceEquals(null, obj))
+     {
+         return false;
+     }
 
-            if (ReferenceEquals(this, obj))
-            {
-                return true;
-            }
+     if (ReferenceEquals(this, obj))
+     {
+         return true;
+     }
 
-            if (obj.GetType() != GetType())
-            {
-                return false;
-            }
+     if (obj.GetType() != GetType())
+     {
+         return false;
+     }
 
-            return Equals((stj_number_as_string_public_partial_classConversions_NewtonsoftJson___Conversions_SystemTextJsondecimal) obj);
-        }
+     return Equals((stj_number_as_string_public_partial_classConversions_NewtonsoftJson___Conversions_SystemTextJsondecimal) obj);
+ }
 
         public static global::System.Boolean operator ==(stj_number_as_string_public_partial_classConversions_NewtonsoftJson___Conversions_SystemTextJsondecimal left, stj_number_as_string_public_partial_classConversions_NewtonsoftJson___Conversions_SystemTextJsondecimal right) => Equals(left, right);
         public static global::System.Boolean operator !=(stj_number_as_string_public_partial_classConversions_NewtonsoftJson___Conversions_SystemTextJsondecimal left, stj_number_as_string_public_partial_classConversions_NewtonsoftJson___Conversions_SystemTextJsondecimal right) => !Equals(left, right);

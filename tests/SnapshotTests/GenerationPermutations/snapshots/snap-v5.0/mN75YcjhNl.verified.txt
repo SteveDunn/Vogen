@@ -104,22 +104,22 @@ namespace Whatever
 
             return new internal_partial_structConversions_EfCoreValueConverterbyte(value);
         }
+        
+public readonly global::System.Boolean Equals(internal_partial_structConversions_EfCoreValueConverterbyte other)
+{
+    // It's possible to create uninitialized instances via converters such as EfCore (HasDefaultValue), which call Equals.
+    // We treat anything uninitialized as not equal to anything, even other uninitialized instances of this type.
+    if(!_isInitialized || !other._isInitialized) return false;
 
-        public readonly global::System.Boolean Equals(internal_partial_structConversions_EfCoreValueConverterbyte other)
-        {
-            // It's possible to create uninitialized instances via converters such as EfCore (HasDefaultValue), which call Equals.
-            // We treat anything uninitialized as not equal to anything, even other uninitialized instances of this type.
-            if(!_isInitialized || !other._isInitialized) return false;
+    return global::System.Collections.Generic.EqualityComparer<System.Byte>.Default.Equals(Value, other.Value);
+}
 
-            return global::System.Collections.Generic.EqualityComparer<System.Byte>.Default.Equals(Value, other.Value);
-        }
+public readonly global::System.Boolean Equals(System.Byte primitive) => Value.Equals(primitive);
 
-        public readonly global::System.Boolean Equals(System.Byte primitive) => Value.Equals(primitive);
-
-        public readonly override global::System.Boolean Equals(global::System.Object obj)
-        {
-            return obj is internal_partial_structConversions_EfCoreValueConverterbyte && Equals((internal_partial_structConversions_EfCoreValueConverterbyte) obj);
-        }
+public readonly override global::System.Boolean Equals(global::System.Object obj)
+{
+    return obj is internal_partial_structConversions_EfCoreValueConverterbyte && Equals((internal_partial_structConversions_EfCoreValueConverterbyte) obj);
+}
 
         public static global::System.Boolean operator ==(internal_partial_structConversions_EfCoreValueConverterbyte left, internal_partial_structConversions_EfCoreValueConverterbyte right) => Equals(left, right);
         public static global::System.Boolean operator !=(internal_partial_structConversions_EfCoreValueConverterbyte left, internal_partial_structConversions_EfCoreValueConverterbyte right) => !(left == right);

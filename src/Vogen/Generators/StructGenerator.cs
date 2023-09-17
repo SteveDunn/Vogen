@@ -89,7 +89,6 @@ using Vogen;
 
             return new {structName}(value);
         }}
-
         {GenerateEquatableCode.GenerateForAStruct(item, tds)}
 
         public static global::System.Boolean operator ==({structName} left, {structName} right) => Equals(left, right);

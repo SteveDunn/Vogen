@@ -111,47 +111,47 @@ public System.String Value
 
             return new public_sealed_partial_classConversions_TypeConverterstring(value);
         }
+         
+ public global::System.Boolean Equals(public_sealed_partial_classConversions_TypeConverterstring other)
+ {
+     if (ReferenceEquals(null, other))
+     {
+         return false;
+     }
 
-        public global::System.Boolean Equals(public_sealed_partial_classConversions_TypeConverterstring other)
-        {
-            if (ReferenceEquals(null, other))
-            {
-                return false;
-            }
+     // It's possible to create uninitialized instances via converters such as EfCore (HasDefaultValue), which call Equals.
+     // We treat anything uninitialized as not equal to anything, even other uninitialized instances of this type.
+     if(!_isInitialized || !other._isInitialized) return false;
 
-            // It's possible to create uninitialized instances via converters such as EfCore (HasDefaultValue), which call Equals.
-            // We treat anything uninitialized as not equal to anything, even other uninitialized instances of this type.
-            if(!_isInitialized || !other._isInitialized) return false;
-	    	
-            if (ReferenceEquals(this, other))
-            {
-                return true;
-            }
+     if (ReferenceEquals(this, other))
+     {
+         return true;
+     }
 
-            return GetType() == other.GetType() && global::System.Collections.Generic.EqualityComparer<System.String>.Default.Equals(Value, other.Value);
-        }
+     return GetType() == other.GetType() && global::System.Collections.Generic.EqualityComparer<System.String>.Default.Equals(Value, other.Value);
+ }
 
-        public global::System.Boolean Equals(System.String primitive) => Value.Equals(primitive);
+ public global::System.Boolean Equals(System.String primitive) => Value.Equals(primitive);
 
-        public override global::System.Boolean Equals(global::System.Object obj)
-        {
-            if (ReferenceEquals(null, obj))
-            {
-                return false;
-            }
+ public override global::System.Boolean Equals(global::System.Object obj)
+ {
+     if (ReferenceEquals(null, obj))
+     {
+         return false;
+     }
 
-            if (ReferenceEquals(this, obj))
-            {
-                return true;
-            }
+     if (ReferenceEquals(this, obj))
+     {
+         return true;
+     }
 
-            if (obj.GetType() != GetType())
-            {
-                return false;
-            }
+     if (obj.GetType() != GetType())
+     {
+         return false;
+     }
 
-            return Equals((public_sealed_partial_classConversions_TypeConverterstring) obj);
-        }
+     return Equals((public_sealed_partial_classConversions_TypeConverterstring) obj);
+ }
 
         public static global::System.Boolean operator ==(public_sealed_partial_classConversions_TypeConverterstring left, public_sealed_partial_classConversions_TypeConverterstring right) => Equals(left, right);
         public static global::System.Boolean operator !=(public_sealed_partial_classConversions_TypeConverterstring left, public_sealed_partial_classConversions_TypeConverterstring right) => !Equals(left, right);

@@ -84,11 +84,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Equatable\snapshots\snap-v4.6.1\" />
-    <Folder Include="Equatable\snapshots\snap-v4.8\" />
-    <Folder Include="Equatable\snapshots\snap-v5.0\" />
-    <Folder Include="Equatable\snapshots\snap-v6.0\" />
-    <Folder Include="Equatable\snapshots\snap-v7.0\" />
+    <Folder Include="StringComparison\snapshots\snap-v4.6.1\" />
+    <Folder Include="StringComparison\snapshots\snap-v4.8\" />
+    <Folder Include="StringComparison\snapshots\snap-v5.0\" />
+    <Folder Include="StringComparison\snapshots\snap-v6.0\" />
+    <Folder Include="StringComparison\snapshots\snap-v7.0\" />
     <Folder Include="InstanceFields\" />
   </ItemGroup>
 
