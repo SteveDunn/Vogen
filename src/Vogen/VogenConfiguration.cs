@@ -12,7 +12,7 @@ public readonly struct VogenConfiguration
         DeserializationStrictness deserializationStrictness,
         DebuggerAttributeGeneration debuggerAttributes,
         ComparisonGeneration comparison,
-        StringComparison? stringComparison)
+        StringComparisonGeneration stringComparison = StringComparisonGeneration.Unspecified)
     {
         UnderlyingType = underlyingType;
         ValidationExceptionType = validationExceptionType;
@@ -69,12 +69,11 @@ public readonly struct VogenConfiguration
             (var specificValue, _) => specificValue
         };
 
-        var stringComparison = (localValues.StringComparison, globalValues?.StringComparison) switch
+        StringComparisonGeneration stringComparison = (localValues.StringComparison, globalValues?.StringComparison) switch
         {
-            (null, null) => DefaultInstance.StringComparison,
-            (var local, null) => local,
-            (null, var global) => global,
-            (var specificValue, _) => specificValue
+            (StringComparisonGeneration.Unspecified, null) => StringComparisonGeneration.Unspecified,
+            (StringComparisonGeneration.Unspecified, var global) => global.Value,
+            (var local, _) => local,
         };
 
         var validationExceptionType = localValues.ValidationExceptionType ?? globalValues?.ValidationExceptionType ?? DefaultInstance.ValidationExceptionType;
@@ -96,7 +95,7 @@ public readonly struct VogenConfiguration
     
     public ComparisonGeneration Comparison { get; }
     
-    public StringComparison? StringComparison { get; }
+    public StringComparisonGeneration StringComparison { get; }
 
     // the issue here is that without a physical 'symbol' in the source, we can't
     // get the namedtypesymbol
@@ -110,5 +109,5 @@ public readonly struct VogenConfiguration
         deserializationStrictness: DeserializationStrictness.Default,
         debuggerAttributes: DebuggerAttributeGeneration.Full,
         comparison: ComparisonGeneration.UseUnderlying,
-        stringComparison: System.StringComparison.CurrentCulture);
+        stringComparison: StringComparisonGeneration.Unspecified);
 }

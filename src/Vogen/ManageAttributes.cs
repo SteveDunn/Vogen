@@ -6,6 +6,7 @@ using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Vogen.Diagnostics;
+// ReSharper disable NullableWarningSuppressionIsUsed
 
 namespace Vogen;
 
@@ -80,7 +81,7 @@ internal static class ManageAttributes
         DeserializationStrictness deserializationStrictness = DeserializationStrictness.Default;
         DebuggerAttributeGeneration debuggerAttributes = DebuggerAttributeGeneration.Default;
         ComparisonGeneration comparisonGeneration = ComparisonGeneration.Default;
-        StringComparison? stringComparison = null;
+        StringComparisonGeneration stringComparison = StringComparisonGeneration.Unspecified;
 
         bool hasErroredAttributes = false;
 
@@ -144,7 +145,7 @@ internal static class ManageAttributes
                             comparisonGeneration = (ComparisonGeneration) (typedConstant.Value ?? ComparisonGeneration.UseUnderlying);
                             break;
                         case "stringComparison":
-                            stringComparison = (StringComparison) (typedConstant.Value ?? StringComparison.CurrentCulture);
+                            stringComparison = (StringComparisonGeneration) (typedConstant.Value ?? StringComparisonGeneration.Unspecified);
                             break;
                     }
                 }
@@ -213,7 +214,7 @@ internal static class ManageAttributes
                 case 7:
                     if (args[6].Value != null)
                     {
-                        stringComparison = (StringComparison) args[6].Value!;
+                        stringComparison = (StringComparisonGeneration) args[6].Value!;
                     }
 
                     goto case 6;
@@ -270,7 +271,7 @@ internal static class ManageAttributes
                 case 8:
                     if (args[7].Value != null)
                     {
-                        stringComparison = (StringComparison) args[7].Value!;
+                        stringComparison = (StringComparisonGeneration) args[7].Value!;
                     }
 
                     goto case 7;

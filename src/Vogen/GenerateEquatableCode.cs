@@ -7,8 +7,8 @@ public static class GenerateEquatableCode
     public static string GenerateForAClass(VoWorkItem item, TypeDeclarationSyntax tds)
     {
         var className = tds.Identifier;
-
-        var itemUnderlyingType = item.UnderlyingTypeFullName;
+        
+        string itemUnderlyingType = item.UnderlyingTypeFullName;
 
         return $$"""
                   
@@ -28,10 +28,10 @@ public static class GenerateEquatableCode
                           return true;
                       }
                  
-                      return GetType() == other.GetType() && global::System.Collections.Generic.EqualityComparer<{{itemUnderlyingType}}>.Default.Equals(Value, other.Value);
+                      return GetType() == other.GetType() && {{GenerateCallToDefaultComparerOrCustomStringComparer(item)}};
                   }
                  
-                  public global::System.Boolean Equals({{itemUnderlyingType}} primitive) => Value.Equals(primitive);
+                  {{GenerateInstanceEqualsMethod(item)}}
                  
                   public override global::System.Boolean Equals(global::System.Object obj)
                   {
@@ -53,6 +53,28 @@ public static class GenerateEquatableCode
                       return Equals(({{className}}) obj);
                   }
                  """;
+    }
+
+    private static string GenerateInstanceEqualsMethod(VoWorkItem item)
+    {
+        string itemUnderlyingType = item.UnderlyingTypeFullName;
+
+        bool isString = typeof(string).IsAssignableFrom(itemUnderlyingType.GetType());
+
+        return isString && item.StringComparisonGeneration is not StringComparisonGeneration.Unspecified
+            ? $"public global::System.Boolean Equals({itemUnderlyingType} primitive) => Value.Equals(primitive, global::System.StringComparison.{item.StringComparisonGeneration});"
+            : $"public global::System.Boolean Equals({itemUnderlyingType} primitive) => Value.Equals(primitive);";
+    }
+
+    private static string GenerateCallToDefaultComparerOrCustomStringComparer(VoWorkItem item)
+    {
+        string itemUnderlyingType = item.UnderlyingTypeFullName;
+
+        bool isString = typeof(string).IsAssignableFrom(itemUnderlyingType.GetType());
+
+        return isString && item.StringComparisonGeneration is not StringComparisonGeneration.Unspecified
+            ? $"Equals(other.Value)"
+            : $"global::System.Collections.Generic.EqualityComparer<{itemUnderlyingType}>.Default.Equals(Value, other.Value)";
     }
 
     public static string GenerateForAStruct(VoWorkItem item, TypeDeclarationSyntax tds)

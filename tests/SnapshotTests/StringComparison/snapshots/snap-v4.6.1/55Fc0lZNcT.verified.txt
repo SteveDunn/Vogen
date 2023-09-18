@@ -129,10 +129,10 @@ public System.String Value
          return true;
      }
 
-     return GetType() == other.GetType() && global::System.Collections.Generic.EqualityComparer<System.String>.Default.Equals(Value, other.Value);
+     return GetType() == other.GetType() && Equals(other.Value);
  }
 
- public global::System.Boolean Equals(System.String primitive) => Value.Equals(primitive);
+ public global::System.Boolean Equals(System.String primitive) => Value.Equals(primitive, global::System.StringComparison.InvariantCulture);
 
  public override global::System.Boolean Equals(global::System.Object obj)
  {

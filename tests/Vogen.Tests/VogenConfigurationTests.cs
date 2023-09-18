@@ -35,7 +35,7 @@ namespace Vogen.Tests
                     DeserializationStrictness.Default,
                     debuggerAttributes,
                     ComparisonGeneration.UseUnderlying,
-                    null);
+                    StringComparisonGeneration.Unspecified);
         }
 
         public class Conversion
@@ -57,7 +57,7 @@ namespace Vogen.Tests
                     DeserializationStrictness.Default,
                     DebuggerAttributeGeneration.Full,
                     ComparisonGeneration.UseUnderlying,
-                    null);
+                    StringComparisonGeneration.Unspecified);
         }
 
         public class Comparable
@@ -85,20 +85,20 @@ namespace Vogen.Tests
             public void Local_beats_global_when_specified()
             {
                 var result = VogenConfiguration.Combine(
-                    localValues: new ConfigBuilder().WithStringComparison(StringComparison.Ordinal).Build(), 
-                    globalValues: new ConfigBuilder().WithStringComparison(null).Build());
+                    localValues: new ConfigBuilder().WithStringComparison(StringComparisonGeneration.Ordinal).Build(), 
+                    globalValues: new ConfigBuilder().WithStringComparison(StringComparisonGeneration.Unspecified).Build());
 
-                result.StringComparison.Should().Be(StringComparison.Ordinal);
+                result.StringComparison.Should().Be(StringComparisonGeneration.Ordinal);
             }
 
             [Fact]
             public void Global_beats_local_when_local_is_not_specified()
             {
                 var result = VogenConfiguration.Combine(
-                    localValues: new ConfigBuilder().Build(), 
-                    globalValues: new ConfigBuilder().WithStringComparison(StringComparison.OrdinalIgnoreCase).Build());
+                    localValues: new ConfigBuilder().WithStringComparison(StringComparisonGeneration.Unspecified).Build(), 
+                    globalValues: new ConfigBuilder().WithStringComparison(StringComparisonGeneration.OrdinalIgnoreCase).Build());
 
-                result.StringComparison.Should().Be(StringComparison.OrdinalIgnoreCase);
+                result.StringComparison.Should().Be(StringComparisonGeneration.OrdinalIgnoreCase);
             }
         }
 
@@ -121,7 +121,7 @@ namespace Vogen.Tests
                 return this;
             }
 
-            public ConfigBuilder WithStringComparison(StringComparison? comparable)
+            public ConfigBuilder WithStringComparison(StringComparisonGeneration g)
             {
                 _c = new VogenConfiguration(
                     _c.UnderlyingType,
@@ -131,7 +131,7 @@ namespace Vogen.Tests
                     _c.DeserializationStrictness,
                     _c.DebuggerAttributes,
                     _c.Comparison,
-                    comparable);
+                    g);
                 
                 return this;
             }

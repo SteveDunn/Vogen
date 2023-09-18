@@ -54,4 +54,6 @@ public class VoWorkItem
     public DebuggerAttributeGeneration DebuggerAttributes { get; set; }
     
     public ComparisonGeneration ComparisonGeneration { get; set; }
+    
+    public StringComparisonGeneration StringComparisonGeneration { get; set; }
 }

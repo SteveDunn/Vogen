@@ -7,6 +7,23 @@ namespace SnapshotTests.StringComparison;
 [UsesVerify]
 public class StringComparisonGenerationTests
 {
+    [Fact]
+    public Task Generates_with_OrdinalIgnoreCase()
+    {
+        string source = $$"""
+                               using System;
+                               using Vogen;
+                               namespace Whatever;
+                               
+                               [ValueObject(typeof(string), stringComparison: StringComparisonGeneration.OrdinalIgnoreCase)]
+                               public partial class StringThing { }
+                               """;
+
+        return new SnapshotRunner<ValueObjectGenerator>()
+            .WithSource(source)
+            .RunOnAllFrameworks();
+    }
+
     [Theory]
     [InlineData("CurrentCulture")]
     [InlineData("CurrentCultureIgnoreCase")]
@@ -21,7 +38,7 @@ public class StringComparisonGenerationTests
                                using Vogen;
                                namespace Whatever;
                                
-                               [ValueObject(typeof(string), stringComparison: StringComparison.{{comparison}})]
+                               [ValueObject(typeof(string), stringComparison: StringComparisonGeneration.{{comparison}})]
                                public partial class StringThing { }
                                """;
 
