@@ -78,8 +78,16 @@ public readonly struct VogenConfiguration
 
         var validationExceptionType = localValues.ValidationExceptionType ?? globalValues?.ValidationExceptionType ?? DefaultInstance.ValidationExceptionType;
         var underlyingType = localValues.UnderlyingType ?? globalValues?.UnderlyingType ?? funcForDefaultUnderlyingType?.Invoke();
-        
-        return new VogenConfiguration(underlyingType, validationExceptionType, conversions, customizations, strictness, debuggerAttributes, comparison, stringComparison);
+
+        return new VogenConfiguration(
+            underlyingType,
+            validationExceptionType,
+            conversions,
+            customizations,
+            strictness,
+            debuggerAttributes,
+            comparison,
+            stringComparison);
     }
 
     public INamedTypeSymbol? UnderlyingType { get; }
