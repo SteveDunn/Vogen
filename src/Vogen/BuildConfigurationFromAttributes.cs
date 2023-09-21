@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Linq;
 using Microsoft.CodeAnalysis;
@@ -8,175 +9,257 @@ using Vogen.Diagnostics;
 
 namespace Vogen;
 
-internal static class BuildConfigurationFromAttributes
+internal class BuildConfigurationFromAttributes
 {
-    public static VogenConfigurationBuildResult TryBuild(AttributeData matchingAttribute)
+    private readonly bool _hasErroredAttributes;
+    private readonly AttributeData _matchingAttribute;
+
+    private readonly List<Diagnostic> _diagnostics;
+    // private readonly VogenConfigurationBuildResult _buildResult;
+
+    private INamedTypeSymbol? _invalidExceptionType;
+    private INamedTypeSymbol? _underlyingType;
+    private Conversions _conversions;
+    private Customizations _customizations;
+    private DeserializationStrictness _deserializationStrictness;
+    private DebuggerAttributeGeneration _debuggerAttributes;
+    private ComparisonGeneration _comparisonGeneration;
+    private StringComparisonGeneration _stringComparison;
+
+    private BuildConfigurationFromAttributes(AttributeData att)
     {
-        VogenConfigurationBuildResult buildResult = new VogenConfigurationBuildResult();
+        _matchingAttribute = att;
+        _invalidExceptionType = null;
+        _underlyingType = null;
+        _conversions = Conversions.Default;
+        _customizations = Customizations.None;
+        _deserializationStrictness = DeserializationStrictness.Default;
+        _debuggerAttributes = DebuggerAttributeGeneration.Default;
+        _comparisonGeneration = ComparisonGeneration.Default;
+        _stringComparison = StringComparisonGeneration.Unspecified;
+        _hasErroredAttributes = false;
+        
+       _diagnostics = new List<Diagnostic>();
+        
+        ImmutableArray<TypedConstant> args = _matchingAttribute.ConstructorArguments;
 
-        INamedTypeSymbol? invalidExceptionType = null;
-        INamedTypeSymbol? underlyingType = null;
-        Conversions conversions = Conversions.Default;
-        Customizations customizations = Customizations.None;
-        DeserializationStrictness deserializationStrictness = DeserializationStrictness.Default;
-        DebuggerAttributeGeneration debuggerAttributes = DebuggerAttributeGeneration.Default;
-        ComparisonGeneration comparisonGeneration = ComparisonGeneration.Default;
-        StringComparisonGeneration stringComparison = StringComparisonGeneration.Unspecified;
+        _hasErroredAttributes = args.Any(a => a.Kind == TypedConstantKind.Error);
+    }
 
-        bool hasErroredAttributes = false;
+    public static VogenConfigurationBuildResult TryBuildFromValueObjectAttribute(AttributeData matchingAttribute) => 
+        new BuildConfigurationFromAttributes(matchingAttribute).Build(false);
 
-        var isBaseGenericType = matchingAttribute.AttributeClass!.BaseType!.IsGenericType;
-        if (!matchingAttribute.ConstructorArguments.IsEmpty || isBaseGenericType)
+    public static VogenConfigurationBuildResult TryBuildFromVogenDefaultsAttribute(AttributeData matchingAttribute) => 
+        new BuildConfigurationFromAttributes(matchingAttribute).Build(true);
+
+    private VogenConfigurationBuildResult Build(bool argsAreFromVogenDefaultAttribute)
+    {
+        var isBaseGenericType = _matchingAttribute.AttributeClass!.BaseType!.IsGenericType;
+        if (!_matchingAttribute.ConstructorArguments.IsEmpty || isBaseGenericType)
         {
             // make sure we don't have any errors
-            ImmutableArray<TypedConstant> args = matchingAttribute.ConstructorArguments;
-
-            foreach (TypedConstant arg in args)
-            {
-                if (arg.Kind == TypedConstantKind.Error)
-                {
-                    hasErroredAttributes = true;
-                }
-            }
+            ImmutableArray<TypedConstant> args = _matchingAttribute.ConstructorArguments;
 
             // find which constructor to use, it could be the generic attribute (> C# 11), or the non-generic.
-            if (matchingAttribute.AttributeClass!.IsGenericType || isBaseGenericType)
+            if (_matchingAttribute.AttributeClass!.IsGenericType || isBaseGenericType)
             {
-                populateFromGenericAttribute(matchingAttribute, args);
+                PopulateFromGenericValueObjectAttribute(_matchingAttribute, args);
             }
             else
             {
-                populateFromNonGenericAttribute(args);
+                PopulateFromNonGenericAttribute(args, argsAreFromVogenDefaultAttribute);
             }
         }
 
-        if (hasErroredAttributes)
+        if (_hasErroredAttributes)
         {
             // skip further generator execution and let compiler generate the errors
             return VogenConfigurationBuildResult.Null;
         }
 
-        populateDiagnosticsWithAnyValidationIssues();
+        PopulateDiagnosticsWithAnyValidationIssues();
 
-        buildResult.ResultingConfiguration = new VogenConfiguration(
-            underlyingType,
-            invalidExceptionType,
-            conversions,
-            customizations,
-            deserializationStrictness,
-            debuggerAttributes,
-            comparisonGeneration,
-            stringComparison);
+        return new(
+            resultingConfiguration: new VogenConfiguration(
+                _underlyingType,
+                _invalidExceptionType,
+                _conversions,
+                _customizations,
+                _deserializationStrictness,
+                _debuggerAttributes,
+                _comparisonGeneration,
+                _stringComparison),
+            diagnostics: _diagnostics);
+    }
 
-        return buildResult;
+    private void PopulateFromGenericValueObjectAttribute(AttributeData attributeData, ImmutableArray<TypedConstant> args)
+    {
+        INamedTypeSymbol? attrClassSymbol = attributeData.AttributeClass;
 
-        void populateFromGenericAttribute(AttributeData attributeData, ImmutableArray<TypedConstant> args)
+        if (attrClassSymbol is null)
         {
-            INamedTypeSymbol? attrClassSymbol = attributeData.AttributeClass;
-            
-            if (attrClassSymbol is null) return;
-            
-            var isDerivedFromGenericAttribute =
-                attrClassSymbol.BaseType!.FullName()!.StartsWith("Vogen.ValueObjectAttribute<");
-
-            // Extracts the generic argument from the base type when the derived type isn't generic
-            // e.g. MyCustomVoAttribute : ValueObjectAttribute<long>
-            underlyingType = isDerivedFromGenericAttribute && attrClassSymbol.TypeArguments.IsEmpty
-                ? attrClassSymbol.BaseType!.TypeArguments[0] as INamedTypeSymbol
-                : attrClassSymbol.TypeArguments[0] as INamedTypeSymbol;
-            
-            // there's one less argument because there's no underlying type arguments as it's specified in the generic
-            // declaration
-            
-            populate(args);
+            return;
         }
 
-        void populateFromNonGenericAttribute(ImmutableArray<TypedConstant> args)
+        var isDerivedFromGenericAttribute =
+            attrClassSymbol.BaseType!.FullName()!.StartsWith("Vogen.ValueObjectAttribute<");
+
+        // Extracts the generic argument from the base type when the derived type isn't generic
+        // e.g. MyCustomVoAttribute : ValueObjectAttribute<long>
+        _underlyingType = isDerivedFromGenericAttribute && attrClassSymbol.TypeArguments.IsEmpty
+            ? attrClassSymbol.BaseType!.TypeArguments[0] as INamedTypeSymbol
+            : attrClassSymbol.TypeArguments[0] as INamedTypeSymbol;
+
+        PopulateFromValueObjectAttributeArgs(args);
+    }
+
+    private void PopulateFromNonGenericAttribute(ImmutableArray<TypedConstant> args, bool argsAreFromVogenDefaultsAttribute)
+    {
+        _underlyingType = (INamedTypeSymbol?) args[0].Value;
+
+        var skipped = args.Skip(1).ToImmutableArray();
+        if (argsAreFromVogenDefaultsAttribute)
         {
-            underlyingType = (INamedTypeSymbol?) args[0].Value;
-            
-            var skipped = args.Skip(1);
-            populate(skipped.ToImmutableArray());
+            PopulateFromVogenDefaultsAttributeArgs(skipped);
+        }
+        else
+        {
+            PopulateFromValueObjectAttributeArgs(skipped);
+        }
+    }
+
+    private void PopulateDiagnosticsWithAnyValidationIssues()
+    {
+        var syntax = _matchingAttribute.ApplicationSyntaxReference?.GetSyntax();
+        if (syntax is null)
+        {
+            return;
         }
 
-        void populateDiagnosticsWithAnyValidationIssues()
+        var syntaxLocation = syntax.GetLocation();
+        
+        if (!_conversions.IsValidFlags())
         {
-            if (!conversions.IsValidFlags())
-            {
-                var syntax = matchingAttribute.ApplicationSyntaxReference?.GetSyntax();
-                if (syntax is not null)
-                {
-                    buildResult.AddDiagnostic(DiagnosticsCatalogue.InvalidConversions(syntax.GetLocation()));
-                }
-            }
-
-            if (!customizations.IsValidFlags())
-            {
-                var syntax = matchingAttribute.ApplicationSyntaxReference?.GetSyntax();
-                if (syntax is not null)
-                {
-                    buildResult.AddDiagnostic(DiagnosticsCatalogue.InvalidCustomizations(syntax.GetLocation()));
-                }
-            }
-
-            if (!deserializationStrictness.IsValidFlags())
-            {
-                var syntax = matchingAttribute.ApplicationSyntaxReference?.GetSyntax();
-                if (syntax is not null)
-                {
-                    buildResult.AddDiagnostic(DiagnosticsCatalogue.InvalidDeserializationStrictness(syntax.GetLocation()));
-                }
-            }
+            _diagnostics.Add(DiagnosticsCatalogue.InvalidConversions(syntaxLocation));
         }
 
-        // populates all args - it doesn't expect the underlying type argument as that is:
-        // * not specified for the generic attribute, and
-        // * stripped out (skipped) for the non-generic attribute
-        void populate(ImmutableArray<TypedConstant> args)
+        if (!_customizations.IsValidFlags())
         {
-            if (args.Length > 7)
+            _diagnostics.Add(DiagnosticsCatalogue.InvalidCustomizations(syntaxLocation));
+        }
+
+        if (!_deserializationStrictness.IsValidFlags())
+        {
+            _diagnostics.Add(DiagnosticsCatalogue.InvalidDeserializationStrictness(syntaxLocation));
+        }
+    }
+
+    // populates all args - it doesn't expect the underlying type argument as that is:
+    // * not specified for the generic attribute, and
+    // * stripped out (skipped) for the non-generic attribute
+    // ReSharper disable once CognitiveComplexity
+    private void PopulateFromVogenDefaultsAttributeArgs(ImmutableArray<TypedConstant> args)
+    {
+        if (args.Length > 5)
+        {
+            throw new InvalidOperationException("Too many arguments for the attribute.");
+        }
+
+        for (int i = args.Length - 1; i >= 0; i--)
+        {
+            var v = args[i].Value;
+
+            if (v is null)
             {
-                throw new InvalidOperationException("Too many arguments for the attribute.");
+                continue;
             }
-            
-            for (int i = args.Length - 1; i >= 0; i--)
+
+            if (i == 4)
             {
-                var v = args[i].Value;
-                
-                if (v is null)
-                    continue;
-                
-                if (i == 6)
-                    stringComparison = (StringComparisonGeneration) v;
-                
-                if (i == 5)
-                    comparisonGeneration = (ComparisonGeneration) v;
-            
-                if (i == 4)
-                    debuggerAttributes = (DebuggerAttributeGeneration) v;
-             
-                if (i == 3)
-                    deserializationStrictness = (DeserializationStrictness) v;
-                
-                if (i == 2)
-                    customizations = (Customizations) v;
-                
-                if (i == 1)
-                {
-                    invalidExceptionType = (INamedTypeSymbol?) v;
+                _debuggerAttributes = (DebuggerAttributeGeneration) v;
+            }
 
-                    BuildAnyIssuesWithTheException(invalidExceptionType, buildResult);
-                }
+            if (i == 3)
+            {
+                _deserializationStrictness = (DeserializationStrictness) v;
+            }
 
-                if (i == 0)
-                    conversions = (Conversions) v;
+            if (i == 2)
+            {
+                _customizations = (Customizations) v;
+            }
+
+            if (i == 1)
+            {
+                _invalidExceptionType = (INamedTypeSymbol?) v;
+
+                BuildAnyIssuesWithTheException(_invalidExceptionType);
+            }
+
+            if (i == 0)
+            {
+                _conversions = (Conversions) v;
             }
         }
     }
 
-    private static void BuildAnyIssuesWithTheException(
-        INamedTypeSymbol? invalidExceptionType,
-        VogenConfigurationBuildResult buildResult)
+    // ReSharper disable once CognitiveComplexity
+    private void PopulateFromValueObjectAttributeArgs(ImmutableArray<TypedConstant> args)
+    {
+        if (args.Length > 7)
+        {
+            throw new InvalidOperationException("Too many arguments for the attribute.");
+        }
+
+        for (int i = args.Length - 1; i >= 0; i--)
+        {
+            var v = args[i].Value;
+
+            if (v is null)
+            {
+                continue;
+            }
+
+            if (i == 6)
+            {
+                _stringComparison = (StringComparisonGeneration) v;
+            }
+
+            if (i == 5)
+            {
+                _comparisonGeneration = (ComparisonGeneration) v;
+            }
+
+            if (i == 4)
+            {
+                _debuggerAttributes = (DebuggerAttributeGeneration) v;
+            }
+
+            if (i == 3)
+            {
+                _deserializationStrictness = (DeserializationStrictness) v;
+            }
+
+            if (i == 2)
+            {
+                _customizations = (Customizations) v;
+            }
+
+            if (i == 1)
+            {
+                _invalidExceptionType = (INamedTypeSymbol?) v;
+
+                BuildAnyIssuesWithTheException(_invalidExceptionType);
+            }
+
+            if (i == 0)
+            {
+                _conversions = (Conversions) v;
+            }
+        }
+    }
+
+    private void BuildAnyIssuesWithTheException(INamedTypeSymbol? invalidExceptionType)
     {
         if (invalidExceptionType == null)
         {
@@ -185,7 +268,7 @@ internal static class BuildConfigurationFromAttributes
 
         if (!invalidExceptionType.ImplementsInterfaceOrBaseClass(typeof(Exception)))
         {
-            buildResult.AddDiagnostic(DiagnosticsCatalogue.CustomExceptionMustDeriveFromException(invalidExceptionType));
+            _diagnostics.Add(DiagnosticsCatalogue.CustomExceptionMustDeriveFromException(invalidExceptionType));
         }
 
         var allConstructors = invalidExceptionType.Constructors.Where(c => c.DeclaredAccessibility == Accessibility.Public);
@@ -197,6 +280,6 @@ internal static class BuildConfigurationFromAttributes
             return;
         }
 
-        buildResult.AddDiagnostic(DiagnosticsCatalogue.CustomExceptionMustHaveValidConstructor(invalidExceptionType));
+        _diagnostics.Add(DiagnosticsCatalogue.CustomExceptionMustHaveValidConstructor(invalidExceptionType));
     }
 }

@@ -1,15 +1,22 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using Microsoft.CodeAnalysis;
 
 namespace Vogen;
 
 internal sealed class VogenConfigurationBuildResult
 {
-    public VogenConfiguration? ResultingConfiguration { get; set; }
+    public VogenConfigurationBuildResult(VogenConfiguration? resultingConfiguration, IEnumerable<Diagnostic> diagnostics)
+    {
+        ResultingConfiguration = resultingConfiguration;
+        Diagnostics = diagnostics;
+    }
+    
+    public VogenConfiguration? ResultingConfiguration { get;  }
 
-    public List<Diagnostic> Diagnostics { get; set; } = new();
+    public IEnumerable<Diagnostic> Diagnostics { get; }
 
-    public static VogenConfigurationBuildResult Null => new();
-
-    public void AddDiagnostic(Diagnostic diagnostic) => Diagnostics.Add(diagnostic);
+    public static VogenConfigurationBuildResult Null => new(null, Enumerable.Empty<Diagnostic>());
+    
+    public bool HasDiagnostics => Diagnostics.Any();
 }

@@ -84,13 +84,13 @@ namespace Vogen.Rules
             
             if (attrs.Length != 1) return null;
 
-            VogenConfigurationBuildResult buildResult = BuildConfigurationFromAttributes.TryBuild(attrs[0]);
+            VogenConfigurationBuildResult buildResult = BuildConfigurationFromAttributes.TryBuildFromValueObjectAttribute(attrs[0]);
             
             VogenConfiguration? vogenConfig = buildResult.ResultingConfiguration;
             
             if (!vogenConfig.HasValue) return null;
             
-            if (buildResult.Diagnostics.Count > 0)
+            if (buildResult.HasDiagnostics)
             {
                 return null;
             }

@@ -63,7 +63,7 @@ internal static class ManageAttributes
             return VogenConfigurationBuildResult.Null;
         }
 
-        VogenConfigurationBuildResult globalConfig = BuildConfigurationFromAttributes.TryBuild(matchingAttribute);
+        VogenConfigurationBuildResult globalConfig = BuildConfigurationFromAttributes.TryBuildFromVogenDefaultsAttribute(matchingAttribute);
 
         return globalConfig;
     }
