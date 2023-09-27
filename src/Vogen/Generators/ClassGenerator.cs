@@ -87,7 +87,7 @@ public {itemUnderlyingType} Value
 
             return new {className}(value);
         }}
-        {GenerateEquatableCode.GenerateForAClass(item, tds)}
+        {GenerateEqualsAndHashCodes.GenerateEqualsForAClass(item, tds)}
 
         public static global::System.Boolean operator ==({className} left, {className} right) => Equals(left, right);
         public static global::System.Boolean operator !=({className} left, {className} right) => !Equals(left, right);
@@ -102,18 +102,7 @@ public {itemUnderlyingType} Value
         public static explicit operator {itemUnderlyingType}({className} value) => value.Value;
 
         {GenerateComparableCode.GenerateIComparableImplementationIfNeeded(item, tds)}
-
-        public override global::System.Int32 GetHashCode()
-        {{
-            unchecked // Overflow is fine, just wrap
-            {{
-                global::System.Int32 hash = (global::System.Int32) 2166136261;
-                hash = (hash * 16777619) ^ Value.GetHashCode();
-                hash = (hash * 16777619) ^ GetType().GetHashCode();
-                hash = (hash * 16777619) ^ global::System.Collections.Generic.EqualityComparer<{itemUnderlyingType}>.Default.GetHashCode();
-                return hash;
-            }}
-        }}
+{GenerateEqualsAndHashCodes.GenerateGetHashCode(item)}
 
         private void EnsureInitialized()
         {{

@@ -123,7 +123,7 @@ public System.Boolean Value
      return GetType() == other.GetType() && global::System.Collections.Generic.EqualityComparer<System.Boolean>.Default.Equals(Value, other.Value);
  }
 
- public global::System.Boolean Equals(System.Boolean primitive) => Value.Equals(primitive);
+ public global::System.Boolean Equals(System.Boolean primitive) { return Value.Equals(primitive); }
 
  public override global::System.Boolean Equals(global::System.Object obj)
  {
@@ -163,7 +163,6 @@ public System.Boolean Value
             if(other is public_sealed_partial_classConversions_TypeConverterbool x) return CompareTo(x);
             throw new global::System.ArgumentException("Cannot compare to object as it is not of type public_sealed_partial_classConversions_TypeConverterbool", nameof(other));
         }
-
         public override global::System.Int32 GetHashCode()
         {
             unchecked // Overflow is fine, just wrap

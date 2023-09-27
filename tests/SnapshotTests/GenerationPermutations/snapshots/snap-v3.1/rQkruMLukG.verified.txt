@@ -122,7 +122,7 @@ public System.Decimal Value
      return GetType() == other.GetType() && global::System.Collections.Generic.EqualityComparer<System.Decimal>.Default.Equals(Value, other.Value);
  }
 
- public global::System.Boolean Equals(System.Decimal primitive) => Value.Equals(primitive);
+ public global::System.Boolean Equals(System.Decimal primitive) { return Value.Equals(primitive); }
 
  public override global::System.Boolean Equals(global::System.Object obj)
  {
@@ -162,7 +162,6 @@ public System.Decimal Value
             if(other is public_sealed_partial_classConversions_Nonedecimal x) return CompareTo(x);
             throw new global::System.ArgumentException("Cannot compare to object as it is not of type public_sealed_partial_classConversions_Nonedecimal", nameof(other));
         }
-
         public override global::System.Int32 GetHashCode()
         {
             unchecked // Overflow is fine, just wrap

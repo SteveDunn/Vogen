@@ -122,7 +122,7 @@ public System.Byte Value
      return GetType() == other.GetType() && global::System.Collections.Generic.EqualityComparer<System.Byte>.Default.Equals(Value, other.Value);
  }
 
- public global::System.Boolean Equals(System.Byte primitive) => Value.Equals(primitive);
+ public global::System.Boolean Equals(System.Byte primitive) { return Value.Equals(primitive); }
 
  public override global::System.Boolean Equals(global::System.Object obj)
  {
@@ -162,7 +162,6 @@ public System.Byte Value
             if(other is escapedTestspublic_partial_classConversions_EfCoreValueConverterbyte x) return CompareTo(x);
             throw new global::System.ArgumentException("Cannot compare to object as it is not of type escapedTestspublic_partial_classConversions_EfCoreValueConverterbyte", nameof(other));
         }
-
         public override global::System.Int32 GetHashCode()
         {
             unchecked // Overflow is fine, just wrap

@@ -14,11 +14,11 @@ using Xunit.Sdk;
 // ReSharper disable once CheckNamespace
 public class UseCultureAttribute : BeforeAfterTestAttribute
 {
-    readonly Lazy<CultureInfo> culture;
-    readonly Lazy<CultureInfo> uiCulture;
+    readonly Lazy<CultureInfo> _culture;
+    readonly Lazy<CultureInfo> _uiCulture;
 
-    CultureInfo originalCulture;
-    CultureInfo originalUICulture;
+    CultureInfo _originalCulture;
+    CultureInfo _originalUiCulture;
 
     /// <summary>
     /// Replaces the culture and UI culture of the current thread with
@@ -42,19 +42,19 @@ public class UseCultureAttribute : BeforeAfterTestAttribute
     /// <param name="uiCulture">The name of the UI culture.</param>
     public UseCultureAttribute(string culture, string uiCulture)
     {
-        this.culture = new Lazy<CultureInfo>(() => new CultureInfo(culture, false));
-        this.uiCulture = new Lazy<CultureInfo>(() => new CultureInfo(uiCulture, false));
+        this._culture = new Lazy<CultureInfo>(() => new CultureInfo(culture, false));
+        this._uiCulture = new Lazy<CultureInfo>(() => new CultureInfo(uiCulture, false));
     }
 
     /// <summary>
     /// Gets the culture.
     /// </summary>
-    public CultureInfo Culture { get { return culture.Value; } }
+    public CultureInfo Culture { get { return _culture.Value; } }
 
     /// <summary>
     /// Gets the UI culture.
     /// </summary>
-    public CultureInfo UICulture { get { return uiCulture.Value; } }
+    public CultureInfo UICulture { get { return _uiCulture.Value; } }
 
     /// <summary>
     /// Stores the current <see cref="Thread.CurrentPrincipal" />
@@ -64,8 +64,8 @@ public class UseCultureAttribute : BeforeAfterTestAttribute
     /// <param name="methodUnderTest">The method under test</param>
     public override void Before(MethodInfo methodUnderTest)
     {
-        originalCulture = Thread.CurrentThread.CurrentCulture;
-        originalUICulture = Thread.CurrentThread.CurrentUICulture;
+        _originalCulture = Thread.CurrentThread.CurrentCulture;
+        _originalUiCulture = Thread.CurrentThread.CurrentUICulture;
 
         Thread.CurrentThread.CurrentCulture = Culture;
         Thread.CurrentThread.CurrentUICulture = UICulture;
@@ -81,8 +81,8 @@ public class UseCultureAttribute : BeforeAfterTestAttribute
     /// <param name="methodUnderTest">The method under test</param>
     public override void After(MethodInfo methodUnderTest)
     {
-        Thread.CurrentThread.CurrentCulture = originalCulture;
-        Thread.CurrentThread.CurrentUICulture = originalUICulture;
+        Thread.CurrentThread.CurrentCulture = _originalCulture;
+        Thread.CurrentThread.CurrentUICulture = _originalUiCulture;
 
         CultureInfo.CurrentCulture.ClearCachedData();
         CultureInfo.CurrentUICulture.ClearCachedData();

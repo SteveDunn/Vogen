@@ -115,7 +115,7 @@ public readonly global::System.Boolean Equals(internal_readonly_partial_structCo
     return global::System.Collections.Generic.EqualityComparer<System.Double>.Default.Equals(Value, other.Value);
 }
 
-public readonly global::System.Boolean Equals(System.Double primitive) => Value.Equals(primitive);
+ public global::System.Boolean Equals(System.Double primitive) { return Value.Equals(primitive); }
 
 public readonly override global::System.Boolean Equals(global::System.Object obj)
 {
@@ -223,8 +223,17 @@ public readonly override global::System.Boolean Equals(global::System.Object obj
         return false;
     }
 
-
-        public readonly override global::System.Int32 GetHashCode() => global::System.Collections.Generic.EqualityComparer<System.Double>.Default.GetHashCode(_value);
+        public override global::System.Int32 GetHashCode()
+        {
+            unchecked // Overflow is fine, just wrap
+            {
+                global::System.Int32 hash = (global::System.Int32) 2166136261;
+                hash = (hash * 16777619) ^ Value.GetHashCode();
+                hash = (hash * 16777619) ^ GetType().GetHashCode();
+                hash = (hash * 16777619) ^ global::System.Collections.Generic.EqualityComparer<System.Double>.Default.GetHashCode();
+                return hash;
+            }
+        }
 
         /// <summary>Returns the string representation of the underlying type</summary>
     /// <inheritdoc cref="System.Double.ToString()" />

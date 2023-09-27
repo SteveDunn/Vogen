@@ -89,7 +89,7 @@ using Vogen;
 
             return new {structName}(value);
         }}
-        {GenerateEquatableCode.GenerateForAStruct(item, tds)}
+        {GenerateEqualsAndHashCodes.GenerateEqualsForAStruct(item, tds)}
 
         public static global::System.Boolean operator ==({structName} left, {structName} right) => Equals(left, right);
         public static global::System.Boolean operator !=({structName} left, {structName} right) => !(left == right);
@@ -103,8 +103,7 @@ using Vogen;
         {GenerateComparableCode.GenerateIComparableImplementationIfNeeded(item, tds)}
 
         {TryParseGeneration.GenerateTryParseIfNeeded(item)}
-
-        public readonly override global::System.Int32 GetHashCode() => global::System.Collections.Generic.EqualityComparer<{itemUnderlyingType}>.Default.GetHashCode(_value);
+{GenerateEqualsAndHashCodes.GenerateGetHashCode(item)}
 
         {Util.GenerateToStringReadOnly(item)}
 

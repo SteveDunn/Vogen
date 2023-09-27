@@ -130,7 +130,7 @@ public System.String Value
      return GetType() == other.GetType() && global::System.Collections.Generic.EqualityComparer<System.String>.Default.Equals(Value, other.Value);
  }
 
- public global::System.Boolean Equals(System.String primitive) => Value.Equals(primitive);
+ public global::System.Boolean Equals(System.String primitive) { return Value.Equals(primitive); }
 
  public override global::System.Boolean Equals(global::System.Object obj)
  {
@@ -170,7 +170,6 @@ public System.String Value
             if(other is escapedTestspublic_partial_classConversions_LinqToDbValueConverterstring x) return CompareTo(x);
             throw new global::System.ArgumentException("Cannot compare to object as it is not of type escapedTestspublic_partial_classConversions_LinqToDbValueConverterstring", nameof(other));
         }
-
         public override global::System.Int32 GetHashCode()
         {
             unchecked // Overflow is fine, just wrap

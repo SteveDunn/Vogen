@@ -122,7 +122,7 @@ public System.Double Value
      return GetType() == other.GetType() && global::System.Collections.Generic.EqualityComparer<System.Double>.Default.Equals(Value, other.Value);
  }
 
- public global::System.Boolean Equals(System.Double primitive) => Value.Equals(primitive);
+ public global::System.Boolean Equals(System.Double primitive) { return Value.Equals(primitive); }
 
  public override global::System.Boolean Equals(global::System.Object obj)
  {
@@ -162,7 +162,6 @@ public System.Double Value
             if(other is escapedTestsinternal_partial_classConversions_DapperTypeHandlerdouble x) return CompareTo(x);
             throw new global::System.ArgumentException("Cannot compare to object as it is not of type escapedTestsinternal_partial_classConversions_DapperTypeHandlerdouble", nameof(other));
         }
-
         public override global::System.Int32 GetHashCode()
         {
             unchecked // Overflow is fine, just wrap

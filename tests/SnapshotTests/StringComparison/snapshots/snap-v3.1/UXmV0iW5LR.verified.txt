@@ -132,7 +132,7 @@ public System.String Value
      return GetType() == other.GetType() && Equals(other.Value);
  }
 
- public global::System.Boolean Equals(System.String primitive) => Value.Equals(primitive, global::System.StringComparison.Ordinal);
+ public global::System.Boolean Equals(System.String primitive) { return global::System.StringComparer.Ordinal.Equals(Value, primitive); }
 
  public override global::System.Boolean Equals(global::System.Object obj)
  {
@@ -172,13 +172,12 @@ public System.String Value
             if(other is StringThing x) return CompareTo(x);
             throw new global::System.ArgumentException("Cannot compare to object as it is not of type StringThing", nameof(other));
         }
-
         public override global::System.Int32 GetHashCode()
         {
             unchecked // Overflow is fine, just wrap
             {
                 global::System.Int32 hash = (global::System.Int32) 2166136261;
-                hash = (hash * 16777619) ^ Value.GetHashCode();
+                hash = (hash * 16777619) ^ global::System.StringComparer.Ordinal.GetHashCode(Value);
                 hash = (hash * 16777619) ^ GetType().GetHashCode();
                 hash = (hash * 16777619) ^ global::System.Collections.Generic.EqualityComparer<System.String>.Default.GetHashCode();
                 return hash;

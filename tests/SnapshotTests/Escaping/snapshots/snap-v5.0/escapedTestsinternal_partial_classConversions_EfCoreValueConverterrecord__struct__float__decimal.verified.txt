@@ -122,7 +122,7 @@ public @class.@record.@struct.@float.@decimal Value
      return GetType() == other.GetType() && global::System.Collections.Generic.EqualityComparer<@class.@record.@struct.@float.@decimal>.Default.Equals(Value, other.Value);
  }
 
- public global::System.Boolean Equals(@class.@record.@struct.@float.@decimal primitive) => Value.Equals(primitive);
+ public global::System.Boolean Equals(@class.@record.@struct.@float.@decimal primitive) { return Value.Equals(primitive); }
 
  public override global::System.Boolean Equals(global::System.Object obj)
  {
@@ -157,7 +157,6 @@ public @class.@record.@struct.@float.@decimal Value
         public static explicit operator @class.@record.@struct.@float.@decimal(escapedTestsinternal_partial_classConversions_EfCoreValueConverterrecord__struct__float__decimal value) => value.Value;
 
         
-
         public override global::System.Int32 GetHashCode()
         {
             unchecked // Overflow is fine, just wrap

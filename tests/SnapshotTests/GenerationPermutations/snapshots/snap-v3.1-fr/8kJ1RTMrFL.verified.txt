@@ -122,7 +122,7 @@ public System.Guid Value
      return GetType() == other.GetType() && global::System.Collections.Generic.EqualityComparer<System.Guid>.Default.Equals(Value, other.Value);
  }
 
- public global::System.Boolean Equals(System.Guid primitive) => Value.Equals(primitive);
+ public global::System.Boolean Equals(System.Guid primitive) { return Value.Equals(primitive); }
 
  public override global::System.Boolean Equals(global::System.Object obj)
  {
@@ -162,7 +162,6 @@ public System.Guid Value
             if(other is internal_sealed_partial_classConversions_DapperTypeHandlerSystem_Guid x) return CompareTo(x);
             throw new global::System.ArgumentException("Cannot compare to object as it is not of type internal_sealed_partial_classConversions_DapperTypeHandlerSystem_Guid", nameof(other));
         }
-
         public override global::System.Int32 GetHashCode()
         {
             unchecked // Overflow is fine, just wrap

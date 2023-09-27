@@ -28,7 +28,7 @@ public static class GenerateComparableCode
             return string.Empty;
         }
 
-        INamedTypeSymbol? primitiveSymbol = item.UnderlyingType;
+        INamedTypeSymbol primitiveSymbol = item.UnderlyingType;
         if (!primitiveSymbol.ImplementsInterfaceOrBaseClass(typeof(IComparable<>)))
         {
             return string.Empty;
