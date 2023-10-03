@@ -3,8 +3,14 @@
         {
             public override VOTYPE Read(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {
-__NORMAL__                return VOTYPE.Deserialize(reader.GetDecimal());
-__STRING__                return VOTYPE.Deserialize(global::System.Decimal.Parse(reader.GetString(), global::System.Globalization.NumberStyles.Any, global::System.Globalization.CultureInfo.InvariantCulture));
+                return VOTYPE.Deserialize(
+__NORMAL__#if NET5_0_OR_GREATER
+__NORMAL__                    options.NumberHandling == global::System.Text.Json.Serialization.JsonNumberHandling.AllowReadingFromString && reader.TokenType == global::System.Text.Json.JsonTokenType.String ?
+                    global::System.Decimal.Parse(reader.GetString(), global::System.Globalization.NumberStyles.Any, global::System.Globalization.CultureInfo.InvariantCulture)
+__NORMAL__                    :
+__NORMAL__#endif
+__NORMAL__                    reader.GetDecimal()
+                );
             }
 
             public override void Write(System.Text.Json.Utf8JsonWriter writer, VOTYPE value, global::System.Text.Json.JsonSerializerOptions options)
