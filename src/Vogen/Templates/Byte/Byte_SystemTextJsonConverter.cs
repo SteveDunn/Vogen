@@ -3,14 +3,16 @@
         {
             public override VOTYPE Read(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {
-                return VOTYPE.Deserialize(
-__NORMAL__#if NET5_0_OR_GREATER
-__NORMAL__                    options.NumberHandling == global::System.Text.Json.Serialization.JsonNumberHandling.AllowReadingFromString && reader.TokenType == global::System.Text.Json.JsonTokenType.String ?
-                    global::System.Byte.Parse(reader.GetString(), global::System.Globalization.NumberStyles.Any, global::System.Globalization.CultureInfo.InvariantCulture)
-__NORMAL__                    :
-__NORMAL__#endif
-__NORMAL__                    reader.GetByte()
-                );
+#if NET5_0_OR_GREATER
+__NORMAL__                return VOTYPE.Deserialize(
+__NORMAL__                    options.NumberHandling == global::System.Text.Json.Serialization.JsonNumberHandling.AllowReadingFromString && reader.TokenType == global::System.Text.Json.JsonTokenType.String
+__NORMAL__                    ? global::System.Byte.Parse(reader.GetString(), global::System.Globalization.NumberStyles.Any, global::System.Globalization.CultureInfo.InvariantCulture)
+__NORMAL__                    : reader.GetByte()
+__NORMAL__                );
+#else
+__NORMAL__                return VOTYPE.Deserialize(reader.GetByte());
+#endif
+__STRING__                return VOTYPE.Deserialize(global::System.Byte.Parse(reader.GetString(), global::System.Globalization.NumberStyles.Any, global::System.Globalization.CultureInfo.InvariantCulture));
             }
 
             public override void Write(global::System.Text.Json.Utf8JsonWriter writer, VOTYPE value, global::System.Text.Json.JsonSerializerOptions options)
