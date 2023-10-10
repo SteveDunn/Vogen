@@ -91,6 +91,7 @@ public System.Int32 Value
 
             return instance;
         }
+        
 
         // only called internally when something has been deserialized into
         // its primitive type.
@@ -124,7 +125,14 @@ public System.Int32 Value
      return GetType() == other.GetType() && global::System.Collections.Generic.EqualityComparer<System.Int32>.Default.Equals(Value, other.Value);
  }
 
- public global::System.Boolean Equals(System.Int32 primitive) { return Value.Equals(primitive); }
+public global::System.Boolean Equals(stj_number_as_string_public_partial_classConversions_NewtonsoftJson___Conversions_SystemTextJson other, global::System.Collections.Generic.IEqualityComparer<stj_number_as_string_public_partial_classConversions_NewtonsoftJson___Conversions_SystemTextJson> comparer)
+{
+    return comparer.Equals(this, other);
+}
+
+  public global::System.Boolean Equals(System.Int32 primitive) {
+    return Value.Equals(primitive);
+ }
 
  public override global::System.Boolean Equals(global::System.Object obj)
  {
@@ -164,17 +172,16 @@ public System.Int32 Value
             if(other is stj_number_as_string_public_partial_classConversions_NewtonsoftJson___Conversions_SystemTextJson x) return CompareTo(x);
             throw new global::System.ArgumentException("Cannot compare to object as it is not of type stj_number_as_string_public_partial_classConversions_NewtonsoftJson___Conversions_SystemTextJson", nameof(other));
         }
-        public override global::System.Int32 GetHashCode()
+    public override global::System.Int32 GetHashCode()
+    {
+        unchecked // Overflow is fine, just wrap
         {
-            unchecked // Overflow is fine, just wrap
-            {
-                global::System.Int32 hash = (global::System.Int32) 2166136261;
-                hash = (hash * 16777619) ^ Value.GetHashCode();
-                hash = (hash * 16777619) ^ GetType().GetHashCode();
-                hash = (hash * 16777619) ^ global::System.Collections.Generic.EqualityComparer<System.Int32>.Default.GetHashCode();
-                return hash;
-            }
+            global::System.Int32 hash = (global::System.Int32) 2166136261;
+            hash = (hash * 16777619) ^ GetType().GetHashCode();
+            hash = (hash * 16777619) ^ global::System.Collections.Generic.EqualityComparer<System.Int32>.Default.GetHashCode(Value);
+            return hash;
         }
+    }
 
         private void EnsureInitialized()
         {

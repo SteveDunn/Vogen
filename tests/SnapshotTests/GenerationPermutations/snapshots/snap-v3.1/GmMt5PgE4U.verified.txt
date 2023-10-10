@@ -89,6 +89,7 @@ public System.Byte Value
 
             return instance;
         }
+        
 
         // only called internally when something has been deserialized into
         // its primitive type.
@@ -122,7 +123,14 @@ public System.Byte Value
      return GetType() == other.GetType() && global::System.Collections.Generic.EqualityComparer<System.Byte>.Default.Equals(Value, other.Value);
  }
 
- public global::System.Boolean Equals(System.Byte primitive) { return Value.Equals(primitive); }
+public global::System.Boolean Equals(internal_sealed_partial_classConversions_EfCoreValueConverterbyte other, global::System.Collections.Generic.IEqualityComparer<internal_sealed_partial_classConversions_EfCoreValueConverterbyte> comparer)
+{
+    return comparer.Equals(this, other);
+}
+
+  public global::System.Boolean Equals(System.Byte primitive) {
+    return Value.Equals(primitive);
+ }
 
  public override global::System.Boolean Equals(global::System.Object obj)
  {
@@ -162,17 +170,16 @@ public System.Byte Value
             if(other is internal_sealed_partial_classConversions_EfCoreValueConverterbyte x) return CompareTo(x);
             throw new global::System.ArgumentException("Cannot compare to object as it is not of type internal_sealed_partial_classConversions_EfCoreValueConverterbyte", nameof(other));
         }
-        public override global::System.Int32 GetHashCode()
+    public override global::System.Int32 GetHashCode()
+    {
+        unchecked // Overflow is fine, just wrap
         {
-            unchecked // Overflow is fine, just wrap
-            {
-                global::System.Int32 hash = (global::System.Int32) 2166136261;
-                hash = (hash * 16777619) ^ Value.GetHashCode();
-                hash = (hash * 16777619) ^ GetType().GetHashCode();
-                hash = (hash * 16777619) ^ global::System.Collections.Generic.EqualityComparer<System.Byte>.Default.GetHashCode();
-                return hash;
-            }
+            global::System.Int32 hash = (global::System.Int32) 2166136261;
+            hash = (hash * 16777619) ^ GetType().GetHashCode();
+            hash = (hash * 16777619) ^ global::System.Collections.Generic.EqualityComparer<System.Byte>.Default.GetHashCode(Value);
+            return hash;
         }
+    }
 
         private void EnsureInitialized()
         {

@@ -75,6 +75,7 @@ using Vogen;
 
             return instance;
         }}
+{GenerateEqualsAndHashCodes.GenerateStringComparersIfNeeded(item, tds)}        
 
         public static explicit operator {structName}({itemUnderlyingType} value) => From(value);
         public static explicit operator {itemUnderlyingType}({structName} value) => value.Value;
@@ -103,7 +104,7 @@ using Vogen;
         {GenerateComparableCode.GenerateIComparableImplementationIfNeeded(item, tds)}
 
         {TryParseGeneration.GenerateTryParseIfNeeded(item)}
-{GenerateEqualsAndHashCodes.GenerateGetHashCode(item)}
+{GenerateEqualsAndHashCodes.GenerateGetHashCodeForAStruct(item)}
 
         {Util.GenerateToStringReadOnly(item)}
 

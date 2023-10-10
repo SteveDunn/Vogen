@@ -74,6 +74,7 @@ public {itemUnderlyingType} Value
 
             return instance;
         }}
+{GenerateEqualsAndHashCodes.GenerateStringComparersIfNeeded(item, tds)}        
 
         // only called internally when something has been deserialized into
         // its primitive type.
@@ -102,7 +103,7 @@ public {itemUnderlyingType} Value
         public static explicit operator {itemUnderlyingType}({className} value) => value.Value;
 
         {GenerateComparableCode.GenerateIComparableImplementationIfNeeded(item, tds)}
-{GenerateEqualsAndHashCodes.GenerateGetHashCode(item)}
+{GenerateEqualsAndHashCodes.GenerateGetHashCodeForAClass(item)}
 
         private void EnsureInitialized()
         {{

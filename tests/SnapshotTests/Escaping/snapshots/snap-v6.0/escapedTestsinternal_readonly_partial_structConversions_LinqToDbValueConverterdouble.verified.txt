@@ -90,6 +90,7 @@ namespace @class
 
             return instance;
         }
+        
 
         public static explicit operator escapedTestsinternal_readonly_partial_structConversions_LinqToDbValueConverterdouble(System.Double value) => From(value);
         public static explicit operator System.Double(escapedTestsinternal_readonly_partial_structConversions_LinqToDbValueConverterdouble value) => value.Value;
@@ -114,7 +115,14 @@ public readonly global::System.Boolean Equals(escapedTestsinternal_readonly_part
     return global::System.Collections.Generic.EqualityComparer<System.Double>.Default.Equals(Value, other.Value);
 }
 
- public global::System.Boolean Equals(System.Double primitive) { return Value.Equals(primitive); }
+public global::System.Boolean Equals(escapedTestsinternal_readonly_partial_structConversions_LinqToDbValueConverterdouble other, global::System.Collections.Generic.IEqualityComparer<escapedTestsinternal_readonly_partial_structConversions_LinqToDbValueConverterdouble> comparer)
+{
+    return comparer.Equals(this, other);
+}
+
+  public readonly global::System.Boolean Equals(System.Double primitive) {
+    return Value.Equals(primitive);
+ }
 
 public readonly override global::System.Boolean Equals(global::System.Object obj)
 {
@@ -222,17 +230,10 @@ public readonly override global::System.Boolean Equals(global::System.Object obj
         return false;
     }
 
-        public override global::System.Int32 GetHashCode()
-        {
-            unchecked // Overflow is fine, just wrap
-            {
-                global::System.Int32 hash = (global::System.Int32) 2166136261;
-                hash = (hash * 16777619) ^ Value.GetHashCode();
-                hash = (hash * 16777619) ^ GetType().GetHashCode();
-                hash = (hash * 16777619) ^ global::System.Collections.Generic.EqualityComparer<System.Double>.Default.GetHashCode();
-                return hash;
-            }
-        }
+    public readonly override global::System.Int32 GetHashCode()
+    {
+        return global::System.Collections.Generic.EqualityComparer<System.Double>.Default.GetHashCode(Value);
+    }
 
         /// <summary>Returns the string representation of the underlying type</summary>
     /// <inheritdoc cref="System.Double.ToString()" />

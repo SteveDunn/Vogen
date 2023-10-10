@@ -12,7 +12,7 @@ public readonly struct VogenConfiguration
         DeserializationStrictness deserializationStrictness,
         DebuggerAttributeGeneration debuggerAttributes,
         ComparisonGeneration comparison,
-        StringComparisonGeneration stringComparison = StringComparisonGeneration.Unspecified)
+        StringComparersGeneration stringComparers = StringComparersGeneration.Unspecified)
     {
         UnderlyingType = underlyingType;
         ValidationExceptionType = validationExceptionType;
@@ -21,7 +21,7 @@ public readonly struct VogenConfiguration
         DeserializationStrictness = deserializationStrictness;
         DebuggerAttributes = debuggerAttributes;
         Comparison = comparison;
-        StringComparison = stringComparison;
+        StringComparers = stringComparers;
     }
 
     public static VogenConfiguration Combine(
@@ -69,10 +69,11 @@ public readonly struct VogenConfiguration
             (var specificValue, _) => specificValue
         };
 
-        StringComparisonGeneration stringComparison = (localValues.StringComparison, globalValues?.StringComparison) switch
+        StringComparersGeneration stringComparers = (localValues.StringComparers, globalValues?.StringComparers) switch
         {
-            (StringComparisonGeneration.Unspecified, null) => StringComparisonGeneration.Unspecified,
-            (StringComparisonGeneration.Unspecified, var global) => global.Value,
+            (StringComparersGeneration.Unspecified, null) => DefaultInstance.StringComparers,
+            (StringComparersGeneration.Unspecified, StringComparersGeneration.Unspecified) => DefaultInstance.StringComparers,
+            (StringComparersGeneration.Unspecified, var global) => global.Value,
             (var local, _) => local,
         };
 
@@ -87,7 +88,7 @@ public readonly struct VogenConfiguration
             strictness,
             debuggerAttributes,
             comparison,
-            stringComparison);
+            stringComparers);
     }
 
     public INamedTypeSymbol? UnderlyingType { get; }
@@ -103,7 +104,7 @@ public readonly struct VogenConfiguration
     
     public ComparisonGeneration Comparison { get; }
     
-    public StringComparisonGeneration StringComparison { get; }
+    public StringComparersGeneration StringComparers { get; }
 
     // the issue here is that without a physical 'symbol' in the source, we can't
     // get the namedtypesymbol
@@ -117,5 +118,5 @@ public readonly struct VogenConfiguration
         deserializationStrictness: DeserializationStrictness.Default,
         debuggerAttributes: DebuggerAttributeGeneration.Full,
         comparison: ComparisonGeneration.UseUnderlying,
-        stringComparison: StringComparisonGeneration.Unspecified);
+        stringComparers: StringComparersGeneration.Omit);
 }

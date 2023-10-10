@@ -90,6 +90,7 @@ namespace Whatever
 
             return instance;
         }
+        
 
         public static explicit operator internal_readonly_partial_structConversions_EfCoreValueConverterstring(System.String value) => From(value);
         public static explicit operator System.String(internal_readonly_partial_structConversions_EfCoreValueConverterstring value) => value.Value;
@@ -114,7 +115,16 @@ public readonly global::System.Boolean Equals(internal_readonly_partial_structCo
     return global::System.Collections.Generic.EqualityComparer<System.String>.Default.Equals(Value, other.Value);
 }
 
- public global::System.Boolean Equals(System.String primitive) { return Value.Equals(primitive); }
+public global::System.Boolean Equals(internal_readonly_partial_structConversions_EfCoreValueConverterstring other, global::System.Collections.Generic.IEqualityComparer<internal_readonly_partial_structConversions_EfCoreValueConverterstring> comparer)
+{
+    return comparer.Equals(this, other);
+}
+
+  public readonly global::System.Boolean Equals(System.String primitive) {
+    return Value.Equals(primitive);
+ }    public readonly global::System.Boolean Equals(System.String primitive, global::System.StringComparer comparer) {
+        return comparer.Equals(Value, primitive);
+    }
 
 public readonly override global::System.Boolean Equals(global::System.Object obj)
 {
@@ -138,17 +148,10 @@ public readonly override global::System.Boolean Equals(global::System.Object obj
         }
 
         
-        public override global::System.Int32 GetHashCode()
-        {
-            unchecked // Overflow is fine, just wrap
-            {
-                global::System.Int32 hash = (global::System.Int32) 2166136261;
-                hash = (hash * 16777619) ^ Value.GetHashCode();
-                hash = (hash * 16777619) ^ GetType().GetHashCode();
-                hash = (hash * 16777619) ^ global::System.Collections.Generic.EqualityComparer<System.String>.Default.GetHashCode();
-                return hash;
-            }
-        }
+    public readonly override global::System.Int32 GetHashCode()
+    {
+        return global::System.Collections.Generic.EqualityComparer<System.String>.Default.GetHashCode(Value);
+    }
 
         /// <summary>Returns the string representation of the underlying type</summary>
     /// <inheritdoc cref="System.String.ToString()" />

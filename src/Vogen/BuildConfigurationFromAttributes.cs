@@ -24,7 +24,7 @@ internal class BuildConfigurationFromAttributes
     private DeserializationStrictness _deserializationStrictness;
     private DebuggerAttributeGeneration _debuggerAttributes;
     private ComparisonGeneration _comparisonGeneration;
-    private StringComparisonGeneration _stringComparison;
+    private StringComparersGeneration _stringComparers;
 
     private BuildConfigurationFromAttributes(AttributeData att)
     {
@@ -36,7 +36,7 @@ internal class BuildConfigurationFromAttributes
         _deserializationStrictness = DeserializationStrictness.Default;
         _debuggerAttributes = DebuggerAttributeGeneration.Default;
         _comparisonGeneration = ComparisonGeneration.Default;
-        _stringComparison = StringComparisonGeneration.Unspecified;
+        _stringComparers = StringComparersGeneration.Unspecified;
         _hasErroredAttributes = false;
         
        _diagnostics = new List<Diagnostic>();
@@ -88,7 +88,7 @@ internal class BuildConfigurationFromAttributes
                 _deserializationStrictness,
                 _debuggerAttributes,
                 _comparisonGeneration,
-                _stringComparison),
+                _stringComparers),
             diagnostics: _diagnostics);
     }
 
@@ -222,7 +222,7 @@ internal class BuildConfigurationFromAttributes
 
             if (i == 6)
             {
-                _stringComparison = (StringComparisonGeneration) v;
+                _stringComparers = (StringComparersGeneration) v;
             }
 
             if (i == 5)

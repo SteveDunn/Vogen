@@ -1,32 +1,23 @@
 ﻿namespace ConsumerTests.StringComparisons;
 
 [ValueObject(typeof(string))]
-public partial class VoWithNothingSpecified
+public partial class StringVo_Class_NothingSpecified
 {
 }
 
-[ValueObject(typeof(string), stringComparison: StringComparisonGeneration.CurrentCulture)]
-public partial class VoCurrentCulture
+[ValueObject(typeof(string), stringComparers: StringComparersGeneration.Omit)]
+public partial class StringVo_Struct_NothingSpecified
 {
 }
 
-[ValueObject(typeof(string), stringComparison: StringComparisonGeneration.CurrentCultureIgnoreCase)]
-public partial class VoCurrentCultureIgnoreCase
+
+[ValueObject(typeof(string), stringComparers: StringComparersGeneration.Generate)]
+public partial class StringVo_Class
 {
 }
 
-[ValueObject(typeof(string), stringComparison: StringComparisonGeneration.CurrentCultureIgnoreCase)]
-public partial record VoRecordCurrentCultureIgnoreCase
-{
-}
-
-[ValueObject(typeof(string), stringComparison: StringComparisonGeneration.OrdinalIgnoreCase)]
-public partial class VoOrdinalIgnoreCase
-{
-}
-
-[ValueObject(typeof(string), stringComparison: StringComparisonGeneration.OrdinalIgnoreCase)]
-public partial struct VoOrdinalIgnoreCase_Struct
+[ValueObject(typeof(string), stringComparers: StringComparersGeneration.Generate)]
+public partial struct StringVo_Struct
 {
 }
 
@@ -41,9 +32,15 @@ public partial struct Vo2
 }
 
 #if NET7_0_OR_GREATER
-[ValueObject<string>(stringComparison: StringComparisonGeneration.OrdinalIgnoreCase)]
-public partial class VoOrdinalIgnoreCase_Generic
+[ValueObject<string>(stringComparers: StringComparersGeneration.Generate)]
+public partial class StringVo_Class_Generic
 {
 }
+
+[ValueObject<string>(stringComparers: StringComparersGeneration.Generate)]
+public partial struct StringVo_Struct_Generic
+{
+}
+
 #endif
 

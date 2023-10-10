@@ -90,6 +90,7 @@ public @class.@record.@struct.@float.@decimal Value
 
             return instance;
         }
+        
 
         // only called internally when something has been deserialized into
         // its primitive type.
@@ -123,7 +124,14 @@ public @class.@record.@struct.@float.@decimal Value
      return GetType() == other.GetType() && global::System.Collections.Generic.EqualityComparer<@class.@record.@struct.@float.@decimal>.Default.Equals(Value, other.Value);
  }
 
- public global::System.Boolean Equals(@class.@record.@struct.@float.@decimal primitive) { return Value.Equals(primitive); }
+public global::System.Boolean Equals(escapedTestspublic_sealed_partial_classConversions_TypeConverterrecord__struct__float__decimal other, global::System.Collections.Generic.IEqualityComparer<escapedTestspublic_sealed_partial_classConversions_TypeConverterrecord__struct__float__decimal> comparer)
+{
+    return comparer.Equals(this, other);
+}
+
+  public global::System.Boolean Equals(@class.@record.@struct.@float.@decimal primitive) {
+    return Value.Equals(primitive);
+ }
 
  public override global::System.Boolean Equals(global::System.Object obj)
  {
@@ -158,17 +166,16 @@ public @class.@record.@struct.@float.@decimal Value
         public static explicit operator @class.@record.@struct.@float.@decimal(escapedTestspublic_sealed_partial_classConversions_TypeConverterrecord__struct__float__decimal value) => value.Value;
 
         
-        public override global::System.Int32 GetHashCode()
+    public override global::System.Int32 GetHashCode()
+    {
+        unchecked // Overflow is fine, just wrap
         {
-            unchecked // Overflow is fine, just wrap
-            {
-                global::System.Int32 hash = (global::System.Int32) 2166136261;
-                hash = (hash * 16777619) ^ Value.GetHashCode();
-                hash = (hash * 16777619) ^ GetType().GetHashCode();
-                hash = (hash * 16777619) ^ global::System.Collections.Generic.EqualityComparer<@class.@record.@struct.@float.@decimal>.Default.GetHashCode();
-                return hash;
-            }
+            global::System.Int32 hash = (global::System.Int32) 2166136261;
+            hash = (hash * 16777619) ^ GetType().GetHashCode();
+            hash = (hash * 16777619) ^ global::System.Collections.Generic.EqualityComparer<@class.@record.@struct.@float.@decimal>.Default.GetHashCode(Value);
+            return hash;
         }
+    }
 
         private void EnsureInitialized()
         {

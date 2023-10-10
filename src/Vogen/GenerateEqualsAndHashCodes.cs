@@ -1,4 +1,3 @@
-using System;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 
 namespace Vogen;
@@ -27,10 +26,15 @@ public static class GenerateEqualsAndHashCodes
                           return true;
                       }
                  
-                      return GetType() == other.GetType() && {{GenerateCallToDefaultComparerOrCustomStringComparer(item)}};
+                      return GetType() == other.GetType() && {{$"global::System.Collections.Generic.EqualityComparer<{item.UnderlyingTypeFullName}>.Default.Equals(Value, other.Value)"}};
                   }
+
+                 public global::System.Boolean Equals({{className}} other, global::System.Collections.Generic.IEqualityComparer<{{className}}> comparer)
+                 {
+                     return comparer.Equals(this, other);
+                 }
                  
-                  {{GenerateEqualsForUnderlyingMethod(item)}}
+                  {{GenerateEqualsForUnderlyingMethod(item, isReadOnly: false)}}
                  
                   public override global::System.Boolean Equals(global::System.Object obj)
                   {
@@ -66,10 +70,15 @@ public static class GenerateEqualsAndHashCodes
                      // We treat anything uninitialized as not equal to anything, even other uninitialized instances of this type.
                      if(!_isInitialized || !other._isInitialized) return false;
                  
-                     return {{GenerateCallToDefaultComparerOrCustomStringComparer(item)}};
+                     return {{$"global::System.Collections.Generic.EqualityComparer<{item.UnderlyingTypeFullName}>.Default.Equals(Value, other.Value)"}};
                  }
-
-                  {{GenerateEqualsForUnderlyingMethod(item)}}
+                 
+                 public global::System.Boolean Equals({{structName}} other, global::System.Collections.Generic.IEqualityComparer<{{structName}}> comparer)
+                 {
+                     return comparer.Equals(this, other);
+                 }
+                 
+                  {{GenerateEqualsForUnderlyingMethod(item, isReadOnly: true)}}
                  
                  public readonly override global::System.Boolean Equals(global::System.Object obj)
                  {
@@ -77,71 +86,107 @@ public static class GenerateEqualsAndHashCodes
                  }
                  """;
     }
-    
-    public static string GenerateGetHashCode(VoWorkItem item)
+
+    public static string GenerateGetHashCodeForAClass(VoWorkItem item)
     {
         string itemUnderlyingType = item.UnderlyingTypeFullName;
 
-        bool isString = typeof(string).IsAssignableFrom(itemUnderlyingType.GetType());
-
-        var stringHashCode = isString && item.StringComparisonGeneration is not StringComparisonGeneration.Unspecified
-            ? $"global::System.StringComparer.{GetComparerLiteral(item.StringComparisonGeneration)}.GetHashCode(Value)"
-            : "Value.GetHashCode()";
         return $$"""
-                         public override global::System.Int32 GetHashCode()
+                     public override global::System.Int32 GetHashCode()
+                     {
+                         unchecked // Overflow is fine, just wrap
                          {
-                             unchecked // Overflow is fine, just wrap
-                             {
-                                 global::System.Int32 hash = (global::System.Int32) 2166136261;
-                                 hash = (hash * 16777619) ^ {{stringHashCode}};
-                                 hash = (hash * 16777619) ^ GetType().GetHashCode();
-                                 hash = (hash * 16777619) ^ global::System.Collections.Generic.EqualityComparer<{{itemUnderlyingType}}>.Default.GetHashCode();
-                                 return hash;
-                             }
+                             global::System.Int32 hash = (global::System.Int32) 2166136261;
+                             hash = (hash * 16777619) ^ GetType().GetHashCode();
+                             hash = (hash * 16777619) ^ global::System.Collections.Generic.EqualityComparer<{{itemUnderlyingType}}>.Default.GetHashCode(Value);
+                             return hash;
                          }
+                     }
                  """;
     }
 
-    private static string GenerateEqualsForUnderlyingMethod(VoWorkItem item)
+    public static string GenerateGetHashCodeForAStruct(VoWorkItem item)
     {
         string itemUnderlyingType = item.UnderlyingTypeFullName;
 
-        bool isString = typeof(string).IsAssignableFrom(itemUnderlyingType.GetType());
-
-        return isString && item.StringComparisonGeneration is not StringComparisonGeneration.Unspecified
-            ? GenerateEqualsForString(item, itemUnderlyingType)
-            : $"public global::System.Boolean Equals({itemUnderlyingType} primitive) {{ return Value.Equals(primitive); }}";
+        return $$"""
+                     public readonly override global::System.Int32 GetHashCode()
+                     {
+                         return global::System.Collections.Generic.EqualityComparer<{{itemUnderlyingType}}>.Default.GetHashCode(Value);
+                     }
+                 """;
     }
 
-    private static string GenerateEqualsForString(VoWorkItem item, string itemUnderlyingType)
+    private static string GenerateEqualsForUnderlyingMethod(VoWorkItem item, bool isReadOnly)
     {
-        string comparerLiteral = GetComparerLiteral(item.StringComparisonGeneration);
+        string itemUnderlyingType = item.UnderlyingTypeFullName;
 
-        return
-            $"public global::System.Boolean Equals({itemUnderlyingType} primitive) {{ return global::System.StringComparer.{comparerLiteral}.Equals(Value, primitive); }}";
-    }
+        bool isString = item.IsUnderlyingAString;
 
-    private static string GetComparerLiteral(StringComparisonGeneration e) =>
-        e switch
+        string readonlyOrEmpty = isReadOnly ? " readonly" : string.Empty;
+
+        string output = $$"""
+                           public{{readonlyOrEmpty}} global::System.Boolean Equals({{itemUnderlyingType}} primitive) {
+                              return Value.Equals(primitive);
+                           }
+                          """;
+
+        if(isString)
         {
-            StringComparisonGeneration.CurrentCulture => "CurrentCulture",
-            StringComparisonGeneration.CurrentCultureIgnoreCase => "CurrentCultureIgnoreCase",
-            StringComparisonGeneration.InvariantCulture => "InvariantCulture",
-            StringComparisonGeneration.InvariantCultureIgnoreCase => "InvariantCultureIgnoreCase",
-            StringComparisonGeneration.Ordinal => "Ordinal",
-            StringComparisonGeneration.OrdinalIgnoreCase => "OrdinalIgnoreCase",
-            StringComparisonGeneration.Unspecified => throw new InvalidOperationException("Don't know how to get the StringComparer as it was unspecified"),
-            _ => throw new InvalidOperationException("Don't know how to get the StringComparer for " + nameof(e))
-        };
+            output += $$"""
+                            public{{readonlyOrEmpty}} global::System.Boolean Equals({{itemUnderlyingType}} primitive, global::System.StringComparer comparer) {
+                                return comparer.Equals(Value, primitive);
+                            }
+                        """;
+        }
 
-    private static string GenerateCallToDefaultComparerOrCustomStringComparer(VoWorkItem item)
+        return output;
+    }
+
+    public static string GenerateStringComparersIfNeeded(VoWorkItem item, TypeDeclarationSyntax tds)
     {
-        string itemUnderlyingType = item.UnderlyingTypeFullName;
+        if (!item.IsUnderlyingAString) return string.Empty;
+        
+        if(item.StringComparersGeneration != StringComparersGeneration.Generate) return string.Empty;
 
-        bool isString = typeof(string).IsAssignableFrom(itemUnderlyingType.GetType());
+        return $$"""
+                    public static class Comparers
+                    {
+                         private class __StringEqualityComparer : global::System.Collections.Generic.IEqualityComparer<{{tds.Identifier}}>
+                         {
+                             readonly global::System.StringComparer _comparer;
+                         
+                             public __StringEqualityComparer(global::System.StringComparer comparer) {
+                                 _comparer = comparer;
+                            }
+                         
+                             public bool Equals({{tds.Identifier}} x, {{tds.Identifier}} y) { 
+                                return _comparer.Equals(x._value, y._value);
+                            }
+                         
+                             public int GetHashCode({{tds.Identifier}} obj) {
+                                return _comparer.GetHashCode();
+                             }
+                         }
+                         
+                         public static readonly global::System.Collections.Generic.IEqualityComparer<{{tds.Identifier}}> Ordinal =
+                                new __StringEqualityComparer(global::System.StringComparer.Ordinal); 
 
-        return isString && item.StringComparisonGeneration is not StringComparisonGeneration.Unspecified
-            ? $"Equals(other.Value)"
-            : $"global::System.Collections.Generic.EqualityComparer<{itemUnderlyingType}>.Default.Equals(Value, other.Value)";
+                         public static readonly global::System.Collections.Generic.IEqualityComparer<{{tds.Identifier}}> OrdinalIgnoreCase =
+                                new __StringEqualityComparer(global::System.StringComparer.OrdinalIgnoreCase); 
+
+                         public static readonly global::System.Collections.Generic.IEqualityComparer<{{tds.Identifier}}> CurrentCulture =
+                                new __StringEqualityComparer(global::System.StringComparer.CurrentCulture); 
+
+                         public static readonly global::System.Collections.Generic.IEqualityComparer<{{tds.Identifier}}> CurrentCultureIgnoreCase =
+                                new __StringEqualityComparer(global::System.StringComparer.CurrentCultureIgnoreCase); 
+
+                         public static readonly global::System.Collections.Generic.IEqualityComparer<{{tds.Identifier}}> InvariantCulture =
+                                new __StringEqualityComparer(global::System.StringComparer.InvariantCulture); 
+
+                         public static readonly global::System.Collections.Generic.IEqualityComparer<{{tds.Identifier}}> InvariantCultureIgnoreCase =
+                                new __StringEqualityComparer(global::System.StringComparer.InvariantCultureIgnoreCase);
+                    } 
+                 """;
     }
 }

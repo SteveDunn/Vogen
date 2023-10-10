@@ -26,7 +26,7 @@ public partial record class MyRecordClassInt2 { }
 
 [ValueObject(typeof(int))]
 public partial class MyClassInt2 { }
-    
+
 public class HashCodeTests
 {
     public class WithStructs
@@ -45,6 +45,16 @@ public class HashCodeTests
             (@event2.From(new @record.@struct.@float.@decimal()).GetHashCode() == @event2.From(new @record.@struct.@float.@decimal()).GetHashCode()).Should().BeTrue();
         }
 
+        public struct R1
+        {
+            public int Value { get; set; }
+        }        
+
+        public struct R2
+        {
+            public int Value { get; set; }
+        }        
+        
         [Fact]
         public void SameStructsHaveSameHashCode()
         {

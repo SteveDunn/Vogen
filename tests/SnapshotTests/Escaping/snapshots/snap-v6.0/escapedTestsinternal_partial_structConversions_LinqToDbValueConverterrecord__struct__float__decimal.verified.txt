@@ -90,6 +90,7 @@ namespace @class
 
             return instance;
         }
+        
 
         public static explicit operator escapedTestsinternal_partial_structConversions_LinqToDbValueConverterrecord__struct__float__decimal(@class.@record.@struct.@float.@decimal value) => From(value);
         public static explicit operator @class.@record.@struct.@float.@decimal(escapedTestsinternal_partial_structConversions_LinqToDbValueConverterrecord__struct__float__decimal value) => value.Value;
@@ -114,7 +115,14 @@ public readonly global::System.Boolean Equals(escapedTestsinternal_partial_struc
     return global::System.Collections.Generic.EqualityComparer<@class.@record.@struct.@float.@decimal>.Default.Equals(Value, other.Value);
 }
 
- public global::System.Boolean Equals(@class.@record.@struct.@float.@decimal primitive) { return Value.Equals(primitive); }
+public global::System.Boolean Equals(escapedTestsinternal_partial_structConversions_LinqToDbValueConverterrecord__struct__float__decimal other, global::System.Collections.Generic.IEqualityComparer<escapedTestsinternal_partial_structConversions_LinqToDbValueConverterrecord__struct__float__decimal> comparer)
+{
+    return comparer.Equals(this, other);
+}
+
+  public readonly global::System.Boolean Equals(@class.@record.@struct.@float.@decimal primitive) {
+    return Value.Equals(primitive);
+ }
 
 public readonly override global::System.Boolean Equals(global::System.Object obj)
 {
@@ -133,17 +141,10 @@ public readonly override global::System.Boolean Equals(global::System.Object obj
         
 
         
-        public override global::System.Int32 GetHashCode()
-        {
-            unchecked // Overflow is fine, just wrap
-            {
-                global::System.Int32 hash = (global::System.Int32) 2166136261;
-                hash = (hash * 16777619) ^ Value.GetHashCode();
-                hash = (hash * 16777619) ^ GetType().GetHashCode();
-                hash = (hash * 16777619) ^ global::System.Collections.Generic.EqualityComparer<@class.@record.@struct.@float.@decimal>.Default.GetHashCode();
-                return hash;
-            }
-        }
+    public readonly override global::System.Int32 GetHashCode()
+    {
+        return global::System.Collections.Generic.EqualityComparer<@class.@record.@struct.@float.@decimal>.Default.GetHashCode(Value);
+    }
 
         /// <summary>Returns the string representation of the underlying type</summary>
     /// <inheritdoc cref="@class.@record.@struct.@float.@decimal.ToString()" />

@@ -750,7 +750,7 @@ For other types, a generic type conversion and serializer is applied. If you are
 public partial struct SpecialMeasurement { }
 ```
 
-### I've done a change that means the 'Snapshot' tests are expectedly failing in the build - what do I do?
+### I've made a change that means the 'Snapshot' tests are expectedly failing in the build - what do I do?
 
 Vogen uses a combination of unit tests, in-memory compilation tests, and snapshot tests. The snapshot tests are used
 to compare the output of the source generators to the expected output stored on disk.

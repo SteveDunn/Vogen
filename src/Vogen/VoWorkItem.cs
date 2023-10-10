@@ -21,8 +21,11 @@ public class VoWorkItem
             _underlyingType = value;
             _underlyingTypeFullName = value.FullName() ?? value?.Name ?? throw new InvalidOperationException(
                 "No underlying type specified - please file a bug at https://github.com/SteveDunn/Vogen/issues/new?assignees=&labels=bug&template=BUG_REPORT.yml");
+            IsUnderlyingAString = typeof(string).IsAssignableFrom(Type.GetType(_underlyingTypeFullName));
         }
     }
+
+    public bool IsUnderlyingAString { get; private set; }
 
     /// <summary>
     /// The syntax information for the type to augment.
@@ -55,5 +58,5 @@ public class VoWorkItem
     
     public ComparisonGeneration ComparisonGeneration { get; set; }
     
-    public StringComparisonGeneration StringComparisonGeneration { get; set; }
+    public StringComparersGeneration StringComparersGeneration { get; set; }
 }
