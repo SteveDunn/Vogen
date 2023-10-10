@@ -203,7 +203,15 @@ public System.Decimal Value
         {
             public override public_partial_classConversions_NewtonsoftJson___Conversions_SystemTextJsondecimal Read(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {
+#if NET5_0_OR_GREATER
+                return public_partial_classConversions_NewtonsoftJson___Conversions_SystemTextJsondecimal.Deserialize(
+                    options.NumberHandling == global::System.Text.Json.Serialization.JsonNumberHandling.AllowReadingFromString && reader.TokenType == global::System.Text.Json.JsonTokenType.String
+                    ? global::System.Decimal.Parse(reader.GetString(), global::System.Globalization.NumberStyles.Any, global::System.Globalization.CultureInfo.InvariantCulture)
+                    : reader.GetDecimal()
+                );
+#else
                 return public_partial_classConversions_NewtonsoftJson___Conversions_SystemTextJsondecimal.Deserialize(reader.GetDecimal());
+#endif
             }
 
             public override void Write(System.Text.Json.Utf8JsonWriter writer, public_partial_classConversions_NewtonsoftJson___Conversions_SystemTextJsondecimal value, global::System.Text.Json.JsonSerializerOptions options)

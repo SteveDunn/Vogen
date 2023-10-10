@@ -150,7 +150,15 @@ namespace Whatever
         {
             public override public_partial_record_structConversions_NewtonsoftJson___Conversions_SystemTextJsonbyte Read(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {
+#if NET5_0_OR_GREATER
+                return public_partial_record_structConversions_NewtonsoftJson___Conversions_SystemTextJsonbyte.Deserialize(
+                    options.NumberHandling == global::System.Text.Json.Serialization.JsonNumberHandling.AllowReadingFromString && reader.TokenType == global::System.Text.Json.JsonTokenType.String
+                    ? global::System.Byte.Parse(reader.GetString(), global::System.Globalization.NumberStyles.Any, global::System.Globalization.CultureInfo.InvariantCulture)
+                    : reader.GetByte()
+                );
+#else
                 return public_partial_record_structConversions_NewtonsoftJson___Conversions_SystemTextJsonbyte.Deserialize(reader.GetByte());
+#endif
             }
 
             public override void Write(global::System.Text.Json.Utf8JsonWriter writer, public_partial_record_structConversions_NewtonsoftJson___Conversions_SystemTextJsonbyte value, global::System.Text.Json.JsonSerializerOptions options)

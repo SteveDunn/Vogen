@@ -294,7 +294,15 @@ namespace Whatever
         {
             public override stj_number_as_string_public_partial_structConversions_NewtonsoftJson___Conversions_SystemTextJsonint Read(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {
+#if NET5_0_OR_GREATER
+                return stj_number_as_string_public_partial_structConversions_NewtonsoftJson___Conversions_SystemTextJsonint.Deserialize(
+                    options.NumberHandling == global::System.Text.Json.Serialization.JsonNumberHandling.AllowReadingFromString && reader.TokenType == global::System.Text.Json.JsonTokenType.String
+                    ? global::System.Int32.Parse(reader.GetString(), global::System.Globalization.NumberStyles.Any, global::System.Globalization.CultureInfo.InvariantCulture)
+                    : reader.GetInt32()
+                );
+#else
                 return stj_number_as_string_public_partial_structConversions_NewtonsoftJson___Conversions_SystemTextJsonint.Deserialize(reader.GetInt32());
+#endif
             }
 
             public override void Write(System.Text.Json.Utf8JsonWriter writer, stj_number_as_string_public_partial_structConversions_NewtonsoftJson___Conversions_SystemTextJsonint value, global::System.Text.Json.JsonSerializerOptions options)

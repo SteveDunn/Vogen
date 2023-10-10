@@ -215,7 +215,15 @@ public static readonly public_readonly_partial_structlong MyValue = new public_r
         {
             public override public_readonly_partial_structlong Read(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {
+#if NET5_0_OR_GREATER
+                return public_readonly_partial_structlong.Deserialize(
+                    options.NumberHandling == global::System.Text.Json.Serialization.JsonNumberHandling.AllowReadingFromString && reader.TokenType == global::System.Text.Json.JsonTokenType.String
+                    ? global::System.Int64.Parse(reader.GetString(), global::System.Globalization.NumberStyles.Any, global::System.Globalization.CultureInfo.InvariantCulture)
+                    : reader.GetInt64()
+                );
+#else
                 return public_readonly_partial_structlong.Deserialize(reader.GetInt64());
+#endif
             }
 
             public override void Write(System.Text.Json.Utf8JsonWriter writer, public_readonly_partial_structlong value, global::System.Text.Json.JsonSerializerOptions options)

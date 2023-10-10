@@ -152,7 +152,15 @@ namespace Whatever
         {
             public override stj_number_as_string_public_sealed_partial_recordConversions_SystemTextJsonbyte Read(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {
+#if NET5_0_OR_GREATER
+                return stj_number_as_string_public_sealed_partial_recordConversions_SystemTextJsonbyte.Deserialize(
+                    options.NumberHandling == global::System.Text.Json.Serialization.JsonNumberHandling.AllowReadingFromString && reader.TokenType == global::System.Text.Json.JsonTokenType.String
+                    ? global::System.Byte.Parse(reader.GetString(), global::System.Globalization.NumberStyles.Any, global::System.Globalization.CultureInfo.InvariantCulture)
+                    : reader.GetByte()
+                );
+#else
                 return stj_number_as_string_public_sealed_partial_recordConversions_SystemTextJsonbyte.Deserialize(reader.GetByte());
+#endif
             }
 
             public override void Write(global::System.Text.Json.Utf8JsonWriter writer, stj_number_as_string_public_sealed_partial_recordConversions_SystemTextJsonbyte value, global::System.Text.Json.JsonSerializerOptions options)

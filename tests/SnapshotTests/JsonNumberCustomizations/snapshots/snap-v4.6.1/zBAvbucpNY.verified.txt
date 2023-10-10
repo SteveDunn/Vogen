@@ -209,6 +209,9 @@ namespace Whatever
         {
             public override stj_number_as_string_public_partial_structConversions_SystemTextJsonint_customized Read(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {
+#if NET5_0_OR_GREATER
+#else
+#endif
                 return stj_number_as_string_public_partial_structConversions_SystemTextJsonint_customized.Deserialize(global::System.Int32.Parse(reader.GetString(), global::System.Globalization.NumberStyles.Any, global::System.Globalization.CultureInfo.InvariantCulture));
             }
 
