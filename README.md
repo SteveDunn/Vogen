@@ -148,7 +148,7 @@ Vogen is a [Nuget package](https://www.nuget.org/packages/Vogen). Install it wit
 
 `dotnet add package Vogen`
 
-When added to your project, the **source generator** generates the wrappers for your primitives and and the **code analyser**
+When added to your project, the **source generator** generates the wrappers for your primitives and the **code analyser**
 will let you know if you try to create invalid Value Objects.
 
 ## Usage
