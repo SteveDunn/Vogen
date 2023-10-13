@@ -3,10 +3,39 @@ using FluentAssertions.Execution;
 
 namespace ConsumerTests.StringComparisons;
 
+[Collection("Sequential")]
 public class Tests
 {
+    [UseCulture("tr-TR")]
+    [Collection("Sequential")]
+    public class LocaleTests
+    {
+        [Fact]
+        public void WithClasses_Different_cultures()
+        {
+            // i = İ => true
+            var left = StringVo_Class.From("i");
+            var right = StringVo_Class.From("\u0130");
+
+            left.Equals(right, StringVo_Class.Comparers.CurrentCultureIgnoreCase).Should().BeTrue();
+        }
+        
+        [Fact]
+        public void WithStructs_Different_cultures()
+        {
+            // i = İ => true
+            var left = StringVo_Struct.From("i");
+            var right = StringVo_Struct.From("\u0130");
+
+            left.Equals(right, StringVo_Struct.Comparers.CurrentCultureIgnoreCase).Should().BeTrue();
+        }
+        
+    }
+
+    [Collection("Sequential")]
     public class ClassTests
     {
+
         [Fact]
         public void Comparison_omitted_but_specifying_own_comparer()
         {
@@ -74,17 +103,6 @@ public class Tests
             d.Should().ContainKey(key2Mixed);
         }
 
-        [Fact]
-        [UseCulture("tr-TR")]
-        public void Different_cultures()
-        {
-            // i = İ => true
-            var left = StringVo_Class.From("i");
-            var right = StringVo_Class.From("\u0130");
-
-            left.Equals(right, StringVo_Class.Comparers.CurrentCultureIgnoreCase).Should().BeTrue();
-        }
-
         // ignored for now - please see https://github.com/SteveDunn/Vogen/wiki/Records
         // [Fact]
         // [UseCulture("tr-TR")]
@@ -102,7 +120,7 @@ public class Tests
         // {
         //     using var _ = new AssertionScope();
         //
-        //     var left = VoRecordCurrentCultureIgnoreCase.From("abc");
+        //     var left = VoRecordCurrentCultureIgnoreCase.From("abc");F
         //     var right = VoRecordCurrentCultureIgnoreCase.From("AbC");
         //
         //     left.Equals((object)right).Should().BeTrue();
@@ -112,6 +130,7 @@ public class Tests
         // }
     }
 
+    [Collection("Sequential")]
     public class StructTests
     {
         [Fact]
@@ -174,24 +193,13 @@ public class Tests
             d.Add(key1Lower, 1);
             d.Should().ContainKey(key2Mixed);
         }
-
-        [Fact]
-        [UseCulture("tr-TR")]
-        public void Different_cultures()
-        {
-            // i = İ => true
-            var left = StringVo_Struct.From("i");
-            var right = StringVo_Struct.From("\u0130");
-
-            left.Equals(right, StringVo_Struct.Comparers.CurrentCultureIgnoreCase).Should().BeTrue();
-        }
     }
-}
 
-public class MyComparer : IEqualityComparer<StringVo_Class_NothingSpecified>
-{
-    public bool Equals(StringVo_Class_NothingSpecified? x, StringVo_Class_NothingSpecified? y) =>
-        StringComparer.OrdinalIgnoreCase.Equals(x?.Value, y?.Value);
+    public class MyComparer : IEqualityComparer<StringVo_Class_NothingSpecified>
+    {
+        public bool Equals(StringVo_Class_NothingSpecified? x, StringVo_Class_NothingSpecified? y) =>
+            StringComparer.OrdinalIgnoreCase.Equals(x?.Value, y?.Value);
 
-    public int GetHashCode(StringVo_Class_NothingSpecified obj) => StringComparer.OrdinalIgnoreCase.GetHashCode(obj.Value);
+        public int GetHashCode(StringVo_Class_NothingSpecified obj) => StringComparer.OrdinalIgnoreCase.GetHashCode(obj.Value);
+    }
 }
