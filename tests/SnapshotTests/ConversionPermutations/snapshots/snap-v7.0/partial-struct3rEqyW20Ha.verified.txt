@@ -126,7 +126,6 @@ public global::System.Boolean Equals(MyIntVo other, global::System.Collections.G
   public readonly global::System.Boolean Equals(System.Int32 primitive) {
     return Value.Equals(primitive);
  }
-
 public readonly override global::System.Boolean Equals(global::System.Object obj)
 {
     return obj is MyIntVo && Equals((MyIntVo) obj);

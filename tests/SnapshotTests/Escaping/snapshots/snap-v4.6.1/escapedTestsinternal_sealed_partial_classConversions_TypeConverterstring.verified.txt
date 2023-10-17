@@ -94,7 +94,7 @@ public System.String Value
 
             return instance;
         }
-        
+  
 
         // only called internally when something has been deserialized into
         // its primitive type.
@@ -113,7 +113,7 @@ public System.String Value
             return new escapedTestsinternal_sealed_partial_classConversions_TypeConverterstring(value);
         }
          
- public global::System.Boolean Equals(escapedTestsinternal_sealed_partial_classConversions_TypeConverterstring other)
+ public  global::System.Boolean Equals(escapedTestsinternal_sealed_partial_classConversions_TypeConverterstring other)
  {
      if (ReferenceEquals(null, other))
      {
@@ -142,25 +142,10 @@ public global::System.Boolean Equals(escapedTestsinternal_sealed_partial_classCo
  }    public global::System.Boolean Equals(System.String primitive, global::System.StringComparer comparer) {
         return comparer.Equals(Value, primitive);
     }
-
+ 
  public override global::System.Boolean Equals(global::System.Object obj)
  {
-     if (ReferenceEquals(null, obj))
-     {
-         return false;
-     }
-
-     if (ReferenceEquals(this, obj))
-     {
-         return true;
-     }
-
-     if (obj.GetType() != GetType())
-     {
-         return false;
-     }
-
-     return Equals((escapedTestsinternal_sealed_partial_classConversions_TypeConverterstring) obj);
+     return Equals(obj as escapedTestsinternal_sealed_partial_classConversions_TypeConverterstring);
  }
 
         public static global::System.Boolean operator ==(escapedTestsinternal_sealed_partial_classConversions_TypeConverterstring left, escapedTestsinternal_sealed_partial_classConversions_TypeConverterstring right) => Equals(left, right);

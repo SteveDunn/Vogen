@@ -89,7 +89,7 @@ public System.DateTimeOffset Value
 
             return instance;
         }
-        
+  
 
         // only called internally when something has been deserialized into
         // its primitive type.
@@ -104,7 +104,7 @@ public System.DateTimeOffset Value
             return new public_sealed_partial_classConversions_DapperTypeHandlerSystem_DateTimeOffset(value);
         }
          
- public global::System.Boolean Equals(public_sealed_partial_classConversions_DapperTypeHandlerSystem_DateTimeOffset other)
+ public  global::System.Boolean Equals(public_sealed_partial_classConversions_DapperTypeHandlerSystem_DateTimeOffset other)
  {
      if (ReferenceEquals(null, other))
      {
@@ -131,25 +131,10 @@ public global::System.Boolean Equals(public_sealed_partial_classConversions_Dapp
   public global::System.Boolean Equals(System.DateTimeOffset primitive) {
     return Value.Equals(primitive);
  }
-
+ 
  public override global::System.Boolean Equals(global::System.Object obj)
  {
-     if (ReferenceEquals(null, obj))
-     {
-         return false;
-     }
-
-     if (ReferenceEquals(this, obj))
-     {
-         return true;
-     }
-
-     if (obj.GetType() != GetType())
-     {
-         return false;
-     }
-
-     return Equals((public_sealed_partial_classConversions_DapperTypeHandlerSystem_DateTimeOffset) obj);
+     return Equals(obj as public_sealed_partial_classConversions_DapperTypeHandlerSystem_DateTimeOffset);
  }
 
         public static global::System.Boolean operator ==(public_sealed_partial_classConversions_DapperTypeHandlerSystem_DateTimeOffset left, public_sealed_partial_classConversions_DapperTypeHandlerSystem_DateTimeOffset right) => Equals(left, right);

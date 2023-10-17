@@ -89,7 +89,7 @@ public System.Double Value
 
             return instance;
         }
-        
+  
 
         // only called internally when something has been deserialized into
         // its primitive type.
@@ -104,7 +104,7 @@ public System.Double Value
             return new internal_partial_classConversions_Nonedouble(value);
         }
          
- public global::System.Boolean Equals(internal_partial_classConversions_Nonedouble other)
+ public  global::System.Boolean Equals(internal_partial_classConversions_Nonedouble other)
  {
      if (ReferenceEquals(null, other))
      {
@@ -131,25 +131,10 @@ public global::System.Boolean Equals(internal_partial_classConversions_Nonedoubl
   public global::System.Boolean Equals(System.Double primitive) {
     return Value.Equals(primitive);
  }
-
+ 
  public override global::System.Boolean Equals(global::System.Object obj)
  {
-     if (ReferenceEquals(null, obj))
-     {
-         return false;
-     }
-
-     if (ReferenceEquals(this, obj))
-     {
-         return true;
-     }
-
-     if (obj.GetType() != GetType())
-     {
-         return false;
-     }
-
-     return Equals((internal_partial_classConversions_Nonedouble) obj);
+     return Equals(obj as internal_partial_classConversions_Nonedouble);
  }
 
         public static global::System.Boolean operator ==(internal_partial_classConversions_Nonedouble left, internal_partial_classConversions_Nonedouble right) => Equals(left, right);

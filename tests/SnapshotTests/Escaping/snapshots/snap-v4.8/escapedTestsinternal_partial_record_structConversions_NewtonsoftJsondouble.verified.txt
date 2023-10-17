@@ -34,7 +34,7 @@ namespace @class
 
     [global::System.Diagnostics.DebuggerTypeProxyAttribute(typeof(escapedTestsinternal_partial_record_structConversions_NewtonsoftJsondoubleDebugView))]
     [global::System.Diagnostics.DebuggerDisplayAttribute("Underlying type: System.Double, Value = { _value }")]
-    internal partial record struct escapedTestsinternal_partial_record_structConversions_NewtonsoftJsondouble  :  global::System.IComparable<escapedTestsinternal_partial_record_structConversions_NewtonsoftJsondouble>, global::System.IComparable
+    internal partial record struct escapedTestsinternal_partial_record_structConversions_NewtonsoftJsondouble : global::System.IEquatable<escapedTestsinternal_partial_record_structConversions_NewtonsoftJsondouble>, global::System.IEquatable<System.Double> ,  global::System.IComparable<escapedTestsinternal_partial_record_structConversions_NewtonsoftJsondouble>, global::System.IComparable
     {
 #if DEBUG    
         private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
@@ -55,6 +55,7 @@ namespace @class
                 EnsureInitialized();
                 return _value;
             }
+            [global::System.Diagnostics.DebuggerStepThroughAttribute]
             init
             {
                 
@@ -101,16 +102,10 @@ namespace @class
 
             return instance;
         }
+        
 
         public static explicit operator escapedTestsinternal_partial_record_structConversions_NewtonsoftJsondouble(System.Double value) => From(value);
         public static explicit operator System.Double(escapedTestsinternal_partial_record_structConversions_NewtonsoftJsondouble value) => value.Value;
-
-        public int CompareTo(escapedTestsinternal_partial_record_structConversions_NewtonsoftJsondouble other) => Value.CompareTo(other.Value);
-        public int CompareTo(object other) {
-            if(other == null) return 1;
-            if(other is escapedTestsinternal_partial_record_structConversions_NewtonsoftJsondouble x) return CompareTo(x);
-            throw new global::System.ArgumentException("Cannot compare to object as it is not of type escapedTestsinternal_partial_record_structConversions_NewtonsoftJsondouble", nameof(other));
-        }
 
         // only called internally when something has been deserialized into
         // its primitive type.
@@ -122,6 +117,85 @@ namespace @class
 
             return new escapedTestsinternal_partial_record_structConversions_NewtonsoftJsondouble(value);
         }
+        
+public readonly global::System.Boolean Equals(escapedTestsinternal_partial_record_structConversions_NewtonsoftJsondouble other)
+{
+    // It's possible to create uninitialized instances via converters such as EfCore (HasDefaultValue), which call Equals.
+    // We treat anything uninitialized as not equal to anything, even other uninitialized instances of this type.
+    if(!_isInitialized || !other._isInitialized) return false;
+
+    return global::System.Collections.Generic.EqualityComparer<System.Double>.Default.Equals(Value, other.Value);
+}
+
+public global::System.Boolean Equals(escapedTestsinternal_partial_record_structConversions_NewtonsoftJsondouble other, global::System.Collections.Generic.IEqualityComparer<escapedTestsinternal_partial_record_structConversions_NewtonsoftJsondouble> comparer)
+{
+    return comparer.Equals(this, other);
+}
+
+  public readonly global::System.Boolean Equals(System.Double primitive) {
+    return Value.Equals(primitive);
+ }
+
+        public static global::System.Boolean operator ==(escapedTestsinternal_partial_record_structConversions_NewtonsoftJsondouble left, System.Double right) => Equals(left.Value, right);
+        public static global::System.Boolean operator !=(escapedTestsinternal_partial_record_structConversions_NewtonsoftJsondouble left, System.Double right) => !Equals(left.Value, right);
+
+        public static global::System.Boolean operator ==(System.Double left, escapedTestsinternal_partial_record_structConversions_NewtonsoftJsondouble right) => Equals(left, right.Value);
+        public static global::System.Boolean operator !=(System.Double left, escapedTestsinternal_partial_record_structConversions_NewtonsoftJsondouble right) => !Equals(left, right.Value);
+
+        public int CompareTo(escapedTestsinternal_partial_record_structConversions_NewtonsoftJsondouble other) => Value.CompareTo(other.Value);
+        public int CompareTo(object other) {
+            if(other == null) return 1;
+            if(other is escapedTestsinternal_partial_record_structConversions_NewtonsoftJsondouble x) return CompareTo(x);
+            throw new global::System.ArgumentException("Cannot compare to object as it is not of type escapedTestsinternal_partial_record_structConversions_NewtonsoftJsondouble", nameof(other));
+        }
+
+        
+    /// <inheritdoc cref="double.TryParse(string, out double)"/>
+    /// <summary>
+    /// </summary>
+    /// <returns>
+    /// The value created via the <see cref="From"/> method.
+    /// </returns>
+    /// <exception cref="ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
+    public static global::System.Boolean TryParse(string s, 
+#if NETCOREAPP3_0_OR_GREATER
+[global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)]
+#endif
+ out escapedTestsinternal_partial_record_structConversions_NewtonsoftJsondouble result) {
+        if(System.Double.TryParse(s, out var r)) {
+            result = From(r);
+            return true;
+        }
+
+        result = default;
+        return false;
+    }
+
+    /// <inheritdoc cref="double.TryParse(string, System.Globalization.NumberStyles, System.IFormatProvider, out double)"/>
+    /// <summary>
+    /// </summary>
+    /// <returns>
+    /// The value created via the <see cref="From"/> method.
+    /// </returns>
+    /// <exception cref="ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
+    public static global::System.Boolean TryParse(string s, global::System.Globalization.NumberStyles style, global::System.IFormatProvider provider, 
+#if NETCOREAPP3_0_OR_GREATER
+[global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)]
+#endif
+ out escapedTestsinternal_partial_record_structConversions_NewtonsoftJsondouble result) {
+        if(System.Double.TryParse(s, style, provider, out var r)) {
+            result = From(r);
+            return true;
+        }
+
+        result = default;
+        return false;
+    }
+
+    public readonly override global::System.Int32 GetHashCode()
+    {
+        return global::System.Collections.Generic.EqualityComparer<System.Double>.Default.GetHashCode(Value);
+    }
 
         private readonly void EnsureInitialized()
         {
@@ -138,9 +212,9 @@ namespace @class
         }
 
         // record enumerates fields - we just want our Value and to throw if it's not initialized.
-        /// <summary>Returns the string representation of the underlying <see cref="System.Double" />.</summary>
+        /// <summary>Returns the string representation of the underlying type</summary>
     /// <inheritdoc cref="System.Double.ToString()" />
-    public override global::System.String ToString() => _isInitialized ? Value.ToString() : "[UNINITIALIZED]";
+    public readonly override global::System.String ToString() =>_isInitialized ? Value.ToString() : "[UNINITIALIZED]";
 
         
  

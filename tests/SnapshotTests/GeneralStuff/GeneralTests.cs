@@ -8,6 +8,20 @@ namespace SnapshotTests.GeneralStuff
     public class GeneralTests
     {
         [Fact]
+        public Task Partial_record_struct_created_successfully()
+        {
+            var source = @"using Vogen;
+namespace Whatever;
+
+[ValueObject(typeof(string))]
+public readonly partial record struct CustomerId
+{
+}";
+
+            return RunTest(source);
+        }
+
+        [Fact]
         public Task Partial_struct_created_successfully()
         {
             var source = @"using Vogen;

@@ -4,4 +4,6 @@ global using FluentAssertions;
 global using Vogen;
 global using Xunit;
 
- 
+// [assembly: CollectionBehavior(DisableTestParallelization = true)]
+// [assembly: CollectionBehavior(CollectionBehavior.CollectionPerAssembly)]
+

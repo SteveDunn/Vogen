@@ -95,7 +95,7 @@ public System.String Value
 
             return instance;
         }
-        
+  
 
         // only called internally when something has been deserialized into
         // its primitive type.
@@ -114,7 +114,7 @@ public System.String Value
             return new internal_partial_classConversions_NewtonsoftJson___Conversions_SystemTextJsonstring(value);
         }
          
- public global::System.Boolean Equals(internal_partial_classConversions_NewtonsoftJson___Conversions_SystemTextJsonstring other)
+ public  global::System.Boolean Equals(internal_partial_classConversions_NewtonsoftJson___Conversions_SystemTextJsonstring other)
  {
      if (ReferenceEquals(null, other))
      {
@@ -143,25 +143,10 @@ public global::System.Boolean Equals(internal_partial_classConversions_Newtonsof
  }    public global::System.Boolean Equals(System.String primitive, global::System.StringComparer comparer) {
         return comparer.Equals(Value, primitive);
     }
-
+ 
  public override global::System.Boolean Equals(global::System.Object obj)
  {
-     if (ReferenceEquals(null, obj))
-     {
-         return false;
-     }
-
-     if (ReferenceEquals(this, obj))
-     {
-         return true;
-     }
-
-     if (obj.GetType() != GetType())
-     {
-         return false;
-     }
-
-     return Equals((internal_partial_classConversions_NewtonsoftJson___Conversions_SystemTextJsonstring) obj);
+     return Equals(obj as internal_partial_classConversions_NewtonsoftJson___Conversions_SystemTextJsonstring);
  }
 
         public static global::System.Boolean operator ==(internal_partial_classConversions_NewtonsoftJson___Conversions_SystemTextJsonstring left, internal_partial_classConversions_NewtonsoftJson___Conversions_SystemTextJsonstring right) => Equals(left, right);

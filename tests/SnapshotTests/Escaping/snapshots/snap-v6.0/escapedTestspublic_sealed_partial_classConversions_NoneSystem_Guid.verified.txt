@@ -89,7 +89,7 @@ public System.Guid Value
 
             return instance;
         }
-        
+  
 
         // only called internally when something has been deserialized into
         // its primitive type.
@@ -104,7 +104,7 @@ public System.Guid Value
             return new escapedTestspublic_sealed_partial_classConversions_NoneSystem_Guid(value);
         }
          
- public global::System.Boolean Equals(escapedTestspublic_sealed_partial_classConversions_NoneSystem_Guid other)
+ public  global::System.Boolean Equals(escapedTestspublic_sealed_partial_classConversions_NoneSystem_Guid other)
  {
      if (ReferenceEquals(null, other))
      {
@@ -131,25 +131,10 @@ public global::System.Boolean Equals(escapedTestspublic_sealed_partial_classConv
   public global::System.Boolean Equals(System.Guid primitive) {
     return Value.Equals(primitive);
  }
-
+ 
  public override global::System.Boolean Equals(global::System.Object obj)
  {
-     if (ReferenceEquals(null, obj))
-     {
-         return false;
-     }
-
-     if (ReferenceEquals(this, obj))
-     {
-         return true;
-     }
-
-     if (obj.GetType() != GetType())
-     {
-         return false;
-     }
-
-     return Equals((escapedTestspublic_sealed_partial_classConversions_NoneSystem_Guid) obj);
+     return Equals(obj as escapedTestspublic_sealed_partial_classConversions_NoneSystem_Guid);
  }
 
         public static global::System.Boolean operator ==(escapedTestspublic_sealed_partial_classConversions_NoneSystem_Guid left, escapedTestspublic_sealed_partial_classConversions_NoneSystem_Guid right) => Equals(left, right);

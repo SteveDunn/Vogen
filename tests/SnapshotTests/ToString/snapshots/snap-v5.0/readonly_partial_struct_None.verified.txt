@@ -125,7 +125,6 @@ public global::System.Boolean Equals(readonly_partial_struct_None other, global:
   public readonly global::System.Boolean Equals(System.Int32 primitive) {
     return Value.Equals(primitive);
  }
-
 public readonly override global::System.Boolean Equals(global::System.Object obj)
 {
     return obj is readonly_partial_struct_None && Equals((readonly_partial_struct_None) obj);

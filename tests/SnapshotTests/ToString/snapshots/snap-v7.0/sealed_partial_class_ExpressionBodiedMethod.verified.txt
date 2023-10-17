@@ -91,7 +91,7 @@ public System.Int32 Value
 
             return instance;
         }
-        
+  
 
         // only called internally when something has been deserialized into
         // its primitive type.
@@ -106,7 +106,7 @@ public System.Int32 Value
             return new sealed_partial_class_ExpressionBodiedMethod(value);
         }
          
- public global::System.Boolean Equals(sealed_partial_class_ExpressionBodiedMethod other)
+ public  global::System.Boolean Equals(sealed_partial_class_ExpressionBodiedMethod other)
  {
      if (ReferenceEquals(null, other))
      {
@@ -133,25 +133,10 @@ public global::System.Boolean Equals(sealed_partial_class_ExpressionBodiedMethod
   public global::System.Boolean Equals(System.Int32 primitive) {
     return Value.Equals(primitive);
  }
-
+ 
  public override global::System.Boolean Equals(global::System.Object obj)
  {
-     if (ReferenceEquals(null, obj))
-     {
-         return false;
-     }
-
-     if (ReferenceEquals(this, obj))
-     {
-         return true;
-     }
-
-     if (obj.GetType() != GetType())
-     {
-         return false;
-     }
-
-     return Equals((sealed_partial_class_ExpressionBodiedMethod) obj);
+     return Equals(obj as sealed_partial_class_ExpressionBodiedMethod);
  }
 
         public static global::System.Boolean operator ==(sealed_partial_class_ExpressionBodiedMethod left, sealed_partial_class_ExpressionBodiedMethod right) => Equals(left, right);

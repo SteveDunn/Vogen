@@ -91,7 +91,7 @@ public System.Byte Value
 
             return instance;
         }
-        
+  
 
         // only called internally when something has been deserialized into
         // its primitive type.
@@ -107,7 +107,7 @@ public System.Byte Value
             return new internal_sealed_partial_classbyte(value);
         }
          
- public global::System.Boolean Equals(internal_sealed_partial_classbyte other)
+ public  global::System.Boolean Equals(internal_sealed_partial_classbyte other)
  {
      if (ReferenceEquals(null, other))
      {
@@ -134,25 +134,10 @@ public global::System.Boolean Equals(internal_sealed_partial_classbyte other, gl
   public global::System.Boolean Equals(System.Byte primitive) {
     return Value.Equals(primitive);
  }
-
+ 
  public override global::System.Boolean Equals(global::System.Object obj)
  {
-     if (ReferenceEquals(null, obj))
-     {
-         return false;
-     }
-
-     if (ReferenceEquals(this, obj))
-     {
-         return true;
-     }
-
-     if (obj.GetType() != GetType())
-     {
-         return false;
-     }
-
-     return Equals((internal_sealed_partial_classbyte) obj);
+     return Equals(obj as internal_sealed_partial_classbyte);
  }
 
         public static global::System.Boolean operator ==(internal_sealed_partial_classbyte left, internal_sealed_partial_classbyte right) => Equals(left, right);

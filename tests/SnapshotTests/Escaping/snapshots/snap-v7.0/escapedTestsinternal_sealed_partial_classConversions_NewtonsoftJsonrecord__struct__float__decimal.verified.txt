@@ -90,7 +90,7 @@ public @class.@record.@struct.@float.@decimal Value
 
             return instance;
         }
-        
+  
 
         // only called internally when something has been deserialized into
         // its primitive type.
@@ -105,7 +105,7 @@ public @class.@record.@struct.@float.@decimal Value
             return new escapedTestsinternal_sealed_partial_classConversions_NewtonsoftJsonrecord__struct__float__decimal(value);
         }
          
- public global::System.Boolean Equals(escapedTestsinternal_sealed_partial_classConversions_NewtonsoftJsonrecord__struct__float__decimal other)
+ public  global::System.Boolean Equals(escapedTestsinternal_sealed_partial_classConversions_NewtonsoftJsonrecord__struct__float__decimal other)
  {
      if (ReferenceEquals(null, other))
      {
@@ -132,25 +132,10 @@ public global::System.Boolean Equals(escapedTestsinternal_sealed_partial_classCo
   public global::System.Boolean Equals(@class.@record.@struct.@float.@decimal primitive) {
     return Value.Equals(primitive);
  }
-
+ 
  public override global::System.Boolean Equals(global::System.Object obj)
  {
-     if (ReferenceEquals(null, obj))
-     {
-         return false;
-     }
-
-     if (ReferenceEquals(this, obj))
-     {
-         return true;
-     }
-
-     if (obj.GetType() != GetType())
-     {
-         return false;
-     }
-
-     return Equals((escapedTestsinternal_sealed_partial_classConversions_NewtonsoftJsonrecord__struct__float__decimal) obj);
+     return Equals(obj as escapedTestsinternal_sealed_partial_classConversions_NewtonsoftJsonrecord__struct__float__decimal);
  }
 
         public static global::System.Boolean operator ==(escapedTestsinternal_sealed_partial_classConversions_NewtonsoftJsonrecord__struct__float__decimal left, escapedTestsinternal_sealed_partial_classConversions_NewtonsoftJsonrecord__struct__float__decimal right) => Equals(left, right);

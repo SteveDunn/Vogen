@@ -34,7 +34,7 @@ namespace Whatever
 
     [global::System.Diagnostics.DebuggerTypeProxyAttribute(typeof(stj_number_as_string_public_partial_recordConversions_SystemTextJsonshort_customizedDebugView))]
     [global::System.Diagnostics.DebuggerDisplayAttribute("Underlying type: System.Int16, Value = { _value }")]
-    public partial record class stj_number_as_string_public_partial_recordConversions_SystemTextJsonshort_customized  :  global::System.IComparable<stj_number_as_string_public_partial_recordConversions_SystemTextJsonshort_customized>, global::System.IComparable
+    public partial record class stj_number_as_string_public_partial_recordConversions_SystemTextJsonshort_customized : global::System.IEquatable<stj_number_as_string_public_partial_recordConversions_SystemTextJsonshort_customized>, global::System.IEquatable<System.Int16> ,  global::System.IComparable<stj_number_as_string_public_partial_recordConversions_SystemTextJsonshort_customized>, global::System.IComparable
     {
 #if DEBUG    
         private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
@@ -101,16 +101,7 @@ namespace Whatever
 
             return instance;
         }
-
-        public static explicit operator stj_number_as_string_public_partial_recordConversions_SystemTextJsonshort_customized(System.Int16 value) => From(value);
-        public static explicit operator System.Int16(stj_number_as_string_public_partial_recordConversions_SystemTextJsonshort_customized value) => value.Value;
-
-        public int CompareTo(stj_number_as_string_public_partial_recordConversions_SystemTextJsonshort_customized other) => Value.CompareTo(other.Value);
-        public int CompareTo(object other) {
-            if(other == null) return 1;
-            if(other is stj_number_as_string_public_partial_recordConversions_SystemTextJsonshort_customized x) return CompareTo(x);
-            throw new global::System.ArgumentException("Cannot compare to object as it is not of type stj_number_as_string_public_partial_recordConversions_SystemTextJsonshort_customized", nameof(other));
-        }
+  
 
         // only called internally when something has been deserialized into
         // its primitive type.
@@ -124,6 +115,61 @@ namespace Whatever
 
             return new stj_number_as_string_public_partial_recordConversions_SystemTextJsonshort_customized(value);
         }
+         
+ public virtual global::System.Boolean Equals(stj_number_as_string_public_partial_recordConversions_SystemTextJsonshort_customized other)
+ {
+     if (ReferenceEquals(null, other))
+     {
+         return false;
+     }
+
+     // It's possible to create uninitialized instances via converters such as EfCore (HasDefaultValue), which call Equals.
+     // We treat anything uninitialized as not equal to anything, even other uninitialized instances of this type.
+     if(!_isInitialized || !other._isInitialized) return false;
+
+     if (ReferenceEquals(this, other))
+     {
+         return true;
+     }
+
+     return GetType() == other.GetType() && global::System.Collections.Generic.EqualityComparer<System.Int16>.Default.Equals(Value, other.Value);
+ }
+
+public global::System.Boolean Equals(stj_number_as_string_public_partial_recordConversions_SystemTextJsonshort_customized other, global::System.Collections.Generic.IEqualityComparer<stj_number_as_string_public_partial_recordConversions_SystemTextJsonshort_customized> comparer)
+{
+    return comparer.Equals(this, other);
+}
+
+  public global::System.Boolean Equals(System.Int16 primitive) {
+    return Value.Equals(primitive);
+ }
+ 
+
+        public static global::System.Boolean operator ==(stj_number_as_string_public_partial_recordConversions_SystemTextJsonshort_customized left, System.Int16 right) => Equals(left.Value, right);
+        public static global::System.Boolean operator !=(stj_number_as_string_public_partial_recordConversions_SystemTextJsonshort_customized left, System.Int16 right) => !Equals(left.Value, right);
+
+        public static global::System.Boolean operator ==(System.Int16 left, stj_number_as_string_public_partial_recordConversions_SystemTextJsonshort_customized right) => Equals(left, right.Value);
+        public static global::System.Boolean operator !=(System.Int16 left, stj_number_as_string_public_partial_recordConversions_SystemTextJsonshort_customized right) => !Equals(left, right.Value);
+
+        public static explicit operator stj_number_as_string_public_partial_recordConversions_SystemTextJsonshort_customized(System.Int16 value) => From(value);
+        public static explicit operator System.Int16(stj_number_as_string_public_partial_recordConversions_SystemTextJsonshort_customized value) => value.Value;
+
+        public int CompareTo(stj_number_as_string_public_partial_recordConversions_SystemTextJsonshort_customized other) => Value.CompareTo(other.Value);
+        public int CompareTo(object other) {
+            if(other == null) return 1;
+            if(other is stj_number_as_string_public_partial_recordConversions_SystemTextJsonshort_customized x) return CompareTo(x);
+            throw new global::System.ArgumentException("Cannot compare to object as it is not of type stj_number_as_string_public_partial_recordConversions_SystemTextJsonshort_customized", nameof(other));
+        }
+    public override global::System.Int32 GetHashCode()
+    {
+        unchecked // Overflow is fine, just wrap
+        {
+            global::System.Int32 hash = (global::System.Int32) 2166136261;
+            hash = (hash * 16777619) ^ GetType().GetHashCode();
+            hash = (hash * 16777619) ^ global::System.Collections.Generic.EqualityComparer<System.Int16>.Default.GetHashCode(Value);
+            return hash;
+        }
+    }
 
         private void EnsureInitialized()
         {

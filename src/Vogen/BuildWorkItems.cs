@@ -36,7 +36,7 @@ internal static class BuildWorkItems
             context.ReportDiagnostic(DiagnosticsCatalogue.TypeShouldBePartial(voTypeSyntax.GetLocation(), voSymbolInformation.Name));
             return null;
         }
-
+        
         if (voSymbolInformation.IsAbstract)
         {
             context.ReportDiagnostic(DiagnosticsCatalogue.TypeCannotBeAbstract(voSymbolInformation));
@@ -119,7 +119,8 @@ internal static class BuildWorkItems
             StringComparersGeneration = config.StringComparers,
             ValidateMethod = validateMethod,
             NormalizeInputMethod = normalizeInputMethod,
-            FullNamespace = voSymbolInformation.FullNamespace()
+            FullNamespace = voSymbolInformation.FullNamespace(),
+            IsSealed = voSymbolInformation.IsSealed
         };
     }
 

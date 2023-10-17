@@ -183,7 +183,6 @@ public class DecimalVoTests
     }
 
     [Fact]
-    [UseCulture("")]
     public async Task WhenDapperValueConverterUsesValueConverter()
     {
         using var connection = new SqliteConnection("DataSource=:memory:");

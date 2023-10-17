@@ -91,7 +91,7 @@ public System.Int32 Value
 
             return instance;
         }
-        
+  
 
         // only called internally when something has been deserialized into
         // its primitive type.
@@ -106,7 +106,7 @@ public System.Int32 Value
             return new IntThing(value);
         }
          
- public global::System.Boolean Equals(IntThing other)
+ public  global::System.Boolean Equals(IntThing other)
  {
      if (ReferenceEquals(null, other))
      {
@@ -133,25 +133,10 @@ public global::System.Boolean Equals(IntThing other, global::System.Collections.
   public global::System.Boolean Equals(System.Int32 primitive) {
     return Value.Equals(primitive);
  }
-
+ 
  public override global::System.Boolean Equals(global::System.Object obj)
  {
-     if (ReferenceEquals(null, obj))
-     {
-         return false;
-     }
-
-     if (ReferenceEquals(this, obj))
-     {
-         return true;
-     }
-
-     if (obj.GetType() != GetType())
-     {
-         return false;
-     }
-
-     return Equals((IntThing) obj);
+     return Equals(obj as IntThing);
  }
 
         public static global::System.Boolean operator ==(IntThing left, IntThing right) => Equals(left, right);

@@ -91,7 +91,7 @@ public System.Decimal Value
 
             return instance;
         }
-        
+  
 
         // only called internally when something has been deserialized into
         // its primitive type.
@@ -106,7 +106,7 @@ public System.Decimal Value
             return new internal_partial_classConversions_NewtonsoftJson___Conversions_SystemTextJsondecimal(value);
         }
          
- public global::System.Boolean Equals(internal_partial_classConversions_NewtonsoftJson___Conversions_SystemTextJsondecimal other)
+ public  global::System.Boolean Equals(internal_partial_classConversions_NewtonsoftJson___Conversions_SystemTextJsondecimal other)
  {
      if (ReferenceEquals(null, other))
      {
@@ -133,25 +133,10 @@ public global::System.Boolean Equals(internal_partial_classConversions_Newtonsof
   public global::System.Boolean Equals(System.Decimal primitive) {
     return Value.Equals(primitive);
  }
-
+ 
  public override global::System.Boolean Equals(global::System.Object obj)
  {
-     if (ReferenceEquals(null, obj))
-     {
-         return false;
-     }
-
-     if (ReferenceEquals(this, obj))
-     {
-         return true;
-     }
-
-     if (obj.GetType() != GetType())
-     {
-         return false;
-     }
-
-     return Equals((internal_partial_classConversions_NewtonsoftJson___Conversions_SystemTextJsondecimal) obj);
+     return Equals(obj as internal_partial_classConversions_NewtonsoftJson___Conversions_SystemTextJsondecimal);
  }
 
         public static global::System.Boolean operator ==(internal_partial_classConversions_NewtonsoftJson___Conversions_SystemTextJsondecimal left, internal_partial_classConversions_NewtonsoftJson___Conversions_SystemTextJsondecimal right) => Equals(left, right);

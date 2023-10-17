@@ -123,7 +123,6 @@ public global::System.Boolean Equals(public_readonly_partial_structConversions_E
   public readonly global::System.Boolean Equals(System.Int32 primitive) {
     return Value.Equals(primitive);
  }
-
 public readonly override global::System.Boolean Equals(global::System.Object obj)
 {
     return obj is public_readonly_partial_structConversions_EfCoreValueConverterint && Equals((public_readonly_partial_structConversions_EfCoreValueConverterint) obj);

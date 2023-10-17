@@ -114,24 +114,24 @@ public System.String Value
             }
         }
         
-        public static readonly global::System.Collections.Generic.IEqualityComparer<StringThing> Ordinal =
+        public static global::System.Collections.Generic.IEqualityComparer<StringThing> Ordinal =>
                new __StringEqualityComparer(global::System.StringComparer.Ordinal); 
 
-        public static readonly global::System.Collections.Generic.IEqualityComparer<StringThing> OrdinalIgnoreCase =
+        public static global::System.Collections.Generic.IEqualityComparer<StringThing> OrdinalIgnoreCase =>
                new __StringEqualityComparer(global::System.StringComparer.OrdinalIgnoreCase); 
 
-        public static readonly global::System.Collections.Generic.IEqualityComparer<StringThing> CurrentCulture =
+        public static global::System.Collections.Generic.IEqualityComparer<StringThing> CurrentCulture =>
                new __StringEqualityComparer(global::System.StringComparer.CurrentCulture); 
 
-        public static readonly global::System.Collections.Generic.IEqualityComparer<StringThing> CurrentCultureIgnoreCase =
+        public static global::System.Collections.Generic.IEqualityComparer<StringThing> CurrentCultureIgnoreCase =>
                new __StringEqualityComparer(global::System.StringComparer.CurrentCultureIgnoreCase); 
 
-        public static readonly global::System.Collections.Generic.IEqualityComparer<StringThing> InvariantCulture =
+        public static global::System.Collections.Generic.IEqualityComparer<StringThing> InvariantCulture =>
                new __StringEqualityComparer(global::System.StringComparer.InvariantCulture); 
 
-        public static readonly global::System.Collections.Generic.IEqualityComparer<StringThing> InvariantCultureIgnoreCase =
+        public static global::System.Collections.Generic.IEqualityComparer<StringThing> InvariantCultureIgnoreCase =>
                new __StringEqualityComparer(global::System.StringComparer.InvariantCultureIgnoreCase);
-   }         
+   }   
 
         // only called internally when something has been deserialized into
         // its primitive type.
@@ -150,7 +150,7 @@ public System.String Value
             return new StringThing(value);
         }
          
- public global::System.Boolean Equals(StringThing other)
+ public  global::System.Boolean Equals(StringThing other)
  {
      if (ReferenceEquals(null, other))
      {
@@ -179,25 +179,10 @@ public global::System.Boolean Equals(StringThing other, global::System.Collectio
  }    public global::System.Boolean Equals(System.String primitive, global::System.StringComparer comparer) {
         return comparer.Equals(Value, primitive);
     }
-
+ 
  public override global::System.Boolean Equals(global::System.Object obj)
  {
-     if (ReferenceEquals(null, obj))
-     {
-         return false;
-     }
-
-     if (ReferenceEquals(this, obj))
-     {
-         return true;
-     }
-
-     if (obj.GetType() != GetType())
-     {
-         return false;
-     }
-
-     return Equals((StringThing) obj);
+     return Equals(obj as StringThing);
  }
 
         public static global::System.Boolean operator ==(StringThing left, StringThing right) => Equals(left, right);

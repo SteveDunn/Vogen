@@ -18,7 +18,7 @@ using Vogen;
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute(""{Util.GenerateYourAssemblyName()}"", ""{Util.GenerateYourAssemblyVersion()}"")]
     {Util.GenerateAnyConversionAttributes(tds, item)}
     {Util.GenerateDebugAttributes(item, structName, itemUnderlyingType)}
-    { Util.GenerateModifiersFor(tds)} record struct {structName} {GenerateComparableCode.GenerateIComparableHeaderIfNeeded(" : ", item, tds)}
+    { Util.GenerateModifiersFor(tds)} record struct {structName} : global::System.IEquatable<{structName}>, global::System.IEquatable<{itemUnderlyingType}> {GenerateComparableCode.GenerateIComparableHeaderIfNeeded(", ", item, tds)}
     {{
 #if DEBUG    
         private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
@@ -39,6 +39,7 @@ using Vogen;
                 EnsureInitialized();
                 return _value;
             }}
+            [global::System.Diagnostics.DebuggerStepThroughAttribute]
             init
             {{
                 {GenerateNullCheckIfNeeded(item)}
@@ -85,11 +86,10 @@ using Vogen;
 
             return instance;
         }}
+{GenerateEqualsAndHashCodes.GenerateStringComparersIfNeeded(item, tds)}        
 
         public static explicit operator {structName}({itemUnderlyingType} value) => From(value);
         public static explicit operator {itemUnderlyingType}({structName} value) => value.Value;
-
-        {GenerateComparableCode.GenerateIComparableImplementationIfNeeded(item, tds)}
 
         // only called internally when something has been deserialized into
         // its primitive type.
@@ -101,6 +101,18 @@ using Vogen;
 
             return new {structName}(value);
         }}
+        {GenerateEqualsAndHashCodes.GenerateEqualsForAStruct(item, tds)}
+
+        public static global::System.Boolean operator ==({structName} left, {itemUnderlyingType} right) => Equals(left.Value, right);
+        public static global::System.Boolean operator !=({structName} left, {itemUnderlyingType} right) => !Equals(left.Value, right);
+
+        public static global::System.Boolean operator ==({itemUnderlyingType} left, {structName} right) => Equals(left, right.Value);
+        public static global::System.Boolean operator !=({itemUnderlyingType} left, {structName} right) => !Equals(left, right.Value);
+
+        {GenerateComparableCode.GenerateIComparableImplementationIfNeeded(item, tds)}
+
+        {TryParseGeneration.GenerateTryParseIfNeeded(item)}
+{GenerateEqualsAndHashCodes.GenerateGetHashCodeForAStruct(item)}
 
         private readonly void EnsureInitialized()
         {{
@@ -117,9 +129,9 @@ using Vogen;
         }}
 
         // record enumerates fields - we just want our Value and to throw if it's not initialized.
-        {Util.GenerateToString(item)}
+        {Util.GenerateToStringReadOnly(item)}
 
-        { InstanceGeneration.GenerateAnyInstances(tds, item)}
+        {InstanceGeneration.GenerateAnyInstances(tds, item)}
  
         {Util.GenerateAnyConversionBodies(tds, item)}
 

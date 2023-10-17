@@ -91,7 +91,7 @@ public System.Single Value
 
             return instance;
         }
-        
+  
 
         // only called internally when something has been deserialized into
         // its primitive type.
@@ -107,7 +107,7 @@ public System.Single Value
             return new public_sealed_partial_classfloat(value);
         }
          
- public global::System.Boolean Equals(public_sealed_partial_classfloat other)
+ public  global::System.Boolean Equals(public_sealed_partial_classfloat other)
  {
      if (ReferenceEquals(null, other))
      {
@@ -134,25 +134,10 @@ public global::System.Boolean Equals(public_sealed_partial_classfloat other, glo
   public global::System.Boolean Equals(System.Single primitive) {
     return Value.Equals(primitive);
  }
-
+ 
  public override global::System.Boolean Equals(global::System.Object obj)
  {
-     if (ReferenceEquals(null, obj))
-     {
-         return false;
-     }
-
-     if (ReferenceEquals(this, obj))
-     {
-         return true;
-     }
-
-     if (obj.GetType() != GetType())
-     {
-         return false;
-     }
-
-     return Equals((public_sealed_partial_classfloat) obj);
+     return Equals(obj as public_sealed_partial_classfloat);
  }
 
         public static global::System.Boolean operator ==(public_sealed_partial_classfloat left, public_sealed_partial_classfloat right) => Equals(left, right);

@@ -90,7 +90,7 @@ public System.Boolean Value
 
             return instance;
         }
-        
+  
 
         // only called internally when something has been deserialized into
         // its primitive type.
@@ -105,7 +105,7 @@ public System.Boolean Value
             return new stj_number_as_string_public_partial_classConversions_NewtonsoftJsonbool_customized(value);
         }
          
- public global::System.Boolean Equals(stj_number_as_string_public_partial_classConversions_NewtonsoftJsonbool_customized other)
+ public  global::System.Boolean Equals(stj_number_as_string_public_partial_classConversions_NewtonsoftJsonbool_customized other)
  {
      if (ReferenceEquals(null, other))
      {
@@ -132,25 +132,10 @@ public global::System.Boolean Equals(stj_number_as_string_public_partial_classCo
   public global::System.Boolean Equals(System.Boolean primitive) {
     return Value.Equals(primitive);
  }
-
+ 
  public override global::System.Boolean Equals(global::System.Object obj)
  {
-     if (ReferenceEquals(null, obj))
-     {
-         return false;
-     }
-
-     if (ReferenceEquals(this, obj))
-     {
-         return true;
-     }
-
-     if (obj.GetType() != GetType())
-     {
-         return false;
-     }
-
-     return Equals((stj_number_as_string_public_partial_classConversions_NewtonsoftJsonbool_customized) obj);
+     return Equals(obj as stj_number_as_string_public_partial_classConversions_NewtonsoftJsonbool_customized);
  }
 
         public static global::System.Boolean operator ==(stj_number_as_string_public_partial_classConversions_NewtonsoftJsonbool_customized left, stj_number_as_string_public_partial_classConversions_NewtonsoftJsonbool_customized right) => Equals(left, right);

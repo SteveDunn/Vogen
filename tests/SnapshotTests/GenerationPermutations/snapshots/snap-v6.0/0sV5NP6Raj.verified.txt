@@ -124,7 +124,6 @@ public global::System.Boolean Equals(internal_partial_structConversions_Newtonso
   public readonly global::System.Boolean Equals(System.Byte primitive) {
     return Value.Equals(primitive);
  }
-
 public readonly override global::System.Boolean Equals(global::System.Object obj)
 {
     return obj is internal_partial_structConversions_NewtonsoftJsonbyte && Equals((internal_partial_structConversions_NewtonsoftJsonbyte) obj);

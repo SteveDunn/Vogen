@@ -9,7 +9,7 @@ public class ClassGenerator : IGenerateSourceCode
         var className = tds.Identifier;
 
         var itemUnderlyingType = item.UnderlyingTypeFullName;
-        
+
         return $@"
 using Vogen;
 
@@ -74,7 +74,7 @@ public {itemUnderlyingType} Value
 
             return instance;
         }}
-{GenerateEqualsAndHashCodes.GenerateStringComparersIfNeeded(item, tds)}        
+{GenerateEqualsAndHashCodes.GenerateStringComparersIfNeeded(item, tds)}  
 
         // only called internally when something has been deserialized into
         // its primitive type.

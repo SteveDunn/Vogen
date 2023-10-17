@@ -89,7 +89,7 @@ public System.Byte Value
 
             return instance;
         }
-        
+  
 
         // only called internally when something has been deserialized into
         // its primitive type.
@@ -104,7 +104,7 @@ public System.Byte Value
             return new stj_number_as_string_public_partial_classConversions_Nonebyte(value);
         }
          
- public global::System.Boolean Equals(stj_number_as_string_public_partial_classConversions_Nonebyte other)
+ public  global::System.Boolean Equals(stj_number_as_string_public_partial_classConversions_Nonebyte other)
  {
      if (ReferenceEquals(null, other))
      {
@@ -131,25 +131,10 @@ public global::System.Boolean Equals(stj_number_as_string_public_partial_classCo
   public global::System.Boolean Equals(System.Byte primitive) {
     return Value.Equals(primitive);
  }
-
+ 
  public override global::System.Boolean Equals(global::System.Object obj)
  {
-     if (ReferenceEquals(null, obj))
-     {
-         return false;
-     }
-
-     if (ReferenceEquals(this, obj))
-     {
-         return true;
-     }
-
-     if (obj.GetType() != GetType())
-     {
-         return false;
-     }
-
-     return Equals((stj_number_as_string_public_partial_classConversions_Nonebyte) obj);
+     return Equals(obj as stj_number_as_string_public_partial_classConversions_Nonebyte);
  }
 
         public static global::System.Boolean operator ==(stj_number_as_string_public_partial_classConversions_Nonebyte left, stj_number_as_string_public_partial_classConversions_Nonebyte right) => Equals(left, right);

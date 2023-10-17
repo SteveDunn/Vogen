@@ -91,7 +91,7 @@ public System.Int32 Value
 
             return instance;
         }
-        
+  
 
         // only called internally when something has been deserialized into
         // its primitive type.
@@ -106,7 +106,7 @@ public System.Int32 Value
             return new partial_class_None(value);
         }
          
- public global::System.Boolean Equals(partial_class_None other)
+ public  global::System.Boolean Equals(partial_class_None other)
  {
      if (ReferenceEquals(null, other))
      {
@@ -133,25 +133,10 @@ public global::System.Boolean Equals(partial_class_None other, global::System.Co
   public global::System.Boolean Equals(System.Int32 primitive) {
     return Value.Equals(primitive);
  }
-
+ 
  public override global::System.Boolean Equals(global::System.Object obj)
  {
-     if (ReferenceEquals(null, obj))
-     {
-         return false;
-     }
-
-     if (ReferenceEquals(this, obj))
-     {
-         return true;
-     }
-
-     if (obj.GetType() != GetType())
-     {
-         return false;
-     }
-
-     return Equals((partial_class_None) obj);
+     return Equals(obj as partial_class_None);
  }
 
         public static global::System.Boolean operator ==(partial_class_None left, partial_class_None right) => Equals(left, right);

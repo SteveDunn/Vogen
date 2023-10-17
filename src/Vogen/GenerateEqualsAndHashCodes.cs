@@ -7,10 +7,12 @@ public static class GenerateEqualsAndHashCodes
     public static string GenerateEqualsForAClass(VoWorkItem item, TypeDeclarationSyntax tds)
     {
         var className = tds.Identifier;
+        
+        string virtualKeyword = item is { IsRecordClass: true, IsSealed: false } ? "virtual " : " ";
 
-        return $$"""
+        var ret = $$"""
                   
-                  public global::System.Boolean Equals({{className}} other)
+                  public {{virtualKeyword}}global::System.Boolean Equals({{className}} other)
                   {
                       if (ReferenceEquals(null, other))
                       {
@@ -35,34 +37,28 @@ public static class GenerateEqualsAndHashCodes
                  }
                  
                   {{GenerateEqualsForUnderlyingMethod(item, isReadOnly: false)}}
-                 
-                  public override global::System.Boolean Equals(global::System.Object obj)
-                  {
-                      if (ReferenceEquals(null, obj))
-                      {
-                          return false;
-                      }
-                 
-                      if (ReferenceEquals(this, obj))
-                      {
-                          return true;
-                      }
-                 
-                      if (obj.GetType() != GetType())
-                      {
-                          return false;
-                      }
-                 
-                      return Equals(({{className}}) obj);
-                  }
+                  
                  """;
+
+        if (!item.IsRecordClass)
+        {
+            ret += $$"""
+                     
+                      public override global::System.Boolean Equals(global::System.Object obj)
+                      {
+                          return Equals(obj as {{className}});
+                      }
+                     """;
+        }
+
+        return ret;
     }
 
     public static string GenerateEqualsForAStruct(VoWorkItem item, TypeDeclarationSyntax tds)
     {
         var structName = tds.Identifier;
 
-        return $$"""
+        var ret = $$"""
 
                  public readonly global::System.Boolean Equals({{structName}} other)
                  {
@@ -79,12 +75,20 @@ public static class GenerateEqualsAndHashCodes
                  }
                  
                   {{GenerateEqualsForUnderlyingMethod(item, isReadOnly: true)}}
-                 
-                 public readonly override global::System.Boolean Equals(global::System.Object obj)
-                 {
-                     return obj is {{structName}} && Equals(({{structName}}) obj);
-                 }
                  """;
+
+        if (!item.IsRecordStruct)
+        {
+            ret += $$"""
+
+                     public readonly override global::System.Boolean Equals(global::System.Object obj)
+                     {
+                         return obj is {{structName}} && Equals(({{structName}}) obj);
+                     }
+                     """;
+        }
+
+        return ret;
     }
 
     public static string GenerateGetHashCodeForAClass(VoWorkItem item)
@@ -169,22 +173,22 @@ public static class GenerateEqualsAndHashCodes
                              }
                          }
                          
-                         public static readonly global::System.Collections.Generic.IEqualityComparer<{{tds.Identifier}}> Ordinal =
+                         public static global::System.Collections.Generic.IEqualityComparer<{{tds.Identifier}}> Ordinal =>
                                 new __StringEqualityComparer(global::System.StringComparer.Ordinal); 
 
-                         public static readonly global::System.Collections.Generic.IEqualityComparer<{{tds.Identifier}}> OrdinalIgnoreCase =
+                         public static global::System.Collections.Generic.IEqualityComparer<{{tds.Identifier}}> OrdinalIgnoreCase =>
                                 new __StringEqualityComparer(global::System.StringComparer.OrdinalIgnoreCase); 
 
-                         public static readonly global::System.Collections.Generic.IEqualityComparer<{{tds.Identifier}}> CurrentCulture =
+                         public static global::System.Collections.Generic.IEqualityComparer<{{tds.Identifier}}> CurrentCulture =>
                                 new __StringEqualityComparer(global::System.StringComparer.CurrentCulture); 
 
-                         public static readonly global::System.Collections.Generic.IEqualityComparer<{{tds.Identifier}}> CurrentCultureIgnoreCase =
+                         public static global::System.Collections.Generic.IEqualityComparer<{{tds.Identifier}}> CurrentCultureIgnoreCase =>
                                 new __StringEqualityComparer(global::System.StringComparer.CurrentCultureIgnoreCase); 
 
-                         public static readonly global::System.Collections.Generic.IEqualityComparer<{{tds.Identifier}}> InvariantCulture =
+                         public static global::System.Collections.Generic.IEqualityComparer<{{tds.Identifier}}> InvariantCulture =>
                                 new __StringEqualityComparer(global::System.StringComparer.InvariantCulture); 
 
-                         public static readonly global::System.Collections.Generic.IEqualityComparer<{{tds.Identifier}}> InvariantCultureIgnoreCase =
+                         public static global::System.Collections.Generic.IEqualityComparer<{{tds.Identifier}}> InvariantCultureIgnoreCase =>
                                 new __StringEqualityComparer(global::System.StringComparer.InvariantCultureIgnoreCase);
                     } 
                  """;

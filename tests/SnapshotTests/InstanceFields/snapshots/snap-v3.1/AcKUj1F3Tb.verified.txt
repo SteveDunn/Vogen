@@ -91,7 +91,7 @@ public System.Int64 Value
 
             return instance;
         }
-        
+  
 
         // only called internally when something has been deserialized into
         // its primitive type.
@@ -107,7 +107,7 @@ public System.Int64 Value
             return new public_partial_classlong(value);
         }
          
- public global::System.Boolean Equals(public_partial_classlong other)
+ public  global::System.Boolean Equals(public_partial_classlong other)
  {
      if (ReferenceEquals(null, other))
      {
@@ -134,25 +134,10 @@ public global::System.Boolean Equals(public_partial_classlong other, global::Sys
   public global::System.Boolean Equals(System.Int64 primitive) {
     return Value.Equals(primitive);
  }
-
+ 
  public override global::System.Boolean Equals(global::System.Object obj)
  {
-     if (ReferenceEquals(null, obj))
-     {
-         return false;
-     }
-
-     if (ReferenceEquals(this, obj))
-     {
-         return true;
-     }
-
-     if (obj.GetType() != GetType())
-     {
-         return false;
-     }
-
-     return Equals((public_partial_classlong) obj);
+     return Equals(obj as public_partial_classlong);
  }
 
         public static global::System.Boolean operator ==(public_partial_classlong left, public_partial_classlong right) => Equals(left, right);

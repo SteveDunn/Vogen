@@ -89,7 +89,7 @@ public System.DateTime Value
 
             return instance;
         }
-        
+  
 
         // only called internally when something has been deserialized into
         // its primitive type.
@@ -104,7 +104,7 @@ public System.DateTime Value
             return new internal_sealed_partial_classConversions_EfCoreValueConverterSystem_DateTime(value);
         }
          
- public global::System.Boolean Equals(internal_sealed_partial_classConversions_EfCoreValueConverterSystem_DateTime other)
+ public  global::System.Boolean Equals(internal_sealed_partial_classConversions_EfCoreValueConverterSystem_DateTime other)
  {
      if (ReferenceEquals(null, other))
      {
@@ -131,25 +131,10 @@ public global::System.Boolean Equals(internal_sealed_partial_classConversions_Ef
   public global::System.Boolean Equals(System.DateTime primitive) {
     return Value.Equals(primitive);
  }
-
+ 
  public override global::System.Boolean Equals(global::System.Object obj)
  {
-     if (ReferenceEquals(null, obj))
-     {
-         return false;
-     }
-
-     if (ReferenceEquals(this, obj))
-     {
-         return true;
-     }
-
-     if (obj.GetType() != GetType())
-     {
-         return false;
-     }
-
-     return Equals((internal_sealed_partial_classConversions_EfCoreValueConverterSystem_DateTime) obj);
+     return Equals(obj as internal_sealed_partial_classConversions_EfCoreValueConverterSystem_DateTime);
  }
 
         public static global::System.Boolean operator ==(internal_sealed_partial_classConversions_EfCoreValueConverterSystem_DateTime left, internal_sealed_partial_classConversions_EfCoreValueConverterSystem_DateTime right) => Equals(left, right);

@@ -126,7 +126,6 @@ public global::System.Boolean Equals(internal_readonly_partial_structdouble othe
   public readonly global::System.Boolean Equals(System.Double primitive) {
     return Value.Equals(primitive);
  }
-
 public readonly override global::System.Boolean Equals(global::System.Object obj)
 {
     return obj is internal_readonly_partial_structdouble && Equals((internal_readonly_partial_structdouble) obj);

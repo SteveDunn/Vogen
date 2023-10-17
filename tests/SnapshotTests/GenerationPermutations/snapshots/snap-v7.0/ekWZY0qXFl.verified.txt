@@ -89,7 +89,7 @@ public System.Char Value
 
             return instance;
         }
-        
+  
 
         // only called internally when something has been deserialized into
         // its primitive type.
@@ -104,7 +104,7 @@ public System.Char Value
             return new public_sealed_partial_classConversions_EfCoreValueConverterchar(value);
         }
          
- public global::System.Boolean Equals(public_sealed_partial_classConversions_EfCoreValueConverterchar other)
+ public  global::System.Boolean Equals(public_sealed_partial_classConversions_EfCoreValueConverterchar other)
  {
      if (ReferenceEquals(null, other))
      {
@@ -131,25 +131,10 @@ public global::System.Boolean Equals(public_sealed_partial_classConversions_EfCo
   public global::System.Boolean Equals(System.Char primitive) {
     return Value.Equals(primitive);
  }
-
+ 
  public override global::System.Boolean Equals(global::System.Object obj)
  {
-     if (ReferenceEquals(null, obj))
-     {
-         return false;
-     }
-
-     if (ReferenceEquals(this, obj))
-     {
-         return true;
-     }
-
-     if (obj.GetType() != GetType())
-     {
-         return false;
-     }
-
-     return Equals((public_sealed_partial_classConversions_EfCoreValueConverterchar) obj);
+     return Equals(obj as public_sealed_partial_classConversions_EfCoreValueConverterchar);
  }
 
         public static global::System.Boolean operator ==(public_sealed_partial_classConversions_EfCoreValueConverterchar left, public_sealed_partial_classConversions_EfCoreValueConverterchar right) => Equals(left, right);

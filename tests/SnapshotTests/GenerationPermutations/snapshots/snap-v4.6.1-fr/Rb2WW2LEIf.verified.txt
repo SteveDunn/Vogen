@@ -33,7 +33,7 @@ namespace Whatever
     
     [global::System.Diagnostics.DebuggerTypeProxyAttribute(typeof(public_partial_record_classConversions_NoneSystem_DateTimeDebugView))]
     [global::System.Diagnostics.DebuggerDisplayAttribute("Underlying type: System.DateTime, Value = { _value }")]
-    public partial record class public_partial_record_classConversions_NoneSystem_DateTime  :  global::System.IComparable<public_partial_record_classConversions_NoneSystem_DateTime>, global::System.IComparable
+    public partial record class public_partial_record_classConversions_NoneSystem_DateTime : global::System.IEquatable<public_partial_record_classConversions_NoneSystem_DateTime>, global::System.IEquatable<System.DateTime> ,  global::System.IComparable<public_partial_record_classConversions_NoneSystem_DateTime>, global::System.IComparable
     {
 #if DEBUG    
         private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
@@ -100,16 +100,7 @@ namespace Whatever
 
             return instance;
         }
-
-        public static explicit operator public_partial_record_classConversions_NoneSystem_DateTime(System.DateTime value) => From(value);
-        public static explicit operator System.DateTime(public_partial_record_classConversions_NoneSystem_DateTime value) => value.Value;
-
-        public int CompareTo(public_partial_record_classConversions_NoneSystem_DateTime other) => Value.CompareTo(other.Value);
-        public int CompareTo(object other) {
-            if(other == null) return 1;
-            if(other is public_partial_record_classConversions_NoneSystem_DateTime x) return CompareTo(x);
-            throw new global::System.ArgumentException("Cannot compare to object as it is not of type public_partial_record_classConversions_NoneSystem_DateTime", nameof(other));
-        }
+  
 
         // only called internally when something has been deserialized into
         // its primitive type.
@@ -123,6 +114,61 @@ namespace Whatever
 
             return new public_partial_record_classConversions_NoneSystem_DateTime(value);
         }
+         
+ public virtual global::System.Boolean Equals(public_partial_record_classConversions_NoneSystem_DateTime other)
+ {
+     if (ReferenceEquals(null, other))
+     {
+         return false;
+     }
+
+     // It's possible to create uninitialized instances via converters such as EfCore (HasDefaultValue), which call Equals.
+     // We treat anything uninitialized as not equal to anything, even other uninitialized instances of this type.
+     if(!_isInitialized || !other._isInitialized) return false;
+
+     if (ReferenceEquals(this, other))
+     {
+         return true;
+     }
+
+     return GetType() == other.GetType() && global::System.Collections.Generic.EqualityComparer<System.DateTime>.Default.Equals(Value, other.Value);
+ }
+
+public global::System.Boolean Equals(public_partial_record_classConversions_NoneSystem_DateTime other, global::System.Collections.Generic.IEqualityComparer<public_partial_record_classConversions_NoneSystem_DateTime> comparer)
+{
+    return comparer.Equals(this, other);
+}
+
+  public global::System.Boolean Equals(System.DateTime primitive) {
+    return Value.Equals(primitive);
+ }
+ 
+
+        public static global::System.Boolean operator ==(public_partial_record_classConversions_NoneSystem_DateTime left, System.DateTime right) => Equals(left.Value, right);
+        public static global::System.Boolean operator !=(public_partial_record_classConversions_NoneSystem_DateTime left, System.DateTime right) => !Equals(left.Value, right);
+
+        public static global::System.Boolean operator ==(System.DateTime left, public_partial_record_classConversions_NoneSystem_DateTime right) => Equals(left, right.Value);
+        public static global::System.Boolean operator !=(System.DateTime left, public_partial_record_classConversions_NoneSystem_DateTime right) => !Equals(left, right.Value);
+
+        public static explicit operator public_partial_record_classConversions_NoneSystem_DateTime(System.DateTime value) => From(value);
+        public static explicit operator System.DateTime(public_partial_record_classConversions_NoneSystem_DateTime value) => value.Value;
+
+        public int CompareTo(public_partial_record_classConversions_NoneSystem_DateTime other) => Value.CompareTo(other.Value);
+        public int CompareTo(object other) {
+            if(other == null) return 1;
+            if(other is public_partial_record_classConversions_NoneSystem_DateTime x) return CompareTo(x);
+            throw new global::System.ArgumentException("Cannot compare to object as it is not of type public_partial_record_classConversions_NoneSystem_DateTime", nameof(other));
+        }
+    public override global::System.Int32 GetHashCode()
+    {
+        unchecked // Overflow is fine, just wrap
+        {
+            global::System.Int32 hash = (global::System.Int32) 2166136261;
+            hash = (hash * 16777619) ^ GetType().GetHashCode();
+            hash = (hash * 16777619) ^ global::System.Collections.Generic.EqualityComparer<System.DateTime>.Default.GetHashCode(Value);
+            return hash;
+        }
+    }
 
         private void EnsureInitialized()
         {
