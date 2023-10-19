@@ -3,7 +3,6 @@ using Xunit.Abstractions;
 
 namespace ConsumerTests.StringComparisons;
 
-
 [Collection("Sequential")]
 [UseCulture("tr-TR")]
 public class LocaleTests

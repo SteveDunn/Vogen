@@ -1,4 +1,5 @@
-﻿using ConsumerTests.StringComparisons;
+﻿using System.Runtime.InteropServices;
+using ConsumerTests.StringComparisons;
 using FluentAssertions.Execution;
 
 namespace ConsumerTests.StringComparisons;
@@ -73,6 +74,21 @@ public class ForRecordStructs
             d.Add(key1Lower, 1);
             d.Should().ContainKey(key2Mixed);
         }
+
+        [Fact]
+        public void Size_is_not_bigger()
+        {
+            var s1 = Marshal.SizeOf<StringVo_RecordStruct_NothingSpecified>();
+            var s2 = Marshal.SizeOf<StringVo_RecordStruct>();
+
+            s1.Should().Be(s2);
+
+            var s3 = Marshal.SizeOf<StringVo_ReadOnly_RecordStruct_NothingSpecified>();
+            var s4 = Marshal.SizeOf<StringVo_ReadOnly_RecordStruct>();
+
+            s3.Should().Be(s4);
+        }
+
     }
 
     public class MyComparer : IEqualityComparer<StringVo_RecordStruct_NothingSpecified>

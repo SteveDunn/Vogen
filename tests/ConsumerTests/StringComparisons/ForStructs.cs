@@ -1,4 +1,5 @@
-﻿using FluentAssertions.Execution;
+﻿using System.Runtime.InteropServices;
+using FluentAssertions.Execution;
 
 namespace ConsumerTests.StringComparisons;
 
@@ -31,6 +32,21 @@ public class ForStructs
         StringVo_Struct right = StringVo_Struct.From("AbC");
 
         left.Equals(right, StringVo_Struct.Comparers.OrdinalIgnoreCase).Should().BeTrue();
+        (left.GetHashCode() != right.GetHashCode()).Should().BeTrue();
+
+        left.Should().NotBe(right);
+        (left == right).Should().BeFalse();
+    }
+
+    [Fact]
+    public void OrdinalIgnoreCase_For_ReadOnly_Struct()
+    {
+        using var _ = new AssertionScope();
+
+        StringVo_ReadOnly_Struct left = StringVo_ReadOnly_Struct.From("abc");
+        StringVo_ReadOnly_Struct right = StringVo_ReadOnly_Struct.From("AbC");
+
+        left.Equals(right, StringVo_ReadOnly_Struct.Comparers.OrdinalIgnoreCase).Should().BeTrue();
         (left.GetHashCode() != right.GetHashCode()).Should().BeTrue();
 
         left.Should().NotBe(right);
@@ -70,20 +86,21 @@ public class ForStructs
         d.Add(key1Lower, 1);
         d.Should().ContainKey(key2Mixed);
     }
+
+    [Fact]
+    public void Size_is_not_bigger()
+    {
+        var s1 = Marshal.SizeOf<StringVo_Struct_NothingSpecified>();
+        var s2 = Marshal.SizeOf<StringVo_Struct>();
+
+        s1.Should().Be(s2);
+    }
 }
 
 public class MyComparer_Class : IEqualityComparer<StringVo_Struct_NothingSpecified>
 {
-    public bool Equals(StringVo_Struct_NothingSpecified? x, StringVo_Struct_NothingSpecified? y) =>
-        StringComparer.OrdinalIgnoreCase.Equals(x?.Value, y?.Value);
+    public bool Equals(StringVo_Struct_NothingSpecified x, StringVo_Struct_NothingSpecified y) =>
+        StringComparer.OrdinalIgnoreCase.Equals(x.Value, y.Value);
 
     public int GetHashCode(StringVo_Struct_NothingSpecified obj) => StringComparer.OrdinalIgnoreCase.GetHashCode(obj.Value);
-}
-
-public class MyComparer_RecordClass : IEqualityComparer<StringVo_RecordClass_NothingSpecified>
-{
-    public bool Equals(StringVo_RecordClass_NothingSpecified? x, StringVo_RecordClass_NothingSpecified? y) =>
-        StringComparer.OrdinalIgnoreCase.Equals(x?.Value, y?.Value);
-
-    public int GetHashCode(StringVo_RecordClass_NothingSpecified obj) => StringComparer.OrdinalIgnoreCase.GetHashCode(obj.Value);
 }

@@ -64,7 +64,7 @@ internal static class Templates
             if (nts.IsSpecialName)
             {
                 var s = nts.Name;
-                var underscore = s.IndexOf("_", System.StringComparison.OrdinalIgnoreCase);
+                var underscore = s.IndexOf("_", StringComparison.OrdinalIgnoreCase);
                 if (underscore >= s.Length - 1)
                 {
                     return s;
@@ -93,7 +93,7 @@ internal static class Templates
             if (nts.SpecialType != SpecialType.None)
             {
                 var s = nts.SpecialType.ToString();
-                var underscore = s.IndexOf("_", System.StringComparison.OrdinalIgnoreCase);
+                var underscore = s.IndexOf("_", StringComparison.OrdinalIgnoreCase);
                 if (underscore >= s.Length - 1)
                 {
                     return s;

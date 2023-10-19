@@ -16,7 +16,17 @@ public partial record struct StringVo_RecordStruct_NothingSpecified
 }
 
 [ValueObject(typeof(string), stringComparers: StringComparersGeneration.Omit)]
-public partial class StringVo_Struct_NothingSpecified
+public partial struct StringVo_Struct_NothingSpecified
+{
+}
+
+[ValueObject(typeof(string), stringComparers: StringComparersGeneration.Omit)]
+public readonly partial struct StringVo_ReadOnly_Struct_NothingSpecified
+{
+}
+
+[ValueObject(typeof(string), stringComparers: StringComparersGeneration.Generate)]
+public readonly partial struct StringVo_ReadOnly_Struct
 {
 }
 
@@ -33,6 +43,16 @@ public partial class StringVo_RecordClass
 
 [ValueObject(typeof(string), stringComparers: StringComparersGeneration.Generate)]
 public partial record struct StringVo_RecordStruct
+{
+}
+
+[ValueObject(typeof(string), stringComparers: StringComparersGeneration.Generate)]
+public readonly partial record struct StringVo_ReadOnly_RecordStruct
+{
+}
+
+[ValueObject(typeof(string), stringComparers: StringComparersGeneration.Omit)]
+public readonly partial record struct StringVo_ReadOnly_RecordStruct_NothingSpecified
 {
 }
 

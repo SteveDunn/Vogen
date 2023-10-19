@@ -1,6 +1,8 @@
 ﻿using @double;
 using @bool.@byte.@short.@float.@object;
 using Vogen.Tests.Types;
+// ReSharper disable EqualExpressionComparison
+// ReSharper disable MemberCanBeFileLocal
 
 namespace ConsumerTests.HashCodes;
 
@@ -45,16 +47,6 @@ public class HashCodeTests
             (@event2.From(new @record.@struct.@float.@decimal()).GetHashCode() == @event2.From(new @record.@struct.@float.@decimal()).GetHashCode()).Should().BeTrue();
         }
 
-        public struct R1
-        {
-            public int Value { get; set; }
-        }        
-
-        public struct R2
-        {
-            public int Value { get; set; }
-        }        
-        
         [Fact]
         public void SameStructsHaveSameHashCode()
         {
