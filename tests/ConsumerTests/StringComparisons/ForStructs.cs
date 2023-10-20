@@ -87,9 +87,11 @@ public class ForStructs
         d.Should().ContainKey(key2Mixed);
     }
 
-    [Fact]
+    [SkippableFact]
     public void Size_is_not_bigger()
     {
+        Skip.IfNot(RuntimeInformation.IsOSPlatform(OSPlatform.Windows));
+        
         var s1 = Marshal.SizeOf<StringVo_Struct_NothingSpecified>();
         var s2 = Marshal.SizeOf<StringVo_Struct>();
 
