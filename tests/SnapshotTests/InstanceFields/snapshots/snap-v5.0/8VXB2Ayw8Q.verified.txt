@@ -92,6 +92,7 @@ namespace Whatever
 
             return instance;
         }
+        
 
         public static explicit operator internal_partial_structlong(System.Int64 value) => From(value);
         public static explicit operator System.Int64(internal_partial_structlong value) => value.Value;
@@ -107,22 +108,28 @@ namespace Whatever
 
             return new internal_partial_structlong(value);
         }
+        
+public readonly global::System.Boolean Equals(internal_partial_structlong other)
+{
+    // It's possible to create uninitialized instances via converters such as EfCore (HasDefaultValue), which call Equals.
+    // We treat anything uninitialized as not equal to anything, even other uninitialized instances of this type.
+    if(!_isInitialized || !other._isInitialized) return false;
 
-        public readonly global::System.Boolean Equals(internal_partial_structlong other)
-        {
-            // It's possible to create uninitialized instances via converters such as EfCore (HasDefaultValue), which call Equals.
-            // We treat anything uninitialized as not equal to anything, even other uninitialized instances of this type.
-            if(!_isInitialized || !other._isInitialized) return false;
+    return global::System.Collections.Generic.EqualityComparer<System.Int64>.Default.Equals(Value, other.Value);
+}
 
-            return global::System.Collections.Generic.EqualityComparer<System.Int64>.Default.Equals(Value, other.Value);
-        }
+public global::System.Boolean Equals(internal_partial_structlong other, global::System.Collections.Generic.IEqualityComparer<internal_partial_structlong> comparer)
+{
+    return comparer.Equals(this, other);
+}
 
-        public readonly global::System.Boolean Equals(System.Int64 primitive) => Value.Equals(primitive);
-
-        public readonly override global::System.Boolean Equals(global::System.Object obj)
-        {
-            return obj is internal_partial_structlong && Equals((internal_partial_structlong) obj);
-        }
+  public readonly global::System.Boolean Equals(System.Int64 primitive) {
+    return Value.Equals(primitive);
+ }
+public readonly override global::System.Boolean Equals(global::System.Object obj)
+{
+    return obj is internal_partial_structlong && Equals((internal_partial_structlong) obj);
+}
 
         public static global::System.Boolean operator ==(internal_partial_structlong left, internal_partial_structlong right) => Equals(left, right);
         public static global::System.Boolean operator !=(internal_partial_structlong left, internal_partial_structlong right) => !(left == right);
@@ -225,8 +232,10 @@ namespace Whatever
         return false;
     }
 
-
-        public readonly override global::System.Int32 GetHashCode() => global::System.Collections.Generic.EqualityComparer<System.Int64>.Default.GetHashCode(_value);
+    public readonly override global::System.Int32 GetHashCode()
+    {
+        return global::System.Collections.Generic.EqualityComparer<System.Int64>.Default.GetHashCode(Value);
+    }
 
         /// <summary>Returns the string representation of the underlying type</summary>
     /// <inheritdoc cref="System.Int64.ToString()" />

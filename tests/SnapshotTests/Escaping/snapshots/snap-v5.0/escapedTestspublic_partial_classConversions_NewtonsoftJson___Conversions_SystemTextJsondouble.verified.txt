@@ -91,6 +91,7 @@ public System.Double Value
 
             return instance;
         }
+  
 
         // only called internally when something has been deserialized into
         // its primitive type.
@@ -104,47 +105,39 @@ public System.Double Value
 
             return new escapedTestspublic_partial_classConversions_NewtonsoftJson___Conversions_SystemTextJsondouble(value);
         }
+         
+ public  global::System.Boolean Equals(escapedTestspublic_partial_classConversions_NewtonsoftJson___Conversions_SystemTextJsondouble other)
+ {
+     if (ReferenceEquals(null, other))
+     {
+         return false;
+     }
 
-        public global::System.Boolean Equals(escapedTestspublic_partial_classConversions_NewtonsoftJson___Conversions_SystemTextJsondouble other)
-        {
-            if (ReferenceEquals(null, other))
-            {
-                return false;
-            }
+     // It's possible to create uninitialized instances via converters such as EfCore (HasDefaultValue), which call Equals.
+     // We treat anything uninitialized as not equal to anything, even other uninitialized instances of this type.
+     if(!_isInitialized || !other._isInitialized) return false;
 
-            // It's possible to create uninitialized instances via converters such as EfCore (HasDefaultValue), which call Equals.
-            // We treat anything uninitialized as not equal to anything, even other uninitialized instances of this type.
-            if(!_isInitialized || !other._isInitialized) return false;
-	    	
-            if (ReferenceEquals(this, other))
-            {
-                return true;
-            }
+     if (ReferenceEquals(this, other))
+     {
+         return true;
+     }
 
-            return GetType() == other.GetType() && global::System.Collections.Generic.EqualityComparer<System.Double>.Default.Equals(Value, other.Value);
-        }
+     return GetType() == other.GetType() && global::System.Collections.Generic.EqualityComparer<System.Double>.Default.Equals(Value, other.Value);
+ }
 
-        public global::System.Boolean Equals(System.Double primitive) => Value.Equals(primitive);
+public global::System.Boolean Equals(escapedTestspublic_partial_classConversions_NewtonsoftJson___Conversions_SystemTextJsondouble other, global::System.Collections.Generic.IEqualityComparer<escapedTestspublic_partial_classConversions_NewtonsoftJson___Conversions_SystemTextJsondouble> comparer)
+{
+    return comparer.Equals(this, other);
+}
 
-        public override global::System.Boolean Equals(global::System.Object obj)
-        {
-            if (ReferenceEquals(null, obj))
-            {
-                return false;
-            }
-
-            if (ReferenceEquals(this, obj))
-            {
-                return true;
-            }
-
-            if (obj.GetType() != GetType())
-            {
-                return false;
-            }
-
-            return Equals((escapedTestspublic_partial_classConversions_NewtonsoftJson___Conversions_SystemTextJsondouble) obj);
-        }
+  public global::System.Boolean Equals(System.Double primitive) {
+    return Value.Equals(primitive);
+ }
+ 
+ public override global::System.Boolean Equals(global::System.Object obj)
+ {
+     return Equals(obj as escapedTestspublic_partial_classConversions_NewtonsoftJson___Conversions_SystemTextJsondouble);
+ }
 
         public static global::System.Boolean operator ==(escapedTestspublic_partial_classConversions_NewtonsoftJson___Conversions_SystemTextJsondouble left, escapedTestspublic_partial_classConversions_NewtonsoftJson___Conversions_SystemTextJsondouble right) => Equals(left, right);
         public static global::System.Boolean operator !=(escapedTestspublic_partial_classConversions_NewtonsoftJson___Conversions_SystemTextJsondouble left, escapedTestspublic_partial_classConversions_NewtonsoftJson___Conversions_SystemTextJsondouble right) => !Equals(left, right);
@@ -164,18 +157,16 @@ public System.Double Value
             if(other is escapedTestspublic_partial_classConversions_NewtonsoftJson___Conversions_SystemTextJsondouble x) return CompareTo(x);
             throw new global::System.ArgumentException("Cannot compare to object as it is not of type escapedTestspublic_partial_classConversions_NewtonsoftJson___Conversions_SystemTextJsondouble", nameof(other));
         }
-
-        public override global::System.Int32 GetHashCode()
+    public override global::System.Int32 GetHashCode()
+    {
+        unchecked // Overflow is fine, just wrap
         {
-            unchecked // Overflow is fine, just wrap
-            {
-                global::System.Int32 hash = (global::System.Int32) 2166136261;
-                hash = (hash * 16777619) ^ Value.GetHashCode();
-                hash = (hash * 16777619) ^ GetType().GetHashCode();
-                hash = (hash * 16777619) ^ global::System.Collections.Generic.EqualityComparer<System.Double>.Default.GetHashCode();
-                return hash;
-            }
+            global::System.Int32 hash = (global::System.Int32) 2166136261;
+            hash = (hash * 16777619) ^ GetType().GetHashCode();
+            hash = (hash * 16777619) ^ global::System.Collections.Generic.EqualityComparer<System.Double>.Default.GetHashCode(Value);
+            return hash;
         }
+    }
 
         private void EnsureInitialized()
         {

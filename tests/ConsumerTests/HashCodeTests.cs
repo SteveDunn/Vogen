@@ -1,6 +1,8 @@
 ﻿using @double;
 using @bool.@byte.@short.@float.@object;
 using Vogen.Tests.Types;
+// ReSharper disable EqualExpressionComparison
+// ReSharper disable MemberCanBeFileLocal
 
 namespace ConsumerTests.HashCodes;
 
@@ -26,7 +28,7 @@ public partial record class MyRecordClassInt2 { }
 
 [ValueObject(typeof(int))]
 public partial class MyClassInt2 { }
-    
+
 public class HashCodeTests
 {
     public class WithStructs

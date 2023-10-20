@@ -33,7 +33,7 @@ namespace @class
     
     [global::System.Diagnostics.DebuggerTypeProxyAttribute(typeof(escapedTestspublic_partial_recordConversions_Nonerecord__struct__float__event2DebugView))]
     [global::System.Diagnostics.DebuggerDisplayAttribute("Underlying type: @class.@record.@struct.@float.event2, Value = { _value }")]
-    public partial record class escapedTestspublic_partial_recordConversions_Nonerecord__struct__float__event2 
+    public partial record class escapedTestspublic_partial_recordConversions_Nonerecord__struct__float__event2 : global::System.IEquatable<escapedTestspublic_partial_recordConversions_Nonerecord__struct__float__event2>, global::System.IEquatable<@class.@record.@struct.@float.event2> 
     {
 #if DEBUG    
         private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
@@ -100,11 +100,7 @@ namespace @class
 
             return instance;
         }
-
-        public static explicit operator escapedTestspublic_partial_recordConversions_Nonerecord__struct__float__event2(@class.@record.@struct.@float.event2 value) => From(value);
-        public static explicit operator @class.@record.@struct.@float.event2(escapedTestspublic_partial_recordConversions_Nonerecord__struct__float__event2 value) => value.Value;
-
-        
+  
 
         // only called internally when something has been deserialized into
         // its primitive type.
@@ -118,6 +114,56 @@ namespace @class
 
             return new escapedTestspublic_partial_recordConversions_Nonerecord__struct__float__event2(value);
         }
+         
+ public virtual global::System.Boolean Equals(escapedTestspublic_partial_recordConversions_Nonerecord__struct__float__event2 other)
+ {
+     if (ReferenceEquals(null, other))
+     {
+         return false;
+     }
+
+     // It's possible to create uninitialized instances via converters such as EfCore (HasDefaultValue), which call Equals.
+     // We treat anything uninitialized as not equal to anything, even other uninitialized instances of this type.
+     if(!_isInitialized || !other._isInitialized) return false;
+
+     if (ReferenceEquals(this, other))
+     {
+         return true;
+     }
+
+     return GetType() == other.GetType() && global::System.Collections.Generic.EqualityComparer<@class.@record.@struct.@float.event2>.Default.Equals(Value, other.Value);
+ }
+
+public global::System.Boolean Equals(escapedTestspublic_partial_recordConversions_Nonerecord__struct__float__event2 other, global::System.Collections.Generic.IEqualityComparer<escapedTestspublic_partial_recordConversions_Nonerecord__struct__float__event2> comparer)
+{
+    return comparer.Equals(this, other);
+}
+
+  public global::System.Boolean Equals(@class.@record.@struct.@float.event2 primitive) {
+    return Value.Equals(primitive);
+ }
+ 
+
+        public static global::System.Boolean operator ==(escapedTestspublic_partial_recordConversions_Nonerecord__struct__float__event2 left, @class.@record.@struct.@float.event2 right) => Equals(left.Value, right);
+        public static global::System.Boolean operator !=(escapedTestspublic_partial_recordConversions_Nonerecord__struct__float__event2 left, @class.@record.@struct.@float.event2 right) => !Equals(left.Value, right);
+
+        public static global::System.Boolean operator ==(@class.@record.@struct.@float.event2 left, escapedTestspublic_partial_recordConversions_Nonerecord__struct__float__event2 right) => Equals(left, right.Value);
+        public static global::System.Boolean operator !=(@class.@record.@struct.@float.event2 left, escapedTestspublic_partial_recordConversions_Nonerecord__struct__float__event2 right) => !Equals(left, right.Value);
+
+        public static explicit operator escapedTestspublic_partial_recordConversions_Nonerecord__struct__float__event2(@class.@record.@struct.@float.event2 value) => From(value);
+        public static explicit operator @class.@record.@struct.@float.event2(escapedTestspublic_partial_recordConversions_Nonerecord__struct__float__event2 value) => value.Value;
+
+        
+    public override global::System.Int32 GetHashCode()
+    {
+        unchecked // Overflow is fine, just wrap
+        {
+            global::System.Int32 hash = (global::System.Int32) 2166136261;
+            hash = (hash * 16777619) ^ GetType().GetHashCode();
+            hash = (hash * 16777619) ^ global::System.Collections.Generic.EqualityComparer<@class.@record.@struct.@float.event2>.Default.GetHashCode(Value);
+            return hash;
+        }
+    }
 
         private void EnsureInitialized()
         {

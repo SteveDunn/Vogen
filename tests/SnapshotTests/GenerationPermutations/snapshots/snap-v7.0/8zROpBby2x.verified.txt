@@ -91,6 +91,7 @@ namespace Whatever
 
             return instance;
         }
+        
 
         public static explicit operator internal_partial_structConversions_SystemTextJsonshort(System.Int16 value) => From(value);
         public static explicit operator System.Int16(internal_partial_structConversions_SystemTextJsonshort value) => value.Value;
@@ -105,22 +106,28 @@ namespace Whatever
 
             return new internal_partial_structConversions_SystemTextJsonshort(value);
         }
+        
+public readonly global::System.Boolean Equals(internal_partial_structConversions_SystemTextJsonshort other)
+{
+    // It's possible to create uninitialized instances via converters such as EfCore (HasDefaultValue), which call Equals.
+    // We treat anything uninitialized as not equal to anything, even other uninitialized instances of this type.
+    if(!_isInitialized || !other._isInitialized) return false;
 
-        public readonly global::System.Boolean Equals(internal_partial_structConversions_SystemTextJsonshort other)
-        {
-            // It's possible to create uninitialized instances via converters such as EfCore (HasDefaultValue), which call Equals.
-            // We treat anything uninitialized as not equal to anything, even other uninitialized instances of this type.
-            if(!_isInitialized || !other._isInitialized) return false;
+    return global::System.Collections.Generic.EqualityComparer<System.Int16>.Default.Equals(Value, other.Value);
+}
 
-            return global::System.Collections.Generic.EqualityComparer<System.Int16>.Default.Equals(Value, other.Value);
-        }
+public global::System.Boolean Equals(internal_partial_structConversions_SystemTextJsonshort other, global::System.Collections.Generic.IEqualityComparer<internal_partial_structConversions_SystemTextJsonshort> comparer)
+{
+    return comparer.Equals(this, other);
+}
 
-        public readonly global::System.Boolean Equals(System.Int16 primitive) => Value.Equals(primitive);
-
-        public readonly override global::System.Boolean Equals(global::System.Object obj)
-        {
-            return obj is internal_partial_structConversions_SystemTextJsonshort && Equals((internal_partial_structConversions_SystemTextJsonshort) obj);
-        }
+  public readonly global::System.Boolean Equals(System.Int16 primitive) {
+    return Value.Equals(primitive);
+ }
+public readonly override global::System.Boolean Equals(global::System.Object obj)
+{
+    return obj is internal_partial_structConversions_SystemTextJsonshort && Equals((internal_partial_structConversions_SystemTextJsonshort) obj);
+}
 
         public static global::System.Boolean operator ==(internal_partial_structConversions_SystemTextJsonshort left, internal_partial_structConversions_SystemTextJsonshort right) => Equals(left, right);
         public static global::System.Boolean operator !=(internal_partial_structConversions_SystemTextJsonshort left, internal_partial_structConversions_SystemTextJsonshort right) => !(left == right);
@@ -265,8 +272,10 @@ namespace Whatever
         return false;
     }
 
-
-        public readonly override global::System.Int32 GetHashCode() => global::System.Collections.Generic.EqualityComparer<System.Int16>.Default.GetHashCode(_value);
+    public readonly override global::System.Int32 GetHashCode()
+    {
+        return global::System.Collections.Generic.EqualityComparer<System.Int16>.Default.GetHashCode(Value);
+    }
 
         /// <summary>Returns the string representation of the underlying type</summary>
     /// <inheritdoc cref="System.Int16.ToString()" />

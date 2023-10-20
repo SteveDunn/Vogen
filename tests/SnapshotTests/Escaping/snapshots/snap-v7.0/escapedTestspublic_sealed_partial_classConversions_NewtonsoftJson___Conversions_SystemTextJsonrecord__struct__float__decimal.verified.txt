@@ -91,6 +91,7 @@ public @class.@record.@struct.@float.@decimal Value
 
             return instance;
         }
+  
 
         // only called internally when something has been deserialized into
         // its primitive type.
@@ -104,47 +105,39 @@ public @class.@record.@struct.@float.@decimal Value
 
             return new escapedTestspublic_sealed_partial_classConversions_NewtonsoftJson___Conversions_SystemTextJsonrecord__struct__float__decimal(value);
         }
+         
+ public  global::System.Boolean Equals(escapedTestspublic_sealed_partial_classConversions_NewtonsoftJson___Conversions_SystemTextJsonrecord__struct__float__decimal other)
+ {
+     if (ReferenceEquals(null, other))
+     {
+         return false;
+     }
 
-        public global::System.Boolean Equals(escapedTestspublic_sealed_partial_classConversions_NewtonsoftJson___Conversions_SystemTextJsonrecord__struct__float__decimal other)
-        {
-            if (ReferenceEquals(null, other))
-            {
-                return false;
-            }
+     // It's possible to create uninitialized instances via converters such as EfCore (HasDefaultValue), which call Equals.
+     // We treat anything uninitialized as not equal to anything, even other uninitialized instances of this type.
+     if(!_isInitialized || !other._isInitialized) return false;
 
-            // It's possible to create uninitialized instances via converters such as EfCore (HasDefaultValue), which call Equals.
-            // We treat anything uninitialized as not equal to anything, even other uninitialized instances of this type.
-            if(!_isInitialized || !other._isInitialized) return false;
-	    	
-            if (ReferenceEquals(this, other))
-            {
-                return true;
-            }
+     if (ReferenceEquals(this, other))
+     {
+         return true;
+     }
 
-            return GetType() == other.GetType() && global::System.Collections.Generic.EqualityComparer<@class.@record.@struct.@float.@decimal>.Default.Equals(Value, other.Value);
-        }
+     return GetType() == other.GetType() && global::System.Collections.Generic.EqualityComparer<@class.@record.@struct.@float.@decimal>.Default.Equals(Value, other.Value);
+ }
 
-        public global::System.Boolean Equals(@class.@record.@struct.@float.@decimal primitive) => Value.Equals(primitive);
+public global::System.Boolean Equals(escapedTestspublic_sealed_partial_classConversions_NewtonsoftJson___Conversions_SystemTextJsonrecord__struct__float__decimal other, global::System.Collections.Generic.IEqualityComparer<escapedTestspublic_sealed_partial_classConversions_NewtonsoftJson___Conversions_SystemTextJsonrecord__struct__float__decimal> comparer)
+{
+    return comparer.Equals(this, other);
+}
 
-        public override global::System.Boolean Equals(global::System.Object obj)
-        {
-            if (ReferenceEquals(null, obj))
-            {
-                return false;
-            }
-
-            if (ReferenceEquals(this, obj))
-            {
-                return true;
-            }
-
-            if (obj.GetType() != GetType())
-            {
-                return false;
-            }
-
-            return Equals((escapedTestspublic_sealed_partial_classConversions_NewtonsoftJson___Conversions_SystemTextJsonrecord__struct__float__decimal) obj);
-        }
+  public global::System.Boolean Equals(@class.@record.@struct.@float.@decimal primitive) {
+    return Value.Equals(primitive);
+ }
+ 
+ public override global::System.Boolean Equals(global::System.Object obj)
+ {
+     return Equals(obj as escapedTestspublic_sealed_partial_classConversions_NewtonsoftJson___Conversions_SystemTextJsonrecord__struct__float__decimal);
+ }
 
         public static global::System.Boolean operator ==(escapedTestspublic_sealed_partial_classConversions_NewtonsoftJson___Conversions_SystemTextJsonrecord__struct__float__decimal left, escapedTestspublic_sealed_partial_classConversions_NewtonsoftJson___Conversions_SystemTextJsonrecord__struct__float__decimal right) => Equals(left, right);
         public static global::System.Boolean operator !=(escapedTestspublic_sealed_partial_classConversions_NewtonsoftJson___Conversions_SystemTextJsonrecord__struct__float__decimal left, escapedTestspublic_sealed_partial_classConversions_NewtonsoftJson___Conversions_SystemTextJsonrecord__struct__float__decimal right) => !Equals(left, right);
@@ -159,18 +152,16 @@ public @class.@record.@struct.@float.@decimal Value
         public static explicit operator @class.@record.@struct.@float.@decimal(escapedTestspublic_sealed_partial_classConversions_NewtonsoftJson___Conversions_SystemTextJsonrecord__struct__float__decimal value) => value.Value;
 
         
-
-        public override global::System.Int32 GetHashCode()
+    public override global::System.Int32 GetHashCode()
+    {
+        unchecked // Overflow is fine, just wrap
         {
-            unchecked // Overflow is fine, just wrap
-            {
-                global::System.Int32 hash = (global::System.Int32) 2166136261;
-                hash = (hash * 16777619) ^ Value.GetHashCode();
-                hash = (hash * 16777619) ^ GetType().GetHashCode();
-                hash = (hash * 16777619) ^ global::System.Collections.Generic.EqualityComparer<@class.@record.@struct.@float.@decimal>.Default.GetHashCode();
-                return hash;
-            }
+            global::System.Int32 hash = (global::System.Int32) 2166136261;
+            hash = (hash * 16777619) ^ GetType().GetHashCode();
+            hash = (hash * 16777619) ^ global::System.Collections.Generic.EqualityComparer<@class.@record.@struct.@float.@decimal>.Default.GetHashCode(Value);
+            return hash;
         }
+    }
 
         private void EnsureInitialized()
         {

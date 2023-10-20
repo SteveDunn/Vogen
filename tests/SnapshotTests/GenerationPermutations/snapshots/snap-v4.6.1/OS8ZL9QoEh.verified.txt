@@ -33,7 +33,7 @@ namespace Whatever
     
     [global::System.Diagnostics.DebuggerTypeProxyAttribute(typeof(internal_partial_record_structConversions_DapperTypeHandlerlongDebugView))]
     [global::System.Diagnostics.DebuggerDisplayAttribute("Underlying type: System.Int64, Value = { _value }")]
-    internal partial record struct internal_partial_record_structConversions_DapperTypeHandlerlong  :  global::System.IComparable<internal_partial_record_structConversions_DapperTypeHandlerlong>, global::System.IComparable
+    internal partial record struct internal_partial_record_structConversions_DapperTypeHandlerlong : global::System.IEquatable<internal_partial_record_structConversions_DapperTypeHandlerlong>, global::System.IEquatable<System.Int64> ,  global::System.IComparable<internal_partial_record_structConversions_DapperTypeHandlerlong>, global::System.IComparable
     {
 #if DEBUG    
         private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
@@ -54,6 +54,7 @@ namespace Whatever
                 EnsureInitialized();
                 return _value;
             }
+            [global::System.Diagnostics.DebuggerStepThroughAttribute]
             init
             {
                 
@@ -100,16 +101,10 @@ namespace Whatever
 
             return instance;
         }
+        
 
         public static explicit operator internal_partial_record_structConversions_DapperTypeHandlerlong(System.Int64 value) => From(value);
         public static explicit operator System.Int64(internal_partial_record_structConversions_DapperTypeHandlerlong value) => value.Value;
-
-        public int CompareTo(internal_partial_record_structConversions_DapperTypeHandlerlong other) => Value.CompareTo(other.Value);
-        public int CompareTo(object other) {
-            if(other == null) return 1;
-            if(other is internal_partial_record_structConversions_DapperTypeHandlerlong x) return CompareTo(x);
-            throw new global::System.ArgumentException("Cannot compare to object as it is not of type internal_partial_record_structConversions_DapperTypeHandlerlong", nameof(other));
-        }
 
         // only called internally when something has been deserialized into
         // its primitive type.
@@ -121,6 +116,85 @@ namespace Whatever
 
             return new internal_partial_record_structConversions_DapperTypeHandlerlong(value);
         }
+        
+public readonly global::System.Boolean Equals(internal_partial_record_structConversions_DapperTypeHandlerlong other)
+{
+    // It's possible to create uninitialized instances via converters such as EfCore (HasDefaultValue), which call Equals.
+    // We treat anything uninitialized as not equal to anything, even other uninitialized instances of this type.
+    if(!_isInitialized || !other._isInitialized) return false;
+
+    return global::System.Collections.Generic.EqualityComparer<System.Int64>.Default.Equals(Value, other.Value);
+}
+
+public global::System.Boolean Equals(internal_partial_record_structConversions_DapperTypeHandlerlong other, global::System.Collections.Generic.IEqualityComparer<internal_partial_record_structConversions_DapperTypeHandlerlong> comparer)
+{
+    return comparer.Equals(this, other);
+}
+
+  public readonly global::System.Boolean Equals(System.Int64 primitive) {
+    return Value.Equals(primitive);
+ }
+
+        public static global::System.Boolean operator ==(internal_partial_record_structConversions_DapperTypeHandlerlong left, System.Int64 right) => Equals(left.Value, right);
+        public static global::System.Boolean operator !=(internal_partial_record_structConversions_DapperTypeHandlerlong left, System.Int64 right) => !Equals(left.Value, right);
+
+        public static global::System.Boolean operator ==(System.Int64 left, internal_partial_record_structConversions_DapperTypeHandlerlong right) => Equals(left, right.Value);
+        public static global::System.Boolean operator !=(System.Int64 left, internal_partial_record_structConversions_DapperTypeHandlerlong right) => !Equals(left, right.Value);
+
+        public int CompareTo(internal_partial_record_structConversions_DapperTypeHandlerlong other) => Value.CompareTo(other.Value);
+        public int CompareTo(object other) {
+            if(other == null) return 1;
+            if(other is internal_partial_record_structConversions_DapperTypeHandlerlong x) return CompareTo(x);
+            throw new global::System.ArgumentException("Cannot compare to object as it is not of type internal_partial_record_structConversions_DapperTypeHandlerlong", nameof(other));
+        }
+
+        
+    /// <inheritdoc cref="long.TryParse(string, System.Globalization.NumberStyles, System.IFormatProvider, out long)"/>
+    /// <summary>
+    /// </summary>
+    /// <returns>
+    /// The value created via the <see cref="From"/> method.
+    /// </returns>
+    /// <exception cref="ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
+    public static global::System.Boolean TryParse(string s, global::System.Globalization.NumberStyles style, global::System.IFormatProvider provider, 
+#if NETCOREAPP3_0_OR_GREATER
+[global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)]
+#endif
+ out internal_partial_record_structConversions_DapperTypeHandlerlong result) {
+        if(System.Int64.TryParse(s, style, provider, out var r)) {
+            result = From(r);
+            return true;
+        }
+
+        result = default;
+        return false;
+    }
+
+    /// <inheritdoc cref="long.TryParse(string, out long)"/>
+    /// <summary>
+    /// </summary>
+    /// <returns>
+    /// The value created via the <see cref="From"/> method.
+    /// </returns>
+    /// <exception cref="ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
+    public static global::System.Boolean TryParse(string s, 
+#if NETCOREAPP3_0_OR_GREATER
+[global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)]
+#endif
+ out internal_partial_record_structConversions_DapperTypeHandlerlong result) {
+        if(System.Int64.TryParse(s, out var r)) {
+            result = From(r);
+            return true;
+        }
+
+        result = default;
+        return false;
+    }
+
+    public readonly override global::System.Int32 GetHashCode()
+    {
+        return global::System.Collections.Generic.EqualityComparer<System.Int64>.Default.GetHashCode(Value);
+    }
 
         private readonly void EnsureInitialized()
         {
@@ -137,9 +211,9 @@ namespace Whatever
         }
 
         // record enumerates fields - we just want our Value and to throw if it's not initialized.
-        /// <summary>Returns the string representation of the underlying <see cref="System.Int64" />.</summary>
+        /// <summary>Returns the string representation of the underlying type</summary>
     /// <inheritdoc cref="System.Int64.ToString()" />
-    public override global::System.String ToString() => _isInitialized ? Value.ToString() : "[UNINITIALIZED]";
+    public readonly override global::System.String ToString() =>_isInitialized ? Value.ToString() : "[UNINITIALIZED]";
 
         
  

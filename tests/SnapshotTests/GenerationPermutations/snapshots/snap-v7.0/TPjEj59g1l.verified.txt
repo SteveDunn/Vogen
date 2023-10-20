@@ -33,7 +33,7 @@ namespace Whatever
     
     [global::System.Diagnostics.DebuggerTypeProxyAttribute(typeof(internal_partial_record_structConversions_DapperTypeHandlerSystem_DateTimeDebugView))]
     [global::System.Diagnostics.DebuggerDisplayAttribute("Underlying type: System.DateTime, Value = { _value }")]
-    internal partial record struct internal_partial_record_structConversions_DapperTypeHandlerSystem_DateTime  :  global::System.IComparable<internal_partial_record_structConversions_DapperTypeHandlerSystem_DateTime>, global::System.IComparable
+    internal partial record struct internal_partial_record_structConversions_DapperTypeHandlerSystem_DateTime : global::System.IEquatable<internal_partial_record_structConversions_DapperTypeHandlerSystem_DateTime>, global::System.IEquatable<System.DateTime> ,  global::System.IComparable<internal_partial_record_structConversions_DapperTypeHandlerSystem_DateTime>, global::System.IComparable
     {
 #if DEBUG    
         private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
@@ -54,6 +54,7 @@ namespace Whatever
                 EnsureInitialized();
                 return _value;
             }
+            [global::System.Diagnostics.DebuggerStepThroughAttribute]
             init
             {
                 
@@ -100,16 +101,10 @@ namespace Whatever
 
             return instance;
         }
+        
 
         public static explicit operator internal_partial_record_structConversions_DapperTypeHandlerSystem_DateTime(System.DateTime value) => From(value);
         public static explicit operator System.DateTime(internal_partial_record_structConversions_DapperTypeHandlerSystem_DateTime value) => value.Value;
-
-        public int CompareTo(internal_partial_record_structConversions_DapperTypeHandlerSystem_DateTime other) => Value.CompareTo(other.Value);
-        public int CompareTo(object other) {
-            if(other == null) return 1;
-            if(other is internal_partial_record_structConversions_DapperTypeHandlerSystem_DateTime x) return CompareTo(x);
-            throw new global::System.ArgumentException("Cannot compare to object as it is not of type internal_partial_record_structConversions_DapperTypeHandlerSystem_DateTime", nameof(other));
-        }
 
         // only called internally when something has been deserialized into
         // its primitive type.
@@ -121,6 +116,169 @@ namespace Whatever
 
             return new internal_partial_record_structConversions_DapperTypeHandlerSystem_DateTime(value);
         }
+        
+public readonly global::System.Boolean Equals(internal_partial_record_structConversions_DapperTypeHandlerSystem_DateTime other)
+{
+    // It's possible to create uninitialized instances via converters such as EfCore (HasDefaultValue), which call Equals.
+    // We treat anything uninitialized as not equal to anything, even other uninitialized instances of this type.
+    if(!_isInitialized || !other._isInitialized) return false;
+
+    return global::System.Collections.Generic.EqualityComparer<System.DateTime>.Default.Equals(Value, other.Value);
+}
+
+public global::System.Boolean Equals(internal_partial_record_structConversions_DapperTypeHandlerSystem_DateTime other, global::System.Collections.Generic.IEqualityComparer<internal_partial_record_structConversions_DapperTypeHandlerSystem_DateTime> comparer)
+{
+    return comparer.Equals(this, other);
+}
+
+  public readonly global::System.Boolean Equals(System.DateTime primitive) {
+    return Value.Equals(primitive);
+ }
+
+        public static global::System.Boolean operator ==(internal_partial_record_structConversions_DapperTypeHandlerSystem_DateTime left, System.DateTime right) => Equals(left.Value, right);
+        public static global::System.Boolean operator !=(internal_partial_record_structConversions_DapperTypeHandlerSystem_DateTime left, System.DateTime right) => !Equals(left.Value, right);
+
+        public static global::System.Boolean operator ==(System.DateTime left, internal_partial_record_structConversions_DapperTypeHandlerSystem_DateTime right) => Equals(left, right.Value);
+        public static global::System.Boolean operator !=(System.DateTime left, internal_partial_record_structConversions_DapperTypeHandlerSystem_DateTime right) => !Equals(left, right.Value);
+
+        public int CompareTo(internal_partial_record_structConversions_DapperTypeHandlerSystem_DateTime other) => Value.CompareTo(other.Value);
+        public int CompareTo(object other) {
+            if(other == null) return 1;
+            if(other is internal_partial_record_structConversions_DapperTypeHandlerSystem_DateTime x) return CompareTo(x);
+            throw new global::System.ArgumentException("Cannot compare to object as it is not of type internal_partial_record_structConversions_DapperTypeHandlerSystem_DateTime", nameof(other));
+        }
+
+        
+    /// <inheritdoc cref="System.DateTime.TryParse(System.ReadOnlySpan{char}, out System.DateTime)"/>
+    /// <summary>
+    /// </summary>
+    /// <returns>
+    /// The value created via the <see cref="From"/> method.
+    /// </returns>
+    /// <exception cref="ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
+    public static global::System.Boolean TryParse(global::System.ReadOnlySpan<char> s, 
+#if NETCOREAPP3_0_OR_GREATER
+[global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)]
+#endif
+ out internal_partial_record_structConversions_DapperTypeHandlerSystem_DateTime result) {
+        if(System.DateTime.TryParse(s, out var r)) {
+            result = From(r);
+            return true;
+        }
+
+        result = default;
+        return false;
+    }
+
+    /// <inheritdoc cref="System.DateTime.TryParse(System.ReadOnlySpan{char}, System.IFormatProvider?, out System.DateTime)"/>
+    /// <summary>
+    /// </summary>
+    /// <returns>
+    /// The value created via the <see cref="From"/> method.
+    /// </returns>
+    /// <exception cref="ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
+    public static global::System.Boolean TryParse(global::System.ReadOnlySpan<char> s, global::System.IFormatProvider provider, 
+#if NETCOREAPP3_0_OR_GREATER
+[global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)]
+#endif
+ out internal_partial_record_structConversions_DapperTypeHandlerSystem_DateTime result) {
+        if(System.DateTime.TryParse(s, provider, out var r)) {
+            result = From(r);
+            return true;
+        }
+
+        result = default;
+        return false;
+    }
+
+    /// <inheritdoc cref="System.DateTime.TryParse(System.ReadOnlySpan{char}, System.IFormatProvider?, System.Globalization.DateTimeStyles, out System.DateTime)"/>
+    /// <summary>
+    /// </summary>
+    /// <returns>
+    /// The value created via the <see cref="From"/> method.
+    /// </returns>
+    /// <exception cref="ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
+    public static global::System.Boolean TryParse(global::System.ReadOnlySpan<char> s, global::System.IFormatProvider provider, global::System.Globalization.DateTimeStyles styles, 
+#if NETCOREAPP3_0_OR_GREATER
+[global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)]
+#endif
+ out internal_partial_record_structConversions_DapperTypeHandlerSystem_DateTime result) {
+        if(System.DateTime.TryParse(s, provider, styles, out var r)) {
+            result = From(r);
+            return true;
+        }
+
+        result = default;
+        return false;
+    }
+
+    /// <inheritdoc cref="System.DateTime.TryParse(string?, out System.DateTime)"/>
+    /// <summary>
+    /// </summary>
+    /// <returns>
+    /// The value created via the <see cref="From"/> method.
+    /// </returns>
+    /// <exception cref="ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
+    public static global::System.Boolean TryParse(string s, 
+#if NETCOREAPP3_0_OR_GREATER
+[global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)]
+#endif
+ out internal_partial_record_structConversions_DapperTypeHandlerSystem_DateTime result) {
+        if(System.DateTime.TryParse(s, out var r)) {
+            result = From(r);
+            return true;
+        }
+
+        result = default;
+        return false;
+    }
+
+    /// <inheritdoc cref="System.DateTime.TryParse(string?, System.IFormatProvider?, out System.DateTime)"/>
+    /// <summary>
+    /// </summary>
+    /// <returns>
+    /// The value created via the <see cref="From"/> method.
+    /// </returns>
+    /// <exception cref="ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
+    public static global::System.Boolean TryParse(string s, global::System.IFormatProvider provider, 
+#if NETCOREAPP3_0_OR_GREATER
+[global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)]
+#endif
+ out internal_partial_record_structConversions_DapperTypeHandlerSystem_DateTime result) {
+        if(System.DateTime.TryParse(s, provider, out var r)) {
+            result = From(r);
+            return true;
+        }
+
+        result = default;
+        return false;
+    }
+
+    /// <inheritdoc cref="System.DateTime.TryParse(string?, System.IFormatProvider?, System.Globalization.DateTimeStyles, out System.DateTime)"/>
+    /// <summary>
+    /// </summary>
+    /// <returns>
+    /// The value created via the <see cref="From"/> method.
+    /// </returns>
+    /// <exception cref="ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
+    public static global::System.Boolean TryParse(string s, global::System.IFormatProvider provider, global::System.Globalization.DateTimeStyles styles, 
+#if NETCOREAPP3_0_OR_GREATER
+[global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)]
+#endif
+ out internal_partial_record_structConversions_DapperTypeHandlerSystem_DateTime result) {
+        if(System.DateTime.TryParse(s, provider, styles, out var r)) {
+            result = From(r);
+            return true;
+        }
+
+        result = default;
+        return false;
+    }
+
+    public readonly override global::System.Int32 GetHashCode()
+    {
+        return global::System.Collections.Generic.EqualityComparer<System.DateTime>.Default.GetHashCode(Value);
+    }
 
         private readonly void EnsureInitialized()
         {
@@ -137,9 +295,9 @@ namespace Whatever
         }
 
         // record enumerates fields - we just want our Value and to throw if it's not initialized.
-        /// <summary>Returns the string representation of the underlying <see cref="System.DateTime" />.</summary>
+        /// <summary>Returns the string representation of the underlying type</summary>
     /// <inheritdoc cref="System.DateTime.ToString()" />
-    public override global::System.String ToString() => _isInitialized ? Value.ToString() : "[UNINITIALIZED]";
+    public readonly override global::System.String ToString() =>_isInitialized ? Value.ToString() : "[UNINITIALIZED]";
 
         
  

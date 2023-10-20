@@ -5,7 +5,7 @@ using Vogen;
 namespace SnapshotTests.Comparable;
 
 [UsesVerify]
-public class ComprableGenerationTests
+public class ComparisonGenerationTests
 {
     [Fact]
     public Task Using_underlying_uses_int_comparison()

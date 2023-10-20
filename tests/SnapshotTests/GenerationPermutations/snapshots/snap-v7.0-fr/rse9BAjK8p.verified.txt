@@ -90,6 +90,7 @@ namespace Whatever
 
             return instance;
         }
+        
 
         public static explicit operator internal_readonly_partial_structConversions_LinqToDbValueConverterbyte(System.Byte value) => From(value);
         public static explicit operator System.Byte(internal_readonly_partial_structConversions_LinqToDbValueConverterbyte value) => value.Value;
@@ -104,22 +105,28 @@ namespace Whatever
 
             return new internal_readonly_partial_structConversions_LinqToDbValueConverterbyte(value);
         }
+        
+public readonly global::System.Boolean Equals(internal_readonly_partial_structConversions_LinqToDbValueConverterbyte other)
+{
+    // It's possible to create uninitialized instances via converters such as EfCore (HasDefaultValue), which call Equals.
+    // We treat anything uninitialized as not equal to anything, even other uninitialized instances of this type.
+    if(!_isInitialized || !other._isInitialized) return false;
 
-        public readonly global::System.Boolean Equals(internal_readonly_partial_structConversions_LinqToDbValueConverterbyte other)
-        {
-            // It's possible to create uninitialized instances via converters such as EfCore (HasDefaultValue), which call Equals.
-            // We treat anything uninitialized as not equal to anything, even other uninitialized instances of this type.
-            if(!_isInitialized || !other._isInitialized) return false;
+    return global::System.Collections.Generic.EqualityComparer<System.Byte>.Default.Equals(Value, other.Value);
+}
 
-            return global::System.Collections.Generic.EqualityComparer<System.Byte>.Default.Equals(Value, other.Value);
-        }
+public global::System.Boolean Equals(internal_readonly_partial_structConversions_LinqToDbValueConverterbyte other, global::System.Collections.Generic.IEqualityComparer<internal_readonly_partial_structConversions_LinqToDbValueConverterbyte> comparer)
+{
+    return comparer.Equals(this, other);
+}
 
-        public readonly global::System.Boolean Equals(System.Byte primitive) => Value.Equals(primitive);
-
-        public readonly override global::System.Boolean Equals(global::System.Object obj)
-        {
-            return obj is internal_readonly_partial_structConversions_LinqToDbValueConverterbyte && Equals((internal_readonly_partial_structConversions_LinqToDbValueConverterbyte) obj);
-        }
+  public readonly global::System.Boolean Equals(System.Byte primitive) {
+    return Value.Equals(primitive);
+ }
+public readonly override global::System.Boolean Equals(global::System.Object obj)
+{
+    return obj is internal_readonly_partial_structConversions_LinqToDbValueConverterbyte && Equals((internal_readonly_partial_structConversions_LinqToDbValueConverterbyte) obj);
+}
 
         public static global::System.Boolean operator ==(internal_readonly_partial_structConversions_LinqToDbValueConverterbyte left, internal_readonly_partial_structConversions_LinqToDbValueConverterbyte right) => Equals(left, right);
         public static global::System.Boolean operator !=(internal_readonly_partial_structConversions_LinqToDbValueConverterbyte left, internal_readonly_partial_structConversions_LinqToDbValueConverterbyte right) => !(left == right);
@@ -264,8 +271,10 @@ namespace Whatever
         return false;
     }
 
-
-        public readonly override global::System.Int32 GetHashCode() => global::System.Collections.Generic.EqualityComparer<System.Byte>.Default.GetHashCode(_value);
+    public readonly override global::System.Int32 GetHashCode()
+    {
+        return global::System.Collections.Generic.EqualityComparer<System.Byte>.Default.GetHashCode(Value);
+    }
 
         /// <summary>Returns the string representation of the underlying type</summary>
     /// <inheritdoc cref="System.Byte.ToString()" />

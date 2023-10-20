@@ -33,7 +33,7 @@ namespace @class
     
     [global::System.Diagnostics.DebuggerTypeProxyAttribute(typeof(escapedTestsinternal_readonly_partial_record_structConversions_DapperTypeHandlerstringDebugView))]
     [global::System.Diagnostics.DebuggerDisplayAttribute("Underlying type: System.String, Value = { _value }")]
-    internal readonly partial record struct escapedTestsinternal_readonly_partial_record_structConversions_DapperTypeHandlerstring  :  global::System.IComparable<escapedTestsinternal_readonly_partial_record_structConversions_DapperTypeHandlerstring>, global::System.IComparable
+    internal readonly partial record struct escapedTestsinternal_readonly_partial_record_structConversions_DapperTypeHandlerstring : global::System.IEquatable<escapedTestsinternal_readonly_partial_record_structConversions_DapperTypeHandlerstring>, global::System.IEquatable<System.String> ,  global::System.IComparable<escapedTestsinternal_readonly_partial_record_structConversions_DapperTypeHandlerstring>, global::System.IComparable
     {
 #if DEBUG    
         private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
@@ -54,6 +54,7 @@ namespace @class
                 EnsureInitialized();
                 return _value;
             }
+            [global::System.Diagnostics.DebuggerStepThroughAttribute]
             init
             {
                             if (value is null)
@@ -104,16 +105,10 @@ namespace @class
 
             return instance;
         }
+        
 
         public static explicit operator escapedTestsinternal_readonly_partial_record_structConversions_DapperTypeHandlerstring(System.String value) => From(value);
         public static explicit operator System.String(escapedTestsinternal_readonly_partial_record_structConversions_DapperTypeHandlerstring value) => value.Value;
-
-        public int CompareTo(escapedTestsinternal_readonly_partial_record_structConversions_DapperTypeHandlerstring other) => Value.CompareTo(other.Value);
-        public int CompareTo(object other) {
-            if(other == null) return 1;
-            if(other is escapedTestsinternal_readonly_partial_record_structConversions_DapperTypeHandlerstring x) return CompareTo(x);
-            throw new global::System.ArgumentException("Cannot compare to object as it is not of type escapedTestsinternal_readonly_partial_record_structConversions_DapperTypeHandlerstring", nameof(other));
-        }
 
         // only called internally when something has been deserialized into
         // its primitive type.
@@ -125,6 +120,45 @@ namespace @class
 
             return new escapedTestsinternal_readonly_partial_record_structConversions_DapperTypeHandlerstring(value);
         }
+        
+public readonly global::System.Boolean Equals(escapedTestsinternal_readonly_partial_record_structConversions_DapperTypeHandlerstring other)
+{
+    // It's possible to create uninitialized instances via converters such as EfCore (HasDefaultValue), which call Equals.
+    // We treat anything uninitialized as not equal to anything, even other uninitialized instances of this type.
+    if(!_isInitialized || !other._isInitialized) return false;
+
+    return global::System.Collections.Generic.EqualityComparer<System.String>.Default.Equals(Value, other.Value);
+}
+
+public global::System.Boolean Equals(escapedTestsinternal_readonly_partial_record_structConversions_DapperTypeHandlerstring other, global::System.Collections.Generic.IEqualityComparer<escapedTestsinternal_readonly_partial_record_structConversions_DapperTypeHandlerstring> comparer)
+{
+    return comparer.Equals(this, other);
+}
+
+  public readonly global::System.Boolean Equals(System.String primitive) {
+    return Value.Equals(primitive);
+ }    public readonly global::System.Boolean Equals(System.String primitive, global::System.StringComparer comparer) {
+        return comparer.Equals(Value, primitive);
+    }
+
+        public static global::System.Boolean operator ==(escapedTestsinternal_readonly_partial_record_structConversions_DapperTypeHandlerstring left, System.String right) => Equals(left.Value, right);
+        public static global::System.Boolean operator !=(escapedTestsinternal_readonly_partial_record_structConversions_DapperTypeHandlerstring left, System.String right) => !Equals(left.Value, right);
+
+        public static global::System.Boolean operator ==(System.String left, escapedTestsinternal_readonly_partial_record_structConversions_DapperTypeHandlerstring right) => Equals(left, right.Value);
+        public static global::System.Boolean operator !=(System.String left, escapedTestsinternal_readonly_partial_record_structConversions_DapperTypeHandlerstring right) => !Equals(left, right.Value);
+
+        public int CompareTo(escapedTestsinternal_readonly_partial_record_structConversions_DapperTypeHandlerstring other) => Value.CompareTo(other.Value);
+        public int CompareTo(object other) {
+            if(other == null) return 1;
+            if(other is escapedTestsinternal_readonly_partial_record_structConversions_DapperTypeHandlerstring x) return CompareTo(x);
+            throw new global::System.ArgumentException("Cannot compare to object as it is not of type escapedTestsinternal_readonly_partial_record_structConversions_DapperTypeHandlerstring", nameof(other));
+        }
+
+        
+    public readonly override global::System.Int32 GetHashCode()
+    {
+        return global::System.Collections.Generic.EqualityComparer<System.String>.Default.GetHashCode(Value);
+    }
 
         private readonly void EnsureInitialized()
         {
@@ -141,9 +175,9 @@ namespace @class
         }
 
         // record enumerates fields - we just want our Value and to throw if it's not initialized.
-        /// <summary>Returns the string representation of the underlying <see cref="System.String" />.</summary>
+        /// <summary>Returns the string representation of the underlying type</summary>
     /// <inheritdoc cref="System.String.ToString()" />
-    public override global::System.String ToString() => _isInitialized ? Value.ToString() : "[UNINITIALIZED]";
+    public readonly override global::System.String ToString() =>_isInitialized ? Value.ToString() : "[UNINITIALIZED]";
 
         
  

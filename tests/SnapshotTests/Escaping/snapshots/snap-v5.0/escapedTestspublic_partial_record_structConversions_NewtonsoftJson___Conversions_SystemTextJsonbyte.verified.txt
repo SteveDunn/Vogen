@@ -35,7 +35,7 @@ namespace @class
 
     [global::System.Diagnostics.DebuggerTypeProxyAttribute(typeof(escapedTestspublic_partial_record_structConversions_NewtonsoftJson___Conversions_SystemTextJsonbyteDebugView))]
     [global::System.Diagnostics.DebuggerDisplayAttribute("Underlying type: System.Byte, Value = { _value }")]
-    public partial record struct escapedTestspublic_partial_record_structConversions_NewtonsoftJson___Conversions_SystemTextJsonbyte  :  global::System.IComparable<escapedTestspublic_partial_record_structConversions_NewtonsoftJson___Conversions_SystemTextJsonbyte>, global::System.IComparable
+    public partial record struct escapedTestspublic_partial_record_structConversions_NewtonsoftJson___Conversions_SystemTextJsonbyte : global::System.IEquatable<escapedTestspublic_partial_record_structConversions_NewtonsoftJson___Conversions_SystemTextJsonbyte>, global::System.IEquatable<System.Byte> ,  global::System.IComparable<escapedTestspublic_partial_record_structConversions_NewtonsoftJson___Conversions_SystemTextJsonbyte>, global::System.IComparable
     {
 #if DEBUG    
         private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
@@ -56,6 +56,7 @@ namespace @class
                 EnsureInitialized();
                 return _value;
             }
+            [global::System.Diagnostics.DebuggerStepThroughAttribute]
             init
             {
                 
@@ -102,16 +103,10 @@ namespace @class
 
             return instance;
         }
+        
 
         public static explicit operator escapedTestspublic_partial_record_structConversions_NewtonsoftJson___Conversions_SystemTextJsonbyte(System.Byte value) => From(value);
         public static explicit operator System.Byte(escapedTestspublic_partial_record_structConversions_NewtonsoftJson___Conversions_SystemTextJsonbyte value) => value.Value;
-
-        public int CompareTo(escapedTestspublic_partial_record_structConversions_NewtonsoftJson___Conversions_SystemTextJsonbyte other) => Value.CompareTo(other.Value);
-        public int CompareTo(object other) {
-            if(other == null) return 1;
-            if(other is escapedTestspublic_partial_record_structConversions_NewtonsoftJson___Conversions_SystemTextJsonbyte x) return CompareTo(x);
-            throw new global::System.ArgumentException("Cannot compare to object as it is not of type escapedTestspublic_partial_record_structConversions_NewtonsoftJson___Conversions_SystemTextJsonbyte", nameof(other));
-        }
 
         // only called internally when something has been deserialized into
         // its primitive type.
@@ -123,6 +118,127 @@ namespace @class
 
             return new escapedTestspublic_partial_record_structConversions_NewtonsoftJson___Conversions_SystemTextJsonbyte(value);
         }
+        
+public readonly global::System.Boolean Equals(escapedTestspublic_partial_record_structConversions_NewtonsoftJson___Conversions_SystemTextJsonbyte other)
+{
+    // It's possible to create uninitialized instances via converters such as EfCore (HasDefaultValue), which call Equals.
+    // We treat anything uninitialized as not equal to anything, even other uninitialized instances of this type.
+    if(!_isInitialized || !other._isInitialized) return false;
+
+    return global::System.Collections.Generic.EqualityComparer<System.Byte>.Default.Equals(Value, other.Value);
+}
+
+public global::System.Boolean Equals(escapedTestspublic_partial_record_structConversions_NewtonsoftJson___Conversions_SystemTextJsonbyte other, global::System.Collections.Generic.IEqualityComparer<escapedTestspublic_partial_record_structConversions_NewtonsoftJson___Conversions_SystemTextJsonbyte> comparer)
+{
+    return comparer.Equals(this, other);
+}
+
+  public readonly global::System.Boolean Equals(System.Byte primitive) {
+    return Value.Equals(primitive);
+ }
+
+        public static global::System.Boolean operator ==(escapedTestspublic_partial_record_structConversions_NewtonsoftJson___Conversions_SystemTextJsonbyte left, System.Byte right) => Equals(left.Value, right);
+        public static global::System.Boolean operator !=(escapedTestspublic_partial_record_structConversions_NewtonsoftJson___Conversions_SystemTextJsonbyte left, System.Byte right) => !Equals(left.Value, right);
+
+        public static global::System.Boolean operator ==(System.Byte left, escapedTestspublic_partial_record_structConversions_NewtonsoftJson___Conversions_SystemTextJsonbyte right) => Equals(left, right.Value);
+        public static global::System.Boolean operator !=(System.Byte left, escapedTestspublic_partial_record_structConversions_NewtonsoftJson___Conversions_SystemTextJsonbyte right) => !Equals(left, right.Value);
+
+        public int CompareTo(escapedTestspublic_partial_record_structConversions_NewtonsoftJson___Conversions_SystemTextJsonbyte other) => Value.CompareTo(other.Value);
+        public int CompareTo(object other) {
+            if(other == null) return 1;
+            if(other is escapedTestspublic_partial_record_structConversions_NewtonsoftJson___Conversions_SystemTextJsonbyte x) return CompareTo(x);
+            throw new global::System.ArgumentException("Cannot compare to object as it is not of type escapedTestspublic_partial_record_structConversions_NewtonsoftJson___Conversions_SystemTextJsonbyte", nameof(other));
+        }
+
+        
+    /// <inheritdoc cref="byte.TryParse(System.ReadOnlySpan{char}, out byte)"/>
+    /// <summary>
+    /// </summary>
+    /// <returns>
+    /// The value created via the <see cref="From"/> method.
+    /// </returns>
+    /// <exception cref="ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
+    public static global::System.Boolean TryParse(global::System.ReadOnlySpan<char> s, 
+#if NETCOREAPP3_0_OR_GREATER
+[global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)]
+#endif
+ out escapedTestspublic_partial_record_structConversions_NewtonsoftJson___Conversions_SystemTextJsonbyte result) {
+        if(System.Byte.TryParse(s, out var r)) {
+            result = From(r);
+            return true;
+        }
+
+        result = default;
+        return false;
+    }
+
+    /// <inheritdoc cref="byte.TryParse(System.ReadOnlySpan{char}, System.Globalization.NumberStyles, System.IFormatProvider?, out byte)"/>
+    /// <summary>
+    /// </summary>
+    /// <returns>
+    /// The value created via the <see cref="From"/> method.
+    /// </returns>
+    /// <exception cref="ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
+    public static global::System.Boolean TryParse(global::System.ReadOnlySpan<char> s, global::System.Globalization.NumberStyles style, global::System.IFormatProvider provider, 
+#if NETCOREAPP3_0_OR_GREATER
+[global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)]
+#endif
+ out escapedTestspublic_partial_record_structConversions_NewtonsoftJson___Conversions_SystemTextJsonbyte result) {
+        if(System.Byte.TryParse(s, style, provider, out var r)) {
+            result = From(r);
+            return true;
+        }
+
+        result = default;
+        return false;
+    }
+
+    /// <inheritdoc cref="byte.TryParse(string?, out byte)"/>
+    /// <summary>
+    /// </summary>
+    /// <returns>
+    /// The value created via the <see cref="From"/> method.
+    /// </returns>
+    /// <exception cref="ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
+    public static global::System.Boolean TryParse(string s, 
+#if NETCOREAPP3_0_OR_GREATER
+[global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)]
+#endif
+ out escapedTestspublic_partial_record_structConversions_NewtonsoftJson___Conversions_SystemTextJsonbyte result) {
+        if(System.Byte.TryParse(s, out var r)) {
+            result = From(r);
+            return true;
+        }
+
+        result = default;
+        return false;
+    }
+
+    /// <inheritdoc cref="byte.TryParse(string?, System.Globalization.NumberStyles, System.IFormatProvider?, out byte)"/>
+    /// <summary>
+    /// </summary>
+    /// <returns>
+    /// The value created via the <see cref="From"/> method.
+    /// </returns>
+    /// <exception cref="ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
+    public static global::System.Boolean TryParse(string s, global::System.Globalization.NumberStyles style, global::System.IFormatProvider provider, 
+#if NETCOREAPP3_0_OR_GREATER
+[global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)]
+#endif
+ out escapedTestspublic_partial_record_structConversions_NewtonsoftJson___Conversions_SystemTextJsonbyte result) {
+        if(System.Byte.TryParse(s, style, provider, out var r)) {
+            result = From(r);
+            return true;
+        }
+
+        result = default;
+        return false;
+    }
+
+    public readonly override global::System.Int32 GetHashCode()
+    {
+        return global::System.Collections.Generic.EqualityComparer<System.Byte>.Default.GetHashCode(Value);
+    }
 
         private readonly void EnsureInitialized()
         {
@@ -139,9 +255,9 @@ namespace @class
         }
 
         // record enumerates fields - we just want our Value and to throw if it's not initialized.
-        /// <summary>Returns the string representation of the underlying <see cref="System.Byte" />.</summary>
+        /// <summary>Returns the string representation of the underlying type</summary>
     /// <inheritdoc cref="System.Byte.ToString()" />
-    public override global::System.String ToString() => _isInitialized ? Value.ToString() : "[UNINITIALIZED]";
+    public readonly override global::System.String ToString() =>_isInitialized ? Value.ToString() : "[UNINITIALIZED]";
 
         
  

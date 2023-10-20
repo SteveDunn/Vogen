@@ -34,7 +34,7 @@ namespace Whatever
 
     [global::System.Diagnostics.DebuggerTypeProxyAttribute(typeof(internal_sealed_partial_record_classConversions_TypeConverterdecimalDebugView))]
     [global::System.Diagnostics.DebuggerDisplayAttribute("Underlying type: System.Decimal, Value = { _value }")]
-    internal sealed partial record class internal_sealed_partial_record_classConversions_TypeConverterdecimal  :  global::System.IComparable<internal_sealed_partial_record_classConversions_TypeConverterdecimal>, global::System.IComparable
+    internal sealed partial record class internal_sealed_partial_record_classConversions_TypeConverterdecimal : global::System.IEquatable<internal_sealed_partial_record_classConversions_TypeConverterdecimal>, global::System.IEquatable<System.Decimal> ,  global::System.IComparable<internal_sealed_partial_record_classConversions_TypeConverterdecimal>, global::System.IComparable
     {
 #if DEBUG    
         private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
@@ -101,16 +101,7 @@ namespace Whatever
 
             return instance;
         }
-
-        public static explicit operator internal_sealed_partial_record_classConversions_TypeConverterdecimal(System.Decimal value) => From(value);
-        public static explicit operator System.Decimal(internal_sealed_partial_record_classConversions_TypeConverterdecimal value) => value.Value;
-
-        public int CompareTo(internal_sealed_partial_record_classConversions_TypeConverterdecimal other) => Value.CompareTo(other.Value);
-        public int CompareTo(object other) {
-            if(other == null) return 1;
-            if(other is internal_sealed_partial_record_classConversions_TypeConverterdecimal x) return CompareTo(x);
-            throw new global::System.ArgumentException("Cannot compare to object as it is not of type internal_sealed_partial_record_classConversions_TypeConverterdecimal", nameof(other));
-        }
+  
 
         // only called internally when something has been deserialized into
         // its primitive type.
@@ -124,6 +115,61 @@ namespace Whatever
 
             return new internal_sealed_partial_record_classConversions_TypeConverterdecimal(value);
         }
+         
+ public  global::System.Boolean Equals(internal_sealed_partial_record_classConversions_TypeConverterdecimal other)
+ {
+     if (ReferenceEquals(null, other))
+     {
+         return false;
+     }
+
+     // It's possible to create uninitialized instances via converters such as EfCore (HasDefaultValue), which call Equals.
+     // We treat anything uninitialized as not equal to anything, even other uninitialized instances of this type.
+     if(!_isInitialized || !other._isInitialized) return false;
+
+     if (ReferenceEquals(this, other))
+     {
+         return true;
+     }
+
+     return GetType() == other.GetType() && global::System.Collections.Generic.EqualityComparer<System.Decimal>.Default.Equals(Value, other.Value);
+ }
+
+public global::System.Boolean Equals(internal_sealed_partial_record_classConversions_TypeConverterdecimal other, global::System.Collections.Generic.IEqualityComparer<internal_sealed_partial_record_classConversions_TypeConverterdecimal> comparer)
+{
+    return comparer.Equals(this, other);
+}
+
+  public global::System.Boolean Equals(System.Decimal primitive) {
+    return Value.Equals(primitive);
+ }
+ 
+
+        public static global::System.Boolean operator ==(internal_sealed_partial_record_classConversions_TypeConverterdecimal left, System.Decimal right) => Equals(left.Value, right);
+        public static global::System.Boolean operator !=(internal_sealed_partial_record_classConversions_TypeConverterdecimal left, System.Decimal right) => !Equals(left.Value, right);
+
+        public static global::System.Boolean operator ==(System.Decimal left, internal_sealed_partial_record_classConversions_TypeConverterdecimal right) => Equals(left, right.Value);
+        public static global::System.Boolean operator !=(System.Decimal left, internal_sealed_partial_record_classConversions_TypeConverterdecimal right) => !Equals(left, right.Value);
+
+        public static explicit operator internal_sealed_partial_record_classConversions_TypeConverterdecimal(System.Decimal value) => From(value);
+        public static explicit operator System.Decimal(internal_sealed_partial_record_classConversions_TypeConverterdecimal value) => value.Value;
+
+        public int CompareTo(internal_sealed_partial_record_classConversions_TypeConverterdecimal other) => Value.CompareTo(other.Value);
+        public int CompareTo(object other) {
+            if(other == null) return 1;
+            if(other is internal_sealed_partial_record_classConversions_TypeConverterdecimal x) return CompareTo(x);
+            throw new global::System.ArgumentException("Cannot compare to object as it is not of type internal_sealed_partial_record_classConversions_TypeConverterdecimal", nameof(other));
+        }
+    public override global::System.Int32 GetHashCode()
+    {
+        unchecked // Overflow is fine, just wrap
+        {
+            global::System.Int32 hash = (global::System.Int32) 2166136261;
+            hash = (hash * 16777619) ^ GetType().GetHashCode();
+            hash = (hash * 16777619) ^ global::System.Collections.Generic.EqualityComparer<System.Decimal>.Default.GetHashCode(Value);
+            return hash;
+        }
+    }
 
         private void EnsureInitialized()
         {

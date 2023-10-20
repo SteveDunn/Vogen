@@ -18,7 +18,7 @@ using Vogen;
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute(""{Util.GenerateYourAssemblyName()}"", ""{Util.GenerateYourAssemblyVersion()}"")]
     {Util.GenerateAnyConversionAttributes(tds, item)}
     {Util.GenerateDebugAttributes(item, className, itemUnderlyingType)}
-    {Util.GenerateModifiersFor(tds)} record class {className} {GenerateComparableCode.GenerateIComparableHeaderIfNeeded(" : ", item, tds)}
+    {Util.GenerateModifiersFor(tds)} record class {className} : global::System.IEquatable<{className}>, global::System.IEquatable<{itemUnderlyingType}> {GenerateComparableCode.GenerateIComparableHeaderIfNeeded(", ", item, tds)}
     {{
 #if DEBUG    
         private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
@@ -85,11 +85,7 @@ using Vogen;
 
             return instance;
         }}
-
-        public static explicit operator {className}({itemUnderlyingType} value) => From(value);
-        public static explicit operator {itemUnderlyingType}({className} value) => value.Value;
-
-        {GenerateComparableCode.GenerateIComparableImplementationIfNeeded(item, tds)}
+{GenerateEqualsAndHashCodes.GenerateStringComparersIfNeeded(item, tds)}  
 
         // only called internally when something has been deserialized into
         // its primitive type.
@@ -103,6 +99,19 @@ using Vogen;
 
             return new {className}(value);
         }}
+        {GenerateEqualsAndHashCodes.GenerateEqualsForAClass(item, tds)}
+
+        public static global::System.Boolean operator ==({className} left, {itemUnderlyingType} right) => Equals(left.Value, right);
+        public static global::System.Boolean operator !=({className} left, {itemUnderlyingType} right) => !Equals(left.Value, right);
+
+        public static global::System.Boolean operator ==({itemUnderlyingType} left, {className} right) => Equals(left, right.Value);
+        public static global::System.Boolean operator !=({itemUnderlyingType} left, {className} right) => !Equals(left, right.Value);
+
+        public static explicit operator {className}({itemUnderlyingType} value) => From(value);
+        public static explicit operator {itemUnderlyingType}({className} value) => value.Value;
+
+        {GenerateComparableCode.GenerateIComparableImplementationIfNeeded(item, tds)}
+{GenerateEqualsAndHashCodes.GenerateGetHashCodeForAClass(item)}
 
         private void EnsureInitialized()
         {{

@@ -61,4 +61,16 @@ public class RecordClassTests
 
         a.Should().ThrowExactly<ValueObjectValidationException>().WithMessage("must be zero or more");
     }
+
+    [Fact]
+    public void Using_init_still_throws()
+    {
+#pragma warning disable VOG010
+        Types.MyRecord r1 = new Types.MyRecord { Value = 321 };
+#pragma warning restore VOG010
+
+        Action a = () => _ = r1.Value;
+
+        a.Should().ThrowExactly<ValueObjectValidationException>().WithMessage("Use of uninitialized Value Object*");
+    }
 }

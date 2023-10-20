@@ -90,6 +90,7 @@ namespace Whatever
 
             return instance;
         }
+        
 
         public static explicit operator public_partial_structConversions_None(System.Int32 value) => From(value);
         public static explicit operator System.Int32(public_partial_structConversions_None value) => value.Value;
@@ -104,22 +105,28 @@ namespace Whatever
 
             return new public_partial_structConversions_None(value);
         }
+        
+public readonly global::System.Boolean Equals(public_partial_structConversions_None other)
+{
+    // It's possible to create uninitialized instances via converters such as EfCore (HasDefaultValue), which call Equals.
+    // We treat anything uninitialized as not equal to anything, even other uninitialized instances of this type.
+    if(!_isInitialized || !other._isInitialized) return false;
 
-        public readonly global::System.Boolean Equals(public_partial_structConversions_None other)
-        {
-            // It's possible to create uninitialized instances via converters such as EfCore (HasDefaultValue), which call Equals.
-            // We treat anything uninitialized as not equal to anything, even other uninitialized instances of this type.
-            if(!_isInitialized || !other._isInitialized) return false;
+    return global::System.Collections.Generic.EqualityComparer<System.Int32>.Default.Equals(Value, other.Value);
+}
 
-            return global::System.Collections.Generic.EqualityComparer<System.Int32>.Default.Equals(Value, other.Value);
-        }
+public global::System.Boolean Equals(public_partial_structConversions_None other, global::System.Collections.Generic.IEqualityComparer<public_partial_structConversions_None> comparer)
+{
+    return comparer.Equals(this, other);
+}
 
-        public readonly global::System.Boolean Equals(System.Int32 primitive) => Value.Equals(primitive);
-
-        public readonly override global::System.Boolean Equals(global::System.Object obj)
-        {
-            return obj is public_partial_structConversions_None && Equals((public_partial_structConversions_None) obj);
-        }
+  public readonly global::System.Boolean Equals(System.Int32 primitive) {
+    return Value.Equals(primitive);
+ }
+public readonly override global::System.Boolean Equals(global::System.Object obj)
+{
+    return obj is public_partial_structConversions_None && Equals((public_partial_structConversions_None) obj);
+}
 
         public static global::System.Boolean operator ==(public_partial_structConversions_None left, public_partial_structConversions_None right) => Equals(left, right);
         public static global::System.Boolean operator !=(public_partial_structConversions_None left, public_partial_structConversions_None right) => !(left == right);
@@ -222,8 +229,10 @@ namespace Whatever
         return false;
     }
 
-
-        public readonly override global::System.Int32 GetHashCode() => global::System.Collections.Generic.EqualityComparer<System.Int32>.Default.GetHashCode(_value);
+    public readonly override global::System.Int32 GetHashCode()
+    {
+        return global::System.Collections.Generic.EqualityComparer<System.Int32>.Default.GetHashCode(Value);
+    }
 
         /// <summary>Returns the string representation of the underlying type</summary>
     /// <inheritdoc cref="System.Int32.ToString()" />

@@ -36,7 +36,7 @@ internal static class BuildWorkItems
             context.ReportDiagnostic(DiagnosticsCatalogue.TypeShouldBePartial(voTypeSyntax.GetLocation(), voSymbolInformation.Name));
             return null;
         }
-
+        
         if (voSymbolInformation.IsAbstract)
         {
             context.ReportDiagnostic(DiagnosticsCatalogue.TypeCannotBeAbstract(voSymbolInformation));
@@ -51,7 +51,7 @@ internal static class BuildWorkItems
 
         // Build the configuration but only log issues as diagnostics if they would cause additional compilation errors,
         // such as incorrect exceptions, or invalid customizations. For other issues, there are separate analyzers.
-        var localBuildResult = ManageAttributes.TryBuildConfigurationFromAttribute(voAttribute);
+        var localBuildResult = BuildConfigurationFromAttributes.TryBuildFromValueObjectAttribute(voAttribute);
         foreach (var diagnostic in localBuildResult.Diagnostics)
         {
             context.ReportDiagnostic(diagnostic);
@@ -116,9 +116,11 @@ internal static class BuildWorkItems
             Customizations = config.Customizations,
             TypeForValidationExceptions = config.ValidationExceptionType,
             ComparisonGeneration = config.Comparison,
+            StringComparersGeneration = config.StringComparers,
             ValidateMethod = validateMethod,
             NormalizeInputMethod = normalizeInputMethod,
-            FullNamespace = voSymbolInformation.FullNamespace()
+            FullNamespace = voSymbolInformation.FullNamespace(),
+            IsSealed = voSymbolInformation.IsSealed
         };
     }
 

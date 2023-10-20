@@ -91,6 +91,7 @@ namespace @class
 
             return instance;
         }
+        
 
         public static explicit operator escapedTestspublic_partial_structConversions_TypeConverterrecord__struct__float__decimal(@class.@record.@struct.@float.@decimal value) => From(value);
         public static explicit operator @class.@record.@struct.@float.@decimal(escapedTestspublic_partial_structConversions_TypeConverterrecord__struct__float__decimal value) => value.Value;
@@ -105,22 +106,28 @@ namespace @class
 
             return new escapedTestspublic_partial_structConversions_TypeConverterrecord__struct__float__decimal(value);
         }
+        
+public readonly global::System.Boolean Equals(escapedTestspublic_partial_structConversions_TypeConverterrecord__struct__float__decimal other)
+{
+    // It's possible to create uninitialized instances via converters such as EfCore (HasDefaultValue), which call Equals.
+    // We treat anything uninitialized as not equal to anything, even other uninitialized instances of this type.
+    if(!_isInitialized || !other._isInitialized) return false;
 
-        public readonly global::System.Boolean Equals(escapedTestspublic_partial_structConversions_TypeConverterrecord__struct__float__decimal other)
-        {
-            // It's possible to create uninitialized instances via converters such as EfCore (HasDefaultValue), which call Equals.
-            // We treat anything uninitialized as not equal to anything, even other uninitialized instances of this type.
-            if(!_isInitialized || !other._isInitialized) return false;
+    return global::System.Collections.Generic.EqualityComparer<@class.@record.@struct.@float.@decimal>.Default.Equals(Value, other.Value);
+}
 
-            return global::System.Collections.Generic.EqualityComparer<@class.@record.@struct.@float.@decimal>.Default.Equals(Value, other.Value);
-        }
+public global::System.Boolean Equals(escapedTestspublic_partial_structConversions_TypeConverterrecord__struct__float__decimal other, global::System.Collections.Generic.IEqualityComparer<escapedTestspublic_partial_structConversions_TypeConverterrecord__struct__float__decimal> comparer)
+{
+    return comparer.Equals(this, other);
+}
 
-        public readonly global::System.Boolean Equals(@class.@record.@struct.@float.@decimal primitive) => Value.Equals(primitive);
-
-        public readonly override global::System.Boolean Equals(global::System.Object obj)
-        {
-            return obj is escapedTestspublic_partial_structConversions_TypeConverterrecord__struct__float__decimal && Equals((escapedTestspublic_partial_structConversions_TypeConverterrecord__struct__float__decimal) obj);
-        }
+  public readonly global::System.Boolean Equals(@class.@record.@struct.@float.@decimal primitive) {
+    return Value.Equals(primitive);
+ }
+public readonly override global::System.Boolean Equals(global::System.Object obj)
+{
+    return obj is escapedTestspublic_partial_structConversions_TypeConverterrecord__struct__float__decimal && Equals((escapedTestspublic_partial_structConversions_TypeConverterrecord__struct__float__decimal) obj);
+}
 
         public static global::System.Boolean operator ==(escapedTestspublic_partial_structConversions_TypeConverterrecord__struct__float__decimal left, escapedTestspublic_partial_structConversions_TypeConverterrecord__struct__float__decimal right) => Equals(left, right);
         public static global::System.Boolean operator !=(escapedTestspublic_partial_structConversions_TypeConverterrecord__struct__float__decimal left, escapedTestspublic_partial_structConversions_TypeConverterrecord__struct__float__decimal right) => !(left == right);
@@ -134,8 +141,10 @@ namespace @class
         
 
         
-
-        public readonly override global::System.Int32 GetHashCode() => global::System.Collections.Generic.EqualityComparer<@class.@record.@struct.@float.@decimal>.Default.GetHashCode(_value);
+    public readonly override global::System.Int32 GetHashCode()
+    {
+        return global::System.Collections.Generic.EqualityComparer<@class.@record.@struct.@float.@decimal>.Default.GetHashCode(Value);
+    }
 
         /// <summary>Returns the string representation of the underlying type</summary>
     /// <inheritdoc cref="@class.@record.@struct.@float.@decimal.ToString()" />

@@ -75,6 +75,7 @@ using Vogen;
 
             return instance;
         }}
+{GenerateEqualsAndHashCodes.GenerateStringComparersIfNeeded(item, tds)}        
 
         public static explicit operator {structName}({itemUnderlyingType} value) => From(value);
         public static explicit operator {itemUnderlyingType}({structName} value) => value.Value;
@@ -89,22 +90,7 @@ using Vogen;
 
             return new {structName}(value);
         }}
-
-        public readonly global::System.Boolean Equals({structName} other)
-        {{
-            // It's possible to create uninitialized instances via converters such as EfCore (HasDefaultValue), which call Equals.
-            // We treat anything uninitialized as not equal to anything, even other uninitialized instances of this type.
-            if(!_isInitialized || !other._isInitialized) return false;
-
-            return global::System.Collections.Generic.EqualityComparer<{itemUnderlyingType}>.Default.Equals(Value, other.Value);
-        }}
-
-        public readonly global::System.Boolean Equals({itemUnderlyingType} primitive) => Value.Equals(primitive);
-
-        public readonly override global::System.Boolean Equals(global::System.Object obj)
-        {{
-            return obj is {structName} && Equals(({structName}) obj);
-        }}
+        {GenerateEqualsAndHashCodes.GenerateEqualsForAStruct(item, tds)}
 
         public static global::System.Boolean operator ==({structName} left, {structName} right) => Equals(left, right);
         public static global::System.Boolean operator !=({structName} left, {structName} right) => !(left == right);
@@ -118,8 +104,7 @@ using Vogen;
         {GenerateComparableCode.GenerateIComparableImplementationIfNeeded(item, tds)}
 
         {TryParseGeneration.GenerateTryParseIfNeeded(item)}
-
-        public readonly override global::System.Int32 GetHashCode() => global::System.Collections.Generic.EqualityComparer<{itemUnderlyingType}>.Default.GetHashCode(_value);
+{GenerateEqualsAndHashCodes.GenerateGetHashCodeForAStruct(item)}
 
         {Util.GenerateToStringReadOnly(item)}
 

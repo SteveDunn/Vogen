@@ -34,7 +34,7 @@ namespace Whatever
 
     [global::System.Diagnostics.DebuggerTypeProxyAttribute(typeof(public_partial_record_structConversions_SystemTextJsonbyteDebugView))]
     [global::System.Diagnostics.DebuggerDisplayAttribute("Underlying type: System.Byte, Value = { _value }")]
-    public partial record struct public_partial_record_structConversions_SystemTextJsonbyte  :  global::System.IComparable<public_partial_record_structConversions_SystemTextJsonbyte>, global::System.IComparable
+    public partial record struct public_partial_record_structConversions_SystemTextJsonbyte : global::System.IEquatable<public_partial_record_structConversions_SystemTextJsonbyte>, global::System.IEquatable<System.Byte> ,  global::System.IComparable<public_partial_record_structConversions_SystemTextJsonbyte>, global::System.IComparable
     {
 #if DEBUG    
         private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
@@ -55,6 +55,7 @@ namespace Whatever
                 EnsureInitialized();
                 return _value;
             }
+            [global::System.Diagnostics.DebuggerStepThroughAttribute]
             init
             {
                 
@@ -101,16 +102,10 @@ namespace Whatever
 
             return instance;
         }
+        
 
         public static explicit operator public_partial_record_structConversions_SystemTextJsonbyte(System.Byte value) => From(value);
         public static explicit operator System.Byte(public_partial_record_structConversions_SystemTextJsonbyte value) => value.Value;
-
-        public int CompareTo(public_partial_record_structConversions_SystemTextJsonbyte other) => Value.CompareTo(other.Value);
-        public int CompareTo(object other) {
-            if(other == null) return 1;
-            if(other is public_partial_record_structConversions_SystemTextJsonbyte x) return CompareTo(x);
-            throw new global::System.ArgumentException("Cannot compare to object as it is not of type public_partial_record_structConversions_SystemTextJsonbyte", nameof(other));
-        }
 
         // only called internally when something has been deserialized into
         // its primitive type.
@@ -122,6 +117,85 @@ namespace Whatever
 
             return new public_partial_record_structConversions_SystemTextJsonbyte(value);
         }
+        
+public readonly global::System.Boolean Equals(public_partial_record_structConversions_SystemTextJsonbyte other)
+{
+    // It's possible to create uninitialized instances via converters such as EfCore (HasDefaultValue), which call Equals.
+    // We treat anything uninitialized as not equal to anything, even other uninitialized instances of this type.
+    if(!_isInitialized || !other._isInitialized) return false;
+
+    return global::System.Collections.Generic.EqualityComparer<System.Byte>.Default.Equals(Value, other.Value);
+}
+
+public global::System.Boolean Equals(public_partial_record_structConversions_SystemTextJsonbyte other, global::System.Collections.Generic.IEqualityComparer<public_partial_record_structConversions_SystemTextJsonbyte> comparer)
+{
+    return comparer.Equals(this, other);
+}
+
+  public readonly global::System.Boolean Equals(System.Byte primitive) {
+    return Value.Equals(primitive);
+ }
+
+        public static global::System.Boolean operator ==(public_partial_record_structConversions_SystemTextJsonbyte left, System.Byte right) => Equals(left.Value, right);
+        public static global::System.Boolean operator !=(public_partial_record_structConversions_SystemTextJsonbyte left, System.Byte right) => !Equals(left.Value, right);
+
+        public static global::System.Boolean operator ==(System.Byte left, public_partial_record_structConversions_SystemTextJsonbyte right) => Equals(left, right.Value);
+        public static global::System.Boolean operator !=(System.Byte left, public_partial_record_structConversions_SystemTextJsonbyte right) => !Equals(left, right.Value);
+
+        public int CompareTo(public_partial_record_structConversions_SystemTextJsonbyte other) => Value.CompareTo(other.Value);
+        public int CompareTo(object other) {
+            if(other == null) return 1;
+            if(other is public_partial_record_structConversions_SystemTextJsonbyte x) return CompareTo(x);
+            throw new global::System.ArgumentException("Cannot compare to object as it is not of type public_partial_record_structConversions_SystemTextJsonbyte", nameof(other));
+        }
+
+        
+    /// <inheritdoc cref="byte.TryParse(string, out byte)"/>
+    /// <summary>
+    /// </summary>
+    /// <returns>
+    /// The value created via the <see cref="From"/> method.
+    /// </returns>
+    /// <exception cref="ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
+    public static global::System.Boolean TryParse(string s, 
+#if NETCOREAPP3_0_OR_GREATER
+[global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)]
+#endif
+ out public_partial_record_structConversions_SystemTextJsonbyte result) {
+        if(System.Byte.TryParse(s, out var r)) {
+            result = From(r);
+            return true;
+        }
+
+        result = default;
+        return false;
+    }
+
+    /// <inheritdoc cref="byte.TryParse(string, System.Globalization.NumberStyles, System.IFormatProvider, out byte)"/>
+    /// <summary>
+    /// </summary>
+    /// <returns>
+    /// The value created via the <see cref="From"/> method.
+    /// </returns>
+    /// <exception cref="ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
+    public static global::System.Boolean TryParse(string s, global::System.Globalization.NumberStyles style, global::System.IFormatProvider provider, 
+#if NETCOREAPP3_0_OR_GREATER
+[global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)]
+#endif
+ out public_partial_record_structConversions_SystemTextJsonbyte result) {
+        if(System.Byte.TryParse(s, style, provider, out var r)) {
+            result = From(r);
+            return true;
+        }
+
+        result = default;
+        return false;
+    }
+
+    public readonly override global::System.Int32 GetHashCode()
+    {
+        return global::System.Collections.Generic.EqualityComparer<System.Byte>.Default.GetHashCode(Value);
+    }
 
         private readonly void EnsureInitialized()
         {
@@ -138,9 +212,9 @@ namespace Whatever
         }
 
         // record enumerates fields - we just want our Value and to throw if it's not initialized.
-        /// <summary>Returns the string representation of the underlying <see cref="System.Byte" />.</summary>
+        /// <summary>Returns the string representation of the underlying type</summary>
     /// <inheritdoc cref="System.Byte.ToString()" />
-    public override global::System.String ToString() => _isInitialized ? Value.ToString() : "[UNINITIALIZED]";
+    public readonly override global::System.String ToString() =>_isInitialized ? Value.ToString() : "[UNINITIALIZED]";
 
         
  

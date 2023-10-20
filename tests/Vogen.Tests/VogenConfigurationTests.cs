@@ -1,100 +1,152 @@
 using FluentAssertions;
 using Xunit;
 
-namespace Vogen.Tests
+namespace Vogen.Tests;
+
+public class VogenConfigurationTests
 {
-    public class VogenConfigurationTests
+    public class DebuggerAttributeGenerationFlag
     {
-        public class DebuggerAttributeGenerationFlag
+        [Fact]
+        public void Local_beats_global_when_specified()
         {
-            [Fact]
-            public void Local_beats_global_when_specified()
-            {
-                var result = VogenConfiguration.Combine(
-                    ConfigWithOmitDebugAs(DebuggerAttributeGeneration.Basic),
-                    ConfigWithOmitDebugAs(DebuggerAttributeGeneration.Full));
+            var result = VogenConfiguration.Combine(
+                ConfigWithOmitDebugAs(DebuggerAttributeGeneration.Basic),
+                ConfigWithOmitDebugAs(DebuggerAttributeGeneration.Full));
 
-                result.DebuggerAttributes.Should().Be(DebuggerAttributeGeneration.Basic);
-            }
-
-            [Fact]
-            public void Uses_global_when_local_not_specified()
-            {
-                var result = VogenConfiguration.Combine(ConfigWithOmitDebugAs(DebuggerAttributeGeneration.Default), ConfigWithOmitDebugAs(DebuggerAttributeGeneration.Basic));
-
-                result.DebuggerAttributes.Should().Be(DebuggerAttributeGeneration.Basic);
-            }
-
-            private static VogenConfiguration ConfigWithOmitDebugAs(DebuggerAttributeGeneration debuggerAttributes) =>
-                new VogenConfiguration(
-                    null,
-                    null,
-                    Conversions.Default,
-                    Customizations.None,
-                    DeserializationStrictness.Default,
-                    debuggerAttributes,
-                    ComparisonGeneration.UseUnderlying);
+            result.DebuggerAttributes.Should().Be(DebuggerAttributeGeneration.Basic);
         }
 
-        public class Conversion
+        [Fact]
+        public void Uses_global_when_local_not_specified()
         {
-            [Fact]
-            public void Local_beats_global_when_specified()
-            {
-                var result = VogenConfiguration.Combine(ConfigWithOmitConversionsAs(Conversions.EfCoreValueConverter), ConfigWithOmitConversionsAs(Conversions.NewtonsoftJson));
+            var result = VogenConfiguration.Combine(ConfigWithOmitDebugAs(DebuggerAttributeGeneration.Default), ConfigWithOmitDebugAs(DebuggerAttributeGeneration.Basic));
 
-                result.Conversions.Should().Be(Conversions.EfCoreValueConverter);
-            }
-
-            private static VogenConfiguration ConfigWithOmitConversionsAs(Conversions conversions) =>
-                new VogenConfiguration(
-                    null,
-                    null,
-                    conversions,
-                    Customizations.None,
-                    DeserializationStrictness.Default,
-                    DebuggerAttributeGeneration.Full,
-                    ComparisonGeneration.UseUnderlying);
+            result.DebuggerAttributes.Should().Be(DebuggerAttributeGeneration.Basic);
         }
 
-        public class Comparable
+        private static VogenConfiguration ConfigWithOmitDebugAs(DebuggerAttributeGeneration debuggerAttributes) =>
+            new VogenConfiguration(
+                null,
+                null,
+                Conversions.Default,
+                Customizations.None,
+                DeserializationStrictness.Default,
+                debuggerAttributes,
+                ComparisonGeneration.UseUnderlying,
+                StringComparersGeneration.Unspecified);
+    }
+
+    public class Conversion
+    {
+        [Fact]
+        public void Local_beats_global_when_specified()
         {
-            [Fact]
-            public void Local_beats_global_when_specified()
-            {
-                var result = VogenConfiguration.Combine(new ConfigBuilder().WithComparable(ComparisonGeneration.Omit).Build(), new ConfigBuilder().WithComparable(ComparisonGeneration.UseUnderlying).Build());
+            var result = VogenConfiguration.Combine(ConfigWithOmitConversionsAs(Conversions.EfCoreValueConverter), ConfigWithOmitConversionsAs(Conversions.NewtonsoftJson));
 
-                result.Comparison.Should().Be(ComparisonGeneration.Omit);
-            }
-
-            [Fact]
-            public void Global_beats_local_when_local_is_not_specified()
-            {
-                var result = VogenConfiguration.Combine(new ConfigBuilder().Build(), new ConfigBuilder().WithComparable(ComparisonGeneration.Omit).Build());
-
-                result.Comparison.Should().Be(ComparisonGeneration.Omit);
-            }
+            result.Conversions.Should().Be(Conversions.EfCoreValueConverter);
         }
 
-        public class ConfigBuilder
+        private static VogenConfiguration ConfigWithOmitConversionsAs(Conversions conversions) =>
+            new VogenConfiguration(
+                null,
+                null,
+                conversions,
+                Customizations.None,
+                DeserializationStrictness.Default,
+                DebuggerAttributeGeneration.Full,
+                ComparisonGeneration.UseUnderlying,
+                StringComparersGeneration.Unspecified);
+    }
+
+    public class Comparable
+    {
+        [Fact]
+        public void Local_beats_global_when_specified()
         {
-            private VogenConfiguration _c;
-            
-            public ConfigBuilder WithComparable(ComparisonGeneration comparable)
-            {
-                _c = new VogenConfiguration(
-                    _c.UnderlyingType,
-                    _c.ValidationExceptionType,
-                    _c.Conversions,
-                    _c.Customizations,
-                    _c.DeserializationStrictness,
-                    _c.DebuggerAttributes,
-                    comparable);
+            var result = VogenConfiguration.Combine(
+                new ConfigBuilder().WithComparable(ComparisonGeneration.Omit).Build(),
+                new ConfigBuilder().WithComparable(ComparisonGeneration.UseUnderlying).Build());
+
+            result.Comparison.Should().Be(ComparisonGeneration.Omit);
+        }
+
+        [Fact]
+        public void Global_beats_local_when_local_is_not_specified()
+        {
+            var result = VogenConfiguration.Combine(new ConfigBuilder().Build(), new ConfigBuilder().WithComparable(ComparisonGeneration.Omit).Build());
+
+            result.Comparison.Should().Be(ComparisonGeneration.Omit);
+        }
+    }
+
+    public class StringComparersGenerationTests
+    {
+        [Fact]
+        public void Defaults_to_omit()
+        {
+            var result = VogenConfiguration.Combine(
+                localValues: new ConfigBuilder().WithStringComparersGeneration(StringComparersGeneration.Unspecified).Build(), 
+                globalValues: new ConfigBuilder().WithStringComparersGeneration(StringComparersGeneration.Unspecified).Build());
+
+            result.StringComparers.Should().Be(StringComparersGeneration.Omit);
+        }
+
+        [Fact]
+        public void Local_beats_global_when_specified()
+        {
+            var result = VogenConfiguration.Combine(
+                localValues: new ConfigBuilder().WithStringComparersGeneration(StringComparersGeneration.Generate).Build(), 
+                globalValues: new ConfigBuilder().WithStringComparersGeneration(StringComparersGeneration.Unspecified).Build());
+
+            result.StringComparers.Should().Be(StringComparersGeneration.Generate);
+        }
+
+        [Fact]
+        public void Global_beats_local_when_local_is_not_specified()
+        {
+            var result = VogenConfiguration.Combine(
+                localValues: new ConfigBuilder().WithStringComparersGeneration(StringComparersGeneration.Unspecified).Build(), 
+                globalValues: new ConfigBuilder().WithStringComparersGeneration(StringComparersGeneration.Generate).Build());
+
+            result.StringComparers.Should().Be(StringComparersGeneration.Generate);
+        }
+    }
+
+    public class ConfigBuilder
+    {
+        private VogenConfiguration _c;
+
+        public ConfigBuilder WithComparable(ComparisonGeneration comparable)
+        {
+            _c = new VogenConfiguration(
+                _c.UnderlyingType,
+                _c.ValidationExceptionType,
+                _c.Conversions,
+                _c.Customizations,
+                _c.DeserializationStrictness,
+                _c.DebuggerAttributes,
+                comparable,
+                _c.StringComparers);
                 
-                return this;
-            }
-            
-            public VogenConfiguration Build() => _c;
+            return this;
         }
+
+        public ConfigBuilder WithStringComparersGeneration(StringComparersGeneration g)
+        {
+            _c = new VogenConfiguration(
+                _c.UnderlyingType,
+                _c.ValidationExceptionType,
+                _c.Conversions,
+                _c.Customizations,
+                _c.DeserializationStrictness,
+                _c.DebuggerAttributes,
+                _c.Comparison,
+                g);
+                
+            return this;
+        }
+            
+        public VogenConfiguration Build() => _c;
     }
 }

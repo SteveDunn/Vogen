@@ -9,7 +9,7 @@ public class ClassGenerator : IGenerateSourceCode
         var className = tds.Identifier;
 
         var itemUnderlyingType = item.UnderlyingTypeFullName;
-        
+
         return $@"
 using Vogen;
 
@@ -74,6 +74,7 @@ public {itemUnderlyingType} Value
 
             return instance;
         }}
+{GenerateEqualsAndHashCodes.GenerateStringComparersIfNeeded(item, tds)}  
 
         // only called internally when something has been deserialized into
         // its primitive type.
@@ -87,47 +88,7 @@ public {itemUnderlyingType} Value
 
             return new {className}(value);
         }}
-
-        public global::System.Boolean Equals({className} other)
-        {{
-            if (ReferenceEquals(null, other))
-            {{
-                return false;
-            }}
-
-            // It's possible to create uninitialized instances via converters such as EfCore (HasDefaultValue), which call Equals.
-            // We treat anything uninitialized as not equal to anything, even other uninitialized instances of this type.
-            if(!_isInitialized || !other._isInitialized) return false;
-	    	
-            if (ReferenceEquals(this, other))
-            {{
-                return true;
-            }}
-
-            return GetType() == other.GetType() && global::System.Collections.Generic.EqualityComparer<{itemUnderlyingType}>.Default.Equals(Value, other.Value);
-        }}
-
-        public global::System.Boolean Equals({itemUnderlyingType} primitive) => Value.Equals(primitive);
-
-        public override global::System.Boolean Equals(global::System.Object obj)
-        {{
-            if (ReferenceEquals(null, obj))
-            {{
-                return false;
-            }}
-
-            if (ReferenceEquals(this, obj))
-            {{
-                return true;
-            }}
-
-            if (obj.GetType() != GetType())
-            {{
-                return false;
-            }}
-
-            return Equals(({className}) obj);
-        }}
+        {GenerateEqualsAndHashCodes.GenerateEqualsForAClass(item, tds)}
 
         public static global::System.Boolean operator ==({className} left, {className} right) => Equals(left, right);
         public static global::System.Boolean operator !=({className} left, {className} right) => !Equals(left, right);
@@ -142,18 +103,7 @@ public {itemUnderlyingType} Value
         public static explicit operator {itemUnderlyingType}({className} value) => value.Value;
 
         {GenerateComparableCode.GenerateIComparableImplementationIfNeeded(item, tds)}
-
-        public override global::System.Int32 GetHashCode()
-        {{
-            unchecked // Overflow is fine, just wrap
-            {{
-                global::System.Int32 hash = (global::System.Int32) 2166136261;
-                hash = (hash * 16777619) ^ Value.GetHashCode();
-                hash = (hash * 16777619) ^ GetType().GetHashCode();
-                hash = (hash * 16777619) ^ global::System.Collections.Generic.EqualityComparer<{itemUnderlyingType}>.Default.GetHashCode();
-                return hash;
-            }}
-        }}
+{GenerateEqualsAndHashCodes.GenerateGetHashCodeForAClass(item)}
 
         private void EnsureInitialized()
         {{
