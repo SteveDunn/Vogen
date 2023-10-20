@@ -3,7 +3,15 @@
         {
             public override VOTYPE Read(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {
+#if NET5_0_OR_GREATER
+__NORMAL__                return VOTYPE.Deserialize(
+__NORMAL__                    options.NumberHandling == global::System.Text.Json.Serialization.JsonNumberHandling.AllowReadingFromString && reader.TokenType == global::System.Text.Json.JsonTokenType.String
+__NORMAL__                    ? global::System.Double.Parse(reader.GetString(), global::System.Globalization.NumberStyles.Any, global::System.Globalization.CultureInfo.InvariantCulture)
+__NORMAL__                    : reader.GetDouble()
+__NORMAL__                );
+#else
 __NORMAL__                return VOTYPE.Deserialize(reader.GetDouble());
+#endif
 __STRING__                return VOTYPE.Deserialize(global::System.Double.Parse(reader.GetString(), global::System.Globalization.NumberStyles.Any, global::System.Globalization.CultureInfo.InvariantCulture));
             }
 

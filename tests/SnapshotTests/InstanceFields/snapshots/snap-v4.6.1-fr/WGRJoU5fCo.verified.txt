@@ -204,7 +204,15 @@ public static readonly internal_partial_recordbyte MyValue = new internal_partia
         {
             public override internal_partial_recordbyte Read(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {
+#if NET5_0_OR_GREATER
+                return internal_partial_recordbyte.Deserialize(
+                    options.NumberHandling == global::System.Text.Json.Serialization.JsonNumberHandling.AllowReadingFromString && reader.TokenType == global::System.Text.Json.JsonTokenType.String
+                    ? global::System.Byte.Parse(reader.GetString(), global::System.Globalization.NumberStyles.Any, global::System.Globalization.CultureInfo.InvariantCulture)
+                    : reader.GetByte()
+                );
+#else
                 return internal_partial_recordbyte.Deserialize(reader.GetByte());
+#endif
             }
 
             public override void Write(global::System.Text.Json.Utf8JsonWriter writer, internal_partial_recordbyte value, global::System.Text.Json.JsonSerializerOptions options)

@@ -219,6 +219,9 @@ public readonly override global::System.Boolean Equals(global::System.Object obj
         {
             public override CustomerId Read(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {
+#if NET5_0_OR_GREATER
+#else
+#endif
                 return CustomerId.Deserialize(global::System.Int32.Parse(reader.GetString(), global::System.Globalization.NumberStyles.Any, global::System.Globalization.CultureInfo.InvariantCulture));
             }
 

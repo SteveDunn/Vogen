@@ -198,7 +198,15 @@ public global::System.Boolean Equals(internal_partial_record_classConversions_Sy
         {
             public override internal_partial_record_classConversions_SystemTextJsonint Read(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {
+#if NET5_0_OR_GREATER
+                return internal_partial_record_classConversions_SystemTextJsonint.Deserialize(
+                    options.NumberHandling == global::System.Text.Json.Serialization.JsonNumberHandling.AllowReadingFromString && reader.TokenType == global::System.Text.Json.JsonTokenType.String
+                    ? global::System.Int32.Parse(reader.GetString(), global::System.Globalization.NumberStyles.Any, global::System.Globalization.CultureInfo.InvariantCulture)
+                    : reader.GetInt32()
+                );
+#else
                 return internal_partial_record_classConversions_SystemTextJsonint.Deserialize(reader.GetInt32());
+#endif
             }
 
             public override void Write(System.Text.Json.Utf8JsonWriter writer, internal_partial_record_classConversions_SystemTextJsonint value, global::System.Text.Json.JsonSerializerOptions options)
