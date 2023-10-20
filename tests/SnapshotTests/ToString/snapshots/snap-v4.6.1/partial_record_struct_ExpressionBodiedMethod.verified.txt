@@ -222,7 +222,15 @@ public global::System.Boolean Equals(partial_record_struct_ExpressionBodiedMetho
         {
             public override partial_record_struct_ExpressionBodiedMethod Read(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {
+#if NET5_0_OR_GREATER
+                return partial_record_struct_ExpressionBodiedMethod.Deserialize(
+                    options.NumberHandling == global::System.Text.Json.Serialization.JsonNumberHandling.AllowReadingFromString && reader.TokenType == global::System.Text.Json.JsonTokenType.String
+                    ? global::System.Int32.Parse(reader.GetString(), global::System.Globalization.NumberStyles.Any, global::System.Globalization.CultureInfo.InvariantCulture)
+                    : reader.GetInt32()
+                );
+#else
                 return partial_record_struct_ExpressionBodiedMethod.Deserialize(reader.GetInt32());
+#endif
             }
 
             public override void Write(System.Text.Json.Utf8JsonWriter writer, partial_record_struct_ExpressionBodiedMethod value, global::System.Text.Json.JsonSerializerOptions options)

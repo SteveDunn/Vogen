@@ -199,7 +199,15 @@ public global::System.Boolean Equals(public_sealed_partial_record_classConversio
         {
             public override public_sealed_partial_record_classConversions_NewtonsoftJson___Conversions_SystemTextJson Read(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {
+#if NET5_0_OR_GREATER
+                return public_sealed_partial_record_classConversions_NewtonsoftJson___Conversions_SystemTextJson.Deserialize(
+                    options.NumberHandling == global::System.Text.Json.Serialization.JsonNumberHandling.AllowReadingFromString && reader.TokenType == global::System.Text.Json.JsonTokenType.String
+                    ? global::System.Int32.Parse(reader.GetString(), global::System.Globalization.NumberStyles.Any, global::System.Globalization.CultureInfo.InvariantCulture)
+                    : reader.GetInt32()
+                );
+#else
                 return public_sealed_partial_record_classConversions_NewtonsoftJson___Conversions_SystemTextJson.Deserialize(reader.GetInt32());
+#endif
             }
 
             public override void Write(System.Text.Json.Utf8JsonWriter writer, public_sealed_partial_record_classConversions_NewtonsoftJson___Conversions_SystemTextJson value, global::System.Text.Json.JsonSerializerOptions options)

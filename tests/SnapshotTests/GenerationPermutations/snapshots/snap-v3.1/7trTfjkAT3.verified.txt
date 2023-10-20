@@ -266,7 +266,15 @@ public global::System.Boolean Equals(public_readonly_partial_record_structConver
         {
             public override public_readonly_partial_record_structConversions_NewtonsoftJson___Conversions_SystemTextJsonint Read(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {
+#if NET5_0_OR_GREATER
+                return public_readonly_partial_record_structConversions_NewtonsoftJson___Conversions_SystemTextJsonint.Deserialize(
+                    options.NumberHandling == global::System.Text.Json.Serialization.JsonNumberHandling.AllowReadingFromString && reader.TokenType == global::System.Text.Json.JsonTokenType.String
+                    ? global::System.Int32.Parse(reader.GetString(), global::System.Globalization.NumberStyles.Any, global::System.Globalization.CultureInfo.InvariantCulture)
+                    : reader.GetInt32()
+                );
+#else
                 return public_readonly_partial_record_structConversions_NewtonsoftJson___Conversions_SystemTextJsonint.Deserialize(reader.GetInt32());
+#endif
             }
 
             public override void Write(System.Text.Json.Utf8JsonWriter writer, public_readonly_partial_record_structConversions_NewtonsoftJson___Conversions_SystemTextJsonint value, global::System.Text.Json.JsonSerializerOptions options)

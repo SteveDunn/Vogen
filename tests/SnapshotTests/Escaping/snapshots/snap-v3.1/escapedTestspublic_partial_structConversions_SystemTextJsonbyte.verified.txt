@@ -260,7 +260,15 @@ public readonly override global::System.Boolean Equals(global::System.Object obj
         {
             public override escapedTestspublic_partial_structConversions_SystemTextJsonbyte Read(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {
+#if NET5_0_OR_GREATER
+                return escapedTestspublic_partial_structConversions_SystemTextJsonbyte.Deserialize(
+                    options.NumberHandling == global::System.Text.Json.Serialization.JsonNumberHandling.AllowReadingFromString && reader.TokenType == global::System.Text.Json.JsonTokenType.String
+                    ? global::System.Byte.Parse(reader.GetString(), global::System.Globalization.NumberStyles.Any, global::System.Globalization.CultureInfo.InvariantCulture)
+                    : reader.GetByte()
+                );
+#else
                 return escapedTestspublic_partial_structConversions_SystemTextJsonbyte.Deserialize(reader.GetByte());
+#endif
             }
 
             public override void Write(global::System.Text.Json.Utf8JsonWriter writer, escapedTestspublic_partial_structConversions_SystemTextJsonbyte value, global::System.Text.Json.JsonSerializerOptions options)
