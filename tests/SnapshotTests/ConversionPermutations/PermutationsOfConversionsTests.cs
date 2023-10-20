@@ -14,7 +14,7 @@ public class PermutationsOfConversionsTests
     [UsesVerify]
     public class ConversionPermutationTests
     {
-        static readonly string[] _permutations = new Permutations().ToArray();
+        static readonly string[] _permutations = new Permutations().Distinct().ToArray();
 
         // These used to be 'ClassData' tests, but they were run sequentially, which was very slow.
         // This test now runs the permutations in parallel.
