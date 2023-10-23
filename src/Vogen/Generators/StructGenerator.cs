@@ -17,12 +17,10 @@ using Vogen;
     [global::System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage] 
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute(""{Util.GenerateYourAssemblyName()}"", ""{Util.GenerateYourAssemblyVersion()}"")]
     {Util.GenerateAnyConversionAttributes(tds, item)}
-    {Util.GenerateDebugAttributes(item, structName, itemUnderlyingType)}
+    {DebugGeneration.GenerateDebugAttributes(item, structName, itemUnderlyingType)}
     { Util.GenerateModifiersFor(tds)} struct {structName} : global::System.IEquatable<{structName}>, global::System.IEquatable<{itemUnderlyingType}> {GenerateComparableCode.GenerateIComparableHeaderIfNeeded(", ", item, tds)}
     {{
-#if DEBUG    
-        private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
-#endif
+{DebugGeneration.GenerateStackTraceFieldIfNeeded(item)}
 
         private readonly global::System.Boolean _isInitialized;
         
@@ -46,7 +44,7 @@ using Vogen;
         public {structName}()
         {{
 #if DEBUG
-            _stackTrace = new global::System.Diagnostics.StackTrace();
+            {DebugGeneration.SetStackTraceIfNeeded(item)}
 #endif
 
             _isInitialized = false;
@@ -77,9 +75,7 @@ using Vogen;
         }}
 {GenerateEqualsAndHashCodes.GenerateStringComparersIfNeeded(item, tds)}        
 
-        public static explicit operator {structName}({itemUnderlyingType} value) => From(value);
-        public static explicit operator {itemUnderlyingType}({structName} value) => value.Value;
-
+{GenerateCastingOperators.Generate(item,tds)}
         // only called internally when something has been deserialized into
         // its primitive type.
         private static {structName} Deserialize({itemUnderlyingType} value)
@@ -113,7 +109,7 @@ using Vogen;
             if (!_isInitialized)
             {{
 #if DEBUG
-                global::System.String message = ""Use of uninitialized Value Object at: "" + _stackTrace ?? """";
+                {DebugGeneration.GenerateMessageForUninitializedValueObject(item)}
 #else
                 global::System.String message = ""Use of uninitialized Value Object."";
 #endif

@@ -25,6 +25,9 @@ internal class BuildConfigurationFromAttributes
     private DebuggerAttributeGeneration _debuggerAttributes;
     private ComparisonGeneration _comparisonGeneration;
     private StringComparersGeneration _stringComparers;
+    private CastOperator _fromPrimitiveCasting;
+    private CastOperator _toPrimitiveCasting;
+    private bool _disableStackTraceGenerationInDebug;
 
     private BuildConfigurationFromAttributes(AttributeData att)
     {
@@ -37,6 +40,9 @@ internal class BuildConfigurationFromAttributes
         _debuggerAttributes = DebuggerAttributeGeneration.Default;
         _comparisonGeneration = ComparisonGeneration.Default;
         _stringComparers = StringComparersGeneration.Unspecified;
+        _fromPrimitiveCasting = CastOperator.Unspecified;
+        _toPrimitiveCasting = CastOperator.Unspecified;
+        _disableStackTraceGenerationInDebug = false;
         _hasErroredAttributes = false;
         
        _diagnostics = new List<Diagnostic>();
@@ -88,7 +94,10 @@ internal class BuildConfigurationFromAttributes
                 _deserializationStrictness,
                 _debuggerAttributes,
                 _comparisonGeneration,
-                _stringComparers),
+                _stringComparers,
+                _toPrimitiveCasting,
+                _fromPrimitiveCasting,
+                _disableStackTraceGenerationInDebug),
             diagnostics: _diagnostics);
     }
 
@@ -117,14 +126,14 @@ internal class BuildConfigurationFromAttributes
     {
         _underlyingType = (INamedTypeSymbol?) args[0].Value;
 
-        var skipped = args.Skip(1).ToImmutableArray();
+        var argsNotIncludingUnderlyingType = args.Skip(1).ToImmutableArray();
         if (argsAreFromVogenDefaultsAttribute)
         {
-            PopulateFromVogenDefaultsAttributeArgs(skipped);
+            PopulateFromVogenDefaultsAttributeArgs(argsNotIncludingUnderlyingType);
         }
         else
         {
-            PopulateFromValueObjectAttributeArgs(skipped);
+            PopulateFromValueObjectAttributeArgs(argsNotIncludingUnderlyingType);
         }
     }
 
@@ -158,20 +167,35 @@ internal class BuildConfigurationFromAttributes
     // * not specified for the generic attribute, and
     // * stripped out (skipped) for the non-generic attribute
     // ReSharper disable once CognitiveComplexity
-    private void PopulateFromVogenDefaultsAttributeArgs(ImmutableArray<TypedConstant> args)
+    private void PopulateFromVogenDefaultsAttributeArgs(ImmutableArray<TypedConstant> argsExcludingUnderlyingType)
     {
-        if (args.Length > 5)
+        if (argsExcludingUnderlyingType.Length > 8)
         {
             throw new InvalidOperationException("Too many arguments for the attribute.");
         }
 
-        for (int i = args.Length - 1; i >= 0; i--)
+        for (int i = argsExcludingUnderlyingType.Length - 1; i >= 0; i--)
         {
-            var v = args[i].Value;
+            var v = argsExcludingUnderlyingType[i].Value;
 
             if (v is null)
             {
                 continue;
+            }
+
+            if (i == 7)
+            {
+                _disableStackTraceGenerationInDebug = (bool) v;
+            }
+
+            if (i == 6)
+            {
+                _toPrimitiveCasting = (CastOperator) v;
+            }
+
+            if (i == 5)
+            {
+                _fromPrimitiveCasting = (CastOperator) v;
             }
 
             if (i == 4)
@@ -206,7 +230,7 @@ internal class BuildConfigurationFromAttributes
     // ReSharper disable once CognitiveComplexity
     private void PopulateFromValueObjectAttributeArgs(ImmutableArray<TypedConstant> args)
     {
-        if (args.Length > 7)
+        if (args.Length > 9)
         {
             throw new InvalidOperationException("Too many arguments for the attribute.");
         }
@@ -218,6 +242,15 @@ internal class BuildConfigurationFromAttributes
             if (v is null)
             {
                 continue;
+            }
+
+            if (i == 8)
+            {
+                _fromPrimitiveCasting = (CastOperator) v;
+            }
+            if (i == 7)
+            {
+                _toPrimitiveCasting = (CastOperator) v;
             }
 
             if (i == 6)

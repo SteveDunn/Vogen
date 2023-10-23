@@ -36,7 +36,7 @@ namespace Whatever
     [global::System.Diagnostics.DebuggerDisplayAttribute("Underlying type: System.Byte, Value = { _value }")]
     internal sealed partial class internal_sealed_partial_classConversions_TypeConverterbyte : global::System.IEquatable<internal_sealed_partial_classConversions_TypeConverterbyte>, global::System.IEquatable<System.Byte> ,  global::System.IComparable<internal_sealed_partial_classConversions_TypeConverterbyte>, global::System.IComparable
     {
-#if DEBUG    
+#if DEBUG   
         private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
 #endif
         private readonly global::System.Boolean _isInitialized;

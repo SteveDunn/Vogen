@@ -81,6 +81,7 @@ public class InstanceTests
         }
 
         [Fact]
+        [UseCulture("en-GB")]
         public void DateTimeOffsets()
         {
             using var _ = new AssertionScope();

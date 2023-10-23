@@ -36,7 +36,7 @@ namespace @class
     [global::System.Diagnostics.DebuggerDisplayAttribute("Underlying type: @class.@record.@struct.@float.@decimal, Value = { _value }")]
     public partial record struct escapedTestspublic_partial_record_structConversions_SystemTextJsonrecord__struct__float__decimal : global::System.IEquatable<escapedTestspublic_partial_record_structConversions_SystemTextJsonrecord__struct__float__decimal>, global::System.IEquatable<@class.@record.@struct.@float.@decimal> 
     {
-#if DEBUG    
+#if DEBUG   
         private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
 #endif
 
@@ -103,7 +103,6 @@ namespace @class
             return instance;
         }
         
-
         public static explicit operator escapedTestspublic_partial_record_structConversions_SystemTextJsonrecord__struct__float__decimal(@class.@record.@struct.@float.@decimal value) => From(value);
         public static explicit operator @class.@record.@struct.@float.@decimal(escapedTestspublic_partial_record_structConversions_SystemTextJsonrecord__struct__float__decimal value) => value.Value;
 

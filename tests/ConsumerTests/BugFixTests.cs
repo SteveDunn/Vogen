@@ -2,6 +2,12 @@ using Newtonsoft.Json;
 
 namespace ConsumerTests.BugFixTests;
 
+[ValueObject(typeof(int), toPrimitiveCasting: CastOperator.None, fromPrimitiveCasting: CastOperator.None)]
+public partial struct Bug502Vo
+{
+    public static implicit operator int(Bug502Vo vo) => vo._value;
+}
+
 public class BugFixTests
 {
     /// <summary>
@@ -22,6 +28,18 @@ public class BugFixTests
         deserialized.Age.Should().Be(Age.From(42));
         deserialized.Name.Should().BeNull();
         deserialized.Address.Should().BeNull();
+    }
+
+    /// <summary>
+    /// Fixes bug https://github.com/SteveDunn/Vogen/issues/502 where a VO cannot have a user supplied implicit cast.
+    /// </summary>
+    [Fact]
+    public void Bug502_cannot_have_implicit_cast_operator()
+    {
+        var b = Bug502Vo.From(42);
+
+        int n = b;
+        n.Should().Be(42);
     }
 }
 

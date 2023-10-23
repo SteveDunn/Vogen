@@ -36,7 +36,7 @@ namespace @class
     [global::System.Diagnostics.DebuggerDisplayAttribute("Underlying type: @class.@record.@struct.@float.@decimal, Value = { _value }")]
     public partial record class escapedTestspublic_partial_recordConversions_TypeConverterrecord__struct__float__decimal : global::System.IEquatable<escapedTestspublic_partial_recordConversions_TypeConverterrecord__struct__float__decimal>, global::System.IEquatable<@class.@record.@struct.@float.@decimal> 
     {
-#if DEBUG    
+#if DEBUG   
         private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
 #endif
         private readonly global::System.Boolean _isInitialized;

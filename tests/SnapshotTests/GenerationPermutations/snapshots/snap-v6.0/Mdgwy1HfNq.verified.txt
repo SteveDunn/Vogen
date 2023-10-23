@@ -36,7 +36,7 @@ namespace Whatever
     [global::System.Diagnostics.DebuggerDisplayAttribute("Underlying type: System.Boolean, Value = { _value }")]
     public partial record struct public_partial_record_structConversions_SystemTextJsonbool : global::System.IEquatable<public_partial_record_structConversions_SystemTextJsonbool>, global::System.IEquatable<System.Boolean> ,  global::System.IComparable<public_partial_record_structConversions_SystemTextJsonbool>, global::System.IComparable
     {
-#if DEBUG    
+#if DEBUG   
         private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
 #endif
 
@@ -103,7 +103,6 @@ namespace Whatever
             return instance;
         }
         
-
         public static explicit operator public_partial_record_structConversions_SystemTextJsonbool(System.Boolean value) => From(value);
         public static explicit operator System.Boolean(public_partial_record_structConversions_SystemTextJsonbool value) => value.Value;
 

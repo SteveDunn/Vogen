@@ -1,10 +1,29 @@
 using FluentAssertions;
+using Microsoft.CodeAnalysis;
 using Xunit;
 
 namespace Vogen.Tests;
 
 public class VogenConfigurationTests
 {
+    public class Defaulting
+    {
+        [Fact]
+        public void Defaults()
+        {
+            var instance = VogenConfiguration.DefaultInstance;
+            
+            instance.Conversions.Should().Be(Conversions.Default);
+            instance.Customizations.Should().Be(Customizations.None);
+            instance.DeserializationStrictness.Should().Be(DeserializationStrictness.Default);
+            instance.DebuggerAttributes.Should().Be(DebuggerAttributeGeneration.Full);
+            instance.StringComparers.Should().Be(StringComparersGeneration.Omit);
+            instance.ToPrimitiveCasting.Should().Be(CastOperator.Explicit);
+            instance.FromPrimitiveCasting.Should().Be(CastOperator.Explicit);
+        }
+    }
+    
+
     public class DebuggerAttributeGenerationFlag
     {
         [Fact]
@@ -34,7 +53,51 @@ public class VogenConfigurationTests
                 DeserializationStrictness.Default,
                 debuggerAttributes,
                 ComparisonGeneration.UseUnderlying,
-                StringComparersGeneration.Unspecified);
+                StringComparersGeneration.Unspecified,
+                CastOperator.Unspecified,
+                CastOperator.Unspecified,
+                false);
+    }
+
+    public class Casting
+    {
+        [Fact]
+        public void Local_beats_global_when_specified()
+        {
+            var local = ConfigWithCastingAs(CastOperator.Implicit, CastOperator.Explicit);
+            var global = ConfigWithCastingAs(CastOperator.None, CastOperator.Implicit);
+            
+            var result = VogenConfiguration.Combine(local, global);
+
+            result.ToPrimitiveCasting.Should().Be(CastOperator.Implicit);
+            result.FromPrimitiveCasting.Should().Be(CastOperator.Explicit);
+        }
+
+        [Fact]
+        public void Uses_global_when_local_not_specified()
+        {
+            var local = ConfigWithCastingAs(CastOperator.Unspecified, CastOperator.Unspecified);
+            var global = ConfigWithCastingAs(CastOperator.Explicit, CastOperator.Implicit);
+            
+            var result = VogenConfiguration.Combine(local, global);
+
+            result.ToPrimitiveCasting.Should().Be(CastOperator.Explicit);
+            result.FromPrimitiveCasting.Should().Be(CastOperator.Implicit);
+        }
+
+        private static VogenConfiguration ConfigWithCastingAs(CastOperator toPrimitiveCast, CastOperator fromPrimitiveCast) =>
+            new(
+                underlyingType: null,
+                validationExceptionType: null,
+                conversions: Conversions.Default,
+                customizations: Customizations.None,
+                deserializationStrictness: DeserializationStrictness.Default,
+                debuggerAttributes: DebuggerAttributeGeneration.Full,
+                comparison: ComparisonGeneration.UseUnderlying,
+                stringComparers: StringComparersGeneration.Unspecified,
+                toPrimitiveCasting: toPrimitiveCast,
+                fromPrimitiveCasting: fromPrimitiveCast,
+                disableStackTraceRecordingInDebug: false);
     }
 
     public class Conversion
@@ -56,7 +119,10 @@ public class VogenConfigurationTests
                 DeserializationStrictness.Default,
                 DebuggerAttributeGeneration.Full,
                 ComparisonGeneration.UseUnderlying,
-                StringComparersGeneration.Unspecified);
+                StringComparersGeneration.Unspecified,
+                CastOperator.Unspecified,
+                CastOperator.Unspecified,
+                false);
     }
 
     public class Comparable
@@ -74,7 +140,9 @@ public class VogenConfigurationTests
         [Fact]
         public void Global_beats_local_when_local_is_not_specified()
         {
-            var result = VogenConfiguration.Combine(new ConfigBuilder().Build(), new ConfigBuilder().WithComparable(ComparisonGeneration.Omit).Build());
+            var result = VogenConfiguration.Combine(
+                new ConfigBuilder().WithComparable(ComparisonGeneration.Default).Build(),
+                new ConfigBuilder().WithComparable(ComparisonGeneration.Omit).Build());
 
             result.Comparison.Should().Be(ComparisonGeneration.Omit);
         }
@@ -115,7 +183,7 @@ public class VogenConfigurationTests
 
     public class ConfigBuilder
     {
-        private VogenConfiguration _c;
+        private VogenConfiguration _c = VogenConfiguration.DefaultInstance;
 
         public ConfigBuilder WithComparable(ComparisonGeneration comparable)
         {
@@ -127,7 +195,10 @@ public class VogenConfigurationTests
                 _c.DeserializationStrictness,
                 _c.DebuggerAttributes,
                 comparable,
-                _c.StringComparers);
+                _c.StringComparers,
+                _c.ToPrimitiveCasting,
+                _c.FromPrimitiveCasting,
+                _c.DisableStackTraceRecordingInDebug);
                 
             return this;
         }
@@ -142,7 +213,10 @@ public class VogenConfigurationTests
                 _c.DeserializationStrictness,
                 _c.DebuggerAttributes,
                 _c.Comparison,
-                g);
+                g,
+                _c.ToPrimitiveCasting,
+                _c.FromPrimitiveCasting,
+                _c.DisableStackTraceRecordingInDebug);
                 
             return this;
         }

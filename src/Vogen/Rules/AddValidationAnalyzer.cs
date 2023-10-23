@@ -88,14 +88,17 @@ namespace Vogen.Rules
             
             VogenConfiguration? vogenConfig = buildResult.ResultingConfiguration;
             
-            if (!vogenConfig.HasValue) return null;
-            
+            if (vogenConfig is null)
+            {
+                return null;
+            }
+
             if (buildResult.HasDiagnostics)
             {
                 return null;
             }
 
-            INamedTypeSymbol? ulType = vogenConfig.Value.UnderlyingType;
+            INamedTypeSymbol? ulType = vogenConfig.UnderlyingType;
 
             return ulType ?? 
                    TryGetFromGlobalAttribute(context.Compilation) ?? 

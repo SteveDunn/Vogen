@@ -1,26 +1,11 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
-using SnapshotTests.ConversionPermutations;
 using VerifyXunit;
 using Vogen;
 using Xunit.Abstractions;
 
 namespace SnapshotTests.GenerationPermutations;
-
-// public class PermutationTests
-// {
-//     [Fact]
-//     public void Blah()
-//     {
-//         Permutations p = new Permutations();
-//         var x = p.ToList();
-//         Console.WriteLine(x);
-//     }
-// }
-
 
 [UsesVerify] 
 public class GenerationPermutationTests

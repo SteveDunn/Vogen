@@ -23,8 +23,10 @@ namespace Vogen
             DeserializationStrictness deserializationStrictness = DeserializationStrictness.AllowValidAndKnownInstances,
             DebuggerAttributeGeneration debuggerAttributes = DebuggerAttributeGeneration.Default,
             ComparisonGeneration comparison = ComparisonGeneration.Default,
-            StringComparersGeneration stringComparers = StringComparersGeneration.Unspecified)
-            : base(typeof(T), conversions, throws, customizations, deserializationStrictness, debuggerAttributes, comparison, stringComparers)
+            StringComparersGeneration stringComparers = StringComparersGeneration.Unspecified,
+            CastOperator toPrimitiveCasting = CastOperator.Unspecified,
+            CastOperator fromPrimitiveCasting = CastOperator.Unspecified)
+            : base(typeof(T), conversions, throws, customizations, deserializationStrictness, debuggerAttributes, comparison, stringComparers, toPrimitiveCasting, fromPrimitiveCasting)
         {
         }
     }
@@ -49,7 +51,9 @@ namespace Vogen
             DeserializationStrictness deserializationStrictness = DeserializationStrictness.AllowValidAndKnownInstances,
             DebuggerAttributeGeneration debuggerAttributes = DebuggerAttributeGeneration.Default,
             ComparisonGeneration comparison = ComparisonGeneration.Default,
-            StringComparersGeneration stringComparers = StringComparersGeneration.Unspecified)
+            StringComparersGeneration stringComparers = StringComparersGeneration.Unspecified,
+            CastOperator toPrimitiveCasting = CastOperator.Unspecified,
+            CastOperator fromPrimitiveCasting = CastOperator.Unspecified)
         {
         }
     }

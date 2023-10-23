@@ -9,8 +9,10 @@
 	<s:String x:Key="/Default/CodeInspection/ExcludedFiles/FilesAndFoldersToSkip2/=83488ED4_002D6EB4_002D42B2_002DBFAC_002DD75B02A6F9A6_002Fd_003AJsonNumberCustomizations_002Fd_003Asnapshots/@EntryIndexedValue">ExplicitlyExcluded</s:String>
 	<s:String x:Key="/Default/CodeInspection/ExcludedFiles/FilesAndFoldersToSkip2/=83488ED4_002D6EB4_002D42B2_002DBFAC_002DD75B02A6F9A6_002Fd_003Asnapshots/@EntryIndexedValue">ExplicitlyExcluded</s:String>
 	<s:String x:Key="/Default/CodeInspection/ExcludedFiles/FilesAndFoldersToSkip2/=83488ED4_002D6EB4_002D42B2_002DBFAC_002DD75B02A6F9A6_002Fd_003AToString_002Fd_003Asnapshots/@EntryIndexedValue">ExplicitlyExcluded</s:String>
+	<s:String x:Key="/Default/CodeInspection/ExcludedFiles/GeneratedFilesAndFolders/=tests_005CSnapshotTests_005C_002A_002Asnap_002D_002A/@EntryIndexedValue">tests\SnapshotTests\**snap-*</s:String>
 	<s:String x:Key="/Default/CodeInspection/ExcludedFiles/GeneratedFilesAndFolders/=_002A_002Eg_002Ecs/@EntryIndexedValue">*.g.cs</s:String>
 	<s:String x:Key="/Default/CodeInspection/GeneratedCode/GeneratedFileMasks/=_002A_002Eg_002Ecs/@EntryIndexedValue">*.g.cs</s:String>
+	<s:String x:Key="/Default/CodeInspection/Highlighting/InspectionSeverities/=BitwiseOperatorOnEnumWithoutFlags/@EntryIndexedValue">ERROR</s:String>
 	<s:String x:Key="/Default/CodeInspection/Highlighting/InspectionSeverities/=CheckNamespace/@EntryIndexedValue">ERROR</s:String>
 	<s:String x:Key="/Default/CodeInspection/Highlighting/InspectionSeverities/=MemberCanBeMadeStatic_002ELocal/@EntryIndexedValue">ERROR</s:String>
 	<s:String x:Key="/Default/CodeInspection/Highlighting/InspectionSeverities/=PossibleNullReferenceException/@EntryIndexedValue">ERROR</s:String>

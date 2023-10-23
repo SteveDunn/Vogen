@@ -67,4 +67,10 @@ public class VoWorkItem
     public StringComparersGeneration StringComparersGeneration { get; init; }
     
     public bool IsSealed { get; init; }
+    
+    public CastOperator ToPrimitiveCastOperator { get; init; }
+    
+    public CastOperator FromPrimitiveCastOperator { get; init; }
+    
+    public bool DisableStackTraceRecordingInDebug { get; init; }
 }

@@ -8,6 +8,48 @@ namespace SnapshotTests.Config;
 public class GlobalConfigTests
 {
     [Fact]
+    public Task Disable_stack_trace_recoding_in_debug()
+    {
+        var source = @"using System;
+using Vogen;
+
+[assembly: VogenDefaults(disableStackTraceRecordingInDebug: true)]
+
+
+namespace Whatever;
+
+[ValueObject]
+public partial struct CustomerId
+{
+}";
+
+        return new SnapshotRunner<ValueObjectGenerator>()
+            .WithSource(source)
+            .RunOnAllFrameworks();
+    }
+
+    [Fact]
+    public Task Enable_stack_trace_recoding_in_debug()
+    {
+        var source = @"using System;
+using Vogen;
+
+[assembly: VogenDefaults(disableStackTraceRecordingInDebug: false)]
+
+
+namespace Whatever;
+
+[ValueObject]
+public partial struct CustomerId
+{
+}";
+
+        return new SnapshotRunner<ValueObjectGenerator>()
+            .WithSource(source)
+            .RunOnAllFrameworks();
+    }
+
+    [Fact]
     public Task Type_override()
     {
         var source = @"using System;

@@ -43,7 +43,7 @@ causes Rider's debugger to crash.
 */
     public partial struct CustomerId : global::System.IEquatable<CustomerId>, global::System.IEquatable<System.Int32> ,  global::System.IComparable<CustomerId>, global::System.IComparable
     {
-#if DEBUG    
+#if DEBUG   
         private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
 #endif
 

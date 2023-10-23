@@ -37,7 +37,7 @@ namespace Whatever
     [global::System.Diagnostics.DebuggerDisplayAttribute("Underlying type: System.Double, Value = { _value }")]
     internal partial record struct internal_partial_record_structConversions_NewtonsoftJson___Conversions_SystemTextJsondouble : global::System.IEquatable<internal_partial_record_structConversions_NewtonsoftJson___Conversions_SystemTextJsondouble>, global::System.IEquatable<System.Double> ,  global::System.IComparable<internal_partial_record_structConversions_NewtonsoftJson___Conversions_SystemTextJsondouble>, global::System.IComparable
     {
-#if DEBUG    
+#if DEBUG   
         private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
 #endif
 
@@ -104,7 +104,6 @@ namespace Whatever
             return instance;
         }
         
-
         public static explicit operator internal_partial_record_structConversions_NewtonsoftJson___Conversions_SystemTextJsondouble(System.Double value) => From(value);
         public static explicit operator System.Double(internal_partial_record_structConversions_NewtonsoftJson___Conversions_SystemTextJsondouble value) => value.Value;
 

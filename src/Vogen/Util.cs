@@ -158,6 +158,10 @@ public static class Util
 
     public static string GenerateDebuggerProxyForStructs(TypeDeclarationSyntax tds, VoWorkItem item)
     {
+        var createdWithMethod = item.DisableStackTraceRecordingInDebug
+            ? @"public global::System.String CreatedWith => ""the From method"""
+            : @"public global::System.String CreatedWith => _t._stackTrace?.ToString() ?? ""the From method""";
+        
         string code = $@"internal sealed class {item.VoTypeName}DebugView
         {{
             private readonly {item.VoTypeName} _t;
@@ -172,7 +176,7 @@ public static class Util
             public global::System.String Value => _t._isInitialized ? _t._value.ToString() : ""[not initialized]"" ;
 
             #if DEBUG
-            public global::System.String CreatedWith => _t._stackTrace?.ToString() ?? ""the From method"";
+            {createdWithMethod};
             #endif
 
             public global::System.String Conversions => @""{Util.GenerateAnyConversionAttributesForDebuggerProxy(tds, item)}"";
@@ -215,13 +219,16 @@ public static class Util
             $@"/// <summary>Returns the string representation of the underlying type</summary>
     /// <inheritdoc cref=""{item.UnderlyingTypeFullName}.ToString()"" />
     public readonly override global::System.String ToString() =>_isInitialized ? Value.ToString() : ""[UNINITIALIZED]"";";
+}
 
+public static class DebugGeneration
+{
     public static string GenerateDebugAttributes(VoWorkItem item, SyntaxToken className, string itemUnderlyingType)
     {
         var source = $$"""
-[global::System.Diagnostics.DebuggerTypeProxyAttribute(typeof({{className}}DebugView))]
-    [global::System.Diagnostics.DebuggerDisplayAttribute("Underlying type: {{itemUnderlyingType}}, Value = { _value }")]
-""";
+                       [global::System.Diagnostics.DebuggerTypeProxyAttribute(typeof({{className}}DebugView))]
+                           [global::System.Diagnostics.DebuggerDisplayAttribute("Underlying type: {{itemUnderlyingType}}, Value = { _value }")]
+                       """;
         if (item.DebuggerAttributes == DebuggerAttributeGeneration.Basic)
         {
             return $@"/* Debug attributes omitted because the 'debuggerAttributes' flag is set to {nameof(DebuggerAttributeGeneration.Basic)} on the Vogen attribute.
@@ -234,5 +241,34 @@ causes Rider's debugger to crash.
         }
     
         return source;
+    }
+
+    public static string GenerateStackTraceFieldIfNeeded(VoWorkItem item)
+    {
+        if(item.DisableStackTraceRecordingInDebug)
+        {
+            return string.Empty;
+        }
+        
+        return $"""
+                #if DEBUG   
+                        private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
+                #endif
+                """;
+
+    }
+
+    public static string SetStackTraceIfNeeded(VoWorkItem voWorkItem) => voWorkItem.DisableStackTraceRecordingInDebug
+        ? string.Empty
+        : "_stackTrace = new global::System.Diagnostics.StackTrace();";
+
+    public static string GenerateMessageForUninitializedValueObject(VoWorkItem item)
+    {
+        if (item.DisableStackTraceRecordingInDebug)
+        {
+            return $"""global::System.String message = "Use of uninitialized Value Object.";""";
+            
+        }
+        return $"""global::System.String message = "Use of uninitialized Value Object at: " + _stackTrace ?? "";""";
     }
 }

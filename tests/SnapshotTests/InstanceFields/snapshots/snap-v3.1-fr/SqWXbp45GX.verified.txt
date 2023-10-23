@@ -37,7 +37,7 @@ namespace Whatever
     [global::System.Diagnostics.DebuggerDisplayAttribute("Underlying type: System.Int64, Value = { _value }")]
     public partial record class public_partial_recordlong : global::System.IEquatable<public_partial_recordlong>, global::System.IEquatable<System.Int64> ,  global::System.IComparable<public_partial_recordlong>, global::System.IComparable
     {
-#if DEBUG    
+#if DEBUG   
         private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
 #endif
         private readonly global::System.Boolean _isInitialized;

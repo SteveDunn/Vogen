@@ -22,6 +22,35 @@ public readonly partial record struct CustomerId
         }
 
         [Fact]
+        public Task No_stack_trace_recording()
+        {
+            var source = @"using Vogen;
+[assembly: VogenDefaults(disableStackTraceRecordingInDebug: true)]
+
+namespace Whatever;
+
+[ValueObject(typeof(string))]
+public readonly partial record struct CustomerId
+{
+}";
+
+            return RunTest(source);
+        }
+
+        [Fact]
+        public Task No_casting()
+        {
+            var source = @"using Vogen;
+namespace Whatever;
+
+[ValueObject(typeof(string), toPrimitiveCasting: CastOperator.Implicit, fromPrimitiveCasting: CastOperator.None)]
+public partial class MyVo { }
+";
+
+            return RunTest(source);
+        }
+
+        [Fact]
         public Task Partial_struct_created_successfully()
         {
             var source = @"using Vogen;

@@ -7,6 +7,7 @@ using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Vogen.Diagnostics;
+// ReSharper disable NullableWarningSuppressionIsUsed
 
 namespace Vogen;
 
@@ -59,12 +60,12 @@ internal static class BuildWorkItems
 
         VogenConfiguration? localConfig = localBuildResult.ResultingConfiguration;
         
-        if (localConfig == null)
+        if (localConfig is null)
         {
             return null;
         }
 
-        var config = VogenConfiguration.Combine(localConfig.Value, globalConfig, () => compilation.GetSpecialType(SpecialType.System_Int32));
+        var config = VogenConfiguration.Combine(localConfig, globalConfig, () => compilation.GetSpecialType(SpecialType.System_Int32));
 
         ReportErrorIfNestedType(target, context, voSymbolInformation);
 
@@ -117,6 +118,9 @@ internal static class BuildWorkItems
             TypeForValidationExceptions = config.ValidationExceptionType,
             ComparisonGeneration = config.Comparison,
             StringComparersGeneration = config.StringComparers,
+            ToPrimitiveCastOperator = config.ToPrimitiveCasting,
+            FromPrimitiveCastOperator = config.FromPrimitiveCasting,
+            DisableStackTraceRecordingInDebug = config.DisableStackTraceRecordingInDebug,
             ValidateMethod = validateMethod,
             NormalizeInputMethod = normalizeInputMethod,
             FullNamespace = voSymbolInformation.FullNamespace(),

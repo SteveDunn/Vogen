@@ -17,12 +17,10 @@ using Vogen;
     [global::System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage] 
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute(""{Util.GenerateYourAssemblyName()}"", ""{Util.GenerateYourAssemblyVersion()}"")]
     {Util.GenerateAnyConversionAttributes(tds, item)}
-    {Util.GenerateDebugAttributes(item, className, itemUnderlyingType)}
+    {DebugGeneration.GenerateDebugAttributes(item, className, itemUnderlyingType)}
     {Util.GenerateModifiersFor(tds)} record class {className} : global::System.IEquatable<{className}>, global::System.IEquatable<{itemUnderlyingType}> {GenerateComparableCode.GenerateIComparableHeaderIfNeeded(", ", item, tds)}
     {{
-#if DEBUG    
-        private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
-#endif
+{DebugGeneration.GenerateStackTraceFieldIfNeeded(item)}
         private readonly global::System.Boolean _isInitialized;
         private readonly {itemUnderlyingType} _value;
         
@@ -55,7 +53,7 @@ using Vogen;
         public {className}()
         {{
 #if DEBUG
-            _stackTrace = new global::System.Diagnostics.StackTrace();
+            {DebugGeneration.SetStackTraceIfNeeded(item)}
 #endif
             _isInitialized = false;
             _value = default;
@@ -107,9 +105,7 @@ using Vogen;
         public static global::System.Boolean operator ==({itemUnderlyingType} left, {className} right) => Equals(left, right.Value);
         public static global::System.Boolean operator !=({itemUnderlyingType} left, {className} right) => !Equals(left, right.Value);
 
-        public static explicit operator {className}({itemUnderlyingType} value) => From(value);
-        public static explicit operator {itemUnderlyingType}({className} value) => value.Value;
-
+{GenerateCastingOperators.Generate(item,tds)}
         {GenerateComparableCode.GenerateIComparableImplementationIfNeeded(item, tds)}
 {GenerateEqualsAndHashCodes.GenerateGetHashCodeForAClass(item)}
 
@@ -118,7 +114,7 @@ using Vogen;
             if (!_isInitialized)
             {{
 #if DEBUG
-                global::System.String message = ""Use of uninitialized Value Object at: "" + _stackTrace ?? """";
+                {DebugGeneration.GenerateMessageForUninitializedValueObject(item)}
 #else
                 global::System.String message = ""Use of uninitialized Value Object."";
 #endif
