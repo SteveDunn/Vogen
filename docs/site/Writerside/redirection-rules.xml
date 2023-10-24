@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE rules SYSTEM "https://resources.jetbrains.com/writerside/1.0/redirection-rules.dtd">
+<rules>
+    <!-- format is as follows
+    <rule id="<unique id>">
+        <accepts>page.html</accepts>
+    </rule>
+    -->
+    <rule id="6ffc6d14">
+        <description>Created after removal of "Overview" from API Docs</description>
+        <accepts>Overview.html</accepts>
+    </rule>
+    <rule id="673d4d69">
+        <description>Created after removal of "Authentification" from API Docs</description>
+        <accepts>Authentification.html</accepts>
+    </rule>
+    <rule id="4078eb73">
+        <description>Created after removal of "API Quickstart" from API Docs</description>
+        <accepts>API-quickstart-XML.html</accepts>
+    </rule>
+    <rule id="20d17971">
+        <description>Created after removal of "API Overview" from API Docs</description>
+        <accepts>API-Overview.html</accepts>
+    </rule>
+    <rule id="8146e1e">
+        <description>Created after removal of "Changes" from API Docs</description>
+        <accepts>Changes-XML.html</accepts>
+    </rule>
+</rules>

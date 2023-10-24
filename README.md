@@ -364,6 +364,7 @@ By default, each VO is decorated with a `TypeConverter` and `System.Text.Json` (
 * Dapper
 * EFCore
 * [LINQ to DB](https://github.com/linq2db/linq2db)
+* protobuf-net (see the FAQ section below)
 
 They are controlled by the `Conversions` enum. The following has serializers for NSJ and STJ:
 
@@ -547,7 +548,7 @@ public partial struct CustomerId {
 
 You *could*, but you'd get compiler warning [CS0282-There is no defined ordering between fields in multiple declarations of partial class or struct 'type'](https://docs.microsoft.com/en-us/dotnet/csharp/misc/cs0282)
 
-### Why are there no implicit conversions to and from the primitive types that are being wrapped?
+### Why are there, by default, no implicit conversions to and from the primitive types that are being wrapped?
 
 Implicit operators can be useful, but for Value Objects, they can confuse things. Take the following code **without** any implicit conversions:
 
@@ -577,9 +578,11 @@ But since users of Vogen can declare a Value Object as a `class` **or** `struct`
 
 ### Can you opt-in to implicit conversions?
 
-No, but you can provide them yourself. For certain types it would allow a much more natural way of expressing, er, expressions.
+Yes, by specifying the `toPrimitiveCasting` and `fromPrimitiveCasting` in either local or global config.
+By default, explicit operators are generated for both. Bear in mind that you can only define implicit _or_ explicit operators;
+you can't have both.
 
-Although it can be confusing. Let's say there's a type like this (and imagine that there's implicit conversions to `Age` and to `int`'):
+Also, bear in mind that ease of use can cause confusions. Let's say there's a type like this (and imagine that there's implicit conversions to `Age` and to `int`'):
 
 ```csharp
 [ValueObject(typeof(int))]
@@ -792,6 +795,23 @@ Yes, by specifying the exception type in either the `ValueObject` attribute, or 
 Linq2DB 4.0 or greater supports `DateOnly` and `TimeOnly`. Vogen generates value converters for Linq2DB; for `DateOnly`, it just works, but for `TimeOnly, you need to add this to your application:
 
 `MappingSchema.Default.SetConverter<DateTime, TimeOnly>(dt => TimeOnly.FromDateTime(dt));`
+
+### Can I use protobuf-net?
+
+Yes. Add a dependency to protobuf-net and set a surrogate attribute:
+
+```csharp
+[ValueObject(typeof(string))]
+[ProtoContract(Surrogate = typeof(string))]
+public partial class BoxId {
+//...
+}
+```
+
+BoxId type now will be serialized as a string in all messages/grpc calls. If one is generating .proto files for other 
+applications from C# code, proto files will include Surrogate type as the type. 
+_thank you to [@DomasM](https://github.com/DomasM) for this information_.
+
 
 ## Attribution
 

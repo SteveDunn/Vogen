@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE instance-profile
+        SYSTEM "https://resources.jetbrains.com/writerside/1.0/product-profile.dtd">
+
+<instance-profile id="adoc"
+                 name="API Docs"
+                 start-page="api-docs.md">
+
+    <toc-element topic="api-docs.md"/>
+    <toc-element topic="API-quickstart.md"/>
+    <toc-element topic="API-reference.md">
+        <toc-element topic="Pet.md">
+        </toc-element>
+        <toc-element toc-title="Store">
+            <toc-element topic="Returns-pet-inventories-by-status.md"/>
+            <toc-element topic="Place-an-order-for-a-pet.md"/>
+            <toc-element topic="Find-purchase-order-by-ID.md"/>
+            <toc-element topic="Delete-purchase-order-by-ID.md"/>
+        </toc-element>
+        <toc-element toc-title="User">
+            <toc-element topic="Create-user.md"/>
+            <toc-element topic="Creates-list-of-users-with-given-input-array.md"/>
+            <toc-element topic="Logs-user-into-the-system.md"/>
+            <toc-element topic="Logs-out-current-logged-in-user-session.md"/>
+            <toc-element topic="Get-user-by-user-name.md"/>
+            <toc-element topic="Update-user.md"/>
+            <toc-element topic="Delete-user.md"/>
+        </toc-element>
+    </toc-element>
+    <toc-element topic="Changes.md"/>
+</instance-profile>
