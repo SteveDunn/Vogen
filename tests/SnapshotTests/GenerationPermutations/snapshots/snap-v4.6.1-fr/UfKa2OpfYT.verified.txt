@@ -107,27 +107,30 @@ namespace Whatever
             return new public_partial_structConversions_TypeConvertershort(value);
         }
         
-public readonly global::System.Boolean Equals(public_partial_structConversions_TypeConvertershort other)
-{
-    // It's possible to create uninitialized instances via converters such as EfCore (HasDefaultValue), which call Equals.
-    // We treat anything uninitialized as not equal to anything, even other uninitialized instances of this type.
-    if(!_isInitialized || !other._isInitialized) return false;
+          public readonly global::System.Boolean Equals(public_partial_structConversions_TypeConvertershort other)
+          {
+            // It's possible to create uninitialized instances via converters such as EfCore (HasDefaultValue), which call Equals.
+            // We treat anything uninitialized as not equal to anything, even other uninitialized instances of this type.
+            if(!_isInitialized || !other._isInitialized) return false;
 
-    return global::System.Collections.Generic.EqualityComparer<System.Int16>.Default.Equals(Value, other.Value);
-}
+            return global::System.Collections.Generic.EqualityComparer<System.Int16>.Default.Equals(Value, other.Value);
+          }
 
-public global::System.Boolean Equals(public_partial_structConversions_TypeConvertershort other, global::System.Collections.Generic.IEqualityComparer<public_partial_structConversions_TypeConvertershort> comparer)
-{
-    return comparer.Equals(this, other);
-}
+          public global::System.Boolean Equals(public_partial_structConversions_TypeConvertershort other, global::System.Collections.Generic.IEqualityComparer<public_partial_structConversions_TypeConvertershort> comparer)
+          {
+            return comparer.Equals(this, other);
+          }
 
-  public readonly global::System.Boolean Equals(System.Int16 primitive) {
-    return Value.Equals(primitive);
- }
-public readonly override global::System.Boolean Equals(global::System.Object obj)
-{
-    return obj is public_partial_structConversions_TypeConvertershort && Equals((public_partial_structConversions_TypeConvertershort) obj);
-}
+          
+            public readonly global::System.Boolean Equals(System.Int16 primitive)
+            {
+              return Value.Equals(primitive);
+            }
+
+          public readonly override global::System.Boolean Equals(global::System.Object obj)
+          {
+            return obj is public_partial_structConversions_TypeConvertershort && Equals((public_partial_structConversions_TypeConvertershort) obj);
+          }
 
         public static global::System.Boolean operator ==(public_partial_structConversions_TypeConvertershort left, public_partial_structConversions_TypeConvertershort right) => Equals(left, right);
         public static global::System.Boolean operator !=(public_partial_structConversions_TypeConvertershort left, public_partial_structConversions_TypeConvertershort right) => !(left == right);
@@ -188,10 +191,12 @@ public readonly override global::System.Boolean Equals(global::System.Object obj
         return false;
     }
 
-    public readonly override global::System.Int32 GetHashCode()
-    {
-        return global::System.Collections.Generic.EqualityComparer<System.Int16>.Default.GetHashCode(Value);
-    }
+        
+        
+          public readonly override global::System.Int32 GetHashCode()
+          {
+            return global::System.Collections.Generic.EqualityComparer<System.Int16>.Default.GetHashCode(Value);
+          }
 
         /// <summary>Returns the string representation of the underlying type</summary>
     /// <inheritdoc cref="System.Int16.ToString()" />
@@ -263,25 +268,27 @@ public readonly override global::System.Boolean Equals(global::System.Object obj
 
 
 
-        internal sealed class public_partial_structConversions_TypeConvertershortDebugView
-        {
-            private readonly public_partial_structConversions_TypeConvertershort _t;
-
-            public_partial_structConversions_TypeConvertershortDebugView(public_partial_structConversions_TypeConvertershort t)
+        
+            internal sealed class public_partial_structConversions_TypeConvertershortDebugView
             {
-                _t = t;
-            }
+                private readonly public_partial_structConversions_TypeConvertershort _t;
 
-            public global::System.Boolean IsInitialized => _t._isInitialized;
-            public global::System.String UnderlyingType => "System.Int16";
-            public global::System.String Value => _t._isInitialized ? _t._value.ToString() : "[not initialized]" ;
-
-            #if DEBUG
-            public global::System.String CreatedWith => _t._stackTrace?.ToString() ?? "the From method";
-            #endif
-
-            public global::System.String Conversions => @"TypeConverter";
+                public_partial_structConversions_TypeConvertershortDebugView(public_partial_structConversions_TypeConvertershort t)
+                {
+                    _t = t;
                 }
 
+                public global::System.Boolean IsInitialized => _t._isInitialized;
+                public global::System.String UnderlyingType => "System.Int16";
+                public global::System.String Value => _t._isInitialized ? _t._value.ToString() : "[not initialized]" ;
+
+                #if DEBUG
+                    public global::System.String CreatedWith => _t._stackTrace?.ToString() ?? "the From method";
+                #endif
+
+                public global::System.String Conversions => @"TypeConverter";
+            }
+
 }
+
 }

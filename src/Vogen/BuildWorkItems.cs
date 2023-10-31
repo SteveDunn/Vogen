@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Linq;
+using Analyzer.Utilities.Extensions;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
@@ -124,7 +125,8 @@ internal static class BuildWorkItems
             ValidateMethod = validateMethod,
             NormalizeInputMethod = normalizeInputMethod,
             FullNamespace = voSymbolInformation.FullNamespace(),
-            IsSealed = voSymbolInformation.IsSealed
+            IsSealed = voSymbolInformation.IsSealed,
+            AccessibilityKeyword = voSymbolInformation.IsInternal() ? "internal" : "public"
         };
     }
 

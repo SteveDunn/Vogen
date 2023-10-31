@@ -116,35 +116,37 @@ namespace Whatever
 
             return new _casting_public_sealed_partial_record_classCastOperator_NoneCastOperator_Implicitbyte(value);
         }
-         
- public  global::System.Boolean Equals(_casting_public_sealed_partial_record_classCastOperator_NoneCastOperator_Implicitbyte other)
- {
-     if (ReferenceEquals(null, other))
-     {
-         return false;
-     }
+        
+            public  global::System.Boolean Equals(_casting_public_sealed_partial_record_classCastOperator_NoneCastOperator_Implicitbyte other)
+            {
+              if (ReferenceEquals(null, other))
+              {
+                  return false;
+              }
 
-     // It's possible to create uninitialized instances via converters such as EfCore (HasDefaultValue), which call Equals.
-     // We treat anything uninitialized as not equal to anything, even other uninitialized instances of this type.
-     if(!_isInitialized || !other._isInitialized) return false;
+              // It's possible to create uninitialized instances via converters such as EfCore (HasDefaultValue), which call Equals.
+              // We treat anything uninitialized as not equal to anything, even other uninitialized instances of this type.
+              if(!_isInitialized || !other._isInitialized) return false;
 
-     if (ReferenceEquals(this, other))
-     {
-         return true;
-     }
+              if (ReferenceEquals(this, other))
+              {
+                  return true;
+              }
 
-     return GetType() == other.GetType() && global::System.Collections.Generic.EqualityComparer<System.Byte>.Default.Equals(Value, other.Value);
- }
+              return GetType() == other.GetType() && global::System.Collections.Generic.EqualityComparer<System.Byte>.Default.Equals(Value, other.Value);
+            }
 
-public global::System.Boolean Equals(_casting_public_sealed_partial_record_classCastOperator_NoneCastOperator_Implicitbyte other, global::System.Collections.Generic.IEqualityComparer<_casting_public_sealed_partial_record_classCastOperator_NoneCastOperator_Implicitbyte> comparer)
-{
-    return comparer.Equals(this, other);
-}
+             public global::System.Boolean Equals(_casting_public_sealed_partial_record_classCastOperator_NoneCastOperator_Implicitbyte other, global::System.Collections.Generic.IEqualityComparer<_casting_public_sealed_partial_record_classCastOperator_NoneCastOperator_Implicitbyte> comparer)
+             {
+                 return comparer.Equals(this, other);
+             }
 
-  public global::System.Boolean Equals(System.Byte primitive) {
-    return Value.Equals(primitive);
- }
- 
+             
+            public global::System.Boolean Equals(System.Byte primitive)
+            {
+              return Value.Equals(primitive);
+            }
+
 
         public static global::System.Boolean operator ==(_casting_public_sealed_partial_record_classCastOperator_NoneCastOperator_Implicitbyte left, System.Byte right) => Equals(left.Value, right);
         public static global::System.Boolean operator !=(_casting_public_sealed_partial_record_classCastOperator_NoneCastOperator_Implicitbyte left, System.Byte right) => !Equals(left.Value, right);
@@ -160,16 +162,17 @@ public global::System.Boolean Equals(_casting_public_sealed_partial_record_class
             if(other is _casting_public_sealed_partial_record_classCastOperator_NoneCastOperator_Implicitbyte x) return CompareTo(x);
             throw new global::System.ArgumentException("Cannot compare to object as it is not of type _casting_public_sealed_partial_record_classCastOperator_NoneCastOperator_Implicitbyte", nameof(other));
         }
-    public override global::System.Int32 GetHashCode()
-    {
-        unchecked // Overflow is fine, just wrap
-        {
-            global::System.Int32 hash = (global::System.Int32) 2166136261;
-            hash = (hash * 16777619) ^ GetType().GetHashCode();
-            hash = (hash * 16777619) ^ global::System.Collections.Generic.EqualityComparer<System.Byte>.Default.GetHashCode(Value);
-            return hash;
-        }
-    }
+
+          public override global::System.Int32 GetHashCode()
+          {
+            unchecked // Overflow is fine, just wrap
+            {
+                global::System.Int32 hash = (global::System.Int32) 2166136261;
+                hash = (hash * 16777619) ^ GetType().GetHashCode();
+                hash = (hash * 16777619) ^ global::System.Collections.Generic.EqualityComparer<System.Byte>.Default.GetHashCode(Value);
+                return hash;
+            }
+          }
 
         private void EnsureInitialized()
         {
@@ -293,4 +296,5 @@ public global::System.Boolean Equals(_casting_public_sealed_partial_record_class
 ";
                 }
     }
+
 }

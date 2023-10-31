@@ -107,27 +107,30 @@ namespace Whatever
             return new _casting_public_partial_structCastOperator_NoneCastOperator_Nonelong(value);
         }
         
-public readonly global::System.Boolean Equals(_casting_public_partial_structCastOperator_NoneCastOperator_Nonelong other)
-{
-    // It's possible to create uninitialized instances via converters such as EfCore (HasDefaultValue), which call Equals.
-    // We treat anything uninitialized as not equal to anything, even other uninitialized instances of this type.
-    if(!_isInitialized || !other._isInitialized) return false;
+          public readonly global::System.Boolean Equals(_casting_public_partial_structCastOperator_NoneCastOperator_Nonelong other)
+          {
+            // It's possible to create uninitialized instances via converters such as EfCore (HasDefaultValue), which call Equals.
+            // We treat anything uninitialized as not equal to anything, even other uninitialized instances of this type.
+            if(!_isInitialized || !other._isInitialized) return false;
 
-    return global::System.Collections.Generic.EqualityComparer<System.Int64>.Default.Equals(Value, other.Value);
-}
+            return global::System.Collections.Generic.EqualityComparer<System.Int64>.Default.Equals(Value, other.Value);
+          }
 
-public global::System.Boolean Equals(_casting_public_partial_structCastOperator_NoneCastOperator_Nonelong other, global::System.Collections.Generic.IEqualityComparer<_casting_public_partial_structCastOperator_NoneCastOperator_Nonelong> comparer)
-{
-    return comparer.Equals(this, other);
-}
+          public global::System.Boolean Equals(_casting_public_partial_structCastOperator_NoneCastOperator_Nonelong other, global::System.Collections.Generic.IEqualityComparer<_casting_public_partial_structCastOperator_NoneCastOperator_Nonelong> comparer)
+          {
+            return comparer.Equals(this, other);
+          }
 
-  public readonly global::System.Boolean Equals(System.Int64 primitive) {
-    return Value.Equals(primitive);
- }
-public readonly override global::System.Boolean Equals(global::System.Object obj)
-{
-    return obj is _casting_public_partial_structCastOperator_NoneCastOperator_Nonelong && Equals((_casting_public_partial_structCastOperator_NoneCastOperator_Nonelong) obj);
-}
+          
+            public readonly global::System.Boolean Equals(System.Int64 primitive)
+            {
+              return Value.Equals(primitive);
+            }
+
+          public readonly override global::System.Boolean Equals(global::System.Object obj)
+          {
+            return obj is _casting_public_partial_structCastOperator_NoneCastOperator_Nonelong && Equals((_casting_public_partial_structCastOperator_NoneCastOperator_Nonelong) obj);
+          }
 
         public static global::System.Boolean operator ==(_casting_public_partial_structCastOperator_NoneCastOperator_Nonelong left, _casting_public_partial_structCastOperator_NoneCastOperator_Nonelong right) => Equals(left, right);
         public static global::System.Boolean operator !=(_casting_public_partial_structCastOperator_NoneCastOperator_Nonelong left, _casting_public_partial_structCastOperator_NoneCastOperator_Nonelong right) => !(left == right);
@@ -230,10 +233,12 @@ public readonly override global::System.Boolean Equals(global::System.Object obj
         return false;
     }
 
-    public readonly override global::System.Int32 GetHashCode()
-    {
-        return global::System.Collections.Generic.EqualityComparer<System.Int64>.Default.GetHashCode(Value);
-    }
+        
+        
+          public readonly override global::System.Int32 GetHashCode()
+          {
+            return global::System.Collections.Generic.EqualityComparer<System.Int64>.Default.GetHashCode(Value);
+          }
 
         /// <summary>Returns the string representation of the underlying type</summary>
     /// <inheritdoc cref="System.Int64.ToString()" />
@@ -335,25 +340,27 @@ public readonly override global::System.Boolean Equals(global::System.Object obj
 
 
 
-        internal sealed class _casting_public_partial_structCastOperator_NoneCastOperator_NonelongDebugView
-        {
-            private readonly _casting_public_partial_structCastOperator_NoneCastOperator_Nonelong _t;
-
-            _casting_public_partial_structCastOperator_NoneCastOperator_NonelongDebugView(_casting_public_partial_structCastOperator_NoneCastOperator_Nonelong t)
+        
+            internal sealed class _casting_public_partial_structCastOperator_NoneCastOperator_NonelongDebugView
             {
-                _t = t;
-            }
+                private readonly _casting_public_partial_structCastOperator_NoneCastOperator_Nonelong _t;
 
-            public global::System.Boolean IsInitialized => _t._isInitialized;
-            public global::System.String UnderlyingType => "System.Int64";
-            public global::System.String Value => _t._isInitialized ? _t._value.ToString() : "[not initialized]" ;
-
-            #if DEBUG
-            public global::System.String CreatedWith => _t._stackTrace?.ToString() ?? "the From method";
-            #endif
-
-            public global::System.String Conversions => @"Default";
+                _casting_public_partial_structCastOperator_NoneCastOperator_NonelongDebugView(_casting_public_partial_structCastOperator_NoneCastOperator_Nonelong t)
+                {
+                    _t = t;
                 }
 
+                public global::System.Boolean IsInitialized => _t._isInitialized;
+                public global::System.String UnderlyingType => "System.Int64";
+                public global::System.String Value => _t._isInitialized ? _t._value.ToString() : "[not initialized]" ;
+
+                #if DEBUG
+                    public global::System.String CreatedWith => _t._stackTrace?.ToString() ?? "the From method";
+                #endif
+
+                public global::System.String Conversions => @"Default";
+            }
+
 }
+
 }

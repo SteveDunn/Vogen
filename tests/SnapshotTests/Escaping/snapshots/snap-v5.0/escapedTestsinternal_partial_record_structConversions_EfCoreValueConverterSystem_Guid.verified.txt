@@ -116,23 +116,26 @@ namespace @class
             return new escapedTestsinternal_partial_record_structConversions_EfCoreValueConverterSystem_Guid(value);
         }
         
-public readonly global::System.Boolean Equals(escapedTestsinternal_partial_record_structConversions_EfCoreValueConverterSystem_Guid other)
-{
-    // It's possible to create uninitialized instances via converters such as EfCore (HasDefaultValue), which call Equals.
-    // We treat anything uninitialized as not equal to anything, even other uninitialized instances of this type.
-    if(!_isInitialized || !other._isInitialized) return false;
+          public readonly global::System.Boolean Equals(escapedTestsinternal_partial_record_structConversions_EfCoreValueConverterSystem_Guid other)
+          {
+            // It's possible to create uninitialized instances via converters such as EfCore (HasDefaultValue), which call Equals.
+            // We treat anything uninitialized as not equal to anything, even other uninitialized instances of this type.
+            if(!_isInitialized || !other._isInitialized) return false;
 
-    return global::System.Collections.Generic.EqualityComparer<System.Guid>.Default.Equals(Value, other.Value);
-}
+            return global::System.Collections.Generic.EqualityComparer<System.Guid>.Default.Equals(Value, other.Value);
+          }
 
-public global::System.Boolean Equals(escapedTestsinternal_partial_record_structConversions_EfCoreValueConverterSystem_Guid other, global::System.Collections.Generic.IEqualityComparer<escapedTestsinternal_partial_record_structConversions_EfCoreValueConverterSystem_Guid> comparer)
-{
-    return comparer.Equals(this, other);
-}
+          public global::System.Boolean Equals(escapedTestsinternal_partial_record_structConversions_EfCoreValueConverterSystem_Guid other, global::System.Collections.Generic.IEqualityComparer<escapedTestsinternal_partial_record_structConversions_EfCoreValueConverterSystem_Guid> comparer)
+          {
+            return comparer.Equals(this, other);
+          }
 
-  public readonly global::System.Boolean Equals(System.Guid primitive) {
-    return Value.Equals(primitive);
- }
+          
+            public readonly global::System.Boolean Equals(System.Guid primitive)
+            {
+              return Value.Equals(primitive);
+            }
+
 
         public static global::System.Boolean operator ==(escapedTestsinternal_partial_record_structConversions_EfCoreValueConverterSystem_Guid left, System.Guid right) => Equals(left.Value, right);
         public static global::System.Boolean operator !=(escapedTestsinternal_partial_record_structConversions_EfCoreValueConverterSystem_Guid left, System.Guid right) => !Equals(left.Value, right);
@@ -190,10 +193,12 @@ public global::System.Boolean Equals(escapedTestsinternal_partial_record_structC
         return false;
     }
 
-    public readonly override global::System.Int32 GetHashCode()
-    {
-        return global::System.Collections.Generic.EqualityComparer<System.Guid>.Default.GetHashCode(Value);
-    }
+
+        
+          public readonly override global::System.Int32 GetHashCode()
+          {
+            return global::System.Collections.Generic.EqualityComparer<System.Guid>.Default.GetHashCode(Value);
+          }
 
         private readonly void EnsureInitialized()
         {
@@ -231,28 +236,40 @@ public global::System.Boolean Equals(escapedTestsinternal_partial_record_structC
                     mappingHints
                 ) { }
         }
-
-
-
-        internal sealed class escapedTestsinternal_partial_record_structConversions_EfCoreValueConverterSystem_GuidDebugView
-        {
-            private readonly escapedTestsinternal_partial_record_structConversions_EfCoreValueConverterSystem_Guid _t;
-
-            escapedTestsinternal_partial_record_structConversions_EfCoreValueConverterSystem_GuidDebugView(escapedTestsinternal_partial_record_structConversions_EfCoreValueConverterSystem_Guid t)
+            public class EfCoreValueComparer : global::Microsoft.EntityFrameworkCore.ChangeTracking.ValueComparer<escapedTestsinternal_partial_record_structConversions_EfCoreValueConverterSystem_Guid>
             {
-                _t = t;
+                public EfCoreValueComparer() : base((left, right) => left == right, instance => instance._isInitialized ? instance._value.GetHashCode() : 0) { }
             }
 
-            public global::System.Boolean IsInitialized => _t._isInitialized;
-            public global::System.String UnderlyingType => "System.Guid";
-            public global::System.String Value => _t._isInitialized ? _t._value.ToString() : "[not initialized]" ;
 
-            #if DEBUG
-            public global::System.String CreatedWith => _t._stackTrace?.ToString() ?? "the From method";
-            #endif
 
-            public global::System.String Conversions => @"EfCoreValueConverter";
+        
+            internal sealed class escapedTestsinternal_partial_record_structConversions_EfCoreValueConverterSystem_GuidDebugView
+            {
+                private readonly escapedTestsinternal_partial_record_structConversions_EfCoreValueConverterSystem_Guid _t;
+
+                escapedTestsinternal_partial_record_structConversions_EfCoreValueConverterSystem_GuidDebugView(escapedTestsinternal_partial_record_structConversions_EfCoreValueConverterSystem_Guid t)
+                {
+                    _t = t;
                 }
 
+                public global::System.Boolean IsInitialized => _t._isInitialized;
+                public global::System.String UnderlyingType => "System.Guid";
+                public global::System.String Value => _t._isInitialized ? _t._value.ToString() : "[not initialized]" ;
+
+                #if DEBUG
+                    public global::System.String CreatedWith => _t._stackTrace?.ToString() ?? "the From method";
+                #endif
+
+                public global::System.String Conversions => @"EfCoreValueConverter";
+            }
+
 }
+#if NETCOREAPP3_0_OR_GREATER
+            public static class __escapedTestsinternal_partial_record_structConversions_EfCoreValueConverterSystem_GuidEfCoreExtensions 
+            {
+                internal static global::Microsoft.EntityFrameworkCore.Metadata.Builders.PropertyBuilder<escapedTestsinternal_partial_record_structConversions_EfCoreValueConverterSystem_Guid> HasVogenConversion(this global::Microsoft.EntityFrameworkCore.Metadata.Builders.PropertyBuilder<escapedTestsinternal_partial_record_structConversions_EfCoreValueConverterSystem_Guid> propertyBuilder) =>
+                    propertyBuilder.HasConversion<escapedTestsinternal_partial_record_structConversions_EfCoreValueConverterSystem_Guid.EfCoreValueConverter, escapedTestsinternal_partial_record_structConversions_EfCoreValueConverterSystem_Guid.EfCoreValueComparer>();
+            }
+#endif
 }

@@ -1,4 +1,5 @@
 ﻿using Microsoft.CodeAnalysis.CSharp.Syntax;
+using Vogen.Generators.Conversions;
 
 namespace Vogen.Generators;
 
@@ -107,7 +108,8 @@ using Vogen;
         {GenerateComparableCode.GenerateIComparableImplementationIfNeeded(item, tds)}
 
         {TryParseGeneration.GenerateTryParseIfNeeded(item)}
-{GenerateEqualsAndHashCodes.GenerateGetHashCodeForAStruct(item)}
+
+        {GenerateEqualsAndHashCodes.GenerateGetHashCodeForAStruct(item)}
 
         private readonly void EnsureInitialized()
         {{
@@ -133,6 +135,7 @@ using Vogen;
         {Util.GenerateDebuggerProxyForStructs(tds, item)}
 
 }}
+{GenerateEfCoreExtensions.GenerateIfNeeded(item)}
 {Util.WriteCloseNamespace(item.FullNamespace)}";
     }
 

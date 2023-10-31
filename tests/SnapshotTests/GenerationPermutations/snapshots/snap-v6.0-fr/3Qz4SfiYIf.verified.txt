@@ -126,37 +126,41 @@ namespace Whatever
 
             return new internal_partial_recordConversions_DapperTypeHandlerstring(value);
         }
-         
- public virtual global::System.Boolean Equals(internal_partial_recordConversions_DapperTypeHandlerstring other)
- {
-     if (ReferenceEquals(null, other))
-     {
-         return false;
-     }
+        
+            public virtual global::System.Boolean Equals(internal_partial_recordConversions_DapperTypeHandlerstring other)
+            {
+              if (ReferenceEquals(null, other))
+              {
+                  return false;
+              }
 
-     // It's possible to create uninitialized instances via converters such as EfCore (HasDefaultValue), which call Equals.
-     // We treat anything uninitialized as not equal to anything, even other uninitialized instances of this type.
-     if(!_isInitialized || !other._isInitialized) return false;
+              // It's possible to create uninitialized instances via converters such as EfCore (HasDefaultValue), which call Equals.
+              // We treat anything uninitialized as not equal to anything, even other uninitialized instances of this type.
+              if(!_isInitialized || !other._isInitialized) return false;
 
-     if (ReferenceEquals(this, other))
-     {
-         return true;
-     }
+              if (ReferenceEquals(this, other))
+              {
+                  return true;
+              }
 
-     return GetType() == other.GetType() && global::System.Collections.Generic.EqualityComparer<System.String>.Default.Equals(Value, other.Value);
- }
+              return GetType() == other.GetType() && global::System.Collections.Generic.EqualityComparer<System.String>.Default.Equals(Value, other.Value);
+            }
 
-public global::System.Boolean Equals(internal_partial_recordConversions_DapperTypeHandlerstring other, global::System.Collections.Generic.IEqualityComparer<internal_partial_recordConversions_DapperTypeHandlerstring> comparer)
-{
-    return comparer.Equals(this, other);
-}
+             public global::System.Boolean Equals(internal_partial_recordConversions_DapperTypeHandlerstring other, global::System.Collections.Generic.IEqualityComparer<internal_partial_recordConversions_DapperTypeHandlerstring> comparer)
+             {
+                 return comparer.Equals(this, other);
+             }
 
-  public global::System.Boolean Equals(System.String primitive) {
-    return Value.Equals(primitive);
- }    public global::System.Boolean Equals(System.String primitive, global::System.StringComparer comparer) {
-        return comparer.Equals(Value, primitive);
-    }
- 
+             
+            public global::System.Boolean Equals(System.String primitive)
+            {
+              return Value.Equals(primitive);
+            }
+
+            public global::System.Boolean Equals(System.String primitive, global::System.StringComparer comparer) 
+            {
+                return comparer.Equals(Value, primitive);
+            }
 
         public static global::System.Boolean operator ==(internal_partial_recordConversions_DapperTypeHandlerstring left, System.String right) => Equals(left.Value, right);
         public static global::System.Boolean operator !=(internal_partial_recordConversions_DapperTypeHandlerstring left, System.String right) => !Equals(left.Value, right);
@@ -173,16 +177,17 @@ public global::System.Boolean Equals(internal_partial_recordConversions_DapperTy
             if(other is internal_partial_recordConversions_DapperTypeHandlerstring x) return CompareTo(x);
             throw new global::System.ArgumentException("Cannot compare to object as it is not of type internal_partial_recordConversions_DapperTypeHandlerstring", nameof(other));
         }
-    public override global::System.Int32 GetHashCode()
-    {
-        unchecked // Overflow is fine, just wrap
-        {
-            global::System.Int32 hash = (global::System.Int32) 2166136261;
-            hash = (hash * 16777619) ^ GetType().GetHashCode();
-            hash = (hash * 16777619) ^ global::System.Collections.Generic.EqualityComparer<System.String>.Default.GetHashCode(Value);
-            return hash;
-        }
-    }
+
+          public override global::System.Int32 GetHashCode()
+          {
+            unchecked // Overflow is fine, just wrap
+            {
+                global::System.Int32 hash = (global::System.Int32) 2166136261;
+                hash = (hash * 16777619) ^ GetType().GetHashCode();
+                hash = (hash * 16777619) ^ global::System.Collections.Generic.EqualityComparer<System.String>.Default.GetHashCode(Value);
+                return hash;
+            }
+          }
 
         private void EnsureInitialized()
         {
@@ -246,4 +251,5 @@ public global::System.Boolean Equals(internal_partial_recordConversions_DapperTy
             public global::System.String Conversions => @"";
                 }
     }
+
 }

@@ -106,27 +106,30 @@ namespace @class
             return new escapedTestsinternal_readonly_partial_structConversions_Nonedouble(value);
         }
         
-public readonly global::System.Boolean Equals(escapedTestsinternal_readonly_partial_structConversions_Nonedouble other)
-{
-    // It's possible to create uninitialized instances via converters such as EfCore (HasDefaultValue), which call Equals.
-    // We treat anything uninitialized as not equal to anything, even other uninitialized instances of this type.
-    if(!_isInitialized || !other._isInitialized) return false;
+          public readonly global::System.Boolean Equals(escapedTestsinternal_readonly_partial_structConversions_Nonedouble other)
+          {
+            // It's possible to create uninitialized instances via converters such as EfCore (HasDefaultValue), which call Equals.
+            // We treat anything uninitialized as not equal to anything, even other uninitialized instances of this type.
+            if(!_isInitialized || !other._isInitialized) return false;
 
-    return global::System.Collections.Generic.EqualityComparer<System.Double>.Default.Equals(Value, other.Value);
-}
+            return global::System.Collections.Generic.EqualityComparer<System.Double>.Default.Equals(Value, other.Value);
+          }
 
-public global::System.Boolean Equals(escapedTestsinternal_readonly_partial_structConversions_Nonedouble other, global::System.Collections.Generic.IEqualityComparer<escapedTestsinternal_readonly_partial_structConversions_Nonedouble> comparer)
-{
-    return comparer.Equals(this, other);
-}
+          public global::System.Boolean Equals(escapedTestsinternal_readonly_partial_structConversions_Nonedouble other, global::System.Collections.Generic.IEqualityComparer<escapedTestsinternal_readonly_partial_structConversions_Nonedouble> comparer)
+          {
+            return comparer.Equals(this, other);
+          }
 
-  public readonly global::System.Boolean Equals(System.Double primitive) {
-    return Value.Equals(primitive);
- }
-public readonly override global::System.Boolean Equals(global::System.Object obj)
-{
-    return obj is escapedTestsinternal_readonly_partial_structConversions_Nonedouble && Equals((escapedTestsinternal_readonly_partial_structConversions_Nonedouble) obj);
-}
+          
+            public readonly global::System.Boolean Equals(System.Double primitive)
+            {
+              return Value.Equals(primitive);
+            }
+
+          public readonly override global::System.Boolean Equals(global::System.Object obj)
+          {
+            return obj is escapedTestsinternal_readonly_partial_structConversions_Nonedouble && Equals((escapedTestsinternal_readonly_partial_structConversions_Nonedouble) obj);
+          }
 
         public static global::System.Boolean operator ==(escapedTestsinternal_readonly_partial_structConversions_Nonedouble left, escapedTestsinternal_readonly_partial_structConversions_Nonedouble right) => Equals(left, right);
         public static global::System.Boolean operator !=(escapedTestsinternal_readonly_partial_structConversions_Nonedouble left, escapedTestsinternal_readonly_partial_structConversions_Nonedouble right) => !(left == right);
@@ -187,10 +190,12 @@ public readonly override global::System.Boolean Equals(global::System.Object obj
         return false;
     }
 
-    public readonly override global::System.Int32 GetHashCode()
-    {
-        return global::System.Collections.Generic.EqualityComparer<System.Double>.Default.GetHashCode(Value);
-    }
+        
+        
+          public readonly override global::System.Int32 GetHashCode()
+          {
+            return global::System.Collections.Generic.EqualityComparer<System.Double>.Default.GetHashCode(Value);
+          }
 
         /// <summary>Returns the string representation of the underlying type</summary>
     /// <inheritdoc cref="System.Double.ToString()" />
@@ -220,25 +225,27 @@ public readonly override global::System.Boolean Equals(global::System.Object obj
 
 
 
-        internal sealed class escapedTestsinternal_readonly_partial_structConversions_NonedoubleDebugView
-        {
-            private readonly escapedTestsinternal_readonly_partial_structConversions_Nonedouble _t;
-
-            escapedTestsinternal_readonly_partial_structConversions_NonedoubleDebugView(escapedTestsinternal_readonly_partial_structConversions_Nonedouble t)
+        
+            internal sealed class escapedTestsinternal_readonly_partial_structConversions_NonedoubleDebugView
             {
-                _t = t;
-            }
+                private readonly escapedTestsinternal_readonly_partial_structConversions_Nonedouble _t;
 
-            public global::System.Boolean IsInitialized => _t._isInitialized;
-            public global::System.String UnderlyingType => "System.Double";
-            public global::System.String Value => _t._isInitialized ? _t._value.ToString() : "[not initialized]" ;
-
-            #if DEBUG
-            public global::System.String CreatedWith => _t._stackTrace?.ToString() ?? "the From method";
-            #endif
-
-            public global::System.String Conversions => @"None";
+                escapedTestsinternal_readonly_partial_structConversions_NonedoubleDebugView(escapedTestsinternal_readonly_partial_structConversions_Nonedouble t)
+                {
+                    _t = t;
                 }
 
+                public global::System.Boolean IsInitialized => _t._isInitialized;
+                public global::System.String UnderlyingType => "System.Double";
+                public global::System.String Value => _t._isInitialized ? _t._value.ToString() : "[not initialized]" ;
+
+                #if DEBUG
+                    public global::System.String CreatedWith => _t._stackTrace?.ToString() ?? "the From method";
+                #endif
+
+                public global::System.String Conversions => @"None";
+            }
+
 }
+
 }

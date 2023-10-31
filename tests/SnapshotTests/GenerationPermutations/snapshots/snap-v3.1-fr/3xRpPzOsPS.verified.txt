@@ -114,35 +114,37 @@ namespace Whatever
 
             return new public_sealed_partial_recordConversions_EfCoreValueConverterdouble(value);
         }
-         
- public  global::System.Boolean Equals(public_sealed_partial_recordConversions_EfCoreValueConverterdouble other)
- {
-     if (ReferenceEquals(null, other))
-     {
-         return false;
-     }
+        
+            public  global::System.Boolean Equals(public_sealed_partial_recordConversions_EfCoreValueConverterdouble other)
+            {
+              if (ReferenceEquals(null, other))
+              {
+                  return false;
+              }
 
-     // It's possible to create uninitialized instances via converters such as EfCore (HasDefaultValue), which call Equals.
-     // We treat anything uninitialized as not equal to anything, even other uninitialized instances of this type.
-     if(!_isInitialized || !other._isInitialized) return false;
+              // It's possible to create uninitialized instances via converters such as EfCore (HasDefaultValue), which call Equals.
+              // We treat anything uninitialized as not equal to anything, even other uninitialized instances of this type.
+              if(!_isInitialized || !other._isInitialized) return false;
 
-     if (ReferenceEquals(this, other))
-     {
-         return true;
-     }
+              if (ReferenceEquals(this, other))
+              {
+                  return true;
+              }
 
-     return GetType() == other.GetType() && global::System.Collections.Generic.EqualityComparer<System.Double>.Default.Equals(Value, other.Value);
- }
+              return GetType() == other.GetType() && global::System.Collections.Generic.EqualityComparer<System.Double>.Default.Equals(Value, other.Value);
+            }
 
-public global::System.Boolean Equals(public_sealed_partial_recordConversions_EfCoreValueConverterdouble other, global::System.Collections.Generic.IEqualityComparer<public_sealed_partial_recordConversions_EfCoreValueConverterdouble> comparer)
-{
-    return comparer.Equals(this, other);
-}
+             public global::System.Boolean Equals(public_sealed_partial_recordConversions_EfCoreValueConverterdouble other, global::System.Collections.Generic.IEqualityComparer<public_sealed_partial_recordConversions_EfCoreValueConverterdouble> comparer)
+             {
+                 return comparer.Equals(this, other);
+             }
 
-  public global::System.Boolean Equals(System.Double primitive) {
-    return Value.Equals(primitive);
- }
- 
+             
+            public global::System.Boolean Equals(System.Double primitive)
+            {
+              return Value.Equals(primitive);
+            }
+
 
         public static global::System.Boolean operator ==(public_sealed_partial_recordConversions_EfCoreValueConverterdouble left, System.Double right) => Equals(left.Value, right);
         public static global::System.Boolean operator !=(public_sealed_partial_recordConversions_EfCoreValueConverterdouble left, System.Double right) => !Equals(left.Value, right);
@@ -159,16 +161,17 @@ public global::System.Boolean Equals(public_sealed_partial_recordConversions_EfC
             if(other is public_sealed_partial_recordConversions_EfCoreValueConverterdouble x) return CompareTo(x);
             throw new global::System.ArgumentException("Cannot compare to object as it is not of type public_sealed_partial_recordConversions_EfCoreValueConverterdouble", nameof(other));
         }
-    public override global::System.Int32 GetHashCode()
-    {
-        unchecked // Overflow is fine, just wrap
-        {
-            global::System.Int32 hash = (global::System.Int32) 2166136261;
-            hash = (hash * 16777619) ^ GetType().GetHashCode();
-            hash = (hash * 16777619) ^ global::System.Collections.Generic.EqualityComparer<System.Double>.Default.GetHashCode(Value);
-            return hash;
-        }
-    }
+
+          public override global::System.Int32 GetHashCode()
+          {
+            unchecked // Overflow is fine, just wrap
+            {
+                global::System.Int32 hash = (global::System.Int32) 2166136261;
+                hash = (hash * 16777619) ^ GetType().GetHashCode();
+                hash = (hash * 16777619) ^ global::System.Collections.Generic.EqualityComparer<System.Double>.Default.GetHashCode(Value);
+                return hash;
+            }
+          }
 
         private void EnsureInitialized()
         {
@@ -207,6 +210,10 @@ public global::System.Boolean Equals(public_sealed_partial_recordConversions_EfC
                     mappingHints
                 ) { }
         }
+            public class EfCoreValueComparer : global::Microsoft.EntityFrameworkCore.ChangeTracking.ValueComparer<public_sealed_partial_recordConversions_EfCoreValueConverterdouble>
+            {
+                public EfCoreValueComparer() : base((left, right) => left == right, instance => instance._isInitialized ? instance._value.GetHashCode() : 0) { }
+            }
 
 
 
@@ -225,4 +232,11 @@ public global::System.Boolean Equals(public_sealed_partial_recordConversions_EfC
             public global::System.String Conversions => @"";
                 }
     }
+#if NETCOREAPP3_0_OR_GREATER
+            public static class __public_sealed_partial_recordConversions_EfCoreValueConverterdoubleEfCoreExtensions 
+            {
+                public static global::Microsoft.EntityFrameworkCore.Metadata.Builders.PropertyBuilder<public_sealed_partial_recordConversions_EfCoreValueConverterdouble> HasVogenConversion(this global::Microsoft.EntityFrameworkCore.Metadata.Builders.PropertyBuilder<public_sealed_partial_recordConversions_EfCoreValueConverterdouble> propertyBuilder) =>
+                    propertyBuilder.HasConversion<public_sealed_partial_recordConversions_EfCoreValueConverterdouble.EfCoreValueConverter, public_sealed_partial_recordConversions_EfCoreValueConverterdouble.EfCoreValueComparer>();
+            }
+#endif
 }

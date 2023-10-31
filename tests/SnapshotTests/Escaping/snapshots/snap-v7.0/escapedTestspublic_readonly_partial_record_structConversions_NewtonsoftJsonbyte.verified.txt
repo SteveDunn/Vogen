@@ -117,23 +117,26 @@ namespace @class
             return new escapedTestspublic_readonly_partial_record_structConversions_NewtonsoftJsonbyte(value);
         }
         
-public readonly global::System.Boolean Equals(escapedTestspublic_readonly_partial_record_structConversions_NewtonsoftJsonbyte other)
-{
-    // It's possible to create uninitialized instances via converters such as EfCore (HasDefaultValue), which call Equals.
-    // We treat anything uninitialized as not equal to anything, even other uninitialized instances of this type.
-    if(!_isInitialized || !other._isInitialized) return false;
+          public readonly global::System.Boolean Equals(escapedTestspublic_readonly_partial_record_structConversions_NewtonsoftJsonbyte other)
+          {
+            // It's possible to create uninitialized instances via converters such as EfCore (HasDefaultValue), which call Equals.
+            // We treat anything uninitialized as not equal to anything, even other uninitialized instances of this type.
+            if(!_isInitialized || !other._isInitialized) return false;
 
-    return global::System.Collections.Generic.EqualityComparer<System.Byte>.Default.Equals(Value, other.Value);
-}
+            return global::System.Collections.Generic.EqualityComparer<System.Byte>.Default.Equals(Value, other.Value);
+          }
 
-public global::System.Boolean Equals(escapedTestspublic_readonly_partial_record_structConversions_NewtonsoftJsonbyte other, global::System.Collections.Generic.IEqualityComparer<escapedTestspublic_readonly_partial_record_structConversions_NewtonsoftJsonbyte> comparer)
-{
-    return comparer.Equals(this, other);
-}
+          public global::System.Boolean Equals(escapedTestspublic_readonly_partial_record_structConversions_NewtonsoftJsonbyte other, global::System.Collections.Generic.IEqualityComparer<escapedTestspublic_readonly_partial_record_structConversions_NewtonsoftJsonbyte> comparer)
+          {
+            return comparer.Equals(this, other);
+          }
 
-  public readonly global::System.Boolean Equals(System.Byte primitive) {
-    return Value.Equals(primitive);
- }
+          
+            public readonly global::System.Boolean Equals(System.Byte primitive)
+            {
+              return Value.Equals(primitive);
+            }
+
 
         public static global::System.Boolean operator ==(escapedTestspublic_readonly_partial_record_structConversions_NewtonsoftJsonbyte left, System.Byte right) => Equals(left.Value, right);
         public static global::System.Boolean operator !=(escapedTestspublic_readonly_partial_record_structConversions_NewtonsoftJsonbyte left, System.Byte right) => !Equals(left.Value, right);
@@ -275,10 +278,12 @@ public global::System.Boolean Equals(escapedTestspublic_readonly_partial_record_
         return false;
     }
 
-    public readonly override global::System.Int32 GetHashCode()
-    {
-        return global::System.Collections.Generic.EqualityComparer<System.Byte>.Default.GetHashCode(Value);
-    }
+
+        
+          public readonly override global::System.Int32 GetHashCode()
+          {
+            return global::System.Collections.Generic.EqualityComparer<System.Byte>.Default.GetHashCode(Value);
+          }
 
         private readonly void EnsureInitialized()
         {
@@ -328,25 +333,27 @@ public global::System.Boolean Equals(escapedTestspublic_readonly_partial_record_
 
 
 
-        internal sealed class escapedTestspublic_readonly_partial_record_structConversions_NewtonsoftJsonbyteDebugView
-        {
-            private readonly escapedTestspublic_readonly_partial_record_structConversions_NewtonsoftJsonbyte _t;
-
-            escapedTestspublic_readonly_partial_record_structConversions_NewtonsoftJsonbyteDebugView(escapedTestspublic_readonly_partial_record_structConversions_NewtonsoftJsonbyte t)
+        
+            internal sealed class escapedTestspublic_readonly_partial_record_structConversions_NewtonsoftJsonbyteDebugView
             {
-                _t = t;
-            }
+                private readonly escapedTestspublic_readonly_partial_record_structConversions_NewtonsoftJsonbyte _t;
 
-            public global::System.Boolean IsInitialized => _t._isInitialized;
-            public global::System.String UnderlyingType => "System.Byte";
-            public global::System.String Value => _t._isInitialized ? _t._value.ToString() : "[not initialized]" ;
-
-            #if DEBUG
-            public global::System.String CreatedWith => _t._stackTrace?.ToString() ?? "the From method";
-            #endif
-
-            public global::System.String Conversions => @"NewtonsoftJson";
+                escapedTestspublic_readonly_partial_record_structConversions_NewtonsoftJsonbyteDebugView(escapedTestspublic_readonly_partial_record_structConversions_NewtonsoftJsonbyte t)
+                {
+                    _t = t;
                 }
 
+                public global::System.Boolean IsInitialized => _t._isInitialized;
+                public global::System.String UnderlyingType => "System.Byte";
+                public global::System.String Value => _t._isInitialized ? _t._value.ToString() : "[not initialized]" ;
+
+                #if DEBUG
+                    public global::System.String CreatedWith => _t._stackTrace?.ToString() ?? "the From method";
+                #endif
+
+                public global::System.String Conversions => @"NewtonsoftJson";
+            }
+
 }
+
 }

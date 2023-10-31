@@ -106,27 +106,30 @@ namespace Whatever
             return new internal_partial_structConversions_EfCoreValueConverterdouble(value);
         }
         
-public readonly global::System.Boolean Equals(internal_partial_structConversions_EfCoreValueConverterdouble other)
-{
-    // It's possible to create uninitialized instances via converters such as EfCore (HasDefaultValue), which call Equals.
-    // We treat anything uninitialized as not equal to anything, even other uninitialized instances of this type.
-    if(!_isInitialized || !other._isInitialized) return false;
+          public readonly global::System.Boolean Equals(internal_partial_structConversions_EfCoreValueConverterdouble other)
+          {
+            // It's possible to create uninitialized instances via converters such as EfCore (HasDefaultValue), which call Equals.
+            // We treat anything uninitialized as not equal to anything, even other uninitialized instances of this type.
+            if(!_isInitialized || !other._isInitialized) return false;
 
-    return global::System.Collections.Generic.EqualityComparer<System.Double>.Default.Equals(Value, other.Value);
-}
+            return global::System.Collections.Generic.EqualityComparer<System.Double>.Default.Equals(Value, other.Value);
+          }
 
-public global::System.Boolean Equals(internal_partial_structConversions_EfCoreValueConverterdouble other, global::System.Collections.Generic.IEqualityComparer<internal_partial_structConversions_EfCoreValueConverterdouble> comparer)
-{
-    return comparer.Equals(this, other);
-}
+          public global::System.Boolean Equals(internal_partial_structConversions_EfCoreValueConverterdouble other, global::System.Collections.Generic.IEqualityComparer<internal_partial_structConversions_EfCoreValueConverterdouble> comparer)
+          {
+            return comparer.Equals(this, other);
+          }
 
-  public readonly global::System.Boolean Equals(System.Double primitive) {
-    return Value.Equals(primitive);
- }
-public readonly override global::System.Boolean Equals(global::System.Object obj)
-{
-    return obj is internal_partial_structConversions_EfCoreValueConverterdouble && Equals((internal_partial_structConversions_EfCoreValueConverterdouble) obj);
-}
+          
+            public readonly global::System.Boolean Equals(System.Double primitive)
+            {
+              return Value.Equals(primitive);
+            }
+
+          public readonly override global::System.Boolean Equals(global::System.Object obj)
+          {
+            return obj is internal_partial_structConversions_EfCoreValueConverterdouble && Equals((internal_partial_structConversions_EfCoreValueConverterdouble) obj);
+          }
 
         public static global::System.Boolean operator ==(internal_partial_structConversions_EfCoreValueConverterdouble left, internal_partial_structConversions_EfCoreValueConverterdouble right) => Equals(left, right);
         public static global::System.Boolean operator !=(internal_partial_structConversions_EfCoreValueConverterdouble left, internal_partial_structConversions_EfCoreValueConverterdouble right) => !(left == right);
@@ -187,10 +190,12 @@ public readonly override global::System.Boolean Equals(global::System.Object obj
         return false;
     }
 
-    public readonly override global::System.Int32 GetHashCode()
-    {
-        return global::System.Collections.Generic.EqualityComparer<System.Double>.Default.GetHashCode(Value);
-    }
+        
+        
+          public readonly override global::System.Int32 GetHashCode()
+          {
+            return global::System.Collections.Generic.EqualityComparer<System.Double>.Default.GetHashCode(Value);
+          }
 
         /// <summary>Returns the string representation of the underlying type</summary>
     /// <inheritdoc cref="System.Double.ToString()" />
@@ -227,28 +232,40 @@ public readonly override global::System.Boolean Equals(global::System.Object obj
                     mappingHints
                 ) { }
         }
-
-
-
-        internal sealed class internal_partial_structConversions_EfCoreValueConverterdoubleDebugView
-        {
-            private readonly internal_partial_structConversions_EfCoreValueConverterdouble _t;
-
-            internal_partial_structConversions_EfCoreValueConverterdoubleDebugView(internal_partial_structConversions_EfCoreValueConverterdouble t)
+            public class EfCoreValueComparer : global::Microsoft.EntityFrameworkCore.ChangeTracking.ValueComparer<internal_partial_structConversions_EfCoreValueConverterdouble>
             {
-                _t = t;
+                public EfCoreValueComparer() : base((left, right) => left == right, instance => instance._isInitialized ? instance._value.GetHashCode() : 0) { }
             }
 
-            public global::System.Boolean IsInitialized => _t._isInitialized;
-            public global::System.String UnderlyingType => "System.Double";
-            public global::System.String Value => _t._isInitialized ? _t._value.ToString() : "[not initialized]" ;
 
-            #if DEBUG
-            public global::System.String CreatedWith => _t._stackTrace?.ToString() ?? "the From method";
-            #endif
 
-            public global::System.String Conversions => @"EfCoreValueConverter";
+        
+            internal sealed class internal_partial_structConversions_EfCoreValueConverterdoubleDebugView
+            {
+                private readonly internal_partial_structConversions_EfCoreValueConverterdouble _t;
+
+                internal_partial_structConversions_EfCoreValueConverterdoubleDebugView(internal_partial_structConversions_EfCoreValueConverterdouble t)
+                {
+                    _t = t;
                 }
 
+                public global::System.Boolean IsInitialized => _t._isInitialized;
+                public global::System.String UnderlyingType => "System.Double";
+                public global::System.String Value => _t._isInitialized ? _t._value.ToString() : "[not initialized]" ;
+
+                #if DEBUG
+                    public global::System.String CreatedWith => _t._stackTrace?.ToString() ?? "the From method";
+                #endif
+
+                public global::System.String Conversions => @"EfCoreValueConverter";
+            }
+
 }
+#if NETCOREAPP3_0_OR_GREATER
+            public static class __internal_partial_structConversions_EfCoreValueConverterdoubleEfCoreExtensions 
+            {
+                internal static global::Microsoft.EntityFrameworkCore.Metadata.Builders.PropertyBuilder<internal_partial_structConversions_EfCoreValueConverterdouble> HasVogenConversion(this global::Microsoft.EntityFrameworkCore.Metadata.Builders.PropertyBuilder<internal_partial_structConversions_EfCoreValueConverterdouble> propertyBuilder) =>
+                    propertyBuilder.HasConversion<internal_partial_structConversions_EfCoreValueConverterdouble.EfCoreValueConverter, internal_partial_structConversions_EfCoreValueConverterdouble.EfCoreValueComparer>();
+            }
+#endif
 }

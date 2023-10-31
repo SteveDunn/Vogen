@@ -106,29 +106,34 @@ namespace @class
             return new escapedTestspublic_readonly_partial_structConversions_Nonestring(value);
         }
         
-public readonly global::System.Boolean Equals(escapedTestspublic_readonly_partial_structConversions_Nonestring other)
-{
-    // It's possible to create uninitialized instances via converters such as EfCore (HasDefaultValue), which call Equals.
-    // We treat anything uninitialized as not equal to anything, even other uninitialized instances of this type.
-    if(!_isInitialized || !other._isInitialized) return false;
+          public readonly global::System.Boolean Equals(escapedTestspublic_readonly_partial_structConversions_Nonestring other)
+          {
+            // It's possible to create uninitialized instances via converters such as EfCore (HasDefaultValue), which call Equals.
+            // We treat anything uninitialized as not equal to anything, even other uninitialized instances of this type.
+            if(!_isInitialized || !other._isInitialized) return false;
 
-    return global::System.Collections.Generic.EqualityComparer<System.String>.Default.Equals(Value, other.Value);
-}
+            return global::System.Collections.Generic.EqualityComparer<System.String>.Default.Equals(Value, other.Value);
+          }
 
-public global::System.Boolean Equals(escapedTestspublic_readonly_partial_structConversions_Nonestring other, global::System.Collections.Generic.IEqualityComparer<escapedTestspublic_readonly_partial_structConversions_Nonestring> comparer)
-{
-    return comparer.Equals(this, other);
-}
+          public global::System.Boolean Equals(escapedTestspublic_readonly_partial_structConversions_Nonestring other, global::System.Collections.Generic.IEqualityComparer<escapedTestspublic_readonly_partial_structConversions_Nonestring> comparer)
+          {
+            return comparer.Equals(this, other);
+          }
 
-  public readonly global::System.Boolean Equals(System.String primitive) {
-    return Value.Equals(primitive);
- }    public readonly global::System.Boolean Equals(System.String primitive, global::System.StringComparer comparer) {
-        return comparer.Equals(Value, primitive);
-    }
-public readonly override global::System.Boolean Equals(global::System.Object obj)
-{
-    return obj is escapedTestspublic_readonly_partial_structConversions_Nonestring && Equals((escapedTestspublic_readonly_partial_structConversions_Nonestring) obj);
-}
+          
+            public readonly global::System.Boolean Equals(System.String primitive)
+            {
+              return Value.Equals(primitive);
+            }
+
+            public readonly global::System.Boolean Equals(System.String primitive, global::System.StringComparer comparer) 
+            {
+                return comparer.Equals(Value, primitive);
+            }
+          public readonly override global::System.Boolean Equals(global::System.Object obj)
+          {
+            return obj is escapedTestspublic_readonly_partial_structConversions_Nonestring && Equals((escapedTestspublic_readonly_partial_structConversions_Nonestring) obj);
+          }
 
         public static global::System.Boolean operator ==(escapedTestspublic_readonly_partial_structConversions_Nonestring left, escapedTestspublic_readonly_partial_structConversions_Nonestring right) => Equals(left, right);
         public static global::System.Boolean operator !=(escapedTestspublic_readonly_partial_structConversions_Nonestring left, escapedTestspublic_readonly_partial_structConversions_Nonestring right) => !(left == right);
@@ -147,10 +152,12 @@ public readonly override global::System.Boolean Equals(global::System.Object obj
         }
 
         
-    public readonly override global::System.Int32 GetHashCode()
-    {
-        return global::System.Collections.Generic.EqualityComparer<System.String>.Default.GetHashCode(Value);
-    }
+        
+        
+          public readonly override global::System.Int32 GetHashCode()
+          {
+            return global::System.Collections.Generic.EqualityComparer<System.String>.Default.GetHashCode(Value);
+          }
 
         /// <summary>Returns the string representation of the underlying type</summary>
     /// <inheritdoc cref="System.String.ToString()" />
@@ -180,25 +187,27 @@ public readonly override global::System.Boolean Equals(global::System.Object obj
 
 
 
-        internal sealed class escapedTestspublic_readonly_partial_structConversions_NonestringDebugView
-        {
-            private readonly escapedTestspublic_readonly_partial_structConversions_Nonestring _t;
-
-            escapedTestspublic_readonly_partial_structConversions_NonestringDebugView(escapedTestspublic_readonly_partial_structConversions_Nonestring t)
+        
+            internal sealed class escapedTestspublic_readonly_partial_structConversions_NonestringDebugView
             {
-                _t = t;
-            }
+                private readonly escapedTestspublic_readonly_partial_structConversions_Nonestring _t;
 
-            public global::System.Boolean IsInitialized => _t._isInitialized;
-            public global::System.String UnderlyingType => "System.String";
-            public global::System.String Value => _t._isInitialized ? _t._value.ToString() : "[not initialized]" ;
-
-            #if DEBUG
-            public global::System.String CreatedWith => _t._stackTrace?.ToString() ?? "the From method";
-            #endif
-
-            public global::System.String Conversions => @"None";
+                escapedTestspublic_readonly_partial_structConversions_NonestringDebugView(escapedTestspublic_readonly_partial_structConversions_Nonestring t)
+                {
+                    _t = t;
                 }
 
+                public global::System.Boolean IsInitialized => _t._isInitialized;
+                public global::System.String UnderlyingType => "System.String";
+                public global::System.String Value => _t._isInitialized ? _t._value.ToString() : "[not initialized]" ;
+
+                #if DEBUG
+                    public global::System.String CreatedWith => _t._stackTrace?.ToString() ?? "the From method";
+                #endif
+
+                public global::System.String Conversions => @"None";
+            }
+
 }
+
 }

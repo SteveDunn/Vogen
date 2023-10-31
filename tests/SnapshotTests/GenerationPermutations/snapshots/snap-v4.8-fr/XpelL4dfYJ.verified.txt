@@ -107,27 +107,30 @@ namespace Whatever
             return new public_partial_structConversions_SystemTextJsonlong(value);
         }
         
-public readonly global::System.Boolean Equals(public_partial_structConversions_SystemTextJsonlong other)
-{
-    // It's possible to create uninitialized instances via converters such as EfCore (HasDefaultValue), which call Equals.
-    // We treat anything uninitialized as not equal to anything, even other uninitialized instances of this type.
-    if(!_isInitialized || !other._isInitialized) return false;
+          public readonly global::System.Boolean Equals(public_partial_structConversions_SystemTextJsonlong other)
+          {
+            // It's possible to create uninitialized instances via converters such as EfCore (HasDefaultValue), which call Equals.
+            // We treat anything uninitialized as not equal to anything, even other uninitialized instances of this type.
+            if(!_isInitialized || !other._isInitialized) return false;
 
-    return global::System.Collections.Generic.EqualityComparer<System.Int64>.Default.Equals(Value, other.Value);
-}
+            return global::System.Collections.Generic.EqualityComparer<System.Int64>.Default.Equals(Value, other.Value);
+          }
 
-public global::System.Boolean Equals(public_partial_structConversions_SystemTextJsonlong other, global::System.Collections.Generic.IEqualityComparer<public_partial_structConversions_SystemTextJsonlong> comparer)
-{
-    return comparer.Equals(this, other);
-}
+          public global::System.Boolean Equals(public_partial_structConversions_SystemTextJsonlong other, global::System.Collections.Generic.IEqualityComparer<public_partial_structConversions_SystemTextJsonlong> comparer)
+          {
+            return comparer.Equals(this, other);
+          }
 
-  public readonly global::System.Boolean Equals(System.Int64 primitive) {
-    return Value.Equals(primitive);
- }
-public readonly override global::System.Boolean Equals(global::System.Object obj)
-{
-    return obj is public_partial_structConversions_SystemTextJsonlong && Equals((public_partial_structConversions_SystemTextJsonlong) obj);
-}
+          
+            public readonly global::System.Boolean Equals(System.Int64 primitive)
+            {
+              return Value.Equals(primitive);
+            }
+
+          public readonly override global::System.Boolean Equals(global::System.Object obj)
+          {
+            return obj is public_partial_structConversions_SystemTextJsonlong && Equals((public_partial_structConversions_SystemTextJsonlong) obj);
+          }
 
         public static global::System.Boolean operator ==(public_partial_structConversions_SystemTextJsonlong left, public_partial_structConversions_SystemTextJsonlong right) => Equals(left, right);
         public static global::System.Boolean operator !=(public_partial_structConversions_SystemTextJsonlong left, public_partial_structConversions_SystemTextJsonlong right) => !(left == right);
@@ -188,10 +191,12 @@ public readonly override global::System.Boolean Equals(global::System.Object obj
         return false;
     }
 
-    public readonly override global::System.Int32 GetHashCode()
-    {
-        return global::System.Collections.Generic.EqualityComparer<System.Int64>.Default.GetHashCode(Value);
-    }
+        
+        
+          public readonly override global::System.Int32 GetHashCode()
+          {
+            return global::System.Collections.Generic.EqualityComparer<System.Int64>.Default.GetHashCode(Value);
+          }
 
         /// <summary>Returns the string representation of the underlying type</summary>
     /// <inheritdoc cref="System.Int64.ToString()" />
@@ -253,25 +258,27 @@ public readonly override global::System.Boolean Equals(global::System.Object obj
 
 
 
-        internal sealed class public_partial_structConversions_SystemTextJsonlongDebugView
-        {
-            private readonly public_partial_structConversions_SystemTextJsonlong _t;
-
-            public_partial_structConversions_SystemTextJsonlongDebugView(public_partial_structConversions_SystemTextJsonlong t)
+        
+            internal sealed class public_partial_structConversions_SystemTextJsonlongDebugView
             {
-                _t = t;
-            }
+                private readonly public_partial_structConversions_SystemTextJsonlong _t;
 
-            public global::System.Boolean IsInitialized => _t._isInitialized;
-            public global::System.String UnderlyingType => "System.Int64";
-            public global::System.String Value => _t._isInitialized ? _t._value.ToString() : "[not initialized]" ;
-
-            #if DEBUG
-            public global::System.String CreatedWith => _t._stackTrace?.ToString() ?? "the From method";
-            #endif
-
-            public global::System.String Conversions => @"SystemTextJson";
+                public_partial_structConversions_SystemTextJsonlongDebugView(public_partial_structConversions_SystemTextJsonlong t)
+                {
+                    _t = t;
                 }
 
+                public global::System.Boolean IsInitialized => _t._isInitialized;
+                public global::System.String UnderlyingType => "System.Int64";
+                public global::System.String Value => _t._isInitialized ? _t._value.ToString() : "[not initialized]" ;
+
+                #if DEBUG
+                    public global::System.String CreatedWith => _t._stackTrace?.ToString() ?? "the From method";
+                #endif
+
+                public global::System.String Conversions => @"SystemTextJson";
+            }
+
 }
+
 }

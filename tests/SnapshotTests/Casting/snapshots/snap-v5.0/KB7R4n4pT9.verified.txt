@@ -118,23 +118,26 @@ namespace Whatever
             return new _casting_public_partial_record_structCastOperator_ExplicitCastOperator_Explicitfloat(value);
         }
         
-public readonly global::System.Boolean Equals(_casting_public_partial_record_structCastOperator_ExplicitCastOperator_Explicitfloat other)
-{
-    // It's possible to create uninitialized instances via converters such as EfCore (HasDefaultValue), which call Equals.
-    // We treat anything uninitialized as not equal to anything, even other uninitialized instances of this type.
-    if(!_isInitialized || !other._isInitialized) return false;
+          public readonly global::System.Boolean Equals(_casting_public_partial_record_structCastOperator_ExplicitCastOperator_Explicitfloat other)
+          {
+            // It's possible to create uninitialized instances via converters such as EfCore (HasDefaultValue), which call Equals.
+            // We treat anything uninitialized as not equal to anything, even other uninitialized instances of this type.
+            if(!_isInitialized || !other._isInitialized) return false;
 
-    return global::System.Collections.Generic.EqualityComparer<System.Single>.Default.Equals(Value, other.Value);
-}
+            return global::System.Collections.Generic.EqualityComparer<System.Single>.Default.Equals(Value, other.Value);
+          }
 
-public global::System.Boolean Equals(_casting_public_partial_record_structCastOperator_ExplicitCastOperator_Explicitfloat other, global::System.Collections.Generic.IEqualityComparer<_casting_public_partial_record_structCastOperator_ExplicitCastOperator_Explicitfloat> comparer)
-{
-    return comparer.Equals(this, other);
-}
+          public global::System.Boolean Equals(_casting_public_partial_record_structCastOperator_ExplicitCastOperator_Explicitfloat other, global::System.Collections.Generic.IEqualityComparer<_casting_public_partial_record_structCastOperator_ExplicitCastOperator_Explicitfloat> comparer)
+          {
+            return comparer.Equals(this, other);
+          }
 
-  public readonly global::System.Boolean Equals(System.Single primitive) {
-    return Value.Equals(primitive);
- }
+          
+            public readonly global::System.Boolean Equals(System.Single primitive)
+            {
+              return Value.Equals(primitive);
+            }
+
 
         public static global::System.Boolean operator ==(_casting_public_partial_record_structCastOperator_ExplicitCastOperator_Explicitfloat left, System.Single right) => Equals(left.Value, right);
         public static global::System.Boolean operator !=(_casting_public_partial_record_structCastOperator_ExplicitCastOperator_Explicitfloat left, System.Single right) => !Equals(left.Value, right);
@@ -234,10 +237,12 @@ public global::System.Boolean Equals(_casting_public_partial_record_structCastOp
         return false;
     }
 
-    public readonly override global::System.Int32 GetHashCode()
-    {
-        return global::System.Collections.Generic.EqualityComparer<System.Single>.Default.GetHashCode(Value);
-    }
+
+        
+          public readonly override global::System.Int32 GetHashCode()
+          {
+            return global::System.Collections.Generic.EqualityComparer<System.Single>.Default.GetHashCode(Value);
+          }
 
         private readonly void EnsureInitialized()
         {
@@ -340,25 +345,27 @@ public global::System.Boolean Equals(_casting_public_partial_record_structCastOp
 
 
 
-        internal sealed class _casting_public_partial_record_structCastOperator_ExplicitCastOperator_ExplicitfloatDebugView
-        {
-            private readonly _casting_public_partial_record_structCastOperator_ExplicitCastOperator_Explicitfloat _t;
-
-            _casting_public_partial_record_structCastOperator_ExplicitCastOperator_ExplicitfloatDebugView(_casting_public_partial_record_structCastOperator_ExplicitCastOperator_Explicitfloat t)
+        
+            internal sealed class _casting_public_partial_record_structCastOperator_ExplicitCastOperator_ExplicitfloatDebugView
             {
-                _t = t;
-            }
+                private readonly _casting_public_partial_record_structCastOperator_ExplicitCastOperator_Explicitfloat _t;
 
-            public global::System.Boolean IsInitialized => _t._isInitialized;
-            public global::System.String UnderlyingType => "System.Single";
-            public global::System.String Value => _t._isInitialized ? _t._value.ToString() : "[not initialized]" ;
-
-            #if DEBUG
-            public global::System.String CreatedWith => _t._stackTrace?.ToString() ?? "the From method";
-            #endif
-
-            public global::System.String Conversions => @"Default";
+                _casting_public_partial_record_structCastOperator_ExplicitCastOperator_ExplicitfloatDebugView(_casting_public_partial_record_structCastOperator_ExplicitCastOperator_Explicitfloat t)
+                {
+                    _t = t;
                 }
 
+                public global::System.Boolean IsInitialized => _t._isInitialized;
+                public global::System.String UnderlyingType => "System.Single";
+                public global::System.String Value => _t._isInitialized ? _t._value.ToString() : "[not initialized]" ;
+
+                #if DEBUG
+                    public global::System.String CreatedWith => _t._stackTrace?.ToString() ?? "the From method";
+                #endif
+
+                public global::System.String Conversions => @"Default";
+            }
+
 }
+
 }

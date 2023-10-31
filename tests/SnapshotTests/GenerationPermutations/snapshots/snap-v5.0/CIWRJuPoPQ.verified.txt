@@ -116,23 +116,26 @@ namespace Whatever
             return new public_partial_record_structConversions_LinqToDbValueConverterSystem_Guid(value);
         }
         
-public readonly global::System.Boolean Equals(public_partial_record_structConversions_LinqToDbValueConverterSystem_Guid other)
-{
-    // It's possible to create uninitialized instances via converters such as EfCore (HasDefaultValue), which call Equals.
-    // We treat anything uninitialized as not equal to anything, even other uninitialized instances of this type.
-    if(!_isInitialized || !other._isInitialized) return false;
+          public readonly global::System.Boolean Equals(public_partial_record_structConversions_LinqToDbValueConverterSystem_Guid other)
+          {
+            // It's possible to create uninitialized instances via converters such as EfCore (HasDefaultValue), which call Equals.
+            // We treat anything uninitialized as not equal to anything, even other uninitialized instances of this type.
+            if(!_isInitialized || !other._isInitialized) return false;
 
-    return global::System.Collections.Generic.EqualityComparer<System.Guid>.Default.Equals(Value, other.Value);
-}
+            return global::System.Collections.Generic.EqualityComparer<System.Guid>.Default.Equals(Value, other.Value);
+          }
 
-public global::System.Boolean Equals(public_partial_record_structConversions_LinqToDbValueConverterSystem_Guid other, global::System.Collections.Generic.IEqualityComparer<public_partial_record_structConversions_LinqToDbValueConverterSystem_Guid> comparer)
-{
-    return comparer.Equals(this, other);
-}
+          public global::System.Boolean Equals(public_partial_record_structConversions_LinqToDbValueConverterSystem_Guid other, global::System.Collections.Generic.IEqualityComparer<public_partial_record_structConversions_LinqToDbValueConverterSystem_Guid> comparer)
+          {
+            return comparer.Equals(this, other);
+          }
 
-  public readonly global::System.Boolean Equals(System.Guid primitive) {
-    return Value.Equals(primitive);
- }
+          
+            public readonly global::System.Boolean Equals(System.Guid primitive)
+            {
+              return Value.Equals(primitive);
+            }
+
 
         public static global::System.Boolean operator ==(public_partial_record_structConversions_LinqToDbValueConverterSystem_Guid left, System.Guid right) => Equals(left.Value, right);
         public static global::System.Boolean operator !=(public_partial_record_structConversions_LinqToDbValueConverterSystem_Guid left, System.Guid right) => !Equals(left.Value, right);
@@ -190,10 +193,12 @@ public global::System.Boolean Equals(public_partial_record_structConversions_Lin
         return false;
     }
 
-    public readonly override global::System.Int32 GetHashCode()
-    {
-        return global::System.Collections.Generic.EqualityComparer<System.Guid>.Default.GetHashCode(Value);
-    }
+
+        
+          public readonly override global::System.Int32 GetHashCode()
+          {
+            return global::System.Collections.Generic.EqualityComparer<System.Guid>.Default.GetHashCode(Value);
+          }
 
         private readonly void EnsureInitialized()
         {
@@ -233,25 +238,27 @@ public global::System.Boolean Equals(public_partial_record_structConversions_Lin
         }
 
 
-        internal sealed class public_partial_record_structConversions_LinqToDbValueConverterSystem_GuidDebugView
-        {
-            private readonly public_partial_record_structConversions_LinqToDbValueConverterSystem_Guid _t;
-
-            public_partial_record_structConversions_LinqToDbValueConverterSystem_GuidDebugView(public_partial_record_structConversions_LinqToDbValueConverterSystem_Guid t)
+        
+            internal sealed class public_partial_record_structConversions_LinqToDbValueConverterSystem_GuidDebugView
             {
-                _t = t;
-            }
+                private readonly public_partial_record_structConversions_LinqToDbValueConverterSystem_Guid _t;
 
-            public global::System.Boolean IsInitialized => _t._isInitialized;
-            public global::System.String UnderlyingType => "System.Guid";
-            public global::System.String Value => _t._isInitialized ? _t._value.ToString() : "[not initialized]" ;
-
-            #if DEBUG
-            public global::System.String CreatedWith => _t._stackTrace?.ToString() ?? "the From method";
-            #endif
-
-            public global::System.String Conversions => @"LinqToDbValueConverter";
+                public_partial_record_structConversions_LinqToDbValueConverterSystem_GuidDebugView(public_partial_record_structConversions_LinqToDbValueConverterSystem_Guid t)
+                {
+                    _t = t;
                 }
 
+                public global::System.Boolean IsInitialized => _t._isInitialized;
+                public global::System.String UnderlyingType => "System.Guid";
+                public global::System.String Value => _t._isInitialized ? _t._value.ToString() : "[not initialized]" ;
+
+                #if DEBUG
+                    public global::System.String CreatedWith => _t._stackTrace?.ToString() ?? "the From method";
+                #endif
+
+                public global::System.String Conversions => @"LinqToDbValueConverter";
+            }
+
 }
+
 }

@@ -1,4 +1,5 @@
 ﻿using System.Threading.Tasks;
+using Shared;
 using VerifyXunit;
 using Vogen;
 
@@ -7,6 +8,21 @@ namespace SnapshotTests.GeneralStuff
     [UsesVerify]
     public class GeneralTests
     {
+        [Fact]
+        public async Task EFCore_generated_stuff()
+        {
+            var source = @"using Vogen;
+namespace Whatever;
+
+[ValueObject(typeof(string), conversions: Conversions.EfCoreValueConverter)]
+public readonly partial record struct CustomerId
+{
+}
+";
+
+            await RunTest(source);
+        }
+
         [Fact]
         public Task Partial_record_struct_created_successfully()
         {

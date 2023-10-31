@@ -1,4 +1,5 @@
 ﻿using Microsoft.CodeAnalysis.CSharp.Syntax;
+using Vogen.Generators.Conversions;
 
 namespace Vogen.Generators;
 
@@ -133,6 +134,7 @@ using Vogen;
 
         {Util.GenerateDebuggerProxyForClasses(tds, item)}
     }}
+{GenerateEfCoreExtensions.GenerateIfNeeded(item)}
 {Util.WriteCloseNamespace(item.FullNamespace)}";
     }
 

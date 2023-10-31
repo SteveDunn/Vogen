@@ -117,23 +117,26 @@ namespace Whatever
             return new internal_partial_record_structConversions_TypeConverterSystem_Guid(value);
         }
         
-public readonly global::System.Boolean Equals(internal_partial_record_structConversions_TypeConverterSystem_Guid other)
-{
-    // It's possible to create uninitialized instances via converters such as EfCore (HasDefaultValue), which call Equals.
-    // We treat anything uninitialized as not equal to anything, even other uninitialized instances of this type.
-    if(!_isInitialized || !other._isInitialized) return false;
+          public readonly global::System.Boolean Equals(internal_partial_record_structConversions_TypeConverterSystem_Guid other)
+          {
+            // It's possible to create uninitialized instances via converters such as EfCore (HasDefaultValue), which call Equals.
+            // We treat anything uninitialized as not equal to anything, even other uninitialized instances of this type.
+            if(!_isInitialized || !other._isInitialized) return false;
 
-    return global::System.Collections.Generic.EqualityComparer<System.Guid>.Default.Equals(Value, other.Value);
-}
+            return global::System.Collections.Generic.EqualityComparer<System.Guid>.Default.Equals(Value, other.Value);
+          }
 
-public global::System.Boolean Equals(internal_partial_record_structConversions_TypeConverterSystem_Guid other, global::System.Collections.Generic.IEqualityComparer<internal_partial_record_structConversions_TypeConverterSystem_Guid> comparer)
-{
-    return comparer.Equals(this, other);
-}
+          public global::System.Boolean Equals(internal_partial_record_structConversions_TypeConverterSystem_Guid other, global::System.Collections.Generic.IEqualityComparer<internal_partial_record_structConversions_TypeConverterSystem_Guid> comparer)
+          {
+            return comparer.Equals(this, other);
+          }
 
-  public readonly global::System.Boolean Equals(System.Guid primitive) {
-    return Value.Equals(primitive);
- }
+          
+            public readonly global::System.Boolean Equals(System.Guid primitive)
+            {
+              return Value.Equals(primitive);
+            }
+
 
         public static global::System.Boolean operator ==(internal_partial_record_structConversions_TypeConverterSystem_Guid left, System.Guid right) => Equals(left.Value, right);
         public static global::System.Boolean operator !=(internal_partial_record_structConversions_TypeConverterSystem_Guid left, System.Guid right) => !Equals(left.Value, right);
@@ -170,10 +173,12 @@ public global::System.Boolean Equals(internal_partial_record_structConversions_T
         return false;
     }
 
-    public readonly override global::System.Int32 GetHashCode()
-    {
-        return global::System.Collections.Generic.EqualityComparer<System.Guid>.Default.GetHashCode(Value);
-    }
+
+        
+          public readonly override global::System.Int32 GetHashCode()
+          {
+            return global::System.Collections.Generic.EqualityComparer<System.Guid>.Default.GetHashCode(Value);
+          }
 
         private readonly void EnsureInitialized()
         {
@@ -244,25 +249,27 @@ public global::System.Boolean Equals(internal_partial_record_structConversions_T
 
 
 
-        internal sealed class internal_partial_record_structConversions_TypeConverterSystem_GuidDebugView
-        {
-            private readonly internal_partial_record_structConversions_TypeConverterSystem_Guid _t;
-
-            internal_partial_record_structConversions_TypeConverterSystem_GuidDebugView(internal_partial_record_structConversions_TypeConverterSystem_Guid t)
+        
+            internal sealed class internal_partial_record_structConversions_TypeConverterSystem_GuidDebugView
             {
-                _t = t;
-            }
+                private readonly internal_partial_record_structConversions_TypeConverterSystem_Guid _t;
 
-            public global::System.Boolean IsInitialized => _t._isInitialized;
-            public global::System.String UnderlyingType => "System.Guid";
-            public global::System.String Value => _t._isInitialized ? _t._value.ToString() : "[not initialized]" ;
-
-            #if DEBUG
-            public global::System.String CreatedWith => _t._stackTrace?.ToString() ?? "the From method";
-            #endif
-
-            public global::System.String Conversions => @"TypeConverter";
+                internal_partial_record_structConversions_TypeConverterSystem_GuidDebugView(internal_partial_record_structConversions_TypeConverterSystem_Guid t)
+                {
+                    _t = t;
                 }
 
+                public global::System.Boolean IsInitialized => _t._isInitialized;
+                public global::System.String UnderlyingType => "System.Guid";
+                public global::System.String Value => _t._isInitialized ? _t._value.ToString() : "[not initialized]" ;
+
+                #if DEBUG
+                    public global::System.String CreatedWith => _t._stackTrace?.ToString() ?? "the From method";
+                #endif
+
+                public global::System.String Conversions => @"TypeConverter";
+            }
+
 }
+
 }

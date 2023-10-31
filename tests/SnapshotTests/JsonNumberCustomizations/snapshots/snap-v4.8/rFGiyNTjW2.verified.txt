@@ -108,27 +108,30 @@ namespace Whatever
             return new stj_number_as_string_public_partial_structConversions_NewtonsoftJson___Conversions_SystemTextJsonSystem_DateTime_customized(value);
         }
         
-public readonly global::System.Boolean Equals(stj_number_as_string_public_partial_structConversions_NewtonsoftJson___Conversions_SystemTextJsonSystem_DateTime_customized other)
-{
-    // It's possible to create uninitialized instances via converters such as EfCore (HasDefaultValue), which call Equals.
-    // We treat anything uninitialized as not equal to anything, even other uninitialized instances of this type.
-    if(!_isInitialized || !other._isInitialized) return false;
+          public readonly global::System.Boolean Equals(stj_number_as_string_public_partial_structConversions_NewtonsoftJson___Conversions_SystemTextJsonSystem_DateTime_customized other)
+          {
+            // It's possible to create uninitialized instances via converters such as EfCore (HasDefaultValue), which call Equals.
+            // We treat anything uninitialized as not equal to anything, even other uninitialized instances of this type.
+            if(!_isInitialized || !other._isInitialized) return false;
 
-    return global::System.Collections.Generic.EqualityComparer<System.DateTime>.Default.Equals(Value, other.Value);
-}
+            return global::System.Collections.Generic.EqualityComparer<System.DateTime>.Default.Equals(Value, other.Value);
+          }
 
-public global::System.Boolean Equals(stj_number_as_string_public_partial_structConversions_NewtonsoftJson___Conversions_SystemTextJsonSystem_DateTime_customized other, global::System.Collections.Generic.IEqualityComparer<stj_number_as_string_public_partial_structConversions_NewtonsoftJson___Conversions_SystemTextJsonSystem_DateTime_customized> comparer)
-{
-    return comparer.Equals(this, other);
-}
+          public global::System.Boolean Equals(stj_number_as_string_public_partial_structConversions_NewtonsoftJson___Conversions_SystemTextJsonSystem_DateTime_customized other, global::System.Collections.Generic.IEqualityComparer<stj_number_as_string_public_partial_structConversions_NewtonsoftJson___Conversions_SystemTextJsonSystem_DateTime_customized> comparer)
+          {
+            return comparer.Equals(this, other);
+          }
 
-  public readonly global::System.Boolean Equals(System.DateTime primitive) {
-    return Value.Equals(primitive);
- }
-public readonly override global::System.Boolean Equals(global::System.Object obj)
-{
-    return obj is stj_number_as_string_public_partial_structConversions_NewtonsoftJson___Conversions_SystemTextJsonSystem_DateTime_customized && Equals((stj_number_as_string_public_partial_structConversions_NewtonsoftJson___Conversions_SystemTextJsonSystem_DateTime_customized) obj);
-}
+          
+            public readonly global::System.Boolean Equals(System.DateTime primitive)
+            {
+              return Value.Equals(primitive);
+            }
+
+          public readonly override global::System.Boolean Equals(global::System.Object obj)
+          {
+            return obj is stj_number_as_string_public_partial_structConversions_NewtonsoftJson___Conversions_SystemTextJsonSystem_DateTime_customized && Equals((stj_number_as_string_public_partial_structConversions_NewtonsoftJson___Conversions_SystemTextJsonSystem_DateTime_customized) obj);
+          }
 
         public static global::System.Boolean operator ==(stj_number_as_string_public_partial_structConversions_NewtonsoftJson___Conversions_SystemTextJsonSystem_DateTime_customized left, stj_number_as_string_public_partial_structConversions_NewtonsoftJson___Conversions_SystemTextJsonSystem_DateTime_customized right) => Equals(left, right);
         public static global::System.Boolean operator !=(stj_number_as_string_public_partial_structConversions_NewtonsoftJson___Conversions_SystemTextJsonSystem_DateTime_customized left, stj_number_as_string_public_partial_structConversions_NewtonsoftJson___Conversions_SystemTextJsonSystem_DateTime_customized right) => !(left == right);
@@ -189,10 +192,12 @@ public readonly override global::System.Boolean Equals(global::System.Object obj
         return false;
     }
 
-    public readonly override global::System.Int32 GetHashCode()
-    {
-        return global::System.Collections.Generic.EqualityComparer<System.DateTime>.Default.GetHashCode(Value);
-    }
+        
+        
+          public readonly override global::System.Int32 GetHashCode()
+          {
+            return global::System.Collections.Generic.EqualityComparer<System.DateTime>.Default.GetHashCode(Value);
+          }
 
         /// <summary>Returns the string representation of the underlying type</summary>
     /// <inheritdoc cref="System.DateTime.ToString()" />
@@ -264,25 +269,27 @@ public readonly override global::System.Boolean Equals(global::System.Object obj
 
 
 
-        internal sealed class stj_number_as_string_public_partial_structConversions_NewtonsoftJson___Conversions_SystemTextJsonSystem_DateTime_customizedDebugView
-        {
-            private readonly stj_number_as_string_public_partial_structConversions_NewtonsoftJson___Conversions_SystemTextJsonSystem_DateTime_customized _t;
-
-            stj_number_as_string_public_partial_structConversions_NewtonsoftJson___Conversions_SystemTextJsonSystem_DateTime_customizedDebugView(stj_number_as_string_public_partial_structConversions_NewtonsoftJson___Conversions_SystemTextJsonSystem_DateTime_customized t)
+        
+            internal sealed class stj_number_as_string_public_partial_structConversions_NewtonsoftJson___Conversions_SystemTextJsonSystem_DateTime_customizedDebugView
             {
-                _t = t;
-            }
+                private readonly stj_number_as_string_public_partial_structConversions_NewtonsoftJson___Conversions_SystemTextJsonSystem_DateTime_customized _t;
 
-            public global::System.Boolean IsInitialized => _t._isInitialized;
-            public global::System.String UnderlyingType => "System.DateTime";
-            public global::System.String Value => _t._isInitialized ? _t._value.ToString() : "[not initialized]" ;
-
-            #if DEBUG
-            public global::System.String CreatedWith => _t._stackTrace?.ToString() ?? "the From method";
-            #endif
-
-            public global::System.String Conversions => @"NewtonsoftJson, SystemTextJson";
+                stj_number_as_string_public_partial_structConversions_NewtonsoftJson___Conversions_SystemTextJsonSystem_DateTime_customizedDebugView(stj_number_as_string_public_partial_structConversions_NewtonsoftJson___Conversions_SystemTextJsonSystem_DateTime_customized t)
+                {
+                    _t = t;
                 }
 
+                public global::System.Boolean IsInitialized => _t._isInitialized;
+                public global::System.String UnderlyingType => "System.DateTime";
+                public global::System.String Value => _t._isInitialized ? _t._value.ToString() : "[not initialized]" ;
+
+                #if DEBUG
+                    public global::System.String CreatedWith => _t._stackTrace?.ToString() ?? "the From method";
+                #endif
+
+                public global::System.String Conversions => @"NewtonsoftJson, SystemTextJson";
+            }
+
 }
+
 }

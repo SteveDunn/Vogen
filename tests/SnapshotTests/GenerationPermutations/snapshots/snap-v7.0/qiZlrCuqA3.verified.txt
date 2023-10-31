@@ -116,23 +116,26 @@ namespace Whatever
             return new internal_partial_record_structConversions_EfCoreValueConvertershort(value);
         }
         
-public readonly global::System.Boolean Equals(internal_partial_record_structConversions_EfCoreValueConvertershort other)
-{
-    // It's possible to create uninitialized instances via converters such as EfCore (HasDefaultValue), which call Equals.
-    // We treat anything uninitialized as not equal to anything, even other uninitialized instances of this type.
-    if(!_isInitialized || !other._isInitialized) return false;
+          public readonly global::System.Boolean Equals(internal_partial_record_structConversions_EfCoreValueConvertershort other)
+          {
+            // It's possible to create uninitialized instances via converters such as EfCore (HasDefaultValue), which call Equals.
+            // We treat anything uninitialized as not equal to anything, even other uninitialized instances of this type.
+            if(!_isInitialized || !other._isInitialized) return false;
 
-    return global::System.Collections.Generic.EqualityComparer<System.Int16>.Default.Equals(Value, other.Value);
-}
+            return global::System.Collections.Generic.EqualityComparer<System.Int16>.Default.Equals(Value, other.Value);
+          }
 
-public global::System.Boolean Equals(internal_partial_record_structConversions_EfCoreValueConvertershort other, global::System.Collections.Generic.IEqualityComparer<internal_partial_record_structConversions_EfCoreValueConvertershort> comparer)
-{
-    return comparer.Equals(this, other);
-}
+          public global::System.Boolean Equals(internal_partial_record_structConversions_EfCoreValueConvertershort other, global::System.Collections.Generic.IEqualityComparer<internal_partial_record_structConversions_EfCoreValueConvertershort> comparer)
+          {
+            return comparer.Equals(this, other);
+          }
 
-  public readonly global::System.Boolean Equals(System.Int16 primitive) {
-    return Value.Equals(primitive);
- }
+          
+            public readonly global::System.Boolean Equals(System.Int16 primitive)
+            {
+              return Value.Equals(primitive);
+            }
+
 
         public static global::System.Boolean operator ==(internal_partial_record_structConversions_EfCoreValueConvertershort left, System.Int16 right) => Equals(left.Value, right);
         public static global::System.Boolean operator !=(internal_partial_record_structConversions_EfCoreValueConvertershort left, System.Int16 right) => !Equals(left.Value, right);
@@ -274,10 +277,12 @@ public global::System.Boolean Equals(internal_partial_record_structConversions_E
         return false;
     }
 
-    public readonly override global::System.Int32 GetHashCode()
-    {
-        return global::System.Collections.Generic.EqualityComparer<System.Int16>.Default.GetHashCode(Value);
-    }
+
+        
+          public readonly override global::System.Int32 GetHashCode()
+          {
+            return global::System.Collections.Generic.EqualityComparer<System.Int16>.Default.GetHashCode(Value);
+          }
 
         private readonly void EnsureInitialized()
         {
@@ -315,28 +320,40 @@ public global::System.Boolean Equals(internal_partial_record_structConversions_E
                     mappingHints
                 ) { }
         }
-
-
-
-        internal sealed class internal_partial_record_structConversions_EfCoreValueConvertershortDebugView
-        {
-            private readonly internal_partial_record_structConversions_EfCoreValueConvertershort _t;
-
-            internal_partial_record_structConversions_EfCoreValueConvertershortDebugView(internal_partial_record_structConversions_EfCoreValueConvertershort t)
+            public class EfCoreValueComparer : global::Microsoft.EntityFrameworkCore.ChangeTracking.ValueComparer<internal_partial_record_structConversions_EfCoreValueConvertershort>
             {
-                _t = t;
+                public EfCoreValueComparer() : base((left, right) => left == right, instance => instance._isInitialized ? instance._value.GetHashCode() : 0) { }
             }
 
-            public global::System.Boolean IsInitialized => _t._isInitialized;
-            public global::System.String UnderlyingType => "System.Int16";
-            public global::System.String Value => _t._isInitialized ? _t._value.ToString() : "[not initialized]" ;
 
-            #if DEBUG
-            public global::System.String CreatedWith => _t._stackTrace?.ToString() ?? "the From method";
-            #endif
 
-            public global::System.String Conversions => @"EfCoreValueConverter";
+        
+            internal sealed class internal_partial_record_structConversions_EfCoreValueConvertershortDebugView
+            {
+                private readonly internal_partial_record_structConversions_EfCoreValueConvertershort _t;
+
+                internal_partial_record_structConversions_EfCoreValueConvertershortDebugView(internal_partial_record_structConversions_EfCoreValueConvertershort t)
+                {
+                    _t = t;
                 }
 
+                public global::System.Boolean IsInitialized => _t._isInitialized;
+                public global::System.String UnderlyingType => "System.Int16";
+                public global::System.String Value => _t._isInitialized ? _t._value.ToString() : "[not initialized]" ;
+
+                #if DEBUG
+                    public global::System.String CreatedWith => _t._stackTrace?.ToString() ?? "the From method";
+                #endif
+
+                public global::System.String Conversions => @"EfCoreValueConverter";
+            }
+
 }
+#if NETCOREAPP3_0_OR_GREATER
+            public static class __internal_partial_record_structConversions_EfCoreValueConvertershortEfCoreExtensions 
+            {
+                internal static global::Microsoft.EntityFrameworkCore.Metadata.Builders.PropertyBuilder<internal_partial_record_structConversions_EfCoreValueConvertershort> HasVogenConversion(this global::Microsoft.EntityFrameworkCore.Metadata.Builders.PropertyBuilder<internal_partial_record_structConversions_EfCoreValueConvertershort> propertyBuilder) =>
+                    propertyBuilder.HasConversion<internal_partial_record_structConversions_EfCoreValueConvertershort.EfCoreValueConverter, internal_partial_record_structConversions_EfCoreValueConvertershort.EfCoreValueComparer>();
+            }
+#endif
 }

@@ -106,27 +106,30 @@ namespace Whatever
             return new public_partial_structConversions_EfCoreValueConverterSystem_DateTime(value);
         }
         
-public readonly global::System.Boolean Equals(public_partial_structConversions_EfCoreValueConverterSystem_DateTime other)
-{
-    // It's possible to create uninitialized instances via converters such as EfCore (HasDefaultValue), which call Equals.
-    // We treat anything uninitialized as not equal to anything, even other uninitialized instances of this type.
-    if(!_isInitialized || !other._isInitialized) return false;
+          public readonly global::System.Boolean Equals(public_partial_structConversions_EfCoreValueConverterSystem_DateTime other)
+          {
+            // It's possible to create uninitialized instances via converters such as EfCore (HasDefaultValue), which call Equals.
+            // We treat anything uninitialized as not equal to anything, even other uninitialized instances of this type.
+            if(!_isInitialized || !other._isInitialized) return false;
 
-    return global::System.Collections.Generic.EqualityComparer<System.DateTime>.Default.Equals(Value, other.Value);
-}
+            return global::System.Collections.Generic.EqualityComparer<System.DateTime>.Default.Equals(Value, other.Value);
+          }
 
-public global::System.Boolean Equals(public_partial_structConversions_EfCoreValueConverterSystem_DateTime other, global::System.Collections.Generic.IEqualityComparer<public_partial_structConversions_EfCoreValueConverterSystem_DateTime> comparer)
-{
-    return comparer.Equals(this, other);
-}
+          public global::System.Boolean Equals(public_partial_structConversions_EfCoreValueConverterSystem_DateTime other, global::System.Collections.Generic.IEqualityComparer<public_partial_structConversions_EfCoreValueConverterSystem_DateTime> comparer)
+          {
+            return comparer.Equals(this, other);
+          }
 
-  public readonly global::System.Boolean Equals(System.DateTime primitive) {
-    return Value.Equals(primitive);
- }
-public readonly override global::System.Boolean Equals(global::System.Object obj)
-{
-    return obj is public_partial_structConversions_EfCoreValueConverterSystem_DateTime && Equals((public_partial_structConversions_EfCoreValueConverterSystem_DateTime) obj);
-}
+          
+            public readonly global::System.Boolean Equals(System.DateTime primitive)
+            {
+              return Value.Equals(primitive);
+            }
+
+          public readonly override global::System.Boolean Equals(global::System.Object obj)
+          {
+            return obj is public_partial_structConversions_EfCoreValueConverterSystem_DateTime && Equals((public_partial_structConversions_EfCoreValueConverterSystem_DateTime) obj);
+          }
 
         public static global::System.Boolean operator ==(public_partial_structConversions_EfCoreValueConverterSystem_DateTime left, public_partial_structConversions_EfCoreValueConverterSystem_DateTime right) => Equals(left, right);
         public static global::System.Boolean operator !=(public_partial_structConversions_EfCoreValueConverterSystem_DateTime left, public_partial_structConversions_EfCoreValueConverterSystem_DateTime right) => !(left == right);
@@ -187,10 +190,12 @@ public readonly override global::System.Boolean Equals(global::System.Object obj
         return false;
     }
 
-    public readonly override global::System.Int32 GetHashCode()
-    {
-        return global::System.Collections.Generic.EqualityComparer<System.DateTime>.Default.GetHashCode(Value);
-    }
+        
+        
+          public readonly override global::System.Int32 GetHashCode()
+          {
+            return global::System.Collections.Generic.EqualityComparer<System.DateTime>.Default.GetHashCode(Value);
+          }
 
         /// <summary>Returns the string representation of the underlying type</summary>
     /// <inheritdoc cref="System.DateTime.ToString()" />
@@ -227,28 +232,40 @@ public readonly override global::System.Boolean Equals(global::System.Object obj
                     mappingHints
                 ) { }
         }
-
-
-
-        internal sealed class public_partial_structConversions_EfCoreValueConverterSystem_DateTimeDebugView
-        {
-            private readonly public_partial_structConversions_EfCoreValueConverterSystem_DateTime _t;
-
-            public_partial_structConversions_EfCoreValueConverterSystem_DateTimeDebugView(public_partial_structConversions_EfCoreValueConverterSystem_DateTime t)
+            public class EfCoreValueComparer : global::Microsoft.EntityFrameworkCore.ChangeTracking.ValueComparer<public_partial_structConversions_EfCoreValueConverterSystem_DateTime>
             {
-                _t = t;
+                public EfCoreValueComparer() : base((left, right) => left == right, instance => instance._isInitialized ? instance._value.GetHashCode() : 0) { }
             }
 
-            public global::System.Boolean IsInitialized => _t._isInitialized;
-            public global::System.String UnderlyingType => "System.DateTime";
-            public global::System.String Value => _t._isInitialized ? _t._value.ToString() : "[not initialized]" ;
 
-            #if DEBUG
-            public global::System.String CreatedWith => _t._stackTrace?.ToString() ?? "the From method";
-            #endif
 
-            public global::System.String Conversions => @"EfCoreValueConverter";
+        
+            internal sealed class public_partial_structConversions_EfCoreValueConverterSystem_DateTimeDebugView
+            {
+                private readonly public_partial_structConversions_EfCoreValueConverterSystem_DateTime _t;
+
+                public_partial_structConversions_EfCoreValueConverterSystem_DateTimeDebugView(public_partial_structConversions_EfCoreValueConverterSystem_DateTime t)
+                {
+                    _t = t;
                 }
 
+                public global::System.Boolean IsInitialized => _t._isInitialized;
+                public global::System.String UnderlyingType => "System.DateTime";
+                public global::System.String Value => _t._isInitialized ? _t._value.ToString() : "[not initialized]" ;
+
+                #if DEBUG
+                    public global::System.String CreatedWith => _t._stackTrace?.ToString() ?? "the From method";
+                #endif
+
+                public global::System.String Conversions => @"EfCoreValueConverter";
+            }
+
 }
+#if NETCOREAPP3_0_OR_GREATER
+            public static class __public_partial_structConversions_EfCoreValueConverterSystem_DateTimeEfCoreExtensions 
+            {
+                public static global::Microsoft.EntityFrameworkCore.Metadata.Builders.PropertyBuilder<public_partial_structConversions_EfCoreValueConverterSystem_DateTime> HasVogenConversion(this global::Microsoft.EntityFrameworkCore.Metadata.Builders.PropertyBuilder<public_partial_structConversions_EfCoreValueConverterSystem_DateTime> propertyBuilder) =>
+                    propertyBuilder.HasConversion<public_partial_structConversions_EfCoreValueConverterSystem_DateTime.EfCoreValueConverter, public_partial_structConversions_EfCoreValueConverterSystem_DateTime.EfCoreValueComparer>();
+            }
+#endif
 }

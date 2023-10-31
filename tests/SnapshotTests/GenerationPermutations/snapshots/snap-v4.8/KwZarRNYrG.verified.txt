@@ -106,27 +106,30 @@ namespace Whatever
             return new internal_partial_structConversions_LinqToDbValueConverterbool(value);
         }
         
-public readonly global::System.Boolean Equals(internal_partial_structConversions_LinqToDbValueConverterbool other)
-{
-    // It's possible to create uninitialized instances via converters such as EfCore (HasDefaultValue), which call Equals.
-    // We treat anything uninitialized as not equal to anything, even other uninitialized instances of this type.
-    if(!_isInitialized || !other._isInitialized) return false;
+          public readonly global::System.Boolean Equals(internal_partial_structConversions_LinqToDbValueConverterbool other)
+          {
+            // It's possible to create uninitialized instances via converters such as EfCore (HasDefaultValue), which call Equals.
+            // We treat anything uninitialized as not equal to anything, even other uninitialized instances of this type.
+            if(!_isInitialized || !other._isInitialized) return false;
 
-    return global::System.Collections.Generic.EqualityComparer<System.Boolean>.Default.Equals(Value, other.Value);
-}
+            return global::System.Collections.Generic.EqualityComparer<System.Boolean>.Default.Equals(Value, other.Value);
+          }
 
-public global::System.Boolean Equals(internal_partial_structConversions_LinqToDbValueConverterbool other, global::System.Collections.Generic.IEqualityComparer<internal_partial_structConversions_LinqToDbValueConverterbool> comparer)
-{
-    return comparer.Equals(this, other);
-}
+          public global::System.Boolean Equals(internal_partial_structConversions_LinqToDbValueConverterbool other, global::System.Collections.Generic.IEqualityComparer<internal_partial_structConversions_LinqToDbValueConverterbool> comparer)
+          {
+            return comparer.Equals(this, other);
+          }
 
-  public readonly global::System.Boolean Equals(System.Boolean primitive) {
-    return Value.Equals(primitive);
- }
-public readonly override global::System.Boolean Equals(global::System.Object obj)
-{
-    return obj is internal_partial_structConversions_LinqToDbValueConverterbool && Equals((internal_partial_structConversions_LinqToDbValueConverterbool) obj);
-}
+          
+            public readonly global::System.Boolean Equals(System.Boolean primitive)
+            {
+              return Value.Equals(primitive);
+            }
+
+          public readonly override global::System.Boolean Equals(global::System.Object obj)
+          {
+            return obj is internal_partial_structConversions_LinqToDbValueConverterbool && Equals((internal_partial_structConversions_LinqToDbValueConverterbool) obj);
+          }
 
         public static global::System.Boolean operator ==(internal_partial_structConversions_LinqToDbValueConverterbool left, internal_partial_structConversions_LinqToDbValueConverterbool right) => Equals(left, right);
         public static global::System.Boolean operator !=(internal_partial_structConversions_LinqToDbValueConverterbool left, internal_partial_structConversions_LinqToDbValueConverterbool right) => !(left == right);
@@ -166,10 +169,12 @@ public readonly override global::System.Boolean Equals(global::System.Object obj
         return false;
     }
 
-    public readonly override global::System.Int32 GetHashCode()
-    {
-        return global::System.Collections.Generic.EqualityComparer<System.Boolean>.Default.GetHashCode(Value);
-    }
+        
+        
+          public readonly override global::System.Int32 GetHashCode()
+          {
+            return global::System.Collections.Generic.EqualityComparer<System.Boolean>.Default.GetHashCode(Value);
+          }
 
         /// <summary>Returns the string representation of the underlying type</summary>
     /// <inheritdoc cref="System.Boolean.ToString()" />
@@ -208,25 +213,27 @@ public readonly override global::System.Boolean Equals(global::System.Object obj
         }
 
 
-        internal sealed class internal_partial_structConversions_LinqToDbValueConverterboolDebugView
-        {
-            private readonly internal_partial_structConversions_LinqToDbValueConverterbool _t;
-
-            internal_partial_structConversions_LinqToDbValueConverterboolDebugView(internal_partial_structConversions_LinqToDbValueConverterbool t)
+        
+            internal sealed class internal_partial_structConversions_LinqToDbValueConverterboolDebugView
             {
-                _t = t;
-            }
+                private readonly internal_partial_structConversions_LinqToDbValueConverterbool _t;
 
-            public global::System.Boolean IsInitialized => _t._isInitialized;
-            public global::System.String UnderlyingType => "System.Boolean";
-            public global::System.String Value => _t._isInitialized ? _t._value.ToString() : "[not initialized]" ;
-
-            #if DEBUG
-            public global::System.String CreatedWith => _t._stackTrace?.ToString() ?? "the From method";
-            #endif
-
-            public global::System.String Conversions => @"LinqToDbValueConverter";
+                internal_partial_structConversions_LinqToDbValueConverterboolDebugView(internal_partial_structConversions_LinqToDbValueConverterbool t)
+                {
+                    _t = t;
                 }
 
+                public global::System.Boolean IsInitialized => _t._isInitialized;
+                public global::System.String UnderlyingType => "System.Boolean";
+                public global::System.String Value => _t._isInitialized ? _t._value.ToString() : "[not initialized]" ;
+
+                #if DEBUG
+                    public global::System.String CreatedWith => _t._stackTrace?.ToString() ?? "the From method";
+                #endif
+
+                public global::System.String Conversions => @"LinqToDbValueConverter";
+            }
+
 }
+
 }

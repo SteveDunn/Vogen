@@ -162,25 +162,29 @@ public static class Util
             ? @"public global::System.String CreatedWith => ""the From method"""
             : @"public global::System.String CreatedWith => _t._stackTrace?.ToString() ?? ""the From method""";
         
-        string code = $@"internal sealed class {item.VoTypeName}DebugView
-        {{
-            private readonly {item.VoTypeName} _t;
+        string code = 
+$$"""
 
-            {item.VoTypeName}DebugView({item.VoTypeName} t)
-            {{
-                _t = t;
-            }}
+            internal sealed class {{item.VoTypeName}}DebugView
+            {
+                private readonly {{item.VoTypeName}} _t;
 
-            public global::System.Boolean IsInitialized => _t._isInitialized;
-            public global::System.String UnderlyingType => ""{item.UnderlyingTypeFullName}"";
-            public global::System.String Value => _t._isInitialized ? _t._value.ToString() : ""[not initialized]"" ;
+                {{item.VoTypeName}}DebugView({{item.VoTypeName}} t)
+                {
+                    _t = t;
+                }
 
-            #if DEBUG
-            {createdWithMethod};
-            #endif
+                public global::System.Boolean IsInitialized => _t._isInitialized;
+                public global::System.String UnderlyingType => "{{item.UnderlyingTypeFullName}}";
+                public global::System.String Value => _t._isInitialized ? _t._value.ToString() : "[not initialized]" ;
 
-            public global::System.String Conversions => @""{Util.GenerateAnyConversionAttributesForDebuggerProxy(tds, item)}"";
-                }}";
+                #if DEBUG
+                    {{createdWithMethod}};
+                #endif
+
+                public global::System.String Conversions => @"{{Util.GenerateAnyConversionAttributesForDebuggerProxy(tds, item)}}";
+            }
+""";
 
         return code;
     }

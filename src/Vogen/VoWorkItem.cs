@@ -73,4 +73,6 @@ public class VoWorkItem
     public CastOperator FromPrimitiveCastOperator { get; init; }
     
     public bool DisableStackTraceRecordingInDebug { get; init; }
+
+    public string AccessibilityKeyword { get; init; } = "public";
 }
