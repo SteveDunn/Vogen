@@ -49,6 +49,10 @@ if(Test-Path $artifacts) { Remove-Item $artifacts -Force -Recurse }
 
 New-Item -Path $artifacts -ItemType Directory
 
+New-Item -Path $localPackages -ItemType Directory -ErrorAction SilentlyContinue
+
+if(Test-Path $localPackages) { Remove-Item $localPackages\vogen.* -Force -ErrorAction SilentlyContinue }
+
 if($reset) 
 {
     WriteStage("Resetting snapshots...")
