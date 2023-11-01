@@ -36,7 +36,7 @@ internal class GenerateEfCoreTypeConversions : IGenerateConversion
                     
                                 public class EfCoreValueComparer : global::Microsoft.EntityFrameworkCore.ChangeTracking.ValueComparer<VOTYPE>
                                 {
-                                    public EfCoreValueComparer() : base((left, right) => (left == (VOTYPE)null && right == (VOTYPE)null) || (!left._isInitialized && !right._isInitialized) || (left._isInitialized && right._isInitialized && left.Equals(right)), instance => instance._isInitialized ? instance._value.GetHashCode() : 0) { }
+                                    public EfCoreValueComparer() : base((left, right) => (left == (VOTYPE)null && right == (VOTYPE)null) || object.ReferenceEquals(left, right) || (!left._isInitialized && !right._isInitialized) || (left._isInitialized && right._isInitialized && left.Equals(right)), instance => instance._isInitialized ? instance._value.GetHashCode() : 0) { }
                                 }
                     """;
         }
