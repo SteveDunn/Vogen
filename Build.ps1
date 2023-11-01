@@ -1,4 +1,4 @@
-param($verbosity = "minimal", [switch] $skiptests = $false, [switch] $resetSnapshots = $false) #quite|q, minimal|m, normal|n, detailed|d
+param($verbosity = "minimal") #quite|q, minimal|m, normal|n, detailed|d
 
 $artifacts = ".\artifacts"
 $localPackages = ".\local-global-packages"
@@ -17,15 +17,6 @@ function Get999VersionWithUniquePatch()
     $date2 = Get-Date;
     $patch = [int64]((New-TimeSpan -Start $date1 -End $date2)).TotalSeconds
     return "999.9." + $patch;
-}
-
-function Remove-SnapshotsFolders($path) {
-    $folders = Get-ChildItem -Path $path -Directory -Filter "snapshots" -Recurse
-    
-    foreach ($folder in $folders) {
-        Write-Host "Deleting folder: $($folder.FullName)"
-        Remove-Item -Path $folder.FullName -Recurse -Force
-    }
 }
 
 <#
@@ -51,24 +42,9 @@ function Exec
     }
 }
 
-if ($env:GITHUB_ACTIONS -eq 'true' -and $resetSnapshots) {
-    throw "Cannot reset snapshots in GitHub, only locally."
-}
-
-if ($skiptests -and $resetSnapshots)
-{
-    throw "Cannot skip tests if resetting snapshots, as the tests need to run."
-}
-
 WriteStage("Building release version of Vogen...")
 
 if(Test-Path $artifacts) { Remove-Item $artifacts -Force -Recurse }
-
-if($resetSnapshots) 
-{
-    WriteStage("Resetting snapshots...")
-    Remove-SnapshotsFolders(".\");
-}
 
 New-Item -Path $artifacts -ItemType Directory
 
@@ -84,30 +60,15 @@ exec { & dotnet clean Vogen.sln -c Release --verbosity $verbosity}
 WriteStage("... restore ...")
 exec { & dotnet restore Vogen.sln --no-cache --verbosity $verbosity }
 
-if($resetSnapshots)
-{
-    WriteStage("... resetting snapshots ...")
-    exec { & dotnet build Vogen.sln -c Release -p Thorough=true -p ResetSnapshots=true --no-restore --verbosity $verbosity}
-}
-else
-{
-    exec { & dotnet build Vogen.sln -c Release -p Thorough=true --no-restore --verbosity $verbosity}
-}
+exec { & dotnet build Vogen.sln -c Release -p Thorough=true --no-restore --verbosity $verbosity}
 
-if($skiptests) 
-{ 
-    # run the analyzer and code generation tests
-    WriteStage("Skipping tests")
-}
+# run the analyzer and code generation tests
+WriteStage("Running analyzer tests...")
+exec { & dotnet test tests/AnalyzerTests/AnalyzerTests.csproj -c Release --no-build -l trx -l "GitHubActions;report-warnings=false" --verbosity $verbosity }
 
-if(!$skiptests) 
-{ 
-    # run the analyzer and code generation tests
-    WriteStage("Running analyzer and code generation tests...")
-    exec { & dotnet test Vogen.sln -c Release --no-build -l trx -l "GitHubActions;report-warnings=false" --verbosity $verbosity }
-}
-################################################################
-
+WriteStage("Running unit tests...")
+exec { & dotnet test tests/Vogen.Tests/Vogen.Tests.csproj -c Release --no-build -l trx -l "GitHubActions;report-warnings=false" --verbosity $verbosity }
+    
 # Run the end to end tests. The tests can't have project references to Vogen. This is because, in Visual Studio, 
 # it causes conflicts caused by the difference in runtime; VS uses netstandard2.0 to load and run the analyzers, but the 
 # test project uses a variety of runtimes. So, it uses NuGet to reference the Vogen analyzer. To do this, this script first 
