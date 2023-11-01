@@ -1,5 +1,8 @@
 param($verbosity = "minimal", [switch] $reset = $false) #quite|q, minimal|m, normal|n, detailed|d
 
+$artifacts = ".\artifacts"
+$localPackages = ".\local-global-packages"
+
 function WriteStage([string]$message)
 {
     Write-Host "############################################" -ForegroundColor Cyan
@@ -41,6 +44,10 @@ function Exec
 }
 
 WriteStage("Building release version of Vogen...")
+
+if(Test-Path $artifacts) { Remove-Item $artifacts -Force -Recurse }
+
+New-Item -Path $artifacts -ItemType Directory
 
 if($reset) 
 {
