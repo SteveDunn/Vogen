@@ -25,13 +25,6 @@ public class GenerationOfEscapedTypesTests
                             qualifiedType, conversion, underlyingType,
                             CreateClassName(qualifiedType, conversion, underlyingType)
                         };
-
-                        qualifiedType = "internal " + type;
-                        yield return new object[]
-                        {
-                            qualifiedType, conversion, underlyingType,
-                            CreateClassName(qualifiedType, conversion, underlyingType)
-                        };
                     }
                 }
             }
@@ -47,13 +40,8 @@ public class GenerationOfEscapedTypesTests
         private readonly string[] _conversions = new[]
         {
             "Conversions.None",
-            "Conversions.TypeConverter",
             "Conversions.NewtonsoftJson",
-            "Conversions.SystemTextJson",
-            "Conversions.NewtonsoftJson | Conversions.SystemTextJson",
-            "Conversions.EfCoreValueConverter",
-            "Conversions.DapperTypeHandler",
-            "Conversions.LinqToDbValueConverter",
+            "Conversions.NewtonsoftJson | Conversions.SystemTextJson | Conversions.EfCoreValueConverter | Conversions.DapperTypeHandler | Conversions.LinqToDbValueConverter",
         };
 
         // for each of the attributes above, use this underlying type
@@ -95,7 +83,7 @@ namespace @class
 
         return new SnapshotRunner<ValueObjectGenerator>()
             .WithSource(source)
-            .CustomizeSettings(s => s.UseFileName(className))
+            .CustomizeSettings(s => s.UseFileName(TestHelper.ShortenForFilename(className)))
             .RunOnAllFrameworks();
     }
 

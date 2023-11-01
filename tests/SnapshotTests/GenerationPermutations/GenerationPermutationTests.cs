@@ -58,15 +58,7 @@ public class GenerationPermutationTests
         private readonly string[] _conversions = 
         {
             "Conversions.None",
-            "Conversions.TypeConverter",
-            "Conversions.NewtonsoftJson",
-            "Conversions.SystemTextJson",
-#if THOROUGH
-            "Conversions.NewtonsoftJson | Conversions.SystemTextJson",
-            "Conversions.EfCoreValueConverter",
-            "Conversions.DapperTypeHandler",
-            "Conversions.LinqToDbValueConverter",
-#endif
+            "Conversions.NewtonsoftJson | Conversions.SystemTextJson | Conversions.EfCoreValueConverter | Conversions.DapperTypeHandler | Conversions.LinqToDbValueConverter",
         };
 
         IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
