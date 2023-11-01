@@ -105,11 +105,23 @@ internal static class BuildWorkItems
 
         var isValueType = IsUnderlyingAValueType(config);
 
+        bool isWrapperAValueType = voTypeSyntax switch
+        {
+
+            ClassDeclarationSyntax => false,
+            StructDeclarationSyntax => true,
+            RecordDeclarationSyntax rds when rds.IsKind(SyntaxKind.RecordDeclaration) => false,
+            RecordDeclarationSyntax rds when rds.IsKind(SyntaxKind.RecordStructDeclaration) => true,
+            _ => false
+        };
+        
+
         return new VoWorkItem
         {
             InstanceProperties = instanceProperties.ToList(),
             TypeToAugment = voTypeSyntax,
-            IsValueType = isValueType,
+            IsTheUnderlyingAValueType = isValueType,
+            IsTheWrapperAValueType = isWrapperAValueType,
             HasToString = toStringInfo.HasToString,
             UnderlyingType = config.UnderlyingType ?? throw new InvalidOperationException("No underlying type"),
             Conversions = config.Conversions,

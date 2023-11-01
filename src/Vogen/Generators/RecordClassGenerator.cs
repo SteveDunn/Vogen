@@ -139,7 +139,7 @@ using Vogen;
     }
 
     private static string GenerateNullCheckIfNeeded(VoWorkItem voWorkItem) =>
-        voWorkItem.IsValueType ? string.Empty
+        voWorkItem.IsTheUnderlyingAValueType ? string.Empty
             : $@"            if (value is null)
             {{
                 throw new {voWorkItem.ValidationExceptionFullName}(""Cannot create a value object with null."");

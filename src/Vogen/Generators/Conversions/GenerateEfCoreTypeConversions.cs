@@ -20,13 +20,26 @@ internal class GenerateEfCoreTypeConversions : IGenerateConversion
             Templates.TryGetForSpecificType(item.UnderlyingType, "EfCoreValueConverter") ??
             Templates.GetForAnyType("EfCoreValueConverter");
 
-        code += """
-
-                            public class EfCoreValueComparer : global::Microsoft.EntityFrameworkCore.ChangeTracking.ValueComparer<VOTYPE>
-                            {
-                                public EfCoreValueComparer() : base((left, right) => (!left._isInitialized && !right._isInitialized) || (left._isInitialized && right._isInitialized && left.Equals(right)), instance => instance._isInitialized ? instance._value.GetHashCode() : 0) { }
-                            }
-                """;
+        if (item.IsTheWrapperAValueType)
+        {
+            code += """
+                    
+                                public class EfCoreValueComparer : global::Microsoft.EntityFrameworkCore.ChangeTracking.ValueComparer<VOTYPE>
+                                {
+                                    public EfCoreValueComparer() : base((left, right) => (!left._isInitialized && !right._isInitialized) || (left._isInitialized && right._isInitialized && left.Equals(right)), instance => instance._isInitialized ? instance._value.GetHashCode() : 0) { }
+                                }
+                    """;
+        }
+        else
+        {
+            code += """
+                    
+                                public class EfCoreValueComparer : global::Microsoft.EntityFrameworkCore.ChangeTracking.ValueComparer<VOTYPE>
+                                {
+                                    public EfCoreValueComparer() : base((left, right) => (left == (VOTYPE)null && right == (VOTYPE)null) || (!left._isInitialized && !right._isInitialized) || (left._isInitialized && right._isInitialized && left.Equals(right)), instance => instance._isInitialized ? instance._value.GetHashCode() : 0) { }
+                                }
+                    """;
+        }
 
         code = code.Replace("VOTYPE", item.VoTypeName);
         code = code.Replace("VOUNDERLYINGTYPE", item.UnderlyingTypeFullName);

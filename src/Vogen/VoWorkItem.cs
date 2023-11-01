@@ -38,7 +38,9 @@ public class VoWorkItem
     /// </summary>
     public TypeDeclarationSyntax TypeToAugment { get; init; } = null!;
     
-    public bool IsValueType { get; init; }
+    public bool IsTheUnderlyingAValueType { get; init; }
+
+    public bool IsTheWrapperAValueType { get; init; }
 
     public List<InstanceProperties> InstanceProperties { get; init; } = new();
 

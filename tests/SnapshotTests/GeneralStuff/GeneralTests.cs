@@ -12,11 +12,19 @@ namespace SnapshotTests.GeneralStuff
         public async Task EFCore_generated_stuff()
         {
             var source = @"using Vogen;
-namespace Whatever;
-
-[ValueObject(typeof(string), conversions: Conversions.EfCoreValueConverter)]
-public readonly partial record struct CustomerId
+namespace @class
 {
+
+
+namespace record.@struct.@float
+{
+    public readonly record struct @decimal();
+    public readonly record struct @event2();
+    public readonly record struct @event();
+}
+
+  [ValueObject(conversions: Conversions.NewtonsoftJson | Conversions.SystemTextJson | Conversions.EfCoreValueConverter | Conversions.DapperTypeHandler | Conversions.LinqToDbValueConverter, underlyingType: typeof(string))]
+  public partial record escapedTestspublic_partial_recordConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterstring { }
 }
 ";
 
