@@ -133,7 +133,6 @@ namespace @class
 
               return GetType() == other.GetType() && global::System.Collections.Generic.EqualityComparer<System.Guid>.Default.Equals(Value, other.Value);
             }
-
              public global::System.Boolean Equals(escapedTestspublic_sealed_partial_recordConversions_NoneSystem_Guid other, global::System.Collections.Generic.IEqualityComparer<escapedTestspublic_sealed_partial_recordConversions_NoneSystem_Guid> comparer)
              {
                  return comparer.Equals(this, other);

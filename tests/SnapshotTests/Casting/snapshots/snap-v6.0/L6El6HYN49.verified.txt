@@ -132,7 +132,6 @@ public System.String Value
 
               return GetType() == other.GetType() && global::System.Collections.Generic.EqualityComparer<System.String>.Default.Equals(Value, other.Value);
             }
-
              public global::System.Boolean Equals(_casting_public_partial_classCastOperator_NoneCastOperator_Implicitstring other, global::System.Collections.Generic.IEqualityComparer<_casting_public_partial_classCastOperator_NoneCastOperator_Implicitstring> comparer)
              {
                  return comparer.Equals(this, other);

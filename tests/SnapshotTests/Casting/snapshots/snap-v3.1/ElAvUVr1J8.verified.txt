@@ -124,7 +124,6 @@ public System.Boolean Value
 
               return GetType() == other.GetType() && global::System.Collections.Generic.EqualityComparer<System.Boolean>.Default.Equals(Value, other.Value);
             }
-
              public global::System.Boolean Equals(_casting_public_partial_classCastOperator_ExplicitCastOperator_Explicitbool other, global::System.Collections.Generic.IEqualityComparer<_casting_public_partial_classCastOperator_ExplicitCastOperator_Explicitbool> comparer)
              {
                  return comparer.Equals(this, other);

@@ -115,8 +115,7 @@ namespace Whatever
 
             return new stj_number_as_string_public_readonly_partial_record_structConversions_Nonedouble(value);
         }
-        
-          public readonly global::System.Boolean Equals(stj_number_as_string_public_readonly_partial_record_structConversions_Nonedouble other)
+                  public readonly global::System.Boolean Equals(stj_number_as_string_public_readonly_partial_record_structConversions_Nonedouble other)
           {
             // It's possible to create uninitialized instances via converters such as EfCore (HasDefaultValue), which call Equals.
             // We treat anything uninitialized as not equal to anything, even other uninitialized instances of this type.
@@ -124,7 +123,6 @@ namespace Whatever
 
             return global::System.Collections.Generic.EqualityComparer<System.Double>.Default.Equals(Value, other.Value);
           }
-
           public global::System.Boolean Equals(stj_number_as_string_public_readonly_partial_record_structConversions_Nonedouble other, global::System.Collections.Generic.IEqualityComparer<stj_number_as_string_public_readonly_partial_record_structConversions_Nonedouble> comparer)
           {
             return comparer.Equals(this, other);

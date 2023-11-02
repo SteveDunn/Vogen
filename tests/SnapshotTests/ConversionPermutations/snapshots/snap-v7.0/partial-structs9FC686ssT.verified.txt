@@ -107,8 +107,7 @@ namespace Whatever
 
             return new MyIntVo(value);
         }
-        
-          public readonly global::System.Boolean Equals(MyIntVo other)
+                  public readonly global::System.Boolean Equals(MyIntVo other)
           {
             // It's possible to create uninitialized instances via converters such as EfCore (HasDefaultValue), which call Equals.
             // We treat anything uninitialized as not equal to anything, even other uninitialized instances of this type.
@@ -116,7 +115,6 @@ namespace Whatever
 
             return global::System.Collections.Generic.EqualityComparer<System.Int32>.Default.Equals(Value, other.Value);
           }
-
           public global::System.Boolean Equals(MyIntVo other, global::System.Collections.Generic.IEqualityComparer<MyIntVo> comparer)
           {
             return comparer.Equals(this, other);
@@ -369,10 +367,22 @@ namespace Whatever
                     mappingHints
                 ) { }
         }
-            public class EfCoreValueComparer : global::Microsoft.EntityFrameworkCore.ChangeTracking.ValueComparer<MyIntVo>
-            {
-                public EfCoreValueComparer() : base((left, right) => (!left._isInitialized && !right._isInitialized) || (left._isInitialized && right._isInitialized && left.Equals(right)), instance => instance._isInitialized ? instance._value.GetHashCode() : 0) { }
+        public class EfCoreValueComparer : global::Microsoft.EntityFrameworkCore.ChangeTracking.ValueComparer<MyIntVo>
+        {
+            public EfCoreValueComparer() : base(
+                (left, right) => DoCompare(left, right), 
+                instance => instance._isInitialized ? instance.GetHashCode() : 0) 
+            { 
             }
+            
+            static bool DoCompare(MyIntVo left, MyIntVo right)
+            {
+                // if neither are initialized, then they're equal
+                if(!left._isInitialized && !right._isInitialized) return true;
+                
+                return left._isInitialized && right._isInitialized && left._value.Equals(right._value);
+            }
+        }
 
         public class LinqToDbValueConverter : global::LinqToDB.Common.ValueConverter<MyIntVo, global::System.Int32>
         {

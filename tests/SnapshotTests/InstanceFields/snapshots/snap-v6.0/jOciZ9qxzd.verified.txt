@@ -125,7 +125,6 @@ public System.Double Value
 
               return GetType() == other.GetType() && global::System.Collections.Generic.EqualityComparer<System.Double>.Default.Equals(Value, other.Value);
             }
-
              public global::System.Boolean Equals(public_sealed_partial_classdouble other, global::System.Collections.Generic.IEqualityComparer<public_sealed_partial_classdouble> comparer)
              {
                  return comparer.Equals(this, other);

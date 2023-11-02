@@ -108,8 +108,7 @@ namespace Whatever
 
             return new public_readonly_partial_structfloat(value);
         }
-        
-          public readonly global::System.Boolean Equals(public_readonly_partial_structfloat other)
+                  public readonly global::System.Boolean Equals(public_readonly_partial_structfloat other)
           {
             // It's possible to create uninitialized instances via converters such as EfCore (HasDefaultValue), which call Equals.
             // We treat anything uninitialized as not equal to anything, even other uninitialized instances of this type.
@@ -117,7 +116,6 @@ namespace Whatever
 
             return global::System.Collections.Generic.EqualityComparer<System.Single>.Default.Equals(Value, other.Value);
           }
-
           public global::System.Boolean Equals(public_readonly_partial_structfloat other, global::System.Collections.Generic.IEqualityComparer<public_readonly_partial_structfloat> comparer)
           {
             return comparer.Equals(this, other);

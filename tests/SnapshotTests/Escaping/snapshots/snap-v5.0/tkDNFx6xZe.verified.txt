@@ -123,7 +123,6 @@ public @class.@record.@struct.@float.event2 Value
 
               return GetType() == other.GetType() && global::System.Collections.Generic.EqualityComparer<@class.@record.@struct.@float.event2>.Default.Equals(Value, other.Value);
             }
-
              public global::System.Boolean Equals(escapedTestspublic_partial_classConversions_NewtonsoftJsonrecord__struct__float__event2 other, global::System.Collections.Generic.IEqualityComparer<escapedTestspublic_partial_classConversions_NewtonsoftJsonrecord__struct__float__event2> comparer)
              {
                  return comparer.Equals(this, other);

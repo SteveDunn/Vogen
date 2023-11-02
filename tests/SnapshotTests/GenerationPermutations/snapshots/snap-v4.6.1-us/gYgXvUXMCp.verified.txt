@@ -145,7 +145,6 @@ namespace Whatever
 
               return GetType() == other.GetType() && global::System.Collections.Generic.EqualityComparer<System.String>.Default.Equals(Value, other.Value);
             }
-
              public global::System.Boolean Equals(internal_sealed_partial_recordConversions_Nonestring other, global::System.Collections.Generic.IEqualityComparer<internal_sealed_partial_recordConversions_Nonestring> comparer)
              {
                  return comparer.Equals(this, other);

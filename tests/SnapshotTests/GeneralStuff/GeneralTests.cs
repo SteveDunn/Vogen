@@ -64,7 +64,7 @@ public readonly partial record struct MyVo
                     .RunOnAllFrameworks();
         }
 
-        [Fact]
+        [SkippableFact]
         public async Task User_supplied_Equals_generic()
         {
             var source = @"using Vogen;
@@ -88,7 +88,7 @@ public readonly partial record struct MyVo
             await new SnapshotRunner<ValueObjectGenerator>()
                     .WithSource(source)
                     .IgnoreInitialCompilationErrors()
-                    .RunOnAllFrameworks();
+                    .RunOn(TargetFramework.Net7_0);
         }
 
         [Fact]
@@ -114,7 +114,7 @@ public readonly partial record struct BugFix516Vo
             await new SnapshotRunner<ValueObjectGenerator>()
                     .WithSource(source)
                     .IgnoreInitialCompilationErrors()
-                    .RunOn(TargetFramework.Net7_0);
+                    .RunOnAllFrameworks();
         }
 
         [Fact]
@@ -173,11 +173,6 @@ public partial struct CustomerId
 
             return RunTest(source);
         }
-
-        private static Task RunTest(string source) =>
-            new SnapshotRunner<ValueObjectGenerator>()
-                .WithSource(source)
-                .RunOnAllFrameworks();
 
         [Fact]
         public Task No_namespace() =>
@@ -286,5 +281,11 @@ public partial struct @class
     }
 }
 ");
+        
+        private static Task RunTest(string source) =>
+            new SnapshotRunner<ValueObjectGenerator>()
+                .WithSource(source)
+                .RunOnAllFrameworks();
+        
     }
 }

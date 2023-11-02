@@ -122,7 +122,6 @@ public System.Decimal Value
 
               return GetType() == other.GetType() && global::System.Collections.Generic.EqualityComparer<System.Decimal>.Default.Equals(Value, other.Value);
             }
-
              public global::System.Boolean Equals(public_sealed_partial_classConversions_Nonedecimal other, global::System.Collections.Generic.IEqualityComparer<public_sealed_partial_classConversions_Nonedecimal> comparer)
              {
                  return comparer.Equals(this, other);

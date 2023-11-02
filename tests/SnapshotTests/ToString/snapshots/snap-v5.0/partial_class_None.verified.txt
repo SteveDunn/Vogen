@@ -124,7 +124,6 @@ public System.Int32 Value
 
               return GetType() == other.GetType() && global::System.Collections.Generic.EqualityComparer<System.Int32>.Default.Equals(Value, other.Value);
             }
-
              public global::System.Boolean Equals(partial_class_None other, global::System.Collections.Generic.IEqualityComparer<partial_class_None> comparer)
              {
                  return comparer.Equals(this, other);

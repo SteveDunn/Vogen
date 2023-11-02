@@ -133,7 +133,6 @@ namespace Whatever
 
               return GetType() == other.GetType() && global::System.Collections.Generic.EqualityComparer<System.Int32>.Default.Equals(Value, other.Value);
             }
-
              public global::System.Boolean Equals(MyIntVo other, global::System.Collections.Generic.IEqualityComparer<MyIntVo> comparer)
              {
                  return comparer.Equals(this, other);

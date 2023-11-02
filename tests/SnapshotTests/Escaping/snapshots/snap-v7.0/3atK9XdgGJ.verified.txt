@@ -105,8 +105,7 @@ namespace @class
 
             return new escapedTestspublic_readonly_partial_structConversions_Nonedouble(value);
         }
-        
-          public readonly global::System.Boolean Equals(escapedTestspublic_readonly_partial_structConversions_Nonedouble other)
+                  public readonly global::System.Boolean Equals(escapedTestspublic_readonly_partial_structConversions_Nonedouble other)
           {
             // It's possible to create uninitialized instances via converters such as EfCore (HasDefaultValue), which call Equals.
             // We treat anything uninitialized as not equal to anything, even other uninitialized instances of this type.
@@ -114,7 +113,6 @@ namespace @class
 
             return global::System.Collections.Generic.EqualityComparer<System.Double>.Default.Equals(Value, other.Value);
           }
-
           public global::System.Boolean Equals(escapedTestspublic_readonly_partial_structConversions_Nonedouble other, global::System.Collections.Generic.IEqualityComparer<escapedTestspublic_readonly_partial_structConversions_Nonedouble> comparer)
           {
             return comparer.Equals(this, other);

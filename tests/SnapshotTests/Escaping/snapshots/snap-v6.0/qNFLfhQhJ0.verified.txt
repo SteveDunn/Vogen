@@ -134,7 +134,6 @@ namespace @class
 
               return GetType() == other.GetType() && global::System.Collections.Generic.EqualityComparer<@class.@record.@struct.@float.@decimal>.Default.Equals(Value, other.Value);
             }
-
              public global::System.Boolean Equals(escapedTestspublic_partial_record_classConversions_NewtonsoftJsonrecord__struct__float__decimal other, global::System.Collections.Generic.IEqualityComparer<escapedTestspublic_partial_record_classConversions_NewtonsoftJsonrecord__struct__float__decimal> comparer)
              {
                  return comparer.Equals(this, other);

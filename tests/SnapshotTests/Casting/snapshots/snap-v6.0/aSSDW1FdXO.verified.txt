@@ -135,7 +135,6 @@ namespace Whatever
 
               return GetType() == other.GetType() && global::System.Collections.Generic.EqualityComparer<System.Single>.Default.Equals(Value, other.Value);
             }
-
              public global::System.Boolean Equals(_casting_public_sealed_partial_recordCastOperator_ExplicitCastOperator_Implicitfloat other, global::System.Collections.Generic.IEqualityComparer<_casting_public_sealed_partial_recordCastOperator_ExplicitCastOperator_Implicitfloat> comparer)
              {
                  return comparer.Equals(this, other);

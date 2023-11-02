@@ -8,22 +8,6 @@ public partial struct Bug502Vo
     public static implicit operator int(Bug502Vo vo) => vo._value;
 }
 
-[ValueObject<string>(conversions: Conversions.Default | Conversions.NewtonsoftJson)]
-public readonly partial record struct BugFix516Vo
-{
-    public readonly bool Equals(BugFix516Vo other)
-    {
-        // custom code
-        return Value == other.Value;
-    }
-
-    public override int GetHashCode()
-    {
-        // custom code
-        return 0;
-    }
-}
-
 public class BugFixTests
 {
     /// <summary>

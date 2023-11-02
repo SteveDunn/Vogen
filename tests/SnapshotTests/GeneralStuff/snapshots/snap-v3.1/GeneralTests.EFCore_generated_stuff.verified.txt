@@ -25,28 +25,26 @@
 
 using Vogen;
 
-namespace @class
-{
 
     [global::System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage] 
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Vogen", "1.0.0.0")]
-    [global::System.Text.Json.Serialization.JsonConverter(typeof(escapedTestspublic_partial_recordConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterstringSystemTextJsonConverter))]
-[global::Newtonsoft.Json.JsonConverter(typeof(escapedTestspublic_partial_recordConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterstringNewtonsoftJsonConverter))]
-
-    [global::System.Diagnostics.DebuggerTypeProxyAttribute(typeof(escapedTestspublic_partial_recordConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterstringDebugView))]
+    
+    [global::System.Diagnostics.DebuggerTypeProxyAttribute(typeof(MyVoDebugView))]
     [global::System.Diagnostics.DebuggerDisplayAttribute("Underlying type: System.String, Value = { _value }")]
-    public partial record class escapedTestspublic_partial_recordConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterstring : global::System.IEquatable<escapedTestspublic_partial_recordConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterstring>, global::System.IEquatable<System.String> ,  global::System.IComparable<escapedTestspublic_partial_recordConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterstring>, global::System.IComparable
+    public partial struct MyVo : global::System.IEquatable<MyVo>, global::System.IEquatable<System.String> ,  global::System.IComparable<MyVo>, global::System.IComparable
     {
 #if DEBUG   
         private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
 #endif
+
         private readonly global::System.Boolean _isInitialized;
-        private readonly System.String _value;
         
+        private readonly System.String _value;
+
         /// <summary>
         /// Gets the underlying <see cref="System.String" /> value if set, otherwise a <see cref="ValueObjectValidationException" /> is thrown.
         /// </summary>
-        public System.String Value
+        public readonly System.String Value
         {
             [global::System.Diagnostics.DebuggerStepThroughAttribute]
             get
@@ -54,36 +52,22 @@ namespace @class
                 EnsureInitialized();
                 return _value;
             }
-            [global::System.Diagnostics.DebuggerStepThroughAttribute]
-            init
-            {
-                            if (value is null)
-            {
-                throw new global::Vogen.ValueObjectValidationException("Cannot create a value object with null.");
-            }
-
-
-                
-
-                
-
-                _value = value;
-            }
         }
 
         [global::System.Diagnostics.DebuggerStepThroughAttribute]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
-        public escapedTestspublic_partial_recordConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterstring()
+        public MyVo()
         {
 #if DEBUG
             _stackTrace = new global::System.Diagnostics.StackTrace();
 #endif
+
             _isInitialized = false;
             _value = default;
         }
 
         [global::System.Diagnostics.DebuggerStepThroughAttribute]
-        private escapedTestspublic_partial_recordConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterstring(System.String value)
+        private MyVo(System.String value) 
         {
             _value = value;
             _isInitialized = true;
@@ -94,104 +78,88 @@ namespace @class
         /// </summary>
         /// <param name="value">The underlying type.</param>
         /// <returns>An instance of this type.</returns>
-        public static escapedTestspublic_partial_recordConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterstring From(System.String value)
+        public static MyVo From(System.String value)
         {
-                        if (value is null)
-            {
-                throw new global::Vogen.ValueObjectValidationException("Cannot create a value object with null.");
-            }
-
-
             
 
             
 
-            escapedTestspublic_partial_recordConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterstring instance = new escapedTestspublic_partial_recordConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterstring(value);
+            MyVo instance = new MyVo(value);
 
             return instance;
         }
-  
+        
+
+        public static explicit operator MyVo(System.String value) => From(value);
+        public static explicit operator System.String(MyVo value) => value.Value;
 
         // only called internally when something has been deserialized into
         // its primitive type.
-        private static escapedTestspublic_partial_recordConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterstring Deserialize(System.String value)
+        private static MyVo Deserialize(System.String value)
         {
-                        if (value is null)
-            {
-                throw new global::Vogen.ValueObjectValidationException("Cannot create a value object with null.");
-            }
-
-
             
 
             
 
-            return new escapedTestspublic_partial_recordConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterstring(value);
+            return new MyVo(value);
         }
-        
-            public virtual global::System.Boolean Equals(escapedTestspublic_partial_recordConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterstring other)
-            {
-              if (ReferenceEquals(null, other))
-              {
-                  return false;
-              }
+                  public readonly global::System.Boolean Equals(MyVo other)
+          {
+            // It's possible to create uninitialized instances via converters such as EfCore (HasDefaultValue), which call Equals.
+            // We treat anything uninitialized as not equal to anything, even other uninitialized instances of this type.
+            if(!_isInitialized || !other._isInitialized) return false;
 
-              // It's possible to create uninitialized instances via converters such as EfCore (HasDefaultValue), which call Equals.
-              // We treat anything uninitialized as not equal to anything, even other uninitialized instances of this type.
-              if(!_isInitialized || !other._isInitialized) return false;
+            return global::System.Collections.Generic.EqualityComparer<System.String>.Default.Equals(Value, other.Value);
+          }
+          public global::System.Boolean Equals(MyVo other, global::System.Collections.Generic.IEqualityComparer<MyVo> comparer)
+          {
+            return comparer.Equals(this, other);
+          }
 
-              if (ReferenceEquals(this, other))
-              {
-                  return true;
-              }
-
-              return GetType() == other.GetType() && global::System.Collections.Generic.EqualityComparer<System.String>.Default.Equals(Value, other.Value);
-            }
-
-             public global::System.Boolean Equals(escapedTestspublic_partial_recordConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterstring other, global::System.Collections.Generic.IEqualityComparer<escapedTestspublic_partial_recordConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterstring> comparer)
-             {
-                 return comparer.Equals(this, other);
-             }
-
-             
-            public global::System.Boolean Equals(System.String primitive)
+          
+            public readonly global::System.Boolean Equals(System.String primitive)
             {
               return Value.Equals(primitive);
             }
 
-            public global::System.Boolean Equals(System.String primitive, global::System.StringComparer comparer) 
+            public readonly global::System.Boolean Equals(System.String primitive, global::System.StringComparer comparer) 
             {
                 return comparer.Equals(Value, primitive);
             }
-
-        public static global::System.Boolean operator ==(escapedTestspublic_partial_recordConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterstring left, System.String right) => Equals(left.Value, right);
-        public static global::System.Boolean operator !=(escapedTestspublic_partial_recordConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterstring left, System.String right) => !Equals(left.Value, right);
-
-        public static global::System.Boolean operator ==(System.String left, escapedTestspublic_partial_recordConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterstring right) => Equals(left, right.Value);
-        public static global::System.Boolean operator !=(System.String left, escapedTestspublic_partial_recordConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterstring right) => !Equals(left, right.Value);
-
-        public static explicit operator escapedTestspublic_partial_recordConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterstring(System.String value) => From(value);
-        public static explicit operator System.String(escapedTestspublic_partial_recordConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterstring value) => value.Value;
-
-        public int CompareTo(escapedTestspublic_partial_recordConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterstring other) => Value.CompareTo(other.Value);
-        public int CompareTo(object other) {
-            if(other == null) return 1;
-            if(other is escapedTestspublic_partial_recordConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterstring x) return CompareTo(x);
-            throw new global::System.ArgumentException("Cannot compare to object as it is not of type escapedTestspublic_partial_recordConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterstring", nameof(other));
-        }
-
-          public override global::System.Int32 GetHashCode()
+          public readonly override global::System.Boolean Equals(global::System.Object obj)
           {
-            unchecked // Overflow is fine, just wrap
-            {
-                global::System.Int32 hash = (global::System.Int32) 2166136261;
-                hash = (hash * 16777619) ^ GetType().GetHashCode();
-                hash = (hash * 16777619) ^ global::System.Collections.Generic.EqualityComparer<System.String>.Default.GetHashCode(Value);
-                return hash;
-            }
+            return obj is MyVo && Equals((MyVo) obj);
           }
 
-        private void EnsureInitialized()
+        public static global::System.Boolean operator ==(MyVo left, MyVo right) => Equals(left, right);
+        public static global::System.Boolean operator !=(MyVo left, MyVo right) => !(left == right);
+
+        public static global::System.Boolean operator ==(MyVo left, System.String right) => Equals(left.Value, right);
+        public static global::System.Boolean operator !=(MyVo left, System.String right) => !Equals(left.Value, right);
+
+        public static global::System.Boolean operator ==(System.String left, MyVo right) => Equals(left, right.Value);
+        public static global::System.Boolean operator !=(System.String left, MyVo right) => !Equals(left, right.Value);
+
+        public int CompareTo(MyVo other) => Value.CompareTo(other.Value);
+        public int CompareTo(object other) {
+            if(other == null) return 1;
+            if(other is MyVo x) return CompareTo(x);
+            throw new global::System.ArgumentException("Cannot compare to object as it is not of type MyVo", nameof(other));
+        }
+
+        
+        
+        
+          public readonly override global::System.Int32 GetHashCode()
+          {
+            return global::System.Collections.Generic.EqualityComparer<System.String>.Default.GetHashCode(Value);
+          }
+
+        /// <summary>Returns the string representation of the underlying type</summary>
+    /// <inheritdoc cref="System.String.ToString()" />
+    public readonly override global::System.String ToString() =>_isInitialized ? Value.ToString() : "[UNINITIALIZED]";
+
+        private readonly void EnsureInitialized()
         {
             if (!_isInitialized)
             {
@@ -205,127 +173,68 @@ namespace @class
             }
         }
 
-
+        
+ 
         
 
-        // record enumerates fields - we just want our Value and to throw if it's not initialized.
-        /// <summary>Returns the string representation of the underlying <see cref="System.String" />.</summary>
-    /// <inheritdoc cref="System.String.ToString()" />
-    public override global::System.String ToString() => _isInitialized ? Value.ToString() : "[UNINITIALIZED]";
-
-        
-        class escapedTestspublic_partial_recordConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterstringSystemTextJsonConverter : global::System.Text.Json.Serialization.JsonConverter<escapedTestspublic_partial_recordConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterstring>
-        {
-            public override escapedTestspublic_partial_recordConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterstring Read(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
-            {
-                return escapedTestspublic_partial_recordConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterstring.Deserialize(reader.GetString());
-            }
-
-            public override void Write(System.Text.Json.Utf8JsonWriter writer, escapedTestspublic_partial_recordConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterstring value, global::System.Text.Json.JsonSerializerOptions options)
-            {
-                writer.WriteStringValue(value.Value);
-            }
-
-#if NET6_0_OR_GREATER
-            public override escapedTestspublic_partial_recordConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterstring ReadAsPropertyName(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
-            {
-                return escapedTestspublic_partial_recordConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterstring.Deserialize(reader.GetString());
-            }
-
-            public override void WriteAsPropertyName(System.Text.Json.Utf8JsonWriter writer, escapedTestspublic_partial_recordConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterstring value, global::System.Text.Json.JsonSerializerOptions options)
-            {
-                writer.WritePropertyName(value.Value);
-            }
-#endif            
-        }
-
-        class escapedTestspublic_partial_recordConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterstringNewtonsoftJsonConverter : Newtonsoft.Json.JsonConverter
-        {
-            public override bool CanConvert(System.Type objectType)
-            {
-                return objectType == typeof(escapedTestspublic_partial_recordConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterstring);
-            }
-
-            public override void WriteJson(Newtonsoft.Json.JsonWriter writer, object value, Newtonsoft.Json.JsonSerializer serializer)
-            {
-                var id = (escapedTestspublic_partial_recordConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterstring)value;
-                serializer.Serialize(writer, id.Value);
-            }
-
-            public override object ReadJson(Newtonsoft.Json.JsonReader reader, System.Type objectType, object existingValue, Newtonsoft.Json.JsonSerializer serializer)
-            {
-                var result = serializer.Deserialize<global::System.String>(reader);
-                return result != null ? escapedTestspublic_partial_recordConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterstring.Deserialize(result) : null;
-            }
-        }
 
 
-        public class DapperTypeHandler : global::Dapper.SqlMapper.TypeHandler<escapedTestspublic_partial_recordConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterstring>
-        {
-            public override void SetValue(global::System.Data.IDbDataParameter parameter, escapedTestspublic_partial_recordConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterstring value)
-            {
-                parameter.DbType = global::System.Data.DbType.String;
-                parameter.Value = value.Value;
-            }
 
-            public override escapedTestspublic_partial_recordConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterstring Parse(object value)
-            {
-                return value switch
-                {
-                    global::System.String stringValue => escapedTestspublic_partial_recordConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterstring.Deserialize(stringValue),
-                    _ => throw new global::System.InvalidCastException($"Unable to cast object of type {value.GetType()} to escapedTestspublic_partial_recordConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterstring"),
-                };
-            }
-        }
-
-        public class EfCoreValueConverter : global::Microsoft.EntityFrameworkCore.Storage.ValueConversion.ValueConverter<escapedTestspublic_partial_recordConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterstring, global::System.String>
+        public class EfCoreValueConverter : global::Microsoft.EntityFrameworkCore.Storage.ValueConversion.ValueConverter<MyVo, global::System.String>
         {
             public EfCoreValueConverter() : this(null) { }
             public EfCoreValueConverter(global::Microsoft.EntityFrameworkCore.Storage.ValueConversion.ConverterMappingHints mappingHints = null)
                 : base(
                     vo => vo.Value,
-                    value => escapedTestspublic_partial_recordConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterstring.Deserialize(value),
+                    value => MyVo.Deserialize(value),
                     mappingHints
                 ) { }
         }
-            public class EfCoreValueComparer : global::Microsoft.EntityFrameworkCore.ChangeTracking.ValueComparer<escapedTestspublic_partial_recordConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterstring>
-            {
-                public EfCoreValueComparer() : base((left, right) => (left == (escapedTestspublic_partial_recordConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterstring)null && right == (escapedTestspublic_partial_recordConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterstring)null) || object.ReferenceEquals(left, right) || (!left._isInitialized && !right._isInitialized) || (left._isInitialized && right._isInitialized && left.Equals(right)), instance => instance._isInitialized ? instance._value.GetHashCode() : 0) { }
-            }
-
-        public class LinqToDbValueConverter : global::LinqToDB.Common.ValueConverter<escapedTestspublic_partial_recordConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterstring, global::System.String>
+        public class EfCoreValueComparer : global::Microsoft.EntityFrameworkCore.ChangeTracking.ValueComparer<MyVo>
         {
-            public LinqToDbValueConverter()
-                : base(
-                      v => v.Value,
-                      p => escapedTestspublic_partial_recordConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterstring.Deserialize(p),
-                      handlesNulls: false)
-            { }
+            public EfCoreValueComparer() : base(
+                (left, right) => DoCompare(left, right), 
+                instance => instance._isInitialized ? instance.GetHashCode() : 0) 
+            { 
+            }
+            
+            static bool DoCompare(MyVo left, MyVo right)
+            {
+                // if neither are initialized, then they're equal
+                if(!left._isInitialized && !right._isInitialized) return true;
+                
+                return left._isInitialized && right._isInitialized && left._value.Equals(right._value);
+            }
         }
 
 
-        internal sealed class escapedTestspublic_partial_recordConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterstringDebugView
-        {
-            private readonly escapedTestspublic_partial_recordConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterstring _t;
 
-            escapedTestspublic_partial_recordConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterstringDebugView(escapedTestspublic_partial_recordConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterstring t)
+        
+            internal sealed class MyVoDebugView
             {
-                _t = t;
+                private readonly MyVo _t;
+
+                MyVoDebugView(MyVo t)
+                {
+                    _t = t;
+                }
+
+                public global::System.Boolean IsInitialized => _t._isInitialized;
+                public global::System.String UnderlyingType => "System.String";
+                public global::System.String Value => _t._isInitialized ? _t._value.ToString() : "[not initialized]" ;
+
+                #if DEBUG
+                    public global::System.String CreatedWith => _t._stackTrace?.ToString() ?? "the From method";
+                #endif
+
+                public global::System.String Conversions => @"EfCoreValueConverter";
             }
 
-            public global::System.String UnderlyingType => "System.String";
-            public System.String Value => _t.Value ;
-
-            public global::System.String Conversions => @"[global::System.Text.Json.Serialization.JsonConverter(typeof(escapedTestspublic_partial_recordConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterstringSystemTextJsonConverter))]
-[global::Newtonsoft.Json.JsonConverter(typeof(escapedTestspublic_partial_recordConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterstringNewtonsoftJsonConverter))]
-";
-                }
-    }
+}
 #if NETCOREAPP3_0_OR_GREATER
-            public static class __escapedTestspublic_partial_recordConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterstringEfCoreExtensions 
+            public static class __MyVoEfCoreExtensions 
             {
-                public static global::Microsoft.EntityFrameworkCore.Metadata.Builders.PropertyBuilder<escapedTestspublic_partial_recordConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterstring> HasVogenConversion(this global::Microsoft.EntityFrameworkCore.Metadata.Builders.PropertyBuilder<escapedTestspublic_partial_recordConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterstring> propertyBuilder) =>
-                    propertyBuilder.HasConversion<escapedTestspublic_partial_recordConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterstring.EfCoreValueConverter, escapedTestspublic_partial_recordConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterstring.EfCoreValueComparer>();
+                public static global::Microsoft.EntityFrameworkCore.Metadata.Builders.PropertyBuilder<MyVo> HasVogenConversion(this global::Microsoft.EntityFrameworkCore.Metadata.Builders.PropertyBuilder<MyVo> propertyBuilder) =>
+                    propertyBuilder.HasConversion<MyVo.EfCoreValueConverter, MyVo.EfCoreValueComparer>();
             }
 #endif
-}

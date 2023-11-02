@@ -108,8 +108,7 @@ namespace Whatever
 
             return new _casting_public_partial_structCastOperator_ImplicitCastOperator_Nonebyte(value);
         }
-        
-          public readonly global::System.Boolean Equals(_casting_public_partial_structCastOperator_ImplicitCastOperator_Nonebyte other)
+                  public readonly global::System.Boolean Equals(_casting_public_partial_structCastOperator_ImplicitCastOperator_Nonebyte other)
           {
             // It's possible to create uninitialized instances via converters such as EfCore (HasDefaultValue), which call Equals.
             // We treat anything uninitialized as not equal to anything, even other uninitialized instances of this type.
@@ -117,7 +116,6 @@ namespace Whatever
 
             return global::System.Collections.Generic.EqualityComparer<System.Byte>.Default.Equals(Value, other.Value);
           }
-
           public global::System.Boolean Equals(_casting_public_partial_structCastOperator_ImplicitCastOperator_Nonebyte other, global::System.Collections.Generic.IEqualityComparer<_casting_public_partial_structCastOperator_ImplicitCastOperator_Nonebyte> comparer)
           {
             return comparer.Equals(this, other);

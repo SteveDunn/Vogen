@@ -112,8 +112,7 @@ namespace Whatever
 
             return new CustomerId(value);
         }
-        
-          public readonly global::System.Boolean Equals(CustomerId other)
+                  public readonly global::System.Boolean Equals(CustomerId other)
           {
             // It's possible to create uninitialized instances via converters such as EfCore (HasDefaultValue), which call Equals.
             // We treat anything uninitialized as not equal to anything, even other uninitialized instances of this type.
@@ -121,7 +120,6 @@ namespace Whatever
 
             return global::System.Collections.Generic.EqualityComparer<System.Int32>.Default.Equals(Value, other.Value);
           }
-
           public global::System.Boolean Equals(CustomerId other, global::System.Collections.Generic.IEqualityComparer<CustomerId> comparer)
           {
             return comparer.Equals(this, other);

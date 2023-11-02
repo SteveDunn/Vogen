@@ -123,7 +123,6 @@ public System.Decimal Value
 
               return GetType() == other.GetType() && global::System.Collections.Generic.EqualityComparer<System.Decimal>.Default.Equals(Value, other.Value);
             }
-
              public global::System.Boolean Equals(stj_number_as_string_public_partial_classConversions_NewtonsoftJsondecimal other, global::System.Collections.Generic.IEqualityComparer<stj_number_as_string_public_partial_classConversions_NewtonsoftJsondecimal> comparer)
              {
                  return comparer.Equals(this, other);

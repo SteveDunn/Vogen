@@ -32,7 +32,7 @@ internal class GenerateEfCoreTypeConversions : IGenerateConversion
                                 { 
                                 }
                                 
-                                static bool DoCompare(MyVo left, MyVo right)
+                                static bool DoCompare(VOTYPE left, VOTYPE right)
                                 {
                                     // if neither are initialized, then they're equal
                                     if(!left._isInitialized && !right._isInitialized) return true;
@@ -54,7 +54,7 @@ internal class GenerateEfCoreTypeConversions : IGenerateConversion
                                 { 
                                 }
                                     
-                                static bool DoCompare(MyVo left, MyVo right)
+                                static bool DoCompare(VOTYPE left, VOTYPE right)
                                 {
                                     // if both null, then they're equal
                                     if (left is null) return right is null;

@@ -121,8 +121,7 @@ namespace Whatever
 
             return new public_readonly_partial_record_structConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterstring(value);
         }
-        
-          public readonly global::System.Boolean Equals(public_readonly_partial_record_structConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterstring other)
+                  public readonly global::System.Boolean Equals(public_readonly_partial_record_structConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterstring other)
           {
             // It's possible to create uninitialized instances via converters such as EfCore (HasDefaultValue), which call Equals.
             // We treat anything uninitialized as not equal to anything, even other uninitialized instances of this type.
@@ -130,7 +129,6 @@ namespace Whatever
 
             return global::System.Collections.Generic.EqualityComparer<System.String>.Default.Equals(Value, other.Value);
           }
-
           public global::System.Boolean Equals(public_readonly_partial_record_structConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterstring other, global::System.Collections.Generic.IEqualityComparer<public_readonly_partial_record_structConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterstring> comparer)
           {
             return comparer.Equals(this, other);
@@ -264,10 +262,22 @@ namespace Whatever
                     mappingHints
                 ) { }
         }
-            public class EfCoreValueComparer : global::Microsoft.EntityFrameworkCore.ChangeTracking.ValueComparer<public_readonly_partial_record_structConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterstring>
-            {
-                public EfCoreValueComparer() : base((left, right) => (!left._isInitialized && !right._isInitialized) || (left._isInitialized && right._isInitialized && left.Equals(right)), instance => instance._isInitialized ? instance._value.GetHashCode() : 0) { }
+        public class EfCoreValueComparer : global::Microsoft.EntityFrameworkCore.ChangeTracking.ValueComparer<public_readonly_partial_record_structConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterstring>
+        {
+            public EfCoreValueComparer() : base(
+                (left, right) => DoCompare(left, right), 
+                instance => instance._isInitialized ? instance.GetHashCode() : 0) 
+            { 
             }
+            
+            static bool DoCompare(public_readonly_partial_record_structConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterstring left, public_readonly_partial_record_structConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterstring right)
+            {
+                // if neither are initialized, then they're equal
+                if(!left._isInitialized && !right._isInitialized) return true;
+                
+                return left._isInitialized && right._isInitialized && left._value.Equals(right._value);
+            }
+        }
 
         public class LinqToDbValueConverter : global::LinqToDB.Common.ValueConverter<public_readonly_partial_record_structConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterstring, global::System.String>
         {

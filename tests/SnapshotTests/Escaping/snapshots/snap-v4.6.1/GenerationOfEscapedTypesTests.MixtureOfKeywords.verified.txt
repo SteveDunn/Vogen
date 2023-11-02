@@ -124,7 +124,6 @@ public @record.@struct.@float.@decimal Value
 
               return GetType() == other.GetType() && global::System.Collections.Generic.EqualityComparer<@record.@struct.@float.@decimal>.Default.Equals(Value, other.Value);
             }
-
              public global::System.Boolean Equals(@event2 other, global::System.Collections.Generic.IEqualityComparer<@event2> comparer)
              {
                  return comparer.Equals(this, other);

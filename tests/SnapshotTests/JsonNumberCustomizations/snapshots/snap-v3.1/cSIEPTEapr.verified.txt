@@ -123,7 +123,6 @@ public System.Int64 Value
 
               return GetType() == other.GetType() && global::System.Collections.Generic.EqualityComparer<System.Int64>.Default.Equals(Value, other.Value);
             }
-
              public global::System.Boolean Equals(stj_number_as_string_public_partial_classConversions_NewtonsoftJsonlong_customized other, global::System.Collections.Generic.IEqualityComparer<stj_number_as_string_public_partial_classConversions_NewtonsoftJsonlong_customized> comparer)
              {
                  return comparer.Equals(this, other);

@@ -116,8 +116,7 @@ namespace Whatever
 
             return new stj_number_as_string_public_partial_record_structConversions_SystemTextJsonSystem_DateTime_customized(value);
         }
-        
-          public readonly global::System.Boolean Equals(stj_number_as_string_public_partial_record_structConversions_SystemTextJsonSystem_DateTime_customized other)
+                  public readonly global::System.Boolean Equals(stj_number_as_string_public_partial_record_structConversions_SystemTextJsonSystem_DateTime_customized other)
           {
             // It's possible to create uninitialized instances via converters such as EfCore (HasDefaultValue), which call Equals.
             // We treat anything uninitialized as not equal to anything, even other uninitialized instances of this type.
@@ -125,7 +124,6 @@ namespace Whatever
 
             return global::System.Collections.Generic.EqualityComparer<System.DateTime>.Default.Equals(Value, other.Value);
           }
-
           public global::System.Boolean Equals(stj_number_as_string_public_partial_record_structConversions_SystemTextJsonSystem_DateTime_customized other, global::System.Collections.Generic.IEqualityComparer<stj_number_as_string_public_partial_record_structConversions_SystemTextJsonSystem_DateTime_customized> comparer)
           {
             return comparer.Equals(this, other);

@@ -125,7 +125,6 @@ public System.Char Value
 
               return GetType() == other.GetType() && global::System.Collections.Generic.EqualityComparer<System.Char>.Default.Equals(Value, other.Value);
             }
-
              public global::System.Boolean Equals(public_sealed_partial_classchar other, global::System.Collections.Generic.IEqualityComparer<public_sealed_partial_classchar> comparer)
              {
                  return comparer.Equals(this, other);

@@ -124,7 +124,6 @@ public System.DateTime Value
 
               return GetType() == other.GetType() && global::System.Collections.Generic.EqualityComparer<System.DateTime>.Default.Equals(Value, other.Value);
             }
-
              public global::System.Boolean Equals(_casting_public_partial_classCastOperator_ExplicitCastOperator_ExplicitSystem_DateTime other, global::System.Collections.Generic.IEqualityComparer<_casting_public_partial_classCastOperator_ExplicitCastOperator_ExplicitSystem_DateTime> comparer)
              {
                  return comparer.Equals(this, other);

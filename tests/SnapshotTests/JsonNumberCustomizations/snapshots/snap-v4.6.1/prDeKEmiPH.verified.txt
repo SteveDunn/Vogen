@@ -134,7 +134,6 @@ namespace Whatever
 
               return GetType() == other.GetType() && global::System.Collections.Generic.EqualityComparer<System.DateTimeOffset>.Default.Equals(Value, other.Value);
             }
-
              public global::System.Boolean Equals(stj_number_as_string_public_sealed_partial_recordConversions_SystemTextJsonSystem_DateTimeOffset other, global::System.Collections.Generic.IEqualityComparer<stj_number_as_string_public_sealed_partial_recordConversions_SystemTextJsonSystem_DateTimeOffset> comparer)
              {
                  return comparer.Equals(this, other);

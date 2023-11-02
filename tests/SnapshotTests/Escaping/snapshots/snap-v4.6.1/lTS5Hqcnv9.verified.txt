@@ -106,8 +106,7 @@ namespace @class
 
             return new escapedTestspublic_partial_structConversions_NewtonsoftJsonrecord__struct__float__decimal(value);
         }
-        
-          public readonly global::System.Boolean Equals(escapedTestspublic_partial_structConversions_NewtonsoftJsonrecord__struct__float__decimal other)
+                  public readonly global::System.Boolean Equals(escapedTestspublic_partial_structConversions_NewtonsoftJsonrecord__struct__float__decimal other)
           {
             // It's possible to create uninitialized instances via converters such as EfCore (HasDefaultValue), which call Equals.
             // We treat anything uninitialized as not equal to anything, even other uninitialized instances of this type.
@@ -115,7 +114,6 @@ namespace @class
 
             return global::System.Collections.Generic.EqualityComparer<@class.@record.@struct.@float.@decimal>.Default.Equals(Value, other.Value);
           }
-
           public global::System.Boolean Equals(escapedTestspublic_partial_structConversions_NewtonsoftJsonrecord__struct__float__decimal other, global::System.Collections.Generic.IEqualityComparer<escapedTestspublic_partial_structConversions_NewtonsoftJsonrecord__struct__float__decimal> comparer)
           {
             return comparer.Equals(this, other);

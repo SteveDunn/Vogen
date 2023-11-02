@@ -117,8 +117,7 @@ namespace @class
 
             return new escapedTestspublic_partial_record_structConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterrecord__struct__float__event(value);
         }
-        
-          public readonly global::System.Boolean Equals(escapedTestspublic_partial_record_structConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterrecord__struct__float__event other)
+                  public readonly global::System.Boolean Equals(escapedTestspublic_partial_record_structConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterrecord__struct__float__event other)
           {
             // It's possible to create uninitialized instances via converters such as EfCore (HasDefaultValue), which call Equals.
             // We treat anything uninitialized as not equal to anything, even other uninitialized instances of this type.
@@ -126,7 +125,6 @@ namespace @class
 
             return global::System.Collections.Generic.EqualityComparer<@class.@record.@struct.@float.@event>.Default.Equals(Value, other.Value);
           }
-
           public global::System.Boolean Equals(escapedTestspublic_partial_record_structConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterrecord__struct__float__event other, global::System.Collections.Generic.IEqualityComparer<escapedTestspublic_partial_record_structConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterrecord__struct__float__event> comparer)
           {
             return comparer.Equals(this, other);
@@ -253,10 +251,22 @@ namespace @class
                     mappingHints
                 ) { }
         }
-            public class EfCoreValueComparer : global::Microsoft.EntityFrameworkCore.ChangeTracking.ValueComparer<escapedTestspublic_partial_record_structConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterrecord__struct__float__event>
-            {
-                public EfCoreValueComparer() : base((left, right) => (!left._isInitialized && !right._isInitialized) || (left._isInitialized && right._isInitialized && left.Equals(right)), instance => instance._isInitialized ? instance._value.GetHashCode() : 0) { }
+        public class EfCoreValueComparer : global::Microsoft.EntityFrameworkCore.ChangeTracking.ValueComparer<escapedTestspublic_partial_record_structConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterrecord__struct__float__event>
+        {
+            public EfCoreValueComparer() : base(
+                (left, right) => DoCompare(left, right), 
+                instance => instance._isInitialized ? instance.GetHashCode() : 0) 
+            { 
             }
+            
+            static bool DoCompare(escapedTestspublic_partial_record_structConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterrecord__struct__float__event left, escapedTestspublic_partial_record_structConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterrecord__struct__float__event right)
+            {
+                // if neither are initialized, then they're equal
+                if(!left._isInitialized && !right._isInitialized) return true;
+                
+                return left._isInitialized && right._isInitialized && left._value.Equals(right._value);
+            }
+        }
 
         public class LinqToDbValueConverter : global::LinqToDB.Common.ValueConverter<escapedTestspublic_partial_record_structConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterrecord__struct__float__event, global::System.String>
         {

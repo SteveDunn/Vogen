@@ -128,8 +128,7 @@ var validation = @class.validate(value);
 
             return new @class(value);
         }
-        
-          public readonly global::System.Boolean Equals(@class other)
+                  public readonly global::System.Boolean Equals(@class other)
           {
             // It's possible to create uninitialized instances via converters such as EfCore (HasDefaultValue), which call Equals.
             // We treat anything uninitialized as not equal to anything, even other uninitialized instances of this type.
@@ -137,7 +136,6 @@ var validation = @class.validate(value);
 
             return global::System.Collections.Generic.EqualityComparer<System.Int32>.Default.Equals(Value, other.Value);
           }
-
           public global::System.Boolean Equals(@class other, global::System.Collections.Generic.IEqualityComparer<@class> comparer)
           {
             return comparer.Equals(this, other);
