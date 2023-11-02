@@ -213,13 +213,13 @@ $$"""
     public static string GenerateYourAssemblyVersion() => typeof(Util).Assembly.GetName().Version!.ToString();
 
     public static string GenerateToString(VoWorkItem item) =>
-        item.HasToString ? string.Empty
+        item.UserProvidedOverloads.ToStringInfo.WasSupplied ? string.Empty
             : $@"/// <summary>Returns the string representation of the underlying <see cref=""{item.UnderlyingTypeFullName}"" />.</summary>
     /// <inheritdoc cref=""{item.UnderlyingTypeFullName}.ToString()"" />
     public override global::System.String ToString() => _isInitialized ? Value.ToString() : ""[UNINITIALIZED]"";";
 
     public static string GenerateToStringReadOnly(VoWorkItem item) =>
-        item.HasToString ? string.Empty :
+        item.UserProvidedOverloads.ToStringInfo.WasSupplied ? string.Empty :
             $@"/// <summary>Returns the string representation of the underlying type</summary>
     /// <inheritdoc cref=""{item.UnderlyingTypeFullName}.ToString()"" />
     public readonly override global::System.String ToString() =>_isInitialized ? Value.ToString() : ""[UNINITIALIZED]"";";

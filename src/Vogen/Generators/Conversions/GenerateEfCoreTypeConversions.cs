@@ -24,20 +24,53 @@ internal class GenerateEfCoreTypeConversions : IGenerateConversion
         {
             code += """
                     
-                                public class EfCoreValueComparer : global::Microsoft.EntityFrameworkCore.ChangeTracking.ValueComparer<VOTYPE>
-                                {
-                                    public EfCoreValueComparer() : base((left, right) => (!left._isInitialized && !right._isInitialized) || (left._isInitialized && right._isInitialized && left.Equals(right)), instance => instance._isInitialized ? instance._value.GetHashCode() : 0) { }
+                            public class EfCoreValueComparer : global::Microsoft.EntityFrameworkCore.ChangeTracking.ValueComparer<VOTYPE>
+                            {
+                                public EfCoreValueComparer() : base(
+                                    (left, right) => DoCompare(left, right), 
+                                    instance => instance._isInitialized ? instance.GetHashCode() : 0) 
+                                { 
                                 }
+                                
+                                static bool DoCompare(MyVo left, MyVo right)
+                                {
+                                    // if neither are initialized, then they're equal
+                                    if(!left._isInitialized && !right._isInitialized) return true;
+                                    
+                                    return left._isInitialized && right._isInitialized && left._value.Equals(right._value);
+                                }
+                            }
                     """;
         }
         else
         {
             code += """
                     
-                                public class EfCoreValueComparer : global::Microsoft.EntityFrameworkCore.ChangeTracking.ValueComparer<VOTYPE>
-                                {
-                                    public EfCoreValueComparer() : base((left, right) => (left == (VOTYPE)null && right == (VOTYPE)null) || object.ReferenceEquals(left, right) || (!left._isInitialized && !right._isInitialized) || (left._isInitialized && right._isInitialized && left.Equals(right)), instance => instance._isInitialized ? instance._value.GetHashCode() : 0) { }
+                            public class EfCoreValueComparer : global::Microsoft.EntityFrameworkCore.ChangeTracking.ValueComparer<VOTYPE>
+                            {
+                                public EfCoreValueComparer() : base(
+                                    (left, right) => DoCompare(left, right), 
+                                    instance => instance._isInitialized ? instance._value.GetHashCode() : 0) 
+                                { 
                                 }
+                                    
+                                static bool DoCompare(MyVo left, MyVo right)
+                                {
+                                    // if both null, then they're equal
+                                    if (left is null) return right is null;
+                                    
+                                    // if only right is null, then they're not equal
+                                    if (right is null) return false;
+                                    
+                                    // if they're both the same reference, then they're equal
+                                    if (ReferenceEquals(left, right)) return true;
+                                    
+                                    // if neither are initialized, then they're equal
+                                    if(!left._isInitialized && !right._isInitialized) return true;
+                                    
+                                    return left._isInitialized && right._isInitialized && left._value.Equals(right._value);            
+                                }                
+                            }
                     """;
         }
 

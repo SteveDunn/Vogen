@@ -10,7 +10,7 @@ public static class GenerateEqualsAndHashCodes
         
         string virtualKeyword = item is { IsRecordClass: true, IsSealed: false } ? "virtual " : " ";
 
-        var ret = 
+        var ret = item.UserProvidedOverloads.EqualsForWrapper.WasProvided ? string.Empty : 
 $$"""
 
             public {{virtualKeyword}}global::System.Boolean Equals({{className}} other)
@@ -31,13 +31,17 @@ $$"""
 
               return GetType() == other.GetType() && {{$"global::System.Collections.Generic.EqualityComparer<{item.UnderlyingTypeFullName}>.Default.Equals(Value, other.Value)"}};
             }
+""";
+
+        ret += 
+$$"""
 
              public global::System.Boolean Equals({{className}} other, global::System.Collections.Generic.IEqualityComparer<{{className}}> comparer)
              {
                  return comparer.Equals(this, other);
              }
 
-             {{GenerateEqualsForUnderlyingMethod(item, isReadOnly: false)}}
+             {{GenerateEqualsForUnderlyingType(item, isReadOnly: false)}}
 """;
 
         if (!item.IsRecordClass)
@@ -58,9 +62,8 @@ $$"""
     {
         var structName = tds.Identifier;
 
-        var ret =
+        var ret = item.UserProvidedOverloads.EqualsForWrapper.WasProvided ? string.Empty :
 $$"""
-
             public readonly global::System.Boolean Equals({{structName}} other)
             {
               // It's possible to create uninitialized instances via converters such as EfCore (HasDefaultValue), which call Equals.
@@ -69,13 +72,17 @@ $$"""
 
               return {{$"global::System.Collections.Generic.EqualityComparer<{item.UnderlyingTypeFullName}>.Default.Equals(Value, other.Value)"}};
             }
+  """;
+
+        ret +=
+$$"""
 
             public global::System.Boolean Equals({{structName}} other, global::System.Collections.Generic.IEqualityComparer<{{structName}}> comparer)
             {
               return comparer.Equals(this, other);
             }
 
-            {{GenerateEqualsForUnderlyingMethod(item, isReadOnly: true)}}
+            {{GenerateEqualsForUnderlyingType(item, isReadOnly: true)}}
   """;
 
         if (!item.IsRecordStruct)
@@ -95,6 +102,11 @@ $$"""
 
     public static string GenerateGetHashCodeForAClass(VoWorkItem item)
     {
+        if (item.UserProvidedOverloads.HashCodeInfo.WasProvided)
+        {
+            return string.Empty;
+        }
+        
         string itemUnderlyingType = item.UnderlyingTypeFullName;
 
         return
@@ -115,6 +127,11 @@ $$"""
 
     public static string GenerateGetHashCodeForAStruct(VoWorkItem item)
     {
+        if (item.UserProvidedOverloads.HashCodeInfo.WasProvided)
+        {
+            return string.Empty;
+        }
+
         string itemUnderlyingType = item.UnderlyingTypeFullName;
 
         return
@@ -127,7 +144,7 @@ $$"""
   """;
     }
 
-    private static string GenerateEqualsForUnderlyingMethod(VoWorkItem item, bool isReadOnly)
+    private static string GenerateEqualsForUnderlyingType(VoWorkItem item, bool isReadOnly)
     {
         string itemUnderlyingType = item.UnderlyingTypeFullName;
 
@@ -135,7 +152,7 @@ $$"""
 
         string readonlyOrEmpty = isReadOnly ? " readonly" : string.Empty;
 
-        string output = 
+        string output = item.UserProvidedOverloads.EqualsForUnderlying.WasProvided ? string.Empty :
 $$"""
 
             public{{readonlyOrEmpty}} global::System.Boolean Equals({{itemUnderlyingType}} primitive)

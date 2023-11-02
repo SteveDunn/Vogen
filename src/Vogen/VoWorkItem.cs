@@ -3,13 +3,14 @@ using System.Collections.Generic;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
+// ReSharper disable NullableWarningSuppressionIsUsed
 
 namespace Vogen;
 
 public class VoWorkItem
 {
-    private INamedTypeSymbol _underlyingType = null!;
-    private string _underlyingTypeFullName = null!;
+    private readonly INamedTypeSymbol _underlyingType = null!;
+    private readonly string _underlyingTypeFullName = null!;
     public MethodDeclarationSyntax? NormalizeInputMethod { get; init; }
     
     public MethodDeclarationSyntax? ValidateMethod { get; init; }
@@ -20,7 +21,7 @@ public class VoWorkItem
         init
         {
             _underlyingType = value;
-            _underlyingTypeFullName = value.FullName() ?? value?.Name ?? throw new InvalidOperationException(
+            _underlyingTypeFullName = value.FullName() ?? value.Name ?? throw new InvalidOperationException(
                 "No underlying type specified - please file a bug at https://github.com/SteveDunn/Vogen/issues/new?assignees=&labels=bug&template=BUG_REPORT.yml");
             IsUnderlyingAString = typeof(string).IsAssignableFrom(Type.GetType(_underlyingTypeFullName));
         }
@@ -52,15 +53,13 @@ public class VoWorkItem
     
     public Customizations Customizations { get; init; }
 
-    public INamedTypeSymbol? TypeForValidationExceptions { get; init; } = null!;
+    public INamedTypeSymbol? TypeForValidationExceptions { get; init; }
 
     public string ValidationExceptionFullName => TypeForValidationExceptions?.FullName() ?? "global::Vogen.ValueObjectValidationException";
 
     public string VoTypeName => TypeToAugment.Identifier.ToString();
     
     public string UnderlyingTypeFullName => _underlyingTypeFullName;
-
-    public bool HasToString { get; init; }
     
     public DebuggerAttributeGeneration DebuggerAttributes { get; init; }
     
@@ -77,4 +76,17 @@ public class VoWorkItem
     public bool DisableStackTraceRecordingInDebug { get; init; }
 
     public string AccessibilityKeyword { get; init; } = "public";
+    
+    public required UserProvidedOverloads UserProvidedOverloads { get; init; }
+}
+
+public class UserProvidedOverloads
+{
+    public UserProvidedToString ToStringInfo { get; set; }
+
+    public UserProvidedGetHashCode HashCodeInfo { get; set; }
+    
+    public UserProvidedEqualsForWrapper EqualsForWrapper { get; set; }
+    
+    public UserProvidedEqualsForUnderlying EqualsForUnderlying { get; set; }
 }

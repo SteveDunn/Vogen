@@ -66,16 +66,22 @@ internal static class BuildWorkItems
             return null;
         }
 
-        var config = VogenConfiguration.Combine(localConfig, globalConfig, () => compilation.GetSpecialType(SpecialType.System_Int32));
+        var config = VogenConfiguration.Combine(
+            localConfig,
+            globalConfig,
+            funcForDefaultUnderlyingType: () => compilation.GetSpecialType(SpecialType.System_Int32));
 
-        ReportErrorIfNestedType(target, context, voSymbolInformation);
+        ReportErrorIfNestedType(context, voSymbolInformation, target.NestingInfo);
 
+        INamedTypeSymbol underlyingType = config.UnderlyingType ?? throw new InvalidOperationException("No underlying type");
+        
         IEnumerable<InstanceProperties> instanceProperties =
-            TryBuildInstanceProperties(allAttributes, voSymbolInformation, context, config.UnderlyingType).ToList();
+            TryBuildInstanceProperties(allAttributes, voSymbolInformation, context, underlyingType).ToList();
 
-        var toStringInfo = HasToStringOverload(voSymbolInformation);
+        UserProvidedOverloads userProvidedOverloads =
+            DiscoverUserProvidedOverloads.Discover(voSymbolInformation, underlyingType);
 
-        ThrowIfToStringOverrideOnRecordIsUnsealed(target, context, toStringInfo);
+        ThrowIfToStringOverrideOnRecordIsUnsealed(target, context, userProvidedOverloads.ToStringInfo);
 
         MethodDeclarationSyntax? validateMethod = null;
         MethodDeclarationSyntax? normalizeInputMethod = null;
@@ -107,7 +113,6 @@ internal static class BuildWorkItems
 
         bool isWrapperAValueType = voTypeSyntax switch
         {
-
             ClassDeclarationSyntax => false,
             StructDeclarationSyntax => true,
             RecordDeclarationSyntax rds when rds.IsKind(SyntaxKind.RecordDeclaration) => false,
@@ -122,8 +127,8 @@ internal static class BuildWorkItems
             TypeToAugment = voTypeSyntax,
             IsTheUnderlyingAValueType = isValueType,
             IsTheWrapperAValueType = isWrapperAValueType,
-            HasToString = toStringInfo.HasToString,
-            UnderlyingType = config.UnderlyingType ?? throw new InvalidOperationException("No underlying type"),
+            UserProvidedOverloads = userProvidedOverloads,
+            UnderlyingType = underlyingType,
             Conversions = config.Conversions,
             DeserializationStrictness = config.DeserializationStrictness,
             DebuggerAttributes = config.DebuggerAttributes,
@@ -144,74 +149,14 @@ internal static class BuildWorkItems
 
     private static void ThrowIfToStringOverrideOnRecordIsUnsealed(VoTarget target,
         SourceProductionContext context,
-        ToStringInfo info)
+        UserProvidedToString info)
     {
-        if (info is { HasToString: true, Method: not null, IsRecordClass: true, IsSealed: false })
+        if (info is { WasSupplied: true, Method: not null, IsRecordClass: true, IsSealed: false })
         {
             context.ReportDiagnostic(
                 DiagnosticsCatalogue.RecordToStringOverloadShouldBeSealed(
                     info.Method.Locations[0],
                     target.VoSymbolInformation.Name));
-        }
-    }
-
-    private record struct ToStringInfo(bool HasToString, bool IsRecordClass, bool IsSealed, IMethodSymbol? Method);
-
-    private static ToStringInfo HasToStringOverload(ITypeSymbol typeSymbol)
-    {
-        while (true)
-        {
-            var toStringMethods = typeSymbol.GetMembers("ToString").OfType<IMethodSymbol>();
-
-            foreach (IMethodSymbol eachMethod in toStringMethods)
-            {
-                // we could have "public virtual new string ToString() => "xxx" 
-                if (!eachMethod.IsOverride && !eachMethod.IsVirtual)
-                {
-                    continue;
-                }
-
-                // can't change access rights
-                if (eachMethod.DeclaredAccessibility != Accessibility.Public && eachMethod.DeclaredAccessibility != Accessibility.Protected)
-                {
-                    continue;
-                }
-
-                if (eachMethod.Parameters.Length != 0)
-                {
-                    continue;
-                }
-
-                // records always have an implicitly declared ToString method. In C# 10, the user can differentiate this
-                // by making the method sealed.
-                if (typeSymbol.IsRecord && eachMethod.IsImplicitlyDeclared)
-                {
-                    continue;
-                }
-
-                // In C# 10, the user can differentiate a ToString overload by making the method sealed.
-                // We report back if it's sealed or not so that we can emit an error if it's not sealed.
-                // The error stops another compilation error; if unsealed, the generator generates a duplicate ToString() method.
-                return new ToStringInfo(
-                    HasToString: true,
-                    IsRecordClass: typeSymbol is { IsRecord: true, IsReferenceType: true },
-                    IsSealed: eachMethod.IsSealed,
-                    eachMethod);
-            }
-
-            INamedTypeSymbol? baseType = typeSymbol.BaseType;
-
-            if (baseType is null)
-            {
-                return new ToStringInfo(false, false, false, null);
-            }
-            
-            if (baseType.SpecialType == SpecialType.System_Object || baseType.SpecialType == SpecialType.System_ValueType)
-            {
-                return new ToStringInfo(false, false, false, null);
-            }
-
-            typeSymbol = baseType;
         }
     }
 
@@ -246,13 +191,14 @@ internal static class BuildWorkItems
         }
     }
 
-    private static void ReportErrorIfNestedType(VoTarget target, SourceProductionContext context,
-        INamedTypeSymbol voSymbolInformation)
+    private static void ReportErrorIfNestedType(
+        SourceProductionContext context,
+        INamedTypeSymbol voSymbolInformation,
+        NestingInfo nestingInfo)
     {
-        INamedTypeSymbol? containingType = target.ContainingType;
-        if (containingType != null)
+        if(nestingInfo.IsNested)
         {
-            context.ReportDiagnostic(DiagnosticsCatalogue.TypeCannotBeNested(voSymbolInformation, containingType));
+            context.ReportDiagnostic(DiagnosticsCatalogue.TypeCannotBeNested(voSymbolInformation, nestingInfo.ContainingType));
         }
     }
 
@@ -361,7 +307,7 @@ internal static class BuildWorkItems
         ImmutableArray<AttributeData> attributes,
         INamedTypeSymbol voClass,
         SourceProductionContext context, 
-        INamedTypeSymbol? underlyingType)
+        INamedTypeSymbol underlyingType)
     {
         IEnumerable<AttributeData> matchingAttributes =
             attributes.Where(a => a.AttributeClass?.FullName() is "Vogen.InstanceAttribute");

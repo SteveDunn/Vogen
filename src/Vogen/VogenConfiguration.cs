@@ -6,7 +6,8 @@ namespace Vogen;
 public class VogenConfiguration
 {
     // Don't add default values here, they should be in DefaultInstance.
-    public VogenConfiguration(INamedTypeSymbol? underlyingType,
+    public VogenConfiguration(
+        INamedTypeSymbol? underlyingType,
         INamedTypeSymbol? validationExceptionType,
         Conversions conversions,
         Customizations customizations,
@@ -100,24 +101,33 @@ public class VogenConfiguration
             (var local, _) => local,
         };
 
-        var validationExceptionType = localValues.ValidationExceptionType ?? globalValues?.ValidationExceptionType ?? DefaultInstance.ValidationExceptionType;
-        var underlyingType = localValues.UnderlyingType ?? globalValues?.UnderlyingType ?? funcForDefaultUnderlyingType?.Invoke();
+        var validationExceptionType = localValues.ValidationExceptionType ?? 
+                                      globalValues?.ValidationExceptionType ?? 
+                                      DefaultInstance.ValidationExceptionType;
+
+        var underlyingType = localValues.UnderlyingType ?? 
+                             globalValues?.UnderlyingType ?? 
+                             funcForDefaultUnderlyingType?.Invoke();
+        
         var disableStackTraceRecordingInDebug = globalValues?.DisableStackTraceRecordingInDebug ?? false;
 
         return new VogenConfiguration(
-            underlyingType,
-            validationExceptionType,
-            conversions,
-            customizations,
-            strictness,
-            debuggerAttributes,
-            comparison,
-            stringComparers,
-            toPrimitiveCastOperators,
-            fromPrimitiveCastOperators,
-            disableStackTraceRecordingInDebug);
+            underlyingType: underlyingType,
+            validationExceptionType: validationExceptionType,
+            conversions: conversions,
+            customizations: customizations,
+            deserializationStrictness: strictness,
+            debuggerAttributes: debuggerAttributes,
+            comparison: comparison,
+            stringComparers: stringComparers,
+            toPrimitiveCasting: toPrimitiveCastOperators,
+            fromPrimitiveCasting: fromPrimitiveCastOperators,
+            disableStackTraceRecordingInDebug: disableStackTraceRecordingInDebug);
     }
 
+    /// <summary>
+    /// The underlying type. It may be null if not specified (i.e. defaulted).
+    /// </summary>
     public INamedTypeSymbol? UnderlyingType { get; }
     
     public INamedTypeSymbol? ValidationExceptionType { get; }

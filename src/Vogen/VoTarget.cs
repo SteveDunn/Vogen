@@ -13,13 +13,13 @@ internal class VoTarget
     public VoTarget(
         SemanticModel semanticModel, 
         TypeDeclarationSyntax typeToAugment,
-        INamedTypeSymbol? containingType, 
+        NestingInfo nestingInfo, 
         INamedTypeSymbol symbolForType,
         ImmutableArray<AttributeData> dataForAttributes)
     {
         SemanticModel = semanticModel;
         VoSyntaxInformation = typeToAugment ?? throw new InvalidOperationException("No type to augment!");
-        ContainingType = containingType;
+        NestingInfo = nestingInfo;
         VoSymbolInformation = symbolForType ?? throw new InvalidOperationException("No symbol for type!");
         DataForAttributes = dataForAttributes;
     }
@@ -35,7 +35,7 @@ internal class VoTarget
     /// The type that contains this Value Object. Used to check (and throw) if
     /// it is a nested class as that is not supported.
     /// </summary>
-    public INamedTypeSymbol? ContainingType { get; set; }
+    public NestingInfo NestingInfo { get; set; }
     
     /// <summary>
     /// The symbol information for the Value Object
