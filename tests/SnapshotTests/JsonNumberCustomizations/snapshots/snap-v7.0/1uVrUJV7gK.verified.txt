@@ -135,7 +135,6 @@ namespace Whatever
 
               return GetType() == other.GetType() && global::System.Collections.Generic.EqualityComparer<System.Double>.Default.Equals(Value, other.Value);
             }
-
              public global::System.Boolean Equals(stj_number_as_string_public_partial_recordConversions_NewtonsoftJson___Conversions_SystemTextJsondouble other, global::System.Collections.Generic.IEqualityComparer<stj_number_as_string_public_partial_recordConversions_NewtonsoftJson___Conversions_SystemTextJsondouble> comparer)
              {
                  return comparer.Equals(this, other);

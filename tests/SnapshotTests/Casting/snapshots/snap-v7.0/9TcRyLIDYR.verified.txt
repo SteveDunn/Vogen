@@ -107,8 +107,7 @@ namespace Whatever
 
             return new _casting_public_readonly_partial_structCastOperator_ExplicitCastOperator_Explicitdecimal(value);
         }
-        
-          public readonly global::System.Boolean Equals(_casting_public_readonly_partial_structCastOperator_ExplicitCastOperator_Explicitdecimal other)
+                  public readonly global::System.Boolean Equals(_casting_public_readonly_partial_structCastOperator_ExplicitCastOperator_Explicitdecimal other)
           {
             // It's possible to create uninitialized instances via converters such as EfCore (HasDefaultValue), which call Equals.
             // We treat anything uninitialized as not equal to anything, even other uninitialized instances of this type.
@@ -116,7 +115,6 @@ namespace Whatever
 
             return global::System.Collections.Generic.EqualityComparer<System.Decimal>.Default.Equals(Value, other.Value);
           }
-
           public global::System.Boolean Equals(_casting_public_readonly_partial_structCastOperator_ExplicitCastOperator_Explicitdecimal other, global::System.Collections.Generic.IEqualityComparer<_casting_public_readonly_partial_structCastOperator_ExplicitCastOperator_Explicitdecimal> comparer)
           {
             return comparer.Equals(this, other);

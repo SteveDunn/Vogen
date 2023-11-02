@@ -105,8 +105,7 @@ namespace Whatever
 
             return new internal_readonly_partial_structConversions_Nonedecimal(value);
         }
-        
-          public readonly global::System.Boolean Equals(internal_readonly_partial_structConversions_Nonedecimal other)
+                  public readonly global::System.Boolean Equals(internal_readonly_partial_structConversions_Nonedecimal other)
           {
             // It's possible to create uninitialized instances via converters such as EfCore (HasDefaultValue), which call Equals.
             // We treat anything uninitialized as not equal to anything, even other uninitialized instances of this type.
@@ -114,7 +113,6 @@ namespace Whatever
 
             return global::System.Collections.Generic.EqualityComparer<System.Decimal>.Default.Equals(Value, other.Value);
           }
-
           public global::System.Boolean Equals(internal_readonly_partial_structConversions_Nonedecimal other, global::System.Collections.Generic.IEqualityComparer<internal_readonly_partial_structConversions_Nonedecimal> comparer)
           {
             return comparer.Equals(this, other);
