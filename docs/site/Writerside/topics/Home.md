@@ -1,5 +1,10 @@
 # Vogen: Cure your Primitive Obsession
 
+<p align="center">
+  <img src="cavey.png" alt="Picture of caveman holding the number '1'">
+</p>
+
+
 Vogen is a .NET Source Generator and analyzer. It turns your primitives (`int`s, `decimal`s etc.) into Value Objects that
 represent domain concepts (CustomerId, AccountBalance etc.)
 
