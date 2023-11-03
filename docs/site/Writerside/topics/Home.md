@@ -5,7 +5,7 @@
 </p>
 
 
-Vogen is a .NET Source Generator and analyzer. It turns your primitives (`int`s, `decimal`s etc.) into Value Objects that
+Vogen is a .NET Source Generator and analyzer. It turns your primitives (ints, decimals etc.) into Value Objects that
 represent domain concepts (CustomerId, AccountBalance etc.)
 
 It adds new C# compilation errors to help stop the creation of invalid Value Objects.
