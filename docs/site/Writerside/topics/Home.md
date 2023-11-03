@@ -1,7 +1,7 @@
 # Vogen: Cure your Primitive Obsession
 
 <p align="center">
-  <img src="cavey.png" alt="Picture of caveman holding the number '1'">
+  <img src="cavey.png" alt="Picture of caveman holding the number '1'"/>
 </p>
 
 
