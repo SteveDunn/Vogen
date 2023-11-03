@@ -3,7 +3,7 @@
         SYSTEM "https://resources.jetbrains.com/writerside/1.0/product-profile.dtd">
 
 <instance-profile id="hi" name="Vogen"
-                 start-page="Casting.md">
+                 start-page="Home.md">
 
     <toc-element topic="Home.md"/>
     <toc-element topic="Value-Objects-in-EFCore.md"/>

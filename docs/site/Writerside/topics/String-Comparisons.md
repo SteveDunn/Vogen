@@ -4,7 +4,7 @@ It is possible to generate `StringComparer` types for your Value Objects that wr
 
 This is done by specifying the `stringComparers` parameter in either local or global config:
 
-```
+```c#
 [ValueObject<string>(stringComparers: StringComparersGeneration.Generate)]
 public partial class MyVo
 {
@@ -15,7 +15,7 @@ This parameter is an enum with options `Omit` and `Generate`. It defaults to `Om
 
 If it's set to `Generate`, then it generates a bunch of comparers (`Ordinal`, `IgnoreCase` etc.) which can then be used in `Equals` or in collections, e.g.
 
-```
+```c#
         var left = MyVo.From("abc");
         var right = MyVo.From("AbC");
 
@@ -26,7 +26,7 @@ If it's set to `Generate`, then it generates a bunch of comparers (`Ordinal`, `I
 
 ... and in a dictionary
 
-```
+```c#
         Dictionary<MyVo, int> d = new(MyVo.Comparers.OrdinalIgnoreCase);
 
         MyVo key1Lower = MyVo.From("abc");
@@ -38,7 +38,7 @@ If it's set to `Generate`, then it generates a bunch of comparers (`Ordinal`, `I
 
 Also generated is an `Equals` method that takes an `IEqualityComparer<>`:
 
-```
+```c#
 public bool Equals(MyVo other, IEqualityComparer<MyVo> comparer)
 {
     return comparer.Equals(this, other);
