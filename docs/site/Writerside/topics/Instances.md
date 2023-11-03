@@ -1,6 +1,6 @@
 # Instances
 
-A type can have predefined 'instances'. For examples
+A type can have predefined 'instances'—examples include:
 
 ```c#
     [ValueObject(typeof(float))]

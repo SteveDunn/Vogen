@@ -26,4 +26,8 @@
         <description>Created after removal of "FAQ" from Help Instance</description>
         <accepts>Welcome-to-Vogen!1.html</accepts>
     </rule>
+    <rule id="5925df16">
+        <description>Created after removal of "Casting" from Vogen</description>
+        <accepts>Casting.html</accepts>
+    </rule>
 </rules>

@@ -2,12 +2,12 @@
 <!DOCTYPE instance-profile
         SYSTEM "https://resources.jetbrains.com/writerside/1.0/product-profile.dtd">
 
-<instance-profile id="hi" name="Help Instance"
+<instance-profile id="hi" name="Vogen"
                  start-page="Casting.md">
 
-    <toc-element topic="Empty-MD-Topic.md"/>
+    <toc-element topic="Home.md"/>
     <toc-element topic="Value-Objects-in-EFCore.md"/>
-    <toc-element topic="String-Comparisons1.md"/>
+    <toc-element topic="String-Comparisons.md"/>
     <toc-element topic="Overriding-methods.md"/>
     <toc-element topic="Normalization.md"/>
     <toc-element topic="Integration.md"/>
@@ -16,7 +16,6 @@
     <toc-element topic="Records.md">
         <toc-element topic="Differences-when-using-records.md"/>
     </toc-element>
-    <toc-element topic="Casting.md"/>
     <toc-element topic="Testing.md">
     </toc-element>
     <toc-element topic="FAQ.md">

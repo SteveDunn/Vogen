@@ -22,3 +22,5 @@ public partial struct Score
     public Score IncreaseBy(Points points) => From(_value + points.Value);
 }
 ```
+
+

@@ -1,3 +1,5 @@
+# String Comparisons
+
 It is possible to generate `StringComparer` types for your Value Objects that wrap strings.
 
 This is done by specifying the `stringComparers` parameter in either local or global config:
