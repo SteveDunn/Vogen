@@ -76,6 +76,11 @@ namespace Analyzer.Utilities.Extensions
             return symbol.DeclaredAccessibility == Accessibility.Public;
         }
 
+        public static bool IsInternal(this ISymbol symbol)
+        {
+            return symbol.DeclaredAccessibility == Accessibility.Internal;
+        }
+
         public static bool IsProtected(this ISymbol symbol)
         {
             return symbol.DeclaredAccessibility == Accessibility.Protected;

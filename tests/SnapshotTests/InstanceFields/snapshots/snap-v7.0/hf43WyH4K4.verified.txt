@@ -118,24 +118,25 @@ namespace Whatever
 
             return new internal_partial_record_structlong(value);
         }
-        
-public readonly global::System.Boolean Equals(internal_partial_record_structlong other)
-{
-    // It's possible to create uninitialized instances via converters such as EfCore (HasDefaultValue), which call Equals.
-    // We treat anything uninitialized as not equal to anything, even other uninitialized instances of this type.
-    if(!_isInitialized || !other._isInitialized) return false;
+                  public readonly global::System.Boolean Equals(internal_partial_record_structlong other)
+          {
+            // It's possible to create uninitialized instances via converters such as EfCore (HasDefaultValue), which call Equals.
+            // We treat anything uninitialized as not equal to anything, even other uninitialized instances of this type.
+            if(!_isInitialized || !other._isInitialized) return false;
 
-    return global::System.Collections.Generic.EqualityComparer<System.Int64>.Default.Equals(Value, other.Value);
-}
+            return global::System.Collections.Generic.EqualityComparer<System.Int64>.Default.Equals(Value, other.Value);
+          }
+          public global::System.Boolean Equals(internal_partial_record_structlong other, global::System.Collections.Generic.IEqualityComparer<internal_partial_record_structlong> comparer)
+          {
+            return comparer.Equals(this, other);
+          }
 
-public global::System.Boolean Equals(internal_partial_record_structlong other, global::System.Collections.Generic.IEqualityComparer<internal_partial_record_structlong> comparer)
-{
-    return comparer.Equals(this, other);
-}
+          
+            public readonly global::System.Boolean Equals(System.Int64 primitive)
+            {
+              return Value.Equals(primitive);
+            }
 
-  public readonly global::System.Boolean Equals(System.Int64 primitive) {
-    return Value.Equals(primitive);
- }
 
         public static global::System.Boolean operator ==(internal_partial_record_structlong left, System.Int64 right) => Equals(left.Value, right);
         public static global::System.Boolean operator !=(internal_partial_record_structlong left, System.Int64 right) => !Equals(left.Value, right);
@@ -277,10 +278,12 @@ public global::System.Boolean Equals(internal_partial_record_structlong other, g
         return false;
     }
 
-    public readonly override global::System.Int32 GetHashCode()
-    {
-        return global::System.Collections.Generic.EqualityComparer<System.Int64>.Default.GetHashCode(Value);
-    }
+
+        
+          public readonly override global::System.Int32 GetHashCode()
+          {
+            return global::System.Collections.Generic.EqualityComparer<System.Int64>.Default.GetHashCode(Value);
+          }
 
         private readonly void EnsureInitialized()
         {
@@ -387,25 +390,27 @@ public static readonly internal_partial_record_structlong MyValue = new internal
 
 
 
-        internal sealed class internal_partial_record_structlongDebugView
-        {
-            private readonly internal_partial_record_structlong _t;
-
-            internal_partial_record_structlongDebugView(internal_partial_record_structlong t)
+        
+            internal sealed class internal_partial_record_structlongDebugView
             {
-                _t = t;
-            }
+                private readonly internal_partial_record_structlong _t;
 
-            public global::System.Boolean IsInitialized => _t._isInitialized;
-            public global::System.String UnderlyingType => "System.Int64";
-            public global::System.String Value => _t._isInitialized ? _t._value.ToString() : "[not initialized]" ;
-
-            #if DEBUG
-            public global::System.String CreatedWith => _t._stackTrace?.ToString() ?? "the From method";
-            #endif
-
-            public global::System.String Conversions => @"Default";
+                internal_partial_record_structlongDebugView(internal_partial_record_structlong t)
+                {
+                    _t = t;
                 }
 
+                public global::System.Boolean IsInitialized => _t._isInitialized;
+                public global::System.String UnderlyingType => "System.Int64";
+                public global::System.String Value => _t._isInitialized ? _t._value.ToString() : "[not initialized]" ;
+
+                #if DEBUG
+                    public global::System.String CreatedWith => _t._stackTrace?.ToString() ?? "the From method";
+                #endif
+
+                public global::System.String Conversions => @"Default";
+            }
+
 }
+
 }

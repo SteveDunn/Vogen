@@ -36,18 +36,22 @@ internal static class VoFilter
 
         var semanticModel = context.SemanticModel;
 
-        var voSymbolInformation = (INamedTypeSymbol) semanticModel.GetDeclaredSymbol(context.Node)!;
+        var declaredSymbol = semanticModel.GetDeclaredSymbol(context.Node)!;
+        
+        var voSymbolInformation = (INamedTypeSymbol) declaredSymbol;
 
         var attributeData = TryGetValueObjectAttributes(voSymbolInformation).ToImmutableArray();
 
-        if(attributeData.Length > 0)
+        if (attributeData.Length > 0)
         {
             return new VoTarget(
-                semanticModel,
-                voSyntaxInformation,
-                semanticModel.GetDeclaredSymbol(context.Node)!.ContainingType,
-                voSymbolInformation,
-                attributeData);
+                semanticModel: semanticModel,
+                typeToAugment: voSyntaxInformation,
+                nestingInfo: declaredSymbol.ContainingType is not null
+                    ? NestingInfo.AsNestedIn(declaredSymbol.ContainingType)
+                    : NestingInfo.NotNested,
+                symbolForType: voSymbolInformation,
+                dataForAttributes: attributeData);
         }
 
         return null;

@@ -1,4 +1,5 @@
 ﻿using System.Threading.Tasks;
+using Shared;
 using VerifyXunit;
 using Vogen;
 
@@ -7,6 +8,115 @@ namespace SnapshotTests.GeneralStuff
     [UsesVerify]
     public class GeneralTests
     {
+        [Fact]
+        public async Task EFCore_generated_stuff()
+        {
+            var source = @"using Vogen;
+  [ValueObject(conversions: Conversions.EfCoreValueConverter, underlyingType: typeof(string))]
+  public partial struct MyVo { }
+";
+
+            await RunTest(source);
+        }
+
+        [Fact]
+        public async Task User_supplied_GetHashCode()
+        {
+            var source = @"using Vogen;
+[ValueObject(typeof(string))]
+public readonly partial record struct VoWithGetHashCode
+{
+    public override int GetHashCode()
+    {
+        // custom code
+        return 0;
+    }
+}
+";
+
+            await RunTest(source);
+        }
+
+        [Fact]
+        public async Task User_supplied_Equals()
+        {
+            var source = @"using Vogen;
+[ValueObject(typeof(string))]
+public readonly partial record struct MyVo
+{
+    public readonly bool Equals(MyVo other)
+    {
+        // custom code
+        return Value == other.Value;
+    }
+
+    public readonly bool Equals(string other)
+    {
+        // custom code
+        return Value == other;
+    }
+}
+";
+
+            await new SnapshotRunner<ValueObjectGenerator>()
+                    .WithSource(source)
+                    .IgnoreInitialCompilationErrors()
+                    .RunOnAllFrameworks();
+        }
+
+        [SkippableFact]
+        public async Task User_supplied_Equals_generic()
+        {
+            var source = @"using Vogen;
+[ValueObject<string>]
+public readonly partial record struct MyVo
+{
+    public readonly bool Equals(MyVo other)
+    {
+        // custom code
+        return Value == other.Value;
+    }
+
+    public readonly bool Equals(string other)
+    {
+        // custom code
+        return Value == other;
+    }
+}
+";
+
+            await new SnapshotRunner<ValueObjectGenerator>()
+                    .WithSource(source)
+                    .IgnoreInitialCompilationErrors()
+                    .RunOn(TargetFramework.Net7_0);
+        }
+
+        [Fact]
+        public async Task Bug_fix_516_user_can_provide_Equals_and_GetHashCode()
+        {
+            var source = @"using Vogen;
+[ValueObject(typeof(string))]
+public readonly partial record struct BugFix516Vo
+{
+    public readonly bool Equals(BugFix516Vo other)
+    {
+        // custom code
+        return Value == other.Value;
+    }
+
+    public override int GetHashCode()
+    {
+        // custom code
+        return 0;
+    }
+}";
+
+            await new SnapshotRunner<ValueObjectGenerator>()
+                    .WithSource(source)
+                    .IgnoreInitialCompilationErrors()
+                    .RunOnAllFrameworks();
+        }
+
         [Fact]
         public Task Partial_record_struct_created_successfully()
         {
@@ -63,11 +173,6 @@ public partial struct CustomerId
 
             return RunTest(source);
         }
-
-        private static Task RunTest(string source) =>
-            new SnapshotRunner<ValueObjectGenerator>()
-                .WithSource(source)
-                .RunOnAllFrameworks();
 
         [Fact]
         public Task No_namespace() =>
@@ -176,5 +281,11 @@ public partial struct @class
     }
 }
 ");
+        
+        private static Task RunTest(string source) =>
+            new SnapshotRunner<ValueObjectGenerator>()
+                .WithSource(source)
+                .RunOnAllFrameworks();
+        
     }
 }

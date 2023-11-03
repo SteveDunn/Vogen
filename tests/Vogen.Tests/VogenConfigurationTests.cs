@@ -1,5 +1,4 @@
 using FluentAssertions;
-using Microsoft.CodeAnalysis;
 using Xunit;
 
 namespace Vogen.Tests;

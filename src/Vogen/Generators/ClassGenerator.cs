@@ -1,4 +1,5 @@
 ﻿using Microsoft.CodeAnalysis.CSharp.Syntax;
+using Vogen.Generators.Conversions;
 
 namespace Vogen.Generators;
 
@@ -72,7 +73,7 @@ public {itemUnderlyingType} Value
 
             return instance;
         }}
-{GenerateEqualsAndHashCodes.GenerateStringComparersIfNeeded(item, tds)}  
+        {GenerateEqualsAndHashCodes.GenerateStringComparersIfNeeded(item, tds)}  
 
         // only called internally when something has been deserialized into
         // its primitive type.
@@ -124,11 +125,12 @@ public {itemUnderlyingType} Value
 
         {Util.GenerateDebuggerProxyForClasses(tds, item)}
     }}
+{GenerateEfCoreExtensions.GenerateIfNeeded(item)}
 {Util.WriteCloseNamespace(item.FullNamespace)}";
     }
 
     private static string GenerateNullCheckIfNeeded(VoWorkItem voWorkItem) =>
-        voWorkItem.IsValueType ? string.Empty
+        voWorkItem.IsTheUnderlyingAValueType ? string.Empty
             : $@"            if (value is null)
             {{
                 throw new {voWorkItem.ValidationExceptionFullName}(""Cannot create a value object with null."");

@@ -1,4 +1,5 @@
 ﻿using Microsoft.CodeAnalysis.CSharp.Syntax;
+using Vogen.Generators.Conversions;
 
 namespace Vogen.Generators;
 
@@ -133,11 +134,12 @@ using Vogen;
 
         {Util.GenerateDebuggerProxyForClasses(tds, item)}
     }}
+{GenerateEfCoreExtensions.GenerateIfNeeded(item)}
 {Util.WriteCloseNamespace(item.FullNamespace)}";
     }
 
     private static string GenerateNullCheckIfNeeded(VoWorkItem voWorkItem) =>
-        voWorkItem.IsValueType ? string.Empty
+        voWorkItem.IsTheUnderlyingAValueType ? string.Empty
             : $@"            if (value is null)
             {{
                 throw new {voWorkItem.ValidationExceptionFullName}(""Cannot create a value object with null."");

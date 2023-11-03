@@ -13,7 +13,7 @@ namespace Vogen
             IEnumerable<AttributeData> allAttributes,
             SourceProductionContext context, 
             INamedTypeSymbol voClass, 
-            INamedTypeSymbol? underlyingType)
+            INamedTypeSymbol underlyingType)
         {
             return allAttributes.Select(a => Build(a, context, voClass, underlyingType));
         }
@@ -21,7 +21,7 @@ namespace Vogen
         private static InstanceProperties? Build(AttributeData matchingAttribute,
             SourceProductionContext context,
             INamedTypeSymbol voClass,
-            INamedTypeSymbol? underlyingType)
+            INamedTypeSymbol underlyingType)
         {
             // try build it from non-named arguments
 
@@ -82,7 +82,7 @@ namespace Vogen
             TypedConstant commentConstant,
             INamedTypeSymbol voClass,
             SourceProductionContext context,
-            INamedTypeSymbol? underlyingType)
+            INamedTypeSymbol underlyingType)
         {
             bool hasErrors = false;
             if (nameConstant.Value is null)
@@ -104,7 +104,7 @@ namespace Vogen
 
             var r = InstanceGeneration.TryBuildInstanceValueAsText(
                 (string)nameConstant.Value!, 
-                valueConstant.Value!, underlyingType?.FullName());
+                valueConstant.Value!, underlyingType.FullName());
 
             if (!r.Success)
             {
