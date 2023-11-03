@@ -4,7 +4,7 @@ on:
   # If specified, the workflow will be triggered automatically once you push to the `main` branch.
   # Replace `main` with your branch’s name
   push:
-    branches: ["*"]
+    branches: ["main"]
   # Specify to run a workflow manually from the Actions tab on GitHub
   workflow_dispatch:
 
