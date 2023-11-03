@@ -6,24 +6,28 @@
         <accepts>page.html</accepts>
     </rule>
     -->
-    <rule id="6ffc6d14">
-        <description>Created after removal of "Overview" from API Docs</description>
-        <accepts>Overview.html</accepts>
+    <rule id="6db6c912">
+        <description><![CDATA[Created after removal of "<Vogen1.md>" from Help Instance]]></description>
+        <accepts>Vogen1.html</accepts>
     </rule>
-    <rule id="673d4d69">
-        <description>Created after removal of "Authentification" from API Docs</description>
-        <accepts>Authentification.html</accepts>
+    <rule id="4a3e0576">
+        <description><![CDATA[Created after removal of "<Home1.md>" from Help Instance]]></description>
+        <accepts>Home1.html</accepts>
     </rule>
-    <rule id="4078eb73">
-        <description>Created after removal of "API Quickstart" from API Docs</description>
-        <accepts>API-quickstart-XML.html</accepts>
+    <rule id="5d089268">
+        <description>Created after removal of "Records" from Help Instance</description>
+        <accepts>Records1.html</accepts>
     </rule>
-    <rule id="20d17971">
-        <description>Created after removal of "API Overview" from API Docs</description>
-        <accepts>API-Overview.html</accepts>
+    <rule id="2311987d">
+        <description>Created after removal of "Vogen" from Help Instance</description>
+        <accepts>Empty-MD-Topic1.html</accepts>
     </rule>
-    <rule id="8146e1e">
-        <description>Created after removal of "Changes" from API Docs</description>
-        <accepts>Changes-XML.html</accepts>
+    <rule id="bf07c4">
+        <description>Created after removal of "FAQ" from Help Instance</description>
+        <accepts>Welcome-to-Vogen!1.html</accepts>
+    </rule>
+    <rule id="5925df16">
+        <description>Created after removal of "Casting" from Vogen</description>
+        <accepts>Casting.html</accepts>
     </rule>
 </rules>
