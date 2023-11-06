@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic SYSTEM "https://resources.jetbrains.com/writerside/1.0/xhtml-entities.dtd">
+<topic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="https://resources.jetbrains.com/writerside/1.0/topic.v2.xsd"
+    id="Basics" title="Basics">
+
+    <title>
+Basics
+</title>
+<tldr>
+    <p>
+        [
+        TL;DR: add the nuget package, and create a struct like so: [ValueObject<<int>>] public partial struct CustomerIdShortcut { }
+    </p>
+</tldr>
+<p>To get started with Vogen, add the NuGet package</p>
+<p>A type can have predefined 'instances'—examples include:</p>
+
+<code-block lang="c#">
+    [ValueObject(typeof(float))]
+    [Instance(&quot;Freezing&quot;, 0.0f)]
+    [Instance(&quot;Boiling&quot;, 100.0f)]
+    [Instance(&quot;AbsoluteZero&quot;, -273.15f)]
+    public readonly partial struct Centigrade
+    {
+        public static Validation Validate(float value) =&gt;
+            value &gt;= AbsoluteZero.Value ? Validation.Ok : Validation.Invalid(&quot;Cannot be colder than absolute zero&quot;);
+    }
+</code-block>
+<p>An <code>Instance</code> attribute is a name and value. The name can be any valid C# name, and the value can either be a value
+matching the underlying type, or a string that will be converted to the underlying type.</p>
+<chapter title="Special attention for dates and times" id="special-attention-for-dates-and-times">
+<p>For <code>DateTime</code> and <code>DateTimeOffset</code>, the instance value can be:</p>
+
+<code-block lang="c#">
+[ValueObject(typeof(DateTime))]
+[Instance(name: &quot;iso8601_1&quot;, value: &quot;2022-12-13&quot;)]             // uses `.Parse` using `RoundTripKind` - will be a local date
+[Instance(name: &quot;iso8601_2&quot;, value: &quot;2022-12-13T13:14:15Z&quot;)]   // uses `.Parse` using `RoundTripKind`
+[Instance(name: &quot;ticks_as_long&quot;, value: 638064864000000000L)]  // uses ticks as UTC
+[Instance(name: &quot;ticks_as_int&quot;, value: 2147483647)]            // uses ticks as UTC
+public readonly partial struct DateTimeInstances
+{
+}
+</code-block>
+<p>Even though you <emphasis>can</emphasis> specify dates and times like this, it is probably better to specify them explicitly to avoid confusion</p>
+</chapter>
+
+</topic>

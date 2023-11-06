@@ -5,79 +5,6 @@
 </p>
 
 
-Vogen is a .NET Source Generator and analyzer. It turns your primitives (ints, decimals etc.) into Value Objects that
-represent domain concepts (CustomerId, AccountBalance etc.)
-
-It adds new C# compilation errors to help stop the creation of invalid Value Objects.
-
-How this documentation is organized:
-
-* Tutorials—take you by the hand through a series of steps to create an application that uses Vogen. Start here if you’re new to Vogen.
-
-* Topic guides—discuss key topics and concepts at a fairly high level and provide useful background information and explanation.
-
-* Reference guides-contains technical reference for Vogen usage, describing how it works and how to use it. The 
-assumption is that you have a basic understanding of key concepts.
-
-* How-to guides—recipes guiding you through the steps involved in addressing key problems and use-cases. They are more advanced than tutorials and assume some knowledge of how Vogen works.
-
-______________________
-
-
-## Overview
-
-The source generator generates strongly typed **domain concepts**. You provide this:
-
-``` c#
-[ValueObject<int>]
-public partial struct CustomerId {
-}
-```
-
-... and Vogen generates source code similar to this:
-
-```c#
-    public partial struct CustomerId : System.IEquatable<CustomerId>, System.IComparable<CustomerId>, System.IComparable {
-        private readonly int _value;
-
-        public readonly int Value => _value;
-
-        public CustomerId() {
-            throw new Vogen.ValueObjectValidationException("Validation skipped by attempting to use the default constructor...");
-        }
-
-        private CustomerId(int value) => _value = value;
-
-        public static CustomerId From(int value) {
-            CustomerId instance = new CustomerId(value);
-            return instance;
-        }
-
-        public readonly bool Equals(CustomerId other) ...
-        public readonly bool Equals(int primitive) ...
-        public readonly override bool Equals(object obj) ...
-        public static bool operator ==(CustomerId left, CustomerId right) ...
-        public static bool operator !=(CustomerId left, CustomerId right) ...
-        public static bool operator ==(CustomerId left, int right) ...
-        public static bool operator !=(CustomerId left, int right) ...
-        public static bool operator ==(int left, CustomerId right) ...
-        public static bool operator !=(int left, CustomerId right) ...
-
-        public readonly override int GetHashCode() ...
-
-        public readonly override string ToString() ...
-    }
-```
-
-You then use `CustomerId` instead of `int` in your domain in the full knowledge that it is valid and safe to use:
-
-```c#
-CustomerId customerId = CustomerId.From(123);
-SendInvoice(customerId);
-...
-
-public void SendInvoice(CustomerId customerId) { ... }
-```
 
 **Note:**
 > `Int` is the default type for Value Objects, but it is generally a good idea to explicitly declare each type
@@ -92,94 +19,10 @@ public partial struct AccountBalance { }
 public partial class LegalEntityName { }
 ```
 
-The main goal of Vogen is to **ensure the validity of your Value Objects**, the code analyzer helps you to avoid mistakes which
-might leave you with uninitialized Value Objects in your domain.
 
-It does this by **adding new constraints in the form of new C# compilation errors**. There are a few ways you could end up
-with uninitialized Value Objects. One way is by giving your type constructors. Providing your own constructors
-could mean that you forget to set a value, so **Vogen doesn't allow you to have user defined constructors**:
-
-```c#
-[ValueObject]
-public partial struct CustomerId {
-    // Vogen deliberately generates this so that you can't create your own:
-    // error CS0111: Type 'CustomerId' already defines a member called 'CustomerId' with the same parameter type
-    public CustomerId() { }
-
-    // error VOG008: Cannot have user defined constructors, please use the From method for creation.
-    public CustomerId(int value) { }
-}
-```
-
-In addition, Vogen will spot issues when **creating** or **consuming** Value Objects:
-
-```c#
-// catches object creation expressions
-var c = new CustomerId(); // error VOG010: Type 'CustomerId' cannot be constructed with 'new' as it is prohibited
-CustomerId c = default; // error VOG009: Type 'CustomerId' cannot be constructed with default as it is prohibited.
-
-var c = default(CustomerId); // error VOG009: Type 'CustomerId' cannot be constructed with default as it is prohibited.
-var c = GetCustomerId(); // error VOG010: Type 'CustomerId' cannot be constructed with 'new' as it is prohibited
-
-var c = Activator.CreateInstance<CustomerId>(); // error VOG025: Type 'CustomerId' cannot be constructed via Reflection as it is prohibited.
-var c = Activator.CreateInstance(typeof(CustomerId)); // error VOG025: Type 'MyVo' cannot be constructed via Reflection as it is prohibited
-
-// catches lambda expressions
-Func<CustomerId> f = () => default; // error VOG009: Type 'CustomerId' cannot be constructed with default as it is prohibited.
-
-// catches method / local function return expressions
-CustomerId GetCustomerId() => default; // error VOG009: Type 'CustomerId' cannot be constructed with default as it is prohibited.
-CustomerId GetCustomerId() => new CustomerId(); // error VOG010: Type 'CustomerId' cannot be constructed with 'new' as it is prohibited
-CustomerId GetCustomerId() => new(); // error VOG010: Type 'CustomerId' cannot be constructed with 'new' as it is prohibited
-
-// catches argument / parameter expressions
-Task<CustomerId> t = Task.FromResult<CustomerId>(new()); // error VOG010: Type 'CustomerId' cannot be constructed with 'new' as it is prohibited
-
-void Process(CustomerId customerId = default) { } // error VOG009: Type 'CustomerId' cannot be constructed with default as it is prohibited.
-```
-
-One of the main goals of this project is to achieve **almost the same speed and memory performance as using primitives directly**.
-Put another way, if your `decimal` primitive represents an Account Balance, then there is **extremely** low overhead of
-using an `AccountBalance` Value Object instead. Please see the [performance metrics below](#performance).
 
 ___
 
-## Installation
-
-Vogen is a [Nuget package](https://www.nuget.org/packages/Vogen). Install it with:
-
-`dotnet add package Vogen`
-
-When added to your project, the **source generator** generates the wrappers for your primitives and the **code analyzer**
-will let you know if you try to create invalid Value Objects.
-
-## Usage
-
-Think about your _domain concepts_ and how you use primitives to represent them, e.g., instead of this:
-
-```c#
-public void HandlePayment(int customerId, int accountId, decimal paymentAmount)
-```
-
-... have this:
-
-```c#
-public void HandlePayment(CustomerId customerId, AccountId accountId, PaymentAmount paymentAmount)
-```
-
-
-It's as simple as creating types like this:
-
-```c#
-[ValueObject] 
-public partial struct CustomerId { }
-
-[ValueObject] 
-public partial struct AccountId { }
-
-[ValueObject<decimal>] 
-public partial struct PaymentAmount { }
-```
 
 
 ## More on Primitive Obsession

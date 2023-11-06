@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic
+        SYSTEM "https://resources.jetbrains.com/writerside/1.0/xhtml-entities.dtd">
+<topic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:noNamespaceSchemaLocation="https://resources.jetbrains.com/writerside/1.0/topic.v2.xsd"
+       title="Vogen" id="Vogen" help-id="test">
+
+    <section-starting-page>
+        <title>Vogen</title>
+        <img src="cavey.png" alt="Picture of caveman holding the number '1'" width="100">
+        <description>
+            Vogen is a .NET Source Generator and analyzer. It turns your primitives (ints, decimals etc.) into Value Objects that
+            represent domain concepts (CustomerId, AccountBalance etc.)
+
+            It adds new C# compilation errors to help stop the creation of invalid Value Objects.
+
+        </description>
+
+        <spotlight>
+            <a href="Overview.md"
+               description="Overview" type="learn"/>
+            <a href="Tutorials.topic"
+               description="Tutorials" type="development"/>
+            ...
+        </spotlight>
+
+        <primary>
+            <title>Main group</title>
+            <a href="Instances.md"
+               description="Sed condimentum feugiat sagittis"/>
+            ...
+        </primary>
+
+        <secondary>
+            <title>Highlighted group</title>
+            <a href="Testing.md"
+               description="Sed condimentum feugiat sagittis"/>
+            ...
+        </secondary>
+
+        <misc>
+            <cards>
+                <title>Custom cards</title>
+                <a href="Normalization.md"
+                   description="Sed condimentum feugiat sagittis"/>
+                ...
+            </cards>
+
+            <links>
+                <group>
+                    <title>Custom links</title>
+                    <a href="Overriding-methods.md"
+                       description="Sed condimentum feugiat sagittis"/>
+                    ...
+                </group>
+                ...
+            </links>
+        </misc>
+    </section-starting-page>
+</topic>

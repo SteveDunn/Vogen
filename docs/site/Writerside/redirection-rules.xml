@@ -30,4 +30,12 @@
         <description>Created after removal of "Casting" from Vogen</description>
         <accepts>Casting.html</accepts>
     </rule>
+    <rule id="42e976fc">
+        <description>Created after removal of "Tutorials" from Vogen</description>
+        <accepts>Tutorials.html</accepts>
+    </rule>
+    <rule id="39894332">
+        <description>Created after removal of "Tutorial" from Vogen</description>
+        <accepts>Tutorial.html</accepts>
+    </rule>
 </rules>
