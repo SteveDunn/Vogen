@@ -291,7 +291,7 @@ public readonly partial struct Celsius {
 Each Value Object can have it's own *optional* configuration. Configuration includes:
 
 * The underlying type
-* Any 'conversions' (Dapper, System.Text.Json, Newtonsoft.Json, etc.) - see [the Integrations page](https://github.com/SteveDunn/Vogen/wiki/Integration) in the wiki for more information
+* Any 'conversions' (Dapper, System.Text.Json, Newtonsoft.Json, etc.) - see [the Integrations page](https://stevedunn.github.io/Vogen/integration.html) in the wiki for more information
 * The type of the exception that is thrown when validation fails
 
 If any of those above are not specified, then global configuration is inferred. It looks like this:
@@ -493,7 +493,7 @@ Yes. By default, each VO is decorated with a `TypeConverter` and `System.Text.Js
 
 ### Can I use them in EFCore?
 
-Yes, although there are certain considerations. [Please see the EFCore page on the Wiki](https://github.com/SteveDunn/Vogen/wiki/Value-Objects-in-EFCore), 
+Yes, although there are certain considerations. [Please see the EFCore page on the Wiki](https://stevedunn.github.io/Vogen/value-objects-in-efcore.html), 
 but the TL;DR is:
 
 * If the Value Object on your entity is a struct, then you don't need to do anything special
@@ -668,7 +668,7 @@ Yes, add NormalizeInput method, e.g.
 ```csharp
     private static string NormalizeInput(string input) => input.Trim();
 ```
-See [wiki](https://github.com/SteveDunn/Vogen/wiki/Normalization) for more information.
+See [wiki](https://stevedunn.github.io/Vogen/normalization.html) for more information.
 
 
 ### Can I create custom Value Object attributes with my own defaults?
