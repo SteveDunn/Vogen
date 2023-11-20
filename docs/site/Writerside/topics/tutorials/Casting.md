@@ -1,4 +1,4 @@
-# Casting
+# Cast to and from the underlying type
 
 It is recommended not to use casting operators, either explicit or implicit.
 

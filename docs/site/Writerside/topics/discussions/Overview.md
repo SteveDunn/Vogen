@@ -1,14 +1,11 @@
 # Overview
 
-<chapter>
-Vogen is a source generator. The source generator generates strongly typed **domain concepts**. 
-</chapter>
-
-You provide this:
+Vogen wraps .NET primitives. You provide this:
 
 ``` c#
 [ValueObject<int>]
-public partial struct CustomerId {
+public partial struct CustomerId 
+{
 }
 ```
 
@@ -51,7 +48,8 @@ public partial struct CustomerId : System.IEquatable<CustomerId>,
 ```
 
 
-You then use `CustomerId` instead of `int` in your domain in the full knowledge that it is valid and safe to use:
+Then, in your **domain**, you use `CustomerId` instead of `int`
+with the confidence that it is valid and represents _exactly_ what it says:
 
 ```c#
 CustomerId customerId = CustomerId.From(123);
@@ -61,21 +59,29 @@ SendInvoice(customerId);
 public void SendInvoice(CustomerId customerId) { ... }
 ```
 
-The main goal of Vogen is to **ensure the validity of your Value Objects**, the code analyzer helps you to avoid mistakes which
-might leave you with uninitialized Value Objects in your domain.
+The main goal of Vogen is to **ensure the validity of your Value Objects**.
 
-It does this by **adding new constraints in the form of new C# compilation errors**. There are a few ways you could end up
-with uninitialized Value Objects. One way is by giving your type constructors. Providing your own constructors
-could mean that you forget to set a value, so **Vogen doesn't allow you to have user defined constructors**:
+It does this with code analyzers that add constraints to C#.
+
+The analyzer spots situations where you might end up with uninitialized Value Objects in your domain.
+These analyzers, by default, cause compilation errors.
+
+There are a few ways you could end up with uninitialized Value Objects. 
+One way is by giving your type constructors. Providing your own constructors could mean that you 
+forget to set a value, so **Vogen doesn't allow you to have user defined constructors**:
 
 ```c#
 [ValueObject]
-public partial struct CustomerId {
-    // Vogen deliberately generates this so that you can't create your own:
-    // error CS0111: Type 'CustomerId' already defines a member called 'CustomerId' with the same parameter type
+public partial struct CustomerId 
+{
+    // Vogen deliberately generates this 
+    // so that you can't create your own.
+    // error CS0111: Type 'CustomerId' already defines a member called 
+    // 'CustomerId' with the same parameter type
     public CustomerId() { }
 
-    // error VOG008: Cannot have user defined constructors, please use the From method for creation.
+    // error VOG008: Cannot have user defined constructors, please use 
+    // the From method for creation.
     public CustomerId(int value) { }
 }
 ```
@@ -107,6 +113,8 @@ Task<CustomerId> t = Task.FromResult<CustomerId>(new()); // error VOG010: Type '
 void Process(CustomerId customerId = default) { } // error VOG009: Type 'CustomerId' cannot be constructed with default as it is prohibited.
 ```
 
-One of the main goals of this project is to achieve **almost the same speed and memory performance as using primitives directly**.
-Put another way, if your `decimal` primitive represents an Account Balance, then there is **extremely** low overhead of
-using an `AccountBalance` Value Object instead. Please see the [performance metrics below](#performance).
+One of the main goals of Vogen is to achieve **almost the same speed and memory performance as using
+primitives directly**.
+Put another way, if your `decimal` primitive represents an Account Balance, then there 
+is **extremely** low overhead of using an `AccountBalance` Value Object instead. 
+Please see the [performance metrics](#reference.performance) for more information.

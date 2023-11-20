@@ -1,4 +1,4 @@
-# Installation
+# Installing Vogen
 
 Vogen is compatible with .NET projects targeting:
 

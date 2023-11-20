@@ -38,4 +38,16 @@
         <description>Created after removal of "Tutorial" from Vogen</description>
         <accepts>Tutorial.html</accepts>
     </rule>
+    <rule id="7a00689f">
+        <description>Created after removal of "Primitive Obsession" from Vogen</description>
+        <accepts>Primitive-Obsession.html</accepts>
+    </rule>
+    <rule id="648a0ff9">
+        <description>Created after removal of "Vogen - Explanation" from Vogen</description>
+        <accepts>Vogen-Explanation.html</accepts>
+    </rule>
+    <rule id="471551f9">
+        <description>Created after removal of "How to create Value Objects" from Vogen</description>
+        <accepts>Basics.html</accepts>
+    </rule>
 </rules>

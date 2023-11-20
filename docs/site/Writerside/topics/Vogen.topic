@@ -5,12 +5,13 @@
        xsi:noNamespaceSchemaLocation="https://resources.jetbrains.com/writerside/1.0/topic.v2.xsd"
        title="Vogen" id="Vogen" help-id="test">
 
+
     <section-starting-page>
         <title>Vogen</title>
-        <img src="cavey.png" alt="Picture of caveman holding the number '1'" width="100">
         <description>
-            Vogen is a .NET Source Generator and analyzer. It turns your primitives (ints, decimals etc.) into Value Objects that
-            represent domain concepts (CustomerId, AccountBalance etc.)
+            Vogen is a .NET Source Generator and a set of Roslyn analyzers.
+            It wraps your primitives (integers, decimals, etc.) turns them into Value Objects that represent
+            domain concepts (CustomerId, AccountBalance etc.)
 
             It adds new C# compilation errors to help stop the creation of invalid Value Objects.
 
@@ -18,43 +19,18 @@
 
         <spotlight>
             <a href="Overview.md"
-               description="Overview" type="learn"/>
-            <a href="Tutorials.topic"
-               description="Tutorials" type="development"/>
-            ...
+               description="Overview" type="learn" summary="Discover what Vogen is"/>
+            <a href="Your-First-Value-Object.md"
+               description="Get started" type="development" summary="Get started"/>
         </spotlight>
 
         <primary>
-            <title>Main group</title>
-            <a href="Instances.md"
-               description="Sed condimentum feugiat sagittis"/>
-            ...
+            <a type="learn" href="Tutorials.topic" summary="Step by step guides on working with Vogen"/>
+            <a type="learn" href="How-to guides.topic" summary="Get details on common usage scenarios">How-to guides</a>
         </primary>
-
         <secondary>
-            <title>Highlighted group</title>
-            <a href="Testing.md"
-               description="Sed condimentum feugiat sagittis"/>
-            ...
         </secondary>
 
-        <misc>
-            <cards>
-                <title>Custom cards</title>
-                <a href="Normalization.md"
-                   description="Sed condimentum feugiat sagittis"/>
-                ...
-            </cards>
 
-            <links>
-                <group>
-                    <title>Custom links</title>
-                    <a href="Overriding-methods.md"
-                       description="Sed condimentum feugiat sagittis"/>
-                    ...
-                </group>
-                ...
-            </links>
-        </misc>
     </section-starting-page>
 </topic>

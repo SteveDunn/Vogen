@@ -1,4 +1,4 @@
-# Integration
+# Serialize Value Objects
 
 Vogen integrates with other systems and technologies.
 

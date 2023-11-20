@@ -1,72 +1,12 @@
-# Vogen: Cure your Primitive Obsession
+# Primitive Obsession
 
-<p align="center">
-  <img src="cavey.png" alt="Picture of caveman holding the number '1'"/>
-</p>
-
-
-
-**Note:**
-> `Int` is the default type for Value Objects, but it is generally a good idea to explicitly declare each type
-> for clarity. Plus, although `int` is the default, you can - individually or globally - configure them to be
-> other types. See the Configuration section later in the document, but here are some brief examples:
-
-```c#
-[ValueObject<decimal>] 
-public partial struct AccountBalance { }
-
-[ValueObject(typeof(string))]
-public partial class LegalEntityName { }
-```
-
-
-
-___
-
-
-
-## More on Primitive Obsession
-The source generator generates [Value Objects](https://wiki.c2.com/?ValueObject). Value Objects help combat Primitive Obsession by wrapping simple primitives such as `int`, `string`, `double` etc. in a strongly typed type.
-
-Primitive Obsession (AKA StringlyTyped) means being obsessed with primitives.  It is a Code Smell that degrades the quality of software.
-
-> "*Primitive Obsession is using primitive data types to represent domain ideas*" [#](https://wiki.c2.com/?PrimitiveObsession)
-
-Some examples:
-
-* instead of `int age` - we'd have `Age age`. `Age` might have validation that it couldn't be negative
-* instead of `string zipcode` - we'd have `Zipcode zipcode`. `Zipcode` might have validation on the format of the text
-
-The source generator is opinionated. The opinions help ensure consistency. The opinions are:
-
-* A Value Object (VO) is constructed via a factory method named `From`, e.g. `Age.From(12)`
-* A VO is equatable (`Age.From(12) == Age.From(12)`)
-* A VO, if validated, is validated with a static method named `Validate` that returns a `Validation` result
-* Any validation that is not `Validation.Ok` results in a `ValueObjectValidationException` being thrown
-
-It is common to represent domain ideas as primitives, but primitives might not be able to fully describe the domain idea.  
-To use Value Objects, instead of primitives, we simply swap code like this:
-
-```c#
-public class CustomerInfo {
-    private int _id;
-    public CustomerInfo(int id) => _id = id;
-}
-```
-
-... to this:
-
-```c#
-public class CustomerInfo {
-    private CustomerId _id;
-    public CustomerInfo(CustomerId id) => _id = id;
-}
-```
-## Tell me more about the Code Smell
+Primitive Obsession (AKA StringlyTyped) means being obsessed with primitives.  It is a Code Smell that degrades the 
+quality of software.
 
 There's a blog post [here](https://dunnhq.com/posts/2021/primitive-obsession/) that describes it, but to summarize:
 
-> Primitive Obsession is being *obsessed* with the *seemingly* **convenient** way that primitives, such as `ints` and `strings`, allow us to represent domain objects and ideas.
+> Primitive Obsession is being *obsessed* with the *seemingly* **convenient** way that primitives, such as `ints` 
+> and `strings`, allow us to represent domain objects and ideas.
 
 It is **this**:
 

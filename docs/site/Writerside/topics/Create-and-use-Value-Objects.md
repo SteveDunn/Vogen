@@ -1,4 +1,4 @@
-# Instances
+# Create and use Value Objects
 
 A type can have predefined 'instances'—examples include:
 
@@ -14,7 +14,7 @@ A type can have predefined 'instances'—examples include:
     }
 ```
 
-An `Instance` attribute is a name and value. The name can be any valid C# name, and the value can either be a value 
+An `Instance` attribute is a name and value. The name can be any valid C# name, and the value can either be a value
 matching the underlying type, or a string that will be converted to the underlying type.
 
 ## Special attention for dates and times

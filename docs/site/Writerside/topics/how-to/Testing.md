@@ -1,5 +1,5 @@
 # Testing
-Testing source generators are tricky. You can't run the generators directly from code because it's the IDE that loads the generators, not your tests.
+Testing source generators is tricky. You can't run the generators directly from code because it's the IDE that loads the generators, not your tests.
 
 So the tests are in two solutions:
 

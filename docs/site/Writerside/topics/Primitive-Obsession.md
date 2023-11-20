@@ -1,3 +1,0 @@
-# Primitive Obsession
-
-Start typing here...

@@ -1,4 +1,4 @@
-# String Comparisons
+# Customize string comparisons
 
 It is possible to generate `StringComparer` types for your Value Objects that wrap strings.
 
