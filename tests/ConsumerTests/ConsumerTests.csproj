@@ -62,7 +62,7 @@
   </ItemGroup>
 
   <ItemGroup Condition=" '$(TargetFramework)' == 'net461'">
-    <PackageReference Include="SQLitePCLRaw.bundle_winsqlite3" Version="2.1.5" />
+    <PackageReference Include="SQLitePCLRaw.bundle_winsqlite3" Version="2.1.7" />
   </ItemGroup>
 
   <PropertyGroup Condition=" '$(TargetFramework)' == 'net461'">
