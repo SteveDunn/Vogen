@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic
+        SYSTEM "https://resources.jetbrains.com/writerside/1.0/xhtml-entities.dtd">
+<topic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:noNamespaceSchemaLocation="https://resources.jetbrains.com/writerside/1.0/topic.v2.xsd"
+       title="Vogen" id="Vogen" help-id="test">
+
+
+    <section-starting-page>
+        <title>Vogen</title>
+        <description>
+            Vogen is a .NET Source Generator and a set of Roslyn analyzers.
+            It wraps your primitives (integers, decimals, etc.) turns them into Value Objects that represent
+            domain concepts (CustomerId, AccountBalance etc.)
+
+            It adds new C# compilation errors to help stop the creation of invalid Value Objects.
+
+        </description>
+
+        <spotlight>
+            <a href="Overview.md"
+               description="Overview" type="learn" summary="Discover what Vogen is"/>
+            <a href="Your-First-Value-Object.md"
+               description="Get started" type="development" summary="Get started"/>
+        </spotlight>
+
+        <primary>
+            <a type="learn" href="Tutorials.topic" summary="Step by step guides on working with Vogen"/>
+            <a type="learn" href="How-to guides.topic" summary="Get details on common usage scenarios">How-to guides</a>
+        </primary>
+        <secondary>
+        </secondary>
+
+
+    </section-starting-page>
+</topic>

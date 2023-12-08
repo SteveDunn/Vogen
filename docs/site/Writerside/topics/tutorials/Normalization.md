@@ -1,4 +1,4 @@
-# Normalization
+# Clean up values
 
 This was requested in [this feature request](https://github.com/SteveDunn/Vogen/issues/80).
 

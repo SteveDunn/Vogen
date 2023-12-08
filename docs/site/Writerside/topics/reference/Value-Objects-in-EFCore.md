@@ -25,7 +25,7 @@ In your database context, you then specify the conversion:
 
 There is an [EFCore example in the source](https://github.com/SteveDunn/Vogen/tree/main/samples/Vogen.Examples/SerializationAndConversion/EFCore).
 
-Below is a walkthough of that sample.
+Below is a walkthrough of that sample.
 
 The sample uses EFCore to read and write entities to an in-memory database. The entities contain Value Objects for the fields and also a Value Object for the primary key. It looks like this:
 
@@ -100,10 +100,17 @@ internal class SomeIdValueGenerator : ValueGenerator<SomeId>
 }
 ```
 
-There are things to consider when using Value Objects in EFcore
+There are things to consider when using Value Objects in EF Core
 
-* There are concurrency concerns with in the `ValueGenerator` if multiple threads are allowed to insert at the same time. From what I've read, it's not recommended to share the DB Context across threads. I've also read that if concurrent creation is required, then a Guid is the preferred method of a primary, auto-generated key.
+* There are concurrency concerns with in the `ValueGenerator` if multiple threads are allowed to insert at the same time. 
+From what I've read, it's not recommended to share the DB Context across threads. 
+ I've also read that if concurrent creation is required, 
+ then a Guid is the preferred method of a primary, auto-generated key.
 
-* There are a few hoops to jump though, especially for primary keys. Value Objects are primarily used to represent 'domain concepts', and while they can be coerced into living in the 'infrastructure' layer, i.e. databases, they're not a natural fit.
-I generally use an 'anti corruption layer' to translate between the infrastructure and domain; it's a layer for converting/mapping/validation. Yes, it's more code, but it's explicit.
+* There are a few hoops to jump though, especially for primary keys.
+  Value Objects are primarily used to represent 'domain concepts,'
+  and while they can be coerced into living in the 'infrastructure' layer, i.e., databases, they're not a natural fit.
+ I generally use an 'anti-corruption layer' to translate between the infrastructure and domain;
+  it's a layer for converting/mapping/validation.
+  Yes, it's more code, but it's explicit.
 
