@@ -16,7 +16,7 @@
         <toc-element topic="NormalizationTutorial.md"/>
         <toc-element topic="Serialization.md"/>
     </toc-element>
-    <toc-element topic="How-to guides.topic">
+    <toc-element topic="how-to-guides.topic">
         <toc-element topic="Create-and-use-Value-Objects.md"/>
         <toc-element topic="Instances.md"/>
         <toc-element topic="Normalization.md"/>
