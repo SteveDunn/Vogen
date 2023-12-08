@@ -50,7 +50,9 @@ public bool Equals(MyVo other, IEqualityComparer<MyVo> comparer)
 
 
 
-As with strings, the Value Object itself doesn't change. `GetHashCode` is different for two objects with different strings if you don't specify a comparer.
+As with strings, the Value Object itself doesn't change.
+`GetHashCode` is different for two objects with different 
+strings if you don't specify a comparer.
 
 ```c#
 MyString s1 = MyString.From("abc");

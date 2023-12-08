@@ -13,7 +13,7 @@ Set the value with the `From` method instead of the constructor:
 var customerId = CustomerId.From(42);
 ```
 
-If you try to use the constructors, the [analyzer rules](../reference/Analyzer-Rules.md) will catch this and stop you.
+If you try to use the constructors, the [analyzer rules](Analyzer-Rules.md) will catch this and stop you.
 
 You can now be more explicit in your methods with signatures such as:
 

@@ -16,6 +16,7 @@
             For other groups, try to keep the number between 2 and 6, but you can add more if necessary.-->
 
     <section-starting-page>
+        <title>Tutorials</title>
         <description>
             These focus on how to achieve various things using Vogen, from creating your first
             value object, to handling nuances of decimals when deserializing from JavaScript.

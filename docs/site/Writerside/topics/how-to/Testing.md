@@ -1,5 +1,6 @@
 # Testing
-Testing source generators are tricky. You can't run the generators directly from code because it's the IDE that loads the generators, not your tests.
+Testing source generators is tricky.
+You can't run the generators directly from code because it's the IDE that loads the generators, not your tests.
 
 So the tests are in two solutions:
 
@@ -14,7 +15,13 @@ These are slow to run because they use many different permutations of features a
 
 The snapshot tests in the IDE run in about 5 minutes. In the CI build, we set a `THOROUGH` flag which exercises more variations, and that can take up to **several hours**.
 
-* In the **consumer solution**, the tests involve consuming the 'real' Vogen NuGet package and exercising it via _real_ C# code. To ensure it tests the latest version of Vogen, `test.ps1` first builds Vogen, then forces a NuGet package to be built locally with version `999.9.xxx`. These tests are much quicker to run. They verify the behaviour of created Value Objects, such as:
+* In the **consumer solution**, the tests involve consuming the 'real' Vogen NuGet package and exercising it via
+ _real_ C# code.
+ To ensure it tests the latest version of Vogen, `test.ps1` first builds Vogen, then forces a NuGet 
+ package to be built locally with a version of `999.9.xxx`.
+  These tests are much quicker to run.
+  They verify the behavior
+ of created Value Objects, such as:
     * [Normalization](https://github.com/SteveDunn/Vogen/wiki/Normalization)
     * Equality
     * Hashing

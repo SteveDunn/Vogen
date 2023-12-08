@@ -25,12 +25,13 @@
         </spotlight>
 
         <primary>
+            <title>Discover</title>
             <a type="learn" href="Tutorials.topic" summary="Step by step guides on working with Vogen"/>
-            <a type="learn" href="How-to guides.topic" summary="Get details on common usage scenarios">How-to guides</a>
         </primary>
-        <secondary>
-        </secondary>
 
+        <secondary><title>Learn</title>
+            <a type="learn" href="how-to-guides.topic" summary="Get details on common usage scenarios">How-to guides</a>
+        </secondary>
 
     </section-starting-page>
 </topic>
