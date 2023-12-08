@@ -117,4 +117,4 @@ One of the main goals of Vogen is to achieve **almost the same speed and memory 
 primitives directly**.
 Put another way, if your `decimal` primitive represents an Account Balance, then there 
 is **extremely** low overhead of using an `AccountBalance` Value Object instead. 
-Please see the [performance metrics](#reference.performance) for more information.
+Please see the [performance metrics](#Performance.md) for more information.
