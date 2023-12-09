@@ -4,7 +4,7 @@
 Create and use your first Value Object
 </card-summary>
 
-[Install](Installation.md) the package, and create a new Value Object:
+[Install](Installation.md) the package, and then create a new Value Object:
 
 <tabs>
     <tab title="Generics">
