@@ -5,6 +5,7 @@
        xsi:noNamespaceSchemaLocation="https://resources.jetbrains.com/writerside/1.0/topic.v2.xsd"
        title="Vogen" id="Vogen" help-id="test">
 
+<!--    <img alt="cavey-logo.png" src="cavey-logo.png" width="296"/>-->
 
     <section-starting-page>
         <title>Vogen</title>
@@ -20,7 +21,7 @@
         <spotlight>
             <a href="Overview.md"
                description="Overview" type="learn" summary="Discover what Vogen is"/>
-            <a href="Your-First-Value-Object.md"
+            <a href="your-first-value-object.md"
                description="Get started" type="development" summary="Get started"/>
         </spotlight>
 

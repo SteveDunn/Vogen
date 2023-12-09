@@ -1,5 +1,9 @@
 # Overriding Methods
 
+<card-summary>
+How to override various methods in Vogen. This document shows which methods can be overridden and which can't
+</card-summary>
+
 ## GetHashCode
 
 If you supply your own `GetHashCode()`, then Vogen won't generate it.

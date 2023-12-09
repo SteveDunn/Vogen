@@ -1,5 +1,9 @@
 # Specify pre-set Instances
 
+<card-summary>
+How to specify pre-set instances with known values
+</card-summary>
+
 A type can have predefined 'instances'—examples include:
 
 ```c#

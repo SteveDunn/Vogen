@@ -1,14 +1,17 @@
 # Primitive Obsession
 
+<tldr>
+TL;DR: Primitive Obsession is being obsessed with the seemingly convenient way that primitives, such as integers 
+and strings, allow us to represent domain objects and ideas. Although convenient, they come with a hefty cost... 
+</tldr>
+
 Primitive Obsession (AKA StringlyTyped) means being obsessed with primitives.  It is a Code Smell that degrades the 
 quality of software.
 
-There's a blog post [here](https://dunnhq.com/posts/2021/primitive-obsession/) that describes it, but to summarize:
+There's a blog post [here](https://dunnhq.com/posts/2021/primitive-obsession/) that describes it more fully;
+what follows is a summary.
 
-> Primitive Obsession is being *obsessed* with the *seemingly* **convenient** way that primitives, such as `ints` 
-> and `strings`, allow us to represent domain objects and ideas.
-
-It is **this**:
+Primitive Obsession is **this**:
 
 ```c#
 int customerId = 42
@@ -48,7 +51,9 @@ We can do that with an `Instance` attribute:
   [Instance("Unspecified", -1)]
   public readonly partial struct Age {
       public static Validation Validate(int value) =>
-          value > 0 ? Validation.Ok : Validation.Invalid("Must be greater than zero.");
+          value > 0 
+            ? Validation.Ok 
+            : Validation.Invalid("Must be greater than zero.");
   }
 ```
 

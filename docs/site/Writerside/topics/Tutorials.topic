@@ -25,7 +25,7 @@
         <!--    Add up to 2 topics that you want to promote. Use the "type" attribute to select an icon.    -->
         <spotlight>
             <a href="Installation.md" type="install" summary="Installing Vogen into your project"/>
-            <a href="Your-First-Value-Object.md" type="development" summary="Write and use your first Value Object">Create your first Value Object</a>
+            <a href="your-first-value-object.md" type="development" summary="Write and use your first Value Object">Create your first Value Object</a>
         </spotlight>
 
         <!--    Add several topics that are most important for this section.    -->

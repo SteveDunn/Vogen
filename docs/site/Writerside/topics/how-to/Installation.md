@@ -1,7 +1,5 @@
 # Installing Vogen
 
-Vogen is compatible with .NET projects targeting:
-
 <note>
 Change `3.0.23` for the <a href="https://www.nuget.org/packages/Vogen">latest version listed on NuGet</a>
 </note>

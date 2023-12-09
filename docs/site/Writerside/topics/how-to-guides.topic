@@ -23,22 +23,20 @@
 
         <!--    Add up to 2 topics that you want to promote. Use the "type" attribute to select an icon.    -->
         <spotlight>
-            <a href="Create-and-use-Value-Objects.md" type="account" summary="This overrides the card summary of the topic">Custom card title</a>
-            <a href="Instances.md" type="search" summary="This overrides the card summary of the topic">Another custom title</a>
+            <a href="create-and-use-value-objects.md" type="account"/>
+            <a href="Instances.md" type="search" summary="Create known instances with specific up-front values">Up-front values</a>
         </spotlight>
 
         <!--    Add several topics that are most important for this section.    -->
         <primary>
             <title>Get started</title>
-            <a href="Testing.md"/>
-            <a href="Instances.md" summary="With a custom card summary"/>
-            <a href="Overriding-methods.md">Custom card title</a>
-            <a href="String-Comparisons.md" summary="With a custom card summary">Custom card title</a>
+            <a href="Overriding-methods.md"/>
+            <a href="customize-string-comparisons.md"/>
         </primary>
 
         <!--    Add several topics that are less important or are relevant only for advanced/experienced users.    -->
         <secondary>
-            <title>Explore advanced features</title>
+            <title>Exploring more advanced features</title>
             <a href="Value-Objects-in-EFCore.md"/>
             <a href="Normalization.md" summary="With a custom card summary"/>
             <a href="Instances.md">Custom card title</a>

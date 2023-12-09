@@ -1,13 +1,20 @@
-# Your First Value Object
+# Create and use Value Objects
 
-After you've installed the package, create a new Value Object.
+<card-summary>
+How to create and use Value Objects, how they better represent domain concepts, and how they help ensure
+that no invalid instances can be created.
+</card-summary>
+
+Create a new Value Object:
 
 ```c#
 [ValueObject<int>] 
 public partial struct CustomerId { }
 ```
 
-Set the value with the `From` method instead of the constructor:
+The type must be `partial` as the source generator 
+
+Now, create a new instance by using the `From` method instead:
 
 ```c#
 var customerId = CustomerId.From(42);
