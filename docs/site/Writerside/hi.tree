@@ -16,6 +16,8 @@
         <toc-element topic="NormalizationTutorial.md"/>
         <toc-element topic="Specifying-pre-set-values.md"/>
         <toc-element topic="Serialization.md"/>
+        <toc-element topic="Using-with-JSON.md"/>
+        <toc-element topic="Working-with-databases.md"/>
     </toc-element>
     <toc-element topic="how-to-guides.topic">
         <toc-element topic="create-and-use-value-objects.md"/>
@@ -28,6 +30,7 @@
         <toc-element topic="Testing.md"/>
         <toc-element topic="Overriding-methods.md"/>
         <toc-element topic="Value-Objects-in-EFCore.md"/>
+        <toc-element topic="Use-in-Swagger.md"/>
     </toc-element>
     <toc-element topic="Reference.md">
         <toc-element topic="Configuration.md"/>

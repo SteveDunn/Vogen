@@ -50,4 +50,8 @@
         <description>Created after removal of "How to create Value Objects" from Vogen</description>
         <accepts>Basics.html</accepts>
     </rule>
+    <rule id="6f7ba5bc">
+        <description>Created after removal of "Working with protobuf" from Vogen</description>
+        <accepts>Working-with-protobuf.html</accepts>
+    </rule>
 </rules>
