@@ -4,32 +4,27 @@
 Create and use your first Value Object
 </card-summary>
 
-[Install](Installation.md) the package, and then create a new Value Object:
+In this tutorial, we'll create and use a Value Object.
 
-<tabs>
-    <tab title="Generics">
-<code-block lang="c#">
-    <![CDATA[
-        [ValueObject<int>] 
-        public partial struct CustomerId { }
-    ]]>
-</code-block>
-    </tab>
-    <tab title="Non-generics" >
-        <code-block lang="c#">
-            <![CDATA[
-            [ValueObject(typeof(int))] 
-            public partial struct CustomerId { }
-            ]]>
-        </code-block>
-    </tab>
-</tabs>
+[Install](Installation.md) the package, and then, in your project, create a new Value Object that represents a Customer ID:
+
+```C#
+[ValueObject<int>] 
+public partial struct CustomerId { }
+```
+
+If you're not using generics, you can use `typeof` instead:
+
+```c#
+[ValueObject(typeof(int))] 
+public partial struct CustomerId { }
+```
 
 <note>
-partial is required as the code generator augments this type by creating another partial class
+the partial keyword is required as the code generator augments this type by creating another partial class
 </note>
 
-Create a new instance by using the `From` method:
+Now, create a new instance by using the `From` method that the source generator generates:
 
 ```c#
 var customerId = CustomerId.From(42);

@@ -14,10 +14,12 @@
         <toc-element topic="your-first-value-object.md"/>
         <toc-element topic="Validation.md"/>
         <toc-element topic="NormalizationTutorial.md"/>
+        <toc-element topic="Specifying-pre-set-values.md"/>
         <toc-element topic="Serialization.md"/>
     </toc-element>
     <toc-element topic="how-to-guides.topic">
         <toc-element topic="create-and-use-value-objects.md"/>
+        <toc-element topic="Validate-values.md"/>
         <toc-element topic="Instances.md"/>
         <toc-element topic="Normalization.md"/>
         <toc-element topic="Integration.md"/>
@@ -28,6 +30,7 @@
         <toc-element topic="Value-Objects-in-EFCore.md"/>
     </toc-element>
     <toc-element topic="Reference.md">
+        <toc-element topic="Configuration.md"/>
         <toc-element topic="Records.md">
             <toc-element topic="Differences-when-using-records.md"/>
         </toc-element>
