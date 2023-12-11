@@ -1,5 +1,10 @@
 # Records
 
+<note>
+This topic is incomplete and is currently being improved.
+</note>
+
+
 Vogen supports records (`record class` and `record struct`). 
 
 > **NOTE**: It is recommended to use a vanilla `class` or `struct` over records. The benefits of records don't really 

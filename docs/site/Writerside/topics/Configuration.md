@@ -1,5 +1,10 @@
 # Configuration
 
+<note>
+This topic is incomplete and is currently being improved.
+</note>
+
+
 Each Value Object can have its own *optional* configuration. Configuration includes:
 
 * The underlying type

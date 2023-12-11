@@ -1,5 +1,10 @@
 # Performance
 
+<note>
+This topic is incomplete and is currently being improved.
+</note>
+
+
 (to run these yourself: `dotnet run -c Release --framework net7.0 -- --job short --filter *` in the `Vogen.Benchmarks` folder)
 
 As mentioned previously, the goal of Vogen is to achieve very similar performance compared to using primitives themselves.
