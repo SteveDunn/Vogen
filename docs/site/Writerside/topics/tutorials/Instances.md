@@ -4,6 +4,11 @@
 How to specify pre-set instances with known values
 </card-summary>
 
+<note>
+This topic is incomplete and is currently being improved.
+</note>
+
+
 A type can have predefined 'instances'—examples include:
 
 ```c#
@@ -37,3 +42,5 @@ public readonly partial struct DateTimeInstances
 ```
 
 Even though you _can_ specify dates and times like this, it is probably better to specify them explicitly to avoid confusion
+
+[//]: <> (todo: enhance - mention the other ways of creating and mixing ways of declaring types)

@@ -1,5 +1,10 @@
 # Serialize Value Objects
 
+<note>
+This topic is incomplete and is currently being improved.
+</note>
+
+
 Vogen integrates with other systems and technologies.
 
 The generated Value Objects can be converted to and from JSON.

@@ -1,6 +1,8 @@
 # Normalize input values
 
-This was requested in [this feature request](https://github.com/SteveDunn/Vogen/issues/80).
+<note>
+This topic is incomplete and is currently being improved.
+</note>
 
 By adding a private method named `NormalizeInput`, your type gets a change to, er, normalize input.
 
@@ -66,3 +68,5 @@ namespace Vogen.Examples.TypicalScenarios
 }
 ```
 There are various compiler errors associated with malformed normalization methods.
+
+This functionality was requested in [this feature request](https://github.com/SteveDunn/Vogen/issues/80).

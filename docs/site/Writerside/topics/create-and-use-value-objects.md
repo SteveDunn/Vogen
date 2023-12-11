@@ -5,16 +5,21 @@ How to create and use Value Objects, how they better represent domain concepts, 
 that no invalid instances can be created.
 </card-summary>
 
-Create a new Value Object:
+<note>
+This topic is incomplete and is currently being improved.
+</note>
+
+Create a new Value Object by decorating a partial type with the `ValueObject` attribute:
 
 ```c#
 [ValueObject<int>] 
 public partial struct CustomerId { }
 ```
 
-The type must be `partial` as the source generator 
+The type must be `partial` as the source generator augments the type with another partial class containing the
+generator code.
 
-Now, create a new instance by using the `From` method instead:
+Now, create a new instance by using the `From` method:
 
 ```c#
 var customerId = CustomerId.From(42);
@@ -31,4 +36,4 @@ public void HandlePayment(
     PaymentAmount paymentAmount)
 ```
 
-
+[//]: <> (todo: enhance)

@@ -12,7 +12,7 @@
     <toc-element topic="Tutorials.topic">
         <toc-element topic="Installation.md"/>
         <toc-element topic="your-first-value-object.md"/>
-        <toc-element topic="Validation.md"/>
+        <toc-element topic="ValidationTutorial.md"/>
         <toc-element topic="NormalizationTutorial.md"/>
         <toc-element topic="Specifying-pre-set-values.md"/>
         <toc-element topic="Serialization.md"/>
@@ -23,13 +23,12 @@
         <toc-element topic="create-and-use-value-objects.md"/>
         <toc-element topic="Validate-values.md"/>
         <toc-element topic="Instances.md"/>
-        <toc-element topic="Normalization.md"/>
+        <toc-element topic="NormalizationHowTo.md"/>
         <toc-element topic="Integration.md"/>
         <toc-element topic="customize-string-comparisons.md"/>
         <toc-element topic="Casting.md"/>
-        <toc-element topic="Testing.md"/>
         <toc-element topic="Overriding-methods.md"/>
-        <toc-element topic="Value-Objects-in-EFCore.md"/>
+        <toc-element topic="EfCoreIntegrationHowTo.md"/>
         <toc-element topic="Use-in-Swagger.md"/>
     </toc-element>
     <toc-element topic="Reference.md">
@@ -43,6 +42,7 @@
         </toc-element>
         <toc-element topic="Terms-Used.md"/>
         <toc-element topic="Performance.md"/>
+        <toc-element topic="Testing.md"/>
     </toc-element>
     <toc-element topic="FAQ.md">
         <toc-element topic="How-to-identify-a-type-that-is-generated-by-Vogen.md"/>

@@ -1,4 +1,12 @@
 # Testing
+
+<note>
+This topic is incomplete and is currently being improved.
+
+Also, this topic relates to the Vogen project and not directly related to users of the Vogen package.
+</note>
+
+
 Testing source generators is tricky.
 You can't run the generators directly from code because it's the IDE that loads the generators, not your tests.
 

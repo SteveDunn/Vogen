@@ -42,4 +42,4 @@ Console.WriteLine(plate);
 
 Note that normalization happens before validation, so your method might get passed invalid raw data.
 
-Also note that if you [validate your values](Validation.md), then validation happens on the sanitized value.
+Also note that if you [validate your values](ValidationTutorial.md), then validation happens on the sanitized value.

@@ -1,5 +1,10 @@
 # Overriding Methods
 
+<note>
+This topic is incomplete and is currently being improved.
+</note>
+
+
 <card-summary>
 How to override various methods in Vogen. This document shows which methods can be overridden and which can't
 </card-summary>

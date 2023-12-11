@@ -4,10 +4,10 @@ In this tutorial, we'll look at how we can have pre-set values on our types.
 
 Pre-set values have two common uses:
 
-1. represent known values
-2. represent values that cannot be externally created
+1. to represent known values
+2. to represent values that cannot be created by _users_ of a Value Object
 
-Let's look at the first scenario; representing known values. Create the following type:
+Let's look at the first scenario, representing known values. Create the following type:
 
 ```c#
 [ValueObject<float>]
@@ -43,7 +43,7 @@ if(waterTemperature == Centigrade.WaterFreezingPoint) ...
 Now, let's take a look at the other scenario of representing values that can't (and **shouldn't**) be
 created externally. The term 'externally' user here, means **users** of the class.
 
-Let's revisit our `CustomerId` from the [validation tutorial](Validation.md). We want to say that an instance
+Let's revisit our `CustomerId` from the [validation tutorial](ValidationTutorial.md). We want to say that an instance
 with a value of zero means that the customer was not specified, but we don't want users to explicitly create
 instances with a value of zero. Let's try it out. Create this type again:  
 

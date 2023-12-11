@@ -10,12 +10,12 @@
     <section-starting-page>
         <title>Vogen</title>
         <description>
-            Vogen is a .NET Source Generator and a set of Roslyn analyzers.
-            It wraps your primitives (integers, decimals, etc.) turns them into Value Objects that represent
-            domain concepts (CustomerId, AccountBalance etc.)
+            Vogen is a C# .NET Source Generator and a set of Roslyn analyzers.
 
-            It adds new C# compilation errors to help stop the creation of invalid Value Objects.
+            It wraps your primitives (integers, decimals, etc.) in a 'Value Object' that represents
+            domain concepts like CustomerId, AccountBalance, etc.
 
+            It adds new compilation errors to help stop the creation of invalid Value Objects.
         </description>
 
         <spotlight>

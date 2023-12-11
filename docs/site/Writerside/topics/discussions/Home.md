@@ -47,7 +47,7 @@ public class Person {
 
 We can do that with _Instances_, which is covered more in [this tutorial](Specifying-pre-set-values.md).
 The code below specifies an instance named `Unspecified` which has a value of `-1`, but disallows anyone else to 
-create one with such a number. More information on validation can be found in [this tutorial](Validation.md). 
+create one with such a number. More information on validation can be found in [this tutorial](ValidationTutorial.md). 
 
 ```c#
   [ValueObject]
@@ -73,14 +73,25 @@ public void Process(Person person) {
 }
 ```
 
-We can also specify other instance properties:
+Primitive Obsession can also help introduce bugs into your software. Take, for instance, the following method:
 
 ```c#
-[ValueObject(typeof(float))]
-[Instance("Freezing", 0)]
-[Instance("Boiling", 100)]
-public readonly partial struct Celsius {
-    public static Validation Validate(float value) =>
-        value >= -273 ? Validation.Ok : Validation.Invalid("Cannot be colder than absolute zero");
-}
+public void IncreaseQuantity(
+    int customerId, int supplierId, int quantity) 
 ```
+
+... and a caller calls it like this:
+
+```C#
+_service.IncreaseQuantity(_supplierId, _customerId, _quantity)
+```
+
+We've messed up the order of the parameters, but our compiler won't tell us.
+The best we can hope for is a failing unit test. 
+However, given the contrived data often used in unit tests, it could be that the data will hide the problem by using 
+the same ID for customer and supplier.
+
+With Value Objects representing `SupplierId`, `CustomerId`, and `Quantity`, the compiler **can** tell us
+if we mess up the order. These types make the domain code more understandable (more domain language and less C#
+types), and validation is as close to the data as possible; in this example, it likely means that all of these
+types cannot be zero or negative.

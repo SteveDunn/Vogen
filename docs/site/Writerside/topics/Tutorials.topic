@@ -32,8 +32,8 @@
         <!--    Add several topics that are most important for this section.    -->
         <primary>
             <title>Going further...</title>
-            <a href="Validation.md" type="cross-check" summary="Validating the data used to create Value Objects"/>
-            <a href="Normalization.md" type="documents" summary="Normalize (sanitize) the data in your Value Objects"/>
+            <a href="ValidationTutorial.md" type="cross-check" summary="Validating the data used to create Value Objects"/>
+            <a href="NormalizationHowTo.md" type="documents" summary="Normalize (sanitize) the data in your Value Objects"/>
         </primary>
 
         <!--    Add several topics that are less important or are relevant only for advanced/experienced users.    -->

@@ -1,6 +1,6 @@
 # Overview
 
-Vogen wraps .NET primitives. You provide this:
+[Vogen](https://github.com/SteveDunn/Vogen) wraps .NET primitives. You provide this:
 
 ``` c#
 [ValueObject<int>]
@@ -47,8 +47,7 @@ public partial struct CustomerId : System.IEquatable<CustomerId>,
 }
 ```
 
-
-Then, in your **domain**, you use `CustomerId` instead of `int`
+Now, in your **domain**, you can use `CustomerId` instead of `int`
 with the confidence that it is valid and represents _exactly_ what it says:
 
 ```c#
@@ -62,12 +61,14 @@ public void SendInvoice(CustomerId customerId) { ... }
 The main goal of Vogen is to **ensure the validity of your Value Objects**.
 
 It does this with code analyzers that add constraints to C#.
-The analyzers spot situations where you might end up with uninitialized Value Objects in your domain.
+The analyzers spot situations where you might end up with uninitialized Value Objects.
 These analyzers, by default, cause compilation errors.
 
-There are a few ways you can end up with uninitialized Value Objects. 
-One way is by giving your type constructors. Providing your own constructors could mean that you 
-forget to set a value, so **Vogen doesn't allow user defined constructors**:
+An example violation is where you attempt to add a constructor to your Value Object.
+In the types tha that Vogen creates, there is one, and only one, way of creating 
+instances, and that is with generated `From` method. 
+Relying on user-provided constructors could mean that you forget to set or validate the value.
+Vogen spots when you create your own constructors and **causes a compilation error**:
 
 ```c#
 [ValueObject]
@@ -85,7 +86,7 @@ public partial struct CustomerId
 }
 ```
 
-In addition, Vogen will spot issues when **creating** or **consuming** Value Objects:
+Here's some of the issues that Vogen will spot when **creating** or **consuming** Value Objects:
 
 ```c#
 // --- catches object creation expressions

@@ -1,4 +1,8 @@
-# EF Core
+# Integration with Entity Framework Core
+
+<note>
+This topic is incomplete and is currently being improved.
+</note>
 
 It is possible to use Value Objects in EFCore. Using VO structs is straightforward, and no converter is required. Using VO classes requires generating a converter.
 The converter is generated when you add the `EFCoreValueConverter` conversion in the attribute, e.g.

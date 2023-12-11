@@ -37,8 +37,8 @@
         <!--    Add several topics that are less important or are relevant only for advanced/experienced users.    -->
         <secondary>
             <title>Exploring more advanced features</title>
-            <a href="Value-Objects-in-EFCore.md"/>
-            <a href="Normalization.md" summary="With a custom card summary"/>
+            <a href="EfCoreIntegrationHowTo.md"/>
+            <a href="NormalizationHowTo.md" summary="With a custom card summary"/>
             <a href="Instances.md">Custom card title</a>
             <a href="Casting.md" summary="With a custom card summary">Custom card title</a>
         </secondary>

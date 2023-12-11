@@ -1,35 +1,20 @@
 # Working with ASP.NET Core
 
-In this tutorial, we'll create a type and see how to serialize and deserialize it.
+In this tutorial, we'll create a value object and use it an ASP.NET Core Web API project.
 
-First, create a value object:
+We'll see how the .NET Runtime uses 'Type Converters' to convert from primitives that are provided
+by the routing framework into Value Objects that you can then use in your domain code
 
-```C#
-[ValueObject<int>]
-public partial struct CustomerId { }
-```
+Type Converters are used by the .NET runtime in things like UI grids, WPF bindings, and ASP.NET Core application. 
 
-In the `ValueObject`, we don't specify any additional configuration other than the underlying primitive that is
-being wrapped.
-We'll see shortly how to add this configuration, but for now, we'll look at the default configuration
-and what it allows us to do.
+We'll focus on the latter in this tutorial by creating a new ASP.NET Core Web API and extend the 'weather forecast'
+endpoint to take a Value Object representing a city name.
 
-By default, each value object generates a `TypeConverter` and `System.Text.Json` (STJ) serializer.
-We can see this from the following snippet of generated code:
+Create a new ASP.NET Core Web API targeting .NET 7.0. 
 
-```C#
-[global::System.Text.Json.Serialization.JsonConverter(typeof(CustomerIdSystemTextJsonConverter))]
-[global::System.ComponentModel.TypeConverter(typeof(CustomerIdTypeConverter))]
-public partial struct CustomerId
-{
-} 
-```
+Next, in the new project, look at the endpoint named `GetWeatherForecast` in the `WeatherForecastController` type.
 
-'Type Converters' are used by the .NET runtime in things like ASP.NET Core Web Applications, grids, and WPF bindings. 
-Let's see how that works in a web API project.
-
-Create a new ASP.NET Core Web API targeting .NET 7.0. In the project, look at the endpoint named `GetWeatherForecast` in
-the `WeatherForecastController` type. It looks like this:
+It looks like this:
 
 ```C#
 [HttpGet(Name = "GetWeatherForecast")]
@@ -39,9 +24,7 @@ public IEnumerable<WeatherForecast> Get()
 }
 ```
 
-To demonstrate how we can use Value Objects, we'll add a `CityName` value object and use it as part of the request.
-
-Create a `CityName` type:
+Now, add a `CityName` value object and use it as part of the request.
 
 ```c#
 [ValueObject<string>]
@@ -98,3 +81,23 @@ Also, you'll see that Swagger treats cityName as a JSON field. This can be chang
 
 </note>
 
+## How it works
+Vogen, by default, generates a `TypeConverter` for every value object.
+
+We can see this from the following snippet of generated code for the `CityName` value object that we created:
+
+```C#
+[TypeConverter(typeof(CityNameTypeConverter))]
+public partial struct CityName
+{
+} 
+```
+
+When a request is received, the ASP.NET Core routing framework looks at the `cityName`
+parameter to see if it has any type converters that can convert from the primitive
+(in this case, a `string`) into a `CityName` type.
+
+It then calls the generated type converter's `ConvertTo` method with a `string`.
+The type converter then just calls the `From` method
+with that string and returns a `CityName` instance
+(after the usual [normalization](NormalizationTutorial.md) and [validation](ValidationTutorial.md) steps).

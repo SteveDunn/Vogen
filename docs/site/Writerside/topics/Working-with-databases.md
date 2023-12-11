@@ -1,7 +1,7 @@
 # Working with databases
 
 <note>
-This documentation is currency incomplete and is being improved.
+This topic is incomplete and is currently being improved.
 </note>
 
 There are other converters/serializer for:

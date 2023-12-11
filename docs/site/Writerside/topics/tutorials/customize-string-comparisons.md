@@ -4,6 +4,10 @@
 How to customize string comparisons to handle case-sensitivity etc.
 </card-summary>
 
+<note>
+This topic is incomplete and is currently being improved.
+</note>
+
 It is possible to generate `StringComparer` types for your Value Objects that wrap strings.
 
 This is done by specifying the `stringComparers` parameter in either local or global config:
