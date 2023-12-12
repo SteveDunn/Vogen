@@ -43,4 +43,4 @@ public readonly partial struct DateTimeInstances
 
 Even though you _can_ specify dates and times like this, it is probably better to specify them explicitly to avoid confusion
 
-[//]: <> (todo: enhance - mention the other ways of creating and mixing ways of declaring types)
+[//]: # (todo: enhance - mention the other ways of creating and mixing ways of declaring types)

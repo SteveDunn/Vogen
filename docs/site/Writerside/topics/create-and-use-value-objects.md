@@ -36,4 +36,4 @@ public void HandlePayment(
     PaymentAmount paymentAmount)
 ```
 
-[//]: <> (todo: enhance)
+[//]: # (TODO: enhance)

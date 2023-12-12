@@ -74,8 +74,7 @@ public enum Conversions
 
 The default, as specified above in the `Defaults` property, is `TypeConverter` and `SystemTextJson`.
 
-
--- todo: merge this in:
+[//]: # (TODO: merge this in)
 
 There are other converters/serializer for:
 
