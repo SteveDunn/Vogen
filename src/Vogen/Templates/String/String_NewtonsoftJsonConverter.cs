@@ -15,6 +15,6 @@
             public override object ReadJson(Newtonsoft.Json.JsonReader reader, System.Type objectType, object existingValue, Newtonsoft.Json.JsonSerializer serializer)
             {
                 var result = serializer.Deserialize<global::System.String>(reader);
-                return result != null ? VOTYPE.Deserialize(result) : null;
+                return result is not null ? VOTYPE.Deserialize(result) : null;
             }
         }

@@ -163,7 +163,7 @@ internal static class BuildWorkItems
     private static bool IsUnderlyingAValueType(VogenConfiguration config)
     {
         bool isValueType = true;
-        if (config.UnderlyingType != null)
+        if (config.UnderlyingType is not null)
         {
             isValueType = config.UnderlyingType.IsValueType;
         }

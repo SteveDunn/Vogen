@@ -9,7 +9,7 @@ static class SemanticHelper
 {
     public static string? FullName(this INamedTypeSymbol? symbol)
     {
-        if (symbol == null)
+        if (symbol is null)
             return null;
 
         var prefix = FullNamespace(symbol);
@@ -29,7 +29,7 @@ static class SemanticHelper
     {
         var parts = new Stack<string>();
         INamespaceSymbol? iterator = (symbol as INamespaceSymbol) ?? symbol.ContainingNamespace;
-        while (iterator != null)
+        while (iterator is not null)
         {
             if (!string.IsNullOrEmpty(iterator.Name))
             {
@@ -63,15 +63,15 @@ static class SemanticHelper
         return symbol.GetMembers().OfType<IPropertySymbol>().Where(p => p.CanWrite() && !p.HasParameters());
     }
 
-    public static bool CanRead(this IPropertySymbol symbol) => symbol.GetMethod != null;
+    public static bool CanRead(this IPropertySymbol symbol) => symbol.GetMethod is not null;
 
-    public static bool CanWrite(this IPropertySymbol symbol) => symbol.SetMethod != null;
+    public static bool CanWrite(this IPropertySymbol symbol) => symbol.SetMethod is not null;
 
     public static bool HasParameters(this IPropertySymbol symbol) => symbol.Parameters.Any();
 
     public static bool ImplementsInterfaceOrBaseClass(this INamedTypeSymbol? typeSymbol, Type typeToCheck)
     {
-        if (typeSymbol == null)
+        if (typeSymbol is null)
         {
             return false;
         }
@@ -94,7 +94,7 @@ static class SemanticHelper
             }
         }
 
-        if (typeSymbol.BaseType != null)
+        if (typeSymbol.BaseType is not null)
         {
             return ImplementsInterfaceOrBaseClass(typeSymbol.BaseType, typeToCheck);
         }
