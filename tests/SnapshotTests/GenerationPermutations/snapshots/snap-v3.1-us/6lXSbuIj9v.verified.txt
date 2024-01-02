@@ -154,7 +154,7 @@ public System.Int16 Value
 
         public int CompareTo(public_sealed_partial_classConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConvertershort other) => Value.CompareTo(other.Value);
         public int CompareTo(object other) {
-            if(other == null) return 1;
+            if(other is null) return 1;
             if(other is public_sealed_partial_classConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConvertershort x) return CompareTo(x);
             throw new global::System.ArgumentException("Cannot compare to object as it is not of type public_sealed_partial_classConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConvertershort", nameof(other));
         }

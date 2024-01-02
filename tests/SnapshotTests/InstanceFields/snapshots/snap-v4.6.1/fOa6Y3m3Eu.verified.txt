@@ -143,7 +143,7 @@ namespace Whatever
 
         public int CompareTo(internal_readonly_partial_structlong other) => Value.CompareTo(other.Value);
         public int CompareTo(object other) {
-            if(other == null) return 1;
+            if(other is null) return 1;
             if(other is internal_readonly_partial_structlong x) return CompareTo(x);
             throw new global::System.ArgumentException("Cannot compare to object as it is not of type internal_readonly_partial_structlong", nameof(other));
         }

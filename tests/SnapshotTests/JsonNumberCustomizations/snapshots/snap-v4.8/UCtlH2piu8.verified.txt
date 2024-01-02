@@ -152,7 +152,7 @@ public System.Guid Value
 
         public int CompareTo(stj_number_as_string_public_partial_classConversions_NoneSystem_Guid_customized other) => Value.CompareTo(other.Value);
         public int CompareTo(object other) {
-            if(other == null) return 1;
+            if(other is null) return 1;
             if(other is stj_number_as_string_public_partial_classConversions_NoneSystem_Guid_customized x) return CompareTo(x);
             throw new global::System.ArgumentException("Cannot compare to object as it is not of type stj_number_as_string_public_partial_classConversions_NoneSystem_Guid_customized", nameof(other));
         }

@@ -152,7 +152,7 @@ public System.Int16 Value
 
         public int CompareTo(internal_partial_classConversions_Noneshort other) => Value.CompareTo(other.Value);
         public int CompareTo(object other) {
-            if(other == null) return 1;
+            if(other is null) return 1;
             if(other is internal_partial_classConversions_Noneshort x) return CompareTo(x);
             throw new global::System.ArgumentException("Cannot compare to object as it is not of type internal_partial_classConversions_Noneshort", nameof(other));
         }

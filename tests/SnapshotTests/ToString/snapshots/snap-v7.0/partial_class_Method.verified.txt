@@ -154,7 +154,7 @@ public System.Int32 Value
 
         public int CompareTo(partial_class_Method other) => Value.CompareTo(other.Value);
         public int CompareTo(object other) {
-            if(other == null) return 1;
+            if(other is null) return 1;
             if(other is partial_class_Method x) return CompareTo(x);
             throw new global::System.ArgumentException("Cannot compare to object as it is not of type partial_class_Method", nameof(other));
         }

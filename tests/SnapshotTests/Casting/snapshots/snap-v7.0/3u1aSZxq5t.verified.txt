@@ -153,7 +153,7 @@ public System.Int32 Value
 
         public int CompareTo(_casting_public_sealed_partial_classCastOperator_ExplicitCastOperator_Noneint other) => Value.CompareTo(other.Value);
         public int CompareTo(object other) {
-            if(other == null) return 1;
+            if(other is null) return 1;
             if(other is _casting_public_sealed_partial_classCastOperator_ExplicitCastOperator_Noneint x) return CompareTo(x);
             throw new global::System.ArgumentException("Cannot compare to object as it is not of type _casting_public_sealed_partial_classCastOperator_ExplicitCastOperator_Noneint", nameof(other));
         }

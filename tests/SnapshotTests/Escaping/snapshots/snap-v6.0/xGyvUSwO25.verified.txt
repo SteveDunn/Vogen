@@ -157,7 +157,7 @@ namespace @class
 
         public int CompareTo(escapedTestspublic_sealed_partial_recordConversions_NewtonsoftJsonSystem_Guid other) => Value.CompareTo(other.Value);
         public int CompareTo(object other) {
-            if(other == null) return 1;
+            if(other is null) return 1;
             if(other is escapedTestspublic_sealed_partial_recordConversions_NewtonsoftJsonSystem_Guid x) return CompareTo(x);
             throw new global::System.ArgumentException("Cannot compare to object as it is not of type escapedTestspublic_sealed_partial_recordConversions_NewtonsoftJsonSystem_Guid", nameof(other));
         }
