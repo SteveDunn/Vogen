@@ -14,7 +14,7 @@ namespace Analyzer.Utilities.Extensions
             where TKey : class
             where TValue : class
         {
-            if (key != null && value != null)
+            if (key is not null && value is not null)
             {
                 dictionary.Add(key, value);
             }

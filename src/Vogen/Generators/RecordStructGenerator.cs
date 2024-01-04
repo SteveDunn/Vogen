@@ -132,7 +132,7 @@ using Vogen;
  
         {Util.GenerateAnyConversionBodies(tds, item)}
 
-        {Util.GenerateDebuggerProxyForStructs(tds, item)}
+        {Util.GenerateDebuggerProxyForStructs(item)}
 
 }}
 {GenerateEfCoreExtensions.GenerateIfNeeded(item)}

@@ -90,7 +90,7 @@ namespace @double
             if (validation != Vogen.Validation.Ok)
             {
                 var ex = new global::Vogen.ValueObjectValidationException(validation.ErrorMessage);
-                if (validation.Data != null) 
+                if (validation.Data is not null) 
                 {
                     foreach (var kvp in validation.Data)
                     {
@@ -163,7 +163,7 @@ var validation = @class.validate(value);
 
         public int CompareTo(@class other) => Value.CompareTo(other.Value);
         public int CompareTo(object other) {
-            if(other == null) return 1;
+            if(other is null) return 1;
             if(other is @class x) return CompareTo(x);
             throw new global::System.ArgumentException("Cannot compare to object as it is not of type @class", nameof(other));
         }

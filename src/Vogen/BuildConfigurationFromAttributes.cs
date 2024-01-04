@@ -294,7 +294,7 @@ internal class BuildConfigurationFromAttributes
 
     private void BuildAnyIssuesWithTheException(INamedTypeSymbol? invalidExceptionType)
     {
-        if (invalidExceptionType == null)
+        if (invalidExceptionType is null)
         {
             return;
         }

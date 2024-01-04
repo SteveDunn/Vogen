@@ -153,7 +153,7 @@ public System.Decimal Value
 
         public int CompareTo(stj_number_as_string_public_sealed_partial_classConversions_NewtonsoftJsondecimal other) => Value.CompareTo(other.Value);
         public int CompareTo(object other) {
-            if(other == null) return 1;
+            if(other is null) return 1;
             if(other is stj_number_as_string_public_sealed_partial_classConversions_NewtonsoftJsondecimal x) return CompareTo(x);
             throw new global::System.ArgumentException("Cannot compare to object as it is not of type stj_number_as_string_public_sealed_partial_classConversions_NewtonsoftJsondecimal", nameof(other));
         }

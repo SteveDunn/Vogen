@@ -25,13 +25,13 @@ public static class Util
 
     public static string GenerateValidation(VoWorkItem workItem)
     {
-        if (workItem.ValidateMethod != null)
+        if (workItem.ValidateMethod is not null)
         {
             return @$"var validation = {workItem.TypeToAugment.Identifier}.{workItem.ValidateMethod.Identifier.Value}(value);
             if (validation != Vogen.Validation.Ok)
             {{
                 var ex = new {workItem.ValidationExceptionFullName}(validation.ErrorMessage);
-                if (validation.Data != null) 
+                if (validation.Data is not null) 
                 {{
                     foreach (var kvp in validation.Data)
                     {{
@@ -59,7 +59,7 @@ public static class Util
             }
         }
 
-        if (workItem.ValidateMethod == null)
+        if (workItem.ValidateMethod is null)
         {
             return sb.ToString();
         }
@@ -78,7 +78,7 @@ public static class Util
 
     public static string GenerateNormalizeInputMethodIfNeeded(VoWorkItem workItem)
     {
-        if (workItem.NormalizeInputMethod != null)
+        if (workItem.NormalizeInputMethod is not null)
         {
             return @$"value = {workItem.TypeToAugment.Identifier}.{workItem.NormalizeInputMethod.Identifier.Value}(value);
 ";
@@ -143,7 +143,7 @@ public static class Util
         return sb.ToString();
     }
 
-    public static string GenerateAnyConversionAttributesForDebuggerProxy(TypeDeclarationSyntax tds, VoWorkItem item) => item.Conversions.ToString();
+    private static string GenerateAnyConversionAttributesForDebuggerProxy(VoWorkItem item) => item.Conversions.ToString();
 
     public static string GenerateAnyConversionBodies(TypeDeclarationSyntax tds, VoWorkItem item)
     {
@@ -156,7 +156,7 @@ public static class Util
         return sb.ToString();
     }
 
-    public static string GenerateDebuggerProxyForStructs(TypeDeclarationSyntax tds, VoWorkItem item)
+    public static string GenerateDebuggerProxyForStructs(VoWorkItem item)
     {
         var createdWithMethod = item.DisableStackTraceRecordingInDebug
             ? @"public global::System.String CreatedWith => ""the From method"""
@@ -182,7 +182,7 @@ $$"""
                     {{createdWithMethod}};
                 #endif
 
-                public global::System.String Conversions => @"{{Util.GenerateAnyConversionAttributesForDebuggerProxy(tds, item)}}";
+                public global::System.String Conversions => @"{{Util.GenerateAnyConversionAttributesForDebuggerProxy(item)}}";
             }
 """;
 

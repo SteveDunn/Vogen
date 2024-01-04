@@ -16,11 +16,11 @@ internal static class CompilationExtensions
         foreach (var reference in compilation.References)
         {
             var assemblySymbol = compilation.GetAssemblyOrModuleSymbol(reference) as IAssemblySymbol;
-            if (assemblySymbol == null)
+            if (assemblySymbol is null)
                 continue;
 
             symbol = assemblySymbol.GetTypeByMetadataName(typeMetadataName);
-            if (symbol != null)
+            if (symbol is not null)
                 yield return symbol;
         }
     }    

@@ -57,7 +57,7 @@ internal static class Templates
     {
         public static string? ResolveTemplateNameFromTypeName(Type? nts)
         {
-            if (nts == null) return null;
+            if (nts is null) return null;
 
             var name = nts.Name;
             

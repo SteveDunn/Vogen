@@ -58,7 +58,7 @@ internal static class ManageAttributes
         AttributeData? matchingAttribute = assemblyAttributes.SingleOrDefault(aa =>
             allThatMatchByName.Equals(aa.AttributeClass, SymbolEqualityComparer.Default));
 
-        if (matchingAttribute == null)
+        if (matchingAttribute is null)
         {
             return VogenConfigurationBuildResult.Null;
         }
