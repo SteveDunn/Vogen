@@ -9,8 +9,8 @@
   </Target>  
 
   <PropertyGroup>
-    <TargetFrameworks>net7.0;netstandard2.0</TargetFrameworks>
-    <LanguageVersion>11.0</LanguageVersion>
+    <TargetFrameworks>net8.0;netstandard2.0</TargetFrameworks>
+<!--    <LanguageVersion>11.0</LanguageVersion>-->
     <ImplicitUsings>disable</ImplicitUsings>
     <nullable>enable</nullable>
     <IsRoslynComponent>true</IsRoslynComponent>
@@ -71,12 +71,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.CodeAnalysis.Analyzers" Version="3.3.4">
-      <PrivateAssets>all</PrivateAssets>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-    </PackageReference>
-    <PackageReference Include="Microsoft.CodeAnalysis.CSharp" Version="4.3.1" PrivateAssets="all" />
-    <PackageReference Include="Microsoft.CodeAnalysis.CSharp.Workspaces" Version="4.3.1" PrivateAssets="all" />
+    <PackageReference Include="Microsoft.CodeAnalysis.Analyzers" PrivateAssets="all"/>
+    <PackageReference Include="Microsoft.CodeAnalysis.CSharp" PrivateAssets="all" />
+    <PackageReference Include="Microsoft.CodeAnalysis.CSharp.Workspaces" PrivateAssets="all" />
 
   </ItemGroup>
 

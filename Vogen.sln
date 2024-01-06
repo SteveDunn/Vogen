@@ -25,6 +25,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "_files", "_files", "{72AF0E
 		README.md = README.md
 		test.ps1 = test.ps1
 		RunSnapshots.ps1 = RunSnapshots.ps1
+		Directory.Build.targets = Directory.Build.targets
 	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Vogen.SharedTypes", "src\Vogen.SharedTypes\Vogen.SharedTypes.csproj", "{ACBCBC0B-430F-46A3-AD96-6AF28DBA7F9D}"
