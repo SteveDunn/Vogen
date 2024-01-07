@@ -133,16 +133,4 @@
     <value>Add validation method</value>
     <comment>Add a validation method to validate instances of this Value Object.</comment>
   </data>
-  <data name="CreationUsingNewAnalyzerDescription" xml:space="preserve">
-    <value>Creation using new is prohibited.</value>
-    <comment>Value Object that need validating can have a validation method that is called during creation.</comment>
-  </data>
-  <data name="CreationUsingNewAnalyzerMessageFormat" xml:space="preserve">
-    <value>Type name '{0}' should not be created using new</value>
-    <comment>Value Object that need validating can have a validation method that is called during creation.</comment>
-  </data>
-  <data name="CreationUsingNewAnalyzerTitle" xml:space="preserve">
-    <value>Value Objects can be created with the From method</value>
-    <comment>Value Object that need validating can have a validation method that is called during creation.</comment>
-  </data>
 </root>

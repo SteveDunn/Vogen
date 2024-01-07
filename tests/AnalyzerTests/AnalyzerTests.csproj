@@ -37,6 +37,7 @@
   <ItemGroup>
     <ProjectReference Include="..\..\src\Vogen.SharedTypes\Vogen.SharedTypes.csproj" />
     <ProjectReference Include="..\..\src\Vogen\Vogen.csproj" />
+    <ProjectReference Include="..\..\src\Vogen.CodeFixers\Vogen.CodeFixers.csproj" />
     <ProjectReference Include="..\Shared\Shared.csproj" />
   </ItemGroup>
 </Project>

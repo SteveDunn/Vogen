@@ -94,32 +94,5 @@ namespace Vogen {
                 return ResourceManager.GetString("AddValidationCodeFixTitle", resourceCulture);
             }
         }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Creation using new is prohibited..
-        /// </summary>
-        internal static string CreationUsingNewAnalyzerDescription {
-            get {
-                return ResourceManager.GetString("CreationUsingNewAnalyzerDescription", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Type name &apos;{0}&apos; should not be created using new.
-        /// </summary>
-        internal static string CreationUsingNewAnalyzerMessageFormat {
-            get {
-                return ResourceManager.GetString("CreationUsingNewAnalyzerMessageFormat", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Value Objects can be created with the From method.
-        /// </summary>
-        internal static string CreationUsingNewAnalyzerTitle {
-            get {
-                return ResourceManager.GetString("CreationUsingNewAnalyzerTitle", resourceCulture);
-            }
-        }
     }
 }
