@@ -97,6 +97,14 @@ public class ProjectBuilder
 
                 break;
 
+            case TargetFramework.Net8_0:
+                AddNuGetReference("Microsoft.NETCore.App.Ref", "8.0.0", "ref/net8.0/");
+                AddNuGetReference("linq2db", "4.3.0", "lib/net6.0/");
+                AddNuGetReference("Microsoft.EntityFrameworkCore", "8.0.0", "lib/net8.0/");
+                AddNuGetReference("Dapper", "2.0.123", "lib/net5.0/");
+
+                break;
+
             case TargetFramework.AspNetCore5_0:
                 AddNuGetReference("Microsoft.NETCore.App.Ref", "5.0.0", "ref/net5.0/");
                 AddNuGetReference("Microsoft.AspNetCore.App.Ref", "5.0.0", "ref/net5.0/");
