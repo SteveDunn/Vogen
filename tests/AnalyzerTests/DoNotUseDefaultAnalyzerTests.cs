@@ -150,7 +150,7 @@ public class Test {{
                 },
 
                 CompilerDiagnostics = CompilerDiagnostics.Errors,
-                ReferenceAssemblies = References.Net70AndOurs.Value,
+                ReferenceAssemblies = References.Net80AndOurs.Value,
             };
 
             test.ExpectedDiagnostics.AddRange(expected);

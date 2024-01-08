@@ -46,7 +46,7 @@ namespace ConsoleApplication1
                 },
 
                 CompilerDiagnostics = CompilerDiagnostics.Suggestions,
-                ReferenceAssemblies = References.Net70AndOurs.Value,
+                ReferenceAssemblies = References.Net80AndOurs.Value,
             };
 
             test.DisabledDiagnostics.Add("CS1591");
@@ -82,7 +82,7 @@ namespace ConsoleApplication1
                 },
 
                 CompilerDiagnostics = CompilerDiagnostics.Suggestions,
-                ReferenceAssemblies = References.Net70AndOurs.Value,
+                ReferenceAssemblies = References.Net80AndOurs.Value,
             };
 
             test.DisabledDiagnostics.Add("CS1591");
@@ -143,7 +143,7 @@ namespace ConsoleApplication1
                 },
 
                 CompilerDiagnostics = CompilerDiagnostics.Suggestions,
-                ReferenceAssemblies = References.Net70AndOurs.Value,
+                ReferenceAssemblies = References.Net80AndOurs.Value,
                 FixedCode = expectedOutput,
                 ExpectedDiagnostics = { expectedDiagnostic },
             };
@@ -224,7 +224,7 @@ namespace ConsoleApplication1
                 },
 
                 CompilerDiagnostics = CompilerDiagnostics.Suggestions,
-                ReferenceAssemblies = References.Net70AndOurs.Value,
+                ReferenceAssemblies = References.Net80AndOurs.Value,
                 FixedCode = expectedOutput,
                 ExpectedDiagnostics = { expectedDiagnostic },
             };
@@ -305,7 +305,7 @@ namespace ConsoleApplication1
                 },
 
                 CompilerDiagnostics = CompilerDiagnostics.Suggestions,
-                ReferenceAssemblies = References.Net70AndOurs.Value,
+                ReferenceAssemblies = References.Net80AndOurs.Value,
                 FixedCode = expectedOutput,
                 ExpectedDiagnostics = { expectedDiagnostic },
             };
@@ -370,11 +370,11 @@ namespace ConsoleApplication1
                 TestState =
                 {
                     Sources = { input },
-                    ReferenceAssemblies = References.Net70AndOurs.Value
+                    ReferenceAssemblies = References.Net80AndOurs.Value
                 },
 
                 CompilerDiagnostics = CompilerDiagnostics.Suggestions,
-                ReferenceAssemblies = References.Net70AndOurs.Value,
+                ReferenceAssemblies = References.Net80AndOurs.Value,
                 FixedCode = expectedOutput,
                 ExpectedDiagnostics = { expectedDiagnostic },
             };
