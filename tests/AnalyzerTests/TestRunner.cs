@@ -49,7 +49,10 @@ namespace AnalyzerTests
             _ = _source ?? throw new InvalidOperationException("No source!");
             _ = _validationMethod ?? throw new InvalidOperationException("No validation method!");
 
-#if NET7_0
+#if NET8_0
+            // Only run .NET 8 tests when using the .NET 8 SDK (prevents assembly versioning issues with <7.0)
+            frameworks = frameworks.Where(framework => framework == TargetFramework.Net8_0).ToArray();
+#elif NET7_0
             // Only run .NET 7 tests when using the .NET 7 SDK (prevents assembly versioning issues with <6.0)
             frameworks = frameworks.Where(framework => framework == TargetFramework.Net7_0).ToArray();
 #elif NET6_0
