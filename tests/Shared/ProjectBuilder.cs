@@ -130,7 +130,7 @@ public class ProjectBuilder
 
         AddNuGetReference("System.Collections.Immutable", "1.5.0", "lib/netstandard2.0/");
             
-        if (TargetFramework != TargetFramework.Net7_0)
+        if (TargetFramework is not TargetFramework.Net7_0 and not TargetFramework.Net8_0)
         {
             AddNuGetReference("System.Numerics.Vectors", "4.5.0", "ref/netstandard2.0/");
 //                AddNuGetReference("System.Memory", "4.5.5", "lib/net462/");
