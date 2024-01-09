@@ -33,12 +33,12 @@ namespace Vogen
             IncrementalValuesProvider<VoTarget> voFilter = context.SyntaxProvider.CreateSyntaxProvider(
                     predicate: static (s, _) => VoFilter.IsTarget(s),
                     transform: static (ctx, _) => VoFilter.TryGetTarget(ctx))
-                .Where(static m => m is not null);
+                .Where(static m => m is not null)!;
 
             IncrementalValuesProvider<AttributeSyntax> globalConfigFilter = context.SyntaxProvider.CreateSyntaxProvider(
                     predicate: static (s, _) => IsTarget(s),
                     transform: static (ctx, _) => ManageAttributes.TryGetAssemblyLevelDefaultsAttribute(ctx))
-                .Where(static m => m is not null);
+                .Where(static m => m is not null)!;
 
             IncrementalValueProvider<(ImmutableArray<VoTarget> Left, ImmutableArray<AttributeSyntax> Right)> targetsAndDefaultAttributes
                 = voFilter.Collect().Combine(globalConfigFilter.Collect());

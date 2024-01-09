@@ -6,7 +6,6 @@ namespace Vogen
     using System;
 
     // Generic attributes were introduced in .NET 5 and C# 9
-#if NETCOREAPP
     /// <summary>
     /// Marks a type as a Value Object. The type should be partial so that the
     /// source generator can augment the type with equality and validation.
@@ -31,7 +30,6 @@ namespace Vogen
         {
         }
     }
-#endif
 
     /// <summary>
     /// Marks a type as a Value Object. The type that this is applied to should be partial so that the
