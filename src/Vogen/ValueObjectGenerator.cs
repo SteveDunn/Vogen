@@ -12,6 +12,8 @@ namespace Vogen
     {
         public void Initialize(IncrementalGeneratorInitializationContext context)
         {
+            //todo: use ForAttributeWithMetadataName instead: https://www.thinktecture.com/net/roslyn-source-generators-high-level-api-forattributewithmetadataname/
+            
             IncrementalValueProvider<(ImmutableArray<VoTarget> Left, ImmutableArray<AttributeSyntax> Right)> targets = GetTargets(context);
 
             IncrementalValueProvider<(Compilation Left, (ImmutableArray<VoTarget> Left, ImmutableArray<AttributeSyntax> Right) Right)> compilationAndValues
@@ -25,17 +27,18 @@ namespace Vogen
                     spc));
         }
 
-        private static IncrementalValueProvider<(ImmutableArray<VoTarget> Left, ImmutableArray<AttributeSyntax> Right)> GetTargets(IncrementalGeneratorInitializationContext context)
+        private static IncrementalValueProvider<(ImmutableArray<VoTarget> Left, ImmutableArray<AttributeSyntax> Right)> GetTargets(
+            IncrementalGeneratorInitializationContext context)
         {
             IncrementalValuesProvider<VoTarget> voFilter = context.SyntaxProvider.CreateSyntaxProvider(
                     predicate: static (s, _) => VoFilter.IsTarget(s),
                     transform: static (ctx, _) => VoFilter.TryGetTarget(ctx))
-                .Where(static m => m is not null)!;
+                .Where(static m => m is not null);
 
             IncrementalValuesProvider<AttributeSyntax> globalConfigFilter = context.SyntaxProvider.CreateSyntaxProvider(
                     predicate: static (s, _) => IsTarget(s),
                     transform: static (ctx, _) => ManageAttributes.TryGetAssemblyLevelDefaultsAttribute(ctx))
-                .Where(static m => m is not null)!;
+                .Where(static m => m is not null);
 
             IncrementalValueProvider<(ImmutableArray<VoTarget> Left, ImmutableArray<AttributeSyntax> Right)> targetsAndDefaultAttributes
                 = voFilter.Collect().Combine(globalConfigFilter.Collect());
@@ -54,7 +57,7 @@ namespace Vogen
                 return;
             }
             
-            // if there are some, get the
+            // if there are some, get the default global config
             var buildResult =
                 ManageAttributes.GetDefaultConfigFromGlobalAttribute(globalConfigAttributes, compilation);
             

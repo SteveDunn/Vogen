@@ -48,7 +48,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\src\Vogen.SharedTypes\Vogen.SharedTypes.csproj" />
+<!--    <ProjectReference Include="..\..\src\Vogen.SharedTypes\Vogen.SharedTypes.csproj" />-->
     <ProjectReference Include="..\..\src\Vogen\Vogen.csproj" />
     <ProjectReference Include="..\Shared\Shared.csproj" />
   </ItemGroup>

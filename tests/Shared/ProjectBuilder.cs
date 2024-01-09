@@ -25,27 +25,32 @@ public class ProjectBuilder
         new("CS1701", ReportDiagnostic.Suppress) //  Assuming assembly reference
     };
 
-    public IList<MetadataReference> References { get; } = new List<MetadataReference>();
-
-    public TargetFramework TargetFramework { get; private set; } = TargetFramework.Net6_0;
+    private readonly IList<MetadataReference> _references = new List<MetadataReference>();
+    private string _source = string.Empty;
+    private TargetFramework? _targetFramework;
 
     public ProjectBuilder WithTargetFramework(TargetFramework targetFramework)
     {
-        TargetFramework = targetFramework;
+        _targetFramework = targetFramework;
         return this;
     }
 
     public void AddNuGetReference(string packageName, string version, string pathPrefix)
     {
-        foreach (var reference in GetNuGetReferences(packageName, version, pathPrefix).Result)
+        foreach (string reference in GetNuGetReferences(packageName, version, pathPrefix).Result)
         {
-            References.Add(MetadataReference.CreateFromFile(reference));
+            _references.Add(MetadataReference.CreateFromFile(reference));
         }
     }
 
     private void AddNuGetReferences()
     {
-        switch (TargetFramework)
+        if(_targetFramework is null)
+        {
+            throw new InvalidOperationException("No target framework!");
+        }
+
+        switch (_targetFramework)
         {
             case TargetFramework.NetCoreApp3_1:
                 AddNuGetReference("Microsoft.NETCore.App.Ref", "3.1.0", "ref/netcoreapp3.1/");
@@ -101,7 +106,7 @@ public class ProjectBuilder
                 AddNuGetReference("Microsoft.NETCore.App.Ref", "8.0.0", "ref/net8.0/");
                 AddNuGetReference("linq2db", "4.3.0", "lib/net6.0/");
                 AddNuGetReference("Microsoft.EntityFrameworkCore", "8.0.0", "lib/net8.0/");
-                AddNuGetReference("Dapper", "2.0.123", "lib/net5.0/");
+                AddNuGetReference("Dapper", "2.1.28", "lib/net7.0/");
 
                 break;
 
@@ -130,7 +135,7 @@ public class ProjectBuilder
 
         AddNuGetReference("System.Collections.Immutable", "1.5.0", "lib/netstandard2.0/");
             
-        if (TargetFramework is not TargetFramework.Net7_0 and not TargetFramework.Net8_0)
+        if (_targetFramework is not TargetFramework.Net7_0 and not TargetFramework.Net8_0)
         {
             AddNuGetReference("System.Numerics.Vectors", "4.5.0", "ref/netstandard2.0/");
 //                AddNuGetReference("System.Memory", "4.5.5", "lib/net462/");
@@ -143,16 +148,18 @@ public class ProjectBuilder
 
     private static Task<string[]> GetNuGetReferences(string packageName, string version, string path)
     {
-        var task = _cache.GetOrAdd(packageName + '@' + version + ':' + path, _ =>
-        {
-            return new Lazy<Task<string[]>>(Download);
-        });
+        var task = _cache.GetOrAdd($"{packageName}@{version}:{path}", _ => new Lazy<Task<string[]>>(Download));
 
         return task.Value;
 
         async Task<string[]> Download()
         {
-            var tempFolder = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "Vogen.Tests", "ref", packageName + '@' + version);
+            var tempFolder = Path.Combine(
+                Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData),
+                "Vogen.Tests",
+                "ref",
+                packageName + '@' + version);
+
             if (!Directory.Exists(tempFolder) || !Directory.EnumerateFileSystemEntries(tempFolder).Any())
             {
                 Directory.CreateDirectory(tempFolder);
@@ -166,22 +173,22 @@ public class ProjectBuilder
                 }
             }
 
-            var dlls = Directory.GetFiles(tempFolder, "*.dll");
+            string[] nameAndPathsForDlls = Directory.GetFiles(tempFolder, "*.dll");
 
             // Filter invalid .NET assembly
             var result = new List<string>();
-            foreach (var dll in dlls)
+            foreach (string eachDllNameAndPath in nameAndPathsForDlls)
             {
-                if (Path.GetFileName(dll) == "System.EnterpriseServices.Wrapper.dll")
+                if (Path.GetFileName(eachDllNameAndPath) == "System.EnterpriseServices.Wrapper.dll")
                     continue;
 
                 try
                 {
-                    using var stream = File.OpenRead(dll);
+                    using var stream = File.OpenRead(eachDllNameAndPath);
                     using var peFile = new PEReader(stream);
                     // ReSharper disable once UnusedVariable
                     var metadataReader = peFile.GetMetadataReader();
-                    result.Add(dll);
+                    result.Add(eachDllNameAndPath);
                 }
                 catch
                 {
@@ -199,19 +206,17 @@ public class ProjectBuilder
 
     public ProjectBuilder WithSource(string source)
     {
-        Source = source;
+        _source = source;
 
         return this;
     }
-
-    public string Source { get; private set; } = string.Empty;
 
     public (ImmutableArray<Diagnostic> Diagnostics, string Output) GetGeneratedOutput<T>(
         bool ignoreInitialCompilationErrors,
         MetadataReference? valueObjectAttributeMetadata = null)
         where T : IIncrementalGenerator, new()
     {
-        var syntaxTree = CSharpSyntaxTree.ParseText(Source);
+        var syntaxTree = CSharpSyntaxTree.ParseText(_source);
         var syntaxTree2 = CSharpSyntaxTree.ParseText(@"    namespace System.Runtime.CompilerServices
     {
           internal static class IsExternalInit {}
@@ -220,14 +225,14 @@ public class ProjectBuilder
 
         MetadataReference r = valueObjectAttributeMetadata ?? MetadataReference.CreateFromFile(typeof(ValueObjectAttribute).Assembly.Location);
 
-        References.Add(r);
+        _references.Add(r);
 
         AddNuGetReferences();
 
         var compilation = CSharpCompilation.Create(
             "generator",
             new[] { syntaxTree, syntaxTree2 },
-            References,
+            _references,
             new CSharpCompilationOptions(OutputKind.DynamicallyLinkedLibrary, specificDiagnosticOptions: _suppressedDiagnostics));
 
         var initialDiags = compilation.GetDiagnostics();
