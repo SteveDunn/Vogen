@@ -62,7 +62,7 @@ exec { & dotnet restore Vogen.sln --no-cache --verbosity $verbosity }
 
 exec { & dotnet build Vogen.sln -c Release -p Thorough=true --no-restore --verbosity $verbosity}
 
-# run the analyzer and code generation tests
+# run the analyzer tests
 WriteStage("Running analyzer tests...")
 exec { & dotnet test tests/AnalyzerTests/AnalyzerTests.csproj -c Release --no-build -l trx -l "GitHubActions;report-warnings=false" --verbosity $verbosity }
 

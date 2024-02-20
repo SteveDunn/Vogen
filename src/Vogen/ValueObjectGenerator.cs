@@ -12,6 +12,8 @@ namespace Vogen
     {
         public void Initialize(IncrementalGeneratorInitializationContext context)
         {
+            //todo: use ForAttributeWithMetadataName instead: https://www.thinktecture.com/net/roslyn-source-generators-high-level-api-forattributewithmetadataname/
+            
             IncrementalValueProvider<(ImmutableArray<VoTarget> Left, ImmutableArray<AttributeSyntax> Right)> targets = GetTargets(context);
 
             IncrementalValueProvider<(Compilation Left, (ImmutableArray<VoTarget> Left, ImmutableArray<AttributeSyntax> Right) Right)> compilationAndValues
@@ -25,7 +27,8 @@ namespace Vogen
                     spc));
         }
 
-        private static IncrementalValueProvider<(ImmutableArray<VoTarget> Left, ImmutableArray<AttributeSyntax> Right)> GetTargets(IncrementalGeneratorInitializationContext context)
+        private static IncrementalValueProvider<(ImmutableArray<VoTarget> Left, ImmutableArray<AttributeSyntax> Right)> GetTargets(
+            IncrementalGeneratorInitializationContext context)
         {
             IncrementalValuesProvider<VoTarget> voFilter = context.SyntaxProvider.CreateSyntaxProvider(
                     predicate: static (s, _) => VoFilter.IsTarget(s),
@@ -54,7 +57,7 @@ namespace Vogen
                 return;
             }
             
-            // if there are some, get the
+            // if there are some, get the default global config
             var buildResult =
                 ManageAttributes.GetDefaultConfigFromGlobalAttribute(globalConfigAttributes, compilation);
             

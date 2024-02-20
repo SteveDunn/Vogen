@@ -1,6 +1,6 @@
 ﻿namespace Vogen.Diagnostics;
 
-internal static class RuleIdentifiers
+public static class RuleIdentifiers
 {
     public const string AddValidationMethod = "AddValidationMethod";
 

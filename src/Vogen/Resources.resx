@@ -145,8 +145,4 @@
     <value>Value Objects can be created with the From method</value>
     <comment>Value Object that need validating can have a validation method that is called during creation.</comment>
   </data>
-  <data name="CreationUsingNewCodeFixTitle" xml:space="preserve">
-    <value>Create using the From method</value>
-    <comment>Add a validation method to validate instances of this Value Object.</comment>
-  </data>
 </root>

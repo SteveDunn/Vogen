@@ -314,7 +314,7 @@ There are several code analysis warnings for invalid configuration, including:
 
 ## Performance
 
-(to run these yourself: `dotnet run -c Release --framework net7.0  -- --job short --filter *` in the `Vogen.Benchmarks` folder)
+(to run these yourself: `dotnet run -c Release --framework net8.0  -- --job short --filter *` in the `Vogen.Benchmarks` folder)
 
 As mentioned previously, the goal of Vogen is to achieve very similar performance compare to using primitives themselves.
 Here's a benchmark comparing the use of a validated Value Object with underlying type of int vs using an int natively (*primitively* 🤓)
