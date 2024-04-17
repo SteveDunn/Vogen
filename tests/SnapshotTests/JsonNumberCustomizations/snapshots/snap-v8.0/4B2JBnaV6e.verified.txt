@@ -33,7 +33,7 @@ namespace Whatever
     
     [global::System.Diagnostics.DebuggerTypeProxyAttribute(typeof(stj_number_as_string_public_partial_classConversions_NoneSystem_DateTimeDebugView))]
     [global::System.Diagnostics.DebuggerDisplayAttribute("Underlying type: System.DateTime, Value = { _value }")]
-    public partial class stj_number_as_string_public_partial_classConversions_NoneSystem_DateTime : global::System.IEquatable<stj_number_as_string_public_partial_classConversions_NoneSystem_DateTime>, global::System.IEquatable<System.DateTime> ,  global::System.IComparable<stj_number_as_string_public_partial_classConversions_NoneSystem_DateTime>, global::System.IComparable
+    public partial class stj_number_as_string_public_partial_classConversions_NoneSystem_DateTime : global::System.IEquatable<stj_number_as_string_public_partial_classConversions_NoneSystem_DateTime>, global::System.IEquatable<System.DateTime> ,  global::System.IComparable<stj_number_as_string_public_partial_classConversions_NoneSystem_DateTime>, global::System.IComparable,  global::System.IParsable<stj_number_as_string_public_partial_classConversions_NoneSystem_DateTime>,  global::System.ISpanParsable<stj_number_as_string_public_partial_classConversions_NoneSystem_DateTime>
     {
 #if DEBUG   
         private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
@@ -156,6 +156,201 @@ public System.DateTime Value
             if(other is stj_number_as_string_public_partial_classConversions_NoneSystem_DateTime x) return CompareTo(x);
             throw new global::System.ArgumentException("Cannot compare to object as it is not of type stj_number_as_string_public_partial_classConversions_NoneSystem_DateTime", nameof(other));
         }
+
+        
+    /// <inheritdoc cref="System.DateTime.TryParse(System.ReadOnlySpan{char}, out System.DateTime)"/>
+    /// <summary>
+    /// </summary>
+    /// <returns>
+    /// True if the value could a) be parsed by the underlying type, and b) passes any validation (after running any optional normalization).
+    /// </returns>
+    public static global::System.Boolean TryParse(global::System.ReadOnlySpan<char> s, 
+#if NETCOREAPP3_0_OR_GREATER
+[global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)]
+#endif
+ out stj_number_as_string_public_partial_classConversions_NoneSystem_DateTime result) {
+        if(System.DateTime.TryParse(s, out var __v)) {
+            
+            
+            result = new stj_number_as_string_public_partial_classConversions_NoneSystem_DateTime(__v);
+            return true;
+        }
+
+        result = default;
+        return false;
+    }
+
+    /// <inheritdoc cref="System.DateTime.TryParse(System.ReadOnlySpan{char}, System.IFormatProvider?, out System.DateTime)"/>
+    /// <summary>
+    /// </summary>
+    /// <returns>
+    /// True if the value could a) be parsed by the underlying type, and b) passes any validation (after running any optional normalization).
+    /// </returns>
+    public static global::System.Boolean TryParse(global::System.ReadOnlySpan<char> s, global::System.IFormatProvider provider, 
+#if NETCOREAPP3_0_OR_GREATER
+[global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)]
+#endif
+ out stj_number_as_string_public_partial_classConversions_NoneSystem_DateTime result) {
+        if(System.DateTime.TryParse(s, provider, out var __v)) {
+            
+            
+            result = new stj_number_as_string_public_partial_classConversions_NoneSystem_DateTime(__v);
+            return true;
+        }
+
+        result = default;
+        return false;
+    }
+
+    /// <inheritdoc cref="System.DateTime.TryParse(System.ReadOnlySpan{char}, System.IFormatProvider?, System.Globalization.DateTimeStyles, out System.DateTime)"/>
+    /// <summary>
+    /// </summary>
+    /// <returns>
+    /// True if the value could a) be parsed by the underlying type, and b) passes any validation (after running any optional normalization).
+    /// </returns>
+    public static global::System.Boolean TryParse(global::System.ReadOnlySpan<char> s, global::System.IFormatProvider provider, global::System.Globalization.DateTimeStyles styles, 
+#if NETCOREAPP3_0_OR_GREATER
+[global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)]
+#endif
+ out stj_number_as_string_public_partial_classConversions_NoneSystem_DateTime result) {
+        if(System.DateTime.TryParse(s, provider, styles, out var __v)) {
+            
+            
+            result = new stj_number_as_string_public_partial_classConversions_NoneSystem_DateTime(__v);
+            return true;
+        }
+
+        result = default;
+        return false;
+    }
+
+    /// <inheritdoc cref="System.DateTime.TryParse(string?, out System.DateTime)"/>
+    /// <summary>
+    /// </summary>
+    /// <returns>
+    /// True if the value could a) be parsed by the underlying type, and b) passes any validation (after running any optional normalization).
+    /// </returns>
+    public static global::System.Boolean TryParse(string s, 
+#if NETCOREAPP3_0_OR_GREATER
+[global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)]
+#endif
+ out stj_number_as_string_public_partial_classConversions_NoneSystem_DateTime result) {
+        if(System.DateTime.TryParse(s, out var __v)) {
+            
+            
+            result = new stj_number_as_string_public_partial_classConversions_NoneSystem_DateTime(__v);
+            return true;
+        }
+
+        result = default;
+        return false;
+    }
+
+    /// <inheritdoc cref="System.DateTime.TryParse(string?, System.IFormatProvider?, out System.DateTime)"/>
+    /// <summary>
+    /// </summary>
+    /// <returns>
+    /// True if the value could a) be parsed by the underlying type, and b) passes any validation (after running any optional normalization).
+    /// </returns>
+    public static global::System.Boolean TryParse(string s, global::System.IFormatProvider provider, 
+#if NETCOREAPP3_0_OR_GREATER
+[global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)]
+#endif
+ out stj_number_as_string_public_partial_classConversions_NoneSystem_DateTime result) {
+        if(System.DateTime.TryParse(s, provider, out var __v)) {
+            
+            
+            result = new stj_number_as_string_public_partial_classConversions_NoneSystem_DateTime(__v);
+            return true;
+        }
+
+        result = default;
+        return false;
+    }
+
+    /// <inheritdoc cref="System.DateTime.TryParse(string?, System.IFormatProvider?, System.Globalization.DateTimeStyles, out System.DateTime)"/>
+    /// <summary>
+    /// </summary>
+    /// <returns>
+    /// True if the value could a) be parsed by the underlying type, and b) passes any validation (after running any optional normalization).
+    /// </returns>
+    public static global::System.Boolean TryParse(string s, global::System.IFormatProvider provider, global::System.Globalization.DateTimeStyles styles, 
+#if NETCOREAPP3_0_OR_GREATER
+[global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)]
+#endif
+ out stj_number_as_string_public_partial_classConversions_NoneSystem_DateTime result) {
+        if(System.DateTime.TryParse(s, provider, styles, out var __v)) {
+            
+            
+            result = new stj_number_as_string_public_partial_classConversions_NoneSystem_DateTime(__v);
+            return true;
+        }
+
+        result = default;
+        return false;
+    }
+
+    /// <inheritdoc cref="System.DateTime.Parse(System.ReadOnlySpan{char}, System.IFormatProvider?)"/>
+    /// <summary>
+    /// </summary>
+    /// <returns>
+    /// The value created via the <see cref="From"/> method.
+    /// </returns>
+    /// <exception cref="ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
+    public static stj_number_as_string_public_partial_classConversions_NoneSystem_DateTime Parse(global::System.ReadOnlySpan<char> s, global::System.IFormatProvider provider) {
+        var r = System.DateTime.Parse(s, provider);
+        return From(r);
+    }
+
+    /// <inheritdoc cref="System.DateTime.Parse(System.ReadOnlySpan{char}, System.IFormatProvider?, System.Globalization.DateTimeStyles)"/>
+    /// <summary>
+    /// </summary>
+    /// <returns>
+    /// The value created via the <see cref="From"/> method.
+    /// </returns>
+    /// <exception cref="ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
+    public static stj_number_as_string_public_partial_classConversions_NoneSystem_DateTime Parse(global::System.ReadOnlySpan<char> s, global::System.IFormatProvider provider, global::System.Globalization.DateTimeStyles styles) {
+        var r = System.DateTime.Parse(s, provider, styles);
+        return From(r);
+    }
+
+    /// <inheritdoc cref="System.DateTime.Parse(string)"/>
+    /// <summary>
+    /// </summary>
+    /// <returns>
+    /// The value created via the <see cref="From"/> method.
+    /// </returns>
+    /// <exception cref="ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
+    public static stj_number_as_string_public_partial_classConversions_NoneSystem_DateTime Parse(string s) {
+        var r = System.DateTime.Parse(s);
+        return From(r);
+    }
+
+    /// <inheritdoc cref="System.DateTime.Parse(string, System.IFormatProvider?)"/>
+    /// <summary>
+    /// </summary>
+    /// <returns>
+    /// The value created via the <see cref="From"/> method.
+    /// </returns>
+    /// <exception cref="ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
+    public static stj_number_as_string_public_partial_classConversions_NoneSystem_DateTime Parse(string s, global::System.IFormatProvider provider) {
+        var r = System.DateTime.Parse(s, provider);
+        return From(r);
+    }
+
+    /// <inheritdoc cref="System.DateTime.Parse(string, System.IFormatProvider?, System.Globalization.DateTimeStyles)"/>
+    /// <summary>
+    /// </summary>
+    /// <returns>
+    /// The value created via the <see cref="From"/> method.
+    /// </returns>
+    /// <exception cref="ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
+    public static stj_number_as_string_public_partial_classConversions_NoneSystem_DateTime Parse(string s, global::System.IFormatProvider provider, global::System.Globalization.DateTimeStyles styles) {
+        var r = System.DateTime.Parse(s, provider, styles);
+        return From(r);
+    }
+
+
 
           public override global::System.Int32 GetHashCode()
           {

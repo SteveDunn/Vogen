@@ -766,7 +766,7 @@ platform and tooling. Those are [described here](https://github.com/VerifyTests/
 **NOTE: If the change to the source generators expectedly changes the majority of the snapshot tests, then you can tell the 
 snapshot runner to overwrite the expected files with the actual files that are generated.**
 
-To do this, run `.\Build.ps1 -v "Minimal" -resetSnapshots $true`. This deletes all `snaphsot` folders under the `tests` folder
+To do this, run `.\RunSnapshots.ps1 -v "Minimal" -reset $true`. This deletes all `snaphsot` folders under the `tests` folder
 and treats everything that's generated as the new baseline for future comparisons.
 
 This will mean that there are potentially **thousands** of changed files that will end up in the commit, but it's expected and unavoidable.
@@ -784,7 +784,7 @@ is a separate solution for this. It's called `Consumers.sln`. What happens is th
 the tests, and creates the NuGet package _in a private local folder_. The package is version `999.9.xxx` and the consumer 
 references the latest version. The consumer can then really use the source generator, just like anything else.
 
-> Note: if you don't want to run the lengthy snapshot tests when building the local nuget package, run `.\Build.ps1 -v "minimal" -skiptests $true`
+> Note: if you want to run the lengthy snapshot tests, run `.\RunSnapshots.ps1 -v "minimal"`
 
 ### Can I get it to throw my own exception?
 

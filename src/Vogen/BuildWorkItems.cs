@@ -109,8 +109,6 @@ internal static class BuildWorkItems
 
         ReportErrorIfUnderlyingTypeIsCollection(context, config, voSymbolInformation);
 
-        var isValueType = IsUnderlyingAValueType(config);
-
         bool isWrapperAValueType = voTypeSyntax switch
         {
             ClassDeclarationSyntax => false,
@@ -120,14 +118,18 @@ internal static class BuildWorkItems
             _ => false
         };
         
-
         return new VoWorkItem
         {
             InstanceProperties = instanceProperties.ToList(),
             TypeToAugment = voTypeSyntax,
-            IsTheUnderlyingAValueType = isValueType,
+            
+            IsTheUnderlyingAValueType = IsUnderlyingAValueType(config),
             IsTheWrapperAValueType = isWrapperAValueType,
+            
+            ParsingInformation = BuildParsingInformation(compilation, underlyingType),
+            
             UserProvidedOverloads = userProvidedOverloads,
+            
             UnderlyingType = underlyingType,
             Conversions = config.Conversions,
             DeserializationStrictness = config.DeserializationStrictness,
@@ -143,8 +145,34 @@ internal static class BuildWorkItems
             NormalizeInputMethod = normalizeInputMethod,
             FullNamespace = voSymbolInformation.FullNamespace(),
             IsSealed = voSymbolInformation.IsSealed,
-            AccessibilityKeyword = voSymbolInformation.IsInternal() ? "internal" : "public"
+            AccessibilityKeyword = voSymbolInformation.IsInternal() ? "internal" : "public",
+            
+            WrapperType = voSymbolInformation
         };
+    }
+
+    private static ParsingInformation BuildParsingInformation(Compilation compilation, INamedTypeSymbol underlyingType)
+    {
+        ParsingInformation parsingInformation = new()
+        {
+            UnderlyingIsAString = underlyingType.SpecialType == SpecialType.System_String,
+            IParsableIsAvailable = compilation.GetTypeByMetadataName("System.IParsable`1") is not null,
+            IFormatProviderType = compilation.GetTypeByMetadataName("System.IFormatProvider"),
+            UnderlyingDerivesFromISpanParsable = DoesPubliclyImplementGenericInterface(underlyingType, compilation.GetTypeByMetadataName("System.ISpanParsable`1")),
+            UnderlyingDerivesFromIParsable = DoesPubliclyImplementGenericInterface(underlyingType, compilation.GetTypeByMetadataName("System.IParsable`1")),
+            UnderlyingDerivesFromIUtf8SpanParsable = DoesPubliclyImplementGenericInterface(underlyingType, compilation.GetTypeByMetadataName("System.IUtf8SpanParsable`1")),
+            
+            TryParseMethodsOnThePrimitive = MethodDiscovery.FindTryParseMethodsOnThePrimitive(underlyingType).ToList(),
+            ParseMethodsOnThePrimitive = MethodDiscovery.FindParseMethodsOnThePrimitive(underlyingType).ToList(),
+        };
+        
+        return parsingInformation;
+    }
+
+    private static bool DoesPubliclyImplementGenericInterface(INamedTypeSymbol underlyingType, INamedTypeSymbol? openGeneric)
+    {
+        INamedTypeSymbol? closedGeneric = openGeneric?.Construct(underlyingType);
+        return MethodDiscovery.DoesPrimitivePubliclyImplementThisInterface(underlyingType, closedGeneric);
     }
 
     private static void ThrowIfToStringOverrideOnRecordIsUnsealed(VoTarget target,

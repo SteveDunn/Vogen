@@ -33,7 +33,7 @@ namespace Whatever
     
     [global::System.Diagnostics.DebuggerTypeProxyAttribute(typeof(internal_partial_record_structConversions_NonefloatDebugView))]
     [global::System.Diagnostics.DebuggerDisplayAttribute("Underlying type: System.Single, Value = { _value }")]
-    internal partial record struct internal_partial_record_structConversions_Nonefloat : global::System.IEquatable<internal_partial_record_structConversions_Nonefloat>, global::System.IEquatable<System.Single> ,  global::System.IComparable<internal_partial_record_structConversions_Nonefloat>, global::System.IComparable
+    internal partial record struct internal_partial_record_structConversions_Nonefloat : global::System.IEquatable<internal_partial_record_structConversions_Nonefloat>, global::System.IEquatable<System.Single>,  global::System.IComparable<internal_partial_record_structConversions_Nonefloat>, global::System.IComparable
     {
 #if DEBUG   
         private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
@@ -153,16 +153,17 @@ namespace Whatever
     /// <summary>
     /// </summary>
     /// <returns>
-    /// The value created via the <see cref="From"/> method.
+    /// True if the value could a) be parsed by the underlying type, and b) passes any validation (after running any optional normalization).
     /// </returns>
-    /// <exception cref="ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
     public static global::System.Boolean TryParse(string s, global::System.Globalization.NumberStyles style, global::System.IFormatProvider provider, 
 #if NETCOREAPP3_0_OR_GREATER
 [global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)]
 #endif
  out internal_partial_record_structConversions_Nonefloat result) {
-        if(System.Single.TryParse(s, style, provider, out var r)) {
-            result = From(r);
+        if(System.Single.TryParse(s, style, provider, out var __v)) {
+            
+            
+            result = new internal_partial_record_structConversions_Nonefloat(__v);
             return true;
         }
 
@@ -174,21 +175,70 @@ namespace Whatever
     /// <summary>
     /// </summary>
     /// <returns>
-    /// The value created via the <see cref="From"/> method.
+    /// True if the value could a) be parsed by the underlying type, and b) passes any validation (after running any optional normalization).
     /// </returns>
-    /// <exception cref="ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
     public static global::System.Boolean TryParse(string s, 
 #if NETCOREAPP3_0_OR_GREATER
 [global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)]
 #endif
  out internal_partial_record_structConversions_Nonefloat result) {
-        if(System.Single.TryParse(s, out var r)) {
-            result = From(r);
+        if(System.Single.TryParse(s, out var __v)) {
+            
+            
+            result = new internal_partial_record_structConversions_Nonefloat(__v);
             return true;
         }
 
         result = default;
         return false;
+    }
+
+    /// <inheritdoc cref="float.Parse(string)"/>
+    /// <summary>
+    /// </summary>
+    /// <returns>
+    /// The value created via the <see cref="From"/> method.
+    /// </returns>
+    /// <exception cref="ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
+    public static internal_partial_record_structConversions_Nonefloat Parse(string s) {
+        var r = System.Single.Parse(s);
+        return From(r);
+    }
+
+    /// <inheritdoc cref="float.Parse(string, System.Globalization.NumberStyles)"/>
+    /// <summary>
+    /// </summary>
+    /// <returns>
+    /// The value created via the <see cref="From"/> method.
+    /// </returns>
+    /// <exception cref="ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
+    public static internal_partial_record_structConversions_Nonefloat Parse(string s, global::System.Globalization.NumberStyles style) {
+        var r = System.Single.Parse(s, style);
+        return From(r);
+    }
+
+    /// <inheritdoc cref="float.Parse(string, System.Globalization.NumberStyles, System.IFormatProvider)"/>
+    /// <summary>
+    /// </summary>
+    /// <returns>
+    /// The value created via the <see cref="From"/> method.
+    /// </returns>
+    /// <exception cref="ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
+    public static internal_partial_record_structConversions_Nonefloat Parse(string s, global::System.Globalization.NumberStyles style, global::System.IFormatProvider provider) {
+        var r = System.Single.Parse(s, style, provider);
+        return From(r);
+    }
+
+    /// <inheritdoc cref="float.Parse(string, System.IFormatProvider)"/>
+    /// <summary>
+    /// </summary>
+    /// <returns>
+    /// The value created via the <see cref="From"/> method.
+    /// </returns>
+    /// <exception cref="ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
+    public static internal_partial_record_structConversions_Nonefloat Parse(string s, global::System.IFormatProvider provider) {
+        var r = System.Single.Parse(s, provider);
+        return From(r);
     }
 
 

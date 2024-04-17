@@ -35,7 +35,7 @@ namespace Whatever
 
     [global::System.Diagnostics.DebuggerTypeProxyAttribute(typeof(_casting_public_sealed_partial_recordCastOperator_ImplicitCastOperator_ImplicitSystem_DateTimeDebugView))]
     [global::System.Diagnostics.DebuggerDisplayAttribute("Underlying type: System.DateTime, Value = { _value }")]
-    public sealed partial record class _casting_public_sealed_partial_recordCastOperator_ImplicitCastOperator_ImplicitSystem_DateTime : global::System.IEquatable<_casting_public_sealed_partial_recordCastOperator_ImplicitCastOperator_ImplicitSystem_DateTime>, global::System.IEquatable<System.DateTime> ,  global::System.IComparable<_casting_public_sealed_partial_recordCastOperator_ImplicitCastOperator_ImplicitSystem_DateTime>, global::System.IComparable
+    public sealed partial record class _casting_public_sealed_partial_recordCastOperator_ImplicitCastOperator_ImplicitSystem_DateTime : global::System.IEquatable<_casting_public_sealed_partial_recordCastOperator_ImplicitCastOperator_ImplicitSystem_DateTime>, global::System.IEquatable<System.DateTime>,  global::System.IComparable<_casting_public_sealed_partial_recordCastOperator_ImplicitCastOperator_ImplicitSystem_DateTime>, global::System.IComparable
     {
 #if DEBUG   
         private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
@@ -103,7 +103,6 @@ namespace Whatever
             return instance;
         }
   
-
         // only called internally when something has been deserialized into
         // its primitive type.
         private static _casting_public_sealed_partial_recordCastOperator_ImplicitCastOperator_ImplicitSystem_DateTime Deserialize(System.DateTime value)
@@ -164,6 +163,89 @@ namespace Whatever
             if(other is _casting_public_sealed_partial_recordCastOperator_ImplicitCastOperator_ImplicitSystem_DateTime x) return CompareTo(x);
             throw new global::System.ArgumentException("Cannot compare to object as it is not of type _casting_public_sealed_partial_recordCastOperator_ImplicitCastOperator_ImplicitSystem_DateTime", nameof(other));
         }
+
+        
+    /// <inheritdoc cref="System.DateTime.TryParse(string, out System.DateTime)"/>
+    /// <summary>
+    /// </summary>
+    /// <returns>
+    /// True if the value could a) be parsed by the underlying type, and b) passes any validation (after running any optional normalization).
+    /// </returns>
+    public static global::System.Boolean TryParse(string s, 
+#if NETCOREAPP3_0_OR_GREATER
+[global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)]
+#endif
+ out _casting_public_sealed_partial_recordCastOperator_ImplicitCastOperator_ImplicitSystem_DateTime result) {
+        if(System.DateTime.TryParse(s, out var __v)) {
+            
+            
+            result = new _casting_public_sealed_partial_recordCastOperator_ImplicitCastOperator_ImplicitSystem_DateTime(__v);
+            return true;
+        }
+
+        result = default;
+        return false;
+    }
+
+    /// <inheritdoc cref="System.DateTime.TryParse(string, System.IFormatProvider, System.Globalization.DateTimeStyles, out System.DateTime)"/>
+    /// <summary>
+    /// </summary>
+    /// <returns>
+    /// True if the value could a) be parsed by the underlying type, and b) passes any validation (after running any optional normalization).
+    /// </returns>
+    public static global::System.Boolean TryParse(string s, global::System.IFormatProvider provider, global::System.Globalization.DateTimeStyles styles, 
+#if NETCOREAPP3_0_OR_GREATER
+[global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)]
+#endif
+ out _casting_public_sealed_partial_recordCastOperator_ImplicitCastOperator_ImplicitSystem_DateTime result) {
+        if(System.DateTime.TryParse(s, provider, styles, out var __v)) {
+            
+            
+            result = new _casting_public_sealed_partial_recordCastOperator_ImplicitCastOperator_ImplicitSystem_DateTime(__v);
+            return true;
+        }
+
+        result = default;
+        return false;
+    }
+
+    /// <inheritdoc cref="System.DateTime.Parse(string)"/>
+    /// <summary>
+    /// </summary>
+    /// <returns>
+    /// The value created via the <see cref="From"/> method.
+    /// </returns>
+    /// <exception cref="ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
+    public static _casting_public_sealed_partial_recordCastOperator_ImplicitCastOperator_ImplicitSystem_DateTime Parse(string s) {
+        var r = System.DateTime.Parse(s);
+        return From(r);
+    }
+
+    /// <inheritdoc cref="System.DateTime.Parse(string, System.IFormatProvider)"/>
+    /// <summary>
+    /// </summary>
+    /// <returns>
+    /// The value created via the <see cref="From"/> method.
+    /// </returns>
+    /// <exception cref="ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
+    public static _casting_public_sealed_partial_recordCastOperator_ImplicitCastOperator_ImplicitSystem_DateTime Parse(string s, global::System.IFormatProvider provider) {
+        var r = System.DateTime.Parse(s, provider);
+        return From(r);
+    }
+
+    /// <inheritdoc cref="System.DateTime.Parse(string, System.IFormatProvider, System.Globalization.DateTimeStyles)"/>
+    /// <summary>
+    /// </summary>
+    /// <returns>
+    /// The value created via the <see cref="From"/> method.
+    /// </returns>
+    /// <exception cref="ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
+    public static _casting_public_sealed_partial_recordCastOperator_ImplicitCastOperator_ImplicitSystem_DateTime Parse(string s, global::System.IFormatProvider provider, global::System.Globalization.DateTimeStyles styles) {
+        var r = System.DateTime.Parse(s, provider, styles);
+        return From(r);
+    }
+
+
 
           public override global::System.Int32 GetHashCode()
           {

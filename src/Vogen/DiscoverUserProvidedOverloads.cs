@@ -1,241 +1,173 @@
+using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
 using Microsoft.CodeAnalysis;
 
 namespace Vogen;
 
 internal class DiscoverUserProvidedOverloads
 {
-    public static UserProvidedOverloads Discover(INamedTypeSymbol wrapperType, INamedTypeSymbol underlyingType) =>
-        new()
+    public static UserProvidedOverloads Discover(INamedTypeSymbol vo, INamedTypeSymbol underlyingType)
+    {
+        var equalsForUnderlying = MethodDiscovery.TryGetEqualsMethod(vo, underlyingType);
+        var equalsForWrapper = MethodDiscovery.TryGetEqualsMethod(vo, vo);
+        
+        return new UserProvidedOverloads
         {
-            ToStringInfo = HasToStringOverload(wrapperType),
-            HashCodeInfo = HasGetHashCodeOverload(wrapperType),
-            EqualsForWrapper = HasUserGeneratedEqualsForWrapper(wrapperType, underlyingType),
-            EqualsForUnderlying = HasUserGeneratedEqualsForUnderlying(wrapperType, underlyingType)
+            ToStringInfo = HasToStringOverload(vo),
+
+            HashCodeInfo = HasGetHashCodeOverload(vo),
+
+            // EqualsForWrapper = HasUserGeneratedEqualsForWrapper(vo, underlyingType),
+            EqualsForWrapper = new UserProvidedEqualsForWrapper(WasProvided: equalsForWrapper is not null),
+            
+            // EqualsForUnderlying = HasUserGeneratedEqualsForUnderlying(vo, underlyingType),
+            EqualsForUnderlying = new UserProvidedEqualsForUnderlying(WasProvided: equalsForUnderlying is not null) ,
+
+            ParseMethods = DiscoverParseMethods(vo, underlyingType),
+            TryParseMethods = DiscoverTryParseMethods(vo)
         };
-    
+    }
+
+    private static UserProvidedParseMethods DiscoverParseMethods(
+        INamedTypeSymbol wrapperType, 
+        INamedTypeSymbol underlyingType)
+    {
+        return new UserProvidedParseMethods(
+            MethodDiscovery.TryGetUserSuppliedParseMethods(wrapperType, underlyingType).ToList());
+    }
+
+    private static UserProvidedTryParseMethods DiscoverTryParseMethods(INamedTypeSymbol wrapperType)
+    {
+        return new UserProvidedTryParseMethods(
+            MethodDiscovery.TryGetUserSuppliedTryParseMethods(wrapperType).ToList());
+    }
+
     private static UserProvidedToString HasToStringOverload(ITypeSymbol typeSymbol)
     {
-        while (true)
-        {
-            var toStringMethods = typeSymbol.GetMembers("ToString").OfType<IMethodSymbol>();
-
-            foreach (IMethodSymbol eachMethod in toStringMethods)
-            {
-                // we could have "public virtual new string ToString() => "xxx" 
-                if (IsNotOverrideOrVirtual(eachMethod))
-                {
-                    continue;
-                }
-
-                // can't change access rights
-                if (IsNotPublicOrProtected(eachMethod))
-                {
-                    continue;
-                }
-
-                if (eachMethod.Parameters.Length != 0)
-                {
-                    continue;
-                }
-
-                // records always have an implicitly declared ToString method. In C# 10, the user can differentiate this
-                // by making the method sealed.
-                if (typeSymbol.IsRecord && eachMethod.IsImplicitlyDeclared)
-                {
-                    continue;
-                }
-
-                // In C# 10, the user can differentiate a ToString overload by making the method sealed.
-                // We report back if it's sealed or not so that we can emit an error if it's not sealed.
-                // The error stops another compilation error; if unsealed, the generator generates a duplicate ToString() method.
-                return new UserProvidedToString(
-                    WasSupplied: true,
-                    IsRecordClass: typeSymbol is { IsRecord: true, IsReferenceType: true },
-                    IsSealed: eachMethod.IsSealed,
-                    eachMethod);
-            }
-
-            INamedTypeSymbol? baseType = typeSymbol.BaseType;
-
-            if (baseType is null)
-            {
-                return UserProvidedToString.NotProvided;
-            }
-            
-            if (CannotGoFurtherInHierarchy(baseType))
-            {
-                return UserProvidedToString.NotProvided;
-            }
-
-            typeSymbol = baseType;
-        }
+        var method = MethodDiscovery.TryGetToStringOverload(typeSymbol);
+        return method is null
+            ? UserProvidedToString.NotProvided
+            : new UserProvidedToString(
+                WasSupplied: true,
+                IsRecordClass: typeSymbol is { IsRecord: true, IsReferenceType: true },
+                IsSealed: method.IsSealed,
+                method);
     }
 
-    private static bool IsNotOverrideOrVirtual(IMethodSymbol eachMethod) => !eachMethod.IsOverride && !eachMethod.IsVirtual;
+    private static UserProvidedGetHashCode HasGetHashCodeOverload(ITypeSymbol typeSymbol) => 
+        new(WasProvided: MethodDiscovery.TryGetHashCodeOverload(typeSymbol) is not null);
 
-    private static UserProvidedGetHashCode HasGetHashCodeOverload(ITypeSymbol typeSymbol)
-    {
-        while (true)
-        {
-            var toStringMethods = typeSymbol.GetMembers("GetHashCode").OfType<IMethodSymbol>();
+    // private static UserProvidedEqualsForWrapper HasUserGeneratedEqualsForWrapper(
+    //     ITypeSymbol vo, 
+    //     INamedTypeSymbol? wrapperType)
+    // {
+    //     while (true)
+    //     {
+    //         var matchingMethods = vo.GetMembers("Equals").OfType<IMethodSymbol>();
+    //
+    //         foreach (IMethodSymbol eachMethod in matchingMethods)
+    //         {
+    //             if (eachMethod.IsImplicitlyDeclared)
+    //             {
+    //                 continue;
+    //             }
+    //             
+    //             // can't change access rights
+    //             if (IsNotPublicOrProtected(eachMethod))
+    //             {
+    //                 continue;
+    //             }
+    //
+    //             if (DoesNotHaveJustOneParameter(eachMethod))
+    //             {
+    //                 continue;
+    //             }
+    //
+    //             IParameterSymbol onlyParameter = eachMethod.Parameters[0];
+    //
+    //             if (SymbolEqualityComparer.Default.Equals(onlyParameter, wrapperType))
+    //             {
+    //                 continue;
+    //             }
+    //
+    //             return new UserProvidedEqualsForWrapper(
+    //                 WasProvided: true);
+    //         }
+    //
+    //         INamedTypeSymbol? baseType = vo.BaseType;
+    //
+    //         if (baseType is null)
+    //         {
+    //             return new UserProvidedEqualsForWrapper(WasProvided: false);
+    //         }
+    //
+    //         if (CannotGoFurtherInHierarchy(baseType))
+    //         {
+    //             return new UserProvidedEqualsForWrapper(WasProvided: false);
+    //         }
+    //
+    //         vo = baseType;
+    //     }
+    // }
 
-            foreach (IMethodSymbol eachMethod in toStringMethods)
-            {
-                // we could have "public virtual new string ToString() => "xxx" 
-                if (IsNotOverrideOrVirtual(eachMethod))
-                {
-                    continue;
-                }
+    // private static UserProvidedEqualsForUnderlying HasUserGeneratedEqualsForUnderlying(
+    //     INamedTypeSymbol vo,
+    //     ITypeSymbol primitiveType)
+    // {
+    //     while (true)
+    //     {
+    //         var matchingMethods = vo.GetMembers("Equals").OfType<IMethodSymbol>();
+    //
+    //         foreach (IMethodSymbol eachMethod in matchingMethods)
+    //         {
+    //             if (eachMethod.IsImplicitlyDeclared)
+    //             {
+    //                 continue;
+    //             }
+    //
+    //             // can't change access rights
+    //             if (IsNotPublicOrProtected(eachMethod))
+    //             {
+    //                 continue;
+    //             }
+    //
+    //             if (DoesNotHaveJustOneParameter(eachMethod))
+    //             {
+    //                 continue;
+    //             }
+    //             
+    //             IParameterSymbol onlyParameter = eachMethod.Parameters[0];
+    //
+    //             if (SymbolEqualityComparer.Default.Equals(onlyParameter.Type, primitiveType))
+    //             {
+    //                 return new UserProvidedEqualsForUnderlying(WasProvided: true);
+    //             }
+    //         }
+    //
+    //         INamedTypeSymbol? baseType = primitiveType.BaseType;
+    //
+    //         if (baseType is null)
+    //         {
+    //             return new UserProvidedEqualsForUnderlying(WasProvided: false);
+    //         }
+    //
+    //         if (CannotGoFurtherInHierarchy(baseType))
+    //         {
+    //             return new UserProvidedEqualsForUnderlying(WasProvided: false);
+    //         }
+    //
+    //         primitiveType = baseType;
+    //     }
+    // }
 
-                // can't change access rights
-                if (IsNotPublicOrProtected(eachMethod))
-                {
-                    continue;
-                }
-
-                if (eachMethod.Parameters.Length != 0)
-                {
-                    continue;
-                }
-
-                // records always have an implicitly declared ToString method. In C# 10, the user can differentiate this
-                // by making the method sealed.
-                if (typeSymbol.IsRecord && eachMethod.IsImplicitlyDeclared)
-                {
-                    continue;
-                }
-
-                // In C# 10, the user can differentiate a ToString overload by making the method sealed.
-                // We report back if it's sealed or not so that we can emit an error if it's not sealed.
-                // The error stops another compilation error; if unsealed, the generator generates a duplicate ToString() method.
-                return new UserProvidedGetHashCode(
-                    WasProvided: true);
-            }
-
-            INamedTypeSymbol? baseType = typeSymbol.BaseType;
-
-            if (baseType is null)
-            {
-                return new UserProvidedGetHashCode(WasProvided: false);
-            }
-            
-            if (CannotGoFurtherInHierarchy(baseType))
-            {
-                return new UserProvidedGetHashCode(WasProvided: false);
-            }
-
-            typeSymbol = baseType;
-        }
-    }
-
-    private static UserProvidedEqualsForWrapper HasUserGeneratedEqualsForWrapper(ITypeSymbol typeSymbol, INamedTypeSymbol? wrapperType)
-    {
-        while (true)
-        {
-            var matchingMethods = typeSymbol.GetMembers("Equals").OfType<IMethodSymbol>();
-
-            foreach (IMethodSymbol eachMethod in matchingMethods)
-            {
-                if (eachMethod.IsImplicitlyDeclared)
-                {
-                    continue;
-                }
-                
-                // can't change access rights
-                if (IsNotPublicOrProtected(eachMethod))
-                {
-                    continue;
-                }
-
-                if (DoesNotHaveJustOneParameter(eachMethod))
-                {
-                    continue;
-                }
-
-                IParameterSymbol onlyParameter = eachMethod.Parameters[0];
-
-                if (SymbolEqualityComparer.Default.Equals(onlyParameter, wrapperType))
-                {
-                    continue;
-                }
-
-                return new UserProvidedEqualsForWrapper(
-                    WasProvided: true);
-            }
-
-            INamedTypeSymbol? baseType = typeSymbol.BaseType;
-
-            if (baseType is null)
-            {
-                return new UserProvidedEqualsForWrapper(WasProvided: false);
-            }
-
-            if (CannotGoFurtherInHierarchy(baseType))
-            {
-                return new UserProvidedEqualsForWrapper(WasProvided: false);
-            }
-
-            typeSymbol = baseType;
-        }
-    }
-
-    private static UserProvidedEqualsForUnderlying HasUserGeneratedEqualsForUnderlying(
-        INamedTypeSymbol wrapperType,
-        ITypeSymbol underlyingType)
-    {
-        while (true)
-        {
-            var matchingMethods = wrapperType.GetMembers("Equals").OfType<IMethodSymbol>();
-
-            foreach (IMethodSymbol eachMethod in matchingMethods)
-            {
-                if (eachMethod.IsImplicitlyDeclared)
-                {
-                    continue;
-                }
-
-                // can't change access rights
-                if (IsNotPublicOrProtected(eachMethod))
-                {
-                    continue;
-                }
-
-                if (DoesNotHaveJustOneParameter(eachMethod))
-                {
-                    continue;
-                }
-                
-                IParameterSymbol onlyParameter = eachMethod.Parameters[0];
-
-                if (SymbolEqualityComparer.Default.Equals(onlyParameter.Type, underlyingType))
-                {
-                    return new UserProvidedEqualsForUnderlying(WasProvided: true);
-                }
-            }
-
-            INamedTypeSymbol? baseType = underlyingType.BaseType;
-
-            if (baseType is null)
-            {
-                return new UserProvidedEqualsForUnderlying(WasProvided: false);
-            }
-
-            if (CannotGoFurtherInHierarchy(baseType))
-            {
-                return new UserProvidedEqualsForUnderlying(WasProvided: false);
-            }
-
-            underlyingType = baseType;
-        }
-    }
-
-    private static bool CannotGoFurtherInHierarchy(INamedTypeSymbol baseType) => 
-        baseType.SpecialType is SpecialType.System_Object or SpecialType.System_ValueType;
-
-    private static bool DoesNotHaveJustOneParameter(IMethodSymbol eachMethod) => eachMethod.Parameters.Length != 1;
-
-    private static bool IsNotPublicOrProtected(IMethodSymbol eachMethod) =>
-        eachMethod.DeclaredAccessibility is not (Accessibility.Public or Accessibility.Protected);
+    // private static bool CannotGoFurtherInHierarchy(INamedTypeSymbol baseType) => 
+    //     baseType.SpecialType is SpecialType.System_Object or SpecialType.System_ValueType;
+    //
+    // private static bool DoesNotHaveJustOneParameter(IMethodSymbol eachMethod) => eachMethod.Parameters.Length != 1;
+    //
+    // private static bool IsNotPublicOrProtected(IMethodSymbol eachMethod) =>
+    //     eachMethod.DeclaredAccessibility is not (Accessibility.Public or Accessibility.Protected);
 }
 
 public record struct UserProvidedToString(bool WasSupplied, bool IsRecordClass, bool IsSealed, IMethodSymbol? Method)
@@ -248,3 +180,134 @@ public record struct UserProvidedGetHashCode(bool WasProvided);
 public record struct UserProvidedEqualsForWrapper(bool WasProvided);
 
 public record struct UserProvidedEqualsForUnderlying(bool WasProvided);
+
+/// <summary>
+/// Represents the Parse methods that the user supplied.
+/// Every item is guaranteed to be static, named 'Parse', and returns the
+/// same type as the wrapper (so there's no need to check return types).
+/// </summary>
+public class UserProvidedParseMethods : IEnumerable<IMethodSymbol>
+{
+    private readonly List<IMethodSymbol> _userMethods;
+
+    public UserProvidedParseMethods(List<IMethodSymbol> userMethods) => _userMethods = userMethods;
+
+    public bool Contains(IMethodSymbol methodFromPrimitive)
+    {
+        foreach (var eachUserMethod in _userMethods)
+        {
+            if (HasSameParameters(eachUserMethod, methodFromPrimitive))
+            {
+                return true;
+            }
+        }
+
+        return false;
+
+        static bool HasSameParameters(IMethodSymbol usersMethod, IMethodSymbol methodFromPrimitive)
+        {
+            var usersMethodParameterCount = usersMethod.Parameters.Length;
+
+            if (usersMethodParameterCount != methodFromPrimitive.Parameters.Length)
+            {
+                return false;
+            }
+
+            for (int i = 0; i < usersMethodParameterCount; i++)
+            {
+                IParameterSymbol available = methodFromPrimitive.Parameters[i];
+                IParameterSymbol provided = usersMethod.Parameters[i];
+
+                if (!SymbolEqualityComparer.Default.Equals(available.Type, provided.Type))
+                {
+                    return false;
+                }
+            }
+
+            return true;
+        }
+    }
+
+    public IEnumerator<IMethodSymbol> GetEnumerator() => _userMethods.GetEnumerator();
+
+    IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
+}
+
+/// <summary>
+/// Represents the TryParse methods that the user supplied.
+/// Every item is guaranteed to be static, named 'TryParse', returns a bool,
+/// and has a last parameter of the same type as the wrapper.
+/// </summary>
+public class UserProvidedTryParseMethods : IEnumerable<IMethodSymbol>
+{
+    private readonly List<IMethodSymbol> _userMethods;
+
+    public UserProvidedTryParseMethods(List<IMethodSymbol> userMethods) => _userMethods = userMethods;
+
+    /// <summary>
+    /// Sees if the items held contains the method from the primitive.
+    /// </summary>
+    /// <param name="methodFromPrimitive"></param>
+    /// <param name="vo"></param>
+    /// <returns></returns>
+    public bool Contains(IMethodSymbol methodFromPrimitive, VoWorkItem vo)
+    {
+        foreach (var eachUserMethod in _userMethods)
+        {
+            if (HasSameParameters(eachUserMethod))
+            {
+                return true;
+            }
+        }
+
+        return false;
+
+        bool HasSameParameters(IMethodSymbol usersMethod)
+        {
+            var usersMethodParameterCount = usersMethod.Parameters.Length;
+
+            if (usersMethodParameterCount != methodFromPrimitive.Parameters.Length)
+            {
+                return false;
+            }
+
+            for (int i = 0; i < usersMethodParameterCount; i++)
+            {
+                IParameterSymbol primitiveParameter = methodFromPrimitive.Parameters[i];
+                IParameterSymbol userParameter = usersMethod.Parameters[i];
+
+                // if it's the last parameter, then it's an out parameter, so we see if it's the
+                // wrapper type or the primitive type
+                if (i == usersMethodParameterCount - 1)
+                {
+                    if(SameTypeAndDirection(primitiveParameter, userParameter, vo.UnderlyingType))
+                    {
+                        return true;
+                    }
+                }
+
+                if (!SameTypeAndDirection(primitiveParameter, userParameter, userParameter.Type))
+                {
+                    return false;
+                }
+            }
+
+            return true;
+        }
+    }
+
+    private static bool SameTypeAndDirection(
+        IParameterSymbol primitiveParameter, 
+        IParameterSymbol userParameter, 
+        ITypeSymbol expectedType)
+    {
+        bool sameType = SymbolEqualityComparer.Default.Equals(primitiveParameter.Type, expectedType);
+        bool sameDirection = primitiveParameter.RefKind == userParameter.RefKind;
+
+        return sameType && sameDirection;
+    }
+
+    public IEnumerator<IMethodSymbol> GetEnumerator() => _userMethods.GetEnumerator();
+
+    IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
+}

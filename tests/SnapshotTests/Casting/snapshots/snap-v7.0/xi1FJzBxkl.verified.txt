@@ -35,7 +35,7 @@ namespace Whatever
 
     [global::System.Diagnostics.DebuggerTypeProxyAttribute(typeof(_casting_public_partial_record_structCastOperator_NoneCastOperator_ImplicitbyteDebugView))]
     [global::System.Diagnostics.DebuggerDisplayAttribute("Underlying type: System.Byte, Value = { _value }")]
-    public partial record struct _casting_public_partial_record_structCastOperator_NoneCastOperator_Implicitbyte : global::System.IEquatable<_casting_public_partial_record_structCastOperator_NoneCastOperator_Implicitbyte>, global::System.IEquatable<System.Byte> ,  global::System.IComparable<_casting_public_partial_record_structCastOperator_NoneCastOperator_Implicitbyte>, global::System.IComparable
+    public partial record struct _casting_public_partial_record_structCastOperator_NoneCastOperator_Implicitbyte : global::System.IEquatable<_casting_public_partial_record_structCastOperator_NoneCastOperator_Implicitbyte>, global::System.IEquatable<System.Byte>,  global::System.IComparable<_casting_public_partial_record_structCastOperator_NoneCastOperator_Implicitbyte>, global::System.IComparable,  global::System.IParsable<_casting_public_partial_record_structCastOperator_NoneCastOperator_Implicitbyte>,  global::System.ISpanParsable<_casting_public_partial_record_structCastOperator_NoneCastOperator_Implicitbyte>
     {
 #if DEBUG   
         private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
@@ -154,16 +154,17 @@ namespace Whatever
     /// <summary>
     /// </summary>
     /// <returns>
-    /// The value created via the <see cref="From"/> method.
+    /// True if the value could a) be parsed by the underlying type, and b) passes any validation (after running any optional normalization).
     /// </returns>
-    /// <exception cref="ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
     public static global::System.Boolean TryParse(global::System.ReadOnlySpan<char> s, 
 #if NETCOREAPP3_0_OR_GREATER
 [global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)]
 #endif
  out _casting_public_partial_record_structCastOperator_NoneCastOperator_Implicitbyte result) {
-        if(System.Byte.TryParse(s, out var r)) {
-            result = From(r);
+        if(System.Byte.TryParse(s, out var __v)) {
+            
+            
+            result = new _casting_public_partial_record_structCastOperator_NoneCastOperator_Implicitbyte(__v);
             return true;
         }
 
@@ -175,16 +176,17 @@ namespace Whatever
     /// <summary>
     /// </summary>
     /// <returns>
-    /// The value created via the <see cref="From"/> method.
+    /// True if the value could a) be parsed by the underlying type, and b) passes any validation (after running any optional normalization).
     /// </returns>
-    /// <exception cref="ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
     public static global::System.Boolean TryParse(global::System.ReadOnlySpan<char> s, global::System.Globalization.NumberStyles style, global::System.IFormatProvider provider, 
 #if NETCOREAPP3_0_OR_GREATER
 [global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)]
 #endif
  out _casting_public_partial_record_structCastOperator_NoneCastOperator_Implicitbyte result) {
-        if(System.Byte.TryParse(s, style, provider, out var r)) {
-            result = From(r);
+        if(System.Byte.TryParse(s, style, provider, out var __v)) {
+            
+            
+            result = new _casting_public_partial_record_structCastOperator_NoneCastOperator_Implicitbyte(__v);
             return true;
         }
 
@@ -196,16 +198,17 @@ namespace Whatever
     /// <summary>
     /// </summary>
     /// <returns>
-    /// The value created via the <see cref="From"/> method.
+    /// True if the value could a) be parsed by the underlying type, and b) passes any validation (after running any optional normalization).
     /// </returns>
-    /// <exception cref="ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
     public static global::System.Boolean TryParse(global::System.ReadOnlySpan<char> s, global::System.IFormatProvider provider, 
 #if NETCOREAPP3_0_OR_GREATER
 [global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)]
 #endif
  out _casting_public_partial_record_structCastOperator_NoneCastOperator_Implicitbyte result) {
-        if(System.Byte.TryParse(s, provider, out var r)) {
-            result = From(r);
+        if(System.Byte.TryParse(s, provider, out var __v)) {
+            
+            
+            result = new _casting_public_partial_record_structCastOperator_NoneCastOperator_Implicitbyte(__v);
             return true;
         }
 
@@ -217,16 +220,17 @@ namespace Whatever
     /// <summary>
     /// </summary>
     /// <returns>
-    /// The value created via the <see cref="From"/> method.
+    /// True if the value could a) be parsed by the underlying type, and b) passes any validation (after running any optional normalization).
     /// </returns>
-    /// <exception cref="ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
     public static global::System.Boolean TryParse(string s, 
 #if NETCOREAPP3_0_OR_GREATER
 [global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)]
 #endif
  out _casting_public_partial_record_structCastOperator_NoneCastOperator_Implicitbyte result) {
-        if(System.Byte.TryParse(s, out var r)) {
-            result = From(r);
+        if(System.Byte.TryParse(s, out var __v)) {
+            
+            
+            result = new _casting_public_partial_record_structCastOperator_NoneCastOperator_Implicitbyte(__v);
             return true;
         }
 
@@ -238,16 +242,17 @@ namespace Whatever
     /// <summary>
     /// </summary>
     /// <returns>
-    /// The value created via the <see cref="From"/> method.
+    /// True if the value could a) be parsed by the underlying type, and b) passes any validation (after running any optional normalization).
     /// </returns>
-    /// <exception cref="ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
     public static global::System.Boolean TryParse(string s, global::System.Globalization.NumberStyles style, global::System.IFormatProvider provider, 
 #if NETCOREAPP3_0_OR_GREATER
 [global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)]
 #endif
  out _casting_public_partial_record_structCastOperator_NoneCastOperator_Implicitbyte result) {
-        if(System.Byte.TryParse(s, style, provider, out var r)) {
-            result = From(r);
+        if(System.Byte.TryParse(s, style, provider, out var __v)) {
+            
+            
+            result = new _casting_public_partial_record_structCastOperator_NoneCastOperator_Implicitbyte(__v);
             return true;
         }
 
@@ -259,21 +264,94 @@ namespace Whatever
     /// <summary>
     /// </summary>
     /// <returns>
-    /// The value created via the <see cref="From"/> method.
+    /// True if the value could a) be parsed by the underlying type, and b) passes any validation (after running any optional normalization).
     /// </returns>
-    /// <exception cref="ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
     public static global::System.Boolean TryParse(string s, global::System.IFormatProvider provider, 
 #if NETCOREAPP3_0_OR_GREATER
 [global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)]
 #endif
  out _casting_public_partial_record_structCastOperator_NoneCastOperator_Implicitbyte result) {
-        if(System.Byte.TryParse(s, provider, out var r)) {
-            result = From(r);
+        if(System.Byte.TryParse(s, provider, out var __v)) {
+            
+            
+            result = new _casting_public_partial_record_structCastOperator_NoneCastOperator_Implicitbyte(__v);
             return true;
         }
 
         result = default;
         return false;
+    }
+
+    /// <inheritdoc cref="byte.Parse(System.ReadOnlySpan{char}, System.Globalization.NumberStyles, System.IFormatProvider?)"/>
+    /// <summary>
+    /// </summary>
+    /// <returns>
+    /// The value created via the <see cref="From"/> method.
+    /// </returns>
+    /// <exception cref="ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
+    public static _casting_public_partial_record_structCastOperator_NoneCastOperator_Implicitbyte Parse(global::System.ReadOnlySpan<char> s, global::System.Globalization.NumberStyles style, global::System.IFormatProvider provider) {
+        var r = System.Byte.Parse(s, style, provider);
+        return From(r);
+    }
+
+    /// <inheritdoc cref="byte.Parse(System.ReadOnlySpan{char}, System.IFormatProvider?)"/>
+    /// <summary>
+    /// </summary>
+    /// <returns>
+    /// The value created via the <see cref="From"/> method.
+    /// </returns>
+    /// <exception cref="ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
+    public static _casting_public_partial_record_structCastOperator_NoneCastOperator_Implicitbyte Parse(global::System.ReadOnlySpan<char> s, global::System.IFormatProvider provider) {
+        var r = System.Byte.Parse(s, provider);
+        return From(r);
+    }
+
+    /// <inheritdoc cref="byte.Parse(string)"/>
+    /// <summary>
+    /// </summary>
+    /// <returns>
+    /// The value created via the <see cref="From"/> method.
+    /// </returns>
+    /// <exception cref="ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
+    public static _casting_public_partial_record_structCastOperator_NoneCastOperator_Implicitbyte Parse(string s) {
+        var r = System.Byte.Parse(s);
+        return From(r);
+    }
+
+    /// <inheritdoc cref="byte.Parse(string, System.Globalization.NumberStyles)"/>
+    /// <summary>
+    /// </summary>
+    /// <returns>
+    /// The value created via the <see cref="From"/> method.
+    /// </returns>
+    /// <exception cref="ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
+    public static _casting_public_partial_record_structCastOperator_NoneCastOperator_Implicitbyte Parse(string s, global::System.Globalization.NumberStyles style) {
+        var r = System.Byte.Parse(s, style);
+        return From(r);
+    }
+
+    /// <inheritdoc cref="byte.Parse(string, System.Globalization.NumberStyles, System.IFormatProvider?)"/>
+    /// <summary>
+    /// </summary>
+    /// <returns>
+    /// The value created via the <see cref="From"/> method.
+    /// </returns>
+    /// <exception cref="ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
+    public static _casting_public_partial_record_structCastOperator_NoneCastOperator_Implicitbyte Parse(string s, global::System.Globalization.NumberStyles style, global::System.IFormatProvider provider) {
+        var r = System.Byte.Parse(s, style, provider);
+        return From(r);
+    }
+
+    /// <inheritdoc cref="byte.Parse(string, System.IFormatProvider?)"/>
+    /// <summary>
+    /// </summary>
+    /// <returns>
+    /// The value created via the <see cref="From"/> method.
+    /// </returns>
+    /// <exception cref="ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
+    public static _casting_public_partial_record_structCastOperator_NoneCastOperator_Implicitbyte Parse(string s, global::System.IFormatProvider provider) {
+        var r = System.Byte.Parse(s, provider);
+        return From(r);
     }
 
 

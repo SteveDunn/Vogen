@@ -35,7 +35,7 @@ namespace Whatever
 
     [global::System.Diagnostics.DebuggerTypeProxyAttribute(typeof(stj_number_as_string_public_sealed_partial_classConversions_NewtonsoftJson___Conversions_SystemTextJsonstringDebugView))]
     [global::System.Diagnostics.DebuggerDisplayAttribute("Underlying type: System.String, Value = { _value }")]
-    public sealed partial class stj_number_as_string_public_sealed_partial_classConversions_NewtonsoftJson___Conversions_SystemTextJsonstring : global::System.IEquatable<stj_number_as_string_public_sealed_partial_classConversions_NewtonsoftJson___Conversions_SystemTextJsonstring>, global::System.IEquatable<System.String> ,  global::System.IComparable<stj_number_as_string_public_sealed_partial_classConversions_NewtonsoftJson___Conversions_SystemTextJsonstring>, global::System.IComparable
+    public sealed partial class stj_number_as_string_public_sealed_partial_classConversions_NewtonsoftJson___Conversions_SystemTextJsonstring : global::System.IEquatable<stj_number_as_string_public_sealed_partial_classConversions_NewtonsoftJson___Conversions_SystemTextJsonstring>, global::System.IEquatable<System.String> ,  global::System.IComparable<stj_number_as_string_public_sealed_partial_classConversions_NewtonsoftJson___Conversions_SystemTextJsonstring>, global::System.IComparable,  global::System.IParsable<stj_number_as_string_public_sealed_partial_classConversions_NewtonsoftJson___Conversions_SystemTextJsonstring>
     {
 #if DEBUG   
         private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
@@ -170,6 +170,33 @@ public System.String Value
             if(other is stj_number_as_string_public_sealed_partial_classConversions_NewtonsoftJson___Conversions_SystemTextJsonstring x) return CompareTo(x);
             throw new global::System.ArgumentException("Cannot compare to object as it is not of type stj_number_as_string_public_sealed_partial_classConversions_NewtonsoftJson___Conversions_SystemTextJsonstring", nameof(other));
         }
+
+        
+    /// <summary>
+    /// </summary>
+    /// <returns>
+    /// True if the value passes any validation (after running any optional normalization).
+    /// </returns>
+    public static global::System.Boolean TryParse(global::System.String s, global::System.IFormatProvider provider, 
+#if NETCOREAPP3_0_OR_GREATER
+[global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)]
+#endif
+ out stj_number_as_string_public_sealed_partial_classConversions_NewtonsoftJson___Conversions_SystemTextJsonstring result) {
+            
+            
+            result = new stj_number_as_string_public_sealed_partial_classConversions_NewtonsoftJson___Conversions_SystemTextJsonstring(s);
+            return true;
+    }
+    /// <summary>
+    /// </summary>
+    /// <returns>
+    /// The value created via the <see cref="From"/> method.
+    /// </returns>
+    /// <exception cref="ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
+    public static stj_number_as_string_public_sealed_partial_classConversions_NewtonsoftJson___Conversions_SystemTextJsonstring Parse(global::System.String s, global::System.IFormatProvider provider) {
+        return From(s);
+    }
+
 
           public override global::System.Int32 GetHashCode()
           {

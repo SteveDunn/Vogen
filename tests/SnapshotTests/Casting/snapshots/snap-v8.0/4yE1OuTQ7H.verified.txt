@@ -35,7 +35,7 @@ namespace Whatever
 
     [global::System.Diagnostics.DebuggerTypeProxyAttribute(typeof(_casting_public_readonly_partial_structCastOperator_ImplicitCastOperator_ExplicitdecimalDebugView))]
     [global::System.Diagnostics.DebuggerDisplayAttribute("Underlying type: System.Decimal, Value = { _value }")]
-    public readonly partial struct _casting_public_readonly_partial_structCastOperator_ImplicitCastOperator_Explicitdecimal : global::System.IEquatable<_casting_public_readonly_partial_structCastOperator_ImplicitCastOperator_Explicitdecimal>, global::System.IEquatable<System.Decimal> ,  global::System.IComparable<_casting_public_readonly_partial_structCastOperator_ImplicitCastOperator_Explicitdecimal>, global::System.IComparable
+    public readonly partial struct _casting_public_readonly_partial_structCastOperator_ImplicitCastOperator_Explicitdecimal : global::System.IEquatable<_casting_public_readonly_partial_structCastOperator_ImplicitCastOperator_Explicitdecimal>, global::System.IEquatable<System.Decimal>,  global::System.IComparable<_casting_public_readonly_partial_structCastOperator_ImplicitCastOperator_Explicitdecimal>, global::System.IComparable,  global::System.IParsable<_casting_public_readonly_partial_structCastOperator_ImplicitCastOperator_Explicitdecimal>,  global::System.ISpanParsable<_casting_public_readonly_partial_structCastOperator_ImplicitCastOperator_Explicitdecimal>,  global::System.IUtf8SpanParsable<_casting_public_readonly_partial_structCastOperator_ImplicitCastOperator_Explicitdecimal>
     {
 #if DEBUG   
         private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
@@ -154,16 +154,17 @@ namespace Whatever
     /// <summary>
     /// </summary>
     /// <returns>
-    /// The value created via the <see cref="From"/> method.
+    /// True if the value could a) be parsed by the underlying type, and b) passes any validation (after running any optional normalization).
     /// </returns>
-    /// <exception cref="ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
     public static global::System.Boolean TryParse(global::System.ReadOnlySpan<byte> utf8Text, 
 #if NETCOREAPP3_0_OR_GREATER
 [global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)]
 #endif
  out _casting_public_readonly_partial_structCastOperator_ImplicitCastOperator_Explicitdecimal result) {
-        if(System.Decimal.TryParse(utf8Text, out var r)) {
-            result = From(r);
+        if(System.Decimal.TryParse(utf8Text, out var __v)) {
+            
+            
+            result = new _casting_public_readonly_partial_structCastOperator_ImplicitCastOperator_Explicitdecimal(__v);
             return true;
         }
 
@@ -175,16 +176,17 @@ namespace Whatever
     /// <summary>
     /// </summary>
     /// <returns>
-    /// The value created via the <see cref="From"/> method.
+    /// True if the value could a) be parsed by the underlying type, and b) passes any validation (after running any optional normalization).
     /// </returns>
-    /// <exception cref="ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
     public static global::System.Boolean TryParse(global::System.ReadOnlySpan<byte> utf8Text, global::System.Globalization.NumberStyles style, global::System.IFormatProvider provider, 
 #if NETCOREAPP3_0_OR_GREATER
 [global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)]
 #endif
  out _casting_public_readonly_partial_structCastOperator_ImplicitCastOperator_Explicitdecimal result) {
-        if(System.Decimal.TryParse(utf8Text, style, provider, out var r)) {
-            result = From(r);
+        if(System.Decimal.TryParse(utf8Text, style, provider, out var __v)) {
+            
+            
+            result = new _casting_public_readonly_partial_structCastOperator_ImplicitCastOperator_Explicitdecimal(__v);
             return true;
         }
 
@@ -196,16 +198,17 @@ namespace Whatever
     /// <summary>
     /// </summary>
     /// <returns>
-    /// The value created via the <see cref="From"/> method.
+    /// True if the value could a) be parsed by the underlying type, and b) passes any validation (after running any optional normalization).
     /// </returns>
-    /// <exception cref="ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
     public static global::System.Boolean TryParse(global::System.ReadOnlySpan<byte> utf8Text, global::System.IFormatProvider provider, 
 #if NETCOREAPP3_0_OR_GREATER
 [global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)]
 #endif
  out _casting_public_readonly_partial_structCastOperator_ImplicitCastOperator_Explicitdecimal result) {
-        if(System.Decimal.TryParse(utf8Text, provider, out var r)) {
-            result = From(r);
+        if(System.Decimal.TryParse(utf8Text, provider, out var __v)) {
+            
+            
+            result = new _casting_public_readonly_partial_structCastOperator_ImplicitCastOperator_Explicitdecimal(__v);
             return true;
         }
 
@@ -217,16 +220,17 @@ namespace Whatever
     /// <summary>
     /// </summary>
     /// <returns>
-    /// The value created via the <see cref="From"/> method.
+    /// True if the value could a) be parsed by the underlying type, and b) passes any validation (after running any optional normalization).
     /// </returns>
-    /// <exception cref="ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
     public static global::System.Boolean TryParse(global::System.ReadOnlySpan<char> s, 
 #if NETCOREAPP3_0_OR_GREATER
 [global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)]
 #endif
  out _casting_public_readonly_partial_structCastOperator_ImplicitCastOperator_Explicitdecimal result) {
-        if(System.Decimal.TryParse(s, out var r)) {
-            result = From(r);
+        if(System.Decimal.TryParse(s, out var __v)) {
+            
+            
+            result = new _casting_public_readonly_partial_structCastOperator_ImplicitCastOperator_Explicitdecimal(__v);
             return true;
         }
 
@@ -238,16 +242,17 @@ namespace Whatever
     /// <summary>
     /// </summary>
     /// <returns>
-    /// The value created via the <see cref="From"/> method.
+    /// True if the value could a) be parsed by the underlying type, and b) passes any validation (after running any optional normalization).
     /// </returns>
-    /// <exception cref="ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
     public static global::System.Boolean TryParse(global::System.ReadOnlySpan<char> s, global::System.Globalization.NumberStyles style, global::System.IFormatProvider provider, 
 #if NETCOREAPP3_0_OR_GREATER
 [global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)]
 #endif
  out _casting_public_readonly_partial_structCastOperator_ImplicitCastOperator_Explicitdecimal result) {
-        if(System.Decimal.TryParse(s, style, provider, out var r)) {
-            result = From(r);
+        if(System.Decimal.TryParse(s, style, provider, out var __v)) {
+            
+            
+            result = new _casting_public_readonly_partial_structCastOperator_ImplicitCastOperator_Explicitdecimal(__v);
             return true;
         }
 
@@ -259,16 +264,17 @@ namespace Whatever
     /// <summary>
     /// </summary>
     /// <returns>
-    /// The value created via the <see cref="From"/> method.
+    /// True if the value could a) be parsed by the underlying type, and b) passes any validation (after running any optional normalization).
     /// </returns>
-    /// <exception cref="ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
     public static global::System.Boolean TryParse(global::System.ReadOnlySpan<char> s, global::System.IFormatProvider provider, 
 #if NETCOREAPP3_0_OR_GREATER
 [global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)]
 #endif
  out _casting_public_readonly_partial_structCastOperator_ImplicitCastOperator_Explicitdecimal result) {
-        if(System.Decimal.TryParse(s, provider, out var r)) {
-            result = From(r);
+        if(System.Decimal.TryParse(s, provider, out var __v)) {
+            
+            
+            result = new _casting_public_readonly_partial_structCastOperator_ImplicitCastOperator_Explicitdecimal(__v);
             return true;
         }
 
@@ -280,16 +286,17 @@ namespace Whatever
     /// <summary>
     /// </summary>
     /// <returns>
-    /// The value created via the <see cref="From"/> method.
+    /// True if the value could a) be parsed by the underlying type, and b) passes any validation (after running any optional normalization).
     /// </returns>
-    /// <exception cref="ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
     public static global::System.Boolean TryParse(string s, 
 #if NETCOREAPP3_0_OR_GREATER
 [global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)]
 #endif
  out _casting_public_readonly_partial_structCastOperator_ImplicitCastOperator_Explicitdecimal result) {
-        if(System.Decimal.TryParse(s, out var r)) {
-            result = From(r);
+        if(System.Decimal.TryParse(s, out var __v)) {
+            
+            
+            result = new _casting_public_readonly_partial_structCastOperator_ImplicitCastOperator_Explicitdecimal(__v);
             return true;
         }
 
@@ -301,16 +308,17 @@ namespace Whatever
     /// <summary>
     /// </summary>
     /// <returns>
-    /// The value created via the <see cref="From"/> method.
+    /// True if the value could a) be parsed by the underlying type, and b) passes any validation (after running any optional normalization).
     /// </returns>
-    /// <exception cref="ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
     public static global::System.Boolean TryParse(string s, global::System.Globalization.NumberStyles style, global::System.IFormatProvider provider, 
 #if NETCOREAPP3_0_OR_GREATER
 [global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)]
 #endif
  out _casting_public_readonly_partial_structCastOperator_ImplicitCastOperator_Explicitdecimal result) {
-        if(System.Decimal.TryParse(s, style, provider, out var r)) {
-            result = From(r);
+        if(System.Decimal.TryParse(s, style, provider, out var __v)) {
+            
+            
+            result = new _casting_public_readonly_partial_structCastOperator_ImplicitCastOperator_Explicitdecimal(__v);
             return true;
         }
 
@@ -322,21 +330,118 @@ namespace Whatever
     /// <summary>
     /// </summary>
     /// <returns>
-    /// The value created via the <see cref="From"/> method.
+    /// True if the value could a) be parsed by the underlying type, and b) passes any validation (after running any optional normalization).
     /// </returns>
-    /// <exception cref="ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
     public static global::System.Boolean TryParse(string s, global::System.IFormatProvider provider, 
 #if NETCOREAPP3_0_OR_GREATER
 [global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)]
 #endif
  out _casting_public_readonly_partial_structCastOperator_ImplicitCastOperator_Explicitdecimal result) {
-        if(System.Decimal.TryParse(s, provider, out var r)) {
-            result = From(r);
+        if(System.Decimal.TryParse(s, provider, out var __v)) {
+            
+            
+            result = new _casting_public_readonly_partial_structCastOperator_ImplicitCastOperator_Explicitdecimal(__v);
             return true;
         }
 
         result = default;
         return false;
+    }
+
+    /// <inheritdoc cref="decimal.Parse(System.ReadOnlySpan{byte}, System.Globalization.NumberStyles, System.IFormatProvider?)"/>
+    /// <summary>
+    /// </summary>
+    /// <returns>
+    /// The value created via the <see cref="From"/> method.
+    /// </returns>
+    /// <exception cref="ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
+    public static _casting_public_readonly_partial_structCastOperator_ImplicitCastOperator_Explicitdecimal Parse(global::System.ReadOnlySpan<byte> utf8Text, global::System.Globalization.NumberStyles style, global::System.IFormatProvider provider) {
+        var r = System.Decimal.Parse(utf8Text, style, provider);
+        return From(r);
+    }
+
+    /// <inheritdoc cref="decimal.Parse(System.ReadOnlySpan{byte}, System.IFormatProvider?)"/>
+    /// <summary>
+    /// </summary>
+    /// <returns>
+    /// The value created via the <see cref="From"/> method.
+    /// </returns>
+    /// <exception cref="ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
+    public static _casting_public_readonly_partial_structCastOperator_ImplicitCastOperator_Explicitdecimal Parse(global::System.ReadOnlySpan<byte> utf8Text, global::System.IFormatProvider provider) {
+        var r = System.Decimal.Parse(utf8Text, provider);
+        return From(r);
+    }
+
+    /// <inheritdoc cref="decimal.Parse(System.ReadOnlySpan{char}, System.Globalization.NumberStyles, System.IFormatProvider?)"/>
+    /// <summary>
+    /// </summary>
+    /// <returns>
+    /// The value created via the <see cref="From"/> method.
+    /// </returns>
+    /// <exception cref="ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
+    public static _casting_public_readonly_partial_structCastOperator_ImplicitCastOperator_Explicitdecimal Parse(global::System.ReadOnlySpan<char> s, global::System.Globalization.NumberStyles style, global::System.IFormatProvider provider) {
+        var r = System.Decimal.Parse(s, style, provider);
+        return From(r);
+    }
+
+    /// <inheritdoc cref="decimal.Parse(System.ReadOnlySpan{char}, System.IFormatProvider?)"/>
+    /// <summary>
+    /// </summary>
+    /// <returns>
+    /// The value created via the <see cref="From"/> method.
+    /// </returns>
+    /// <exception cref="ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
+    public static _casting_public_readonly_partial_structCastOperator_ImplicitCastOperator_Explicitdecimal Parse(global::System.ReadOnlySpan<char> s, global::System.IFormatProvider provider) {
+        var r = System.Decimal.Parse(s, provider);
+        return From(r);
+    }
+
+    /// <inheritdoc cref="decimal.Parse(string)"/>
+    /// <summary>
+    /// </summary>
+    /// <returns>
+    /// The value created via the <see cref="From"/> method.
+    /// </returns>
+    /// <exception cref="ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
+    public static _casting_public_readonly_partial_structCastOperator_ImplicitCastOperator_Explicitdecimal Parse(string s) {
+        var r = System.Decimal.Parse(s);
+        return From(r);
+    }
+
+    /// <inheritdoc cref="decimal.Parse(string, System.Globalization.NumberStyles)"/>
+    /// <summary>
+    /// </summary>
+    /// <returns>
+    /// The value created via the <see cref="From"/> method.
+    /// </returns>
+    /// <exception cref="ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
+    public static _casting_public_readonly_partial_structCastOperator_ImplicitCastOperator_Explicitdecimal Parse(string s, global::System.Globalization.NumberStyles style) {
+        var r = System.Decimal.Parse(s, style);
+        return From(r);
+    }
+
+    /// <inheritdoc cref="decimal.Parse(string, System.Globalization.NumberStyles, System.IFormatProvider?)"/>
+    /// <summary>
+    /// </summary>
+    /// <returns>
+    /// The value created via the <see cref="From"/> method.
+    /// </returns>
+    /// <exception cref="ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
+    public static _casting_public_readonly_partial_structCastOperator_ImplicitCastOperator_Explicitdecimal Parse(string s, global::System.Globalization.NumberStyles style, global::System.IFormatProvider provider) {
+        var r = System.Decimal.Parse(s, style, provider);
+        return From(r);
+    }
+
+    /// <inheritdoc cref="decimal.Parse(string, System.IFormatProvider?)"/>
+    /// <summary>
+    /// </summary>
+    /// <returns>
+    /// The value created via the <see cref="From"/> method.
+    /// </returns>
+    /// <exception cref="ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
+    public static _casting_public_readonly_partial_structCastOperator_ImplicitCastOperator_Explicitdecimal Parse(string s, global::System.IFormatProvider provider) {
+        var r = System.Decimal.Parse(s, provider);
+        return From(r);
     }
 
         

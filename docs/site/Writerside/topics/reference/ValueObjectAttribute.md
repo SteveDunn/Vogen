@@ -1,6 +1,5 @@
 # ValueObjectAttribute
 
-This has the following parameters
-
-## param 1
-## param 2
+<note>
+This topic is incomplete and is currently being improved.
+</note>

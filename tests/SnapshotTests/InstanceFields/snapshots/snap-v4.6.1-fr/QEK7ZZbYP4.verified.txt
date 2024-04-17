@@ -35,7 +35,7 @@ namespace Whatever
 
     [global::System.Diagnostics.DebuggerTypeProxyAttribute(typeof(internal_sealed_partial_record_classcharDebugView))]
     [global::System.Diagnostics.DebuggerDisplayAttribute("Underlying type: System.Char, Value = { _value }")]
-    internal sealed partial record class internal_sealed_partial_record_classchar : global::System.IEquatable<internal_sealed_partial_record_classchar>, global::System.IEquatable<System.Char> ,  global::System.IComparable<internal_sealed_partial_record_classchar>, global::System.IComparable
+    internal sealed partial record class internal_sealed_partial_record_classchar : global::System.IEquatable<internal_sealed_partial_record_classchar>, global::System.IEquatable<System.Char>,  global::System.IComparable<internal_sealed_partial_record_classchar>, global::System.IComparable
     {
 #if DEBUG   
         private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
@@ -103,7 +103,6 @@ namespace Whatever
             return instance;
         }
   
-
         // only called internally when something has been deserialized into
         // its primitive type.
         private static internal_sealed_partial_record_classchar Deserialize(System.Char value)
@@ -163,6 +162,43 @@ namespace Whatever
             if(other is internal_sealed_partial_record_classchar x) return CompareTo(x);
             throw new global::System.ArgumentException("Cannot compare to object as it is not of type internal_sealed_partial_record_classchar", nameof(other));
         }
+
+        
+    /// <inheritdoc cref="char.TryParse(string, out char)"/>
+    /// <summary>
+    /// </summary>
+    /// <returns>
+    /// True if the value could a) be parsed by the underlying type, and b) passes any validation (after running any optional normalization).
+    /// </returns>
+    public static global::System.Boolean TryParse(string s, 
+#if NETCOREAPP3_0_OR_GREATER
+[global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)]
+#endif
+ out internal_sealed_partial_record_classchar result) {
+        if(System.Char.TryParse(s, out var __v)) {
+            
+            
+            result = new internal_sealed_partial_record_classchar(__v);
+            return true;
+        }
+
+        result = default;
+        return false;
+    }
+
+    /// <inheritdoc cref="char.Parse(string)"/>
+    /// <summary>
+    /// </summary>
+    /// <returns>
+    /// The value created via the <see cref="From"/> method.
+    /// </returns>
+    /// <exception cref="ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
+    public static internal_sealed_partial_record_classchar Parse(string s) {
+        var r = System.Char.Parse(s);
+        return From(r);
+    }
+
+
 
           public override global::System.Int32 GetHashCode()
           {

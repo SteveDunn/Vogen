@@ -154,6 +154,9 @@ public @class.@record.@struct.@float.@decimal Value
 
         
 
+        
+
+
           public override global::System.Int32 GetHashCode()
           {
             unchecked // Overflow is fine, just wrap

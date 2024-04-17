@@ -35,7 +35,7 @@ namespace Whatever
 
     [global::System.Diagnostics.DebuggerTypeProxyAttribute(typeof(_casting_public_partial_recordCastOperator_ExplicitCastOperator_NoneshortDebugView))]
     [global::System.Diagnostics.DebuggerDisplayAttribute("Underlying type: System.Int16, Value = { _value }")]
-    public partial record class _casting_public_partial_recordCastOperator_ExplicitCastOperator_Noneshort : global::System.IEquatable<_casting_public_partial_recordCastOperator_ExplicitCastOperator_Noneshort>, global::System.IEquatable<System.Int16> ,  global::System.IComparable<_casting_public_partial_recordCastOperator_ExplicitCastOperator_Noneshort>, global::System.IComparable
+    public partial record class _casting_public_partial_recordCastOperator_ExplicitCastOperator_Noneshort : global::System.IEquatable<_casting_public_partial_recordCastOperator_ExplicitCastOperator_Noneshort>, global::System.IEquatable<System.Int16>,  global::System.IComparable<_casting_public_partial_recordCastOperator_ExplicitCastOperator_Noneshort>, global::System.IComparable
     {
 #if DEBUG   
         private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
@@ -103,7 +103,6 @@ namespace Whatever
             return instance;
         }
   
-
         // only called internally when something has been deserialized into
         // its primitive type.
         private static _casting_public_partial_recordCastOperator_ExplicitCastOperator_Noneshort Deserialize(System.Int16 value)
@@ -161,6 +160,101 @@ namespace Whatever
             if(other is _casting_public_partial_recordCastOperator_ExplicitCastOperator_Noneshort x) return CompareTo(x);
             throw new global::System.ArgumentException("Cannot compare to object as it is not of type _casting_public_partial_recordCastOperator_ExplicitCastOperator_Noneshort", nameof(other));
         }
+
+        
+    /// <inheritdoc cref="short.TryParse(string, System.Globalization.NumberStyles, System.IFormatProvider, out short)"/>
+    /// <summary>
+    /// </summary>
+    /// <returns>
+    /// True if the value could a) be parsed by the underlying type, and b) passes any validation (after running any optional normalization).
+    /// </returns>
+    public static global::System.Boolean TryParse(string s, global::System.Globalization.NumberStyles style, global::System.IFormatProvider provider, 
+#if NETCOREAPP3_0_OR_GREATER
+[global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)]
+#endif
+ out _casting_public_partial_recordCastOperator_ExplicitCastOperator_Noneshort result) {
+        if(System.Int16.TryParse(s, style, provider, out var __v)) {
+            
+            
+            result = new _casting_public_partial_recordCastOperator_ExplicitCastOperator_Noneshort(__v);
+            return true;
+        }
+
+        result = default;
+        return false;
+    }
+
+    /// <inheritdoc cref="short.TryParse(string, out short)"/>
+    /// <summary>
+    /// </summary>
+    /// <returns>
+    /// True if the value could a) be parsed by the underlying type, and b) passes any validation (after running any optional normalization).
+    /// </returns>
+    public static global::System.Boolean TryParse(string s, 
+#if NETCOREAPP3_0_OR_GREATER
+[global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)]
+#endif
+ out _casting_public_partial_recordCastOperator_ExplicitCastOperator_Noneshort result) {
+        if(System.Int16.TryParse(s, out var __v)) {
+            
+            
+            result = new _casting_public_partial_recordCastOperator_ExplicitCastOperator_Noneshort(__v);
+            return true;
+        }
+
+        result = default;
+        return false;
+    }
+
+    /// <inheritdoc cref="short.Parse(string)"/>
+    /// <summary>
+    /// </summary>
+    /// <returns>
+    /// The value created via the <see cref="From"/> method.
+    /// </returns>
+    /// <exception cref="ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
+    public static _casting_public_partial_recordCastOperator_ExplicitCastOperator_Noneshort Parse(string s) {
+        var r = System.Int16.Parse(s);
+        return From(r);
+    }
+
+    /// <inheritdoc cref="short.Parse(string, System.Globalization.NumberStyles)"/>
+    /// <summary>
+    /// </summary>
+    /// <returns>
+    /// The value created via the <see cref="From"/> method.
+    /// </returns>
+    /// <exception cref="ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
+    public static _casting_public_partial_recordCastOperator_ExplicitCastOperator_Noneshort Parse(string s, global::System.Globalization.NumberStyles style) {
+        var r = System.Int16.Parse(s, style);
+        return From(r);
+    }
+
+    /// <inheritdoc cref="short.Parse(string, System.Globalization.NumberStyles, System.IFormatProvider)"/>
+    /// <summary>
+    /// </summary>
+    /// <returns>
+    /// The value created via the <see cref="From"/> method.
+    /// </returns>
+    /// <exception cref="ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
+    public static _casting_public_partial_recordCastOperator_ExplicitCastOperator_Noneshort Parse(string s, global::System.Globalization.NumberStyles style, global::System.IFormatProvider provider) {
+        var r = System.Int16.Parse(s, style, provider);
+        return From(r);
+    }
+
+    /// <inheritdoc cref="short.Parse(string, System.IFormatProvider)"/>
+    /// <summary>
+    /// </summary>
+    /// <returns>
+    /// The value created via the <see cref="From"/> method.
+    /// </returns>
+    /// <exception cref="ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
+    public static _casting_public_partial_recordCastOperator_ExplicitCastOperator_Noneshort Parse(string s, global::System.IFormatProvider provider) {
+        var r = System.Int16.Parse(s, provider);
+        return From(r);
+    }
+
+
 
           public override global::System.Int32 GetHashCode()
           {

@@ -33,7 +33,7 @@ namespace Whatever
     
     [global::System.Diagnostics.DebuggerTypeProxyAttribute(typeof(internal_partial_structConversions_NoneSystem_GuidDebugView))]
     [global::System.Diagnostics.DebuggerDisplayAttribute("Underlying type: System.Guid, Value = { _value }")]
-    internal partial struct internal_partial_structConversions_NoneSystem_Guid : global::System.IEquatable<internal_partial_structConversions_NoneSystem_Guid>, global::System.IEquatable<System.Guid> ,  global::System.IComparable<internal_partial_structConversions_NoneSystem_Guid>, global::System.IComparable
+    internal partial struct internal_partial_structConversions_NoneSystem_Guid : global::System.IEquatable<internal_partial_structConversions_NoneSystem_Guid>, global::System.IEquatable<System.Guid>,  global::System.IComparable<internal_partial_structConversions_NoneSystem_Guid>, global::System.IComparable
     {
 #if DEBUG   
         private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
@@ -150,21 +150,34 @@ namespace Whatever
     /// <summary>
     /// </summary>
     /// <returns>
-    /// The value created via the <see cref="From"/> method.
+    /// True if the value could a) be parsed by the underlying type, and b) passes any validation (after running any optional normalization).
     /// </returns>
-    /// <exception cref="ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
     public static global::System.Boolean TryParse(string input, 
 #if NETCOREAPP3_0_OR_GREATER
 [global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)]
 #endif
  out internal_partial_structConversions_NoneSystem_Guid result) {
-        if(System.Guid.TryParse(input, out var r)) {
-            result = From(r);
+        if(System.Guid.TryParse(input, out var __v)) {
+            
+            
+            result = new internal_partial_structConversions_NoneSystem_Guid(__v);
             return true;
         }
 
         result = default;
         return false;
+    }
+
+    /// <inheritdoc cref="System.Guid.Parse(string)"/>
+    /// <summary>
+    /// </summary>
+    /// <returns>
+    /// The value created via the <see cref="From"/> method.
+    /// </returns>
+    /// <exception cref="ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
+    public static internal_partial_structConversions_NoneSystem_Guid Parse(string input) {
+        var r = System.Guid.Parse(input);
+        return From(r);
     }
 
         

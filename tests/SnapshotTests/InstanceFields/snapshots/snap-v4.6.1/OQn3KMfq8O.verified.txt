@@ -35,7 +35,7 @@ namespace Whatever
 
     [global::System.Diagnostics.DebuggerTypeProxyAttribute(typeof(public_partial_recorddoubleDebugView))]
     [global::System.Diagnostics.DebuggerDisplayAttribute("Underlying type: System.Double, Value = { _value }")]
-    public partial record class public_partial_recorddouble : global::System.IEquatable<public_partial_recorddouble>, global::System.IEquatable<System.Double> ,  global::System.IComparable<public_partial_recorddouble>, global::System.IComparable
+    public partial record class public_partial_recorddouble : global::System.IEquatable<public_partial_recorddouble>, global::System.IEquatable<System.Double>,  global::System.IComparable<public_partial_recorddouble>, global::System.IComparable
     {
 #if DEBUG   
         private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
@@ -103,7 +103,6 @@ namespace Whatever
             return instance;
         }
   
-
         // only called internally when something has been deserialized into
         // its primitive type.
         private static public_partial_recorddouble Deserialize(System.Double value)
@@ -163,6 +162,101 @@ namespace Whatever
             if(other is public_partial_recorddouble x) return CompareTo(x);
             throw new global::System.ArgumentException("Cannot compare to object as it is not of type public_partial_recorddouble", nameof(other));
         }
+
+        
+    /// <inheritdoc cref="double.TryParse(string, out double)"/>
+    /// <summary>
+    /// </summary>
+    /// <returns>
+    /// True if the value could a) be parsed by the underlying type, and b) passes any validation (after running any optional normalization).
+    /// </returns>
+    public static global::System.Boolean TryParse(string s, 
+#if NETCOREAPP3_0_OR_GREATER
+[global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)]
+#endif
+ out public_partial_recorddouble result) {
+        if(System.Double.TryParse(s, out var __v)) {
+            
+            
+            result = new public_partial_recorddouble(__v);
+            return true;
+        }
+
+        result = default;
+        return false;
+    }
+
+    /// <inheritdoc cref="double.TryParse(string, System.Globalization.NumberStyles, System.IFormatProvider, out double)"/>
+    /// <summary>
+    /// </summary>
+    /// <returns>
+    /// True if the value could a) be parsed by the underlying type, and b) passes any validation (after running any optional normalization).
+    /// </returns>
+    public static global::System.Boolean TryParse(string s, global::System.Globalization.NumberStyles style, global::System.IFormatProvider provider, 
+#if NETCOREAPP3_0_OR_GREATER
+[global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)]
+#endif
+ out public_partial_recorddouble result) {
+        if(System.Double.TryParse(s, style, provider, out var __v)) {
+            
+            
+            result = new public_partial_recorddouble(__v);
+            return true;
+        }
+
+        result = default;
+        return false;
+    }
+
+    /// <inheritdoc cref="double.Parse(string)"/>
+    /// <summary>
+    /// </summary>
+    /// <returns>
+    /// The value created via the <see cref="From"/> method.
+    /// </returns>
+    /// <exception cref="ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
+    public static public_partial_recorddouble Parse(string s) {
+        var r = System.Double.Parse(s);
+        return From(r);
+    }
+
+    /// <inheritdoc cref="double.Parse(string, System.Globalization.NumberStyles)"/>
+    /// <summary>
+    /// </summary>
+    /// <returns>
+    /// The value created via the <see cref="From"/> method.
+    /// </returns>
+    /// <exception cref="ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
+    public static public_partial_recorddouble Parse(string s, global::System.Globalization.NumberStyles style) {
+        var r = System.Double.Parse(s, style);
+        return From(r);
+    }
+
+    /// <inheritdoc cref="double.Parse(string, System.Globalization.NumberStyles, System.IFormatProvider)"/>
+    /// <summary>
+    /// </summary>
+    /// <returns>
+    /// The value created via the <see cref="From"/> method.
+    /// </returns>
+    /// <exception cref="ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
+    public static public_partial_recorddouble Parse(string s, global::System.Globalization.NumberStyles style, global::System.IFormatProvider provider) {
+        var r = System.Double.Parse(s, style, provider);
+        return From(r);
+    }
+
+    /// <inheritdoc cref="double.Parse(string, System.IFormatProvider)"/>
+    /// <summary>
+    /// </summary>
+    /// <returns>
+    /// The value created via the <see cref="From"/> method.
+    /// </returns>
+    /// <exception cref="ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
+    public static public_partial_recorddouble Parse(string s, global::System.IFormatProvider provider) {
+        var r = System.Double.Parse(s, provider);
+        return From(r);
+    }
+
+
 
           public override global::System.Int32 GetHashCode()
           {

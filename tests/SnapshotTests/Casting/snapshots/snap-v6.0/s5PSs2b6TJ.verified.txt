@@ -171,6 +171,33 @@ public System.String Value
             throw new global::System.ArgumentException("Cannot compare to object as it is not of type _casting_public_sealed_partial_classCastOperator_ExplicitCastOperator_Explicitstring", nameof(other));
         }
 
+        
+    /// <summary>
+    /// </summary>
+    /// <returns>
+    /// True if the value passes any validation (after running any optional normalization).
+    /// </returns>
+    public static global::System.Boolean TryParse(global::System.String s, global::System.IFormatProvider provider, 
+#if NETCOREAPP3_0_OR_GREATER
+[global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)]
+#endif
+ out _casting_public_sealed_partial_classCastOperator_ExplicitCastOperator_Explicitstring result) {
+            
+            
+            result = new _casting_public_sealed_partial_classCastOperator_ExplicitCastOperator_Explicitstring(s);
+            return true;
+    }
+    /// <summary>
+    /// </summary>
+    /// <returns>
+    /// The value created via the <see cref="From"/> method.
+    /// </returns>
+    /// <exception cref="ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
+    public static _casting_public_sealed_partial_classCastOperator_ExplicitCastOperator_Explicitstring Parse(global::System.String s, global::System.IFormatProvider provider) {
+        return From(s);
+    }
+
+
           public override global::System.Int32 GetHashCode()
           {
             unchecked // Overflow is fine, just wrap
