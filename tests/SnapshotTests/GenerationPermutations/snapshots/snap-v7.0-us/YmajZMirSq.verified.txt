@@ -35,7 +35,7 @@ namespace Whatever
 
     [global::System.Diagnostics.DebuggerTypeProxyAttribute(typeof(public_partial_structConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterDebugView))]
     [global::System.Diagnostics.DebuggerDisplayAttribute("Underlying type: System.Int32, Value = { _value }")]
-    public partial struct public_partial_structConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverter : global::System.IEquatable<public_partial_structConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverter>, global::System.IEquatable<System.Int32> ,  global::System.IComparable<public_partial_structConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverter>, global::System.IComparable
+    public partial struct public_partial_structConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverter : global::System.IEquatable<public_partial_structConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverter>, global::System.IEquatable<System.Int32>,  global::System.IComparable<public_partial_structConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverter>, global::System.IComparable,  global::System.IParsable<public_partial_structConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverter>,  global::System.ISpanParsable<public_partial_structConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverter>
     {
 #if DEBUG   
         private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
@@ -152,16 +152,17 @@ namespace Whatever
     /// <summary>
     /// </summary>
     /// <returns>
-    /// The value created via the <see cref="From"/> method.
+    /// True if the value could a) be parsed by the underlying type, and b) passes any validation (after running any optional normalization).
     /// </returns>
-    /// <exception cref="ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
     public static global::System.Boolean TryParse(global::System.ReadOnlySpan<char> s, global::System.Globalization.NumberStyles style, global::System.IFormatProvider provider, 
 #if NETCOREAPP3_0_OR_GREATER
 [global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)]
 #endif
  out public_partial_structConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverter result) {
-        if(System.Int32.TryParse(s, style, provider, out var r)) {
-            result = From(r);
+        if(System.Int32.TryParse(s, style, provider, out var __v)) {
+            
+            
+            result = new public_partial_structConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverter(__v);
             return true;
         }
 
@@ -173,16 +174,17 @@ namespace Whatever
     /// <summary>
     /// </summary>
     /// <returns>
-    /// The value created via the <see cref="From"/> method.
+    /// True if the value could a) be parsed by the underlying type, and b) passes any validation (after running any optional normalization).
     /// </returns>
-    /// <exception cref="ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
     public static global::System.Boolean TryParse(global::System.ReadOnlySpan<char> s, global::System.IFormatProvider provider, 
 #if NETCOREAPP3_0_OR_GREATER
 [global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)]
 #endif
  out public_partial_structConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverter result) {
-        if(System.Int32.TryParse(s, provider, out var r)) {
-            result = From(r);
+        if(System.Int32.TryParse(s, provider, out var __v)) {
+            
+            
+            result = new public_partial_structConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverter(__v);
             return true;
         }
 
@@ -194,16 +196,17 @@ namespace Whatever
     /// <summary>
     /// </summary>
     /// <returns>
-    /// The value created via the <see cref="From"/> method.
+    /// True if the value could a) be parsed by the underlying type, and b) passes any validation (after running any optional normalization).
     /// </returns>
-    /// <exception cref="ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
     public static global::System.Boolean TryParse(global::System.ReadOnlySpan<char> s, 
 #if NETCOREAPP3_0_OR_GREATER
 [global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)]
 #endif
  out public_partial_structConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverter result) {
-        if(System.Int32.TryParse(s, out var r)) {
-            result = From(r);
+        if(System.Int32.TryParse(s, out var __v)) {
+            
+            
+            result = new public_partial_structConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverter(__v);
             return true;
         }
 
@@ -215,16 +218,17 @@ namespace Whatever
     /// <summary>
     /// </summary>
     /// <returns>
-    /// The value created via the <see cref="From"/> method.
+    /// True if the value could a) be parsed by the underlying type, and b) passes any validation (after running any optional normalization).
     /// </returns>
-    /// <exception cref="ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
     public static global::System.Boolean TryParse(string s, global::System.Globalization.NumberStyles style, global::System.IFormatProvider provider, 
 #if NETCOREAPP3_0_OR_GREATER
 [global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)]
 #endif
  out public_partial_structConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverter result) {
-        if(System.Int32.TryParse(s, style, provider, out var r)) {
-            result = From(r);
+        if(System.Int32.TryParse(s, style, provider, out var __v)) {
+            
+            
+            result = new public_partial_structConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverter(__v);
             return true;
         }
 
@@ -236,16 +240,17 @@ namespace Whatever
     /// <summary>
     /// </summary>
     /// <returns>
-    /// The value created via the <see cref="From"/> method.
+    /// True if the value could a) be parsed by the underlying type, and b) passes any validation (after running any optional normalization).
     /// </returns>
-    /// <exception cref="ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
     public static global::System.Boolean TryParse(string s, global::System.IFormatProvider provider, 
 #if NETCOREAPP3_0_OR_GREATER
 [global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)]
 #endif
  out public_partial_structConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverter result) {
-        if(System.Int32.TryParse(s, provider, out var r)) {
-            result = From(r);
+        if(System.Int32.TryParse(s, provider, out var __v)) {
+            
+            
+            result = new public_partial_structConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverter(__v);
             return true;
         }
 
@@ -257,21 +262,94 @@ namespace Whatever
     /// <summary>
     /// </summary>
     /// <returns>
-    /// The value created via the <see cref="From"/> method.
+    /// True if the value could a) be parsed by the underlying type, and b) passes any validation (after running any optional normalization).
     /// </returns>
-    /// <exception cref="ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
     public static global::System.Boolean TryParse(string s, 
 #if NETCOREAPP3_0_OR_GREATER
 [global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)]
 #endif
  out public_partial_structConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverter result) {
-        if(System.Int32.TryParse(s, out var r)) {
-            result = From(r);
+        if(System.Int32.TryParse(s, out var __v)) {
+            
+            
+            result = new public_partial_structConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverter(__v);
             return true;
         }
 
         result = default;
         return false;
+    }
+
+    /// <inheritdoc cref="int.Parse(System.ReadOnlySpan{char}, System.Globalization.NumberStyles, System.IFormatProvider?)"/>
+    /// <summary>
+    /// </summary>
+    /// <returns>
+    /// The value created via the <see cref="From"/> method.
+    /// </returns>
+    /// <exception cref="ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
+    public static public_partial_structConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverter Parse(global::System.ReadOnlySpan<char> s, global::System.Globalization.NumberStyles style, global::System.IFormatProvider provider) {
+        var r = System.Int32.Parse(s, style, provider);
+        return From(r);
+    }
+
+    /// <inheritdoc cref="int.Parse(System.ReadOnlySpan{char}, System.IFormatProvider?)"/>
+    /// <summary>
+    /// </summary>
+    /// <returns>
+    /// The value created via the <see cref="From"/> method.
+    /// </returns>
+    /// <exception cref="ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
+    public static public_partial_structConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverter Parse(global::System.ReadOnlySpan<char> s, global::System.IFormatProvider provider) {
+        var r = System.Int32.Parse(s, provider);
+        return From(r);
+    }
+
+    /// <inheritdoc cref="int.Parse(string)"/>
+    /// <summary>
+    /// </summary>
+    /// <returns>
+    /// The value created via the <see cref="From"/> method.
+    /// </returns>
+    /// <exception cref="ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
+    public static public_partial_structConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverter Parse(string s) {
+        var r = System.Int32.Parse(s);
+        return From(r);
+    }
+
+    /// <inheritdoc cref="int.Parse(string, System.Globalization.NumberStyles)"/>
+    /// <summary>
+    /// </summary>
+    /// <returns>
+    /// The value created via the <see cref="From"/> method.
+    /// </returns>
+    /// <exception cref="ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
+    public static public_partial_structConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverter Parse(string s, global::System.Globalization.NumberStyles style) {
+        var r = System.Int32.Parse(s, style);
+        return From(r);
+    }
+
+    /// <inheritdoc cref="int.Parse(string, System.Globalization.NumberStyles, System.IFormatProvider?)"/>
+    /// <summary>
+    /// </summary>
+    /// <returns>
+    /// The value created via the <see cref="From"/> method.
+    /// </returns>
+    /// <exception cref="ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
+    public static public_partial_structConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverter Parse(string s, global::System.Globalization.NumberStyles style, global::System.IFormatProvider provider) {
+        var r = System.Int32.Parse(s, style, provider);
+        return From(r);
+    }
+
+    /// <inheritdoc cref="int.Parse(string, System.IFormatProvider?)"/>
+    /// <summary>
+    /// </summary>
+    /// <returns>
+    /// The value created via the <see cref="From"/> method.
+    /// </returns>
+    /// <exception cref="ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
+    public static public_partial_structConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverter Parse(string s, global::System.IFormatProvider provider) {
+        var r = System.Int32.Parse(s, provider);
+        return From(r);
     }
 
         

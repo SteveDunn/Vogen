@@ -158,6 +158,43 @@ public System.Boolean Value
             throw new global::System.ArgumentException("Cannot compare to object as it is not of type _casting_public_partial_classCastOperator_NoneCastOperator_Nonebool", nameof(other));
         }
 
+        
+    /// <inheritdoc cref="bool.TryParse(string, out bool)"/>
+    /// <summary>
+    /// </summary>
+    /// <returns>
+    /// True if the value could a) be parsed by the underlying type, and b) passes any validation (after running any optional normalization).
+    /// </returns>
+    public static global::System.Boolean TryParse(string value, 
+#if NETCOREAPP3_0_OR_GREATER
+[global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)]
+#endif
+ out _casting_public_partial_classCastOperator_NoneCastOperator_Nonebool result) {
+        if(System.Boolean.TryParse(value, out var __v)) {
+            
+            
+            result = new _casting_public_partial_classCastOperator_NoneCastOperator_Nonebool(__v);
+            return true;
+        }
+
+        result = default;
+        return false;
+    }
+
+    /// <inheritdoc cref="bool.Parse(string)"/>
+    /// <summary>
+    /// </summary>
+    /// <returns>
+    /// The value created via the <see cref="From"/> method.
+    /// </returns>
+    /// <exception cref="ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
+    public static _casting_public_partial_classCastOperator_NoneCastOperator_Nonebool Parse(string value) {
+        var r = System.Boolean.Parse(value);
+        return From(r);
+    }
+
+
+
           public override global::System.Int32 GetHashCode()
           {
             unchecked // Overflow is fine, just wrap

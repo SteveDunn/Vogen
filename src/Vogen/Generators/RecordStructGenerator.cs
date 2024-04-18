@@ -19,7 +19,7 @@ using Vogen;
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute(""{Util.GenerateYourAssemblyName()}"", ""{Util.GenerateYourAssemblyVersion()}"")]
     {Util.GenerateAnyConversionAttributes(tds, item)}
     {DebugGeneration.GenerateDebugAttributes(item, structName, itemUnderlyingType)}
-    { Util.GenerateModifiersFor(tds)} record struct {structName} : global::System.IEquatable<{structName}>, global::System.IEquatable<{itemUnderlyingType}> {GenerateComparableCode.GenerateIComparableHeaderIfNeeded(", ", item, tds)}
+    { Util.GenerateModifiersFor(tds)} record struct {structName} : global::System.IEquatable<{structName}>, global::System.IEquatable<{itemUnderlyingType}>{GenerateComparableCode.GenerateIComparableHeaderIfNeeded(", ", item, tds)}{GenerateCodeForIParsableInterfaceDeclarations.GenerateIfNeeded(", ", item, tds)}
     {{
 {DebugGeneration.GenerateStackTraceFieldIfNeeded(item)}
 
@@ -43,9 +43,9 @@ using Vogen;
             {{
                 {GenerateNullCheckIfNeeded(item)}
 
-                {Util.GenerateNormalizeInputMethodIfNeeded(item)}
+                {Util.GenerateCallToNormalizeMethodIfNeeded(item)}
 
-                {Util.GenerateValidation(item)}
+                {Util.GenerateCallToValidation(item)}
 
                 _value = value;
             }}
@@ -77,9 +77,9 @@ using Vogen;
         /// <returns>An instance of this type.</returns>
         public static {structName} From({itemUnderlyingType} value)
         {{
-            {Util.GenerateNormalizeInputMethodIfNeeded(item)}
+            {Util.GenerateCallToNormalizeMethodIfNeeded(item)}
 
-            {Util.GenerateValidation(item)}
+            {Util.GenerateCallToValidation(item)}
 
             {structName} instance = new {structName}(value);
 
@@ -91,7 +91,7 @@ using Vogen;
         // its primitive type.
         private static {structName} Deserialize({itemUnderlyingType} value)
         {{
-            {Util.GenerateNormalizeInputMethodIfNeeded(item)}
+            {Util.GenerateCallToNormalizeMethodIfNeeded(item)}
 
             {Util.GenerateCallToValidateForDeserializing(item)}
 
@@ -107,7 +107,7 @@ using Vogen;
 
         {GenerateComparableCode.GenerateIComparableImplementationIfNeeded(item, tds)}
 
-        {TryParseGeneration.GenerateTryParseIfNeeded(item)}
+        {GenerateCodeForTryParse.GenerateAnyHoistedTryParseMethods(item)}{GenerateCodeForParse.GenerateAnyHoistedParseMethods(item)}
 
         {GenerateEqualsAndHashCodes.GenerateGetHashCodeForAStruct(item)}
 

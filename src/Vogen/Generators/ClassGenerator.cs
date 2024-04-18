@@ -19,7 +19,7 @@ using Vogen;
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute(""{Util.GenerateYourAssemblyName()}"", ""{Util.GenerateYourAssemblyVersion()}"")]
     {Util.GenerateAnyConversionAttributes(tds, item)}
     {DebugGeneration.GenerateDebugAttributes(item, className, itemUnderlyingType)}
-    {Util.GenerateModifiersFor(tds)} class {className} : global::System.IEquatable<{className}>, global::System.IEquatable<{itemUnderlyingType}> {GenerateComparableCode.GenerateIComparableHeaderIfNeeded(", ", item, tds)}
+    {Util.GenerateModifiersFor(tds)} class {className} : global::System.IEquatable<{className}>, global::System.IEquatable<{itemUnderlyingType}> {GenerateComparableCode.GenerateIComparableHeaderIfNeeded(", ", item, tds)}{GenerateCodeForIParsableInterfaceDeclarations.GenerateIfNeeded(", ", item, tds)}
     {{
 {DebugGeneration.GenerateStackTraceFieldIfNeeded(item)}
         private readonly global::System.Boolean _isInitialized;
@@ -65,9 +65,9 @@ public {itemUnderlyingType} Value
         {{
             {GenerateNullCheckIfNeeded(item)}
 
-            {Util.GenerateNormalizeInputMethodIfNeeded(item)}
+            {Util.GenerateCallToNormalizeMethodIfNeeded(item)}
 
-            {Util.GenerateValidation(item)}
+            {Util.GenerateCallToValidation(item)}
 
             {className} instance = new {className}(value);
 
@@ -81,7 +81,7 @@ public {itemUnderlyingType} Value
         {{
             {GenerateNullCheckIfNeeded(item)}
 
-            {Util.GenerateNormalizeInputMethodIfNeeded(item)}
+            {Util.GenerateCallToNormalizeMethodIfNeeded(item)}
 
             {Util.GenerateCallToValidateForDeserializing(item)}
 
@@ -100,6 +100,9 @@ public {itemUnderlyingType} Value
 
 {GenerateCastingOperators.Generate(item,tds)}
         {GenerateComparableCode.GenerateIComparableImplementationIfNeeded(item, tds)}
+
+        {GenerateCodeForTryParse.GenerateAnyHoistedTryParseMethods(item)}{GenerateCodeForParse.GenerateAnyHoistedParseMethods(item)}
+
 {GenerateEqualsAndHashCodes.GenerateGetHashCodeForAClass(item)}
 
         private void EnsureInitialized()

@@ -33,7 +33,7 @@ namespace Whatever
     
     [global::System.Diagnostics.DebuggerTypeProxyAttribute(typeof(internal_partial_recordConversions_NonelongDebugView))]
     [global::System.Diagnostics.DebuggerDisplayAttribute("Underlying type: System.Int64, Value = { _value }")]
-    internal partial record class internal_partial_recordConversions_Nonelong : global::System.IEquatable<internal_partial_recordConversions_Nonelong>, global::System.IEquatable<System.Int64> ,  global::System.IComparable<internal_partial_recordConversions_Nonelong>, global::System.IComparable
+    internal partial record class internal_partial_recordConversions_Nonelong : global::System.IEquatable<internal_partial_recordConversions_Nonelong>, global::System.IEquatable<System.Int64>,  global::System.IComparable<internal_partial_recordConversions_Nonelong>, global::System.IComparable
     {
 #if DEBUG   
         private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
@@ -101,7 +101,6 @@ namespace Whatever
             return instance;
         }
   
-
         // only called internally when something has been deserialized into
         // its primitive type.
         private static internal_partial_recordConversions_Nonelong Deserialize(System.Int64 value)
@@ -160,6 +159,101 @@ namespace Whatever
             if(other is internal_partial_recordConversions_Nonelong x) return CompareTo(x);
             throw new global::System.ArgumentException("Cannot compare to object as it is not of type internal_partial_recordConversions_Nonelong", nameof(other));
         }
+
+        
+    /// <inheritdoc cref="long.TryParse(string, out long)"/>
+    /// <summary>
+    /// </summary>
+    /// <returns>
+    /// True if the value could a) be parsed by the underlying type, and b) passes any validation (after running any optional normalization).
+    /// </returns>
+    public static global::System.Boolean TryParse(string s, 
+#if NETCOREAPP3_0_OR_GREATER
+[global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)]
+#endif
+ out internal_partial_recordConversions_Nonelong result) {
+        if(System.Int64.TryParse(s, out var __v)) {
+            
+            
+            result = new internal_partial_recordConversions_Nonelong(__v);
+            return true;
+        }
+
+        result = default;
+        return false;
+    }
+
+    /// <inheritdoc cref="long.TryParse(string, System.Globalization.NumberStyles, System.IFormatProvider, out long)"/>
+    /// <summary>
+    /// </summary>
+    /// <returns>
+    /// True if the value could a) be parsed by the underlying type, and b) passes any validation (after running any optional normalization).
+    /// </returns>
+    public static global::System.Boolean TryParse(string s, global::System.Globalization.NumberStyles style, global::System.IFormatProvider provider, 
+#if NETCOREAPP3_0_OR_GREATER
+[global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)]
+#endif
+ out internal_partial_recordConversions_Nonelong result) {
+        if(System.Int64.TryParse(s, style, provider, out var __v)) {
+            
+            
+            result = new internal_partial_recordConversions_Nonelong(__v);
+            return true;
+        }
+
+        result = default;
+        return false;
+    }
+
+    /// <inheritdoc cref="long.Parse(string)"/>
+    /// <summary>
+    /// </summary>
+    /// <returns>
+    /// The value created via the <see cref="From"/> method.
+    /// </returns>
+    /// <exception cref="ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
+    public static internal_partial_recordConversions_Nonelong Parse(string s) {
+        var r = System.Int64.Parse(s);
+        return From(r);
+    }
+
+    /// <inheritdoc cref="long.Parse(string, System.Globalization.NumberStyles)"/>
+    /// <summary>
+    /// </summary>
+    /// <returns>
+    /// The value created via the <see cref="From"/> method.
+    /// </returns>
+    /// <exception cref="ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
+    public static internal_partial_recordConversions_Nonelong Parse(string s, global::System.Globalization.NumberStyles style) {
+        var r = System.Int64.Parse(s, style);
+        return From(r);
+    }
+
+    /// <inheritdoc cref="long.Parse(string, System.IFormatProvider)"/>
+    /// <summary>
+    /// </summary>
+    /// <returns>
+    /// The value created via the <see cref="From"/> method.
+    /// </returns>
+    /// <exception cref="ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
+    public static internal_partial_recordConversions_Nonelong Parse(string s, global::System.IFormatProvider provider) {
+        var r = System.Int64.Parse(s, provider);
+        return From(r);
+    }
+
+    /// <inheritdoc cref="long.Parse(string, System.Globalization.NumberStyles, System.IFormatProvider)"/>
+    /// <summary>
+    /// </summary>
+    /// <returns>
+    /// The value created via the <see cref="From"/> method.
+    /// </returns>
+    /// <exception cref="ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
+    public static internal_partial_recordConversions_Nonelong Parse(string s, global::System.Globalization.NumberStyles style, global::System.IFormatProvider provider) {
+        var r = System.Int64.Parse(s, style, provider);
+        return From(r);
+    }
+
+
 
           public override global::System.Int32 GetHashCode()
           {

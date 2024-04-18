@@ -19,7 +19,7 @@ using Vogen;
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute(""{Util.GenerateYourAssemblyName()}"", ""{Util.GenerateYourAssemblyVersion()}"")]
     {Util.GenerateAnyConversionAttributes(tds, item)}
     {DebugGeneration.GenerateDebugAttributes(item, className, itemUnderlyingType)}
-    {Util.GenerateModifiersFor(tds)} record class {className} : global::System.IEquatable<{className}>, global::System.IEquatable<{itemUnderlyingType}> {GenerateComparableCode.GenerateIComparableHeaderIfNeeded(", ", item, tds)}
+    {Util.GenerateModifiersFor(tds)} record class {className} : global::System.IEquatable<{className}>, global::System.IEquatable<{itemUnderlyingType}>{GenerateComparableCode.GenerateIComparableHeaderIfNeeded(", ", item, tds)}{GenerateCodeForIParsableInterfaceDeclarations.GenerateIfNeeded(", ", item, tds)}
     {{
 {DebugGeneration.GenerateStackTraceFieldIfNeeded(item)}
         private readonly global::System.Boolean _isInitialized;
@@ -41,9 +41,9 @@ using Vogen;
             {{
                 {GenerateNullCheckIfNeeded(item)}
 
-                {Util.GenerateNormalizeInputMethodIfNeeded(item)}
+                {Util.GenerateCallToNormalizeMethodIfNeeded(item)}
 
-                {Util.GenerateValidation(item)}
+                {Util.GenerateCallToValidation(item)}
 
                 _value = value;
             }}
@@ -76,23 +76,22 @@ using Vogen;
         {{
             {GenerateNullCheckIfNeeded(item)}
 
-            {Util.GenerateNormalizeInputMethodIfNeeded(item)}
+            {Util.GenerateCallToNormalizeMethodIfNeeded(item)}
 
-            {Util.GenerateValidation(item)}
+            {Util.GenerateCallToValidation(item)}
 
             {className} instance = new {className}(value);
 
             return instance;
         }}
 {GenerateEqualsAndHashCodes.GenerateStringComparersIfNeeded(item, tds)}  
-
         // only called internally when something has been deserialized into
         // its primitive type.
         private static {className} Deserialize({itemUnderlyingType} value)
         {{
             {GenerateNullCheckIfNeeded(item)}
 
-            {Util.GenerateNormalizeInputMethodIfNeeded(item)}
+            {Util.GenerateCallToNormalizeMethodIfNeeded(item)}
 
             {Util.GenerateCallToValidateForDeserializing(item)}
 
@@ -108,6 +107,9 @@ using Vogen;
 
 {GenerateCastingOperators.Generate(item,tds)}
         {GenerateComparableCode.GenerateIComparableImplementationIfNeeded(item, tds)}
+
+        {GenerateCodeForTryParse.GenerateAnyHoistedTryParseMethods(item)}{GenerateCodeForParse.GenerateAnyHoistedParseMethods(item)}
+
 {GenerateEqualsAndHashCodes.GenerateGetHashCodeForAClass(item)}
 
         private void EnsureInitialized()

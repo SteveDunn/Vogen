@@ -33,7 +33,7 @@ public class VoWorkItem
 
 
     public bool IsUnderlyingAString { get; private set; }
-
+    
     /// <summary>
     /// The syntax information for the type to augment.
     /// </summary>
@@ -67,6 +67,10 @@ public class VoWorkItem
     
     public StringComparersGeneration StringComparersGeneration { get; init; }
     
+    public ParsableForStrings ParsableForStrings { get; init; }
+    
+    public ParsableForPrimitives ParsableForPrimitives { get; init; }
+    
     public bool IsSealed { get; init; }
     
     public CastOperator ToPrimitiveCastOperator { get; init; }
@@ -78,6 +82,30 @@ public class VoWorkItem
     public string AccessibilityKeyword { get; init; } = "public";
     
     public required UserProvidedOverloads UserProvidedOverloads { get; init; }
+    
+    public required INamedTypeSymbol WrapperType { get; set; }
+    
+    public required ParsingInformation ParsingInformation { get; set; }
+}
+
+public class ParsingInformation
+{
+    public required List<IMethodSymbol> TryParseMethodsOnThePrimitive { get; set; }
+    
+    public required List<IMethodSymbol> ParseMethodsOnThePrimitive { get; set; }
+
+    public bool PrimitiveHasNoParseOrTryParseMethods => TryParseMethodsOnThePrimitive.Count == 00 && ParseMethodsOnThePrimitive.Count == 0;
+
+    public required bool UnderlyingIsAString { get; init; }
+    
+    public required bool IParsableIsAvailable { get; init; }
+    
+    public required bool UnderlyingDerivesFromIParsable { get; init; }
+    
+    public required bool UnderlyingDerivesFromISpanParsable { get; init; }
+    
+    public required bool UnderlyingDerivesFromIUtf8SpanParsable { get; init; }
+    public required INamedTypeSymbol? IFormatProviderType { get; init; }
 }
 
 public class UserProvidedOverloads
@@ -89,4 +117,9 @@ public class UserProvidedOverloads
     public UserProvidedEqualsForWrapper EqualsForWrapper { get; set; }
     
     public UserProvidedEqualsForUnderlying EqualsForUnderlying { get; set; }
+    
+    public required UserProvidedParseMethods ParseMethods { get; set; }
+    
+    public required UserProvidedTryParseMethods TryParseMethods { get; set; }
 }
+

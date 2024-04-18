@@ -33,7 +33,7 @@ namespace Whatever
     
     [global::System.Diagnostics.DebuggerTypeProxyAttribute(typeof(public_partial_recordConversions_NoneSystem_DateTimeOffsetDebugView))]
     [global::System.Diagnostics.DebuggerDisplayAttribute("Underlying type: System.DateTimeOffset, Value = { _value }")]
-    public partial record class public_partial_recordConversions_NoneSystem_DateTimeOffset : global::System.IEquatable<public_partial_recordConversions_NoneSystem_DateTimeOffset>, global::System.IEquatable<System.DateTimeOffset> ,  global::System.IComparable<public_partial_recordConversions_NoneSystem_DateTimeOffset>, global::System.IComparable
+    public partial record class public_partial_recordConversions_NoneSystem_DateTimeOffset : global::System.IEquatable<public_partial_recordConversions_NoneSystem_DateTimeOffset>, global::System.IEquatable<System.DateTimeOffset>,  global::System.IComparable<public_partial_recordConversions_NoneSystem_DateTimeOffset>, global::System.IComparable
     {
 #if DEBUG   
         private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
@@ -101,7 +101,6 @@ namespace Whatever
             return instance;
         }
   
-
         // only called internally when something has been deserialized into
         // its primitive type.
         private static public_partial_recordConversions_NoneSystem_DateTimeOffset Deserialize(System.DateTimeOffset value)
@@ -160,6 +159,89 @@ namespace Whatever
             if(other is public_partial_recordConversions_NoneSystem_DateTimeOffset x) return CompareTo(x);
             throw new global::System.ArgumentException("Cannot compare to object as it is not of type public_partial_recordConversions_NoneSystem_DateTimeOffset", nameof(other));
         }
+
+        
+    /// <inheritdoc cref="System.DateTimeOffset.TryParse(string, out System.DateTimeOffset)"/>
+    /// <summary>
+    /// </summary>
+    /// <returns>
+    /// True if the value could a) be parsed by the underlying type, and b) passes any validation (after running any optional normalization).
+    /// </returns>
+    public static global::System.Boolean TryParse(string input, 
+#if NETCOREAPP3_0_OR_GREATER
+[global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)]
+#endif
+ out public_partial_recordConversions_NoneSystem_DateTimeOffset result) {
+        if(System.DateTimeOffset.TryParse(input, out var __v)) {
+            
+            
+            result = new public_partial_recordConversions_NoneSystem_DateTimeOffset(__v);
+            return true;
+        }
+
+        result = default;
+        return false;
+    }
+
+    /// <inheritdoc cref="System.DateTimeOffset.TryParse(string, System.IFormatProvider, System.Globalization.DateTimeStyles, out System.DateTimeOffset)"/>
+    /// <summary>
+    /// </summary>
+    /// <returns>
+    /// True if the value could a) be parsed by the underlying type, and b) passes any validation (after running any optional normalization).
+    /// </returns>
+    public static global::System.Boolean TryParse(string input, global::System.IFormatProvider formatProvider, global::System.Globalization.DateTimeStyles styles, 
+#if NETCOREAPP3_0_OR_GREATER
+[global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)]
+#endif
+ out public_partial_recordConversions_NoneSystem_DateTimeOffset result) {
+        if(System.DateTimeOffset.TryParse(input, formatProvider, styles, out var __v)) {
+            
+            
+            result = new public_partial_recordConversions_NoneSystem_DateTimeOffset(__v);
+            return true;
+        }
+
+        result = default;
+        return false;
+    }
+
+    /// <inheritdoc cref="System.DateTimeOffset.Parse(string)"/>
+    /// <summary>
+    /// </summary>
+    /// <returns>
+    /// The value created via the <see cref="From"/> method.
+    /// </returns>
+    /// <exception cref="ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
+    public static public_partial_recordConversions_NoneSystem_DateTimeOffset Parse(string input) {
+        var r = System.DateTimeOffset.Parse(input);
+        return From(r);
+    }
+
+    /// <inheritdoc cref="System.DateTimeOffset.Parse(string, System.IFormatProvider)"/>
+    /// <summary>
+    /// </summary>
+    /// <returns>
+    /// The value created via the <see cref="From"/> method.
+    /// </returns>
+    /// <exception cref="ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
+    public static public_partial_recordConversions_NoneSystem_DateTimeOffset Parse(string input, global::System.IFormatProvider formatProvider) {
+        var r = System.DateTimeOffset.Parse(input, formatProvider);
+        return From(r);
+    }
+
+    /// <inheritdoc cref="System.DateTimeOffset.Parse(string, System.IFormatProvider, System.Globalization.DateTimeStyles)"/>
+    /// <summary>
+    /// </summary>
+    /// <returns>
+    /// The value created via the <see cref="From"/> method.
+    /// </returns>
+    /// <exception cref="ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
+    public static public_partial_recordConversions_NoneSystem_DateTimeOffset Parse(string input, global::System.IFormatProvider formatProvider, global::System.Globalization.DateTimeStyles styles) {
+        var r = System.DateTimeOffset.Parse(input, formatProvider, styles);
+        return From(r);
+    }
+
+
 
           public override global::System.Int32 GetHashCode()
           {

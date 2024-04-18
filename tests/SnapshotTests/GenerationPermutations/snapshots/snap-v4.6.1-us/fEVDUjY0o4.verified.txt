@@ -33,7 +33,7 @@ namespace Whatever
     
     [global::System.Diagnostics.DebuggerTypeProxyAttribute(typeof(internal_partial_structConversions_NonestringDebugView))]
     [global::System.Diagnostics.DebuggerDisplayAttribute("Underlying type: System.String, Value = { _value }")]
-    internal partial struct internal_partial_structConversions_Nonestring : global::System.IEquatable<internal_partial_structConversions_Nonestring>, global::System.IEquatable<System.String> ,  global::System.IComparable<internal_partial_structConversions_Nonestring>, global::System.IComparable
+    internal partial struct internal_partial_structConversions_Nonestring : global::System.IEquatable<internal_partial_structConversions_Nonestring>, global::System.IEquatable<System.String>,  global::System.IComparable<internal_partial_structConversions_Nonestring>, global::System.IComparable
     {
 #if DEBUG   
         private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
@@ -150,6 +150,30 @@ namespace Whatever
         }
 
         
+    /// <summary>
+    /// </summary>
+    /// <returns>
+    /// True if the value passes any validation (after running any optional normalization).
+    /// </returns>
+    public static global::System.Boolean TryParse(global::System.String s, global::System.IFormatProvider provider, 
+#if NETCOREAPP3_0_OR_GREATER
+[global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)]
+#endif
+ out internal_partial_structConversions_Nonestring result) {
+            
+            
+            result = new internal_partial_structConversions_Nonestring(s);
+            return true;
+    }
+    /// <summary>
+    /// </summary>
+    /// <returns>
+    /// The value created via the <see cref="From"/> method.
+    /// </returns>
+    /// <exception cref="ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
+    public static internal_partial_structConversions_Nonestring Parse(global::System.String s, global::System.IFormatProvider provider) {
+        return From(s);
+    }
         
         
           public readonly override global::System.Int32 GetHashCode()

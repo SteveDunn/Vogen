@@ -44,6 +44,8 @@
         <toc-element topic="Terms-Used.md"/>
         <toc-element topic="Performance.md"/>
         <toc-element topic="Testing.md"/>
+        <toc-element topic="Hoisting.md"/>
+        <toc-element topic="Parsing.md"/>
     </toc-element>
     <toc-element topic="FAQ.md">
         <toc-element topic="How-to-identify-a-type-that-is-generated-by-Vogen.md"/>

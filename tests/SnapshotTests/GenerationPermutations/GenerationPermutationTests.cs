@@ -66,7 +66,7 @@ public class GenerationPermutationTests
 
     private Task Run(string type, string conversions, string underlyingType, string className, string locale)
     {
-        _logger.WriteLine($"Running permutation, type: {type}, conversion: {conversions}, underlyingType: {underlyingType}, className: {className}, locale: {locale}");
+        _logger.WriteLine($"Running permutation, type: {type}, conversions: {conversions}, underlyingType: {underlyingType}, className: {className}, locale: {locale}");
 
         string declaration = "";
 

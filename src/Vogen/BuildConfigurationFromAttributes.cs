@@ -28,6 +28,8 @@ internal class BuildConfigurationFromAttributes
     private CastOperator _fromPrimitiveCasting;
     private CastOperator _toPrimitiveCasting;
     private bool _disableStackTraceGenerationInDebug;
+    private ParsableForStrings _parsableForStrings; 
+    private ParsableForPrimitives _parsableForPrimitives; 
 
     private BuildConfigurationFromAttributes(AttributeData att)
     {
@@ -39,6 +41,8 @@ internal class BuildConfigurationFromAttributes
         _deserializationStrictness = DeserializationStrictness.Default;
         _debuggerAttributes = DebuggerAttributeGeneration.Default;
         _comparisonGeneration = ComparisonGeneration.Default;
+        _parsableForStrings = ParsableForStrings.Unspecified;
+        _parsableForPrimitives = ParsableForPrimitives.Unspecified;
         _stringComparers = StringComparersGeneration.Unspecified;
         _fromPrimitiveCasting = CastOperator.Unspecified;
         _toPrimitiveCasting = CastOperator.Unspecified;
@@ -97,7 +101,9 @@ internal class BuildConfigurationFromAttributes
                 _stringComparers,
                 _toPrimitiveCasting,
                 _fromPrimitiveCasting,
-                _disableStackTraceGenerationInDebug),
+                _disableStackTraceGenerationInDebug,
+                _parsableForStrings,
+                _parsableForPrimitives),
             diagnostics: _diagnostics);
     }
 
@@ -169,7 +175,7 @@ internal class BuildConfigurationFromAttributes
     // ReSharper disable once CognitiveComplexity
     private void PopulateFromVogenDefaultsAttributeArgs(ImmutableArray<TypedConstant> argsExcludingUnderlyingType)
     {
-        if (argsExcludingUnderlyingType.Length > 8)
+        if (argsExcludingUnderlyingType.Length > 10)
         {
             throw new InvalidOperationException("Too many arguments for the attribute.");
         }
@@ -181,6 +187,16 @@ internal class BuildConfigurationFromAttributes
             if (v is null)
             {
                 continue;
+            }
+
+            if (i == 9)
+            {
+                _parsableForPrimitives = (ParsableForPrimitives) v;
+            }
+
+            if (i == 8)
+            {
+                _parsableForStrings = (ParsableForStrings) v;
             }
 
             if (i == 7)
@@ -230,7 +246,7 @@ internal class BuildConfigurationFromAttributes
     // ReSharper disable once CognitiveComplexity
     private void PopulateFromValueObjectAttributeArgs(ImmutableArray<TypedConstant> args)
     {
-        if (args.Length > 9)
+        if (args.Length > 11)
         {
             throw new InvalidOperationException("Too many arguments for the attribute.");
         }
@@ -244,10 +260,21 @@ internal class BuildConfigurationFromAttributes
                 continue;
             }
 
+            if (i == 10)
+            {
+                _parsableForPrimitives = (ParsableForPrimitives) v;
+            }
+
+            if (i == 9)
+            {
+                _parsableForStrings = (ParsableForStrings) v;
+            }
+
             if (i == 8)
             {
                 _fromPrimitiveCasting = (CastOperator) v;
             }
+            
             if (i == 7)
             {
                 _toPrimitiveCasting = (CastOperator) v;

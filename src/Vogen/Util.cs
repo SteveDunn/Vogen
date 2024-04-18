@@ -23,7 +23,7 @@ public static class Util
     };
 
 
-    public static string GenerateValidation(VoWorkItem workItem)
+    public static string GenerateCallToValidation(VoWorkItem workItem)
     {
         if (workItem.ValidateMethod is not null)
         {
@@ -76,11 +76,11 @@ public static class Util
         return sb.ToString();
     }
 
-    public static string GenerateNormalizeInputMethodIfNeeded(VoWorkItem workItem)
+    public static string GenerateCallToNormalizeMethodIfNeeded(VoWorkItem workItem, string nameOfValueVariable = "value")
     {
         if (workItem.NormalizeInputMethod is not null)
         {
-            return @$"value = {workItem.TypeToAugment.Identifier}.{workItem.NormalizeInputMethod.Identifier.Value}(value);
+            return @$"{nameOfValueVariable} = {workItem.TypeToAugment.Identifier}.{workItem.NormalizeInputMethod.Identifier.Value}({nameOfValueVariable});
 ";
         }
 

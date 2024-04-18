@@ -35,7 +35,7 @@ namespace Whatever
 
     [global::System.Diagnostics.DebuggerTypeProxyAttribute(typeof(_casting_public_partial_record_structCastOperator_ImplicitCastOperator_NoneSystem_DateTimeOffsetDebugView))]
     [global::System.Diagnostics.DebuggerDisplayAttribute("Underlying type: System.DateTimeOffset, Value = { _value }")]
-    public partial record struct _casting_public_partial_record_structCastOperator_ImplicitCastOperator_NoneSystem_DateTimeOffset : global::System.IEquatable<_casting_public_partial_record_structCastOperator_ImplicitCastOperator_NoneSystem_DateTimeOffset>, global::System.IEquatable<System.DateTimeOffset> ,  global::System.IComparable<_casting_public_partial_record_structCastOperator_ImplicitCastOperator_NoneSystem_DateTimeOffset>, global::System.IComparable
+    public partial record struct _casting_public_partial_record_structCastOperator_ImplicitCastOperator_NoneSystem_DateTimeOffset : global::System.IEquatable<_casting_public_partial_record_structCastOperator_ImplicitCastOperator_NoneSystem_DateTimeOffset>, global::System.IEquatable<System.DateTimeOffset>,  global::System.IComparable<_casting_public_partial_record_structCastOperator_ImplicitCastOperator_NoneSystem_DateTimeOffset>, global::System.IComparable
     {
 #if DEBUG   
         private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
@@ -156,16 +156,17 @@ namespace Whatever
     /// <summary>
     /// </summary>
     /// <returns>
-    /// The value created via the <see cref="From"/> method.
+    /// True if the value could a) be parsed by the underlying type, and b) passes any validation (after running any optional normalization).
     /// </returns>
-    /// <exception cref="ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
     public static global::System.Boolean TryParse(global::System.ReadOnlySpan<char> input, 
 #if NETCOREAPP3_0_OR_GREATER
 [global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)]
 #endif
  out _casting_public_partial_record_structCastOperator_ImplicitCastOperator_NoneSystem_DateTimeOffset result) {
-        if(System.DateTimeOffset.TryParse(input, out var r)) {
-            result = From(r);
+        if(System.DateTimeOffset.TryParse(input, out var __v)) {
+            
+            
+            result = new _casting_public_partial_record_structCastOperator_ImplicitCastOperator_NoneSystem_DateTimeOffset(__v);
             return true;
         }
 
@@ -177,16 +178,17 @@ namespace Whatever
     /// <summary>
     /// </summary>
     /// <returns>
-    /// The value created via the <see cref="From"/> method.
+    /// True if the value could a) be parsed by the underlying type, and b) passes any validation (after running any optional normalization).
     /// </returns>
-    /// <exception cref="ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
     public static global::System.Boolean TryParse(global::System.ReadOnlySpan<char> input, global::System.IFormatProvider formatProvider, global::System.Globalization.DateTimeStyles styles, 
 #if NETCOREAPP3_0_OR_GREATER
 [global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)]
 #endif
  out _casting_public_partial_record_structCastOperator_ImplicitCastOperator_NoneSystem_DateTimeOffset result) {
-        if(System.DateTimeOffset.TryParse(input, formatProvider, styles, out var r)) {
-            result = From(r);
+        if(System.DateTimeOffset.TryParse(input, formatProvider, styles, out var __v)) {
+            
+            
+            result = new _casting_public_partial_record_structCastOperator_ImplicitCastOperator_NoneSystem_DateTimeOffset(__v);
             return true;
         }
 
@@ -198,16 +200,17 @@ namespace Whatever
     /// <summary>
     /// </summary>
     /// <returns>
-    /// The value created via the <see cref="From"/> method.
+    /// True if the value could a) be parsed by the underlying type, and b) passes any validation (after running any optional normalization).
     /// </returns>
-    /// <exception cref="ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
     public static global::System.Boolean TryParse(string input, 
 #if NETCOREAPP3_0_OR_GREATER
 [global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)]
 #endif
  out _casting_public_partial_record_structCastOperator_ImplicitCastOperator_NoneSystem_DateTimeOffset result) {
-        if(System.DateTimeOffset.TryParse(input, out var r)) {
-            result = From(r);
+        if(System.DateTimeOffset.TryParse(input, out var __v)) {
+            
+            
+            result = new _casting_public_partial_record_structCastOperator_ImplicitCastOperator_NoneSystem_DateTimeOffset(__v);
             return true;
         }
 
@@ -219,21 +222,70 @@ namespace Whatever
     /// <summary>
     /// </summary>
     /// <returns>
-    /// The value created via the <see cref="From"/> method.
+    /// True if the value could a) be parsed by the underlying type, and b) passes any validation (after running any optional normalization).
     /// </returns>
-    /// <exception cref="ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
     public static global::System.Boolean TryParse(string input, global::System.IFormatProvider formatProvider, global::System.Globalization.DateTimeStyles styles, 
 #if NETCOREAPP3_0_OR_GREATER
 [global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)]
 #endif
  out _casting_public_partial_record_structCastOperator_ImplicitCastOperator_NoneSystem_DateTimeOffset result) {
-        if(System.DateTimeOffset.TryParse(input, formatProvider, styles, out var r)) {
-            result = From(r);
+        if(System.DateTimeOffset.TryParse(input, formatProvider, styles, out var __v)) {
+            
+            
+            result = new _casting_public_partial_record_structCastOperator_ImplicitCastOperator_NoneSystem_DateTimeOffset(__v);
             return true;
         }
 
         result = default;
         return false;
+    }
+
+    /// <inheritdoc cref="System.DateTimeOffset.Parse(System.ReadOnlySpan{char}, System.IFormatProvider?, System.Globalization.DateTimeStyles)"/>
+    /// <summary>
+    /// </summary>
+    /// <returns>
+    /// The value created via the <see cref="From"/> method.
+    /// </returns>
+    /// <exception cref="ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
+    public static _casting_public_partial_record_structCastOperator_ImplicitCastOperator_NoneSystem_DateTimeOffset Parse(global::System.ReadOnlySpan<char> input, global::System.IFormatProvider formatProvider, global::System.Globalization.DateTimeStyles styles) {
+        var r = System.DateTimeOffset.Parse(input, formatProvider, styles);
+        return From(r);
+    }
+
+    /// <inheritdoc cref="System.DateTimeOffset.Parse(string)"/>
+    /// <summary>
+    /// </summary>
+    /// <returns>
+    /// The value created via the <see cref="From"/> method.
+    /// </returns>
+    /// <exception cref="ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
+    public static _casting_public_partial_record_structCastOperator_ImplicitCastOperator_NoneSystem_DateTimeOffset Parse(string input) {
+        var r = System.DateTimeOffset.Parse(input);
+        return From(r);
+    }
+
+    /// <inheritdoc cref="System.DateTimeOffset.Parse(string, System.IFormatProvider?)"/>
+    /// <summary>
+    /// </summary>
+    /// <returns>
+    /// The value created via the <see cref="From"/> method.
+    /// </returns>
+    /// <exception cref="ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
+    public static _casting_public_partial_record_structCastOperator_ImplicitCastOperator_NoneSystem_DateTimeOffset Parse(string input, global::System.IFormatProvider formatProvider) {
+        var r = System.DateTimeOffset.Parse(input, formatProvider);
+        return From(r);
+    }
+
+    /// <inheritdoc cref="System.DateTimeOffset.Parse(string, System.IFormatProvider?, System.Globalization.DateTimeStyles)"/>
+    /// <summary>
+    /// </summary>
+    /// <returns>
+    /// The value created via the <see cref="From"/> method.
+    /// </returns>
+    /// <exception cref="ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
+    public static _casting_public_partial_record_structCastOperator_ImplicitCastOperator_NoneSystem_DateTimeOffset Parse(string input, global::System.IFormatProvider formatProvider, global::System.Globalization.DateTimeStyles styles) {
+        var r = System.DateTimeOffset.Parse(input, formatProvider, styles);
+        return From(r);
     }
 
 

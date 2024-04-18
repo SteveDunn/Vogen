@@ -80,7 +80,7 @@ namespace Vogen
             }
         }
 
-        static IEnumerable<VoWorkItem> GetWorkItems(ImmutableArray<VoTarget> targets,
+        private static IEnumerable<VoWorkItem> GetWorkItems(ImmutableArray<VoTarget> targets,
             SourceProductionContext context,
             VogenConfiguration? globalConfig,
             Compilation compilation)

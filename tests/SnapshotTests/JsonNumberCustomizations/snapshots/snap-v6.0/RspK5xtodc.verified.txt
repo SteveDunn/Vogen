@@ -158,6 +158,157 @@ public System.Byte Value
             throw new global::System.ArgumentException("Cannot compare to object as it is not of type stj_number_as_string_public_partial_classConversions_SystemTextJsonbyte", nameof(other));
         }
 
+        
+    /// <inheritdoc cref="byte.TryParse(System.ReadOnlySpan{char}, out byte)"/>
+    /// <summary>
+    /// </summary>
+    /// <returns>
+    /// True if the value could a) be parsed by the underlying type, and b) passes any validation (after running any optional normalization).
+    /// </returns>
+    public static global::System.Boolean TryParse(global::System.ReadOnlySpan<char> s, 
+#if NETCOREAPP3_0_OR_GREATER
+[global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)]
+#endif
+ out stj_number_as_string_public_partial_classConversions_SystemTextJsonbyte result) {
+        if(System.Byte.TryParse(s, out var __v)) {
+            
+            
+            result = new stj_number_as_string_public_partial_classConversions_SystemTextJsonbyte(__v);
+            return true;
+        }
+
+        result = default;
+        return false;
+    }
+
+    /// <inheritdoc cref="byte.TryParse(System.ReadOnlySpan{char}, System.Globalization.NumberStyles, System.IFormatProvider?, out byte)"/>
+    /// <summary>
+    /// </summary>
+    /// <returns>
+    /// True if the value could a) be parsed by the underlying type, and b) passes any validation (after running any optional normalization).
+    /// </returns>
+    public static global::System.Boolean TryParse(global::System.ReadOnlySpan<char> s, global::System.Globalization.NumberStyles style, global::System.IFormatProvider provider, 
+#if NETCOREAPP3_0_OR_GREATER
+[global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)]
+#endif
+ out stj_number_as_string_public_partial_classConversions_SystemTextJsonbyte result) {
+        if(System.Byte.TryParse(s, style, provider, out var __v)) {
+            
+            
+            result = new stj_number_as_string_public_partial_classConversions_SystemTextJsonbyte(__v);
+            return true;
+        }
+
+        result = default;
+        return false;
+    }
+
+    /// <inheritdoc cref="byte.TryParse(string?, out byte)"/>
+    /// <summary>
+    /// </summary>
+    /// <returns>
+    /// True if the value could a) be parsed by the underlying type, and b) passes any validation (after running any optional normalization).
+    /// </returns>
+    public static global::System.Boolean TryParse(string s, 
+#if NETCOREAPP3_0_OR_GREATER
+[global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)]
+#endif
+ out stj_number_as_string_public_partial_classConversions_SystemTextJsonbyte result) {
+        if(System.Byte.TryParse(s, out var __v)) {
+            
+            
+            result = new stj_number_as_string_public_partial_classConversions_SystemTextJsonbyte(__v);
+            return true;
+        }
+
+        result = default;
+        return false;
+    }
+
+    /// <inheritdoc cref="byte.TryParse(string?, System.Globalization.NumberStyles, System.IFormatProvider?, out byte)"/>
+    /// <summary>
+    /// </summary>
+    /// <returns>
+    /// True if the value could a) be parsed by the underlying type, and b) passes any validation (after running any optional normalization).
+    /// </returns>
+    public static global::System.Boolean TryParse(string s, global::System.Globalization.NumberStyles style, global::System.IFormatProvider provider, 
+#if NETCOREAPP3_0_OR_GREATER
+[global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)]
+#endif
+ out stj_number_as_string_public_partial_classConversions_SystemTextJsonbyte result) {
+        if(System.Byte.TryParse(s, style, provider, out var __v)) {
+            
+            
+            result = new stj_number_as_string_public_partial_classConversions_SystemTextJsonbyte(__v);
+            return true;
+        }
+
+        result = default;
+        return false;
+    }
+
+    /// <inheritdoc cref="byte.Parse(System.ReadOnlySpan{char}, System.Globalization.NumberStyles, System.IFormatProvider?)"/>
+    /// <summary>
+    /// </summary>
+    /// <returns>
+    /// The value created via the <see cref="From"/> method.
+    /// </returns>
+    /// <exception cref="ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
+    public static stj_number_as_string_public_partial_classConversions_SystemTextJsonbyte Parse(global::System.ReadOnlySpan<char> s, global::System.Globalization.NumberStyles style, global::System.IFormatProvider provider) {
+        var r = System.Byte.Parse(s, style, provider);
+        return From(r);
+    }
+
+    /// <inheritdoc cref="byte.Parse(string)"/>
+    /// <summary>
+    /// </summary>
+    /// <returns>
+    /// The value created via the <see cref="From"/> method.
+    /// </returns>
+    /// <exception cref="ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
+    public static stj_number_as_string_public_partial_classConversions_SystemTextJsonbyte Parse(string s) {
+        var r = System.Byte.Parse(s);
+        return From(r);
+    }
+
+    /// <inheritdoc cref="byte.Parse(string, System.Globalization.NumberStyles)"/>
+    /// <summary>
+    /// </summary>
+    /// <returns>
+    /// The value created via the <see cref="From"/> method.
+    /// </returns>
+    /// <exception cref="ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
+    public static stj_number_as_string_public_partial_classConversions_SystemTextJsonbyte Parse(string s, global::System.Globalization.NumberStyles style) {
+        var r = System.Byte.Parse(s, style);
+        return From(r);
+    }
+
+    /// <inheritdoc cref="byte.Parse(string, System.Globalization.NumberStyles, System.IFormatProvider?)"/>
+    /// <summary>
+    /// </summary>
+    /// <returns>
+    /// The value created via the <see cref="From"/> method.
+    /// </returns>
+    /// <exception cref="ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
+    public static stj_number_as_string_public_partial_classConversions_SystemTextJsonbyte Parse(string s, global::System.Globalization.NumberStyles style, global::System.IFormatProvider provider) {
+        var r = System.Byte.Parse(s, style, provider);
+        return From(r);
+    }
+
+    /// <inheritdoc cref="byte.Parse(string, System.IFormatProvider?)"/>
+    /// <summary>
+    /// </summary>
+    /// <returns>
+    /// The value created via the <see cref="From"/> method.
+    /// </returns>
+    /// <exception cref="ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
+    public static stj_number_as_string_public_partial_classConversions_SystemTextJsonbyte Parse(string s, global::System.IFormatProvider provider) {
+        var r = System.Byte.Parse(s, provider);
+        return From(r);
+    }
+
+
+
           public override global::System.Int32 GetHashCode()
           {
             unchecked // Overflow is fine, just wrap

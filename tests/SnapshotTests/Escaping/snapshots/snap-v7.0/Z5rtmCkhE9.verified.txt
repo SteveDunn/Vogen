@@ -33,7 +33,7 @@ namespace @class
     
     [global::System.Diagnostics.DebuggerTypeProxyAttribute(typeof(escapedTestspublic_sealed_partial_recordConversions_NonestringDebugView))]
     [global::System.Diagnostics.DebuggerDisplayAttribute("Underlying type: System.String, Value = { _value }")]
-    public sealed partial record class escapedTestspublic_sealed_partial_recordConversions_Nonestring : global::System.IEquatable<escapedTestspublic_sealed_partial_recordConversions_Nonestring>, global::System.IEquatable<System.String> ,  global::System.IComparable<escapedTestspublic_sealed_partial_recordConversions_Nonestring>, global::System.IComparable
+    public sealed partial record class escapedTestspublic_sealed_partial_recordConversions_Nonestring : global::System.IEquatable<escapedTestspublic_sealed_partial_recordConversions_Nonestring>, global::System.IEquatable<System.String>,  global::System.IComparable<escapedTestspublic_sealed_partial_recordConversions_Nonestring>, global::System.IComparable,  global::System.IParsable<escapedTestspublic_sealed_partial_recordConversions_Nonestring>
     {
 #if DEBUG   
         private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
@@ -109,7 +109,6 @@ namespace @class
             return instance;
         }
   
-
         // only called internally when something has been deserialized into
         // its primitive type.
         private static escapedTestspublic_sealed_partial_recordConversions_Nonestring Deserialize(System.String value)
@@ -176,6 +175,33 @@ namespace @class
             if(other is escapedTestspublic_sealed_partial_recordConversions_Nonestring x) return CompareTo(x);
             throw new global::System.ArgumentException("Cannot compare to object as it is not of type escapedTestspublic_sealed_partial_recordConversions_Nonestring", nameof(other));
         }
+
+        
+    /// <summary>
+    /// </summary>
+    /// <returns>
+    /// True if the value passes any validation (after running any optional normalization).
+    /// </returns>
+    public static global::System.Boolean TryParse(global::System.String s, global::System.IFormatProvider provider, 
+#if NETCOREAPP3_0_OR_GREATER
+[global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)]
+#endif
+ out escapedTestspublic_sealed_partial_recordConversions_Nonestring result) {
+            
+            
+            result = new escapedTestspublic_sealed_partial_recordConversions_Nonestring(s);
+            return true;
+    }
+    /// <summary>
+    /// </summary>
+    /// <returns>
+    /// The value created via the <see cref="From"/> method.
+    /// </returns>
+    /// <exception cref="ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
+    public static escapedTestspublic_sealed_partial_recordConversions_Nonestring Parse(global::System.String s, global::System.IFormatProvider provider) {
+        return From(s);
+    }
+
 
           public override global::System.Int32 GetHashCode()
           {

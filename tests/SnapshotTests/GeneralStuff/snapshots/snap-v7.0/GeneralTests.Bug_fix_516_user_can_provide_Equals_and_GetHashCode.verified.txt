@@ -33,7 +33,7 @@ using Vogen;
 
     [global::System.Diagnostics.DebuggerTypeProxyAttribute(typeof(BugFix516VoDebugView))]
     [global::System.Diagnostics.DebuggerDisplayAttribute("Underlying type: System.String, Value = { _value }")]
-    public readonly partial record struct BugFix516Vo : global::System.IEquatable<BugFix516Vo>, global::System.IEquatable<System.String> ,  global::System.IComparable<BugFix516Vo>, global::System.IComparable
+    public readonly partial record struct BugFix516Vo : global::System.IEquatable<BugFix516Vo>, global::System.IEquatable<System.String>,  global::System.IComparable<BugFix516Vo>, global::System.IComparable,  global::System.IParsable<BugFix516Vo>
     {
 #if DEBUG   
         private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
@@ -150,6 +150,30 @@ using Vogen;
         }
 
         
+    /// <summary>
+    /// </summary>
+    /// <returns>
+    /// True if the value passes any validation (after running any optional normalization).
+    /// </returns>
+    public static global::System.Boolean TryParse(global::System.String s, global::System.IFormatProvider provider, 
+#if NETCOREAPP3_0_OR_GREATER
+[global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)]
+#endif
+ out BugFix516Vo result) {
+            
+            
+            result = new BugFix516Vo(s);
+            return true;
+    }
+    /// <summary>
+    /// </summary>
+    /// <returns>
+    /// The value created via the <see cref="From"/> method.
+    /// </returns>
+    /// <exception cref="ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
+    public static BugFix516Vo Parse(global::System.String s, global::System.IFormatProvider provider) {
+        return From(s);
+    }
 
         
 
