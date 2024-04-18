@@ -19,6 +19,8 @@ public class VogenConfigurationTests
             instance.StringComparers.Should().Be(StringComparersGeneration.Omit);
             instance.ToPrimitiveCasting.Should().Be(CastOperator.Explicit);
             instance.FromPrimitiveCasting.Should().Be(CastOperator.Explicit);
+            instance.ParsableForPrimitives.Should().Be(ParsableForPrimitives.HoistMethodsAndInterfaces);
+            instance.ParsableForStrings.Should().Be(ParsableForStrings.GenerateMethodsAndInterface);
         }
     }
     
@@ -55,7 +57,9 @@ public class VogenConfigurationTests
                 StringComparersGeneration.Unspecified,
                 CastOperator.Unspecified,
                 CastOperator.Unspecified,
-                false);
+                false,
+                ParsableForStrings.GenerateMethodsAndInterface,
+                ParsableForPrimitives.HoistMethodsAndInterfaces);
     }
 
     public class Casting
@@ -96,7 +100,9 @@ public class VogenConfigurationTests
                 stringComparers: StringComparersGeneration.Unspecified,
                 toPrimitiveCasting: toPrimitiveCast,
                 fromPrimitiveCasting: fromPrimitiveCast,
-                disableStackTraceRecordingInDebug: false);
+                disableStackTraceRecordingInDebug: false,
+                parsableForStrings: ParsableForStrings.GenerateMethodsAndInterface,
+                parsableForPrimitives: ParsableForPrimitives.HoistMethodsAndInterfaces);
     }
 
     public class Conversion
@@ -121,7 +127,9 @@ public class VogenConfigurationTests
                 StringComparersGeneration.Unspecified,
                 CastOperator.Unspecified,
                 CastOperator.Unspecified,
-                false);
+                false,
+                parsableForStrings: ParsableForStrings.GenerateMethodsAndInterface,
+                parsableForPrimitives: ParsableForPrimitives.HoistMethodsAndInterfaces);
     }
 
     public class Comparable
@@ -180,6 +188,72 @@ public class VogenConfigurationTests
         }
     }
 
+    public class StringParsableGenerationTests
+    {
+        [Fact]
+        public void Defaults_to_generate_methods_and_interface()
+        {
+            var result = VogenConfiguration.Combine(
+                localValues: new ConfigBuilder().WithParsableStringGeneration(ParsableForStrings.Unspecified).Build(), 
+                globalValues: new ConfigBuilder().WithParsableStringGeneration(ParsableForStrings.Unspecified).Build());
+
+            result.ParsableForStrings.Should().Be(ParsableForStrings.GenerateMethodsAndInterface);
+        }
+
+        [Fact]
+        public void Local_beats_global_when_specified()
+        {
+            var result = VogenConfiguration.Combine(
+                localValues: new ConfigBuilder().WithParsableStringGeneration(ParsableForStrings.GenerateMethodsAndInterface).Build(), 
+                globalValues: new ConfigBuilder().WithParsableStringGeneration(ParsableForStrings.Unspecified).Build());
+
+            result.ParsableForStrings.Should().Be(ParsableForStrings.GenerateMethodsAndInterface);
+        }
+
+        [Fact]
+        public void Global_beats_local_when_local_is_not_specified()
+        {
+            var result = VogenConfiguration.Combine(
+                localValues: new ConfigBuilder().WithParsableStringGeneration(ParsableForStrings.Unspecified).Build(), 
+                globalValues: new ConfigBuilder().WithParsableStringGeneration(ParsableForStrings.GenerateMethodsAndInterface).Build());
+
+            result.ParsableForStrings.Should().Be(ParsableForStrings.GenerateMethodsAndInterface);
+        }
+    }
+
+    public class PrimitiveParsableGenerationTests
+    {
+        [Fact]
+        public void Defaults_to_hoist_methods_and_interfaces_for_primitives()
+        {
+            var result = VogenConfiguration.Combine(
+                localValues: new ConfigBuilder().WithParsablePrimitiveGeneration(ParsableForPrimitives.Unspecified).Build(), 
+                globalValues: new ConfigBuilder().WithParsablePrimitiveGeneration(ParsableForPrimitives.Unspecified).Build());
+
+            result.ParsableForStrings.Should().Be(ParsableForStrings.GenerateMethodsAndInterface);
+        }
+
+        [Fact]
+        public void Local_beats_global_when_specified()
+        {
+            var result = VogenConfiguration.Combine(
+                localValues: new ConfigBuilder().WithParsablePrimitiveGeneration(ParsableForPrimitives.HoistMethodsAndInterfaces).Build(), 
+                globalValues: new ConfigBuilder().WithParsablePrimitiveGeneration(ParsableForPrimitives.Unspecified).Build());
+
+            result.ParsableForPrimitives.Should().Be(ParsableForPrimitives.HoistMethodsAndInterfaces);
+        }
+
+        [Fact]
+        public void Global_beats_local_when_local_is_not_specified()
+        {
+            var result = VogenConfiguration.Combine(
+                localValues: new ConfigBuilder().WithParsablePrimitiveGeneration(ParsableForPrimitives.Unspecified).Build(), 
+                globalValues: new ConfigBuilder().WithParsablePrimitiveGeneration(ParsableForPrimitives.HoistMethodsAndInterfaces).Build());
+
+            result.ParsableForPrimitives.Should().Be(ParsableForPrimitives.HoistMethodsAndInterfaces);
+        }
+    }
+
     public class ConfigBuilder
     {
         private VogenConfiguration _c = VogenConfiguration.DefaultInstance;
@@ -197,7 +271,9 @@ public class VogenConfigurationTests
                 _c.StringComparers,
                 _c.ToPrimitiveCasting,
                 _c.FromPrimitiveCasting,
-                _c.DisableStackTraceRecordingInDebug);
+                _c.DisableStackTraceRecordingInDebug,
+                _c.ParsableForStrings,
+                _c.ParsableForPrimitives);
                 
             return this;
         }
@@ -215,7 +291,49 @@ public class VogenConfigurationTests
                 g,
                 _c.ToPrimitiveCasting,
                 _c.FromPrimitiveCasting,
-                _c.DisableStackTraceRecordingInDebug);
+                _c.DisableStackTraceRecordingInDebug,
+                _c.ParsableForStrings,
+                _c.ParsableForPrimitives);
+                
+            return this;
+        }
+
+        public ConfigBuilder WithParsableStringGeneration(ParsableForStrings g)
+        {
+            _c = new VogenConfiguration(
+                _c.UnderlyingType,
+                _c.ValidationExceptionType,
+                _c.Conversions,
+                _c.Customizations,
+                _c.DeserializationStrictness,
+                _c.DebuggerAttributes,
+                _c.Comparison,
+                _c.StringComparers,
+                _c.ToPrimitiveCasting,
+                _c.FromPrimitiveCasting,
+                _c.DisableStackTraceRecordingInDebug,
+                g,
+                _c.ParsableForPrimitives);
+                
+            return this;
+        }
+
+        public ConfigBuilder WithParsablePrimitiveGeneration(ParsableForPrimitives g)
+        {
+            _c = new VogenConfiguration(
+                _c.UnderlyingType,
+                _c.ValidationExceptionType,
+                _c.Conversions,
+                _c.Customizations,
+                _c.DeserializationStrictness,
+                _c.DebuggerAttributes,
+                _c.Comparison,
+                _c.StringComparers,
+                _c.ToPrimitiveCasting,
+                _c.FromPrimitiveCasting,
+                _c.DisableStackTraceRecordingInDebug,
+                _c.ParsableForStrings,
+                g);
                 
             return this;
         }

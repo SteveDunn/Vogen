@@ -256,4 +256,25 @@ public class Tests
             f.Should().ThrowExactly<ValueObjectValidationException>().WithMessage("Use of uninitialized Value Object at:*");
         }
     }
+
+    [Fact]
+    public void With_own_instance_parse_method_it_still_generates_static_method()
+    {
+        // doesn't really make much sense as an instance method, but
+        // we still want to test it.
+        var instance = VoWithOwnInstanceParseMethod.From("123");
+        instance.Parse("123").Value.Should().Be("321");
+    }
+
+    [Fact]
+    public void With_own_static_parse_method_it_still_generates_static_method()
+    {
+        VoStringWithOwnStaticParseMethod.Parse("123").Value.Should().Be("321");
+    }
+
+    [Fact]
+    public void With_own_static_parse_method_and_format_provider_it_uses_the_one_provided()
+    {
+        VoStringWithOwnStaticParseMethodWithFormatProvider.Parse("123", CultureInfo.InvariantCulture).Value.Should().Be("321");
+    }
 }

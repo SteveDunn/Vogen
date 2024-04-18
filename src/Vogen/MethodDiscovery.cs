@@ -194,10 +194,10 @@ internal static class MethodDiscovery
                     continue;
                 }
 
-                if (!DoesMethodReturnThisType(eachMethod, typeSymbol))
-                {
-                    continue;
-                }
+                // if (!DoesMethodReturnThisType(eachMethod, typeSymbol))
+                // {
+                //     continue;
+                // }
 
                 // can't change access rights
                 if (IsNotPublicOrProtected(eachMethod))

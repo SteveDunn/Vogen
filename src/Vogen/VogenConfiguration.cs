@@ -17,7 +17,9 @@ public class VogenConfiguration
         StringComparersGeneration stringComparers,
         CastOperator toPrimitiveCasting,
         CastOperator fromPrimitiveCasting,
-        bool disableStackTraceRecordingInDebug)
+        bool disableStackTraceRecordingInDebug,
+        ParsableForStrings parsableForStrings,
+        ParsableForPrimitives parsableForPrimitives)
     {
         UnderlyingType = underlyingType;
         ValidationExceptionType = validationExceptionType;
@@ -30,6 +32,8 @@ public class VogenConfiguration
         ToPrimitiveCasting = toPrimitiveCasting;
         FromPrimitiveCasting = fromPrimitiveCasting;
         DisableStackTraceRecordingInDebug = disableStackTraceRecordingInDebug;
+        ParsableForStrings = parsableForStrings;
+        ParsableForPrimitives = parsableForPrimitives;
     }
 
     public static VogenConfiguration Combine(
@@ -74,6 +78,22 @@ public class VogenConfiguration
             (ComparisonGeneration.Default, null) => DefaultInstance.Comparison,
             (ComparisonGeneration.Default, ComparisonGeneration.Default) => DefaultInstance.Comparison,
             (ComparisonGeneration.Default, var globalDefault) => globalDefault.Value,
+            (var specificValue, _) => specificValue
+        };
+
+        var parsageForStrings = (localValues.ParsableForStrings, globalValues?.ParsableForStrings) switch
+        {
+            (ParsableForStrings.Unspecified, null) => DefaultInstance.ParsableForStrings,
+            (ParsableForStrings.Unspecified, ParsableForStrings.Unspecified) => DefaultInstance.ParsableForStrings,
+            (ParsableForStrings.Unspecified, var globalDefault) => globalDefault.Value,
+            (var specificValue, _) => specificValue
+        };
+
+        var parsageForPrimitives = (localValues.ParsableForPrimitives, globalValues?.ParsableForPrimitives) switch
+        {
+            (ParsableForPrimitives.Unspecified, null) => DefaultInstance.ParsableForPrimitives,
+            (ParsableForPrimitives.Unspecified, ParsableForPrimitives.Unspecified) => DefaultInstance.ParsableForPrimitives,
+            (ParsableForPrimitives.Unspecified, var globalDefault) => globalDefault.Value,
             (var specificValue, _) => specificValue
         };
 
@@ -122,7 +142,9 @@ public class VogenConfiguration
             stringComparers: stringComparers,
             toPrimitiveCasting: toPrimitiveCastOperators,
             fromPrimitiveCasting: fromPrimitiveCastOperators,
-            disableStackTraceRecordingInDebug: disableStackTraceRecordingInDebug);
+            disableStackTraceRecordingInDebug: disableStackTraceRecordingInDebug,
+            parsableForStrings: parsageForStrings,
+            parsableForPrimitives: parsageForPrimitives);
     }
 
     /// <summary>
@@ -142,6 +164,10 @@ public class VogenConfiguration
     public ComparisonGeneration Comparison { get; }
     
     public StringComparersGeneration StringComparers { get; }
+    
+    public ParsableForStrings ParsableForStrings { get; }
+    
+    public ParsableForPrimitives ParsableForPrimitives { get; }
 
     public CastOperator ToPrimitiveCasting { get; }
     
@@ -164,5 +190,7 @@ public class VogenConfiguration
         stringComparers: StringComparersGeneration.Omit,
         toPrimitiveCasting: CastOperator.Explicit,
         fromPrimitiveCasting: CastOperator.Explicit,
-        disableStackTraceRecordingInDebug: false);
+        disableStackTraceRecordingInDebug: false,
+        parsableForStrings: ParsableForStrings.GenerateMethodsAndInterface,
+        parsableForPrimitives: ParsableForPrimitives.HoistMethodsAndInterfaces);
 }

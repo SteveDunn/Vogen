@@ -1,14 +1,52 @@
-﻿namespace ConsumerTests.ParseAndTryParseTests;
+﻿using System.Linq;
+
+namespace ConsumerTests.ParseAndTryParseTests;
+
+[ValueObject(typeof(int), parsableForPrimitives: ParsableForPrimitives.GenerateNothing)]
+public partial struct VoNoParsableNoHoisting
+{
+}
 
 [ValueObject(typeof(int))]
 public partial struct StructIntVoNoValidation
 {
 }
 
-[ValueObject(typeof(int))]
-public partial struct VoWithOwnParseMethod
+[ValueObject(typeof(string), parsableForStrings: ParsableForStrings.GenerateMethodsAndInterface  )]
+public partial struct VoWithOwnInstanceParseMethod
 {
-    public VoWithOwnParseMethod Parse(string s) => VoWithOwnParseMethod.From(int.Parse(s));
+    public VoWithOwnInstanceParseMethod Parse(string s) => VoWithOwnInstanceParseMethod.From(new string(s.Reverse().ToArray()));
+}
+
+[ValueObject(typeof(string), parsableForStrings: ParsableForStrings.GenerateMethodsAndInterface  )]
+public partial struct VoStringWithOwnStaticParseMethod
+{
+    public static VoStringWithOwnStaticParseMethod Parse(string s) => VoStringWithOwnStaticParseMethod.From(new string(s.Reverse().ToArray()));
+}
+
+[ValueObject(typeof(string), parsableForStrings: ParsableForStrings.GenerateMethodsAndInterface  )]
+public partial struct VoStringWithOwnStaticParseMethodWithFormatProvider
+{
+    public static VoStringWithOwnStaticParseMethodWithFormatProvider Parse(string s, IFormatProvider? p) => VoStringWithOwnStaticParseMethodWithFormatProvider.From(new string(s.Reverse().ToArray()));
+}
+
+[ValueObject(typeof(string), parsableForStrings: ParsableForStrings.GenerateMethodsAndInterface  )]
+public partial struct VoStringWithOwnStaticParseMethodButReturningDifferentType
+{
+    public static string Parse(string s, IFormatProvider _) => new(s.Reverse().ToArray());
+}
+
+[ValueObject(typeof(int), parsableForPrimitives: ParsableForPrimitives.HoistMethodsAndInterfaces  )]
+public partial struct VoIntWithOwnStaticParseMethod
+{
+    public static VoIntWithOwnStaticParseMethod Parse(string s) => VoIntWithOwnStaticParseMethod.From(int.Parse(new string(s.Reverse().ToArray())));
+}
+
+[ValueObject(typeof(int), parsableForPrimitives: ParsableForPrimitives.HoistMethodsAndInterfaces  )]
+public partial struct VoIntWithOwnStaticParseMethodWithFormatProvider
+{
+    public static VoIntWithOwnStaticParseMethodWithFormatProvider Parse(string s, IFormatProvider? p) =>
+        VoIntWithOwnStaticParseMethodWithFormatProvider.From(int.Parse(new string(s.Reverse().ToArray())));
 }
 
 [ValueObject(typeof(int))]

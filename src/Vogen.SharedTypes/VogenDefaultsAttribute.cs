@@ -26,7 +26,9 @@ public class VogenDefaultsAttribute : Attribute
     /// Options are implicit or explicit or none.  Explicit is preferred over implicit if you really need them, but isn't recommended.
     /// See &lt;see href="https://github.com/SteveDunn/Vogen/wiki/Casting"/&gt; for more information.</param>
     /// <param name="disableStackTraceRecordingInDebug">If Debug, a stack trace is recorded if something is created in an uninitialized state.
-    /// This stack trace is a heap based which might be unwanted if your Value Object is stack based.</param>
+    /// This stack trace is heap based which might be unwanted if your Value Object is stack based.</param>
+    /// <param name="parsableForStrings">Specifies the functionality around parsing (IParsable etc.)</param>
+    /// <param name="parsableForPrimitives">Specifies the functionality around parsing (IParsable etc.)</param>
     public VogenDefaultsAttribute(
         Type? underlyingType = null,
         Conversions conversions = Conversions.Default,
@@ -36,7 +38,10 @@ public class VogenDefaultsAttribute : Attribute
         DebuggerAttributeGeneration debuggerAttributes = DebuggerAttributeGeneration.Default,
         CastOperator toPrimitiveCasting = CastOperator.Explicit,
         CastOperator fromPrimitiveCasting = CastOperator.Explicit,
-        bool disableStackTraceRecordingInDebug = false)
+        bool disableStackTraceRecordingInDebug = false,
+        ParsableForStrings parsableForStrings = ParsableForStrings.GenerateMethodsAndInterface,
+        ParsableForPrimitives parsableForPrimitives = ParsableForPrimitives.HoistMethodsAndInterfaces
+        )
     {
     }
 }

@@ -58,6 +58,11 @@ internal static class DiagnosticsCatalogue
         "Invalid Deserialization Strictness",
         $"The Deserialization Strictness specified does not match any known customizations - see the {nameof(DeserializationStrictness)} type for valid values");
 
+    private static readonly DiagnosticDescriptor _mismatchedParsableGeneration = CreateDescriptor(
+        RuleIdentifiers.InvalidDeserializationStrictness,
+        "Invalid Parsable Generation",
+        $"The Parsable Generation specified does not match the underlying primitive");
+
     private static readonly DiagnosticDescriptor _underlyingTypeMustNotBeSameAsValueObject = CreateDescriptor(
         RuleIdentifiers.UnderlyingTypeMustNotBeSameAsValueObject,
         "Invalid underlying type",
@@ -158,6 +163,8 @@ internal static class DiagnosticsCatalogue
     public static Diagnostic InvalidCustomizations(Location location) => Create(_invalidCustomizations, location);
     
     public static Diagnostic InvalidDeserializationStrictness(Location location) => Create(_invalidDeserializationStrictness, location);
+    
+    public static Diagnostic InvalidParsableGeneration(Location location) => Create(_mismatchedParsableGeneration, location);
 
     public static Diagnostic InstanceMethodCannotHaveNullArgumentName(INamedTypeSymbol voClass) => 
         Create(_instanceMethodCannotHaveNullArgumentName, voClass.Locations, voClass.Name);

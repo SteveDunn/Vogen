@@ -138,6 +138,8 @@ internal static class BuildWorkItems
             TypeForValidationExceptions = config.ValidationExceptionType,
             ComparisonGeneration = config.Comparison,
             StringComparersGeneration = config.StringComparers,
+            ParsableForStrings = config.ParsableForStrings,
+            ParsableForPrimitives = config.ParsableForPrimitives,
             ToPrimitiveCastOperator = config.ToPrimitiveCasting,
             FromPrimitiveCastOperator = config.FromPrimitiveCasting,
             DisableStackTraceRecordingInDebug = config.DisableStackTraceRecordingInDebug,

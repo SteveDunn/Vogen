@@ -67,6 +67,10 @@ public class VoWorkItem
     
     public StringComparersGeneration StringComparersGeneration { get; init; }
     
+    public ParsableForStrings ParsableForStrings { get; init; }
+    
+    public ParsableForPrimitives ParsableForPrimitives { get; init; }
+    
     public bool IsSealed { get; init; }
     
     public CastOperator ToPrimitiveCastOperator { get; init; }

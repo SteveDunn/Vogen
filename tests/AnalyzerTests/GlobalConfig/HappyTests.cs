@@ -28,10 +28,7 @@ public partial struct CustomerId
             .ValidateWith(Validate)
             .RunOnAllFrameworks();
 
-        void Validate(ImmutableArray<Diagnostic> diagnostics)
-        {
-            diagnostics.Should().BeEmpty();
-        }
+        static void Validate(ImmutableArray<Diagnostic> diagnostics) => diagnostics.Should().BeEmpty();
     }
 
     [Fact]
@@ -61,10 +58,7 @@ public class MyValidationException : Exception
             .ValidateWith(Validate)
             .RunOnAllFrameworks();
 
-        void Validate(ImmutableArray<Diagnostic> diagnostics)
-        {
-            diagnostics.Should().HaveCount(0);
-        }
+        static void Validate(ImmutableArray<Diagnostic> diagnostics) => diagnostics.Should().BeEmpty();
     }
 
     [Fact]
@@ -96,10 +90,7 @@ public class MyValidationException : Exception
             .ValidateWith(Validate)
             .RunOnAllFrameworks();
 
-        void Validate(ImmutableArray<Diagnostic> diagnostics)
-        {
-            diagnostics.Should().HaveCount(0);
-        }
+        static void Validate(ImmutableArray<Diagnostic> diagnostics) => diagnostics.Should().BeEmpty();
     }
 
     [Fact]
@@ -122,10 +113,7 @@ public partial struct CustomerId { }
             .ValidateWith(Validate)
             .RunOnAllFrameworks();
 
-        void Validate(ImmutableArray<Diagnostic> diagnostics)
-        {
-            diagnostics.Should().HaveCount(0);
-        }
+        static void Validate(ImmutableArray<Diagnostic> diagnostics) => diagnostics.Should().BeEmpty();
     }
 
     [Fact]
@@ -155,9 +143,6 @@ public class MyValidationException : Exception
             .ValidateWith(Validate)
             .RunOnAllFrameworks();
 
-        void Validate(ImmutableArray<Diagnostic> diagnostics)
-        {
-            diagnostics.Should().BeEmpty();
-        }
+        static void Validate(ImmutableArray<Diagnostic> diagnostics) => diagnostics.Should().BeEmpty();
     }
 }

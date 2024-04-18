@@ -12,9 +12,17 @@ internal static class GenerateCodeForParse
     {
         if (item.ParsingInformation.UnderlyingIsAString)
         {
-            return BuildParseMethodForAString(item);
+            if (item.ParsableForStrings is ParsableForStrings.GenerateMethodsAndInterface or ParsableForStrings.GenerateMethods)
+            {
+                return BuildParseMethodForAString(item);
+            }
         }
         
+        if (item.ParsableForPrimitives is not (ParsableForPrimitives.HoistMethods or ParsableForPrimitives.HoistMethodsAndInterfaces))
+        {
+            return string.Empty;
+        }
+
         INamedTypeSymbol primitiveSymbol = item.UnderlyingType;
 
         try
@@ -57,10 +65,16 @@ internal static class GenerateCodeForParse
 
     private static string BuildParseMethodForAString(VoWorkItem item)
     {
-        if (UserHasSuppliedTheirOwn(item))
+        var matches = GetUserSuppliedParseMethodMatches(item);
+        
+        if (matches == UserSuppliedParseMethods.ExactMatch)
         {
             return string.Empty;
         }
+
+        bool needsExplicitImplementation = matches == UserSuppliedParseMethods.PartialMatchesButDifferentReturnType;
+        
+        string methodDecl = needsExplicitImplementation ? $"static {item.VoTypeName} global::System.IParsable<{item.VoTypeName}>.Parse" : $"public static {item.VoTypeName} Parse";
         
         return @$"
     /// <summary>
@@ -69,19 +83,32 @@ internal static class GenerateCodeForParse
     /// The value created via the <see cref=""From""/> method.
     /// </returns>
     /// <exception cref=""ValueObjectValidationException"">Thrown when the value can be parsed, but is not valid.</exception>
-    public static {item.VoTypeName} Parse(global::System.String s, global::System.IFormatProvider provider) {{
+    {methodDecl}(global::System.String s, global::System.IFormatProvider provider) {{
         return From(s);
     }}";
     }
     
-    private static bool UserHasSuppliedTheirOwn(VoWorkItem item)
+    private static UserSuppliedParseMethods GetUserSuppliedParseMethodMatches(VoWorkItem item)
     {
-        return item.UserProvidedOverloads.ParseMethods.Any(
+        var allStaticParseMethods = item.UserProvidedOverloads.ParseMethods.Where(
             m => m.IsStatic &&
                  m.Parameters.Length == 2 &&
-                 SymbolEqualityComparer.Default.Equals(m.ReturnType, item.WrapperType) &&
                  m.Parameters[0].Type.SpecialType == SpecialType.System_String &&
-                 SymbolEqualityComparer.Default.Equals(m.Parameters[1].Type, item.ParsingInformation.IFormatProviderType));
+                 SymbolEqualityComparer.Default.Equals(m.Parameters[1].Type, item.ParsingInformation.IFormatProviderType)).ToList();
+
+        if (allStaticParseMethods.Count == 0) return UserSuppliedParseMethods.NoMatches;
+
+        return allStaticParseMethods.Any(m => SymbolEqualityComparer.Default.Equals(m.ReturnType, item.WrapperType))
+            ? UserSuppliedParseMethods.ExactMatch
+            : UserSuppliedParseMethods.PartialMatchesButDifferentReturnType;
+    }
+
+    [Flags]
+    enum UserSuppliedParseMethods
+    {
+        NoMatches,
+        ExactMatch,
+        PartialMatchesButDifferentReturnType
     }
 
     private static void BuildParseMethod(IMethodSymbol methodSymbol, StringBuilder sb, VoWorkItem item)

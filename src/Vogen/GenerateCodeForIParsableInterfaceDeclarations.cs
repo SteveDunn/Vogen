@@ -16,15 +16,30 @@ public static class GenerateCodeForIParsableInterfaceDeclarations
         {
             return string.Empty;
         }
+
+        bool isUnderlyingAString = item.ParsingInformation.UnderlyingIsAString;
         
-        if (parsingInformation is { UnderlyingIsAString: false, PrimitiveHasNoParseOrTryParseMethods: true })
+        if (isUnderlyingAString && item.ParsableForStrings != ParsableForStrings.GenerateMethodsAndInterface)
         {
             return string.Empty;
         }
 
+        if (!isUnderlyingAString)
+        {
+            if (item.ParsableForPrimitives != ParsableForPrimitives.HoistMethodsAndInterfaces)
+            {
+                return string.Empty;
+            }
+
+            if (parsingInformation.PrimitiveHasNoParseOrTryParseMethods)
+            {
+                return string.Empty;
+            }
+        }
+        
         StringBuilder sb = new StringBuilder();
 
-        IEnumerable<string> interfaces = parsingInformation.UnderlyingIsAString
+        IEnumerable<string> interfaces = isUnderlyingAString
             ? _allInterfacesForAString
             : GetInterfacesImplementedPubliclyOnThePrimitive(item.ParsingInformation);
         

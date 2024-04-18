@@ -25,8 +25,22 @@ namespace Vogen
             ComparisonGeneration comparison = ComparisonGeneration.Default,
             StringComparersGeneration stringComparers = StringComparersGeneration.Unspecified,
             CastOperator toPrimitiveCasting = CastOperator.Unspecified,
-            CastOperator fromPrimitiveCasting = CastOperator.Unspecified)
-            : base(typeof(T), conversions, throws, customizations, deserializationStrictness, debuggerAttributes, comparison, stringComparers, toPrimitiveCasting, fromPrimitiveCasting)
+            CastOperator fromPrimitiveCasting = CastOperator.Unspecified,
+            ParsableForStrings parsableForStrings = ParsableForStrings.Unspecified,
+            ParsableForPrimitives parsableForPrimitives = ParsableForPrimitives.Unspecified)
+            : base(
+                typeof(T),
+                conversions,
+                throws,
+                customizations,
+                deserializationStrictness,
+                debuggerAttributes,
+                comparison,
+                stringComparers,
+                toPrimitiveCasting,
+                fromPrimitiveCasting,
+                parsableForStrings,
+                parsableForPrimitives)
         {
         }
     }
@@ -52,7 +66,9 @@ namespace Vogen
             ComparisonGeneration comparison = ComparisonGeneration.Default,
             StringComparersGeneration stringComparers = StringComparersGeneration.Unspecified,
             CastOperator toPrimitiveCasting = CastOperator.Unspecified,
-            CastOperator fromPrimitiveCasting = CastOperator.Unspecified)
+            CastOperator fromPrimitiveCasting = CastOperator.Unspecified,
+            ParsableForStrings parsableForStrings = ParsableForStrings.Unspecified,
+            ParsableForPrimitives parsableForPrimitives = ParsableForPrimitives.Unspecified)
         {
         }
     }

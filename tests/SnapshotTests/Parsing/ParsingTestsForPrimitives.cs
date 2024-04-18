@@ -1,75 +1,12 @@
 ﻿using System.Threading.Tasks;
-using Shared;
 using VerifyXunit;
 using Vogen;
 
 namespace SnapshotTests.Parsing;
 
 [UsesVerify]
-public class ParsingTests
+public class ParsingTestsForPrimitives
 {
-    [Fact]
-    public Task Generates_IParsable_for_strings()
-    {
-        return RunTest(
-            """
-            using Vogen;
-
-            namespace Whatever;
-
-            [ValueObject<string>]
-            public partial struct MyClass
-            {
-            }
-
-            """);
-    }
-
-    [Fact]
-    public Task Generates_IParsable_for_strings_and_calls_our_validation_method()
-    {
-        return RunTest(
-            """
-            using Vogen;
-
-            namespace Whatever;
-
-            [ValueObject<string>]
-            public partial struct MyClass
-            {
-                public static Validation Validate(string input) => throw null;
-            }
-
-            """);
-    }
-
-    [Fact]
-    public Task Generates_IParsable_for_strings_except_if_it_is_already_specified()
-    {
-        return RunTest(
-            """
-            using System;
-            using Vogen;
-
-            namespace Whatever;
-
-            [ValueObject<string>]
-            public partial struct City : IParsable<City>
-            {
-                public static City Parse(string s, IFormatProvider provider) => From(s);
-                public static bool TryParse(string s, IFormatProvider provider, out City result) => throw new NotImplementedException();
-            }
-
-            """);
-
-        static Task RunTest(string source) =>
-            new SnapshotRunner<ValueObjectGenerator>()
-                .WithSource(source)
-                .IgnoreInitialCompilationErrors()
-                .RunOn(TargetFramework.Net7_0, TargetFramework.Net8_0);
-    }
-
-
     [Fact]
     public Task Generates_IParsable()
     {
@@ -211,23 +148,6 @@ public class ParsingTests
             """);
     }
 
-    [Fact]
-    public Task Generates_IParsable_for_a_class_wrapping_a_string()
-    {
-        return RunTest(
-            """
-            using Vogen;
-            using System;
-
-            namespace Whatever;
-
-            [ValueObject(typeof(string))]
-            public partial class MyVo
-            {
-            }
-            """);
-    }
-
     // If any of the Parse/TryParse methods on the primitive are private, we can't call them.
     // Since we can't call them, we can't implement them.
     [Fact]
@@ -242,23 +162,6 @@ public class ParsingTests
 
             [ValueObject(typeof(bool))]
             public partial class MyVo
-            {
-            }
-            """);
-    }
-
-    [Fact]
-    public Task Generates_IParsable_for_record_structs_wrapping_a_string()
-    {
-        return RunTest(
-            """
-            using Vogen;
-            using System;
-
-            namespace Whatever;
-
-            [ValueObject(typeof(string))]
-            public readonly partial record struct MyVo
             {
             }
             """);
