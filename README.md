@@ -496,9 +496,7 @@ Yes. By default, each VO is decorated with a `TypeConverter` and `System.Text.Js
 Yes, although there are certain considerations. [Please see the EFCore page on the Wiki](https://stevedunn.github.io/Vogen/value-objects-in-efcore.html), 
 but the TL;DR is:
 
-* If the Value Object on your entity is a struct, then you don't need to do anything special
-
-* But if it is a class, then you need a conversion to be generated, e.g. `[ValueObject<string>(conversions: Conversions.EfCoreValueConverter)]` 
+* You need a conversion to be generated, e.g. `[ValueObject<string>(conversions: Conversions.EfCoreValueConverter)]` 
 and you need to tell EFCore to use that converter in the `OnModelCreating` method, e.g.:
 
 ```csharp
