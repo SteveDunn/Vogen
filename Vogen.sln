@@ -41,7 +41,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "workflows", "workflows", "{
 		.github\workflows\build.yaml = .github\workflows\build.yaml
 		.github\workflows\codeql-analysis.yml = .github\workflows\codeql-analysis.yml
 		.github\workflows\publish.yaml = .github\workflows\publish.yaml
-		.github\workflows\deploy-docs.yaml = .github\workflows\deploy-docs.yaml
+		.github\workflows\deploy.yaml = .github\workflows\deploy.yaml
 	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AnalyzerTests", "tests\AnalyzerTests\AnalyzerTests.csproj", "{89E0B1B1-8CCD-4328-A0D2-4F87E1D57023}"
