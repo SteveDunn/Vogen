@@ -1,3 +1,4 @@
+using Refit;
 using Vogen;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -26,13 +27,17 @@ var summaries = new[]
 app.MapGet("/weatherforecast", () =>
     {
         var forecast = Enumerable.Range(1, 5).Select(index =>
-                new WeatherForecast
+            {
+                Centigrade temperatureC = Centigrade.From(Random.Shared.Next(-20, 55));
+                return new WeatherForecast
                 (
                     DateOnly.FromDateTime(DateTime.Now.AddDays(index)),
-                    Random.Shared.Next(-20, 55),
+                    temperatureC,
+                    Farenheit.FromCentigrade(temperatureC), 
                     summaries[Random.Shared.Next(summaries.Length)],
                     City.From("London")
-                ))
+                );
+            })
             .ToArray();
         return forecast;
     })
@@ -42,13 +47,17 @@ app.MapGet("/weatherforecast", () =>
 app.MapGet("/weatherforecast/{city}", (City city) =>
     {
         var forecast = Enumerable.Range(1, 5).Select(index =>
-                new WeatherForecast
+            {
+                Centigrade temperatureC = Centigrade.From(Random.Shared.Next(-20, 55));
+                return new WeatherForecast
                 (
                     DateOnly.FromDateTime(DateTime.Now.AddDays(index)),
-                    Random.Shared.Next(-20, 55),
+                    temperatureC,
+                    Farenheit.FromCentigrade(temperatureC), 
                     summaries[Random.Shared.Next(summaries.Length)],
                     city
-                ))
+                );
+            })
             .ToArray();
         return forecast;
     })
@@ -57,12 +66,22 @@ app.MapGet("/weatherforecast/{city}", (City city) =>
 
 app.Run();
 
-record WeatherForecast(DateOnly Date, int TemperatureC, string? Summary, City City)
+record WeatherForecast(DateOnly Date, Centigrade TemperatureC, Farenheit temperatureF, string? Summary, City City)
 {
-    public int TemperatureF => 32 + (int) (TemperatureC / 0.5556);
 }
 
 [ValueObject<string>(parsableForStrings: ParsableForStrings.GenerateMethods)]
 public partial class City
+{
+}
+
+[ValueObject]
+public partial struct Farenheit
+{
+    public static Farenheit FromCentigrade(Centigrade c) => From(32 + (int)(c.Value / 0.5556));
+}
+
+[ValueObject]
+public partial struct Centigrade
 {
 }
