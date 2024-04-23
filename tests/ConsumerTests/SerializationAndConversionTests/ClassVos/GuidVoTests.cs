@@ -12,6 +12,7 @@ using LinqToDB;
 using LinqToDB.Data;
 using LinqToDB.DataProvider.SQLite;
 using LinqToDB.Mapping;
+using ServiceStack.Text;
 
 namespace Vogen.IntegrationTests.SerializationAndConversionTests.ClassVos;
 
@@ -68,6 +69,18 @@ public class GuidVoTests
 
         serializedVo.Equals(serializedString).Should().BeTrue();
     }
+    
+    [Fact]
+    public void RoundTrip_WithSsdtj()
+    {
+        var vo = SsdtGuidVo.From(_guid1);
+
+        string serializedVo = JsonSerializer.SerializeToString(vo);
+        var deserializedVo = JsonSerializer.DeserializeFromString<SsdtGuidVo>(serializedVo)!;
+
+        deserializedVo.Value.Should().Be(_guid1);
+    }
+
 
     [Fact]
     public void CanDeserializeFromString_WithNewtonsoftJsonProvider()

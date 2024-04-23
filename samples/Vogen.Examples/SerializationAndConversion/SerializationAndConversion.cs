@@ -1,7 +1,9 @@
 ﻿// ReSharper disable UnusedVariable
 #pragma warning disable CS0219
 using System;
+using System.Diagnostics;
 using System.Threading.Tasks;
+using ServiceStack.Text;
 using Vogen.Examples.Types;
 using NewtonsoftJsonSerializer = Newtonsoft.Json.JsonConvert;
 using SystemTextJsonSerializer = System.Text.Json.JsonSerializer;
@@ -16,8 +18,20 @@ namespace Vogen.Examples.SerializationAndConversion
         {
             SerializeWithNewtonsoftJson();
             SerializeWithSystemTextJson();
+            SerializeWithServiceStackTextJson();
 
             return Task.CompletedTask;
+        }
+
+        public void SerializeWithServiceStackTextJson()
+        {
+            SsdtDateTimeOffsetVo orig = SsdtDateTimeOffsetVo.From(_date1);
+
+            string json = JsonSerializer.SerializeToString(orig);
+            
+            var deserialised = JsonSerializer.DeserializeFromString<SsdtDateTimeOffsetVo>(json);
+            
+            Debug.Assert(deserialised.Value == orig.Value); 
         }
 
         public void SerializeWithNewtonsoftJson()

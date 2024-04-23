@@ -19,6 +19,9 @@ namespace Vogen.IntegrationTests.TestTypes.ClassVos
     [ValueObject(conversions: Conversions.SystemTextJson, underlyingType: typeof(DateOnly))]
     public partial class SystemTextJsonDateOnlyVo { }
 
+    [ValueObject(conversions: Conversions.ServiceStackDotText, underlyingType: typeof(DateOnly))]
+    public partial class SsdtDateOnlyVo { }
+
     [ValueObject(conversions: Conversions.NewtonsoftJson | Conversions.SystemTextJson, underlyingType: typeof(DateOnly))]
     public partial class BothJsonDateOnlyVo { }
 

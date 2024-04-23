@@ -58,6 +58,7 @@ namespace Whatever
             }
         }
 
+
         [global::System.Diagnostics.DebuggerStepThroughAttribute]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public stj_number_as_string_public_partial_structConversions_NewtonsoftJson___Conversions_SystemTextJsonlong()

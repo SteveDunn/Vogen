@@ -54,6 +54,7 @@ public @class.@record.@struct.@float.event2 Value
             }
         }
 
+
         [global::System.Diagnostics.DebuggerStepThroughAttribute]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public escapedTestspublic_partial_classConversions_Nonerecord__struct__float__event2()

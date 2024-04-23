@@ -15,6 +15,9 @@ public partial class NewtonsoftJsonGuidVo { }
 [ValueObject(conversions: Conversions.SystemTextJson, underlyingType: typeof(Guid))]
 public partial class SystemTextJsonGuidVo { }
 
+[ValueObject(conversions: Conversions.ServiceStackDotText, underlyingType: typeof(Guid))]
+public partial class SsdtGuidVo { }
+
 [ValueObject(conversions: Conversions.NewtonsoftJson | Conversions.SystemTextJson, underlyingType: typeof(Guid))]
 public partial class BothJsonGuidVo { }
 

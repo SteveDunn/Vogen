@@ -15,6 +15,8 @@ using Vogen;
 
 namespace Shared;
 
+public record struct NuGetPackage(string PackageName, string Version, string PathPrefix);
+
 public class ProjectBuilder
 {
     private static readonly ConcurrentDictionary<string, Lazy<Task<string[]>>> _cache = new(StringComparer.Ordinal);
@@ -208,6 +210,16 @@ public class ProjectBuilder
     {
         _source = source;
 
+        return this;
+    }
+
+    public ProjectBuilder WithNugetPackages(IEnumerable<NuGetPackage> packages)
+    {
+        foreach (var nuGetPackage in packages)
+        {
+            AddNuGetReference(nuGetPackage.PackageName, nuGetPackage.Version, nuGetPackage.PathPrefix);
+        }
+        
         return this;
     }
 

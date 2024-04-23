@@ -15,6 +15,9 @@ public partial class NewtonsoftJsonByteVo { }
 [ValueObject(conversions: Conversions.SystemTextJson, underlyingType: typeof(byte))]
 public partial class SystemTextJsonByteVo { }
 
+[ValueObject(conversions: Conversions.ServiceStackDotText, underlyingType: typeof(byte))]
+public partial class SsdtByteVo { }
+
 [ValueObject(conversions: Conversions.SystemTextJson, underlyingType: typeof(byte), customizations: Customizations.TreatNumberAsStringInSystemTextJson)]
 public partial class SystemTextJsonByteVo_Treating_numbers_as_string { }
 

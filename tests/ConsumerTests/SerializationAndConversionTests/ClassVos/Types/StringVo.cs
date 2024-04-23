@@ -15,6 +15,9 @@ public partial class NewtonsoftJsonStringVo { }
 [ValueObject(conversions: Conversions.SystemTextJson, underlyingType: typeof(string))]
 public partial class SystemTextJsonStringVo { }
 
+[ValueObject(conversions: Conversions.ServiceStackDotText, underlyingType: typeof(string))]
+public partial class SsdtStringVo { }
+
 [ValueObject(conversions: Conversions.NewtonsoftJson | Conversions.SystemTextJson, underlyingType: typeof(string))]
 public partial class BothJsonStringVo { }
 

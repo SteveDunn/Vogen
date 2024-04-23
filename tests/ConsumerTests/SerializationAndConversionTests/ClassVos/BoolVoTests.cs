@@ -9,6 +9,7 @@ using LinqToDB.DataProvider.SQLite;
 using LinqToDB.Mapping;
 using Microsoft.Data.Sqlite;
 using Microsoft.EntityFrameworkCore;
+using ServiceStack.Text;
 using NewtonsoftJsonSerializer = Newtonsoft.Json.JsonConvert;
 using SystemTextJsonSerializer = System.Text.Json.JsonSerializer;
 using Vogen.IntegrationTests.TestTypes.ClassVos;
@@ -49,7 +50,7 @@ public class BoolVoTests
     }
 
     [Fact]
-    public void CanSerializeToShort_WithNewtonsoftJsonProvider()
+    public void CanSerializeToBool_WithNewtonsoftJsonProvider()
     {
         var vo = NewtonsoftJsonBoolVo.From(true);
 
@@ -60,7 +61,7 @@ public class BoolVoTests
     }
 
     [Fact]
-    public void CanSerializeToShort_WithSystemTextJsonProvider()
+    public void CanSerializeToBool_WithSystemTextJsonProvider()
     {
         var vo = SystemTextJsonBoolVo.From(true);
 
@@ -68,6 +69,18 @@ public class BoolVoTests
         string serializedShort = SystemTextJsonSerializer.Serialize(vo.Value);
 
         serializedVo.Equals(serializedShort).Should().BeTrue();
+    }
+
+    [Fact]
+    public void CanSerializeToBool_WithSsdtProvider()
+    {
+        var vo = SsdtBoolVo.From(true);
+
+        string json = JsonSerializer.SerializeToString(vo);
+        
+        SsdtBoolVo deserialised = JsonSerializer.DeserializeFromString<SsdtBoolVo>(json);
+
+        vo.Value.Should().Be(deserialised.Value);
     }
 
     [Fact]
@@ -95,7 +108,7 @@ public class BoolVoTests
     }
 
     [Fact]
-    public void CanSerializeToShort_WithBothJsonConverters()
+    public void CanSerializeToBool_WithBothJsonConverters()
     {
         var vo = BothJsonBoolVo.From(true);
 

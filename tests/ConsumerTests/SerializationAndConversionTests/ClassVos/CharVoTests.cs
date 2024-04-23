@@ -12,6 +12,8 @@ using LinqToDB;
 using LinqToDB.Data;
 using LinqToDB.DataProvider.SQLite;
 using LinqToDB.Mapping;
+using ServiceStack.Text;
+
 // ReSharper disable RedundantOverflowCheckingContext
 // ReSharper disable ConvertToLocalFunction
 
@@ -60,16 +62,17 @@ public class CharVoTests
     }
 
     [Fact]
-    public void CanSerializeToShort_WithSystemTextJsonProvider()
+    public void CanSerialize_WithServiceStackDotTextProvider()
     {
-        var vo = SystemTextJsonCharVo.From('a');
+        char value = 'a';
+        var vo = SsdtCharVo.From(value);
+        var json = JsonSerializer.SerializeToString(value);
 
-        string serializedVo = SystemTextJsonSerializer.Serialize(vo);
-        string serializedShort = SystemTextJsonSerializer.Serialize(vo.Value);
+        var deserializedVo = JsonSerializer.DeserializeFromString<SsdtCharVo>(json);
 
-        serializedVo.Equals(serializedShort).Should().BeTrue();
+        Assert.Equal(vo, deserializedVo);
     }
-
+    
     [Fact]
     public void CanDeserializeFromShort_WithNewtonsoftJsonProvider()
     {

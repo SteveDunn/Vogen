@@ -9,7 +9,9 @@
     </PropertyGroup>
 
     <ItemGroup>
+        <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
         <PackageReference Include="Refit" Version="7.0.0" />
+        <PackageReference Include="ServiceStack.Text" Version="8.2.2" />
     </ItemGroup>
 
     <ItemGroup Condition=" '$(UseLocallyBuiltPackage)' != ''">

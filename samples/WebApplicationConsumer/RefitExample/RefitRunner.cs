@@ -1,11 +1,11 @@
 using Refit;
-using Vogen;
+using WebApplicationConsumer;
 
 namespace RefitExample;
 
-public class RefitRunner
+public static class RefitRunner
 {
-    public async Task Run()
+    public static async Task Run()
     {
         Console.WriteLine("Refit example");
         Console.WriteLine("=============");
@@ -48,23 +48,4 @@ public interface IJsonPlaceholderApi
 
     [Get("/weatherforecast/{city}")]
     Task<List<WeatherForecast>> GetWeatherForecastByCity(City city);
-}
-
-public record WeatherForecast(DateOnly Date, Centigrade TemperatureC, Farenheit TemperatureF, string? Summary, City City)
-{
-}
-
-[ValueObject<string>]
-public partial class City
-{
-}
-
-[ValueObject]
-public partial struct Farenheit
-{
-}
-
-[ValueObject]
-public partial struct Centigrade
-{
 }

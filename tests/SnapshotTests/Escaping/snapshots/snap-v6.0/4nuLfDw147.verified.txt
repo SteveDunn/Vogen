@@ -67,6 +67,7 @@ namespace @class
             }
         }
 
+
         [global::System.Diagnostics.DebuggerStepThroughAttribute]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public escapedTestspublic_partial_record_structConversions_Nonerecord__struct__float__event2()

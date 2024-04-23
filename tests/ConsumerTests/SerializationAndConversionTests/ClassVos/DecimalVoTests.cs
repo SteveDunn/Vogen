@@ -11,6 +11,7 @@ using LinqToDB.DataProvider.SQLite;
 using LinqToDB.Mapping;
 using Microsoft.Data.Sqlite;
 using Microsoft.EntityFrameworkCore;
+using ServiceStack.Text;
 using Vogen.IntegrationTests.TestTypes.ClassVos;
 using NewtonsoftJsonSerializer = Newtonsoft.Json.JsonConvert;
 using SystemTextJsonSerializer = System.Text.Json.JsonSerializer;
@@ -68,6 +69,19 @@ public class DecimalVoTests
 
         serializedVo.Equals(serializedLong).Should().BeTrue();
     }
+    
+    [Fact]
+    public void CanSerialize_WithServiceStackDotTextProvider()
+    {
+        var vo = SsdtJsonDecimalVo.From(123.45m);
+
+        var json = JsonSerializer.SerializeToString(vo);
+
+        var deserializedVo = JsonSerializer.DeserializeFromString<SsdtJsonDecimalVo>(json);
+
+        Assert.Equal(vo, deserializedVo);
+    }
+
 
     [Fact]
     public void CanDeserializeFromLong_WithNewtonsoftJsonProvider()

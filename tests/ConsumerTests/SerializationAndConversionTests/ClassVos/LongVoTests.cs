@@ -12,6 +12,7 @@ using LinqToDB;
 using LinqToDB.Data;
 using LinqToDB.DataProvider.SQLite;
 using LinqToDB.Mapping;
+using ServiceStack.Text;
 
 namespace Vogen.IntegrationTests.SerializationAndConversionTests.ClassVos;
 
@@ -65,6 +66,17 @@ public class LongVoTests
         string serializedLong = SystemTextJsonSerializer.Serialize(vo.Value);
 
         serializedVo.Equals(serializedLong).Should().BeTrue();
+    }
+    
+    [Fact]
+    public void RoundTrip_WithSsdtj()
+    {
+        var vo = SsdtLongVo.From(123L);
+
+        string serializedVo = JsonSerializer.SerializeToString(vo);
+        var deserializedVo = JsonSerializer.DeserializeFromString<SsdtIntVo>(serializedVo)!;
+
+        deserializedVo.Value.Should().Be(123);
     }
 
     [Fact]

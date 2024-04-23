@@ -12,10 +12,15 @@ internal static class GenerateCodeForParse
     {
         if (item.ParsingInformation.UnderlyingIsAString)
         {
-            if (item.ParsableForStrings is ParsableForStrings.GenerateMethodsAndInterface or ParsableForStrings.GenerateMethods)
+            StringBuilder sb = new StringBuilder();
+            
+            bool configSaysGenerate = item.ParsableForStrings is ParsableForStrings.GenerateMethodsAndInterface or ParsableForStrings.GenerateMethods;
+            if (configSaysGenerate)
             {
-                return BuildParseMethodForAString(item);
+                sb.Append(BuildParseWithFormatProviderMethodForAString(item));
             }
+
+            return sb.ToString();
         }
         
         if (item.ParsableForPrimitives is not (ParsableForPrimitives.HoistMethods or ParsableForPrimitives.HoistMethodsAndInterfaces))
@@ -63,9 +68,9 @@ internal static class GenerateCodeForParse
         }
     }
 
-    private static string BuildParseMethodForAString(VoWorkItem item)
+    private static string BuildParseWithFormatProviderMethodForAString(VoWorkItem item)
     {
-        var matches = GetUserSuppliedParseMethodMatches(item);
+        var matches = GetUserSuppliedParseWithFormatProviderMethodMatches(item);
         
         if (matches == UserSuppliedParseMethods.ExactMatch)
         {
@@ -87,8 +92,8 @@ internal static class GenerateCodeForParse
         return From(s);
     }}";
     }
-    
-    private static UserSuppliedParseMethods GetUserSuppliedParseMethodMatches(VoWorkItem item)
+
+    private static UserSuppliedParseMethods GetUserSuppliedParseWithFormatProviderMethodMatches(VoWorkItem item)
     {
         var allStaticParseMethods = item.UserProvidedOverloads.ParseMethods.Where(
             m => m.IsStatic &&

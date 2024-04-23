@@ -19,6 +19,8 @@ using LinqToDB;
 using LinqToDB.Data;
 using LinqToDB.DataProvider.SQLite;
 using LinqToDB.Mapping;
+using ServiceStack.Text;
+
 // ReSharper disable EqualExpressionComparison
 // ReSharper disable RedundantCast
 // ReSharper disable ArrangeMethodOrOperatorBody
@@ -83,6 +85,21 @@ namespace Vogen.IntegrationTests.SerializationAndConversionTests.ClassVos
 
             serializedVo.Equals(serializedString).Should().BeTrue();
         }
+        
+        [Fact]
+        public void RoundTrip_WithSsdtj()
+        {
+            var vo = SsdtTimeOnlyVo.From(_time1);
+            
+            global::ServiceStack.Text.JsConfig<SsdtTimeOnlyVo>.DeSerializeFn = v => SsdtTimeOnlyVo.Parse(v, CultureInfo.InvariantCulture);
+            global::ServiceStack.Text.JsConfig<SsdtTimeOnlyVo>.SerializeFn = v => v.Value.ToString("o", CultureInfo.InvariantCulture);
+
+            string serializedVo = JsonSerializer.SerializeToString(vo);
+            var deserializedVo = JsonSerializer.DeserializeFromString<SsdtTimeOnlyVo>(serializedVo)!;
+
+            deserializedVo.Value.Should().Be(_time1);
+        }
+        
 
         [Fact]
         public void CanDeserializeFromString_WithNewtonsoftJsonProvider()

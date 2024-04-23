@@ -49,6 +49,7 @@ using Vogen;
             }}
         }}
 
+{GenerateStaticConstructor.GenerateIfNeeded(item)}
         [global::System.Diagnostics.DebuggerStepThroughAttribute]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public {className}()

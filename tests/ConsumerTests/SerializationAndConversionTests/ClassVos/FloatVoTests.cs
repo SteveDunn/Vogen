@@ -10,6 +10,7 @@ using LinqToDB.DataProvider.SQLite;
 using LinqToDB.Mapping;
 using Microsoft.Data.Sqlite;
 using Microsoft.EntityFrameworkCore;
+using ServiceStack.Text;
 using Vogen.IntegrationTests.TestTypes.ClassVos;
 using NewtonsoftJsonSerializer = Newtonsoft.Json.JsonConvert;
 using SystemTextJsonSerializer = System.Text.Json.JsonSerializer;
@@ -69,16 +70,16 @@ public class FloatVoTests
     }
 
     [Fact]
-    public void RoundTrip_WithStj()
+    public void RoundTrip_WithSsdtj()
     {
-        var vo = SystemTextJsonFloatVo.From(123.45f);
+        var vo = SsdtFloatVo.From(123.45f);
 
-        string serializedVo = SystemTextJsonSerializer.Serialize(vo);
-        var deserializedVo = SystemTextJsonSerializer.Deserialize<SystemTextJsonFloatVo>(serializedVo)!;
+        string serializedVo = JsonSerializer.SerializeToString(vo);
+        var deserializedVo = JsonSerializer.DeserializeFromString<SsdtFloatVo>(serializedVo)!;
 
         deserializedVo.Value.Should().Be(123.45f);
     }
-
+    
     [Fact]
     public void CanSerializeToFloat_WithSystemTextJsonProvider()
     {

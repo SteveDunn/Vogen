@@ -23,6 +23,12 @@ public partial class NewtonsoftJsonFooVoClass { }
 [ValueObject(conversions: Conversions.SystemTextJson, underlyingType: typeof(Bar))]
 public partial class SystemTextJsonFooVo { }
 
+[ValueObject(conversions: Conversions.ServiceStackDotText, underlyingType: typeof(Bar))]
+public partial class SsdtFooVo
+{
+    public static SsdtFooVo Parse(string s) => throw new Exception("todo!");
+}
+
 [ValueObject(conversions: Conversions.NewtonsoftJson | Conversions.SystemTextJson, underlyingType: typeof(Bar))]
 public partial class BothJsonFooVo { }
 

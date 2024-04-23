@@ -66,12 +66,13 @@ app.MapGet("/weatherforecast/{city}", (City city) =>
 
 app.Run();
 
-record WeatherForecast(DateOnly Date, Centigrade TemperatureC, Farenheit temperatureF, string? Summary, City City)
+record WeatherForecast(DateOnly Date, Centigrade TemperatureC, Farenheit TemperatureF, string? Summary, City City)
 {
 }
 
-[ValueObject<string>(parsableForStrings: ParsableForStrings.GenerateMethods)]
-public partial class City
+[ValueObject<string>]
+//[ValueObject<string>(parsableForStrings: ParsableForStrings.GenerateMethods)]
+public partial struct City
 {
 }
 

@@ -19,6 +19,8 @@ using LinqToDB;
 using LinqToDB.Data;
 using LinqToDB.DataProvider.SQLite;
 using LinqToDB.Mapping;
+using ServiceStack.Text;
+
 // ReSharper disable EqualExpressionComparison
 // ReSharper disable RedundantCast
 // ReSharper disable ArrangeMethodOrOperatorBody
@@ -60,6 +62,7 @@ namespace Vogen.IntegrationTests.SerializationAndConversionTests.ClassVos
         {
             DateOnlyVo.From(_date1).Equals(AnotherDateOnlyVo.From(_date1)).Should().BeFalse();
         }
+       
 
 #if NET7_0_OR_GREATER
         [Fact]
@@ -107,6 +110,19 @@ namespace Vogen.IntegrationTests.SerializationAndConversionTests.ClassVos
 
             Assert.Equal(vo, deserializedVo);
         }
+        
+        [Fact]
+        public void CanSerialize_WithServiceStackDotTextProvider()
+        {
+            var value = "ABC";
+            var vo = SsdtStringVo.From(value);
+            var json = JsonSerializer.SerializeToString(value);
+
+            var deserializedVo = JsonSerializer.DeserializeFromString<SsdtStringVo>(json);
+
+            Assert.Equal(vo, deserializedVo);
+        }
+        
 
         [Fact]
         public void CanSerializeToString_WithBothJsonConverters()

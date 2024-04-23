@@ -1,7 +1,10 @@
-﻿// See https://aka.ms/new-console-template for more information
+﻿using RefitExample;
+using ServiceStackDotTextExample;
+using Vogen;
 
-using RefitExample;
+[assembly: VogenDefaults(conversions:Conversions.ServiceStackDotText | Conversions.SystemTextJson)]
 
-await new RefitRunner().Run();
+await ServiceStackTextRunner.Run();
+await RefitRunner.Run();
 
 
