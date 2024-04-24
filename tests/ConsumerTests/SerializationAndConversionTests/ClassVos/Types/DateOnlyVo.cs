@@ -1,7 +1,5 @@
 ﻿#if NET6_0_OR_GREATER
 
-using System;
-
 namespace Vogen.IntegrationTests.TestTypes.ClassVos
 {
     [ValueObject(conversions: Conversions.None, underlyingType: typeof(DateOnly))]
@@ -18,9 +16,6 @@ namespace Vogen.IntegrationTests.TestTypes.ClassVos
 
     [ValueObject(conversions: Conversions.SystemTextJson, underlyingType: typeof(DateOnly))]
     public partial class SystemTextJsonDateOnlyVo { }
-
-    [ValueObject(conversions: Conversions.ServiceStackDotText, underlyingType: typeof(DateOnly))]
-    public partial class SsdtDateOnlyVo { }
 
     [ValueObject(conversions: Conversions.NewtonsoftJson | Conversions.SystemTextJson, underlyingType: typeof(DateOnly))]
     public partial class BothJsonDateOnlyVo { }

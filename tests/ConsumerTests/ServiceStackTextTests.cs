@@ -1,6 +1,4 @@
-﻿using @double;
-using @bool.@byte.@short.@float.@object;
-using Vogen.Tests.Types;
+﻿
 // ReSharper disable EqualExpressionComparison
 // ReSharper disable MemberCanBeFileLocal
 

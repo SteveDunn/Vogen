@@ -3,7 +3,6 @@ using System.ComponentModel;
 using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
-using ConsumerTests;
 using Dapper;
 using Microsoft.Data.Sqlite;
 using Microsoft.EntityFrameworkCore;
@@ -14,7 +13,6 @@ using LinqToDB;
 using LinqToDB.Data;
 using LinqToDB.DataProvider.SQLite;
 using LinqToDB.Mapping;
-using ServiceStack.Text;
 
 // ReSharper disable EqualExpressionComparison
 // ReSharper disable RedundantCast
@@ -80,18 +78,6 @@ public class DateTimeOffsetVoTests
         serializedVo.Equals(serializedString).Should().BeTrue();
     }
     
-    [Fact]
-    public void CanSerialize_WithServiceStackDotTextProvider()
-    {
-        var vo = SsdtDateTimeOffsetVo.From(_date1);
-        var json = JsonSerializer.SerializeToString(vo);
-
-        var deserializedVo = JsonSerializer.DeserializeFromString<SsdtDateTimeOffsetVo>(json);
-
-        Assert.Equal(vo, deserializedVo);
-    }
-    
-
     [Fact]
     public void CanDeserializeFromString_WithNewtonsoftJsonProvider()
     {

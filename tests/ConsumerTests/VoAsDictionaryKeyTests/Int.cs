@@ -3,7 +3,6 @@
 #nullable disable
 
 using System.Text.Json;
-using Vogen;
 
 namespace ConsumerTests.VoAsDictionaryKeyTests;
 

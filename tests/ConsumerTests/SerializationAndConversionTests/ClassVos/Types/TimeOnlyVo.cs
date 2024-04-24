@@ -1,7 +1,5 @@
 ﻿#if NET6_0_OR_GREATER
 
-using System;
-
 namespace Vogen.IntegrationTests.TestTypes.ClassVos
 {
     [ValueObject(conversions: Conversions.None, underlyingType: typeof(TimeOnly))]
@@ -20,9 +18,6 @@ namespace Vogen.IntegrationTests.TestTypes.ClassVos
     public partial class SystemTextJsonTimeOnlyVo { }
 
     
-    [ValueObject(conversions: Conversions.ServiceStackDotText, underlyingType: typeof(TimeOnly))]
-    public partial class SsdtTimeOnlyVo { }
-
     [ValueObject(conversions: Conversions.NewtonsoftJson | Conversions.SystemTextJson, underlyingType: typeof(TimeOnly))]
     public partial class BothJsonTimeOnlyVo { }
 

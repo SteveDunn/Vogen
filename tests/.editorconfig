@@ -1,0 +1,7 @@
+# Disable nullability warnings
+dotnet_diagnostic.CS8600.severity = none
+dotnet_diagnostic.CS8603.severity = none
+dotnet_diagnostic.CS8619.severity = none
+
+# Disable warning about inconsistent naming
+dotnet_diagnostic.IDE1006.severity = none

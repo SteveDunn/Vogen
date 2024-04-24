@@ -18,7 +18,7 @@ internal class SomeDbContext : DbContext
     //     var maxSavedId = SomeEntities.Any() ? SomeEntities.Max(e => e.Id.Value) : 0;
     //     return Math.Max(maxLocalId, maxSavedId) + 1;
     // }
-    
+
     protected override void OnModelCreating(ModelBuilder builder)
     {
         builder.Entity<SomeEntity>(b =>
@@ -29,7 +29,7 @@ internal class SomeDbContext : DbContext
             b.Property(e => e.Name).HasConversion(new Name.EfCoreValueConverter());
         });
     }
-    
+
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
         optionsBuilder.UseInMemoryDatabase("SomeDB");
@@ -66,12 +66,12 @@ internal class SomeIdValueGenerator : ValueGenerator<SomeId>
     public override SomeId Next(EntityEntry entry)
     {
         var entities = ((SomeDbContext)entry.Context).SomeEntities;
-        
-        var next = Math.Max(maxFrom(entities.Local), maxFrom(entities)) + 1;
-        
+
+        var next = Math.Max(MaxFrom(entities.Local), MaxFrom(entities)) + 1;
+
         return SomeId.From(next);
 
-        static int maxFrom(IEnumerable<SomeEntity> es)
+        static int MaxFrom(IEnumerable<SomeEntity> es)
         {
             return es.Any() ? es.Max(e => e.Id.Value) : 0;
         }

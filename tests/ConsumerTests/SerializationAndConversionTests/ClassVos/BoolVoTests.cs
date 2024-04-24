@@ -9,7 +9,6 @@ using LinqToDB.DataProvider.SQLite;
 using LinqToDB.Mapping;
 using Microsoft.Data.Sqlite;
 using Microsoft.EntityFrameworkCore;
-using ServiceStack.Text;
 using NewtonsoftJsonSerializer = Newtonsoft.Json.JsonConvert;
 using SystemTextJsonSerializer = System.Text.Json.JsonSerializer;
 using Vogen.IntegrationTests.TestTypes.ClassVos;
@@ -69,18 +68,6 @@ public class BoolVoTests
         string serializedShort = SystemTextJsonSerializer.Serialize(vo.Value);
 
         serializedVo.Equals(serializedShort).Should().BeTrue();
-    }
-
-    [Fact]
-    public void CanSerializeToBool_WithSsdtProvider()
-    {
-        var vo = SsdtBoolVo.From(true);
-
-        string json = JsonSerializer.SerializeToString(vo);
-        
-        SsdtBoolVo deserialised = JsonSerializer.DeserializeFromString<SsdtBoolVo>(json);
-
-        vo.Value.Should().Be(deserialised.Value);
     }
 
     [Fact]

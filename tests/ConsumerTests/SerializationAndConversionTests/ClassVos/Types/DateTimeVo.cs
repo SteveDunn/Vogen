@@ -15,9 +15,6 @@ public partial class NewtonsoftJsonDateTimeVo { }
 [ValueObject(conversions: Conversions.SystemTextJson, underlyingType: typeof(DateTime))]
 public partial class SystemTextJsonDateTimeVo { }
 
-[ValueObject(conversions: Conversions.ServiceStackDotText, underlyingType: typeof(DateTime))]
-public partial class SsdtDateTimeVo { }
-
 [ValueObject(conversions: Conversions.NewtonsoftJson | Conversions.SystemTextJson, underlyingType: typeof(DateTime))]
 public partial class BothJsonDateTimeVo { }
 

@@ -1,5 +1,4 @@
-﻿using System.Threading;
-using Vogen.Tests.Types;
+﻿using Vogen.Tests.Types;
 
 namespace ConsumerTests.Instances;
 

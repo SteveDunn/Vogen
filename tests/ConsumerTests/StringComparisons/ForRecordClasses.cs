@@ -1,5 +1,4 @@
-﻿using ConsumerTests.StringComparisons;
-using FluentAssertions.Execution;
+﻿using FluentAssertions.Execution;
 
 namespace ConsumerTests.StringComparisons;
 

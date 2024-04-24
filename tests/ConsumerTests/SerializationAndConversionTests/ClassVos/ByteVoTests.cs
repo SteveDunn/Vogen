@@ -110,18 +110,6 @@ public class ByteVoTests
     }
     
     [Fact]
-    public void CanSerialize_WithServiceStackDotTextProvider()
-    {
-        byte value = 123;
-        var vo = SsdtByteVo.From(value);
-        var json = JsonSerializer.SerializeToString(value);
-
-        var deserializedVo = JsonSerializer.DeserializeFromString<SsdtByteVo>(json);
-
-        Assert.Equal(vo, deserializedVo);
-    }
-
-    [Fact]
     public void CanSerializeToByte_WithBothJsonConverters()
     {
         var vo = BothJsonByteVo.From(123);

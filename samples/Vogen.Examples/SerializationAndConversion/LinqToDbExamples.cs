@@ -18,7 +18,7 @@ namespace Vogen.Examples.SerializationAndConversion
 			return Task.CompletedTask;
 		}
 
-		private void LinqToDbValueConverterUsesValueConverter()
+		private static void LinqToDbValueConverterUsesValueConverter()
 		{
 			var connection = new SqliteConnection("DataSource=:memory:");
 			connection.Open();

@@ -16,7 +16,7 @@ namespace Vogen.Examples.TypicalScenarios.UsingInterfaces
             return Task.CompletedTask;
         }
 
-        void ProcessIds(params IHaveAnId<int>[] ids)
+        static void ProcessIds(params IHaveAnId<int>[] ids)
         {
             Console.WriteLine("IDs are " + string.Join(", ", ids.Select(i => i.Value)));
         }

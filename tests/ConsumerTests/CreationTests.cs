@@ -32,7 +32,7 @@ namespace ConsumerTests
         [Fact]
         public void Allows_using_Activate_CreateInstance_from_another_namespace()
         {
-            var x = NotSystem.Activator.CreateInstance<string>();
+            _ = NotSystem.Activator.CreateInstance<string>();
         }
 
         [Fact]

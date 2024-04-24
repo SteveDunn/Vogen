@@ -15,9 +15,6 @@ public partial class NewtonsoftJsonBoolVo { }
 [ValueObject(conversions: Conversions.SystemTextJson, underlyingType: typeof(bool))]
 public partial class SystemTextJsonBoolVo { }
 
-[ValueObject(conversions: Conversions.ServiceStackDotText, underlyingType: typeof(bool))]
-public partial class SsdtBoolVo { }
-
 [ValueObject(conversions: Conversions.NewtonsoftJson | Conversions.SystemTextJson, underlyingType: typeof(bool))]
 public partial class BothJsonBoolVo { }
 
