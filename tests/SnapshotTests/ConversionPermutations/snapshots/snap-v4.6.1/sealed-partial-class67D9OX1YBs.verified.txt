@@ -54,6 +54,7 @@ public System.Int32 Value
             }
         }
 
+
         [global::System.Diagnostics.DebuggerStepThroughAttribute]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public MyIntVo()

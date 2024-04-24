@@ -10,6 +10,7 @@ public class Permutations : IEnumerable<string>
     {
         "Conversions.TypeConverter", "Conversions.DapperTypeHandler", "Conversions.EfCoreValueConverter",
         "Conversions.NewtonsoftJson", "Conversions.SystemTextJson", "Conversions.LinqToDbValueConverter",
+        "Conversions.ServiceStackDotText"
     };
 
     public IEnumerator<string> GetEnumerator()

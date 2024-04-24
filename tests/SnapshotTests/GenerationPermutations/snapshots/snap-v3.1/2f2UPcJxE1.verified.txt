@@ -54,6 +54,7 @@ public System.Char Value
             }
         }
 
+
         [global::System.Diagnostics.DebuggerStepThroughAttribute]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public public_sealed_partial_classConversions_Nonechar()

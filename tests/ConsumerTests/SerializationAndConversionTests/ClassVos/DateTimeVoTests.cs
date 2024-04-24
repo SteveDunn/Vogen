@@ -13,6 +13,9 @@ using LinqToDB;
 using LinqToDB.Data;
 using LinqToDB.DataProvider.SQLite;
 using LinqToDB.Mapping;
+// ReSharper disable TryCastAlwaysSucceeds
+// ReSharper disable ArrangeRedundantParentheses
+
 // ReSharper disable EqualExpressionComparison
 // ReSharper disable RedundantCast
 // ReSharper disable ArrangeMethodOrOperatorBody

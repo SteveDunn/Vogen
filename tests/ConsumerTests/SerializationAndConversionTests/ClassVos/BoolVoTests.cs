@@ -49,7 +49,7 @@ public class BoolVoTests
     }
 
     [Fact]
-    public void CanSerializeToShort_WithNewtonsoftJsonProvider()
+    public void CanSerializeToBool_WithNewtonsoftJsonProvider()
     {
         var vo = NewtonsoftJsonBoolVo.From(true);
 
@@ -60,7 +60,7 @@ public class BoolVoTests
     }
 
     [Fact]
-    public void CanSerializeToShort_WithSystemTextJsonProvider()
+    public void CanSerializeToBool_WithSystemTextJsonProvider()
     {
         var vo = SystemTextJsonBoolVo.From(true);
 
@@ -95,7 +95,7 @@ public class BoolVoTests
     }
 
     [Fact]
-    public void CanSerializeToShort_WithBothJsonConverters()
+    public void CanSerializeToBool_WithBothJsonConverters()
     {
         var vo = BothJsonBoolVo.From(true);
 

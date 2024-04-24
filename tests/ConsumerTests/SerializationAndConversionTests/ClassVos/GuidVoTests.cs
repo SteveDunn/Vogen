@@ -13,6 +13,8 @@ using LinqToDB.Data;
 using LinqToDB.DataProvider.SQLite;
 using LinqToDB.Mapping;
 
+// ReSharper disable EqualExpressionComparison
+
 namespace Vogen.IntegrationTests.SerializationAndConversionTests.ClassVos;
 
 [ValueObject(underlyingType: typeof(Guid))]
@@ -68,7 +70,7 @@ public class GuidVoTests
 
         serializedVo.Equals(serializedString).Should().BeTrue();
     }
-
+    
     [Fact]
     public void CanDeserializeFromString_WithNewtonsoftJsonProvider()
     {

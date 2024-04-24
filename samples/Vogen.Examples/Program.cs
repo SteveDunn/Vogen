@@ -6,6 +6,7 @@ namespace Vogen.Examples
 {
     class Program
     {
+        // ReSharper disable once UnusedParameter.Local
         static Task Main(string[] args)
         {
             var scenarioTypes = typeof(Program).Assembly.GetTypes().Where(t => typeof(IScenario).IsAssignableFrom(t) && t != typeof(IScenario)).ToList();

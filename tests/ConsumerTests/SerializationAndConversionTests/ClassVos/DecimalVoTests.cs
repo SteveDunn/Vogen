@@ -3,7 +3,6 @@ using System.ComponentModel;
 using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
-using ConsumerTests;
 using Dapper;
 using LinqToDB;
 using LinqToDB.Data;
@@ -68,7 +67,7 @@ public class DecimalVoTests
 
         serializedVo.Equals(serializedLong).Should().BeTrue();
     }
-
+    
     [Fact]
     public void CanDeserializeFromLong_WithNewtonsoftJsonProvider()
     {

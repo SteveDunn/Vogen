@@ -13,6 +13,7 @@
 			<PrivateAssets>all</PrivateAssets>
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 		  </PackageReference>
+		<PackageReference Include="JetBrains.Annotations" Version="2023.3.0" />
 		<PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.5" />
 		<PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="7.0.5" />
 		<PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="7.0.0-rc.1.22426.7" />
@@ -20,6 +21,7 @@
 		<PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
 		<PackageReference Include="Dapper" Version="2.0.123" />
 		<PackageReference Include="linq2db" Version="3.7.0" />
+		<PackageReference Include="ServiceStack.Text" Version="8.2.2" />
 	</ItemGroup>
 
 	<ItemGroup Condition=" '$(UseLocallyBuiltPackage)' != ''">

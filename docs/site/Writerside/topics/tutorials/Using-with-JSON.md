@@ -3,7 +3,7 @@
 In this tutorial, we'll see how to serialize and deserialize value objects.
 
 Vogen can automatically generate the code required for this.
-It supports both System.Text.Json (STJ), and Newtonsoft.Json (NSJ)
+It supports System.Text.Json (STJ), Newtonsoft.Json (NSJ), and ServiceStack.Text
 
 First, let's see what we get with no conversion generated. 
 In a C# project that references Vogen, create the following type:
@@ -34,7 +34,7 @@ You'll see:
 Note that the serializer has written the temperature as a composite object (`Value:30`).
 
 This isn't ideal as you probably want the primitive value written.
-And also, Vogen won't be able to serialize that composite value back into a value object.
+And, Vogen won't be able to serialize that composite value back into a value object.
 
 To get just the primitive value written, change `Celcius` to this and rerun.
 

@@ -7,7 +7,6 @@
 // ReSharper disable PossibleNullReferenceException
 #pragma warning disable 252,253
 
-using System.Collections;
 using System.Diagnostics;
 using Vogen.Tests.Types;
 

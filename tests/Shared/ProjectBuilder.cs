@@ -15,6 +15,8 @@ using Vogen;
 
 namespace Shared;
 
+public record struct NuGetPackage(string PackageName, string Version, string PathPrefix);
+
 public class ProjectBuilder
 {
     private static readonly ConcurrentDictionary<string, Lazy<Task<string[]>>> _cache = new(StringComparer.Ordinal);
@@ -57,6 +59,7 @@ public class ProjectBuilder
                 AddNuGetReference("linq2db", "3.7.0", "lib/netcoreapp3.1/");
                 AddNuGetReference("Microsoft.EntityFrameworkCore", "5.0.17", "lib/netstandard2.1/");
                 AddNuGetReference("Dapper", "1.60.6", "lib/netstandard2.0/");
+                AddNuGetReference("ServiceStack.Text", "5.14.0", "lib/netstandard2.0");
                 // AddNuGetReference("System.Runtime", "4.3.1", "lib/netstandard2.0/");
                 break;
 
@@ -68,6 +71,7 @@ public class ProjectBuilder
                 AddNuGetReference("Dapper", "2.0.123", "lib/net461/");
                 AddNuGetReference("System.Text.Json", "7.0.0", "lib/net462/");
                 AddNuGetReference("System.Memory", "4.5.5", "lib/net461/");
+                AddNuGetReference("ServiceStack.Text", "4.0.62", "lib/net40");
                 break;
 
             case TargetFramework.Net4_8:
@@ -77,6 +81,7 @@ public class ProjectBuilder
                 AddNuGetReference("Dapper", "2.0.123", "lib/netstandard2.0/");
                 AddNuGetReference("System.Text.Json", "7.0.0", "lib/netstandard2.0/");
                 AddNuGetReference("System.Memory", "4.5.5", "lib/netstandard2.0/");
+                AddNuGetReference("ServiceStack.Text", "6.11.0", "lib/netstandard2.0");
                 break;
 
             case TargetFramework.Net5_0:
@@ -84,7 +89,7 @@ public class ProjectBuilder
                 AddNuGetReference("linq2db", "3.7.0", "lib/netstandard2.1/");
                 AddNuGetReference("Microsoft.EntityFrameworkCore", "5.0.17", "lib/netstandard2.1/");
                 AddNuGetReference("Dapper", "2.0.123", "lib/net5.0/");
-
+                AddNuGetReference("ServiceStack.Text", "5.5.0", "lib/netstandard2.0");
                 break;
 
             case TargetFramework.Net6_0:
@@ -92,6 +97,8 @@ public class ProjectBuilder
                 AddNuGetReference("linq2db", "3.7.0", "lib/netstandard2.1/");
                 AddNuGetReference("Microsoft.EntityFrameworkCore", "6.0.0", "lib/net6.0/");
                 AddNuGetReference("Dapper", "2.0.123", "lib/net5.0/");
+                AddNuGetReference("ServiceStack.Text", "6.11.0", "lib/net6.0");
+
                 break;
 
             case TargetFramework.Net7_0:
@@ -99,6 +106,8 @@ public class ProjectBuilder
                 AddNuGetReference("linq2db", "4.3.0", "lib/net6.0/");
                 AddNuGetReference("Microsoft.EntityFrameworkCore", "7.0.0", "lib/net6.0/");
                 AddNuGetReference("Dapper", "2.0.123", "lib/net5.0/");
+                AddNuGetReference("ServiceStack.Text", "6.11.0", "lib/net6.0");
+
 
                 break;
 
@@ -107,30 +116,10 @@ public class ProjectBuilder
                 AddNuGetReference("linq2db", "4.3.0", "lib/net6.0/");
                 AddNuGetReference("Microsoft.EntityFrameworkCore", "8.0.0", "lib/net8.0/");
                 AddNuGetReference("Dapper", "2.1.28", "lib/net7.0/");
+                AddNuGetReference("ServiceStack.Text", "8.2.2", "lib/net8.0");
 
                 break;
 
-            case TargetFramework.AspNetCore5_0:
-                AddNuGetReference("Microsoft.NETCore.App.Ref", "5.0.0", "ref/net5.0/");
-                AddNuGetReference("Microsoft.AspNetCore.App.Ref", "5.0.0", "ref/net5.0/");
-                AddNuGetReference("linq2db", "3.7.0", "lib/netstandard2.1/");
-                AddNuGetReference("Microsoft.EntityFrameworkCore", "5.0.17", "lib/netstandard2.1/");
-                break;
-
-            case TargetFramework.AspNetCore6_0:
-                AddNuGetReference("Microsoft.NETCore.App.Ref", "6.0.0", "ref/net6.0/");
-                AddNuGetReference("Microsoft.AspNetCore.App.Ref", "6.0.0", "ref/net6.0/");
-                AddNuGetReference("linq2db", "3.7.0", "lib/netstandard2.1/");
-                AddNuGetReference("Microsoft.EntityFrameworkCore", "5.0.17", "lib/netstandard2.1/");
-
-                break;
-
-            case TargetFramework.WindowsDesktop5_0:
-                AddNuGetReference("Microsoft.WindowsDesktop.App.Ref", "5.0.0", "ref/net5.0/");
-                AddNuGetReference("linq2db", "3.7.0", "lib/netstandard2.1/");
-                AddNuGetReference("Microsoft.EntityFrameworkCore", "5.0.17", "lib/netstandard2.1/");
-
-                break;
         }
 
         AddNuGetReference("System.Collections.Immutable", "1.5.0", "lib/netstandard2.0/");
@@ -178,7 +167,7 @@ public class ProjectBuilder
             // Filter invalid .NET assembly
             var result = new List<string>();
             foreach (string eachDllNameAndPath in nameAndPathsForDlls)
-            {
+            {                                                                                                                         
                 if (Path.GetFileName(eachDllNameAndPath) == "System.EnterpriseServices.Wrapper.dll")
                     continue;
 
@@ -197,7 +186,7 @@ public class ProjectBuilder
 
             if(result.Count == 0)
             {
-                throw new InvalidOperationException("Did not add any DLLs as references!");
+                throw new InvalidOperationException($"Did not add any DLLs as references for {packageName}, v {version}, at {path}!");
             }
 
             return result.ToArray();
@@ -208,6 +197,16 @@ public class ProjectBuilder
     {
         _source = source;
 
+        return this;
+    }
+
+    public ProjectBuilder WithNugetPackages(IEnumerable<NuGetPackage> packages)
+    {
+        foreach (var nuGetPackage in packages)
+        {
+            AddNuGetReference(nuGetPackage.PackageName, nuGetPackage.Version, nuGetPackage.PathPrefix);
+        }
+        
         return this;
     }
 

@@ -51,4 +51,9 @@ public enum Conversions
     /// Creates a LinqToDb ValueConverter for converting to and from the type
     /// </summary>
     LinqToDbValueConverter = 1 << 6,
+    
+    /// <summary>
+    /// Sets the SerializeFn and DeSerializeFn members in JsConfig in a static constructor.
+    /// </summary>
+    ServiceStackDotText = 1 << 7
 }

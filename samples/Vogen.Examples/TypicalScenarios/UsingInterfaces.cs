@@ -16,7 +16,7 @@ namespace Vogen.Examples.TypicalScenarios.UsingInterfaces
             return Task.CompletedTask;
         }
 
-        void ProcessIds(params IHaveAnId<int>[] ids)
+        static void ProcessIds(params IHaveAnId<int>[] ids)
         {
             Console.WriteLine("IDs are " + string.Join(", ", ids.Select(i => i.Value)));
         }
@@ -38,7 +38,7 @@ namespace Vogen.Examples.TypicalScenarios.UsingInterfaces
     {
     }
     
-    // You could derive from this, but if you the type you're wrapping is a reference type,
+    // You could derive from this, but if the type you're wrapping is a reference type,
     // then be aware that there could be severe overhead of wrapping a reference type
     // as a value type. One of the  goals of Vogen is to not add too much overhead
     // (in terms of memory/speed) over using the primitive type itself.

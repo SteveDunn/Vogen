@@ -69,17 +69,6 @@ public class FloatVoTests
     }
 
     [Fact]
-    public void RoundTrip_WithStj()
-    {
-        var vo = SystemTextJsonFloatVo.From(123.45f);
-
-        string serializedVo = SystemTextJsonSerializer.Serialize(vo);
-        var deserializedVo = SystemTextJsonSerializer.Deserialize<SystemTextJsonFloatVo>(serializedVo)!;
-
-        deserializedVo.Value.Should().Be(123.45f);
-    }
-
-    [Fact]
     public void CanSerializeToFloat_WithSystemTextJsonProvider()
     {
         var vo = SystemTextJsonFloatVo.From(123);

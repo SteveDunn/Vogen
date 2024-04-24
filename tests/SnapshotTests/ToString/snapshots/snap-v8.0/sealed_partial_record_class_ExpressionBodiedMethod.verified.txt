@@ -67,6 +67,7 @@ namespace Whatever
             }
         }
 
+
         [global::System.Diagnostics.DebuggerStepThroughAttribute]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public sealed_partial_record_class_ExpressionBodiedMethod()

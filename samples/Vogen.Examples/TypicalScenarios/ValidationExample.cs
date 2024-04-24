@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
+using JetBrains.Annotations;
 
 namespace Vogen.Examples.TypicalScenarios.ValidationExamples
 {
@@ -14,19 +15,18 @@ namespace Vogen.Examples.TypicalScenarios.ValidationExamples
                 : Validation.Invalid($"must be a dave or david - {value} is neither.");
     }
 
+    [UsedImplicitly]
     internal class ValidationExample : IScenario
     {
         public Task Run()
         {
-            string[] names = new[] { "Dave Grohl", "David Beckham", "Fred Flintstone" };
-
-            var processor = new DaveProcessor();
+            string[] names = ["Dave Grohl", "David Beckham", "Fred Flintstone"];
 
             foreach (string name in names)
             {
                 try
                 {
-                    processor.Process(Dave.From(name));
+                    DaveProcessor.Process(Dave.From(name));
                 }
                 catch (ValueObjectValidationException e)
                 {
@@ -37,9 +37,9 @@ namespace Vogen.Examples.TypicalScenarios.ValidationExamples
             return Task.CompletedTask;
         }
 
-        private class DaveProcessor
+        private static class DaveProcessor
         {
-            internal void Process(Dave dave) => Console.WriteLine($"Processing {dave}");
+            internal static void Process(Dave dave) => Console.WriteLine($"Processing {dave}");
         }
     }
 }

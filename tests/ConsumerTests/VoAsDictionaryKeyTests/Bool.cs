@@ -1,10 +1,7 @@
 ﻿#if NET6_0_OR_GREATER
 #nullable disable
 
-using System.Collections.Generic;
 using System.Text.Json;
-using FluentAssertions;
-using Vogen;
 
 namespace ConsumerTests.VoAsDictionaryKeyTests;
 

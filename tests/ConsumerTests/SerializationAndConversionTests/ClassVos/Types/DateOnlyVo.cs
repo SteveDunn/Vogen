@@ -1,7 +1,5 @@
 ﻿#if NET6_0_OR_GREATER
 
-using System;
-
 namespace Vogen.IntegrationTests.TestTypes.ClassVos
 {
     [ValueObject(conversions: Conversions.None, underlyingType: typeof(DateOnly))]

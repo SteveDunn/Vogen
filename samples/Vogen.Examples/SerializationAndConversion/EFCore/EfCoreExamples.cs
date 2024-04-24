@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using System.Threading.Tasks;
+using JetBrains.Annotations;
 using Microsoft.Data.Sqlite;
 using Microsoft.EntityFrameworkCore;
 using Vogen.Examples.SerializationAndConversion.EFCore;
@@ -8,6 +9,7 @@ using Vogen.Examples.Types;
 
 namespace Vogen.Examples.SerializationAndConversion.EFCore
 {
+    [UsedImplicitly]
     public class EfCoreExamples : IScenario
     {
         public Task Run()
@@ -16,14 +18,14 @@ namespace Vogen.Examples.SerializationAndConversion.EFCore
             return Task.CompletedTask;
         }
 
-        private void EfCoreValueConverterUsesValueConverter()
+        private static void EfCoreValueConverterUsesValueConverter()
         {
-                addAndSave(10);
-                addAndSave(10);
+            AddAndSave(10);
+            AddAndSave(10);
 
-                printItems();
+            PrintItems();
 
-            static void addAndSave(int amount)
+            static void AddAndSave(int amount)
             {
                 using var context = new SomeDbContext();
 
@@ -41,7 +43,7 @@ namespace Vogen.Examples.SerializationAndConversion.EFCore
                 context.SaveChanges();
             }
 
-            static void printItems()
+            static void PrintItems()
             {
                 using var ctx = new SomeDbContext();
 

@@ -116,7 +116,7 @@ public class ShortVoTests
         Assert.Equal(serializedVo1, serializedShort1);
         Assert.Equal(serializedVo2, serializedShort2);
     }
-
+    
     [Fact]
     public void WhenNoJsonConverter_SystemTextJsonSerializesWithValueProperty()
     {

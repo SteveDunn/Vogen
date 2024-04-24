@@ -1,5 +1,4 @@
 ﻿using System.Runtime.InteropServices;
-using ConsumerTests.StringComparisons;
 using FluentAssertions.Execution;
 
 namespace ConsumerTests.StringComparisons;

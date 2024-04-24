@@ -12,6 +12,8 @@ using LinqToDB;
 using LinqToDB.Data;
 using LinqToDB.DataProvider.SQLite;
 using LinqToDB.Mapping;
+using ServiceStack.Text;
+
 // ReSharper disable RedundantOverflowCheckingContext
 // ReSharper disable ConvertToLocalFunction
 
@@ -49,7 +51,7 @@ public class ByteVoTests
     }
 
     [Fact]
-    public void CanSerializeToShort_WithNewtonsoftJsonProvider()
+    public void CanSerializeToByte_WithNewtonsoftJsonProvider()
     {
         var vo = NewtonsoftJsonByteVo.From(123);
 
@@ -60,7 +62,7 @@ public class ByteVoTests
     }
 
     [Fact]
-    public void CanSerializeToShort_WithSystemTextJsonProvider()
+    public void CanSerializeToByte_WithSystemTextJsonProvider()
     {
         var vo = SystemTextJsonByteVo.From(123);
 
@@ -69,9 +71,22 @@ public class ByteVoTests
 
         serializedVo.Equals(serializedShort).Should().BeTrue();
     }
+    
+    [Fact]
+    public void CanSerializeToByte_WithSsdtProvider()
+    {
+        var vo = SsdtShortVo.From(123);
+
+        string json = JsonSerializer.SerializeToString(vo);
+        
+        var deserialised = JsonSerializer.DeserializeFromString<SsdtShortVo>(json);
+
+        vo.Value.Should().Be(deserialised.Value);
+    }
+    
 
     [Fact]
-    public void CanDeserializeFromShort_WithNewtonsoftJsonProvider()
+    public void CanDeserializeFromByte_WithNewtonsoftJsonProvider()
     {
         byte value = 123;
         var vo = NewtonsoftJsonByteVo.From(value);
@@ -83,19 +98,19 @@ public class ByteVoTests
     }
 
     [Fact]
-    public void CanDeserializeFromShort_WithSystemTextJsonProvider()
+    public void CanDeserializeFromByte_WithSystemTextJsonProvider()
     {
         byte value = 123;
         var vo = SystemTextJsonByteVo.From(value);
-        var serializedShort = SystemTextJsonSerializer.Serialize(value);
+        var json = SystemTextJsonSerializer.Serialize(value);
 
-        var deserializedVo = SystemTextJsonSerializer.Deserialize<SystemTextJsonByteVo>(serializedShort);
+        var deserializedVo = SystemTextJsonSerializer.Deserialize<SystemTextJsonByteVo>(json);
 
         Assert.Equal(vo, deserializedVo);
     }
-
+    
     [Fact]
-    public void CanSerializeToShort_WithBothJsonConverters()
+    public void CanSerializeToByte_WithBothJsonConverters()
     {
         var vo = BothJsonByteVo.From(123);
 

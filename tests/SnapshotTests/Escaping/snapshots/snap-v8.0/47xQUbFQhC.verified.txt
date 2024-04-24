@@ -71,6 +71,7 @@ namespace @class
             }
         }
 
+
         [global::System.Diagnostics.DebuggerStepThroughAttribute]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public escapedTestspublic_partial_record_structConversions_Nonestring()

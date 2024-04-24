@@ -12,6 +12,7 @@ using LinqToDB;
 using LinqToDB.Data;
 using LinqToDB.DataProvider.SQLite;
 using LinqToDB.Mapping;
+
 // ReSharper disable RedundantOverflowCheckingContext
 // ReSharper disable ConvertToLocalFunction
 
@@ -59,17 +60,7 @@ public class CharVoTests
         Assert.Equal(serializedVo, serializedShort);
     }
 
-    [Fact]
-    public void CanSerializeToShort_WithSystemTextJsonProvider()
-    {
-        var vo = SystemTextJsonCharVo.From('a');
-
-        string serializedVo = SystemTextJsonSerializer.Serialize(vo);
-        string serializedShort = SystemTextJsonSerializer.Serialize(vo.Value);
-
-        serializedVo.Equals(serializedShort).Should().BeTrue();
-    }
-
+    
     [Fact]
     public void CanDeserializeFromShort_WithNewtonsoftJsonProvider()
     {

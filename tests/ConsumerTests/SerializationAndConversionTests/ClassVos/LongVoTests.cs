@@ -66,7 +66,7 @@ public class LongVoTests
 
         serializedVo.Equals(serializedLong).Should().BeTrue();
     }
-
+    
     [Fact]
     public void CanDeserializeFromLong_WithNewtonsoftJsonProvider()
     {

@@ -14,6 +14,9 @@ namespace Vogen.Examples.Types
     [ValueObject(conversions: Conversions.NewtonsoftJson, underlyingType: typeof(DateTimeOffset))]
     public partial struct NewtonsoftJsonDateTimeOffsetVo { }
 
+    [ValueObject(conversions: Conversions.ServiceStackDotText, underlyingType: typeof(DateTimeOffset))]
+    public partial struct SsdtDateTimeOffsetVo { }
+
     [ValueObject(conversions: Conversions.SystemTextJson, underlyingType: typeof(DateTimeOffset))]
     public partial struct SystemTextJsonDateTimeOffsetVo { }
 

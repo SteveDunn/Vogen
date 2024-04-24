@@ -30,13 +30,11 @@ namespace Vogen.Examples.TypicalScenarios.Normalization
              */
             string[] names = new[] { " Fred Flintstone", "Wilma Flintstone\t", " Barney Rubble  \t", " \t    \t" };
 
-            var processor = new Processor();
-
             foreach (string name in names)
             {
                 try
                 {
-                    processor.Process(ScrapedString.From(name));
+                    Processor.Process(ScrapedString.From(name));
                 }
                 catch (ValueObjectValidationException e)
                 {
@@ -47,9 +45,9 @@ namespace Vogen.Examples.TypicalScenarios.Normalization
             return Task.CompletedTask;
         }
 
-        private class Processor
+        private static class Processor
         {
-            internal void Process(ScrapedString item) => Console.WriteLine($"Processing \"{item}\"");
+            internal static void Process(ScrapedString item) => Console.WriteLine($"Processing \"{item}\"");
         }
     }
 }

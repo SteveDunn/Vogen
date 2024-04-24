@@ -55,7 +55,7 @@ public class StringVoTests
 
         Assert.Equal(serializedVo, serializedString);
     }
-
+    
     [Fact]
     public void CanSerializeToString_WithSystemTextJsonProvider()
     {

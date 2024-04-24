@@ -66,7 +66,7 @@ public class IntVoTests
 
         serializedVo.Equals(serializedInt).Should().BeTrue();
     }
-
+    
     [Fact]
     public void CanDeserializeFromInt_WithNewtonsoftJsonProvider()
     {

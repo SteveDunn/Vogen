@@ -1,17 +1,13 @@
 ﻿#if NET6_0_OR_GREATER
 
 #nullable disable
-using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
 using Dapper;
-using FluentAssertions;
 using Microsoft.Data.Sqlite;
 using Microsoft.EntityFrameworkCore;
-using Xunit;
 using NewtonsoftJsonSerializer = Newtonsoft.Json.JsonConvert;
 using SystemTextJsonSerializer = System.Text.Json.JsonSerializer;
 using Vogen.IntegrationTests.TestTypes.ClassVos;
@@ -19,6 +15,7 @@ using LinqToDB;
 using LinqToDB.Data;
 using LinqToDB.DataProvider.SQLite;
 using LinqToDB.Mapping;
+
 // ReSharper disable EqualExpressionComparison
 // ReSharper disable RedundantCast
 // ReSharper disable ArrangeMethodOrOperatorBody
@@ -60,6 +57,7 @@ namespace Vogen.IntegrationTests.SerializationAndConversionTests.ClassVos
         {
             DateOnlyVo.From(_date1).Equals(AnotherDateOnlyVo.From(_date1)).Should().BeFalse();
         }
+       
 
 #if NET7_0_OR_GREATER
         [Fact]
@@ -107,7 +105,7 @@ namespace Vogen.IntegrationTests.SerializationAndConversionTests.ClassVos
 
             Assert.Equal(vo, deserializedVo);
         }
-
+        
         [Fact]
         public void CanSerializeToString_WithBothJsonConverters()
         {

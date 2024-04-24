@@ -1,7 +1,7 @@
 using System;
+using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.IO;
-using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using FluentAssertions;
@@ -50,6 +50,7 @@ namespace SnapshotTests
         private string _locale = string.Empty;
         private bool _ignoreInitialCompilationErrors;
         private ITestOutputHelper? _logger;
+        private readonly List<NuGetPackage> _additionalNuGetPackages = new();
 
         public async Task RunOnAllFrameworks() => await RunOn(_allFrameworks);
 
@@ -126,6 +127,7 @@ namespace SnapshotTests
 
             var results = new ProjectBuilder()
                 .WithSource(source)
+                .WithNugetPackages(_additionalNuGetPackages)
                 .WithTargetFramework(targetFramework)
                 .GetGeneratedOutput<T>(_ignoreInitialCompilationErrors, r);
 
@@ -135,6 +137,13 @@ namespace SnapshotTests
         public SnapshotRunner<T> WithLogger(ITestOutputHelper logger)
         {
             _logger = logger;
+
+            return this;
+        }
+
+        public SnapshotRunner<T> WithPackage(NuGetPackage package)
+        {
+            _additionalNuGetPackages.Add(package);
 
             return this;
         }

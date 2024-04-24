@@ -9,6 +9,76 @@ namespace SnapshotTests.GeneralStuff;
 public class GeneralTests
 {
     [Fact]
+    public async Task ServiceStackDotTextConversion_generates_static_constructor_for_strings()
+    {
+        var source = @"using Vogen;
+  [ValueObject(conversions: Conversions.ServiceStackDotText, underlyingType: typeof(string))]
+  public partial struct MyVo { }
+";
+
+        await RunTest(source);
+
+        static Task RunTest(string source) =>
+            new SnapshotRunner<ValueObjectGenerator>()
+                .WithSource(source)
+                //.WithPackage(new NuGetPackage("ServiceStack.Text", "8.2.2", "lib/net8.0" ))
+                .RunOn(TargetFramework.Net8_0);
+    }
+
+    [Fact]
+    public async Task ServiceStackDotTextConversion_generates_static_constructor_for_non_strings()
+    {
+        var source = @"using Vogen;
+  [ValueObject(conversions: Conversions.ServiceStackDotText, underlyingType: typeof(int))]
+  public partial struct MyVo { }
+";
+
+        await RunTest(source);
+
+        static Task RunTest(string source) =>
+            new SnapshotRunner<ValueObjectGenerator>()
+                .WithSource(source)
+                // .WithPackage(new NuGetPackage("ServiceStack.Text", "8.2.2", "lib/net8.0" ))
+                .RunOn(TargetFramework.Net8_0);
+    }
+
+    [Fact]
+    public async Task ServiceStackDotTextConversion_generates_static_constructor_for_time_related_primitives()
+    {
+        var source = @"using System;
+  using Vogen;
+  [ValueObject(conversions: Conversions.ServiceStackDotText, underlyingType: typeof(TimeOnly))]
+  public partial struct MyVo { }
+";
+
+        await RunTest(source);
+
+        static Task RunTest(string source) =>
+            new SnapshotRunner<ValueObjectGenerator>()
+                .WithSource(source)
+                // .WithPackage(new NuGetPackage("ServiceStack.Text", "8.2.2", "lib/net8.0" ))
+                .RunOn(TargetFramework.Net8_0);
+    }
+
+    [Fact]
+    public async Task ServiceStackDotTextConversion_generates_static_constructor_for_date_time()
+    {
+        var source = @"using System;
+  using Vogen;
+  [ValueObject(conversions: Conversions.ServiceStackDotText, underlyingType: typeof(DateTime))]
+  public partial struct MyVo { }
+";
+
+        await RunTest(source);
+
+        static Task RunTest(string source) =>
+            new SnapshotRunner<ValueObjectGenerator>()
+                .WithSource(source)
+                // .WithPackage(new NuGetPackage("ServiceStack.Text", "8.2.2", "lib/net8.0" ))
+                .RunOn(TargetFramework.Net8_0);
+    }
+
+    [Fact]
     public async Task EFCore_generated_stuff()
     {
         var source = @"using Vogen;
