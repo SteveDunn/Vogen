@@ -21,7 +21,7 @@ public class GeneralTests
         static Task RunTest(string source) =>
             new SnapshotRunner<ValueObjectGenerator>()
                 .WithSource(source)
-                .WithPackage(new NuGetPackage("ServiceStack.Text", "8.2.2", "lib/net8.0" ))
+                //.WithPackage(new NuGetPackage("ServiceStack.Text", "8.2.2", "lib/net8.0" ))
                 .RunOn(TargetFramework.Net8_0);
     }
 
@@ -38,7 +38,7 @@ public class GeneralTests
         static Task RunTest(string source) =>
             new SnapshotRunner<ValueObjectGenerator>()
                 .WithSource(source)
-                .WithPackage(new NuGetPackage("ServiceStack.Text", "8.2.2", "lib/net8.0" ))
+                // .WithPackage(new NuGetPackage("ServiceStack.Text", "8.2.2", "lib/net8.0" ))
                 .RunOn(TargetFramework.Net8_0);
     }
 
@@ -56,7 +56,7 @@ public class GeneralTests
         static Task RunTest(string source) =>
             new SnapshotRunner<ValueObjectGenerator>()
                 .WithSource(source)
-                .WithPackage(new NuGetPackage("ServiceStack.Text", "8.2.2", "lib/net8.0" ))
+                // .WithPackage(new NuGetPackage("ServiceStack.Text", "8.2.2", "lib/net8.0" ))
                 .RunOn(TargetFramework.Net8_0);
     }
 
@@ -74,7 +74,7 @@ public class GeneralTests
         static Task RunTest(string source) =>
             new SnapshotRunner<ValueObjectGenerator>()
                 .WithSource(source)
-                .WithPackage(new NuGetPackage("ServiceStack.Text", "8.2.2", "lib/net8.0" ))
+                // .WithPackage(new NuGetPackage("ServiceStack.Text", "8.2.2", "lib/net8.0" ))
                 .RunOn(TargetFramework.Net8_0);
     }
 
