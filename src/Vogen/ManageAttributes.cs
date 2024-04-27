@@ -1,5 +1,6 @@
 using System.Collections.Immutable;
 using System.Linq;
+using System.Threading;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
@@ -16,20 +17,21 @@ internal static class ManageAttributes
     /// If some are specified, then they are validated.
     /// If anything is invalid, a compilation error is raised.
     /// </summary>
-    /// <param name="defaults"></param>
-    /// <param name="compilation"></param>
+    /// <param name="ctx"></param>
     /// <returns></returns>
     public static VogenConfigurationBuildResult GetDefaultConfigFromGlobalAttribute(
-        ImmutableArray<AttributeSyntax> defaults,
-        Compilation compilation)
+        GeneratorAttributeSyntaxContext ctx)
     {
-        if (defaults.IsDefaultOrEmpty)
+        var assemblyAttributes = ctx.TargetSymbol.GetAttributes();
+        
+        if (assemblyAttributes.IsDefaultOrEmpty)
         {
-            // No global defaults
             return VogenConfigurationBuildResult.Null;
         }
 
-        return GetDefaultConfigFromGlobalAttribute(compilation);
+        AttributeData attr = assemblyAttributes.ElementAt(0);
+
+        return BuildConfigurationFromAttributes.TryBuildFromVogenDefaultsAttribute(attr);
     }
 
     /// <summary>
@@ -40,10 +42,9 @@ internal static class ManageAttributes
     /// </summary>
     /// <param name="compilation"></param>
     /// <returns></returns>
-    public static VogenConfigurationBuildResult GetDefaultConfigFromGlobalAttribute(
-        Compilation compilation)
+    public static VogenConfigurationBuildResult GetDefaultConfigFromGlobalAttribute(Compilation compilation)
     {
-        var assemblyAttributes = compilation.Assembly.GetAttributes();
+        ImmutableArray<AttributeData> assemblyAttributes = compilation.Assembly.GetAttributes();
         if (assemblyAttributes.IsDefaultOrEmpty)
         {
             return VogenConfigurationBuildResult.Null;
@@ -74,27 +75,74 @@ internal static class ManageAttributes
     /// </summary>
     /// <param name="context"></param>
     /// <returns>The syntax of the attribute if it matches the global defaults attribute, otherwise null.</returns>
-    public static AttributeSyntax? TryGetAssemblyLevelDefaultsAttribute(GeneratorSyntaxContext context)
+    public static AttributeSyntax? TryGetAssemblyLevelDefaultsAttribute(GeneratorAttributeSyntaxContext context)
     {
-        // we know the node is a AttributeListSyntax thanks to IsSyntaxTargetForGeneration
-        var attributeListSyntax = (AttributeListSyntax) context.Node;
+        ImmutableArray<AttributeData> assemblyAttributes = context.TargetSymbol.GetAttributes();
 
-        foreach (AttributeSyntax attributeSyntax in attributeListSyntax.Attributes)
+        if (assemblyAttributes.IsDefaultOrEmpty)
         {
-            if (context.SemanticModel.GetSymbolInfo(attributeSyntax).Symbol is not IMethodSymbol attributeSymbol)
+            return null;
+        }
+        
+        foreach (AttributeData? attribute in assemblyAttributes)
+        {
+            var attrClass = attribute.AttributeClass;
+            
+            if (!(attrClass?.Name is "VogenDefaultsAttribute" or "VogenDefaults" &&
+                  attrClass.ToDisplayString() == "Vogen.VogenDefaultsAttribute"))
             {
                 continue;
             }
+            
+            SyntaxNode? syntax = attribute.ApplicationSyntaxReference?.GetSyntax();
 
-            INamedTypeSymbol attributeContainingTypeSymbol = attributeSymbol.ContainingType;
-            string fullName = attributeContainingTypeSymbol.ToDisplayString();
-
-            if (fullName == "Vogen.VogenDefaultsAttribute")
-            {
-                return attributeSyntax;
-            }
+            return syntax as AttributeSyntax;
         }
 
         return null;
+    }
+
+    /// <summary>
+    /// Tries to get the syntax element for any matching attribute that might exist in the provided context.
+    /// </summary>
+    /// <param name="context"></param>
+    /// <param name="cancellationToken"></param>
+    /// <returns>The syntax of the attribute if it matches the global defaults attribute, otherwise null.</returns>
+    public static AttributeSyntax? TryGetAssemblyLevelDefaultsAttribute2(GeneratorAttributeSyntaxContext context,
+        CancellationToken cancellationToken)
+    {
+        var attributes = context.Attributes;
+        if (attributes.IsDefaultOrEmpty)
+        {
+            return null;
+        }
+        
+        AttributeData a = attributes.ElementAt(0);
+        
+        var n = a.ApplicationSyntaxReference?.GetSyntax() as AttributeSyntax;
+        return n;
+        // ImmutableArray<AttributeData> assemblyAttributes = context.TargetSymbol.GetAttributes();
+        //
+        // if (assemblyAttributes.IsDefaultOrEmpty)
+        // {
+        //     return null;
+        // }
+        //
+        // foreach (AttributeData? attribute in assemblyAttributes)
+        // {
+        //     var attrClass = attribute.AttributeClass;
+        //     
+        //     if (!(attrClass?.Name is "VogenDefaultsAttribute" or "VogenDefaults" &&
+        //           attrClass.ToDisplayString() == "Vogen.VogenDefaultsAttribute"))
+        //     {
+        //         continue;
+        //     }
+        //     
+        //     SyntaxNode? syntax = attribute.ApplicationSyntaxReference?.GetSyntax();
+        //
+        //     return syntax as AttributeSyntax;
+        // }
+
+        //return null;
     }
 }

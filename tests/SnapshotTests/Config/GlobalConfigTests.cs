@@ -8,7 +8,7 @@ namespace SnapshotTests.Config;
 public class GlobalConfigTests
 {
     [Fact]
-    public Task Disable_stack_trace_recoding_in_debug()
+    public Task Disable_stack_trace_recording_in_debug()
     {
         var source = @"using System;
 using Vogen;

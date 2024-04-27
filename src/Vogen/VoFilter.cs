@@ -8,17 +8,6 @@ namespace Vogen;
 
 internal static class VoFilter
 {
-    /// <summary>
-    /// This is stage 1 in the pipeline - the 'quick filter'.  We find out is it a type declaration and does it have any attributes? - don't allocate anything
-    /// here as this is called a **lot** (every time the editor is changed, i.e. key-presses).
-    /// </summary>
-    /// <param name="syntaxNode"></param>
-    /// <returns></returns>
-    public static bool IsTarget(SyntaxNode syntaxNode) =>
-        syntaxNode is TypeDeclarationSyntax {AttributeLists.Count: > 0};
-
-    // We return all value object attributes here. There can only be one, but we report
-    // it later with the location from the syntax.
     public static IEnumerable<AttributeData> TryGetValueObjectAttributes(INamedTypeSymbol voSymbolInformation)
     {
         var attrs = voSymbolInformation.GetAttributes();
@@ -29,7 +18,6 @@ internal static class VoFilter
                      || a.AttributeClass?.BaseType?.BaseType?.FullName() == "Vogen.ValueObjectAttribute");
     }
 
-    // This is stage 2 in the pipeline - we filter down to just 1 target
     public static VoTarget? TryGetTarget(GeneratorSyntaxContext context)
     {
         var voSyntaxInformation = (TypeDeclarationSyntax) context.Node;
@@ -57,6 +45,9 @@ internal static class VoFilter
         return null;
     }
 
+    public static bool IsTarget(SyntaxNode syntaxNode) => 
+        syntaxNode is TypeDeclarationSyntax { AttributeLists.Count: > 0 };
+
     public static bool IsTarget(INamedTypeSymbol? voClass) => 
-        voClass is not null && TryGetValueObjectAttributes(voClass).Any();
+        voClass is not null && TryGetValueObjectAttributes(voClass).Any();    
 }
