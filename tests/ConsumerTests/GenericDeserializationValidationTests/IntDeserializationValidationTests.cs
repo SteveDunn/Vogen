@@ -9,7 +9,6 @@ using LinqToDB;
 
 namespace ConsumerTests.GenericDeserializationValidationTests;
 
-#if NET7_0_OR_GREATER
 public class IntDeserializationValidationTests
 {
     [Fact]
@@ -156,4 +155,3 @@ public class IntDeserializationValidationTests
         vo.Should().ThrowExactly<ValueObjectValidationException>().WithMessage("must be greater than zero");
     }
 }
-#endif

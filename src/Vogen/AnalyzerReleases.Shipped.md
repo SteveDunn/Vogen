@@ -11,3 +11,11 @@ AddValidationMethod | Usage | Info | AddValidationAnalyzer
 VOG010 | Usage | Error | DoNotUseNewAnalyzer
 VOG009 | Usage | Error | DoNotUseDefaultAnalyzer
 VOG025 | Usage | Error | DoNotUseReflection
+
+## Release 4.0.1
+
+### New Rules
+
+Rule ID | Category | Severity | Notes
+--------|----------|----------|-------
+VOG026 | Usage | Warning  | DoNotDeriveFromVogenAttributes

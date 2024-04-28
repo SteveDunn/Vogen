@@ -71,7 +71,6 @@ public partial struct Vo2
 {
 }
 
-#if NET7_0_OR_GREATER
 [ValueObject<string>(stringComparers: StringComparersGeneration.Generate)]
 public partial class StringVo_Class_Generic
 {
@@ -91,6 +90,3 @@ public partial record struct StringVo_RecordStruct_Generic
 public partial struct StringVo_Struct_Generic
 {
 }
-
-#endif
-

@@ -14,7 +14,6 @@ namespace ConsumerTests
 {
     public class CreationTests
     {
-#if NET7_0_OR_GREATER
         [Fact]
     public void Creation_Happy_Path_MyIntGeneric()
     {
@@ -24,7 +23,6 @@ namespace ConsumerTests
         vo1.Should().Be(vo2);
         (vo1 == vo2).Should().BeTrue();
     }
-#endif
 
         // There is an analyzer that stops creation of VOs via Activator.CreateInstance.
         // This test is here to ensure that it *only* catches System.Activator.

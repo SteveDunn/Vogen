@@ -2,7 +2,6 @@
 
 namespace ConsumerTests.GenericDeserializationValidationTests;
 
-#if NET7_0_OR_GREATER
 [ValueObject<int>(Conversions.TypeConverter, deserializationStrictness: DeserializationStrictness.AllowAnything)]
 public partial class Vo_AllowAnything
 {
@@ -100,4 +99,3 @@ public class Generic_DeserializationValidationTests
         return t;
     }
 }
-#endif

@@ -7,8 +7,6 @@ using Microsoft.EntityFrameworkCore;
 
 namespace ConsumerTests.GenericDeserializationValidationTests;
 
-#if NET7_0_OR_GREATER
-
 #region Value Objects
 [ValueObject<int>(Conversions.DapperTypeHandler | Conversions.EfCoreValueConverter | Conversions.LinqToDbValueConverter | Conversions.NewtonsoftJson | Conversions.SystemTextJson | Conversions.TypeConverter)]
 public partial class MyVoInt_should_not_bypass_validation
@@ -122,4 +120,3 @@ public class DeserializationValidationTestLinqToDbTestStringEntity
 }
 #endregion
 #endregion
-#endif

@@ -9,7 +9,6 @@ using LinqToDB;
 
 namespace ConsumerTests.GenericDeserializationValidationTests;
 
-#if NET7_0_OR_GREATER
 public class StringDeserializationValidationTests
 {
     [Fact]
@@ -167,4 +166,3 @@ public class StringDeserializationValidationTests
         vo.Should().ThrowExactly<ValueObjectValidationException>().WithMessage("length must be greater than ten characters");
     }
 }
-#endif

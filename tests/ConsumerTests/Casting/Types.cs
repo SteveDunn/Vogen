@@ -15,13 +15,10 @@ public partial class Class_implicit_both_ways
 {
 }
 
-#if NET7_0_OR_GREATER
-
 [ValueObject<string>(toPrimitiveCasting: CastOperator.None, fromPrimitiveCasting: CastOperator.None)]
 public partial class Class_default_generic
 {
 }
-#endif
 
 [ValueObject(typeof(string))]
 public partial class Struct_default
@@ -38,10 +35,7 @@ public partial class Struct_implicit_both_ways
 {
 }
 
-#if NET7_0_OR_GREATER
-
 [ValueObject<string>(toPrimitiveCasting: CastOperator.None, fromPrimitiveCasting: CastOperator.None)]
 public partial class Struct_default_generic
 {
 }
-#endif
