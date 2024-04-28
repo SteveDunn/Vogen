@@ -1,5 +1,4 @@
-﻿#if NET6_0_OR_GREATER
-#nullable disable
+﻿#nullable disable
 
 using System.Text.Json;
 
@@ -35,4 +34,3 @@ public class Byte
     }
 }
 
-#endif

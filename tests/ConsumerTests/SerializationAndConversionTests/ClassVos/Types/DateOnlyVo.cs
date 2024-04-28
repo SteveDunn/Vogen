@@ -1,6 +1,4 @@
-﻿#if NET6_0_OR_GREATER
-
-namespace Vogen.IntegrationTests.TestTypes.ClassVos
+﻿namespace Vogen.IntegrationTests.TestTypes.ClassVos
 {
     [ValueObject(conversions: Conversions.None, underlyingType: typeof(DateOnly))]
     public partial class DateOnlyVo { }
@@ -29,5 +27,3 @@ namespace Vogen.IntegrationTests.TestTypes.ClassVos
     [ValueObject(conversions: Conversions.LinqToDbValueConverter, underlyingType: typeof(DateOnly))]
     public partial class LinqToDbDateOnlyVo { }
 }
-
-#endif

@@ -10,7 +10,7 @@ The Value Objects wrap simple primitives such as `int`, `string`, `double` etc.
 To get started, add this package, and add a type such as:
 
 ```csharp
-[ValueObject(typeof(int))]
+[ValueObject<int>]
 public partial struct CustomerId 
 {
 }
@@ -23,16 +23,16 @@ You can now treat `CustomerId` as you would an `int` and there is very little pe
 And your method signatures change from:
 
 ```charp
-public void HandleCustomer(int customerId)`
+void HandleCustomer(int customerId)
 ```
 
 to
 
 ```charp
-public void HandleCustomer(CustomerId customerId)`
+void HandleCustomer(CustomerId customerId)
 ```
 
-The Source Generator generates code for things like creating the object and for performing equality. 
+The Source Generator generates code for things like creating the object and for performing equality.
 
 Value Objects help combat Primitive Obsession. Primitive Obsession means being obsessed with primitives.  It is a Code Smell that degrades the quality of software.
 
@@ -65,7 +65,7 @@ var customerId = CustomerId.From(42);
 `CustomerId` is declared as:
 
 ```csharp
-[ValueObject(typeof(int))]
+[ValueObject<int>]
 public partial struct CustomerId 
 {
 }
@@ -75,7 +75,7 @@ That's all you need to do to switch from a primitive to a Value Object.
 Here it is again with some validation
 
 ```csharp
-[ValueObject(typeof(int))]
+[ValueObject<int>]
 public partial struct CustomerId 
 {
     private static Validation Validate(int value) => 
@@ -86,12 +86,12 @@ public partial struct CustomerId
 This allows us to have more _strongly typed_ domain objects instead of primitives, which makes the code easier to read and enforces better method signatures, so instead of:
 
 ``` cs
-public void DoSomething(int customerId, int supplierId, int amount)
+void DoSomething(int customerId, int supplierId, int amount)
 ```
 we can have:
 
 ``` cs
-public void DoSomething(CustomerId customerId, SupplierId supplierId, Amount amount)
+void DoSomething(CustomerId customerId, SupplierId supplierId, Amount amount)
 ```
 
 Now, callers can't mess up the ordering of parameters and accidentally pass us a Supplier ID in place of a Customer ID.
@@ -115,11 +115,11 @@ This adds a `<PackageReference>` to your project. You can additionally mark the 
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
-    <TargetFramework>net6.0</TargetFramework>
+    <TargetFramework>net8.0</TargetFramework>
   </PropertyGroup>
 
   <!-- Add the package -->
-  <PackageReference Include="Vogen" Version="1.0.9" 
+  <PackageReference Include="Vogen" Version="4.0.0" 
     PrivateAssets="all" ExcludeAssets="runtime" />
   <!-- -->
 
@@ -130,21 +130,17 @@ This adds a `<PackageReference>` to your project. You can additionally mark the 
 
 Here's the benchmarks comparing a native int to a ValueObject:
 
-```ini
 |                  Method |     Mean |    Error |   StdDev | Ratio | Allocated |
 |------------------------ |---------:|---------:|---------:|------:|----------:|
 |        UsingIntNatively | 17.04 ns | 0.253 ns | 0.014 ns |  1.00 |         - |
 |  UsingValueObjectStruct | 19.76 ns | 2.463 ns | 0.135 ns |  1.16 |         - |
-```
 
 There's hardly any speed overhead, and no memory overhead.
 
-The next most common scenario is using a VO class to represent a natits are:
+The next most common scenario is using a VO to represent a string:
 
-```ini
 |                   Method |     Mean |    Error |  StdDev | Ratio | Allocated |
 |------------------------- |---------:|---------:|--------:|------:|----------:|
 |      UsingStringNatively | 204.4 ns |  8.09 ns | 0.44 ns |  1.00 |     256 B |
 |  UsingValueObjectAsClass | 250.7 ns | 29.97 ns | 1.64 ns |  1.23 |     328 B |
 | UsingValueObjectAsStruct | 248.9 ns | 18.82 ns | 1.03 ns |  1.22 |     304 B |
-```

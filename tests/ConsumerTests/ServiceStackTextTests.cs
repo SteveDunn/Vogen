@@ -7,10 +7,8 @@ namespace ConsumerTests.ServiceStackTextTests;
 [ValueObject(typeof(int))]
 public partial struct MyStructInt { }
 
-#if NET7_0_OR_GREATER
 [ValueObject<int>]
 public partial struct MyGenericStructInt { }
-#endif
 
 [ValueObject(typeof(int))]
 public partial struct MyStructInt2 { }

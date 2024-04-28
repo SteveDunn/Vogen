@@ -1,6 +1,4 @@
-﻿#if NET6_0_OR_GREATER
-
-#nullable disable
+﻿#nullable disable
 using System.ComponentModel;
 using System.Globalization;
 using System.Linq;
@@ -59,7 +57,6 @@ namespace Vogen.IntegrationTests.SerializationAndConversionTests.ClassVos
         }
        
 
-#if NET7_0_OR_GREATER
         [Fact]
         public void CanSerializeToString_WithNewtonsoftJsonProvider()
         {
@@ -158,7 +155,6 @@ namespace Vogen.IntegrationTests.SerializationAndConversionTests.ClassVos
             newtonsoft.Should().Be(expected);
             systemText.Should().Be(expected);
         }
-#endif
         
         [Fact]
         public void WhenEfCoreValueConverterUsesValueConverter()
@@ -272,5 +268,3 @@ namespace Vogen.IntegrationTests.SerializationAndConversionTests.ClassVos
         }
     }
 }
-
-#endif

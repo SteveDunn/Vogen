@@ -13,17 +13,13 @@ public static class ModuleInitialization
         SqlMapper.AddTypeHandler(new DeserializationValidationTests.MyVoString_should_not_bypass_validation.DapperTypeHandler());
         SqlMapper.AddTypeHandler(new DeserializationValidationTests.MyVoString_should_bypass_validation.DapperTypeHandler());
 
-#if NET6_0_OR_GREATER
         MappingSchema.Default.SetConverter<DateTime, TimeOnly>(dt => TimeOnly.FromDateTime(dt));
         SqlMapper.AddTypeHandler(new Vogen.IntegrationTests.TestTypes.ClassVos.DapperDateOnlyVo.DapperTypeHandler());
         SqlMapper.AddTypeHandler(new Vogen.IntegrationTests.TestTypes.ClassVos.DapperTimeOnlyVo.DapperTypeHandler());
-#endif
 
-#if NET7_0_OR_GREATER
         SqlMapper.AddTypeHandler(new GenericDeserializationValidationTests.MyVoInt_should_not_bypass_validation.DapperTypeHandler());
         SqlMapper.AddTypeHandler(new GenericDeserializationValidationTests.MyVoString_should_not_bypass_validation.DapperTypeHandler());
         SqlMapper.AddTypeHandler(new GenericDeserializationValidationTests.MyVoString_should_bypass_validation.DapperTypeHandler());
-#endif
 
         SqlMapper.AddTypeHandler(new Vogen.IntegrationTests.TestTypes.ClassVos.DapperFooVo.DapperTypeHandler());
         SqlMapper.AddTypeHandler(new Vogen.IntegrationTests.TestTypes.ClassVos.DapperCharVo.DapperTypeHandler());
@@ -84,6 +80,5 @@ public static class ModuleInitialization
         SqlMapper.AddTypeHandler(new Vogen.IntegrationTests.TestTypes.RecordStructVos.DapperDoubleVo.DapperTypeHandler());
         SqlMapper.AddTypeHandler(new Vogen.IntegrationTests.TestTypes.RecordStructVos.DapperDecimalVo.DapperTypeHandler());
         SqlMapper.AddTypeHandler(new Vogen.IntegrationTests.TestTypes.RecordStructVos.DapperGuidVo.DapperTypeHandler());
-
     }
 }

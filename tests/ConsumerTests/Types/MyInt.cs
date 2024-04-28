@@ -12,7 +12,6 @@ public partial class MyInt
     }
 }
 
-#if NET7_0_OR_GREATER
 [ValueObject<int>]
 public partial class MyIntGeneric
 {
@@ -24,4 +23,3 @@ public partial class MyIntGeneric
         return Validation.Invalid("must be greater than zero");
     }
 }
-#endif

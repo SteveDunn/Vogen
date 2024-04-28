@@ -79,6 +79,36 @@ public class GeneralTests
     }
 
     [Fact]
+    public async Task Can_use_derived_ValueObjectAttribute()
+    {
+        var source = @"using System;
+  using Vogen;
+
+public class IntVoAttribute : ValueObjectAttribute<int>
+{
+}
+
+  [IntVo]
+  public partial struct MyVo { }
+
+internal class C
+{
+    C() {
+        MyVo.From(123);
+    }
+}
+";
+
+        await RunTest(source);
+
+        static Task RunTest(string source) =>
+            new SnapshotRunner<ValueObjectGenerator>()
+                .WithSource(source)
+                .IgnoreInitialCompilationErrors()
+                .RunOn(TargetFramework.Net8_0);
+    }
+
+    [Fact]
     public async Task EFCore_generated_stuff()
     {
         var source = @"using Vogen;

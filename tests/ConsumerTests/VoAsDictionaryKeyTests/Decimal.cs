@@ -1,5 +1,4 @@
-﻿#if NET6_0_OR_GREATER
-#nullable disable
+﻿#nullable disable
 
 using System.Text.Json;
 
@@ -34,5 +33,3 @@ public class DecimalTests
         d2[EmployeeTypeDecimal.Operator].Should().Contain(new Employee("Dave Angel", 42));
     }
 }
-
-#endif

@@ -9,10 +9,8 @@ namespace ConsumerTests.HashCodes;
 [ValueObject(typeof(int))]
 public partial struct MyStructInt { }
 
-#if NET7_0_OR_GREATER
 [ValueObject<int>]
 public partial struct MyGenericStructInt { }
-#endif
 
 [ValueObject(typeof(int))]
 public partial struct MyStructInt2 { }
@@ -66,11 +64,9 @@ public class HashCodeTests
 
             MyStructInt.From(-1).GetHashCode().Should().Be(MyStructInt2.From(-1).GetHashCode());
 
-#if NET7_0_OR_GREATER
             MyGenericStructInt.From(0).GetHashCode().Should().Be(MyStructInt2.From(0).GetHashCode());
 
             MyGenericStructInt.From(-1).GetHashCode().Should().Be(MyStructInt2.From(-1).GetHashCode());
-#endif
         }
     }
 

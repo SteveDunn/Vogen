@@ -1,8 +1,6 @@
 ﻿namespace ConsumerTests.IComparableTests;
-#if NET6_0_OR_GREATER
 [ValueObject(typeof(DateOnly))]
 public partial struct DOS1 { }
-#endif
 
 [ValueObject(typeof(int))]
 public partial struct S1 { }
@@ -32,7 +30,6 @@ public class IComparableTests
 {
     public class StructTests
     {
-#if NET6_0_OR_GREATER
         [Fact]
         public void Underlying_type_of_DateOnly_means_the_vo_is_IComparable()
         {
@@ -51,7 +48,6 @@ public class IComparableTests
             l[1].Value.Should().Be(second);
             l[2].Value.Should().Be(third);
         }
-#endif
 
         [Fact]
         public void Underlying_type_of_int_means_the_vo_is_IComparable()
