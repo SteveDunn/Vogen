@@ -8,6 +8,31 @@ namespace SnapshotTests.GeneralStuff;
 [UsesVerify]
 public class GeneralTests
 {
+    [Theory]
+    [InlineData("struct")]
+    [InlineData("class")]
+    [InlineData("record struct")]
+    [InlineData("record class")]
+    public async Task Can_specify_a_factory_method_for_wrappers_for_guids(string type)
+    {
+        var source = $$"""
+
+                     using System;
+                     using Vogen;
+
+                     [assembly: VogenDefaults(customizations: Customizations.AddFactoryMethodForGuids)]
+                     
+                       [ValueObject<Guid>]
+                       public partial {{type}} MyVo { }
+
+                     """;
+
+            await new SnapshotRunner<ValueObjectGenerator>()
+                .WithSource(source)
+                .CustomizeSettings(s => s.UseFileName(TestHelper.ShortenForFilename(type)))
+                .RunOn(TargetFramework.Net8_0);
+    }
+
     [Fact]
     public async Task ServiceStackDotTextConversion_generates_static_constructor_for_strings()
     {
@@ -21,7 +46,6 @@ public class GeneralTests
         static Task RunTest(string source) =>
             new SnapshotRunner<ValueObjectGenerator>()
                 .WithSource(source)
-                //.WithPackage(new NuGetPackage("ServiceStack.Text", "8.2.2", "lib/net8.0" ))
                 .RunOn(TargetFramework.Net8_0);
     }
 
@@ -56,7 +80,6 @@ public class GeneralTests
         static Task RunTest(string source) =>
             new SnapshotRunner<ValueObjectGenerator>()
                 .WithSource(source)
-                // .WithPackage(new NuGetPackage("ServiceStack.Text", "8.2.2", "lib/net8.0" ))
                 .RunOn(TargetFramework.Net8_0);
     }
 
@@ -74,7 +97,6 @@ public class GeneralTests
         static Task RunTest(string source) =>
             new SnapshotRunner<ValueObjectGenerator>()
                 .WithSource(source)
-                // .WithPackage(new NuGetPackage("ServiceStack.Text", "8.2.2", "lib/net8.0" ))
                 .RunOn(TargetFramework.Net8_0);
     }
 
