@@ -14,9 +14,10 @@ static class SemanticHelper
 
         var prefix = FullNamespace(symbol);
         var suffix = "";
+        
         if (symbol.Arity > 0)
         {
-            suffix = $"<{string.Join(", ", symbol.TypeArguments.Select(targ => FullName((INamedTypeSymbol) targ)))}>";
+            suffix = $"<{string.Join(", ", symbol.TypeArguments.Select(a => FullName(a as INamedTypeSymbol)))}>";
         }
 
         if (prefix != "")
