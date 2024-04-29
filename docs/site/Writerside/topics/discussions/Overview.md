@@ -152,7 +152,7 @@ Please see the [performance metrics](Performance.md) for more information.
   and explanation.
 
 * Tutorials—take you by the hand through a series of steps to create an application that uses Vogen.
-  Start here if you’re new to Vogen.
+  Start here if you're new to Vogen.
 
 * Reference guides-contains technical reference for Vogen usage, describing how it works and how to use it.
   The Assumption is that you have a basic understanding of key concepts.

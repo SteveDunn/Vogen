@@ -119,6 +119,6 @@ From what I've read, it's not recommended to share the DB Context across threads
   Yes, it's more code, but it's explicit.
   
 <note title="Users' tips">
-<a href="efcore-tips.md">This page</a> has some handy tips provided by the community.
+<a href="efcore-tips.md" summary="Handy tips for working with EF Core">This page</a> has some handy tips provided by the community.
 
 </note>

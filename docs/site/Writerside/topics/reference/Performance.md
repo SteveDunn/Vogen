@@ -7,8 +7,8 @@ This topic is incomplete and is currently being improved.
 
 (to run these yourself: `dotnet run -c Release --framework net8.0 -- --job short --filter *` in the `Vogen.Benchmarks` folder)
 
-As mentioned previously, the goal of Vogen is to achieve very similar performance compared to using primitives themselves.
-Here's a benchmark comparing the use of a validated Value Object with an underlying type of `int` vs. using an `int` natively (*primitively* 🤓)
+As mentioned previously, the goal of Vogen is to achieve similar performance compared to using primitives themselves.
+Here's a benchmark comparing a validated Value Object with an underlying type of `int` vs. using an `int` natively (*primitively* 🤓)
 
 ``` ini
 BenchmarkDotNet=v0.13.2, OS=Windows 11 (10.0.22621.1194)
@@ -45,4 +45,4 @@ WarmupCount=3
 | UsingValueObjectAsStruct | 184.8 ns | 12.19 | 0.67   | 1.22  | 0.02    | 0.0153 | 256 B     | 1.00        |
 
 
-There is a tiny amount of performance overhead, but these measurements are incredibly small. There is no memory overhead.
+There's a minor performance overhead, but these measurements are incredibly small. Also, there's no memory overhead.
