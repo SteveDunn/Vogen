@@ -3,8 +3,8 @@
 namespace Vogen;
 
 /// <summary>
-/// Customization flags. For things like treating doubles as strings
-/// during [de]serialization (for compatibility with JavaScript).
+/// Customization flags. For simple binary choices.
+/// More complex configuration options are specified as parameters in the <see cref="VogenDefaultsAttribute"/>.
 /// </summary>
 [Flags]
 public enum Customizations
@@ -23,6 +23,9 @@ public enum Customizations
     /// for more information.
     /// </summary>
     TreatNumberAsStringInSystemTextJson = 1 << 0,
-    
+ 
+    /// <summary>
+    /// For GUIDs, add a `FromNewGuid()` factory method, which is just `public static MyVo FromNewGuid() => From(Guid.NewGuid());`
+    /// </summary>
     AddFactoryMethodForGuids = 1 << 1
 }

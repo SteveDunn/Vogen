@@ -30,7 +30,7 @@ public class GeneralTests
             await new SnapshotRunner<ValueObjectGenerator>()
                 .WithSource(source)
                 .CustomizeSettings(s => s.UseFileName(TestHelper.ShortenForFilename(type)))
-                .RunOn(TargetFramework.Net8_0);
+                .RunOnAllFrameworks();
     }
 
     [Fact]

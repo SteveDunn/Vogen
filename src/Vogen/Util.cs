@@ -228,7 +228,7 @@ $$"""
     {
         if (item.UnderlyingTypeFullName == "System.Guid" && item.Customizations.HasFlag(Customizations.AddFactoryMethodForGuids))
         {
-            return $"public static {item.VoTypeName} NewGuid() {{ return From(global::System.Guid.NewGuid()); }}";
+            return $"public static {item.VoTypeName} FromNewGuid() {{ return From(global::System.Guid.NewGuid()); }}";
         }
 
         return string.Empty;
