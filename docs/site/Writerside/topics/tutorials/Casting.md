@@ -4,7 +4,6 @@
 This topic is incomplete and is currently being improved.
 </note>
 
-
 It is recommended not to use casting operators, either explicit or implicit.
 
 It might seem like a handy way to use the underlying primitive natively, but the goal of strong-typing primitives is to differentiate them from the underlying type.

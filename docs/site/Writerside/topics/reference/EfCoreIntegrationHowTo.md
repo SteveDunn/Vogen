@@ -117,4 +117,8 @@ From what I've read, it's not recommended to share the DB Context across threads
  I generally use an 'anti-corruption layer' to translate between the infrastructure and domain;
   it's a layer for converting/mapping/validation.
   Yes, it's more code, but it's explicit.
+  
+<note title="Users' tips">
+<a href="efcore-tips.md">This page</a> has some handy tips provided by the community.
 
+</note>

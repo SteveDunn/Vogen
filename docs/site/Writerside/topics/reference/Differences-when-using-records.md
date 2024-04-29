@@ -10,5 +10,5 @@ e.g. `var vo2 = vo1 with { Value = 42 }` - but initializing via this doesn't set
 would promote using a public constructor (even though the analyzer will still cause a compilation error)
 * the generated code for records still overrides `ToString` as the default enumerates fields, which we don't want
 
-Something not yet implemented is primary constructor analysis for classes in C#12, and how they will fit in with Vogen.
+Something not yet implemented is primary constructor analysis for classes in C# 12, and how they will fit in with Vogen.
 This is covered in [this issue](https://github.com/SteveDunn/Vogen/issues/563).

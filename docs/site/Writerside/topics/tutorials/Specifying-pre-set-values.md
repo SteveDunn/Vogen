@@ -57,8 +57,8 @@ public partial struct CustomerId
 }
 ```
 
-We know, from the validation tutorial that this throws an exception. This means that users can't create one with
-a zero value. All well and good. But **we** (the author of the type), want to create one with a zero.
+We know from the validation tutorial the above code throws an exception.
+This means that users can't create one with a zero value. All well and good. But **we** (the author of the type), want to create one with a zero.
 
 We can do this with a known-instance:
 

@@ -6,9 +6,12 @@ Here is what is hoisted:
 
 ## Parsing        
 
-Any method named `Parse` or `TryParse` from the underlying primitive is hoisted. Also, the `IParsable` family of interfaces (including `ISpanParsable` and `IUtf8SpanParsable`) that are **implemented publicly** by the primitive, are hoisted.
+Any method named `Parse` or `TryParse` from the underlying primitive is hoisted.
+Also, the `IParsable`
+family of interfaces (including `ISpanParsable` and `IUtf8SpanParsable`)
+that are **implemented publicly** by the primitive are hoisted.
 
-Please see the [Parsing](Parsing.md) documentation for more information.
+Please see the [Parsing](../how-to/Parsing.md) documentation for more information.
 
 ## IComparable
 

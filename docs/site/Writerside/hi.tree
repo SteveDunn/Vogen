@@ -31,6 +31,7 @@
         <toc-element topic="Overriding-methods.md"/>
         <toc-element topic="EfCoreIntegrationHowTo.md"/>
         <toc-element topic="Use-in-Swagger.md"/>
+        <toc-element topic="efcore-tips.md"/>
     </toc-element>
     <toc-element topic="Reference.md">
         <toc-element topic="Configuration.md"/>
@@ -48,6 +49,5 @@
         <toc-element topic="Parsing.md"/>
     </toc-element>
     <toc-element topic="FAQ.md">
-        <toc-element topic="How-to-identify-a-type-that-is-generated-by-Vogen.md"/>
     </toc-element>
 </instance-profile>

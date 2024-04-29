@@ -14,13 +14,13 @@ public class DoNotDeriveFromVogenAttributesAnalyzer : DiagnosticAnalyzer
     // "error RS2002: Rule 'XYZ123' is part of the next unshipped analyzer release, but is not a supported diagnostic for any analyzer"
     private static readonly DiagnosticDescriptor _rule = new DiagnosticDescriptor(
         RuleIdentifiers.DoNotDeriveFromVogenAttributes,
-        "Deriving from a Vogen attribute will be disallowed in a future release, use a type alias instead if you're using C# 12 or greater",
+        "Deriving from a Vogen attribute will be disallowed in a future release, use a type alias instead",
         "Type '{0}' should not derive from a Vogen attribute",
         RuleCategories.Usage,
         DiagnosticSeverity.Warning,
         isEnabledByDefault: true,
         description:
-        "The value object is created with a new expression. This can lead to invalid value objects in your domain. Use the From method instead.");
+        "It is better to use a type alias than derive from the ValueObject attribute. Future versions of Vogen will use faster APIs to discover this attribute, and code that derives from it will prohibit Vogen from using newer APIs. Use a type alias instead of deriving from the attribute.");
 
     public override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics => ImmutableArray.Create(_rule);
 

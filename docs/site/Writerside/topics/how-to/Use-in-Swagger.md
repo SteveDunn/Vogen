@@ -14,7 +14,7 @@ public IEnumerable<WeatherForecast> Get(CityName cityName)
 }
 ```
 
-... You can use it (e.g. at `http://localhost:5053/WeatherForecast/London`) without having to do anything else, 
+... You can use it (e.g., at `http://localhost:5053/WeatherForecast/London`) without having to do anything else, 
 but Swagger will show the field as JSON instead of the underlying type:
 
 <img border-effect="rounded" alt="swagger-json-parameter.png" src="swagger-json-parameter.png"/>

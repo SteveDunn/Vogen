@@ -1,16 +1,16 @@
 # Working with databases
 
 <note>
-This topic is incomplete and is currently being improved.
+This topic is incomplete and is being improved.
 </note>
 
-There are other converters/serializer for:
+Vogen has converters and serializers for databases, including:
 
 * Dapper
 * EFCore
 * [LINQ to DB](https://github.com/linq2db/linq2db)
 
-They are controlled by the `Conversions` enum. The following has serializers for NSJ and STJ:
+They are controlled by the `Conversions` enum. The following specifies Newtonsoft.Json and System.Text.Json converters:
 
 ```c#
 [ValueObject(conversions: Conversions.NewtonsoftJson | Conversions.SystemTextJson, underlyingType: typeof(float))]
