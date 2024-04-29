@@ -1,5 +1,9 @@
 # Overview
 
+<p >
+<img alt="cavey-logo.png" src="cavey-logo.png" width="296"/>
+</p>
+
 [Vogen](https://github.com/SteveDunn/Vogen) wraps .NET primitives. You provide this:
 
 ``` c#
@@ -140,6 +144,22 @@ primitives directly**.
 Put another way, if your `decimal` primitive represents an Account Balance, then there 
 is **extremely** low overhead of using an `AccountBalance` Value Object instead. 
 Please see the [performance metrics](Performance.md) for more information.
+
+
+## How this documentation is organized
+
+* These top level pages discuss key topics and concepts at a fairly high level and provide useful background information
+  and explanation.
+
+* Tutorials—take you by the hand through a series of steps to create an application that uses Vogen.
+  Start here if you’re new to Vogen.
+
+* Reference guides-contains technical reference for Vogen usage, describing how it works and how to use it.
+  The Assumption is that you have a basic understanding of key concepts.
+
+* How-to guides—recipes guiding you through the steps involved in addressing key problems and use-cases.
+  They are more advanced than tutorials, and they assume some knowledge of how Vogen works.
+
 
 ## Attribution
 
