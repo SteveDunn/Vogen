@@ -87,7 +87,7 @@ using Vogen;
             return instance;
         }}
 {GenerateEqualsAndHashCodes.GenerateStringComparersIfNeeded(item, tds)}        
-{GenerateCastingOperators.Generate(item,tds)}
+{GenerateCastingOperators.Generate(item,tds)}{Util.GenerateGuidFactoryMethodIfRequired(item, tds)}
         // only called internally when something has been deserialized into
         // its primitive type.
         private static {structName} Deserialize({itemUnderlyingType} value)

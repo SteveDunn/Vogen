@@ -106,7 +106,7 @@ using Vogen;
         public static global::System.Boolean operator ==({itemUnderlyingType} left, {className} right) => Equals(left, right.Value);
         public static global::System.Boolean operator !=({itemUnderlyingType} left, {className} right) => !Equals(left, right.Value);
 
-{GenerateCastingOperators.Generate(item,tds)}
+{GenerateCastingOperators.Generate(item,tds)}{Util.GenerateGuidFactoryMethodIfRequired(item, tds)}
         {GenerateComparableCode.GenerateIComparableImplementationIfNeeded(item, tds)}
 
         {GenerateCodeForTryParse.GenerateAnyHoistedTryParseMethods(item)}{GenerateCodeForParse.GenerateAnyHoistedParseMethods(item)}

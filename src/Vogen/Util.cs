@@ -223,6 +223,16 @@ $$"""
             $@"/// <summary>Returns the string representation of the underlying type</summary>
     /// <inheritdoc cref=""{item.UnderlyingTypeFullName}.ToString()"" />
     public readonly override global::System.String ToString() =>_isInitialized ? Value.ToString() : ""[UNINITIALIZED]"";";
+
+    public static string GenerateGuidFactoryMethodIfRequired(VoWorkItem item, TypeDeclarationSyntax tds)
+    {
+        if (item.UnderlyingTypeFullName == "System.Guid" && item.Customizations.HasFlag(Customizations.AddFactoryMethodForGuids))
+        {
+            return $"public static {item.VoTypeName} FromNewGuid() {{ return From(global::System.Guid.NewGuid()); }}";
+        }
+
+        return string.Empty;
+    }
 }
 
 public static class DebugGeneration
