@@ -268,7 +268,7 @@ public System.Guid Value
         {
             public override stj_number_as_string_public_partial_classConversions_NewtonsoftJson___Conversions_SystemTextJsonSystem_Guid_customized Read(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {
-                return stj_number_as_string_public_partial_classConversions_NewtonsoftJson___Conversions_SystemTextJsonSystem_Guid_customized.Deserialize(System.Guid.Parse(reader.GetString()));
+                return stj_number_as_string_public_partial_classConversions_NewtonsoftJson___Conversions_SystemTextJsonSystem_Guid_customized.Deserialize(reader.GetGuid());
             }
 
             public override void Write(System.Text.Json.Utf8JsonWriter writer, stj_number_as_string_public_partial_classConversions_NewtonsoftJson___Conversions_SystemTextJsonSystem_Guid_customized value, global::System.Text.Json.JsonSerializerOptions options)
@@ -276,10 +276,15 @@ public System.Guid Value
                 writer.WriteStringValue(value.Value);
             }
 
-#if NET6_0_OR_GREATER
+#if NET6_0_OR_GREATER // we can't call Read or use GetGuid from JsonReader as it expects a token type of string, but here we have have 'propertyname'.
             public override stj_number_as_string_public_partial_classConversions_NewtonsoftJson___Conversions_SystemTextJsonSystem_Guid_customized ReadAsPropertyName(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {
-                return stj_number_as_string_public_partial_classConversions_NewtonsoftJson___Conversions_SystemTextJsonSystem_Guid_customized.Deserialize(System.Guid.Parse(reader.GetString()));
+                if (global::System.Guid.TryParse(reader.GetString(), out global::System.Guid g))
+                {
+                    return stj_number_as_string_public_partial_classConversions_NewtonsoftJson___Conversions_SystemTextJsonSystem_Guid_customized.Deserialize(g);
+                }
+
+                throw new global::System.Text.Json.JsonException("Unable to parse the GUID for an instance of stj_number_as_string_public_partial_classConversions_NewtonsoftJson___Conversions_SystemTextJsonSystem_Guid_customized");
             }
 
             public override void WriteAsPropertyName(System.Text.Json.Utf8JsonWriter writer, stj_number_as_string_public_partial_classConversions_NewtonsoftJson___Conversions_SystemTextJsonSystem_Guid_customized value, global::System.Text.Json.JsonSerializerOptions options)

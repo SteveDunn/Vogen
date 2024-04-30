@@ -266,7 +266,7 @@ public static MyVo FromNewGuid() { return From(global::System.Guid.NewGuid()); }
         {
             public override MyVo Read(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {
-                return MyVo.Deserialize(System.Guid.Parse(reader.GetString()));
+                return MyVo.Deserialize(reader.GetGuid());
             }
 
             public override void Write(System.Text.Json.Utf8JsonWriter writer, MyVo value, global::System.Text.Json.JsonSerializerOptions options)
@@ -274,10 +274,15 @@ public static MyVo FromNewGuid() { return From(global::System.Guid.NewGuid()); }
                 writer.WriteStringValue(value.Value);
             }
 
-#if NET6_0_OR_GREATER
+#if NET6_0_OR_GREATER // we can't call Read or use GetGuid from JsonReader as it expects a token type of string, but here we have have 'propertyname'.
             public override MyVo ReadAsPropertyName(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {
-                return MyVo.Deserialize(System.Guid.Parse(reader.GetString()));
+                if (global::System.Guid.TryParse(reader.GetString(), out global::System.Guid g))
+                {
+                    return MyVo.Deserialize(g);
+                }
+
+                throw new global::System.Text.Json.JsonException("Unable to parse the GUID for an instance of MyVo");
             }
 
             public override void WriteAsPropertyName(System.Text.Json.Utf8JsonWriter writer, MyVo value, global::System.Text.Json.JsonSerializerOptions options)
