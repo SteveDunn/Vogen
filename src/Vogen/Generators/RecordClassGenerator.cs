@@ -88,7 +88,7 @@ using Vogen;
 {GenerateEqualsAndHashCodes.GenerateStringComparersIfNeeded(item, tds)}  
         // only called internally when something has been deserialized into
         // its primitive type.
-        private static {className} Deserialize({itemUnderlyingType} value)
+        private static {className} __Deserialize({itemUnderlyingType} value)
         {{
             {GenerateNullCheckIfNeeded(item)}
 

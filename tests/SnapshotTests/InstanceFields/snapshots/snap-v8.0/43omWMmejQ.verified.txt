@@ -100,7 +100,7 @@ public System.String Value
 
         // only called internally when something has been deserialized into
         // its primitive type.
-        private static internal_sealed_partial_classstring Deserialize(System.String value)
+        private static internal_sealed_partial_classstring __Deserialize(System.String value)
         {
                         if (value is null)
             {
@@ -241,7 +241,7 @@ public static readonly internal_sealed_partial_classstring MyValue = new interna
         {
             public override internal_sealed_partial_classstring Read(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {
-                return internal_sealed_partial_classstring.Deserialize(reader.GetString());
+                return internal_sealed_partial_classstring.__Deserialize(reader.GetString());
             }
 
             public override void Write(System.Text.Json.Utf8JsonWriter writer, internal_sealed_partial_classstring value, global::System.Text.Json.JsonSerializerOptions options)
@@ -252,7 +252,7 @@ public static readonly internal_sealed_partial_classstring MyValue = new interna
 #if NET6_0_OR_GREATER
             public override internal_sealed_partial_classstring ReadAsPropertyName(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {
-                return internal_sealed_partial_classstring.Deserialize(reader.GetString());
+                return internal_sealed_partial_classstring.__Deserialize(reader.GetString());
             }
 
             public override void WriteAsPropertyName(System.Text.Json.Utf8JsonWriter writer, internal_sealed_partial_classstring value, global::System.Text.Json.JsonSerializerOptions options)
@@ -275,7 +275,7 @@ public static readonly internal_sealed_partial_classstring MyValue = new interna
                 var stringValue = value as global::System.String;
                 if (stringValue is not null)
                 {
-                    return internal_sealed_partial_classstring.Deserialize(stringValue);
+                    return internal_sealed_partial_classstring.__Deserialize(stringValue);
                 }
 
                 return base.ConvertFrom(context, culture, value);

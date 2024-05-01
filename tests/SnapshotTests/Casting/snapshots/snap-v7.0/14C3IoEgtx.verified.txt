@@ -100,7 +100,7 @@ public System.String Value
 
         // only called internally when something has been deserialized into
         // its primitive type.
-        private static _casting_public_sealed_partial_classCastOperator_NoneCastOperator_Explicitstring Deserialize(System.String value)
+        private static _casting_public_sealed_partial_classCastOperator_NoneCastOperator_Explicitstring __Deserialize(System.String value)
         {
                         if (value is null)
             {
@@ -235,7 +235,7 @@ public System.String Value
         {
             public override _casting_public_sealed_partial_classCastOperator_NoneCastOperator_Explicitstring Read(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {
-                return _casting_public_sealed_partial_classCastOperator_NoneCastOperator_Explicitstring.Deserialize(reader.GetString());
+                return _casting_public_sealed_partial_classCastOperator_NoneCastOperator_Explicitstring.__Deserialize(reader.GetString());
             }
 
             public override void Write(System.Text.Json.Utf8JsonWriter writer, _casting_public_sealed_partial_classCastOperator_NoneCastOperator_Explicitstring value, global::System.Text.Json.JsonSerializerOptions options)
@@ -246,7 +246,7 @@ public System.String Value
 #if NET6_0_OR_GREATER
             public override _casting_public_sealed_partial_classCastOperator_NoneCastOperator_Explicitstring ReadAsPropertyName(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {
-                return _casting_public_sealed_partial_classCastOperator_NoneCastOperator_Explicitstring.Deserialize(reader.GetString());
+                return _casting_public_sealed_partial_classCastOperator_NoneCastOperator_Explicitstring.__Deserialize(reader.GetString());
             }
 
             public override void WriteAsPropertyName(System.Text.Json.Utf8JsonWriter writer, _casting_public_sealed_partial_classCastOperator_NoneCastOperator_Explicitstring value, global::System.Text.Json.JsonSerializerOptions options)
@@ -269,7 +269,7 @@ public System.String Value
                 var stringValue = value as global::System.String;
                 if (stringValue is not null)
                 {
-                    return _casting_public_sealed_partial_classCastOperator_NoneCastOperator_Explicitstring.Deserialize(stringValue);
+                    return _casting_public_sealed_partial_classCastOperator_NoneCastOperator_Explicitstring.__Deserialize(stringValue);
                 }
 
                 return base.ConvertFrom(context, culture, value);

@@ -104,7 +104,7 @@ namespace @class
   
         // only called internally when something has been deserialized into
         // its primitive type.
-        private static escapedTestspublic_partial_recordConversions_Nonerecord__struct__float__decimal Deserialize(@class.@record.@struct.@float.@decimal value)
+        private static escapedTestspublic_partial_recordConversions_Nonerecord__struct__float__decimal __Deserialize(@class.@record.@struct.@float.@decimal value)
         {
             
 

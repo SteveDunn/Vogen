@@ -100,7 +100,7 @@ namespace Whatever
 
         // only called internally when something has been deserialized into
         // its primitive type.
-        private static BooleanThing Deserialize(System.Boolean value)
+        private static BooleanThing __Deserialize(System.Boolean value)
         {
             
 
@@ -220,7 +220,7 @@ public static readonly BooleanThing Invalid = new BooleanThing(false);
         {
             public override BooleanThing Read(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {
-                return BooleanThing.Deserialize(reader.GetBoolean());
+                return BooleanThing.__Deserialize(reader.GetBoolean());
             }
 
             public override void Write(global::System.Text.Json.Utf8JsonWriter writer, BooleanThing value, global::System.Text.Json.JsonSerializerOptions options)
@@ -231,7 +231,7 @@ public static readonly BooleanThing Invalid = new BooleanThing(false);
 #if NET6_0_OR_GREATER
             public override BooleanThing ReadAsPropertyName(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {
-                return BooleanThing.Deserialize(bool.Parse(reader.GetString()));
+                return BooleanThing.__Deserialize(bool.Parse(reader.GetString()));
             }
 
             public override void WriteAsPropertyName(global::System.Text.Json.Utf8JsonWriter writer, BooleanThing value, global::System.Text.Json.JsonSerializerOptions options)
@@ -253,8 +253,8 @@ public static readonly BooleanThing Invalid = new BooleanThing(false);
             {
                 return value switch
                 {
-                    global::System.Boolean boolValue => BooleanThing.Deserialize(boolValue),
-                    global::System.String stringValue when  !global::System.String.IsNullOrEmpty(stringValue) && global::System.Boolean.TryParse(stringValue, out var result) => BooleanThing.Deserialize(result),
+                    global::System.Boolean boolValue => BooleanThing.__Deserialize(boolValue),
+                    global::System.String stringValue when  !global::System.String.IsNullOrEmpty(stringValue) && global::System.Boolean.TryParse(stringValue, out var result) => BooleanThing.__Deserialize(result),
                     _ => base.ConvertFrom(context, culture, value),
                 };
             }

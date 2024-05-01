@@ -94,7 +94,7 @@ public System.DateTime Value
 
         // only called internally when something has been deserialized into
         // its primitive type.
-        private static public_partial_classConversions_NoneSystem_DateTime Deserialize(System.DateTime value)
+        private static public_partial_classConversions_NoneSystem_DateTime __Deserialize(System.DateTime value)
         {
             
 

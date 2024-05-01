@@ -109,7 +109,7 @@ namespace Whatever
 
         // only called internally when something has been deserialized into
         // its primitive type.
-        private static _casting_public_partial_record_structCastOperator_NoneCastOperator_Nonebyte Deserialize(System.Byte value)
+        private static _casting_public_partial_record_structCastOperator_NoneCastOperator_Nonebyte __Deserialize(System.Byte value)
         {
             
 
@@ -277,13 +277,13 @@ namespace Whatever
             public override _casting_public_partial_record_structCastOperator_NoneCastOperator_Nonebyte Read(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {
 #if NET5_0_OR_GREATER
-                return _casting_public_partial_record_structCastOperator_NoneCastOperator_Nonebyte.Deserialize(
+                return _casting_public_partial_record_structCastOperator_NoneCastOperator_Nonebyte.__Deserialize(
                     options.NumberHandling == global::System.Text.Json.Serialization.JsonNumberHandling.AllowReadingFromString && reader.TokenType == global::System.Text.Json.JsonTokenType.String
                     ? global::System.Byte.Parse(reader.GetString(), global::System.Globalization.NumberStyles.Any, global::System.Globalization.CultureInfo.InvariantCulture)
                     : reader.GetByte()
                 );
 #else
-                return _casting_public_partial_record_structCastOperator_NoneCastOperator_Nonebyte.Deserialize(reader.GetByte());
+                return _casting_public_partial_record_structCastOperator_NoneCastOperator_Nonebyte.__Deserialize(reader.GetByte());
 #endif
             }
 
@@ -295,7 +295,7 @@ namespace Whatever
 #if NET6_0_OR_GREATER
             public override _casting_public_partial_record_structCastOperator_NoneCastOperator_Nonebyte ReadAsPropertyName(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {
-                return _casting_public_partial_record_structCastOperator_NoneCastOperator_Nonebyte.Deserialize(global::System.Byte.Parse(reader.GetString(), global::System.Globalization.NumberStyles.Any, global::System.Globalization.CultureInfo.InvariantCulture));
+                return _casting_public_partial_record_structCastOperator_NoneCastOperator_Nonebyte.__Deserialize(global::System.Byte.Parse(reader.GetString(), global::System.Globalization.NumberStyles.Any, global::System.Globalization.CultureInfo.InvariantCulture));
             }
 
             public override void WriteAsPropertyName(global::System.Text.Json.Utf8JsonWriter writer, _casting_public_partial_record_structCastOperator_NoneCastOperator_Nonebyte value, global::System.Text.Json.JsonSerializerOptions options)
@@ -317,11 +317,11 @@ namespace Whatever
             {
                 return value switch
                 {
-                    global::System.Byte byteValue => _casting_public_partial_record_structCastOperator_NoneCastOperator_Nonebyte.Deserialize(byteValue),
-                    global::System.Int16 shortValue => _casting_public_partial_record_structCastOperator_NoneCastOperator_Nonebyte.Deserialize((global::System.Byte)shortValue),
-                    global::System.Int32 intValue => _casting_public_partial_record_structCastOperator_NoneCastOperator_Nonebyte.Deserialize((global::System.Byte)intValue),
-                    global::System.Int64 longValue => _casting_public_partial_record_structCastOperator_NoneCastOperator_Nonebyte.Deserialize((global::System.Byte)longValue),
-                    global::System.String stringValue when  !global::System.String.IsNullOrEmpty(stringValue) && global::System.Byte.TryParse(stringValue, out var result) => _casting_public_partial_record_structCastOperator_NoneCastOperator_Nonebyte.Deserialize(result),
+                    global::System.Byte byteValue => _casting_public_partial_record_structCastOperator_NoneCastOperator_Nonebyte.__Deserialize(byteValue),
+                    global::System.Int16 shortValue => _casting_public_partial_record_structCastOperator_NoneCastOperator_Nonebyte.__Deserialize((global::System.Byte)shortValue),
+                    global::System.Int32 intValue => _casting_public_partial_record_structCastOperator_NoneCastOperator_Nonebyte.__Deserialize((global::System.Byte)intValue),
+                    global::System.Int64 longValue => _casting_public_partial_record_structCastOperator_NoneCastOperator_Nonebyte.__Deserialize((global::System.Byte)longValue),
+                    global::System.String stringValue when  !global::System.String.IsNullOrEmpty(stringValue) && global::System.Byte.TryParse(stringValue, out var result) => _casting_public_partial_record_structCastOperator_NoneCastOperator_Nonebyte.__Deserialize(result),
                     _ => base.ConvertFrom(context, culture, value),
                 };
             }

@@ -106,7 +106,7 @@ causes Rider's debugger to crash.
 
         // only called internally when something has been deserialized into
         // its primitive type.
-        private static CustomerId Deserialize(System.Int32 value)
+        private static CustomerId __Deserialize(System.Int32 value)
         {
             
 
@@ -482,13 +482,13 @@ causes Rider's debugger to crash.
             public override CustomerId Read(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {
 #if NET5_0_OR_GREATER
-                return CustomerId.Deserialize(
+                return CustomerId.__Deserialize(
                     options.NumberHandling == global::System.Text.Json.Serialization.JsonNumberHandling.AllowReadingFromString && reader.TokenType == global::System.Text.Json.JsonTokenType.String
                     ? global::System.Int32.Parse(reader.GetString(), global::System.Globalization.NumberStyles.Any, global::System.Globalization.CultureInfo.InvariantCulture)
                     : reader.GetInt32()
                 );
 #else
-                return CustomerId.Deserialize(reader.GetInt32());
+                return CustomerId.__Deserialize(reader.GetInt32());
 #endif
             }
 
@@ -500,7 +500,7 @@ causes Rider's debugger to crash.
 #if NET6_0_OR_GREATER            
             public override CustomerId ReadAsPropertyName(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {
-                return CustomerId.Deserialize(global::System.Int32.Parse(reader.GetString(), global::System.Globalization.NumberStyles.Any, global::System.Globalization.CultureInfo.InvariantCulture));
+                return CustomerId.__Deserialize(global::System.Int32.Parse(reader.GetString(), global::System.Globalization.NumberStyles.Any, global::System.Globalization.CultureInfo.InvariantCulture));
             }
 
             public override void WriteAsPropertyName(System.Text.Json.Utf8JsonWriter writer, CustomerId value, global::System.Text.Json.JsonSerializerOptions options)
@@ -522,8 +522,8 @@ causes Rider's debugger to crash.
             {
                 return value switch
                 {
-                    global::System.Int32 intValue => CustomerId.Deserialize(intValue),
-                    global::System.String stringValue when !global::System.String.IsNullOrEmpty(stringValue) && global::System.Int32.TryParse(stringValue, out var result) => CustomerId.Deserialize(result),
+                    global::System.Int32 intValue => CustomerId.__Deserialize(intValue),
+                    global::System.String stringValue when !global::System.String.IsNullOrEmpty(stringValue) && global::System.Int32.TryParse(stringValue, out var result) => CustomerId.__Deserialize(result),
                     _ => base.ConvertFrom(context, culture, value),
                 };
             }

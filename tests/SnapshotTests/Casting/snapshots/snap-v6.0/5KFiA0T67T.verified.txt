@@ -99,7 +99,7 @@ namespace Whatever
 
         // only called internally when something has been deserialized into
         // its primitive type.
-        private static _casting_public_partial_structCastOperator_ExplicitCastOperator_Nonestring Deserialize(System.String value)
+        private static _casting_public_partial_structCastOperator_ExplicitCastOperator_Nonestring __Deserialize(System.String value)
         {
             
 
@@ -208,7 +208,7 @@ namespace Whatever
         {
             public override _casting_public_partial_structCastOperator_ExplicitCastOperator_Nonestring Read(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {
-                return _casting_public_partial_structCastOperator_ExplicitCastOperator_Nonestring.Deserialize(reader.GetString());
+                return _casting_public_partial_structCastOperator_ExplicitCastOperator_Nonestring.__Deserialize(reader.GetString());
             }
 
             public override void Write(System.Text.Json.Utf8JsonWriter writer, _casting_public_partial_structCastOperator_ExplicitCastOperator_Nonestring value, global::System.Text.Json.JsonSerializerOptions options)
@@ -219,7 +219,7 @@ namespace Whatever
 #if NET6_0_OR_GREATER
             public override _casting_public_partial_structCastOperator_ExplicitCastOperator_Nonestring ReadAsPropertyName(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {
-                return _casting_public_partial_structCastOperator_ExplicitCastOperator_Nonestring.Deserialize(reader.GetString());
+                return _casting_public_partial_structCastOperator_ExplicitCastOperator_Nonestring.__Deserialize(reader.GetString());
             }
 
             public override void WriteAsPropertyName(System.Text.Json.Utf8JsonWriter writer, _casting_public_partial_structCastOperator_ExplicitCastOperator_Nonestring value, global::System.Text.Json.JsonSerializerOptions options)
@@ -242,7 +242,7 @@ namespace Whatever
                 var stringValue = value as global::System.String;
                 if (stringValue is not null)
                 {
-                    return _casting_public_partial_structCastOperator_ExplicitCastOperator_Nonestring.Deserialize(stringValue);
+                    return _casting_public_partial_structCastOperator_ExplicitCastOperator_Nonestring.__Deserialize(stringValue);
                 }
 
                 return base.ConvertFrom(context, culture, value);

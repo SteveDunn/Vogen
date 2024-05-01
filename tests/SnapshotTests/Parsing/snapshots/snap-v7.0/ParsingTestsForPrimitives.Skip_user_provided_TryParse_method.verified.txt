@@ -100,7 +100,7 @@ namespace Whatever
 
         // only called internally when something has been deserialized into
         // its primitive type.
-        private static MyClass2 Deserialize(System.Int32 value)
+        private static MyClass2 __Deserialize(System.Int32 value)
         {
             
 
@@ -364,13 +364,13 @@ namespace Whatever
             public override MyClass2 Read(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {
 #if NET5_0_OR_GREATER
-                return MyClass2.Deserialize(
+                return MyClass2.__Deserialize(
                     options.NumberHandling == global::System.Text.Json.Serialization.JsonNumberHandling.AllowReadingFromString && reader.TokenType == global::System.Text.Json.JsonTokenType.String
                     ? global::System.Int32.Parse(reader.GetString(), global::System.Globalization.NumberStyles.Any, global::System.Globalization.CultureInfo.InvariantCulture)
                     : reader.GetInt32()
                 );
 #else
-                return MyClass2.Deserialize(reader.GetInt32());
+                return MyClass2.__Deserialize(reader.GetInt32());
 #endif
             }
 
@@ -382,7 +382,7 @@ namespace Whatever
 #if NET6_0_OR_GREATER            
             public override MyClass2 ReadAsPropertyName(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {
-                return MyClass2.Deserialize(global::System.Int32.Parse(reader.GetString(), global::System.Globalization.NumberStyles.Any, global::System.Globalization.CultureInfo.InvariantCulture));
+                return MyClass2.__Deserialize(global::System.Int32.Parse(reader.GetString(), global::System.Globalization.NumberStyles.Any, global::System.Globalization.CultureInfo.InvariantCulture));
             }
 
             public override void WriteAsPropertyName(System.Text.Json.Utf8JsonWriter writer, MyClass2 value, global::System.Text.Json.JsonSerializerOptions options)
@@ -404,8 +404,8 @@ namespace Whatever
             {
                 return value switch
                 {
-                    global::System.Int32 intValue => MyClass2.Deserialize(intValue),
-                    global::System.String stringValue when !global::System.String.IsNullOrEmpty(stringValue) && global::System.Int32.TryParse(stringValue, out var result) => MyClass2.Deserialize(result),
+                    global::System.Int32 intValue => MyClass2.__Deserialize(intValue),
+                    global::System.String stringValue when !global::System.String.IsNullOrEmpty(stringValue) && global::System.Int32.TryParse(stringValue, out var result) => MyClass2.__Deserialize(result),
                     _ => base.ConvertFrom(context, culture, value),
                 };
             }

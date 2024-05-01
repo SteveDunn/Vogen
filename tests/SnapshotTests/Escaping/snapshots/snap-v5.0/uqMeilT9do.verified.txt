@@ -104,7 +104,7 @@ namespace @class
   
         // only called internally when something has been deserialized into
         // its primitive type.
-        private static escapedTestspublic_partial_recordConversions_Nonedouble Deserialize(System.Double value)
+        private static escapedTestspublic_partial_recordConversions_Nonedouble __Deserialize(System.Double value)
         {
             
 

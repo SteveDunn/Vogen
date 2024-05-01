@@ -96,7 +96,7 @@ public System.Guid Value
 
         // only called internally when something has been deserialized into
         // its primitive type.
-        private static _casting_public_sealed_partial_classCastOperator_ExplicitCastOperator_NoneSystem_Guid Deserialize(System.Guid value)
+        private static _casting_public_sealed_partial_classCastOperator_ExplicitCastOperator_NoneSystem_Guid __Deserialize(System.Guid value)
         {
             
 
@@ -267,7 +267,7 @@ public System.Guid Value
         {
             public override _casting_public_sealed_partial_classCastOperator_ExplicitCastOperator_NoneSystem_Guid Read(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {
-                return _casting_public_sealed_partial_classCastOperator_ExplicitCastOperator_NoneSystem_Guid.Deserialize(reader.GetGuid());
+                return _casting_public_sealed_partial_classCastOperator_ExplicitCastOperator_NoneSystem_Guid.__Deserialize(reader.GetGuid());
             }
 
             public override void Write(System.Text.Json.Utf8JsonWriter writer, _casting_public_sealed_partial_classCastOperator_ExplicitCastOperator_NoneSystem_Guid value, global::System.Text.Json.JsonSerializerOptions options)
@@ -280,7 +280,7 @@ public System.Guid Value
             {
                 if (global::System.Guid.TryParse(reader.GetString(), out global::System.Guid g))
                 {
-                    return _casting_public_sealed_partial_classCastOperator_ExplicitCastOperator_NoneSystem_Guid.Deserialize(g);
+                    return _casting_public_sealed_partial_classCastOperator_ExplicitCastOperator_NoneSystem_Guid.__Deserialize(g);
                 }
 
                 throw new global::System.Text.Json.JsonException("Unable to parse the GUID for an instance of _casting_public_sealed_partial_classCastOperator_ExplicitCastOperator_NoneSystem_Guid");
@@ -305,8 +305,8 @@ public System.Guid Value
             {
                 return value switch
                 {
-                    global::System.Guid guidValue => _casting_public_sealed_partial_classCastOperator_ExplicitCastOperator_NoneSystem_Guid.Deserialize(guidValue),
-                    global::System.String stringValue when !global::System.String.IsNullOrEmpty(stringValue) && global::System.Guid.TryParse(stringValue, out var result) => _casting_public_sealed_partial_classCastOperator_ExplicitCastOperator_NoneSystem_Guid.Deserialize(result),
+                    global::System.Guid guidValue => _casting_public_sealed_partial_classCastOperator_ExplicitCastOperator_NoneSystem_Guid.__Deserialize(guidValue),
+                    global::System.String stringValue when !global::System.String.IsNullOrEmpty(stringValue) && global::System.Guid.TryParse(stringValue, out var result) => _casting_public_sealed_partial_classCastOperator_ExplicitCastOperator_NoneSystem_Guid.__Deserialize(result),
                     _ => base.ConvertFrom(context, culture, value),
                 };
             }

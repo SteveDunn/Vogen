@@ -111,7 +111,7 @@ namespace Whatever
 
         // only called internally when something has been deserialized into
         // its primitive type.
-        private static CustomerId Deserialize(System.Int32 value)
+        private static CustomerId __Deserialize(System.Int32 value)
         {
             
 
@@ -448,9 +448,9 @@ namespace Whatever
             {
                 return value switch
                 {
-                    global::System.Int32 intValue => CustomerId.Deserialize(intValue),
-                    global::System.Int64 longValue when longValue < global::System.Int32.MaxValue => CustomerId.Deserialize((global::System.Int32)longValue),
-                    global::System.String stringValue when !global::System.String.IsNullOrEmpty(stringValue) && global::System.Int32.TryParse(stringValue, out var result) => CustomerId.Deserialize(result),
+                    global::System.Int32 intValue => CustomerId.__Deserialize(intValue),
+                    global::System.Int64 longValue when longValue < global::System.Int32.MaxValue => CustomerId.__Deserialize((global::System.Int32)longValue),
+                    global::System.String stringValue when !global::System.String.IsNullOrEmpty(stringValue) && global::System.Int32.TryParse(stringValue, out var result) => CustomerId.__Deserialize(result),
                     _ => throw new global::System.InvalidCastException($"Unable to cast object of type {value.GetType()} to CustomerId"),
                 };
             }

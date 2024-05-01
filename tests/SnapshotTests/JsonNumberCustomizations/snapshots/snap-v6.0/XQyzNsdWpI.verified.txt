@@ -94,7 +94,7 @@ public System.Decimal Value
 
         // only called internally when something has been deserialized into
         // its primitive type.
-        private static stj_number_as_string_public_partial_classConversions_Nonedecimal Deserialize(System.Decimal value)
+        private static stj_number_as_string_public_partial_classConversions_Nonedecimal __Deserialize(System.Decimal value)
         {
             
 

@@ -109,7 +109,7 @@ namespace Whatever
 
         // only called internally when something has been deserialized into
         // its primitive type.
-        private static stj_number_as_string_public_readonly_partial_record_structConversions_SystemTextJsonbool_customized Deserialize(System.Boolean value)
+        private static stj_number_as_string_public_readonly_partial_record_structConversions_SystemTextJsonbool_customized __Deserialize(System.Boolean value)
         {
             
 
@@ -252,7 +252,7 @@ namespace Whatever
         {
             public override stj_number_as_string_public_readonly_partial_record_structConversions_SystemTextJsonbool_customized Read(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {
-                return stj_number_as_string_public_readonly_partial_record_structConversions_SystemTextJsonbool_customized.Deserialize(reader.GetBoolean());
+                return stj_number_as_string_public_readonly_partial_record_structConversions_SystemTextJsonbool_customized.__Deserialize(reader.GetBoolean());
             }
 
             public override void Write(global::System.Text.Json.Utf8JsonWriter writer, stj_number_as_string_public_readonly_partial_record_structConversions_SystemTextJsonbool_customized value, global::System.Text.Json.JsonSerializerOptions options)
@@ -263,7 +263,7 @@ namespace Whatever
 #if NET6_0_OR_GREATER
             public override stj_number_as_string_public_readonly_partial_record_structConversions_SystemTextJsonbool_customized ReadAsPropertyName(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {
-                return stj_number_as_string_public_readonly_partial_record_structConversions_SystemTextJsonbool_customized.Deserialize(bool.Parse(reader.GetString()));
+                return stj_number_as_string_public_readonly_partial_record_structConversions_SystemTextJsonbool_customized.__Deserialize(bool.Parse(reader.GetString()));
             }
 
             public override void WriteAsPropertyName(global::System.Text.Json.Utf8JsonWriter writer, stj_number_as_string_public_readonly_partial_record_structConversions_SystemTextJsonbool_customized value, global::System.Text.Json.JsonSerializerOptions options)

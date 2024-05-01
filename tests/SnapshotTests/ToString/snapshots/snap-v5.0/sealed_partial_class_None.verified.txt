@@ -96,7 +96,7 @@ public System.Int32 Value
 
         // only called internally when something has been deserialized into
         // its primitive type.
-        private static sealed_partial_class_None Deserialize(System.Int32 value)
+        private static sealed_partial_class_None __Deserialize(System.Int32 value)
         {
             
 
@@ -349,13 +349,13 @@ public System.Int32 Value
             public override sealed_partial_class_None Read(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {
 #if NET5_0_OR_GREATER
-                return sealed_partial_class_None.Deserialize(
+                return sealed_partial_class_None.__Deserialize(
                     options.NumberHandling == global::System.Text.Json.Serialization.JsonNumberHandling.AllowReadingFromString && reader.TokenType == global::System.Text.Json.JsonTokenType.String
                     ? global::System.Int32.Parse(reader.GetString(), global::System.Globalization.NumberStyles.Any, global::System.Globalization.CultureInfo.InvariantCulture)
                     : reader.GetInt32()
                 );
 #else
-                return sealed_partial_class_None.Deserialize(reader.GetInt32());
+                return sealed_partial_class_None.__Deserialize(reader.GetInt32());
 #endif
             }
 
@@ -367,7 +367,7 @@ public System.Int32 Value
 #if NET6_0_OR_GREATER            
             public override sealed_partial_class_None ReadAsPropertyName(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {
-                return sealed_partial_class_None.Deserialize(global::System.Int32.Parse(reader.GetString(), global::System.Globalization.NumberStyles.Any, global::System.Globalization.CultureInfo.InvariantCulture));
+                return sealed_partial_class_None.__Deserialize(global::System.Int32.Parse(reader.GetString(), global::System.Globalization.NumberStyles.Any, global::System.Globalization.CultureInfo.InvariantCulture));
             }
 
             public override void WriteAsPropertyName(System.Text.Json.Utf8JsonWriter writer, sealed_partial_class_None value, global::System.Text.Json.JsonSerializerOptions options)
@@ -389,8 +389,8 @@ public System.Int32 Value
             {
                 return value switch
                 {
-                    global::System.Int32 intValue => sealed_partial_class_None.Deserialize(intValue),
-                    global::System.String stringValue when !global::System.String.IsNullOrEmpty(stringValue) && global::System.Int32.TryParse(stringValue, out var result) => sealed_partial_class_None.Deserialize(result),
+                    global::System.Int32 intValue => sealed_partial_class_None.__Deserialize(intValue),
+                    global::System.String stringValue when !global::System.String.IsNullOrEmpty(stringValue) && global::System.Int32.TryParse(stringValue, out var result) => sealed_partial_class_None.__Deserialize(result),
                     _ => base.ConvertFrom(context, culture, value),
                 };
             }

@@ -95,7 +95,7 @@ public System.Decimal Value
 
         // only called internally when something has been deserialized into
         // its primitive type.
-        private static stj_number_as_string_public_sealed_partial_classConversions_NewtonsoftJsondecimal Deserialize(System.Decimal value)
+        private static stj_number_as_string_public_sealed_partial_classConversions_NewtonsoftJsondecimal __Deserialize(System.Decimal value)
         {
             
 
@@ -304,7 +304,7 @@ public System.Decimal Value
             public override object ReadJson(Newtonsoft.Json.JsonReader reader, System.Type objectType, object existingValue, Newtonsoft.Json.JsonSerializer serializer)
             {
                 var result = serializer.Deserialize<global::System.Decimal?>(reader);
-                return result.HasValue ? stj_number_as_string_public_sealed_partial_classConversions_NewtonsoftJsondecimal.Deserialize(result.Value) : null;
+                return result.HasValue ? stj_number_as_string_public_sealed_partial_classConversions_NewtonsoftJsondecimal.__Deserialize(result.Value) : null;
             }
         }
 

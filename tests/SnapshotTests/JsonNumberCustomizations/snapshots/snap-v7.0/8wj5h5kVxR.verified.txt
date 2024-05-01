@@ -95,7 +95,7 @@ public System.Int16 Value
 
         // only called internally when something has been deserialized into
         // its primitive type.
-        private static stj_number_as_string_public_sealed_partial_classConversions_NewtonsoftJsonshort Deserialize(System.Int16 value)
+        private static stj_number_as_string_public_sealed_partial_classConversions_NewtonsoftJsonshort __Deserialize(System.Int16 value)
         {
             
 
@@ -416,7 +416,7 @@ public System.Int16 Value
             public override object ReadJson(Newtonsoft.Json.JsonReader reader, System.Type objectType, object existingValue, Newtonsoft.Json.JsonSerializer serializer)
             {
                 var result = serializer.Deserialize<global::System.Int16?>(reader);
-                return result.HasValue ? stj_number_as_string_public_sealed_partial_classConversions_NewtonsoftJsonshort.Deserialize(result.Value) : null;
+                return result.HasValue ? stj_number_as_string_public_sealed_partial_classConversions_NewtonsoftJsonshort.__Deserialize(result.Value) : null;
             }
         }
 

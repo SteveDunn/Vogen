@@ -110,7 +110,7 @@ namespace Whatever
 
         // only called internally when something has been deserialized into
         // its primitive type.
-        private static public_partial_record_structbyte Deserialize(System.Byte value)
+        private static public_partial_record_structbyte __Deserialize(System.Byte value)
         {
             
 
@@ -395,13 +395,13 @@ public static readonly public_partial_record_structbyte MyValue = new public_par
             public override public_partial_record_structbyte Read(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {
 #if NET5_0_OR_GREATER
-                return public_partial_record_structbyte.Deserialize(
+                return public_partial_record_structbyte.__Deserialize(
                     options.NumberHandling == global::System.Text.Json.Serialization.JsonNumberHandling.AllowReadingFromString && reader.TokenType == global::System.Text.Json.JsonTokenType.String
                     ? global::System.Byte.Parse(reader.GetString(), global::System.Globalization.NumberStyles.Any, global::System.Globalization.CultureInfo.InvariantCulture)
                     : reader.GetByte()
                 );
 #else
-                return public_partial_record_structbyte.Deserialize(reader.GetByte());
+                return public_partial_record_structbyte.__Deserialize(reader.GetByte());
 #endif
             }
 
@@ -413,7 +413,7 @@ public static readonly public_partial_record_structbyte MyValue = new public_par
 #if NET6_0_OR_GREATER
             public override public_partial_record_structbyte ReadAsPropertyName(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {
-                return public_partial_record_structbyte.Deserialize(global::System.Byte.Parse(reader.GetString(), global::System.Globalization.NumberStyles.Any, global::System.Globalization.CultureInfo.InvariantCulture));
+                return public_partial_record_structbyte.__Deserialize(global::System.Byte.Parse(reader.GetString(), global::System.Globalization.NumberStyles.Any, global::System.Globalization.CultureInfo.InvariantCulture));
             }
 
             public override void WriteAsPropertyName(global::System.Text.Json.Utf8JsonWriter writer, public_partial_record_structbyte value, global::System.Text.Json.JsonSerializerOptions options)
@@ -435,11 +435,11 @@ public static readonly public_partial_record_structbyte MyValue = new public_par
             {
                 return value switch
                 {
-                    global::System.Byte byteValue => public_partial_record_structbyte.Deserialize(byteValue),
-                    global::System.Int16 shortValue => public_partial_record_structbyte.Deserialize((global::System.Byte)shortValue),
-                    global::System.Int32 intValue => public_partial_record_structbyte.Deserialize((global::System.Byte)intValue),
-                    global::System.Int64 longValue => public_partial_record_structbyte.Deserialize((global::System.Byte)longValue),
-                    global::System.String stringValue when  !global::System.String.IsNullOrEmpty(stringValue) && global::System.Byte.TryParse(stringValue, out var result) => public_partial_record_structbyte.Deserialize(result),
+                    global::System.Byte byteValue => public_partial_record_structbyte.__Deserialize(byteValue),
+                    global::System.Int16 shortValue => public_partial_record_structbyte.__Deserialize((global::System.Byte)shortValue),
+                    global::System.Int32 intValue => public_partial_record_structbyte.__Deserialize((global::System.Byte)intValue),
+                    global::System.Int64 longValue => public_partial_record_structbyte.__Deserialize((global::System.Byte)longValue),
+                    global::System.String stringValue when  !global::System.String.IsNullOrEmpty(stringValue) && global::System.Byte.TryParse(stringValue, out var result) => public_partial_record_structbyte.__Deserialize(result),
                     _ => base.ConvertFrom(context, culture, value),
                 };
             }

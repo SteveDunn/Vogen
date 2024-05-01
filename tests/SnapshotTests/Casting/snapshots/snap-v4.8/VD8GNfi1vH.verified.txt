@@ -99,7 +99,7 @@ namespace Whatever
 
         // only called internally when something has been deserialized into
         // its primitive type.
-        private static _casting_public_partial_structCastOperator_ExplicitCastOperator_Nonebool Deserialize(System.Boolean value)
+        private static _casting_public_partial_structCastOperator_ExplicitCastOperator_Nonebool __Deserialize(System.Boolean value)
         {
             
 
@@ -214,7 +214,7 @@ namespace Whatever
         {
             public override _casting_public_partial_structCastOperator_ExplicitCastOperator_Nonebool Read(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {
-                return _casting_public_partial_structCastOperator_ExplicitCastOperator_Nonebool.Deserialize(reader.GetBoolean());
+                return _casting_public_partial_structCastOperator_ExplicitCastOperator_Nonebool.__Deserialize(reader.GetBoolean());
             }
 
             public override void Write(global::System.Text.Json.Utf8JsonWriter writer, _casting_public_partial_structCastOperator_ExplicitCastOperator_Nonebool value, global::System.Text.Json.JsonSerializerOptions options)
@@ -225,7 +225,7 @@ namespace Whatever
 #if NET6_0_OR_GREATER
             public override _casting_public_partial_structCastOperator_ExplicitCastOperator_Nonebool ReadAsPropertyName(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {
-                return _casting_public_partial_structCastOperator_ExplicitCastOperator_Nonebool.Deserialize(bool.Parse(reader.GetString()));
+                return _casting_public_partial_structCastOperator_ExplicitCastOperator_Nonebool.__Deserialize(bool.Parse(reader.GetString()));
             }
 
             public override void WriteAsPropertyName(global::System.Text.Json.Utf8JsonWriter writer, _casting_public_partial_structCastOperator_ExplicitCastOperator_Nonebool value, global::System.Text.Json.JsonSerializerOptions options)
@@ -247,8 +247,8 @@ namespace Whatever
             {
                 return value switch
                 {
-                    global::System.Boolean boolValue => _casting_public_partial_structCastOperator_ExplicitCastOperator_Nonebool.Deserialize(boolValue),
-                    global::System.String stringValue when  !global::System.String.IsNullOrEmpty(stringValue) && global::System.Boolean.TryParse(stringValue, out var result) => _casting_public_partial_structCastOperator_ExplicitCastOperator_Nonebool.Deserialize(result),
+                    global::System.Boolean boolValue => _casting_public_partial_structCastOperator_ExplicitCastOperator_Nonebool.__Deserialize(boolValue),
+                    global::System.String stringValue when  !global::System.String.IsNullOrEmpty(stringValue) && global::System.Boolean.TryParse(stringValue, out var result) => _casting_public_partial_structCastOperator_ExplicitCastOperator_Nonebool.__Deserialize(result),
                     _ => base.ConvertFrom(context, culture, value),
                 };
             }

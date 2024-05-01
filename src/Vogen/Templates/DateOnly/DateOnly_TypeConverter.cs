@@ -10,8 +10,8 @@
             {
                 return value switch
                 {
-                    global::System.String stringValue when !global::System.String.IsNullOrEmpty(stringValue) && global::System.DateOnly.TryParseExact(stringValue, "O", global::System.Globalization.CultureInfo.InvariantCulture, global::System.Globalization.DateTimeStyles.None, out var result) => VOTYPE.Deserialize(result),
-                    global::System.DateOnly dateTimeValue => VOTYPE.Deserialize(dateTimeValue),
+                    global::System.String stringValue when !global::System.String.IsNullOrEmpty(stringValue) && global::System.DateOnly.TryParseExact(stringValue, "O", global::System.Globalization.CultureInfo.InvariantCulture, global::System.Globalization.DateTimeStyles.None, out var result) => VOTYPE.__Deserialize(result),
+                    global::System.DateOnly dateTimeValue => VOTYPE.__Deserialize(dateTimeValue),
                     _ => base.ConvertFrom(context, culture, value),
                 };
             }

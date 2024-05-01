@@ -100,7 +100,7 @@ namespace Whatever
 
         // only called internally when something has been deserialized into
         // its primitive type.
-        private static _casting_public_readonly_partial_structCastOperator_ExplicitCastOperator_Explicitbool Deserialize(System.Boolean value)
+        private static _casting_public_readonly_partial_structCastOperator_ExplicitCastOperator_Explicitbool __Deserialize(System.Boolean value)
         {
             
 
@@ -215,7 +215,7 @@ namespace Whatever
         {
             public override _casting_public_readonly_partial_structCastOperator_ExplicitCastOperator_Explicitbool Read(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {
-                return _casting_public_readonly_partial_structCastOperator_ExplicitCastOperator_Explicitbool.Deserialize(reader.GetBoolean());
+                return _casting_public_readonly_partial_structCastOperator_ExplicitCastOperator_Explicitbool.__Deserialize(reader.GetBoolean());
             }
 
             public override void Write(global::System.Text.Json.Utf8JsonWriter writer, _casting_public_readonly_partial_structCastOperator_ExplicitCastOperator_Explicitbool value, global::System.Text.Json.JsonSerializerOptions options)
@@ -226,7 +226,7 @@ namespace Whatever
 #if NET6_0_OR_GREATER
             public override _casting_public_readonly_partial_structCastOperator_ExplicitCastOperator_Explicitbool ReadAsPropertyName(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {
-                return _casting_public_readonly_partial_structCastOperator_ExplicitCastOperator_Explicitbool.Deserialize(bool.Parse(reader.GetString()));
+                return _casting_public_readonly_partial_structCastOperator_ExplicitCastOperator_Explicitbool.__Deserialize(bool.Parse(reader.GetString()));
             }
 
             public override void WriteAsPropertyName(global::System.Text.Json.Utf8JsonWriter writer, _casting_public_readonly_partial_structCastOperator_ExplicitCastOperator_Explicitbool value, global::System.Text.Json.JsonSerializerOptions options)
@@ -248,8 +248,8 @@ namespace Whatever
             {
                 return value switch
                 {
-                    global::System.Boolean boolValue => _casting_public_readonly_partial_structCastOperator_ExplicitCastOperator_Explicitbool.Deserialize(boolValue),
-                    global::System.String stringValue when  !global::System.String.IsNullOrEmpty(stringValue) && global::System.Boolean.TryParse(stringValue, out var result) => _casting_public_readonly_partial_structCastOperator_ExplicitCastOperator_Explicitbool.Deserialize(result),
+                    global::System.Boolean boolValue => _casting_public_readonly_partial_structCastOperator_ExplicitCastOperator_Explicitbool.__Deserialize(boolValue),
+                    global::System.String stringValue when  !global::System.String.IsNullOrEmpty(stringValue) && global::System.Boolean.TryParse(stringValue, out var result) => _casting_public_readonly_partial_structCastOperator_ExplicitCastOperator_Explicitbool.__Deserialize(result),
                     _ => base.ConvertFrom(context, culture, value),
                 };
             }

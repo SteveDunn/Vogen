@@ -96,7 +96,7 @@ public System.Byte Value
 
         // only called internally when something has been deserialized into
         // its primitive type.
-        private static internal_sealed_partial_classbyte Deserialize(System.Byte value)
+        private static internal_sealed_partial_classbyte __Deserialize(System.Byte value)
         {
             
 
@@ -410,13 +410,13 @@ public static readonly internal_sealed_partial_classbyte MyValue = new internal_
             public override internal_sealed_partial_classbyte Read(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {
 #if NET5_0_OR_GREATER
-                return internal_sealed_partial_classbyte.Deserialize(
+                return internal_sealed_partial_classbyte.__Deserialize(
                     options.NumberHandling == global::System.Text.Json.Serialization.JsonNumberHandling.AllowReadingFromString && reader.TokenType == global::System.Text.Json.JsonTokenType.String
                     ? global::System.Byte.Parse(reader.GetString(), global::System.Globalization.NumberStyles.Any, global::System.Globalization.CultureInfo.InvariantCulture)
                     : reader.GetByte()
                 );
 #else
-                return internal_sealed_partial_classbyte.Deserialize(reader.GetByte());
+                return internal_sealed_partial_classbyte.__Deserialize(reader.GetByte());
 #endif
             }
 
@@ -428,7 +428,7 @@ public static readonly internal_sealed_partial_classbyte MyValue = new internal_
 #if NET6_0_OR_GREATER
             public override internal_sealed_partial_classbyte ReadAsPropertyName(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {
-                return internal_sealed_partial_classbyte.Deserialize(global::System.Byte.Parse(reader.GetString(), global::System.Globalization.NumberStyles.Any, global::System.Globalization.CultureInfo.InvariantCulture));
+                return internal_sealed_partial_classbyte.__Deserialize(global::System.Byte.Parse(reader.GetString(), global::System.Globalization.NumberStyles.Any, global::System.Globalization.CultureInfo.InvariantCulture));
             }
 
             public override void WriteAsPropertyName(global::System.Text.Json.Utf8JsonWriter writer, internal_sealed_partial_classbyte value, global::System.Text.Json.JsonSerializerOptions options)
@@ -450,11 +450,11 @@ public static readonly internal_sealed_partial_classbyte MyValue = new internal_
             {
                 return value switch
                 {
-                    global::System.Byte byteValue => internal_sealed_partial_classbyte.Deserialize(byteValue),
-                    global::System.Int16 shortValue => internal_sealed_partial_classbyte.Deserialize((global::System.Byte)shortValue),
-                    global::System.Int32 intValue => internal_sealed_partial_classbyte.Deserialize((global::System.Byte)intValue),
-                    global::System.Int64 longValue => internal_sealed_partial_classbyte.Deserialize((global::System.Byte)longValue),
-                    global::System.String stringValue when  !global::System.String.IsNullOrEmpty(stringValue) && global::System.Byte.TryParse(stringValue, out var result) => internal_sealed_partial_classbyte.Deserialize(result),
+                    global::System.Byte byteValue => internal_sealed_partial_classbyte.__Deserialize(byteValue),
+                    global::System.Int16 shortValue => internal_sealed_partial_classbyte.__Deserialize((global::System.Byte)shortValue),
+                    global::System.Int32 intValue => internal_sealed_partial_classbyte.__Deserialize((global::System.Byte)intValue),
+                    global::System.Int64 longValue => internal_sealed_partial_classbyte.__Deserialize((global::System.Byte)longValue),
+                    global::System.String stringValue when  !global::System.String.IsNullOrEmpty(stringValue) && global::System.Byte.TryParse(stringValue, out var result) => internal_sealed_partial_classbyte.__Deserialize(result),
                     _ => base.ConvertFrom(context, culture, value),
                 };
             }

@@ -99,7 +99,7 @@ static MyVo() {
 
         // only called internally when something has been deserialized into
         // its primitive type.
-        private static MyVo Deserialize(System.DateTime value)
+        private static MyVo __Deserialize(System.DateTime value)
         {
             
 

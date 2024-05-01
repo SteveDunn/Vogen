@@ -100,7 +100,7 @@ public System.String Value
 
         // only called internally when something has been deserialized into
         // its primitive type.
-        private static StringThing Deserialize(System.String value)
+        private static StringThing __Deserialize(System.String value)
         {
                         if (value is null)
             {
@@ -236,7 +236,7 @@ public System.String Value
         {
             public override StringThing Read(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {
-                return StringThing.Deserialize(reader.GetString());
+                return StringThing.__Deserialize(reader.GetString());
             }
 
             public override void Write(System.Text.Json.Utf8JsonWriter writer, StringThing value, global::System.Text.Json.JsonSerializerOptions options)
@@ -247,7 +247,7 @@ public System.String Value
 #if NET6_0_OR_GREATER
             public override StringThing ReadAsPropertyName(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {
-                return StringThing.Deserialize(reader.GetString());
+                return StringThing.__Deserialize(reader.GetString());
             }
 
             public override void WriteAsPropertyName(System.Text.Json.Utf8JsonWriter writer, StringThing value, global::System.Text.Json.JsonSerializerOptions options)
@@ -270,7 +270,7 @@ public System.String Value
                 var stringValue = value as global::System.String;
                 if (stringValue is not null)
                 {
-                    return StringThing.Deserialize(stringValue);
+                    return StringThing.__Deserialize(stringValue);
                 }
 
                 return base.ConvertFrom(context, culture, value);

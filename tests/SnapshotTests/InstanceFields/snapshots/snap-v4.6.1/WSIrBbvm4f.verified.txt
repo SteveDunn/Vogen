@@ -106,7 +106,7 @@ namespace Whatever
   
         // only called internally when something has been deserialized into
         // its primitive type.
-        private static internal_partial_recordfloat Deserialize(System.Single value)
+        private static internal_partial_recordfloat __Deserialize(System.Single value)
         {
             
 
@@ -302,13 +302,13 @@ public static readonly internal_partial_recordfloat MyValue = new internal_parti
             public override internal_partial_recordfloat Read(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {
 #if NET5_0_OR_GREATER
-                return internal_partial_recordfloat.Deserialize(
+                return internal_partial_recordfloat.__Deserialize(
                     options.NumberHandling == global::System.Text.Json.Serialization.JsonNumberHandling.AllowReadingFromString && reader.TokenType == global::System.Text.Json.JsonTokenType.String
                     ? global::System.Single.Parse(reader.GetString(), global::System.Globalization.NumberStyles.Any, global::System.Globalization.CultureInfo.InvariantCulture)
                     : reader.GetSingle()
                 );
 #else
-                return internal_partial_recordfloat.Deserialize(reader.GetSingle());
+                return internal_partial_recordfloat.__Deserialize(reader.GetSingle());
 #endif
             }
 
@@ -320,7 +320,7 @@ public static readonly internal_partial_recordfloat MyValue = new internal_parti
 #if NET6_0_OR_GREATER
             public override internal_partial_recordfloat ReadAsPropertyName(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {
-                return internal_partial_recordfloat.Deserialize(global::System.Single.Parse(reader.GetString(), global::System.Globalization.NumberStyles.Any, global::System.Globalization.CultureInfo.InvariantCulture));
+                return internal_partial_recordfloat.__Deserialize(global::System.Single.Parse(reader.GetString(), global::System.Globalization.NumberStyles.Any, global::System.Globalization.CultureInfo.InvariantCulture));
             }
 
             public override void WriteAsPropertyName(System.Text.Json.Utf8JsonWriter writer, internal_partial_recordfloat value, global::System.Text.Json.JsonSerializerOptions options)
@@ -342,8 +342,8 @@ public static readonly internal_partial_recordfloat MyValue = new internal_parti
             {
                 return value switch
                 {
-                    global::System.Single floatValue => internal_partial_recordfloat.Deserialize(floatValue),
-                    global::System.String stringValue when !global::System.String.IsNullOrEmpty(stringValue) && global::System.Single.TryParse(stringValue, global::System.Globalization.NumberStyles.Float | global::System.Globalization.NumberStyles.AllowThousands, culture.NumberFormat, out var result) => internal_partial_recordfloat.Deserialize(result),
+                    global::System.Single floatValue => internal_partial_recordfloat.__Deserialize(floatValue),
+                    global::System.String stringValue when !global::System.String.IsNullOrEmpty(stringValue) && global::System.Single.TryParse(stringValue, global::System.Globalization.NumberStyles.Float | global::System.Globalization.NumberStyles.AllowThousands, culture.NumberFormat, out var result) => internal_partial_recordfloat.__Deserialize(result),
                     _ => base.ConvertFrom(context, culture, value),
                 };
             }

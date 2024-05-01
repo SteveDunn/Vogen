@@ -112,7 +112,7 @@ using Vogen;
 
         // only called internally when something has been deserialized into
         // its primitive type.
-        private static MyVo Deserialize(System.String value)
+        private static MyVo __Deserialize(System.String value)
         {
             
 
@@ -203,7 +203,7 @@ using Vogen;
         {
             public override MyVo Read(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {
-                return MyVo.Deserialize(reader.GetString());
+                return MyVo.__Deserialize(reader.GetString());
             }
 
             public override void Write(System.Text.Json.Utf8JsonWriter writer, MyVo value, global::System.Text.Json.JsonSerializerOptions options)
@@ -214,7 +214,7 @@ using Vogen;
 #if NET6_0_OR_GREATER
             public override MyVo ReadAsPropertyName(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {
-                return MyVo.Deserialize(reader.GetString());
+                return MyVo.__Deserialize(reader.GetString());
             }
 
             public override void WriteAsPropertyName(System.Text.Json.Utf8JsonWriter writer, MyVo value, global::System.Text.Json.JsonSerializerOptions options)
@@ -237,7 +237,7 @@ using Vogen;
                 var stringValue = value as global::System.String;
                 if (stringValue is not null)
                 {
-                    return MyVo.Deserialize(stringValue);
+                    return MyVo.__Deserialize(stringValue);
                 }
 
                 return base.ConvertFrom(context, culture, value);

@@ -111,7 +111,7 @@ namespace Whatever
 
         // only called internally when something has been deserialized into
         // its primitive type.
-        private static CustomerId Deserialize(System.Single value)
+        private static CustomerId __Deserialize(System.Single value)
         {
             
 

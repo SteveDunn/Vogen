@@ -109,7 +109,7 @@ namespace Whatever
 
         // only called internally when something has been deserialized into
         // its primitive type.
-        private static stj_number_as_string_public_partial_record_structConversions_NewtonsoftJsonSystem_DateTime_customized Deserialize(System.DateTime value)
+        private static stj_number_as_string_public_partial_record_structConversions_NewtonsoftJsonSystem_DateTime_customized __Deserialize(System.DateTime value)
         {
             
 
@@ -277,7 +277,7 @@ namespace Whatever
             public override object ReadJson(Newtonsoft.Json.JsonReader reader, System.Type objectType, object existingValue, Newtonsoft.Json.JsonSerializer serializer)
             {
                 var dt = serializer.Deserialize<global::System.DateTime?>(reader);
-                return dt.HasValue ? stj_number_as_string_public_partial_record_structConversions_NewtonsoftJsonSystem_DateTime_customized.Deserialize(dt.Value) : null;
+                return dt.HasValue ? stj_number_as_string_public_partial_record_structConversions_NewtonsoftJsonSystem_DateTime_customized.__Deserialize(dt.Value) : null;
             }
         }
 

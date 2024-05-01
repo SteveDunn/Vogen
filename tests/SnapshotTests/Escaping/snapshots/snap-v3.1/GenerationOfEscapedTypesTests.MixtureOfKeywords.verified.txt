@@ -96,7 +96,7 @@ public @record.@struct.@float.@decimal Value
 
         // only called internally when something has been deserialized into
         // its primitive type.
-        private static @event2 Deserialize(@record.@struct.@float.@decimal value)
+        private static @event2 __Deserialize(@record.@struct.@float.@decimal value)
         {
             
 
@@ -196,7 +196,7 @@ public @record.@struct.@float.@decimal Value
             public override @event2 Read(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {
                 var primitive = global::System.Text.Json.JsonSerializer.Deserialize<@record.@struct.@float.@decimal>(ref reader, options);
-                return @event2.Deserialize(primitive);
+                return @event2.__Deserialize(primitive);
             }
 
             public override void Write(System.Text.Json.Utf8JsonWriter writer, @event2 value, global::System.Text.Json.JsonSerializerOptions options)
@@ -208,7 +208,7 @@ public @record.@struct.@float.@decimal Value
             public override @event2 ReadAsPropertyName(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {
                 var primitive = global::System.Text.Json.JsonSerializer.Deserialize<@record.@struct.@float.@decimal>(ref reader, options);
-                return @event2.Deserialize(primitive);
+                return @event2.__Deserialize(primitive);
             }
 
             public override void WriteAsPropertyName(System.Text.Json.Utf8JsonWriter writer, @event2 value, global::System.Text.Json.JsonSerializerOptions options)
@@ -230,7 +230,7 @@ public @record.@struct.@float.@decimal Value
             {
                 @record.@struct.@float.@decimal ut = (@record.@struct.@float.@decimal)value;
 
-                return @event2.Deserialize(ut);
+                return @event2.__Deserialize(ut);
             }
         
             public override bool CanConvertTo(global::System.ComponentModel.ITypeDescriptorContext context, global::System.Type sourceType)

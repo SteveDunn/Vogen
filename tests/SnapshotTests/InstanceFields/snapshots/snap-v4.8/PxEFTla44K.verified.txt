@@ -100,7 +100,7 @@ namespace Whatever
 
         // only called internally when something has been deserialized into
         // its primitive type.
-        private static internal_readonly_partial_structchar Deserialize(System.Char value)
+        private static internal_readonly_partial_structchar __Deserialize(System.Char value)
         {
             
 
@@ -222,7 +222,7 @@ public static readonly internal_readonly_partial_structchar MyValue = new intern
             {
                 var s = reader.GetString();
 
-                return internal_readonly_partial_structchar.Deserialize(s[0]);
+                return internal_readonly_partial_structchar.__Deserialize(s[0]);
             }
 
             public override void Write(System.Text.Json.Utf8JsonWriter writer, internal_readonly_partial_structchar value, global::System.Text.Json.JsonSerializerOptions options)
@@ -235,7 +235,7 @@ public static readonly internal_readonly_partial_structchar MyValue = new intern
             {
                 var s = reader.GetString();
 
-                return internal_readonly_partial_structchar.Deserialize(s[0]);
+                return internal_readonly_partial_structchar.__Deserialize(s[0]);
             }
 
             public override void WriteAsPropertyName(System.Text.Json.Utf8JsonWriter writer, internal_readonly_partial_structchar value, global::System.Text.Json.JsonSerializerOptions options)
@@ -257,11 +257,11 @@ public static readonly internal_readonly_partial_structchar MyValue = new intern
             {
                 return value switch
                 {
-                    global::System.Char charValue => internal_readonly_partial_structchar.Deserialize(charValue),
-                    global::System.Int16 shortValue => internal_readonly_partial_structchar.Deserialize((global::System.Char)shortValue),
-                    global::System.Int32 intValue => internal_readonly_partial_structchar.Deserialize((global::System.Char)intValue),
-                    global::System.Int64 longValue => internal_readonly_partial_structchar.Deserialize((global::System.Char)longValue),
-                    global::System.String stringValue when  !global::System.String.IsNullOrEmpty(stringValue) && global::System.Char.TryParse(stringValue, out var result) => internal_readonly_partial_structchar.Deserialize(result),
+                    global::System.Char charValue => internal_readonly_partial_structchar.__Deserialize(charValue),
+                    global::System.Int16 shortValue => internal_readonly_partial_structchar.__Deserialize((global::System.Char)shortValue),
+                    global::System.Int32 intValue => internal_readonly_partial_structchar.__Deserialize((global::System.Char)intValue),
+                    global::System.Int64 longValue => internal_readonly_partial_structchar.__Deserialize((global::System.Char)longValue),
+                    global::System.String stringValue when  !global::System.String.IsNullOrEmpty(stringValue) && global::System.Char.TryParse(stringValue, out var result) => internal_readonly_partial_structchar.__Deserialize(result),
                     _ => base.ConvertFrom(context, culture, value),
                 };
             }

@@ -104,7 +104,7 @@ namespace Whatever
   
         // only called internally when something has been deserialized into
         // its primitive type.
-        private static stj_number_as_string_public_partial_recordConversions_Nonefloat Deserialize(System.Single value)
+        private static stj_number_as_string_public_partial_recordConversions_Nonefloat __Deserialize(System.Single value)
         {
             
 

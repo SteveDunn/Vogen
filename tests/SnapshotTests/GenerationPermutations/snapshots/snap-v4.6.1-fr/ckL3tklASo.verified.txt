@@ -108,7 +108,7 @@ namespace Whatever
 
         // only called internally when something has been deserialized into
         // its primitive type.
-        private static internal_readonly_partial_record_structConversions_Nonebool Deserialize(System.Boolean value)
+        private static internal_readonly_partial_record_structConversions_Nonebool __Deserialize(System.Boolean value)
         {
             
 

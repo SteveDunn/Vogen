@@ -104,7 +104,7 @@ namespace Whatever
   
         // only called internally when something has been deserialized into
         // its primitive type.
-        private static stj_number_as_string_public_partial_recordConversions_NoneSystem_DateTime Deserialize(System.DateTime value)
+        private static stj_number_as_string_public_partial_recordConversions_NoneSystem_DateTime __Deserialize(System.DateTime value)
         {
             
 

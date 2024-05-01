@@ -94,7 +94,7 @@ public System.Int16 Value
 
         // only called internally when something has been deserialized into
         // its primitive type.
-        private static internal_partial_classConversions_Noneshort Deserialize(System.Int16 value)
+        private static internal_partial_classConversions_Noneshort __Deserialize(System.Int16 value)
         {
             
 

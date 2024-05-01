@@ -105,7 +105,7 @@ namespace @class
   
         // only called internally when something has been deserialized into
         // its primitive type.
-        private static escapedTestspublic_sealed_partial_recordConversions_NewtonsoftJsonSystem_Guid Deserialize(System.Guid value)
+        private static escapedTestspublic_sealed_partial_recordConversions_NewtonsoftJsonSystem_Guid __Deserialize(System.Guid value)
         {
             
 
@@ -284,7 +284,7 @@ namespace @class
             public override object ReadJson(Newtonsoft.Json.JsonReader reader, System.Type objectType, object existingValue, Newtonsoft.Json.JsonSerializer serializer)
             {
                 var guid = serializer.Deserialize<System.Guid?>(reader);
-                return guid.HasValue ? escapedTestspublic_sealed_partial_recordConversions_NewtonsoftJsonSystem_Guid.Deserialize(guid.Value) : null;
+                return guid.HasValue ? escapedTestspublic_sealed_partial_recordConversions_NewtonsoftJsonSystem_Guid.__Deserialize(guid.Value) : null;
             }
         }
 

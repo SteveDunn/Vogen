@@ -94,7 +94,7 @@ public @class.@record.@struct.@float.event2 Value
 
         // only called internally when something has been deserialized into
         // its primitive type.
-        private static escapedTestspublic_partial_classConversions_Nonerecord__struct__float__event2 Deserialize(@class.@record.@struct.@float.event2 value)
+        private static escapedTestspublic_partial_classConversions_Nonerecord__struct__float__event2 __Deserialize(@class.@record.@struct.@float.event2 value)
         {
             
 

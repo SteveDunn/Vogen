@@ -100,7 +100,7 @@ namespace Whatever
 
         // only called internally when something has been deserialized into
         // its primitive type.
-        private static partial_struct_Method Deserialize(System.Int32 value)
+        private static partial_struct_Method __Deserialize(System.Int32 value)
         {
             
 
@@ -328,13 +328,13 @@ namespace Whatever
             public override partial_struct_Method Read(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {
 #if NET5_0_OR_GREATER
-                return partial_struct_Method.Deserialize(
+                return partial_struct_Method.__Deserialize(
                     options.NumberHandling == global::System.Text.Json.Serialization.JsonNumberHandling.AllowReadingFromString && reader.TokenType == global::System.Text.Json.JsonTokenType.String
                     ? global::System.Int32.Parse(reader.GetString(), global::System.Globalization.NumberStyles.Any, global::System.Globalization.CultureInfo.InvariantCulture)
                     : reader.GetInt32()
                 );
 #else
-                return partial_struct_Method.Deserialize(reader.GetInt32());
+                return partial_struct_Method.__Deserialize(reader.GetInt32());
 #endif
             }
 
@@ -346,7 +346,7 @@ namespace Whatever
 #if NET6_0_OR_GREATER            
             public override partial_struct_Method ReadAsPropertyName(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {
-                return partial_struct_Method.Deserialize(global::System.Int32.Parse(reader.GetString(), global::System.Globalization.NumberStyles.Any, global::System.Globalization.CultureInfo.InvariantCulture));
+                return partial_struct_Method.__Deserialize(global::System.Int32.Parse(reader.GetString(), global::System.Globalization.NumberStyles.Any, global::System.Globalization.CultureInfo.InvariantCulture));
             }
 
             public override void WriteAsPropertyName(System.Text.Json.Utf8JsonWriter writer, partial_struct_Method value, global::System.Text.Json.JsonSerializerOptions options)
@@ -368,8 +368,8 @@ namespace Whatever
             {
                 return value switch
                 {
-                    global::System.Int32 intValue => partial_struct_Method.Deserialize(intValue),
-                    global::System.String stringValue when !global::System.String.IsNullOrEmpty(stringValue) && global::System.Int32.TryParse(stringValue, out var result) => partial_struct_Method.Deserialize(result),
+                    global::System.Int32 intValue => partial_struct_Method.__Deserialize(intValue),
+                    global::System.String stringValue when !global::System.String.IsNullOrEmpty(stringValue) && global::System.Int32.TryParse(stringValue, out var result) => partial_struct_Method.__Deserialize(result),
                     _ => base.ConvertFrom(context, culture, value),
                 };
             }

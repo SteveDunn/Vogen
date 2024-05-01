@@ -110,7 +110,7 @@ namespace Whatever
 
         // only called internally when something has been deserialized into
         // its primitive type.
-        private static public_readonly_partial_record_structfloat Deserialize(System.Single value)
+        private static public_readonly_partial_record_structfloat __Deserialize(System.Single value)
         {
             
 
@@ -283,13 +283,13 @@ public static readonly public_readonly_partial_record_structfloat MyValue = new 
             public override public_readonly_partial_record_structfloat Read(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {
 #if NET5_0_OR_GREATER
-                return public_readonly_partial_record_structfloat.Deserialize(
+                return public_readonly_partial_record_structfloat.__Deserialize(
                     options.NumberHandling == global::System.Text.Json.Serialization.JsonNumberHandling.AllowReadingFromString && reader.TokenType == global::System.Text.Json.JsonTokenType.String
                     ? global::System.Single.Parse(reader.GetString(), global::System.Globalization.NumberStyles.Any, global::System.Globalization.CultureInfo.InvariantCulture)
                     : reader.GetSingle()
                 );
 #else
-                return public_readonly_partial_record_structfloat.Deserialize(reader.GetSingle());
+                return public_readonly_partial_record_structfloat.__Deserialize(reader.GetSingle());
 #endif
             }
 
@@ -301,7 +301,7 @@ public static readonly public_readonly_partial_record_structfloat MyValue = new 
 #if NET6_0_OR_GREATER
             public override public_readonly_partial_record_structfloat ReadAsPropertyName(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {
-                return public_readonly_partial_record_structfloat.Deserialize(global::System.Single.Parse(reader.GetString(), global::System.Globalization.NumberStyles.Any, global::System.Globalization.CultureInfo.InvariantCulture));
+                return public_readonly_partial_record_structfloat.__Deserialize(global::System.Single.Parse(reader.GetString(), global::System.Globalization.NumberStyles.Any, global::System.Globalization.CultureInfo.InvariantCulture));
             }
 
             public override void WriteAsPropertyName(System.Text.Json.Utf8JsonWriter writer, public_readonly_partial_record_structfloat value, global::System.Text.Json.JsonSerializerOptions options)
@@ -323,8 +323,8 @@ public static readonly public_readonly_partial_record_structfloat MyValue = new 
             {
                 return value switch
                 {
-                    global::System.Single floatValue => public_readonly_partial_record_structfloat.Deserialize(floatValue),
-                    global::System.String stringValue when !global::System.String.IsNullOrEmpty(stringValue) && global::System.Single.TryParse(stringValue, global::System.Globalization.NumberStyles.Float | global::System.Globalization.NumberStyles.AllowThousands, culture.NumberFormat, out var result) => public_readonly_partial_record_structfloat.Deserialize(result),
+                    global::System.Single floatValue => public_readonly_partial_record_structfloat.__Deserialize(floatValue),
+                    global::System.String stringValue when !global::System.String.IsNullOrEmpty(stringValue) && global::System.Single.TryParse(stringValue, global::System.Globalization.NumberStyles.Float | global::System.Globalization.NumberStyles.AllowThousands, culture.NumberFormat, out var result) => public_readonly_partial_record_structfloat.__Deserialize(result),
                     _ => base.ConvertFrom(context, culture, value),
                 };
             }

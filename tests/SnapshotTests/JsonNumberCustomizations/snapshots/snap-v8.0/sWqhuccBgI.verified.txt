@@ -106,7 +106,7 @@ namespace Whatever
   
         // only called internally when something has been deserialized into
         // its primitive type.
-        private static stj_number_as_string_public_partial_recordConversions_NewtonsoftJson___Conversions_SystemTextJsonshort Deserialize(System.Int16 value)
+        private static stj_number_as_string_public_partial_recordConversions_NewtonsoftJson___Conversions_SystemTextJsonshort __Deserialize(System.Int16 value)
         {
             
 
@@ -499,13 +499,13 @@ namespace Whatever
             public override stj_number_as_string_public_partial_recordConversions_NewtonsoftJson___Conversions_SystemTextJsonshort Read(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {
 #if NET5_0_OR_GREATER
-                return stj_number_as_string_public_partial_recordConversions_NewtonsoftJson___Conversions_SystemTextJsonshort.Deserialize(
+                return stj_number_as_string_public_partial_recordConversions_NewtonsoftJson___Conversions_SystemTextJsonshort.__Deserialize(
                     options.NumberHandling == global::System.Text.Json.Serialization.JsonNumberHandling.AllowReadingFromString && reader.TokenType == global::System.Text.Json.JsonTokenType.String
                     ? global::System.Int16.Parse(reader.GetString(), global::System.Globalization.NumberStyles.Any, global::System.Globalization.CultureInfo.InvariantCulture)
                     : reader.GetInt16()
                 );
 #else
-                return stj_number_as_string_public_partial_recordConversions_NewtonsoftJson___Conversions_SystemTextJsonshort.Deserialize(reader.GetInt16());
+                return stj_number_as_string_public_partial_recordConversions_NewtonsoftJson___Conversions_SystemTextJsonshort.__Deserialize(reader.GetInt16());
 #endif
             }
 
@@ -516,7 +516,7 @@ namespace Whatever
 #if NET6_0_OR_GREATER
             public override stj_number_as_string_public_partial_recordConversions_NewtonsoftJson___Conversions_SystemTextJsonshort ReadAsPropertyName(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {
-                return stj_number_as_string_public_partial_recordConversions_NewtonsoftJson___Conversions_SystemTextJsonshort.Deserialize(global::System.Int16.Parse(reader.GetString(), global::System.Globalization.NumberStyles.Any, global::System.Globalization.CultureInfo.InvariantCulture));
+                return stj_number_as_string_public_partial_recordConversions_NewtonsoftJson___Conversions_SystemTextJsonshort.__Deserialize(global::System.Int16.Parse(reader.GetString(), global::System.Globalization.NumberStyles.Any, global::System.Globalization.CultureInfo.InvariantCulture));
             }
 
             public override void WriteAsPropertyName(System.Text.Json.Utf8JsonWriter writer, stj_number_as_string_public_partial_recordConversions_NewtonsoftJson___Conversions_SystemTextJsonshort value, global::System.Text.Json.JsonSerializerOptions options)
@@ -542,7 +542,7 @@ namespace Whatever
             public override object ReadJson(Newtonsoft.Json.JsonReader reader, System.Type objectType, object existingValue, Newtonsoft.Json.JsonSerializer serializer)
             {
                 var result = serializer.Deserialize<global::System.Int16?>(reader);
-                return result.HasValue ? stj_number_as_string_public_partial_recordConversions_NewtonsoftJson___Conversions_SystemTextJsonshort.Deserialize(result.Value) : null;
+                return result.HasValue ? stj_number_as_string_public_partial_recordConversions_NewtonsoftJson___Conversions_SystemTextJsonshort.__Deserialize(result.Value) : null;
             }
         }
 

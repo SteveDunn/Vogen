@@ -109,7 +109,7 @@ namespace Whatever
 
         // only called internally when something has been deserialized into
         // its primitive type.
-        private static _casting_public_partial_record_structCastOperator_NoneCastOperator_Explicitchar Deserialize(System.Char value)
+        private static _casting_public_partial_record_structCastOperator_NoneCastOperator_Explicitchar __Deserialize(System.Char value)
         {
             
 
@@ -220,7 +220,7 @@ namespace Whatever
             {
                 var s = reader.GetString();
 
-                return _casting_public_partial_record_structCastOperator_NoneCastOperator_Explicitchar.Deserialize(s[0]);
+                return _casting_public_partial_record_structCastOperator_NoneCastOperator_Explicitchar.__Deserialize(s[0]);
             }
 
             public override void Write(System.Text.Json.Utf8JsonWriter writer, _casting_public_partial_record_structCastOperator_NoneCastOperator_Explicitchar value, global::System.Text.Json.JsonSerializerOptions options)
@@ -233,7 +233,7 @@ namespace Whatever
             {
                 var s = reader.GetString();
 
-                return _casting_public_partial_record_structCastOperator_NoneCastOperator_Explicitchar.Deserialize(s[0]);
+                return _casting_public_partial_record_structCastOperator_NoneCastOperator_Explicitchar.__Deserialize(s[0]);
             }
 
             public override void WriteAsPropertyName(System.Text.Json.Utf8JsonWriter writer, _casting_public_partial_record_structCastOperator_NoneCastOperator_Explicitchar value, global::System.Text.Json.JsonSerializerOptions options)
@@ -255,11 +255,11 @@ namespace Whatever
             {
                 return value switch
                 {
-                    global::System.Char charValue => _casting_public_partial_record_structCastOperator_NoneCastOperator_Explicitchar.Deserialize(charValue),
-                    global::System.Int16 shortValue => _casting_public_partial_record_structCastOperator_NoneCastOperator_Explicitchar.Deserialize((global::System.Char)shortValue),
-                    global::System.Int32 intValue => _casting_public_partial_record_structCastOperator_NoneCastOperator_Explicitchar.Deserialize((global::System.Char)intValue),
-                    global::System.Int64 longValue => _casting_public_partial_record_structCastOperator_NoneCastOperator_Explicitchar.Deserialize((global::System.Char)longValue),
-                    global::System.String stringValue when  !global::System.String.IsNullOrEmpty(stringValue) && global::System.Char.TryParse(stringValue, out var result) => _casting_public_partial_record_structCastOperator_NoneCastOperator_Explicitchar.Deserialize(result),
+                    global::System.Char charValue => _casting_public_partial_record_structCastOperator_NoneCastOperator_Explicitchar.__Deserialize(charValue),
+                    global::System.Int16 shortValue => _casting_public_partial_record_structCastOperator_NoneCastOperator_Explicitchar.__Deserialize((global::System.Char)shortValue),
+                    global::System.Int32 intValue => _casting_public_partial_record_structCastOperator_NoneCastOperator_Explicitchar.__Deserialize((global::System.Char)intValue),
+                    global::System.Int64 longValue => _casting_public_partial_record_structCastOperator_NoneCastOperator_Explicitchar.__Deserialize((global::System.Char)longValue),
+                    global::System.String stringValue when  !global::System.String.IsNullOrEmpty(stringValue) && global::System.Char.TryParse(stringValue, out var result) => _casting_public_partial_record_structCastOperator_NoneCastOperator_Explicitchar.__Deserialize(result),
                     _ => base.ConvertFrom(context, culture, value),
                 };
             }

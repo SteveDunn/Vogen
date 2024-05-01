@@ -96,7 +96,7 @@ public System.Guid Value
 
         // only called internally when something has been deserialized into
         // its primitive type.
-        private static stj_number_as_string_public_partial_classConversions_NewtonsoftJson___Conversions_SystemTextJsonSystem_Guid Deserialize(System.Guid value)
+        private static stj_number_as_string_public_partial_classConversions_NewtonsoftJson___Conversions_SystemTextJsonSystem_Guid __Deserialize(System.Guid value)
         {
             
 
@@ -234,7 +234,7 @@ public System.Guid Value
         {
             public override stj_number_as_string_public_partial_classConversions_NewtonsoftJson___Conversions_SystemTextJsonSystem_Guid Read(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {
-                return stj_number_as_string_public_partial_classConversions_NewtonsoftJson___Conversions_SystemTextJsonSystem_Guid.Deserialize(reader.GetGuid());
+                return stj_number_as_string_public_partial_classConversions_NewtonsoftJson___Conversions_SystemTextJsonSystem_Guid.__Deserialize(reader.GetGuid());
             }
 
             public override void Write(System.Text.Json.Utf8JsonWriter writer, stj_number_as_string_public_partial_classConversions_NewtonsoftJson___Conversions_SystemTextJsonSystem_Guid value, global::System.Text.Json.JsonSerializerOptions options)
@@ -247,7 +247,7 @@ public System.Guid Value
             {
                 if (global::System.Guid.TryParse(reader.GetString(), out global::System.Guid g))
                 {
-                    return stj_number_as_string_public_partial_classConversions_NewtonsoftJson___Conversions_SystemTextJsonSystem_Guid.Deserialize(g);
+                    return stj_number_as_string_public_partial_classConversions_NewtonsoftJson___Conversions_SystemTextJsonSystem_Guid.__Deserialize(g);
                 }
 
                 throw new global::System.Text.Json.JsonException("Unable to parse the GUID for an instance of stj_number_as_string_public_partial_classConversions_NewtonsoftJson___Conversions_SystemTextJsonSystem_Guid");
@@ -276,7 +276,7 @@ public System.Guid Value
             public override object ReadJson(Newtonsoft.Json.JsonReader reader, System.Type objectType, object existingValue, Newtonsoft.Json.JsonSerializer serializer)
             {
                 var guid = serializer.Deserialize<System.Guid?>(reader);
-                return guid.HasValue ? stj_number_as_string_public_partial_classConversions_NewtonsoftJson___Conversions_SystemTextJsonSystem_Guid.Deserialize(guid.Value) : null;
+                return guid.HasValue ? stj_number_as_string_public_partial_classConversions_NewtonsoftJson___Conversions_SystemTextJsonSystem_Guid.__Deserialize(guid.Value) : null;
             }
         }
 

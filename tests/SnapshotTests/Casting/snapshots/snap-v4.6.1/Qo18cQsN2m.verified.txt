@@ -106,7 +106,7 @@ namespace Whatever
   
         // only called internally when something has been deserialized into
         // its primitive type.
-        private static _casting_public_partial_recordCastOperator_NoneCastOperator_ExplicitSystem_DateTime Deserialize(System.DateTime value)
+        private static _casting_public_partial_recordCastOperator_NoneCastOperator_ExplicitSystem_DateTime __Deserialize(System.DateTime value)
         {
             
 
@@ -282,7 +282,7 @@ namespace Whatever
         {
             public override _casting_public_partial_recordCastOperator_NoneCastOperator_ExplicitSystem_DateTime Read(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {
-                return _casting_public_partial_recordCastOperator_NoneCastOperator_ExplicitSystem_DateTime.Deserialize(reader.GetDateTime().ToUniversalTime());
+                return _casting_public_partial_recordCastOperator_NoneCastOperator_ExplicitSystem_DateTime.__Deserialize(reader.GetDateTime().ToUniversalTime());
             }
 
             public override void Write(System.Text.Json.Utf8JsonWriter writer, _casting_public_partial_recordCastOperator_NoneCastOperator_ExplicitSystem_DateTime value, global::System.Text.Json.JsonSerializerOptions options)
@@ -293,7 +293,7 @@ namespace Whatever
 #if NET6_0_OR_GREATER
             public override _casting_public_partial_recordCastOperator_NoneCastOperator_ExplicitSystem_DateTime ReadAsPropertyName(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {
-                return _casting_public_partial_recordCastOperator_NoneCastOperator_ExplicitSystem_DateTime.Deserialize(global::System.DateTime.ParseExact(reader.GetString(), "O", global::System.Globalization.CultureInfo.InvariantCulture, global::System.Globalization.DateTimeStyles.RoundtripKind));
+                return _casting_public_partial_recordCastOperator_NoneCastOperator_ExplicitSystem_DateTime.__Deserialize(global::System.DateTime.ParseExact(reader.GetString(), "O", global::System.Globalization.CultureInfo.InvariantCulture, global::System.Globalization.DateTimeStyles.RoundtripKind));
             }
 
             public override void WriteAsPropertyName(System.Text.Json.Utf8JsonWriter writer, _casting_public_partial_recordCastOperator_NoneCastOperator_ExplicitSystem_DateTime value, global::System.Text.Json.JsonSerializerOptions options)
@@ -315,8 +315,8 @@ namespace Whatever
             {
                 return value switch
                 {
-                    global::System.String stringValue when !global::System.String.IsNullOrEmpty(stringValue) && global::System.DateTime.TryParseExact(stringValue, "O", culture, global::System.Globalization.DateTimeStyles.RoundtripKind, out var result) => _casting_public_partial_recordCastOperator_NoneCastOperator_ExplicitSystem_DateTime.Deserialize(result),
-                    global::System.DateTime dateTimeValue => _casting_public_partial_recordCastOperator_NoneCastOperator_ExplicitSystem_DateTime.Deserialize(dateTimeValue),
+                    global::System.String stringValue when !global::System.String.IsNullOrEmpty(stringValue) && global::System.DateTime.TryParseExact(stringValue, "O", culture, global::System.Globalization.DateTimeStyles.RoundtripKind, out var result) => _casting_public_partial_recordCastOperator_NoneCastOperator_ExplicitSystem_DateTime.__Deserialize(result),
+                    global::System.DateTime dateTimeValue => _casting_public_partial_recordCastOperator_NoneCastOperator_ExplicitSystem_DateTime.__Deserialize(dateTimeValue),
                     _ => base.ConvertFrom(context, culture, value),
                 };
             }

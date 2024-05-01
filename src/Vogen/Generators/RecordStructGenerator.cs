@@ -90,7 +90,7 @@ using Vogen;
 {GenerateCastingOperators.Generate(item,tds)}{Util.GenerateGuidFactoryMethodIfRequired(item, tds)}
         // only called internally when something has been deserialized into
         // its primitive type.
-        private static {structName} Deserialize({itemUnderlyingType} value)
+        private static {structName} __Deserialize({itemUnderlyingType} value)
         {{
             {Util.GenerateCallToNormalizeMethodIfNeeded(item)}
 

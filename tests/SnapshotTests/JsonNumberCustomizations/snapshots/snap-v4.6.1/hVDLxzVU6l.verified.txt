@@ -99,7 +99,7 @@ namespace Whatever
 
         // only called internally when something has been deserialized into
         // its primitive type.
-        private static stj_number_as_string_public_partial_structConversions_NewtonsoftJsonshort_customized Deserialize(System.Int16 value)
+        private static stj_number_as_string_public_partial_structConversions_NewtonsoftJsonshort_customized __Deserialize(System.Int16 value)
         {
             
 
@@ -285,7 +285,7 @@ namespace Whatever
             public override object ReadJson(Newtonsoft.Json.JsonReader reader, System.Type objectType, object existingValue, Newtonsoft.Json.JsonSerializer serializer)
             {
                 var result = serializer.Deserialize<global::System.Int16?>(reader);
-                return result.HasValue ? stj_number_as_string_public_partial_structConversions_NewtonsoftJsonshort_customized.Deserialize(result.Value) : null;
+                return result.HasValue ? stj_number_as_string_public_partial_structConversions_NewtonsoftJsonshort_customized.__Deserialize(result.Value) : null;
             }
         }
 

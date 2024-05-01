@@ -10,10 +10,10 @@
             {
                 return value switch
                 {
-                    global::System.Int16 shortValue => VOTYPE.Deserialize(shortValue),
-                    global::System.Int32 intValue => VOTYPE.Deserialize((global::System.Int16)intValue),
-                    global::System.Int64 longValue => VOTYPE.Deserialize((global::System.Int16)longValue),
-                    global::System.String stringValue when  !global::System.String.IsNullOrEmpty(stringValue) && global::System.Int16.TryParse(stringValue, out var result) => VOTYPE.Deserialize(result),
+                    global::System.Int16 shortValue => VOTYPE.__Deserialize(shortValue),
+                    global::System.Int32 intValue => VOTYPE.__Deserialize((global::System.Int16)intValue),
+                    global::System.Int64 longValue => VOTYPE.__Deserialize((global::System.Int16)longValue),
+                    global::System.String stringValue when  !global::System.String.IsNullOrEmpty(stringValue) && global::System.Int16.TryParse(stringValue, out var result) => VOTYPE.__Deserialize(result),
                     _ => base.ConvertFrom(context, culture, value),
                 };
             }

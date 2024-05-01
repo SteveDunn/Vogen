@@ -113,7 +113,7 @@ namespace Whatever
 
         // only called internally when something has been deserialized into
         // its primitive type.
-        private static MyClass Deserialize(System.String value)
+        private static MyClass __Deserialize(System.String value)
         {
             
 
@@ -233,7 +233,7 @@ namespace Whatever
         {
             public override MyClass Read(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {
-                return MyClass.Deserialize(reader.GetString());
+                return MyClass.__Deserialize(reader.GetString());
             }
 
             public override void Write(System.Text.Json.Utf8JsonWriter writer, MyClass value, global::System.Text.Json.JsonSerializerOptions options)
@@ -244,7 +244,7 @@ namespace Whatever
 #if NET6_0_OR_GREATER
             public override MyClass ReadAsPropertyName(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {
-                return MyClass.Deserialize(reader.GetString());
+                return MyClass.__Deserialize(reader.GetString());
             }
 
             public override void WriteAsPropertyName(System.Text.Json.Utf8JsonWriter writer, MyClass value, global::System.Text.Json.JsonSerializerOptions options)
@@ -267,7 +267,7 @@ namespace Whatever
                 var stringValue = value as global::System.String;
                 if (stringValue is not null)
                 {
-                    return MyClass.Deserialize(stringValue);
+                    return MyClass.__Deserialize(stringValue);
                 }
 
                 return base.ConvertFrom(context, culture, value);
