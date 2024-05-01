@@ -23,6 +23,14 @@ public class ValidationTests
     }
 
     [Fact]
+    public void Validation_can_throw_a_different_exception()
+    {
+        Action vo = () => MyVo_throws_custom_exception.From(-1);
+
+        vo.Should().ThrowExactly<InvalidAmountException>().WithMessage("must be greater than zero");
+    }
+
+    [Fact]
     public void Validation()
     {
         Func<Age> act = () => Age.From(12);
@@ -95,5 +103,33 @@ public partial class MyVo_validate_with_PascalCase_method_name
             return Validation.Ok;
 
         return Validation.Invalid("must be greater than zero");
+    }
+}
+
+[ValueObject(throws: typeof(InvalidAmountException))]
+public partial class MyVo_throws_custom_exception
+{
+    private static Validation Validate(int value) => 
+        value > 0 ? Validation.Ok : Validation.Invalid("must be greater than zero");
+}
+
+// Does not compile:
+// VOG012 : String must derive from System.Exception
+// VOG013 : String must have at least 1 public constructor with 1 parameter of type System.String
+[ValueObject(throws: typeof(string))]
+public partial class MyVo_throws_non_exception
+{
+    private static Validation Validate(int value) => 
+        value > 0 ? Validation.Ok : Validation.Invalid("must be greater than zero");
+}
+
+public class InvalidAmountException : Exception
+{
+    public InvalidAmountException()
+    {
+    }
+
+    public InvalidAmountException(string? message) : base(message)
+    {
     }
 }
