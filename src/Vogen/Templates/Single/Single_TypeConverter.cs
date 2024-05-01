@@ -10,8 +10,8 @@
             {
                 return value switch
                 {
-                    global::System.Single floatValue => VOTYPE.Deserialize(floatValue),
-                    global::System.String stringValue when !global::System.String.IsNullOrEmpty(stringValue) && global::System.Single.TryParse(stringValue, global::System.Globalization.NumberStyles.Float | global::System.Globalization.NumberStyles.AllowThousands, culture.NumberFormat, out var result) => VOTYPE.Deserialize(result),
+                    global::System.Single floatValue => VOTYPE.__Deserialize(floatValue),
+                    global::System.String stringValue when !global::System.String.IsNullOrEmpty(stringValue) && global::System.Single.TryParse(stringValue, global::System.Globalization.NumberStyles.Float | global::System.Globalization.NumberStyles.AllowThousands, culture.NumberFormat, out var result) => VOTYPE.__Deserialize(result),
                     _ => base.ConvertFrom(context, culture, value),
                 };
             }

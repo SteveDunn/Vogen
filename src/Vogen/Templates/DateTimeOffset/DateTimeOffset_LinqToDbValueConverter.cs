@@ -4,7 +4,7 @@
             public LinqToDbValueConverter()
                 : base(
                       v => v.Value,
-                      p => VOTYPE.Deserialize(p),
+                      p => VOTYPE.__Deserialize(p),
                       handlesNulls: false)
             { }
         }

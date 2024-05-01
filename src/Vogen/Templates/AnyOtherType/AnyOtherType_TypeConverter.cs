@@ -10,7 +10,7 @@
             {
                 VOUNDERLYINGTYPE ut = (VOUNDERLYINGTYPE)value;
 
-                return VOTYPE.Deserialize(ut);
+                return VOTYPE.__Deserialize(ut);
             }
         
             public override bool CanConvertTo(global::System.ComponentModel.ITypeDescriptorContext context, global::System.Type sourceType)
