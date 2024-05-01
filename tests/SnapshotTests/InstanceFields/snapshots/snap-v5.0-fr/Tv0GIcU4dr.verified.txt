@@ -106,7 +106,7 @@ namespace Whatever
   
         // only called internally when something has been deserialized into
         // its primitive type.
-        private static internal_partial_recordchar Deserialize(System.Char value)
+        private static internal_partial_recordchar __Deserialize(System.Char value)
         {
             
 
@@ -245,7 +245,7 @@ public static readonly internal_partial_recordchar MyValue = new internal_partia
             {
                 var s = reader.GetString();
 
-                return internal_partial_recordchar.Deserialize(s[0]);
+                return internal_partial_recordchar.__Deserialize(s[0]);
             }
 
             public override void Write(System.Text.Json.Utf8JsonWriter writer, internal_partial_recordchar value, global::System.Text.Json.JsonSerializerOptions options)
@@ -258,7 +258,7 @@ public static readonly internal_partial_recordchar MyValue = new internal_partia
             {
                 var s = reader.GetString();
 
-                return internal_partial_recordchar.Deserialize(s[0]);
+                return internal_partial_recordchar.__Deserialize(s[0]);
             }
 
             public override void WriteAsPropertyName(System.Text.Json.Utf8JsonWriter writer, internal_partial_recordchar value, global::System.Text.Json.JsonSerializerOptions options)
@@ -280,11 +280,11 @@ public static readonly internal_partial_recordchar MyValue = new internal_partia
             {
                 return value switch
                 {
-                    global::System.Char charValue => internal_partial_recordchar.Deserialize(charValue),
-                    global::System.Int16 shortValue => internal_partial_recordchar.Deserialize((global::System.Char)shortValue),
-                    global::System.Int32 intValue => internal_partial_recordchar.Deserialize((global::System.Char)intValue),
-                    global::System.Int64 longValue => internal_partial_recordchar.Deserialize((global::System.Char)longValue),
-                    global::System.String stringValue when  !global::System.String.IsNullOrEmpty(stringValue) && global::System.Char.TryParse(stringValue, out var result) => internal_partial_recordchar.Deserialize(result),
+                    global::System.Char charValue => internal_partial_recordchar.__Deserialize(charValue),
+                    global::System.Int16 shortValue => internal_partial_recordchar.__Deserialize((global::System.Char)shortValue),
+                    global::System.Int32 intValue => internal_partial_recordchar.__Deserialize((global::System.Char)intValue),
+                    global::System.Int64 longValue => internal_partial_recordchar.__Deserialize((global::System.Char)longValue),
+                    global::System.String stringValue when  !global::System.String.IsNullOrEmpty(stringValue) && global::System.Char.TryParse(stringValue, out var result) => internal_partial_recordchar.__Deserialize(result),
                     _ => base.ConvertFrom(context, culture, value),
                 };
             }

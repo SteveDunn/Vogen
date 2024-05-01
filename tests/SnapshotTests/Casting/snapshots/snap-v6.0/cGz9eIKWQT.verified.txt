@@ -102,7 +102,7 @@ namespace Whatever
 
         // only called internally when something has been deserialized into
         // its primitive type.
-        private static _casting_public_readonly_partial_structCastOperator_ImplicitCastOperator_Explicitfloat Deserialize(System.Single value)
+        private static _casting_public_readonly_partial_structCastOperator_ImplicitCastOperator_Explicitfloat __Deserialize(System.Single value)
         {
             
 
@@ -332,13 +332,13 @@ namespace Whatever
             public override _casting_public_readonly_partial_structCastOperator_ImplicitCastOperator_Explicitfloat Read(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {
 #if NET5_0_OR_GREATER
-                return _casting_public_readonly_partial_structCastOperator_ImplicitCastOperator_Explicitfloat.Deserialize(
+                return _casting_public_readonly_partial_structCastOperator_ImplicitCastOperator_Explicitfloat.__Deserialize(
                     options.NumberHandling == global::System.Text.Json.Serialization.JsonNumberHandling.AllowReadingFromString && reader.TokenType == global::System.Text.Json.JsonTokenType.String
                     ? global::System.Single.Parse(reader.GetString(), global::System.Globalization.NumberStyles.Any, global::System.Globalization.CultureInfo.InvariantCulture)
                     : reader.GetSingle()
                 );
 #else
-                return _casting_public_readonly_partial_structCastOperator_ImplicitCastOperator_Explicitfloat.Deserialize(reader.GetSingle());
+                return _casting_public_readonly_partial_structCastOperator_ImplicitCastOperator_Explicitfloat.__Deserialize(reader.GetSingle());
 #endif
             }
 
@@ -350,7 +350,7 @@ namespace Whatever
 #if NET6_0_OR_GREATER
             public override _casting_public_readonly_partial_structCastOperator_ImplicitCastOperator_Explicitfloat ReadAsPropertyName(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {
-                return _casting_public_readonly_partial_structCastOperator_ImplicitCastOperator_Explicitfloat.Deserialize(global::System.Single.Parse(reader.GetString(), global::System.Globalization.NumberStyles.Any, global::System.Globalization.CultureInfo.InvariantCulture));
+                return _casting_public_readonly_partial_structCastOperator_ImplicitCastOperator_Explicitfloat.__Deserialize(global::System.Single.Parse(reader.GetString(), global::System.Globalization.NumberStyles.Any, global::System.Globalization.CultureInfo.InvariantCulture));
             }
 
             public override void WriteAsPropertyName(System.Text.Json.Utf8JsonWriter writer, _casting_public_readonly_partial_structCastOperator_ImplicitCastOperator_Explicitfloat value, global::System.Text.Json.JsonSerializerOptions options)
@@ -372,8 +372,8 @@ namespace Whatever
             {
                 return value switch
                 {
-                    global::System.Single floatValue => _casting_public_readonly_partial_structCastOperator_ImplicitCastOperator_Explicitfloat.Deserialize(floatValue),
-                    global::System.String stringValue when !global::System.String.IsNullOrEmpty(stringValue) && global::System.Single.TryParse(stringValue, global::System.Globalization.NumberStyles.Float | global::System.Globalization.NumberStyles.AllowThousands, culture.NumberFormat, out var result) => _casting_public_readonly_partial_structCastOperator_ImplicitCastOperator_Explicitfloat.Deserialize(result),
+                    global::System.Single floatValue => _casting_public_readonly_partial_structCastOperator_ImplicitCastOperator_Explicitfloat.__Deserialize(floatValue),
+                    global::System.String stringValue when !global::System.String.IsNullOrEmpty(stringValue) && global::System.Single.TryParse(stringValue, global::System.Globalization.NumberStyles.Float | global::System.Globalization.NumberStyles.AllowThousands, culture.NumberFormat, out var result) => _casting_public_readonly_partial_structCastOperator_ImplicitCastOperator_Explicitfloat.__Deserialize(result),
                     _ => base.ConvertFrom(context, culture, value),
                 };
             }

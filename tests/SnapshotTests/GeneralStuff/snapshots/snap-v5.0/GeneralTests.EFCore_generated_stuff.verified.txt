@@ -96,7 +96,7 @@ using Vogen;
 
         // only called internally when something has been deserialized into
         // its primitive type.
-        private static MyVo Deserialize(System.String value)
+        private static MyVo __Deserialize(System.String value)
         {
             
 
@@ -211,7 +211,7 @@ using Vogen;
             public EfCoreValueConverter(global::Microsoft.EntityFrameworkCore.Storage.ValueConversion.ConverterMappingHints mappingHints = null)
                 : base(
                     vo => vo.Value,
-                    value => MyVo.Deserialize(value),
+                    value => MyVo.__Deserialize(value),
                     mappingHints
                 ) { }
         }

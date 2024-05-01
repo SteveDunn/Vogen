@@ -94,7 +94,7 @@ public System.Guid Value
 
         // only called internally when something has been deserialized into
         // its primitive type.
-        private static escapedTestspublic_sealed_partial_classConversions_NoneSystem_Guid Deserialize(System.Guid value)
+        private static escapedTestspublic_sealed_partial_classConversions_NoneSystem_Guid __Deserialize(System.Guid value)
         {
             
 

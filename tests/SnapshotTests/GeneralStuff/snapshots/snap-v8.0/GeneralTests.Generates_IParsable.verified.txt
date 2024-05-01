@@ -96,7 +96,7 @@ public System.Boolean Value
 
         // only called internally when something has been deserialized into
         // its primitive type.
-        private static Foo Deserialize(System.Boolean value)
+        private static Foo __Deserialize(System.Boolean value)
         {
             
 
@@ -268,7 +268,7 @@ public System.Boolean Value
         {
             public override Foo Read(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {
-                return Foo.Deserialize(reader.GetBoolean());
+                return Foo.__Deserialize(reader.GetBoolean());
             }
 
             public override void Write(global::System.Text.Json.Utf8JsonWriter writer, Foo value, global::System.Text.Json.JsonSerializerOptions options)
@@ -279,7 +279,7 @@ public System.Boolean Value
 #if NET6_0_OR_GREATER
             public override Foo ReadAsPropertyName(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {
-                return Foo.Deserialize(bool.Parse(reader.GetString()));
+                return Foo.__Deserialize(bool.Parse(reader.GetString()));
             }
 
             public override void WriteAsPropertyName(global::System.Text.Json.Utf8JsonWriter writer, Foo value, global::System.Text.Json.JsonSerializerOptions options)
@@ -301,8 +301,8 @@ public System.Boolean Value
             {
                 return value switch
                 {
-                    global::System.Boolean boolValue => Foo.Deserialize(boolValue),
-                    global::System.String stringValue when  !global::System.String.IsNullOrEmpty(stringValue) && global::System.Boolean.TryParse(stringValue, out var result) => Foo.Deserialize(result),
+                    global::System.Boolean boolValue => Foo.__Deserialize(boolValue),
+                    global::System.String stringValue when  !global::System.String.IsNullOrEmpty(stringValue) && global::System.Boolean.TryParse(stringValue, out var result) => Foo.__Deserialize(result),
                     _ => base.ConvertFrom(context, culture, value),
                 };
             }

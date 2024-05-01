@@ -112,7 +112,7 @@ namespace @class
 
         // only called internally when something has been deserialized into
         // its primitive type.
-        private static escapedTestspublic_readonly_partial_record_structConversions_Nonestring Deserialize(System.String value)
+        private static escapedTestspublic_readonly_partial_record_structConversions_Nonestring __Deserialize(System.String value)
         {
             
 

@@ -114,7 +114,7 @@ namespace Whatever
 
         // only called internally when something has been deserialized into
         // its primitive type.
-        private static stj_number_as_string_public_readonly_partial_record_structConversions_NewtonsoftJson___Conversions_SystemTextJsonstring_customized Deserialize(System.String value)
+        private static stj_number_as_string_public_readonly_partial_record_structConversions_NewtonsoftJson___Conversions_SystemTextJsonstring_customized __Deserialize(System.String value)
         {
             
 
@@ -217,7 +217,7 @@ namespace Whatever
         {
             public override stj_number_as_string_public_readonly_partial_record_structConversions_NewtonsoftJson___Conversions_SystemTextJsonstring_customized Read(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {
-                return stj_number_as_string_public_readonly_partial_record_structConversions_NewtonsoftJson___Conversions_SystemTextJsonstring_customized.Deserialize(reader.GetString());
+                return stj_number_as_string_public_readonly_partial_record_structConversions_NewtonsoftJson___Conversions_SystemTextJsonstring_customized.__Deserialize(reader.GetString());
             }
 
             public override void Write(System.Text.Json.Utf8JsonWriter writer, stj_number_as_string_public_readonly_partial_record_structConversions_NewtonsoftJson___Conversions_SystemTextJsonstring_customized value, global::System.Text.Json.JsonSerializerOptions options)
@@ -228,7 +228,7 @@ namespace Whatever
 #if NET6_0_OR_GREATER
             public override stj_number_as_string_public_readonly_partial_record_structConversions_NewtonsoftJson___Conversions_SystemTextJsonstring_customized ReadAsPropertyName(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {
-                return stj_number_as_string_public_readonly_partial_record_structConversions_NewtonsoftJson___Conversions_SystemTextJsonstring_customized.Deserialize(reader.GetString());
+                return stj_number_as_string_public_readonly_partial_record_structConversions_NewtonsoftJson___Conversions_SystemTextJsonstring_customized.__Deserialize(reader.GetString());
             }
 
             public override void WriteAsPropertyName(System.Text.Json.Utf8JsonWriter writer, stj_number_as_string_public_readonly_partial_record_structConversions_NewtonsoftJson___Conversions_SystemTextJsonstring_customized value, global::System.Text.Json.JsonSerializerOptions options)
@@ -254,7 +254,7 @@ namespace Whatever
             public override object ReadJson(Newtonsoft.Json.JsonReader reader, System.Type objectType, object existingValue, Newtonsoft.Json.JsonSerializer serializer)
             {
                 var result = serializer.Deserialize<global::System.String>(reader);
-                return result is not null ? stj_number_as_string_public_readonly_partial_record_structConversions_NewtonsoftJson___Conversions_SystemTextJsonstring_customized.Deserialize(result) : null;
+                return result is not null ? stj_number_as_string_public_readonly_partial_record_structConversions_NewtonsoftJson___Conversions_SystemTextJsonstring_customized.__Deserialize(result) : null;
             }
         }
 

@@ -98,7 +98,7 @@ using Vogen;
 
         // only called internally when something has been deserialized into
         // its primitive type.
-        private static Vo Deserialize(System.Int32 value)
+        private static Vo __Deserialize(System.Int32 value)
         {
             
 
@@ -272,13 +272,13 @@ using Vogen;
             public override Vo Read(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {
 #if NET5_0_OR_GREATER
-                return Vo.Deserialize(
+                return Vo.__Deserialize(
                     options.NumberHandling == global::System.Text.Json.Serialization.JsonNumberHandling.AllowReadingFromString && reader.TokenType == global::System.Text.Json.JsonTokenType.String
                     ? global::System.Int32.Parse(reader.GetString(), global::System.Globalization.NumberStyles.Any, global::System.Globalization.CultureInfo.InvariantCulture)
                     : reader.GetInt32()
                 );
 #else
-                return Vo.Deserialize(reader.GetInt32());
+                return Vo.__Deserialize(reader.GetInt32());
 #endif
             }
 
@@ -290,7 +290,7 @@ using Vogen;
 #if NET6_0_OR_GREATER            
             public override Vo ReadAsPropertyName(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {
-                return Vo.Deserialize(global::System.Int32.Parse(reader.GetString(), global::System.Globalization.NumberStyles.Any, global::System.Globalization.CultureInfo.InvariantCulture));
+                return Vo.__Deserialize(global::System.Int32.Parse(reader.GetString(), global::System.Globalization.NumberStyles.Any, global::System.Globalization.CultureInfo.InvariantCulture));
             }
 
             public override void WriteAsPropertyName(System.Text.Json.Utf8JsonWriter writer, Vo value, global::System.Text.Json.JsonSerializerOptions options)
@@ -312,8 +312,8 @@ using Vogen;
             {
                 return value switch
                 {
-                    global::System.Int32 intValue => Vo.Deserialize(intValue),
-                    global::System.String stringValue when !global::System.String.IsNullOrEmpty(stringValue) && global::System.Int32.TryParse(stringValue, out var result) => Vo.Deserialize(result),
+                    global::System.Int32 intValue => Vo.__Deserialize(intValue),
+                    global::System.String stringValue when !global::System.String.IsNullOrEmpty(stringValue) && global::System.Int32.TryParse(stringValue, out var result) => Vo.__Deserialize(result),
                     _ => base.ConvertFrom(context, culture, value),
                 };
             }

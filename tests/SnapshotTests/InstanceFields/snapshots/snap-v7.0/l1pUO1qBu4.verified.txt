@@ -96,7 +96,7 @@ public System.Single Value
 
         // only called internally when something has been deserialized into
         // its primitive type.
-        private static internal_partial_classfloat Deserialize(System.Single value)
+        private static internal_partial_classfloat __Deserialize(System.Single value)
         {
             
 
@@ -410,13 +410,13 @@ public static readonly internal_partial_classfloat MyValue = new internal_partia
             public override internal_partial_classfloat Read(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {
 #if NET5_0_OR_GREATER
-                return internal_partial_classfloat.Deserialize(
+                return internal_partial_classfloat.__Deserialize(
                     options.NumberHandling == global::System.Text.Json.Serialization.JsonNumberHandling.AllowReadingFromString && reader.TokenType == global::System.Text.Json.JsonTokenType.String
                     ? global::System.Single.Parse(reader.GetString(), global::System.Globalization.NumberStyles.Any, global::System.Globalization.CultureInfo.InvariantCulture)
                     : reader.GetSingle()
                 );
 #else
-                return internal_partial_classfloat.Deserialize(reader.GetSingle());
+                return internal_partial_classfloat.__Deserialize(reader.GetSingle());
 #endif
             }
 
@@ -428,7 +428,7 @@ public static readonly internal_partial_classfloat MyValue = new internal_partia
 #if NET6_0_OR_GREATER
             public override internal_partial_classfloat ReadAsPropertyName(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {
-                return internal_partial_classfloat.Deserialize(global::System.Single.Parse(reader.GetString(), global::System.Globalization.NumberStyles.Any, global::System.Globalization.CultureInfo.InvariantCulture));
+                return internal_partial_classfloat.__Deserialize(global::System.Single.Parse(reader.GetString(), global::System.Globalization.NumberStyles.Any, global::System.Globalization.CultureInfo.InvariantCulture));
             }
 
             public override void WriteAsPropertyName(System.Text.Json.Utf8JsonWriter writer, internal_partial_classfloat value, global::System.Text.Json.JsonSerializerOptions options)
@@ -450,8 +450,8 @@ public static readonly internal_partial_classfloat MyValue = new internal_partia
             {
                 return value switch
                 {
-                    global::System.Single floatValue => internal_partial_classfloat.Deserialize(floatValue),
-                    global::System.String stringValue when !global::System.String.IsNullOrEmpty(stringValue) && global::System.Single.TryParse(stringValue, global::System.Globalization.NumberStyles.Float | global::System.Globalization.NumberStyles.AllowThousands, culture.NumberFormat, out var result) => internal_partial_classfloat.Deserialize(result),
+                    global::System.Single floatValue => internal_partial_classfloat.__Deserialize(floatValue),
+                    global::System.String stringValue when !global::System.String.IsNullOrEmpty(stringValue) && global::System.Single.TryParse(stringValue, global::System.Globalization.NumberStyles.Float | global::System.Globalization.NumberStyles.AllowThousands, culture.NumberFormat, out var result) => internal_partial_classfloat.__Deserialize(result),
                     _ => base.ConvertFrom(context, culture, value),
                 };
             }

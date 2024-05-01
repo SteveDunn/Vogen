@@ -94,7 +94,7 @@ public System.Int32 Value
 
         // only called internally when something has been deserialized into
         // its primitive type.
-        private static public_partial_classConversions_None Deserialize(System.Int32 value)
+        private static public_partial_classConversions_None __Deserialize(System.Int32 value)
         {
             
 

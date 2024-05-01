@@ -114,7 +114,7 @@ namespace Whatever
 
         // only called internally when something has been deserialized into
         // its primitive type.
-        private static internal_partial_record_structstring Deserialize(System.String value)
+        private static internal_partial_record_structstring __Deserialize(System.String value)
         {
             
 
@@ -222,7 +222,7 @@ public static readonly internal_partial_record_structstring MyValue = new intern
         {
             public override internal_partial_record_structstring Read(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {
-                return internal_partial_record_structstring.Deserialize(reader.GetString());
+                return internal_partial_record_structstring.__Deserialize(reader.GetString());
             }
 
             public override void Write(System.Text.Json.Utf8JsonWriter writer, internal_partial_record_structstring value, global::System.Text.Json.JsonSerializerOptions options)
@@ -233,7 +233,7 @@ public static readonly internal_partial_record_structstring MyValue = new intern
 #if NET6_0_OR_GREATER
             public override internal_partial_record_structstring ReadAsPropertyName(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {
-                return internal_partial_record_structstring.Deserialize(reader.GetString());
+                return internal_partial_record_structstring.__Deserialize(reader.GetString());
             }
 
             public override void WriteAsPropertyName(System.Text.Json.Utf8JsonWriter writer, internal_partial_record_structstring value, global::System.Text.Json.JsonSerializerOptions options)
@@ -256,7 +256,7 @@ public static readonly internal_partial_record_structstring MyValue = new intern
                 var stringValue = value as global::System.String;
                 if (stringValue is not null)
                 {
-                    return internal_partial_record_structstring.Deserialize(stringValue);
+                    return internal_partial_record_structstring.__Deserialize(stringValue);
                 }
 
                 return base.ConvertFrom(context, culture, value);

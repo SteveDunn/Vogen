@@ -100,7 +100,7 @@ namespace Whatever
 
         // only called internally when something has been deserialized into
         // its primitive type.
-        private static internal_partial_structlong Deserialize(System.Int64 value)
+        private static internal_partial_structlong __Deserialize(System.Int64 value)
         {
             
 
@@ -335,13 +335,13 @@ public static readonly internal_partial_structlong MyValue = new internal_partia
             public override internal_partial_structlong Read(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {
 #if NET5_0_OR_GREATER
-                return internal_partial_structlong.Deserialize(
+                return internal_partial_structlong.__Deserialize(
                     options.NumberHandling == global::System.Text.Json.Serialization.JsonNumberHandling.AllowReadingFromString && reader.TokenType == global::System.Text.Json.JsonTokenType.String
                     ? global::System.Int64.Parse(reader.GetString(), global::System.Globalization.NumberStyles.Any, global::System.Globalization.CultureInfo.InvariantCulture)
                     : reader.GetInt64()
                 );
 #else
-                return internal_partial_structlong.Deserialize(reader.GetInt64());
+                return internal_partial_structlong.__Deserialize(reader.GetInt64());
 #endif
             }
 
@@ -353,7 +353,7 @@ public static readonly internal_partial_structlong MyValue = new internal_partia
 #if NET6_0_OR_GREATER
             public override internal_partial_structlong ReadAsPropertyName(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {
-                return internal_partial_structlong.Deserialize(global::System.Int64.Parse(reader.GetString(), global::System.Globalization.NumberStyles.Any, global::System.Globalization.CultureInfo.InvariantCulture));
+                return internal_partial_structlong.__Deserialize(global::System.Int64.Parse(reader.GetString(), global::System.Globalization.NumberStyles.Any, global::System.Globalization.CultureInfo.InvariantCulture));
             }
 
             public override void WriteAsPropertyName(System.Text.Json.Utf8JsonWriter writer, internal_partial_structlong value, global::System.Text.Json.JsonSerializerOptions options)
@@ -375,8 +375,8 @@ public static readonly internal_partial_structlong MyValue = new internal_partia
             {
                 return value switch
                 {
-                    global::System.Int64 longValue => internal_partial_structlong.Deserialize(longValue),
-                    global::System.String stringValue when  !global::System.String.IsNullOrEmpty(stringValue) && long.TryParse(stringValue, out var result) => internal_partial_structlong.Deserialize(result),
+                    global::System.Int64 longValue => internal_partial_structlong.__Deserialize(longValue),
+                    global::System.String stringValue when  !global::System.String.IsNullOrEmpty(stringValue) && long.TryParse(stringValue, out var result) => internal_partial_structlong.__Deserialize(result),
                     _ => base.ConvertFrom(context, culture, value),
                 };
             }

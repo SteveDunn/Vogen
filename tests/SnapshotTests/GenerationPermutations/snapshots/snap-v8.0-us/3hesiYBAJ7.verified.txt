@@ -104,7 +104,7 @@ namespace Whatever
   
         // only called internally when something has been deserialized into
         // its primitive type.
-        private static public_sealed_partial_recordConversions_Noneshort Deserialize(System.Int16 value)
+        private static public_sealed_partial_recordConversions_Noneshort __Deserialize(System.Int16 value)
         {
             
 

@@ -99,7 +99,7 @@ namespace Whatever
 
         // only called internally when something has been deserialized into
         // its primitive type.
-        private static stj_number_as_string_public_partial_structConversions_NewtonsoftJsondouble Deserialize(System.Double value)
+        private static stj_number_as_string_public_partial_structConversions_NewtonsoftJsondouble __Deserialize(System.Double value)
         {
             
 
@@ -397,7 +397,7 @@ namespace Whatever
             public override object ReadJson(Newtonsoft.Json.JsonReader reader, System.Type objectType, object existingValue, Newtonsoft.Json.JsonSerializer serializer)
             {
                 var result = serializer.Deserialize<global::System.Double?>(reader);
-                return result.HasValue ? stj_number_as_string_public_partial_structConversions_NewtonsoftJsondouble.Deserialize(result.Value) : null;
+                return result.HasValue ? stj_number_as_string_public_partial_structConversions_NewtonsoftJsondouble.__Deserialize(result.Value) : null;
             }
         }
 

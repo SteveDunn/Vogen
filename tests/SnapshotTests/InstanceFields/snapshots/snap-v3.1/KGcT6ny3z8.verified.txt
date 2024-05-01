@@ -96,7 +96,7 @@ public System.Double Value
 
         // only called internally when something has been deserialized into
         // its primitive type.
-        private static internal_sealed_partial_classdouble Deserialize(System.Double value)
+        private static internal_sealed_partial_classdouble __Deserialize(System.Double value)
         {
             
 
@@ -354,13 +354,13 @@ public static readonly internal_sealed_partial_classdouble MyValue = new interna
             public override internal_sealed_partial_classdouble Read(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {
 #if NET5_0_OR_GREATER
-                return internal_sealed_partial_classdouble.Deserialize(
+                return internal_sealed_partial_classdouble.__Deserialize(
                     options.NumberHandling == global::System.Text.Json.Serialization.JsonNumberHandling.AllowReadingFromString && reader.TokenType == global::System.Text.Json.JsonTokenType.String
                     ? global::System.Double.Parse(reader.GetString(), global::System.Globalization.NumberStyles.Any, global::System.Globalization.CultureInfo.InvariantCulture)
                     : reader.GetDouble()
                 );
 #else
-                return internal_sealed_partial_classdouble.Deserialize(reader.GetDouble());
+                return internal_sealed_partial_classdouble.__Deserialize(reader.GetDouble());
 #endif
             }
 
@@ -372,7 +372,7 @@ public static readonly internal_sealed_partial_classdouble MyValue = new interna
 #if NET6_0_OR_GREATER
             public override internal_sealed_partial_classdouble ReadAsPropertyName(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {
-                return internal_sealed_partial_classdouble.Deserialize(global::System.Double.Parse(reader.GetString(), global::System.Globalization.NumberStyles.Any, global::System.Globalization.CultureInfo.InvariantCulture));
+                return internal_sealed_partial_classdouble.__Deserialize(global::System.Double.Parse(reader.GetString(), global::System.Globalization.NumberStyles.Any, global::System.Globalization.CultureInfo.InvariantCulture));
             }
 
             public override void WriteAsPropertyName(System.Text.Json.Utf8JsonWriter writer, internal_sealed_partial_classdouble value, global::System.Text.Json.JsonSerializerOptions options)
@@ -394,9 +394,9 @@ public static readonly internal_sealed_partial_classdouble MyValue = new interna
             {
                 return value switch
                 {
-                    global::System.Double doubleValue => internal_sealed_partial_classdouble.Deserialize(doubleValue),
-                    global::System.Int64 longValue => internal_sealed_partial_classdouble.Deserialize((global::System.Double)longValue),
-                    global::System.String stringValue when !global::System.String.IsNullOrEmpty(stringValue) && global::System.Double.TryParse(stringValue, global::System.Globalization.NumberStyles.Float | global::System.Globalization.NumberStyles.AllowThousands, culture.NumberFormat, out var result) => internal_sealed_partial_classdouble.Deserialize(result),
+                    global::System.Double doubleValue => internal_sealed_partial_classdouble.__Deserialize(doubleValue),
+                    global::System.Int64 longValue => internal_sealed_partial_classdouble.__Deserialize((global::System.Double)longValue),
+                    global::System.String stringValue when !global::System.String.IsNullOrEmpty(stringValue) && global::System.Double.TryParse(stringValue, global::System.Globalization.NumberStyles.Float | global::System.Globalization.NumberStyles.AllowThousands, culture.NumberFormat, out var result) => internal_sealed_partial_classdouble.__Deserialize(result),
                     _ => base.ConvertFrom(context, culture, value),
                 };
             }

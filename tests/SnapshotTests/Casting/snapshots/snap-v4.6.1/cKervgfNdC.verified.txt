@@ -102,7 +102,7 @@ namespace Whatever
 
         // only called internally when something has been deserialized into
         // its primitive type.
-        private static _casting_public_partial_structCastOperator_ImplicitCastOperator_ImplicitSystem_Guid Deserialize(System.Guid value)
+        private static _casting_public_partial_structCastOperator_ImplicitCastOperator_ImplicitSystem_Guid __Deserialize(System.Guid value)
         {
             
 
@@ -217,7 +217,7 @@ namespace Whatever
         {
             public override _casting_public_partial_structCastOperator_ImplicitCastOperator_ImplicitSystem_Guid Read(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {
-                return _casting_public_partial_structCastOperator_ImplicitCastOperator_ImplicitSystem_Guid.Deserialize(reader.GetGuid());
+                return _casting_public_partial_structCastOperator_ImplicitCastOperator_ImplicitSystem_Guid.__Deserialize(reader.GetGuid());
             }
 
             public override void Write(System.Text.Json.Utf8JsonWriter writer, _casting_public_partial_structCastOperator_ImplicitCastOperator_ImplicitSystem_Guid value, global::System.Text.Json.JsonSerializerOptions options)
@@ -230,7 +230,7 @@ namespace Whatever
             {
                 if (global::System.Guid.TryParse(reader.GetString(), out global::System.Guid g))
                 {
-                    return _casting_public_partial_structCastOperator_ImplicitCastOperator_ImplicitSystem_Guid.Deserialize(g);
+                    return _casting_public_partial_structCastOperator_ImplicitCastOperator_ImplicitSystem_Guid.__Deserialize(g);
                 }
 
                 throw new global::System.Text.Json.JsonException("Unable to parse the GUID for an instance of _casting_public_partial_structCastOperator_ImplicitCastOperator_ImplicitSystem_Guid");
@@ -255,8 +255,8 @@ namespace Whatever
             {
                 return value switch
                 {
-                    global::System.Guid guidValue => _casting_public_partial_structCastOperator_ImplicitCastOperator_ImplicitSystem_Guid.Deserialize(guidValue),
-                    global::System.String stringValue when !global::System.String.IsNullOrEmpty(stringValue) && global::System.Guid.TryParse(stringValue, out var result) => _casting_public_partial_structCastOperator_ImplicitCastOperator_ImplicitSystem_Guid.Deserialize(result),
+                    global::System.Guid guidValue => _casting_public_partial_structCastOperator_ImplicitCastOperator_ImplicitSystem_Guid.__Deserialize(guidValue),
+                    global::System.String stringValue when !global::System.String.IsNullOrEmpty(stringValue) && global::System.Guid.TryParse(stringValue, out var result) => _casting_public_partial_structCastOperator_ImplicitCastOperator_ImplicitSystem_Guid.__Deserialize(result),
                     _ => base.ConvertFrom(context, culture, value),
                 };
             }

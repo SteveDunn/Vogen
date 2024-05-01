@@ -95,7 +95,7 @@ public @class.@record.@struct.@float.@event Value
 
         // only called internally when something has been deserialized into
         // its primitive type.
-        private static escapedTestspublic_partial_classConversions_NewtonsoftJsonrecord__struct__float__event Deserialize(@class.@record.@struct.@float.@event value)
+        private static escapedTestspublic_partial_classConversions_NewtonsoftJsonrecord__struct__float__event __Deserialize(@class.@record.@struct.@float.@event value)
         {
             
 
@@ -207,7 +207,7 @@ public @class.@record.@struct.@float.@event Value
             public override object ReadJson(Newtonsoft.Json.JsonReader reader, System.Type objectType, object existingValue, Newtonsoft.Json.JsonSerializer serializer)
             {
                 var result = serializer.Deserialize<@class.@record.@struct.@float.@event?>(reader);
-                return result.HasValue ? escapedTestspublic_partial_classConversions_NewtonsoftJsonrecord__struct__float__event.Deserialize(result.Value) : null;
+                return result.HasValue ? escapedTestspublic_partial_classConversions_NewtonsoftJsonrecord__struct__float__event.__Deserialize(result.Value) : null;
             }
         }
 

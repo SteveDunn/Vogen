@@ -98,7 +98,7 @@ public System.String Value
 
         // only called internally when something has been deserialized into
         // its primitive type.
-        private static stj_number_as_string_public_sealed_partial_classConversions_Nonestring Deserialize(System.String value)
+        private static stj_number_as_string_public_sealed_partial_classConversions_Nonestring __Deserialize(System.String value)
         {
                         if (value is null)
             {

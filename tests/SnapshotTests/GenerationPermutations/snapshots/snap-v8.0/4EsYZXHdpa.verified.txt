@@ -98,7 +98,7 @@ namespace Whatever
 
         // only called internally when something has been deserialized into
         // its primitive type.
-        private static internal_readonly_partial_structConversions_Nonestring Deserialize(System.String value)
+        private static internal_readonly_partial_structConversions_Nonestring __Deserialize(System.String value)
         {
             
 

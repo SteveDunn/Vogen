@@ -106,7 +106,7 @@ namespace Whatever
   
         // only called internally when something has been deserialized into
         // its primitive type.
-        private static _casting_public_sealed_partial_record_classCastOperator_NoneCastOperator_Nonedecimal Deserialize(System.Decimal value)
+        private static _casting_public_sealed_partial_record_classCastOperator_NoneCastOperator_Nonedecimal __Deserialize(System.Decimal value)
         {
             
 
@@ -498,13 +498,13 @@ namespace Whatever
             public override _casting_public_sealed_partial_record_classCastOperator_NoneCastOperator_Nonedecimal Read(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {
 #if NET5_0_OR_GREATER
-                return _casting_public_sealed_partial_record_classCastOperator_NoneCastOperator_Nonedecimal.Deserialize(
+                return _casting_public_sealed_partial_record_classCastOperator_NoneCastOperator_Nonedecimal.__Deserialize(
                     options.NumberHandling == global::System.Text.Json.Serialization.JsonNumberHandling.AllowReadingFromString && reader.TokenType == global::System.Text.Json.JsonTokenType.String
                     ? global::System.Decimal.Parse(reader.GetString(), global::System.Globalization.NumberStyles.Any, global::System.Globalization.CultureInfo.InvariantCulture)
                     : reader.GetDecimal()
                 );
 #else
-                return _casting_public_sealed_partial_record_classCastOperator_NoneCastOperator_Nonedecimal.Deserialize(reader.GetDecimal());
+                return _casting_public_sealed_partial_record_classCastOperator_NoneCastOperator_Nonedecimal.__Deserialize(reader.GetDecimal());
 #endif
             }
 
@@ -516,7 +516,7 @@ namespace Whatever
 #if NET6_0_OR_GREATER
             public override _casting_public_sealed_partial_record_classCastOperator_NoneCastOperator_Nonedecimal ReadAsPropertyName(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {
-                return _casting_public_sealed_partial_record_classCastOperator_NoneCastOperator_Nonedecimal.Deserialize(global::System.Decimal.Parse(reader.GetString(), global::System.Globalization.NumberStyles.Any, global::System.Globalization.CultureInfo.InvariantCulture));
+                return _casting_public_sealed_partial_record_classCastOperator_NoneCastOperator_Nonedecimal.__Deserialize(global::System.Decimal.Parse(reader.GetString(), global::System.Globalization.NumberStyles.Any, global::System.Globalization.CultureInfo.InvariantCulture));
             }
 
             public override void WriteAsPropertyName(System.Text.Json.Utf8JsonWriter writer, _casting_public_sealed_partial_record_classCastOperator_NoneCastOperator_Nonedecimal value, global::System.Text.Json.JsonSerializerOptions options)
@@ -538,8 +538,8 @@ namespace Whatever
             {
                 return value switch
                 {
-                    global::System.Decimal decimalValue => _casting_public_sealed_partial_record_classCastOperator_NoneCastOperator_Nonedecimal.Deserialize(decimalValue),
-                    global::System.String stringValue when !global::System.String.IsNullOrEmpty(stringValue) && global::System.Decimal.TryParse(stringValue, global::System.Globalization.NumberStyles.Number, culture.NumberFormat, out var result) => _casting_public_sealed_partial_record_classCastOperator_NoneCastOperator_Nonedecimal.Deserialize(result),
+                    global::System.Decimal decimalValue => _casting_public_sealed_partial_record_classCastOperator_NoneCastOperator_Nonedecimal.__Deserialize(decimalValue),
+                    global::System.String stringValue when !global::System.String.IsNullOrEmpty(stringValue) && global::System.Decimal.TryParse(stringValue, global::System.Globalization.NumberStyles.Number, culture.NumberFormat, out var result) => _casting_public_sealed_partial_record_classCastOperator_NoneCastOperator_Nonedecimal.__Deserialize(result),
                     _ => base.ConvertFrom(context, culture, value),
                 };
             }

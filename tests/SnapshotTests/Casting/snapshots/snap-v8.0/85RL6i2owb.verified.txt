@@ -96,7 +96,7 @@ public System.Int16 Value
 
         // only called internally when something has been deserialized into
         // its primitive type.
-        private static _casting_public_partial_classCastOperator_NoneCastOperator_Implicitshort Deserialize(System.Int16 value)
+        private static _casting_public_partial_classCastOperator_NoneCastOperator_Implicitshort __Deserialize(System.Int16 value)
         {
             
 
@@ -494,13 +494,13 @@ public System.Int16 Value
             public override _casting_public_partial_classCastOperator_NoneCastOperator_Implicitshort Read(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {
 #if NET5_0_OR_GREATER
-                return _casting_public_partial_classCastOperator_NoneCastOperator_Implicitshort.Deserialize(
+                return _casting_public_partial_classCastOperator_NoneCastOperator_Implicitshort.__Deserialize(
                     options.NumberHandling == global::System.Text.Json.Serialization.JsonNumberHandling.AllowReadingFromString && reader.TokenType == global::System.Text.Json.JsonTokenType.String
                     ? global::System.Int16.Parse(reader.GetString(), global::System.Globalization.NumberStyles.Any, global::System.Globalization.CultureInfo.InvariantCulture)
                     : reader.GetInt16()
                 );
 #else
-                return _casting_public_partial_classCastOperator_NoneCastOperator_Implicitshort.Deserialize(reader.GetInt16());
+                return _casting_public_partial_classCastOperator_NoneCastOperator_Implicitshort.__Deserialize(reader.GetInt16());
 #endif
             }
 
@@ -511,7 +511,7 @@ public System.Int16 Value
 #if NET6_0_OR_GREATER
             public override _casting_public_partial_classCastOperator_NoneCastOperator_Implicitshort ReadAsPropertyName(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {
-                return _casting_public_partial_classCastOperator_NoneCastOperator_Implicitshort.Deserialize(global::System.Int16.Parse(reader.GetString(), global::System.Globalization.NumberStyles.Any, global::System.Globalization.CultureInfo.InvariantCulture));
+                return _casting_public_partial_classCastOperator_NoneCastOperator_Implicitshort.__Deserialize(global::System.Int16.Parse(reader.GetString(), global::System.Globalization.NumberStyles.Any, global::System.Globalization.CultureInfo.InvariantCulture));
             }
 
             public override void WriteAsPropertyName(System.Text.Json.Utf8JsonWriter writer, _casting_public_partial_classCastOperator_NoneCastOperator_Implicitshort value, global::System.Text.Json.JsonSerializerOptions options)
@@ -533,10 +533,10 @@ public System.Int16 Value
             {
                 return value switch
                 {
-                    global::System.Int16 shortValue => _casting_public_partial_classCastOperator_NoneCastOperator_Implicitshort.Deserialize(shortValue),
-                    global::System.Int32 intValue => _casting_public_partial_classCastOperator_NoneCastOperator_Implicitshort.Deserialize((global::System.Int16)intValue),
-                    global::System.Int64 longValue => _casting_public_partial_classCastOperator_NoneCastOperator_Implicitshort.Deserialize((global::System.Int16)longValue),
-                    global::System.String stringValue when  !global::System.String.IsNullOrEmpty(stringValue) && global::System.Int16.TryParse(stringValue, out var result) => _casting_public_partial_classCastOperator_NoneCastOperator_Implicitshort.Deserialize(result),
+                    global::System.Int16 shortValue => _casting_public_partial_classCastOperator_NoneCastOperator_Implicitshort.__Deserialize(shortValue),
+                    global::System.Int32 intValue => _casting_public_partial_classCastOperator_NoneCastOperator_Implicitshort.__Deserialize((global::System.Int16)intValue),
+                    global::System.Int64 longValue => _casting_public_partial_classCastOperator_NoneCastOperator_Implicitshort.__Deserialize((global::System.Int16)longValue),
+                    global::System.String stringValue when  !global::System.String.IsNullOrEmpty(stringValue) && global::System.Int16.TryParse(stringValue, out var result) => _casting_public_partial_classCastOperator_NoneCastOperator_Implicitshort.__Deserialize(result),
                     _ => base.ConvertFrom(context, culture, value),
                 };
             }

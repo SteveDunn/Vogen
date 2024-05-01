@@ -105,7 +105,7 @@ namespace Whatever
   
         // only called internally when something has been deserialized into
         // its primitive type.
-        private static stj_number_as_string_public_sealed_partial_recordConversions_SystemTextJsonint Deserialize(System.Int32 value)
+        private static stj_number_as_string_public_sealed_partial_recordConversions_SystemTextJsonint __Deserialize(System.Int32 value)
         {
             
 
@@ -408,13 +408,13 @@ namespace Whatever
             public override stj_number_as_string_public_sealed_partial_recordConversions_SystemTextJsonint Read(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {
 #if NET5_0_OR_GREATER
-                return stj_number_as_string_public_sealed_partial_recordConversions_SystemTextJsonint.Deserialize(
+                return stj_number_as_string_public_sealed_partial_recordConversions_SystemTextJsonint.__Deserialize(
                     options.NumberHandling == global::System.Text.Json.Serialization.JsonNumberHandling.AllowReadingFromString && reader.TokenType == global::System.Text.Json.JsonTokenType.String
                     ? global::System.Int32.Parse(reader.GetString(), global::System.Globalization.NumberStyles.Any, global::System.Globalization.CultureInfo.InvariantCulture)
                     : reader.GetInt32()
                 );
 #else
-                return stj_number_as_string_public_sealed_partial_recordConversions_SystemTextJsonint.Deserialize(reader.GetInt32());
+                return stj_number_as_string_public_sealed_partial_recordConversions_SystemTextJsonint.__Deserialize(reader.GetInt32());
 #endif
             }
 
@@ -426,7 +426,7 @@ namespace Whatever
 #if NET6_0_OR_GREATER            
             public override stj_number_as_string_public_sealed_partial_recordConversions_SystemTextJsonint ReadAsPropertyName(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {
-                return stj_number_as_string_public_sealed_partial_recordConversions_SystemTextJsonint.Deserialize(global::System.Int32.Parse(reader.GetString(), global::System.Globalization.NumberStyles.Any, global::System.Globalization.CultureInfo.InvariantCulture));
+                return stj_number_as_string_public_sealed_partial_recordConversions_SystemTextJsonint.__Deserialize(global::System.Int32.Parse(reader.GetString(), global::System.Globalization.NumberStyles.Any, global::System.Globalization.CultureInfo.InvariantCulture));
             }
 
             public override void WriteAsPropertyName(System.Text.Json.Utf8JsonWriter writer, stj_number_as_string_public_sealed_partial_recordConversions_SystemTextJsonint value, global::System.Text.Json.JsonSerializerOptions options)

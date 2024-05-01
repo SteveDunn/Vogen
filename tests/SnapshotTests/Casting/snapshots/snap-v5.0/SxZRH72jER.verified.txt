@@ -96,7 +96,7 @@ public System.Double Value
 
         // only called internally when something has been deserialized into
         // its primitive type.
-        private static _casting_public_sealed_partial_classCastOperator_NoneCastOperator_Nonedouble Deserialize(System.Double value)
+        private static _casting_public_sealed_partial_classCastOperator_NoneCastOperator_Nonedouble __Deserialize(System.Double value)
         {
             
 
@@ -348,13 +348,13 @@ public System.Double Value
             public override _casting_public_sealed_partial_classCastOperator_NoneCastOperator_Nonedouble Read(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {
 #if NET5_0_OR_GREATER
-                return _casting_public_sealed_partial_classCastOperator_NoneCastOperator_Nonedouble.Deserialize(
+                return _casting_public_sealed_partial_classCastOperator_NoneCastOperator_Nonedouble.__Deserialize(
                     options.NumberHandling == global::System.Text.Json.Serialization.JsonNumberHandling.AllowReadingFromString && reader.TokenType == global::System.Text.Json.JsonTokenType.String
                     ? global::System.Double.Parse(reader.GetString(), global::System.Globalization.NumberStyles.Any, global::System.Globalization.CultureInfo.InvariantCulture)
                     : reader.GetDouble()
                 );
 #else
-                return _casting_public_sealed_partial_classCastOperator_NoneCastOperator_Nonedouble.Deserialize(reader.GetDouble());
+                return _casting_public_sealed_partial_classCastOperator_NoneCastOperator_Nonedouble.__Deserialize(reader.GetDouble());
 #endif
             }
 
@@ -366,7 +366,7 @@ public System.Double Value
 #if NET6_0_OR_GREATER
             public override _casting_public_sealed_partial_classCastOperator_NoneCastOperator_Nonedouble ReadAsPropertyName(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {
-                return _casting_public_sealed_partial_classCastOperator_NoneCastOperator_Nonedouble.Deserialize(global::System.Double.Parse(reader.GetString(), global::System.Globalization.NumberStyles.Any, global::System.Globalization.CultureInfo.InvariantCulture));
+                return _casting_public_sealed_partial_classCastOperator_NoneCastOperator_Nonedouble.__Deserialize(global::System.Double.Parse(reader.GetString(), global::System.Globalization.NumberStyles.Any, global::System.Globalization.CultureInfo.InvariantCulture));
             }
 
             public override void WriteAsPropertyName(System.Text.Json.Utf8JsonWriter writer, _casting_public_sealed_partial_classCastOperator_NoneCastOperator_Nonedouble value, global::System.Text.Json.JsonSerializerOptions options)
@@ -388,9 +388,9 @@ public System.Double Value
             {
                 return value switch
                 {
-                    global::System.Double doubleValue => _casting_public_sealed_partial_classCastOperator_NoneCastOperator_Nonedouble.Deserialize(doubleValue),
-                    global::System.Int64 longValue => _casting_public_sealed_partial_classCastOperator_NoneCastOperator_Nonedouble.Deserialize((global::System.Double)longValue),
-                    global::System.String stringValue when !global::System.String.IsNullOrEmpty(stringValue) && global::System.Double.TryParse(stringValue, global::System.Globalization.NumberStyles.Float | global::System.Globalization.NumberStyles.AllowThousands, culture.NumberFormat, out var result) => _casting_public_sealed_partial_classCastOperator_NoneCastOperator_Nonedouble.Deserialize(result),
+                    global::System.Double doubleValue => _casting_public_sealed_partial_classCastOperator_NoneCastOperator_Nonedouble.__Deserialize(doubleValue),
+                    global::System.Int64 longValue => _casting_public_sealed_partial_classCastOperator_NoneCastOperator_Nonedouble.__Deserialize((global::System.Double)longValue),
+                    global::System.String stringValue when !global::System.String.IsNullOrEmpty(stringValue) && global::System.Double.TryParse(stringValue, global::System.Globalization.NumberStyles.Float | global::System.Globalization.NumberStyles.AllowThousands, culture.NumberFormat, out var result) => _casting_public_sealed_partial_classCastOperator_NoneCastOperator_Nonedouble.__Deserialize(result),
                     _ => base.ConvertFrom(context, culture, value),
                 };
             }

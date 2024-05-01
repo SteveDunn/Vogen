@@ -96,7 +96,7 @@ public System.DateTimeOffset Value
 
         // only called internally when something has been deserialized into
         // its primitive type.
-        private static _casting_public_partial_classCastOperator_ExplicitCastOperator_ImplicitSystem_DateTimeOffset Deserialize(System.DateTimeOffset value)
+        private static _casting_public_partial_classCastOperator_ExplicitCastOperator_ImplicitSystem_DateTimeOffset __Deserialize(System.DateTimeOffset value)
         {
             
 
@@ -280,7 +280,7 @@ public System.DateTimeOffset Value
         {
             public override _casting_public_partial_classCastOperator_ExplicitCastOperator_ImplicitSystem_DateTimeOffset Read(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {
-                return _casting_public_partial_classCastOperator_ExplicitCastOperator_ImplicitSystem_DateTimeOffset.Deserialize(reader.GetDateTimeOffset());
+                return _casting_public_partial_classCastOperator_ExplicitCastOperator_ImplicitSystem_DateTimeOffset.__Deserialize(reader.GetDateTimeOffset());
             }
 
             public override void Write(System.Text.Json.Utf8JsonWriter writer, _casting_public_partial_classCastOperator_ExplicitCastOperator_ImplicitSystem_DateTimeOffset value, global::System.Text.Json.JsonSerializerOptions options)
@@ -291,7 +291,7 @@ public System.DateTimeOffset Value
 #if NET6_0_OR_GREATER
             public override _casting_public_partial_classCastOperator_ExplicitCastOperator_ImplicitSystem_DateTimeOffset ReadAsPropertyName(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {
-                return _casting_public_partial_classCastOperator_ExplicitCastOperator_ImplicitSystem_DateTimeOffset.Deserialize(global::System.DateTimeOffset.ParseExact(reader.GetString(), "O", global::System.Globalization.CultureInfo.InvariantCulture));
+                return _casting_public_partial_classCastOperator_ExplicitCastOperator_ImplicitSystem_DateTimeOffset.__Deserialize(global::System.DateTimeOffset.ParseExact(reader.GetString(), "O", global::System.Globalization.CultureInfo.InvariantCulture));
             }
 
             public override void WriteAsPropertyName(System.Text.Json.Utf8JsonWriter writer, _casting_public_partial_classCastOperator_ExplicitCastOperator_ImplicitSystem_DateTimeOffset value, global::System.Text.Json.JsonSerializerOptions options)
@@ -313,8 +313,8 @@ public System.DateTimeOffset Value
             {
                 return value switch
                 {
-                    global::System.String stringValue when !global::System.String.IsNullOrEmpty(stringValue) && global::System.DateTimeOffset.TryParseExact(stringValue, "O", global::System.Globalization.CultureInfo.InvariantCulture, global::System.Globalization.DateTimeStyles.RoundtripKind, out var result) => _casting_public_partial_classCastOperator_ExplicitCastOperator_ImplicitSystem_DateTimeOffset.Deserialize(result),
-                    global::System.DateTimeOffset dateTimeValue => _casting_public_partial_classCastOperator_ExplicitCastOperator_ImplicitSystem_DateTimeOffset.Deserialize(dateTimeValue),
+                    global::System.String stringValue when !global::System.String.IsNullOrEmpty(stringValue) && global::System.DateTimeOffset.TryParseExact(stringValue, "O", global::System.Globalization.CultureInfo.InvariantCulture, global::System.Globalization.DateTimeStyles.RoundtripKind, out var result) => _casting_public_partial_classCastOperator_ExplicitCastOperator_ImplicitSystem_DateTimeOffset.__Deserialize(result),
+                    global::System.DateTimeOffset dateTimeValue => _casting_public_partial_classCastOperator_ExplicitCastOperator_ImplicitSystem_DateTimeOffset.__Deserialize(dateTimeValue),
                     _ => base.ConvertFrom(context, culture, value),
                 };
             }

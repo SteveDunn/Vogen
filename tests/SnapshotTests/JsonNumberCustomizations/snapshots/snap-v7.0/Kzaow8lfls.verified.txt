@@ -104,7 +104,7 @@ namespace Whatever
   
         // only called internally when something has been deserialized into
         // its primitive type.
-        private static stj_number_as_string_public_sealed_partial_record_classConversions_Noneint_customized Deserialize(System.Int32 value)
+        private static stj_number_as_string_public_sealed_partial_record_classConversions_Noneint_customized __Deserialize(System.Int32 value)
         {
             
 

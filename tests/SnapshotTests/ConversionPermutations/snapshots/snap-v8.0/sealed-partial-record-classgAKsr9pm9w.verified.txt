@@ -108,7 +108,7 @@ static MyIntVo() {
   
         // only called internally when something has been deserialized into
         // its primitive type.
-        private static MyIntVo Deserialize(System.Int32 value)
+        private static MyIntVo __Deserialize(System.Int32 value)
         {
             
 
@@ -501,13 +501,13 @@ static MyIntVo() {
             public override MyIntVo Read(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {
 #if NET5_0_OR_GREATER
-                return MyIntVo.Deserialize(
+                return MyIntVo.__Deserialize(
                     options.NumberHandling == global::System.Text.Json.Serialization.JsonNumberHandling.AllowReadingFromString && reader.TokenType == global::System.Text.Json.JsonTokenType.String
                     ? global::System.Int32.Parse(reader.GetString(), global::System.Globalization.NumberStyles.Any, global::System.Globalization.CultureInfo.InvariantCulture)
                     : reader.GetInt32()
                 );
 #else
-                return MyIntVo.Deserialize(reader.GetInt32());
+                return MyIntVo.__Deserialize(reader.GetInt32());
 #endif
             }
 
@@ -519,7 +519,7 @@ static MyIntVo() {
 #if NET6_0_OR_GREATER            
             public override MyIntVo ReadAsPropertyName(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {
-                return MyIntVo.Deserialize(global::System.Int32.Parse(reader.GetString(), global::System.Globalization.NumberStyles.Any, global::System.Globalization.CultureInfo.InvariantCulture));
+                return MyIntVo.__Deserialize(global::System.Int32.Parse(reader.GetString(), global::System.Globalization.NumberStyles.Any, global::System.Globalization.CultureInfo.InvariantCulture));
             }
 
             public override void WriteAsPropertyName(System.Text.Json.Utf8JsonWriter writer, MyIntVo value, global::System.Text.Json.JsonSerializerOptions options)
@@ -538,7 +538,7 @@ static MyIntVo() {
             public LinqToDbValueConverter()
                 : base(
                       v => v.Value,
-                      p => MyIntVo.Deserialize(p),
+                      p => MyIntVo.__Deserialize(p),
                       handlesNulls: false)
             { }
         }

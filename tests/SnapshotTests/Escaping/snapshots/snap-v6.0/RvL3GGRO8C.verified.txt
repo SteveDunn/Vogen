@@ -105,7 +105,7 @@ namespace @class
   
         // only called internally when something has been deserialized into
         // its primitive type.
-        private static escapedTestspublic_partial_recordConversions_NewtonsoftJsonbyte Deserialize(System.Byte value)
+        private static escapedTestspublic_partial_recordConversions_NewtonsoftJsonbyte __Deserialize(System.Byte value)
         {
             
 
@@ -364,7 +364,7 @@ namespace @class
             public override object ReadJson(Newtonsoft.Json.JsonReader reader, System.Type objectType, object existingValue, Newtonsoft.Json.JsonSerializer serializer)
             {
                 var result = serializer.Deserialize<global::System.Byte?>(reader);
-                return result.HasValue ? escapedTestspublic_partial_recordConversions_NewtonsoftJsonbyte.Deserialize(result.Value) : null;
+                return result.HasValue ? escapedTestspublic_partial_recordConversions_NewtonsoftJsonbyte.__Deserialize(result.Value) : null;
             }
         }
 

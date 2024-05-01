@@ -112,7 +112,7 @@ using Vogen;
 
         // only called internally when something has been deserialized into
         // its primitive type.
-        private static BugFix516Vo Deserialize(System.String value)
+        private static BugFix516Vo __Deserialize(System.String value)
         {
             
 
@@ -204,7 +204,7 @@ using Vogen;
         {
             public override BugFix516Vo Read(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {
-                return BugFix516Vo.Deserialize(reader.GetString());
+                return BugFix516Vo.__Deserialize(reader.GetString());
             }
 
             public override void Write(System.Text.Json.Utf8JsonWriter writer, BugFix516Vo value, global::System.Text.Json.JsonSerializerOptions options)
@@ -215,7 +215,7 @@ using Vogen;
 #if NET6_0_OR_GREATER
             public override BugFix516Vo ReadAsPropertyName(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {
-                return BugFix516Vo.Deserialize(reader.GetString());
+                return BugFix516Vo.__Deserialize(reader.GetString());
             }
 
             public override void WriteAsPropertyName(System.Text.Json.Utf8JsonWriter writer, BugFix516Vo value, global::System.Text.Json.JsonSerializerOptions options)
@@ -238,7 +238,7 @@ using Vogen;
                 var stringValue = value as global::System.String;
                 if (stringValue is not null)
                 {
-                    return BugFix516Vo.Deserialize(stringValue);
+                    return BugFix516Vo.__Deserialize(stringValue);
                 }
 
                 return base.ConvertFrom(context, culture, value);

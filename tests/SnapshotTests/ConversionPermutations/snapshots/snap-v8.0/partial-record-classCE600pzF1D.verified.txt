@@ -107,7 +107,7 @@ static MyIntVo() {
   
         // only called internally when something has been deserialized into
         // its primitive type.
-        private static MyIntVo Deserialize(System.Int32 value)
+        private static MyIntVo __Deserialize(System.Int32 value)
         {
             
 
@@ -505,7 +505,7 @@ static MyIntVo() {
             public LinqToDbValueConverter()
                 : base(
                       v => v.Value,
-                      p => MyIntVo.Deserialize(p),
+                      p => MyIntVo.__Deserialize(p),
                       handlesNulls: false)
             { }
         }

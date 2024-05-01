@@ -99,7 +99,7 @@ public System.String Value
 
         // only called internally when something has been deserialized into
         // its primitive type.
-        private static stj_number_as_string_public_sealed_partial_classConversions_NewtonsoftJsonstring Deserialize(System.String value)
+        private static stj_number_as_string_public_sealed_partial_classConversions_NewtonsoftJsonstring __Deserialize(System.String value)
         {
                         if (value is null)
             {
@@ -248,7 +248,7 @@ public System.String Value
             public override object ReadJson(Newtonsoft.Json.JsonReader reader, System.Type objectType, object existingValue, Newtonsoft.Json.JsonSerializer serializer)
             {
                 var result = serializer.Deserialize<global::System.String>(reader);
-                return result is not null ? stj_number_as_string_public_sealed_partial_classConversions_NewtonsoftJsonstring.Deserialize(result) : null;
+                return result is not null ? stj_number_as_string_public_sealed_partial_classConversions_NewtonsoftJsonstring.__Deserialize(result) : null;
             }
         }
 

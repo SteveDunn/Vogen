@@ -94,7 +94,7 @@ public System.DateTimeOffset Value
 
         // only called internally when something has been deserialized into
         // its primitive type.
-        private static internal_partial_classConversions_NoneSystem_DateTimeOffset Deserialize(System.DateTimeOffset value)
+        private static internal_partial_classConversions_NoneSystem_DateTimeOffset __Deserialize(System.DateTimeOffset value)
         {
             
 

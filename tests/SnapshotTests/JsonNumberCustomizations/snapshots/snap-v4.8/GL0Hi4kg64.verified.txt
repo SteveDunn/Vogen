@@ -95,7 +95,7 @@ public System.DateTime Value
 
         // only called internally when something has been deserialized into
         // its primitive type.
-        private static stj_number_as_string_public_sealed_partial_classConversions_SystemTextJsonSystem_DateTime_customized Deserialize(System.DateTime value)
+        private static stj_number_as_string_public_sealed_partial_classConversions_SystemTextJsonSystem_DateTime_customized __Deserialize(System.DateTime value)
         {
             
 
@@ -278,7 +278,7 @@ public System.DateTime Value
         {
             public override stj_number_as_string_public_sealed_partial_classConversions_SystemTextJsonSystem_DateTime_customized Read(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {
-                return stj_number_as_string_public_sealed_partial_classConversions_SystemTextJsonSystem_DateTime_customized.Deserialize(reader.GetDateTime().ToUniversalTime());
+                return stj_number_as_string_public_sealed_partial_classConversions_SystemTextJsonSystem_DateTime_customized.__Deserialize(reader.GetDateTime().ToUniversalTime());
             }
 
             public override void Write(System.Text.Json.Utf8JsonWriter writer, stj_number_as_string_public_sealed_partial_classConversions_SystemTextJsonSystem_DateTime_customized value, global::System.Text.Json.JsonSerializerOptions options)
@@ -289,7 +289,7 @@ public System.DateTime Value
 #if NET6_0_OR_GREATER
             public override stj_number_as_string_public_sealed_partial_classConversions_SystemTextJsonSystem_DateTime_customized ReadAsPropertyName(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {
-                return stj_number_as_string_public_sealed_partial_classConversions_SystemTextJsonSystem_DateTime_customized.Deserialize(global::System.DateTime.ParseExact(reader.GetString(), "O", global::System.Globalization.CultureInfo.InvariantCulture, global::System.Globalization.DateTimeStyles.RoundtripKind));
+                return stj_number_as_string_public_sealed_partial_classConversions_SystemTextJsonSystem_DateTime_customized.__Deserialize(global::System.DateTime.ParseExact(reader.GetString(), "O", global::System.Globalization.CultureInfo.InvariantCulture, global::System.Globalization.DateTimeStyles.RoundtripKind));
             }
 
             public override void WriteAsPropertyName(System.Text.Json.Utf8JsonWriter writer, stj_number_as_string_public_sealed_partial_classConversions_SystemTextJsonSystem_DateTime_customized value, global::System.Text.Json.JsonSerializerOptions options)
