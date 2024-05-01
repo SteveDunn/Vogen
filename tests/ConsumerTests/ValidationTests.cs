@@ -116,12 +116,12 @@ public partial class MyVo_throws_custom_exception
 // Does not compile:
 // VOG012 : String must derive from System.Exception
 // VOG013 : String must have at least 1 public constructor with 1 parameter of type System.String
-[ValueObject(throws: typeof(string))]
-public partial class MyVo_throws_non_exception
-{
-    private static Validation Validate(int value) => 
-        value > 0 ? Validation.Ok : Validation.Invalid("must be greater than zero");
-}
+// [ValueObject(throws: typeof(string))]
+// public partial class MyVo_throws_non_exception
+// {
+//     private static Validation Validate(int value) => 
+//         value > 0 ? Validation.Ok : Validation.Invalid("must be greater than zero");
+// }
 
 public class InvalidAmountException : Exception
 {
