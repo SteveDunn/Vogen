@@ -1,9 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Collections.Immutable;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.Testing;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Shared;
+using Vogen;
 using VerifyCS = AnalyzerTests.Verifiers.CSharpAnalyzerVerifier<Vogen.Rules.DoNotUseNewAnalyzer>;
 // ReSharper disable CoVariantArrayConversion
 
@@ -11,16 +16,31 @@ namespace AnalyzerTests
 {
     public class DoNotUseNewAnalyzerTests
     {
+        // A pattern for 'placeholders' for errors. These are stripped out when running tests
+        // that require both the user source and generated source.
+        private static readonly Regex _placeholderPattern = new(@"{\|#\d+:", RegexOptions.Compiled);
+
         private class Types : IEnumerable<object[]>
         {
             public IEnumerator<object[]> GetEnumerator()
             {
-                yield return new[] {"partial class"};
-                yield return new[] {"partial struct"};
-                yield return new[] {"readonly partial struct"};
-                yield return new[] {"partial record class"};
-                yield return new[] {"partial record struct"};
-                yield return new[] {"readonly partial record struct"};
+                yield return ["partial class"];
+                yield return ["partial struct"];
+                yield return ["readonly partial struct"];
+                yield return ["partial record class"];
+                yield return ["partial record struct"];
+                yield return ["readonly partial record struct"];
+            }
+
+            IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
+        }
+
+        private class Classes : IEnumerable<object[]>
+        {
+            public IEnumerator<object[]> GetEnumerator()
+            {
+                yield return ["partial class"];
+                yield return ["partial record class"];
             }
 
             IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
@@ -104,24 +124,117 @@ public class Test {{
         [ClassData(typeof(Types))]
         public async Task Disallow_new_from_local_function(string type)
         {
-            var source = $@"
-using Vogen;
-namespace Whatever;
+            var source = $$"""
 
-[ValueObject]
-public {type} MyVo {{ }}
+                           using Vogen;
+                           namespace Whatever;
 
-public class Test {{
-    public Test() {{
-        MyVo Get() => {{|#0:new MyVo()|}};
-        MyVo Get2() => {{|#1:new()|}};
-    }}
-}}
-";
+                           [ValueObject]
+                           public {{type}} MyVo { }
+
+                           public class Test {
+                               public Test() {
+                                   MyVo Get() => {|#0:new MyVo()|};
+                                   MyVo Get2() => {|#1:new()|};
+                               }
+                           }
+
+                           """;
 
             await Run(
                 source,
                 WithDiagnostics("VOG010", DiagnosticSeverity.Error, "MyVo", 0, 1));
+        }
+
+        [Theory]
+        [ClassData(typeof(Types))]
+        public async Task Allow_as_public_static_field_in_a_VO(string type)
+        {
+            var userSource = $$"""
+
+                           using Vogen;
+                           namespace Whatever
+                           {
+                               [ValueObject]
+                               public {{type}} MyVo { 
+                                    public static MyVo Unspecified = new MyVo(-1);
+                               }
+                           }
+
+                           """;
+            string[] sources = CombineUserAndGeneratedSource(userSource);
+
+            await Run(sources, Enumerable.Empty<DiagnosticResult>());
+        }
+
+        [Theory]
+        [ClassData(typeof(Types))]
+        public async Task Disallow_as_private_static_field_in_a_VO(string type)
+        {
+            var userSource = $$"""
+
+                           using Vogen;
+                           namespace Whatever
+                           {
+                               [ValueObject]
+                               public {{type}} MyVo { 
+                                    private static MyVo Unspecified1 = {|#0:new MyVo(-1)|};
+                                    private static MyVo Unspecified2 = {|#1:new(-1)|};
+                               }
+                           }
+
+                           """;
+
+            string[] sources = CombineUserAndGeneratedSource(userSource);
+            
+            await Run(sources, WithDiagnostics("VOG027", DiagnosticSeverity.Error, "MyVo", 0, 1));
+        }
+
+        [Theory]
+        [ClassData(typeof(Classes))]
+        public async Task Disallow_as_non_static_field_in_a_VO(string type)
+        {
+            var userSource = $$"""
+
+                           using Vogen;
+                           namespace Whatever
+                           {
+                               [ValueObject]
+                               public {{type}} MyVo { 
+                                    public MyVo Unspecified1 = {|#0:new MyVo(-1)|};
+                                    public MyVo Unspecified2 = {|#1:new(-1)|};
+                               }
+                           }
+
+                           """;
+
+            string[] sources = CombineUserAndGeneratedSource(userSource);
+            
+            await Run(sources, WithDiagnostics("VOG027", DiagnosticSeverity.Error, "MyVo", 0, 1));
+        }
+
+        private static string[] CombineUserAndGeneratedSource(string userSource)
+        {
+            var r = MetadataReference.CreateFromFile(typeof(ValueObjectAttribute).Assembly.Location);
+
+            var strippedSource = _placeholderPattern.Replace(userSource, string.Empty).Replace("|}", string.Empty);
+            
+            (ImmutableArray<Diagnostic> Diagnostics, string GeneratedSource) output = new ProjectBuilder()
+                .WithSource(strippedSource)
+                .WithTargetFramework(TargetFramework.Net8_0)
+                .GetGeneratedOutput<ValueObjectGenerator>(true, r);
+
+            if (output.Diagnostics.Length > 0)
+            {
+                throw new AssertFailedException(
+                    $"""
+                     Expected user source to be error and generated code to be free from errors:
+                                                                     User source: {userSource}
+                                                                     Errors: {string.Join(",", output.Diagnostics.Select(d => d.ToString()))}
+                     """);
+            }
+
+            return [userSource, output.GeneratedSource];
         }
 
         [Theory]
@@ -189,18 +302,20 @@ public partial class Vo { }";
             }
         }
 
-        private async Task Run(string source, IEnumerable<DiagnosticResult> expected)
+        private async Task Run(string source, IEnumerable<DiagnosticResult> expected) => await Run([source], expected);
+
+        private async Task Run(string[] sources, IEnumerable<DiagnosticResult> expected)
         {
             var test = new VerifyCS.Test
             {
-                TestState =
-                {
-                    Sources = { source },
-                },
-
                 CompilerDiagnostics = CompilerDiagnostics.Errors,
                 ReferenceAssemblies = References.Net80AndOurs.Value,
             };
+
+            foreach (var eachSource in sources)
+            {
+                test.TestState.Sources.Add(eachSource);
+            }
 
             test.ExpectedDiagnostics.AddRange(expected);
 

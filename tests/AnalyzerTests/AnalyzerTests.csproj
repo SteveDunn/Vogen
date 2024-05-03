@@ -42,6 +42,7 @@
     <ProjectReference Include="..\..\src\Vogen.CodeFixers\Vogen.CodeFixers.csproj" />
     <ProjectReference Include="..\..\src\Vogen.SharedTypes\Vogen.SharedTypes.csproj" />
     <ProjectReference Include="..\Shared\Shared.csproj" />
+    <ProjectReference Include="..\SnapshotTests\SnapshotTests.csproj" />
   </ItemGroup>
 </Project>
 

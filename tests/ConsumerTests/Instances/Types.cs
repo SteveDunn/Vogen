@@ -1,5 +1,18 @@
 ﻿namespace ConsumerTests.Instances;
 
+[ValueObject]
+public partial class IntWithNewedUpInstanceFields
+{
+    public static IntWithNewedUpInstanceFields Invalid = new(-1); 
+    public static IntWithNewedUpInstanceFields Unspecified = new(-2); 
+    
+    // Error VOG027 : Type 'IntWithNewedUpInstanceFields' cannot be constructed as a field with 'new' as it should be public and static
+    // public IntWithNewedUpInstanceFields NotStatic = new(-2); 
+    
+    // Error VOG027 : Type 'IntWithNewedUpInstanceFields' cannot be constructed as a field with 'new' as it should be public and static
+    // internal static IntWithNewedUpInstanceFields NotPublic = new(-2); 
+}
+
 [ValueObject(typeof(int))]
 [Instance(name: "Invalid", value: -1)]
 [Instance(name: "Unspecified", value: -2)]

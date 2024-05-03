@@ -121,7 +121,7 @@ namespace SnapshotTests
             }
         }
 
-        private (ImmutableArray<Diagnostic> Diagnostics, string Output) GetGeneratedOutput(string source, TargetFramework targetFramework)
+        private (ImmutableArray<Diagnostic> Diagnostics, string GeneratedSource) GetGeneratedOutput(string source, TargetFramework targetFramework)
         {
             var r = MetadataReference.CreateFromFile(typeof(ValueObjectAttribute).Assembly.Location);
 
