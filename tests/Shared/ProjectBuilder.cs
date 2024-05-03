@@ -210,7 +210,7 @@ public class ProjectBuilder
         return this;
     }
 
-    public (ImmutableArray<Diagnostic> Diagnostics, string Output) GetGeneratedOutput<T>(
+    public (ImmutableArray<Diagnostic> Diagnostics, string GeneratedSource) GetGeneratedOutput<T>(
         bool ignoreInitialCompilationErrors,
         MetadataReference? valueObjectAttributeMetadata = null)
         where T : IIncrementalGenerator, new()

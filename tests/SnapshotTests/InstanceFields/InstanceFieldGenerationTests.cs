@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Shared;
 using VerifyXunit;
 using Vogen;
 
@@ -26,6 +27,26 @@ public partial struct BooleanThing
 
         return new SnapshotRunner<ValueObjectGenerator>()
             .WithSource(source)
+            .RunOnAllFrameworks();
+    }
+
+    [Fact]
+    public Task Instances_can_be_newed_up_in_the_wrapper_itself()
+    {
+        var source = $$"""
+                       using Vogen;
+                       namespace Whatever;
+
+                       [ValueObject(typeof(int))]
+                       public partial class MyVo
+                       {
+                           public static readonly MyVo Unspecified = new MyVo(-1);
+                       }
+
+                       """;
+        return new SnapshotRunner<ValueObjectGenerator>()
+            .WithSource(source)
+            .IgnoreInitialCompilationErrors()
             .RunOnAllFrameworks();
     }
 
