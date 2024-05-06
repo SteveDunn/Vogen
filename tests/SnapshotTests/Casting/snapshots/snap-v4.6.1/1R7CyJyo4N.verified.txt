@@ -103,6 +103,49 @@ namespace Whatever
 
             return instance;
         }
+
+        /// <summary>
+/// Tries to build an instance from the provided underlying type.
+/// If a normalization method is provided, it will be called.
+/// If validation is provided, and it fails, false will be returned.
+/// </summary>
+/// <param name="value">The underlying type.</param>
+/// <param name="value">An instance of the value object.</param>
+/// <returns>True if the value object can be built, otherwise false.</returns>
+public static bool TryFrom(System.Int32 value, 
+#if NETCOREAPP3_0_OR_GREATER
+[global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)]
+#endif
+ out _casting_public_sealed_partial_record_classCastOperator_ExplicitCastOperator_Noneint vo)
+{
+    
+    
+
+    
+
+    vo = new _casting_public_sealed_partial_record_classCastOperator_ExplicitCastOperator_Noneint(value);
+
+    return true;
+}/// <summary>
+/// Tries to build an instance from the provided underlying value.
+/// If a normalization method is provided, it will be called.
+/// If validation is provided, and it fails, an error will be returned.
+/// </summary>
+/// <param name="value">The primitive value.</param>
+/// <returns>A <see cref="ValueObjectOrError{T}"/> containing either the value object, or an error.</returns>
+public static ValueObjectOrError<_casting_public_sealed_partial_record_classCastOperator_ExplicitCastOperator_Noneint> TryFrom(System.Int32 value)
+{
+    
+
+    
+
+    
+
+    return new ValueObjectOrError<_casting_public_sealed_partial_record_classCastOperator_ExplicitCastOperator_Noneint>(new _casting_public_sealed_partial_record_classCastOperator_ExplicitCastOperator_Noneint(value));
+}
+
+        public bool IsInitialized() => _isInitialized;
+
   
         // only called internally when something has been deserialized into
         // its primitive type.

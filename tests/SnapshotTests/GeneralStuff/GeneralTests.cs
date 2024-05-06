@@ -288,7 +288,7 @@ public partial class MyVo { }
         var source = @"using Vogen;
 namespace Whatever;
 
-[ValueObject(isInitializedGeneration: IsInitializedGeneration.Omit)]
+[ValueObject(isInitializedMethodGeneration: IsInitializedMethodGeneration.Omit)]
 public partial class MyVo { }
 ";
 
@@ -301,7 +301,7 @@ public partial class MyVo { }
         var source = @"using Vogen;
 namespace Whatever;
 
-[ValueObject(isInitializedGeneration: IsInitializedGeneration.Generate)]
+[ValueObject(isInitializedMethodGeneration: IsInitializedMethodGeneration.Generate)]
 public partial class MyVo { }
 ";
 

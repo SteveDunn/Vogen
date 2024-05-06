@@ -104,6 +104,11 @@ namespace Whatever
 
             return instance;
         }
+
+        
+
+        public bool IsInitialized() => _isInitialized;
+
         
 
         public static explicit operator CustomerId(System.String value) => From(value);

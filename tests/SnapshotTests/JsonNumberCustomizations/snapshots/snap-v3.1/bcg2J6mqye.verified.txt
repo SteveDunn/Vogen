@@ -91,6 +91,49 @@ namespace Whatever
 
             return instance;
         }
+
+        /// <summary>
+/// Tries to build an instance from the provided underlying type.
+/// If a normalization method is provided, it will be called.
+/// If validation is provided, and it fails, false will be returned.
+/// </summary>
+/// <param name="value">The underlying type.</param>
+/// <param name="value">An instance of the value object.</param>
+/// <returns>True if the value object can be built, otherwise false.</returns>
+public static bool TryFrom(System.String value, 
+#if NETCOREAPP3_0_OR_GREATER
+[global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)]
+#endif
+ out stj_number_as_string_public_readonly_partial_structConversions_Nonestring_customized vo)
+{
+    
+    
+
+    
+
+    vo = new stj_number_as_string_public_readonly_partial_structConversions_Nonestring_customized(value);
+
+    return true;
+}/// <summary>
+/// Tries to build an instance from the provided underlying value.
+/// If a normalization method is provided, it will be called.
+/// If validation is provided, and it fails, an error will be returned.
+/// </summary>
+/// <param name="value">The primitive value.</param>
+/// <returns>A <see cref="ValueObjectOrError{T}"/> containing either the value object, or an error.</returns>
+public static ValueObjectOrError<stj_number_as_string_public_readonly_partial_structConversions_Nonestring_customized> TryFrom(System.String value)
+{
+    
+
+    
+
+    
+
+    return new ValueObjectOrError<stj_number_as_string_public_readonly_partial_structConversions_Nonestring_customized>(new stj_number_as_string_public_readonly_partial_structConversions_Nonestring_customized(value));
+}
+
+        public bool IsInitialized() => _isInitialized;
+
         
 
         public static explicit operator stj_number_as_string_public_readonly_partial_structConversions_Nonestring_customized(System.String value) => From(value);
