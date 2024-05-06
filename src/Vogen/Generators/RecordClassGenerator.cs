@@ -1,5 +1,4 @@
-﻿using Microsoft.CodeAnalysis;
-using Microsoft.CodeAnalysis.CSharp.Syntax;
+﻿using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Vogen.Generators.Conversions;
 
 namespace Vogen.Generators;
@@ -152,23 +151,6 @@ using Vogen;
             : $@"            if (value is null)
             {{
                 throw new {voWorkItem.ValidationExceptionFullName}(""Cannot create a value object with null."");
-            }}
-";
-    
-    private static string GenerateNullCheckAndReturnFalseIfNeeded(VoWorkItem voWorkItem) =>
-        voWorkItem.IsTheUnderlyingAValueType ? string.Empty
-            : $@"            if (value is null)
-            {{
-                vo = default;
-                return false;
-            }}
-";
-    
-    private static string GenerateNullCheckAndReturnErrorIfNeeded(VoWorkItem item, SyntaxToken className) =>
-        item.IsTheUnderlyingAValueType ? string.Empty
-            : $@"            if (value is null)
-            {{
-                return new ValueObjectOrError<{className}>(Validation.Invalid(""The value provided was null""));
             }}
 ";
 }
