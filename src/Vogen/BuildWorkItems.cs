@@ -140,7 +140,7 @@ internal static class BuildWorkItems
             StringComparersGeneration = config.StringComparers,
             ParsableForStrings = config.ParsableForStrings,
             TryFromGeneration = config.TryFromGeneration,
-            IsInitializedGeneration = config.IsInitializedGeneration,
+            IsInitializedMethodGeneration = config.IsInitializedMethodGeneration,
             ParsableForPrimitives = config.ParsableForPrimitives,
             ToPrimitiveCastOperator = config.ToPrimitiveCasting,
             FromPrimitiveCastOperator = config.FromPrimitiveCasting,

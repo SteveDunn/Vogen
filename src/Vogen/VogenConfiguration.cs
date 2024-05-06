@@ -21,7 +21,7 @@ public class VogenConfiguration
         ParsableForStrings parsableForStrings,
         ParsableForPrimitives parsableForPrimitives,
         TryFromGeneration tryFromGeneration,
-        IsInitializedGeneration isInitializedGeneration)
+        IsInitializedMethodGeneration isInitializedMethodGeneration)
     {
         UnderlyingType = underlyingType;
         ValidationExceptionType = validationExceptionType;
@@ -37,7 +37,7 @@ public class VogenConfiguration
         ParsableForStrings = parsableForStrings;
         ParsableForPrimitives = parsableForPrimitives;
         TryFromGeneration = tryFromGeneration;
-        IsInitializedGeneration = isInitializedGeneration;
+        IsInitializedMethodGeneration = isInitializedMethodGeneration;
     }
 
     public static VogenConfiguration Combine(
@@ -133,11 +133,11 @@ public class VogenConfiguration
             (var local, _) => local,
         };
 
-        IsInitializedGeneration isInitializedGeneration = (localValues.IsInitializedGeneration, globalValues?.IsInitializedGeneration) switch
+        IsInitializedMethodGeneration isInitializedMethodGeneration = (localValues.IsInitializedMethodGeneration, globalValues?.IsInitializedMethodGeneration) switch
         {
-            (IsInitializedGeneration.Unspecified, null) => DefaultInstance.IsInitializedGeneration,
-            (IsInitializedGeneration.Unspecified, IsInitializedGeneration.Unspecified) => DefaultInstance.IsInitializedGeneration,
-            (IsInitializedGeneration.Unspecified, var global) => global.Value,
+            (IsInitializedMethodGeneration.Unspecified, null) => DefaultInstance.IsInitializedMethodGeneration,
+            (IsInitializedMethodGeneration.Unspecified, IsInitializedMethodGeneration.Unspecified) => DefaultInstance.IsInitializedMethodGeneration,
+            (IsInitializedMethodGeneration.Unspecified, var global) => global.Value,
             (var local, _) => local,
         };
 
@@ -166,7 +166,7 @@ public class VogenConfiguration
             parsableForStrings: parsableForStrings,
             parsableForPrimitives: parsableForPrimitives,
             tryFromGeneration: tryFromGeneration,
-            isInitializedGeneration: isInitializedGeneration);
+            isInitializedMethodGeneration: isInitializedMethodGeneration);
     }
 
     /// <summary>
@@ -198,7 +198,7 @@ public class VogenConfiguration
     public bool DisableStackTraceRecordingInDebug { get; set; }
     
     public TryFromGeneration TryFromGeneration { get; }
-    public IsInitializedGeneration IsInitializedGeneration { get; }
+    public IsInitializedMethodGeneration IsInitializedMethodGeneration { get; }
 
     // the issue here is that without a physical 'symbol' in the source, we can't
     // get the namedtypesymbol
@@ -219,5 +219,5 @@ public class VogenConfiguration
         parsableForStrings: ParsableForStrings.GenerateMethodsAndInterface,
         parsableForPrimitives: ParsableForPrimitives.HoistMethodsAndInterfaces,
         tryFromGeneration: TryFromGeneration.GenerateBoolAndErrorOrMethods,
-        isInitializedGeneration: IsInitializedGeneration.Generate);
+        isInitializedMethodGeneration: IsInitializedMethodGeneration.Generate);
 }

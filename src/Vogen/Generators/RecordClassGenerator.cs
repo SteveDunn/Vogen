@@ -89,7 +89,7 @@ using Vogen;
 
         {GenerateCodeForTryFrom.GenerateForAStruct(item, className, itemUnderlyingType)}
 
-{(item.IsInitializedGeneration == IsInitializedGeneration.Generate ? Util.GenerateIsInitializedMethod() : string.Empty)}
+{(item.IsInitializedMethodGeneration == IsInitializedMethodGeneration.Generate ? Util.GenerateIsInitializedMethod() : string.Empty)}
 
 {GenerateEqualsAndHashCodes.GenerateStringComparersIfNeeded(item, tds)}  
         // only called internally when something has been deserialized into

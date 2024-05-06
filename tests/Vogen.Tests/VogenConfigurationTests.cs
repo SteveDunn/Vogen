@@ -62,7 +62,7 @@ public class VogenConfigurationTests
                 ParsableForStrings.GenerateMethodsAndInterface,
                 ParsableForPrimitives.HoistMethodsAndInterfaces,
                 TryFromGeneration.Unspecified,
-                IsInitializedGeneration.Unspecified);
+                IsInitializedMethodGeneration.Unspecified);
     }
 
     public class Casting
@@ -107,7 +107,7 @@ public class VogenConfigurationTests
                 parsableForStrings: ParsableForStrings.GenerateMethodsAndInterface,
                 parsableForPrimitives: ParsableForPrimitives.HoistMethodsAndInterfaces,
                 tryFromGeneration: TryFromGeneration.Unspecified,
-                isInitializedGeneration: IsInitializedGeneration.Unspecified);
+                isInitializedMethodGeneration: IsInitializedMethodGeneration.Unspecified);
     }
 
     public class Conversion
@@ -136,7 +136,7 @@ public class VogenConfigurationTests
                 parsableForStrings: ParsableForStrings.GenerateMethodsAndInterface,
                 parsableForPrimitives: ParsableForPrimitives.HoistMethodsAndInterfaces,
                 TryFromGeneration.Unspecified,
-                IsInitializedGeneration.Unspecified);
+                IsInitializedMethodGeneration.Unspecified);
     }
 
     public class Comparable
@@ -261,36 +261,36 @@ public class VogenConfigurationTests
         }
     }
 
-    public class IsInitializedGenerationTests
+    public class IsInitializedMethodGenerationTests
     {
         [Fact]
         public void Defaults_to_generate()
         {
             var result = VogenConfiguration.Combine(
-                localValues: new ConfigBuilder().WithIsInitializedGeneration(IsInitializedGeneration.Unspecified).Build(), 
-                globalValues: new ConfigBuilder().WithIsInitializedGeneration(IsInitializedGeneration.Unspecified).Build());
+                localValues: new ConfigBuilder().WithIsInitializedGeneration(IsInitializedMethodGeneration.Unspecified).Build(), 
+                globalValues: new ConfigBuilder().WithIsInitializedGeneration(IsInitializedMethodGeneration.Unspecified).Build());
 
-            result.IsInitializedGeneration.Should().Be(IsInitializedGeneration.Generate);
+            result.IsInitializedMethodGeneration.Should().Be(IsInitializedMethodGeneration.Generate);
         }
 
         [Fact]
         public void Local_beats_global_when_specified()
         {
             var result = VogenConfiguration.Combine(
-                localValues: new ConfigBuilder().WithIsInitializedGeneration(IsInitializedGeneration.Generate).Build(), 
-                globalValues: new ConfigBuilder().WithIsInitializedGeneration(IsInitializedGeneration.Omit).Build());
+                localValues: new ConfigBuilder().WithIsInitializedGeneration(IsInitializedMethodGeneration.Generate).Build(), 
+                globalValues: new ConfigBuilder().WithIsInitializedGeneration(IsInitializedMethodGeneration.Omit).Build());
 
-            result.IsInitializedGeneration.Should().Be(IsInitializedGeneration.Generate);
+            result.IsInitializedMethodGeneration.Should().Be(IsInitializedMethodGeneration.Generate);
         }
 
         [Fact]
         public void Global_beats_local_when_local_is_not_specified()
         {
             var result = VogenConfiguration.Combine(
-                localValues: new ConfigBuilder().WithIsInitializedGeneration(IsInitializedGeneration.Unspecified).Build(), 
-                globalValues: new ConfigBuilder().WithIsInitializedGeneration(IsInitializedGeneration.Omit).Build());
+                localValues: new ConfigBuilder().WithIsInitializedGeneration(IsInitializedMethodGeneration.Unspecified).Build(), 
+                globalValues: new ConfigBuilder().WithIsInitializedGeneration(IsInitializedMethodGeneration.Omit).Build());
 
-            result.IsInitializedGeneration.Should().Be(IsInitializedGeneration.Omit);
+            result.IsInitializedMethodGeneration.Should().Be(IsInitializedMethodGeneration.Omit);
         }
     }
 
@@ -348,7 +348,7 @@ public class VogenConfigurationTests
                 _c.ParsableForStrings,
                 _c.ParsableForPrimitives,
                 _c.TryFromGeneration,
-                _c.IsInitializedGeneration);
+                _c.IsInitializedMethodGeneration);
                 
             return this;
         }
@@ -370,7 +370,7 @@ public class VogenConfigurationTests
                 _c.ParsableForStrings,
                 _c.ParsableForPrimitives,
                 _c.TryFromGeneration,
-                _c.IsInitializedGeneration);
+                _c.IsInitializedMethodGeneration);
                 
             return this;
         }
@@ -392,12 +392,12 @@ public class VogenConfigurationTests
                 _c.ParsableForStrings,
                 _c.ParsableForPrimitives,
                 g,
-                _c.IsInitializedGeneration);
+                _c.IsInitializedMethodGeneration);
                 
             return this;
         }
 
-        public ConfigBuilder WithIsInitializedGeneration(IsInitializedGeneration g)
+        public ConfigBuilder WithIsInitializedGeneration(IsInitializedMethodGeneration g)
         {
             _c = new VogenConfiguration(
                 _c.UnderlyingType,
@@ -436,7 +436,7 @@ public class VogenConfigurationTests
                 g,
                 _c.ParsableForPrimitives,
                 _c.TryFromGeneration,
-                _c.IsInitializedGeneration);
+                _c.IsInitializedMethodGeneration);
                 
             return this;
         }
@@ -458,7 +458,7 @@ public class VogenConfigurationTests
                 _c.ParsableForStrings,
                 g,
                 _c.TryFromGeneration,
-                _c.IsInitializedGeneration);
+                _c.IsInitializedMethodGeneration);
                 
             return this;
         }

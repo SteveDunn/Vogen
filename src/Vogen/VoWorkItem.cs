@@ -89,7 +89,7 @@ public class VoWorkItem
     
     public TryFromGeneration TryFromGeneration { get; init; }
     
-    public IsInitializedGeneration IsInitializedGeneration { get; init; }
+    public IsInitializedMethodGeneration IsInitializedMethodGeneration { get; init; }
 }
 
 public class ParsingInformation

@@ -34,7 +34,7 @@ public class VogenDefaultsAttribute : Attribute
     /// <param name="parsableForStrings">Specifies the functionality around parsing (IParsable etc.)</param>
     /// <param name="parsableForPrimitives">Specifies the functionality around parsing (IParsable etc.)</param>
     /// <param name="tryFromGeneration">Controls what is generated for the TryFrom methods.</param>
-    /// <param name="isInitializedGeneration">Controls whether the IsInitialized method is generated.</param>
+    /// <param name="isInitializedMethodGeneration">Controls whether the IsInitialized method is generated.</param>
     public VogenDefaultsAttribute(
         Type? underlyingType = null,
         Conversions conversions = Conversions.Default,
@@ -48,7 +48,7 @@ public class VogenDefaultsAttribute : Attribute
         ParsableForStrings parsableForStrings = ParsableForStrings.GenerateMethodsAndInterface,
         ParsableForPrimitives parsableForPrimitives = ParsableForPrimitives.HoistMethodsAndInterfaces,
         TryFromGeneration tryFromGeneration = TryFromGeneration.Unspecified,
-        IsInitializedGeneration isInitializedGeneration = IsInitializedGeneration.Unspecified
+        IsInitializedMethodGeneration isInitializedMethodGeneration = IsInitializedMethodGeneration.Unspecified
         )
     {
     }

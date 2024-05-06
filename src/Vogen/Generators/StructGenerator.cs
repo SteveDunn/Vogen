@@ -78,7 +78,7 @@ using Vogen;
 
         {GenerateCodeForTryFrom.GenerateForAStruct(item, structName, itemUnderlyingType)}
 
-{(item.IsInitializedGeneration == IsInitializedGeneration.Generate ? Util.GenerateIsInitializedMethod() : string.Empty)}
+{(item.IsInitializedMethodGeneration == IsInitializedMethodGeneration.Generate ? Util.GenerateIsInitializedMethod() : string.Empty)}
 
 {GenerateEqualsAndHashCodes.GenerateStringComparersIfNeeded(item, tds)}        
 

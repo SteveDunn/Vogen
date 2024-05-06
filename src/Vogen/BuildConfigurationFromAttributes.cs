@@ -30,7 +30,7 @@ internal class BuildConfigurationFromAttributes
     private ParsableForStrings _parsableForStrings; 
     private ParsableForPrimitives _parsableForPrimitives; 
     private TryFromGeneration _tryFromGeneration; 
-    private IsInitializedGeneration _isInitializedGeneration; 
+    private IsInitializedMethodGeneration _isInitializedMethodGeneration; 
 
     private BuildConfigurationFromAttributes(AttributeData att)
     {
@@ -50,7 +50,7 @@ internal class BuildConfigurationFromAttributes
         _disableStackTraceGenerationInDebug = false;
         _hasErroredAttributes = false;
         _tryFromGeneration = TryFromGeneration.Unspecified;
-        _isInitializedGeneration = IsInitializedGeneration.Unspecified;
+        _isInitializedMethodGeneration = IsInitializedMethodGeneration.Unspecified;
         
        _diagnostics = new List<Diagnostic>();
         
@@ -108,7 +108,7 @@ internal class BuildConfigurationFromAttributes
                 _parsableForStrings,
                 _parsableForPrimitives,
                 _tryFromGeneration,
-                _isInitializedGeneration),
+                _isInitializedMethodGeneration),
             diagnostics: _diagnostics);
     }
 
@@ -196,7 +196,7 @@ internal class BuildConfigurationFromAttributes
 
             if (i == 11)
             {
-                _isInitializedGeneration = (IsInitializedGeneration) v;
+                _isInitializedMethodGeneration = (IsInitializedMethodGeneration) v;
             }
 
             if (i == 10)
@@ -277,7 +277,7 @@ internal class BuildConfigurationFromAttributes
 
             if (i == 12)
             {
-                _isInitializedGeneration = (IsInitializedGeneration) v;
+                _isInitializedMethodGeneration = (IsInitializedMethodGeneration) v;
             }
 
             if (i == 11)
