@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Linq;
 using System.Threading.Tasks;
+using JetBrains.Annotations;
+// ReSharper disable AccessToStaticMemberViaDerivedType
+// ReSharper disable ClassNeverInstantiated.Global
 
 namespace Vogen.Examples.TypicalScenarios.UsingInterfaces
 {
@@ -8,6 +11,7 @@ namespace Vogen.Examples.TypicalScenarios.UsingInterfaces
     /// Scenario: I want my IDs to have a common interface so that I can pass them to a method that
     /// just wants to know they are an ID.
     /// </summary>
+    [UsedImplicitly]
     internal class UsingInterfaces : IScenario
     {
         public Task Run()

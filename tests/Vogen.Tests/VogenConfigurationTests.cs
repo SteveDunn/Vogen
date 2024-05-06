@@ -21,6 +21,7 @@ public class VogenConfigurationTests
             instance.FromPrimitiveCasting.Should().Be(CastOperator.Explicit);
             instance.ParsableForPrimitives.Should().Be(ParsableForPrimitives.HoistMethodsAndInterfaces);
             instance.ParsableForStrings.Should().Be(ParsableForStrings.GenerateMethodsAndInterface);
+            instance.TryFromGeneration.Should().Be(TryFromGeneration.GenerateBoolAndErrorOrMethods);
         }
     }
     
@@ -59,7 +60,9 @@ public class VogenConfigurationTests
                 CastOperator.Unspecified,
                 false,
                 ParsableForStrings.GenerateMethodsAndInterface,
-                ParsableForPrimitives.HoistMethodsAndInterfaces);
+                ParsableForPrimitives.HoistMethodsAndInterfaces,
+                TryFromGeneration.Unspecified,
+                IsInitializedMethodGeneration.Unspecified);
     }
 
     public class Casting
@@ -102,7 +105,9 @@ public class VogenConfigurationTests
                 fromPrimitiveCasting: fromPrimitiveCast,
                 disableStackTraceRecordingInDebug: false,
                 parsableForStrings: ParsableForStrings.GenerateMethodsAndInterface,
-                parsableForPrimitives: ParsableForPrimitives.HoistMethodsAndInterfaces);
+                parsableForPrimitives: ParsableForPrimitives.HoistMethodsAndInterfaces,
+                tryFromGeneration: TryFromGeneration.Unspecified,
+                isInitializedMethodGeneration: IsInitializedMethodGeneration.Unspecified);
     }
 
     public class Conversion
@@ -129,7 +134,9 @@ public class VogenConfigurationTests
                 CastOperator.Unspecified,
                 false,
                 parsableForStrings: ParsableForStrings.GenerateMethodsAndInterface,
-                parsableForPrimitives: ParsableForPrimitives.HoistMethodsAndInterfaces);
+                parsableForPrimitives: ParsableForPrimitives.HoistMethodsAndInterfaces,
+                TryFromGeneration.Unspecified,
+                IsInitializedMethodGeneration.Unspecified);
     }
 
     public class Comparable
@@ -221,6 +228,72 @@ public class VogenConfigurationTests
         }
     }
 
+    public class TryFromGenerationTests
+    {
+        [Fact]
+        public void Defaults_to_generate_both_bool_and_erroror_methods()
+        {
+            var result = VogenConfiguration.Combine(
+                localValues: new ConfigBuilder().WithTryFromGeneration(TryFromGeneration.Unspecified).Build(), 
+                globalValues: new ConfigBuilder().WithTryFromGeneration(TryFromGeneration.Unspecified).Build());
+
+            result.TryFromGeneration.Should().Be(TryFromGeneration.GenerateBoolAndErrorOrMethods);
+        }
+
+        [Fact]
+        public void Local_beats_global_when_specified()
+        {
+            var result = VogenConfiguration.Combine(
+                localValues: new ConfigBuilder().WithTryFromGeneration(TryFromGeneration.Omit).Build(), 
+                globalValues: new ConfigBuilder().WithTryFromGeneration(TryFromGeneration.GenerateBoolMethod).Build());
+
+            result.TryFromGeneration.Should().Be(TryFromGeneration.Omit);
+        }
+
+        [Fact]
+        public void Global_beats_local_when_local_is_not_specified()
+        {
+            var result = VogenConfiguration.Combine(
+                localValues: new ConfigBuilder().WithTryFromGeneration(TryFromGeneration.Unspecified).Build(), 
+                globalValues: new ConfigBuilder().WithTryFromGeneration(TryFromGeneration.GenerateErrorOrMethod).Build());
+
+            result.TryFromGeneration.Should().Be(TryFromGeneration.GenerateErrorOrMethod);
+        }
+    }
+
+    public class IsInitializedMethodGenerationTests
+    {
+        [Fact]
+        public void Defaults_to_generate()
+        {
+            var result = VogenConfiguration.Combine(
+                localValues: new ConfigBuilder().WithIsInitializedGeneration(IsInitializedMethodGeneration.Unspecified).Build(), 
+                globalValues: new ConfigBuilder().WithIsInitializedGeneration(IsInitializedMethodGeneration.Unspecified).Build());
+
+            result.IsInitializedMethodGeneration.Should().Be(IsInitializedMethodGeneration.Generate);
+        }
+
+        [Fact]
+        public void Local_beats_global_when_specified()
+        {
+            var result = VogenConfiguration.Combine(
+                localValues: new ConfigBuilder().WithIsInitializedGeneration(IsInitializedMethodGeneration.Generate).Build(), 
+                globalValues: new ConfigBuilder().WithIsInitializedGeneration(IsInitializedMethodGeneration.Omit).Build());
+
+            result.IsInitializedMethodGeneration.Should().Be(IsInitializedMethodGeneration.Generate);
+        }
+
+        [Fact]
+        public void Global_beats_local_when_local_is_not_specified()
+        {
+            var result = VogenConfiguration.Combine(
+                localValues: new ConfigBuilder().WithIsInitializedGeneration(IsInitializedMethodGeneration.Unspecified).Build(), 
+                globalValues: new ConfigBuilder().WithIsInitializedGeneration(IsInitializedMethodGeneration.Omit).Build());
+
+            result.IsInitializedMethodGeneration.Should().Be(IsInitializedMethodGeneration.Omit);
+        }
+    }
+
     public class PrimitiveParsableGenerationTests
     {
         [Fact]
@@ -273,7 +346,9 @@ public class VogenConfigurationTests
                 _c.FromPrimitiveCasting,
                 _c.DisableStackTraceRecordingInDebug,
                 _c.ParsableForStrings,
-                _c.ParsableForPrimitives);
+                _c.ParsableForPrimitives,
+                _c.TryFromGeneration,
+                _c.IsInitializedMethodGeneration);
                 
             return this;
         }
@@ -293,7 +368,53 @@ public class VogenConfigurationTests
                 _c.FromPrimitiveCasting,
                 _c.DisableStackTraceRecordingInDebug,
                 _c.ParsableForStrings,
-                _c.ParsableForPrimitives);
+                _c.ParsableForPrimitives,
+                _c.TryFromGeneration,
+                _c.IsInitializedMethodGeneration);
+                
+            return this;
+        }
+
+        public ConfigBuilder WithTryFromGeneration(TryFromGeneration g)
+        {
+            _c = new VogenConfiguration(
+                _c.UnderlyingType,
+                _c.ValidationExceptionType,
+                _c.Conversions,
+                _c.Customizations,
+                _c.DeserializationStrictness,
+                _c.DebuggerAttributes,
+                _c.Comparison,
+                _c.StringComparers,
+                _c.ToPrimitiveCasting,
+                _c.FromPrimitiveCasting,
+                _c.DisableStackTraceRecordingInDebug,
+                _c.ParsableForStrings,
+                _c.ParsableForPrimitives,
+                g,
+                _c.IsInitializedMethodGeneration);
+                
+            return this;
+        }
+
+        public ConfigBuilder WithIsInitializedGeneration(IsInitializedMethodGeneration g)
+        {
+            _c = new VogenConfiguration(
+                _c.UnderlyingType,
+                _c.ValidationExceptionType,
+                _c.Conversions,
+                _c.Customizations,
+                _c.DeserializationStrictness,
+                _c.DebuggerAttributes,
+                _c.Comparison,
+                _c.StringComparers,
+                _c.ToPrimitiveCasting,
+                _c.FromPrimitiveCasting,
+                _c.DisableStackTraceRecordingInDebug,
+                _c.ParsableForStrings,
+                _c.ParsableForPrimitives,
+                _c.TryFromGeneration,
+                g);
                 
             return this;
         }
@@ -313,7 +434,9 @@ public class VogenConfigurationTests
                 _c.FromPrimitiveCasting,
                 _c.DisableStackTraceRecordingInDebug,
                 g,
-                _c.ParsableForPrimitives);
+                _c.ParsableForPrimitives,
+                _c.TryFromGeneration,
+                _c.IsInitializedMethodGeneration);
                 
             return this;
         }
@@ -333,7 +456,9 @@ public class VogenConfigurationTests
                 _c.FromPrimitiveCasting,
                 _c.DisableStackTraceRecordingInDebug,
                 _c.ParsableForStrings,
-                g);
+                g,
+                _c.TryFromGeneration,
+                _c.IsInitializedMethodGeneration);
                 
             return this;
         }

@@ -9,6 +9,10 @@ using System;
 [AttributeUsage(AttributeTargets.Assembly, AllowMultiple = false)]
 public class VogenDefaultsAttribute : Attribute
 {
+    // ** NOTE: The default values here should be 'Unspecified' if there is such an option.
+    // The default values are resolved when merging attributes, if either are unspecified,
+    // then the respective value `VogenConfiguration.DefaultInstance` is used.
+
     /// <summary>
     /// Creates a new instance of a type that represents the default
     /// values used for value object generation.
@@ -29,6 +33,8 @@ public class VogenDefaultsAttribute : Attribute
     /// This stack trace is heap based which might be unwanted if your Value Object is stack based.</param>
     /// <param name="parsableForStrings">Specifies the functionality around parsing (IParsable etc.)</param>
     /// <param name="parsableForPrimitives">Specifies the functionality around parsing (IParsable etc.)</param>
+    /// <param name="tryFromGeneration">Controls what is generated for the TryFrom methods.</param>
+    /// <param name="isInitializedMethodGeneration">Controls whether the IsInitialized method is generated.</param>
     public VogenDefaultsAttribute(
         Type? underlyingType = null,
         Conversions conversions = Conversions.Default,
@@ -40,7 +46,9 @@ public class VogenDefaultsAttribute : Attribute
         CastOperator fromPrimitiveCasting = CastOperator.Explicit,
         bool disableStackTraceRecordingInDebug = false,
         ParsableForStrings parsableForStrings = ParsableForStrings.GenerateMethodsAndInterface,
-        ParsableForPrimitives parsableForPrimitives = ParsableForPrimitives.HoistMethodsAndInterfaces
+        ParsableForPrimitives parsableForPrimitives = ParsableForPrimitives.HoistMethodsAndInterfaces,
+        TryFromGeneration tryFromGeneration = TryFromGeneration.Unspecified,
+        IsInitializedMethodGeneration isInitializedMethodGeneration = IsInitializedMethodGeneration.Unspecified
         )
     {
     }

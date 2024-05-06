@@ -23,7 +23,7 @@ public static class Util
     };
 
 
-    public static string GenerateCallToValidation(VoWorkItem workItem)
+    public static string GenerateCallToValidationAndThrowIfRequired(VoWorkItem workItem)
     {
         if (workItem.ValidateMethod is not null)
         {
@@ -39,6 +39,47 @@ public static class Util
                     }}
                 }}
                 throw ex;
+            }}
+";
+        }
+
+        return string.Empty;
+    }
+
+    public static string GenerateCallToValidationAndReturnFalseIfNeeded(VoWorkItem workItem)
+    {
+        if (workItem.ValidateMethod is not null)
+        {
+            return @$"var validation = {workItem.TypeToAugment.Identifier}.{workItem.ValidateMethod.Identifier.Value}(value);
+            if (validation != Vogen.Validation.Ok)
+            {{
+                vo = default;
+                return false;
+            }}
+";
+        }
+
+        return string.Empty;
+    }
+    
+    public static string GenerateNotNullWhenTrueAttribute() =>
+        """
+
+        #if NETCOREAPP3_0_OR_GREATER
+        [global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)]
+        #endif
+
+        """;
+
+
+    public static string GenerateCallToValidationAndReturnValueObjectOrErrorIfNeeded(SyntaxToken className, VoWorkItem workItem)
+    {
+        if (workItem.ValidateMethod is not null)
+        {
+            return @$"var validation = {workItem.TypeToAugment.Identifier}.{workItem.ValidateMethod.Identifier.Value}(value);
+            if (validation != Vogen.Validation.Ok)
+            {{
+                return new ValueObjectOrError<{className}>(validation);
             }}
 ";
         }
@@ -224,7 +265,7 @@ $$"""
     /// <inheritdoc cref=""{item.UnderlyingTypeFullName}.ToString()"" />
     public readonly override global::System.String ToString() =>_isInitialized ? Value.ToString() : ""[UNINITIALIZED]"";";
 
-    public static string GenerateGuidFactoryMethodIfRequired(VoWorkItem item, TypeDeclarationSyntax tds)
+    public static string GenerateGuidFactoryMethodIfNeeded(VoWorkItem item, TypeDeclarationSyntax tds)
     {
         if (item.UnderlyingTypeFullName == "System.Guid" && item.Customizations.HasFlag(Customizations.AddFactoryMethodForGuids))
         {
@@ -233,6 +274,8 @@ $$"""
 
         return string.Empty;
     }
+
+    public static string GenerateIsInitializedMethod() => """        public bool IsInitialized() => _isInitialized;""";
 }
 
 public static class DebugGeneration

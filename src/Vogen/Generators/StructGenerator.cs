@@ -69,15 +69,20 @@ using Vogen;
         {{
             {Util.GenerateCallToNormalizeMethodIfNeeded(item)}
 
-            {Util.GenerateCallToValidation(item)}
+            {Util.GenerateCallToValidationAndThrowIfRequired(item)}
 
             {structName} instance = new {structName}(value);
 
             return instance;
         }}
+
+        {GenerateCodeForTryFrom.GenerateForAStruct(item, structName, itemUnderlyingType)}
+
+{(item.IsInitializedMethodGeneration == IsInitializedMethodGeneration.Generate ? Util.GenerateIsInitializedMethod() : string.Empty)}
+
 {GenerateEqualsAndHashCodes.GenerateStringComparersIfNeeded(item, tds)}        
 
-{GenerateCastingOperators.Generate(item,tds)}{Util.GenerateGuidFactoryMethodIfRequired(item, tds)}
+{GenerateCastingOperators.Generate(item,tds)}{Util.GenerateGuidFactoryMethodIfNeeded(item, tds)}
         // only called internally when something has been deserialized into
         // its primitive type.
         private static {structName} __Deserialize({itemUnderlyingType} value)

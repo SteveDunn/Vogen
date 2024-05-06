@@ -102,6 +102,49 @@ namespace Whatever
 
             return instance;
         }
+
+        /// <summary>
+/// Tries to build an instance from the provided underlying type.
+/// If a normalization method is provided, it will be called.
+/// If validation is provided, and it fails, false will be returned.
+/// </summary>
+/// <param name="value">The underlying type.</param>
+/// <param name="value">An instance of the value object.</param>
+/// <returns>True if the value object can be built, otherwise false.</returns>
+public static bool TryFrom(System.Char value, 
+#if NETCOREAPP3_0_OR_GREATER
+[global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)]
+#endif
+ out stj_number_as_string_public_partial_recordConversions_SystemTextJsonchar vo)
+{
+    
+    
+
+    
+
+    vo = new stj_number_as_string_public_partial_recordConversions_SystemTextJsonchar(value);
+
+    return true;
+}/// <summary>
+/// Tries to build an instance from the provided underlying value.
+/// If a normalization method is provided, it will be called.
+/// If validation is provided, and it fails, an error will be returned.
+/// </summary>
+/// <param name="value">The primitive value.</param>
+/// <returns>A <see cref="ValueObjectOrError{T}"/> containing either the value object, or an error.</returns>
+public static ValueObjectOrError<stj_number_as_string_public_partial_recordConversions_SystemTextJsonchar> TryFrom(System.Char value)
+{
+    
+
+    
+
+    
+
+    return new ValueObjectOrError<stj_number_as_string_public_partial_recordConversions_SystemTextJsonchar>(new stj_number_as_string_public_partial_recordConversions_SystemTextJsonchar(value));
+}
+
+        public bool IsInitialized() => _isInitialized;
+
   
         // only called internally when something has been deserialized into
         // its primitive type.

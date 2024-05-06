@@ -92,6 +92,49 @@ public System.Guid Value
 
             return instance;
         }
+
+        /// <summary>
+/// Tries to build an instance from the provided underlying type.
+/// If a normalization method is provided, it will be called.
+/// If validation is provided, and it fails, false will be returned.
+/// </summary>
+/// <param name="value">The underlying type.</param>
+/// <param name="value">An instance of the value object.</param>
+/// <returns>True if the value object can be built, otherwise false.</returns>
+public static bool TryFrom(System.Guid value, 
+#if NETCOREAPP3_0_OR_GREATER
+[global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)]
+#endif
+ out _casting_public_partial_classCastOperator_NoneCastOperator_NoneSystem_Guid vo)
+{
+    
+    
+
+    
+
+    vo = new _casting_public_partial_classCastOperator_NoneCastOperator_NoneSystem_Guid(value);
+
+    return true;
+}/// <summary>
+/// Tries to build an instance from the provided underlying value.
+/// If a normalization method is provided, it will be called.
+/// If validation is provided, and it fails, an error will be returned.
+/// </summary>
+/// <param name="value">The primitive value.</param>
+/// <returns>A <see cref="ValueObjectOrError{T}"/> containing either the value object, or an error.</returns>
+public static ValueObjectOrError<_casting_public_partial_classCastOperator_NoneCastOperator_NoneSystem_Guid> TryFrom(System.Guid value)
+{
+    
+
+    
+
+    
+
+    return new ValueObjectOrError<_casting_public_partial_classCastOperator_NoneCastOperator_NoneSystem_Guid>(new _casting_public_partial_classCastOperator_NoneCastOperator_NoneSystem_Guid(value));
+}
+
+        public bool IsInitialized() => _isInitialized;
+
           
 
         // only called internally when something has been deserialized into

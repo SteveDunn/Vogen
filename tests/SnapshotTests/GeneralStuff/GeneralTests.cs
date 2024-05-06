@@ -283,6 +283,32 @@ public partial class MyVo { }
     }
 
     [Fact]
+    public Task No_is_initialized_method()
+    {
+        var source = @"using Vogen;
+namespace Whatever;
+
+[ValueObject(isInitializedMethodGeneration: IsInitializedMethodGeneration.Omit)]
+public partial class MyVo { }
+";
+
+        return RunTest(source);
+    }
+
+    [Fact]
+    public Task With_is_initialized_method()
+    {
+        var source = @"using Vogen;
+namespace Whatever;
+
+[ValueObject(isInitializedMethodGeneration: IsInitializedMethodGeneration.Generate)]
+public partial class MyVo { }
+";
+
+        return RunTest(source);
+    }
+
+    [Fact]
     public Task Partial_struct_created_successfully()
     {
         var source = @"using Vogen;

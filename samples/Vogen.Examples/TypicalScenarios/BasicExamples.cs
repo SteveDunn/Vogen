@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Threading.Tasks;
+using JetBrains.Annotations;
 
 namespace Vogen.Examples.TypicalScenarios.Basic
 {
+    [UsedImplicitly]
     internal class BasicExamples : IScenario
     {
         public Task Run()

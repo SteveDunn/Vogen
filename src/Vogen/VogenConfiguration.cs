@@ -19,7 +19,9 @@ public class VogenConfiguration
         CastOperator fromPrimitiveCasting,
         bool disableStackTraceRecordingInDebug,
         ParsableForStrings parsableForStrings,
-        ParsableForPrimitives parsableForPrimitives)
+        ParsableForPrimitives parsableForPrimitives,
+        TryFromGeneration tryFromGeneration,
+        IsInitializedMethodGeneration isInitializedMethodGeneration)
     {
         UnderlyingType = underlyingType;
         ValidationExceptionType = validationExceptionType;
@@ -34,6 +36,8 @@ public class VogenConfiguration
         DisableStackTraceRecordingInDebug = disableStackTraceRecordingInDebug;
         ParsableForStrings = parsableForStrings;
         ParsableForPrimitives = parsableForPrimitives;
+        TryFromGeneration = tryFromGeneration;
+        IsInitializedMethodGeneration = isInitializedMethodGeneration;
     }
 
     public static VogenConfiguration Combine(
@@ -81,7 +85,7 @@ public class VogenConfiguration
             (var specificValue, _) => specificValue
         };
 
-        var parsageForStrings = (localValues.ParsableForStrings, globalValues?.ParsableForStrings) switch
+        var parsableForStrings = (localValues.ParsableForStrings, globalValues?.ParsableForStrings) switch
         {
             (ParsableForStrings.Unspecified, null) => DefaultInstance.ParsableForStrings,
             (ParsableForStrings.Unspecified, ParsableForStrings.Unspecified) => DefaultInstance.ParsableForStrings,
@@ -89,7 +93,7 @@ public class VogenConfiguration
             (var specificValue, _) => specificValue
         };
 
-        var parsageForPrimitives = (localValues.ParsableForPrimitives, globalValues?.ParsableForPrimitives) switch
+        var parsableForPrimitives = (localValues.ParsableForPrimitives, globalValues?.ParsableForPrimitives) switch
         {
             (ParsableForPrimitives.Unspecified, null) => DefaultInstance.ParsableForPrimitives,
             (ParsableForPrimitives.Unspecified, ParsableForPrimitives.Unspecified) => DefaultInstance.ParsableForPrimitives,
@@ -102,6 +106,14 @@ public class VogenConfiguration
             (StringComparersGeneration.Unspecified, null) => DefaultInstance.StringComparers,
             (StringComparersGeneration.Unspecified, StringComparersGeneration.Unspecified) => DefaultInstance.StringComparers,
             (StringComparersGeneration.Unspecified, var global) => global.Value,
+            (var local, _) => local,
+        };
+
+        TryFromGeneration tryFromGeneration = (localValues.TryFromGeneration, globalValues?.TryFromGeneration) switch
+        {
+            (TryFromGeneration.Unspecified, null) => DefaultInstance.TryFromGeneration,
+            (TryFromGeneration.Unspecified, TryFromGeneration.Unspecified) => DefaultInstance.TryFromGeneration,
+            (TryFromGeneration.Unspecified, var global) => global.Value,
             (var local, _) => local,
         };
 
@@ -118,6 +130,14 @@ public class VogenConfiguration
             (CastOperator.Unspecified, null) => DefaultInstance.FromPrimitiveCasting,
             (CastOperator.Unspecified, CastOperator.Unspecified) => DefaultInstance.FromPrimitiveCasting,
             (CastOperator.Unspecified, var global) => global.Value,
+            (var local, _) => local,
+        };
+
+        IsInitializedMethodGeneration isInitializedMethodGeneration = (localValues.IsInitializedMethodGeneration, globalValues?.IsInitializedMethodGeneration) switch
+        {
+            (IsInitializedMethodGeneration.Unspecified, null) => DefaultInstance.IsInitializedMethodGeneration,
+            (IsInitializedMethodGeneration.Unspecified, IsInitializedMethodGeneration.Unspecified) => DefaultInstance.IsInitializedMethodGeneration,
+            (IsInitializedMethodGeneration.Unspecified, var global) => global.Value,
             (var local, _) => local,
         };
 
@@ -143,8 +163,10 @@ public class VogenConfiguration
             toPrimitiveCasting: toPrimitiveCastOperators,
             fromPrimitiveCasting: fromPrimitiveCastOperators,
             disableStackTraceRecordingInDebug: disableStackTraceRecordingInDebug,
-            parsableForStrings: parsageForStrings,
-            parsableForPrimitives: parsageForPrimitives);
+            parsableForStrings: parsableForStrings,
+            parsableForPrimitives: parsableForPrimitives,
+            tryFromGeneration: tryFromGeneration,
+            isInitializedMethodGeneration: isInitializedMethodGeneration);
     }
 
     /// <summary>
@@ -174,6 +196,9 @@ public class VogenConfiguration
     public CastOperator FromPrimitiveCasting { get; }
     
     public bool DisableStackTraceRecordingInDebug { get; set; }
+    
+    public TryFromGeneration TryFromGeneration { get; }
+    public IsInitializedMethodGeneration IsInitializedMethodGeneration { get; }
 
     // the issue here is that without a physical 'symbol' in the source, we can't
     // get the namedtypesymbol
@@ -192,5 +217,7 @@ public class VogenConfiguration
         fromPrimitiveCasting: CastOperator.Explicit,
         disableStackTraceRecordingInDebug: false,
         parsableForStrings: ParsableForStrings.GenerateMethodsAndInterface,
-        parsableForPrimitives: ParsableForPrimitives.HoistMethodsAndInterfaces);
+        parsableForPrimitives: ParsableForPrimitives.HoistMethodsAndInterfaces,
+        tryFromGeneration: TryFromGeneration.GenerateBoolAndErrorOrMethods,
+        isInitializedMethodGeneration: IsInitializedMethodGeneration.Generate);
 }

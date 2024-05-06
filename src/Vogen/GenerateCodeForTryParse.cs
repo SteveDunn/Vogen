@@ -85,7 +85,7 @@ public static class GenerateCodeForTryParse
     /// <returns>
     /// True if the value passes any validation (after running any optional normalization).
     /// </returns>
-    public static global::System.Boolean TryParse(global::System.String s, global::System.IFormatProvider provider, {GenerateNotNullWhenAttribute()} out {item.VoTypeName} result) {{
+    public static global::System.Boolean TryParse(global::System.String s, global::System.IFormatProvider provider, {Util.GenerateNotNullWhenTrueAttribute()} out {item.VoTypeName} result) {{
             {Util.GenerateCallToNormalizeMethodIfNeeded(item, "s")}
             {GenerateCallToValidationIfNeeded(item, "s")}
             result = new {item.VoTypeName}(s);
@@ -121,7 +121,7 @@ public static class GenerateCodeForTryParse
     /// <returns>
     /// True if the value could a) be parsed by the underlying type, and b) passes any validation (after running any optional normalization).
     /// </returns>
-    public {staticOrNot}global::System.Boolean TryParse({parameters}, {GenerateNotNullWhenAttribute()} out {item.VoTypeName} result) {{
+    public {staticOrNot}global::System.Boolean TryParse({parameters}, {Util.GenerateNotNullWhenTrueAttribute()} out {item.VoTypeName} result) {{
         if({item.UnderlyingTypeFullName}.TryParse({parameterNames}, out var __v)) {{
             {Util.GenerateCallToNormalizeMethodIfNeeded(item, "__v")}
             {GenerateCallToValidationIfNeeded(item, "__v")}
@@ -152,16 +152,6 @@ public static class GenerateCodeForTryParse
         return string.Empty;
     }
 
-
-    private static string GenerateNotNullWhenAttribute()
-    {
-        return @"
-#if NETCOREAPP3_0_OR_GREATER
-[global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)]
-#endif
-";
-
-    }
 
     private static string BuildParametersForTryParse(IMethodSymbol methodSymbol)
     {
