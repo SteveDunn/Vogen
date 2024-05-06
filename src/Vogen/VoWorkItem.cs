@@ -86,6 +86,10 @@ public class VoWorkItem
     public required INamedTypeSymbol WrapperType { get; set; }
     
     public required ParsingInformation ParsingInformation { get; set; }
+    
+    public TryFromGeneration TryFromGeneration { get; init; }
+    
+    public IsInitializedGeneration IsInitializedGeneration { get; init; }
 }
 
 public class ParsingInformation

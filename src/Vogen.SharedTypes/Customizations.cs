@@ -27,5 +27,5 @@ public enum Customizations
     /// <summary>
     /// For GUIDs, add a `FromNewGuid()` factory method, which is just `public static MyVo FromNewGuid() => From(Guid.NewGuid());`
     /// </summary>
-    AddFactoryMethodForGuids = 1 << 1
+    AddFactoryMethodForGuids = 1 << 1,
 }

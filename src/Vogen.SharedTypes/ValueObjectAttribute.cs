@@ -27,20 +27,23 @@ namespace Vogen
             CastOperator toPrimitiveCasting = CastOperator.Unspecified,
             CastOperator fromPrimitiveCasting = CastOperator.Unspecified,
             ParsableForStrings parsableForStrings = ParsableForStrings.Unspecified,
-            ParsableForPrimitives parsableForPrimitives = ParsableForPrimitives.Unspecified)
-            : base(
-                typeof(T),
-                conversions,
-                throws,
-                customizations,
-                deserializationStrictness,
-                debuggerAttributes,
-                comparison,
-                stringComparers,
-                toPrimitiveCasting,
-                fromPrimitiveCasting,
-                parsableForStrings,
-                parsableForPrimitives)
+            ParsableForPrimitives parsableForPrimitives = ParsableForPrimitives.Unspecified,
+            TryFromGeneration tryFromGeneration = TryFromGeneration.Unspecified,
+            IsInitializedGeneration isInitializedGeneration = IsInitializedGeneration.Unspecified) : base(
+            typeof(T),
+            conversions,
+            throws,
+            customizations,
+            deserializationStrictness,
+            debuggerAttributes,
+            comparison,
+            stringComparers,
+            toPrimitiveCasting,
+            fromPrimitiveCasting,
+            parsableForStrings,
+            parsableForPrimitives,
+            tryFromGeneration,
+            isInitializedGeneration)
         {
         }
     }
@@ -68,7 +71,9 @@ namespace Vogen
             CastOperator toPrimitiveCasting = CastOperator.Unspecified,
             CastOperator fromPrimitiveCasting = CastOperator.Unspecified,
             ParsableForStrings parsableForStrings = ParsableForStrings.Unspecified,
-            ParsableForPrimitives parsableForPrimitives = ParsableForPrimitives.Unspecified)
+            ParsableForPrimitives parsableForPrimitives = ParsableForPrimitives.Unspecified,
+            TryFromGeneration tryFromGeneration = TryFromGeneration.Unspecified,
+            IsInitializedGeneration isInitializedGeneration = IsInitializedGeneration.Unspecified)
         {
         }
     }

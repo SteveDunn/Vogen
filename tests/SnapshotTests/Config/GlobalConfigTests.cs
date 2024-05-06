@@ -169,24 +169,30 @@ public class MyValidationException : Exception
     [Fact]
     public Task Override_all()
     {
-        var source = @"using System;
-using Vogen;
+        var source = """
+                     using System;
+                     using Vogen;
 
-[assembly: VogenDefaults(underlyingType: typeof(string), conversions: Conversions.None, throws:typeof(Whatever.MyValidationException))]
+                     [assembly: VogenDefaults(
+                        underlyingType: typeof(string), 
+                        conversions: Conversions.None, 
+                        throws:typeof(Whatever.MyValidationException),
+                        tryFromGeneration: TryFromGeneration.Omit)]
 
-namespace Whatever;
+                     namespace Whatever;
 
-[ValueObject]
-public partial struct CustomerId
-{
-    private static Validation Validate(string value) => value.Length > 0 ? Validation.Ok : Validation.Invalid(""xxxx"");
-}
+                     [ValueObject]
+                     public partial struct CustomerId
+                     {
+                         private static Validation Validate(string value) => value.Length > 0 ? Validation.Ok : Validation.Invalid("xxxx");
+                     }
 
-public class MyValidationException : Exception
-{
-    public MyValidationException(string message) : base(message) { }
-}
-";
+                     public class MyValidationException : Exception
+                     {
+                         public MyValidationException(string message) : base(message) { }
+                     }
+
+                     """;
 
         return new SnapshotRunner<ValueObjectGenerator>()
             .WithSource(source)

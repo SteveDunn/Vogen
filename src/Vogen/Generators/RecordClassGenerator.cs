@@ -1,4 +1,5 @@
-﻿using Microsoft.CodeAnalysis.CSharp.Syntax;
+﻿using Microsoft.CodeAnalysis;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Vogen.Generators.Conversions;
 
 namespace Vogen.Generators;
@@ -39,11 +40,11 @@ using Vogen;
             [global::System.Diagnostics.DebuggerStepThroughAttribute]
             init
             {{
-                {GenerateNullCheckIfNeeded(item)}
+                {GenerateNullCheckAndThrowIfNeeded(item)}
 
                 {Util.GenerateCallToNormalizeMethodIfNeeded(item)}
 
-                {Util.GenerateCallToValidation(item)}
+                {Util.GenerateCallToValidationAndThrowIfRequired(item)}
 
                 _value = value;
             }}
@@ -75,22 +76,27 @@ using Vogen;
         /// <returns>An instance of this type.</returns>
         public static {className} From({itemUnderlyingType} value)
         {{
-            {GenerateNullCheckIfNeeded(item)}
+            {GenerateNullCheckAndThrowIfNeeded(item)}
 
             {Util.GenerateCallToNormalizeMethodIfNeeded(item)}
 
-            {Util.GenerateCallToValidation(item)}
+            {Util.GenerateCallToValidationAndThrowIfRequired(item)}
 
             {className} instance = new {className}(value);
 
             return instance;
         }}
+
+        {GenerateCodeForTryFrom.GenerateForAStruct(item, className, itemUnderlyingType)}
+
+{(item.IsInitializedGeneration == IsInitializedGeneration.Generate ? Util.GenerateIsInitializedMethod() : string.Empty)}
+
 {GenerateEqualsAndHashCodes.GenerateStringComparersIfNeeded(item, tds)}  
         // only called internally when something has been deserialized into
         // its primitive type.
         private static {className} __Deserialize({itemUnderlyingType} value)
         {{
-            {GenerateNullCheckIfNeeded(item)}
+            {GenerateNullCheckAndThrowIfNeeded(item)}
 
             {Util.GenerateCallToNormalizeMethodIfNeeded(item)}
 
@@ -106,7 +112,7 @@ using Vogen;
         public static global::System.Boolean operator ==({itemUnderlyingType} left, {className} right) => Equals(left, right.Value);
         public static global::System.Boolean operator !=({itemUnderlyingType} left, {className} right) => !Equals(left, right.Value);
 
-{GenerateCastingOperators.Generate(item,tds)}{Util.GenerateGuidFactoryMethodIfRequired(item, tds)}
+{GenerateCastingOperators.Generate(item,tds)}{Util.GenerateGuidFactoryMethodIfNeeded(item, tds)}
         {GenerateComparableCode.GenerateIComparableImplementationIfNeeded(item, tds)}
 
         {GenerateCodeForTryParse.GenerateAnyHoistedTryParseMethods(item)}{GenerateCodeForParse.GenerateAnyHoistedParseMethods(item)}
@@ -141,11 +147,28 @@ using Vogen;
 {Util.WriteCloseNamespace(item.FullNamespace)}";
     }
 
-    private static string GenerateNullCheckIfNeeded(VoWorkItem voWorkItem) =>
+    private static string GenerateNullCheckAndThrowIfNeeded(VoWorkItem voWorkItem) =>
         voWorkItem.IsTheUnderlyingAValueType ? string.Empty
             : $@"            if (value is null)
             {{
                 throw new {voWorkItem.ValidationExceptionFullName}(""Cannot create a value object with null."");
+            }}
+";
+    
+    private static string GenerateNullCheckAndReturnFalseIfNeeded(VoWorkItem voWorkItem) =>
+        voWorkItem.IsTheUnderlyingAValueType ? string.Empty
+            : $@"            if (value is null)
+            {{
+                vo = default;
+                return false;
+            }}
+";
+    
+    private static string GenerateNullCheckAndReturnErrorIfNeeded(VoWorkItem item, SyntaxToken className) =>
+        item.IsTheUnderlyingAValueType ? string.Empty
+            : $@"            if (value is null)
+            {{
+                return new ValueObjectOrError<{className}>(Validation.Invalid(""The value provided was null""));
             }}
 ";
 }

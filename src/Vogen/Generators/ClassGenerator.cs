@@ -1,4 +1,5 @@
-﻿using Microsoft.CodeAnalysis.CSharp.Syntax;
+﻿using Microsoft.CodeAnalysis;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Vogen.Generators.Conversions;
 
 namespace Vogen.Generators;
@@ -7,7 +8,7 @@ public class ClassGenerator : IGenerateSourceCode
 {
     public string BuildClass(VoWorkItem item, TypeDeclarationSyntax tds)
     {
-        var className = tds.Identifier;
+        SyntaxToken className = tds.Identifier;
 
         var itemUnderlyingType = item.UnderlyingTypeFullName;
 
@@ -64,23 +65,28 @@ public {itemUnderlyingType} Value
         /// <returns>An instance of this type.</returns>
         public static {className} From({itemUnderlyingType} value)
         {{
-            {GenerateNullCheckIfNeeded(item)}
+            {GenerateNullCheckAndThrowIfNeeded(item)}
 
             {Util.GenerateCallToNormalizeMethodIfNeeded(item)}
 
-            {Util.GenerateCallToValidation(item)}
+            {Util.GenerateCallToValidationAndThrowIfRequired(item)}
 
             {className} instance = new {className}(value);
 
             return instance;
         }}
+
+        {GenerateCodeForTryFrom.GenerateForAClass(item, className, itemUnderlyingType)}
+
+{(item.IsInitializedGeneration == IsInitializedGeneration.Generate ? Util.GenerateIsInitializedMethod() : string.Empty)}
+
         {GenerateEqualsAndHashCodes.GenerateStringComparersIfNeeded(item, tds)}  
 
         // only called internally when something has been deserialized into
         // its primitive type.
         private static {className} __Deserialize({itemUnderlyingType} value)
         {{
-            {GenerateNullCheckIfNeeded(item)}
+            {GenerateNullCheckAndThrowIfNeeded(item)}
 
             {Util.GenerateCallToNormalizeMethodIfNeeded(item)}
 
@@ -99,7 +105,7 @@ public {itemUnderlyingType} Value
         public static global::System.Boolean operator ==({itemUnderlyingType} left, {className} right) => Equals(left, right.Value);
         public static global::System.Boolean operator !=({itemUnderlyingType} left, {className} right) => !Equals(left, right.Value);
 
-{GenerateCastingOperators.Generate(item,tds)}{Util.GenerateGuidFactoryMethodIfRequired(item, tds)}
+{GenerateCastingOperators.Generate(item,tds)}{Util.GenerateGuidFactoryMethodIfNeeded(item, tds)}
         {GenerateComparableCode.GenerateIComparableImplementationIfNeeded(item, tds)}
 
         {GenerateCodeForTryParse.GenerateAnyHoistedTryParseMethods(item)}{GenerateCodeForParse.GenerateAnyHoistedParseMethods(item)}
@@ -133,7 +139,7 @@ public {itemUnderlyingType} Value
 {Util.WriteCloseNamespace(item.FullNamespace)}";
     }
 
-    private static string GenerateNullCheckIfNeeded(VoWorkItem voWorkItem) =>
+    private static string GenerateNullCheckAndThrowIfNeeded(VoWorkItem voWorkItem) =>
         voWorkItem.IsTheUnderlyingAValueType ? string.Empty
             : $@"            if (value is null)
             {{
