@@ -428,7 +428,7 @@ public static ValueObjectOrError<MyIntVo> TryFrom(System.Int32 value)
         
  
         
-        class MyIntVoSystemTextJsonConverter : global::System.Text.Json.Serialization.JsonConverter<MyIntVo>
+        internal class MyIntVoSystemTextJsonConverter : global::System.Text.Json.Serialization.JsonConverter<MyIntVo>
         {
             public override MyIntVo Read(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {

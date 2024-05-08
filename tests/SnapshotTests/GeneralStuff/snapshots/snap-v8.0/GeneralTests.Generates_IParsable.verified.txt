@@ -307,7 +307,7 @@ public static ValueObjectOrError<Foo> TryFrom(System.Boolean value)
     public override global::System.String ToString() => _isInitialized ? Value.ToString() : "[UNINITIALIZED]";
 
         
-        class FooSystemTextJsonConverter : global::System.Text.Json.Serialization.JsonConverter<Foo>
+        internal class FooSystemTextJsonConverter : global::System.Text.Json.Serialization.JsonConverter<Foo>
         {
             public override Foo Read(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {

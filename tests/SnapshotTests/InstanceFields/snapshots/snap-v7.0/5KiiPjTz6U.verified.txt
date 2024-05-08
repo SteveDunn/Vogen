@@ -448,7 +448,7 @@ public static readonly public_partial_classbyte MyValue = new public_partial_cla
     public override global::System.String ToString() => _isInitialized ? Value.ToString() : "[UNINITIALIZED]";
 
         
-        class public_partial_classbyteSystemTextJsonConverter : global::System.Text.Json.Serialization.JsonConverter<public_partial_classbyte>
+        internal class public_partial_classbyteSystemTextJsonConverter : global::System.Text.Json.Serialization.JsonConverter<public_partial_classbyte>
         {
             public override public_partial_classbyte Read(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {

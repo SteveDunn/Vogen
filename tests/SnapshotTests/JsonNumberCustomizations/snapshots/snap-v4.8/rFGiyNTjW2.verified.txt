@@ -299,7 +299,7 @@ public static ValueObjectOrError<stj_number_as_string_public_partial_structConve
 
         
  
-                class stj_number_as_string_public_partial_structConversions_NewtonsoftJson___Conversions_SystemTextJsonSystem_DateTime_customizedSystemTextJsonConverter : global::System.Text.Json.Serialization.JsonConverter<stj_number_as_string_public_partial_structConversions_NewtonsoftJson___Conversions_SystemTextJsonSystem_DateTime_customized>
+                internal class stj_number_as_string_public_partial_structConversions_NewtonsoftJson___Conversions_SystemTextJsonSystem_DateTime_customizedSystemTextJsonConverter : global::System.Text.Json.Serialization.JsonConverter<stj_number_as_string_public_partial_structConversions_NewtonsoftJson___Conversions_SystemTextJsonSystem_DateTime_customized>
         {
             public override stj_number_as_string_public_partial_structConversions_NewtonsoftJson___Conversions_SystemTextJsonSystem_DateTime_customized Read(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {

@@ -323,7 +323,7 @@ public static ValueObjectOrError<_casting_public_partial_record_classCastOperato
     /// <inheritdoc cref="System.DateTime.ToString()" />
     public override global::System.String ToString() => _isInitialized ? Value.ToString() : "[UNINITIALIZED]";
 
-                class _casting_public_partial_record_classCastOperator_ImplicitCastOperator_NoneSystem_DateTimeSystemTextJsonConverter : global::System.Text.Json.Serialization.JsonConverter<_casting_public_partial_record_classCastOperator_ImplicitCastOperator_NoneSystem_DateTime>
+                internal class _casting_public_partial_record_classCastOperator_ImplicitCastOperator_NoneSystem_DateTimeSystemTextJsonConverter : global::System.Text.Json.Serialization.JsonConverter<_casting_public_partial_record_classCastOperator_ImplicitCastOperator_NoneSystem_DateTime>
         {
             public override _casting_public_partial_record_classCastOperator_ImplicitCastOperator_NoneSystem_DateTime Read(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {

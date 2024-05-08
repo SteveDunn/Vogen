@@ -314,7 +314,7 @@ public static ValueObjectOrError<_casting_public_readonly_partial_structCastOper
         
  
         
-        class _casting_public_readonly_partial_structCastOperator_ImplicitCastOperator_ImplicitshortSystemTextJsonConverter : global::System.Text.Json.Serialization.JsonConverter<_casting_public_readonly_partial_structCastOperator_ImplicitCastOperator_Implicitshort>
+        internal class _casting_public_readonly_partial_structCastOperator_ImplicitCastOperator_ImplicitshortSystemTextJsonConverter : global::System.Text.Json.Serialization.JsonConverter<_casting_public_readonly_partial_structCastOperator_ImplicitCastOperator_Implicitshort>
         {
             public override _casting_public_readonly_partial_structCastOperator_ImplicitCastOperator_Implicitshort Read(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {

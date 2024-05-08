@@ -317,7 +317,7 @@ public static readonly public_partial_structdouble MyValue = new public_partial_
 
  
         
-        class public_partial_structdoubleSystemTextJsonConverter : global::System.Text.Json.Serialization.JsonConverter<public_partial_structdouble>
+        internal class public_partial_structdoubleSystemTextJsonConverter : global::System.Text.Json.Serialization.JsonConverter<public_partial_structdouble>
         {
             public override public_partial_structdouble Read(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {

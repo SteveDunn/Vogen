@@ -452,7 +452,7 @@ public static readonly public_sealed_partial_recorddouble MyValue = new public_s
     public override global::System.String ToString() => _isInitialized ? Value.ToString() : "[UNINITIALIZED]";
 
         
-        class public_sealed_partial_recorddoubleSystemTextJsonConverter : global::System.Text.Json.Serialization.JsonConverter<public_sealed_partial_recorddouble>
+        internal class public_sealed_partial_recorddoubleSystemTextJsonConverter : global::System.Text.Json.Serialization.JsonConverter<public_sealed_partial_recorddouble>
         {
             public override public_sealed_partial_recorddouble Read(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {

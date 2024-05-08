@@ -325,7 +325,7 @@ public static ValueObjectOrError<_casting_public_sealed_partial_recordCastOperat
     public override global::System.String ToString() => _isInitialized ? Value.ToString() : "[UNINITIALIZED]";
 
         
-        class _casting_public_sealed_partial_recordCastOperator_ImplicitCastOperator_ExplicitSystem_DateTimeOffsetSystemTextJsonConverter : global::System.Text.Json.Serialization.JsonConverter<_casting_public_sealed_partial_recordCastOperator_ImplicitCastOperator_ExplicitSystem_DateTimeOffset>
+        internal class _casting_public_sealed_partial_recordCastOperator_ImplicitCastOperator_ExplicitSystem_DateTimeOffsetSystemTextJsonConverter : global::System.Text.Json.Serialization.JsonConverter<_casting_public_sealed_partial_recordCastOperator_ImplicitCastOperator_ExplicitSystem_DateTimeOffset>
         {
             public override _casting_public_sealed_partial_recordCastOperator_ImplicitCastOperator_ExplicitSystem_DateTimeOffset Read(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {

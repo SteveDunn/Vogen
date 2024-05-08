@@ -372,7 +372,7 @@ public static ValueObjectOrError<stj_number_as_string_public_readonly_partial_re
         
  
         
-        class stj_number_as_string_public_readonly_partial_record_structConversions_NewtonsoftJson___Conversions_SystemTextJson_customizedSystemTextJsonConverter : global::System.Text.Json.Serialization.JsonConverter<stj_number_as_string_public_readonly_partial_record_structConversions_NewtonsoftJson___Conversions_SystemTextJson_customized>
+        internal class stj_number_as_string_public_readonly_partial_record_structConversions_NewtonsoftJson___Conversions_SystemTextJson_customizedSystemTextJsonConverter : global::System.Text.Json.Serialization.JsonConverter<stj_number_as_string_public_readonly_partial_record_structConversions_NewtonsoftJson___Conversions_SystemTextJson_customized>
         {
             public override stj_number_as_string_public_readonly_partial_record_structConversions_NewtonsoftJson___Conversions_SystemTextJson_customized Read(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {

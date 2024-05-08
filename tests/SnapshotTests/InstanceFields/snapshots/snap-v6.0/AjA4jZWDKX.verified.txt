@@ -259,7 +259,7 @@ public static readonly internal_partial_structchar MyValue = new internal_partia
 
  
         
-        class internal_partial_structcharSystemTextJsonConverter : global::System.Text.Json.Serialization.JsonConverter<internal_partial_structchar>
+        internal class internal_partial_structcharSystemTextJsonConverter : global::System.Text.Json.Serialization.JsonConverter<internal_partial_structchar>
         {
             public override internal_partial_structchar Read(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {

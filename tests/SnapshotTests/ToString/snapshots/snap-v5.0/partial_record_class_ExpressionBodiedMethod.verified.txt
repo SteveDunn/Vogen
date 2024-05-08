@@ -389,7 +389,7 @@ public static ValueObjectOrError<partial_record_class_ExpressionBodiedMethod> Tr
         
 
         
-        class partial_record_class_ExpressionBodiedMethodSystemTextJsonConverter : global::System.Text.Json.Serialization.JsonConverter<partial_record_class_ExpressionBodiedMethod>
+        internal class partial_record_class_ExpressionBodiedMethodSystemTextJsonConverter : global::System.Text.Json.Serialization.JsonConverter<partial_record_class_ExpressionBodiedMethod>
         {
             public override partial_record_class_ExpressionBodiedMethod Read(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {

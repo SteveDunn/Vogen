@@ -336,7 +336,7 @@ public static readonly public_partial_classdouble MyValue = new public_partial_c
     public override global::System.String ToString() => _isInitialized ? Value.ToString() : "[UNINITIALIZED]";
 
         
-        class public_partial_classdoubleSystemTextJsonConverter : global::System.Text.Json.Serialization.JsonConverter<public_partial_classdouble>
+        internal class public_partial_classdoubleSystemTextJsonConverter : global::System.Text.Json.Serialization.JsonConverter<public_partial_classdouble>
         {
             public override public_partial_classdouble Read(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {

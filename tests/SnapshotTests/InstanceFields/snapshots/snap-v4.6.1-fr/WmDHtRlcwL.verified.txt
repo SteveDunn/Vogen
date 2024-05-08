@@ -263,7 +263,7 @@ public static readonly public_partial_record_structchar MyValue = new public_par
 
  
         
-        class public_partial_record_structcharSystemTextJsonConverter : global::System.Text.Json.Serialization.JsonConverter<public_partial_record_structchar>
+        internal class public_partial_record_structcharSystemTextJsonConverter : global::System.Text.Json.Serialization.JsonConverter<public_partial_record_structchar>
         {
             public override public_partial_record_structchar Read(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {

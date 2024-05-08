@@ -545,7 +545,7 @@ public static readonly CustomerId Cust42 = new CustomerId(42);
 
  
         
-        class CustomerIdSystemTextJsonConverter : global::System.Text.Json.Serialization.JsonConverter<CustomerId>
+        internal class CustomerIdSystemTextJsonConverter : global::System.Text.Json.Serialization.JsonConverter<CustomerId>
         {
             public override CustomerId Read(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {

@@ -513,7 +513,7 @@ public static ValueObjectOrError<_casting_public_readonly_partial_structCastOper
         
  
         
-        class _casting_public_readonly_partial_structCastOperator_ExplicitCastOperator_NonedecimalSystemTextJsonConverter : global::System.Text.Json.Serialization.JsonConverter<_casting_public_readonly_partial_structCastOperator_ExplicitCastOperator_Nonedecimal>
+        internal class _casting_public_readonly_partial_structCastOperator_ExplicitCastOperator_NonedecimalSystemTextJsonConverter : global::System.Text.Json.Serialization.JsonConverter<_casting_public_readonly_partial_structCastOperator_ExplicitCastOperator_Nonedecimal>
         {
             public override _casting_public_readonly_partial_structCastOperator_ExplicitCastOperator_Nonedecimal Read(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {

@@ -390,7 +390,7 @@ public static ValueObjectOrError<stj_number_as_string_public_sealed_partial_reco
     public override global::System.String ToString() => _isInitialized ? Value.ToString() : "[UNINITIALIZED]";
 
         
-        class stj_number_as_string_public_sealed_partial_record_classConversions_SystemTextJsonbyteSystemTextJsonConverter : global::System.Text.Json.Serialization.JsonConverter<stj_number_as_string_public_sealed_partial_record_classConversions_SystemTextJsonbyte>
+        internal class stj_number_as_string_public_sealed_partial_record_classConversions_SystemTextJsonbyteSystemTextJsonConverter : global::System.Text.Json.Serialization.JsonConverter<stj_number_as_string_public_sealed_partial_record_classConversions_SystemTextJsonbyte>
         {
             public override stj_number_as_string_public_sealed_partial_record_classConversions_SystemTextJsonbyte Read(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {

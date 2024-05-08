@@ -374,7 +374,7 @@ public static ValueObjectOrError<internal_partial_classConversions_NewtonsoftJso
     /// <inheritdoc cref="System.DateTime.ToString()" />
     public override global::System.String ToString() => _isInitialized ? Value.ToString() : "[UNINITIALIZED]";
 
-                class internal_partial_classConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterSystem_DateTimeSystemTextJsonConverter : global::System.Text.Json.Serialization.JsonConverter<internal_partial_classConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterSystem_DateTime>
+                internal class internal_partial_classConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterSystem_DateTimeSystemTextJsonConverter : global::System.Text.Json.Serialization.JsonConverter<internal_partial_classConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterSystem_DateTime>
         {
             public override internal_partial_classConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterSystem_DateTime Read(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {

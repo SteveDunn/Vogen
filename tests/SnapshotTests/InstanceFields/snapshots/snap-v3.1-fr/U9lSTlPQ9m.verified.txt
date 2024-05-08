@@ -377,7 +377,7 @@ public static readonly public_readonly_partial_record_structint MyValue = new pu
 
  
         
-        class public_readonly_partial_record_structintSystemTextJsonConverter : global::System.Text.Json.Serialization.JsonConverter<public_readonly_partial_record_structint>
+        internal class public_readonly_partial_record_structintSystemTextJsonConverter : global::System.Text.Json.Serialization.JsonConverter<public_readonly_partial_record_structint>
         {
             public override public_readonly_partial_record_structint Read(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {

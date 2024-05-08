@@ -366,7 +366,7 @@ public static ValueObjectOrError<readonly_partial_struct_ExpressionBodiedMethod>
         
  
         
-        class readonly_partial_struct_ExpressionBodiedMethodSystemTextJsonConverter : global::System.Text.Json.Serialization.JsonConverter<readonly_partial_struct_ExpressionBodiedMethod>
+        internal class readonly_partial_struct_ExpressionBodiedMethodSystemTextJsonConverter : global::System.Text.Json.Serialization.JsonConverter<readonly_partial_struct_ExpressionBodiedMethod>
         {
             public override readonly_partial_struct_ExpressionBodiedMethod Read(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {

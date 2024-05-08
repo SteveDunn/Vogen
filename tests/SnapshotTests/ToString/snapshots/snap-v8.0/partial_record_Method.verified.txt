@@ -535,7 +535,7 @@ public static ValueObjectOrError<partial_record_Method> TryFrom(System.Int32 val
         
 
         
-        class partial_record_MethodSystemTextJsonConverter : global::System.Text.Json.Serialization.JsonConverter<partial_record_Method>
+        internal class partial_record_MethodSystemTextJsonConverter : global::System.Text.Json.Serialization.JsonConverter<partial_record_Method>
         {
             public override partial_record_Method Read(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {

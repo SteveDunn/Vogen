@@ -311,7 +311,7 @@ public static ValueObjectOrError<_casting_public_partial_structCastOperator_None
         
  
         
-        class _casting_public_partial_structCastOperator_NoneCastOperator_NonedoubleSystemTextJsonConverter : global::System.Text.Json.Serialization.JsonConverter<_casting_public_partial_structCastOperator_NoneCastOperator_Nonedouble>
+        internal class _casting_public_partial_structCastOperator_NoneCastOperator_NonedoubleSystemTextJsonConverter : global::System.Text.Json.Serialization.JsonConverter<_casting_public_partial_structCastOperator_NoneCastOperator_Nonedouble>
         {
             public override _casting_public_partial_structCastOperator_NoneCastOperator_Nonedouble Read(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {

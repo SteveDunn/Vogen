@@ -385,7 +385,7 @@ public static ValueObjectOrError<partial_class_ExpressionBodiedMethod> TryFrom(S
         
 
         
-        class partial_class_ExpressionBodiedMethodSystemTextJsonConverter : global::System.Text.Json.Serialization.JsonConverter<partial_class_ExpressionBodiedMethod>
+        internal class partial_class_ExpressionBodiedMethodSystemTextJsonConverter : global::System.Text.Json.Serialization.JsonConverter<partial_class_ExpressionBodiedMethod>
         {
             public override partial_class_ExpressionBodiedMethod Read(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {
