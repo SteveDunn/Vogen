@@ -426,7 +426,7 @@ public static ValueObjectOrError<partial_record_struct_Method> TryFrom(System.In
         
  
         
-        class partial_record_struct_MethodSystemTextJsonConverter : global::System.Text.Json.Serialization.JsonConverter<partial_record_struct_Method>
+        internal class partial_record_struct_MethodSystemTextJsonConverter : global::System.Text.Json.Serialization.JsonConverter<partial_record_struct_Method>
         {
             public override partial_record_struct_Method Read(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {

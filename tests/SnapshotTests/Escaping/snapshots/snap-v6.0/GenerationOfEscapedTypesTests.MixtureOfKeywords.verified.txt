@@ -234,7 +234,7 @@ public static ValueObjectOrError<@event2> TryFrom(@record.@struct.@float.@decima
     public override global::System.String ToString() => _isInitialized ? Value.ToString() : "[UNINITIALIZED]";
 
         
-        class @event2SystemTextJsonConverter : global::System.Text.Json.Serialization.JsonConverter<@event2>
+        internal class @event2SystemTextJsonConverter : global::System.Text.Json.Serialization.JsonConverter<@event2>
         {
             public override @event2 Read(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {

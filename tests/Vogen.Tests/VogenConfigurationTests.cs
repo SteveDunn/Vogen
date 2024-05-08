@@ -62,7 +62,8 @@ public class VogenConfigurationTests
                 ParsableForStrings.GenerateMethodsAndInterface,
                 ParsableForPrimitives.HoistMethodsAndInterfaces,
                 TryFromGeneration.Unspecified,
-                IsInitializedMethodGeneration.Unspecified);
+                IsInitializedMethodGeneration.Unspecified,
+                SystemTextJsonConverterFactoryGeneration.Unspecified);
     }
 
     public class Casting
@@ -107,7 +108,8 @@ public class VogenConfigurationTests
                 parsableForStrings: ParsableForStrings.GenerateMethodsAndInterface,
                 parsableForPrimitives: ParsableForPrimitives.HoistMethodsAndInterfaces,
                 tryFromGeneration: TryFromGeneration.Unspecified,
-                isInitializedMethodGeneration: IsInitializedMethodGeneration.Unspecified);
+                isInitializedMethodGeneration: IsInitializedMethodGeneration.Unspecified,
+                systemTextJsonConverterFactoryGeneration: SystemTextJsonConverterFactoryGeneration.Unspecified);
     }
 
     public class Conversion
@@ -136,7 +138,8 @@ public class VogenConfigurationTests
                 parsableForStrings: ParsableForStrings.GenerateMethodsAndInterface,
                 parsableForPrimitives: ParsableForPrimitives.HoistMethodsAndInterfaces,
                 TryFromGeneration.Unspecified,
-                IsInitializedMethodGeneration.Unspecified);
+                IsInitializedMethodGeneration.Unspecified,
+                SystemTextJsonConverterFactoryGeneration.Unspecified);
     }
 
     public class Comparable
@@ -294,6 +297,19 @@ public class VogenConfigurationTests
         }
     }
 
+    public class SystemTextJsonConverterFactoryGenerationTests
+    {
+        [Fact]
+        public void Defaults_to_generate()
+        {
+            var result = VogenConfiguration.Combine(
+                localValues: new ConfigBuilder().WithSystemTextJsonConverterFactoryGeneration(SystemTextJsonConverterFactoryGeneration.Unspecified).Build(), 
+                globalValues: new ConfigBuilder().WithSystemTextJsonConverterFactoryGeneration(SystemTextJsonConverterFactoryGeneration.Unspecified).Build());
+
+            result.SystemTextJsonConverterFactoryGeneration.Should().Be(SystemTextJsonConverterFactoryGeneration.Generate);
+        }
+    }
+
     public class PrimitiveParsableGenerationTests
     {
         [Fact]
@@ -348,7 +364,8 @@ public class VogenConfigurationTests
                 _c.ParsableForStrings,
                 _c.ParsableForPrimitives,
                 _c.TryFromGeneration,
-                _c.IsInitializedMethodGeneration);
+                _c.IsInitializedMethodGeneration,
+                _c.SystemTextJsonConverterFactoryGeneration);
                 
             return this;
         }
@@ -370,7 +387,8 @@ public class VogenConfigurationTests
                 _c.ParsableForStrings,
                 _c.ParsableForPrimitives,
                 _c.TryFromGeneration,
-                _c.IsInitializedMethodGeneration);
+                _c.IsInitializedMethodGeneration,
+                _c.SystemTextJsonConverterFactoryGeneration);
                 
             return this;
         }
@@ -392,7 +410,8 @@ public class VogenConfigurationTests
                 _c.ParsableForStrings,
                 _c.ParsableForPrimitives,
                 g,
-                _c.IsInitializedMethodGeneration);
+                _c.IsInitializedMethodGeneration,
+                _c.SystemTextJsonConverterFactoryGeneration);
                 
             return this;
         }
@@ -414,6 +433,30 @@ public class VogenConfigurationTests
                 _c.ParsableForStrings,
                 _c.ParsableForPrimitives,
                 _c.TryFromGeneration,
+                g,
+                _c.SystemTextJsonConverterFactoryGeneration);
+                
+            return this;
+        }
+
+        public ConfigBuilder WithSystemTextJsonConverterFactoryGeneration(SystemTextJsonConverterFactoryGeneration g)
+        {
+            _c = new VogenConfiguration(
+                _c.UnderlyingType,
+                _c.ValidationExceptionType,
+                _c.Conversions,
+                _c.Customizations,
+                _c.DeserializationStrictness,
+                _c.DebuggerAttributes,
+                _c.Comparison,
+                _c.StringComparers,
+                _c.ToPrimitiveCasting,
+                _c.FromPrimitiveCasting,
+                _c.DisableStackTraceRecordingInDebug,
+                _c.ParsableForStrings,
+                _c.ParsableForPrimitives,
+                _c.TryFromGeneration,
+                _c.IsInitializedMethodGeneration,
                 g);
                 
             return this;
@@ -436,7 +479,8 @@ public class VogenConfigurationTests
                 g,
                 _c.ParsableForPrimitives,
                 _c.TryFromGeneration,
-                _c.IsInitializedMethodGeneration);
+                _c.IsInitializedMethodGeneration,
+                _c.SystemTextJsonConverterFactoryGeneration);
                 
             return this;
         }
@@ -458,7 +502,8 @@ public class VogenConfigurationTests
                 _c.ParsableForStrings,
                 g,
                 _c.TryFromGeneration,
-                _c.IsInitializedMethodGeneration);
+                _c.IsInitializedMethodGeneration,
+                _c.SystemTextJsonConverterFactoryGeneration);
                 
             return this;
         }

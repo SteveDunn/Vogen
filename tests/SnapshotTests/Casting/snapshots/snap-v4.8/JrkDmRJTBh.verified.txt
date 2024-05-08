@@ -300,7 +300,7 @@ public static ValueObjectOrError<_casting_public_readonly_partial_structCastOper
         
  
         
-        class _casting_public_readonly_partial_structCastOperator_ExplicitCastOperator_ExplicitSystem_DateTimeOffsetSystemTextJsonConverter : global::System.Text.Json.Serialization.JsonConverter<_casting_public_readonly_partial_structCastOperator_ExplicitCastOperator_ExplicitSystem_DateTimeOffset>
+        internal class _casting_public_readonly_partial_structCastOperator_ExplicitCastOperator_ExplicitSystem_DateTimeOffsetSystemTextJsonConverter : global::System.Text.Json.Serialization.JsonConverter<_casting_public_readonly_partial_structCastOperator_ExplicitCastOperator_ExplicitSystem_DateTimeOffset>
         {
             public override _casting_public_readonly_partial_structCastOperator_ExplicitCastOperator_ExplicitSystem_DateTimeOffset Read(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {

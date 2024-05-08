@@ -260,7 +260,7 @@ public static ValueObjectOrError<_casting_public_readonly_partial_record_structC
         
  
         
-        class _casting_public_readonly_partial_record_structCastOperator_ImplicitCastOperator_ExplicitboolSystemTextJsonConverter : global::System.Text.Json.Serialization.JsonConverter<_casting_public_readonly_partial_record_structCastOperator_ImplicitCastOperator_Explicitbool>
+        internal class _casting_public_readonly_partial_record_structCastOperator_ImplicitCastOperator_ExplicitboolSystemTextJsonConverter : global::System.Text.Json.Serialization.JsonConverter<_casting_public_readonly_partial_record_structCastOperator_ImplicitCastOperator_Explicitbool>
         {
             public override _casting_public_readonly_partial_record_structCastOperator_ImplicitCastOperator_Explicitbool Read(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {

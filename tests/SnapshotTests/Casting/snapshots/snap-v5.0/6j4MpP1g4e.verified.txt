@@ -368,7 +368,7 @@ public static ValueObjectOrError<_casting_public_partial_structCastOperator_Expl
         
  
         
-        class _casting_public_partial_structCastOperator_ExplicitCastOperator_ImplicitfloatSystemTextJsonConverter : global::System.Text.Json.Serialization.JsonConverter<_casting_public_partial_structCastOperator_ExplicitCastOperator_Implicitfloat>
+        internal class _casting_public_partial_structCastOperator_ExplicitCastOperator_ImplicitfloatSystemTextJsonConverter : global::System.Text.Json.Serialization.JsonConverter<_casting_public_partial_structCastOperator_ExplicitCastOperator_Implicitfloat>
         {
             public override _casting_public_partial_structCastOperator_ExplicitCastOperator_Implicitfloat Read(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {

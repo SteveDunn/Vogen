@@ -5,7 +5,7 @@ namespace Vogen
 {
     using System;
 
-    // Generic attributes were introduced in .NET 5 and C# 9
+    // Generic attributes were introduced in C# 11
     /// <summary>
     /// Marks a type as a Value Object. The type should be partial so that the
     /// source generator can augment the type with equality and validation.

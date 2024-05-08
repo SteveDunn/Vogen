@@ -224,7 +224,7 @@ public static ValueObjectOrError<City> TryFrom(System.String value)
         
  
         
-        class CitySystemTextJsonConverter : global::System.Text.Json.Serialization.JsonConverter<City>
+        internal class CitySystemTextJsonConverter : global::System.Text.Json.Serialization.JsonConverter<City>
         {
             public override City Read(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {

@@ -443,7 +443,7 @@ public static ValueObjectOrError<IntThing> TryFrom(System.Int32 value)
     public override global::System.String ToString() => _isInitialized ? Value.ToString() : "[UNINITIALIZED]";
 
         
-        class IntThingSystemTextJsonConverter : global::System.Text.Json.Serialization.JsonConverter<IntThing>
+        internal class IntThingSystemTextJsonConverter : global::System.Text.Json.Serialization.JsonConverter<IntThing>
         {
             public override IntThing Read(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {

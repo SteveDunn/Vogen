@@ -391,7 +391,7 @@ public static ValueObjectOrError<sealed_partial_record_None> TryFrom(System.Int3
     public override global::System.String ToString() => _isInitialized ? Value.ToString() : "[UNINITIALIZED]";
 
         
-        class sealed_partial_record_NoneSystemTextJsonConverter : global::System.Text.Json.Serialization.JsonConverter<sealed_partial_record_None>
+        internal class sealed_partial_record_NoneSystemTextJsonConverter : global::System.Text.Json.Serialization.JsonConverter<sealed_partial_record_None>
         {
             public override sealed_partial_record_None Read(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {

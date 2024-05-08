@@ -253,7 +253,7 @@ public static ValueObjectOrError<_casting_public_partial_structCastOperator_None
         
  
         
-        class _casting_public_partial_structCastOperator_NoneCastOperator_ExplicitboolSystemTextJsonConverter : global::System.Text.Json.Serialization.JsonConverter<_casting_public_partial_structCastOperator_NoneCastOperator_Explicitbool>
+        internal class _casting_public_partial_structCastOperator_NoneCastOperator_ExplicitboolSystemTextJsonConverter : global::System.Text.Json.Serialization.JsonConverter<_casting_public_partial_structCastOperator_NoneCastOperator_Explicitbool>
         {
             public override _casting_public_partial_structCastOperator_NoneCastOperator_Explicitbool Read(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {

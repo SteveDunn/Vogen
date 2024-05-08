@@ -250,7 +250,7 @@ public static ValueObjectOrError<VoWithGetHashCode> TryFrom(System.String value)
         
  
         
-        class VoWithGetHashCodeSystemTextJsonConverter : global::System.Text.Json.Serialization.JsonConverter<VoWithGetHashCode>
+        internal class VoWithGetHashCodeSystemTextJsonConverter : global::System.Text.Json.Serialization.JsonConverter<VoWithGetHashCode>
         {
             public override VoWithGetHashCode Read(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {

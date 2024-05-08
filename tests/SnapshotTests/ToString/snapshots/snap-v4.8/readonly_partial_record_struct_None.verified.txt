@@ -316,7 +316,7 @@ public static ValueObjectOrError<readonly_partial_record_struct_None> TryFrom(Sy
         
  
         
-        class readonly_partial_record_struct_NoneSystemTextJsonConverter : global::System.Text.Json.Serialization.JsonConverter<readonly_partial_record_struct_None>
+        internal class readonly_partial_record_struct_NoneSystemTextJsonConverter : global::System.Text.Json.Serialization.JsonConverter<readonly_partial_record_struct_None>
         {
             public override readonly_partial_record_struct_None Read(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {

@@ -423,7 +423,7 @@ public static ValueObjectOrError<stj_number_as_string_public_readonly_partial_st
         
  
         
-        class stj_number_as_string_public_readonly_partial_structConversions_SystemTextJsonintSystemTextJsonConverter : global::System.Text.Json.Serialization.JsonConverter<stj_number_as_string_public_readonly_partial_structConversions_SystemTextJsonint>
+        internal class stj_number_as_string_public_readonly_partial_structConversions_SystemTextJsonintSystemTextJsonConverter : global::System.Text.Json.Serialization.JsonConverter<stj_number_as_string_public_readonly_partial_structConversions_SystemTextJsonint>
         {
             public override stj_number_as_string_public_readonly_partial_structConversions_SystemTextJsonint Read(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {

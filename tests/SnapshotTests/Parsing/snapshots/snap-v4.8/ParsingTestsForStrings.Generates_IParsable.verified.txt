@@ -248,7 +248,7 @@ public static ValueObjectOrError<MyClass> TryFrom(System.String value)
         
  
         
-        class MyClassSystemTextJsonConverter : global::System.Text.Json.Serialization.JsonConverter<MyClass>
+        internal class MyClassSystemTextJsonConverter : global::System.Text.Json.Serialization.JsonConverter<MyClass>
         {
             public override MyClass Read(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {

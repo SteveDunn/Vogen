@@ -514,7 +514,7 @@ public static ValueObjectOrError<partial_struct_None> TryFrom(System.Int32 value
         
  
         
-        class partial_struct_NoneSystemTextJsonConverter : global::System.Text.Json.Serialization.JsonConverter<partial_struct_None>
+        internal class partial_struct_NoneSystemTextJsonConverter : global::System.Text.Json.Serialization.JsonConverter<partial_struct_None>
         {
             public override partial_struct_None Read(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {

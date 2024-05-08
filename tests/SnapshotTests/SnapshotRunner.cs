@@ -51,6 +51,7 @@ namespace SnapshotTests
         private bool _ignoreInitialCompilationErrors;
         private ITestOutputHelper? _logger;
         private readonly List<NuGetPackage> _additionalNuGetPackages = new();
+        private string? _useOutputAtFilePath;
 
         public async Task RunOnAllFrameworks() => await RunOn(_allFrameworks);
 
@@ -129,7 +130,7 @@ namespace SnapshotTests
                 .WithSource(source)
                 .WithNugetPackages(_additionalNuGetPackages)
                 .WithTargetFramework(targetFramework)
-                .GetGeneratedOutput<T>(_ignoreInitialCompilationErrors, r);
+                .GetGeneratedOutput<T>(_ignoreInitialCompilationErrors, r, _useOutputAtFilePath);
 
             return results;
         }
@@ -145,6 +146,12 @@ namespace SnapshotTests
         {
             _additionalNuGetPackages.Add(package);
 
+            return this;
+        }
+
+        public SnapshotRunner<T> UsingOutputAtFilePath(string filePath)
+        {
+            _useOutputAtFilePath = filePath;
             return this;
         }
     }

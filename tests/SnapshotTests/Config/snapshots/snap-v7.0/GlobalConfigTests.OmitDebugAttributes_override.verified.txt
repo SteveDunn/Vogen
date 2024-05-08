@@ -430,7 +430,7 @@ public static ValueObjectOrError<CustomerId> TryFrom(System.Int32 value)
         
  
         
-        class CustomerIdSystemTextJsonConverter : global::System.Text.Json.Serialization.JsonConverter<CustomerId>
+        internal class CustomerIdSystemTextJsonConverter : global::System.Text.Json.Serialization.JsonConverter<CustomerId>
         {
             public override CustomerId Read(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {

@@ -5,4 +5,3 @@
 
 Rule ID | Category | Severity | Notes
 --------|----------|----------|-------
-VOG027 | Usage | Error | DoNotUseNewAnalyzer
