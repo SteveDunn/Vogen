@@ -635,6 +635,36 @@ public partial struct @class
     }
 
     [Fact]
+    public Task Generates_SystemTextJson_factory()
+    {
+        return RunTest(
+            """
+            using Vogen;
+            using System;
+
+            namespace Whatever;
+
+            [ValueObject<int>]
+            public partial struct MyClass1
+            {
+            }
+
+            [ValueObject<int>]
+            public partial struct MyClass2
+            {
+            }
+
+            """);
+        
+        static Task RunTest(string source) =>
+            new SnapshotRunner<ValueObjectGenerator>()
+                .WithSource(source)
+                .UsingOutputAtFilePath(@"Vogen\Vogen.ValueObjectGenerator\SystemTextJsonConverterFactory_g.cs")
+                .RunOn(TargetFramework.Net8_0);
+        
+    }
+
+    [Fact]
     public Task Ignores_TryParse_where_last_parameter_is_not_out()
     {
         return RunTest(

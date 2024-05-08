@@ -210,9 +210,12 @@ public class ProjectBuilder
         return this;
     }
 
+    // filePath can be specified for when you want to get the non-default
+    // generated file, for instance, the System.Text.Json converter factory that is generated.
     public (ImmutableArray<Diagnostic> Diagnostics, string GeneratedSource) GetGeneratedOutput<T>(
         bool ignoreInitialCompilationErrors,
-        MetadataReference? valueObjectAttributeMetadata = null)
+        MetadataReference? valueObjectAttributeMetadata = null,
+        string? filePath = null)
         where T : IIncrementalGenerator, new()
     {
         var syntaxTree = CSharpSyntaxTree.ParseText(_source);
@@ -268,6 +271,12 @@ public class ProjectBuilder
         var trees = outputCompilation.SyntaxTrees.ToList();
 
 
-        return (generatorDiags, trees.Count != originalTreeCount ? trees[trees.Count - 1].ToString() : string.Empty);
+        var selectedTree = trees[^1];
+        if (filePath is not null)
+        {
+            selectedTree = trees.Single(t => t.FilePath == filePath);
+        }
+        
+        return (generatorDiags, trees.Count != originalTreeCount ? selectedTree.ToString() : string.Empty);
     }
 }

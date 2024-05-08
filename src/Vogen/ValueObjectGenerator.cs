@@ -71,18 +71,20 @@ namespace Vogen
 
             VogenConfiguration? globalConfig = buildResult.ResultingConfiguration;
 
-            // get all of the ValueObject types found.
+            // get all the ValueObject types found.
             List<VoWorkItem> workItems = GetWorkItems(targets, context, globalConfig, compilation).ToList();
 
             if (workItems.Count > 0)
             {
+                WriteSystemTextJsonConverterFactories.WriteIfNeeded(globalConfig, workItems, context);
+
                 foreach (var eachWorkItem in workItems)
                 {
                     WriteWorkItems.WriteVo(eachWorkItem, context);
                 }
             }
         }
-
+        
         private static IEnumerable<VoWorkItem> GetWorkItems(ImmutableArray<VoTarget> targets,
             SourceProductionContext context,
             VogenConfiguration? globalConfig,

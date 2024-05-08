@@ -19,3 +19,11 @@ VOG025 | Usage | Error | DoNotUseReflection
 Rule ID | Category | Severity | Notes
 --------|----------|----------|-------
 VOG026 | Usage | Warning  | DoNotDeriveFromVogenAttributes
+
+## Release 4.0.2
+
+### New Rules
+
+Rule ID | Category | Severity | Notes
+--------|----------|----------|-------
+VOG027 | Usage | Error | DoNotUseNewAnalyzer

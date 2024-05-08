@@ -48,7 +48,8 @@ public class VogenDefaultsAttribute : Attribute
         ParsableForStrings parsableForStrings = ParsableForStrings.GenerateMethodsAndInterface,
         ParsableForPrimitives parsableForPrimitives = ParsableForPrimitives.HoistMethodsAndInterfaces,
         TryFromGeneration tryFromGeneration = TryFromGeneration.Unspecified,
-        IsInitializedMethodGeneration isInitializedMethodGeneration = IsInitializedMethodGeneration.Unspecified
+        IsInitializedMethodGeneration isInitializedMethodGeneration = IsInitializedMethodGeneration.Unspecified,
+        SystemTextJsonConverterFactoryGeneration systemTextJsonConverterFactoryGeneration = SystemTextJsonConverterFactoryGeneration.Unspecified
         )
     {
     }

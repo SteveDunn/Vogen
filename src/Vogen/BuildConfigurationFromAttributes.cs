@@ -30,7 +30,8 @@ internal class BuildConfigurationFromAttributes
     private ParsableForStrings _parsableForStrings; 
     private ParsableForPrimitives _parsableForPrimitives; 
     private TryFromGeneration _tryFromGeneration; 
-    private IsInitializedMethodGeneration _isInitializedMethodGeneration; 
+    private IsInitializedMethodGeneration _isInitializedMethodGeneration;
+    private SystemTextJsonConverterFactoryGeneration _systemTextJsonConverterFactoryGeneration;
 
     private BuildConfigurationFromAttributes(AttributeData att)
     {
@@ -51,6 +52,7 @@ internal class BuildConfigurationFromAttributes
         _hasErroredAttributes = false;
         _tryFromGeneration = TryFromGeneration.Unspecified;
         _isInitializedMethodGeneration = IsInitializedMethodGeneration.Unspecified;
+        _systemTextJsonConverterFactoryGeneration = SystemTextJsonConverterFactoryGeneration.Unspecified;
         
        _diagnostics = new List<Diagnostic>();
         
@@ -108,7 +110,8 @@ internal class BuildConfigurationFromAttributes
                 _parsableForStrings,
                 _parsableForPrimitives,
                 _tryFromGeneration,
-                _isInitializedMethodGeneration),
+                _isInitializedMethodGeneration,
+                _systemTextJsonConverterFactoryGeneration),
             diagnostics: _diagnostics);
     }
 
@@ -180,7 +183,7 @@ internal class BuildConfigurationFromAttributes
     // ReSharper disable once CognitiveComplexity
     private void PopulateFromVogenDefaultsAttributeArgs(ImmutableArray<TypedConstant> argsExcludingUnderlyingType)
     {
-        if (argsExcludingUnderlyingType.Length > 12)
+        if (argsExcludingUnderlyingType.Length > 13)
         {
             throw new InvalidOperationException("Too many arguments for the attribute.");
         }
@@ -192,6 +195,11 @@ internal class BuildConfigurationFromAttributes
             if (v is null)
             {
                 continue;
+            }
+
+            if (i == 12)
+            {
+                _systemTextJsonConverterFactoryGeneration = (SystemTextJsonConverterFactoryGeneration) v;
             }
 
             if (i == 11)
