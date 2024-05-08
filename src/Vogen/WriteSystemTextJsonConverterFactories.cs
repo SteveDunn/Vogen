@@ -21,23 +21,19 @@ internal class WriteSystemTextJsonConverterFactories
         string s2 =
             $$"""
             
-            #nullable enable annotations
-            #nullable disable warnings
-            
             {{GeneratedCodeSegments.Preamble}}
             
             public class VogenTypesFactory : global::System.Text.Json.Serialization.JsonConverterFactory
             {
                 public VogenTypesFactory() { }
                 private static readonly global::System.Collections.Generic.Dictionary<global::System.Type, global::System.Lazy<global::System.Text.Json.Serialization.JsonConverter>> _lookup = 
-                    new global::System.Collections.Generic.Dictionary<global::System.Type, global::System.Lazy<global::System.Text.Json.Serialization.JsonConverter>>(
-                        new global::System.Collections.Generic.KeyValuePair<global::System.Type, global::System.Lazy<global::System.Text.Json.Serialization.JsonConverter>>[] {
+                    new global::System.Collections.Generic.Dictionary<global::System.Type, global::System.Lazy<global::System.Text.Json.Serialization.JsonConverter>> {
                             {{string.Join(",", stjs)}}
-                    });
+                    };
                 
                 public override bool CanConvert(global::System.Type typeToConvert) => _lookup.ContainsKey(typeToConvert);
                 
-                public override global::System.Text.Json.Serialization.JsonConverter? CreateConverter(global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options) =>
+                public override global::System.Text.Json.Serialization.JsonConverter CreateConverter(global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options) =>
                     _lookup[typeToConvert].Value;
             }
             """;
@@ -51,6 +47,6 @@ internal class WriteSystemTextJsonConverterFactories
             ? $"{eachStj.VoTypeName}"
             : $"{eachStj.FullNamespace}.{eachStj.VoTypeName}";
             
-        return $$"""new(typeof({{fqn}}), new(() => new {{fqn}}.{{eachStj.VoTypeName}}SystemTextJsonConverter()))""";
+        return $$"""{ typeof({{fqn}}), new global::System.Lazy<global::System.Text.Json.Serialization.JsonConverter>(() => new {{fqn}}.{{eachStj.VoTypeName}}SystemTextJsonConverter()) }""";
     }
 }
