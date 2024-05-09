@@ -30,7 +30,7 @@ public static class GenerateCodeForTryFrom
                         /// If validation is provided, and it fails, false will be returned.
                         /// </summary>
                         /// <param name="value">The underlying type.</param>
-                        /// <param name="value">An instance of the value object.</param>
+                        /// <param name="vo">An instance of the value object.</param>
                         /// <returns>True if the value object can be built, otherwise false.</returns>
                         public static bool TryFrom({{itemUnderlyingType}} value, {{Util.GenerateNotNullWhenTrueAttribute()}} out {{className}} vo)
                         {
