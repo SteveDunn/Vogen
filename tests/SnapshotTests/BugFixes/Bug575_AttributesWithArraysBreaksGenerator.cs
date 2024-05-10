@@ -1,5 +1,4 @@
 using System.Threading.Tasks;
-using Shared;
 using VerifyXunit;
 using Vogen;
 
@@ -18,7 +17,7 @@ public class Bug575_AttributesWithArraysBreaksGenerator
 
                      using System;
                      using Vogen;
-                     
+
                      public class Test<T> : Attribute { }
 
                      [Test<byte[]>]
@@ -31,18 +30,13 @@ public class Bug575_AttributesWithArraysBreaksGenerator
                      public partial struct Vo
                      {
                      }
-                     
-                     
+
+
                      """;
 
-        await RunTest(source);
+        await new SnapshotRunner<ValueObjectGenerator>()
+                .WithSource(source)
+                .IgnoreInitialCompilationErrors()
+                .RunOnAllFrameworks();
     }
-
-
-    private static Task RunTest(string source) =>
-        new SnapshotRunner<ValueObjectGenerator>()
-            .WithSource(source)
-            .IgnoreInitialCompilationErrors()
-            .RunOnAllFrameworks();
-        
 }

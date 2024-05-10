@@ -22,7 +22,7 @@ internal static class ManageAttributes
     public static VogenConfigurationBuildResult GetDefaultConfigFromGlobalAttribute(
         GeneratorAttributeSyntaxContext ctx)
     {
-        var assemblyAttributes = ctx.TargetSymbol.GetAttributes();
+        var assemblyAttributes = ctx.Attributes;
         
         if (assemblyAttributes.IsDefaultOrEmpty)
         {
