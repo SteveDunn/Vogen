@@ -60,7 +60,6 @@ public class ProjectBuilder
                 AddNuGetReference("Microsoft.EntityFrameworkCore", "5.0.17", "lib/netstandard2.1/");
                 AddNuGetReference("Dapper", "1.60.6", "lib/netstandard2.0/");
                 AddNuGetReference("ServiceStack.Text", "5.14.0", "lib/netstandard2.0");
-                // AddNuGetReference("System.Runtime", "4.3.1", "lib/netstandard2.0/");
                 break;
 
             case TargetFramework.Net4_6_1:
@@ -127,7 +126,6 @@ public class ProjectBuilder
         if (_targetFramework is not TargetFramework.Net7_0 and not TargetFramework.Net8_0)
         {
             AddNuGetReference("System.Numerics.Vectors", "4.5.0", "ref/netstandard2.0/");
-//                AddNuGetReference("System.Memory", "4.5.5", "lib/net462/");
         }
 
 
@@ -235,7 +233,9 @@ public class ProjectBuilder
             "generator",
             new[] { syntaxTree, syntaxTree2 },
             _references,
-            new CSharpCompilationOptions(OutputKind.DynamicallyLinkedLibrary, specificDiagnosticOptions: _suppressedDiagnostics));
+            new CSharpCompilationOptions(
+                OutputKind.DynamicallyLinkedLibrary, 
+                specificDiagnosticOptions: _suppressedDiagnostics));
 
         var initialDiags = compilation.GetDiagnostics();
         if (initialDiags.Length != 0 && !ignoreInitialCompilationErrors)
@@ -246,23 +246,19 @@ public class ProjectBuilder
         var originalTreeCount = compilation.SyntaxTrees.Length;
         var generator = new T();
 
-        var driver = CSharpGeneratorDriver.Create(generator );
+        var driver = CSharpGeneratorDriver
+            .Create(generator )
+            .WithUpdatedParseOptions(new CSharpParseOptions(documentationMode: DocumentationMode.Diagnose));
+        
         driver.RunGeneratorsAndUpdateCompilation(compilation, out var outputCompilation, out var generatorDiags);
 
         var finalDiags = outputCompilation.GetDiagnostics();
-
-// //            if (finalDiags.Length != 0 && !ignoreFinalCompilationErrors)
-//             if (finalDiags.Length != 0 && !ignoreFinalCompilationErrors)
-//             {
-//                 return (finalDiags, string.Empty);
-//             }
 
         if (generatorDiags.Length != 0 && !ignoreInitialCompilationErrors)
         {
             return (generatorDiags, string.Empty);
         }
 
-        //if (finalDiags.Length != 0 && !ignoreFinalCompilationErrors)
         if (finalDiags.Length != 0)
         {
             return (finalDiags, string.Empty);
