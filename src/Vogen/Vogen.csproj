@@ -10,7 +10,7 @@
 
   <PropertyGroup>
     <TargetFrameworks>net8.0;netstandard2.0</TargetFrameworks>
-<!--    <LanguageVersion>11.0</LanguageVersion>-->
+    <LanguageVersion>latest</LanguageVersion>
     <ImplicitUsings>disable</ImplicitUsings>
     <nullable>enable</nullable>
     <IsRoslynComponent>true</IsRoslynComponent>

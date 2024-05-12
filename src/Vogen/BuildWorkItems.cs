@@ -19,6 +19,9 @@ internal static class BuildWorkItems
         VogenConfiguration? globalConfig,
         Compilation compilation)
     {
+        var csharpCompilation = compilation as CSharpCompilation;
+        if (csharpCompilation is null) return null;
+
         TypeDeclarationSyntax voTypeSyntax = target.VoSyntaxInformation;
 
         INamedTypeSymbol voSymbolInformation = target.VoSymbolInformation;
@@ -120,6 +123,7 @@ internal static class BuildWorkItems
         
         return new VoWorkItem
         {
+            LanguageVersion = csharpCompilation.LanguageVersion,
             InstanceProperties = instanceProperties.ToList(),
             TypeToAugment = voTypeSyntax,
             
@@ -127,11 +131,13 @@ internal static class BuildWorkItems
             IsTheWrapperAValueType = isWrapperAValueType,
             
             ParsingInformation = BuildParsingInformation(compilation, underlyingType),
+            StaticAbstractsGeneration = config.StaticAbstractsGeneration,
             
             UserProvidedOverloads = userProvidedOverloads,
             
             UnderlyingType = underlyingType,
             Conversions = config.Conversions,
+            
             DeserializationStrictness = config.DeserializationStrictness,
             DebuggerAttributes = config.DebuggerAttributes,
             Customizations = config.Customizations,

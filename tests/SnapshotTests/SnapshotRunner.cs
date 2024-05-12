@@ -127,7 +127,7 @@ namespace SnapshotTests
             var r = MetadataReference.CreateFromFile(typeof(ValueObjectAttribute).Assembly.Location);
 
             var results = new ProjectBuilder()
-                .WithSource(source)
+                .WithUserSource(source)
                 .WithNugetPackages(_additionalNuGetPackages)
                 .WithTargetFramework(targetFramework)
                 .GetGeneratedOutput<T>(_ignoreInitialCompilationErrors, r, _useOutputAtFilePath);
@@ -154,5 +154,8 @@ namespace SnapshotTests
             _useOutputAtFilePath = filePath;
             return this;
         }
+
+        public SnapshotRunner<T> UseGeneratedInterfacesFile() => 
+            UsingOutputAtFilePath(@"Vogen\Vogen.ValueObjectGenerator\VogenInterfaces_g.cs");
     }
 }

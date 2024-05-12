@@ -1,9 +1,6 @@
 using System.Collections.Immutable;
 using System.Linq;
-using System.Threading;
 using Microsoft.CodeAnalysis;
-using Microsoft.CodeAnalysis.CSharp;
-using Microsoft.CodeAnalysis.CSharp.Syntax;
 
 // ReSharper disable NullableWarningSuppressionIsUsed
 
@@ -67,82 +64,5 @@ internal static class ManageAttributes
         VogenConfigurationBuildResult globalConfig = BuildConfigurationFromAttributes.TryBuildFromVogenDefaultsAttribute(matchingAttribute);
 
         return globalConfig;
-    }
-
-
-    /// <summary>
-    /// Tries to get the syntax element for any matching attribute that might exist in the provided context.
-    /// </summary>
-    /// <param name="context"></param>
-    /// <returns>The syntax of the attribute if it matches the global defaults attribute, otherwise null.</returns>
-    public static AttributeSyntax? TryGetAssemblyLevelDefaultsAttribute(GeneratorAttributeSyntaxContext context)
-    {
-        ImmutableArray<AttributeData> assemblyAttributes = context.TargetSymbol.GetAttributes();
-
-        if (assemblyAttributes.IsDefaultOrEmpty)
-        {
-            return null;
-        }
-        
-        foreach (AttributeData? attribute in assemblyAttributes)
-        {
-            var attrClass = attribute.AttributeClass;
-            
-            if (!(attrClass?.Name is "VogenDefaultsAttribute" or "VogenDefaults" &&
-                  attrClass.ToDisplayString() == "Vogen.VogenDefaultsAttribute"))
-            {
-                continue;
-            }
-            
-            SyntaxNode? syntax = attribute.ApplicationSyntaxReference?.GetSyntax();
-
-            return syntax as AttributeSyntax;
-        }
-
-        return null;
-    }
-
-    /// <summary>
-    /// Tries to get the syntax element for any matching attribute that might exist in the provided context.
-    /// </summary>
-    /// <param name="context"></param>
-    /// <param name="cancellationToken"></param>
-    /// <returns>The syntax of the attribute if it matches the global defaults attribute, otherwise null.</returns>
-    public static AttributeSyntax? TryGetAssemblyLevelDefaultsAttribute2(GeneratorAttributeSyntaxContext context,
-        CancellationToken cancellationToken)
-    {
-        var attributes = context.Attributes;
-        if (attributes.IsDefaultOrEmpty)
-        {
-            return null;
-        }
-        
-        AttributeData a = attributes.ElementAt(0);
-        
-        var n = a.ApplicationSyntaxReference?.GetSyntax() as AttributeSyntax;
-        return n;
-        // ImmutableArray<AttributeData> assemblyAttributes = context.TargetSymbol.GetAttributes();
-        //
-        // if (assemblyAttributes.IsDefaultOrEmpty)
-        // {
-        //     return null;
-        // }
-        //
-        // foreach (AttributeData? attribute in assemblyAttributes)
-        // {
-        //     var attrClass = attribute.AttributeClass;
-        //     
-        //     if (!(attrClass?.Name is "VogenDefaultsAttribute" or "VogenDefaults" &&
-        //           attrClass.ToDisplayString() == "Vogen.VogenDefaultsAttribute"))
-        //     {
-        //         continue;
-        //     }
-        //     
-        //     SyntaxNode? syntax = attribute.ApplicationSyntaxReference?.GetSyntax();
-        //
-        //     return syntax as AttributeSyntax;
-        // }
-
-        //return null;
     }
 }

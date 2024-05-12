@@ -76,7 +76,10 @@ namespace Vogen
 
             if (workItems.Count > 0)
             {
-                WriteSystemTextJsonConverterFactories.WriteIfNeeded(globalConfig, workItems, context);
+                var mergedConfig = VogenConfiguration.CombineWithDefault(globalConfig);
+                WriteStaticAbstracts.WriteIfNeeded(mergedConfig, context, compilation);
+
+                WriteSystemTextJsonConverterFactories.WriteIfNeeded(mergedConfig, workItems, context);
 
                 foreach (var eachWorkItem in workItems)
                 {

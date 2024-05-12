@@ -28,7 +28,7 @@ public class ProjectBuilder
     };
 
     private readonly IList<MetadataReference> _references = new List<MetadataReference>();
-    private string _source = string.Empty;
+    private string _userSource = string.Empty;
     private TargetFramework? _targetFramework;
 
     public ProjectBuilder WithTargetFramework(TargetFramework targetFramework)
@@ -191,9 +191,9 @@ public class ProjectBuilder
         }
     }
 
-    public ProjectBuilder WithSource(string source)
+    public ProjectBuilder WithUserSource(string userSource)
     {
-        _source = source;
+        _userSource = userSource;
 
         return this;
     }
@@ -216,8 +216,8 @@ public class ProjectBuilder
         string? filePath = null)
         where T : IIncrementalGenerator, new()
     {
-        var syntaxTree = CSharpSyntaxTree.ParseText(_source);
-        var syntaxTree2 = CSharpSyntaxTree.ParseText(@"    namespace System.Runtime.CompilerServices
+        var usersSyntaxTree = CSharpSyntaxTree.ParseText(_userSource);
+        var isExternalInitSyntaxTree = CSharpSyntaxTree.ParseText(@"    namespace System.Runtime.CompilerServices
     {
           internal static class IsExternalInit {}
     }
@@ -230,8 +230,8 @@ public class ProjectBuilder
         AddNuGetReferences();
 
         var compilation = CSharpCompilation.Create(
-            "generator",
-            new[] { syntaxTree, syntaxTree2 },
+            assemblyName: "generator",
+            syntaxTrees: new[] { usersSyntaxTree, isExternalInitSyntaxTree },
             _references,
             new CSharpCompilationOptions(
                 OutputKind.DynamicallyLinkedLibrary, 

@@ -22,7 +22,8 @@ public class VogenConfiguration
         ParsableForPrimitives parsableForPrimitives,
         TryFromGeneration tryFromGeneration,
         IsInitializedMethodGeneration isInitializedMethodGeneration,
-        SystemTextJsonConverterFactoryGeneration systemTextJsonConverterFactoryGeneration)
+        SystemTextJsonConverterFactoryGeneration systemTextJsonConverterFactoryGeneration,
+        StaticAbstractsGeneration staticAbstractsGeneration)
     {
         UnderlyingType = underlyingType;
         ValidationExceptionType = validationExceptionType;
@@ -40,6 +41,7 @@ public class VogenConfiguration
         TryFromGeneration = tryFromGeneration;
         IsInitializedMethodGeneration = isInitializedMethodGeneration;
         SystemTextJsonConverterFactoryGeneration = systemTextJsonConverterFactoryGeneration;
+        StaticAbstractsGeneration = staticAbstractsGeneration;
     }
 
     public static VogenConfiguration Combine(
@@ -150,6 +152,13 @@ public class VogenConfiguration
             var global => global.Value,
         };
 
+        StaticAbstractsGeneration staticAbstractsGeneration = globalValues?.StaticAbstractsGeneration switch
+        {
+            StaticAbstractsGeneration.Unspecified => DefaultInstance.StaticAbstractsGeneration,
+            null => DefaultInstance.StaticAbstractsGeneration,
+            var global => global.Value,
+        };
+
         var validationExceptionType = localValues.ValidationExceptionType ?? 
                                       globalValues?.ValidationExceptionType ?? 
                                       DefaultInstance.ValidationExceptionType;
@@ -176,7 +185,8 @@ public class VogenConfiguration
             parsableForPrimitives: parsableForPrimitives,
             tryFromGeneration: tryFromGeneration,
             isInitializedMethodGeneration: isInitializedMethodGeneration,
-            systemTextJsonConverterFactoryGeneration: systemTextJsonConverterFactoryGeneration);
+            systemTextJsonConverterFactoryGeneration: systemTextJsonConverterFactoryGeneration,
+            staticAbstractsGeneration: staticAbstractsGeneration);
     }
 
     /// <summary>
@@ -209,7 +219,10 @@ public class VogenConfiguration
     
     public TryFromGeneration TryFromGeneration { get; }
     public IsInitializedMethodGeneration IsInitializedMethodGeneration { get; }
+    
     public SystemTextJsonConverterFactoryGeneration SystemTextJsonConverterFactoryGeneration { get; }
+    
+    public StaticAbstractsGeneration StaticAbstractsGeneration { get; }
 
     // the issue here is that without a physical 'symbol' in the source, we can't
     // get the namedtypesymbol
@@ -231,5 +244,12 @@ public class VogenConfiguration
         parsableForPrimitives: ParsableForPrimitives.HoistMethodsAndInterfaces,
         tryFromGeneration: TryFromGeneration.GenerateBoolAndErrorOrMethods,
         isInitializedMethodGeneration: IsInitializedMethodGeneration.Generate,
-        systemTextJsonConverterFactoryGeneration: SystemTextJsonConverterFactoryGeneration.Generate);
+        systemTextJsonConverterFactoryGeneration: SystemTextJsonConverterFactoryGeneration.Generate,
+        staticAbstractsGeneration: StaticAbstractsGeneration.EqualsOperators | 
+                                   StaticAbstractsGeneration.ExplicitCastFromPrimitive | 
+                                   StaticAbstractsGeneration.ExplicitCastToPrimitive |
+                                   StaticAbstractsGeneration.FactoryMethods);
+
+    public static VogenConfiguration CombineWithDefault(VogenConfiguration? config) => 
+        config is null ? DefaultInstance : Combine(config, DefaultInstance);
 }

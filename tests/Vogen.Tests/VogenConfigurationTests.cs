@@ -63,7 +63,8 @@ public class VogenConfigurationTests
                 ParsableForPrimitives.HoistMethodsAndInterfaces,
                 TryFromGeneration.Unspecified,
                 IsInitializedMethodGeneration.Unspecified,
-                SystemTextJsonConverterFactoryGeneration.Unspecified);
+                SystemTextJsonConverterFactoryGeneration.Unspecified,
+                StaticAbstractsGeneration.Unspecified);
     }
 
     public class Casting
@@ -109,7 +110,8 @@ public class VogenConfigurationTests
                 parsableForPrimitives: ParsableForPrimitives.HoistMethodsAndInterfaces,
                 tryFromGeneration: TryFromGeneration.Unspecified,
                 isInitializedMethodGeneration: IsInitializedMethodGeneration.Unspecified,
-                systemTextJsonConverterFactoryGeneration: SystemTextJsonConverterFactoryGeneration.Unspecified);
+                systemTextJsonConverterFactoryGeneration: SystemTextJsonConverterFactoryGeneration.Unspecified,
+                staticAbstractsGeneration: StaticAbstractsGeneration.Unspecified);
     }
 
     public class Conversion
@@ -139,7 +141,8 @@ public class VogenConfigurationTests
                 parsableForPrimitives: ParsableForPrimitives.HoistMethodsAndInterfaces,
                 TryFromGeneration.Unspecified,
                 IsInitializedMethodGeneration.Unspecified,
-                SystemTextJsonConverterFactoryGeneration.Unspecified);
+                SystemTextJsonConverterFactoryGeneration.Unspecified,
+                StaticAbstractsGeneration.Unspecified);
     }
 
     public class Comparable
@@ -365,7 +368,8 @@ public class VogenConfigurationTests
                 _c.ParsableForPrimitives,
                 _c.TryFromGeneration,
                 _c.IsInitializedMethodGeneration,
-                _c.SystemTextJsonConverterFactoryGeneration);
+                _c.SystemTextJsonConverterFactoryGeneration,
+                _c.StaticAbstractsGeneration);
                 
             return this;
         }
@@ -388,7 +392,8 @@ public class VogenConfigurationTests
                 _c.ParsableForPrimitives,
                 _c.TryFromGeneration,
                 _c.IsInitializedMethodGeneration,
-                _c.SystemTextJsonConverterFactoryGeneration);
+                _c.SystemTextJsonConverterFactoryGeneration,
+                _c.StaticAbstractsGeneration);
                 
             return this;
         }
@@ -411,7 +416,8 @@ public class VogenConfigurationTests
                 _c.ParsableForPrimitives,
                 g,
                 _c.IsInitializedMethodGeneration,
-                _c.SystemTextJsonConverterFactoryGeneration);
+                _c.SystemTextJsonConverterFactoryGeneration,
+                _c.StaticAbstractsGeneration);
                 
             return this;
         }
@@ -434,7 +440,8 @@ public class VogenConfigurationTests
                 _c.ParsableForPrimitives,
                 _c.TryFromGeneration,
                 g,
-                _c.SystemTextJsonConverterFactoryGeneration);
+                _c.SystemTextJsonConverterFactoryGeneration,
+                _c.StaticAbstractsGeneration);
                 
             return this;
         }
@@ -457,7 +464,8 @@ public class VogenConfigurationTests
                 _c.ParsableForPrimitives,
                 _c.TryFromGeneration,
                 _c.IsInitializedMethodGeneration,
-                g);
+                g,
+                _c.StaticAbstractsGeneration);
                 
             return this;
         }
@@ -480,7 +488,8 @@ public class VogenConfigurationTests
                 _c.ParsableForPrimitives,
                 _c.TryFromGeneration,
                 _c.IsInitializedMethodGeneration,
-                _c.SystemTextJsonConverterFactoryGeneration);
+                _c.SystemTextJsonConverterFactoryGeneration,
+                _c.StaticAbstractsGeneration);
                 
             return this;
         }
@@ -503,7 +512,8 @@ public class VogenConfigurationTests
                 g,
                 _c.TryFromGeneration,
                 _c.IsInitializedMethodGeneration,
-                _c.SystemTextJsonConverterFactoryGeneration);
+                _c.SystemTextJsonConverterFactoryGeneration,
+                _c.StaticAbstractsGeneration);
                 
             return this;
         }

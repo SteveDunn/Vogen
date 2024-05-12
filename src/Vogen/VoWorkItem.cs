@@ -90,6 +90,10 @@ public class VoWorkItem
     public TryFromGeneration TryFromGeneration { get; init; }
     
     public IsInitializedMethodGeneration IsInitializedMethodGeneration { get; init; }
+    
+    public StaticAbstractsGeneration StaticAbstractsGeneration { get; set; }
+    
+    public LanguageVersion LanguageVersion { get; set; }
 }
 
 public class ParsingInformation

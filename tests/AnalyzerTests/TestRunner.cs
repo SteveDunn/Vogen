@@ -82,7 +82,7 @@ namespace AnalyzerTests
             bool ignoreInitialCompilationErrors)
         {
             var results = new ProjectBuilder()
-                .WithSource(source)
+                .WithUserSource(source)
                 .WithTargetFramework(targetFramework)
                 .GetGeneratedOutput<T>(ignoreInitialCompilationErrors);
 
