@@ -16,7 +16,7 @@ internal sealed class VogenConfigurationBuildResult
 
     public IEnumerable<Diagnostic> Diagnostics { get; }
 
-    public static VogenConfigurationBuildResult Null => new(null, Enumerable.Empty<Diagnostic>());
+    public static VogenConfigurationBuildResult Null => new(null, []);
     
     public bool HasDiagnostics => Diagnostics.Any();
 }

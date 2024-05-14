@@ -21,4 +21,3 @@ public partial struct Farenheit
 public partial struct Centigrade
 {
 }
-

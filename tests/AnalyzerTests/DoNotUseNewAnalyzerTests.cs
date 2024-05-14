@@ -219,7 +219,7 @@ public class Test {{
 
             var strippedSource = _placeholderPattern.Replace(userSource, string.Empty).Replace("|}", string.Empty);
             
-            (ImmutableArray<Diagnostic> Diagnostics, string GeneratedSource) output = new ProjectBuilder()
+            (ImmutableArray<Diagnostic> Diagnostics, SyntaxTree[] GeneratedSources) output = new ProjectBuilder()
                 .WithUserSource(strippedSource)
                 .WithTargetFramework(TargetFramework.Net8_0)
                 .GetGeneratedOutput<ValueObjectGenerator>(ignoreInitialCompilationErrors: true, peReference);
@@ -234,7 +234,7 @@ public class Test {{
                      """);
             }
 
-            return [userSource, output.GeneratedSource];
+            return [userSource, ..output.GeneratedSources.Select(o => o.ToString())];
         }
 
         [Theory]

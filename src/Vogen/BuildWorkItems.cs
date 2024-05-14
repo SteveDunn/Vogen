@@ -69,7 +69,7 @@ internal static class BuildWorkItems
             return null;
         }
 
-        var config = VogenConfiguration.Combine(
+        var config = CombineConfigurations.CombineAndResolveAnythingUnspecified(
             localConfig,
             globalConfig,
             funcForDefaultUnderlyingType: () => compilation.GetSpecialType(SpecialType.System_Int32));

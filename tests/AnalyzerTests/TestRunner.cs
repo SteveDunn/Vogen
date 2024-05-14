@@ -76,7 +76,7 @@ namespace AnalyzerTests
             }
         }
 
-        private static (ImmutableArray<Diagnostic> Diagnostics, string GeneratedSource) GetGeneratedOutput(
+        private static (ImmutableArray<Diagnostic> Diagnostics, SyntaxTree[] GeneratedSource) GetGeneratedOutput(
             string source,
             TargetFramework targetFramework, 
             bool ignoreInitialCompilationErrors)

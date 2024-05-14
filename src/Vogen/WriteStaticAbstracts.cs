@@ -125,7 +125,7 @@ internal class WriteStaticAbstracts
         }
     }
 
-    public static string WriteHeaderIfNeeded(string preceedingText, VoWorkItem item, TypeDeclarationSyntax tds)
+    public static string WriteHeaderIfNeeded(string precedingText, VoWorkItem item, TypeDeclarationSyntax tds)
     {
         if (item.StaticAbstractsGeneration == StaticAbstractsGeneration.Omit)
         {
@@ -137,6 +137,6 @@ internal class WriteStaticAbstracts
             return string.Empty;
         }
 
-        return preceedingText + $" IVogen<{tds.Identifier}, {item.UnderlyingTypeFullName}>";
+        return precedingText + $" IVogen<{tds.Identifier}, {item.UnderlyingTypeFullName}>";
     }
 }

@@ -11,11 +11,12 @@ public enum StaticAbstractsGeneration
 {
     [DebuggerBrowsable(DebuggerBrowsableState.Never)]
     Unspecified = -1,
+
     /// <summary>
     /// Do not generate the factory.
     /// </summary>
     Omit = 0,
-    
+
     /// <summary>
     /// Generate the explicit casting operators from primitives.
     /// </summary>
@@ -49,5 +50,13 @@ public enum StaticAbstractsGeneration
     /// <summary>
     /// Generate the instance methods, e.g. Value and IsInitialized
     /// </summary>
-    InstanceMethodsAndProperties = 1 << 5,
+    InstanceMethodsAndProperties = 1 << 6,
+
+    /// <summary>
+    /// The most common usage; generates equals, explicit casts, and factory methods.
+    /// </summary>
+    MostCommon = EqualsOperators |
+                 ExplicitCastFromPrimitive |
+                 ExplicitCastToPrimitive |
+                 FactoryMethods
 }

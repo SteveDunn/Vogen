@@ -22,16 +22,18 @@ public class VogenConfigurationTests
             instance.ParsableForPrimitives.Should().Be(ParsableForPrimitives.HoistMethodsAndInterfaces);
             instance.ParsableForStrings.Should().Be(ParsableForStrings.GenerateMethodsAndInterface);
             instance.TryFromGeneration.Should().Be(TryFromGeneration.GenerateBoolAndErrorOrMethods);
+            instance.IsInitializedMethodGeneration.Should().Be(IsInitializedMethodGeneration.Generate);
+            instance.SystemTextJsonConverterFactoryGeneration.Should().Be(SystemTextJsonConverterFactoryGeneration.Generate);
+            instance.StaticAbstractsGeneration.Should().Be(StaticAbstractsGeneration.Omit);
         }
     }
     
-
     public class DebuggerAttributeGenerationFlag
     {
         [Fact]
         public void Local_beats_global_when_specified()
         {
-            var result = VogenConfiguration.Combine(
+            var result = CombineConfigurations.CombineAndResolveAnythingUnspecified(
                 ConfigWithOmitDebugAs(DebuggerAttributeGeneration.Basic),
                 ConfigWithOmitDebugAs(DebuggerAttributeGeneration.Full));
 
@@ -41,13 +43,15 @@ public class VogenConfigurationTests
         [Fact]
         public void Uses_global_when_local_not_specified()
         {
-            var result = VogenConfiguration.Combine(ConfigWithOmitDebugAs(DebuggerAttributeGeneration.Default), ConfigWithOmitDebugAs(DebuggerAttributeGeneration.Basic));
+            var result = CombineConfigurations.CombineAndResolveAnythingUnspecified(
+                ConfigWithOmitDebugAs(DebuggerAttributeGeneration.Default),
+                ConfigWithOmitDebugAs(DebuggerAttributeGeneration.Basic));
 
             result.DebuggerAttributes.Should().Be(DebuggerAttributeGeneration.Basic);
         }
 
         private static VogenConfiguration ConfigWithOmitDebugAs(DebuggerAttributeGeneration debuggerAttributes) =>
-            new VogenConfiguration(
+            new(
                 null,
                 null,
                 Conversions.Default,
@@ -75,7 +79,7 @@ public class VogenConfigurationTests
             var local = ConfigWithCastingAs(CastOperator.Implicit, CastOperator.Explicit);
             var global = ConfigWithCastingAs(CastOperator.None, CastOperator.Implicit);
             
-            var result = VogenConfiguration.Combine(local, global);
+            var result = CombineConfigurations.CombineAndResolveAnythingUnspecified(local, global);
 
             result.ToPrimitiveCasting.Should().Be(CastOperator.Implicit);
             result.FromPrimitiveCasting.Should().Be(CastOperator.Explicit);
@@ -87,7 +91,7 @@ public class VogenConfigurationTests
             var local = ConfigWithCastingAs(CastOperator.Unspecified, CastOperator.Unspecified);
             var global = ConfigWithCastingAs(CastOperator.Explicit, CastOperator.Implicit);
             
-            var result = VogenConfiguration.Combine(local, global);
+            var result = CombineConfigurations.CombineAndResolveAnythingUnspecified(local, global);
 
             result.ToPrimitiveCasting.Should().Be(CastOperator.Explicit);
             result.FromPrimitiveCasting.Should().Be(CastOperator.Implicit);
@@ -119,13 +123,13 @@ public class VogenConfigurationTests
         [Fact]
         public void Local_beats_global_when_specified()
         {
-            var result = VogenConfiguration.Combine(ConfigWithOmitConversionsAs(Conversions.EfCoreValueConverter), ConfigWithOmitConversionsAs(Conversions.NewtonsoftJson));
+            var result = CombineConfigurations.CombineAndResolveAnythingUnspecified(ConfigWithOmitConversionsAs(Conversions.EfCoreValueConverter), ConfigWithOmitConversionsAs(Conversions.NewtonsoftJson));
 
             result.Conversions.Should().Be(Conversions.EfCoreValueConverter);
         }
 
         private static VogenConfiguration ConfigWithOmitConversionsAs(Conversions conversions) =>
-            new VogenConfiguration(
+            new(
                 null,
                 null,
                 conversions,
@@ -150,7 +154,7 @@ public class VogenConfigurationTests
         [Fact]
         public void Local_beats_global_when_specified()
         {
-            var result = VogenConfiguration.Combine(
+            var result = CombineConfigurations.CombineAndResolveAnythingUnspecified(
                 new ConfigBuilder().WithComparable(ComparisonGeneration.Omit).Build(),
                 new ConfigBuilder().WithComparable(ComparisonGeneration.UseUnderlying).Build());
 
@@ -160,7 +164,7 @@ public class VogenConfigurationTests
         [Fact]
         public void Global_beats_local_when_local_is_not_specified()
         {
-            var result = VogenConfiguration.Combine(
+            var result = CombineConfigurations.CombineAndResolveAnythingUnspecified(
                 new ConfigBuilder().WithComparable(ComparisonGeneration.Default).Build(),
                 new ConfigBuilder().WithComparable(ComparisonGeneration.Omit).Build());
 
@@ -173,7 +177,7 @@ public class VogenConfigurationTests
         [Fact]
         public void Defaults_to_omit()
         {
-            var result = VogenConfiguration.Combine(
+            var result = CombineConfigurations.CombineAndResolveAnythingUnspecified(
                 localValues: new ConfigBuilder().WithStringComparersGeneration(StringComparersGeneration.Unspecified).Build(), 
                 globalValues: new ConfigBuilder().WithStringComparersGeneration(StringComparersGeneration.Unspecified).Build());
 
@@ -183,7 +187,7 @@ public class VogenConfigurationTests
         [Fact]
         public void Local_beats_global_when_specified()
         {
-            var result = VogenConfiguration.Combine(
+            var result = CombineConfigurations.CombineAndResolveAnythingUnspecified(
                 localValues: new ConfigBuilder().WithStringComparersGeneration(StringComparersGeneration.Generate).Build(), 
                 globalValues: new ConfigBuilder().WithStringComparersGeneration(StringComparersGeneration.Unspecified).Build());
 
@@ -193,7 +197,7 @@ public class VogenConfigurationTests
         [Fact]
         public void Global_beats_local_when_local_is_not_specified()
         {
-            var result = VogenConfiguration.Combine(
+            var result = CombineConfigurations.CombineAndResolveAnythingUnspecified(
                 localValues: new ConfigBuilder().WithStringComparersGeneration(StringComparersGeneration.Unspecified).Build(), 
                 globalValues: new ConfigBuilder().WithStringComparersGeneration(StringComparersGeneration.Generate).Build());
 
@@ -206,7 +210,7 @@ public class VogenConfigurationTests
         [Fact]
         public void Defaults_to_generate_methods_and_interface()
         {
-            var result = VogenConfiguration.Combine(
+            var result = CombineConfigurations.CombineAndResolveAnythingUnspecified(
                 localValues: new ConfigBuilder().WithParsableStringGeneration(ParsableForStrings.Unspecified).Build(), 
                 globalValues: new ConfigBuilder().WithParsableStringGeneration(ParsableForStrings.Unspecified).Build());
 
@@ -216,7 +220,7 @@ public class VogenConfigurationTests
         [Fact]
         public void Local_beats_global_when_specified()
         {
-            var result = VogenConfiguration.Combine(
+            var result = CombineConfigurations.CombineAndResolveAnythingUnspecified(
                 localValues: new ConfigBuilder().WithParsableStringGeneration(ParsableForStrings.GenerateMethodsAndInterface).Build(), 
                 globalValues: new ConfigBuilder().WithParsableStringGeneration(ParsableForStrings.Unspecified).Build());
 
@@ -226,7 +230,7 @@ public class VogenConfigurationTests
         [Fact]
         public void Global_beats_local_when_local_is_not_specified()
         {
-            var result = VogenConfiguration.Combine(
+            var result = CombineConfigurations.CombineAndResolveAnythingUnspecified(
                 localValues: new ConfigBuilder().WithParsableStringGeneration(ParsableForStrings.Unspecified).Build(), 
                 globalValues: new ConfigBuilder().WithParsableStringGeneration(ParsableForStrings.GenerateMethodsAndInterface).Build());
 
@@ -239,7 +243,7 @@ public class VogenConfigurationTests
         [Fact]
         public void Defaults_to_generate_both_bool_and_erroror_methods()
         {
-            var result = VogenConfiguration.Combine(
+            var result = CombineConfigurations.CombineAndResolveAnythingUnspecified(
                 localValues: new ConfigBuilder().WithTryFromGeneration(TryFromGeneration.Unspecified).Build(), 
                 globalValues: new ConfigBuilder().WithTryFromGeneration(TryFromGeneration.Unspecified).Build());
 
@@ -249,7 +253,7 @@ public class VogenConfigurationTests
         [Fact]
         public void Local_beats_global_when_specified()
         {
-            var result = VogenConfiguration.Combine(
+            var result = CombineConfigurations.CombineAndResolveAnythingUnspecified(
                 localValues: new ConfigBuilder().WithTryFromGeneration(TryFromGeneration.Omit).Build(), 
                 globalValues: new ConfigBuilder().WithTryFromGeneration(TryFromGeneration.GenerateBoolMethod).Build());
 
@@ -259,7 +263,7 @@ public class VogenConfigurationTests
         [Fact]
         public void Global_beats_local_when_local_is_not_specified()
         {
-            var result = VogenConfiguration.Combine(
+            var result = CombineConfigurations.CombineAndResolveAnythingUnspecified(
                 localValues: new ConfigBuilder().WithTryFromGeneration(TryFromGeneration.Unspecified).Build(), 
                 globalValues: new ConfigBuilder().WithTryFromGeneration(TryFromGeneration.GenerateErrorOrMethod).Build());
 
@@ -272,7 +276,7 @@ public class VogenConfigurationTests
         [Fact]
         public void Defaults_to_generate()
         {
-            var result = VogenConfiguration.Combine(
+            var result = CombineConfigurations.CombineAndResolveAnythingUnspecified(
                 localValues: new ConfigBuilder().WithIsInitializedGeneration(IsInitializedMethodGeneration.Unspecified).Build(), 
                 globalValues: new ConfigBuilder().WithIsInitializedGeneration(IsInitializedMethodGeneration.Unspecified).Build());
 
@@ -282,7 +286,7 @@ public class VogenConfigurationTests
         [Fact]
         public void Local_beats_global_when_specified()
         {
-            var result = VogenConfiguration.Combine(
+            var result = CombineConfigurations.CombineAndResolveAnythingUnspecified(
                 localValues: new ConfigBuilder().WithIsInitializedGeneration(IsInitializedMethodGeneration.Generate).Build(), 
                 globalValues: new ConfigBuilder().WithIsInitializedGeneration(IsInitializedMethodGeneration.Omit).Build());
 
@@ -292,7 +296,7 @@ public class VogenConfigurationTests
         [Fact]
         public void Global_beats_local_when_local_is_not_specified()
         {
-            var result = VogenConfiguration.Combine(
+            var result = CombineConfigurations.CombineAndResolveAnythingUnspecified(
                 localValues: new ConfigBuilder().WithIsInitializedGeneration(IsInitializedMethodGeneration.Unspecified).Build(), 
                 globalValues: new ConfigBuilder().WithIsInitializedGeneration(IsInitializedMethodGeneration.Omit).Build());
 
@@ -305,11 +309,24 @@ public class VogenConfigurationTests
         [Fact]
         public void Defaults_to_generate()
         {
-            var result = VogenConfiguration.Combine(
+            var result = CombineConfigurations.CombineAndResolveAnythingUnspecified(
                 localValues: new ConfigBuilder().WithSystemTextJsonConverterFactoryGeneration(SystemTextJsonConverterFactoryGeneration.Unspecified).Build(), 
                 globalValues: new ConfigBuilder().WithSystemTextJsonConverterFactoryGeneration(SystemTextJsonConverterFactoryGeneration.Unspecified).Build());
 
             result.SystemTextJsonConverterFactoryGeneration.Should().Be(SystemTextJsonConverterFactoryGeneration.Generate);
+        }
+    }
+
+    public class StaticAbstractionGenerationTests
+    {
+        [Fact]
+        public void Defaults_to_omit()
+        {
+            var result = CombineConfigurations.CombineAndResolveAnythingUnspecified(
+                localValues: new ConfigBuilder().WithStaticAbstractsGeneration(StaticAbstractsGeneration.Unspecified).Build(), 
+                globalValues: new ConfigBuilder().WithStaticAbstractsGeneration(StaticAbstractsGeneration.Unspecified).Build());
+
+            result.StaticAbstractsGeneration.Should().Be(StaticAbstractsGeneration.Omit);
         }
     }
 
@@ -318,7 +335,7 @@ public class VogenConfigurationTests
         [Fact]
         public void Defaults_to_hoist_methods_and_interfaces_for_primitives()
         {
-            var result = VogenConfiguration.Combine(
+            var result = CombineConfigurations.CombineAndResolveAnythingUnspecified(
                 localValues: new ConfigBuilder().WithParsablePrimitiveGeneration(ParsableForPrimitives.Unspecified).Build(), 
                 globalValues: new ConfigBuilder().WithParsablePrimitiveGeneration(ParsableForPrimitives.Unspecified).Build());
 
@@ -328,7 +345,7 @@ public class VogenConfigurationTests
         [Fact]
         public void Local_beats_global_when_specified()
         {
-            var result = VogenConfiguration.Combine(
+            var result = CombineConfigurations.CombineAndResolveAnythingUnspecified(
                 localValues: new ConfigBuilder().WithParsablePrimitiveGeneration(ParsableForPrimitives.HoistMethodsAndInterfaces).Build(), 
                 globalValues: new ConfigBuilder().WithParsablePrimitiveGeneration(ParsableForPrimitives.Unspecified).Build());
 
@@ -338,7 +355,7 @@ public class VogenConfigurationTests
         [Fact]
         public void Global_beats_local_when_local_is_not_specified()
         {
-            var result = VogenConfiguration.Combine(
+            var result = CombineConfigurations.CombineAndResolveAnythingUnspecified(
                 localValues: new ConfigBuilder().WithParsablePrimitiveGeneration(ParsableForPrimitives.Unspecified).Build(), 
                 globalValues: new ConfigBuilder().WithParsablePrimitiveGeneration(ParsableForPrimitives.HoistMethodsAndInterfaces).Build());
 
@@ -514,6 +531,30 @@ public class VogenConfigurationTests
                 _c.IsInitializedMethodGeneration,
                 _c.SystemTextJsonConverterFactoryGeneration,
                 _c.StaticAbstractsGeneration);
+                
+            return this;
+        }
+
+        public ConfigBuilder WithStaticAbstractsGeneration(StaticAbstractsGeneration g)
+        {
+            _c = new VogenConfiguration(
+                _c.UnderlyingType,
+                _c.ValidationExceptionType,
+                _c.Conversions,
+                _c.Customizations,
+                _c.DeserializationStrictness,
+                _c.DebuggerAttributes,
+                _c.Comparison,
+                _c.StringComparers,
+                _c.ToPrimitiveCasting,
+                _c.FromPrimitiveCasting,
+                _c.DisableStackTraceRecordingInDebug,
+                _c.ParsableForStrings,
+                _c.ParsableForPrimitives,
+                _c.TryFromGeneration,
+                _c.IsInitializedMethodGeneration,
+                _c.SystemTextJsonConverterFactoryGeneration,
+                g);
                 
             return this;
         }

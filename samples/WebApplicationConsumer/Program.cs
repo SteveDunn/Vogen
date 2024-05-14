@@ -2,7 +2,7 @@
 using ServiceStackDotTextExample;
 using Vogen;
 
-[assembly: VogenDefaults(conversions:Conversions.ServiceStackDotText | Conversions.SystemTextJson)]
+[assembly: VogenDefaults(conversions:Conversions.ServiceStackDotText | Conversions.SystemTextJson, staticAbstractsGeneration: StaticAbstractsGeneration.MostCommon)]
 
 namespace Whatever
 {
@@ -20,10 +20,10 @@ namespace Whatever
     }
 
     [ValueObject]
-    public readonly partial struct CustomerId : IVogen<CustomerId, int>
+    public readonly partial struct CustomerId
     {
     }
 
     [ValueObject]
-    public partial struct SupplierId : IVogen<SupplierId, int>;
+    public partial struct SupplierId;
 } 

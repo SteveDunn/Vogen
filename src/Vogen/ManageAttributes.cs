@@ -16,8 +16,7 @@ internal static class ManageAttributes
     /// </summary>
     /// <param name="ctx"></param>
     /// <returns></returns>
-    public static VogenConfigurationBuildResult GetDefaultConfigFromGlobalAttribute(
-        GeneratorAttributeSyntaxContext ctx)
+    public static VogenConfigurationBuildResult GetDefaultConfigFromGlobalAttribute(GeneratorAttributeSyntaxContext ctx)
     {
         var assemblyAttributes = ctx.Attributes;
         
@@ -33,6 +32,7 @@ internal static class ManageAttributes
 
     /// <summary>
     /// Gets global default configuration from any global (assembly) attribute.
+    /// This is used by the analyzer.
     /// If none are specified, then the default configuration is used.
     /// If some are specified, then they are validated.
     /// If anything is invalid, a compilation error is raised.

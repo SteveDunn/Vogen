@@ -60,7 +60,7 @@ namespace Vogen
             }
 
             // if there are some, get the default global config
-            var buildResult = globalConfigBuildResult.IsDefaultOrEmpty
+            VogenConfigurationBuildResult buildResult = globalConfigBuildResult.IsDefaultOrEmpty
                 ? VogenConfigurationBuildResult.Null
                 : globalConfigBuildResult.ElementAt(0);
             
@@ -76,7 +76,7 @@ namespace Vogen
 
             if (workItems.Count > 0)
             {
-                var mergedConfig = VogenConfiguration.CombineWithDefault(globalConfig);
+                var mergedConfig = CombineConfigurations.CombineAndResolveAnyGlobalConfig(globalConfig);
                 WriteStaticAbstracts.WriteIfNeeded(mergedConfig, context, compilation);
 
                 WriteSystemTextJsonConverterFactories.WriteIfNeeded(mergedConfig, workItems, context);
