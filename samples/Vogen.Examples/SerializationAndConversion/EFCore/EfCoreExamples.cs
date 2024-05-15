@@ -2,42 +2,47 @@
 using System.Linq;
 using System.Threading.Tasks;
 using JetBrains.Annotations;
-using Microsoft.Data.Sqlite;
-using Microsoft.EntityFrameworkCore;
-using Vogen.Examples.SerializationAndConversion.EFCore;
-using Vogen.Examples.Types;
 
 namespace Vogen.Examples.SerializationAndConversion.EFCore
 {
+    /// <summary>
+    /// Represents examples of using Entity Framework Core (EF Core).
+    /// </summary>
     [UsedImplicitly]
     public class EfCoreExamples : IScenario
     {
+        public string GetDescription() => """
+                                          Uses value objects in EF Core. 
+                                          * It creates DB contexts and adds values to it, and saves
+                                          * It then create another context and lists the items
+
+                                          It demonstrates:
+                                          * how to use value objects in a model
+                                          * how to use value objects as primary keys in a model
+
+                                          """; 
         public Task Run()
         {
-            EfCoreValueConverterUsesValueConverter();
-            return Task.CompletedTask;
-        }
-
-        private static void EfCoreValueConverterUsesValueConverter()
-        {
-            AddAndSave(10);
-            AddAndSave(10);
+            AddAndSaveItems(amount: 10);
+            AddAndSaveItems(amount: 10);
 
             PrintItems();
 
-            static void AddAndSave(int amount)
+            return Task.CompletedTask;
+
+            static void AddAndSaveItems(int amount)
             {
-                using var context = new SomeDbContext();
+                using var context = new DbContext();
 
                 for (int i = 0; i < amount; i++)
                 {
-                    var entity = new SomeEntity
+                    var entity = new PersonEntity
                     {
-                        Name = Name.From("Fred # " + i),
+                        Name = Name.From("Fred #" + i),
                         Age = Age.From(42 + i)
                     };
 
-                    context.SomeEntities.Add(entity);
+                    context.Entities.Add(entity);
                 }
 
                 context.SaveChanges();
@@ -45,12 +50,10 @@ namespace Vogen.Examples.SerializationAndConversion.EFCore
 
             static void PrintItems()
             {
-                using var ctx = new SomeDbContext();
+                using var ctx = new DbContext();
 
-                var entities = ctx.SomeEntities.ToList();
-                Console.WriteLine(string.Join(Environment.NewLine, entities.Select(e => $"{e.Id.Value} {e.Name} {e.Age}")));
-
-                Console.WriteLine("Done");
+                var entities = ctx.Entities.ToList();
+                Console.WriteLine(string.Join(Environment.NewLine, entities.Select(e => $"ID: {e.Id.Value}, Name: {e.Name}, Age: {e.Age}")));
             }
         }
     }
