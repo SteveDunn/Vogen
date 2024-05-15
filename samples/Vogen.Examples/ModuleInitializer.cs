@@ -2,7 +2,10 @@
 using System.Runtime.CompilerServices;
 using Dapper;
 using LinqToDB.Mapping;
+using Vogen;
 using Vogen.Examples.Types;
+
+[assembly: VogenDefaults(staticAbstractsGeneration: StaticAbstractsGeneration.MostCommon | StaticAbstractsGeneration.InstanceMethodsAndProperties)]
 
 namespace Vogen.Examples;
 

@@ -2,11 +2,13 @@ using System;
 using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.IO;
+using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using FluentAssertions;
 using FluentAssertions.Execution;
 using Microsoft.CodeAnalysis;
+using Microsoft.CodeAnalysis.CSharp;
 using Shared;
 using VerifyTests;
 using VerifyXunit;
@@ -51,7 +53,7 @@ namespace SnapshotTests
         private bool _ignoreInitialCompilationErrors;
         private ITestOutputHelper? _logger;
         private readonly List<NuGetPackage> _additionalNuGetPackages = new();
-        private string? _useOutputAtFilePath;
+        private LanguageVersion _languageVersion = LanguageVersion.Default;
 
         public async Task RunOnAllFrameworks() => await RunOn(_allFrameworks);
 
@@ -76,18 +78,6 @@ namespace SnapshotTests
         public async Task RunOn(params TargetFramework[] frameworks)
         {
             _ = _source ?? throw new InvalidOperationException("No source!");
-        
-// #if NET8_0
-//             // Only run .NET 8 tests when using the .NET 8 SDK (prevents assembly versioning issues with <7.0)
-//             frameworks = frameworks.Where(framework => framework == TargetFramework.Net8_0).ToArray();
-// #elif NET7_0
-//             // Only run .NET 7 tests when using the .NET 7 SDK (prevents assembly versioning issues with <6.0)
-//             frameworks = frameworks.Where(framework => framework == TargetFramework.Net7_0).ToArray();
-// #elif NET6_0
-//             // Alternatively, only run non-net7 tests when using the .NET 6 target
-//             // as .NET 6 will use the .NET standard Vogen binary (without C#11 support)
-//             frameworks = frameworks.Where(framework => framework != TargetFramework.Net7_0).ToArray();
-// #endif
 
             // Skips tests targeting specific frameworks that were excluded above
             // NOTE: Requires [SkippableFact] attribute to be added to single-framework tests
@@ -106,7 +96,7 @@ namespace SnapshotTests
 
                 using var scope = new AssertionScope();
 
-                var (diagnostics, output) = GetGeneratedOutput(_source, eachFramework);
+                (ImmutableArray<Diagnostic> diagnostics, SyntaxTree[] syntaxTrees) = GetGeneratedOutput(_source, eachFramework);
                 diagnostics.Should().BeEmpty(@$"because the following source code should compile on {eachFramework}: " + _source);
 
                 var outputFolder = Path.Combine(_path, SnapshotUtils.GetSnapshotDirectoryName(eachFramework, _locale));
@@ -118,19 +108,20 @@ namespace SnapshotTests
                     verifySettings.AutoVerify();
 #endif
 
-                await Verifier.Verify(output, verifySettings).UseDirectory(outputFolder);
+                await Verifier.Verify(syntaxTrees.Select(s => s.ToString()), verifySettings).UseDirectory(outputFolder);
             }
         }
 
-        private (ImmutableArray<Diagnostic> Diagnostics, string GeneratedSource) GetGeneratedOutput(string source, TargetFramework targetFramework)
+        private (ImmutableArray<Diagnostic> Diagnostics, SyntaxTree[] GeneratedSource) GetGeneratedOutput(string source, TargetFramework targetFramework)
         {
             var r = MetadataReference.CreateFromFile(typeof(ValueObjectAttribute).Assembly.Location);
 
             var results = new ProjectBuilder()
-                .WithSource(source)
+                .WithUserSource(source)
                 .WithNugetPackages(_additionalNuGetPackages)
                 .WithTargetFramework(targetFramework)
-                .GetGeneratedOutput<T>(_ignoreInitialCompilationErrors, r, _useOutputAtFilePath);
+                .WithLanguageVersion(_languageVersion)
+                .GetGeneratedOutput<T>(_ignoreInitialCompilationErrors, r);
 
             return results;
         }
@@ -149,9 +140,9 @@ namespace SnapshotTests
             return this;
         }
 
-        public SnapshotRunner<T> UsingOutputAtFilePath(string filePath)
+        public SnapshotRunner<T> WithLanguageVersion(LanguageVersion languageVersion)
         {
-            _useOutputAtFilePath = filePath;
+            _languageVersion = languageVersion;
             return this;
         }
     }

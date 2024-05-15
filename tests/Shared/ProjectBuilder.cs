@@ -28,12 +28,19 @@ public class ProjectBuilder
     };
 
     private readonly IList<MetadataReference> _references = new List<MetadataReference>();
-    private string _source = string.Empty;
+    private string _userSource = string.Empty;
     private TargetFramework? _targetFramework;
+    private LanguageVersion _languageVersion = LanguageVersion.Default;
 
     public ProjectBuilder WithTargetFramework(TargetFramework targetFramework)
     {
         _targetFramework = targetFramework;
+        return this;
+    }
+
+    public ProjectBuilder WithLanguageVersion(LanguageVersion languageVersion)
+    {
+        _languageVersion = languageVersion;
         return this;
     }
 
@@ -191,9 +198,9 @@ public class ProjectBuilder
         }
     }
 
-    public ProjectBuilder WithSource(string source)
+    public ProjectBuilder WithUserSource(string userSource)
     {
-        _source = source;
+        _userSource = userSource;
 
         return this;
     }
@@ -210,18 +217,19 @@ public class ProjectBuilder
 
     // filePath can be specified for when you want to get the non-default
     // generated file, for instance, the System.Text.Json converter factory that is generated.
-    public (ImmutableArray<Diagnostic> Diagnostics, string GeneratedSource) GetGeneratedOutput<T>(
+    public (ImmutableArray<Diagnostic> Diagnostics, SyntaxTree[] GeneratedSource) GetGeneratedOutput<T>(
         bool ignoreInitialCompilationErrors,
-        MetadataReference? valueObjectAttributeMetadata = null,
-        string? filePath = null)
+        MetadataReference? valueObjectAttributeMetadata = null)
         where T : IIncrementalGenerator, new()
     {
-        var syntaxTree = CSharpSyntaxTree.ParseText(_source);
-        var syntaxTree2 = CSharpSyntaxTree.ParseText(@"    namespace System.Runtime.CompilerServices
+        var parseOptions = new CSharpParseOptions(languageVersion: _languageVersion);
+        
+        var usersSyntaxTree = CSharpSyntaxTree.ParseText(_userSource, parseOptions);
+        var isExternalInitSyntaxTree = CSharpSyntaxTree.ParseText(@"    namespace System.Runtime.CompilerServices
     {
           internal static class IsExternalInit {}
     }
-");
+", parseOptions);
 
         MetadataReference r = valueObjectAttributeMetadata ?? MetadataReference.CreateFromFile(typeof(ValueObjectAttribute).Assembly.Location);
 
@@ -230,8 +238,8 @@ public class ProjectBuilder
         AddNuGetReferences();
 
         var compilation = CSharpCompilation.Create(
-            "generator",
-            new[] { syntaxTree, syntaxTree2 },
+            assemblyName: "generator",
+            syntaxTrees: new[] { usersSyntaxTree, isExternalInitSyntaxTree },
             _references,
             new CSharpCompilationOptions(
                 OutputKind.DynamicallyLinkedLibrary, 
@@ -240,15 +248,14 @@ public class ProjectBuilder
         var initialDiags = compilation.GetDiagnostics();
         if (initialDiags.Length != 0 && !ignoreInitialCompilationErrors)
         {
-            return (initialDiags, string.Empty);
+            return (initialDiags, []);
         }
 
-        var originalTreeCount = compilation.SyntaxTrees.Length;
         var generator = new T();
 
         var driver = CSharpGeneratorDriver
-            .Create(generator )
-            .WithUpdatedParseOptions(new CSharpParseOptions(documentationMode: DocumentationMode.Diagnose));
+            .Create(generator)
+            .WithUpdatedParseOptions(parseOptions.WithDocumentationMode(DocumentationMode.Diagnose));
         
         driver.RunGeneratorsAndUpdateCompilation(compilation, out var outputCompilation, out var generatorDiags);
 
@@ -256,23 +263,14 @@ public class ProjectBuilder
 
         if (generatorDiags.Length != 0 && !ignoreInitialCompilationErrors)
         {
-            return (generatorDiags, string.Empty);
+            return (generatorDiags, []);
         }
 
         if (finalDiags.Length != 0)
         {
-            return (finalDiags, string.Empty);
+            return (finalDiags, []);
         }
 
-        var trees = outputCompilation.SyntaxTrees.ToList();
-
-
-        var selectedTree = trees[^1];
-        if (filePath is not null)
-        {
-            selectedTree = trees.Single(t => t.FilePath == filePath);
-        }
-        
-        return (generatorDiags, trees.Count != originalTreeCount ? selectedTree.ToString() : string.Empty);
+        return (generatorDiags, outputCompilation.SyntaxTrees.Except(compilation.SyntaxTrees).ToArray());
     }
 }

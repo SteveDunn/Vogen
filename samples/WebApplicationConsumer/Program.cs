@@ -2,9 +2,16 @@
 using ServiceStackDotTextExample;
 using Vogen;
 
-[assembly: VogenDefaults(conversions:Conversions.ServiceStackDotText | Conversions.SystemTextJson)]
+[assembly: VogenDefaults(conversions:Conversions.ServiceStackDotText | Conversions.SystemTextJson, staticAbstractsGeneration: StaticAbstractsGeneration.MostCommon)]
 
-await ServiceStackTextRunner.Run();
-await RefitRunner.Run();
-
-
+namespace Whatever
+{
+    public static class Program
+    {
+        public static async Task Main()
+        {
+            await ServiceStackTextRunner.Run();
+            await RefitRunner.Run();
+        }
+    }
+} 

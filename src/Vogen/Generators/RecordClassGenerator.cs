@@ -19,7 +19,7 @@ using Vogen;
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute(""{Util.GenerateYourAssemblyName()}"", ""{Util.GenerateYourAssemblyVersion()}"")]
     {Util.GenerateAnyConversionAttributes(tds, item)}
     {DebugGeneration.GenerateDebugAttributes(item, className, itemUnderlyingType)}
-    {Util.GenerateModifiersFor(tds)} record class {className} : global::System.IEquatable<{className}>, global::System.IEquatable<{itemUnderlyingType}>{GenerateComparableCode.GenerateIComparableHeaderIfNeeded(", ", item, tds)}{GenerateCodeForIParsableInterfaceDeclarations.GenerateIfNeeded(", ", item, tds)}
+    {Util.GenerateModifiersFor(tds)} record class {className} : global::System.IEquatable<{className}>, global::System.IEquatable<{itemUnderlyingType}>{GenerateComparableCode.GenerateIComparableHeaderIfNeeded(", ", item, tds)}{GenerateCodeForIParsableInterfaceDeclarations.GenerateIfNeeded(", ", item, tds)}{WriteStaticAbstracts.WriteHeaderIfNeeded(", ", item, tds)}
     {{
 {DebugGeneration.GenerateStackTraceFieldIfNeeded(item)}
         private readonly global::System.Boolean _isInitialized;
@@ -111,7 +111,7 @@ using Vogen;
         public static global::System.Boolean operator ==({itemUnderlyingType} left, {className} right) => Equals(left, right.Value);
         public static global::System.Boolean operator !=({itemUnderlyingType} left, {className} right) => !Equals(left, right.Value);
 
-{GenerateCastingOperators.Generate(item,tds)}{Util.GenerateGuidFactoryMethodIfNeeded(item, tds)}
+{GenerateCastingOperators.GenerateImplementations(item,tds)}{Util.GenerateGuidFactoryMethodIfNeeded(item, tds)}
         {GenerateComparableCode.GenerateIComparableImplementationIfNeeded(item, tds)}
 
         {GenerateCodeForTryParse.GenerateAnyHoistedTryParseMethods(item)}{GenerateCodeForParse.GenerateAnyHoistedParseMethods(item)}

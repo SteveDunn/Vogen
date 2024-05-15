@@ -215,14 +215,14 @@ public class Test {{
 
         private static string[] CombineUserAndGeneratedSource(string userSource)
         {
-            var r = MetadataReference.CreateFromFile(typeof(ValueObjectAttribute).Assembly.Location);
+            PortableExecutableReference peReference = MetadataReference.CreateFromFile(typeof(ValueObjectAttribute).Assembly.Location);
 
             var strippedSource = _placeholderPattern.Replace(userSource, string.Empty).Replace("|}", string.Empty);
             
-            (ImmutableArray<Diagnostic> Diagnostics, string GeneratedSource) output = new ProjectBuilder()
-                .WithSource(strippedSource)
+            (ImmutableArray<Diagnostic> Diagnostics, SyntaxTree[] GeneratedSources) output = new ProjectBuilder()
+                .WithUserSource(strippedSource)
                 .WithTargetFramework(TargetFramework.Net8_0)
-                .GetGeneratedOutput<ValueObjectGenerator>(true, r);
+                .GetGeneratedOutput<ValueObjectGenerator>(ignoreInitialCompilationErrors: true, peReference);
 
             if (output.Diagnostics.Length > 0)
             {
@@ -234,7 +234,7 @@ public class Test {{
                      """);
             }
 
-            return [userSource, output.GeneratedSource];
+            return [userSource, ..output.GeneratedSources.Select(o => o.ToString())];
         }
 
         [Theory]

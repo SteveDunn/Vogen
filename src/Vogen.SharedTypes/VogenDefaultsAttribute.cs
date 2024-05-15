@@ -11,7 +11,7 @@ public class VogenDefaultsAttribute : Attribute
 {
     // ** NOTE: The default values here should be 'Unspecified' if there is such an option.
     // The default values are resolved when merging attributes, if either are unspecified,
-    // then the respective value `VogenConfiguration.DefaultInstance` is used.
+    // then the respective value in `VogenConfiguration.DefaultInstance` is used.
 
     /// <summary>
     /// Creates a new instance of a type that represents the default
@@ -35,6 +35,8 @@ public class VogenDefaultsAttribute : Attribute
     /// <param name="parsableForPrimitives">Specifies the functionality around parsing (IParsable etc.)</param>
     /// <param name="tryFromGeneration">Controls what is generated for the TryFrom methods.</param>
     /// <param name="isInitializedMethodGeneration">Controls whether the IsInitialized method is generated.</param>
+    /// <param name="systemTextJsonConverterFactoryGeneration">Controls the generation of the type factory for System.Text.Json.</param>
+    /// <param name="staticAbstractsGeneration">Control the generation of static abstract interfaces.</param>
     public VogenDefaultsAttribute(
         Type? underlyingType = null,
         Conversions conversions = Conversions.Default,
@@ -49,7 +51,8 @@ public class VogenDefaultsAttribute : Attribute
         ParsableForPrimitives parsableForPrimitives = ParsableForPrimitives.HoistMethodsAndInterfaces,
         TryFromGeneration tryFromGeneration = TryFromGeneration.Unspecified,
         IsInitializedMethodGeneration isInitializedMethodGeneration = IsInitializedMethodGeneration.Unspecified,
-        SystemTextJsonConverterFactoryGeneration systemTextJsonConverterFactoryGeneration = SystemTextJsonConverterFactoryGeneration.Unspecified
+        SystemTextJsonConverterFactoryGeneration systemTextJsonConverterFactoryGeneration = SystemTextJsonConverterFactoryGeneration.Unspecified,
+        StaticAbstractsGeneration staticAbstractsGeneration = StaticAbstractsGeneration.Unspecified
         )
     {
     }

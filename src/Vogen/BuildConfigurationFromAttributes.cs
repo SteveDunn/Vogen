@@ -32,6 +32,7 @@ internal class BuildConfigurationFromAttributes
     private TryFromGeneration _tryFromGeneration; 
     private IsInitializedMethodGeneration _isInitializedMethodGeneration;
     private SystemTextJsonConverterFactoryGeneration _systemTextJsonConverterFactoryGeneration;
+    private StaticAbstractsGeneration _staticAbstractsGeneration;
 
     private BuildConfigurationFromAttributes(AttributeData att)
     {
@@ -53,6 +54,7 @@ internal class BuildConfigurationFromAttributes
         _tryFromGeneration = TryFromGeneration.Unspecified;
         _isInitializedMethodGeneration = IsInitializedMethodGeneration.Unspecified;
         _systemTextJsonConverterFactoryGeneration = SystemTextJsonConverterFactoryGeneration.Unspecified;
+        _staticAbstractsGeneration = StaticAbstractsGeneration.Unspecified;
         
        _diagnostics = new List<Diagnostic>();
         
@@ -111,7 +113,8 @@ internal class BuildConfigurationFromAttributes
                 _parsableForPrimitives,
                 _tryFromGeneration,
                 _isInitializedMethodGeneration,
-                _systemTextJsonConverterFactoryGeneration),
+                _systemTextJsonConverterFactoryGeneration,
+                _staticAbstractsGeneration),
             diagnostics: _diagnostics);
     }
 
@@ -183,7 +186,7 @@ internal class BuildConfigurationFromAttributes
     // ReSharper disable once CognitiveComplexity
     private void PopulateFromVogenDefaultsAttributeArgs(ImmutableArray<TypedConstant> argsExcludingUnderlyingType)
     {
-        if (argsExcludingUnderlyingType.Length > 13)
+        if (argsExcludingUnderlyingType.Length > 14)
         {
             throw new InvalidOperationException("Too many arguments for the attribute.");
         }
@@ -195,6 +198,11 @@ internal class BuildConfigurationFromAttributes
             if (v is null)
             {
                 continue;
+            }
+
+            if (i == 13)
+            {
+                _staticAbstractsGeneration = (StaticAbstractsGeneration) v;
             }
 
             if (i == 12)

@@ -76,13 +76,13 @@ namespace AnalyzerTests
             }
         }
 
-        private static (ImmutableArray<Diagnostic> Diagnostics, string GeneratedSource) GetGeneratedOutput(
+        private static (ImmutableArray<Diagnostic> Diagnostics, SyntaxTree[] GeneratedSource) GetGeneratedOutput(
             string source,
             TargetFramework targetFramework, 
             bool ignoreInitialCompilationErrors)
         {
             var results = new ProjectBuilder()
-                .WithSource(source)
+                .WithUserSource(source)
                 .WithTargetFramework(targetFramework)
                 .GetGeneratedOutput<T>(ignoreInitialCompilationErrors);
 

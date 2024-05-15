@@ -19,7 +19,7 @@ using Vogen;
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute(""{Util.GenerateYourAssemblyName()}"", ""{Util.GenerateYourAssemblyVersion()}"")]
     {Util.GenerateAnyConversionAttributes(tds, item)}
     {DebugGeneration.GenerateDebugAttributes(item, structName, itemUnderlyingType)}
-    { Util.GenerateModifiersFor(tds)} struct {structName} : global::System.IEquatable<{structName}>, global::System.IEquatable<{itemUnderlyingType}>{GenerateComparableCode.GenerateIComparableHeaderIfNeeded(", ", item, tds)}{GenerateCodeForIParsableInterfaceDeclarations.GenerateIfNeeded(", ", item, tds)}
+    { Util.GenerateModifiersFor(tds)} struct {structName} : global::System.IEquatable<{structName}>, global::System.IEquatable<{itemUnderlyingType}>{GenerateComparableCode.GenerateIComparableHeaderIfNeeded(", ", item, tds)}{GenerateCodeForIParsableInterfaceDeclarations.GenerateIfNeeded(", ", item, tds)}{WriteStaticAbstracts.WriteHeaderIfNeeded(", ", item, tds)}
     {{
 {DebugGeneration.GenerateStackTraceFieldIfNeeded(item)}
 
@@ -82,7 +82,7 @@ using Vogen;
 
 {GenerateEqualsAndHashCodes.GenerateStringComparersIfNeeded(item, tds)}        
 
-{GenerateCastingOperators.Generate(item,tds)}{Util.GenerateGuidFactoryMethodIfNeeded(item, tds)}
+{GenerateCastingOperators.GenerateImplementations(item,tds)}{Util.GenerateGuidFactoryMethodIfNeeded(item, tds)}
         // only called internally when something has been deserialized into
         // its primitive type.
         private static {structName} __Deserialize({itemUnderlyingType} value)

@@ -1,5 +1,4 @@
-﻿using System;
-using Microsoft.CodeAnalysis;
+﻿using Microsoft.CodeAnalysis;
 
 namespace Vogen;
 
@@ -22,7 +21,8 @@ public class VogenConfiguration
         ParsableForPrimitives parsableForPrimitives,
         TryFromGeneration tryFromGeneration,
         IsInitializedMethodGeneration isInitializedMethodGeneration,
-        SystemTextJsonConverterFactoryGeneration systemTextJsonConverterFactoryGeneration)
+        SystemTextJsonConverterFactoryGeneration systemTextJsonConverterFactoryGeneration,
+        StaticAbstractsGeneration staticAbstractsGeneration)
     {
         UnderlyingType = underlyingType;
         ValidationExceptionType = validationExceptionType;
@@ -40,143 +40,7 @@ public class VogenConfiguration
         TryFromGeneration = tryFromGeneration;
         IsInitializedMethodGeneration = isInitializedMethodGeneration;
         SystemTextJsonConverterFactoryGeneration = systemTextJsonConverterFactoryGeneration;
-    }
-
-    public static VogenConfiguration Combine(
-        VogenConfiguration localValues,
-        VogenConfiguration? globalValues,
-        Func<INamedTypeSymbol>? funcForDefaultUnderlyingType = null)
-    {
-        var conversions = (localValues.Conversions, globalValues?.Conversions) switch
-        {
-            (Conversions.Default, null) => DefaultInstance.Conversions,
-            (Conversions.Default, Conversions.Default) => DefaultInstance.Conversions,
-            (Conversions.Default, var globalDefault) => globalDefault.Value,
-            (var specificValue, _) => specificValue
-        };
-
-        var customizations = (localValues.Customizations, globalValues?.Customizations) switch
-        {
-            (Customizations.None, null) => DefaultInstance.Customizations,
-            (Customizations.None, Customizations.None) => DefaultInstance.Customizations,
-            (Customizations.None, var globalDefault) => globalDefault.Value,
-            (var specificValue, _) => specificValue
-        };
-
-        var strictness = (localValues.DeserializationStrictness, globalValues?.DeserializationStrictness) switch
-        {
-            (DeserializationStrictness.Default, null) => DefaultInstance.DeserializationStrictness,
-            (DeserializationStrictness.Default, DeserializationStrictness.Default) => DefaultInstance.DeserializationStrictness,
-            (DeserializationStrictness.Default, var globalDefault) => globalDefault.Value,
-            (var specificValue, _) => specificValue
-        };
-
-        var debuggerAttributes = (localValues.DebuggerAttributes, globalValues?.DebuggerAttributes) switch
-        {
-            (DebuggerAttributeGeneration.Default, null) => DefaultInstance.DebuggerAttributes,
-            (DebuggerAttributeGeneration.Default, DebuggerAttributeGeneration.Default) => DefaultInstance.DebuggerAttributes,
-            (DebuggerAttributeGeneration.Default, var globalDefault) => globalDefault.Value,
-            (var specificValue, _) => specificValue
-        };
-
-        var comparison = (localValues.Comparison, globalValues?.Comparison) switch
-        {
-            (ComparisonGeneration.Default, null) => DefaultInstance.Comparison,
-            (ComparisonGeneration.Default, ComparisonGeneration.Default) => DefaultInstance.Comparison,
-            (ComparisonGeneration.Default, var globalDefault) => globalDefault.Value,
-            (var specificValue, _) => specificValue
-        };
-
-        var parsableForStrings = (localValues.ParsableForStrings, globalValues?.ParsableForStrings) switch
-        {
-            (ParsableForStrings.Unspecified, null) => DefaultInstance.ParsableForStrings,
-            (ParsableForStrings.Unspecified, ParsableForStrings.Unspecified) => DefaultInstance.ParsableForStrings,
-            (ParsableForStrings.Unspecified, var globalDefault) => globalDefault.Value,
-            (var specificValue, _) => specificValue
-        };
-
-        var parsableForPrimitives = (localValues.ParsableForPrimitives, globalValues?.ParsableForPrimitives) switch
-        {
-            (ParsableForPrimitives.Unspecified, null) => DefaultInstance.ParsableForPrimitives,
-            (ParsableForPrimitives.Unspecified, ParsableForPrimitives.Unspecified) => DefaultInstance.ParsableForPrimitives,
-            (ParsableForPrimitives.Unspecified, var globalDefault) => globalDefault.Value,
-            (var specificValue, _) => specificValue
-        };
-
-        StringComparersGeneration stringComparers = (localValues.StringComparers, globalValues?.StringComparers) switch
-        {
-            (StringComparersGeneration.Unspecified, null) => DefaultInstance.StringComparers,
-            (StringComparersGeneration.Unspecified, StringComparersGeneration.Unspecified) => DefaultInstance.StringComparers,
-            (StringComparersGeneration.Unspecified, var global) => global.Value,
-            (var local, _) => local,
-        };
-
-        TryFromGeneration tryFromGeneration = (localValues.TryFromGeneration, globalValues?.TryFromGeneration) switch
-        {
-            (TryFromGeneration.Unspecified, null) => DefaultInstance.TryFromGeneration,
-            (TryFromGeneration.Unspecified, TryFromGeneration.Unspecified) => DefaultInstance.TryFromGeneration,
-            (TryFromGeneration.Unspecified, var global) => global.Value,
-            (var local, _) => local,
-        };
-
-        CastOperator toPrimitiveCastOperators = (localValues.ToPrimitiveCasting, globalValues?.ToPrimitiveCasting) switch
-        {
-            (CastOperator.Unspecified, null) => DefaultInstance.ToPrimitiveCasting,
-            (CastOperator.Unspecified, CastOperator.Unspecified) => DefaultInstance.ToPrimitiveCasting,
-            (CastOperator.Unspecified, var global) => global.Value,
-            (var local, _) => local,
-        };
-
-        CastOperator fromPrimitiveCastOperators = (localValues.FromPrimitiveCasting, globalValues?.FromPrimitiveCasting) switch
-        {
-            (CastOperator.Unspecified, null) => DefaultInstance.FromPrimitiveCasting,
-            (CastOperator.Unspecified, CastOperator.Unspecified) => DefaultInstance.FromPrimitiveCasting,
-            (CastOperator.Unspecified, var global) => global.Value,
-            (var local, _) => local,
-        };
-
-        IsInitializedMethodGeneration isInitializedMethodGeneration = (localValues.IsInitializedMethodGeneration, globalValues?.IsInitializedMethodGeneration) switch
-        {
-            (IsInitializedMethodGeneration.Unspecified, null) => DefaultInstance.IsInitializedMethodGeneration,
-            (IsInitializedMethodGeneration.Unspecified, IsInitializedMethodGeneration.Unspecified) => DefaultInstance.IsInitializedMethodGeneration,
-            (IsInitializedMethodGeneration.Unspecified, var global) => global.Value,
-            (var local, _) => local,
-        };
-
-        SystemTextJsonConverterFactoryGeneration systemTextJsonConverterFactoryGeneration = globalValues?.SystemTextJsonConverterFactoryGeneration switch
-        {
-            SystemTextJsonConverterFactoryGeneration.Unspecified => DefaultInstance.SystemTextJsonConverterFactoryGeneration,
-            null => DefaultInstance.SystemTextJsonConverterFactoryGeneration,
-            var global => global.Value,
-        };
-
-        var validationExceptionType = localValues.ValidationExceptionType ?? 
-                                      globalValues?.ValidationExceptionType ?? 
-                                      DefaultInstance.ValidationExceptionType;
-
-        var underlyingType = localValues.UnderlyingType ?? 
-                             globalValues?.UnderlyingType ?? 
-                             funcForDefaultUnderlyingType?.Invoke();
-        
-        var disableStackTraceRecordingInDebug = globalValues?.DisableStackTraceRecordingInDebug ?? false;
-
-        return new VogenConfiguration(
-            underlyingType: underlyingType,
-            validationExceptionType: validationExceptionType,
-            conversions: conversions,
-            customizations: customizations,
-            deserializationStrictness: strictness,
-            debuggerAttributes: debuggerAttributes,
-            comparison: comparison,
-            stringComparers: stringComparers,
-            toPrimitiveCasting: toPrimitiveCastOperators,
-            fromPrimitiveCasting: fromPrimitiveCastOperators,
-            disableStackTraceRecordingInDebug: disableStackTraceRecordingInDebug,
-            parsableForStrings: parsableForStrings,
-            parsableForPrimitives: parsableForPrimitives,
-            tryFromGeneration: tryFromGeneration,
-            isInitializedMethodGeneration: isInitializedMethodGeneration,
-            systemTextJsonConverterFactoryGeneration: systemTextJsonConverterFactoryGeneration);
+        StaticAbstractsGeneration = staticAbstractsGeneration;
     }
 
     /// <summary>
@@ -209,7 +73,10 @@ public class VogenConfiguration
     
     public TryFromGeneration TryFromGeneration { get; }
     public IsInitializedMethodGeneration IsInitializedMethodGeneration { get; }
+    
     public SystemTextJsonConverterFactoryGeneration SystemTextJsonConverterFactoryGeneration { get; }
+    
+    public StaticAbstractsGeneration StaticAbstractsGeneration { get; }
 
     // the issue here is that without a physical 'symbol' in the source, we can't
     // get the namedtypesymbol
@@ -231,5 +98,6 @@ public class VogenConfiguration
         parsableForPrimitives: ParsableForPrimitives.HoistMethodsAndInterfaces,
         tryFromGeneration: TryFromGeneration.GenerateBoolAndErrorOrMethods,
         isInitializedMethodGeneration: IsInitializedMethodGeneration.Generate,
-        systemTextJsonConverterFactoryGeneration: SystemTextJsonConverterFactoryGeneration.Generate);
+        systemTextJsonConverterFactoryGeneration: SystemTextJsonConverterFactoryGeneration.Generate,
+        staticAbstractsGeneration: StaticAbstractsGeneration.Omit);
 }
