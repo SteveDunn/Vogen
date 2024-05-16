@@ -654,7 +654,7 @@ public class Person {
 
 ```csharp
 public void CanEnter(Age age) {
-    if(age == Age.Unspecified || age == Age.Invalid) throw CannotEnterException("Name not specified or is invalid")
+    if(age == Age.Unspecified || age == Age.Invalid) throw CannotEnterException("Age not specified or is invalid")
     return age < 17;
 }
 ```
