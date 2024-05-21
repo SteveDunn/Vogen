@@ -121,7 +121,9 @@ public class MyValidationException : Exception
     [Fact]
     public Task Customization_override()
     {
-        var source = @"using System;
+        var source = @"
+#pragma warning disable CS0618 // 'Customizations.TreatNumberAsStringInSystemTextJson' is obsolete
+using System;
 using Vogen;
 
 [assembly: VogenDefaults(customizations: Customizations.TreatNumberAsStringInSystemTextJson)]

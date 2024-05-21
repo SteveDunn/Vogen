@@ -17,11 +17,15 @@ public enum Customizations
     None = 0,
     
     /// <summary>
-    /// When [de]serializing an underlying primitive that would normally be written as a number in System.Text.Json,
+    /// When serializing and deserializing an underlying primitive that would normally be read or written as a number in System.Text.Json,
     /// instead, treat the underlying primitive as a culture invariant string. This gets around the issue of
     /// JavaScript losing precision on very large numbers. See <see href="https://github.com/SteveDunn/Vogen/issues/165"/>
     /// for more information.
+    /// The preferred method, on .NET 5 or higher, is to use `JsonNumberHandling` in `JsonSerializerOptions`.
     /// </summary>
+#if NET5_0_OR_GREATER
+    [Obsolete("The preferred method is to use `JsonNumberHandling` in `JsonSerializerOptions`.")]
+#endif    
     TreatNumberAsStringInSystemTextJson = 1 << 0,
  
     /// <summary>

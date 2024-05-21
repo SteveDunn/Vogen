@@ -557,11 +557,7 @@ public static ValueObjectOrError<partial_struct_ExpressionBodiedMethod> TryFrom(
             public override partial_struct_ExpressionBodiedMethod Read(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {
 #if NET5_0_OR_GREATER
-                return partial_struct_ExpressionBodiedMethod.__Deserialize(
-                    options.NumberHandling == global::System.Text.Json.Serialization.JsonNumberHandling.AllowReadingFromString && reader.TokenType == global::System.Text.Json.JsonTokenType.String
-                    ? global::System.Int32.Parse(reader.GetString(), global::System.Globalization.NumberStyles.Any, global::System.Globalization.CultureInfo.InvariantCulture)
-                    : reader.GetInt32()
-                );
+                return partial_struct_ExpressionBodiedMethod.__Deserialize(global::System.Text.Json.JsonSerializer.Deserialize(ref reader, (global::System.Text.Json.Serialization.Metadata.JsonTypeInfo<global::System.Int32>)options.GetTypeInfo(typeof(global::System.Int32))));
 #else
                 return partial_struct_ExpressionBodiedMethod.__Deserialize(reader.GetInt32());
 #endif
@@ -569,7 +565,11 @@ public static ValueObjectOrError<partial_struct_ExpressionBodiedMethod> TryFrom(
 
             public override void Write(System.Text.Json.Utf8JsonWriter writer, partial_struct_ExpressionBodiedMethod value, global::System.Text.Json.JsonSerializerOptions options)
             {
+ #if NET5_0_OR_GREATER
+                global::System.Text.Json.JsonSerializer.Serialize(writer, value.Value, options.GetTypeInfo(typeof(global::System.Int32)));
+ #else
                 writer.WriteNumberValue(value.Value);
+ #endif
             }
 
 #if NET6_0_OR_GREATER            

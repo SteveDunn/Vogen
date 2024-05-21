@@ -83,6 +83,7 @@ public class CustomizeNumbersAsStringsInSystemTextJson
         var source = @"using Vogen;
 namespace Whatever
 {
+#pragma warning disable CS0618 // 'Customizations.TreatNumberAsStringInSystemTextJson' is obsolete
 " + declaration + @"
 }";
 

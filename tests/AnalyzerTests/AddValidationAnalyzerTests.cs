@@ -158,6 +158,7 @@ namespace ConsoleApplication1
         {
             var input = LineEndingsHelper.Normalize(
                 """
+                    #pragma warning disable CS0618 // 'Customizations.TreatNumberAsStringInSystemTextJson' is obsolete
                     using System;
                     using System.Collections.Generic;
                     using System.Linq;
@@ -184,6 +185,7 @@ namespace ConsoleApplication1
 
             var expectedOutput = LineEndingsHelper.Normalize(
                 """
+                    #pragma warning disable CS0618 // 'Customizations.TreatNumberAsStringInSystemTextJson' is obsolete
                     using System;
                     using System.Collections.Generic;
                     using System.Linq;
@@ -239,6 +241,7 @@ namespace ConsoleApplication1
         {
             var input = LineEndingsHelper.Normalize(
                 """
+                    #pragma warning disable CS0618 // 'Customizations.TreatNumberAsStringInSystemTextJson' is obsolete
                     using System;
                     using System.Collections.Generic;
                     using System.Linq;
@@ -265,6 +268,7 @@ namespace ConsoleApplication1
 
             var expectedOutput = LineEndingsHelper.Normalize(
                 """
+                    #pragma warning disable CS0618 // 'Customizations.TreatNumberAsStringInSystemTextJson' is obsolete
                     using System;
                     using System.Collections.Generic;
                     using System.Linq;

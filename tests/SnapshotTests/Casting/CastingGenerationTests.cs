@@ -6,9 +6,6 @@ using Vogen;
 
 namespace SnapshotTests.CastingOperators;
 
-/// <summary>
-/// These tests verify that types containing <see cref="Customizations.TreatNumberAsStringInSystemTextJson"/> are written correctly.
-/// </summary>
 [UsesVerify] 
 public class CastingGenerationTests
 {

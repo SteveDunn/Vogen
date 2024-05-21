@@ -79,7 +79,7 @@ namespace Vogen
                 var mergedConfig = CombineConfigurations.CombineAndResolveAnyGlobalConfig(globalConfig);
                 WriteStaticAbstracts.WriteIfNeeded(mergedConfig, context, compilation);
 
-                WriteSystemTextJsonConverterFactories.WriteIfNeeded(mergedConfig, workItems, context);
+                WriteSystemTextJsonConverterFactories.WriteIfNeeded(mergedConfig, workItems, context, compilation);
 
                 foreach (var eachWorkItem in workItems)
                 {

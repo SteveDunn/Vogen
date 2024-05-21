@@ -30,11 +30,18 @@ public class ProjectBuilder
     private readonly IList<MetadataReference> _references = new List<MetadataReference>();
     private string _userSource = string.Empty;
     private TargetFramework? _targetFramework;
+    private bool _excludeStj = false;
     private LanguageVersion _languageVersion = LanguageVersion.Default;
 
     public ProjectBuilder WithTargetFramework(TargetFramework targetFramework)
     {
         _targetFramework = targetFramework;
+        return this;
+    }
+
+    public ProjectBuilder ShouldExcludeSystemTextJson(bool excludeStj = false)
+    {
+        _excludeStj = excludeStj;
         return this;
     }
 
@@ -75,7 +82,7 @@ public class ProjectBuilder
                 AddNuGetReference("linq2db", "3.0.0", "lib/net46/");
                 AddNuGetReference("Microsoft.EntityFrameworkCore", "3.1.31", "lib/netstandard2.0/");
                 AddNuGetReference("Dapper", "2.0.123", "lib/net461/");
-                AddNuGetReference("System.Text.Json", "7.0.0", "lib/net462/");
+                AddStjIfNeeded("8.0.0", "lib/net462/");
                 AddNuGetReference("System.Memory", "4.5.5", "lib/net461/");
                 AddNuGetReference("ServiceStack.Text", "4.0.62", "lib/net40");
                 break;
@@ -85,7 +92,7 @@ public class ProjectBuilder
                 AddNuGetReference("linq2db", "3.7.0", "lib/netstandard2.1/");
                 AddNuGetReference("Microsoft.EntityFrameworkCore", "5.0.17", "lib/netstandard2.1/");
                 AddNuGetReference("Dapper", "2.0.123", "lib/netstandard2.0/");
-                AddNuGetReference("System.Text.Json", "7.0.0", "lib/netstandard2.0/");
+                AddStjIfNeeded("8.0.0", "lib/netstandard2.0/");
                 AddNuGetReference("System.Memory", "4.5.5", "lib/netstandard2.0/");
                 AddNuGetReference("ServiceStack.Text", "6.11.0", "lib/netstandard2.0");
                 break;
@@ -138,6 +145,14 @@ public class ProjectBuilder
 
         AddNuGetReference("Microsoft.CSharp", "4.7.0", "lib/netstandard2.0/");  // To support dynamic type
         AddNuGetReference("Newtonsoft.Json", "13.0.2", "lib/netstandard2.0/"); 
+    }
+
+    private void AddStjIfNeeded(string version, string pathPrefix)
+    {
+        if (!_excludeStj)
+        {
+            AddNuGetReference("System.Text.Json", version, pathPrefix);
+        }
     }
 
     private static Task<string[]> GetNuGetReferences(string packageName, string version, string path)

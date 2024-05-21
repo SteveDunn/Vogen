@@ -487,11 +487,7 @@ public static ValueObjectOrError<stj_number_as_string_public_partial_classConver
             public override stj_number_as_string_public_partial_classConversions_SystemTextJsonbyte Read(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {
 #if NET5_0_OR_GREATER
-                return stj_number_as_string_public_partial_classConversions_SystemTextJsonbyte.__Deserialize(
-                    options.NumberHandling == global::System.Text.Json.Serialization.JsonNumberHandling.AllowReadingFromString && reader.TokenType == global::System.Text.Json.JsonTokenType.String
-                    ? global::System.Byte.Parse(reader.GetString(), global::System.Globalization.NumberStyles.Any, global::System.Globalization.CultureInfo.InvariantCulture)
-                    : reader.GetByte()
-                );
+                return stj_number_as_string_public_partial_classConversions_SystemTextJsonbyte.__Deserialize(global::System.Text.Json.JsonSerializer.Deserialize(ref reader, (global::System.Text.Json.Serialization.Metadata.JsonTypeInfo<global::System.Byte>)options.GetTypeInfo(typeof(global::System.Byte))));
 #else
                 return stj_number_as_string_public_partial_classConversions_SystemTextJsonbyte.__Deserialize(reader.GetByte());
 #endif
@@ -499,7 +495,12 @@ public static ValueObjectOrError<stj_number_as_string_public_partial_classConver
 
             public override void Write(global::System.Text.Json.Utf8JsonWriter writer, stj_number_as_string_public_partial_classConversions_SystemTextJsonbyte value, global::System.Text.Json.JsonSerializerOptions options)
             {
+
+ #if NET5_0_OR_GREATER
+                global::System.Text.Json.JsonSerializer.Serialize(writer, value.Value, options.GetTypeInfo(typeof(global::System.Byte)));
+ #else
                 writer.WriteNumberValue(value.Value);
+ #endif
             }
 
 #if NET6_0_OR_GREATER

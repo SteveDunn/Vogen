@@ -54,6 +54,7 @@ namespace SnapshotTests
         private ITestOutputHelper? _logger;
         private readonly List<NuGetPackage> _additionalNuGetPackages = new();
         private LanguageVersion _languageVersion = LanguageVersion.Default;
+        private bool _excludeStj = false;
 
         public async Task RunOnAllFrameworks() => await RunOn(_allFrameworks);
 
@@ -121,6 +122,7 @@ namespace SnapshotTests
                 .WithNugetPackages(_additionalNuGetPackages)
                 .WithTargetFramework(targetFramework)
                 .WithLanguageVersion(_languageVersion)
+                .ShouldExcludeSystemTextJson(_excludeStj)
                 .GetGeneratedOutput<T>(_ignoreInitialCompilationErrors, r);
 
             return results;
@@ -143,6 +145,12 @@ namespace SnapshotTests
         public SnapshotRunner<T> WithLanguageVersion(LanguageVersion languageVersion)
         {
             _languageVersion = languageVersion;
+            return this;
+        }
+
+        public SnapshotRunner<T> ExcludeSystemTextJsonNugetPackage()
+        {
+            _excludeStj = true;
             return this;
         }
     }

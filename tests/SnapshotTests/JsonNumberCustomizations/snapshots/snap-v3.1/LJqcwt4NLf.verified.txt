@@ -435,11 +435,7 @@ public static ValueObjectOrError<stj_number_as_string_public_partial_record_clas
             public override stj_number_as_string_public_partial_record_classConversions_SystemTextJsonfloat Read(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {
 #if NET5_0_OR_GREATER
-                return stj_number_as_string_public_partial_record_classConversions_SystemTextJsonfloat.__Deserialize(
-                    options.NumberHandling == global::System.Text.Json.Serialization.JsonNumberHandling.AllowReadingFromString && reader.TokenType == global::System.Text.Json.JsonTokenType.String
-                    ? global::System.Single.Parse(reader.GetString(), global::System.Globalization.NumberStyles.Any, global::System.Globalization.CultureInfo.InvariantCulture)
-                    : reader.GetSingle()
-                );
+                return stj_number_as_string_public_partial_record_classConversions_SystemTextJsonfloat.__Deserialize(global::System.Text.Json.JsonSerializer.Deserialize(ref reader, (global::System.Text.Json.Serialization.Metadata.JsonTypeInfo<global::System.Single>)options.GetTypeInfo(typeof(global::System.Single))));
 #else
                 return stj_number_as_string_public_partial_record_classConversions_SystemTextJsonfloat.__Deserialize(reader.GetSingle());
 #endif
@@ -447,7 +443,11 @@ public static ValueObjectOrError<stj_number_as_string_public_partial_record_clas
 
             public override void Write(System.Text.Json.Utf8JsonWriter writer, stj_number_as_string_public_partial_record_classConversions_SystemTextJsonfloat value, global::System.Text.Json.JsonSerializerOptions options)
             {
+ #if NET5_0_OR_GREATER
+                global::System.Text.Json.JsonSerializer.Serialize(writer, value.Value, options.GetTypeInfo(typeof(global::System.Single)));
+ #else
                 writer.WriteNumberValue(value.Value);
+ #endif
             }
             
 #if NET6_0_OR_GREATER

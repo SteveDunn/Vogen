@@ -585,6 +585,7 @@ public static ValueObjectOrError<stj_number_as_string_public_partial_classConver
 
             public override void Write(global::System.Text.Json.Utf8JsonWriter writer, stj_number_as_string_public_partial_classConversions_NewtonsoftJson___Conversions_SystemTextJsonbyte_customized value, global::System.Text.Json.JsonSerializerOptions options)
             {
+
                 writer.WriteStringValue(value.Value.ToString(global::System.Globalization.CultureInfo.InvariantCulture));
             }
 

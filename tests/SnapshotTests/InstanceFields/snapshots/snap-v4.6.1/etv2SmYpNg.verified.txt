@@ -366,11 +366,7 @@ public static readonly internal_readonly_partial_record_structdouble MyValue = n
             public override internal_readonly_partial_record_structdouble Read(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {
 #if NET5_0_OR_GREATER
-                return internal_readonly_partial_record_structdouble.__Deserialize(
-                    options.NumberHandling == global::System.Text.Json.Serialization.JsonNumberHandling.AllowReadingFromString && reader.TokenType == global::System.Text.Json.JsonTokenType.String
-                    ? global::System.Double.Parse(reader.GetString(), global::System.Globalization.NumberStyles.Any, global::System.Globalization.CultureInfo.InvariantCulture)
-                    : reader.GetDouble()
-                );
+                return internal_readonly_partial_record_structdouble.__Deserialize(global::System.Text.Json.JsonSerializer.Deserialize(ref reader, (global::System.Text.Json.Serialization.Metadata.JsonTypeInfo<global::System.Double>)options.GetTypeInfo(typeof(global::System.Double))));
 #else
                 return internal_readonly_partial_record_structdouble.__Deserialize(reader.GetDouble());
 #endif
@@ -378,7 +374,11 @@ public static readonly internal_readonly_partial_record_structdouble MyValue = n
 
             public override void Write(System.Text.Json.Utf8JsonWriter writer, internal_readonly_partial_record_structdouble value, global::System.Text.Json.JsonSerializerOptions options)
             {
+ #if NET5_0_OR_GREATER
+                global::System.Text.Json.JsonSerializer.Serialize(writer, value.Value, options.GetTypeInfo(typeof(global::System.Double)));
+ #else
                 writer.WriteNumberValue(value.Value);
+ #endif
             }
 
 #if NET6_0_OR_GREATER

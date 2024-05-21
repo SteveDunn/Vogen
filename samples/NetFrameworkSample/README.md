@@ -1,0 +1,1 @@
+This project is part of the build just to ensure that .NET Framework clients can still build.

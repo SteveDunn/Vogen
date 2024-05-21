@@ -6,8 +6,16 @@ namespace Vogen;
 
 internal class WriteSystemTextJsonConverterFactories
 {
-    public static void WriteIfNeeded(VogenConfiguration? globalConfig, List<VoWorkItem> workItems, SourceProductionContext context)
+    public static void WriteIfNeeded(VogenConfiguration? globalConfig,
+        List<VoWorkItem> workItems,
+        SourceProductionContext context,
+        Compilation compilation)
     {
+        if (compilation.GetTypeByMetadataName("System.Text.Json.Serialization.JsonConverterFactory") is null)
+        {
+            return;
+        }
+        
         var generation = globalConfig?.SystemTextJsonConverterFactoryGeneration ??
                          VogenConfiguration.DefaultInstance.SystemTextJsonConverterFactoryGeneration;
 

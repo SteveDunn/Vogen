@@ -564,11 +564,7 @@ public static readonly internal_readonly_partial_structbyte MyValue = new intern
             public override internal_readonly_partial_structbyte Read(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {
 #if NET5_0_OR_GREATER
-                return internal_readonly_partial_structbyte.__Deserialize(
-                    options.NumberHandling == global::System.Text.Json.Serialization.JsonNumberHandling.AllowReadingFromString && reader.TokenType == global::System.Text.Json.JsonTokenType.String
-                    ? global::System.Byte.Parse(reader.GetString(), global::System.Globalization.NumberStyles.Any, global::System.Globalization.CultureInfo.InvariantCulture)
-                    : reader.GetByte()
-                );
+                return internal_readonly_partial_structbyte.__Deserialize(global::System.Text.Json.JsonSerializer.Deserialize(ref reader, (global::System.Text.Json.Serialization.Metadata.JsonTypeInfo<global::System.Byte>)options.GetTypeInfo(typeof(global::System.Byte))));
 #else
                 return internal_readonly_partial_structbyte.__Deserialize(reader.GetByte());
 #endif
@@ -576,7 +572,12 @@ public static readonly internal_readonly_partial_structbyte MyValue = new intern
 
             public override void Write(global::System.Text.Json.Utf8JsonWriter writer, internal_readonly_partial_structbyte value, global::System.Text.Json.JsonSerializerOptions options)
             {
+
+ #if NET5_0_OR_GREATER
+                global::System.Text.Json.JsonSerializer.Serialize(writer, value.Value, options.GetTypeInfo(typeof(global::System.Byte)));
+ #else
                 writer.WriteNumberValue(value.Value);
+ #endif
             }
 
 #if NET6_0_OR_GREATER
