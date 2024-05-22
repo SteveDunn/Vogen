@@ -2,7 +2,9 @@
 using ServiceStackDotTextExample;
 using Vogen;
 
-[assembly: VogenDefaults(conversions:Conversions.ServiceStackDotText | Conversions.SystemTextJson, staticAbstractsGeneration: StaticAbstractsGeneration.MostCommon)]
+[assembly: VogenDefaults(
+    conversions:Conversions.ServiceStackDotText | Conversions.SystemTextJson, 
+    staticAbstractsGeneration: StaticAbstractsGeneration.MostCommon)]
 
 namespace Whatever
 {
