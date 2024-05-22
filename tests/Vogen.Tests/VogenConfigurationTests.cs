@@ -69,7 +69,7 @@ public class VogenConfigurationTests
                 IsInitializedMethodGeneration.Unspecified,
                 SystemTextJsonConverterFactoryGeneration.Unspecified,
                 StaticAbstractsGeneration.Unspecified,
-                SwashbuckleSchemaFilterGeneration.Unspecified);
+                SwashbuckleSchemaGeneration.Unspecified);
     }
 
     public class Casting
@@ -117,7 +117,7 @@ public class VogenConfigurationTests
                 isInitializedMethodGeneration: IsInitializedMethodGeneration.Unspecified,
                 systemTextJsonConverterFactoryGeneration: SystemTextJsonConverterFactoryGeneration.Unspecified,
                 staticAbstractsGeneration: StaticAbstractsGeneration.Unspecified,
-                swashbuckleSchemaFilterGeneration: SwashbuckleSchemaFilterGeneration.Unspecified);
+                swashbuckleSchemaGeneration: SwashbuckleSchemaGeneration.Unspecified);
     }
 
     public class Conversion
@@ -149,7 +149,7 @@ public class VogenConfigurationTests
                 IsInitializedMethodGeneration.Unspecified,
                 SystemTextJsonConverterFactoryGeneration.Unspecified,
                 StaticAbstractsGeneration.Unspecified,
-                SwashbuckleSchemaFilterGeneration.Unspecified);
+                SwashbuckleSchemaGeneration.Unspecified);
     }
 
     public class Comparable
@@ -339,20 +339,20 @@ public class VogenConfigurationTests
         public void Defaults_to_omit()
         {
             var result = CombineConfigurations.CombineAndResolveAnythingUnspecified(
-                localValues: new ConfigBuilder().WithSwashbuckleSchemaFilterGeneration(SwashbuckleSchemaFilterGeneration.Unspecified).Build(), 
-                globalValues: new ConfigBuilder().WithSwashbuckleSchemaFilterGeneration(SwashbuckleSchemaFilterGeneration.Unspecified).Build());
+                localValues: new ConfigBuilder().WithSwashbuckleSchemaFilterGeneration(SwashbuckleSchemaGeneration.Unspecified).Build(), 
+                globalValues: new ConfigBuilder().WithSwashbuckleSchemaFilterGeneration(SwashbuckleSchemaGeneration.Unspecified).Build());
 
-            result.SwashbuckleSchemaFilterGeneration.Should().Be(SwashbuckleSchemaFilterGeneration.Omit);
+            result.SwashbuckleSchemaGeneration.Should().Be(SwashbuckleSchemaGeneration.Omit);
         }
 
         [Fact]
         public void Can_be_overridden_omit()
         {
             var result = CombineConfigurations.CombineAndResolveAnythingUnspecified(
-                localValues: new ConfigBuilder().WithSwashbuckleSchemaFilterGeneration(SwashbuckleSchemaFilterGeneration.Unspecified).Build(), 
-                globalValues: new ConfigBuilder().WithSwashbuckleSchemaFilterGeneration(SwashbuckleSchemaFilterGeneration.Generate).Build());
+                localValues: new ConfigBuilder().WithSwashbuckleSchemaFilterGeneration(SwashbuckleSchemaGeneration.Unspecified).Build(), 
+                globalValues: new ConfigBuilder().WithSwashbuckleSchemaFilterGeneration(SwashbuckleSchemaGeneration.GenerateSchemaFilter).Build());
 
-            result.SwashbuckleSchemaFilterGeneration.Should().Be(SwashbuckleSchemaFilterGeneration.Generate);
+            result.SwashbuckleSchemaGeneration.Should().Be(SwashbuckleSchemaGeneration.GenerateSchemaFilter);
         }
     }
 
@@ -413,7 +413,7 @@ public class VogenConfigurationTests
                 _c.IsInitializedMethodGeneration,
                 _c.SystemTextJsonConverterFactoryGeneration,
                 _c.StaticAbstractsGeneration,
-                _c.SwashbuckleSchemaFilterGeneration);
+                _c.SwashbuckleSchemaGeneration);
                 
             return this;
         }
@@ -438,7 +438,7 @@ public class VogenConfigurationTests
                 _c.IsInitializedMethodGeneration,
                 _c.SystemTextJsonConverterFactoryGeneration,
                 _c.StaticAbstractsGeneration,
-                _c.SwashbuckleSchemaFilterGeneration);
+                _c.SwashbuckleSchemaGeneration);
                 
             return this;
         }
@@ -463,7 +463,7 @@ public class VogenConfigurationTests
                 _c.IsInitializedMethodGeneration,
                 _c.SystemTextJsonConverterFactoryGeneration,
                 _c.StaticAbstractsGeneration,
-                _c.SwashbuckleSchemaFilterGeneration);
+                _c.SwashbuckleSchemaGeneration);
                 
             return this;
         }
@@ -488,7 +488,7 @@ public class VogenConfigurationTests
                 g,
                 _c.SystemTextJsonConverterFactoryGeneration,
                 _c.StaticAbstractsGeneration,
-                _c.SwashbuckleSchemaFilterGeneration);
+                _c.SwashbuckleSchemaGeneration);
                 
             return this;
         }
@@ -513,7 +513,7 @@ public class VogenConfigurationTests
                 _c.IsInitializedMethodGeneration,
                 g,
                 _c.StaticAbstractsGeneration,
-                _c.SwashbuckleSchemaFilterGeneration);
+                _c.SwashbuckleSchemaGeneration);
                 
             return this;
         }
@@ -538,7 +538,7 @@ public class VogenConfigurationTests
                 _c.IsInitializedMethodGeneration,
                 _c.SystemTextJsonConverterFactoryGeneration,
                 _c.StaticAbstractsGeneration,
-                _c.SwashbuckleSchemaFilterGeneration);
+                _c.SwashbuckleSchemaGeneration);
                 
             return this;
         }
@@ -563,7 +563,7 @@ public class VogenConfigurationTests
                 _c.IsInitializedMethodGeneration,
                 _c.SystemTextJsonConverterFactoryGeneration,
                 _c.StaticAbstractsGeneration,
-                _c.SwashbuckleSchemaFilterGeneration);
+                _c.SwashbuckleSchemaGeneration);
                 
             return this;
         }
@@ -588,12 +588,12 @@ public class VogenConfigurationTests
                 _c.IsInitializedMethodGeneration,
                 _c.SystemTextJsonConverterFactoryGeneration,
                 g,
-                _c.SwashbuckleSchemaFilterGeneration);
+                _c.SwashbuckleSchemaGeneration);
                 
             return this;
         }
 
-        public ConfigBuilder WithSwashbuckleSchemaFilterGeneration(SwashbuckleSchemaFilterGeneration g)
+        public ConfigBuilder WithSwashbuckleSchemaFilterGeneration(SwashbuckleSchemaGeneration g)
         {
             _c = new VogenConfiguration(
                 _c.UnderlyingType,

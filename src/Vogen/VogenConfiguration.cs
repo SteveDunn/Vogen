@@ -23,7 +23,7 @@ public class VogenConfiguration
         IsInitializedMethodGeneration isInitializedMethodGeneration,
         SystemTextJsonConverterFactoryGeneration systemTextJsonConverterFactoryGeneration,
         StaticAbstractsGeneration staticAbstractsGeneration,
-        SwashbuckleSchemaFilterGeneration swashbuckleSchemaFilterGeneration)
+        SwashbuckleSchemaGeneration swashbuckleSchemaGeneration)
     {
         UnderlyingType = underlyingType;
         ValidationExceptionType = validationExceptionType;
@@ -42,7 +42,7 @@ public class VogenConfiguration
         IsInitializedMethodGeneration = isInitializedMethodGeneration;
         SystemTextJsonConverterFactoryGeneration = systemTextJsonConverterFactoryGeneration;
         StaticAbstractsGeneration = staticAbstractsGeneration;
-        SwashbuckleSchemaFilterGeneration = swashbuckleSchemaFilterGeneration;
+        SwashbuckleSchemaGeneration = swashbuckleSchemaGeneration;
     }
 
     /// <summary>
@@ -78,7 +78,7 @@ public class VogenConfiguration
     
     public SystemTextJsonConverterFactoryGeneration SystemTextJsonConverterFactoryGeneration { get; }
     
-    public SwashbuckleSchemaFilterGeneration SwashbuckleSchemaFilterGeneration { get; }
+    public SwashbuckleSchemaGeneration SwashbuckleSchemaGeneration { get; }
     
     public StaticAbstractsGeneration StaticAbstractsGeneration { get; }
 
@@ -104,5 +104,5 @@ public class VogenConfiguration
         isInitializedMethodGeneration: IsInitializedMethodGeneration.Generate,
         systemTextJsonConverterFactoryGeneration: SystemTextJsonConverterFactoryGeneration.Generate,
         staticAbstractsGeneration: StaticAbstractsGeneration.Omit,
-        swashbuckleSchemaFilterGeneration: SwashbuckleSchemaFilterGeneration.Omit);
+        swashbuckleSchemaGeneration: SwashbuckleSchemaGeneration.Omit);
 }

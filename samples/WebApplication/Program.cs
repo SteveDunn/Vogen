@@ -1,3 +1,5 @@
+using Microsoft.OpenApi.Models;
+using Swashbuckle.AspNetCore.SwaggerGen;
 using Vogen;
 
 [assembly: VogenDefaults(swashbuckleSchemaFilterGeneration: SwashbuckleSchemaFilterGeneration.Generate)]
@@ -10,7 +12,9 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(opt =>
 {
-    opt.SchemaFilter<VogenSchemaFilter>();
+    // opt.MapVogenTypes();
+    // opt.MapType<CustomerName>(() => new OpenApiSchema { Type = "string" });
+    opt.SchemaFilter<MyVogenSchemaFilter>();
 });
 
 builder.Services.AddControllers();
@@ -40,7 +44,7 @@ app.MapGet("/weatherforecast", () =>
                 Centigrade temperatureC = Centigrade.From(Random.Shared.Next(-20, 55));
                 return new WeatherForecast
                 (
-                    DateOnly.FromDateTime(DateTime.Now.AddDays(index)),
+                    ForecastDate.From(DateOnly.FromDateTime(DateTime.Now.AddDays(index))),
                     temperatureC,
                     Farenheit.FromCentigrade(temperatureC), 
                     summaries[Random.Shared.Next(summaries.Length)],
@@ -60,7 +64,7 @@ app.MapGet("/weatherforecast/{city}", (City city) =>
                 Centigrade temperatureC = Centigrade.From(Random.Shared.Next(-20, 55));
                 return new WeatherForecast
                 (
-                    DateOnly.FromDateTime(DateTime.Now.AddDays(index)),
+                    ForecastDate.From(DateOnly.FromDateTime(DateTime.Now.AddDays(index))),
                     temperatureC,
                     Farenheit.FromCentigrade(temperatureC), 
                     summaries[Random.Shared.Next(summaries.Length)],
@@ -75,9 +79,13 @@ app.MapGet("/weatherforecast/{city}", (City city) =>
 
 app.Run();
 
-record WeatherForecast(DateOnly Date, Centigrade TemperatureC, Farenheit TemperatureF, string? Summary, City City)
+record WeatherForecast(ForecastDate Date, Centigrade TemperatureC, Farenheit TemperatureF, string? Summary, City City)
 {
 }
+
+[ValueObject<DateOnly>]
+public partial struct ForecastDate
+{}
 
 [ValueObject<string>]
 //[ValueObject<string>(parsableForStrings: ParsableForStrings.GenerateMethods)]
@@ -85,7 +93,7 @@ public partial struct City
 {
 }
 
-[ValueObject]
+[ValueObject<float>]
 public partial struct Farenheit
 {
     public static Farenheit FromCentigrade(Centigrade c) => From(32 + (int)(c.Value / 0.5556));
@@ -94,4 +102,19 @@ public partial struct Farenheit
 [ValueObject]
 public partial struct Centigrade
 {
+}
+
+
+public static class VogenSwashbuckleExtensions
+{
+    public static SwaggerGenOptions MapVogenTypes(this SwaggerGenOptions o)
+    {
+        SwaggerGenOptionsExtensions.MapType<CustomerName>(o, () => new OpenApiSchema { Type = "string" });
+        o.MapType<OrderId>(() => new OpenApiSchema { Type = "integer" });
+        o.MapType<Centigrade>(() => new OpenApiSchema { Type = "integer" });
+        o.MapType<Farenheit>(() => new OpenApiSchema { Type = "number" });
+        o.MapType<City>(() => new OpenApiSchema { Description = "The description of a City", Type = "string" });
+
+        return o;
+    }
 }

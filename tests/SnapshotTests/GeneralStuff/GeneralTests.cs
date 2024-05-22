@@ -19,10 +19,45 @@ public class GeneralTests
                      using System;
                      using Vogen;
 
-                     [assembly: VogenDefaults(swashbuckleSchemaFilterGeneration: SwashbuckleSchemaFilterGeneration.Generate)]
+                     [assembly: VogenDefaults(swashbuckleSchemaGeneration: SwashbuckleSchemaGeneration.GenerateSchemaFilter)]
                      
                        [ValueObject]
                        public partial class MyVo { }
+
+                     """;
+
+            await new SnapshotRunner<ValueObjectGenerator>()
+                .WithSource(source)
+                .RunOn(TargetFramework.AspNetCore8_0);
+    }
+
+    [Fact]
+    public async Task Can_specify_swashbuckle_MapType_extension_method_generation_for_openapi()
+    {
+        var source = $$"""
+
+                     using System;
+                     using Vogen;
+
+                     [assembly: VogenDefaults(swashbuckleSchemaGeneration: SwashbuckleSchemaGeneration.GenerateExtensionMethodToMapTypesOnSwaggerGenOptions)]
+                     
+                       [ValueObject]
+                       public partial class MyVoInt { }
+
+                       [ValueObject<float>]
+                       public partial class MyVoFloat { }
+
+                       [ValueObject<decimal>]
+                       public partial class MyVoDecimal { }
+
+                       [ValueObject<double>]
+                       public partial class MyVoDouble { }
+
+                       [ValueObject<string>]
+                       public partial class MyVoString { }
+
+                       [ValueObject<bool>]
+                       public partial class MyVoBool { }
 
                      """;
 
