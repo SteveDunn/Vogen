@@ -4,11 +4,7 @@
             public override VOTYPE Read(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {
 #if NET5_0_OR_GREATER
-__NORMAL__                return VOTYPE.__Deserialize(
-__NORMAL__                    options.NumberHandling == global::System.Text.Json.Serialization.JsonNumberHandling.AllowReadingFromString && reader.TokenType == global::System.Text.Json.JsonTokenType.String
-__NORMAL__                    ? global::System.Double.Parse(reader.GetString(), global::System.Globalization.NumberStyles.Any, global::System.Globalization.CultureInfo.InvariantCulture)
-__NORMAL__                    : reader.GetDouble()
-__NORMAL__                );
+__NORMAL__                return VOTYPE.__Deserialize(global::System.Text.Json.JsonSerializer.Deserialize(ref reader, (global::System.Text.Json.Serialization.Metadata.JsonTypeInfo<global::System.Double>)options.GetTypeInfo(typeof(global::System.Double))));
 #else
 __NORMAL__                return VOTYPE.__Deserialize(reader.GetDouble());
 #endif
@@ -17,7 +13,11 @@ __STRING__                return VOTYPE.__Deserialize(global::System.Double.Pars
 
             public override void Write(System.Text.Json.Utf8JsonWriter writer, VOTYPE value, global::System.Text.Json.JsonSerializerOptions options)
             {
+__NORMAL__ #if NET5_0_OR_GREATER
+__NORMAL__                global::System.Text.Json.JsonSerializer.Serialize(writer, value.Value, options.GetTypeInfo(typeof(global::System.Double)));
+__NORMAL__ #else
 __NORMAL__                writer.WriteNumberValue(value.Value);
+__NORMAL__ #endif
 __STRING__                writer.WriteStringValue(value.Value.ToString(global::System.Globalization.CultureInfo.InvariantCulture));
             }
 

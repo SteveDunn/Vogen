@@ -29,7 +29,7 @@
     <TestPath Include="../../local-global-packages" />
   </ItemGroup>
   <Target Name="OnlyIfExists" Condition="Exists(@(TestPath))">
-    <Message Text="Please run Test.ps1 to build the latest local nuget package that these tests consume" Importance="high" />
+    <Message Text="Please run \test.ps1 to build the latest local nuget package that these tests consume" Importance="high" />
   </Target>
 
   <ItemGroup Condition=" '$(TargetFramework)' == 'net8.0'">
@@ -45,7 +45,7 @@
 	</ItemGroup>
 
 	<ItemGroup Condition=" '$(UseLocallyBuiltPackage)' == ''">
-		<PackageReference Include="Vogen" Version="3.0.6" />
+		<PackageReference Include="Vogen" Version="4.0.4" />
 	</ItemGroup>
 
 

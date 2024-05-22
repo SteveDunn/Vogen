@@ -100,6 +100,7 @@ public class CustomizationTests
         var holderId = DoubleHolderId_string.From(42);
 
         string serialized = JsonSerializer.Serialize(holderId);
+        serialized.Should().Be("\"42\"");
         var deserialized = JsonSerializer.Deserialize<DoubleHolderId_string>(serialized);
 
         deserialized.Value.Should().Be(42);

@@ -584,11 +584,7 @@ public static ValueObjectOrError<_casting_public_sealed_partial_recordCastOperat
             public override _casting_public_sealed_partial_recordCastOperator_ImplicitCastOperator_Implicitdecimal Read(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {
 #if NET5_0_OR_GREATER
-                return _casting_public_sealed_partial_recordCastOperator_ImplicitCastOperator_Implicitdecimal.__Deserialize(
-                    options.NumberHandling == global::System.Text.Json.Serialization.JsonNumberHandling.AllowReadingFromString && reader.TokenType == global::System.Text.Json.JsonTokenType.String
-                    ? global::System.Decimal.Parse(reader.GetString(), global::System.Globalization.NumberStyles.Any, global::System.Globalization.CultureInfo.InvariantCulture)
-                    : reader.GetDecimal()
-                );
+                return _casting_public_sealed_partial_recordCastOperator_ImplicitCastOperator_Implicitdecimal.__Deserialize(global::System.Text.Json.JsonSerializer.Deserialize(ref reader, (global::System.Text.Json.Serialization.Metadata.JsonTypeInfo<global::System.Decimal>)options.GetTypeInfo(typeof(global::System.Decimal))));
 #else
                 return _casting_public_sealed_partial_recordCastOperator_ImplicitCastOperator_Implicitdecimal.__Deserialize(reader.GetDecimal());
 #endif
@@ -596,7 +592,11 @@ public static ValueObjectOrError<_casting_public_sealed_partial_recordCastOperat
 
             public override void Write(System.Text.Json.Utf8JsonWriter writer, _casting_public_sealed_partial_recordCastOperator_ImplicitCastOperator_Implicitdecimal value, global::System.Text.Json.JsonSerializerOptions options)
             {
+ #if NET5_0_OR_GREATER
+                global::System.Text.Json.JsonSerializer.Serialize(writer, value.Value, options.GetTypeInfo(typeof(global::System.Decimal)));
+ #else
                 writer.WriteNumberValue(value.Value);
+ #endif
             }
 
 #if NET6_0_OR_GREATER
