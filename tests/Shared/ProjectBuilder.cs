@@ -133,6 +133,13 @@ public class ProjectBuilder
 
                 break;
 
+            case TargetFramework.AspNetCore8_0:
+                AddNuGetReference("Microsoft.NETCore.App.Ref", "8.0.0", "ref/net8.0/");
+                AddNuGetReference("Microsoft.AspNetCore.App.Ref", "8.0.0", "ref/net8.0/");
+                AddNuGetReference("Swashbuckle.AspNetCore.SwaggerGen", "6.4.0", "lib/net6.0/");
+                AddNuGetReference("Microsoft.OpenApi", "1.4.3.0", "lib/netstandard2.0/");
+                break;
+
         }
 
         AddNuGetReference("System.Collections.Immutable", "1.5.0", "lib/netstandard2.0/");

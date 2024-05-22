@@ -5,6 +5,8 @@
     <build-profile instance="hi">
         <variables>
             <noindex-content>false</noindex-content>
+          <enable-browser-edits>true</enable-browser-edits>
+          <browser-edits-url>https://github.com/SteveDunn/Vogen/tree/main/docs/site/Writerside/</browser-edits-url>
         </variables>
     </build-profile>
 

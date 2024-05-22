@@ -11,6 +11,26 @@ namespace SnapshotTests.GeneralStuff;
 [UsesVerify]
 public class GeneralTests
 {
+    [Fact]
+    public async Task Can_specify_swashbuckle_filter_generation_for_openapi()
+    {
+        var source = $$"""
+
+                     using System;
+                     using Vogen;
+
+                     [assembly: VogenDefaults(swashbuckleSchemaFilterGeneration: SwashbuckleSchemaFilterGeneration.Generate)]
+                     
+                       [ValueObject]
+                       public partial class MyVo { }
+
+                     """;
+
+            await new SnapshotRunner<ValueObjectGenerator>()
+                .WithSource(source)
+                .RunOn(TargetFramework.AspNetCore8_0);
+    }
+
     [Theory]
     [InlineData("struct")]
     [InlineData("class")]

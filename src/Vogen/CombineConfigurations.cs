@@ -134,6 +134,14 @@ public static class CombineConfigurations
             (var local, _) => local,
         };
 
+        SwashbuckleSchemaFilterGeneration swashbuckleSchemaFilterGeneration = (localValues.SwashbuckleSchemaFilterGeneration, globalValues?.SwashbuckleSchemaFilterGeneration) switch
+        {
+            (SwashbuckleSchemaFilterGeneration.Unspecified, null) => VogenConfiguration.DefaultInstance.SwashbuckleSchemaFilterGeneration,
+            (SwashbuckleSchemaFilterGeneration.Unspecified, SwashbuckleSchemaFilterGeneration.Unspecified) => VogenConfiguration.DefaultInstance.SwashbuckleSchemaFilterGeneration,
+            (SwashbuckleSchemaFilterGeneration.Unspecified, var global) => global.Value,
+            (var local, _) => local,
+        };
+
         var validationExceptionType = localValues.ValidationExceptionType ?? 
                                       globalValues?.ValidationExceptionType ?? 
                                       VogenConfiguration.DefaultInstance.ValidationExceptionType;
@@ -161,7 +169,8 @@ public static class CombineConfigurations
             tryFromGeneration: tryFromGeneration,
             isInitializedMethodGeneration: isInitializedMethodGeneration,
             systemTextJsonConverterFactoryGeneration: stjFactories,
-            staticAbstractsGeneration: staticAbstractsGeneration);
+            staticAbstractsGeneration: staticAbstractsGeneration,
+            swashbuckleSchemaFilterGeneration: swashbuckleSchemaFilterGeneration);
     }
  
     /// If we don't have a global attribute, just use the default configuration as there
