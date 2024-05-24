@@ -33,6 +33,7 @@ internal class BuildConfigurationFromAttributes
     private IsInitializedMethodGeneration _isInitializedMethodGeneration;
     private SystemTextJsonConverterFactoryGeneration _systemTextJsonConverterFactoryGeneration;
     private StaticAbstractsGeneration _staticAbstractsGeneration;
+    private OpenApiSchemaCustomizations _openApiSchemaCustomizations;
 
     private BuildConfigurationFromAttributes(AttributeData att)
     {
@@ -55,6 +56,7 @@ internal class BuildConfigurationFromAttributes
         _isInitializedMethodGeneration = IsInitializedMethodGeneration.Unspecified;
         _systemTextJsonConverterFactoryGeneration = SystemTextJsonConverterFactoryGeneration.Unspecified;
         _staticAbstractsGeneration = StaticAbstractsGeneration.Unspecified;
+        _openApiSchemaCustomizations = OpenApiSchemaCustomizations.Unspecified;
         
        _diagnostics = new List<Diagnostic>();
         
@@ -114,7 +116,8 @@ internal class BuildConfigurationFromAttributes
                 _tryFromGeneration,
                 _isInitializedMethodGeneration,
                 _systemTextJsonConverterFactoryGeneration,
-                _staticAbstractsGeneration),
+                _staticAbstractsGeneration,
+                _openApiSchemaCustomizations),
             diagnostics: _diagnostics);
     }
 
@@ -186,7 +189,7 @@ internal class BuildConfigurationFromAttributes
     // ReSharper disable once CognitiveComplexity
     private void PopulateFromVogenDefaultsAttributeArgs(ImmutableArray<TypedConstant> argsExcludingUnderlyingType)
     {
-        if (argsExcludingUnderlyingType.Length > 14)
+        if (argsExcludingUnderlyingType.Length > 15)
         {
             throw new InvalidOperationException("Too many arguments for the attribute.");
         }
@@ -198,6 +201,11 @@ internal class BuildConfigurationFromAttributes
             if (v is null)
             {
                 continue;
+            }
+
+            if (i == 14)
+            {
+                _openApiSchemaCustomizations = (OpenApiSchemaCustomizations) v;
             }
 
             if (i == 13)

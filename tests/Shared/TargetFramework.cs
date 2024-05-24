@@ -13,6 +13,7 @@
         Net8_0,
         AspNetCore5_0,
         AspNetCore6_0,
+        AspNetCore8_0,
         WindowsDesktop5_0,
     }
 }

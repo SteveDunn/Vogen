@@ -134,6 +134,14 @@ public static class CombineConfigurations
             (var local, _) => local,
         };
 
+        OpenApiSchemaCustomizations openApiSchemaCustomizations = (localValues.OpenApiSchemaCustomizations, globalValues?.OpenApiSchemaCustomizations) switch
+        {
+            (OpenApiSchemaCustomizations.Unspecified, null) => VogenConfiguration.DefaultInstance.OpenApiSchemaCustomizations,
+            (OpenApiSchemaCustomizations.Unspecified, OpenApiSchemaCustomizations.Unspecified) => VogenConfiguration.DefaultInstance.OpenApiSchemaCustomizations,
+            (OpenApiSchemaCustomizations.Unspecified, var global) => global.Value,
+            (var local, _) => local,
+        };
+
         var validationExceptionType = localValues.ValidationExceptionType ?? 
                                       globalValues?.ValidationExceptionType ?? 
                                       VogenConfiguration.DefaultInstance.ValidationExceptionType;
@@ -161,7 +169,8 @@ public static class CombineConfigurations
             tryFromGeneration: tryFromGeneration,
             isInitializedMethodGeneration: isInitializedMethodGeneration,
             systemTextJsonConverterFactoryGeneration: stjFactories,
-            staticAbstractsGeneration: staticAbstractsGeneration);
+            staticAbstractsGeneration: staticAbstractsGeneration,
+            openApiSchemaCustomizations: openApiSchemaCustomizations);
     }
  
     /// If we don't have a global attribute, just use the default configuration as there

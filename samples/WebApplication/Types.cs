@@ -1,6 +1,6 @@
 using Vogen;
 
-public record WeatherForecast(ForecastDate Date, Centigrade TemperatureC, Farenheit TemperatureF, string? Summary, City City);
+record WeatherForecast(ForecastDate Date, Centigrade TemperatureC, Farenheit TemperatureF, string? Summary, City City);
 
 [ValueObject<DateOnly>]
 public partial struct ForecastDate;
@@ -33,3 +33,4 @@ public class Order
 
     public CustomerName CustomerName { get; init; } = CustomerName.From("");
 }
+

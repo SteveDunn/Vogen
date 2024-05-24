@@ -1,5 +1,4 @@
 using ServiceStack;
-using WebApplicationConsumer;
 
 namespace ServiceStackDotTextExample;
 

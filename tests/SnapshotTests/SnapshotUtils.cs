@@ -20,9 +20,10 @@ namespace SnapshotTests
                 TargetFramework.Net6_0 => "6.0",
                 TargetFramework.Net7_0 => "7.0",
                 TargetFramework.Net8_0 => "8.0",
+                TargetFramework.AspNetCore8_0 => "AspNetCore8.0",
                 //TargetFramework.NetStandard2_0 => "2.0",
 //                TargetFramework.NetStandard2_1 => "2.1",
-                _ => throw new InvalidOperationException($"Don't know about target frame {targetFramework}")
+                _ => throw new InvalidOperationException($"Don't know about target framework {targetFramework}")
             };
 
             var s = $"snap-v{shortened}";

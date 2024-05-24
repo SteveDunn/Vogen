@@ -22,7 +22,8 @@ public class VogenConfiguration
         TryFromGeneration tryFromGeneration,
         IsInitializedMethodGeneration isInitializedMethodGeneration,
         SystemTextJsonConverterFactoryGeneration systemTextJsonConverterFactoryGeneration,
-        StaticAbstractsGeneration staticAbstractsGeneration)
+        StaticAbstractsGeneration staticAbstractsGeneration,
+        OpenApiSchemaCustomizations openApiSchemaCustomizations)
     {
         UnderlyingType = underlyingType;
         ValidationExceptionType = validationExceptionType;
@@ -41,6 +42,7 @@ public class VogenConfiguration
         IsInitializedMethodGeneration = isInitializedMethodGeneration;
         SystemTextJsonConverterFactoryGeneration = systemTextJsonConverterFactoryGeneration;
         StaticAbstractsGeneration = staticAbstractsGeneration;
+        OpenApiSchemaCustomizations = openApiSchemaCustomizations;
     }
 
     /// <summary>
@@ -76,6 +78,8 @@ public class VogenConfiguration
     
     public SystemTextJsonConverterFactoryGeneration SystemTextJsonConverterFactoryGeneration { get; }
     
+    public OpenApiSchemaCustomizations OpenApiSchemaCustomizations { get; }
+    
     public StaticAbstractsGeneration StaticAbstractsGeneration { get; }
 
     // the issue here is that without a physical 'symbol' in the source, we can't
@@ -99,5 +103,6 @@ public class VogenConfiguration
         tryFromGeneration: TryFromGeneration.GenerateBoolAndErrorOrMethods,
         isInitializedMethodGeneration: IsInitializedMethodGeneration.Generate,
         systemTextJsonConverterFactoryGeneration: SystemTextJsonConverterFactoryGeneration.Generate,
-        staticAbstractsGeneration: StaticAbstractsGeneration.Omit);
+        staticAbstractsGeneration: StaticAbstractsGeneration.Omit,
+        openApiSchemaCustomizations: OpenApiSchemaCustomizations.Omit);
 }

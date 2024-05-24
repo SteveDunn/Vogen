@@ -73,6 +73,8 @@ namespace Vogen
 
             // get all the ValueObject types found.
             List<VoWorkItem> workItems = GetWorkItems(targets, context, globalConfig, compilation).ToList();
+            
+            WriteOpenApiSchemaCustomizationCode.WriteIfNeeded(globalConfig, context, compilation, workItems);
 
             if (workItems.Count > 0)
             {

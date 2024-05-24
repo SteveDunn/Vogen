@@ -1,21 +1,47 @@
+using System.ComponentModel.DataAnnotations;
+using Microsoft.AspNetCore.OpenApi;
+using Microsoft.OpenApi.Models;
 using Vogen;
+
+#if USE_SWASHBUCKLE
+using Swashbuckle.AspNetCore.SwaggerGen;
+#endif
+#if USE_MICROSOFT_OPENAPI_AND_SCALAR
+using Scalar.AspNetCore;
+#endif
+
+[assembly: VogenDefaults(openApiSchemaCustomizations: OpenApiSchemaCustomizations.GenerateSwashbuckleMappingExtensionMethod)]
 
 var builder = WebApplication.CreateBuilder(args);
 
+#if USE_MICROSOFT_OPENAPI_AND_SCALAR
+    builder.Services.AddOpenApi((OpenApiOptions o) =>
+    {
+    });
+#endif
+
+#if USE_SWASHBUCKLE
 // Add services to the container.
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+builder.Services.AddSwaggerGen(opt =>
+{
+    // the following extension method is available if you specify `GenerateSwashbuckleMappingExtensionMethod` - as shown above
+    opt.MapVogenTypes();
+    
+    // the following schema filter is generated if you specify GenerateSwashbuckleSchemaFilter as shown above
+    // opt.SchemaFilter<MyVogenSchemaFilter>();
+});
+#endif
+
 builder.Services.AddControllers();
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
-{
+#if USE_SWASHBUCKLE
     app.UseSwagger();
     app.UseSwaggerUI();
-}
+#endif
 
 
 app.UseHttpsRedirection();
@@ -33,7 +59,7 @@ app.MapGet("/weatherforecast", () =>
                 Centigrade temperatureC = Centigrade.From(Random.Shared.Next(-20, 55));
                 return new WeatherForecast
                 (
-                    DateOnly.FromDateTime(DateTime.Now.AddDays(index)),
+                    ForecastDate.From(DateOnly.FromDateTime(DateTime.Now.AddDays(index))),
                     temperatureC,
                     Farenheit.FromCentigrade(temperatureC), 
                     summaries[Random.Shared.Next(summaries.Length)],
@@ -53,7 +79,7 @@ app.MapGet("/weatherforecast/{city}", (City city) =>
                 Centigrade temperatureC = Centigrade.From(Random.Shared.Next(-20, 55));
                 return new WeatherForecast
                 (
-                    DateOnly.FromDateTime(DateTime.Now.AddDays(index)),
+                    ForecastDate.From(DateOnly.FromDateTime(DateTime.Now.AddDays(index))),
                     temperatureC,
                     Farenheit.FromCentigrade(temperatureC), 
                     summaries[Random.Shared.Next(summaries.Length)],
@@ -66,25 +92,10 @@ app.MapGet("/weatherforecast/{city}", (City city) =>
     .WithName("GetWeatherForecastByCity")
     .WithOpenApi();
 
+#if USE_MICROSOFT_OPENAPI_AND_SCALAR
+app.MapOpenApi();
+app.MapScalarApiReference();
+#endif
+
 app.Run();
 
-record WeatherForecast(DateOnly Date, Centigrade TemperatureC, Farenheit TemperatureF, string? Summary, City City)
-{
-}
-
-[ValueObject<string>]
-//[ValueObject<string>(parsableForStrings: ParsableForStrings.GenerateMethods)]
-public partial struct City
-{
-}
-
-[ValueObject]
-public partial struct Farenheit
-{
-    public static Farenheit FromCentigrade(Centigrade c) => From(32 + (int)(c.Value / 0.5556));
-}
-
-[ValueObject]
-public partial struct Centigrade
-{
-}
