@@ -4,38 +4,34 @@ using Microsoft.CodeAnalysis;
 
 namespace Vogen;
 
-internal class WriteSwashbuckleSchemaRelatedCode
+internal class WriteOpenApiSchemaCustomizationCode
 {
     public static void WriteIfNeeded(VogenConfiguration? globalConfig,
         SourceProductionContext context,
         Compilation compilation,
         List<VoWorkItem> workItems)
     {
-        var c = globalConfig?.SwashbuckleSchemaGeneration ?? VogenConfiguration.DefaultInstance.SwashbuckleSchemaGeneration;
+        var c = globalConfig?.OpenApiSchemaCustomizations ?? VogenConfiguration.DefaultInstance.OpenApiSchemaCustomizations;
 
-        if (c == SwashbuckleSchemaGeneration.GenerateSchemaFilter)
+        if (c.HasFlag(OpenApiSchemaCustomizations.GenerateSwashbuckleSchemaFilter))
         {
             WriteSchemaFilter(context, compilation);
-            return;
         }
 
-        if (c == SwashbuckleSchemaGeneration.GenerateExtensionMethodToMapTypesOnSwaggerGenOptions)
+        if (c.HasFlag(OpenApiSchemaCustomizations.GenerateSwashbuckleMappingExtensionMethod))
         {
             WriteExtensionMethodMapping(context, compilation, workItems);
-            return;
         }
-
-        return;
     }
 
     private static void WriteSchemaFilter(SourceProductionContext context, Compilation compilation)
     {
-        if (compilation.GetTypeByMetadataName("Swashbuckle.AspNetCore.SwaggerGen.ISchemaFilter") is null)
+        if (!IsSwashbuckleReferenced(compilation))
         {
             return;
         }
         
-        string s2 =
+        string source =
             $$"""
 
               {{GeneratedCodeSegments.Preamble}}
@@ -97,7 +93,7 @@ internal class WriteSwashbuckleSchemaRelatedCode
               }
               """;
 
-        context.AddSource("SwashbuckleSchemaFilter_g.cs", s2);
+        context.AddSource("SwashbuckleSchemaFilter_g.cs", source);
     }
 
     private static void WriteExtensionMethodMapping(
@@ -105,12 +101,12 @@ internal class WriteSwashbuckleSchemaRelatedCode
         Compilation compilation,
         List<VoWorkItem> workItems)
     {
-        if (compilation.GetTypeByMetadataName("Swashbuckle.AspNetCore.SwaggerGen.ISchemaFilter") is null)
+        if (!IsSwashbuckleReferenced(compilation))
         {
             return;
         }
         
-        string s2 =
+        string source =
             $$"""
 
               {{GeneratedCodeSegments.Preamble}}
@@ -120,19 +116,17 @@ internal class WriteSwashbuckleSchemaRelatedCode
                   public static global::Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenOptions MapVogenTypes(this global::Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenOptions o)
                   {
                       {{MapWorkItems(workItems)}}
-                      //                      o.MapType<CustomerName>(() => new OpenApiSchema { Type = "string" });
-                      //                      o.MapType<OrderId>(() => new OpenApiSchema { Type = "integer" });
-                      //                      o.MapType<Centigrade>(() => new OpenApiSchema { Type = "integer" });
-                      //                      o.MapType<Farenheit>(() => new OpenApiSchema { Type = "number" });
-                      //                      o.MapType<City>(() => new OpenApiSchema { Description = "The description of a City", Type = "string" });
               
                       return o;
                   }
               }
               """;
 
-        context.AddSource("SwashbuckleSchemaExtensions_g.cs", s2);
+        context.AddSource("SwashbuckleSchemaExtensions_g.cs", source);
     }
+
+    private static bool IsSwashbuckleReferenced(Compilation compilation) =>
+        compilation.GetTypeByMetadataName("Swashbuckle.AspNetCore.SwaggerGen.ISchemaFilter") is not null;
 
     private static string MapWorkItems(List<VoWorkItem> workItems)
     {

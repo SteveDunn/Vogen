@@ -37,7 +37,7 @@ public class VogenDefaultsAttribute : Attribute
     /// <param name="isInitializedMethodGeneration">Controls whether the IsInitialized method is generated.</param>
     /// <param name="systemTextJsonConverterFactoryGeneration">Controls the generation of the type factory for System.Text.Json.</param>
     /// <param name="staticAbstractsGeneration">Controls the generation of static abstract interfaces.</param>
-    /// <param name="swashbuckleSchemaGeneration">Controls the generation of a Swashbuckle schema filter for OpenAPI.</param>
+    /// <param name="openApiSchemaCustomizations">Controls the generation of a Swashbuckle schema filter for OpenAPI.</param>
     public VogenDefaultsAttribute(
         Type? underlyingType = null,
         Conversions conversions = Conversions.Default,
@@ -55,7 +55,7 @@ public class VogenDefaultsAttribute : Attribute
         SystemTextJsonConverterFactoryGeneration systemTextJsonConverterFactoryGeneration =
             SystemTextJsonConverterFactoryGeneration.Unspecified,
         StaticAbstractsGeneration staticAbstractsGeneration = StaticAbstractsGeneration.Unspecified,
-        SwashbuckleSchemaGeneration swashbuckleSchemaGeneration = SwashbuckleSchemaGeneration.Unspecified
+        OpenApiSchemaCustomizations openApiSchemaCustomizations = OpenApiSchemaCustomizations.Unspecified
     )
     {
     }

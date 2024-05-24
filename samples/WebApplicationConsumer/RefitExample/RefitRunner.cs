@@ -1,5 +1,4 @@
 using Refit;
-using WebApplicationConsumer;
 
 namespace RefitExample;
 

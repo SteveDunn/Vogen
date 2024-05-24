@@ -6,7 +6,7 @@ using Vogen;
 namespace SnapshotTests.GeneralStuff;
 
 // contrib: An idea place to start a new feature. Write a new test for the feature here to get it working, then
-// add more tests. Move these tests if there are several of them and it makes sense to group them.
+// add more tests. Move these tests if there are several of them, and it makes sense to group them.
 
 [UsesVerify]
 public class GeneralTests
@@ -19,7 +19,7 @@ public class GeneralTests
                      using System;
                      using Vogen;
 
-                     [assembly: VogenDefaults(swashbuckleSchemaGeneration: SwashbuckleSchemaGeneration.GenerateSchemaFilter)]
+                     [assembly: VogenDefaults(openApiSchemaCustomizations: OpenApiSchemaCustomizations.GenerateSwashbuckleSchemaFilter)]
                      
                        [ValueObject]
                        public partial class MyVo { }
@@ -39,7 +39,44 @@ public class GeneralTests
                      using System;
                      using Vogen;
 
-                     [assembly: VogenDefaults(swashbuckleSchemaGeneration: SwashbuckleSchemaGeneration.GenerateExtensionMethodToMapTypesOnSwaggerGenOptions)]
+                     [assembly: VogenDefaults(openApiSchemaCustomizations: OpenApiSchemaCustomizations.GenerateSwashbuckleMappingExtensionMethod)]
+                     
+                       [ValueObject]
+                       public partial class MyVoInt { }
+
+                       [ValueObject<float>]
+                       public partial class MyVoFloat { }
+
+                       [ValueObject<decimal>]
+                       public partial class MyVoDecimal { }
+
+                       [ValueObject<double>]
+                       public partial class MyVoDouble { }
+
+                       [ValueObject<string>]
+                       public partial class MyVoString { }
+
+                       [ValueObject<bool>]
+                       public partial class MyVoBool { }
+
+                     """;
+
+            await new SnapshotRunner<ValueObjectGenerator>()
+                .WithSource(source)
+                .RunOn(TargetFramework.AspNetCore8_0);
+    }
+
+    [Fact]
+    public async Task Can_specify_both_swashbuckle_filter_and_MapType_extension_method_generation_for_openapi()
+    {
+        var source = $$"""
+
+                     using System;
+                     using Vogen;
+
+                     [assembly: VogenDefaults(openApiSchemaCustomizations: 
+                        OpenApiSchemaCustomizations.GenerateSwashbuckleMappingExtensionMethod | 
+                        OpenApiSchemaCustomizations.GenerateSwashbuckleSchemaFilter)]
                      
                        [ValueObject]
                        public partial class MyVoInt { }

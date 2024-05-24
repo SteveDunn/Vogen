@@ -23,7 +23,7 @@ public class VogenConfiguration
         IsInitializedMethodGeneration isInitializedMethodGeneration,
         SystemTextJsonConverterFactoryGeneration systemTextJsonConverterFactoryGeneration,
         StaticAbstractsGeneration staticAbstractsGeneration,
-        SwashbuckleSchemaGeneration swashbuckleSchemaGeneration)
+        OpenApiSchemaCustomizations openApiSchemaCustomizations)
     {
         UnderlyingType = underlyingType;
         ValidationExceptionType = validationExceptionType;
@@ -42,7 +42,7 @@ public class VogenConfiguration
         IsInitializedMethodGeneration = isInitializedMethodGeneration;
         SystemTextJsonConverterFactoryGeneration = systemTextJsonConverterFactoryGeneration;
         StaticAbstractsGeneration = staticAbstractsGeneration;
-        SwashbuckleSchemaGeneration = swashbuckleSchemaGeneration;
+        OpenApiSchemaCustomizations = openApiSchemaCustomizations;
     }
 
     /// <summary>
@@ -78,7 +78,7 @@ public class VogenConfiguration
     
     public SystemTextJsonConverterFactoryGeneration SystemTextJsonConverterFactoryGeneration { get; }
     
-    public SwashbuckleSchemaGeneration SwashbuckleSchemaGeneration { get; }
+    public OpenApiSchemaCustomizations OpenApiSchemaCustomizations { get; }
     
     public StaticAbstractsGeneration StaticAbstractsGeneration { get; }
 
@@ -104,5 +104,5 @@ public class VogenConfiguration
         isInitializedMethodGeneration: IsInitializedMethodGeneration.Generate,
         systemTextJsonConverterFactoryGeneration: SystemTextJsonConverterFactoryGeneration.Generate,
         staticAbstractsGeneration: StaticAbstractsGeneration.Omit,
-        swashbuckleSchemaGeneration: SwashbuckleSchemaGeneration.Omit);
+        openApiSchemaCustomizations: OpenApiSchemaCustomizations.Omit);
 }

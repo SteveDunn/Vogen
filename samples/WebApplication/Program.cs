@@ -1,32 +1,47 @@
+using System.ComponentModel.DataAnnotations;
+using Microsoft.AspNetCore.OpenApi;
 using Microsoft.OpenApi.Models;
-using Swashbuckle.AspNetCore.SwaggerGen;
 using Vogen;
 
-[assembly: VogenDefaults(swashbuckleSchemaFilterGeneration: SwashbuckleSchemaFilterGeneration.Generate)]
+#if USE_SWASHBUCKLE
+using Swashbuckle.AspNetCore.SwaggerGen;
+#endif
+#if USE_MICROSOFT_OPENAPI_AND_SCALAR
+using Scalar.AspNetCore;
+#endif
 
+[assembly: VogenDefaults(openApiSchemaCustomizations: OpenApiSchemaCustomizations.GenerateSwashbuckleMappingExtensionMethod)]
 
 var builder = WebApplication.CreateBuilder(args);
 
+#if USE_MICROSOFT_OPENAPI_AND_SCALAR
+    builder.Services.AddOpenApi((OpenApiOptions o) =>
+    {
+    });
+#endif
+
+#if USE_SWASHBUCKLE
 // Add services to the container.
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(opt =>
 {
-    // opt.MapVogenTypes();
-    // opt.MapType<CustomerName>(() => new OpenApiSchema { Type = "string" });
-    opt.SchemaFilter<MyVogenSchemaFilter>();
+    // the following extension method is available if you specify `GenerateSwashbuckleMappingExtensionMethod` - as shown above
+    opt.MapVogenTypes();
+    
+    // the following schema filter is generated if you specify GenerateSwashbuckleSchemaFilter as shown above
+    // opt.SchemaFilter<MyVogenSchemaFilter>();
 });
+#endif
 
 builder.Services.AddControllers();
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
-{
+#if USE_SWASHBUCKLE
     app.UseSwagger();
     app.UseSwaggerUI();
-}
+#endif
 
 
 app.UseHttpsRedirection();
@@ -77,44 +92,10 @@ app.MapGet("/weatherforecast/{city}", (City city) =>
     .WithName("GetWeatherForecastByCity")
     .WithOpenApi();
 
+#if USE_MICROSOFT_OPENAPI_AND_SCALAR
+app.MapOpenApi();
+app.MapScalarApiReference();
+#endif
+
 app.Run();
 
-record WeatherForecast(ForecastDate Date, Centigrade TemperatureC, Farenheit TemperatureF, string? Summary, City City)
-{
-}
-
-[ValueObject<DateOnly>]
-public partial struct ForecastDate
-{}
-
-[ValueObject<string>]
-//[ValueObject<string>(parsableForStrings: ParsableForStrings.GenerateMethods)]
-public partial struct City
-{
-}
-
-[ValueObject<float>]
-public partial struct Farenheit
-{
-    public static Farenheit FromCentigrade(Centigrade c) => From(32 + (int)(c.Value / 0.5556));
-}
-
-[ValueObject]
-public partial struct Centigrade
-{
-}
-
-
-public static class VogenSwashbuckleExtensions
-{
-    public static SwaggerGenOptions MapVogenTypes(this SwaggerGenOptions o)
-    {
-        SwaggerGenOptionsExtensions.MapType<CustomerName>(o, () => new OpenApiSchema { Type = "string" });
-        o.MapType<OrderId>(() => new OpenApiSchema { Type = "integer" });
-        o.MapType<Centigrade>(() => new OpenApiSchema { Type = "integer" });
-        o.MapType<Farenheit>(() => new OpenApiSchema { Type = "number" });
-        o.MapType<City>(() => new OpenApiSchema { Description = "The description of a City", Type = "string" });
-
-        return o;
-    }
-}

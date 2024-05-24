@@ -33,7 +33,7 @@ internal class BuildConfigurationFromAttributes
     private IsInitializedMethodGeneration _isInitializedMethodGeneration;
     private SystemTextJsonConverterFactoryGeneration _systemTextJsonConverterFactoryGeneration;
     private StaticAbstractsGeneration _staticAbstractsGeneration;
-    private SwashbuckleSchemaGeneration _swashbuckleSchemaGeneration;
+    private OpenApiSchemaCustomizations _openApiSchemaCustomizations;
 
     private BuildConfigurationFromAttributes(AttributeData att)
     {
@@ -56,7 +56,7 @@ internal class BuildConfigurationFromAttributes
         _isInitializedMethodGeneration = IsInitializedMethodGeneration.Unspecified;
         _systemTextJsonConverterFactoryGeneration = SystemTextJsonConverterFactoryGeneration.Unspecified;
         _staticAbstractsGeneration = StaticAbstractsGeneration.Unspecified;
-        _swashbuckleSchemaGeneration = SwashbuckleSchemaGeneration.Unspecified;
+        _openApiSchemaCustomizations = OpenApiSchemaCustomizations.Unspecified;
         
        _diagnostics = new List<Diagnostic>();
         
@@ -117,7 +117,7 @@ internal class BuildConfigurationFromAttributes
                 _isInitializedMethodGeneration,
                 _systemTextJsonConverterFactoryGeneration,
                 _staticAbstractsGeneration,
-                _swashbuckleSchemaGeneration),
+                _openApiSchemaCustomizations),
             diagnostics: _diagnostics);
     }
 
@@ -205,7 +205,7 @@ internal class BuildConfigurationFromAttributes
 
             if (i == 14)
             {
-                _swashbuckleSchemaGeneration = (SwashbuckleSchemaGeneration) v;
+                _openApiSchemaCustomizations = (OpenApiSchemaCustomizations) v;
             }
 
             if (i == 13)

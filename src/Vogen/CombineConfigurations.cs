@@ -134,11 +134,11 @@ public static class CombineConfigurations
             (var local, _) => local,
         };
 
-        SwashbuckleSchemaGeneration swashbuckleSchemaGeneration = (localValues.SwashbuckleSchemaGeneration, globalValues?.SwashbuckleSchemaGeneration) switch
+        OpenApiSchemaCustomizations openApiSchemaCustomizations = (localValues.OpenApiSchemaCustomizations, globalValues?.OpenApiSchemaCustomizations) switch
         {
-            (SwashbuckleSchemaGeneration.Unspecified, null) => VogenConfiguration.DefaultInstance.SwashbuckleSchemaGeneration,
-            (SwashbuckleSchemaGeneration.Unspecified, SwashbuckleSchemaGeneration.Unspecified) => VogenConfiguration.DefaultInstance.SwashbuckleSchemaGeneration,
-            (SwashbuckleSchemaGeneration.Unspecified, var global) => global.Value,
+            (OpenApiSchemaCustomizations.Unspecified, null) => VogenConfiguration.DefaultInstance.OpenApiSchemaCustomizations,
+            (OpenApiSchemaCustomizations.Unspecified, OpenApiSchemaCustomizations.Unspecified) => VogenConfiguration.DefaultInstance.OpenApiSchemaCustomizations,
+            (OpenApiSchemaCustomizations.Unspecified, var global) => global.Value,
             (var local, _) => local,
         };
 
@@ -170,7 +170,7 @@ public static class CombineConfigurations
             isInitializedMethodGeneration: isInitializedMethodGeneration,
             systemTextJsonConverterFactoryGeneration: stjFactories,
             staticAbstractsGeneration: staticAbstractsGeneration,
-            swashbuckleSchemaGeneration: swashbuckleSchemaGeneration);
+            openApiSchemaCustomizations: openApiSchemaCustomizations);
     }
  
     /// If we don't have a global attribute, just use the default configuration as there

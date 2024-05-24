@@ -29,19 +29,3 @@ public class OrdersController : ControllerBase
     }
 }
 
-[ValueObject<string>]
-public partial class CustomerName
-{
-}
-
-[ValueObject<int>]
-public partial struct OrderId
-{
-}
-
-public class Order
-{
-    public OrderId OrderId { get; init; } 
-
-    public CustomerName CustomerName { get; init; } = CustomerName.From("");
-}
