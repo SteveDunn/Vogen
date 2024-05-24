@@ -282,23 +282,27 @@ There would also be no need to know if it's validated, as, if it's in your domai
 
 ### Can I represent special values
 
-Yes. You might want to represent special values for things like invalid or unspecified instances, e.g.
+Yes. You might want to represent special values for things like _invalid_ or _unspecified_ instances, e.g.
 
 ```c#
 /*
-* Instances are the only way to avoid validation, so we can create instances
-* that nobody else can. This is useful for creating special instances
-* that represent concepts such as 'invalid' and 'unspecified'.
+* Instances are the only way to avoid validation, so we can create 
+* instances that nobody else can. This is useful for creating special 
+* instances that represent concepts such as 'invalid' and 
+* 'unspecified'.
 */
 [ValueObject]
-[Instance("Unspecified", -1)]
-[Instance("Invalid", -2)]
 public readonly partial struct Age
 {
+    public static readonly Age Unspecified = new(-1);
+    public static readonly Age Invalid = new(-2);
+    
     private static Validation Validate(int value) =>
         value > 0 ? Validation.Ok : Validation.Invalid("Must be greater than zero.");
 }
 ```
+
+Using `new` is only permitted in the value object itself, and bypassed validation (and normalization).
 
 You can then use default values when using these types, e.g.
 

@@ -11,10 +11,12 @@ Let's look at the first scenario, representing known values. Create the followin
 
 ```c#
 [ValueObject<float>]
-[Instance("WaterFreezingPoint", 0.0f)]
-[Instance("WaterBoilingPoint", 100.0f)]
-[Instance("AbsoluteZero", -273.15f)]
-public partial struct Centigrade { }
+public partial struct Centigrade
+{
+   public static readonly Centigrade WaterFreezingPoint = From(0.0f);
+   public static readonly Centigrade WaterBoilingPoint = From(100.0f);
+   public static readonly Centigrade AbsoluteZero = From(-273.15f);
+}
 ```
 
 You can now use it like so:
@@ -34,7 +36,7 @@ Console.WriteLine(Centigrade.AbsoluteZero);
 ```
 
 These known instances can bring domain terms into your code; for instance, it's easier to read this than 
-numeric literals of `0` and `273.15`:
+numeric literals of `0` and `-273.15`:
 
 ```C#
 if(waterTemperature == Centigrade.WaterFreezingPoint) ...
@@ -64,9 +66,10 @@ We can do this with a known-instance:
 
 ```C# 
 [ValueObject<int>]
-[Instance("Unspecified", 0)]
 public partial struct CustomerId
 {
+    public static readonly CustomerId Unspecified = new(0);
+    
     private static Validation Validate(int input) => input > 0 
         ? Validation.Ok 
         : Validation.Invalid("Customer IDs must be greater than 0.");    
@@ -97,5 +100,5 @@ public CustomerId TryGetOptionalCustomerId(string input)
 
 This again makes the domain easier to read and eliminates a scenario where a `null` might otherwise be used. 
 
-There are other ways to declare instances, and there is special consideration for dates. These are covered in 
+There were other ways to declare instances which are now obsolete, as described in 
 this [How-to article](Instances.md)

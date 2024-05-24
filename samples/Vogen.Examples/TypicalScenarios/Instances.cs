@@ -26,7 +26,6 @@ namespace Vogen.Examples.TypicalScenarios.Instances
         }
     }
 
-
     [ValueObject<float>]
     [Instance("Freezing", 0.0f)]
     [Instance("Boiling", 100.0f)]

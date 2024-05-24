@@ -1,6 +1,9 @@
 ﻿using System.Globalization;
 using FluentAssertions.Execution;
 
+// The notion of 'Instances' is now obsolete. Instead, just use `new` (or `From`)
+// in the constructor of your value objects.
+
 namespace ConsumerTests.Instances;
 
 [ValueObject(typeof(DateTime))]

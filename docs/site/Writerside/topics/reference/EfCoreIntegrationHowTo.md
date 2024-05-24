@@ -7,9 +7,9 @@ The converter is generated when you add the `EFCoreValueConverter` conversion in
 
 ```c#
 [ValueObject<string>(conversions: Conversions.EfCoreValueConverter)]
-[Instance("NotSet", "[NOT_SET]")]
 public partial class Name
 {
+    public static readonly Name NotSet = new("[NOT_SET]");
 }
 ```
 
@@ -63,9 +63,9 @@ public partial struct Age
 
 // converter needed because it's a class
 [ValueObject<string>(conversions: Conversions.EfCoreValueConverter)]
-[Instance("NotSet", "[NOT_SET]")]
 public partial class Name
 {
+    public static readonly Name NotSet = new("[NOT_SET]");
 }
 ```
 

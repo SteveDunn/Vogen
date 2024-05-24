@@ -46,13 +46,13 @@ public class Person {
 ```
 
 We can do that with _Instances_, which is covered more in [this tutorial](Specifying-pre-set-values.md).
-The code below specifies an instance named `Unspecified` which has a value of `-1`, but disallows anyone else to 
-create one with such a number. More information on validation can be found in [this tutorial](ValidationTutorial.md). 
+Instances allows `new` to be used _in the value object itself_, which bypasses validation and normalization. More information on validation can be found in [this tutorial](ValidationTutorial.md). 
 
 ```c#
   [ValueObject]
-  [Instance("Unspecified", -1)]
   public readonly partial struct Age {
+      public static readonly Age Unspecified = new(-1);
+
       public static Validation Validate(int value) =>
           value > 0 
             ? Validation.Ok 
@@ -60,7 +60,6 @@ create one with such a number. More information on validation can be found in [t
   }
 ```
 
-This generates `public static Age Unspecified = new Age(-1);`. 
 The constructor is `private`, so only this type can (deliberately) create _invalid_ instances.
 
 Now, when we use `Age`, our validation becomes clearer:
