@@ -12,6 +12,8 @@ public class DoNotUseConstructorTests
     public class PrimaryConstructorTests
     {
         [Theory]
+        [InlineData("partial class")]
+        [InlineData("partial struct")]
         [InlineData("partial record class")]
         [InlineData("partial record struct")]
         [InlineData("readonly partial record struct")]
@@ -20,6 +22,8 @@ public class DoNotUseConstructorTests
             var source = $@"using Vogen;
 
 namespace Whatever;
+
+#pragma warning disable CS9113 // parameter is unread
 
 [ValueObject]
 public {type} CustomerId(int SomethingElse)
