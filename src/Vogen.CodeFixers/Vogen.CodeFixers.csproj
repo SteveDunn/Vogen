@@ -1,10 +1,10 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
+    <!-- Version and PackageVersion are handled in Directory.Build.targets -->
     <TargetFrameworks>net8.0;netstandard2.0</TargetFrameworks>
     <ImplicitUsings>enable</ImplicitUsings>
     <IncludeBuildOutput>false</IncludeBuildOutput>
-    <Version>1.0.1</Version>
     <Nullable>enable</Nullable>
     <DebugSymbols>True</DebugSymbols>
     <DebugType>Embedded</DebugType>

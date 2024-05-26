@@ -1,0 +1,57 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <IncludeBuildOutput>false</IncludeBuildOutput>
+    <EnableDefaultItems>false</EnableDefaultItems>
+    <GenerateDependencyFile>false</GenerateDependencyFile>
+    <developmentDependency>true</developmentDependency>
+    <NoPackageAnalysis>true</NoPackageAnalysis>
+
+    <!-- Version and PackageVersion are handled in Directory.Build.targets -->
+    <PackageId>Vogen</PackageId>
+    <PackageProjectUrl>https://github.com/SteveDunn/Vogen</PackageProjectUrl>
+    <PackageOutputPath>$(MSBuildThisFileDirectory)\artifacts</PackageOutputPath>
+    <PackageTags>vogen;stringlytyped;primitive;obsession;valuetype;valuetypes;valueobj;valueobjects;ddd</PackageTags>
+    <PackageIcon>package_logo_128x128.png</PackageIcon>
+    <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
+
+    <Authors>Steve Dunn</Authors>
+    <Copyright>Copyright Steve Dunn</Copyright>
+    <Title>Vogen - a semi-opinionated library which generates Value Objects that wrap simple primitives such as int, string, double etc. Value Objects help combat 'Stringly Typed' software and Primitive Obsession.  Be confident with your types!</Title>
+
+    <PublishRepositoryUrl>true</PublishRepositoryUrl>
+
+    <Description>
+      This package contains a Souce Generator which generates Value Objects that wrap simple primitives such as int, string, double etc.
+
+      A ValueObject is a strongly typed (strongly, not stringly) domain object that is immutable.
+
+      Instead of `int customerId = 42;` we have `var customerId = CustomerId.From(42);`
+
+      To use, just create something like this:
+
+      [ValueObject(typeof(int))]
+      public partial struct CustomerId
+      {
+      }
+
+      var customerId = CustomerId.From(42);
+
+      Validation is in just one place. You can't introduce bad objects into your domain, therefore you can assume that in your domain every ValueObject is valid.
+    </Description>
+
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="..\assets\logo\package_logo_128x128.png" Pack="true" PackagePath="" />
+    <None Include="..\docs\nuget-readme.md" Pack="true" PackagePath="\" />
+    <None Include="$(MSBuildThisFileDirectory)\Vogen\bin\$(Configuration)\netstandard2.0\Vogen.dll" Pack="true" PackagePath="analyzers/dotnet/cs" Visible="false" />
+    <None Include="$(MSBuildThisFileDirectory)\Vogen.CodeFixers\bin\$(Configuration)\netstandard2.0\Vogen.CodeFixers.dll" Pack="true" PackagePath="analyzers/dotnet/cs" Visible="false" />
+    <None Include="$(MSBuildThisFileDirectory)\Vogen\bin\$(Configuration)\netstandard2.0\Vogen.SharedTypes.dll" Pack="true" PackagePath="analyzers/dotnet/cs" Visible="false" />
+
+    <None Include="$(MSBuildThisFileDirectory)\Vogen\bin\$(Configuration)\netstandard2.0\Vogen.SharedTypes.dll" Pack="true" PackagePath="lib\netstandard2.0" Visible="true" />
+    <None Include="$(MSBuildThisFileDirectory)\Vogen\bin\$(Configuration)\net8.0\Vogen.SharedTypes.dll" Pack="true" PackagePath="lib\net8.0" Visible="true" />
+  </ItemGroup>
+
+</Project>

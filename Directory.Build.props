@@ -1,15 +1,19 @@
 <Project>
   <PropertyGroup>
     <LangVersion>preview</LangVersion>
+    <Features>strict</Features>
     <SuppressNETCoreSdkPreviewMessage>true</SuppressNETCoreSdkPreviewMessage>
     <NoWarn>$(NoWarn);CS1701;CS1702;CS1591;CA1014;CS9057;CA2255</NoWarn>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
-    <PackageOutputPath>$(MSBuildThisFileDirectory)\artifacts</PackageOutputPath>
     <CheckEolTargetFramework>false</CheckEolTargetFramework>
     <AnalysisLevel>latest</AnalysisLevel>
     <EnableNETAnalyzers>true</EnableNETAnalyzers>
     <!-- <AnalysisMode>AllEnabledByDefault</AnalysisMode> -->
     <Deterministic>true</Deterministic>
+
+    <RepositoryType>git</RepositoryType>
+    <RepositoryUrl>https://github.com/SteveDunn/Vogen</RepositoryUrl>
+
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="DotNet.ReproducibleBuilds" Version="1.1.1">

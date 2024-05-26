@@ -1,13 +1,5 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-  <Target Name="MyTarget" AfterTargets="MinVer" Condition="'$(ForceVersion)' != ''">
-    <Message Condition="'$(ForceVersion)' != ''" Importance="High" Text="** Forcing package version to be '$(ForceVersion)' **" />
-    <PropertyGroup>
-      <PackageVersion>$(ForceVersion)</PackageVersion>
-      <Version>$(ForceVersion)</Version>
-    </PropertyGroup>
-  </Target>  
-
   <PropertyGroup>
     <TargetFrameworks>net8.0;netstandard2.0</TargetFrameworks>
     <LanguageVersion>latest</LanguageVersion>
@@ -19,6 +11,7 @@
 
     <SuppressTfmSupportBuildWarnings>true</SuppressTfmSupportBuildWarnings>
     <EnforceExtendedAnalyzerRules>true</EnforceExtendedAnalyzerRules>
+    <EnablePackageValidation>true</EnablePackageValidation>
   </PropertyGroup>
   
   <!-- Uncomment if you're getting unexpected minver results-->  
@@ -68,63 +61,12 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Include="..\..\assets\logo\gradient_128x128.png" Pack="true" PackagePath="" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="Microsoft.CodeAnalysis.Analyzers" PrivateAssets="all"/>
     <PackageReference Include="Microsoft.CodeAnalysis.CSharp" PrivateAssets="all" />
-<!--    <PackageReference Include="Microsoft.CodeAnalysis.CSharp.Workspaces" PrivateAssets="all" />-->
-
-  </ItemGroup>
-
-  <ItemGroup>
-    <PackageReference Include="MinVer" Version="4.3.0">
-      <PrivateAssets>all</PrivateAssets>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-    </PackageReference>
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\Vogen.SharedTypes\Vogen.SharedTypes.csproj" PrivateAssets="All" />
   </ItemGroup>
 
-  <PropertyGroup>
-    <Features>strict</Features>
-    <PackageId>Vogen</PackageId>
-    <Version>1.0.0</Version>
-    <PackageVersion>1.0.0</PackageVersion>
-    <PackageProjectUrl>https://github.com/SteveDunn/Vogen</PackageProjectUrl>
-    <EnablePackageValidation>true</EnablePackageValidation>
-
-    <Authors>Steve Dunn</Authors>
-    <Copyright>Copyright Steve Dunn</Copyright>
-    <Title>Vogen - a semi-opinionated library which generates Value Objects that wrap simple primitives such as int, string, double etc. Value Objects help combat 'Stringly Typed' software and Primitive Obsession.  Be confident with your types!</Title>
-    <PackageTags>vogen;stringlytyped;primitive;obsession;valuetype;valuetypes;valueobj;valueobjects;ddd</PackageTags>
-    <PackageIcon>gradient_128x128.png</PackageIcon>
-    <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
-    <PublishRepositoryUrl>true</PublishRepositoryUrl>
-    <GenerateDocumentationFile>true</GenerateDocumentationFile>
-    <RepositoryUrl>https://github.com/SteveDunn/Vogen</RepositoryUrl>
-    <Description>
-      This package contains a Souce Generator which generates Value Objects that wrap simple primitives such as int, string, double etc.
-
-      A ValueObject is a strongly typed (strongly, not stringly) domain object that is immutable.
-
-      Instead of `int customerId = 42;` we have `var customerId = CustomerId.From(42);`
-
-      To use, just create something like this:
-
-      [ValueObject(typeof(int))]
-      public partial struct CustomerId
-      {
-      }
-
-      var customerId = CustomerId.From(42);
-
-      Validation is in just one place. You can't introduce bad objects into your domain, therefore you can assume that in your domain every ValueObject is valid.
-    </Description>
-    <RepositoryType>git</RepositoryType>
-
-  </PropertyGroup>
 </Project>
