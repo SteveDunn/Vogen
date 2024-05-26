@@ -87,7 +87,7 @@ $version = Get999VersionWithUniquePatch
 
 exec { & dotnet restore Vogen.sln --packages $localPackages --no-cache --verbosity $verbosity }
 exec { & dotnet build Vogen.sln -c Debug --no-restore --verbosity $verbosity}
-exec { & dotnet pack ./src/Vogen.pack.csproj -c Debug -o:$localPackages /p:ForceVersion=$version --include-symbols --version-suffix:dev --no-restore --verbosity $verbosity }
+exec { & dotnet pack ./src/Vogen.Pack.csproj -c Debug -o:$localPackages /p:ForceVersion=$version --include-symbols --version-suffix:dev --no-restore --verbosity $verbosity }
 
 WriteStage("Cleaning and building consumers (tests and samples)")
 
