@@ -26,7 +26,6 @@
 
 public interface IVogen<TSelf, TPrimitive>
     where TSelf : IVogen<TSelf, TPrimitive>
-    where TPrimitive : notnull
 {
     static abstract implicit operator TSelf(TPrimitive value);
 static abstract implicit operator TPrimitive(TSelf value);
