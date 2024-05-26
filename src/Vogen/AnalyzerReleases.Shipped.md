@@ -27,3 +27,14 @@ VOG026 | Usage | Warning  | DoNotDeriveFromVogenAttributes
 Rule ID | Category | Severity | Notes
 --------|----------|----------|-------
 VOG027 | Usage | Error | DoNotUseNewAnalyzer
+
+
+## Release 4.0.5
+
+Rule ID | Category | Severity | Notes
+--------|----------|----------|-------
+AddNormalizeInputMethod | Usage | Info | AddNormalizeInputAnalyzer
+AddStaticToExistingNormalizeInputMethod | Usage | Info | AddNormalizeInputAnalyzer
+AddStaticToExistingValidationMethod | Usage | Info | AddValidationAnalyzer
+FixInputTypeOfValidationMethod | Usage | Info | ValidationMethodAnalyzer
+VOG028 | Usage | Info | NormalizeInputMethodAnalyzer
