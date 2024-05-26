@@ -16,6 +16,14 @@ namespace Analyzer.Utilities.Extensions
 {
     internal static class ISymbolExtensions
     {
+        public static bool IsEqualTo(this ISymbol? symbol, ISymbol? expectedType)
+        {
+            if (symbol is null || expectedType is null)
+                return false;
+
+            return SymbolEqualityComparer.Default.Equals(expectedType, symbol);
+        }
+
         public static bool IsType(this ISymbol? symbol)
         {
             return symbol is ITypeSymbol typeSymbol && typeSymbol.IsType;

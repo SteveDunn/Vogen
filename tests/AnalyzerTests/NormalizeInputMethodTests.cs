@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Linq;
+using System.Threading.Tasks;
 using FluentAssertions;
 using Microsoft.CodeAnalysis;
 using Vogen;
@@ -14,23 +15,23 @@ public class NormalizeInputMethodTests
     {
         public IEnumerator<object[]> GetEnumerator()
         {
-            yield return new[] { "public partial class" };
-            yield return new[] { "public sealed partial class" };
-            yield return new[] { "public partial struct" };
-            yield return new[] { "public readonly partial struct" };
-            yield return new[] { "public sealed partial record class" };
-            yield return new[] { "public sealed partial record" };
-            yield return new[] { "public partial record struct" };
-            yield return new[] { "public readonly partial record struct" };
+            yield return ["public partial class"];
+            yield return ["public sealed partial class"];
+            yield return ["public partial struct"];
+            yield return ["public readonly partial struct"];
+            yield return ["public sealed partial record class"];
+            yield return ["public sealed partial record"];
+            yield return ["public partial record struct"];
+            yield return ["public readonly partial record struct"];
 
-            yield return new[] { "internal partial class" };
-            yield return new[] { "internal sealed partial class" };
-            yield return new[] { "internal partial struct" };
-            yield return new[] { "internal readonly partial struct" };
-            yield return new[] { "internal sealed partial record class" };
-            yield return new[] { "internal sealed partial record" };
-            yield return new[] { "internal partial record struct" };
-            yield return new[] { "internal readonly partial record struct" };
+            yield return ["internal partial class"];
+            yield return ["internal sealed partial class"];
+            yield return ["internal partial struct"];
+            yield return ["internal readonly partial struct"];
+            yield return ["internal sealed partial record class"];
+            yield return ["internal sealed partial record"];
+            yield return ["internal partial record struct"];
+            yield return ["internal readonly partial record struct"];
         }
 
 
@@ -39,16 +40,16 @@ public class NormalizeInputMethodTests
 
     [Theory]
     [ClassData(typeof(MyClassData))]
-    public void NormalizeInput_FailsWithParameterOfWrongType(string type)
+    public async Task NormalizeInput_FailsWithParameterOfWrongType(string type)
     {
         var source = BuildSource(type);
 
-        new TestRunner<ValueObjectGenerator>()
+        await new TestRunner<ValueObjectGenerator>()
             .WithSource(source)
             .ValidateWith(Validate)
             .RunOnAllFrameworks();
 
-        void Validate(ImmutableArray<Diagnostic> diagnostics)
+        static void Validate(ImmutableArray<Diagnostic> diagnostics)
         {
             diagnostics.Should().HaveCount(1);
             Diagnostic diagnostic = diagnostics.Single();
@@ -71,16 +72,16 @@ namespace Whatever;
 
     [Theory]
     [ClassData(typeof(MyClassData))]
-    public void NormalizeInput_FailsWithReturnOfWrongType(string type)
+    public async Task NormalizeInput_FailsWithReturnOfWrongType(string type)
     {
         var source = BuildSource(type);
 
-        new TestRunner<ValueObjectGenerator>()
+        await new TestRunner<ValueObjectGenerator>()
             .WithSource(source)
             .ValidateWith(Validate)
             .RunOnAllFrameworks();
 
-        void Validate(ImmutableArray<Diagnostic> diagnostics)
+        static void Validate(ImmutableArray<Diagnostic> diagnostics)
         {
             diagnostics.Should().HaveCount(1);
             Diagnostic diagnostic = diagnostics.Single();
@@ -104,16 +105,16 @@ namespace Whatever;
 
     [Theory]
     [ClassData(typeof(MyClassData))]
-    public void NormalizeInput_FailsWhenNonStatic(string type)
+    public async Task NormalizeInput_FailsWhenNonStatic(string type)
     {
         var source = BuildSource(type);
 
-        new TestRunner<ValueObjectGenerator>()
+        await new TestRunner<ValueObjectGenerator>()
             .WithSource(source)
             .ValidateWith(Validate)
             .RunOnAllFrameworks();
 
-        void Validate(ImmutableArray<Diagnostic> diagnostics)
+        static void Validate(ImmutableArray<Diagnostic> diagnostics)
         {
             diagnostics.Should().HaveCount(1);
             Diagnostic diagnostic = diagnostics.Single();
@@ -134,7 +135,7 @@ namespace Whatever;
     }
 
     [Fact]
-    public void NormalizeInput_CopesWhenUnderlyingTypeIsDefaulted()
+    public async Task NormalizeInput_CopesWhenUnderlyingTypeIsDefaulted()
     {
         var source = @"using Vogen;
 namespace Whatever;
@@ -145,19 +146,19 @@ public partial struct Struct_WithDefaultedUnderlyingType
     private static int NormalizeInput(int input) => System.Math.Min(128, input);
 }";
 
-        new TestRunner<ValueObjectGenerator>()
+        await new TestRunner<ValueObjectGenerator>()
             .WithSource(source)
             .ValidateWith(Validate)
             .RunOnAllFrameworks();
 
-        void Validate(ImmutableArray<Diagnostic> diagnostics)
+        static void Validate(ImmutableArray<Diagnostic> diagnostics)
         {
             diagnostics.Should().HaveCount(0);
         }
     }
 
     [Fact]
-    public void NormalizeInput_CopesWhenReturningFullyQualifiedNames()
+    public async Task NormalizeInput_CopesWhenReturningFullyQualifiedNames()
     {
         var source = @"
 namespace Whatever;
@@ -168,19 +169,19 @@ public partial struct Struct_WithDefaultedUnderlyingType
     private static System.Int32 NormalizeInput(int input) => System.Math.Min(128, input);
 }";
 
-        new TestRunner<ValueObjectGenerator>()
+        await new TestRunner<ValueObjectGenerator>()
             .WithSource(source)
             .ValidateWith(Validate)
             .RunOnAllFrameworks();
 
-        void Validate(ImmutableArray<Diagnostic> diagnostics)
+        static void Validate(ImmutableArray<Diagnostic> diagnostics)
         {
             diagnostics.Should().HaveCount(0);
         }
     }
 
     [Fact]
-    public void NormalizeInput_CopesWhenReceivingFullyQualifiedNames()
+    public async Task NormalizeInput_CopesWhenReceivingFullyQualifiedNames()
     {
         var source = @"
 namespace Whatever;
@@ -191,12 +192,14 @@ public partial struct Struct_WithDefaultedUnderlyingType
     private static int NormalizeInput(System.Int32 input) => System.Math.Min(128, input);
 }";
 
-        new TestRunner<ValueObjectGenerator>()
+        await new TestRunner<ValueObjectGenerator>()
             .WithSource(source)
             .ValidateWith(Validate)
             .RunOnAllFrameworks();
+        
+        return;
 
-        void Validate(ImmutableArray<Diagnostic> diagnostics)
+        static void Validate(ImmutableArray<Diagnostic> diagnostics)
         {
             diagnostics.Should().HaveCount(0);
         }

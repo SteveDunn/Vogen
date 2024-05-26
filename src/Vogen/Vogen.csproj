@@ -59,8 +59,9 @@
   <ItemGroup>
     <None Include="..\..\docs\nuget-readme.md" Pack="true" PackagePath="\" />
     <None Include="$(OutputPath)\netstandard2.0\$(AssemblyName).dll" Pack="true" PackagePath="analyzers/dotnet/cs" Visible="false" />
+    <None Include="$(MSBuildThisFileDirectory)\..\Vogen.CodeFixers\bin\$(Configuration)\netstandard2.0\Vogen.CodeFixers.dll" Pack="true" PackagePath="analyzers/dotnet/cs" Visible="false" />
     <None Include="$(OutputPath)\netstandard2.0\Vogen.SharedTypes.dll" Pack="true" PackagePath="analyzers/dotnet/cs" Visible="false" />
-    
+
     <None Include="$(OutputPath)\netstandard2.0\Vogen.SharedTypes.dll" Pack="true" PackagePath="lib\netstandard2.0" Visible="true" />
     <None Include="$(OutputPath)\net8.0\Vogen.SharedTypes.dll" Pack="true" PackagePath="lib\net8.0" Visible="true" />
 
@@ -86,22 +87,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Vogen.SharedTypes\Vogen.SharedTypes.csproj" PrivateAssets="All" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Compile Update="Resources.Designer.cs">
-      <DependentUpon>Resources.resx</DependentUpon>
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-    </Compile>
-  </ItemGroup>
-
-  <ItemGroup>
-    <EmbeddedResource Update="Resources.resx">
-      <SubType>Designer</SubType>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
-      <Generator>ResXFileCodeGenerator</Generator>
-    </EmbeddedResource>
   </ItemGroup>
 
   <PropertyGroup>

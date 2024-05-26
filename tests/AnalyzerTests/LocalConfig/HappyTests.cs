@@ -1,4 +1,5 @@
 ﻿using System.Collections.Immutable;
+using System.Threading.Tasks;
 using FluentAssertions;
 using Microsoft.CodeAnalysis;
 using Vogen;
@@ -14,7 +15,7 @@ public class HappyTests
     [InlineData("partial record class")]
     [InlineData("partial record struct")]
     [InlineData("readonly partial record struct")]
-    public void Type_override(string type)
+    public async Task Type_override(string type)
     {
         var source = $@"using System;
 using Vogen;
@@ -23,7 +24,7 @@ namespace Whatever;
 [ValueObject(typeof(float))]
 public {type} CustomerId {{ }}";
 
-        new TestRunner<ValueObjectGenerator>()
+        await new TestRunner<ValueObjectGenerator>()
             .WithSource(source)
             .ValidateWith(Validate)
             .RunOnAllFrameworks();
@@ -41,7 +42,7 @@ public {type} CustomerId {{ }}";
     [InlineData("partial record class")]
     [InlineData("partial record struct")]
     [InlineData("readonly partial record struct")]
-    public void Exception_override(string type)
+    public async Task Exception_override(string type)
     {
         var source = $@"using System;
 using Vogen;
@@ -59,7 +60,7 @@ public class MyValidationException : Exception
 }}
 ";
 
-        new TestRunner<ValueObjectGenerator>()
+        await new TestRunner<ValueObjectGenerator>()
             .WithSource(source)
             .ValidateWith(Validate)
             .RunOnAllFrameworks();
@@ -77,7 +78,7 @@ public class MyValidationException : Exception
     [InlineData("partial record class")]
     [InlineData("partial record struct")]
     [InlineData("readonly partial record struct")]
-    public void Conversion_override(string type)
+    public async Task Conversion_override(string type)
     {
         var source = $@"using System;
 using Vogen;
@@ -86,7 +87,7 @@ namespace Whatever;
 [ValueObject(conversions: Conversions.None)]
 public {type} CustomerId {{ }}";
 
-        new TestRunner<ValueObjectGenerator>()
+        await new TestRunner<ValueObjectGenerator>()
             .WithSource(source)
             .ValidateWith(Validate)
             .RunOnAllFrameworks();
@@ -104,7 +105,7 @@ public {type} CustomerId {{ }}";
     [InlineData("partial record class")]
     [InlineData("partial record struct")]
     [InlineData("readonly partial record struct")]
-    public void Conversion_and_exceptions_override(string type)
+    public async Task Conversion_and_exceptions_override(string type)
     {
         var source = $@"using System;
 using Vogen;
@@ -123,7 +124,7 @@ public class MyValidationException : Exception
 }}
 ";
 
-        new TestRunner<ValueObjectGenerator>()
+        await new TestRunner<ValueObjectGenerator>()
             .WithSource(source)
             .ValidateWith(Validate)
             .RunOnAllFrameworks();
@@ -141,7 +142,7 @@ public class MyValidationException : Exception
     [InlineData("partial record class")]
     [InlineData("partial record struct")]
     [InlineData("readonly partial record struct")]
-    public void Override_global_config_locally(string type)
+    public async Task Override_global_config_locally(string type)
     {
         var source = $@"using System;
 using Vogen;
@@ -162,7 +163,7 @@ public class MyValidationException : Exception
 }}
 ";
 
-        new TestRunner<ValueObjectGenerator>()
+        await new TestRunner<ValueObjectGenerator>()
             .WithSource(source)
             .ValidateWith(Validate)
             .RunOnAllFrameworks();

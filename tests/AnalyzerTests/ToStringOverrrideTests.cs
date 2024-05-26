@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Linq;
+using System.Threading.Tasks;
 using FluentAssertions;
 using Microsoft.CodeAnalysis;
 using Vogen;
@@ -13,7 +14,7 @@ public class ToStringOverrideTests
     [Theory]
     [InlineData("public partial record class")]
     [InlineData("public partial record")]
-    public void WithRecordsThatHaveNoSealedOverride_OutputErrors(string type)
+    public async Task WithRecordsThatHaveNoSealedOverride_OutputErrors(string type)
     {
         var source = $@"using Vogen;
 
@@ -26,12 +27,12 @@ namespace Whatever;
 }}
 ";
 
-        new TestRunner<ValueObjectGenerator>()
+        await new TestRunner<ValueObjectGenerator>()
             .WithSource(source)
             .ValidateWith(Validate)
             .RunOnAllFrameworks();
 
-        void Validate(ImmutableArray<Diagnostic> diagnostics)
+        static void Validate(ImmutableArray<Diagnostic> diagnostics)
         {
             diagnostics.Should().HaveCount(1);
             Diagnostic diagnostic = diagnostics.Single();
@@ -45,7 +46,7 @@ namespace Whatever;
     [Theory]
     [InlineData("public partial record class")]
     [InlineData("public partial record")]
-    public void WithRecordsThatDoHaveSealedOverride_DoNotOutputErrors(string type)
+    public async Task WithRecordsThatDoHaveSealedOverride_DoNotOutputErrors(string type)
     {
         var source = $@"using Vogen;
 
@@ -58,14 +59,14 @@ namespace Whatever;
 }}
 ";
 
-        new TestRunner<ValueObjectGenerator>()
+        await new TestRunner<ValueObjectGenerator>()
             .WithSource(source)
             .ValidateWith(d => d.Should().HaveCount(0))
             .RunOnAllFrameworks();
     }
     
     [Fact]
-    public void RecordStruct_DoesNotRequireSealedToString()
+    public async Task RecordStruct_DoesNotRequireSealedToString()
     {
         var source = $@"using Vogen;
 
@@ -78,7 +79,7 @@ public partial record struct CustomerId
 }}
 ";
 
-        new TestRunner<ValueObjectGenerator>()
+        await new TestRunner<ValueObjectGenerator>()
             .WithSource(source)
             .ValidateWith(d => d.Should().HaveCount(0))
             .RunOnAllFrameworks();
@@ -86,7 +87,7 @@ public partial record struct CustomerId
 
     [Theory]
     [ClassData(typeof(Types))]
-    public void WithNonRecordsThatHaveMixtureOfSealedAndNonSealedOverrides_DoNotOutputErrors(string type, string sealedOrNot)
+    public async Task WithNonRecordsThatHaveMixtureOfSealedAndNonSealedOverrides_DoNotOutputErrors(string type, string sealedOrNot)
     {
         var source = $@"using Vogen;
 
@@ -99,7 +100,7 @@ namespace Whatever;
 }}
 ";
 
-        new TestRunner<ValueObjectGenerator>()
+        await new TestRunner<ValueObjectGenerator>()
             .WithSource(source)
             .ValidateWith(d => d.Should().HaveCount(0))
             .RunOnAllFrameworks();
@@ -111,17 +112,17 @@ namespace Whatever;
         {
             foreach (string type in _types)
             {
-                yield return new object[]
-                {
+                yield return
+                [
                     type,
                     "sealed"
-                };
+                ];
 
-                yield return new object[]
-                {
+                yield return
+                [
                     type,
                     string.Empty
-                };
+                ];
             }
         }
 

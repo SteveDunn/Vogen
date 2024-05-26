@@ -1,5 +1,6 @@
 ﻿using System.Collections.Immutable;
 using System.Linq;
+using System.Threading.Tasks;
 using FluentAssertions;
 using Microsoft.CodeAnalysis;
 using Vogen;
@@ -15,7 +16,7 @@ public class SadTests
     [InlineData("partial record class")]
     [InlineData("partial record struct")]
     [InlineData("readonly partial record struct")]
-    public void Missing_any_constructors(string type)
+    public async Task Missing_any_constructors(string type)
     {
         var source = $@"using System;
 using Vogen;
@@ -30,7 +31,7 @@ public {type} CustomerId
 public class MyValidationException : Exception {{ }}
 ";
 
-        new TestRunner<ValueObjectGenerator>()
+        await new TestRunner<ValueObjectGenerator>()
             .WithSource(source)
             .ValidateWith(Validate)
             .RunOnAllFrameworks();
@@ -54,7 +55,7 @@ public class MyValidationException : Exception {{ }}
     [InlineData("partial record class")]
     [InlineData("partial record struct")]
     [InlineData("readonly partial record struct")]
-    public void Missing_string_constructor(string path)
+    public async Task Missing_string_constructor(string path)
     {
         var source = $@"using System;
 using Vogen;
@@ -72,7 +73,7 @@ public class MyValidationException : Exception
 }}
 ";
 
-        new TestRunner<ValueObjectGenerator>()
+        await new TestRunner<ValueObjectGenerator>()
             .WithSource(source)
             .ValidateWith(Validate)
             .RunOnAllFrameworks();
@@ -96,7 +97,7 @@ public class MyValidationException : Exception
     [InlineData("partial record class")]
     [InlineData("partial record struct")]
     [InlineData("readonly partial record struct")]
-    public void Missing_public_string_constructor_on_exception(string type)
+    public async Task Missing_public_string_constructor_on_exception(string type)
     {
         var source = $@"using System;
 using Vogen;
@@ -114,7 +115,7 @@ public class MyValidationException : Exception
 }}
 ";
 
-        new TestRunner<ValueObjectGenerator>()
+        await new TestRunner<ValueObjectGenerator>()
             .WithSource(source)
             .ValidateWith(Validate)
             .RunOnAllFrameworks();
@@ -138,7 +139,7 @@ public class MyValidationException : Exception
     [InlineData("partial record class")]
     [InlineData("partial record struct")]
     [InlineData("readonly partial record struct")]
-    public void Not_an_exception(string type)
+    public async Task Not_an_exception(string type)
     {
         var source = $@"using System;
 using Vogen;
@@ -153,7 +154,7 @@ public {type} CustomerId
 public class MyValidationException {{ }} // NOT AN EXCEPTION!
 ";
 
-        new TestRunner<ValueObjectGenerator>()
+        await new TestRunner<ValueObjectGenerator>()
             .WithSource(source)
             .ValidateWith(Validate)
             .RunOnAllFrameworks();
@@ -185,7 +186,7 @@ public class MyValidationException {{ }} // NOT AN EXCEPTION!
     [InlineData("partial record class")]
     [InlineData("partial record struct")]
     [InlineData("readonly partial record struct")]
-    public void Not_valid_conversion(string type)
+    public async Task Not_valid_conversion(string type)
     {
         var source = $@"using System;
 using Vogen;
@@ -196,7 +197,7 @@ namespace Whatever;
 public {type} CustomerId {{ }}
 ";
 
-        new TestRunner<ValueObjectGenerator>()
+        await new TestRunner<ValueObjectGenerator>()
             .WithSource(source)
             .ValidateWith(Validate)
             .RunOnAllFrameworks();

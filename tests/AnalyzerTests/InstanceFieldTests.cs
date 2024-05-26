@@ -14,7 +14,7 @@ namespace AnalyzerTests
         public class When_values_cannot_be_converted_to_their_underlying_types
         {
             [Fact]
-            public Task Malformed_float_causes_compilation_error()
+            public async Task Malformed_float_causes_compilation_error()
             {
                 string declaration = $@"using System;
   [ValueObject(underlyingType: typeof(float))]
@@ -26,7 +26,7 @@ namespace Whatever
 " + declaration + @"
 }";
 
-                new TestRunner<ValueObjectGenerator>()
+                await new TestRunner<ValueObjectGenerator>()
                     .WithSource(source)
                     .ValidateWith(Validate)
                     .RunOnAllFrameworks();
@@ -43,12 +43,10 @@ namespace Whatever
 #endif
                     diagnostics.Single().Id.Should().Be("VOG023");
                 }
-
-                return Task.CompletedTask;
             }
 
             [Fact]
-            public Task Malformed_datetime_causes_compilation_error()
+            public async Task Malformed_datetime_causes_compilation_error()
             {
                 var source = @"
 using Vogen;
@@ -60,7 +58,7 @@ namespace Whatever
     public partial class MyInstanceTests { }
 }";
 
-                new TestRunner<ValueObjectGenerator>()
+                await new TestRunner<ValueObjectGenerator>()
                     .WithSource(source)
                     .ValidateWith(Validate)
                     .RunOnAllFrameworks();
@@ -73,12 +71,10 @@ namespace Whatever
 
                     diagnostics.Single().Id.Should().Be("VOG023");
                 }
-
-                return Task.CompletedTask;
             }
 
             [Fact]
-            public Task Malformed_DateTimeOffset_causes_compilation_error()
+            public async Task Malformed_DateTimeOffset_causes_compilation_error()
             {
                 var source = @"
 using Vogen;
@@ -90,7 +86,7 @@ namespace Whatever
     public partial class MyInstanceTests { }
 }";
 
-                new TestRunner<ValueObjectGenerator>()
+                await new TestRunner<ValueObjectGenerator>()
                     .WithSource(source)
                     .ValidateWith(Validate)
                     .RunOnAllFrameworks();
@@ -103,8 +99,6 @@ namespace Whatever
 
                     diagnostics.Single().Id.Should().Be("VOG023");
                 }
-
-                return Task.CompletedTask;
             }
         }
     }

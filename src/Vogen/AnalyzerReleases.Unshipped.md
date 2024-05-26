@@ -5,3 +5,8 @@
 
 Rule ID | Category | Severity | Notes
 --------|----------|----------|-------
+AddNormalizeInputMethod | Usage | Info | AddNormalizeInputAnalyzer
+AddStaticToExistingNormalizeInputMethod | Usage | Info | AddNormalizeInputAnalyzer
+AddStaticToExistingValidationMethod | Usage | Info | AddValidationAnalyzer
+FixInputTypeOfValidationMethod | Usage | Info | ValidationMethodAnalyzer
+VOG028 | Usage | Info | NormalizeInputMethodAnalyzer

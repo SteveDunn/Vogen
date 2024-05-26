@@ -162,7 +162,7 @@ public class Test {{
                            }
 
                            """;
-            string[] sources = CombineUserAndGeneratedSource(userSource);
+            string[] sources = await CombineUserAndGeneratedSource(userSource);
 
             await Run(sources, Enumerable.Empty<DiagnosticResult>());
         }
@@ -185,7 +185,7 @@ public class Test {{
 
                            """;
 
-            string[] sources = CombineUserAndGeneratedSource(userSource);
+            string[] sources = await CombineUserAndGeneratedSource(userSource);
             
             await Run(sources, WithDiagnostics("VOG027", DiagnosticSeverity.Error, "MyVo", 0, 1));
         }
@@ -208,18 +208,18 @@ public class Test {{
 
                            """;
 
-            string[] sources = CombineUserAndGeneratedSource(userSource);
+            string[] sources = await CombineUserAndGeneratedSource(userSource);
             
             await Run(sources, WithDiagnostics("VOG027", DiagnosticSeverity.Error, "MyVo", 0, 1));
         }
 
-        private static string[] CombineUserAndGeneratedSource(string userSource)
+        private static async Task<string[]> CombineUserAndGeneratedSource(string userSource)
         {
             PortableExecutableReference peReference = MetadataReference.CreateFromFile(typeof(ValueObjectAttribute).Assembly.Location);
 
             var strippedSource = _placeholderPattern.Replace(userSource, string.Empty).Replace("|}", string.Empty);
             
-            (ImmutableArray<Diagnostic> Diagnostics, SyntaxTree[] GeneratedSources) output = new ProjectBuilder()
+            (ImmutableArray<Diagnostic> Diagnostics, SyntaxTree[] GeneratedSources) output = await new ProjectBuilder()
                 .WithUserSource(strippedSource)
                 .WithTargetFramework(TargetFramework.Net8_0)
                 .GetGeneratedOutput<ValueObjectGenerator>(ignoreInitialCompilationErrors: true, peReference);

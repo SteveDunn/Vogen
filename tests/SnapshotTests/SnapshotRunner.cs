@@ -97,7 +97,7 @@ namespace SnapshotTests
 
                 using var scope = new AssertionScope();
 
-                (ImmutableArray<Diagnostic> diagnostics, SyntaxTree[] syntaxTrees) = GetGeneratedOutput(_source, eachFramework);
+                (ImmutableArray<Diagnostic> diagnostics, SyntaxTree[] syntaxTrees) = await GetGeneratedOutput(_source, eachFramework);
                 diagnostics.Should().BeEmpty(@$"because the following source code should compile on {eachFramework}: " + _source);
 
                 var outputFolder = Path.Combine(_path, SnapshotUtils.GetSnapshotDirectoryName(eachFramework, _locale));
@@ -113,11 +113,11 @@ namespace SnapshotTests
             }
         }
 
-        private (ImmutableArray<Diagnostic> Diagnostics, SyntaxTree[] GeneratedSource) GetGeneratedOutput(string source, TargetFramework targetFramework)
+        private async Task<(ImmutableArray<Diagnostic> Diagnostics, SyntaxTree[] GeneratedSource)> GetGeneratedOutput(string source, TargetFramework targetFramework)
         {
             var r = MetadataReference.CreateFromFile(typeof(ValueObjectAttribute).Assembly.Location);
 
-            var results = new ProjectBuilder()
+            var results = await new ProjectBuilder()
                 .WithUserSource(source)
                 .WithNugetPackages(_additionalNuGetPackages)
                 .WithTargetFramework(targetFramework)

@@ -8,23 +8,38 @@ namespace Vogen;
 
 internal static class VoFilter
 {
+    /// <summary>
+    /// Tries to get any `ValueObject` attributes specified on the provided symbol.
+    /// It might return more than one, because the user might have typed more than one.
+    /// Even though having more than one is not valid, it's still possible for it to exist,
+    /// so we return what is found and let the caller decide what to do.
+    /// </summary>
+    /// <param name="voSymbolInformation"></param>
+    /// <returns></returns>
     public static IEnumerable<AttributeData> TryGetValueObjectAttributes(INamedTypeSymbol voSymbolInformation)
     {
         var attrs = voSymbolInformation.GetAttributes();
 
         return attrs.Where(
-                a => a.AttributeClass?.FullName() == "Vogen.ValueObjectAttribute"
-                     || a.AttributeClass?.BaseType?.FullName() == "Vogen.ValueObjectAttribute"
-                     || a.AttributeClass?.BaseType?.BaseType?.FullName() == "Vogen.ValueObjectAttribute");
+            a => a.AttributeClass?.FullName() == "Vogen.ValueObjectAttribute"
+                 || a.AttributeClass?.BaseType?.FullName() == "Vogen.ValueObjectAttribute"
+                 || a.AttributeClass?.BaseType?.BaseType?.FullName() == "Vogen.ValueObjectAttribute");
     }
 
+    /// <summary>
+    /// Given a type declaration (via the context), it gets the semantic model,
+    /// then gets the type declaration, then tries to get any value object
+    /// attributes.
+    /// </summary>
+    /// <param name="context">The context containing the node.</param>
+    /// <returns>The target, otherwise null.</returns>
     public static VoTarget? TryGetTarget(GeneratorSyntaxContext context)
     {
         var voSyntaxInformation = (TypeDeclarationSyntax) context.Node;
 
         var semanticModel = context.SemanticModel;
 
-        var declaredSymbol = semanticModel.GetDeclaredSymbol(context.Node)!;
+        ISymbol declaredSymbol = semanticModel.GetDeclaredSymbol(context.Node)!;
         
         var voSymbolInformation = (INamedTypeSymbol) declaredSymbol;
 

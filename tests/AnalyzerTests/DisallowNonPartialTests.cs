@@ -1,5 +1,6 @@
 ﻿using System.Collections.Immutable;
 using System.Linq;
+using System.Threading.Tasks;
 using FluentAssertions;
 using Microsoft.CodeAnalysis;
 using Vogen;
@@ -11,7 +12,7 @@ public class DisallowNonPartialTests
     [Theory]
     [InlineData("abstract class")]
     [InlineData("abstract record class")]
-    public void Disallows_non_partial_types(string type)
+    public async Task Disallows_non_partial_types(string type)
     {
         var source = $@"using Vogen;
 
@@ -20,7 +21,7 @@ namespace Whatever;
 [ValueObject]
 public {type} CustomerId {{ }}
 ";
-        new TestRunner<ValueObjectGenerator>()
+        await new TestRunner<ValueObjectGenerator>()
             .WithSource(source)
             .ValidateWith(Validate)
             .RunOnAllFrameworks();

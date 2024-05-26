@@ -1,4 +1,5 @@
 ﻿using System.Collections.Immutable;
+using System.Threading.Tasks;
 using FluentAssertions;
 using Microsoft.CodeAnalysis;
 using Vogen;
@@ -8,7 +9,7 @@ namespace AnalyzerTests.GlobalConfig;
 public class HappyTests
 {
     [Fact]
-    public void Type_override()
+    public async Task Type_override()
     {
         var source = @"using System;
 using Vogen;
@@ -23,7 +24,7 @@ public partial struct CustomerId
 {
 }";
 
-        new TestRunner<ValueObjectGenerator>()
+        await new TestRunner<ValueObjectGenerator>()
             .WithSource(source)
             .ValidateWith(Validate)
             .RunOnAllFrameworks();
@@ -32,7 +33,7 @@ public partial struct CustomerId
     }
 
     [Fact]
-    public void Exception_override()
+    public async Task Exception_override()
     {
         var source = @"using System;
 using Vogen;
@@ -53,7 +54,7 @@ public class MyValidationException : Exception
 }
 ";
 
-        new TestRunner<ValueObjectGenerator>()
+        await new TestRunner<ValueObjectGenerator>()
             .WithSource(source)
             .ValidateWith(Validate)
             .RunOnAllFrameworks();
@@ -62,7 +63,7 @@ public class MyValidationException : Exception
     }
 
     [Fact]
-    public void Conversion_and_exceptions_override()
+    public async Task Conversion_and_exceptions_override()
     {
         var source = @"using System;
 using Vogen;
@@ -85,7 +86,7 @@ public class MyValidationException : Exception
 }
 ";
 
-        new TestRunner<ValueObjectGenerator>()
+        await new TestRunner<ValueObjectGenerator>()
             .WithSource(source)
             .ValidateWith(Validate)
             .RunOnAllFrameworks();
@@ -94,7 +95,7 @@ public class MyValidationException : Exception
     }
 
     [Fact]
-    public void DeserializationStrictness_override()
+    public async Task DeserializationStrictness_override()
     {
         var source = @"using System;
 using Vogen;
@@ -108,7 +109,7 @@ namespace Whatever;
 public partial struct CustomerId { }
 ";
 
-        new TestRunner<ValueObjectGenerator>()
+        await new TestRunner<ValueObjectGenerator>()
             .WithSource(source)
             .ValidateWith(Validate)
             .RunOnAllFrameworks();
@@ -117,7 +118,7 @@ public partial struct CustomerId { }
     }
 
     [Fact]
-    public void Override_all()
+    public async Task Override_all()
     {
         var source = @"using System;
 using Vogen;
@@ -138,7 +139,7 @@ public class MyValidationException : Exception
 }
 ";
 
-        new TestRunner<ValueObjectGenerator>()
+        await new TestRunner<ValueObjectGenerator>()
             .WithSource(source)
             .ValidateWith(Validate)
             .RunOnAllFrameworks();

@@ -12,13 +12,24 @@ using System.Threading.Tasks;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
 using Vogen;
+using System.Reflection;
+using System.Threading;
+using Microsoft.CodeAnalysis.Diagnostics;
+using Microsoft.CodeAnalysis.Testing;
 
 namespace Shared;
 
 public record struct NuGetPackage(string PackageName, string Version, string PathPrefix);
 
-public class ProjectBuilder
+public sealed partial class ProjectBuilder
 {
+    public IList<DiagnosticAnalyzer> DiagnosticAnalyzers { get; } = new List<DiagnosticAnalyzer>();
+    public IList<DiagnosticResult> ExpectedDiagnosticResults { get; } = new List<DiagnosticResult>();
+    
+    public string? DefaultAnalyzerId { get; set; }
+    public string? DefaultAnalyzerMessage { get; set; }
+
+
     private static readonly ConcurrentDictionary<string, Lazy<Task<string[]>>> _cache = new(StringComparer.Ordinal);
 
     private static readonly KeyValuePair<string, ReportDiagnostic>[] _suppressedDiagnostics =
@@ -39,6 +50,25 @@ public class ProjectBuilder
         return this;
     }
 
+    public ProjectBuilder WithMicrosoftCodeAnalysisNetAnalyzers(params string[] ruleIds) =>
+        WithAnalyzerFromNuGet(
+            "Microsoft.CodeAnalysis.NetAnalyzers",
+            "7.0.1",
+            "analyzers/dotnet/cs/Microsoft.CodeAnalysis",
+            ruleIds);
+
+    public ProjectBuilder ShouldReportDiagnostic(params DiagnosticResult[] expectedDiagnosticResults)
+    {
+        foreach (var diagnostic in expectedDiagnosticResults)
+        {
+            ExpectedDiagnosticResults.Add(diagnostic);
+        }
+
+        return this;
+    }
+
+
+
     public ProjectBuilder ShouldExcludeSystemTextJson(bool excludeStj = false)
     {
         _excludeStj = excludeStj;
@@ -50,6 +80,34 @@ public class ProjectBuilder
         _languageVersion = languageVersion;
         return this;
     }
+    
+    public ProjectBuilder WithAnalyzerFromNuGet(string packageName, string version, string path, string[] ruleIds)
+    {
+        var ruleFound = false;
+        var references = GetNuGetReferences(packageName, version, path).Result;
+        foreach (var reference in references)
+        {
+            var assembly = Assembly.LoadFrom(reference);
+            foreach (var type in assembly.GetTypes())
+            {
+                if (type.IsAbstract || !typeof(DiagnosticAnalyzer).IsAssignableFrom(type))
+                    continue;
+
+                var instance = (DiagnosticAnalyzer)Activator.CreateInstance(type);
+                if (instance.SupportedDiagnostics.Any(d => ruleIds.Contains(d.Id, StringComparer.Ordinal)))
+                {
+                    DiagnosticAnalyzers.Add(instance);
+                    ruleFound = true;
+                }
+            }
+        }
+
+        if (!ruleFound)
+            throw new InvalidOperationException("Rule id not found");
+
+        return this;
+    }
+
 
     public void AddNuGetReference(string packageName, string version, string pathPrefix)
     {
@@ -219,6 +277,17 @@ public class ProjectBuilder
             return result.ToArray();
         }
     }
+    
+    public ProjectBuilder WithAnalyzer<T>(string? id = null, string? message = null) where T : DiagnosticAnalyzer, new() =>
+        WithAnalyzer(new T(), id, message);
+
+    public ProjectBuilder WithAnalyzer(DiagnosticAnalyzer diagnosticAnalyzer, string? id = null, string? message = null)
+    {
+        DiagnosticAnalyzers.Add(diagnosticAnalyzer);
+        DefaultAnalyzerId = id;
+        DefaultAnalyzerMessage = message;
+        return this;
+    }
 
     public ProjectBuilder WithUserSource(string userSource)
     {
@@ -239,7 +308,7 @@ public class ProjectBuilder
 
     // filePath can be specified for when you want to get the non-default
     // generated file, for instance, the System.Text.Json converter factory that is generated.
-    public (ImmutableArray<Diagnostic> Diagnostics, SyntaxTree[] GeneratedSource) GetGeneratedOutput<T>(
+    public async Task<(ImmutableArray<Diagnostic> Diagnostics, SyntaxTree[] GeneratedSource)> GetGeneratedOutput<T>(
         bool ignoreInitialCompilationErrors,
         MetadataReference? valueObjectAttributeMetadata = null)
         where T : IIncrementalGenerator, new()
@@ -259,15 +328,42 @@ public class ProjectBuilder
 
         AddNuGetReferences();
 
+        var options = new CSharpCompilationOptions(
+            OutputKind.DynamicallyLinkedLibrary, 
+            specificDiagnosticOptions: _suppressedDiagnostics);
+
+        var diagnostics = this.DiagnosticAnalyzers.SelectMany(
+            analyzer => analyzer.SupportedDiagnostics.Select(diag => new KeyValuePair<string, ReportDiagnostic>(diag.Id, GetReportDiagnostic(diag))));
+
+        diagnostics = diagnostics.Concat(_suppressedDiagnostics);
+        
+        options = options.WithSpecificDiagnosticOptions(diagnostics);
+        
         var compilation = CSharpCompilation.Create(
             assemblyName: "generator",
             syntaxTrees: new[] { usersSyntaxTree, isExternalInitSyntaxTree },
             _references,
-            new CSharpCompilationOptions(
-                OutputKind.DynamicallyLinkedLibrary, 
-                specificDiagnosticOptions: _suppressedDiagnostics));
+            options);
 
-        var initialDiags = compilation.GetDiagnostics();
+        AnalyzerConfigOptionsProvider optionsProvider = new TestAnalyzerConfigOptionsProvider(new Dictionary<string, string>());
+
+        ImmutableArray<Diagnostic> initialDiags;
+
+        if (DiagnosticAnalyzers.Count != 0)
+        {
+            var cwa = compilation.WithAnalyzers(
+                ImmutableArray.CreateRange(DiagnosticAnalyzers),
+                new AnalyzerOptions(ImmutableArray<AdditionalText>.Empty, optionsProvider));
+
+            initialDiags = await cwa.GetAnalyzerDiagnosticsAsync(CancellationToken.None).ConfigureAwait(false);
+        }
+        else
+        {
+            initialDiags = compilation.GetDiagnostics();
+        }
+
+
+        //var initialDiags = compilation.GetDiagnostics();
         if (initialDiags.Length != 0 && !ignoreInitialCompilationErrors)
         {
             return (initialDiags, []);
@@ -294,5 +390,38 @@ public class ProjectBuilder
         }
 
         return (generatorDiags, outputCompilation.SyntaxTrees.Except(compilation.SyntaxTrees).ToArray());
+    }
+    
+    private static ReportDiagnostic GetReportDiagnostic(DiagnosticDescriptor descriptor)
+    {
+        return descriptor.DefaultSeverity switch
+        {
+            DiagnosticSeverity.Hidden => ReportDiagnostic.Hidden,
+            DiagnosticSeverity.Info => ReportDiagnostic.Info,
+            DiagnosticSeverity.Warning => ReportDiagnostic.Warn,
+            DiagnosticSeverity.Error => ReportDiagnostic.Error,
+            _ => ReportDiagnostic.Info, // Ensure the analyzer is enabled for the test
+        };
+    }
+
+}
+
+
+internal sealed class TestAnalyzerConfigOptionsProvider(Dictionary<string, string> values) : AnalyzerConfigOptionsProvider
+{
+    private readonly Dictionary<string, string> _values = values ?? [];
+
+    public override AnalyzerConfigOptions GlobalOptions => new TestAnalyzerConfigOptions(_values);
+    public override AnalyzerConfigOptions GetOptions(SyntaxTree tree) => new TestAnalyzerConfigOptions(_values);
+    public override AnalyzerConfigOptions GetOptions(AdditionalText textFile) => new TestAnalyzerConfigOptions(_values);
+
+    private sealed class TestAnalyzerConfigOptions(Dictionary<string, string> values) : AnalyzerConfigOptions
+    {
+        private readonly Dictionary<string, string> _values = values;
+
+        public override bool TryGetValue(string key, out string value)
+        {
+            return _values.TryGetValue(key, out value);
+        }
     }
 }

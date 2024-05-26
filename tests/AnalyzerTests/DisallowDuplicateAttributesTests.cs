@@ -1,5 +1,6 @@
 ﻿using System.Collections.Immutable;
 using System.Linq;
+using System.Threading.Tasks;
 using FluentAssertions;
 using Microsoft.CodeAnalysis;
 using Vogen;
@@ -11,7 +12,7 @@ public class DisallowDuplicateAttributesTests
     [Theory]
     [InlineData("abstract partial class")]
     [InlineData("abstract partial record class")]
-    public void Disallows_multiple_value_object_attributes(string type)
+    public async Task Disallows_multiple_value_object_attributes(string type)
     {
         var source = $@"using Vogen;
 
@@ -21,7 +22,7 @@ namespace Whatever;
 [ValueObject]
 public {type} CustomerId {{ }}
 ";
-        new TestRunner<ValueObjectGenerator>()
+        await new TestRunner<ValueObjectGenerator>()
             .WithSource(source)
             .ValidateWith(Validate)
             .RunOnAllFrameworks();

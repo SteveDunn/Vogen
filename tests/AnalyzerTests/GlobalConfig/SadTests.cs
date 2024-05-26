@@ -1,5 +1,6 @@
 ﻿using System.Collections.Immutable;
 using System.Linq;
+using System.Threading.Tasks;
 using FluentAssertions;
 using Microsoft.CodeAnalysis;
 using Vogen;
@@ -9,7 +10,7 @@ namespace AnalyzerTests.GlobalConfig;
 public class SadTests
 {
     [Fact]
-    public void Missing_any_constructors()
+    public async Task Missing_any_constructors()
     {
         var source = """
             using System;
@@ -31,7 +32,7 @@ public class SadTests
 
             """;
 
-        new TestRunner<ValueObjectGenerator>()
+        await new TestRunner<ValueObjectGenerator>()
             .WithSource(source)
             .ValidateWith(Validate)
             .RunOnAllFrameworks();
@@ -49,7 +50,7 @@ public class SadTests
     }
 
     [Fact]
-    public void Missing_string_constructor()
+    public async Task Missing_string_constructor()
     {
         var source = @"using System;
 using Vogen;
@@ -70,7 +71,7 @@ public class MyValidationException : Exception
 }
 ";
 
-        new TestRunner<ValueObjectGenerator>()
+        await new TestRunner<ValueObjectGenerator>()
             .WithSource(source)
             .ValidateWith(Validate)
             .RunOnAllFrameworks();
@@ -88,7 +89,7 @@ public class MyValidationException : Exception
     }
 
     [Fact]
-    public void Missing_public_string_constructor_on_exception()
+    public async Task Missing_public_string_constructor_on_exception()
     {
         const string source = @"using System;
 using Vogen;
@@ -109,7 +110,7 @@ public class MyValidationException : Exception
 }
 ";
 
-        new TestRunner<ValueObjectGenerator>()
+        await new TestRunner<ValueObjectGenerator>()
             .WithSource(source)
             .ValidateWith(Validate)
             .RunOnAllFrameworks();
@@ -127,7 +128,7 @@ public class MyValidationException : Exception
     }
 
     [Fact]
-    public void Not_an_exception()
+    public async Task Not_an_exception()
     {
         var source = @"using System;
 using Vogen;
@@ -145,7 +146,7 @@ public partial struct CustomerId
 public class MyValidationException { } // NOT AN EXCEPTION!
 ";
 
-        new TestRunner<ValueObjectGenerator>()
+        await new TestRunner<ValueObjectGenerator>()
             .WithSource(source)
             .ValidateWith(Validate)
             .RunOnAllFrameworks();
@@ -172,7 +173,7 @@ public class MyValidationException { } // NOT AN EXCEPTION!
     }
 
     [Fact]
-    public void Not_valid_conversion()
+    public async Task Not_valid_conversion()
     {
         var source = @"using System;
 using Vogen;
@@ -185,7 +186,7 @@ namespace Whatever;
 public partial struct CustomerId { }
 ";
 
-        new TestRunner<ValueObjectGenerator>()
+        await new TestRunner<ValueObjectGenerator>()
             .WithSource(source)
             .ValidateWith(Validate)
             .RunOnAllFrameworks();
@@ -206,7 +207,7 @@ public partial struct CustomerId { }
     }
 
     [Fact]
-    public void Not_valid_customization()
+    public async Task Not_valid_customization()
     {
         var source = @"using System;
 using Vogen;
@@ -219,7 +220,7 @@ namespace Whatever;
 public partial struct CustomerId { }
 ";
 
-        new TestRunner<ValueObjectGenerator>()
+        await new TestRunner<ValueObjectGenerator>()
             .WithSource(source)
             .ValidateWith(Validate)
             .RunOnAllFrameworks();
@@ -239,7 +240,7 @@ public partial struct CustomerId { }
     }
 
     [Fact]
-    public void Not_valid_deserialization_strictness()
+    public async Task Not_valid_deserialization_strictness()
     {
         var source = @"using System;
 using Vogen;
@@ -252,7 +253,7 @@ namespace Whatever;
 public partial struct CustomerId { }
 ";
 
-        new TestRunner<ValueObjectGenerator>()
+        await new TestRunner<ValueObjectGenerator>()
             .WithSource(source)
             .ValidateWith(Validate)
             .RunOnAllFrameworks();
@@ -273,7 +274,7 @@ public partial struct CustomerId { }
     }
 
     [Fact]
-    public void Not_valid_customization_or_conversion()
+    public async Task Not_valid_customization_or_conversion()
     {
         var source = @"using System;
 using Vogen;
@@ -286,7 +287,7 @@ namespace Whatever;
 public partial struct CustomerId { }
 ";
 
-        new TestRunner<ValueObjectGenerator>()
+        await new TestRunner<ValueObjectGenerator>()
             .WithSource(source)
             .ValidateWith(Validate)
             .RunOnAllFrameworks();

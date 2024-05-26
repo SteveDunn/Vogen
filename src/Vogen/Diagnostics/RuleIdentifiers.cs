@@ -3,12 +3,17 @@
 public static class RuleIdentifiers
 {
     public const string AddValidationMethod = "AddValidationMethod";
+    public const string AddStaticToExistingValidationMethod = "AddStaticToExistingValidationMethod";
+    public const string FixInputTypeOfValidationMethod = "FixInputTypeOfValidationMethod";
+
+    public const string AddNormalizeInputMethod = "AddNormalizeInputMethod";
+    public const string AddStaticToExistingNormalizeInputMethod = "AddStaticToExistingNormalizeInputMethod";
 
     public const string TypeCannotBeNested = "VOG001";
     public const string UnderlyingTypeMustNotBeSameAsValueObject = "VOG002";
     public const string UnderlyingTypeCannotBeCollection = "VOG003";
     public const string ValidationMustReturnValidationType = "VOG004";
-    public const string ValidationMustBeStatic = "VOG005";
+    public const string ValidateMethodMustBeStatic = "VOG005";
     public const string InstanceMethodCannotHaveNullArgumentName = "VOG006";
     public const string InstanceMethodCannotHaveNullArgumentValue = "VOG007";
     public const string CannotHaveUserConstructors = "VOG008";
@@ -30,4 +35,5 @@ public static class RuleIdentifiers
     public const string DoNotUseReflection = "VOG025";
     public const string DoNotDeriveFromVogenAttributes = "VOG026";
     public const string IncorrectUseOfInstanceField = "VOG027";
+    public const string IncorrectUseOfNormalizeInputMethod = "VOG028";
 }

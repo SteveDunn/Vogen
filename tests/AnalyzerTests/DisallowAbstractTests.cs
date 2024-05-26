@@ -1,5 +1,6 @@
 ﻿using System.Collections.Immutable;
 using System.Linq;
+using System.Threading.Tasks;
 using FluentAssertions;
 using Microsoft.CodeAnalysis;
 using Vogen;
@@ -11,7 +12,7 @@ public class DisallowAbstractTests
     [Theory]
     [InlineData("abstract partial class")]
     [InlineData("abstract partial record class")]
-    public void Disallows_abstract_value_objects(string type)
+    public async Task Disallows_abstract_value_objects(string type)
     {
         var source = $@"using Vogen;
 
@@ -21,7 +22,7 @@ namespace Whatever;
 public {type} CustomerId {{ }}
 ";
         
-        new TestRunner<ValueObjectGenerator>()
+        await new TestRunner<ValueObjectGenerator>()
             .WithSource(source)
             .ValidateWith(Validate)
             .RunOnAllFrameworks();
@@ -42,7 +43,7 @@ public {type} CustomerId {{ }}
     [Theory]
     [InlineData("abstract partial class")]
     [InlineData("abstract partial record class")]
-    public void Disallows_nested_abstract_value_objects(string type)
+    public async Task Disallows_nested_abstract_value_objects(string type)
     {
         var source = $@"using Vogen;
 
@@ -54,7 +55,7 @@ public class MyContainer {{
 }}
 ";
 
-        new TestRunner<ValueObjectGenerator>()
+        await new TestRunner<ValueObjectGenerator>()
             .WithSource(source)
             .ValidateWith(Validate)
             .RunOnAllFrameworks();

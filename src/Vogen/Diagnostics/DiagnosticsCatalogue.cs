@@ -84,7 +84,7 @@ internal static class DiagnosticsCatalogue
         "{0} must accept one parameter of the same type as the underlying type");
 
     private static readonly DiagnosticDescriptor _validationMustBeStatic = CreateDescriptor(
-        RuleIdentifiers.ValidationMustBeStatic,
+        RuleIdentifiers.ValidateMethodMustBeStatic,
         "Validation must be static",
         "{0} must be static");
 
