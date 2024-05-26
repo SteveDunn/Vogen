@@ -38,7 +38,6 @@ internal class WriteStaticAbstracts
             return $$"""
                      public interface IVogen<TSelf, TPrimitive>
                          where TSelf : IVogen<TSelf, TPrimitive>
-                         where TPrimitive : notnull
                      {
                          {{GenerateCastingOperatorsIfNeeded()}}
                          {{GenerateEqualsOperatorsIfNeeded()}}
