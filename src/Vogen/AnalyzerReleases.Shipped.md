@@ -31,6 +31,8 @@ VOG027 | Usage | Error | DoNotUseNewAnalyzer
 
 ## Release 4.0.5
 
+### New Rules
+
 Rule ID | Category | Severity | Notes
 --------|----------|----------|-------
 AddNormalizeInputMethod | Usage | Info | AddNormalizeInputAnalyzer
