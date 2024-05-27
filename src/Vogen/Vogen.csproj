@@ -23,7 +23,6 @@
   <PropertyGroup>
     <IncludeBuildOutput>false</IncludeBuildOutput>
      <!--<GeneratePackageOnBuild>True</GeneratePackageOnBuild>--> 
-    <PackageReadmeFile>nuget-readme.md</PackageReadmeFile>
   </PropertyGroup>
   <ItemGroup>
     <Compile Remove="Generators\Conversions\JsonNetConverters\**" />
