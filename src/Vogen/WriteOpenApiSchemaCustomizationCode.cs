@@ -133,12 +133,15 @@ internal class WriteOpenApiSchemaCustomizationCode
         var workItemCode = new StringBuilder();
         foreach (var workItem in workItems)
         {
+            var fqn = string.IsNullOrEmpty(workItem.FullNamespace)
+                ? $"{workItem.VoTypeName}"
+                : $"{workItem.FullNamespace}.{workItem.VoTypeName}";
+            
             workItemCode.AppendLine(
-                $$"""global::Microsoft.Extensions.DependencyInjection.SwaggerGenOptionsExtensions.MapType<{{workItem.VoTypeName}}>(o, () => new global::Microsoft.OpenApi.Models.OpenApiSchema { Type = "{{MapUnderlyingTypeToJsonSchema(workItem.UnderlyingTypeFullName)}}" });""");
+                $$"""global::Microsoft.Extensions.DependencyInjection.SwaggerGenOptionsExtensions.MapType<{{fqn}}>(o, () => new global::Microsoft.OpenApi.Models.OpenApiSchema { Type = "{{MapUnderlyingTypeToJsonSchema(workItem.UnderlyingTypeFullName)}}" });""");
         }
 
         return workItemCode.ToString();
-        
     }
 
     private static string MapUnderlyingTypeToJsonSchema(string primitiveType)
