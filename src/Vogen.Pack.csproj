@@ -5,7 +5,6 @@
     <IncludeBuildOutput>false</IncludeBuildOutput>
     <EnableDefaultItems>false</EnableDefaultItems>
     <GenerateDependencyFile>false</GenerateDependencyFile>
-    <developmentDependency>true</developmentDependency>
     <NoPackageAnalysis>true</NoPackageAnalysis>
 
     <!-- Version and PackageVersion are handled in Directory.Build.targets -->
@@ -15,6 +14,7 @@
     <PackageTags>vogen;stringlytyped;primitive;obsession;valuetype;valuetypes;valueobj;valueobjects;ddd</PackageTags>
     <PackageIcon>package_logo_128x128.png</PackageIcon>
     <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
+    <PackageReadmeFile>nuget-readme.md</PackageReadmeFile>
 
     <Authors>Steve Dunn</Authors>
     <Copyright>Copyright Steve Dunn</Copyright>
