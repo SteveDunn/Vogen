@@ -29,7 +29,6 @@ namespace SnapshotTests
         private readonly TargetFramework[] _allFrameworks =
         {
             TargetFramework.Net8_0,
-            TargetFramework.AspNetCore8_0,
 #if THOROUGH
             TargetFramework.Net5_0,
             TargetFramework.Net6_0,
@@ -154,8 +153,5 @@ namespace SnapshotTests
             _excludeStj = true;
             return this;
         }
-
-        public SnapshotRunner<T> UseFilenameByShorteningThisToAHash(Func<string> func) => 
-            CustomizeSettings(s => s.UseFileName(TestHelper.ShortenForFilename(func())));
     }
 }

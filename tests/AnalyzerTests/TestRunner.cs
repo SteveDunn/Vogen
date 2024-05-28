@@ -10,10 +10,10 @@ namespace AnalyzerTests
     public class TestRunner<T> where T : IIncrementalGenerator, new()
     {
         private readonly TargetFramework[] _allFrameworks = {
-            TargetFramework.Net6_0,
-            TargetFramework.Net7_0,
             TargetFramework.Net8_0,
 #if THOROUGH
+            TargetFramework.Net6_0,
+            TargetFramework.Net7_0,
             TargetFramework.Net4_6_1,
             TargetFramework.Net4_8,
             TargetFramework.NetCoreApp3_1,

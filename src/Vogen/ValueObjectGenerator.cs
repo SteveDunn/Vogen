@@ -54,6 +54,10 @@ namespace Vogen
             ImmutableArray<VogenConfigurationBuildResult> globalConfigBuildResult,
             SourceProductionContext context)
         {
+            using var internalDiags = InternalDiagnostics.TryCreateIfSpecialClassIsPresent(compilation, context);
+
+            internalDiags.RecordTargets(targets);
+
             if (targets.IsDefaultOrEmpty)
             {
                 return;
@@ -63,13 +67,15 @@ namespace Vogen
             VogenConfigurationBuildResult buildResult = globalConfigBuildResult.IsDefaultOrEmpty
                 ? VogenConfigurationBuildResult.Null
                 : globalConfigBuildResult.ElementAt(0);
-            
+
             foreach (var diagnostic in buildResult.Diagnostics)
             {
                 context.ReportDiagnostic(diagnostic);
             }
 
             VogenConfiguration? globalConfig = buildResult.ResultingConfiguration;
+            
+            internalDiags.RecordGlobalConfig(globalConfig);
 
             // get all the ValueObject types found.
             List<VoWorkItem> workItems = GetWorkItems(targets, context, globalConfig, compilation).ToList();
@@ -79,6 +85,9 @@ namespace Vogen
             if (workItems.Count > 0)
             {
                 var mergedConfig = CombineConfigurations.CombineAndResolveAnyGlobalConfig(globalConfig);
+
+                internalDiags.RecordResolvedGlobalConfig(mergedConfig);
+                
                 WriteStaticAbstracts.WriteIfNeeded(mergedConfig, context, compilation);
 
                 WriteSystemTextJsonConverterFactories.WriteIfNeeded(mergedConfig, workItems, context, compilation);

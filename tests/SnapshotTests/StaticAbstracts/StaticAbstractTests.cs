@@ -36,6 +36,27 @@ public class StaticAbstractTests
         }
 
         [Fact]
+        public async Task it_generates_on_net_8_0_with_no_lang_version_specified()
+        {
+            var source = """
+                         using System;
+                         using Vogen;
+
+                         [assembly: VogenDefaults(
+                            systemTextJsonConverterFactoryGeneration: SystemTextJsonConverterFactoryGeneration.Omit, 
+                            conversions: Conversions.None, 
+                            staticAbstractsGeneration: StaticAbstractsGeneration.MostCommon)]
+
+                         [ValueObject(typeof(Guid))]
+                         public partial class MyVo { }
+                         """;
+
+            await new SnapshotRunner<ValueObjectGenerator>()
+                .WithSource(source)
+                .RunOn(TargetFramework.Net8_0);
+        }
+
+        [Fact]
         public async Task if_omitted_in_global_config()
         {
             var source = """

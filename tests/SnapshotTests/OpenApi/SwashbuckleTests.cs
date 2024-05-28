@@ -32,7 +32,7 @@ public class SwashbuckleTests
 
         await new SnapshotRunner<ValueObjectGenerator>()
             .WithSource(source)
-            .UseFilenameByShorteningThisToAHash(() => @namespace)
+            .CustomizeSettings(s => s.UseHashedParameters(@namespace))
             .RunOn(TargetFramework.AspNetCore8_0);
     }
 
@@ -75,7 +75,7 @@ public class SwashbuckleTests
 
         await new SnapshotRunner<ValueObjectGenerator>()
             .WithSource(source)
-            .UseFilenameByShorteningThisToAHash(() => @namespace)
+            .CustomizeSettings(s => s.UseHashedParameters(@namespace))
             .RunOn(TargetFramework.AspNetCore8_0);
     }
 
@@ -116,7 +116,7 @@ public class SwashbuckleTests
 
         await new SnapshotRunner<ValueObjectGenerator>()
             .WithSource(source)
-            .UseFilenameByShorteningThisToAHash(() => @namespace)
+            .CustomizeSettings(s => s.UseHashedParameters(@namespace))
             .RunOn(TargetFramework.AspNetCore8_0);
     }
 }
