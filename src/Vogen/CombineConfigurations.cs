@@ -9,7 +9,7 @@ public static class CombineConfigurations
     // If the second one is null, then the default instance value is used.
     // If the values in the left and right are unspecified, then the value in the default instance is used.
 
-    // This is for to combine the configuration of global and local config, where local
+    // This is for combining the configuration of global and local config, where local
     // config is guaranteed to be present, but the global config was not.
     
     // It is also used to combine global config with the default instance; before building the value objects,
@@ -152,6 +152,10 @@ public static class CombineConfigurations
         
         var disableStackTraceRecordingInDebug = globalValues?.DisableStackTraceRecordingInDebug ?? false;
 
+        // This is a global value only 
+        var primitiveTypeMustBeExplicit =
+            globalValues?.ExplicitlySpecifyTypeInValueObject ?? VogenConfiguration.DefaultInstance.ExplicitlySpecifyTypeInValueObject;
+
         return new VogenConfiguration(
             underlyingType: underlyingType,
             validationExceptionType: validationExceptionType,
@@ -170,7 +174,8 @@ public static class CombineConfigurations
             isInitializedMethodGeneration: isInitializedMethodGeneration,
             systemTextJsonConverterFactoryGeneration: stjFactories,
             staticAbstractsGeneration: staticAbstractsGeneration,
-            openApiSchemaCustomizations: openApiSchemaCustomizations);
+            openApiSchemaCustomizations: openApiSchemaCustomizations,
+            explicitlySpecifyTypeInValueObject: primitiveTypeMustBeExplicit);
     }
  
     /// If we don't have a global attribute, just use the default configuration as there

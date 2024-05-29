@@ -36,4 +36,5 @@ public static class RuleIdentifiers
     public const string DoNotDeriveFromVogenAttributes = "VOG026";
     public const string IncorrectUseOfInstanceField = "VOG027";
     public const string IncorrectUseOfNormalizeInputMethod = "VOG028";
+    public const string ExplicitlySpecifyTypeInValueObjectAttribute = "VOG029";
 }

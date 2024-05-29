@@ -34,6 +34,7 @@ internal class BuildConfigurationFromAttributes
     private SystemTextJsonConverterFactoryGeneration _systemTextJsonConverterFactoryGeneration;
     private StaticAbstractsGeneration _staticAbstractsGeneration;
     private OpenApiSchemaCustomizations _openApiSchemaCustomizations;
+    private bool _primitiveTypeMustBeExplicit;
 
     private BuildConfigurationFromAttributes(AttributeData att)
     {
@@ -57,8 +58,9 @@ internal class BuildConfigurationFromAttributes
         _systemTextJsonConverterFactoryGeneration = SystemTextJsonConverterFactoryGeneration.Unspecified;
         _staticAbstractsGeneration = StaticAbstractsGeneration.Unspecified;
         _openApiSchemaCustomizations = OpenApiSchemaCustomizations.Unspecified;
-        
-       _diagnostics = new List<Diagnostic>();
+        _primitiveTypeMustBeExplicit = false;
+       
+        _diagnostics = new List<Diagnostic>();
         
         ImmutableArray<TypedConstant> args = _matchingAttribute.ConstructorArguments;
 
@@ -117,7 +119,8 @@ internal class BuildConfigurationFromAttributes
                 _isInitializedMethodGeneration,
                 _systemTextJsonConverterFactoryGeneration,
                 _staticAbstractsGeneration,
-                _openApiSchemaCustomizations),
+                _openApiSchemaCustomizations,
+                _primitiveTypeMustBeExplicit),
             diagnostics: _diagnostics);
     }
 
@@ -189,7 +192,7 @@ internal class BuildConfigurationFromAttributes
     // ReSharper disable once CognitiveComplexity
     private void PopulateFromVogenDefaultsAttributeArgs(ImmutableArray<TypedConstant> argsExcludingUnderlyingType)
     {
-        if (argsExcludingUnderlyingType.Length > 15)
+        if (argsExcludingUnderlyingType.Length > 16)
         {
             throw new InvalidOperationException("Too many arguments for the attribute.");
         }
@@ -201,6 +204,11 @@ internal class BuildConfigurationFromAttributes
             if (v is null)
             {
                 continue;
+            }
+
+            if (i == 15)
+            {
+                _primitiveTypeMustBeExplicit = (bool) v;
             }
 
             if (i == 14)

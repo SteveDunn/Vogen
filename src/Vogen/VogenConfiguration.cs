@@ -5,8 +5,7 @@ namespace Vogen;
 public class VogenConfiguration
 {
     // Don't add default values here, they should be in DefaultInstance.
-    public VogenConfiguration(
-        INamedTypeSymbol? underlyingType,
+    public VogenConfiguration(INamedTypeSymbol? underlyingType,
         INamedTypeSymbol? validationExceptionType,
         Conversions conversions,
         Customizations customizations,
@@ -23,7 +22,8 @@ public class VogenConfiguration
         IsInitializedMethodGeneration isInitializedMethodGeneration,
         SystemTextJsonConverterFactoryGeneration systemTextJsonConverterFactoryGeneration,
         StaticAbstractsGeneration staticAbstractsGeneration,
-        OpenApiSchemaCustomizations openApiSchemaCustomizations)
+        OpenApiSchemaCustomizations openApiSchemaCustomizations,
+        bool explicitlySpecifyTypeInValueObject)
     {
         UnderlyingType = underlyingType;
         ValidationExceptionType = validationExceptionType;
@@ -43,6 +43,7 @@ public class VogenConfiguration
         SystemTextJsonConverterFactoryGeneration = systemTextJsonConverterFactoryGeneration;
         StaticAbstractsGeneration = staticAbstractsGeneration;
         OpenApiSchemaCustomizations = openApiSchemaCustomizations;
+        ExplicitlySpecifyTypeInValueObject = explicitlySpecifyTypeInValueObject;
     }
 
     /// <summary>
@@ -80,6 +81,8 @@ public class VogenConfiguration
     
     public OpenApiSchemaCustomizations OpenApiSchemaCustomizations { get; }
     
+    public bool ExplicitlySpecifyTypeInValueObject { get; }
+    
     public StaticAbstractsGeneration StaticAbstractsGeneration { get; }
 
     // the issue here is that without a physical 'symbol' in the source, we can't
@@ -104,5 +107,6 @@ public class VogenConfiguration
         isInitializedMethodGeneration: IsInitializedMethodGeneration.Generate,
         systemTextJsonConverterFactoryGeneration: SystemTextJsonConverterFactoryGeneration.Generate,
         staticAbstractsGeneration: StaticAbstractsGeneration.Omit,
-        openApiSchemaCustomizations: OpenApiSchemaCustomizations.Omit);
+        openApiSchemaCustomizations: OpenApiSchemaCustomizations.Omit,
+        explicitlySpecifyTypeInValueObject: false);
 }

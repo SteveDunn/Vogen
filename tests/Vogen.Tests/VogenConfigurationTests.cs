@@ -25,6 +25,7 @@ public class VogenConfigurationTests
             instance.IsInitializedMethodGeneration.Should().Be(IsInitializedMethodGeneration.Generate);
             instance.SystemTextJsonConverterFactoryGeneration.Should().Be(SystemTextJsonConverterFactoryGeneration.Generate);
             instance.StaticAbstractsGeneration.Should().Be(StaticAbstractsGeneration.Omit);
+            instance.ExplicitlySpecifyTypeInValueObject.Should().Be(false);
         }
     }
     
@@ -69,7 +70,8 @@ public class VogenConfigurationTests
                 IsInitializedMethodGeneration.Unspecified,
                 SystemTextJsonConverterFactoryGeneration.Unspecified,
                 StaticAbstractsGeneration.Unspecified,
-                OpenApiSchemaCustomizations.Unspecified);
+                OpenApiSchemaCustomizations.Unspecified,
+                false);
     }
 
     public class Casting
@@ -117,7 +119,8 @@ public class VogenConfigurationTests
                 isInitializedMethodGeneration: IsInitializedMethodGeneration.Unspecified,
                 systemTextJsonConverterFactoryGeneration: SystemTextJsonConverterFactoryGeneration.Unspecified,
                 staticAbstractsGeneration: StaticAbstractsGeneration.Unspecified,
-                openApiSchemaCustomizations: OpenApiSchemaCustomizations.Unspecified);
+                openApiSchemaCustomizations: OpenApiSchemaCustomizations.Unspecified,
+                false);
     }
 
     public class Conversion
@@ -149,7 +152,8 @@ public class VogenConfigurationTests
                 IsInitializedMethodGeneration.Unspecified,
                 SystemTextJsonConverterFactoryGeneration.Unspecified,
                 StaticAbstractsGeneration.Unspecified,
-                OpenApiSchemaCustomizations.Unspecified);
+                OpenApiSchemaCustomizations.Unspecified,
+                false);
     }
 
     public class Comparable
@@ -356,6 +360,19 @@ public class VogenConfigurationTests
         }
     }
 
+    public class PrimitiveTypeMustBeExplicitTests
+    {
+        [Fact]
+        public void Defaults_to_false()
+        {
+            var result = CombineConfigurations.CombineAndResolveAnythingUnspecified(
+                localValues: new ConfigBuilder().WithPrimitiveTypeMustBeExplicit(false).Build(), 
+                globalValues: new ConfigBuilder().WithPrimitiveTypeMustBeExplicit(true).Build());
+
+            result.ExplicitlySpecifyTypeInValueObject.Should().Be(true);
+        }
+    }
+
     public class PrimitiveParsableGenerationTests
     {
         [Fact]
@@ -413,7 +430,8 @@ public class VogenConfigurationTests
                 _c.IsInitializedMethodGeneration,
                 _c.SystemTextJsonConverterFactoryGeneration,
                 _c.StaticAbstractsGeneration,
-                _c.OpenApiSchemaCustomizations);
+                _c.OpenApiSchemaCustomizations,
+                false);
                 
             return this;
         }
@@ -438,7 +456,8 @@ public class VogenConfigurationTests
                 _c.IsInitializedMethodGeneration,
                 _c.SystemTextJsonConverterFactoryGeneration,
                 _c.StaticAbstractsGeneration,
-                _c.OpenApiSchemaCustomizations);
+                _c.OpenApiSchemaCustomizations,
+                false);
                 
             return this;
         }
@@ -463,7 +482,8 @@ public class VogenConfigurationTests
                 _c.IsInitializedMethodGeneration,
                 _c.SystemTextJsonConverterFactoryGeneration,
                 _c.StaticAbstractsGeneration,
-                _c.OpenApiSchemaCustomizations);
+                _c.OpenApiSchemaCustomizations,
+                false);
                 
             return this;
         }
@@ -488,7 +508,8 @@ public class VogenConfigurationTests
                 g,
                 _c.SystemTextJsonConverterFactoryGeneration,
                 _c.StaticAbstractsGeneration,
-                _c.OpenApiSchemaCustomizations);
+                _c.OpenApiSchemaCustomizations,
+                false);
                 
             return this;
         }
@@ -513,7 +534,8 @@ public class VogenConfigurationTests
                 _c.IsInitializedMethodGeneration,
                 g,
                 _c.StaticAbstractsGeneration,
-                _c.OpenApiSchemaCustomizations);
+                _c.OpenApiSchemaCustomizations,
+                false);
                 
             return this;
         }
@@ -538,7 +560,8 @@ public class VogenConfigurationTests
                 _c.IsInitializedMethodGeneration,
                 _c.SystemTextJsonConverterFactoryGeneration,
                 _c.StaticAbstractsGeneration,
-                _c.OpenApiSchemaCustomizations);
+                _c.OpenApiSchemaCustomizations,
+                false);
                 
             return this;
         }
@@ -563,7 +586,8 @@ public class VogenConfigurationTests
                 _c.IsInitializedMethodGeneration,
                 _c.SystemTextJsonConverterFactoryGeneration,
                 _c.StaticAbstractsGeneration,
-                _c.OpenApiSchemaCustomizations);
+                _c.OpenApiSchemaCustomizations,
+                false);
                 
             return this;
         }
@@ -588,7 +612,8 @@ public class VogenConfigurationTests
                 _c.IsInitializedMethodGeneration,
                 _c.SystemTextJsonConverterFactoryGeneration,
                 g,
-                _c.OpenApiSchemaCustomizations);
+                _c.OpenApiSchemaCustomizations,
+                false);
                 
             return this;
         }
@@ -613,7 +638,34 @@ public class VogenConfigurationTests
                 _c.IsInitializedMethodGeneration,
                 _c.SystemTextJsonConverterFactoryGeneration,
                 _c.StaticAbstractsGeneration,
-                g);
+                g,
+                false);
+                
+            return this;
+        }
+
+        public ConfigBuilder WithPrimitiveTypeMustBeExplicit(bool b)
+        {
+            _c = new VogenConfiguration(
+                _c.UnderlyingType,
+                _c.ValidationExceptionType,
+                _c.Conversions,
+                _c.Customizations,
+                _c.DeserializationStrictness,
+                _c.DebuggerAttributes,
+                _c.Comparison,
+                _c.StringComparers,
+                _c.ToPrimitiveCasting,
+                _c.FromPrimitiveCasting,
+                _c.DisableStackTraceRecordingInDebug,
+                _c.ParsableForStrings,
+                _c.ParsableForPrimitives,
+                _c.TryFromGeneration,
+                _c.IsInitializedMethodGeneration,
+                _c.SystemTextJsonConverterFactoryGeneration,
+                _c.StaticAbstractsGeneration,
+                _c.OpenApiSchemaCustomizations,
+                b);
                 
             return this;
         }

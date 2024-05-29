@@ -40,3 +40,11 @@ AddStaticToExistingNormalizeInputMethod | Usage | Info | AddNormalizeInputAnalyz
 AddStaticToExistingValidationMethod | Usage | Info | AddValidationAnalyzer
 FixInputTypeOfValidationMethod | Usage | Info | ValidationMethodAnalyzer
 VOG028 | Usage | Info | NormalizeInputMethodAnalyzer
+
+## Release 4.0.6
+
+### New Rules
+
+Rule ID | Category | Severity | Notes
+--------|----------|----------|-------
+VOG029 | Usage | Error | SpecifyTypeExplicitlyInValueObjectAttributeAnalzyer
