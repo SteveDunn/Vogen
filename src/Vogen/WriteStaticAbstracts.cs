@@ -7,11 +7,11 @@ namespace Vogen;
 
 internal class WriteStaticAbstracts
 {
-    public static void WriteIfNeeded(VogenConfiguration? globalConfig,
+    public static void WriteInterfacesAndMethodsIfNeeded(VogenConfiguration? globalConfig,
         SourceProductionContext context,
         Compilation compilation)
     {
-        if (compilation is CSharpCompilation { LanguageVersion: < LanguageVersion.CSharp11 })
+        if (compilation is not CSharpCompilation { LanguageVersion: >= LanguageVersion.CSharp11 })
         {
             return;
         }
@@ -30,7 +30,7 @@ internal class WriteStaticAbstracts
 
              {GenerateSource()}
              """;
-        
+
         context.AddSource("VogenInterfaces_g.cs", source);
 
         string GenerateSource()
@@ -74,6 +74,7 @@ internal class WriteStaticAbstracts
                        """;
             }
         }
+
 
         string GenerateCastingOperatorsIfNeeded()
         {
@@ -131,11 +132,11 @@ internal class WriteStaticAbstracts
             return string.Empty;
         }
 
-        if (item.LanguageVersion <= LanguageVersion.CSharp11)
+        if (item.LanguageVersion >= LanguageVersion.CSharp11)
         {
-            return string.Empty;
+            return precedingText + $" IVogen<{tds.Identifier}, {item.UnderlyingTypeFullName}>";
         }
 
-        return precedingText + $" IVogen<{tds.Identifier}, {item.UnderlyingTypeFullName}>";
+        return string.Empty;
     }
 }

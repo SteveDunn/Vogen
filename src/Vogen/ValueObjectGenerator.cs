@@ -88,7 +88,7 @@ namespace Vogen
 
                 internalDiags.RecordResolvedGlobalConfig(mergedConfig);
                 
-                WriteStaticAbstracts.WriteIfNeeded(mergedConfig, context, compilation);
+                WriteStaticAbstracts.WriteInterfacesAndMethodsIfNeeded(mergedConfig, context, compilation);
 
                 WriteSystemTextJsonConverterFactories.WriteIfNeeded(mergedConfig, workItems, context, compilation);
 
