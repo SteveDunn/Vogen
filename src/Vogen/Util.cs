@@ -253,17 +253,19 @@ $$"""
     public static string GenerateYourAssemblyName() => typeof(Util).Assembly.GetName().Name!;
     public static string GenerateYourAssemblyVersion() => typeof(Util).Assembly.GetName().Version!.ToString();
 
-    public static string GenerateToString(VoWorkItem item) =>
-        item.UserProvidedOverloads.ToStringInfo.WasSupplied ? string.Empty
-            : $@"/// <summary>Returns the string representation of the underlying <see cref=""{item.UnderlyingTypeFullName}"" />.</summary>
-    /// <inheritdoc cref=""{item.UnderlyingTypeFullName}.ToString()"" />
-    public override global::System.String ToString() => _isInitialized ? Value.ToString() : ""[UNINITIALIZED]"";";
+    public static string GenerateToString(VoWorkItem item) => GenerateToString(item, false);
 
-    public static string GenerateToStringReadOnly(VoWorkItem item) =>
-        item.UserProvidedOverloads.ToStringInfo.WasSupplied ? string.Empty :
-            $@"/// <summary>Returns the string representation of the underlying type</summary>
-    /// <inheritdoc cref=""{item.UnderlyingTypeFullName}.ToString()"" />
-    public readonly override global::System.String ToString() =>_isInitialized ? Value.ToString() : ""[UNINITIALIZED]"";";
+    public static string GenerateToStringReadOnly(VoWorkItem item) => GenerateToString(item, true);
+
+    private static string GenerateToString(VoWorkItem item, bool isReadOnly)
+    {
+        string ro = isReadOnly ? " readonly" : string.Empty;
+        
+        return item.UserProvidedOverloads.ToStringInfo.WasSupplied
+            ? string.Empty
+            : $@"/// <summary>Returns the string representation of the underlying <see cref=""{item.UnderlyingTypeFullName}"" />.</summary>
+    public{ro} override global::System.String ToString() =>_isInitialized ? Value.ToString() : ""[UNINITIALIZED]"";";
+    }
 
     public static string GenerateGuidFactoryMethodIfNeeded(VoWorkItem item, TypeDeclarationSyntax tds)
     {
