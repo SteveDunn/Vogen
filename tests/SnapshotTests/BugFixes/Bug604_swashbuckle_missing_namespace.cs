@@ -5,7 +5,7 @@ using Vogen;
 
 namespace SnapshotTests.BugFixes;
 
-// See https://github.com/SteveDunn/Vogen/issues/597
+// See https://github.com/SteveDunn/Vogen/issues/604
 [UsesVerify]
 public class Bug604_Swashbuckle_has_missing_namespaces_for_the_vo
 {
