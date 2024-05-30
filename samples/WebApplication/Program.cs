@@ -1,5 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNetCore.OpenApi;
+using Microsoft.OpenApi.Any;
 using Microsoft.OpenApi.Models;
 using Vogen;
 
@@ -91,6 +92,28 @@ app.MapGet("/weatherforecast/{city}", (City city) =>
     })
     .WithName("GetWeatherForecastByCity")
     .WithOpenApi();
+
+app.MapGet("/historicweatherforecast/{historicForecastId}", (HistoricForecastId historicForecastId) =>
+    {
+        
+            Centigrade temperatureC = Centigrade.From(42);
+            WeatherForecast forecast = new(
+                ForecastDate.From(new DateOnly(1970, 6, 10)),
+                temperatureC,
+                Farenheit.FromCentigrade(temperatureC),
+                summaries[0] + " - related to historic forecast with an ID of " + historicForecastId,
+                City.From("London"));
+            
+        return forecast;
+    })
+    .WithName("GetHistoricForecast")
+    .WithOpenApi(generatedOperation =>
+    {
+        var parameter = generatedOperation.Parameters[0];
+        parameter.Description = "The ID of the historical weather report (example only - always returns the same weather report)";
+        parameter.Example = new OpenApiString(Guid.NewGuid().ToString());
+        return generatedOperation;        
+    });
 
 #if USE_MICROSOFT_OPENAPI_AND_SCALAR
 app.MapOpenApi();

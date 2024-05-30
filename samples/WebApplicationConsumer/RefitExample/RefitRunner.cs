@@ -18,6 +18,11 @@ public static class RefitRunner
 
         await GetWeatherForecast(City.From("Peckham"));
         Console.WriteLine("=============");
+
+        Console.WriteLine("======Historical weather forecast... =======");
+
+        await GetHistoricalWeatherForecast(HistoricForecastId.FromNewGuid());
+        Console.WriteLine("=============");
         
         return;
 
@@ -25,12 +30,25 @@ public static class RefitRunner
         {
             try
             {
-
                 var forecasts = await api.GetWeatherForecastByCity(city);
                 foreach (var f in forecasts)
                 {
                     Console.WriteLine($"City: {f.City}, TempC: {f.TemperatureC} ({f.TemperatureF.Value}F) - {f.Summary}");
                 }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error: {ex.Message}");
+            }
+        }
+
+        async Task GetHistoricalWeatherForecast(HistoricForecastId historicForecastId)
+        {
+            try
+            {
+                var f = await api.GetHistoricForecastId(historicForecastId);
+                
+                Console.WriteLine($"City: {f.City}, TempC: {f.TemperatureC} ({f.TemperatureF.Value}F) - {f.Summary}");
             }
             catch (Exception ex)
             {
@@ -47,4 +65,7 @@ public interface IJsonPlaceholderApi
 
     [Get("/weatherforecast/{city}")]
     Task<List<WeatherForecast>> GetWeatherForecastByCity(City city);
+
+    [Get("/historicweatherforecast/{historicForecastId}")]
+    Task<WeatherForecast> GetHistoricForecastId(HistoricForecastId historicForecastId);
 }

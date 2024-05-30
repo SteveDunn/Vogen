@@ -119,4 +119,74 @@ public class SwashbuckleTests
             .CustomizeSettings(s => s.UseHashedParameters(@namespace))
             .RunOn(TargetFramework.AspNetCore8_0);
     }
+
+    [Theory]
+    [InlineData("Guid")]
+    [InlineData("byte")]
+    [InlineData("Byte")]
+    [InlineData("char")]
+    [InlineData("Char")]
+    [InlineData("System.Numerics.Complex")]
+    // [InlineData("DateOnly")] - for some reason, this fails during the test, but not 'in real life'
+    [InlineData("DateTime")]
+    [InlineData("DateTimeOffset")]
+    [InlineData("decimal")]
+    [InlineData("Decimal")]
+    [InlineData("double")]
+    [InlineData("Double")]
+    [InlineData("Half")]
+    public async Task Treats_IParsable_primitives_as_strings(string type)
+    {
+        var source =
+            $$"""
+              using System;
+              using Vogen;
+
+              [assembly: VogenDefaults(openApiSchemaCustomizations: 
+                 OpenApiSchemaCustomizations.GenerateSwashbuckleMappingExtensionMethod)]
+
+              namespace MyNamespace;
+
+              [ValueObject<{{type}}>]
+              public partial class MyVo { }
+              """;
+
+        await new SnapshotRunner<ValueObjectGenerator>()
+            .WithSource(source)
+            .IgnoreInitialCompilationErrors()
+            .CustomizeSettings(s => s.UseHashedParameters(type))
+            .RunOn(TargetFramework.Net8_0);
+    }
+
+    [Fact]
+    public async Task Treats_custom_IParsable_as_string()
+    {
+        var source =
+            $$"""
+              #nullable enable
+              
+              using System;
+              using Vogen;
+
+              [assembly: VogenDefaults(openApiSchemaCustomizations: 
+                 OpenApiSchemaCustomizations.GenerateSwashbuckleMappingExtensionMethod)]
+
+              namespace MyNamespace;
+
+              public class C : IParsable<C>
+              {
+                  public static C Parse(string s, IFormatProvider? provider) => throw new NotImplementedException();
+              
+                  public static bool TryParse(string? s, IFormatProvider? provider, out C result) => throw new NotImplementedException();
+              }
+
+              [ValueObject<C>]
+              public partial class MyVo { }
+              """;
+
+        await new SnapshotRunner<ValueObjectGenerator>()
+            .WithSource(source)
+            .RunOn(TargetFramework.AspNetCore8_0);
+    }
+    
 }

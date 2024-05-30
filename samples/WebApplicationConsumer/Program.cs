@@ -3,7 +3,8 @@ using ServiceStackDotTextExample;
 using Vogen;
 
 [assembly: VogenDefaults(
-    conversions:Conversions.ServiceStackDotText | Conversions.SystemTextJson, 
+    conversions:Conversions.ServiceStackDotText | Conversions.SystemTextJson,
+    customizations: Customizations.AddFactoryMethodForGuids,
     staticAbstractsGeneration: StaticAbstractsGeneration.MostCommon)]
 
 namespace Whatever

@@ -138,14 +138,16 @@ internal class WriteOpenApiSchemaCustomizationCode
                 : $"{workItem.FullNamespace}.{workItem.VoTypeName}";
             
             workItemCode.AppendLine(
-                $$"""global::Microsoft.Extensions.DependencyInjection.SwaggerGenOptionsExtensions.MapType<{{fqn}}>(o, () => new global::Microsoft.OpenApi.Models.OpenApiSchema { Type = "{{MapUnderlyingTypeToJsonSchema(workItem.UnderlyingTypeFullName)}}" });""");
+                $$"""global::Microsoft.Extensions.DependencyInjection.SwaggerGenOptionsExtensions.MapType<{{fqn}}>(o, () => new global::Microsoft.OpenApi.Models.OpenApiSchema { Type = "{{MapUnderlyingTypeToJsonSchema(workItem)}}" });""");
         }
 
         return workItemCode.ToString();
     }
 
-    private static string MapUnderlyingTypeToJsonSchema(string primitiveType)
+    private static string MapUnderlyingTypeToJsonSchema(VoWorkItem workItem)
     {
+        var primitiveType = workItem.UnderlyingTypeFullName;
+        
         string jsonType = primitiveType switch
         {
             "System.Int32" => "integer",
@@ -154,9 +156,19 @@ internal class WriteOpenApiSchemaCustomizationCode
             "System.Double" => "number",
             "System.String" => "string",
             "System.Boolean" => "boolean",
-            _ => "object"
+            _ => TryMapComplexPrimitive(workItem)
         };
 
         return jsonType;
+    }
+
+    private static string TryMapComplexPrimitive(VoWorkItem workItem)
+    {
+        if (workItem.ParsingInformation.IParsableIsAvailable)
+        {
+            return "string";
+        }
+
+        return "object";
     }
 }

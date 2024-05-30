@@ -27,6 +27,9 @@ public partial struct OrderId
 {
 }
 
+[ValueObject<Guid>]
+public readonly partial struct HistoricForecastId;
+
 public class Order
 {
     public OrderId OrderId { get; init; } 
