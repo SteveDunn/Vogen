@@ -48,45 +48,14 @@
   </ItemGroup>
 
   <ItemGroup>
-<!--    <ProjectReference Include="..\..\src\Vogen.SharedTypes\Vogen.SharedTypes.csproj" />-->
     <ProjectReference Include="..\..\src\Vogen\Vogen.csproj" />
     <ProjectReference Include="..\Shared\Shared.csproj" />
   </ItemGroup>
-
-<!--  <ItemGroup>-->
-<!--    <None Remove="xunit.runner.json" />-->
-<!--    <None Update="Equatable\snapshots\snap-v3.1\ComprableGenerationTests.Using_omit_does_not_generate_comparable_code.verified.txt">-->
-<!--      <ParentFile>ComprableGenerationTests</ParentFile>-->
-<!--      <DependentUpon>ComprableGenerationTests.cs</DependentUpon>-->
-<!--    </None>-->
-<!--    <None Update="Equatable\snapshots\snap-v6.0\ComprableGenerationTests.Using_underlying_uses_int_comparison.verified.txt">-->
-<!--      <ParentFile>ComprableGenerationTests</ParentFile>-->
-<!--      <DependentUpon>ComprableGenerationTests.cs</DependentUpon>-->
-<!--    </None>-->
-<!--    <None Update="Equatable\snapshots\snap-v7.0\ComprableGenerationTests.Using_underlying_uses_int_comparison.verified.txt">-->
-<!--      <ParentFile>ComprableGenerationTests</ParentFile>-->
-<!--      <DependentUpon>ComprableGenerationTests.cs</DependentUpon>-->
-<!--    </None>-->
-<!--    <None Remove="Equatable\snapshots\snap-v7.0\ComprableGenerationTests.Using_omit_does_not_generate_comparable_code.verified.txt" />-->
-<!--    <None Remove="Equatable\snapshots\snap-v5.0\ComprableGenerationTests.Using_underlying_uses_int_comparison.verified.txt" />-->
-<!--    <None Remove="Equatable\snapshots\snap-v4.8\ComprableGenerationTests.Using_underlying_uses_int_comparison.verified.txt" />-->
-<!--    <None Remove="Equatable\snapshots\snap-v4.6.1\ComprableGenerationTests.Using_underlying_uses_int_comparison.verified.txt" />-->
-<!--    <None Remove="Equatable\snapshots\snap-v3.1\ComprableGenerationTests.Using_underlying_uses_int_comparison.verified.txt" />-->
-<!--  </ItemGroup>-->
 
   <ItemGroup>
     <Content Include="xunit.runner.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
-
-<!--  <ItemGroup>-->
-<!--    <Folder Include="StringComparison\snapshots\snap-v4.6.1\" />-->
-<!--    <Folder Include="StringComparison\snapshots\snap-v4.8\" />-->
-<!--    <Folder Include="StringComparison\snapshots\snap-v5.0\" />-->
-<!--    <Folder Include="StringComparison\snapshots\snap-v6.0\" />-->
-<!--    <Folder Include="StringComparison\snapshots\snap-v7.0\" />-->
-<!--    <Folder Include="InstanceFields\" />-->
-<!--  </ItemGroup>-->
 
 </Project>
