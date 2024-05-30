@@ -98,7 +98,7 @@ namespace SnapshotTests
                 using var scope = new AssertionScope();
 
                 (ImmutableArray<Diagnostic> diagnostics, SyntaxTree[] syntaxTrees) = await GetGeneratedOutput(_source, eachFramework);
-                diagnostics.Should().BeEmpty(@$"because the following source code should compile on {eachFramework}: " + _source);
+                diagnostics.Should().BeEmpty(@$"because the following source code should compile on {eachFramework}: " + Environment.NewLine + _source + Environment.NewLine);
 
                 var outputFolder = Path.Combine(_path, SnapshotUtils.GetSnapshotDirectoryName(eachFramework, _locale));
 
