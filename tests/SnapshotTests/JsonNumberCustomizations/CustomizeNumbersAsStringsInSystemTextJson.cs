@@ -18,23 +18,21 @@ public class CustomizeNumbersAsStringsInSystemTextJson
         {
             foreach (string type in Factory.TypeVariations)
             {
-                foreach (string conversion in _conversions)
+                string conversion = "Conversions.SystemTextJson";
+                foreach (string underlyingType in Factory.UnderlyingTypes)
                 {
-                    foreach (string underlyingType in Factory.UnderlyingTypes)
-                    {
-                        var qualifiedType = "public " + type;
-                        yield return new object[]
-                        {
-                            qualifiedType, conversion, underlyingType,
-                            CreateClassName(qualifiedType, conversion, underlyingType, customized: true), true
-                        };
+                    var qualifiedType = "public " + type;
+                    yield return
+                    [
+                        qualifiedType, conversion, underlyingType,
+                        CreateClassName(qualifiedType, conversion, underlyingType, customized: true), true
+                    ];
 
-                        yield return new object[]
-                        {
-                            qualifiedType, conversion, underlyingType,
-                            CreateClassName(qualifiedType, conversion, underlyingType, customized: false), false
-                        };
-                    }
+                    yield return
+                    [
+                        qualifiedType, conversion, underlyingType,
+                        CreateClassName(qualifiedType, conversion, underlyingType, customized: false), false
+                    ];
                 }
             }
         }
@@ -43,15 +41,6 @@ public class CustomizeNumbersAsStringsInSystemTextJson
             Normalize($"stj_number_as_string_{type}{conversion}{underlyingType}{(customized ? "_customized" : "")}");
 
         private static string Normalize(string input) => input.Replace(" ", "_").Replace("|", "_").Replace(".", "_");
-
-        // for each of the types above, create classes for each one of these attributes
-        private readonly string[] _conversions = new[]
-        {
-            "Conversions.None",
-            "Conversions.NewtonsoftJson",
-            "Conversions.SystemTextJson",
-            "Conversions.NewtonsoftJson | Conversions.SystemTextJson"
-        };
 
         IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
     }
