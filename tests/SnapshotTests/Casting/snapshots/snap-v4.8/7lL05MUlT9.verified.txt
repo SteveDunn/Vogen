@@ -310,8 +310,7 @@ public static ValueObjectOrError<_casting_public_sealed_partial_classCastOperato
         
 
         /// <summary>Returns the string representation of the underlying <see cref="System.Boolean" />.</summary>
-    /// <inheritdoc cref="System.Boolean.ToString()" />
-    public override global::System.String ToString() => _isInitialized ? Value.ToString() : "[UNINITIALIZED]";
+    public override global::System.String ToString() =>_isInitialized ? Value.ToString() : "[UNINITIALIZED]";
 
         
         internal class _casting_public_sealed_partial_classCastOperator_ImplicitCastOperator_NoneboolSystemTextJsonConverter : global::System.Text.Json.Serialization.JsonConverter<_casting_public_sealed_partial_classCastOperator_ImplicitCastOperator_Nonebool>

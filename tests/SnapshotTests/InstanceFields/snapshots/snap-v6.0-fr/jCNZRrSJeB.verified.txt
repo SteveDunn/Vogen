@@ -314,8 +314,7 @@ public static readonly internal_sealed_partial_classchar MyValue = new internal_
 
 
         /// <summary>Returns the string representation of the underlying <see cref="System.Char" />.</summary>
-    /// <inheritdoc cref="System.Char.ToString()" />
-    public override global::System.String ToString() => _isInitialized ? Value.ToString() : "[UNINITIALIZED]";
+    public override global::System.String ToString() =>_isInitialized ? Value.ToString() : "[UNINITIALIZED]";
 
         
         internal class internal_sealed_partial_classcharSystemTextJsonConverter : global::System.Text.Json.Serialization.JsonConverter<internal_sealed_partial_classchar>

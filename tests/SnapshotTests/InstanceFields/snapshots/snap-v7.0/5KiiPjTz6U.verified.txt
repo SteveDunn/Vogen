@@ -484,8 +484,7 @@ public static readonly public_partial_classbyte MyValue = new public_partial_cla
 
 
         /// <summary>Returns the string representation of the underlying <see cref="System.Byte" />.</summary>
-    /// <inheritdoc cref="System.Byte.ToString()" />
-    public override global::System.String ToString() => _isInitialized ? Value.ToString() : "[UNINITIALIZED]";
+    public override global::System.String ToString() =>_isInitialized ? Value.ToString() : "[UNINITIALIZED]";
 
         
         internal class public_partial_classbyteSystemTextJsonConverter : global::System.Text.Json.Serialization.JsonConverter<public_partial_classbyte>

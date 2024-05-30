@@ -608,8 +608,7 @@ public static ValueObjectOrError<MyVoInt> TryFrom(System.Int32 value)
         
 
         /// <summary>Returns the string representation of the underlying <see cref="System.Int32" />.</summary>
-    /// <inheritdoc cref="System.Int32.ToString()" />
-    public override global::System.String ToString() => _isInitialized ? Value.ToString() : "[UNINITIALIZED]";
+    public override global::System.String ToString() =>_isInitialized ? Value.ToString() : "[UNINITIALIZED]";
 
         
         internal class MyVoIntSystemTextJsonConverter : global::System.Text.Json.Serialization.JsonConverter<MyVoInt>
@@ -1240,8 +1239,7 @@ public static ValueObjectOrError<MyVoFloat> TryFrom(System.Single value)
         
 
         /// <summary>Returns the string representation of the underlying <see cref="System.Single" />.</summary>
-    /// <inheritdoc cref="System.Single.ToString()" />
-    public override global::System.String ToString() => _isInitialized ? Value.ToString() : "[UNINITIALIZED]";
+    public override global::System.String ToString() =>_isInitialized ? Value.ToString() : "[UNINITIALIZED]";
 
         
         internal class MyVoFloatSystemTextJsonConverter : global::System.Text.Json.Serialization.JsonConverter<MyVoFloat>
@@ -1872,8 +1870,7 @@ public static ValueObjectOrError<MyVoDecimal> TryFrom(System.Decimal value)
         
 
         /// <summary>Returns the string representation of the underlying <see cref="System.Decimal" />.</summary>
-    /// <inheritdoc cref="System.Decimal.ToString()" />
-    public override global::System.String ToString() => _isInitialized ? Value.ToString() : "[UNINITIALIZED]";
+    public override global::System.String ToString() =>_isInitialized ? Value.ToString() : "[UNINITIALIZED]";
 
         
         internal class MyVoDecimalSystemTextJsonConverter : global::System.Text.Json.Serialization.JsonConverter<MyVoDecimal>
@@ -2504,8 +2501,7 @@ public static ValueObjectOrError<MyVoDouble> TryFrom(System.Double value)
         
 
         /// <summary>Returns the string representation of the underlying <see cref="System.Double" />.</summary>
-    /// <inheritdoc cref="System.Double.ToString()" />
-    public override global::System.String ToString() => _isInitialized ? Value.ToString() : "[UNINITIALIZED]";
+    public override global::System.String ToString() =>_isInitialized ? Value.ToString() : "[UNINITIALIZED]";
 
         
         internal class MyVoDoubleSystemTextJsonConverter : global::System.Text.Json.Serialization.JsonConverter<MyVoDouble>
@@ -2888,8 +2884,7 @@ public static ValueObjectOrError<MyVoString> TryFrom(System.String value)
         
 
         /// <summary>Returns the string representation of the underlying <see cref="System.String" />.</summary>
-    /// <inheritdoc cref="System.String.ToString()" />
-    public override global::System.String ToString() => _isInitialized ? Value.ToString() : "[UNINITIALIZED]";
+    public override global::System.String ToString() =>_isInitialized ? Value.ToString() : "[UNINITIALIZED]";
 
         
         internal class MyVoStringSystemTextJsonConverter : global::System.Text.Json.Serialization.JsonConverter<MyVoString>
@@ -3282,8 +3277,7 @@ public static ValueObjectOrError<MyVoBool> TryFrom(System.Boolean value)
         
 
         /// <summary>Returns the string representation of the underlying <see cref="System.Boolean" />.</summary>
-    /// <inheritdoc cref="System.Boolean.ToString()" />
-    public override global::System.String ToString() => _isInitialized ? Value.ToString() : "[UNINITIALIZED]";
+    public override global::System.String ToString() =>_isInitialized ? Value.ToString() : "[UNINITIALIZED]";
 
         
         internal class MyVoBoolSystemTextJsonConverter : global::System.Text.Json.Serialization.JsonConverter<MyVoBool>

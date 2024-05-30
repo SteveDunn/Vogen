@@ -479,8 +479,7 @@ public static ValueObjectOrError<internal_partial_classConversions_NewtonsoftJso
         
 
         /// <summary>Returns the string representation of the underlying <see cref="System.Int16" />.</summary>
-    /// <inheritdoc cref="System.Int16.ToString()" />
-    public override global::System.String ToString() => _isInitialized ? Value.ToString() : "[UNINITIALIZED]";
+    public override global::System.String ToString() =>_isInitialized ? Value.ToString() : "[UNINITIALIZED]";
 
         
         internal class internal_partial_classConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConvertershortSystemTextJsonConverter : global::System.Text.Json.Serialization.JsonConverter<internal_partial_classConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConvertershort>

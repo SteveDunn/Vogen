@@ -477,8 +477,7 @@ public static ValueObjectOrError<public_partial_classConversions_Nonebyte> TryFr
         
 
         /// <summary>Returns the string representation of the underlying <see cref="System.Byte" />.</summary>
-    /// <inheritdoc cref="System.Byte.ToString()" />
-    public override global::System.String ToString() => _isInitialized ? Value.ToString() : "[UNINITIALIZED]";
+    public override global::System.String ToString() =>_isInitialized ? Value.ToString() : "[UNINITIALIZED]";
 
         
 

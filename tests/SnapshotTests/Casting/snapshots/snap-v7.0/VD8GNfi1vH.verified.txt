@@ -306,8 +306,7 @@ public static ValueObjectOrError<_casting_public_partial_structCastOperator_Expl
             return global::System.Collections.Generic.EqualityComparer<System.Boolean>.Default.GetHashCode(Value);
           }
 
-        /// <summary>Returns the string representation of the underlying type</summary>
-    /// <inheritdoc cref="System.Boolean.ToString()" />
+        /// <summary>Returns the string representation of the underlying <see cref="System.Boolean" />.</summary>
     public readonly override global::System.String ToString() =>_isInitialized ? Value.ToString() : "[UNINITIALIZED]";
 
         private readonly void EnsureInitialized()

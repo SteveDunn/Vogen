@@ -484,8 +484,7 @@ public static readonly public_partial_classdouble MyValue = new public_partial_c
 
 
         /// <summary>Returns the string representation of the underlying <see cref="System.Double" />.</summary>
-    /// <inheritdoc cref="System.Double.ToString()" />
-    public override global::System.String ToString() => _isInitialized ? Value.ToString() : "[UNINITIALIZED]";
+    public override global::System.String ToString() =>_isInitialized ? Value.ToString() : "[UNINITIALIZED]";
 
         
         internal class public_partial_classdoubleSystemTextJsonConverter : global::System.Text.Json.Serialization.JsonConverter<public_partial_classdouble>

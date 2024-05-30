@@ -349,8 +349,7 @@ public static ValueObjectOrError<public_partial_record_structConversions_Newtons
         }
 
         // record enumerates fields - we just want our Value and to throw if it's not initialized.
-        /// <summary>Returns the string representation of the underlying type</summary>
-    /// <inheritdoc cref="System.Int16.ToString()" />
+        /// <summary>Returns the string representation of the underlying <see cref="System.Int16" />.</summary>
     public readonly override global::System.String ToString() =>_isInitialized ? Value.ToString() : "[UNINITIALIZED]";
 
         

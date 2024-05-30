@@ -429,8 +429,7 @@ public static ValueObjectOrError<_casting_public_sealed_partial_record_classCast
 
         // record enumerates fields - we just want our Value and to throw if it's not initialized.
         /// <summary>Returns the string representation of the underlying <see cref="System.Double" />.</summary>
-    /// <inheritdoc cref="System.Double.ToString()" />
-    public override global::System.String ToString() => _isInitialized ? Value.ToString() : "[UNINITIALIZED]";
+    public override global::System.String ToString() =>_isInitialized ? Value.ToString() : "[UNINITIALIZED]";
 
         
         internal class _casting_public_sealed_partial_record_classCastOperator_ImplicitCastOperator_ExplicitdoubleSystemTextJsonConverter : global::System.Text.Json.Serialization.JsonConverter<_casting_public_sealed_partial_record_classCastOperator_ImplicitCastOperator_Explicitdouble>

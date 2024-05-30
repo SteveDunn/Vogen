@@ -347,8 +347,7 @@ public static ValueObjectOrError<internal_sealed_partial_recordConversions_Newto
 
         // record enumerates fields - we just want our Value and to throw if it's not initialized.
         /// <summary>Returns the string representation of the underlying <see cref="System.Boolean" />.</summary>
-    /// <inheritdoc cref="System.Boolean.ToString()" />
-    public override global::System.String ToString() => _isInitialized ? Value.ToString() : "[UNINITIALIZED]";
+    public override global::System.String ToString() =>_isInitialized ? Value.ToString() : "[UNINITIALIZED]";
 
         
         internal class internal_sealed_partial_recordConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterboolSystemTextJsonConverter : global::System.Text.Json.Serialization.JsonConverter<internal_sealed_partial_recordConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterbool>

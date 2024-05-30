@@ -391,8 +391,7 @@ public static MyVo FromNewGuid() { return From(global::System.Guid.NewGuid()); }
         }
 
         // record enumerates fields - we just want our Value and to throw if it's not initialized.
-        /// <summary>Returns the string representation of the underlying type</summary>
-    /// <inheritdoc cref="System.Guid.ToString()" />
+        /// <summary>Returns the string representation of the underlying <see cref="System.Guid" />.</summary>
     public readonly override global::System.String ToString() =>_isInitialized ? Value.ToString() : "[UNINITIALIZED]";
 
         

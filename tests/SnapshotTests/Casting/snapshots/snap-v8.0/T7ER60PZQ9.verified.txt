@@ -470,8 +470,7 @@ public static ValueObjectOrError<_casting_public_partial_recordCastOperator_None
 
         // record enumerates fields - we just want our Value and to throw if it's not initialized.
         /// <summary>Returns the string representation of the underlying <see cref="System.DateTimeOffset" />.</summary>
-    /// <inheritdoc cref="System.DateTimeOffset.ToString()" />
-    public override global::System.String ToString() => _isInitialized ? Value.ToString() : "[UNINITIALIZED]";
+    public override global::System.String ToString() =>_isInitialized ? Value.ToString() : "[UNINITIALIZED]";
 
         
         internal class _casting_public_partial_recordCastOperator_NoneCastOperator_ImplicitSystem_DateTimeOffsetSystemTextJsonConverter : global::System.Text.Json.Serialization.JsonConverter<_casting_public_partial_recordCastOperator_NoneCastOperator_ImplicitSystem_DateTimeOffset>

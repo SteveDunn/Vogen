@@ -356,8 +356,7 @@ public static ValueObjectOrError<StringThing> TryFrom(System.String value)
         
 
         /// <summary>Returns the string representation of the underlying <see cref="System.String" />.</summary>
-    /// <inheritdoc cref="System.String.ToString()" />
-    public override global::System.String ToString() => _isInitialized ? Value.ToString() : "[UNINITIALIZED]";
+    public override global::System.String ToString() =>_isInitialized ? Value.ToString() : "[UNINITIALIZED]";
 
         
         internal class StringThingSystemTextJsonConverter : global::System.Text.Json.Serialization.JsonConverter<StringThing>

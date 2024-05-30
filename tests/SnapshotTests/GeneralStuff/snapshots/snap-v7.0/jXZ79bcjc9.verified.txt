@@ -409,8 +409,7 @@ public static MyVo FromNewGuid() { return From(global::System.Guid.NewGuid()); }
         
 
         /// <summary>Returns the string representation of the underlying <see cref="System.Guid" />.</summary>
-    /// <inheritdoc cref="System.Guid.ToString()" />
-    public override global::System.String ToString() => _isInitialized ? Value.ToString() : "[UNINITIALIZED]";
+    public override global::System.String ToString() =>_isInitialized ? Value.ToString() : "[UNINITIALIZED]";
 
         
         internal class MyVoSystemTextJsonConverter : global::System.Text.Json.Serialization.JsonConverter<MyVo>

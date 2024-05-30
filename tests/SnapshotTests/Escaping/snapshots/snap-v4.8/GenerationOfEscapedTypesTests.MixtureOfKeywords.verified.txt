@@ -270,8 +270,7 @@ public static ValueObjectOrError<classFromEscapedNamespaceWithReservedUnderlying
         
 
         /// <summary>Returns the string representation of the underlying <see cref="@double.@decimal" />.</summary>
-    /// <inheritdoc cref="@double.@decimal.ToString()" />
-    public override global::System.String ToString() => _isInitialized ? Value.ToString() : "[UNINITIALIZED]";
+    public override global::System.String ToString() =>_isInitialized ? Value.ToString() : "[UNINITIALIZED]";
 
         
         internal class classFromEscapedNamespaceWithReservedUnderlyingTypeSystemTextJsonConverter : global::System.Text.Json.Serialization.JsonConverter<classFromEscapedNamespaceWithReservedUnderlyingType>
@@ -686,8 +685,7 @@ public static ValueObjectOrError<classFromEscapedNamespace> TryFrom(System.Int32
         
 
         /// <summary>Returns the string representation of the underlying <see cref="System.Int32" />.</summary>
-    /// <inheritdoc cref="System.Int32.ToString()" />
-    public override global::System.String ToString() => _isInitialized ? Value.ToString() : "[UNINITIALIZED]";
+    public override global::System.String ToString() =>_isInitialized ? Value.ToString() : "[UNINITIALIZED]";
 
         
         internal class classFromEscapedNamespaceSystemTextJsonConverter : global::System.Text.Json.Serialization.JsonConverter<classFromEscapedNamespace>
@@ -1118,8 +1116,7 @@ public static ValueObjectOrError<@class> TryFrom(System.Int32 value)
         
 
         /// <summary>Returns the string representation of the underlying <see cref="System.Int32" />.</summary>
-    /// <inheritdoc cref="System.Int32.ToString()" />
-    public override global::System.String ToString() => _isInitialized ? Value.ToString() : "[UNINITIALIZED]";
+    public override global::System.String ToString() =>_isInitialized ? Value.ToString() : "[UNINITIALIZED]";
 
         
         internal class @classSystemTextJsonConverter : global::System.Text.Json.Serialization.JsonConverter<@class>
@@ -1550,8 +1547,7 @@ public static ValueObjectOrError<@event> TryFrom(System.Int32 value)
         
 
         /// <summary>Returns the string representation of the underlying <see cref="System.Int32" />.</summary>
-    /// <inheritdoc cref="System.Int32.ToString()" />
-    public override global::System.String ToString() => _isInitialized ? Value.ToString() : "[UNINITIALIZED]";
+    public override global::System.String ToString() =>_isInitialized ? Value.ToString() : "[UNINITIALIZED]";
 
         
         internal class @eventSystemTextJsonConverter : global::System.Text.Json.Serialization.JsonConverter<@event>
@@ -1885,8 +1881,7 @@ public static ValueObjectOrError<@event2> TryFrom(@record.@struct.@float.@decima
         
 
         /// <summary>Returns the string representation of the underlying <see cref="@record.@struct.@float.@decimal" />.</summary>
-    /// <inheritdoc cref="@record.@struct.@float.@decimal.ToString()" />
-    public override global::System.String ToString() => _isInitialized ? Value.ToString() : "[UNINITIALIZED]";
+    public override global::System.String ToString() =>_isInitialized ? Value.ToString() : "[UNINITIALIZED]";
 
         
         internal class @event2SystemTextJsonConverter : global::System.Text.Json.Serialization.JsonConverter<@event2>

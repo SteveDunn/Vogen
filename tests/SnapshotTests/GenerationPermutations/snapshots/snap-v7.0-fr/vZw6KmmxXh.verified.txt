@@ -477,8 +477,7 @@ public static ValueObjectOrError<internal_partial_classConversions_Nonedecimal> 
         
 
         /// <summary>Returns the string representation of the underlying <see cref="System.Decimal" />.</summary>
-    /// <inheritdoc cref="System.Decimal.ToString()" />
-    public override global::System.String ToString() => _isInitialized ? Value.ToString() : "[UNINITIALIZED]";
+    public override global::System.String ToString() =>_isInitialized ? Value.ToString() : "[UNINITIALIZED]";
 
         
 

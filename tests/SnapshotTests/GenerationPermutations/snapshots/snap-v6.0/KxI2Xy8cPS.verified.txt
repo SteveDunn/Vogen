@@ -411,8 +411,7 @@ public static ValueObjectOrError<internal_partial_classConversions_NewtonsoftJso
         
 
         /// <summary>Returns the string representation of the underlying <see cref="System.DateTimeOffset" />.</summary>
-    /// <inheritdoc cref="System.DateTimeOffset.ToString()" />
-    public override global::System.String ToString() => _isInitialized ? Value.ToString() : "[UNINITIALIZED]";
+    public override global::System.String ToString() =>_isInitialized ? Value.ToString() : "[UNINITIALIZED]";
 
         
         internal class internal_partial_classConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterSystem_DateTimeOffsetSystemTextJsonConverter : global::System.Text.Json.Serialization.JsonConverter<internal_partial_classConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterSystem_DateTimeOffset>

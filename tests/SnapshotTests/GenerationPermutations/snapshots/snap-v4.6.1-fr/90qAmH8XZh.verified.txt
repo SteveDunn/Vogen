@@ -331,8 +331,7 @@ public static ValueObjectOrError<internal_readonly_partial_structConversions_New
             return global::System.Collections.Generic.EqualityComparer<System.Byte>.Default.GetHashCode(Value);
           }
 
-        /// <summary>Returns the string representation of the underlying type</summary>
-    /// <inheritdoc cref="System.Byte.ToString()" />
+        /// <summary>Returns the string representation of the underlying <see cref="System.Byte" />.</summary>
     public readonly override global::System.String ToString() =>_isInitialized ? Value.ToString() : "[UNINITIALIZED]";
 
         private readonly void EnsureInitialized()

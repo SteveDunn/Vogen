@@ -309,8 +309,7 @@ public static ValueObjectOrError<escapedTestspublic_partial_classConversions_New
         
 
         /// <summary>Returns the string representation of the underlying <see cref="System.Guid" />.</summary>
-    /// <inheritdoc cref="System.Guid.ToString()" />
-    public override global::System.String ToString() => _isInitialized ? Value.ToString() : "[UNINITIALIZED]";
+    public override global::System.String ToString() =>_isInitialized ? Value.ToString() : "[UNINITIALIZED]";
 
         
         internal class escapedTestspublic_partial_classConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterSystem_GuidSystemTextJsonConverter : global::System.Text.Json.Serialization.JsonConverter<escapedTestspublic_partial_classConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterSystem_Guid>

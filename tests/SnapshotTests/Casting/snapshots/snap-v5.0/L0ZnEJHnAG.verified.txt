@@ -422,8 +422,7 @@ public static ValueObjectOrError<_casting_public_partial_classCastOperator_Expli
         
 
         /// <summary>Returns the string representation of the underlying <see cref="System.Byte" />.</summary>
-    /// <inheritdoc cref="System.Byte.ToString()" />
-    public override global::System.String ToString() => _isInitialized ? Value.ToString() : "[UNINITIALIZED]";
+    public override global::System.String ToString() =>_isInitialized ? Value.ToString() : "[UNINITIALIZED]";
 
         
         internal class _casting_public_partial_classCastOperator_ExplicitCastOperator_NonebyteSystemTextJsonConverter : global::System.Text.Json.Serialization.JsonConverter<_casting_public_partial_classCastOperator_ExplicitCastOperator_Nonebyte>

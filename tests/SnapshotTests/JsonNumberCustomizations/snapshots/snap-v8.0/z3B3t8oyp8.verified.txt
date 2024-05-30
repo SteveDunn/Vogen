@@ -568,8 +568,7 @@ public static ValueObjectOrError<stj_number_as_string_public_partial_classConver
         
 
         /// <summary>Returns the string representation of the underlying <see cref="System.Decimal" />.</summary>
-    /// <inheritdoc cref="System.Decimal.ToString()" />
-    public override global::System.String ToString() => _isInitialized ? Value.ToString() : "[UNINITIALIZED]";
+    public override global::System.String ToString() =>_isInitialized ? Value.ToString() : "[UNINITIALIZED]";
 
         
         internal class stj_number_as_string_public_partial_classConversions_SystemTextJsondecimal_customizedSystemTextJsonConverter : global::System.Text.Json.Serialization.JsonConverter<stj_number_as_string_public_partial_classConversions_SystemTextJsondecimal_customized>
