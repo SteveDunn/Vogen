@@ -124,3 +124,13 @@ public partial struct DecimalVo { }
 
 [ValueObject(typeof(double))]
 public partial struct DoubleVo { }
+
+public class C : IParsable<C>
+{
+    public static C Parse(string s, IFormatProvider? provider) => throw new NotImplementedException();
+
+    public static bool TryParse(string? s, IFormatProvider? provider, out C result) => throw new NotImplementedException();
+}
+
+[ValueObject<C>]
+public partial struct MyCustomVo { }
