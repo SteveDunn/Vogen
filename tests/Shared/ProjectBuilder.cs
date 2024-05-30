@@ -386,12 +386,31 @@ public sealed partial class ProjectBuilder
 
         if (finalDiags.Length != 0)
         {
+            // uncomment to write out the source files - do a `dotnet new classlib` in that folder
+            // and load it up in an IDE
+            // DumpSource(outputCompilation);
             return (finalDiags, []);
         }
 
         return (generatorDiags, outputCompilation.SyntaxTrees.Except(compilation.SyntaxTrees).ToArray());
     }
-    
+
+    // ReSharper disable once UnusedMember.Local
+    private static void DumpSource(Compilation outputCompilation)
+    {
+        string path = @"e:\temp\vogen-source";
+        int i = 0;
+        foreach (var st in outputCompilation.SyntaxTrees)
+        {
+            var s = st.GetText().ToString();
+            var fp = st.FilePath;
+            if (fp.Length == 0) fp =  $"file{++i}.cs";
+            string p = Path.Combine(path, fp);
+            Directory.CreateDirectory(Path.GetDirectoryName(p)!);
+            File.WriteAllText(p, s.ToString());
+        }
+    }
+
     private static ReportDiagnostic GetReportDiagnostic(DiagnosticDescriptor descriptor)
     {
         return descriptor.DefaultSeverity switch
