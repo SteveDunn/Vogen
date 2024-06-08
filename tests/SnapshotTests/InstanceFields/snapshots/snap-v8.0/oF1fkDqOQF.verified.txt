@@ -328,7 +328,10 @@ public static readonly internal_partial_classstring MyValue = new internal_parti
     public override global::System.String ToString() =>_isInitialized ? Value.ToString() : "[UNINITIALIZED]";
 
         
-        internal class internal_partial_classstringSystemTextJsonConverter : global::System.Text.Json.Serialization.JsonConverter<internal_partial_classstring>
+        /// <summary>
+        /// Converts a internal_partial_classstring to or from JSON.
+        /// </summary>
+        public class internal_partial_classstringSystemTextJsonConverter : global::System.Text.Json.Serialization.JsonConverter<internal_partial_classstring>
         {
             public override internal_partial_classstring Read(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {

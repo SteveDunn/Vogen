@@ -551,7 +551,10 @@ public static ValueObjectOrError<Vo> TryFrom(System.Int32 value)
         
  
         
-        internal class VoSystemTextJsonConverter : global::System.Text.Json.Serialization.JsonConverter<Vo>
+        /// <summary>
+        /// Converts a Vo to or from JSON.
+        /// </summary>
+        public class VoSystemTextJsonConverter : global::System.Text.Json.Serialization.JsonConverter<Vo>
         {
             public override Vo Read(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {

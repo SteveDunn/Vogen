@@ -320,8 +320,10 @@ public static readonly public_partial_recordchar MyValue = new public_partial_re
         /// <summary>Returns the string representation of the underlying <see cref="System.Char" />.</summary>
     public override global::System.String ToString() =>_isInitialized ? Value.ToString() : "[UNINITIALIZED]";
 
-        
-        internal class public_partial_recordcharSystemTextJsonConverter : global::System.Text.Json.Serialization.JsonConverter<public_partial_recordchar>
+                /// <summary>
+        /// Converts a public_partial_recordchar to or from JSON.
+        /// </summary>
+        public class public_partial_recordcharSystemTextJsonConverter : global::System.Text.Json.Serialization.JsonConverter<public_partial_recordchar>
         {
             public override public_partial_recordchar Read(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {

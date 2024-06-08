@@ -407,7 +407,10 @@ public static ValueObjectOrError<_casting_public_readonly_partial_structCastOper
         
  
         
-        internal class _casting_public_readonly_partial_structCastOperator_ExplicitCastOperator_ExplicitbyteSystemTextJsonConverter : global::System.Text.Json.Serialization.JsonConverter<_casting_public_readonly_partial_structCastOperator_ExplicitCastOperator_Explicitbyte>
+        /// <summary>
+        /// Converts a _casting_public_readonly_partial_structCastOperator_ExplicitCastOperator_Explicitbyte to or from JSON.
+        /// </summary>
+        public class _casting_public_readonly_partial_structCastOperator_ExplicitCastOperator_ExplicitbyteSystemTextJsonConverter : global::System.Text.Json.Serialization.JsonConverter<_casting_public_readonly_partial_structCastOperator_ExplicitCastOperator_Explicitbyte>
         {
             public override _casting_public_readonly_partial_structCastOperator_ExplicitCastOperator_Explicitbyte Read(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {

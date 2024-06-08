@@ -449,7 +449,10 @@ public static ValueObjectOrError<stj_number_as_string_public_readonly_partial_st
 
         
  
-                internal class stj_number_as_string_public_readonly_partial_structConversions_SystemTextJsonSystem_DateTimeSystemTextJsonConverter : global::System.Text.Json.Serialization.JsonConverter<stj_number_as_string_public_readonly_partial_structConversions_SystemTextJsonSystem_DateTime>
+                /// <summary>
+        /// Converts a stj_number_as_string_public_readonly_partial_structConversions_SystemTextJsonSystem_DateTime to or from JSON.
+        /// </summary>
+        public class stj_number_as_string_public_readonly_partial_structConversions_SystemTextJsonSystem_DateTimeSystemTextJsonConverter : global::System.Text.Json.Serialization.JsonConverter<stj_number_as_string_public_readonly_partial_structConversions_SystemTextJsonSystem_DateTime>
         {
             public override stj_number_as_string_public_readonly_partial_structConversions_SystemTextJsonSystem_DateTime Read(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {
@@ -462,6 +465,9 @@ public static ValueObjectOrError<stj_number_as_string_public_readonly_partial_st
             }
 
 #if NET6_0_OR_GREATER
+            /// <summary>
+            /// Converts a stj_number_as_string_public_readonly_partial_structConversions_SystemTextJsonSystem_DateTime to or from JSON.
+            /// </summary>
             public override stj_number_as_string_public_readonly_partial_structConversions_SystemTextJsonSystem_DateTime ReadAsPropertyName(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {
                 return stj_number_as_string_public_readonly_partial_structConversions_SystemTextJsonSystem_DateTime.__Deserialize(global::System.DateTime.ParseExact(reader.GetString(), "O", global::System.Globalization.CultureInfo.InvariantCulture, global::System.Globalization.DateTimeStyles.RoundtripKind));

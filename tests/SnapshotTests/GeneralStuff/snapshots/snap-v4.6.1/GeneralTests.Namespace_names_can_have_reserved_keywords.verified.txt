@@ -412,7 +412,10 @@ public static readonly @class @void = new @class(666);
 
  
         
-        internal class @classSystemTextJsonConverter : global::System.Text.Json.Serialization.JsonConverter<@class>
+        /// <summary>
+        /// Converts a @class to or from JSON.
+        /// </summary>
+        public class @classSystemTextJsonConverter : global::System.Text.Json.Serialization.JsonConverter<@class>
         {
             public override @class Read(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {

@@ -291,8 +291,10 @@ public static ValueObjectOrError<stj_number_as_string_public_readonly_partial_st
 
         
  
-        
-        internal class stj_number_as_string_public_readonly_partial_structConversions_SystemTextJsoncharSystemTextJsonConverter : global::System.Text.Json.Serialization.JsonConverter<stj_number_as_string_public_readonly_partial_structConversions_SystemTextJsonchar>
+                /// <summary>
+        /// Converts a stj_number_as_string_public_readonly_partial_structConversions_SystemTextJsonchar to or from JSON.
+        /// </summary>
+        public class stj_number_as_string_public_readonly_partial_structConversions_SystemTextJsoncharSystemTextJsonConverter : global::System.Text.Json.Serialization.JsonConverter<stj_number_as_string_public_readonly_partial_structConversions_SystemTextJsonchar>
         {
             public override stj_number_as_string_public_readonly_partial_structConversions_SystemTextJsonchar Read(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {

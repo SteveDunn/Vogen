@@ -485,7 +485,10 @@ public static ValueObjectOrError<sealed_partial_record_Method> TryFrom(System.In
         
 
         
-        internal class sealed_partial_record_MethodSystemTextJsonConverter : global::System.Text.Json.Serialization.JsonConverter<sealed_partial_record_Method>
+        /// <summary>
+        /// Converts a sealed_partial_record_Method to or from JSON.
+        /// </summary>
+        public class sealed_partial_record_MethodSystemTextJsonConverter : global::System.Text.Json.Serialization.JsonConverter<sealed_partial_record_Method>
         {
             public override sealed_partial_record_Method Read(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {

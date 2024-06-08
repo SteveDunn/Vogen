@@ -300,7 +300,10 @@ public static readonly public_partial_record_structstring MyValue = new public_p
 
  
         
-        internal class public_partial_record_structstringSystemTextJsonConverter : global::System.Text.Json.Serialization.JsonConverter<public_partial_record_structstring>
+        /// <summary>
+        /// Converts a public_partial_record_structstring to or from JSON.
+        /// </summary>
+        public class public_partial_record_structstringSystemTextJsonConverter : global::System.Text.Json.Serialization.JsonConverter<public_partial_record_structstring>
         {
             public override public_partial_record_structstring Read(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {

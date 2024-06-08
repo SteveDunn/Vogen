@@ -571,7 +571,10 @@ public static ValueObjectOrError<_casting_public_partial_classCastOperator_NoneC
     public override global::System.String ToString() =>_isInitialized ? Value.ToString() : "[UNINITIALIZED]";
 
         
-        internal class _casting_public_partial_classCastOperator_NoneCastOperator_NonefloatSystemTextJsonConverter : global::System.Text.Json.Serialization.JsonConverter<_casting_public_partial_classCastOperator_NoneCastOperator_Nonefloat>
+        /// <summary>
+        /// Converts a _casting_public_partial_classCastOperator_NoneCastOperator_Nonefloat to or from JSON.
+        /// </summary>
+        public class _casting_public_partial_classCastOperator_NoneCastOperator_NonefloatSystemTextJsonConverter : global::System.Text.Json.Serialization.JsonConverter<_casting_public_partial_classCastOperator_NoneCastOperator_Nonefloat>
         {
             public override _casting_public_partial_classCastOperator_NoneCastOperator_Nonefloat Read(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {

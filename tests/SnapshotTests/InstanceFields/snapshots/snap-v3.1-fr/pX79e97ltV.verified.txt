@@ -431,7 +431,10 @@ public static readonly internal_sealed_partial_classfloat MyValue = new internal
     public override global::System.String ToString() =>_isInitialized ? Value.ToString() : "[UNINITIALIZED]";
 
         
-        internal class internal_sealed_partial_classfloatSystemTextJsonConverter : global::System.Text.Json.Serialization.JsonConverter<internal_sealed_partial_classfloat>
+        /// <summary>
+        /// Converts a internal_sealed_partial_classfloat to or from JSON.
+        /// </summary>
+        public class internal_sealed_partial_classfloatSystemTextJsonConverter : global::System.Text.Json.Serialization.JsonConverter<internal_sealed_partial_classfloat>
         {
             public override internal_sealed_partial_classfloat Read(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {

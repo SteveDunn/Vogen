@@ -416,7 +416,10 @@ public static readonly public_readonly_partial_record_structdouble MyValue = new
 
  
         
-        internal class public_readonly_partial_record_structdoubleSystemTextJsonConverter : global::System.Text.Json.Serialization.JsonConverter<public_readonly_partial_record_structdouble>
+        /// <summary>
+        /// Converts a public_readonly_partial_record_structdouble to or from JSON.
+        /// </summary>
+        public class public_readonly_partial_record_structdoubleSystemTextJsonConverter : global::System.Text.Json.Serialization.JsonConverter<public_readonly_partial_record_structdouble>
         {
             public override public_readonly_partial_record_structdouble Read(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {

@@ -450,7 +450,10 @@ public static ValueObjectOrError<_casting_public_readonly_partial_structCastOper
 
         
  
-                internal class _casting_public_readonly_partial_structCastOperator_ExplicitCastOperator_ExplicitSystem_DateTimeSystemTextJsonConverter : global::System.Text.Json.Serialization.JsonConverter<_casting_public_readonly_partial_structCastOperator_ExplicitCastOperator_ExplicitSystem_DateTime>
+                /// <summary>
+        /// Converts a _casting_public_readonly_partial_structCastOperator_ExplicitCastOperator_ExplicitSystem_DateTime to or from JSON.
+        /// </summary>
+        public class _casting_public_readonly_partial_structCastOperator_ExplicitCastOperator_ExplicitSystem_DateTimeSystemTextJsonConverter : global::System.Text.Json.Serialization.JsonConverter<_casting_public_readonly_partial_structCastOperator_ExplicitCastOperator_ExplicitSystem_DateTime>
         {
             public override _casting_public_readonly_partial_structCastOperator_ExplicitCastOperator_ExplicitSystem_DateTime Read(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {
@@ -463,6 +466,9 @@ public static ValueObjectOrError<_casting_public_readonly_partial_structCastOper
             }
 
 #if NET6_0_OR_GREATER
+            /// <summary>
+            /// Converts a _casting_public_readonly_partial_structCastOperator_ExplicitCastOperator_ExplicitSystem_DateTime to or from JSON.
+            /// </summary>
             public override _casting_public_readonly_partial_structCastOperator_ExplicitCastOperator_ExplicitSystem_DateTime ReadAsPropertyName(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {
                 return _casting_public_readonly_partial_structCastOperator_ExplicitCastOperator_ExplicitSystem_DateTime.__Deserialize(global::System.DateTime.ParseExact(reader.GetString(), "O", global::System.Globalization.CultureInfo.InvariantCulture, global::System.Globalization.DateTimeStyles.RoundtripKind));

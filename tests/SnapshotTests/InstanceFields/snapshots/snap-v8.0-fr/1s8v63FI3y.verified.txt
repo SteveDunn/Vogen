@@ -577,7 +577,10 @@ public static readonly public_sealed_partial_classbyte MyValue = new public_seal
     public override global::System.String ToString() =>_isInitialized ? Value.ToString() : "[UNINITIALIZED]";
 
         
-        internal class public_sealed_partial_classbyteSystemTextJsonConverter : global::System.Text.Json.Serialization.JsonConverter<public_sealed_partial_classbyte>
+        /// <summary>
+        /// Converts a public_sealed_partial_classbyte to or from JSON.
+        /// </summary>
+        public class public_sealed_partial_classbyteSystemTextJsonConverter : global::System.Text.Json.Serialization.JsonConverter<public_sealed_partial_classbyte>
         {
             public override public_sealed_partial_classbyte Read(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {

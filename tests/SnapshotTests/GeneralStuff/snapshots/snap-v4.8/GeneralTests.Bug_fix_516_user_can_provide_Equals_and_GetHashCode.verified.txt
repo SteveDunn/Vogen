@@ -282,7 +282,10 @@ public static ValueObjectOrError<BugFix516Vo> TryFrom(System.String value)
         
  
         
-        internal class BugFix516VoSystemTextJsonConverter : global::System.Text.Json.Serialization.JsonConverter<BugFix516Vo>
+        /// <summary>
+        /// Converts a BugFix516Vo to or from JSON.
+        /// </summary>
+        public class BugFix516VoSystemTextJsonConverter : global::System.Text.Json.Serialization.JsonConverter<BugFix516Vo>
         {
             public override BugFix516Vo Read(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {

@@ -558,7 +558,10 @@ public static readonly public_readonly_partial_structlong MyValue = new public_r
 
  
         
-        internal class public_readonly_partial_structlongSystemTextJsonConverter : global::System.Text.Json.Serialization.JsonConverter<public_readonly_partial_structlong>
+    /// <summary>
+    /// Converts a public_readonly_partial_structlong to or from JSON.
+    /// </summary>
+        public class public_readonly_partial_structlongSystemTextJsonConverter : global::System.Text.Json.Serialization.JsonConverter<public_readonly_partial_structlong>
         {
             public override public_readonly_partial_structlong Read(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {

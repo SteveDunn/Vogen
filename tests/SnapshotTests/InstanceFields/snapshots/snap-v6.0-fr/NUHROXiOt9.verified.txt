@@ -412,7 +412,10 @@ public static readonly public_readonly_partial_structbyte MyValue = new public_r
 
  
         
-        internal class public_readonly_partial_structbyteSystemTextJsonConverter : global::System.Text.Json.Serialization.JsonConverter<public_readonly_partial_structbyte>
+        /// <summary>
+        /// Converts a public_readonly_partial_structbyte to or from JSON.
+        /// </summary>
+        public class public_readonly_partial_structbyteSystemTextJsonConverter : global::System.Text.Json.Serialization.JsonConverter<public_readonly_partial_structbyte>
         {
             public override public_readonly_partial_structbyte Read(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {

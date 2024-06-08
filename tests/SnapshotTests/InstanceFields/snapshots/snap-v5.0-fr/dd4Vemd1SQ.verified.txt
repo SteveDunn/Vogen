@@ -416,7 +416,10 @@ public static readonly internal_partial_record_structint MyValue = new internal_
 
  
         
-        internal class internal_partial_record_structintSystemTextJsonConverter : global::System.Text.Json.Serialization.JsonConverter<internal_partial_record_structint>
+        /// <summary>
+        /// Converts a internal_partial_record_structint to or from JSON.
+        /// </summary>
+        public class internal_partial_record_structintSystemTextJsonConverter : global::System.Text.Json.Serialization.JsonConverter<internal_partial_record_structint>
         {
             public override internal_partial_record_structint Read(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {

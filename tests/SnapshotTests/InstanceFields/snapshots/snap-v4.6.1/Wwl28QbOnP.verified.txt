@@ -297,8 +297,10 @@ public static ValueObjectOrError<public_partial_structchar> TryFrom(System.Char 
 public static readonly public_partial_structchar MyValue = new public_partial_structchar('x');
 
  
-        
-        internal class public_partial_structcharSystemTextJsonConverter : global::System.Text.Json.Serialization.JsonConverter<public_partial_structchar>
+                /// <summary>
+        /// Converts a public_partial_structchar to or from JSON.
+        /// </summary>
+        public class public_partial_structcharSystemTextJsonConverter : global::System.Text.Json.Serialization.JsonConverter<public_partial_structchar>
         {
             public override public_partial_structchar Read(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {

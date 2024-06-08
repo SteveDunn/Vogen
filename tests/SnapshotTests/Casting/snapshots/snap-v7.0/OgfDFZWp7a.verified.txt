@@ -486,7 +486,10 @@ public static ValueObjectOrError<_casting_public_sealed_partial_record_classCast
     public override global::System.String ToString() =>_isInitialized ? Value.ToString() : "[UNINITIALIZED]";
 
         
-        internal class _casting_public_sealed_partial_record_classCastOperator_ExplicitCastOperator_ImplicitSystemTextJsonConverter : global::System.Text.Json.Serialization.JsonConverter<_casting_public_sealed_partial_record_classCastOperator_ExplicitCastOperator_Implicit>
+        /// <summary>
+        /// Converts a _casting_public_sealed_partial_record_classCastOperator_ExplicitCastOperator_Implicit to or from JSON.
+        /// </summary>
+        public class _casting_public_sealed_partial_record_classCastOperator_ExplicitCastOperator_ImplicitSystemTextJsonConverter : global::System.Text.Json.Serialization.JsonConverter<_casting_public_sealed_partial_record_classCastOperator_ExplicitCastOperator_Implicit>
         {
             public override _casting_public_sealed_partial_record_classCastOperator_ExplicitCastOperator_Implicit Read(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {

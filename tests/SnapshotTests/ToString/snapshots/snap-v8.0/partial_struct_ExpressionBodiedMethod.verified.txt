@@ -552,7 +552,10 @@ public static ValueObjectOrError<partial_struct_ExpressionBodiedMethod> TryFrom(
         
  
         
-        internal class partial_struct_ExpressionBodiedMethodSystemTextJsonConverter : global::System.Text.Json.Serialization.JsonConverter<partial_struct_ExpressionBodiedMethod>
+        /// <summary>
+        /// Converts a partial_struct_ExpressionBodiedMethod to or from JSON.
+        /// </summary>
+        public class partial_struct_ExpressionBodiedMethodSystemTextJsonConverter : global::System.Text.Json.Serialization.JsonConverter<partial_struct_ExpressionBodiedMethod>
         {
             public override partial_struct_ExpressionBodiedMethod Read(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {

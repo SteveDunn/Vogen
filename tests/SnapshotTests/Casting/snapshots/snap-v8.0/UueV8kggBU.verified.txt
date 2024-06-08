@@ -556,7 +556,10 @@ public static ValueObjectOrError<_casting_public_readonly_partial_record_structC
         
  
         
-        internal class _casting_public_readonly_partial_record_structCastOperator_NoneCastOperator_NoneSystemTextJsonConverter : global::System.Text.Json.Serialization.JsonConverter<_casting_public_readonly_partial_record_structCastOperator_NoneCastOperator_None>
+        /// <summary>
+        /// Converts a _casting_public_readonly_partial_record_structCastOperator_NoneCastOperator_None to or from JSON.
+        /// </summary>
+        public class _casting_public_readonly_partial_record_structCastOperator_NoneCastOperator_NoneSystemTextJsonConverter : global::System.Text.Json.Serialization.JsonConverter<_casting_public_readonly_partial_record_structCastOperator_NoneCastOperator_None>
         {
             public override _casting_public_readonly_partial_record_structCastOperator_NoneCastOperator_None Read(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {
