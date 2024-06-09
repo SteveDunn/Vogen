@@ -73,7 +73,7 @@ using Vogen;
 
     [global::System.Diagnostics.DebuggerTypeProxyAttribute(typeof(BugFix516VoDebugView))]
     [global::System.Diagnostics.DebuggerDisplayAttribute("Underlying type: System.String, Value = { _value }")]
-    public readonly partial record struct BugFix516Vo : global::System.IEquatable<BugFix516Vo>, global::System.IEquatable<System.String>,  global::System.IComparable<BugFix516Vo>, global::System.IComparable,  global::System.IParsable<BugFix516Vo>
+    public readonly partial record struct BugFix516Vo : global::System.IEquatable<BugFix516Vo>, global::System.IEquatable<System.String> ,  global::System.IComparable<BugFix516Vo>, global::System.IComparable,  global::System.IParsable<BugFix516Vo>
     {
 #if DEBUG   
         private readonly global::System.Diagnostics.StackTrace _stackTrace = null;

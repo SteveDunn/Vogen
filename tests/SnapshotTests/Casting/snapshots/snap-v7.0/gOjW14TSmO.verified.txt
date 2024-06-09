@@ -75,7 +75,7 @@ namespace Whatever
 
     [global::System.Diagnostics.DebuggerTypeProxyAttribute(typeof(_casting_public_readonly_partial_structCastOperator_ExplicitCastOperator_NonedecimalDebugView))]
     [global::System.Diagnostics.DebuggerDisplayAttribute("Underlying type: System.Decimal, Value = { _value }")]
-    public readonly partial struct _casting_public_readonly_partial_structCastOperator_ExplicitCastOperator_Nonedecimal : global::System.IEquatable<_casting_public_readonly_partial_structCastOperator_ExplicitCastOperator_Nonedecimal>, global::System.IEquatable<System.Decimal>,  global::System.IComparable<_casting_public_readonly_partial_structCastOperator_ExplicitCastOperator_Nonedecimal>, global::System.IComparable,  global::System.IParsable<_casting_public_readonly_partial_structCastOperator_ExplicitCastOperator_Nonedecimal>,  global::System.ISpanParsable<_casting_public_readonly_partial_structCastOperator_ExplicitCastOperator_Nonedecimal>
+    public readonly partial struct _casting_public_readonly_partial_structCastOperator_ExplicitCastOperator_Nonedecimal : global::System.IEquatable<_casting_public_readonly_partial_structCastOperator_ExplicitCastOperator_Nonedecimal>, global::System.IEquatable<System.Decimal> ,  global::System.IComparable<_casting_public_readonly_partial_structCastOperator_ExplicitCastOperator_Nonedecimal>, global::System.IComparable,  global::System.IParsable<_casting_public_readonly_partial_structCastOperator_ExplicitCastOperator_Nonedecimal>,  global::System.ISpanParsable<_casting_public_readonly_partial_structCastOperator_ExplicitCastOperator_Nonedecimal>
     {
 #if DEBUG   
         private readonly global::System.Diagnostics.StackTrace _stackTrace = null;

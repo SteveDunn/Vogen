@@ -74,7 +74,7 @@ namespace @class
 
     [global::System.Diagnostics.DebuggerTypeProxyAttribute(typeof(escapedTestspublic_partial_record_classConversions_NewtonsoftJsonrecord__struct__float__event2DebugView))]
     [global::System.Diagnostics.DebuggerDisplayAttribute("Underlying type: @class.@record.@struct.@float.event2, Value = { _value }")]
-    public partial record class escapedTestspublic_partial_record_classConversions_NewtonsoftJsonrecord__struct__float__event2 : global::System.IEquatable<escapedTestspublic_partial_record_classConversions_NewtonsoftJsonrecord__struct__float__event2>, global::System.IEquatable<@class.@record.@struct.@float.event2>
+    public partial record class escapedTestspublic_partial_record_classConversions_NewtonsoftJsonrecord__struct__float__event2 : global::System.IEquatable<escapedTestspublic_partial_record_classConversions_NewtonsoftJsonrecord__struct__float__event2>, global::System.IEquatable<@class.@record.@struct.@float.event2> 
     {
 #if DEBUG   
         private readonly global::System.Diagnostics.StackTrace _stackTrace = null;

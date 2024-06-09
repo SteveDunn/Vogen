@@ -153,4 +153,14 @@ $$"""
 
         return string.Empty;
     }
+
+    public static string GenerateInterfaceIfNeeded(string prefix, string itemUnderlyingType, VoWorkItem item)
+    {
+        if (!item.Config.PrimitiveEqualityGeneration.HasFlag(PrimitiveEqualityGeneration.GenerateMethods))
+        {
+            return string.Empty;
+        }
+        
+        return $"{prefix}global::System.IEquatable<{itemUnderlyingType}> ";
+    }
 }

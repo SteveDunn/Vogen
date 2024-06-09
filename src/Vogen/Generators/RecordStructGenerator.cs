@@ -19,7 +19,7 @@ using Vogen;
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute(""{Util.GenerateYourAssemblyName()}"", ""{Util.GenerateYourAssemblyVersion()}"")]
     {Util.GenerateAnyConversionAttributes(tds, item)}
     {DebugGeneration.GenerateDebugAttributes(item, structName, itemUnderlyingType)}
-    { Util.GenerateModifiersFor(tds)} record struct {structName} : global::System.IEquatable<{structName}>, global::System.IEquatable<{itemUnderlyingType}>{GenerateComparableCode.GenerateIComparableHeaderIfNeeded(", ", item, tds)}{GenerateCodeForIParsableInterfaceDeclarations.GenerateIfNeeded(", ", item, tds)}{WriteStaticAbstracts.WriteHeaderIfNeeded(", ", item, tds)}
+    { Util.GenerateModifiersFor(tds)} record struct {structName} : global::System.IEquatable<{structName}>{GenerateEqualsMethodsAndOperators.GenerateInterfaceIfNeeded(", ", itemUnderlyingType, item)}{GenerateComparableCode.GenerateIComparableHeaderIfNeeded(", ", item, tds)}{GenerateCodeForIParsableInterfaceDeclarations.GenerateIfNeeded(", ", item, tds)}{WriteStaticAbstracts.WriteHeaderIfNeeded(", ", item, tds)}
     {{
 {DebugGeneration.GenerateStackTraceFieldIfNeeded(item)}
 

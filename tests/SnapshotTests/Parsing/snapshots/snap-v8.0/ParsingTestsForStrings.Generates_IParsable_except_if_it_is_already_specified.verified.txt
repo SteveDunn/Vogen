@@ -75,7 +75,7 @@ namespace Whatever
 
     [global::System.Diagnostics.DebuggerTypeProxyAttribute(typeof(CityDebugView))]
     [global::System.Diagnostics.DebuggerDisplayAttribute("Underlying type: System.String, Value = { _value }")]
-    public partial struct City : global::System.IEquatable<City>, global::System.IEquatable<System.String>,  global::System.IComparable<City>, global::System.IComparable,  global::System.IParsable<City>
+    public partial struct City : global::System.IEquatable<City>, global::System.IEquatable<System.String> ,  global::System.IComparable<City>, global::System.IComparable,  global::System.IParsable<City>
     {
 #if DEBUG   
         private readonly global::System.Diagnostics.StackTrace _stackTrace = null;

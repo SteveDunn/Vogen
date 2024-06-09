@@ -75,7 +75,7 @@ namespace Whatever
 
     [global::System.Diagnostics.DebuggerTypeProxyAttribute(typeof(CustomerIdDebugView))]
     [global::System.Diagnostics.DebuggerDisplayAttribute("Underlying type: System.String, Value = { _value }")]
-    public readonly partial record struct CustomerId : global::System.IEquatable<CustomerId>, global::System.IEquatable<System.String>,  global::System.IComparable<CustomerId>, global::System.IComparable
+    public readonly partial record struct CustomerId : global::System.IEquatable<CustomerId>, global::System.IEquatable<System.String> ,  global::System.IComparable<CustomerId>, global::System.IComparable
     {
 
 

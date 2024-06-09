@@ -73,7 +73,7 @@ using Vogen;
 
     [global::System.Diagnostics.DebuggerTypeProxyAttribute(typeof(VoDebugView))]
     [global::System.Diagnostics.DebuggerDisplayAttribute("Underlying type: System.Guid, Value = { _value }")]
-    public partial struct Vo : global::System.IEquatable<Vo>, global::System.IEquatable<System.Guid>,  global::System.IComparable<Vo>, global::System.IComparable,  global::System.IParsable<Vo>,  global::System.ISpanParsable<Vo>
+    public partial struct Vo : global::System.IEquatable<Vo>, global::System.IEquatable<System.Guid> ,  global::System.IComparable<Vo>, global::System.IComparable,  global::System.IParsable<Vo>,  global::System.ISpanParsable<Vo>
     {
 #if DEBUG   
         private readonly global::System.Diagnostics.StackTrace _stackTrace = null;

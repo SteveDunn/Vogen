@@ -39,6 +39,27 @@ public class EqualityTests
     }
 
     [Fact]
+    public void can_turn_off_equality_to_primitive()
+    {
+        AgeNoPrimitiveEquality.From(18).Equals(-1).Should().BeFalse();
+        AgeNoPrimitiveEquality.From(18).Equals(18).Should().BeFalse();
+        
+        // explicit cast should still work
+        AgeNoPrimitiveEquality.From(18).Equals((AgeNoPrimitiveEquality)18).Should().BeTrue();
+        
+        object o18 = 18;
+        int i18 = 18;
+        AgeNoPrimitiveEquality.From(18).Equals(o18).Should().BeFalse();
+        AgeNoPrimitiveEquality.From(18).Equals(i18).Should().BeFalse();
+
+        // Cannot apply operator '==' to operands of type 'Vogen.Tests.Types.AgeNoPrimitiveEquality' and 'int',
+        // (AgeNoPrimitiveEquality.From(18) != 2).Should().BeTrue();
+        // (AgeNoPrimitiveEquality.From(18) == 2).Should().BeFalse();
+        // (AgeNoPrimitiveEquality.From(18) == 18).Should().BeTrue();
+        // (18 == AgeNoPrimitiveEquality.From(18)).Should().BeTrue();
+    }
+
+    [Fact]
     public void equality_with_primitives()
     {
         Age.From(18).Equals(-1).Should().BeFalse();
