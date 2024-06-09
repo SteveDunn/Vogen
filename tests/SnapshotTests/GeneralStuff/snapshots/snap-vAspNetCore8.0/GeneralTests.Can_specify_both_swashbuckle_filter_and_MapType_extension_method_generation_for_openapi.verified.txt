@@ -692,7 +692,10 @@ public static ValueObjectOrError<MyVoInt> TryFrom(System.Int32 value)
     public override global::System.String ToString() =>_isInitialized ? Value.ToString() : "[UNINITIALIZED]";
 
         
-        internal class MyVoIntSystemTextJsonConverter : global::System.Text.Json.Serialization.JsonConverter<MyVoInt>
+        /// <summary>
+        /// Converts a MyVoInt to or from JSON.
+        /// </summary>
+        public class MyVoIntSystemTextJsonConverter : global::System.Text.Json.Serialization.JsonConverter<MyVoInt>
         {
             public override MyVoInt Read(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {
@@ -1323,7 +1326,10 @@ public static ValueObjectOrError<MyVoFloat> TryFrom(System.Single value)
     public override global::System.String ToString() =>_isInitialized ? Value.ToString() : "[UNINITIALIZED]";
 
         
-        internal class MyVoFloatSystemTextJsonConverter : global::System.Text.Json.Serialization.JsonConverter<MyVoFloat>
+        /// <summary>
+        /// Converts a MyVoFloat to or from JSON.
+        /// </summary>
+        public class MyVoFloatSystemTextJsonConverter : global::System.Text.Json.Serialization.JsonConverter<MyVoFloat>
         {
             public override MyVoFloat Read(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {
@@ -1954,7 +1960,10 @@ public static ValueObjectOrError<MyVoDecimal> TryFrom(System.Decimal value)
     public override global::System.String ToString() =>_isInitialized ? Value.ToString() : "[UNINITIALIZED]";
 
         
-        internal class MyVoDecimalSystemTextJsonConverter : global::System.Text.Json.Serialization.JsonConverter<MyVoDecimal>
+        /// <summary>
+        /// Converts a MyVoDecimal to or from JSON.
+        /// </summary>
+        public class MyVoDecimalSystemTextJsonConverter : global::System.Text.Json.Serialization.JsonConverter<MyVoDecimal>
         {
             public override MyVoDecimal Read(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {
@@ -2585,7 +2594,10 @@ public static ValueObjectOrError<MyVoDouble> TryFrom(System.Double value)
     public override global::System.String ToString() =>_isInitialized ? Value.ToString() : "[UNINITIALIZED]";
 
         
-        internal class MyVoDoubleSystemTextJsonConverter : global::System.Text.Json.Serialization.JsonConverter<MyVoDouble>
+        /// <summary>
+        /// Converts a MyVoDouble to or from JSON.
+        /// </summary>
+        public class MyVoDoubleSystemTextJsonConverter : global::System.Text.Json.Serialization.JsonConverter<MyVoDouble>
         {
             public override MyVoDouble Read(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {
@@ -2968,7 +2980,10 @@ public static ValueObjectOrError<MyVoString> TryFrom(System.String value)
     public override global::System.String ToString() =>_isInitialized ? Value.ToString() : "[UNINITIALIZED]";
 
         
-        internal class MyVoStringSystemTextJsonConverter : global::System.Text.Json.Serialization.JsonConverter<MyVoString>
+        /// <summary>
+        /// Converts a MyVoString to or from JSON.
+        /// </summary>
+        public class MyVoStringSystemTextJsonConverter : global::System.Text.Json.Serialization.JsonConverter<MyVoString>
         {
             public override MyVoString Read(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {
@@ -3361,7 +3376,10 @@ public static ValueObjectOrError<MyVoBool> TryFrom(System.Boolean value)
     public override global::System.String ToString() =>_isInitialized ? Value.ToString() : "[UNINITIALIZED]";
 
         
-        internal class MyVoBoolSystemTextJsonConverter : global::System.Text.Json.Serialization.JsonConverter<MyVoBool>
+        /// <summary>
+        /// Converts a MyVoBool to or from JSON.
+        /// </summary>
+        public class MyVoBoolSystemTextJsonConverter : global::System.Text.Json.Serialization.JsonConverter<MyVoBool>
         {
             public override MyVoBool Read(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {

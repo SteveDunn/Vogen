@@ -491,7 +491,10 @@ public static readonly public_partial_recordint MyValue = new public_partial_rec
     public override global::System.String ToString() =>_isInitialized ? Value.ToString() : "[UNINITIALIZED]";
 
         
-        internal class public_partial_recordintSystemTextJsonConverter : global::System.Text.Json.Serialization.JsonConverter<public_partial_recordint>
+        /// <summary>
+        /// Converts a public_partial_recordint to or from JSON.
+        /// </summary>
+        public class public_partial_recordintSystemTextJsonConverter : global::System.Text.Json.Serialization.JsonConverter<public_partial_recordint>
         {
             public override public_partial_recordint Read(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {

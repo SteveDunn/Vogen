@@ -462,7 +462,10 @@ public static ValueObjectOrError<partial_struct_Method> TryFrom(System.Int32 val
         
  
         
-        internal class partial_struct_MethodSystemTextJsonConverter : global::System.Text.Json.Serialization.JsonConverter<partial_struct_Method>
+        /// <summary>
+        /// Converts a partial_struct_Method to or from JSON.
+        /// </summary>
+        public class partial_struct_MethodSystemTextJsonConverter : global::System.Text.Json.Serialization.JsonConverter<partial_struct_Method>
         {
             public override partial_struct_Method Read(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {

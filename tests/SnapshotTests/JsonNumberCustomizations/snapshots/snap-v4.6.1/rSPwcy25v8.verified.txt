@@ -360,7 +360,10 @@ public static ValueObjectOrError<stj_number_as_string_public_sealed_partial_reco
         /// <summary>Returns the string representation of the underlying <see cref="System.DateTime" />.</summary>
     public override global::System.String ToString() =>_isInitialized ? Value.ToString() : "[UNINITIALIZED]";
 
-                internal class stj_number_as_string_public_sealed_partial_record_classConversions_SystemTextJsonSystem_DateTime_customizedSystemTextJsonConverter : global::System.Text.Json.Serialization.JsonConverter<stj_number_as_string_public_sealed_partial_record_classConversions_SystemTextJsonSystem_DateTime_customized>
+                /// <summary>
+        /// Converts a stj_number_as_string_public_sealed_partial_record_classConversions_SystemTextJsonSystem_DateTime_customized to or from JSON.
+        /// </summary>
+        public class stj_number_as_string_public_sealed_partial_record_classConversions_SystemTextJsonSystem_DateTime_customizedSystemTextJsonConverter : global::System.Text.Json.Serialization.JsonConverter<stj_number_as_string_public_sealed_partial_record_classConversions_SystemTextJsonSystem_DateTime_customized>
         {
             public override stj_number_as_string_public_sealed_partial_record_classConversions_SystemTextJsonSystem_DateTime_customized Read(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {
@@ -373,6 +376,9 @@ public static ValueObjectOrError<stj_number_as_string_public_sealed_partial_reco
             }
 
 #if NET6_0_OR_GREATER
+            /// <summary>
+            /// Converts a stj_number_as_string_public_sealed_partial_record_classConversions_SystemTextJsonSystem_DateTime_customized to or from JSON.
+            /// </summary>
             public override stj_number_as_string_public_sealed_partial_record_classConversions_SystemTextJsonSystem_DateTime_customized ReadAsPropertyName(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {
                 return stj_number_as_string_public_sealed_partial_record_classConversions_SystemTextJsonSystem_DateTime_customized.__Deserialize(global::System.DateTime.ParseExact(reader.GetString(), "O", global::System.Globalization.CultureInfo.InvariantCulture, global::System.Globalization.DateTimeStyles.RoundtripKind));

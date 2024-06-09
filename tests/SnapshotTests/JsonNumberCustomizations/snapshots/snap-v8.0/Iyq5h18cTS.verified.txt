@@ -314,8 +314,10 @@ public static ValueObjectOrError<stj_number_as_string_public_partial_recordConve
         /// <summary>Returns the string representation of the underlying <see cref="System.Char" />.</summary>
     public override global::System.String ToString() =>_isInitialized ? Value.ToString() : "[UNINITIALIZED]";
 
-        
-        internal class stj_number_as_string_public_partial_recordConversions_SystemTextJsonchar_customizedSystemTextJsonConverter : global::System.Text.Json.Serialization.JsonConverter<stj_number_as_string_public_partial_recordConversions_SystemTextJsonchar_customized>
+                /// <summary>
+        /// Converts a stj_number_as_string_public_partial_recordConversions_SystemTextJsonchar_customized to or from JSON.
+        /// </summary>
+        public class stj_number_as_string_public_partial_recordConversions_SystemTextJsonchar_customizedSystemTextJsonConverter : global::System.Text.Json.Serialization.JsonConverter<stj_number_as_string_public_partial_recordConversions_SystemTextJsonchar_customized>
         {
             public override stj_number_as_string_public_partial_recordConversions_SystemTextJsonchar_customized Read(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {

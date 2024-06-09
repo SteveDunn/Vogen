@@ -474,7 +474,10 @@ public static ValueObjectOrError<_casting_public_partial_recordCastOperator_Impl
         /// <summary>Returns the string representation of the underlying <see cref="System.DateTime" />.</summary>
     public override global::System.String ToString() =>_isInitialized ? Value.ToString() : "[UNINITIALIZED]";
 
-                internal class _casting_public_partial_recordCastOperator_ImplicitCastOperator_NoneSystem_DateTimeSystemTextJsonConverter : global::System.Text.Json.Serialization.JsonConverter<_casting_public_partial_recordCastOperator_ImplicitCastOperator_NoneSystem_DateTime>
+                /// <summary>
+        /// Converts a _casting_public_partial_recordCastOperator_ImplicitCastOperator_NoneSystem_DateTime to or from JSON.
+        /// </summary>
+        public class _casting_public_partial_recordCastOperator_ImplicitCastOperator_NoneSystem_DateTimeSystemTextJsonConverter : global::System.Text.Json.Serialization.JsonConverter<_casting_public_partial_recordCastOperator_ImplicitCastOperator_NoneSystem_DateTime>
         {
             public override _casting_public_partial_recordCastOperator_ImplicitCastOperator_NoneSystem_DateTime Read(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {
@@ -487,6 +490,9 @@ public static ValueObjectOrError<_casting_public_partial_recordCastOperator_Impl
             }
 
 #if NET6_0_OR_GREATER
+            /// <summary>
+            /// Converts a _casting_public_partial_recordCastOperator_ImplicitCastOperator_NoneSystem_DateTime to or from JSON.
+            /// </summary>
             public override _casting_public_partial_recordCastOperator_ImplicitCastOperator_NoneSystem_DateTime ReadAsPropertyName(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {
                 return _casting_public_partial_recordCastOperator_ImplicitCastOperator_NoneSystem_DateTime.__Deserialize(global::System.DateTime.ParseExact(reader.GetString(), "O", global::System.Globalization.CultureInfo.InvariantCulture, global::System.Globalization.DateTimeStyles.RoundtripKind));

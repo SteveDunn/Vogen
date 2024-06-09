@@ -413,7 +413,10 @@ public static ValueObjectOrError<_casting_public_partial_record_structCastOperat
         
  
         
-        internal class _casting_public_partial_record_structCastOperator_ImplicitCastOperator_ImplicitdoubleSystemTextJsonConverter : global::System.Text.Json.Serialization.JsonConverter<_casting_public_partial_record_structCastOperator_ImplicitCastOperator_Implicitdouble>
+        /// <summary>
+        /// Converts a _casting_public_partial_record_structCastOperator_ImplicitCastOperator_Implicitdouble to or from JSON.
+        /// </summary>
+        public class _casting_public_partial_record_structCastOperator_ImplicitCastOperator_ImplicitdoubleSystemTextJsonConverter : global::System.Text.Json.Serialization.JsonConverter<_casting_public_partial_record_structCastOperator_ImplicitCastOperator_Implicitdouble>
         {
             public override _casting_public_partial_record_structCastOperator_ImplicitCastOperator_Implicitdouble Read(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {

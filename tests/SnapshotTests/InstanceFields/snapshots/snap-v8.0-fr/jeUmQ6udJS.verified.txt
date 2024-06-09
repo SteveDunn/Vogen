@@ -562,7 +562,10 @@ public static readonly public_partial_record_structfloat MyValue = new public_pa
 
  
         
-        internal class public_partial_record_structfloatSystemTextJsonConverter : global::System.Text.Json.Serialization.JsonConverter<public_partial_record_structfloat>
+        /// <summary>
+        /// Converts a public_partial_record_structfloat to or from JSON.
+        /// </summary>
+        public class public_partial_record_structfloatSystemTextJsonConverter : global::System.Text.Json.Serialization.JsonConverter<public_partial_record_structfloat>
         {
             public override public_partial_record_structfloat Read(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {

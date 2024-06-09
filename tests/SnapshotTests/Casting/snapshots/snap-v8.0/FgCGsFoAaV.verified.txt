@@ -555,7 +555,10 @@ public static ValueObjectOrError<_casting_public_readonly_partial_structCastOper
         
  
         
-        internal class _casting_public_readonly_partial_structCastOperator_ImplicitCastOperator_ExplicitintSystemTextJsonConverter : global::System.Text.Json.Serialization.JsonConverter<_casting_public_readonly_partial_structCastOperator_ImplicitCastOperator_Explicitint>
+        /// <summary>
+        /// Converts a _casting_public_readonly_partial_structCastOperator_ImplicitCastOperator_Explicitint to or from JSON.
+        /// </summary>
+        public class _casting_public_readonly_partial_structCastOperator_ImplicitCastOperator_ExplicitintSystemTextJsonConverter : global::System.Text.Json.Serialization.JsonConverter<_casting_public_readonly_partial_structCastOperator_ImplicitCastOperator_Explicitint>
         {
             public override _casting_public_readonly_partial_structCastOperator_ImplicitCastOperator_Explicitint Read(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {

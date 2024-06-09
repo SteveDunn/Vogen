@@ -406,7 +406,10 @@ public static ValueObjectOrError<_casting_public_partial_structCastOperator_Expl
         
  
         
-        internal class _casting_public_partial_structCastOperator_ExplicitCastOperator_NonefloatSystemTextJsonConverter : global::System.Text.Json.Serialization.JsonConverter<_casting_public_partial_structCastOperator_ExplicitCastOperator_Nonefloat>
+        /// <summary>
+        /// Converts a _casting_public_partial_structCastOperator_ExplicitCastOperator_Nonefloat to or from JSON.
+        /// </summary>
+        public class _casting_public_partial_structCastOperator_ExplicitCastOperator_NonefloatSystemTextJsonConverter : global::System.Text.Json.Serialization.JsonConverter<_casting_public_partial_structCastOperator_ExplicitCastOperator_Nonefloat>
         {
             public override _casting_public_partial_structCastOperator_ExplicitCastOperator_Nonefloat Read(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {

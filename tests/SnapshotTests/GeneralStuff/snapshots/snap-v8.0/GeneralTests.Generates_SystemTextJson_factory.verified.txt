@@ -553,7 +553,10 @@ public static ValueObjectOrError<MyClass1> TryFrom(System.Int32 value)
         
  
         
-        internal class MyClass1SystemTextJsonConverter : global::System.Text.Json.Serialization.JsonConverter<MyClass1>
+        /// <summary>
+        /// Converts a MyClass1 to or from JSON.
+        /// </summary>
+        public class MyClass1SystemTextJsonConverter : global::System.Text.Json.Serialization.JsonConverter<MyClass1>
         {
             public override MyClass1 Read(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {
@@ -1172,7 +1175,10 @@ public static ValueObjectOrError<MyClass2> TryFrom(System.Int32 value)
         
  
         
-        internal class MyClass2SystemTextJsonConverter : global::System.Text.Json.Serialization.JsonConverter<MyClass2>
+        /// <summary>
+        /// Converts a MyClass2 to or from JSON.
+        /// </summary>
+        public class MyClass2SystemTextJsonConverter : global::System.Text.Json.Serialization.JsonConverter<MyClass2>
         {
             public override MyClass2 Read(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {

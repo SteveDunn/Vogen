@@ -332,7 +332,10 @@ public static readonly BooleanThing Invalid = new BooleanThing(false);
 
  
         
-        internal class BooleanThingSystemTextJsonConverter : global::System.Text.Json.Serialization.JsonConverter<BooleanThing>
+        /// <summary>
+        /// Converts a BooleanThing to or from JSON.
+        /// </summary>
+        public class BooleanThingSystemTextJsonConverter : global::System.Text.Json.Serialization.JsonConverter<BooleanThing>
         {
             public override BooleanThing Read(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {

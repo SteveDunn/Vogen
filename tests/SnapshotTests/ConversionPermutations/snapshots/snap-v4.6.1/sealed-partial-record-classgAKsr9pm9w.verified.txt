@@ -376,7 +376,10 @@ public static ValueObjectOrError<MyIntVo> TryFrom(System.Int32 value)
     public override global::System.String ToString() =>_isInitialized ? Value.ToString() : "[UNINITIALIZED]";
 
         
-        internal class MyIntVoSystemTextJsonConverter : global::System.Text.Json.Serialization.JsonConverter<MyIntVo>
+        /// <summary>
+        /// Converts a MyIntVo to or from JSON.
+        /// </summary>
+        public class MyIntVoSystemTextJsonConverter : global::System.Text.Json.Serialization.JsonConverter<MyIntVo>
         {
             public override MyIntVo Read(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {

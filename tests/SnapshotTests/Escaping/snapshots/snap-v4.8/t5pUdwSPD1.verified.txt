@@ -258,7 +258,10 @@ public static ValueObjectOrError<escapedTestspublic_partial_record_structConvers
         
  
         
-        internal class escapedTestspublic_partial_record_structConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterrecord__struct__float__event2SystemTextJsonConverter : global::System.Text.Json.Serialization.JsonConverter<escapedTestspublic_partial_record_structConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterrecord__struct__float__event2>
+        /// <summary>
+        /// Converts a escapedTestspublic_partial_record_structConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterrecord__struct__float__event2 to or from JSON.
+        /// </summary>
+        public class escapedTestspublic_partial_record_structConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterrecord__struct__float__event2SystemTextJsonConverter : global::System.Text.Json.Serialization.JsonConverter<escapedTestspublic_partial_record_structConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterrecord__struct__float__event2>
         {
             public override escapedTestspublic_partial_record_structConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterrecord__struct__float__event2 Read(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {

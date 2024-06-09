@@ -466,7 +466,10 @@ public static ValueObjectOrError<partial_record_struct_ExpressionBodiedMethod> T
         
  
         
-        internal class partial_record_struct_ExpressionBodiedMethodSystemTextJsonConverter : global::System.Text.Json.Serialization.JsonConverter<partial_record_struct_ExpressionBodiedMethod>
+        /// <summary>
+        /// Converts a partial_record_struct_ExpressionBodiedMethod to or from JSON.
+        /// </summary>
+        public class partial_record_struct_ExpressionBodiedMethodSystemTextJsonConverter : global::System.Text.Json.Serialization.JsonConverter<partial_record_struct_ExpressionBodiedMethod>
         {
             public override partial_record_struct_ExpressionBodiedMethod Read(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {

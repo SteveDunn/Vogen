@@ -369,7 +369,10 @@ public static ValueObjectOrError<_casting_public_partial_classCastOperator_NoneC
     public override global::System.String ToString() =>_isInitialized ? Value.ToString() : "[UNINITIALIZED]";
 
         
-        internal class _casting_public_partial_classCastOperator_NoneCastOperator_ExplicitdecimalSystemTextJsonConverter : global::System.Text.Json.Serialization.JsonConverter<_casting_public_partial_classCastOperator_NoneCastOperator_Explicitdecimal>
+        /// <summary>
+        /// Converts a _casting_public_partial_classCastOperator_NoneCastOperator_Explicitdecimal to or from JSON.
+        /// </summary>
+        public class _casting_public_partial_classCastOperator_NoneCastOperator_ExplicitdecimalSystemTextJsonConverter : global::System.Text.Json.Serialization.JsonConverter<_casting_public_partial_classCastOperator_NoneCastOperator_Explicitdecimal>
         {
             public override _casting_public_partial_classCastOperator_NoneCastOperator_Explicitdecimal Read(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {

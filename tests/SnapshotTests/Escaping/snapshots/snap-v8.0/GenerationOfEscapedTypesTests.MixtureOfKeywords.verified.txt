@@ -273,7 +273,10 @@ public static ValueObjectOrError<classFromEscapedNamespaceWithReservedUnderlying
     public override global::System.String ToString() =>_isInitialized ? Value.ToString() : "[UNINITIALIZED]";
 
         
-        internal class classFromEscapedNamespaceWithReservedUnderlyingTypeSystemTextJsonConverter : global::System.Text.Json.Serialization.JsonConverter<classFromEscapedNamespaceWithReservedUnderlyingType>
+        /// <summary>
+        /// Converts a classFromEscapedNamespaceWithReservedUnderlyingType to or from JSON.
+        /// </summary>
+        public class classFromEscapedNamespaceWithReservedUnderlyingTypeSystemTextJsonConverter : global::System.Text.Json.Serialization.JsonConverter<classFromEscapedNamespaceWithReservedUnderlyingType>
         {
             public override classFromEscapedNamespaceWithReservedUnderlyingType Read(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {
@@ -890,7 +893,10 @@ public static ValueObjectOrError<classFromEscapedNamespace> TryFrom(System.Int32
     public override global::System.String ToString() =>_isInitialized ? Value.ToString() : "[UNINITIALIZED]";
 
         
-        internal class classFromEscapedNamespaceSystemTextJsonConverter : global::System.Text.Json.Serialization.JsonConverter<classFromEscapedNamespace>
+        /// <summary>
+        /// Converts a classFromEscapedNamespace to or from JSON.
+        /// </summary>
+        public class classFromEscapedNamespaceSystemTextJsonConverter : global::System.Text.Json.Serialization.JsonConverter<classFromEscapedNamespace>
         {
             public override classFromEscapedNamespace Read(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {
@@ -1523,7 +1529,10 @@ public static ValueObjectOrError<@class> TryFrom(System.Int32 value)
     public override global::System.String ToString() =>_isInitialized ? Value.ToString() : "[UNINITIALIZED]";
 
         
-        internal class @classSystemTextJsonConverter : global::System.Text.Json.Serialization.JsonConverter<@class>
+        /// <summary>
+        /// Converts a @class to or from JSON.
+        /// </summary>
+        public class @classSystemTextJsonConverter : global::System.Text.Json.Serialization.JsonConverter<@class>
         {
             public override @class Read(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {
@@ -2156,7 +2165,10 @@ public static ValueObjectOrError<@event> TryFrom(System.Int32 value)
     public override global::System.String ToString() =>_isInitialized ? Value.ToString() : "[UNINITIALIZED]";
 
         
-        internal class @eventSystemTextJsonConverter : global::System.Text.Json.Serialization.JsonConverter<@event>
+        /// <summary>
+        /// Converts a @event to or from JSON.
+        /// </summary>
+        public class @eventSystemTextJsonConverter : global::System.Text.Json.Serialization.JsonConverter<@event>
         {
             public override @event Read(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {
@@ -2490,7 +2502,10 @@ public static ValueObjectOrError<@event2> TryFrom(@record.@struct.@float.@decima
     public override global::System.String ToString() =>_isInitialized ? Value.ToString() : "[UNINITIALIZED]";
 
         
-        internal class @event2SystemTextJsonConverter : global::System.Text.Json.Serialization.JsonConverter<@event2>
+        /// <summary>
+        /// Converts a @event2 to or from JSON.
+        /// </summary>
+        public class @event2SystemTextJsonConverter : global::System.Text.Json.Serialization.JsonConverter<@event2>
         {
             public override @event2 Read(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {

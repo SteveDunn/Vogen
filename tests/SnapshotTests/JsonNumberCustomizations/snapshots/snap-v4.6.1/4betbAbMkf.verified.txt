@@ -350,7 +350,10 @@ public static ValueObjectOrError<stj_number_as_string_public_partial_structConve
         
  
         
-        internal class stj_number_as_string_public_partial_structConversions_SystemTextJsonshortSystemTextJsonConverter : global::System.Text.Json.Serialization.JsonConverter<stj_number_as_string_public_partial_structConversions_SystemTextJsonshort>
+        /// <summary>
+        /// Converts a stj_number_as_string_public_partial_structConversions_SystemTextJsonshort to or from JSON.
+        /// </summary>
+        public class stj_number_as_string_public_partial_structConversions_SystemTextJsonshortSystemTextJsonConverter : global::System.Text.Json.Serialization.JsonConverter<stj_number_as_string_public_partial_structConversions_SystemTextJsonshort>
         {
             public override stj_number_as_string_public_partial_structConversions_SystemTextJsonshort Read(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {

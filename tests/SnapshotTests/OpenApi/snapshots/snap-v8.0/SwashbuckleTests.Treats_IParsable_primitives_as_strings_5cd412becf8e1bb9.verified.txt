@@ -572,7 +572,10 @@ public static ValueObjectOrError<MyVo> TryFrom(System.Half value)
     public override global::System.String ToString() =>_isInitialized ? Value.ToString() : "[UNINITIALIZED]";
 
         
-        internal class MyVoSystemTextJsonConverter : global::System.Text.Json.Serialization.JsonConverter<MyVo>
+        /// <summary>
+        /// Converts a MyVo to or from JSON.
+        /// </summary>
+        public class MyVoSystemTextJsonConverter : global::System.Text.Json.Serialization.JsonConverter<MyVo>
         {
             public override MyVo Read(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {

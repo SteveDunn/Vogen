@@ -395,7 +395,10 @@ public static ValueObjectOrError<public_readonly_partial_structConversions_Newto
         
  
         
-        internal class public_readonly_partial_structConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterSystem_DateTimeOffsetSystemTextJsonConverter : global::System.Text.Json.Serialization.JsonConverter<public_readonly_partial_structConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterSystem_DateTimeOffset>
+        /// <summary>
+        /// Converts a public_readonly_partial_structConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterSystem_DateTimeOffset to or from JSON.
+        /// </summary>
+        public class public_readonly_partial_structConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterSystem_DateTimeOffsetSystemTextJsonConverter : global::System.Text.Json.Serialization.JsonConverter<public_readonly_partial_structConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterSystem_DateTimeOffset>
         {
             public override public_readonly_partial_structConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterSystem_DateTimeOffset Read(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {

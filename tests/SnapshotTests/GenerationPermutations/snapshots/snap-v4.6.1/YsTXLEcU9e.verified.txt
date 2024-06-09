@@ -374,7 +374,10 @@ public static ValueObjectOrError<internal_sealed_partial_recordConversions_Newto
     public override global::System.String ToString() =>_isInitialized ? Value.ToString() : "[UNINITIALIZED]";
 
         
-        internal class internal_sealed_partial_recordConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterdecimalSystemTextJsonConverter : global::System.Text.Json.Serialization.JsonConverter<internal_sealed_partial_recordConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterdecimal>
+        /// <summary>
+        /// Converts a internal_sealed_partial_recordConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterdecimal to or from JSON.
+        /// </summary>
+        public class internal_sealed_partial_recordConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterdecimalSystemTextJsonConverter : global::System.Text.Json.Serialization.JsonConverter<internal_sealed_partial_recordConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterdecimal>
         {
             public override internal_sealed_partial_recordConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterdecimal Read(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {

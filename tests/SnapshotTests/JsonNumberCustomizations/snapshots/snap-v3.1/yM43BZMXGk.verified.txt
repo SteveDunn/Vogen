@@ -413,7 +413,10 @@ public static ValueObjectOrError<stj_number_as_string_public_sealed_partial_clas
     public override global::System.String ToString() =>_isInitialized ? Value.ToString() : "[UNINITIALIZED]";
 
         
-        internal class stj_number_as_string_public_sealed_partial_classConversions_SystemTextJsonSystem_DateTimeOffsetSystemTextJsonConverter : global::System.Text.Json.Serialization.JsonConverter<stj_number_as_string_public_sealed_partial_classConversions_SystemTextJsonSystem_DateTimeOffset>
+        /// <summary>
+        /// Converts a stj_number_as_string_public_sealed_partial_classConversions_SystemTextJsonSystem_DateTimeOffset to or from JSON.
+        /// </summary>
+        public class stj_number_as_string_public_sealed_partial_classConversions_SystemTextJsonSystem_DateTimeOffsetSystemTextJsonConverter : global::System.Text.Json.Serialization.JsonConverter<stj_number_as_string_public_sealed_partial_classConversions_SystemTextJsonSystem_DateTimeOffset>
         {
             public override stj_number_as_string_public_sealed_partial_classConversions_SystemTextJsonSystem_DateTimeOffset Read(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {
