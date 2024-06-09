@@ -35,6 +35,7 @@ internal class BuildConfigurationFromAttributes
     private StaticAbstractsGeneration _staticAbstractsGeneration;
     private OpenApiSchemaCustomizations _openApiSchemaCustomizations;
     private bool _primitiveTypeMustBeExplicit;
+    private PrimitiveEqualityGeneration _primitiveEqualityGeneration;
 
     private BuildConfigurationFromAttributes(AttributeData att)
     {
@@ -59,6 +60,7 @@ internal class BuildConfigurationFromAttributes
         _staticAbstractsGeneration = StaticAbstractsGeneration.Unspecified;
         _openApiSchemaCustomizations = OpenApiSchemaCustomizations.Unspecified;
         _primitiveTypeMustBeExplicit = false;
+        _primitiveEqualityGeneration = PrimitiveEqualityGeneration.Unspecified;
        
         _diagnostics = new List<Diagnostic>();
         
@@ -120,7 +122,8 @@ internal class BuildConfigurationFromAttributes
                 _systemTextJsonConverterFactoryGeneration,
                 _staticAbstractsGeneration,
                 _openApiSchemaCustomizations,
-                _primitiveTypeMustBeExplicit),
+                _primitiveTypeMustBeExplicit,
+                _primitiveEqualityGeneration),
             diagnostics: _diagnostics);
     }
 
@@ -192,7 +195,7 @@ internal class BuildConfigurationFromAttributes
     // ReSharper disable once CognitiveComplexity
     private void PopulateFromVogenDefaultsAttributeArgs(ImmutableArray<TypedConstant> argsExcludingUnderlyingType)
     {
-        if (argsExcludingUnderlyingType.Length > 16)
+        if (argsExcludingUnderlyingType.Length > 17)
         {
             throw new InvalidOperationException("Too many arguments for the attribute.");
         }
@@ -206,6 +209,11 @@ internal class BuildConfigurationFromAttributes
                 continue;
             }
 
+            if (i == 16)
+            {
+                _primitiveEqualityGeneration = (PrimitiveEqualityGeneration) v;
+            }
+            
             if (i == 15)
             {
                 _primitiveTypeMustBeExplicit = (bool) v;
@@ -293,7 +301,7 @@ internal class BuildConfigurationFromAttributes
     // ReSharper disable once CognitiveComplexity
     private void PopulateFromValueObjectAttributeArgs(ImmutableArray<TypedConstant> args)
     {
-        if (args.Length > 13)
+        if (args.Length > 14)
         {
             throw new InvalidOperationException("Too many arguments for the attribute.");
         }
@@ -305,6 +313,11 @@ internal class BuildConfigurationFromAttributes
             if (v is null)
             {
                 continue;
+            }
+
+            if (i == 13)
+            {
+                _primitiveEqualityGeneration = (PrimitiveEqualityGeneration) v;
             }
 
             if (i == 12)

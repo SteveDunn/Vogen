@@ -69,11 +69,12 @@ exec { & dotnet restore Vogen.sln --no-cache --verbosity $verbosity }
 
 if($reset)
 {
-    WriteStage("... resetting snapshots ...")
+    WriteStage("... resetting snapshots before running them ...")
     exec { & dotnet build Vogen.sln -c Release -p Thorough=true -p ResetSnapshots=true --no-restore --verbosity $verbosity}
 }
 else
 {
+    WriteStage("... running snapshots ...")
     exec { & dotnet build Vogen.sln -c Release -p Thorough=true --no-restore --verbosity $verbosity}
 }
 

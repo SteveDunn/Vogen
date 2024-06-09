@@ -6,7 +6,7 @@ class GenerateTypeConverterConversions : IGenerateConversion
 {
     public string GenerateAnyAttributes(TypeDeclarationSyntax tds, VoWorkItem item)
     {
-        if (!item.Conversions.HasFlag(Vogen.Conversions.TypeConverter))
+        if (!item.Config.Conversions.HasFlag(Vogen.Conversions.TypeConverter))
         {
             return string.Empty;
         }
@@ -16,7 +16,7 @@ class GenerateTypeConverterConversions : IGenerateConversion
 
     public string GenerateAnyBody(TypeDeclarationSyntax tds, VoWorkItem item)
     {
-        if (!item.Conversions.HasFlag(Vogen.Conversions.TypeConverter))
+        if (!item.Config.Conversions.HasFlag(Vogen.Conversions.TypeConverter))
         {
             return string.Empty;
         }

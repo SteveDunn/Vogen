@@ -88,9 +88,9 @@ using Vogen;
 
         {GenerateCodeForTryFrom.GenerateForAStruct(item, className, itemUnderlyingType)}
 
-{(item.IsInitializedMethodGeneration == IsInitializedMethodGeneration.Generate ? Util.GenerateIsInitializedMethod() : string.Empty)}
+{(item.Config.IsInitializedMethodGeneration == IsInitializedMethodGeneration.Generate ? Util.GenerateIsInitializedMethod() : string.Empty)}
 
-{GenerateEqualsAndHashCodes.GenerateStringComparersIfNeeded(item, tds)}  
+{GenerateStringComparers.GenerateIfNeeded(item, tds)}  
         // only called internally when something has been deserialized into
         // its primitive type.
         private static {className} __Deserialize({itemUnderlyingType} value)
@@ -103,20 +103,15 @@ using Vogen;
 
             return new {className}(value);
         }}
-        {GenerateEqualsAndHashCodes.GenerateEqualsForAClass(item, tds)}
-
-        public static global::System.Boolean operator ==({className} left, {itemUnderlyingType} right) => Equals(left.Value, right);
-        public static global::System.Boolean operator !=({className} left, {itemUnderlyingType} right) => !Equals(left.Value, right);
-
-        public static global::System.Boolean operator ==({itemUnderlyingType} left, {className} right) => Equals(left, right.Value);
-        public static global::System.Boolean operator !=({itemUnderlyingType} left, {className} right) => !Equals(left, right.Value);
+        {GenerateEqualsMethodsAndOperators.GenerateEqualsMethodsForAClass(item, tds)}
+{GenerateEqualsMethodsAndOperators.GenerateEqualsOperatorsForPrimitivesIfNeeded(itemUnderlyingType, className, item)}
 
 {GenerateCastingOperators.GenerateImplementations(item,tds)}{Util.GenerateGuidFactoryMethodIfNeeded(item, tds)}
         {GenerateComparableCode.GenerateIComparableImplementationIfNeeded(item, tds)}
 
         {GenerateCodeForTryParse.GenerateAnyHoistedTryParseMethods(item)}{GenerateCodeForParse.GenerateAnyHoistedParseMethods(item)}
 
-{GenerateEqualsAndHashCodes.GenerateGetHashCodeForAClass(item)}
+{GenerateHashCodes.GenerateGetHashCodeForAClass(item)}
 
         private void EnsureInitialized()
         {{

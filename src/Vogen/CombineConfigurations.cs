@@ -142,6 +142,14 @@ public static class CombineConfigurations
             (var local, _) => local,
         };
 
+        PrimitiveEqualityGeneration primitiveEqualityGeneration = (localValues.PrimitiveEqualityGeneration, globalValues?.PrimitiveEqualityGeneration) switch
+        {
+            (PrimitiveEqualityGeneration.Unspecified, null) => VogenConfiguration.DefaultInstance.PrimitiveEqualityGeneration,
+            (PrimitiveEqualityGeneration.Unspecified, PrimitiveEqualityGeneration.Unspecified) => VogenConfiguration.DefaultInstance.PrimitiveEqualityGeneration,
+            (PrimitiveEqualityGeneration.Unspecified, var global) => global.Value,
+            (var local, _) => local,
+        };
+
         var validationExceptionType = localValues.ValidationExceptionType ?? 
                                       globalValues?.ValidationExceptionType ?? 
                                       VogenConfiguration.DefaultInstance.ValidationExceptionType;
@@ -157,25 +165,26 @@ public static class CombineConfigurations
             globalValues?.ExplicitlySpecifyTypeInValueObject ?? VogenConfiguration.DefaultInstance.ExplicitlySpecifyTypeInValueObject;
 
         return new VogenConfiguration(
-            underlyingType: underlyingType,
-            validationExceptionType: validationExceptionType,
-            conversions: conversions,
-            customizations: customizations,
-            deserializationStrictness: strictness,
-            debuggerAttributes: debuggerAttributes,
-            comparison: comparison,
-            stringComparers: stringComparers,
-            toPrimitiveCasting: toPrimitiveCastOperators,
-            fromPrimitiveCasting: fromPrimitiveCastOperators,
-            disableStackTraceRecordingInDebug: disableStackTraceRecordingInDebug,
-            parsableForStrings: parsableForStrings,
-            parsableForPrimitives: parsableForPrimitives,
-            tryFromGeneration: tryFromGeneration,
-            isInitializedMethodGeneration: isInitializedMethodGeneration,
-            systemTextJsonConverterFactoryGeneration: stjFactories,
-            staticAbstractsGeneration: staticAbstractsGeneration,
-            openApiSchemaCustomizations: openApiSchemaCustomizations,
-            explicitlySpecifyTypeInValueObject: primitiveTypeMustBeExplicit);
+            UnderlyingType: underlyingType,
+            ValidationExceptionType: validationExceptionType,
+            Conversions: conversions,
+            Customizations: customizations,
+            DeserializationStrictness: strictness,
+            DebuggerAttributes: debuggerAttributes,
+            Comparison: comparison,
+            StringComparers: stringComparers,
+            ToPrimitiveCasting: toPrimitiveCastOperators,
+            FromPrimitiveCasting: fromPrimitiveCastOperators,
+            DisableStackTraceRecordingInDebug: disableStackTraceRecordingInDebug,
+            ParsableForStrings: parsableForStrings,
+            ParsableForPrimitives: parsableForPrimitives,
+            TryFromGeneration: tryFromGeneration,
+            IsInitializedMethodGeneration: isInitializedMethodGeneration,
+            SystemTextJsonConverterFactoryGeneration: stjFactories,
+            StaticAbstractsGeneration: staticAbstractsGeneration,
+            OpenApiSchemaCustomizations: openApiSchemaCustomizations,
+            ExplicitlySpecifyTypeInValueObject: primitiveTypeMustBeExplicit,
+            PrimitiveEqualityGeneration: primitiveEqualityGeneration);
     }
  
     /// If we don't have a global attribute, just use the default configuration as there

@@ -1,13 +1,10 @@
-using System;
-using Microsoft.CodeAnalysis;
-
 namespace Vogen;
 
 internal static class GenerateStaticConstructor
 {
     public static string GenerateIfNeeded(VoWorkItem item)
     {
-        if (!item.Conversions.HasFlag(Conversions.ServiceStackDotText))
+        if (!item.Config.Conversions.HasFlag(Conversions.ServiceStackDotText))
         {
             return string.Empty;
         }

@@ -91,7 +91,7 @@ public static class Util
     {
         StringBuilder sb = new StringBuilder();
 
-        if (workItem.DeserializationStrictness.HasFlag(DeserializationStrictness.AllowKnownInstances))
+        if (workItem.Config.DeserializationStrictness.HasFlag(DeserializationStrictness.AllowKnownInstances))
         {
             foreach (var eachInstance in workItem.InstanceProperties)
             {
@@ -105,7 +105,7 @@ public static class Util
             return sb.ToString();
         }
 
-        if (workItem.DeserializationStrictness.HasFlag(DeserializationStrictness.RunMyValidationMethod))
+        if (workItem.Config.DeserializationStrictness.HasFlag(DeserializationStrictness.RunMyValidationMethod))
         {
             sb.AppendLine(@$"var validation = {workItem.TypeToAugment.Identifier}.{workItem.ValidateMethod.Identifier.Value}(value);
             if (validation != Vogen.Validation.Ok)
@@ -184,7 +184,7 @@ public static class Util
         return sb.ToString();
     }
 
-    private static string GenerateAnyConversionAttributesForDebuggerProxy(VoWorkItem item) => item.Conversions.ToString();
+    private static string GenerateAnyConversionAttributesForDebuggerProxy(VoWorkItem item) => item.Config.Conversions.ToString();
 
     public static string GenerateAnyConversionBodies(TypeDeclarationSyntax tds, VoWorkItem item)
     {
@@ -199,7 +199,7 @@ public static class Util
 
     public static string GenerateDebuggerProxyForStructs(VoWorkItem item)
     {
-        var createdWithMethod = item.DisableStackTraceRecordingInDebug
+        var createdWithMethod = item.Config.DisableStackTraceRecordingInDebug
             ? @"public global::System.String CreatedWith => ""the From method"""
             : @"public global::System.String CreatedWith => _t._stackTrace?.ToString() ?? ""the From method""";
         
@@ -269,7 +269,7 @@ $$"""
 
     public static string GenerateGuidFactoryMethodIfNeeded(VoWorkItem item, TypeDeclarationSyntax tds)
     {
-        if (item.UnderlyingTypeFullName == "System.Guid" && item.Customizations.HasFlag(Customizations.AddFactoryMethodForGuids))
+        if (item.UnderlyingTypeFullName == "System.Guid" && item.Config.Customizations.HasFlag(Customizations.AddFactoryMethodForGuids))
         {
             return $"public static {item.VoTypeName} FromNewGuid() {{ return From(global::System.Guid.NewGuid()); }}";
         }
@@ -288,7 +288,7 @@ public static class DebugGeneration
                        [global::System.Diagnostics.DebuggerTypeProxyAttribute(typeof({{className}}DebugView))]
                            [global::System.Diagnostics.DebuggerDisplayAttribute("Underlying type: {{itemUnderlyingType}}, Value = { _value }")]
                        """;
-        if (item.DebuggerAttributes == DebuggerAttributeGeneration.Basic)
+        if (item.Config.DebuggerAttributes == DebuggerAttributeGeneration.Basic)
         {
             return $@"/* Debug attributes omitted because the 'debuggerAttributes' flag is set to {nameof(DebuggerAttributeGeneration.Basic)} on the Vogen attribute.
 This is usually set to avoid issues in Rider where it doesn't fully handle the attributes support by Visual Studio and
@@ -304,7 +304,7 @@ causes Rider's debugger to crash.
 
     public static string GenerateStackTraceFieldIfNeeded(VoWorkItem item)
     {
-        if(item.DisableStackTraceRecordingInDebug)
+        if(item.Config.DisableStackTraceRecordingInDebug)
         {
             return string.Empty;
         }
@@ -317,13 +317,13 @@ causes Rider's debugger to crash.
 
     }
 
-    public static string SetStackTraceIfNeeded(VoWorkItem voWorkItem) => voWorkItem.DisableStackTraceRecordingInDebug
+    public static string SetStackTraceIfNeeded(VoWorkItem voWorkItem) => voWorkItem.Config.DisableStackTraceRecordingInDebug
         ? string.Empty
         : "_stackTrace = new global::System.Diagnostics.StackTrace();";
 
     public static string GenerateMessageForUninitializedValueObject(VoWorkItem item)
     {
-        if (item.DisableStackTraceRecordingInDebug)
+        if (item.Config.DisableStackTraceRecordingInDebug)
         {
             return $"""global::System.String message = "Use of uninitialized Value Object.";""";
             

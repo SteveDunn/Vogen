@@ -39,6 +39,7 @@ public class VogenDefaultsAttribute : Attribute
     /// <param name="staticAbstractsGeneration">Controls the generation of static abstract interfaces.</param>
     /// <param name="openApiSchemaCustomizations">Controls the generation of a Swashbuckle schema filter for OpenAPI.</param>
     /// <param name="explicitlySpecifyTypeInValueObject">Every ValueObject attribute must explicitly specify the type of the primitive.</param>
+    /// <param name="primitiveEqualityGeneration">Whether or not to generate primitive comparison operators.</param>
     public VogenDefaultsAttribute(
         Type? underlyingType = null,
         Conversions conversions = Conversions.Default,
@@ -57,7 +58,8 @@ public class VogenDefaultsAttribute : Attribute
             SystemTextJsonConverterFactoryGeneration.Unspecified,
         StaticAbstractsGeneration staticAbstractsGeneration = StaticAbstractsGeneration.Unspecified,
         OpenApiSchemaCustomizations openApiSchemaCustomizations = OpenApiSchemaCustomizations.Unspecified,
-        bool explicitlySpecifyTypeInValueObject = false)
+        bool explicitlySpecifyTypeInValueObject = false,
+        PrimitiveEqualityGeneration primitiveEqualityGeneration = PrimitiveEqualityGeneration.Unspecified)
     {
     }
 }

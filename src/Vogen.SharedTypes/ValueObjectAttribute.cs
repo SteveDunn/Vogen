@@ -29,7 +29,8 @@ namespace Vogen
             ParsableForStrings parsableForStrings = ParsableForStrings.Unspecified,
             ParsableForPrimitives parsableForPrimitives = ParsableForPrimitives.Unspecified,
             TryFromGeneration tryFromGeneration = TryFromGeneration.Unspecified,
-            IsInitializedMethodGeneration isInitializedMethodGeneration = IsInitializedMethodGeneration.Unspecified) : base(
+            IsInitializedMethodGeneration isInitializedMethodGeneration = IsInitializedMethodGeneration.Unspecified,
+            PrimitiveEqualityGeneration primitiveEqualityGeneration = PrimitiveEqualityGeneration.Unspecified) : base(
             typeof(T),
             conversions,
             throws,
@@ -43,7 +44,8 @@ namespace Vogen
             parsableForStrings,
             parsableForPrimitives,
             tryFromGeneration,
-            isInitializedMethodGeneration)
+            isInitializedMethodGeneration,
+            primitiveEqualityGeneration)
         {
         }
     }
@@ -73,7 +75,8 @@ namespace Vogen
             ParsableForStrings parsableForStrings = ParsableForStrings.Unspecified,
             ParsableForPrimitives parsableForPrimitives = ParsableForPrimitives.Unspecified,
             TryFromGeneration tryFromGeneration = TryFromGeneration.Unspecified,
-            IsInitializedMethodGeneration isInitializedMethodGeneration = IsInitializedMethodGeneration.Unspecified)
+            IsInitializedMethodGeneration isInitializedMethodGeneration = IsInitializedMethodGeneration.Unspecified,
+            PrimitiveEqualityGeneration primitiveEqualityGeneration = PrimitiveEqualityGeneration.Unspecified)
         {
         }
     }

@@ -6,7 +6,7 @@ internal class GenerateSystemTextJsonConversions : IGenerateConversion
 {
     public string GenerateAnyAttributes(TypeDeclarationSyntax tds, VoWorkItem item)
     {
-        if (!item.Conversions.HasFlag(Vogen.Conversions.SystemTextJson))
+        if (!item.Config.Conversions.HasFlag(Vogen.Conversions.SystemTextJson))
         {
             return string.Empty;
         }
@@ -16,7 +16,7 @@ internal class GenerateSystemTextJsonConversions : IGenerateConversion
 
     public string GenerateAnyBody(TypeDeclarationSyntax tds, VoWorkItem item)
     {
-        if (!item.Conversions.HasFlag(Vogen.Conversions.SystemTextJson))
+        if (!item.Config.Conversions.HasFlag(Vogen.Conversions.SystemTextJson))
         {
             return string.Empty;
         }
@@ -25,7 +25,7 @@ internal class GenerateSystemTextJsonConversions : IGenerateConversion
         if (code.Contains("__NORMAL__"))
         {
             (string keep, string cut) keepCut =
-                item.Customizations.HasFlag(Customizations.TreatNumberAsStringInSystemTextJson)
+                item.Config.Customizations.HasFlag(Customizations.TreatNumberAsStringInSystemTextJson)
                     ? ("__STRING__", "__NORMAL__") : ("__NORMAL__", "__STRING__");
 
             code = CodeSections.CutSection(code, keepCut.cut);

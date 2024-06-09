@@ -8,12 +8,12 @@ public static class GenerateComparableCode
 {
     public static string GenerateIComparableHeaderIfNeeded(string precedingText, VoWorkItem item, TypeDeclarationSyntax tds)
     {
-        if (item.ComparisonGeneration == ComparisonGeneration.Omit)
+        if (item.Config.Comparison == ComparisonGeneration.Omit)
         {
             return string.Empty;
         }
         
-        if (item.ComparisonGeneration == ComparisonGeneration.UseUnderlying && item.UnderlyingType.ImplementsInterfaceOrBaseClass(typeof(IComparable<>)))
+        if (item.Config.Comparison == ComparisonGeneration.UseUnderlying && item.UnderlyingType.ImplementsInterfaceOrBaseClass(typeof(IComparable<>)))
         {
             return $"{precedingText} global::System.IComparable<{tds.Identifier}>, global::System.IComparable";
         }
@@ -23,7 +23,7 @@ public static class GenerateComparableCode
 
     public static string GenerateIComparableImplementationIfNeeded(VoWorkItem item, TypeDeclarationSyntax tds)
     {
-        if (item.ComparisonGeneration == ComparisonGeneration.Omit)
+        if (item.Config.Comparison == ComparisonGeneration.Omit)
         {
             return string.Empty;
         }
@@ -34,7 +34,7 @@ public static class GenerateComparableCode
             return string.Empty;
         }
 
-        if (item.ComparisonGeneration != ComparisonGeneration.UseUnderlying)
+        if (item.Config.Comparison != ComparisonGeneration.UseUnderlying)
         {
             return string.Empty;
         }

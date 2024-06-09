@@ -14,7 +14,7 @@ internal static class GenerateCodeForParse
         {
             StringBuilder sb = new StringBuilder();
             
-            bool configSaysGenerate = item.ParsableForStrings is ParsableForStrings.GenerateMethodsAndInterface or ParsableForStrings.GenerateMethods;
+            bool configSaysGenerate = item.Config.ParsableForStrings is ParsableForStrings.GenerateMethodsAndInterface or ParsableForStrings.GenerateMethods;
             if (configSaysGenerate)
             {
                 sb.Append(BuildParseWithFormatProviderMethodForAString(item));
@@ -23,7 +23,7 @@ internal static class GenerateCodeForParse
             return sb.ToString();
         }
         
-        if (item.ParsableForPrimitives is not (ParsableForPrimitives.HoistMethods or ParsableForPrimitives.HoistMethodsAndInterfaces))
+        if (item.Config.ParsableForPrimitives is not (ParsableForPrimitives.HoistMethods or ParsableForPrimitives.HoistMethodsAndInterfaces))
         {
             return string.Empty;
         }

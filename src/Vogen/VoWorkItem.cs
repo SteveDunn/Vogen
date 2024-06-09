@@ -47,37 +47,13 @@ public class VoWorkItem
 
     public string FullNamespace { get; init; } = string.Empty;
 
-    public Conversions Conversions { get; init; }
-    
-    public DeserializationStrictness DeserializationStrictness { get; init; }
-    
-    public Customizations Customizations { get; init; }
-
-    public INamedTypeSymbol? TypeForValidationExceptions { get; init; }
-
-    public string ValidationExceptionFullName => TypeForValidationExceptions?.FullName() ?? "global::Vogen.ValueObjectValidationException";
+    public string ValidationExceptionFullName => Config.ValidationExceptionType?.FullName() ?? "global::Vogen.ValueObjectValidationException";
 
     public string VoTypeName => TypeToAugment.Identifier.ToString();
     
     public string UnderlyingTypeFullName => _underlyingTypeFullName;
-    
-    public DebuggerAttributeGeneration DebuggerAttributes { get; init; }
-    
-    public ComparisonGeneration ComparisonGeneration { get; init; }
-    
-    public StringComparersGeneration StringComparersGeneration { get; init; }
-    
-    public ParsableForStrings ParsableForStrings { get; init; }
-    
-    public ParsableForPrimitives ParsableForPrimitives { get; init; }
-    
+
     public bool IsSealed { get; init; }
-    
-    public CastOperator ToPrimitiveCastOperator { get; init; }
-    
-    public CastOperator FromPrimitiveCastOperator { get; init; }
-    
-    public bool DisableStackTraceRecordingInDebug { get; init; }
 
     public string AccessibilityKeyword { get; init; } = "public";
     
@@ -86,14 +62,10 @@ public class VoWorkItem
     public required INamedTypeSymbol WrapperType { get; set; }
     
     public required ParsingInformation ParsingInformation { get; set; }
+
+    public required LanguageVersion LanguageVersion { get; set; }
     
-    public TryFromGeneration TryFromGeneration { get; init; }
-    
-    public IsInitializedMethodGeneration IsInitializedMethodGeneration { get; init; }
-    
-    public StaticAbstractsGeneration StaticAbstractsGeneration { get; set; }
-    
-    public LanguageVersion LanguageVersion { get; set; }
+    public required VogenConfiguration Config { get; set; }
 }
 
 public class ParsingInformation
