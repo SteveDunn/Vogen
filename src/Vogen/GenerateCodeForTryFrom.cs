@@ -14,14 +14,14 @@ public static class GenerateCodeForTryFrom
     private static string Generate(VoWorkItem item, SyntaxToken className, string itemUnderlyingType, bool includeNullCheck)
     {
 
-        if (item.TryFromGeneration == TryFromGeneration.Omit)
+        if (item.Config.TryFromGeneration == TryFromGeneration.Omit)
         {
             return string.Empty;
         }
 
         StringBuilder sb = new();
 
-        if (item.TryFromGeneration is TryFromGeneration.GenerateBoolMethod or TryFromGeneration.GenerateBoolAndErrorOrMethods)
+        if (item.Config.TryFromGeneration is TryFromGeneration.GenerateBoolMethod or TryFromGeneration.GenerateBoolAndErrorOrMethods)
         {
             sb.Append($$"""
                         /// <summary>
@@ -46,7 +46,7 @@ public static class GenerateCodeForTryFrom
                         """);
         }
 
-        if (item.TryFromGeneration is TryFromGeneration.GenerateErrorOrMethod or TryFromGeneration.GenerateBoolAndErrorOrMethods)
+        if (item.Config.TryFromGeneration is TryFromGeneration.GenerateErrorOrMethod or TryFromGeneration.GenerateBoolAndErrorOrMethods)
         {
             sb.Append($$"""
                         /// <summary>

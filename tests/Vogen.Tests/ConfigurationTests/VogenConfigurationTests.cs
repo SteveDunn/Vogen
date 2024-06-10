@@ -1,7 +1,7 @@
 using FluentAssertions;
 using Xunit;
 
-namespace Vogen.Tests;
+namespace Vogen.Tests.ConfigurationTests;
 
 public class VogenConfigurationTests
 {
@@ -26,6 +26,7 @@ public class VogenConfigurationTests
             instance.SystemTextJsonConverterFactoryGeneration.Should().Be(SystemTextJsonConverterFactoryGeneration.Generate);
             instance.StaticAbstractsGeneration.Should().Be(StaticAbstractsGeneration.Omit);
             instance.ExplicitlySpecifyTypeInValueObject.Should().Be(false);
+            instance.PrimitiveEqualityGeneration.Should().Be(PrimitiveEqualityGeneration.GenerateOperatorsAndMethods);
         }
     }
     
@@ -71,7 +72,33 @@ public class VogenConfigurationTests
                 SystemTextJsonConverterFactoryGeneration.Unspecified,
                 StaticAbstractsGeneration.Unspecified,
                 OpenApiSchemaCustomizations.Unspecified,
-                false);
+                false,
+                PrimitiveEqualityGeneration.GenerateOperatorsAndMethods);
+    }
+
+    public class Primitive_equality_generation
+    {
+        [Fact]
+        public void Local_beats_global_when_specified()
+        {
+            var local = new ConfigBuilder().WithPrimitiveEqualityGeneration(PrimitiveEqualityGeneration.GenerateMethods).Build();
+            var global = new ConfigBuilder().WithPrimitiveEqualityGeneration(PrimitiveEqualityGeneration.GenerateOperatorsAndMethods).Build();
+            
+            var result = CombineConfigurations.CombineAndResolveAnythingUnspecified(local, global);
+
+            result.PrimitiveEqualityGeneration.Should().Be(PrimitiveEqualityGeneration.GenerateMethods);
+        }
+
+        [Fact]
+        public void Uses_global_when_local_not_specified()
+        {
+            var local = new ConfigBuilder().WithPrimitiveEqualityGeneration(PrimitiveEqualityGeneration.Unspecified).Build();
+            var global = new ConfigBuilder().WithPrimitiveEqualityGeneration(PrimitiveEqualityGeneration.GenerateOperatorsAndMethods).Build();
+            
+            var result = CombineConfigurations.CombineAndResolveAnythingUnspecified(local, global);
+
+            result.PrimitiveEqualityGeneration.Should().Be(PrimitiveEqualityGeneration.GenerateOperatorsAndMethods);
+        }
     }
 
     public class Casting
@@ -102,25 +129,26 @@ public class VogenConfigurationTests
 
         private static VogenConfiguration ConfigWithCastingAs(CastOperator toPrimitiveCast, CastOperator fromPrimitiveCast) =>
             new(
-                underlyingType: null,
-                validationExceptionType: null,
-                conversions: Conversions.Default,
-                customizations: Customizations.None,
-                deserializationStrictness: DeserializationStrictness.Default,
-                debuggerAttributes: DebuggerAttributeGeneration.Full,
-                comparison: ComparisonGeneration.UseUnderlying,
-                stringComparers: StringComparersGeneration.Unspecified,
-                toPrimitiveCasting: toPrimitiveCast,
-                fromPrimitiveCasting: fromPrimitiveCast,
-                disableStackTraceRecordingInDebug: false,
-                parsableForStrings: ParsableForStrings.GenerateMethodsAndInterface,
-                parsableForPrimitives: ParsableForPrimitives.HoistMethodsAndInterfaces,
-                tryFromGeneration: TryFromGeneration.Unspecified,
-                isInitializedMethodGeneration: IsInitializedMethodGeneration.Unspecified,
-                systemTextJsonConverterFactoryGeneration: SystemTextJsonConverterFactoryGeneration.Unspecified,
-                staticAbstractsGeneration: StaticAbstractsGeneration.Unspecified,
-                openApiSchemaCustomizations: OpenApiSchemaCustomizations.Unspecified,
-                false);
+                UnderlyingType: null,
+                ValidationExceptionType: null,
+                Conversions: Conversions.Default,
+                Customizations: Customizations.None,
+                DeserializationStrictness: DeserializationStrictness.Default,
+                DebuggerAttributes: DebuggerAttributeGeneration.Full,
+                Comparison: ComparisonGeneration.UseUnderlying,
+                StringComparers: StringComparersGeneration.Unspecified,
+                ToPrimitiveCasting: toPrimitiveCast,
+                FromPrimitiveCasting: fromPrimitiveCast,
+                DisableStackTraceRecordingInDebug: false,
+                ParsableForStrings: ParsableForStrings.GenerateMethodsAndInterface,
+                ParsableForPrimitives: ParsableForPrimitives.HoistMethodsAndInterfaces,
+                TryFromGeneration: TryFromGeneration.Unspecified,
+                IsInitializedMethodGeneration: IsInitializedMethodGeneration.Unspecified,
+                SystemTextJsonConverterFactoryGeneration: SystemTextJsonConverterFactoryGeneration.Unspecified,
+                StaticAbstractsGeneration: StaticAbstractsGeneration.Unspecified,
+                OpenApiSchemaCustomizations: OpenApiSchemaCustomizations.Unspecified,
+                false,
+                PrimitiveEqualityGeneration.GenerateOperatorsAndMethods);
     }
 
     public class Conversion
@@ -146,14 +174,15 @@ public class VogenConfigurationTests
                 CastOperator.Unspecified,
                 CastOperator.Unspecified,
                 false,
-                parsableForStrings: ParsableForStrings.GenerateMethodsAndInterface,
-                parsableForPrimitives: ParsableForPrimitives.HoistMethodsAndInterfaces,
+                ParsableForStrings: ParsableForStrings.GenerateMethodsAndInterface,
+                ParsableForPrimitives: ParsableForPrimitives.HoistMethodsAndInterfaces,
                 TryFromGeneration.Unspecified,
                 IsInitializedMethodGeneration.Unspecified,
                 SystemTextJsonConverterFactoryGeneration.Unspecified,
                 StaticAbstractsGeneration.Unspecified,
                 OpenApiSchemaCustomizations.Unspecified,
-                false);
+                false,
+                PrimitiveEqualityGeneration.GenerateOperatorsAndMethods);
     }
 
     public class Comparable
@@ -404,272 +433,5 @@ public class VogenConfigurationTests
 
             result.ParsableForPrimitives.Should().Be(ParsableForPrimitives.HoistMethodsAndInterfaces);
         }
-    }
-
-    public class ConfigBuilder
-    {
-        private VogenConfiguration _c = VogenConfiguration.DefaultInstance;
-
-        public ConfigBuilder WithComparable(ComparisonGeneration comparable)
-        {
-            _c = new VogenConfiguration(
-                _c.UnderlyingType,
-                _c.ValidationExceptionType,
-                _c.Conversions,
-                _c.Customizations,
-                _c.DeserializationStrictness,
-                _c.DebuggerAttributes,
-                comparable,
-                _c.StringComparers,
-                _c.ToPrimitiveCasting,
-                _c.FromPrimitiveCasting,
-                _c.DisableStackTraceRecordingInDebug,
-                _c.ParsableForStrings,
-                _c.ParsableForPrimitives,
-                _c.TryFromGeneration,
-                _c.IsInitializedMethodGeneration,
-                _c.SystemTextJsonConverterFactoryGeneration,
-                _c.StaticAbstractsGeneration,
-                _c.OpenApiSchemaCustomizations,
-                false);
-                
-            return this;
-        }
-
-        public ConfigBuilder WithStringComparersGeneration(StringComparersGeneration g)
-        {
-            _c = new VogenConfiguration(
-                _c.UnderlyingType,
-                _c.ValidationExceptionType,
-                _c.Conversions,
-                _c.Customizations,
-                _c.DeserializationStrictness,
-                _c.DebuggerAttributes,
-                _c.Comparison,
-                g,
-                _c.ToPrimitiveCasting,
-                _c.FromPrimitiveCasting,
-                _c.DisableStackTraceRecordingInDebug,
-                _c.ParsableForStrings,
-                _c.ParsableForPrimitives,
-                _c.TryFromGeneration,
-                _c.IsInitializedMethodGeneration,
-                _c.SystemTextJsonConverterFactoryGeneration,
-                _c.StaticAbstractsGeneration,
-                _c.OpenApiSchemaCustomizations,
-                false);
-                
-            return this;
-        }
-
-        public ConfigBuilder WithTryFromGeneration(TryFromGeneration g)
-        {
-            _c = new VogenConfiguration(
-                _c.UnderlyingType,
-                _c.ValidationExceptionType,
-                _c.Conversions,
-                _c.Customizations,
-                _c.DeserializationStrictness,
-                _c.DebuggerAttributes,
-                _c.Comparison,
-                _c.StringComparers,
-                _c.ToPrimitiveCasting,
-                _c.FromPrimitiveCasting,
-                _c.DisableStackTraceRecordingInDebug,
-                _c.ParsableForStrings,
-                _c.ParsableForPrimitives,
-                g,
-                _c.IsInitializedMethodGeneration,
-                _c.SystemTextJsonConverterFactoryGeneration,
-                _c.StaticAbstractsGeneration,
-                _c.OpenApiSchemaCustomizations,
-                false);
-                
-            return this;
-        }
-
-        public ConfigBuilder WithIsInitializedGeneration(IsInitializedMethodGeneration g)
-        {
-            _c = new VogenConfiguration(
-                _c.UnderlyingType,
-                _c.ValidationExceptionType,
-                _c.Conversions,
-                _c.Customizations,
-                _c.DeserializationStrictness,
-                _c.DebuggerAttributes,
-                _c.Comparison,
-                _c.StringComparers,
-                _c.ToPrimitiveCasting,
-                _c.FromPrimitiveCasting,
-                _c.DisableStackTraceRecordingInDebug,
-                _c.ParsableForStrings,
-                _c.ParsableForPrimitives,
-                _c.TryFromGeneration,
-                g,
-                _c.SystemTextJsonConverterFactoryGeneration,
-                _c.StaticAbstractsGeneration,
-                _c.OpenApiSchemaCustomizations,
-                false);
-                
-            return this;
-        }
-
-        public ConfigBuilder WithSystemTextJsonConverterFactoryGeneration(SystemTextJsonConverterFactoryGeneration g)
-        {
-            _c = new VogenConfiguration(
-                _c.UnderlyingType,
-                _c.ValidationExceptionType,
-                _c.Conversions,
-                _c.Customizations,
-                _c.DeserializationStrictness,
-                _c.DebuggerAttributes,
-                _c.Comparison,
-                _c.StringComparers,
-                _c.ToPrimitiveCasting,
-                _c.FromPrimitiveCasting,
-                _c.DisableStackTraceRecordingInDebug,
-                _c.ParsableForStrings,
-                _c.ParsableForPrimitives,
-                _c.TryFromGeneration,
-                _c.IsInitializedMethodGeneration,
-                g,
-                _c.StaticAbstractsGeneration,
-                _c.OpenApiSchemaCustomizations,
-                false);
-                
-            return this;
-        }
-
-        public ConfigBuilder WithParsableStringGeneration(ParsableForStrings g)
-        {
-            _c = new VogenConfiguration(
-                _c.UnderlyingType,
-                _c.ValidationExceptionType,
-                _c.Conversions,
-                _c.Customizations,
-                _c.DeserializationStrictness,
-                _c.DebuggerAttributes,
-                _c.Comparison,
-                _c.StringComparers,
-                _c.ToPrimitiveCasting,
-                _c.FromPrimitiveCasting,
-                _c.DisableStackTraceRecordingInDebug,
-                g,
-                _c.ParsableForPrimitives,
-                _c.TryFromGeneration,
-                _c.IsInitializedMethodGeneration,
-                _c.SystemTextJsonConverterFactoryGeneration,
-                _c.StaticAbstractsGeneration,
-                _c.OpenApiSchemaCustomizations,
-                false);
-                
-            return this;
-        }
-
-        public ConfigBuilder WithParsablePrimitiveGeneration(ParsableForPrimitives g)
-        {
-            _c = new VogenConfiguration(
-                _c.UnderlyingType,
-                _c.ValidationExceptionType,
-                _c.Conversions,
-                _c.Customizations,
-                _c.DeserializationStrictness,
-                _c.DebuggerAttributes,
-                _c.Comparison,
-                _c.StringComparers,
-                _c.ToPrimitiveCasting,
-                _c.FromPrimitiveCasting,
-                _c.DisableStackTraceRecordingInDebug,
-                _c.ParsableForStrings,
-                g,
-                _c.TryFromGeneration,
-                _c.IsInitializedMethodGeneration,
-                _c.SystemTextJsonConverterFactoryGeneration,
-                _c.StaticAbstractsGeneration,
-                _c.OpenApiSchemaCustomizations,
-                false);
-                
-            return this;
-        }
-
-        public ConfigBuilder WithStaticAbstractsGeneration(StaticAbstractsGeneration g)
-        {
-            _c = new VogenConfiguration(
-                _c.UnderlyingType,
-                _c.ValidationExceptionType,
-                _c.Conversions,
-                _c.Customizations,
-                _c.DeserializationStrictness,
-                _c.DebuggerAttributes,
-                _c.Comparison,
-                _c.StringComparers,
-                _c.ToPrimitiveCasting,
-                _c.FromPrimitiveCasting,
-                _c.DisableStackTraceRecordingInDebug,
-                _c.ParsableForStrings,
-                _c.ParsableForPrimitives,
-                _c.TryFromGeneration,
-                _c.IsInitializedMethodGeneration,
-                _c.SystemTextJsonConverterFactoryGeneration,
-                g,
-                _c.OpenApiSchemaCustomizations,
-                false);
-                
-            return this;
-        }
-
-        public ConfigBuilder WithSwashbuckleSchemaFilterGeneration(OpenApiSchemaCustomizations g)
-        {
-            _c = new VogenConfiguration(
-                _c.UnderlyingType,
-                _c.ValidationExceptionType,
-                _c.Conversions,
-                _c.Customizations,
-                _c.DeserializationStrictness,
-                _c.DebuggerAttributes,
-                _c.Comparison,
-                _c.StringComparers,
-                _c.ToPrimitiveCasting,
-                _c.FromPrimitiveCasting,
-                _c.DisableStackTraceRecordingInDebug,
-                _c.ParsableForStrings,
-                _c.ParsableForPrimitives,
-                _c.TryFromGeneration,
-                _c.IsInitializedMethodGeneration,
-                _c.SystemTextJsonConverterFactoryGeneration,
-                _c.StaticAbstractsGeneration,
-                g,
-                false);
-                
-            return this;
-        }
-
-        public ConfigBuilder WithPrimitiveTypeMustBeExplicit(bool b)
-        {
-            _c = new VogenConfiguration(
-                _c.UnderlyingType,
-                _c.ValidationExceptionType,
-                _c.Conversions,
-                _c.Customizations,
-                _c.DeserializationStrictness,
-                _c.DebuggerAttributes,
-                _c.Comparison,
-                _c.StringComparers,
-                _c.ToPrimitiveCasting,
-                _c.FromPrimitiveCasting,
-                _c.DisableStackTraceRecordingInDebug,
-                _c.ParsableForStrings,
-                _c.ParsableForPrimitives,
-                _c.TryFromGeneration,
-                _c.IsInitializedMethodGeneration,
-                _c.SystemTextJsonConverterFactoryGeneration,
-                _c.StaticAbstractsGeneration,
-                _c.OpenApiSchemaCustomizations,
-                b);
-                
-            return this;
-        }
-            
-        public VogenConfiguration Build() => _c;
     }
 }

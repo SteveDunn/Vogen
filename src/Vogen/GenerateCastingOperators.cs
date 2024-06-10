@@ -1,4 +1,5 @@
 using System.Text;
+using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 
 namespace Vogen;
@@ -12,7 +13,7 @@ public static class GenerateCastingOperators
 
         StringBuilder sb = new();
 
-        if (item.FromPrimitiveCastOperator == CastOperator.Explicit)
+        if (item.Config.FromPrimitiveCasting == CastOperator.Explicit)
         {
             sb.AppendLine(
                 $$"""
@@ -21,7 +22,7 @@ public static class GenerateCastingOperators
         }
 
         // Generate the call to the Value property so that it throws if uninitialized.
-        if (item.ToPrimitiveCastOperator == CastOperator.Explicit)
+        if (item.Config.ToPrimitiveCasting == CastOperator.Explicit)
         {
             sb.AppendLine(
                 $$"""
@@ -30,7 +31,7 @@ public static class GenerateCastingOperators
         }
 
         // Generate the call to the _value field so that it doesn't throw if uninitialized.
-        if (item.ToPrimitiveCastOperator == CastOperator.Implicit)
+        if (item.Config.ToPrimitiveCasting == CastOperator.Implicit)
         {
             sb.AppendLine(
                 $$"""
@@ -38,7 +39,7 @@ public static class GenerateCastingOperators
                   """);
         }
 
-        if (item.FromPrimitiveCastOperator == CastOperator.Implicit)
+        if (item.Config.FromPrimitiveCasting == CastOperator.Implicit)
         {
             sb.AppendLine(
                 $$"""

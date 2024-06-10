@@ -73,7 +73,7 @@ namespace Whatever
     
     [global::System.Diagnostics.DebuggerTypeProxyAttribute(typeof(public_partial_record_structConversions_NonefloatDebugView))]
     [global::System.Diagnostics.DebuggerDisplayAttribute("Underlying type: System.Single, Value = { _value }")]
-    public partial record struct public_partial_record_structConversions_Nonefloat : global::System.IEquatable<public_partial_record_structConversions_Nonefloat>, global::System.IEquatable<System.Single>,  global::System.IComparable<public_partial_record_structConversions_Nonefloat>, global::System.IComparable,  global::System.IParsable<public_partial_record_structConversions_Nonefloat>,  global::System.ISpanParsable<public_partial_record_structConversions_Nonefloat>,  global::System.IUtf8SpanParsable<public_partial_record_structConversions_Nonefloat>
+    public partial record struct public_partial_record_structConversions_Nonefloat : global::System.IEquatable<public_partial_record_structConversions_Nonefloat>, global::System.IEquatable<System.Single> ,  global::System.IComparable<public_partial_record_structConversions_Nonefloat>, global::System.IComparable,  global::System.IParsable<public_partial_record_structConversions_Nonefloat>,  global::System.ISpanParsable<public_partial_record_structConversions_Nonefloat>,  global::System.IUtf8SpanParsable<public_partial_record_structConversions_Nonefloat>
     {
 #if DEBUG   
         private readonly global::System.Diagnostics.StackTrace _stackTrace = null;

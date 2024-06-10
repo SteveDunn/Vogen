@@ -127,7 +127,7 @@ internal class WriteStaticAbstracts
 
     public static string WriteHeaderIfNeeded(string precedingText, VoWorkItem item, TypeDeclarationSyntax tds)
     {
-        if (item.StaticAbstractsGeneration == StaticAbstractsGeneration.Omit)
+        if (item.Config.StaticAbstractsGeneration == StaticAbstractsGeneration.Omit)
         {
             return string.Empty;
         }

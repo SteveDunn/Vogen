@@ -24,7 +24,7 @@ internal class WriteSystemTextJsonConverterFactories
             return;
         }
         
-        var stjs = workItems.Where(i => i.Conversions.HasFlag(Conversions.SystemTextJson)).Select(BuildEntry);
+        var stjs = workItems.Where(i => i.Config.Conversions.HasFlag(Conversions.SystemTextJson)).Select(BuildEntry);
 
         string s2 =
             $$"""

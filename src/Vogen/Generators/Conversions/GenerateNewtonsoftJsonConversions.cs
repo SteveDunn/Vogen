@@ -6,7 +6,7 @@ internal class GenerateNewtonsoftJsonConversions : IGenerateConversion
 {
     public string GenerateAnyAttributes(TypeDeclarationSyntax tds, VoWorkItem item)
     {
-        if (!IsOurs(item.Conversions))
+        if (!IsOurs(item.Config.Conversions))
         {
             return string.Empty;
         }
@@ -16,7 +16,7 @@ internal class GenerateNewtonsoftJsonConversions : IGenerateConversion
 
     public string GenerateAnyBody(TypeDeclarationSyntax tds, VoWorkItem item)
     {
-        if (!IsOurs(item.Conversions))
+        if (!IsOurs(item.Config.Conversions))
         {
             return string.Empty;
         }

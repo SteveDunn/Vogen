@@ -20,7 +20,7 @@ using Vogen;
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute(""{Util.GenerateYourAssemblyName()}"", ""{Util.GenerateYourAssemblyVersion()}"")]
     {Util.GenerateAnyConversionAttributes(tds, item)}
     {DebugGeneration.GenerateDebugAttributes(item, className, itemUnderlyingType)}
-    {Util.GenerateModifiersFor(tds)} class {className} : global::System.IEquatable<{className}>, global::System.IEquatable<{itemUnderlyingType}> {GenerateComparableCode.GenerateIComparableHeaderIfNeeded(", ", item, tds)}{GenerateCodeForIParsableInterfaceDeclarations.GenerateIfNeeded(", ", item, tds)}{WriteStaticAbstracts.WriteHeaderIfNeeded(", ", item, tds)}
+    {Util.GenerateModifiersFor(tds)} class {className} : global::System.IEquatable<{className}>{GenerateEqualsMethodsAndOperators.GenerateInterfaceIfNeeded(", ", itemUnderlyingType, item)}{GenerateComparableCode.GenerateIComparableHeaderIfNeeded(", ", item, tds)}{GenerateCodeForIParsableInterfaceDeclarations.GenerateIfNeeded(", ", item, tds)}{WriteStaticAbstracts.WriteHeaderIfNeeded(", ", item, tds)}
     {{
 {DebugGeneration.GenerateStackTraceFieldIfNeeded(item)}
         private readonly global::System.Boolean _isInitialized;
@@ -78,9 +78,9 @@ public {itemUnderlyingType} Value
 
         {GenerateCodeForTryFrom.GenerateForAClass(item, className, itemUnderlyingType)}
 
-{(item.IsInitializedMethodGeneration == IsInitializedMethodGeneration.Generate ? Util.GenerateIsInitializedMethod() : string.Empty)}
+{(item.Config.IsInitializedMethodGeneration == IsInitializedMethodGeneration.Generate ? Util.GenerateIsInitializedMethod() : string.Empty)}
 
-        {GenerateEqualsAndHashCodes.GenerateStringComparersIfNeeded(item, tds)}  
+        {GenerateStringComparers.GenerateIfNeeded(item, tds)}  
 
         // only called internally when something has been deserialized into
         // its primitive type.
@@ -94,23 +94,18 @@ public {itemUnderlyingType} Value
 
             return new {className}(value);
         }}
-        {GenerateEqualsAndHashCodes.GenerateEqualsForAClass(item, tds)}
+        {GenerateEqualsMethodsAndOperators.GenerateEqualsMethodsForAClass(item, tds)}
 
         public static global::System.Boolean operator ==({className} left, {className} right) => Equals(left, right);
         public static global::System.Boolean operator !=({className} left, {className} right) => !Equals(left, right);
-
-        public static global::System.Boolean operator ==({className} left, {itemUnderlyingType} right) => Equals(left.Value, right);
-        public static global::System.Boolean operator !=({className} left, {itemUnderlyingType} right) => !Equals(left.Value, right);
-
-        public static global::System.Boolean operator ==({itemUnderlyingType} left, {className} right) => Equals(left, right.Value);
-        public static global::System.Boolean operator !=({itemUnderlyingType} left, {className} right) => !Equals(left, right.Value);
+{GenerateEqualsMethodsAndOperators.GenerateEqualsOperatorsForPrimitivesIfNeeded(itemUnderlyingType, className, item)}
 
 {GenerateCastingOperators.GenerateImplementations(item,tds)}{Util.GenerateGuidFactoryMethodIfNeeded(item, tds)}
         {GenerateComparableCode.GenerateIComparableImplementationIfNeeded(item, tds)}
 
         {GenerateCodeForTryParse.GenerateAnyHoistedTryParseMethods(item)}{GenerateCodeForParse.GenerateAnyHoistedParseMethods(item)}
 
-{GenerateEqualsAndHashCodes.GenerateGetHashCodeForAClass(item)}
+{GenerateHashCodes.GenerateGetHashCodeForAClass(item)}
 
         private void EnsureInitialized()
         {{

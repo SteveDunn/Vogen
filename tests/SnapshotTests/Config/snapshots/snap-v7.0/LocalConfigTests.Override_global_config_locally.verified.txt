@@ -73,7 +73,7 @@ namespace Whatever
     
     [global::System.Diagnostics.DebuggerTypeProxyAttribute(typeof(CustomerIdDebugView))]
     [global::System.Diagnostics.DebuggerDisplayAttribute("Underlying type: System.Single, Value = { _value }")]
-    public partial struct CustomerId : global::System.IEquatable<CustomerId>, global::System.IEquatable<System.Single>,  global::System.IComparable<CustomerId>, global::System.IComparable,  global::System.IParsable<CustomerId>,  global::System.ISpanParsable<CustomerId>
+    public partial struct CustomerId : global::System.IEquatable<CustomerId>, global::System.IEquatable<System.Single> ,  global::System.IComparable<CustomerId>, global::System.IComparable,  global::System.IParsable<CustomerId>,  global::System.ISpanParsable<CustomerId>
     {
 #if DEBUG   
         private readonly global::System.Diagnostics.StackTrace _stackTrace = null;

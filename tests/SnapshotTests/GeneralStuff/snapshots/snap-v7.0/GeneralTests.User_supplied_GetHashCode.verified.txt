@@ -73,7 +73,7 @@ using Vogen;
 
     [global::System.Diagnostics.DebuggerTypeProxyAttribute(typeof(VoWithGetHashCodeDebugView))]
     [global::System.Diagnostics.DebuggerDisplayAttribute("Underlying type: System.String, Value = { _value }")]
-    public readonly partial record struct VoWithGetHashCode : global::System.IEquatable<VoWithGetHashCode>, global::System.IEquatable<System.String>,  global::System.IComparable<VoWithGetHashCode>, global::System.IComparable,  global::System.IParsable<VoWithGetHashCode>
+    public readonly partial record struct VoWithGetHashCode : global::System.IEquatable<VoWithGetHashCode>, global::System.IEquatable<System.String> ,  global::System.IComparable<VoWithGetHashCode>, global::System.IComparable,  global::System.IParsable<VoWithGetHashCode>
     {
 #if DEBUG   
         private readonly global::System.Diagnostics.StackTrace _stackTrace = null;

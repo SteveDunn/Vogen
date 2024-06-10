@@ -4,7 +4,7 @@ internal static class GenerateEfCoreExtensions
 {
     public static string GenerateIfNeeded(VoWorkItem item)
     {
-        if (!HasEfCoreFlagSetOnAttribute(item.Conversions))
+        if (!HasEfCoreFlagSetOnAttribute(item.Config.Conversions))
         {
             return string.Empty;
         }

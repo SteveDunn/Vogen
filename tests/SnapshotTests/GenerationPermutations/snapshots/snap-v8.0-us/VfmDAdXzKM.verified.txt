@@ -73,7 +73,7 @@ namespace Whatever
     
     [global::System.Diagnostics.DebuggerTypeProxyAttribute(typeof(public_readonly_partial_structConversions_NonedoubleDebugView))]
     [global::System.Diagnostics.DebuggerDisplayAttribute("Underlying type: System.Double, Value = { _value }")]
-    public readonly partial struct public_readonly_partial_structConversions_Nonedouble : global::System.IEquatable<public_readonly_partial_structConversions_Nonedouble>, global::System.IEquatable<System.Double>,  global::System.IComparable<public_readonly_partial_structConversions_Nonedouble>, global::System.IComparable,  global::System.IParsable<public_readonly_partial_structConversions_Nonedouble>,  global::System.ISpanParsable<public_readonly_partial_structConversions_Nonedouble>,  global::System.IUtf8SpanParsable<public_readonly_partial_structConversions_Nonedouble>
+    public readonly partial struct public_readonly_partial_structConversions_Nonedouble : global::System.IEquatable<public_readonly_partial_structConversions_Nonedouble>, global::System.IEquatable<System.Double> ,  global::System.IComparable<public_readonly_partial_structConversions_Nonedouble>, global::System.IComparable,  global::System.IParsable<public_readonly_partial_structConversions_Nonedouble>,  global::System.ISpanParsable<public_readonly_partial_structConversions_Nonedouble>,  global::System.IUtf8SpanParsable<public_readonly_partial_structConversions_Nonedouble>
     {
 #if DEBUG   
         private readonly global::System.Diagnostics.StackTrace _stackTrace = null;

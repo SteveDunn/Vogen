@@ -13,13 +13,13 @@ public static class GenerateCodeForTryParse
     {
         if (item.ParsingInformation.UnderlyingIsAString)
         {
-            if (item.ParsableForStrings is ParsableForStrings.GenerateMethods or ParsableForStrings.GenerateMethodsAndInterface)
+            if (item.Config.ParsableForStrings is ParsableForStrings.GenerateMethods or ParsableForStrings.GenerateMethodsAndInterface)
             {
                 return BuildTryParseMethodForAString(item);
             }
         }
 
-        if (item.ParsableForPrimitives is not (ParsableForPrimitives.HoistMethods or ParsableForPrimitives.HoistMethodsAndInterfaces))
+        if (item.Config.ParsableForPrimitives is not (ParsableForPrimitives.HoistMethods or ParsableForPrimitives.HoistMethodsAndInterfaces))
         {
             return string.Empty;
         }

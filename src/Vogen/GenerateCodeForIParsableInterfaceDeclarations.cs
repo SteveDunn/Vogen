@@ -19,14 +19,14 @@ public static class GenerateCodeForIParsableInterfaceDeclarations
 
         bool isUnderlyingAString = item.ParsingInformation.UnderlyingIsAString;
         
-        if (isUnderlyingAString && item.ParsableForStrings != ParsableForStrings.GenerateMethodsAndInterface)
+        if (isUnderlyingAString && item.Config.ParsableForStrings != ParsableForStrings.GenerateMethodsAndInterface)
         {
             return string.Empty;
         }
 
         if (!isUnderlyingAString)
         {
-            if (item.ParsableForPrimitives != ParsableForPrimitives.HoistMethodsAndInterfaces)
+            if (item.Config.ParsableForPrimitives != ParsableForPrimitives.HoistMethodsAndInterfaces)
             {
                 return string.Empty;
             }

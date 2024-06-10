@@ -131,26 +131,11 @@ internal static class BuildWorkItems
             IsTheWrapperAValueType = isWrapperAValueType,
             
             ParsingInformation = BuildParsingInformation(compilation, underlyingType),
-            StaticAbstractsGeneration = config.StaticAbstractsGeneration,
+            Config = config,
             
             UserProvidedOverloads = userProvidedOverloads,
             
             UnderlyingType = underlyingType,
-            Conversions = config.Conversions,
-            
-            DeserializationStrictness = config.DeserializationStrictness,
-            DebuggerAttributes = config.DebuggerAttributes,
-            Customizations = config.Customizations,
-            TypeForValidationExceptions = config.ValidationExceptionType,
-            ComparisonGeneration = config.Comparison,
-            StringComparersGeneration = config.StringComparers,
-            ParsableForStrings = config.ParsableForStrings,
-            TryFromGeneration = config.TryFromGeneration,
-            IsInitializedMethodGeneration = config.IsInitializedMethodGeneration,
-            ParsableForPrimitives = config.ParsableForPrimitives,
-            ToPrimitiveCastOperator = config.ToPrimitiveCasting,
-            FromPrimitiveCastOperator = config.FromPrimitiveCasting,
-            DisableStackTraceRecordingInDebug = config.DisableStackTraceRecordingInDebug,
             ValidateMethod = validateMethod,
             NormalizeInputMethod = normalizeInputMethod,
             FullNamespace = voSymbolInformation.FullNamespace(),

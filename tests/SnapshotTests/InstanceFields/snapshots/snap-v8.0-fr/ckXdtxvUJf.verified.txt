@@ -75,7 +75,7 @@ namespace Whatever
 
     [global::System.Diagnostics.DebuggerTypeProxyAttribute(typeof(internal_partial_recordlongDebugView))]
     [global::System.Diagnostics.DebuggerDisplayAttribute("Underlying type: System.Int64, Value = { _value }")]
-    internal partial record class internal_partial_recordlong : global::System.IEquatable<internal_partial_recordlong>, global::System.IEquatable<System.Int64>,  global::System.IComparable<internal_partial_recordlong>, global::System.IComparable,  global::System.IParsable<internal_partial_recordlong>,  global::System.ISpanParsable<internal_partial_recordlong>,  global::System.IUtf8SpanParsable<internal_partial_recordlong>
+    internal partial record class internal_partial_recordlong : global::System.IEquatable<internal_partial_recordlong>, global::System.IEquatable<System.Int64> ,  global::System.IComparable<internal_partial_recordlong>, global::System.IComparable,  global::System.IParsable<internal_partial_recordlong>,  global::System.ISpanParsable<internal_partial_recordlong>,  global::System.IUtf8SpanParsable<internal_partial_recordlong>
     {
 #if DEBUG   
         private readonly global::System.Diagnostics.StackTrace _stackTrace = null;

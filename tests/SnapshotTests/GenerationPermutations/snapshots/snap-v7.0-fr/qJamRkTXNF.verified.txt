@@ -73,7 +73,7 @@ namespace Whatever
     
     [global::System.Diagnostics.DebuggerTypeProxyAttribute(typeof(internal_sealed_partial_recordConversions_NonelongDebugView))]
     [global::System.Diagnostics.DebuggerDisplayAttribute("Underlying type: System.Int64, Value = { _value }")]
-    internal sealed partial record class internal_sealed_partial_recordConversions_Nonelong : global::System.IEquatable<internal_sealed_partial_recordConversions_Nonelong>, global::System.IEquatable<System.Int64>,  global::System.IComparable<internal_sealed_partial_recordConversions_Nonelong>, global::System.IComparable,  global::System.IParsable<internal_sealed_partial_recordConversions_Nonelong>,  global::System.ISpanParsable<internal_sealed_partial_recordConversions_Nonelong>
+    internal sealed partial record class internal_sealed_partial_recordConversions_Nonelong : global::System.IEquatable<internal_sealed_partial_recordConversions_Nonelong>, global::System.IEquatable<System.Int64> ,  global::System.IComparable<internal_sealed_partial_recordConversions_Nonelong>, global::System.IComparable,  global::System.IParsable<internal_sealed_partial_recordConversions_Nonelong>,  global::System.ISpanParsable<internal_sealed_partial_recordConversions_Nonelong>
     {
 #if DEBUG   
         private readonly global::System.Diagnostics.StackTrace _stackTrace = null;

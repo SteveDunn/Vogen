@@ -2,111 +2,53 @@
 
 namespace Vogen;
 
-public class VogenConfiguration
+public record class VogenConfiguration(
+    INamedTypeSymbol? UnderlyingType,
+    INamedTypeSymbol? ValidationExceptionType,
+    Conversions Conversions,
+    Customizations Customizations,
+    DeserializationStrictness DeserializationStrictness,
+    DebuggerAttributeGeneration DebuggerAttributes,
+    ComparisonGeneration Comparison,
+    StringComparersGeneration StringComparers,
+    CastOperator ToPrimitiveCasting,
+    CastOperator FromPrimitiveCasting,
+    bool DisableStackTraceRecordingInDebug,
+    ParsableForStrings ParsableForStrings,
+    ParsableForPrimitives ParsableForPrimitives,
+    TryFromGeneration TryFromGeneration,
+    IsInitializedMethodGeneration IsInitializedMethodGeneration,
+    SystemTextJsonConverterFactoryGeneration SystemTextJsonConverterFactoryGeneration,
+    StaticAbstractsGeneration StaticAbstractsGeneration,
+    OpenApiSchemaCustomizations OpenApiSchemaCustomizations,
+    bool ExplicitlySpecifyTypeInValueObject,
+    PrimitiveEqualityGeneration PrimitiveEqualityGeneration)
 {
     // Don't add default values here, they should be in DefaultInstance.
-    public VogenConfiguration(INamedTypeSymbol? underlyingType,
-        INamedTypeSymbol? validationExceptionType,
-        Conversions conversions,
-        Customizations customizations,
-        DeserializationStrictness deserializationStrictness,
-        DebuggerAttributeGeneration debuggerAttributes,
-        ComparisonGeneration comparison,
-        StringComparersGeneration stringComparers,
-        CastOperator toPrimitiveCasting,
-        CastOperator fromPrimitiveCasting,
-        bool disableStackTraceRecordingInDebug,
-        ParsableForStrings parsableForStrings,
-        ParsableForPrimitives parsableForPrimitives,
-        TryFromGeneration tryFromGeneration,
-        IsInitializedMethodGeneration isInitializedMethodGeneration,
-        SystemTextJsonConverterFactoryGeneration systemTextJsonConverterFactoryGeneration,
-        StaticAbstractsGeneration staticAbstractsGeneration,
-        OpenApiSchemaCustomizations openApiSchemaCustomizations,
-        bool explicitlySpecifyTypeInValueObject)
-    {
-        UnderlyingType = underlyingType;
-        ValidationExceptionType = validationExceptionType;
-        Conversions = conversions;
-        Customizations = customizations;
-        DeserializationStrictness = deserializationStrictness;
-        DebuggerAttributes = debuggerAttributes;
-        Comparison = comparison;
-        StringComparers = stringComparers;
-        ToPrimitiveCasting = toPrimitiveCasting;
-        FromPrimitiveCasting = fromPrimitiveCasting;
-        DisableStackTraceRecordingInDebug = disableStackTraceRecordingInDebug;
-        ParsableForStrings = parsableForStrings;
-        ParsableForPrimitives = parsableForPrimitives;
-        TryFromGeneration = tryFromGeneration;
-        IsInitializedMethodGeneration = isInitializedMethodGeneration;
-        SystemTextJsonConverterFactoryGeneration = systemTextJsonConverterFactoryGeneration;
-        StaticAbstractsGeneration = staticAbstractsGeneration;
-        OpenApiSchemaCustomizations = openApiSchemaCustomizations;
-        ExplicitlySpecifyTypeInValueObject = explicitlySpecifyTypeInValueObject;
-    }
-
-    /// <summary>
-    /// The underlying type. It may be null if not specified (i.e. defaulted).
-    /// </summary>
-    public INamedTypeSymbol? UnderlyingType { get; }
-    
-    public INamedTypeSymbol? ValidationExceptionType { get; }
-
-    public Conversions Conversions { get; }
-    
-    public Customizations Customizations { get; }
-    public DeserializationStrictness DeserializationStrictness { get; }
-    
-    public DebuggerAttributeGeneration DebuggerAttributes { get; }
-    
-    public ComparisonGeneration Comparison { get; }
-    
-    public StringComparersGeneration StringComparers { get; }
-    
-    public ParsableForStrings ParsableForStrings { get; }
-    
-    public ParsableForPrimitives ParsableForPrimitives { get; }
-
-    public CastOperator ToPrimitiveCasting { get; }
-    
-    public CastOperator FromPrimitiveCasting { get; }
-    
-    public bool DisableStackTraceRecordingInDebug { get; set; }
-    
-    public TryFromGeneration TryFromGeneration { get; }
-    public IsInitializedMethodGeneration IsInitializedMethodGeneration { get; }
-    
-    public SystemTextJsonConverterFactoryGeneration SystemTextJsonConverterFactoryGeneration { get; }
-    
-    public OpenApiSchemaCustomizations OpenApiSchemaCustomizations { get; }
-    
-    public bool ExplicitlySpecifyTypeInValueObject { get; }
-    
-    public StaticAbstractsGeneration StaticAbstractsGeneration { get; }
 
     // the issue here is that without a physical 'symbol' in the source, we can't
     // get the namedtypesymbol
     // ReSharper disable once MemberCanBePrivate.Global
     public static readonly VogenConfiguration DefaultInstance = new(
-        underlyingType: null,
-        validationExceptionType: null,
+        UnderlyingType: null,
+        ValidationExceptionType: null,
         // ReSharper disable once RedundantNameQualifier
-        conversions: Vogen.Conversions.Default,
-        customizations: Customizations.None,
-        deserializationStrictness: DeserializationStrictness.Default,
-        debuggerAttributes: DebuggerAttributeGeneration.Full,
-        comparison: ComparisonGeneration.UseUnderlying,
-        stringComparers: StringComparersGeneration.Omit,
-        toPrimitiveCasting: CastOperator.Explicit,
-        fromPrimitiveCasting: CastOperator.Explicit,
-        disableStackTraceRecordingInDebug: false,
-        parsableForStrings: ParsableForStrings.GenerateMethodsAndInterface,
-        parsableForPrimitives: ParsableForPrimitives.HoistMethodsAndInterfaces,
-        tryFromGeneration: TryFromGeneration.GenerateBoolAndErrorOrMethods,
-        isInitializedMethodGeneration: IsInitializedMethodGeneration.Generate,
-        systemTextJsonConverterFactoryGeneration: SystemTextJsonConverterFactoryGeneration.Generate,
-        staticAbstractsGeneration: StaticAbstractsGeneration.Omit,
-        openApiSchemaCustomizations: OpenApiSchemaCustomizations.Omit,
-        explicitlySpecifyTypeInValueObject: false);
+        Conversions: Vogen.Conversions.Default,
+        Customizations: Customizations.None,
+        DeserializationStrictness: DeserializationStrictness.Default,
+        DebuggerAttributes: DebuggerAttributeGeneration.Full,
+        Comparison: ComparisonGeneration.UseUnderlying,
+        StringComparers: StringComparersGeneration.Omit,
+        ToPrimitiveCasting: CastOperator.Explicit,
+        FromPrimitiveCasting: CastOperator.Explicit,
+        DisableStackTraceRecordingInDebug: false,
+        ParsableForStrings: ParsableForStrings.GenerateMethodsAndInterface,
+        ParsableForPrimitives: ParsableForPrimitives.HoistMethodsAndInterfaces,
+        TryFromGeneration: TryFromGeneration.GenerateBoolAndErrorOrMethods,
+        IsInitializedMethodGeneration: IsInitializedMethodGeneration.Generate,
+        SystemTextJsonConverterFactoryGeneration: SystemTextJsonConverterFactoryGeneration.Generate,
+        StaticAbstractsGeneration: StaticAbstractsGeneration.Omit,
+        OpenApiSchemaCustomizations: OpenApiSchemaCustomizations.Omit,
+        ExplicitlySpecifyTypeInValueObject: false,
+        PrimitiveEqualityGeneration: PrimitiveEqualityGeneration.GenerateOperatorsAndMethods);
 }

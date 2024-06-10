@@ -75,7 +75,7 @@ namespace Whatever
 
     [global::System.Diagnostics.DebuggerTypeProxyAttribute(typeof(public_partial_structbyteDebugView))]
     [global::System.Diagnostics.DebuggerDisplayAttribute("Underlying type: System.Byte, Value = { _value }")]
-    public partial struct public_partial_structbyte : global::System.IEquatable<public_partial_structbyte>, global::System.IEquatable<System.Byte>,  global::System.IComparable<public_partial_structbyte>, global::System.IComparable,  global::System.IParsable<public_partial_structbyte>,  global::System.ISpanParsable<public_partial_structbyte>
+    public partial struct public_partial_structbyte : global::System.IEquatable<public_partial_structbyte>, global::System.IEquatable<System.Byte> ,  global::System.IComparable<public_partial_structbyte>, global::System.IComparable,  global::System.IParsable<public_partial_structbyte>,  global::System.ISpanParsable<public_partial_structbyte>
     {
 #if DEBUG   
         private readonly global::System.Diagnostics.StackTrace _stackTrace = null;

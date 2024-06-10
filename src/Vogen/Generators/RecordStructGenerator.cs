@@ -19,7 +19,7 @@ using Vogen;
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute(""{Util.GenerateYourAssemblyName()}"", ""{Util.GenerateYourAssemblyVersion()}"")]
     {Util.GenerateAnyConversionAttributes(tds, item)}
     {DebugGeneration.GenerateDebugAttributes(item, structName, itemUnderlyingType)}
-    { Util.GenerateModifiersFor(tds)} record struct {structName} : global::System.IEquatable<{structName}>, global::System.IEquatable<{itemUnderlyingType}>{GenerateComparableCode.GenerateIComparableHeaderIfNeeded(", ", item, tds)}{GenerateCodeForIParsableInterfaceDeclarations.GenerateIfNeeded(", ", item, tds)}{WriteStaticAbstracts.WriteHeaderIfNeeded(", ", item, tds)}
+    { Util.GenerateModifiersFor(tds)} record struct {structName} : global::System.IEquatable<{structName}>{GenerateEqualsMethodsAndOperators.GenerateInterfaceIfNeeded(", ", itemUnderlyingType, item)}{GenerateComparableCode.GenerateIComparableHeaderIfNeeded(", ", item, tds)}{GenerateCodeForIParsableInterfaceDeclarations.GenerateIfNeeded(", ", item, tds)}{WriteStaticAbstracts.WriteHeaderIfNeeded(", ", item, tds)}
     {{
 {DebugGeneration.GenerateStackTraceFieldIfNeeded(item)}
 
@@ -89,9 +89,9 @@ using Vogen;
 
         {GenerateCodeForTryFrom.GenerateForAStruct(item, structName, itemUnderlyingType)}
 
-{(item.IsInitializedMethodGeneration == IsInitializedMethodGeneration.Generate ? Util.GenerateIsInitializedMethod() : string.Empty)}
+{(item.Config.IsInitializedMethodGeneration == IsInitializedMethodGeneration.Generate ? Util.GenerateIsInitializedMethod() : string.Empty)}
 
-{GenerateEqualsAndHashCodes.GenerateStringComparersIfNeeded(item, tds)}        
+{GenerateStringComparers.GenerateIfNeeded(item, tds)}        
 {GenerateCastingOperators.GenerateImplementations(item,tds)}{Util.GenerateGuidFactoryMethodIfNeeded(item, tds)}
         // only called internally when something has been deserialized into
         // its primitive type.
@@ -103,19 +103,14 @@ using Vogen;
 
             return new {structName}(value);
         }}
-        {GenerateEqualsAndHashCodes.GenerateEqualsForAStruct(item, tds)}
-
-        public static global::System.Boolean operator ==({structName} left, {itemUnderlyingType} right) => Equals(left.Value, right);
-        public static global::System.Boolean operator !=({structName} left, {itemUnderlyingType} right) => !Equals(left.Value, right);
-
-        public static global::System.Boolean operator ==({itemUnderlyingType} left, {structName} right) => Equals(left, right.Value);
-        public static global::System.Boolean operator !=({itemUnderlyingType} left, {structName} right) => !Equals(left, right.Value);
+        {GenerateEqualsMethodsAndOperators.GenerateEqualsMethodsForAStruct(item, tds)}
+{GenerateEqualsMethodsAndOperators.GenerateEqualsOperatorsForPrimitivesIfNeeded(itemUnderlyingType, structName, item)}
 
         {GenerateComparableCode.GenerateIComparableImplementationIfNeeded(item, tds)}
 
         {GenerateCodeForTryParse.GenerateAnyHoistedTryParseMethods(item)}{GenerateCodeForParse.GenerateAnyHoistedParseMethods(item)}
 
-        {GenerateEqualsAndHashCodes.GenerateGetHashCodeForAStruct(item)}
+        {GenerateHashCodes.GenerateForAStruct(item)}
 
         private readonly void EnsureInitialized()
         {{

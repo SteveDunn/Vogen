@@ -75,7 +75,7 @@ namespace Whatever
 
     [global::System.Diagnostics.DebuggerTypeProxyAttribute(typeof(public_partial_record_classdoubleDebugView))]
     [global::System.Diagnostics.DebuggerDisplayAttribute("Underlying type: System.Double, Value = { _value }")]
-    public partial record class public_partial_record_classdouble : global::System.IEquatable<public_partial_record_classdouble>, global::System.IEquatable<System.Double>,  global::System.IComparable<public_partial_record_classdouble>, global::System.IComparable,  global::System.IParsable<public_partial_record_classdouble>,  global::System.ISpanParsable<public_partial_record_classdouble>,  global::System.IUtf8SpanParsable<public_partial_record_classdouble>
+    public partial record class public_partial_record_classdouble : global::System.IEquatable<public_partial_record_classdouble>, global::System.IEquatable<System.Double> ,  global::System.IComparable<public_partial_record_classdouble>, global::System.IComparable,  global::System.IParsable<public_partial_record_classdouble>,  global::System.ISpanParsable<public_partial_record_classdouble>,  global::System.IUtf8SpanParsable<public_partial_record_classdouble>
     {
 #if DEBUG   
         private readonly global::System.Diagnostics.StackTrace _stackTrace = null;

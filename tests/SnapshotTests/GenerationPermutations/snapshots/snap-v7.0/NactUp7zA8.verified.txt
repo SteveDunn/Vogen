@@ -73,7 +73,7 @@ namespace Whatever
     
     [global::System.Diagnostics.DebuggerTypeProxyAttribute(typeof(public_partial_record_classConversions_NonebyteDebugView))]
     [global::System.Diagnostics.DebuggerDisplayAttribute("Underlying type: System.Byte, Value = { _value }")]
-    public partial record class public_partial_record_classConversions_Nonebyte : global::System.IEquatable<public_partial_record_classConversions_Nonebyte>, global::System.IEquatable<System.Byte>,  global::System.IComparable<public_partial_record_classConversions_Nonebyte>, global::System.IComparable,  global::System.IParsable<public_partial_record_classConversions_Nonebyte>,  global::System.ISpanParsable<public_partial_record_classConversions_Nonebyte>
+    public partial record class public_partial_record_classConversions_Nonebyte : global::System.IEquatable<public_partial_record_classConversions_Nonebyte>, global::System.IEquatable<System.Byte> ,  global::System.IComparable<public_partial_record_classConversions_Nonebyte>, global::System.IComparable,  global::System.IParsable<public_partial_record_classConversions_Nonebyte>,  global::System.ISpanParsable<public_partial_record_classConversions_Nonebyte>
     {
 #if DEBUG   
         private readonly global::System.Diagnostics.StackTrace _stackTrace = null;

@@ -11,7 +11,7 @@ internal class GenerateDapperConversions : IGenerateConversion
 
     public string GenerateAnyBody(TypeDeclarationSyntax tds, VoWorkItem item)
     {
-        if (!IsOurs(item.Conversions))
+        if (!IsOurs(item.Config.Conversions))
         {
             return string.Empty;
         }
