@@ -106,13 +106,13 @@ public class VogenConfigurationTests
         [Fact]
         public void Local_beats_global_when_specified()
         {
-            var local = ConfigWithCastingAs(CastOperator.Implicit, CastOperator.Explicit);
-            var global = ConfigWithCastingAs(CastOperator.None, CastOperator.Implicit);
+            var local = ConfigWithCastingAs(toPrimitiveCast: CastOperator.Implicit, fromPrimitiveCast: CastOperator.Explicit);
+            var global = ConfigWithCastingAs(toPrimitiveCast: CastOperator.None, fromPrimitiveCast: CastOperator.Implicit);
             
-            var result = CombineConfigurations.CombineAndResolveAnythingUnspecified(local, global);
+            VogenConfiguration result = CombineConfigurations.CombineAndResolveAnythingUnspecified(localValues: local, globalValues: global);
 
-            result.ToPrimitiveCasting.Should().Be(CastOperator.Implicit);
-            result.FromPrimitiveCasting.Should().Be(CastOperator.Explicit);
+            result.ToPrimitiveCasting.Should().Be(expected: CastOperator.Implicit);
+            result.FromPrimitiveCasting.Should().Be(expected: CastOperator.Explicit);
         }
 
         [Fact]

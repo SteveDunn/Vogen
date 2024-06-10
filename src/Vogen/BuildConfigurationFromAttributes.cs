@@ -104,26 +104,26 @@ internal class BuildConfigurationFromAttributes
 
         return new(
             resultingConfiguration: new VogenConfiguration(
-                _underlyingType,
-                _invalidExceptionType,
-                _conversions,
-                _customizations,
-                _deserializationStrictness,
-                _debuggerAttributes,
-                _comparisonGeneration,
-                _stringComparers,
-                _toPrimitiveCasting,
-                _fromPrimitiveCasting,
-                _disableStackTraceGenerationInDebug,
-                _parsableForStrings,
-                _parsableForPrimitives,
-                _tryFromGeneration,
-                _isInitializedMethodGeneration,
-                _systemTextJsonConverterFactoryGeneration,
-                _staticAbstractsGeneration,
-                _openApiSchemaCustomizations,
-                _primitiveTypeMustBeExplicit,
-                _primitiveEqualityGeneration),
+                UnderlyingType: _underlyingType,
+                ValidationExceptionType: _invalidExceptionType,
+                Conversions: _conversions,
+                Customizations: _customizations,
+                DeserializationStrictness: _deserializationStrictness,
+                DebuggerAttributes: _debuggerAttributes,
+                Comparison: _comparisonGeneration,
+                StringComparers: _stringComparers,
+                ToPrimitiveCasting: _toPrimitiveCasting,
+                FromPrimitiveCasting: _fromPrimitiveCasting,
+                DisableStackTraceRecordingInDebug: _disableStackTraceGenerationInDebug,
+                ParsableForStrings: _parsableForStrings,
+                ParsableForPrimitives: _parsableForPrimitives,
+                TryFromGeneration: _tryFromGeneration,
+                IsInitializedMethodGeneration: _isInitializedMethodGeneration,
+                SystemTextJsonConverterFactoryGeneration: _systemTextJsonConverterFactoryGeneration,
+                StaticAbstractsGeneration: _staticAbstractsGeneration,
+                OpenApiSchemaCustomizations: _openApiSchemaCustomizations,
+                ExplicitlySpecifyTypeInValueObject: _primitiveTypeMustBeExplicit,
+                PrimitiveEqualityGeneration: _primitiveEqualityGeneration),
             diagnostics: _diagnostics);
     }
 
@@ -261,12 +261,12 @@ internal class BuildConfigurationFromAttributes
 
             if (i == 6)
             {
-                _toPrimitiveCasting = (CastOperator) v;
+                _fromPrimitiveCasting = (CastOperator) v;
             }
 
             if (i == 5)
             {
-                _fromPrimitiveCasting = (CastOperator) v;
+                _toPrimitiveCasting = (CastOperator) v;
             }
 
             if (i == 4)
