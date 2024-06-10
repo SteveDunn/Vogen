@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 using VerifyXunit;
 using Vogen;
 
-namespace SnapshotTests.CastingOperators;
+namespace SnapshotTests.Casting;
 
 [UsesVerify] 
 public class CastingGenerationTests
@@ -20,11 +20,11 @@ public class CastingGenerationTests
                     foreach (string underlyingType in Factory.UnderlyingTypes)
                     {
                         var qualifiedType = "public " + type;
-                        yield return new object[]
-                        {
-                            qualifiedType, eachCast.toPrimitive, eachCast.fromPrimitive, underlyingType,
+                        yield return
+                        [
+                            qualifiedType, "CastOperator."+eachCast.toPrimitive, "CastOperator."+eachCast.fromPrimitive, underlyingType,
                             CreateClassName(qualifiedType, eachCast, underlyingType)
-                        };
+                        ];
                     }
                 }
             }
@@ -36,51 +36,91 @@ public class CastingGenerationTests
         private static string Normalize(string input) => input.Replace(" ", "_").Replace("|", "_").Replace(".", "_");
 
         // for each of the types above, create classes for each one of these attributes
-        private readonly (string, string)[] _casts = new[]
-        {
-            ("CastOperator.None", "CastOperator.None"),
-            ("CastOperator.None", "CastOperator.Implicit"),
-            ("CastOperator.None", "CastOperator.Explicit"),
-            ("CastOperator.Implicit", "CastOperator.None"),
-            ("CastOperator.Implicit", "CastOperator.Implicit"),
-            ("CastOperator.Implicit", "CastOperator.Explicit"),
-            ("CastOperator.Explicit", "CastOperator.None"),
-            ("CastOperator.Explicit", "CastOperator.Implicit"),
-            ("CastOperator.Explicit", "CastOperator.Explicit")
-        };
+        private readonly (string, string)[] _casts =
+        [
+            ("None",     "None"),
+            ("None",     "Implicit"),
+            ("None",     "Explicit"),
+            ("Implicit", "None"),
+            ("Implicit", "Implicit"),
+            ("Implicit", "Explicit"),
+            ("Explicit", "None"),
+            ("Explicit", "Implicit"),
+            ("Explicit", "Explicit")
+        ];
 
         IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
     }
 
     [Theory]
     [ClassData(typeof(Types))]
-    public Task Tests(string type, string toPrimitiveCast, string fromPrimitivePrimitiveCast, string underlyingType, string className)
+    public Task Can_specify_casting_at_the_value_object_level(string type, string toPrimitiveCast, string fromPrimitivePrimitiveCast, string underlyingType, string className)
     {
-        string declaration = "";
+        string declaration;
         
         if (underlyingType.Length == 0)
         {
-            declaration = $@"
-  [ValueObject(toPrimitiveCasting: {toPrimitiveCast}, fromPrimitiveCasting: {fromPrimitivePrimitiveCast})]
-  {type} {className} {{ }}";
+            declaration = $$"""
+                              [ValueObject(toPrimitiveCasting: {{toPrimitiveCast}}, fromPrimitiveCasting: {{fromPrimitivePrimitiveCast}})]
+                              {{type}} {{className}} { }
+                            """;
         }
         else
         {
-            declaration = $@"
-  [ValueObject(toPrimitiveCasting: {toPrimitiveCast}, fromPrimitiveCasting: {fromPrimitivePrimitiveCast}, underlyingType: typeof({underlyingType}))]
-  {type} {className} {{ }}";
+            declaration = $$"""
+                              [ValueObject(toPrimitiveCasting: {{toPrimitiveCast}}, fromPrimitiveCasting: {{fromPrimitivePrimitiveCast}}, underlyingType: typeof({{underlyingType}}))]
+                              {{type}} {{className}} { }
+                            """;
 
         }
 
-        var source = @"using Vogen;
-namespace Whatever
-{
-" + declaration + @"
-}";
+        var source = $"""
+                      using Vogen;
+                      namespace Whatever;
+
+                      {declaration}
+                      """;
 
         return new SnapshotRunner<ValueObjectGenerator>()
             .WithSource(source)
-            .CustomizeSettings(s => s.UseFileName(TestHelper.ShortenForFilename(className)))
+            .CustomizeSettings(s => s.UseHashedParameters(type, toPrimitiveCast, fromPrimitivePrimitiveCast, underlyingType, className))
+            .RunOnAllFrameworks();
+    }
+
+    [Theory]
+    [ClassData(typeof(Types))]
+    public Task Can_specify_casting_at_the_global_config_level(string type, string toPrimitiveCast, string fromPrimitivePrimitiveCast, string underlyingType, string className)
+    {
+        string declaration;
+        
+        if (underlyingType.Length == 0)
+        {
+            declaration = $$"""
+                              [ValueObject]
+                              {{type}} {{className}} { }
+                            """;
+        }
+        else
+        {
+            declaration = $$"""
+                              [ValueObject(underlyingType: typeof({{underlyingType}}))]
+                              {{type}} {{className}} { }
+                            """;
+
+        }
+
+        var source = $"""
+                      using Vogen;
+                      [assembly: VogenDefaults(toPrimitiveCasting: {toPrimitiveCast}, fromPrimitiveCasting: {fromPrimitivePrimitiveCast})]
+
+                      namespace Whatever;
+
+                      {declaration}
+                      """;
+
+        return new SnapshotRunner<ValueObjectGenerator>()
+            .WithSource(source)
+            .CustomizeSettings(s => s.UseHashedParameters(type, toPrimitiveCast, fromPrimitivePrimitiveCast, underlyingType, className))
             .RunOnAllFrameworks();
     }
 }
