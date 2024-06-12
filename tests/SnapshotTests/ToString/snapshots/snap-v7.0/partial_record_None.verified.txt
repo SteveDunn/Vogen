@@ -503,7 +503,7 @@ public static ValueObjectOrError<partial_record_None> TryFrom(System.Int32 value
             public override void Write(System.Text.Json.Utf8JsonWriter writer, partial_record_None value, global::System.Text.Json.JsonSerializerOptions options)
             {
  #if NET5_0_OR_GREATER
-                global::System.Text.Json.JsonSerializer.Serialize(writer, value.Value, options.GetTypeInfo(typeof(global::System.Int32)));
+                global::System.Text.Json.JsonSerializer.Serialize(writer, value.Value, options);
  #else
                 writer.WriteNumberValue(value.Value);
  #endif

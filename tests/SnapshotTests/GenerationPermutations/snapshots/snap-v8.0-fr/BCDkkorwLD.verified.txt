@@ -571,7 +571,7 @@ public static ValueObjectOrError<public_readonly_partial_structConversions_Newto
             {
 
  #if NET5_0_OR_GREATER
-                global::System.Text.Json.JsonSerializer.Serialize(writer, value.Value, options.GetTypeInfo(typeof(global::System.Byte)));
+                global::System.Text.Json.JsonSerializer.Serialize(writer, value.Value, options);
  #else
                 writer.WriteNumberValue(value.Value);
  #endif

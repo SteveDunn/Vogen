@@ -508,7 +508,7 @@ public static readonly internal_sealed_partial_recordfloat MyValue = new interna
             public override void Write(System.Text.Json.Utf8JsonWriter writer, internal_sealed_partial_recordfloat value, global::System.Text.Json.JsonSerializerOptions options)
             {
  #if NET5_0_OR_GREATER
-                global::System.Text.Json.JsonSerializer.Serialize(writer, value.Value, options.GetTypeInfo(typeof(global::System.Single)));
+                global::System.Text.Json.JsonSerializer.Serialize(writer, value.Value, options);
  #else
                 writer.WriteNumberValue(value.Value);
  #endif

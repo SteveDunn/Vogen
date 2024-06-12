@@ -368,7 +368,7 @@ public static ValueObjectOrError<escapedTestspublic_readonly_partial_structConve
             public override void Write(System.Text.Json.Utf8JsonWriter writer, escapedTestspublic_readonly_partial_structConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterdouble value, global::System.Text.Json.JsonSerializerOptions options)
             {
  #if NET5_0_OR_GREATER
-                global::System.Text.Json.JsonSerializer.Serialize(writer, value.Value, options.GetTypeInfo(typeof(global::System.Double)));
+                global::System.Text.Json.JsonSerializer.Serialize(writer, value.Value, options);
  #else
                 writer.WriteNumberValue(value.Value);
  #endif

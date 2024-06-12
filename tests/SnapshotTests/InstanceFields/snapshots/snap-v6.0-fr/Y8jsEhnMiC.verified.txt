@@ -449,7 +449,7 @@ public static readonly internal_sealed_partial_classbyte MyValue = new internal_
             {
 
  #if NET5_0_OR_GREATER
-                global::System.Text.Json.JsonSerializer.Serialize(writer, value.Value, options.GetTypeInfo(typeof(global::System.Byte)));
+                global::System.Text.Json.JsonSerializer.Serialize(writer, value.Value, options);
  #else
                 writer.WriteNumberValue(value.Value);
  #endif

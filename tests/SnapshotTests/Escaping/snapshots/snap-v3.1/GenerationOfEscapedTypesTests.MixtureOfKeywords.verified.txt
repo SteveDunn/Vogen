@@ -286,7 +286,7 @@ public static ValueObjectOrError<classFromEscapedNamespaceWithReservedUnderlying
 
             public override void Write(System.Text.Json.Utf8JsonWriter writer, classFromEscapedNamespaceWithReservedUnderlyingType value, global::System.Text.Json.JsonSerializerOptions options)
             {
-                global::System.Text.Json.JsonSerializer.Serialize(writer, value.Value);
+                global::System.Text.Json.JsonSerializer.Serialize(writer, value.Value, options);
             }
 
 #if NET6_0_OR_GREATER
@@ -764,7 +764,7 @@ public static ValueObjectOrError<classFromEscapedNamespace> TryFrom(System.Int32
             public override void Write(System.Text.Json.Utf8JsonWriter writer, classFromEscapedNamespace value, global::System.Text.Json.JsonSerializerOptions options)
             {
  #if NET5_0_OR_GREATER
-                global::System.Text.Json.JsonSerializer.Serialize(writer, value.Value, options.GetTypeInfo(typeof(global::System.Int32)));
+                global::System.Text.Json.JsonSerializer.Serialize(writer, value.Value, options);
  #else
                 writer.WriteNumberValue(value.Value);
  #endif
@@ -1254,7 +1254,7 @@ public static ValueObjectOrError<@class> TryFrom(System.Int32 value)
             public override void Write(System.Text.Json.Utf8JsonWriter writer, @class value, global::System.Text.Json.JsonSerializerOptions options)
             {
  #if NET5_0_OR_GREATER
-                global::System.Text.Json.JsonSerializer.Serialize(writer, value.Value, options.GetTypeInfo(typeof(global::System.Int32)));
+                global::System.Text.Json.JsonSerializer.Serialize(writer, value.Value, options);
  #else
                 writer.WriteNumberValue(value.Value);
  #endif
@@ -1744,7 +1744,7 @@ public static ValueObjectOrError<@event> TryFrom(System.Int32 value)
             public override void Write(System.Text.Json.Utf8JsonWriter writer, @event value, global::System.Text.Json.JsonSerializerOptions options)
             {
  #if NET5_0_OR_GREATER
-                global::System.Text.Json.JsonSerializer.Serialize(writer, value.Value, options.GetTypeInfo(typeof(global::System.Int32)));
+                global::System.Text.Json.JsonSerializer.Serialize(writer, value.Value, options);
  #else
                 writer.WriteNumberValue(value.Value);
  #endif
@@ -2077,7 +2077,7 @@ public static ValueObjectOrError<@event2> TryFrom(@record.@struct.@float.@decima
 
             public override void Write(System.Text.Json.Utf8JsonWriter writer, @event2 value, global::System.Text.Json.JsonSerializerOptions options)
             {
-                global::System.Text.Json.JsonSerializer.Serialize(writer, value.Value);
+                global::System.Text.Json.JsonSerializer.Serialize(writer, value.Value, options);
             }
 
 #if NET6_0_OR_GREATER

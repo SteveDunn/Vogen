@@ -447,7 +447,7 @@ public static ValueObjectOrError<internal_sealed_partial_recordConversions_Newto
             public override void Write(System.Text.Json.Utf8JsonWriter writer, internal_sealed_partial_recordConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterint value, global::System.Text.Json.JsonSerializerOptions options)
             {
  #if NET5_0_OR_GREATER
-                global::System.Text.Json.JsonSerializer.Serialize(writer, value.Value, options.GetTypeInfo(typeof(global::System.Int32)));
+                global::System.Text.Json.JsonSerializer.Serialize(writer, value.Value, options);
  #else
                 writer.WriteNumberValue(value.Value);
  #endif
