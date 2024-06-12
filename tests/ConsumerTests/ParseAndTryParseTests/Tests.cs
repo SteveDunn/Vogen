@@ -5,6 +5,7 @@ namespace ConsumerTests.ParseAndTryParseTests;
 public class Tests
 {
     [Fact]
+    [UseCulture("en-GB")]
     public void Integers()
     {
         {
