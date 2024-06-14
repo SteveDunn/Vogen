@@ -12,6 +12,28 @@ namespace SnapshotTests.GeneralStuff;
 public class GeneralTests
 {
     [Fact]
+    public async Task Writes_efcore_converters_if_attribute_present_and_on_net_8_or_greater()
+    {
+        var source = """
+                     using System;
+                     using Vogen;
+
+                     namespace Whatever
+                     {
+                         [ValueObject<int>(conversions: Conversions.EfCoreValueConverter)]
+                         public partial class MyVo1 { }
+                     
+                         [EfCoreConverter<MyVo1>]
+                         public partial class EfCoreConverters { }
+                     }
+                     """;
+
+            await new SnapshotRunner<ValueObjectGenerator>()
+                .WithSource(source)
+                .RunOn(TargetFramework.Net8_0);
+    }
+
+    [Fact]
     public async Task Can_specify_swashbuckle_filter_generation_for_openapi()
     {
         var source = $$"""

@@ -341,42 +341,43 @@ public static ValueObjectOrError<escapedTestspublic_partial_classConversions_New
                 };
             }
         }
-        
-        public class EfCoreValueConverter : global::Microsoft.EntityFrameworkCore.Storage.ValueConversion.ValueConverter<escapedTestspublic_partial_classConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterrecord__struct__float__decimal, global::System.String>
-        {
-            public EfCoreValueConverter() : this(null) { }
-            public EfCoreValueConverter(global::Microsoft.EntityFrameworkCore.Storage.ValueConversion.ConverterMappingHints mappingHints = null)
-                : base(
-                    vo => global::System.Text.Json.JsonSerializer.Serialize(vo.Value, default(global::System.Text.Json.JsonSerializerOptions)),
-                    text => escapedTestspublic_partial_classConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterrecord__struct__float__decimal.__Deserialize(global::System.Text.Json.JsonSerializer.Deserialize<@class.@record.@struct.@float.@decimal>(text, default(global::System.Text.Json.JsonSerializerOptions))),
-                    mappingHints
-                ) { }
-        }
-        public class EfCoreValueComparer : global::Microsoft.EntityFrameworkCore.ChangeTracking.ValueComparer<escapedTestspublic_partial_classConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterrecord__struct__float__decimal>
-        {
-            public EfCoreValueComparer() : base(
-                (left, right) => DoCompare(left, right), 
+
+
+    public class EfCoreValueConverter : global::Microsoft.EntityFrameworkCore.Storage.ValueConversion.ValueConverter<escapedTestspublic_partial_classConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterrecord__struct__float__decimal, global::System.String>
+    {
+        public EfCoreValueConverter() : this(null) { }
+        public EfCoreValueConverter(global::Microsoft.EntityFrameworkCore.Storage.ValueConversion.ConverterMappingHints mappingHints = null)
+            : base(
+                vo => global::System.Text.Json.JsonSerializer.Serialize(vo.Value, default(global::System.Text.Json.JsonSerializerOptions)),
+            text => escapedTestspublic_partial_classConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterrecord__struct__float__decimal.__Deserialize(global::System.Text.Json.JsonSerializer.Deserialize<@class.@record.@struct.@float.@decimal>(text, default(global::System.Text.Json.JsonSerializerOptions))),
+                mappingHints
+            ) { }
+    }
+       public class EfCoreValueComparer : global::Microsoft.EntityFrameworkCore.ChangeTracking.ValueComparer<escapedTestspublic_partial_classConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterrecord__struct__float__decimal>
+       {
+           public EfCoreValueComparer() : base(
+               (left, right) => DoCompare(left, right), 
                 instance => instance._isInitialized ? instance._value.GetHashCode() : 0) 
-            { 
-            }
-                
-            static bool DoCompare(escapedTestspublic_partial_classConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterrecord__struct__float__decimal left, escapedTestspublic_partial_classConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterrecord__struct__float__decimal right)
-            {
-                // if both null, then they're equal
-                if (left is null) return right is null;
-                
-                // if only right is null, then they're not equal
-                if (right is null) return false;
-                
-                // if they're both the same reference, then they're equal
-                if (ReferenceEquals(left, right)) return true;
-                
-                // if neither are initialized, then they're equal
+           { 
+           }
+               
+           static bool DoCompare(escapedTestspublic_partial_classConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterrecord__struct__float__decimal left, escapedTestspublic_partial_classConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterrecord__struct__float__decimal right)
+           {
+               // if both null, then they're equal
+               if (left is null) return right is null;
+               
+               // if only right is null, then they're not equal
+               if (right is null) return false;
+               
+               // if they're both the same reference, then they're equal
+               if (ReferenceEquals(left, right)) return true;
+               
+               // if neither are initialized, then they're equal
                 if(!left._isInitialized && !right._isInitialized) return true;
-                
+               
                 return left._isInitialized && right._isInitialized && left._value.Equals(right._value);            
-            }                
-        }
+           }                
+}
 
         public class LinqToDbValueConverter : global::LinqToDB.Common.ValueConverter<escapedTestspublic_partial_classConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterrecord__struct__float__decimal, global::System.String>
         {

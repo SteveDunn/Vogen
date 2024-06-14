@@ -1,0 +1,27 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net8.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+        <UseLocallyBuiltPackage>true</UseLocallyBuiltPackage>
+        <OutputType>Exe</OutputType>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\Domain\Domain.csproj" />
+    </ItemGroup>
+
+    <ItemGroup Condition=" '$(UseLocallyBuiltPackage)' != ''">
+        <PackageReference Include="Vogen" Version="999.9.*" />
+    </ItemGroup>
+
+    <ItemGroup Condition=" '$(UseLocallyBuiltPackage)' == ''">
+        <PackageReference Include="Vogen" Version="999.9.10219943" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.6" />
+    </ItemGroup>
+    
+</Project>

@@ -329,7 +329,8 @@ public sealed partial class ProjectBuilder
         AddNuGetReferences();
 
         var options = new CSharpCompilationOptions(
-            OutputKind.DynamicallyLinkedLibrary, 
+            OutputKind.DynamicallyLinkedLibrary,
+            moduleName: "VogenTests",            
             specificDiagnosticOptions: _suppressedDiagnostics);
 
         var diagnostics = this.DiagnosticAnalyzers.SelectMany(

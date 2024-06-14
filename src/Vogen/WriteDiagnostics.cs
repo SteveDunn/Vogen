@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Immutable;
 using System.Text;
+using System.Threading;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
 
@@ -13,6 +14,8 @@ internal interface IInternalDiagnostics : IDisposable
     void RecordTargets(ImmutableArray<VoTarget> targets);
     
     void RecordResolvedGlobalConfig(VogenConfiguration mergedConfig);
+
+    void IncrementGeneratedCount();
 }
 
 internal class InternalDiagnostics : IInternalDiagnostics
@@ -25,6 +28,8 @@ internal class InternalDiagnostics : IInternalDiagnostics
     private ImmutableArray<VoTarget>? _targets;
 
     private static readonly IInternalDiagnostics _nullImplementation = new NullInternalDiagnostics();
+    
+    private static int _generatedCount = 0;
 
     public static IInternalDiagnostics TryCreateIfSpecialClassIsPresent(Compilation compilation, SourceProductionContext context)
         => compilation.GetTypeByMetadataName("Vogen.__ProduceDiagnostics") is null
@@ -41,8 +46,8 @@ internal class InternalDiagnostics : IInternalDiagnostics
     public void RecordGlobalConfig(VogenConfiguration? globalConfig) => _userProvidedGlobalConfig = _ignore ? null : globalConfig;
 
     public void Dispose() => WriteIfNeeded();
-
-    private void WriteIfNeeded()
+    
+    public void WriteIfNeeded()
     {
         if (_ignore)
         {
@@ -51,6 +56,7 @@ internal class InternalDiagnostics : IInternalDiagnostics
         
         StringBuilder sb = new StringBuilder();
         sb.AppendLine("/*").AppendLine();
+        sb.AppendLine($"Generator count: {_generatedCount}");
         sb.AppendLine($"LanguageVersion: {(_compilation as CSharpCompilation)?.LanguageVersion.ToString() ?? "not C#!"}");
         ReportConfig(sb, "User provided global config", _userProvidedGlobalConfig);
         ReportConfig(sb, "Resolved global config", _resolvedGlobalConfig);
@@ -112,6 +118,7 @@ internal class InternalDiagnostics : IInternalDiagnostics
     public void RecordTargets(ImmutableArray<VoTarget> targets) => _targets = targets;
 
     public void RecordResolvedGlobalConfig(VogenConfiguration mergedConfig) => _resolvedGlobalConfig = _ignore ? null : mergedConfig;
+    public void IncrementGeneratedCount() => Interlocked.Increment(ref _generatedCount);
 }
 
 internal class NullInternalDiagnostics : IInternalDiagnostics
@@ -127,6 +134,10 @@ internal class NullInternalDiagnostics : IInternalDiagnostics
     }
 
     public void RecordResolvedGlobalConfig(VogenConfiguration mergedConfig)
+    {
+    }
+
+    public void IncrementGeneratedCount()
     {
     }
 }

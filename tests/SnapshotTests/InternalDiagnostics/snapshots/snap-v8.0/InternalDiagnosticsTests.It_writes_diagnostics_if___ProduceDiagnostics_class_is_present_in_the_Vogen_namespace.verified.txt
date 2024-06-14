@@ -585,6 +585,7 @@ public static ValueObjectOrError<MyVo> TryFrom(System.Int32 value)
   
 /*
 
+Generator count: 1
 LanguageVersion: CSharp12
 
 User provided global config

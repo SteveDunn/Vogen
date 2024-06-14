@@ -485,28 +485,28 @@ public static ValueObjectOrError<public_readonly_partial_structConversions_Newto
             }
         }
 
-        public class EfCoreValueConverter : global::Microsoft.EntityFrameworkCore.Storage.ValueConversion.ValueConverter<public_readonly_partial_structConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConvertershort, global::System.Int16>
+        public class EfCoreValueConverter : global::Microsoft.EntityFrameworkCore.Storage.ValueConversion.ValueConverter<public_readonly_partial_structConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConvertershort, System.Int16>
         {
-            public EfCoreValueConverter() : this(null) { }
-            public EfCoreValueConverter(global::Microsoft.EntityFrameworkCore.Storage.ValueConversion.ConverterMappingHints mappingHints = null)
-                : base(
-                    vo => vo.Value,
-                    value => public_readonly_partial_structConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConvertershort.__Deserialize(value),
-                    mappingHints
-                ) { }
+          public EfCoreValueConverter() : this(null) { }
+          public EfCoreValueConverter(global::Microsoft.EntityFrameworkCore.Storage.ValueConversion.ConverterMappingHints mappingHints = null)
+              : base(
+                  vo => vo.Value,
+                                                                      value => public_readonly_partial_structConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConvertershort.__Deserialize(value),
+                mappingHints
+              ) { }
         }
         public class EfCoreValueComparer : global::Microsoft.EntityFrameworkCore.ChangeTracking.ValueComparer<public_readonly_partial_structConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConvertershort>
         {
             public EfCoreValueComparer() : base(
                 (left, right) => DoCompare(left, right), 
-                instance => instance._isInitialized ? instance.GetHashCode() : 0) 
+                instance => instance.IsInitialized() ? instance.GetHashCode() : 0) 
             { 
             }
             
             static bool DoCompare(public_readonly_partial_structConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConvertershort left, public_readonly_partial_structConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConvertershort right)
             {
                 // if neither are initialized, then they're equal
-                if(!left._isInitialized && !right._isInitialized) return true;
+                if(!left.IsInitialized() && !right.IsInitialized()) return true;
                 
                 return left._isInitialized && right._isInitialized && left._value.Equals(right._value);
             }

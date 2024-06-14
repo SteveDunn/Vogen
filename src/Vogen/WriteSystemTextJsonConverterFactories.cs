@@ -24,8 +24,14 @@ internal class WriteSystemTextJsonConverterFactories
             return;
         }
         
+        
         var stjs = workItems.Where(i => i.Config.Conversions.HasFlag(Conversions.SystemTextJson)).Select(BuildEntry);
 
+        var fullNamespace = compilation.Assembly.Name;//.ToDisplayString();
+
+        var ns = string.IsNullOrEmpty(fullNamespace) ? string.Empty : $"namespace {fullNamespace};";
+        
+        //todo: put the {{ns}} back
         string s2 =
             $$"""
             

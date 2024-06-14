@@ -573,28 +573,28 @@ public static readonly CustomerId Cust42 = new CustomerId(42);
         }
 
 
-        public class EfCoreValueConverter : global::Microsoft.EntityFrameworkCore.Storage.ValueConversion.ValueConverter<CustomerId, global::System.Int64>
+        public class EfCoreValueConverter : global::Microsoft.EntityFrameworkCore.Storage.ValueConversion.ValueConverter<CustomerId, System.Int64>
         {
-            public EfCoreValueConverter() : this(null) { }
-            public EfCoreValueConverter(global::Microsoft.EntityFrameworkCore.Storage.ValueConversion.ConverterMappingHints mappingHints = null)
-                : base(
-                    vo => vo.Value,
-                    value => CustomerId.__Deserialize(value),
-                    mappingHints
-                ) { }
+          public EfCoreValueConverter() : this(null) { }
+          public EfCoreValueConverter(global::Microsoft.EntityFrameworkCore.Storage.ValueConversion.ConverterMappingHints mappingHints = null)
+              : base(
+                  vo => vo.Value,
+                                                                      value => CustomerId.__Deserialize(value),
+                mappingHints
+              ) { }
         }
         public class EfCoreValueComparer : global::Microsoft.EntityFrameworkCore.ChangeTracking.ValueComparer<CustomerId>
         {
             public EfCoreValueComparer() : base(
                 (left, right) => DoCompare(left, right), 
-                instance => instance._isInitialized ? instance.GetHashCode() : 0) 
+                instance => instance.IsInitialized() ? instance.GetHashCode() : 0) 
             { 
             }
             
             static bool DoCompare(CustomerId left, CustomerId right)
             {
                 // if neither are initialized, then they're equal
-                if(!left._isInitialized && !right._isInitialized) return true;
+                if(!left.IsInitialized() && !right.IsInitialized()) return true;
                 
                 return left._isInitialized && right._isInitialized && left._value.Equals(right._value);
             }

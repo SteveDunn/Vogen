@@ -30,6 +30,21 @@ internal static class ManageAttributes
         return BuildConfigurationFromAttributes.TryBuildFromVogenDefaultsAttribute(attr);
     }
 
+    public static EfCoreConverterSpecResult GetEfCoreConverterSpecFromAttribute(GeneratorAttributeSyntaxContext ctx)
+    {
+        INamedTypeSymbol? symbol = ctx.TargetSymbol as INamedTypeSymbol;
+        var assemblyAttributes = ctx.Attributes;
+        
+        if (assemblyAttributes.IsDefaultOrEmpty)
+        {
+            return EfCoreConverterSpecResult.Null;
+        }
+
+        AttributeData attr = assemblyAttributes.ElementAt(0);
+
+        return BuildEfCoreConverterSpecsFromAttributes.TryBuild(attr, symbol);
+    }
+
     /// <summary>
     /// Gets global default configuration from any global (assembly) attribute.
     /// This is used by the analyzer.

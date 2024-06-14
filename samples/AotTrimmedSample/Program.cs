@@ -1,5 +1,6 @@
 ﻿using System.Text.Json;
 using System.Text.Json.Serialization;
+using AotTrimmedSample;
 using Vogen;
 
 // to *not* generate the factory, use:

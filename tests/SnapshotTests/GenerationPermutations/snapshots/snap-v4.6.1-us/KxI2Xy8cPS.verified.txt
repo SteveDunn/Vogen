@@ -428,41 +428,41 @@ public static ValueObjectOrError<internal_partial_classConversions_NewtonsoftJso
             }
         }
 
-        public class EfCoreValueConverter : global::Microsoft.EntityFrameworkCore.Storage.ValueConversion.ValueConverter<internal_partial_classConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterSystem_DateTimeOffset, global::System.DateTimeOffset>
+        public class EfCoreValueConverter : global::Microsoft.EntityFrameworkCore.Storage.ValueConversion.ValueConverter<internal_partial_classConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterSystem_DateTimeOffset, System.DateTimeOffset>
         {
-            public EfCoreValueConverter() : this(null) { }
-            public EfCoreValueConverter(global::Microsoft.EntityFrameworkCore.Storage.ValueConversion.ConverterMappingHints mappingHints = null)
-                : base(
-                    vo => vo.Value,
-                    value => internal_partial_classConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterSystem_DateTimeOffset.__Deserialize(value),
-                    mappingHints
-                ) { }
+          public EfCoreValueConverter() : this(null) { }
+          public EfCoreValueConverter(global::Microsoft.EntityFrameworkCore.Storage.ValueConversion.ConverterMappingHints mappingHints = null)
+              : base(
+                  vo => vo.Value,
+                                                                      value => internal_partial_classConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterSystem_DateTimeOffset.__Deserialize(value),
+                mappingHints
+              ) { }
         }
-        public class EfCoreValueComparer : global::Microsoft.EntityFrameworkCore.ChangeTracking.ValueComparer<internal_partial_classConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterSystem_DateTimeOffset>
-        {
-            public EfCoreValueComparer() : base(
-                (left, right) => DoCompare(left, right), 
+       public class EfCoreValueComparer : global::Microsoft.EntityFrameworkCore.ChangeTracking.ValueComparer<internal_partial_classConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterSystem_DateTimeOffset>
+       {
+           public EfCoreValueComparer() : base(
+               (left, right) => DoCompare(left, right), 
                 instance => instance._isInitialized ? instance._value.GetHashCode() : 0) 
-            { 
-            }
-                
-            static bool DoCompare(internal_partial_classConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterSystem_DateTimeOffset left, internal_partial_classConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterSystem_DateTimeOffset right)
-            {
-                // if both null, then they're equal
-                if (left is null) return right is null;
-                
-                // if only right is null, then they're not equal
-                if (right is null) return false;
-                
-                // if they're both the same reference, then they're equal
-                if (ReferenceEquals(left, right)) return true;
-                
-                // if neither are initialized, then they're equal
+           { 
+           }
+               
+           static bool DoCompare(internal_partial_classConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterSystem_DateTimeOffset left, internal_partial_classConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterSystem_DateTimeOffset right)
+           {
+               // if both null, then they're equal
+               if (left is null) return right is null;
+               
+               // if only right is null, then they're not equal
+               if (right is null) return false;
+               
+               // if they're both the same reference, then they're equal
+               if (ReferenceEquals(left, right)) return true;
+               
+               // if neither are initialized, then they're equal
                 if(!left._isInitialized && !right._isInitialized) return true;
-                
+               
                 return left._isInitialized && right._isInitialized && left._value.Equals(right._value);            
-            }                
-        }
+           }                
+}
 
         public class LinqToDbValueConverter : global::LinqToDB.Common.ValueConverter<internal_partial_classConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterSystem_DateTimeOffset, global::System.DateTimeOffset>
         {
