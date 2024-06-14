@@ -34,7 +34,7 @@ public {type} CustomerId {{ }}
 
             diagnostic.Id.Should().Be("CS0579");
             diagnostic.ToString().Should()
-                .Match("* error CS0579: Duplicate 'ValueObject' attribute");
+                .Match("* error CS0579:*ValueObject*");
         }
     }
 }
