@@ -628,7 +628,7 @@ public static ValueObjectOrError<MyVoInt> TryFrom(System.Int32 value)
             public override void Write(System.Text.Json.Utf8JsonWriter writer, MyVoInt value, global::System.Text.Json.JsonSerializerOptions options)
             {
  #if NET5_0_OR_GREATER
-                global::System.Text.Json.JsonSerializer.Serialize(writer, value.Value, options.GetTypeInfo(typeof(global::System.Int32)));
+                global::System.Text.Json.JsonSerializer.Serialize(writer, value.Value, options);
  #else
                 writer.WriteNumberValue(value.Value);
  #endif
@@ -1262,7 +1262,7 @@ public static ValueObjectOrError<MyVoFloat> TryFrom(System.Single value)
             public override void Write(System.Text.Json.Utf8JsonWriter writer, MyVoFloat value, global::System.Text.Json.JsonSerializerOptions options)
             {
  #if NET5_0_OR_GREATER
-                global::System.Text.Json.JsonSerializer.Serialize(writer, value.Value, options.GetTypeInfo(typeof(global::System.Single)));
+                global::System.Text.Json.JsonSerializer.Serialize(writer, value.Value, options);
  #else
                 writer.WriteNumberValue(value.Value);
  #endif
@@ -1896,7 +1896,7 @@ public static ValueObjectOrError<MyVoDecimal> TryFrom(System.Decimal value)
             public override void Write(System.Text.Json.Utf8JsonWriter writer, MyVoDecimal value, global::System.Text.Json.JsonSerializerOptions options)
             {
  #if NET5_0_OR_GREATER
-                global::System.Text.Json.JsonSerializer.Serialize(writer, value.Value, options.GetTypeInfo(typeof(global::System.Decimal)));
+                global::System.Text.Json.JsonSerializer.Serialize(writer, value.Value, options);
  #else
                 writer.WriteNumberValue(value.Value);
  #endif
@@ -2530,7 +2530,7 @@ public static ValueObjectOrError<MyVoDouble> TryFrom(System.Double value)
             public override void Write(System.Text.Json.Utf8JsonWriter writer, MyVoDouble value, global::System.Text.Json.JsonSerializerOptions options)
             {
  #if NET5_0_OR_GREATER
-                global::System.Text.Json.JsonSerializer.Serialize(writer, value.Value, options.GetTypeInfo(typeof(global::System.Double)));
+                global::System.Text.Json.JsonSerializer.Serialize(writer, value.Value, options);
  #else
                 writer.WriteNumberValue(value.Value);
  #endif

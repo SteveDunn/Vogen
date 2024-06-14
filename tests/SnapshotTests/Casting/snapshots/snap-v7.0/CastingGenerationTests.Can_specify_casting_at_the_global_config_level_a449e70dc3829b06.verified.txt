@@ -498,7 +498,7 @@ public static ValueObjectOrError<_casting_public_partial_classNoneNoneint> TryFr
             public override void Write(System.Text.Json.Utf8JsonWriter writer, _casting_public_partial_classNoneNoneint value, global::System.Text.Json.JsonSerializerOptions options)
             {
  #if NET5_0_OR_GREATER
-                global::System.Text.Json.JsonSerializer.Serialize(writer, value.Value, options.GetTypeInfo(typeof(global::System.Int32)));
+                global::System.Text.Json.JsonSerializer.Serialize(writer, value.Value, options);
  #else
                 writer.WriteNumberValue(value.Value);
  #endif

@@ -18,7 +18,7 @@ __STRING__                return VOTYPE.__Deserialize(global::System.Byte.Parse(
             {
 
 __NORMAL__ #if NET5_0_OR_GREATER
-__NORMAL__                global::System.Text.Json.JsonSerializer.Serialize(writer, value.Value, options.GetTypeInfo(typeof(global::System.Byte)));
+__NORMAL__                global::System.Text.Json.JsonSerializer.Serialize(writer, value.Value, options);
 __NORMAL__ #else
 __NORMAL__                writer.WriteNumberValue(value.Value);
 __NORMAL__ #endif

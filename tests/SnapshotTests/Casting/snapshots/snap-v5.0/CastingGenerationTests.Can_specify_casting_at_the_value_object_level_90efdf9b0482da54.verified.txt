@@ -449,7 +449,7 @@ public static ValueObjectOrError<_casting_public_partial_recordImplicitImplicits
             public override void Write(System.Text.Json.Utf8JsonWriter writer, _casting_public_partial_recordImplicitImplicitshort value, global::System.Text.Json.JsonSerializerOptions options)
             {
  #if NET5_0_OR_GREATER
-                global::System.Text.Json.JsonSerializer.Serialize(writer, value.Value, options.GetTypeInfo(typeof(global::System.Int16)));
+                global::System.Text.Json.JsonSerializer.Serialize(writer, value.Value, options);
  #else
                 writer.WriteNumberValue(value.Value);
  #endif
