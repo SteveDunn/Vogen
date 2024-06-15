@@ -14,37 +14,20 @@ public class ValueObjectGenerator : IIncrementalGenerator
     {
         Found found = GetTargets(context);
 
-        IncrementalValueProvider<ImmutableArray<VoTarget>> collectedVos = found.vos.Collect();
+        IncrementalValueProvider<ImmutableArray<VoTarget>> collectedVos = found.Vos.Collect();
             
-        IncrementalValueProvider<
-            (
-            ImmutableArray<VoTarget> Left, 
-            ImmutableArray<VogenConfigurationBuildResult> Right
-            )> targetsAndConfig = collectedVos.Combine(found.globalConfig.Collect());
+        var targetsAndConfig = collectedVos.Combine(found.GlobalConfig.Collect());
             
-        IncrementalValueProvider<
-            (
-            (
-            ImmutableArray<VoTarget> Targets, 
-            ImmutableArray<VogenConfigurationBuildResult> Configs) TargetsAndConfigs, 
-            ImmutableArray<EfCoreConverterSpecResult> Contexts)> x = targetsAndConfig.Combine(found.efCoreConverterSpecs.Collect());
+        var targetsConfigAndEfCoreSpecs = targetsAndConfig.Combine(found.EfCoreConverterSpecs.Collect());
 
-        IncrementalValueProvider<
-            (Compilation Compilation, 
-            (
-            (
-            ImmutableArray<VoTarget> Targets, 
-            ImmutableArray<VogenConfigurationBuildResult> Configs
-            ) TargetsAndConfig, 
-            ImmutableArray<EfCoreConverterSpecResult> Contexts) Data
-            )> compilationAndValues = context.CompilationProvider.Combine(x);
+        var compilationAndValues = context.CompilationProvider.Combine(targetsConfigAndEfCoreSpecs);
             
         context.RegisterSourceOutput(compilationAndValues,
             static (spc, source) => Execute(
-                source.Compilation, 
-                source.Data.TargetsAndConfig.Targets, 
-                source.Data.TargetsAndConfig.Configs, 
-                source.Data.Contexts,
+                source.Left, 
+                source.Right.Left.Left, 
+                source.Right.Left.Right, 
+                source.Right.Right,
                 spc));
     }
 
@@ -71,11 +54,11 @@ public class ValueObjectGenerator : IIncrementalGenerator
     }
 
     record struct Found(
-        IncrementalValuesProvider<VoTarget> vos,
-        IncrementalValuesProvider<VogenConfigurationBuildResult> globalConfig,
-        IncrementalValuesProvider<EfCoreConverterSpecResult> efCoreConverterSpecs);
+        IncrementalValuesProvider<VoTarget> Vos,
+        IncrementalValuesProvider<VogenConfigurationBuildResult> GlobalConfig,
+        IncrementalValuesProvider<EfCoreConverterSpecResult> EfCoreConverterSpecs);
     
-    static void Execute(
+    private static void Execute(
         Compilation compilation, 
         ImmutableArray<VoTarget> targets,
         ImmutableArray<VogenConfigurationBuildResult> globalConfigBuildResult,

@@ -32,7 +32,7 @@ internal class WriteEfCoreSpecs
             return;
         }
 
-        var body = GenerateEfCoreTypeConversions.GenerateAnyBody2(spec.UnderlyingType, spec.VoSymbol.IsValueType, spec.VoSymbol);
+        var body = GenerateEfCoreTypes.GenerateOuter(spec.UnderlyingType, spec.VoSymbol.IsValueType, spec.VoSymbol);
         string sb =
 $$"""
 #if NET8_OR_GREATER

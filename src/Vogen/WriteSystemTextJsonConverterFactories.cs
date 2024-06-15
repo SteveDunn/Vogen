@@ -31,11 +31,12 @@ internal class WriteSystemTextJsonConverterFactories
 
         var ns = string.IsNullOrEmpty(fullNamespace) ? string.Empty : $"namespace {fullNamespace};";
         
-        //todo: put the {{ns}} back
         string s2 =
             $$"""
             
             {{GeneratedCodeSegments.Preamble}}
+            
+            {{ns}}
             
             public class VogenTypesFactory : global::System.Text.Json.Serialization.JsonConverterFactory
             {
