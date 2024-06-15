@@ -24,6 +24,8 @@
 // Suppress warnings about CS1591: Missing XML comment for publicly visible type or member 'Type_or_Member'
 #pragma warning disable CS1591
 
+namespace generator;
+
 public class VogenTypesFactory : global::System.Text.Json.Serialization.JsonConverterFactory
 {
     public VogenTypesFactory() { }
@@ -651,14 +653,14 @@ public static ValueObjectOrError<MyIntVo> TryFrom(System.Int32 value)
         {
             public EfCoreValueComparer() : base(
                 (left, right) => DoCompare(left, right), 
-                instance => instance.IsInitialized() ? instance.GetHashCode() : 0) 
+                instance => instance._isInitialized ? instance.GetHashCode() : 0) 
             { 
             }
             
             static bool DoCompare(MyIntVo left, MyIntVo right)
             {
                 // if neither are initialized, then they're equal
-                if(!left.IsInitialized() && !right.IsInitialized()) return true;
+                if(!left._isInitialized && !right._isInitialized) return true;
                 
                 return left._isInitialized && right._isInitialized && left._value.Equals(right._value);
             }

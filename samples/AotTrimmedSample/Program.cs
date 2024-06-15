@@ -48,6 +48,7 @@ public partial struct Address {}
 
 [JsonSourceGenerationOptions(WriteIndented = true)]
 [JsonSerializable(typeof(Person))]
+[JsonSerializable(typeof(int))]
 internal partial class JsonSourceGenerationContext : JsonSerializerContext
 {
 }
