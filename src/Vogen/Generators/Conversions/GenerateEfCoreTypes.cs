@@ -40,15 +40,42 @@ internal static class GenerateEfCoreTypes
         code = CodeSections.KeepSection(code, sectionToKeep);
 
         code = code.Replace("__CLASS_PREFIX__", classPrefix);
+        code = code.Replace("__NEEDS_REF__", isWrapperAValueType ? "ref" : string.Empty);
         code = code.Replace("VOTYPE", voTypeName);
         code = code.Replace("VOUNDERLYINGTYPE", primitiveFullName);
 
         return code;
     }
+
+    public static string GenerateOuterExtensionMethod(EfCoreConverterSpec spec)
+    {
+        string voTypeName = spec.VoSymbol.FullName() ?? spec.VoSymbol.Name;
+        
+        string code = _extensionMethodForOuter;
+
+        string generatedConverter = $"{spec.SourceType.FullNamespace()}.EfCoreConverters.{spec.VoSymbol.Name}EfCoreValueConverter";
+        string generatedComparer = $"{spec.SourceType.FullNamespace()}.EfCoreConverters.{spec.VoSymbol.Name}EfCoreValueComparer";
+
+        code = code.Replace("__CLASS_PREFIX__", spec.VoSymbol.Name);
+        code = code.Replace("__GENERATED_CONVERTER_NAME__", generatedConverter);
+        code = code.Replace("__GENERATED_COMPARER_NAME__", generatedComparer);
+        code = code.Replace("VOTYPE", voTypeName);
+
+        return code;
+    }
     
+    private const string _extensionMethodForOuter = 
+        """
+        public static class __CLASS_PREFIX____Ext 
+        {
+                public static global::Microsoft.EntityFrameworkCore.Metadata.Builders.PropertyBuilder<VOTYPE> HasVogenConversion(this global::Microsoft.EntityFrameworkCore.Metadata.Builders.PropertyBuilder<VOTYPE> propertyBuilder) =>
+                    propertyBuilder.HasConversion<__GENERATED_CONVERTER_NAME__, __GENERATED_COMPARER_NAME__>();
+        }
+        
+        """;
+
     private const string _converterForKnownTypes = 
         """
-        
                 public class __CLASS_PREFIX__EfCoreValueConverter : global::Microsoft.EntityFrameworkCore.Storage.ValueConversion.ValueConverter<VOTYPE, VOUNDERLYINGTYPE>
                 {
                   public __CLASS_PREFIX__EfCoreValueConverter() : this(null) { }
@@ -59,10 +86,11 @@ internal static class GenerateEfCoreTypes
         __WHEN_OUTER__                                                                      value => Deserialize(value),
                         mappingHints
                       ) { }
+        
         __WHEN_OUTER__      static VOTYPE Deserialize(VOUNDERLYINGTYPE value) => UnsafeDeserialize(default, value);
         __WHEN_OUTER__ 
         __WHEN_OUTER__      [global::System.Runtime.CompilerServices.UnsafeAccessor(global::System.Runtime.CompilerServices.UnsafeAccessorKind.StaticMethod, Name = "__Deserialize")]
-        __WHEN_OUTER__      extern static ref VOTYPE UnsafeDeserialize(VOTYPE @this, VOUNDERLYINGTYPE value);      
+        __WHEN_OUTER__      static extern VOTYPE UnsafeDeserialize(VOTYPE @this, VOUNDERLYINGTYPE value);      
                 }
         """;
 
@@ -82,7 +110,7 @@ internal static class GenerateEfCoreTypes
         __WHEN_OUTER__  static VOTYPE ProxyForCall__Deserialize(VOUNDERLYINGTYPE value) => Call__Deserialize(default, value);
         __WHEN_OUTER__ 
         __WHEN_OUTER__  [global::System.Runtime.CompilerServices.UnsafeAccessor(global::System.Runtime.CompilerServices.UnsafeAccessorKind.StaticMethod, Name = "__Deserialize")]
-        __WHEN_OUTER__  extern static ref VOTYPE Call__Deserialize(VOTYPE @this, VOUNDERLYINGTYPE value);      
+        __WHEN_OUTER__  static extern VOTYPE Call__Deserialize(VOTYPE @this, VOUNDERLYINGTYPE value);      
             }
         """;
     
@@ -110,7 +138,7 @@ internal static class GenerateEfCoreTypes
         __WHEN_OUTER__ private static VOUNDERLYINGTYPE UnderlyingValue(VOTYPE i) => UnsafeValueField(i);
         __WHEN_OUTER__
         __WHEN_OUTER__  [global::System.Runtime.CompilerServices.UnsafeAccessor(global::System.Runtime.CompilerServices.UnsafeAccessorKind.Field, Name = "_value")]
-        __WHEN_OUTER__  extern static ref VOUNDERLYINGTYPE UnsafeValueField(VOTYPE @this);                
+        __WHEN_OUTER__  static extern ref VOUNDERLYINGTYPE UnsafeValueField(__NEEDS_REF__ VOTYPE @this);                
                 }
         """;
 
@@ -146,7 +174,7 @@ internal static class GenerateEfCoreTypes
                                                         __WHEN_OUTER__ private static VOUNDERLYINGTYPE UnderlyingValue(VOTYPE i) => UnsafeValueField(i);
                                                         __WHEN_OUTER__
                                                         __WHEN_OUTER__  [global::System.Runtime.CompilerServices.UnsafeAccessor(global::System.Runtime.CompilerServices.UnsafeAccessorKind.Field, Name = "_value")]
-                                                        __WHEN_OUTER__  extern static ref VOUNDERLYINGTYPE UnsafeValueField(VOTYPE @this);                
+                                                        __WHEN_OUTER__  static extern ref VOUNDERLYINGTYPE UnsafeValueField(__NEEDS_REF__ VOTYPE @this);                
                                                         }
                                                         """;        
 

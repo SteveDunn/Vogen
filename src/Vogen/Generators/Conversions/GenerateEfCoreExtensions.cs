@@ -2,7 +2,7 @@ namespace Vogen.Generators.Conversions;
 
 internal static class GenerateEfCoreExtensions
 {
-    public static string GenerateIfNeeded(VoWorkItem item)
+    public static string GenerateInnerIfNeeded(VoWorkItem item)
     {
         if (!HasEfCoreFlagSetOnAttribute(item.Config.Conversions))
         {
@@ -21,6 +21,6 @@ internal static class GenerateEfCoreExtensions
                  #endif
                  """;
     }
-    
+
     private static bool HasEfCoreFlagSetOnAttribute(Vogen.Conversions conversions) => conversions.HasFlag(Vogen.Conversions.EfCoreValueConverter);
 }

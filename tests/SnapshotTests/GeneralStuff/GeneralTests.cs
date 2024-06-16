@@ -20,6 +20,41 @@ public class GeneralTests
 
                      namespace Whatever
                      {
+                         [ValueObject<int>]
+                         public partial struct MyVo1 { }
+
+                         [ValueObject<string>]
+                         public partial class MyVo2 { }
+                     
+                         [EfCoreConverter<MyVo1>]
+                         [EfCoreConverter<MyVo2>]
+                         public partial class EfCoreConverters { }
+                     }
+                     """;
+
+            await new SnapshotRunner<ValueObjectGenerator>()
+                .WithSource(source)
+                .RunOn(TargetFramework.Net8_0);
+    }
+
+    [Fact]
+    public async Task Writes_efcore_converters_that_respect_namespaces()
+    {
+        var source = """
+                     using System;
+                     using Vogen;
+
+                     namespace Namespace1
+                     {
+                         [ValueObject<int>(conversions: Conversions.EfCoreValueConverter)]
+                         public partial class MyVo1 { }
+                     
+                         [EfCoreConverter<MyVo1>]
+                         public partial class EfCoreConverters { }
+                     }
+
+                     namespace Namespace2
+                     {
                          [ValueObject<int>(conversions: Conversions.EfCoreValueConverter)]
                          public partial class MyVo1 { }
                      

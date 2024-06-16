@@ -4,20 +4,28 @@ using Microsoft.CodeAnalysis;
 
 namespace Vogen;
 
+internal sealed class EfCoreConverterSpecResults
+{
+    public EfCoreConverterSpecResults(IEnumerable<EfCoreConverterSpecResult?> results) => Results = results.Where(r => r is not null)!;
+
+    private IEnumerable<EfCoreConverterSpecResult> Results { get; }
+
+    public IEnumerable<Diagnostic> Diagnostics => Results.SelectMany(r => r.Diagnostics);
+    public IEnumerable<EfCoreConverterSpecResult> Specs => Results;
+}
+
 internal sealed class EfCoreConverterSpecResult
 {
     public EfCoreConverterSpecResult(EfCoreConverterSpec? spec, IEnumerable<Diagnostic> diagnostics)
     {
-        Spec = spec;
-        Diagnostics = diagnostics;
+        Specs = spec;
+        Diagnostics = diagnostics.ToList();
     }
     
-    public EfCoreConverterSpec? Spec { get;  }
+    public EfCoreConverterSpec? Specs { get;  }
 
-    public IEnumerable<Diagnostic> Diagnostics { get; }
+    public List<Diagnostic> Diagnostics { get; }
 
-    public static EfCoreConverterSpecResult Null => new(null, []);
-    
     public bool HasDiagnostics => Diagnostics.Any();
 
     public static EfCoreConverterSpecResult Error(Diagnostic diag) => new(null, [diag]);

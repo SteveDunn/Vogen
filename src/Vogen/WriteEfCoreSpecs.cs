@@ -10,22 +10,24 @@ namespace Vogen;
 
 internal class WriteEfCoreSpecs
 {
-    public static void WriteIfNeeded(SourceProductionContext context, Compilation compilation, ImmutableArray<EfCoreConverterSpecResult> convertSpecs)
+    public static void WriteIfNeeded(SourceProductionContext context, Compilation compilation, ImmutableArray<EfCoreConverterSpecResults> convertSpecs)
     {
         if (compilation is not CSharpCompilation { LanguageVersion: >= LanguageVersion.CSharp12 })
         {
             return;
         }
-        
-        foreach (var eachSpec in convertSpecs)
+        foreach (var eachSpecs in convertSpecs)
         {
-            WriteEachIfNeeded(context, eachSpec);
+            foreach (var eachSpec in eachSpecs.Specs)
+            {
+                WriteEachIfNeeded(context, eachSpec);
+            }
         }
     }
 
     private static void WriteEachIfNeeded(SourceProductionContext context, EfCoreConverterSpecResult specResult)
     {
-        var spec = specResult.Spec;
+        var spec = specResult.Specs;
         
         if (spec is null)
         {
@@ -33,9 +35,10 @@ internal class WriteEfCoreSpecs
         }
 
         var body = GenerateEfCoreTypes.GenerateOuter(spec.UnderlyingType, spec.VoSymbol.IsValueType, spec.VoSymbol);
+        var extensionMethod = GenerateEfCoreTypes.GenerateOuterExtensionMethod(spec);
         string sb =
 $$"""
-#if NET8_OR_GREATER
+#if NET8_0_OR_GREATER
 
 {{GeneratedCodeSegments.Preamble}}
 
@@ -45,6 +48,8 @@ public partial class {{spec.SourceType.Name}}
 {
     {{body}}
 }
+
+{{extensionMethod}}
 
 #endif
 """;

@@ -137,7 +137,7 @@ using Vogen;
 
         {Util.GenerateDebuggerProxyForClasses(tds, item)}
     }}
-{GenerateEfCoreExtensions.GenerateIfNeeded(item)}
+{GenerateEfCoreExtensions.GenerateInnerIfNeeded(item)}
 {Util.WriteCloseNamespace(item.FullNamespace)}";
     }
 

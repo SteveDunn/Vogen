@@ -9,19 +9,20 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\Domain\Domain.csproj" />
+        <ProjectReference Include="..\Domain\Domain.csproj"/>
     </ItemGroup>
 
     <ItemGroup Condition=" '$(UseLocallyBuiltPackage)' != ''">
-        <PackageReference Include="Vogen" Version="999.9.*" />
+        <PackageReference Include="Vogen" Version="999.9.*"/>
     </ItemGroup>
 
     <ItemGroup Condition=" '$(UseLocallyBuiltPackage)' == ''">
-        <PackageReference Include="Vogen" Version="999.9.10219943" />
+        <PackageReference Include="Vogen" Version="999.9.10219943"/>
     </ItemGroup>
 
     <ItemGroup>
-      <PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.6" />
+        <PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.6"/>
+        <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="8.0.6"/>
     </ItemGroup>
-    
+
 </Project>

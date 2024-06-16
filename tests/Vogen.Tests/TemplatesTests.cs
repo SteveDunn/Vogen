@@ -30,17 +30,17 @@ public class TemplatesTests
             {
                 foreach (var eachTech in _technologies)
                 {
-                    yield return new object[] { eachType, eachTech };
+                    yield return [eachType, eachTech];
                 }
             }
         }
         
-        private static readonly Type[] _types = 
-        {
+        private static readonly Type[] _types =
+        [
             typeof(bool), typeof(byte), typeof(char), typeof(DateOnly), typeof(DateTime), typeof(DateTimeOffset), typeof(decimal),
             typeof(double), typeof(float), typeof(Guid), typeof(System.Int32), typeof(long), typeof(short), typeof(string),
             typeof(TimeOnly)
-        };
+        ];
 
         IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
     }
@@ -51,11 +51,11 @@ public class TemplatesTests
         {
         }
 
-        private static readonly string[] _technologies = 
-        {
-            "DapperTypeHandler", "EfCoreValueConverter", "LinqToDbValueConverter", "NewtonsoftJsonConverterReferenceType", "NewtonsoftJsonConverterValueType", "SystemTextJsonConverter",
-            "TypeConverter"
-        };
+        private static readonly string[] _technologies =
+        [
+            "DapperTypeHandler", "LinqToDbValueConverter", "NewtonsoftJsonConverterReferenceType", 
+            "NewtonsoftJsonConverterValueType", "SystemTextJsonConverter", "TypeConverter"
+        ];
     }
 
     private class SpecificTypes : Types
@@ -64,10 +64,9 @@ public class TemplatesTests
         {
         }
 
-        private static readonly string[] _technologies = 
-        {
-            "DapperTypeHandler", "EfCoreValueConverter", "LinqToDbValueConverter", "SystemTextJsonConverter",
-            "TypeConverter"
-        };
+        private static readonly string[] _technologies =
+        [
+            "DapperTypeHandler", "LinqToDbValueConverter", "SystemTextJsonConverter", "TypeConverter"
+        ];
     }
 }

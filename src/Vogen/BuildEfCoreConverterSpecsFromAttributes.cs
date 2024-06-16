@@ -8,59 +8,47 @@ using Vogen.Diagnostics;
 
 namespace Vogen;
 
-internal class BuildEfCoreConverterSpecsFromAttributes
+internal static class BuildEfCoreConverterSpecsFromAttributes
 {
-    private readonly bool _hasErroredAttributes;
-    private readonly AttributeData _matchingAttribute;
-    private readonly INamedTypeSymbol? _symbol;
 
-    private BuildEfCoreConverterSpecsFromAttributes(AttributeData att, INamedTypeSymbol? symbol)
+    public static EfCoreConverterSpecResult? TryBuild(AttributeData att, INamedTypeSymbol? symbol)
     {
-        _matchingAttribute = att;
-        _symbol = symbol;
+        ImmutableArray<TypedConstant> args = att.ConstructorArguments;
 
-        ImmutableArray<TypedConstant> args = _matchingAttribute.ConstructorArguments;
+        var hasErroredAttributes = args.Any(a => a.Kind == TypedConstantKind.Error);
 
-        _hasErroredAttributes = args.Any(a => a.Kind == TypedConstantKind.Error);
-    }
-
-    public static EfCoreConverterSpecResult TryBuild(AttributeData matchingAttribute, INamedTypeSymbol? symbol) => 
-        new BuildEfCoreConverterSpecsFromAttributes(matchingAttribute, symbol).Build();
-
-    private EfCoreConverterSpecResult Build()
-    {
-        if (_hasErroredAttributes)
+        if (hasErroredAttributes)
         {
             // skip further generator execution and let compiler generate the errors
-            return EfCoreConverterSpecResult.Null;
+            return null;
         }
 
-        if (_matchingAttribute.AttributeClass == null)
+        if (att.AttributeClass == null)
         {
-            return EfCoreConverterSpecResult.Null;
+            return null;
         }
 
-        ImmutableArray<ITypeSymbol> t = _matchingAttribute.AttributeClass.TypeArguments;
+        ImmutableArray<ITypeSymbol> t = att.AttributeClass.TypeArguments;
 
-        if (t.Length != 1) return EfCoreConverterSpecResult.Null;
+        if (t.Length != 1) return null;
 
         var voSymbol = t[0] as INamedTypeSymbol;
-        if (voSymbol is null) return EfCoreConverterSpecResult.Null;
+        if (voSymbol is null) return null;
 
         if (!VoFilter.IsTarget(voSymbol))
         {
-            return EfCoreConverterSpecResult.Error(DiagnosticsCatalogue.EfCoreTargetMustBeAVo(_symbol!, voSymbol));
+            return EfCoreConverterSpecResult.Error(DiagnosticsCatalogue.EfCoreTargetMustBeAVo(symbol!, voSymbol));
         }
 
         List<AttributeData> attrs = VoFilter.TryGetValueObjectAttributes(voSymbol).ToList();
         
-        if(attrs.Count != 1) return EfCoreConverterSpecResult.Null;
+        if(attrs.Count != 1) return null;
 
         AttributeData a = attrs[0];
         
         VogenConfigurationBuildResult config = BuildConfigurationFromAttributes.TryBuildFromValueObjectAttribute(a);
         
-        if(config.HasDiagnostics) return EfCoreConverterSpecResult.Null;
+        if(config.HasDiagnostics) return null;
 
         VogenConfiguration c = config.ResultingConfiguration!;
 
@@ -71,7 +59,7 @@ internal class BuildEfCoreConverterSpecsFromAttributes
             return EfCoreConverterSpecResult.Error(DiagnosticsCatalogue.VoMustExplicitlySpecifyPrimitiveToBeAnEfCoreTarget(voSymbol));
         }
         
-        return EfCoreConverterSpecResult.Ok(voSymbol, underlyingType, _symbol!);
+        return EfCoreConverterSpecResult.Ok(voSymbol, underlyingType, symbol!);
     }
 
     private static INamedTypeSymbol? ResolveUnderlyingType(INamedTypeSymbol method)

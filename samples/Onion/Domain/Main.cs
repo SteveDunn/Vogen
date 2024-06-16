@@ -26,3 +26,23 @@ public class Order
     public OrderId OrderId { get; set; }
     public CustomerName CustomerName { get; set; }
 }
+
+public class EmployeeEntity
+{
+    public Id Id { get; set; } = null!; // must be null in order for EF core to generate a value
+    public Name Name { get; set; } = Name.NotSet;
+    public Age Age { get; set; }
+}
+
+[ValueObject]
+public partial class Id;
+
+[ValueObject<string>]
+[Instance("NotSet", "[NOT_SET]")]
+public partial class Name;
+
+/// <summary>
+/// No converter needed because it's a struct of a supported type
+/// </summary>
+[ValueObject]
+public readonly partial struct Age;

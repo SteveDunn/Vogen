@@ -44,7 +44,7 @@ public class ValueObjectGenerator : IIncrementalGenerator
                 transform: (ctx, _) => ManageAttributes.GetDefaultConfigFromGlobalAttribute(ctx))
             .Where(static m => m is not null)!;
 
-        IncrementalValuesProvider<EfCoreConverterSpecResult> efCoreConverterSpecs = context.SyntaxProvider.ForAttributeWithMetadataName(
+        IncrementalValuesProvider<EfCoreConverterSpecResults> efCoreConverterSpecs = context.SyntaxProvider.ForAttributeWithMetadataName(
                 "Vogen.EfCoreConverterAttribute`1",
                 predicate: (node, _) => node is ClassDeclarationSyntax,
                 transform: (ctx, _) => ManageAttributes.GetEfCoreConverterSpecFromAttribute(ctx))
@@ -56,13 +56,13 @@ public class ValueObjectGenerator : IIncrementalGenerator
     record struct Found(
         IncrementalValuesProvider<VoTarget> Vos,
         IncrementalValuesProvider<VogenConfigurationBuildResult> GlobalConfig,
-        IncrementalValuesProvider<EfCoreConverterSpecResult> EfCoreConverterSpecs);
+        IncrementalValuesProvider<EfCoreConverterSpecResults> EfCoreConverterSpecs);
     
     private static void Execute(
         Compilation compilation, 
         ImmutableArray<VoTarget> targets,
         ImmutableArray<VogenConfigurationBuildResult> globalConfigBuildResult,
-        ImmutableArray<EfCoreConverterSpecResult> efCoreConverterSpecs,
+        ImmutableArray<EfCoreConverterSpecResults> efCoreConverterSpecs,
         SourceProductionContext spc)
     {
         using var internalDiags = InternalDiagnostics.TryCreateIfSpecialClassIsPresent(compilation, spc);
@@ -75,14 +75,13 @@ public class ValueObjectGenerator : IIncrementalGenerator
             return;
         }
 
-        var efSpecErrors = efCoreConverterSpecs.SelectMany(s => s.Diagnostics);
+        var efSpecErrors = efCoreConverterSpecs.SelectMany(x => x.Diagnostics);
         
         foreach (var diagnostic in efSpecErrors)
         {
             spc.ReportDiagnostic(diagnostic);
         }
         
-
         // if there are some, get the default global config
         VogenConfigurationBuildResult buildResult = globalConfigBuildResult.IsDefaultOrEmpty
             ? VogenConfigurationBuildResult.Null
