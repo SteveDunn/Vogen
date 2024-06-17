@@ -17,10 +17,10 @@ If you like or are using this project please give it a star. Thanks!
 
 # Vogen: cure your Primitive Obsession
 
-Vogen is a .NET Source Generator and analyzer. It turns your primitives (ints, decimals etc.) into Value Objects that 
+Vogen is a .NET Source Generator and analyzer. It turns your primitives (ints, decimals etc.) into value objects that 
 represent domain concepts (CustomerId, AccountBalance etc.)
 
-It adds new C# compilation errors to help stop the creation of invalid Value Objects. 
+It adds new C# compilation errors to help stop the creation of invalid value objects. 
 
 ## Overview
 
@@ -78,7 +78,7 @@ public void SendInvoice(CustomerId customerId) { ... }
 ```
 
 **Note:**    
-> `int` is the default type for Value Objects, but it is generally a good idea to explicitly declare each type
+> `int` is the default type for value objects, but it is generally a good idea to explicitly declare each type
 > for clarity. Plus, although `int` is the default, you can - individually or globally - configure them to be 
 > other types. See the Configuration section later in the document, but here's some brief examples:
 
@@ -90,11 +90,11 @@ public partial struct AccountBalance { }
 public partial class LegalEntityName { }
 ```
 
-The main goal of Vogen is to **ensure the validity of your Value Objects**, the code analyser helps you to avoid mistakes which 
-might leave you with uninitialized Value Objects in your domain.
+The main goal of Vogen is to **ensure the validity of your value objects**, the code analyser helps you to avoid mistakes which 
+might leave you with uninitialized value objects in your domain.
 
 It does this by **adding new constraints in the form of new C# compilation errors**. There are a few ways you could end up
-with uninitialized Value Objects. One way is by giving your type constructors. Providing your own constructors
+with uninitialized value objects. One way is by giving your type constructors. Providing your own constructors
 could mean that you forget to set a value, so **Vogen doesn't allow you to have user defined constructors**:
 
 ```csharp
@@ -109,7 +109,7 @@ public partial struct CustomerId {
 }
 ```
 
-In addition, Vogen will spot issues when **creating** or **consuming** Value Objects:
+In addition, Vogen will spot issues when **creating** or **consuming** value objects:
 
 ```csharp
 // catches object creation expressions
@@ -138,7 +138,7 @@ void Process(CustomerId customerId = default) { } // error VOG009: Type 'Custome
 
 One of the main goals of this project is to achieve **almost the same speed and memory performance as using primitives directly**.
 Put another way, if your `decimal` primitive represents an Account Balance, then there is **extremely** low overhead of 
-using an `AccountBalance` Value Object instead. Please see the [performance metrics below](#Performance). 
+using an `AccountBalance` value object instead. Please see the [performance metrics below](#Performance). 
 
 ___
 
@@ -149,7 +149,7 @@ Vogen is a [Nuget package](https://www.nuget.org/packages/Vogen). Install it wit
 `dotnet add package Vogen`
 
 When added to your project, the **source generator** generates the wrappers for your primitives and the **code analyser**
-will let you know if you try to create invalid Value Objects.
+will let you know if you try to create invalid value objects.
 
 ## Usage
 
@@ -181,7 +181,7 @@ public partial struct PaymentAmount { }
 
 
 ## More on Primitive Obsession
-The source generator generates [Value Objects](https://wiki.c2.com/?ValueObject). Value Objects help combat Primitive Obsession by wrapping simple primitives such as `int`, `string`, `double` etc. in a strongly-typed type.
+The source generator generates [value objects](https://wiki.c2.com/?ValueObject). value objects help combat Primitive Obsession by wrapping simple primitives such as `int`, `string`, `double` etc. in a strongly-typed type.
 
 Primitive Obsession (AKA StringlyTyped) means being obsessed with primitives.  It is a Code Smell that degrades the quality of software.
 
@@ -194,13 +194,13 @@ Some examples:
 
 The source generator is opinionated. The opinions help ensure consistency. The opinions are:
 
-* A Value Object (VO) is constructed via a factory method named `From`, e.g. `Age.From(12)`
+* A value object (VO) is constructed via a factory method named `From`, e.g. `Age.From(12)`
 * A VO is equatable (`Age.From(12) == Age.From(12)`)
 * A VO, if validated, is validated with a static method named `Validate` that returns a `Validation` result
 * Any validation that is not `Validation.Ok` results in a `ValueObjectValidationException` being thrown
 
 It is common to represent domain ideas as primitives, but primitives might not be able to fully describe the domain idea.  
-To use Value Objects instead of primitives, we simply swap code like this:
+To use value objects instead of primitives, we simply swap code like this:
 
 ```csharp
 public class CustomerInfo {
@@ -243,7 +243,7 @@ So far, we've used as an example, a customer ID of value `42`.  In C#, it may co
 (SuppliedId.From(42) == VendorId.From(42)) // compilation error
 ```
 
-But sometimes, we need to denote that a Value Object isn't valid or has not been set. We don't want anyone _outside_ of the object doing this as it could be used accidentally.  It's common to have `Unspecified` instances, e.g.
+But sometimes, we need to denote that a value object isn't valid or has not been set. We don't want anyone _outside_ of the object doing this as it could be used accidentally.  It's common to have `Unspecified` instances, e.g.
 
 ```csharp
 public class Person {
@@ -288,7 +288,7 @@ public readonly partial struct Celsius {
 
 ## Configuration
 
-Each Value Object can have it's own *optional* configuration. Configuration includes:
+Each value object can have it's own *optional* configuration. Configuration includes:
 
 * The underlying type
 * Any 'conversions' (Dapper, System.Text.Json, Newtonsoft.Json, etc.) - see [the Integrations page](https://stevedunn.github.io/Vogen/integration.html) in the wiki for more information
@@ -317,7 +317,7 @@ There are several code analysis warnings for invalid configuration, including:
 (to run these yourself: `dotnet run -c Release --framework net8.0  -- --job short --filter *` in the `Vogen.Benchmarks` folder)
 
 As mentioned previously, the goal of Vogen is to achieve very similar performance compare to using primitives themselves.
-Here's a benchmark comparing the use of a validated Value Object with underlying type of int vs using an int natively (*primitively* 🤓)
+Here's a benchmark comparing the use of a validated value object with underlying type of int vs using an int natively (*primitively* 🤓)
 
 ``` ini
 BenchmarkDotNet=v0.13.2, OS=Windows 11 (10.0.22621.1194)
@@ -424,15 +424,15 @@ Source generation is driven by attributes, and, if you're using .NET 7 or above,
 public partial struct Age { }
 ```
 
-### Why are they called 'Value Objects'?
+### Why are they called 'value objects'?
 
-The term Value Object represents a small object who's equality is based on value and not identity. From [Wikipedia](https://en.wikipedia.org/wiki/Value_object)
+The term value object represents a small object who's equality is based on value and not identity. From [Wikipedia](https://en.wikipedia.org/wiki/Value_object)
 
-> _In computer science, a Value Object is a small object that represents a simple entity whose equality is not based on identity: i.e. two Value Objects are equal when they have the same value, not necessarily being the same object._
+> _In computer science, a value object is a small object that represents a simple entity whose equality is not based on identity: i.e. two value objects are equal when they have the same value, not necessarily being the same object._
 
-In DDD, a Value Object is (again, from [Wikipedia](https://en.wikipedia.org/wiki/Domain-driven_design#Building_blocks))
+In DDD, a value object is (again, from [Wikipedia](https://en.wikipedia.org/wiki/Domain-driven_design#Building_blocks))
 
->  _... a Value Object is an immutable object that contains attributes but has no conceptual identity_
+>  _... a value object is an immutable object that contains attributes but has no conceptual identity_
 
 ### How can I view the code that is generated?
 
@@ -470,7 +470,7 @@ public record struct CustomerId
 }
 ```
 
-You might also provide other constructors which might not validate the data, thereby _allowing invalid data into your domain_. Those other constructors might not throw exception, or might throw different exceptions.  One of the opinions in Vogen is that any invalid data given to a Value Object throws a `ValueObjectValidationException`.
+You might also provide other constructors which might not validate the data, thereby _allowing invalid data into your domain_. Those other constructors might not throw exception, or might throw different exceptions.  One of the opinions in Vogen is that any invalid data given to a value object throws a `ValueObjectValidationException`.
 
 You could also use `default(CustomerId)` to evade validation.  In Vogen, there are analysers that catch this and fail the build, e.g:
 
@@ -548,7 +548,7 @@ You *could*, but you'd get compiler warning [CS0282-There is no defined ordering
 
 ### Why are there, by default, no implicit conversions to and from the primitive types that are being wrapped?
 
-Implicit operators can be useful, but for Value Objects, they can confuse things. Take the following code **without** any implicit conversions:
+Implicit operators can be useful, but for value objects, they can confuse things. Take the following code **without** any implicit conversions:
 
 ```csharp
 Age age1 = Age.From(1);
@@ -572,7 +572,7 @@ In my research, I read some other opinions, and noted that the guidelines listed
 
 Which is interesting - Vogen _wouldn't_ throw an `InvalidCastException` (only an `ValueObjectValidationException`).  Also, for `struct`s, we _wouldn't_ create a heap allocation.
 
-But since users of Vogen can declare a Value Object as a `class` **or** `struct`, then we wouldn't want implicit operators (from `primitive` => `ValueObject`) for just `structs` and not `class`es.
+But since users of Vogen can declare a value object as a `class` **or** `struct`, then we wouldn't want implicit operators (from `primitive` => `ValueObject`) for just `structs` and not `class`es.
 
 ### Can you opt-in to implicit conversions?
 
@@ -604,7 +604,7 @@ The implicit cast in `var age10 = age20 / 2` results in an `int` and not an `Age
 
 > _If I'm using a library that uses Vogen, I'd like to easily tell if the type is just a primitive wrapper or not by the fact that it implements an interface, such as `IValidated<T>`_
 
-Just like primitives have no interfaces, there's no need to have interfaces on Value Objects. The receiver that takes a `CustomerId` knows that it's a Value Object.  If it were instead to take an `IValidated<int>`, then it wouldn't have any more information; you'd still have to know to call `Value` to get the value.
+Just like primitives have no interfaces, there's no need to have interfaces on value objects. The receiver that takes a `CustomerId` knows that it's a value object.  If it were instead to take an `IValidated<int>`, then it wouldn't have any more information; you'd still have to know to call `Value` to get the value.
 
 It might also relax type safety. Without the interface, we have signatures such as this:
 
@@ -669,7 +669,7 @@ Yes, add NormalizeInput method, e.g.
 See [wiki](https://stevedunn.github.io/Vogen/normalization.html) for more information.
 
 
-### Can I create custom Value Object attributes with my own defaults?
+### Can I create custom value object attributes with my own defaults?
 
 Yes, but (at the moment) it requires that you put your defaults in your attribute's constructor - not in the call to 
 the base class' constructor (see [this comment](https://github.com/SteveDunn/Vogen/pull/321#issuecomment-1399324832)).
