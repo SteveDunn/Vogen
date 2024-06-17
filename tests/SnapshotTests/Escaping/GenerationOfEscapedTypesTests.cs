@@ -83,7 +83,7 @@ namespace @class
 
         return new SnapshotRunner<ValueObjectGenerator>()
             .WithSource(source)
-            .CustomizeSettings(s => s.UseFileName(TestHelper.ShortenForFilename(source)))
+            .CustomizeSettings(s => s.UseHashedParameters(nameof(GenerationOfEscapedTypes), conversions, underlyingType, className))
             .RunOnAllFrameworks();
     }
 

@@ -86,7 +86,7 @@ public class GenerationOfEscapedEfCoreConverters
 
         return new SnapshotRunner<ValueObjectGenerator>()
             .WithSource(source)
-            .CustomizeSettings(s => s.UseFileName(TestHelper.ShortenForFilename(source)))
+            .CustomizeSettings(s => s.UseHashedParameters(nameof(GenerationOfEscapedEfCoreConverters), conversions, underlyingType, className))
             .RunOn(TargetFramework.Net8_0);
     }
 
