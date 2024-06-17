@@ -547,7 +547,6 @@ public static ValueObjectOrError<internal_readonly_partial_record_structConversi
                 };
             }
         }
-
         public class EfCoreValueConverter : global::Microsoft.EntityFrameworkCore.Storage.ValueConversion.ValueConverter<internal_readonly_partial_record_structConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterbyte, System.Byte>
         {
           public EfCoreValueConverter() : this(null) { }
@@ -557,6 +556,7 @@ public static ValueObjectOrError<internal_readonly_partial_record_structConversi
                                                                       value => internal_readonly_partial_record_structConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterbyte.__Deserialize(value),
                 mappingHints
               ) { }
+
         }
         public class EfCoreValueComparer : global::Microsoft.EntityFrameworkCore.ChangeTracking.ValueComparer<internal_readonly_partial_record_structConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterbyte>
         {

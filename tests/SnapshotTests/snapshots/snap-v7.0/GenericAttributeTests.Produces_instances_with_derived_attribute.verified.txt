@@ -574,7 +574,6 @@ public static readonly CustomerId Cust42 = new CustomerId(42);
             }
         }
 
-
         public class EfCoreValueConverter : global::Microsoft.EntityFrameworkCore.Storage.ValueConversion.ValueConverter<CustomerId, System.Int64>
         {
           public EfCoreValueConverter() : this(null) { }
@@ -584,6 +583,7 @@ public static readonly CustomerId Cust42 = new CustomerId(42);
                                                                       value => CustomerId.__Deserialize(value),
                 mappingHints
               ) { }
+
         }
         public class EfCoreValueComparer : global::Microsoft.EntityFrameworkCore.ChangeTracking.ValueComparer<CustomerId>
         {

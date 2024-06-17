@@ -135,7 +135,7 @@ internal static class GenerateEfCoreTypes
         __WHEN_INNER__                return left._isInitialized && right._isInitialized && left._value.Equals(right._value);
         __WHEN_OUTER__                return left.IsInitialized() && right.IsInitialized() && UnderlyingValue(left).Equals(UnderlyingValue(right));
                     }
-        __WHEN_OUTER__ private static VOUNDERLYINGTYPE UnderlyingValue(VOTYPE i) => UnsafeValueField(i);
+        __WHEN_OUTER__ private static VOUNDERLYINGTYPE UnderlyingValue(VOTYPE i) => UnsafeValueField(__NEEDS_REF__ i);
         __WHEN_OUTER__
         __WHEN_OUTER__  [global::System.Runtime.CompilerServices.UnsafeAccessor(global::System.Runtime.CompilerServices.UnsafeAccessorKind.Field, Name = "_value")]
         __WHEN_OUTER__  static extern ref VOUNDERLYINGTYPE UnsafeValueField(__NEEDS_REF__ VOTYPE @this);                
@@ -171,7 +171,7 @@ internal static class GenerateEfCoreTypes
                                                         __WHEN_INNER__                return left._isInitialized && right._isInitialized && left._value.Equals(right._value);            
                                                         __WHEN_OUTER__                return left.IsInitialized() && right.IsInitialized() && UnderlyingValue(left).Equals(UnderlyingValue(right));            
                                                                    }                
-                                                        __WHEN_OUTER__ private static VOUNDERLYINGTYPE UnderlyingValue(VOTYPE i) => UnsafeValueField(i);
+                                                        __WHEN_OUTER__ private static VOUNDERLYINGTYPE UnderlyingValue(VOTYPE i) => UnsafeValueField(__NEEDS_REF__ i);
                                                         __WHEN_OUTER__
                                                         __WHEN_OUTER__  [global::System.Runtime.CompilerServices.UnsafeAccessor(global::System.Runtime.CompilerServices.UnsafeAccessorKind.Field, Name = "_value")]
                                                         __WHEN_OUTER__  static extern ref VOUNDERLYINGTYPE UnsafeValueField(__NEEDS_REF__ VOTYPE @this);                

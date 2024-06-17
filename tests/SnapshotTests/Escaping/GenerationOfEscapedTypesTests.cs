@@ -83,7 +83,7 @@ namespace @class
 
         return new SnapshotRunner<ValueObjectGenerator>()
             .WithSource(source)
-            .CustomizeSettings(s => s.UseFileName(TestHelper.ShortenForFilename(className)))
+            .CustomizeSettings(s => s.UseFileName(TestHelper.ShortenForFilename(source)))
             .RunOnAllFrameworks();
     }
 

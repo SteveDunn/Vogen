@@ -455,7 +455,6 @@ public static ValueObjectOrError<MyIntVo> TryFrom(System.Int32 value)
                 };
             }
         }
-
         public class EfCoreValueConverter : global::Microsoft.EntityFrameworkCore.Storage.ValueConversion.ValueConverter<MyIntVo, System.Int32>
         {
           public EfCoreValueConverter() : this(null) { }
@@ -465,6 +464,7 @@ public static ValueObjectOrError<MyIntVo> TryFrom(System.Int32 value)
                                                                       value => MyIntVo.__Deserialize(value),
                 mappingHints
               ) { }
+
         }
        public class EfCoreValueComparer : global::Microsoft.EntityFrameworkCore.ChangeTracking.ValueComparer<MyIntVo>
        {

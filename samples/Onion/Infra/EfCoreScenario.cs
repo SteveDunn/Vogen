@@ -1,5 +1,3 @@
-using System.Text.Json;
-using System.Text.Json.Serialization;
 using Domain;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
@@ -26,6 +24,9 @@ namespace UsingTypesGeneratedInTheSameProject;
 
 [EfCoreConverter<Id>]
 [EfCoreConverter<Name>]
+[EfCoreConverter<Age>]
+[EfCoreConverter<Department>]
+[EfCoreConverter<HireDate>]
 public partial class EfCoreConverters;
 
 public static class EfCoreScenario
@@ -48,7 +49,9 @@ public static class EfCoreScenario
                 var entity = new EmployeeEntity
                 {
                     Name = Name.From("Fred #" + i),
-                    Age = Age.From(42 + i)
+                    Age = Age.From(42 + i),
+                    Department = Department.From("Quarry"),
+                    HireDate = HireDate.From(new DateOnly(1066, 12, 13))
                 };
 
                 context.Entities.Add(entity);
@@ -87,6 +90,8 @@ internal class DbContext : Microsoft.EntityFrameworkCore.DbContext
             b.Property(e => e.Id).HasValueGenerator<SomeIdValueGenerator>();
             b.Property(e => e.Id).HasVogenConversion();
             b.Property(e => e.Name).HasVogenConversion();
+            b.Property(e => e.Department).HasVogenConversion();
+            b.Property(e => e.HireDate).HasVogenConversion();
         });
     }
 

@@ -30,8 +30,12 @@ public class Order
 public class EmployeeEntity
 {
     public Id Id { get; set; } = null!; // must be null in order for EF core to generate a value
-    public Name Name { get; set; } = Name.NotSet;
-    public Age Age { get; set; }
+    public required Name Name { get; set; } = Name.NotSet;
+    public required Age Age { get; set; }
+    
+    public required Department Department { get; set; }
+    
+    public required HireDate HireDate { get; set; }
 }
 
 [ValueObject]
@@ -41,8 +45,11 @@ public partial class Id;
 [Instance("NotSet", "[NOT_SET]")]
 public partial class Name;
 
-/// <summary>
-/// No converter needed because it's a struct of a supported type
-/// </summary>
 [ValueObject]
 public readonly partial struct Age;
+
+[ValueObject<string>]
+public readonly partial record struct Department;
+
+[ValueObject<DateOnly>]
+public partial record class HireDate;

@@ -17,18 +17,62 @@ public class GeneralTests
         var source = """
                      using System;
                      using Vogen;
+                     
+                     namespace @int
+                     {
+                         [ValueObject<byte>]
+                         public partial struct @byte;
+
+                         [ValueObject<string>]
+                         public partial record struct @string;
+                     }
 
                      namespace Whatever
                      {
                          [ValueObject<int>]
-                         public partial struct MyVo1 { }
+                         public partial struct MyVo1;
 
                          [ValueObject<string>]
-                         public partial class MyVo2 { }
+                         public partial class MyVo2;
+
+                         [ValueObject<string>]
+                         public readonly partial struct MyVo3;
+
+                         [ValueObject<int>]
+                         public readonly partial struct MyVo4;
+
+                         [ValueObject<int>]
+                         public readonly partial record struct MyVo5;
+
+                         [ValueObject<int>]
+                         public partial record class MyVo6;
+
+                         [ValueObject<int>]
+                         public partial record struct @int;
+
+                         [ValueObject<int>]
+                         public partial record struct @byte;
+
+                         [ValueObject(typeof(int))]
+                         public partial record MyInt;
                      
                          [EfCoreConverter<MyVo1>]
                          [EfCoreConverter<MyVo2>]
-                         public partial class EfCoreConverters { }
+                         [EfCoreConverter<MyVo3>]
+                         [EfCoreConverter<MyVo4>]
+                         [EfCoreConverter<MyVo5>]
+                         [EfCoreConverter<MyVo6>]
+                         [EfCoreConverter<@int>]
+                         [EfCoreConverter<@byte>]
+                         [EfCoreConverter<MyInt>]
+                         public partial class EfCoreConverters;
+                     }
+                     
+                     namespace @byte
+                     {
+                         [EfCoreConverter<@int.@byte>]
+                         [EfCoreConverter<@int.@string>]
+                         public partial class EfCoreConverters;
                      }
                      """;
 
