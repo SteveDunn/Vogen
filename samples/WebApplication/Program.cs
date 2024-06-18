@@ -13,7 +13,7 @@ using Scalar.AspNetCore;
 
 [assembly: VogenDefaults(openApiSchemaCustomizations: OpenApiSchemaCustomizations.GenerateSwashbuckleMappingExtensionMethod)]
 
-var builder = WebApplication.CreateBuilder(args);
+var builder = Microsoft.AspNetCore.Builder.WebApplication.CreateBuilder(args);
 
 #if USE_MICROSOFT_OPENAPI_AND_SCALAR
     builder.Services.AddOpenApi((OpenApiOptions o) =>

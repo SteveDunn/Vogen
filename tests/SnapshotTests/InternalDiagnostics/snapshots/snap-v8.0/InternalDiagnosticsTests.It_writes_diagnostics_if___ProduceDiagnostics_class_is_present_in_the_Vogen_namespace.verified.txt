@@ -24,6 +24,8 @@
 // Suppress warnings about CS1591: Missing XML comment for publicly visible type or member 'Type_or_Member'
 #pragma warning disable CS1591
 
+namespace generator;
+
 public class VogenTypesFactory : global::System.Text.Json.Serialization.JsonConverterFactory
 {
     public VogenTypesFactory() { }
@@ -585,6 +587,7 @@ public static ValueObjectOrError<MyVo> TryFrom(System.Int32 value)
   
 /*
 
+Generator count: 1
 LanguageVersion: CSharp12
 
 User provided global config

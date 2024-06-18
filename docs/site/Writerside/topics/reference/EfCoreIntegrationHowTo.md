@@ -1,9 +1,10 @@
 # Integration with Entity Framework Core
 
-It is possible to use Value Objects in EFCore.
+It is possible to use value objects in EFCore.
 Using VO structs is straightforward, and no converter is required.
 Using VO classes requires generating a converter.
-The converter is generated when you add the `EFCoreValueConverter` conversion in the attribute, e.g.
+
+There are two ways of generating a converter. One is to generate it in the same project as the VO by adding the `EFCoreValueConverter` conversion in the attribute, e.g.
 
 ```c#
 [ValueObject<string>(conversions: Conversions.EfCoreValueConverter)]
@@ -13,7 +14,19 @@ public partial class Name
 }
 ```
 
-In your database context, you then specify the conversion:
+Another way, if you're using .NET 8 or greater, is to use `EfCoreConverter` attributes:
+
+```c#
+[EfCoreConverter<Domain.CustomerId>]
+[EfCoreConverter<Domain.CustomerName>]
+public partial class VogenEfCoreConverters;
+```
+
+This allows you to create the generator in a separate project,
+which is useful if you're using something like Onion architecture,
+where you don't want your domain objects to reference infrastructure code.
+
+Now the converters are generated, in your database context, you then specify the conversion:
 
 ```c#
     protected override void OnModelCreating(ModelBuilder builder)

@@ -37,4 +37,6 @@ public static class RuleIdentifiers
     public const string IncorrectUseOfInstanceField = "VOG027";
     public const string IncorrectUseOfNormalizeInputMethod = "VOG028";
     public const string ExplicitlySpecifyTypeInValueObjectAttribute = "VOG029";
+    public const string EfCoreTargetMustExplicitlySpecifyItsPrimitive = "VOG030";
+    public const string EfCoreTargetMustBeAVo = "VOG031";
 }

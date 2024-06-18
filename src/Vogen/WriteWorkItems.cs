@@ -82,13 +82,13 @@ internal static class WriteWorkItems
         void tryWriteUsingUniqueFilename()
         {
             int count = 0;
-            string uniqueFilename = filename;
+            string hintName = filename;
 
             while (true)
             {
                 try
                 {
-                    context.AddSource(uniqueFilename, sourceText);
+                    context.AddSource(hintName, sourceText);
                     return;
                 }
                 catch(ArgumentException)
@@ -98,7 +98,7 @@ internal static class WriteWorkItems
                         throw;
                     }
 
-                    uniqueFilename = $"{count}{filename}";
+                    hintName = $"{count}{filename}";
                 }
             }
         }

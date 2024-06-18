@@ -1,32 +1,39 @@
-﻿#pragma warning disable IDE1006 // Naming Styles
+﻿// ReSharper disable IdentifierTypo
+// ReSharper disable InconsistentNaming
+// ReSharper disable RedundantVerbatimPrefix
+#pragma warning disable IDE1006 // Naming Styles
 namespace record.@struct.@float
 {
-    public readonly record struct @decimal();
+    public readonly record struct @decimal;
 }
 
 namespace @double
 {
-    public readonly record struct @decimal();
+    public readonly record struct @decimal;
 
     [ValueObject(typeof(@decimal))]
     public partial class classFromEscapedNamespaceWithReservedUnderlyingType
     {
     }
 
-    [ValueObject]
+    [ValueObject<int>]
     public partial class classFromEscapedNamespace
     {
     }
+
+    [EfCoreConverter<classFromEscapedNamespace>]
+    [EfCoreConverter<classFromEscapedNamespaceWithReservedUnderlyingType>]
+    public partial class EfCoreConverters;
 }
 
 namespace @bool.@byte.@short.@float.@object
 {
-    [ValueObject]
+    [ValueObject<int>]
     public partial class @class
     {
     }
 
-    [ValueObject]
+    [ValueObject<int>]
     public partial class @event
     {
     }
@@ -35,4 +42,9 @@ namespace @bool.@byte.@short.@float.@object
     public partial class @event2
     {
     }
+    
+    [EfCoreConverter<@class>]
+    [EfCoreConverter<@event>]
+    [EfCoreConverter<@event2>]
+    public partial class EfCoreConverters;
 }

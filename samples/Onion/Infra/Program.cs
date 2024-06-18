@@ -1,0 +1,6 @@
+﻿using UsingTypesFromTheDomainLayer;
+using UsingTypesGeneratedInTheSameProject;
+
+SystemTextJsonSourceGenerationScenario_UsingTypesFromTheDomainLayer.Run();
+SystemTextJsonSourceGenerationScenario_UsingTypesGeneratedInTheSameProject.Run();
+EfCoreScenario.Run();

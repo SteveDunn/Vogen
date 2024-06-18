@@ -23,6 +23,15 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApplicationConsumer", "s
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AotTrimmedSample", "samples\AotTrimmedSample\AotTrimmedSample.csproj", "{99CBD5AD-854A-4678-8667-2D1C4434D551}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domain", "samples\Onion\Domain\Domain.csproj", "{C53918C4-833C-45DB-B306-09D46B9CFB9D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Onion", "Onion", "{48796EAD-C8DB-4444-9BDF-9EED099BF2A4}"
+	ProjectSection(SolutionItems) = preProject
+		samples\Onion\README.md = samples\Onion\README.md
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infra", "samples\Onion\Infra\Infra.csproj", "{03EA902C-68D5-44B2-A8F0-2F3325B05448}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -49,11 +58,23 @@ Global
 		{99CBD5AD-854A-4678-8667-2D1C4434D551}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{99CBD5AD-854A-4678-8667-2D1C4434D551}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{99CBD5AD-854A-4678-8667-2D1C4434D551}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C53918C4-833C-45DB-B306-09D46B9CFB9D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C53918C4-833C-45DB-B306-09D46B9CFB9D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C53918C4-833C-45DB-B306-09D46B9CFB9D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C53918C4-833C-45DB-B306-09D46B9CFB9D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{03EA902C-68D5-44B2-A8F0-2F3325B05448}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{03EA902C-68D5-44B2-A8F0-2F3325B05448}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{03EA902C-68D5-44B2-A8F0-2F3325B05448}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{03EA902C-68D5-44B2-A8F0-2F3325B05448}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {331A0BAA-5F92-47FB-B064-3C422A978D17}
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{C53918C4-833C-45DB-B306-09D46B9CFB9D} = {48796EAD-C8DB-4444-9BDF-9EED099BF2A4}
+		{03EA902C-68D5-44B2-A8F0-2F3325B05448} = {48796EAD-C8DB-4444-9BDF-9EED099BF2A4}
 	EndGlobalSection
 EndGlobal

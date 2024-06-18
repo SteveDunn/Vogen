@@ -24,12 +24,19 @@ internal class WriteSystemTextJsonConverterFactories
             return;
         }
         
+        
         var stjs = workItems.Where(i => i.Config.Conversions.HasFlag(Conversions.SystemTextJson)).Select(BuildEntry);
 
+        var fullNamespace = compilation.Assembly.Name;//.ToDisplayString();
+
+        var ns = string.IsNullOrEmpty(fullNamespace) ? string.Empty : $"namespace {fullNamespace};";
+        
         string s2 =
             $$"""
             
             {{GeneratedCodeSegments.Preamble}}
+            
+            {{ns}}
             
             public class VogenTypesFactory : global::System.Text.Json.Serialization.JsonConverterFactory
             {

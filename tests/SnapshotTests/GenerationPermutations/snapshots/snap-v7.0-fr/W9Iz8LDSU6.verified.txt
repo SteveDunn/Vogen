@@ -24,6 +24,8 @@
 // Suppress warnings about CS1591: Missing XML comment for publicly visible type or member 'Type_or_Member'
 #pragma warning disable CS1591
 
+namespace generator;
+
 public class VogenTypesFactory : global::System.Text.Json.Serialization.JsonConverterFactory
 {
     public VogenTypesFactory() { }
@@ -563,42 +565,42 @@ public static ValueObjectOrError<public_partial_record_classConversions_Newtonso
                 };
             }
         }
+        public class EfCoreValueConverter : global::Microsoft.EntityFrameworkCore.Storage.ValueConversion.ValueConverter<public_partial_record_classConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterdouble, System.Double>
+        {
+          public EfCoreValueConverter() : this(null) { }
+          public EfCoreValueConverter(global::Microsoft.EntityFrameworkCore.Storage.ValueConversion.ConverterMappingHints mappingHints = null)
+              : base(
+                  vo => vo.Value,
+                                                                      value => public_partial_record_classConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterdouble.__Deserialize(value),
+                mappingHints
+              ) { }
 
-        public class EfCoreValueConverter : global::Microsoft.EntityFrameworkCore.Storage.ValueConversion.ValueConverter<public_partial_record_classConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterdouble, global::System.Double>
-        {
-            public EfCoreValueConverter() : this(null) { }
-            public EfCoreValueConverter(global::Microsoft.EntityFrameworkCore.Storage.ValueConversion.ConverterMappingHints mappingHints = null)
-                : base(
-                    vo => vo.Value,
-                    value => public_partial_record_classConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterdouble.__Deserialize(value),
-                    mappingHints
-                ) { }
         }
-        public class EfCoreValueComparer : global::Microsoft.EntityFrameworkCore.ChangeTracking.ValueComparer<public_partial_record_classConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterdouble>
-        {
-            public EfCoreValueComparer() : base(
-                (left, right) => DoCompare(left, right), 
+       public class EfCoreValueComparer : global::Microsoft.EntityFrameworkCore.ChangeTracking.ValueComparer<public_partial_record_classConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterdouble>
+       {
+           public EfCoreValueComparer() : base(
+               (left, right) => DoCompare(left, right), 
                 instance => instance._isInitialized ? instance._value.GetHashCode() : 0) 
-            { 
-            }
-                
-            static bool DoCompare(public_partial_record_classConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterdouble left, public_partial_record_classConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterdouble right)
-            {
-                // if both null, then they're equal
-                if (left is null) return right is null;
-                
-                // if only right is null, then they're not equal
-                if (right is null) return false;
-                
-                // if they're both the same reference, then they're equal
-                if (ReferenceEquals(left, right)) return true;
-                
-                // if neither are initialized, then they're equal
+           { 
+           }
+               
+           static bool DoCompare(public_partial_record_classConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterdouble left, public_partial_record_classConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterdouble right)
+           {
+               // if both null, then they're equal
+               if (left is null) return right is null;
+               
+               // if only right is null, then they're not equal
+               if (right is null) return false;
+               
+               // if they're both the same reference, then they're equal
+               if (ReferenceEquals(left, right)) return true;
+               
+               // if neither are initialized, then they're equal
                 if(!left._isInitialized && !right._isInitialized) return true;
-                
+               
                 return left._isInitialized && right._isInitialized && left._value.Equals(right._value);            
-            }                
-        }
+           }                
+}
 
         public class LinqToDbValueConverter : global::LinqToDB.Common.ValueConverter<public_partial_record_classConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterdouble, global::System.Double>
         {

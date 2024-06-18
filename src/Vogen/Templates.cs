@@ -14,6 +14,33 @@ internal static class Templates
     private static readonly ImmutableHashSet<string> _existingResources =
         _thisAssembly.GetManifestResourceNames().ToImmutableHashSet();
 
+    private static readonly ImmutableHashSet<string> _knownPrimitives = new[]
+    {
+        "Boolean",
+        "Byte",
+        "Char",
+        "DateOnly",
+        "DateTime",
+        "DateTimeOffset",
+        "Decimal",
+        "Double",
+        "Guid",
+        "Int",
+        "Long",
+        "Short",
+        "Single",
+        "String",
+        "TimeOnly"
+    }.ToImmutableHashSet();
+
+    public static bool IsKnownPrimitive(INamedTypeSymbol type)
+    {
+        string r = TypeResolver.ResolveTemplateNameFromTypeName(type);
+        
+        return _knownPrimitives.Contains(r);
+    }
+
+
     private static string? LoadEmbeddedResource(string resourceName)
     {
         if (!_existingResources.Contains(resourceName))

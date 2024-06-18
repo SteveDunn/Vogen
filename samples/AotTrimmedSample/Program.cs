@@ -1,5 +1,6 @@
 ﻿using System.Text.Json;
 using System.Text.Json.Serialization;
+using AotTrimmedSample;
 using Vogen;
 
 // to *not* generate the factory, use:
@@ -47,6 +48,7 @@ public partial struct Address {}
 
 [JsonSourceGenerationOptions(WriteIndented = true)]
 [JsonSerializable(typeof(Person))]
+[JsonSerializable(typeof(int))]
 internal partial class JsonSourceGenerationContext : JsonSerializerContext
 {
 }

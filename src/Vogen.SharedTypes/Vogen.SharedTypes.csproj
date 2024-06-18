@@ -1,12 +1,8 @@
 <Project Sdk="Microsoft.NET.Sdk">
-
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <Nullable>enable</Nullable>
     <RootNamespace>Vogen</RootNamespace>
     <IsPackable>false</IsPackable>
   </PropertyGroup>
-  
-  
-
 </Project>
