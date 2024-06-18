@@ -70,11 +70,6 @@ public class ValueObjectGenerator : IIncrementalGenerator
 
         internalDiags.RecordTargets(targets);
 
-        if (targets.IsDefaultOrEmpty)
-        {
-            return;
-        }
-
         var efSpecErrors = efCoreConverterSpecs.SelectMany(x => x.Diagnostics);
         
         foreach (var diagnostic in efSpecErrors)
