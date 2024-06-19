@@ -1,4 +1,4 @@
-This folder contains a small 'Onion'-like project consisting of two projects, Doman and Infra.
+This folder contains a small 'Onion'-like project consisting of two projects, Domain and Infra.
 
 It demonstrates using value objects that were created in the Domain layer, in the Infra(structure) layer.
 

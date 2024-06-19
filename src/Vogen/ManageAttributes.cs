@@ -31,17 +31,18 @@ internal static class ManageAttributes
         return BuildConfigurationFromAttributes.TryBuildFromVogenDefaultsAttribute(attr);
     }
 
-    public static EfCoreConverterSpecResults GetEfCoreConverterSpecFromAttribute(GeneratorAttributeSyntaxContext ctx)
+    public static EfCoreConverterMarkerClassResults GetEfCoreConverterSpecFromAttribute(GeneratorAttributeSyntaxContext ctx)
     {
         INamedTypeSymbol? symbol = ctx.TargetSymbol as INamedTypeSymbol;
-        var assemblyAttributes = ctx.Attributes;
         
-        if (assemblyAttributes.IsDefaultOrEmpty)
+        var attrs = ctx.Attributes;
+        
+        if (attrs.IsDefaultOrEmpty)
         {
-            return new EfCoreConverterSpecResults([]);
+            return new EfCoreConverterMarkerClassResults(symbol, []);
         }
 
-        return new EfCoreConverterSpecResults(assemblyAttributes.Select(a => BuildEfCoreConverterSpecsFromAttributes.TryBuild(a, symbol)));
+        return new EfCoreConverterMarkerClassResults(symbol, attrs.Select(a => BuildEfCoreConverterSpecsFromAttributes.TryBuild(a, symbol)));
     }
 
     /// <summary>

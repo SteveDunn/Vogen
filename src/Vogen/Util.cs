@@ -1,8 +1,10 @@
-﻿using System.Runtime.CompilerServices;
+﻿using System;
+using System.Runtime.CompilerServices;
 using System.Text;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
+using Microsoft.CodeAnalysis.Text;
 using Vogen.Generators.Conversions;
 
 [assembly: InternalsVisibleTo("SmallTests")]
@@ -21,6 +23,33 @@ public static class Util
         new GenerateEfCoreTypeConversions(),
         new GenerateLinqToDbConversions(),
     };
+    
+    public static string SanitizeToALegalFilename(string input) => input.Replace('@', '_');
+
+    public static void TryWriteUsingUniqueFilename(string filename, SourceProductionContext context, SourceText sourceText)
+    {
+        int count = 0;
+        string hintName = filename;
+
+        while (true)
+        {
+            try
+            {
+                context.AddSource(hintName, sourceText);
+                return;
+            }
+            catch(ArgumentException)
+            {
+                if (++count >= 10)
+                {
+                    throw;
+                }
+
+                hintName = $"{count}{filename}";
+            }
+        }
+    }
+    
 
 
     public static string GenerateCallToValidationAndThrowIfRequired(VoWorkItem workItem)

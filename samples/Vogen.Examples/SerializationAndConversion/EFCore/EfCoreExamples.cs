@@ -14,7 +14,7 @@ namespace Vogen.Examples.SerializationAndConversion.EFCore
         public string GetDescription() => """
                                           Uses value objects in EF Core. 
                                           * It creates DB contexts and adds values to it, and saves
-                                          * It then create another context and lists the items
+                                          * It then creates another context and lists the items
 
                                           It demonstrates:
                                           * how to use value objects in a model

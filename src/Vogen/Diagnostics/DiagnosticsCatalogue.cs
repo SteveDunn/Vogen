@@ -194,8 +194,8 @@ internal static class DiagnosticsCatalogue
     public static Diagnostic VoMustExplicitlySpecifyPrimitiveToBeAnEfCoreTarget(INamedTypeSymbol symbol) => 
         Create(_efCoreTargetMustExplicitlySpecifyItsPrimitive, symbol.Locations, symbol.Name);
 
-    public static Diagnostic EfCoreTargetMustBeAVo(INamedTypeSymbol sourceSymbol, INamedTypeSymbol targetSymbol) => 
-        Create(_efCoreTargetMustBeAVo, sourceSymbol.Locations, sourceSymbol.Name, targetSymbol.Name);
+    public static Diagnostic EfCoreTargetMustBeAVo(INamedTypeSymbol markerClassSymbol, INamedTypeSymbol voSymbol) => 
+        Create(_efCoreTargetMustBeAVo, voSymbol.Locations, markerClassSymbol.Name, voSymbol.Name);
 
     private static DiagnosticDescriptor CreateDescriptor(string code, string title, string messageFormat, DiagnosticSeverity severity = DiagnosticSeverity.Error)
     {
