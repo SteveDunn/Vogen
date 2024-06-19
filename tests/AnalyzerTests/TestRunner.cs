@@ -44,6 +44,9 @@ namespace AnalyzerTests
             return this;
         }
 
+        public async Task RunOn(TargetFramework framework, bool ignoreInitialCompilationErrors = false)
+            => await RunOn(ignoreInitialCompilationErrors, framework);
+
         private async Task RunOn(bool ignoreInitialCompilationErrors, params TargetFramework[] frameworks)
         {
             _ = _source ?? throw new InvalidOperationException("No source!");

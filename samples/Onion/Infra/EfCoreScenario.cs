@@ -19,7 +19,7 @@ namespace UsingTypesGeneratedInTheSameProject;
  */
 
 
-// By having this partial class, Vogen will generate converters for each value object mentioned in the attributes.
+// By having this partial marker class, Vogen will generate converters for each value object mentioned in the attributes.
 // The naming of this class is later used to get the converters, or for when registering them via the generated extension
 // methods like `RegisterAllInEfCoreConverters` or `HasVogenConversion`
 [EfCoreConverter<Id>]
@@ -27,6 +27,7 @@ namespace UsingTypesGeneratedInTheSameProject;
 [EfCoreConverter<Age>]
 [EfCoreConverter<Department>]
 [EfCoreConverter<HireDate>]
+[EfCoreConverter<EfCoreConverters>]
 internal sealed partial class EfCoreConverters;
 
 public static class EfCoreScenario

@@ -11,7 +11,7 @@ namespace Vogen;
 internal static class BuildEfCoreConverterSpecsFromAttributes
 {
 
-    public static EfCoreConverterSpecResult? TryBuild(AttributeData att, in INamedTypeSymbol? sourceSymbol)
+    public static EfCoreConverterSpecResult? TryBuild(AttributeData att, in INamedTypeSymbol? markerClassSymbol)
     {
         ImmutableArray<TypedConstant> args = att.ConstructorArguments;
 
@@ -28,16 +28,23 @@ internal static class BuildEfCoreConverterSpecsFromAttributes
             return null;
         }
 
-        ImmutableArray<ITypeSymbol> t = att.AttributeClass.TypeArguments;
+        ImmutableArray<ITypeSymbol> argumentSymbols = att.AttributeClass.TypeArguments;
 
-        if (t.Length != 1) return null;
+        if (argumentSymbols.Length != 1)
+        {
+            return null;
+        }
 
-        var voSymbol = t[0] as INamedTypeSymbol;
-        if (voSymbol is null) return null;
+        var voSymbol = argumentSymbols[0] as INamedTypeSymbol;
+        
+        if (voSymbol is null)
+        {
+            return null;
+        }
 
         if (!VoFilter.IsTarget(voSymbol))
         {
-            return EfCoreConverterSpecResult.Error(DiagnosticsCatalogue.EfCoreTargetMustBeAVo(sourceSymbol!, voSymbol));
+            return EfCoreConverterSpecResult.Error(DiagnosticsCatalogue.EfCoreTargetMustBeAVo(markerClassSymbol!, voSymbol));
         }
 
         List<AttributeData> attrs = VoFilter.TryGetValueObjectAttributes(voSymbol).ToList();
@@ -59,7 +66,7 @@ internal static class BuildEfCoreConverterSpecsFromAttributes
             return EfCoreConverterSpecResult.Error(DiagnosticsCatalogue.VoMustExplicitlySpecifyPrimitiveToBeAnEfCoreTarget(voSymbol));
         }
         
-        return EfCoreConverterSpecResult.Ok(voSymbol, underlyingType, sourceSymbol!);
+        return EfCoreConverterSpecResult.Ok(voSymbol, underlyingType, markerClassSymbol!);
     }
 
     private static INamedTypeSymbol? ResolveUnderlyingType(INamedTypeSymbol method)
