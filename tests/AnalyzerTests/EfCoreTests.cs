@@ -21,13 +21,10 @@ public class EfCoreTests
                          using System;
                          using Vogen;
 
-                         public class NotAValueObject;
-
                          [ValueObject<int>]
                          public partial struct Vo1;
 
                          [EfCoreConverter<Vo1>]
-                         [EfCoreConverter<NotAValueObject>]
                          public partial class EfCoreConverters;
                          """;
 

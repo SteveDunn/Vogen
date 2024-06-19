@@ -27,7 +27,6 @@ namespace UsingTypesGeneratedInTheSameProject;
 [EfCoreConverter<Age>]
 [EfCoreConverter<Department>]
 [EfCoreConverter<HireDate>]
-[EfCoreConverter<EfCoreConverters>]
 internal sealed partial class EfCoreConverters;
 
 public static class EfCoreScenario

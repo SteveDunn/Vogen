@@ -2,11 +2,15 @@
 using Microsoft.CodeAnalysis;
 using System.Collections.Generic;
 using System.Diagnostics;
+using Microsoft.CodeAnalysis.CSharp;
 
 namespace Vogen;
 
 internal static class CompilationExtensions
 {
+    public static bool IsAtLeastCSharpVersion(this Compilation compilation, LanguageVersion langVersion) => 
+        (compilation as CSharpCompilation)?.LanguageVersion >= langVersion;
+
     public static IEnumerable<INamedTypeSymbol> GetTypesByMetadataName(this Compilation compilation, string typeMetadataName)
     {
         var symbol = compilation.Assembly.GetTypeByMetadataName(typeMetadataName);

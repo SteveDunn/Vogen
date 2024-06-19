@@ -44,7 +44,7 @@ public class ValueObjectGenerator : IIncrementalGenerator
                 transform: (ctx, _) => ManageAttributes.GetDefaultConfigFromGlobalAttribute(ctx))
             .Where(static m => m is not null)!;
 
-        IncrementalValuesProvider<EfCoreConverterSpecResults> efCoreConverterSpecs = context.SyntaxProvider.ForAttributeWithMetadataName(
+        IncrementalValuesProvider<EfCoreConverterMarkerClassResults> efCoreConverterSpecs = context.SyntaxProvider.ForAttributeWithMetadataName(
                 "Vogen.EfCoreConverterAttribute`1",
                 predicate: (node, _) => node is ClassDeclarationSyntax,
                 transform: (ctx, _) => ManageAttributes.GetEfCoreConverterSpecFromAttribute(ctx))
@@ -56,13 +56,13 @@ public class ValueObjectGenerator : IIncrementalGenerator
     record struct Found(
         IncrementalValuesProvider<VoTarget> Vos,
         IncrementalValuesProvider<VogenConfigurationBuildResult> GlobalConfig,
-        IncrementalValuesProvider<EfCoreConverterSpecResults> EfCoreConverterSpecs);
+        IncrementalValuesProvider<EfCoreConverterMarkerClassResults> EfCoreConverterSpecs);
     
     private static void Execute(
         Compilation compilation, 
         ImmutableArray<VoTarget> targets,
         ImmutableArray<VogenConfigurationBuildResult> globalConfigBuildResult,
-        ImmutableArray<EfCoreConverterSpecResults> efCoreConverterSpecs,
+        ImmutableArray<EfCoreConverterMarkerClassResults> efCoreConverterSpecs,
         SourceProductionContext spc)
     {
         using var internalDiags = InternalDiagnostics.TryCreateIfSpecialClassIsPresent(compilation, spc);

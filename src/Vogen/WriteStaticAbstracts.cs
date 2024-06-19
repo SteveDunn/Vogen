@@ -11,7 +11,7 @@ internal class WriteStaticAbstracts
         SourceProductionContext context,
         Compilation compilation)
     {
-        if (compilation is not CSharpCompilation { LanguageVersion: >= LanguageVersion.CSharp11 })
+        if(!compilation.IsAtLeastCSharpVersion(LanguageVersion.CSharp11))
         {
             return;
         }
