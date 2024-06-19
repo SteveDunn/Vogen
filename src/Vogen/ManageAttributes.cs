@@ -34,14 +34,15 @@ internal static class ManageAttributes
     public static EfCoreConverterSpecResults GetEfCoreConverterSpecFromAttribute(GeneratorAttributeSyntaxContext ctx)
     {
         INamedTypeSymbol? symbol = ctx.TargetSymbol as INamedTypeSymbol;
-        var assemblyAttributes = ctx.Attributes;
         
-        if (assemblyAttributes.IsDefaultOrEmpty)
+        var attrs = ctx.Attributes;
+        
+        if (attrs.IsDefaultOrEmpty)
         {
-            return new EfCoreConverterSpecResults([]);
+            return new EfCoreConverterSpecResults(symbol, []);
         }
 
-        return new EfCoreConverterSpecResults(assemblyAttributes.Select(a => BuildEfCoreConverterSpecsFromAttributes.TryBuild(a, symbol)));
+        return new EfCoreConverterSpecResults(symbol, attrs.Select(a => BuildEfCoreConverterSpecsFromAttributes.TryBuild(a, symbol)));
     }
 
     /// <summary>

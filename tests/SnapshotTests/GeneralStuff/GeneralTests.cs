@@ -17,6 +17,55 @@ public class GeneralTests
         var source = """
                      using System;
                      using Vogen;
+
+                     namespace Foo
+                     {
+                         [ValueObject<int>]
+                         public partial struct Vo1;
+
+                         [ValueObject<string>]
+                         public partial struct Vo2;
+                     }
+
+                     namespace Bar
+                     {
+                         [ValueObject<int>]
+                         public partial struct Vo1;
+
+                         [ValueObject<string>]
+                         public partial struct Vo2;
+                     }
+                     
+                     namespace Baz1
+                     {
+                         [EfCoreConverter<Foo.Vo1>]
+                         [EfCoreConverter<Foo.Vo2>]
+                         [EfCoreConverter<Bar.Vo1>]
+                         [EfCoreConverter<Bar.Vo2>]
+                         public partial class EfCoreConverters;
+                     }
+
+                     namespace Baz2
+                     {
+                         [EfCoreConverter<Foo.Vo1>]
+                         [EfCoreConverter<Foo.Vo2>]
+                         [EfCoreConverter<Bar.Vo1>]
+                         [EfCoreConverter<Bar.Vo2>]
+                         public partial class EfCoreConverters;
+                     }
+                     """;
+
+            await new SnapshotRunner<ValueObjectGenerator>()
+                .WithSource(source)
+                .RunOn(TargetFramework.Net8_0);
+    }
+
+    [Fact]
+    public async Task Writes_efcore_converters_for_escaped_types()
+    {
+        var source = """
+                     using System;
+                     using Vogen;
                      
                      namespace @int
                      {

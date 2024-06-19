@@ -11,7 +11,7 @@ namespace Vogen;
 internal static class BuildEfCoreConverterSpecsFromAttributes
 {
 
-    public static EfCoreConverterSpecResult? TryBuild(AttributeData att, INamedTypeSymbol? symbol)
+    public static EfCoreConverterSpecResult? TryBuild(AttributeData att, in INamedTypeSymbol? sourceSymbol)
     {
         ImmutableArray<TypedConstant> args = att.ConstructorArguments;
 
@@ -37,7 +37,7 @@ internal static class BuildEfCoreConverterSpecsFromAttributes
 
         if (!VoFilter.IsTarget(voSymbol))
         {
-            return EfCoreConverterSpecResult.Error(DiagnosticsCatalogue.EfCoreTargetMustBeAVo(symbol!, voSymbol));
+            return EfCoreConverterSpecResult.Error(DiagnosticsCatalogue.EfCoreTargetMustBeAVo(sourceSymbol!, voSymbol));
         }
 
         List<AttributeData> attrs = VoFilter.TryGetValueObjectAttributes(voSymbol).ToList();
@@ -59,7 +59,7 @@ internal static class BuildEfCoreConverterSpecsFromAttributes
             return EfCoreConverterSpecResult.Error(DiagnosticsCatalogue.VoMustExplicitlySpecifyPrimitiveToBeAnEfCoreTarget(voSymbol));
         }
         
-        return EfCoreConverterSpecResult.Ok(voSymbol, underlyingType, symbol!);
+        return EfCoreConverterSpecResult.Ok(voSymbol, underlyingType, sourceSymbol!);
     }
 
     private static INamedTypeSymbol? ResolveUnderlyingType(INamedTypeSymbol method)
