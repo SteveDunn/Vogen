@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 using VerifyXunit;
 using Vogen;
 
-namespace SnapshotTests.JsonNumberCustomizations;
+namespace SnapshotTests.SystemTextJsonGeneration;
 
 /// <summary>
 /// These tests verify that types containing <see cref="Customizations.TreatNumberAsStringInSystemTextJson"/> are written correctly.
@@ -81,4 +81,5 @@ namespace Whatever
             .CustomizeSettings(s => s.UseFileName(TestHelper.ShortenForFilename(className)))
             .RunOnAllFrameworks();
     }
+    
 }

@@ -42,6 +42,7 @@ public class VoWorkItem
     public bool IsTheUnderlyingAValueType { get; init; }
 
     public bool IsTheWrapperAValueType { get; init; }
+    public bool IsTheWrapperAReferenceType => !IsTheWrapperAValueType;
 
     public List<InstanceProperties> InstanceProperties { get; init; } = new();
 
