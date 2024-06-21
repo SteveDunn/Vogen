@@ -659,7 +659,7 @@ public static ValueObjectOrError<classFromEscapedNamespace> TryFrom(System.Int32
     /// <summary>
     /// </summary>
     /// <returns>
-    /// The value created via the <see cref="From"/> method.
+    /// The value created by calling the Parse method method on the primitive.
     /// </returns>
     /// <exception cref="ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
     public static classFromEscapedNamespace Parse(global::System.ReadOnlySpan<char> s, global::System.Globalization.NumberStyles style, global::System.IFormatProvider provider) {
@@ -671,7 +671,7 @@ public static ValueObjectOrError<classFromEscapedNamespace> TryFrom(System.Int32
     /// <summary>
     /// </summary>
     /// <returns>
-    /// The value created via the <see cref="From"/> method.
+    /// The value created by calling the Parse method method on the primitive.
     /// </returns>
     /// <exception cref="ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
     public static classFromEscapedNamespace Parse(string s) {
@@ -683,7 +683,7 @@ public static ValueObjectOrError<classFromEscapedNamespace> TryFrom(System.Int32
     /// <summary>
     /// </summary>
     /// <returns>
-    /// The value created via the <see cref="From"/> method.
+    /// The value created by calling the Parse method method on the primitive.
     /// </returns>
     /// <exception cref="ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
     public static classFromEscapedNamespace Parse(string s, global::System.Globalization.NumberStyles style) {
@@ -695,7 +695,7 @@ public static ValueObjectOrError<classFromEscapedNamespace> TryFrom(System.Int32
     /// <summary>
     /// </summary>
     /// <returns>
-    /// The value created via the <see cref="From"/> method.
+    /// The value created by calling the Parse method method on the primitive.
     /// </returns>
     /// <exception cref="ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
     public static classFromEscapedNamespace Parse(string s, global::System.Globalization.NumberStyles style, global::System.IFormatProvider provider) {
@@ -707,7 +707,7 @@ public static ValueObjectOrError<classFromEscapedNamespace> TryFrom(System.Int32
     /// <summary>
     /// </summary>
     /// <returns>
-    /// The value created via the <see cref="From"/> method.
+    /// The value created by calling the Parse method method on the primitive.
     /// </returns>
     /// <exception cref="ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
     public static classFromEscapedNamespace Parse(string s, global::System.IFormatProvider provider) {
@@ -1149,7 +1149,7 @@ public static ValueObjectOrError<@class> TryFrom(System.Int32 value)
     /// <summary>
     /// </summary>
     /// <returns>
-    /// The value created via the <see cref="From"/> method.
+    /// The value created by calling the Parse method method on the primitive.
     /// </returns>
     /// <exception cref="ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
     public static @class Parse(global::System.ReadOnlySpan<char> s, global::System.Globalization.NumberStyles style, global::System.IFormatProvider provider) {
@@ -1161,7 +1161,7 @@ public static ValueObjectOrError<@class> TryFrom(System.Int32 value)
     /// <summary>
     /// </summary>
     /// <returns>
-    /// The value created via the <see cref="From"/> method.
+    /// The value created by calling the Parse method method on the primitive.
     /// </returns>
     /// <exception cref="ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
     public static @class Parse(string s) {
@@ -1173,7 +1173,7 @@ public static ValueObjectOrError<@class> TryFrom(System.Int32 value)
     /// <summary>
     /// </summary>
     /// <returns>
-    /// The value created via the <see cref="From"/> method.
+    /// The value created by calling the Parse method method on the primitive.
     /// </returns>
     /// <exception cref="ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
     public static @class Parse(string s, global::System.Globalization.NumberStyles style) {
@@ -1185,7 +1185,7 @@ public static ValueObjectOrError<@class> TryFrom(System.Int32 value)
     /// <summary>
     /// </summary>
     /// <returns>
-    /// The value created via the <see cref="From"/> method.
+    /// The value created by calling the Parse method method on the primitive.
     /// </returns>
     /// <exception cref="ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
     public static @class Parse(string s, global::System.Globalization.NumberStyles style, global::System.IFormatProvider provider) {
@@ -1197,7 +1197,7 @@ public static ValueObjectOrError<@class> TryFrom(System.Int32 value)
     /// <summary>
     /// </summary>
     /// <returns>
-    /// The value created via the <see cref="From"/> method.
+    /// The value created by calling the Parse method method on the primitive.
     /// </returns>
     /// <exception cref="ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
     public static @class Parse(string s, global::System.IFormatProvider provider) {
@@ -1639,7 +1639,7 @@ public static ValueObjectOrError<@event> TryFrom(System.Int32 value)
     /// <summary>
     /// </summary>
     /// <returns>
-    /// The value created via the <see cref="From"/> method.
+    /// The value created by calling the Parse method method on the primitive.
     /// </returns>
     /// <exception cref="ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
     public static @event Parse(global::System.ReadOnlySpan<char> s, global::System.Globalization.NumberStyles style, global::System.IFormatProvider provider) {
@@ -1651,7 +1651,7 @@ public static ValueObjectOrError<@event> TryFrom(System.Int32 value)
     /// <summary>
     /// </summary>
     /// <returns>
-    /// The value created via the <see cref="From"/> method.
+    /// The value created by calling the Parse method method on the primitive.
     /// </returns>
     /// <exception cref="ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
     public static @event Parse(string s) {
@@ -1663,7 +1663,7 @@ public static ValueObjectOrError<@event> TryFrom(System.Int32 value)
     /// <summary>
     /// </summary>
     /// <returns>
-    /// The value created via the <see cref="From"/> method.
+    /// The value created by calling the Parse method method on the primitive.
     /// </returns>
     /// <exception cref="ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
     public static @event Parse(string s, global::System.Globalization.NumberStyles style) {
@@ -1675,7 +1675,7 @@ public static ValueObjectOrError<@event> TryFrom(System.Int32 value)
     /// <summary>
     /// </summary>
     /// <returns>
-    /// The value created via the <see cref="From"/> method.
+    /// The value created by calling the Parse method method on the primitive.
     /// </returns>
     /// <exception cref="ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
     public static @event Parse(string s, global::System.Globalization.NumberStyles style, global::System.IFormatProvider provider) {
@@ -1687,7 +1687,7 @@ public static ValueObjectOrError<@event> TryFrom(System.Int32 value)
     /// <summary>
     /// </summary>
     /// <returns>
-    /// The value created via the <see cref="From"/> method.
+    /// The value created by calling the Parse method method on the primitive.
     /// </returns>
     /// <exception cref="ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
     public static @event Parse(string s, global::System.IFormatProvider provider) {

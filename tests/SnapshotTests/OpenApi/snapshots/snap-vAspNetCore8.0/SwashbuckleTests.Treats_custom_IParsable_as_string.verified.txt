@@ -320,7 +320,7 @@ public static ValueObjectOrError<MyVo> TryFrom(MyNamespace.C value)
     /// <summary>
     /// </summary>
     /// <returns>
-    /// The value created via the <see cref="From"/> method.
+    /// The value created by calling the Parse method method on the primitive.
     /// </returns>
     /// <exception cref="ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
     public static MyVo Parse(string s, global::System.IFormatProvider provider) {

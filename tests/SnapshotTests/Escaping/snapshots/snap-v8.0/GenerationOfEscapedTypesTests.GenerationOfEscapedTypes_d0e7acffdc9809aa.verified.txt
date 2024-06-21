@@ -283,7 +283,7 @@ public static ValueObjectOrError<escapedTestspublic_sealed_partial_recordConvers
     /// <summary>
     /// </summary>
     /// <returns>
-    /// The value created via the <see cref="From"/> method.
+    /// The value created via the <see cref="From(global::System.String)"/> method.
     /// </returns>
     /// <exception cref="ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
     public static escapedTestspublic_sealed_partial_recordConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterstring Parse(global::System.String s, global::System.IFormatProvider provider) {

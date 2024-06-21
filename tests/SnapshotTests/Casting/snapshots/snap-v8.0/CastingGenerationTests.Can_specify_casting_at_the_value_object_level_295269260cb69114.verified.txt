@@ -374,7 +374,7 @@ public static ValueObjectOrError<_casting_public_readonly_partial_record_structI
     /// <summary>
     /// </summary>
     /// <returns>
-    /// The value created via the <see cref="From"/> method.
+    /// The value created by calling the Parse method method on the primitive.
     /// </returns>
     /// <exception cref="ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
     public static _casting_public_readonly_partial_record_structImplicitNoneSystem_DateTime Parse(global::System.ReadOnlySpan<char> s, global::System.IFormatProvider provider) {
@@ -386,7 +386,7 @@ public static ValueObjectOrError<_casting_public_readonly_partial_record_structI
     /// <summary>
     /// </summary>
     /// <returns>
-    /// The value created via the <see cref="From"/> method.
+    /// The value created by calling the Parse method method on the primitive.
     /// </returns>
     /// <exception cref="ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
     public static _casting_public_readonly_partial_record_structImplicitNoneSystem_DateTime Parse(global::System.ReadOnlySpan<char> s, global::System.IFormatProvider provider, global::System.Globalization.DateTimeStyles styles) {
@@ -398,7 +398,7 @@ public static ValueObjectOrError<_casting_public_readonly_partial_record_structI
     /// <summary>
     /// </summary>
     /// <returns>
-    /// The value created via the <see cref="From"/> method.
+    /// The value created by calling the Parse method method on the primitive.
     /// </returns>
     /// <exception cref="ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
     public static _casting_public_readonly_partial_record_structImplicitNoneSystem_DateTime Parse(string s) {
@@ -410,7 +410,7 @@ public static ValueObjectOrError<_casting_public_readonly_partial_record_structI
     /// <summary>
     /// </summary>
     /// <returns>
-    /// The value created via the <see cref="From"/> method.
+    /// The value created by calling the Parse method method on the primitive.
     /// </returns>
     /// <exception cref="ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
     public static _casting_public_readonly_partial_record_structImplicitNoneSystem_DateTime Parse(string s, global::System.IFormatProvider provider) {
@@ -422,7 +422,7 @@ public static ValueObjectOrError<_casting_public_readonly_partial_record_structI
     /// <summary>
     /// </summary>
     /// <returns>
-    /// The value created via the <see cref="From"/> method.
+    /// The value created by calling the Parse method method on the primitive.
     /// </returns>
     /// <exception cref="ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
     public static _casting_public_readonly_partial_record_structImplicitNoneSystem_DateTime Parse(string s, global::System.IFormatProvider provider, global::System.Globalization.DateTimeStyles styles) {

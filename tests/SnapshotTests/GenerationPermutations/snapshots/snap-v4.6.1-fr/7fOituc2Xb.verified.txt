@@ -292,7 +292,7 @@ public static ValueObjectOrError<internal_sealed_partial_classConversions_NoneSy
     /// <summary>
     /// </summary>
     /// <returns>
-    /// The value created via the <see cref="From"/> method.
+    /// The value created by calling the Parse method method on the primitive.
     /// </returns>
     /// <exception cref="ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
     public static internal_sealed_partial_classConversions_NoneSystem_DateTimeOffset Parse(string input) {
@@ -304,7 +304,7 @@ public static ValueObjectOrError<internal_sealed_partial_classConversions_NoneSy
     /// <summary>
     /// </summary>
     /// <returns>
-    /// The value created via the <see cref="From"/> method.
+    /// The value created by calling the Parse method method on the primitive.
     /// </returns>
     /// <exception cref="ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
     public static internal_sealed_partial_classConversions_NoneSystem_DateTimeOffset Parse(string input, global::System.IFormatProvider formatProvider) {
@@ -316,7 +316,7 @@ public static ValueObjectOrError<internal_sealed_partial_classConversions_NoneSy
     /// <summary>
     /// </summary>
     /// <returns>
-    /// The value created via the <see cref="From"/> method.
+    /// The value created by calling the Parse method method on the primitive.
     /// </returns>
     /// <exception cref="ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
     public static internal_sealed_partial_classConversions_NoneSystem_DateTimeOffset Parse(string input, global::System.IFormatProvider formatProvider, global::System.Globalization.DateTimeStyles styles) {

@@ -340,7 +340,7 @@ public static ValueObjectOrError<_casting_public_partial_record_classNoneImplici
     /// <summary>
     /// </summary>
     /// <returns>
-    /// The value created via the <see cref="From"/> method.
+    /// The value created by calling the Parse method method on the primitive.
     /// </returns>
     /// <exception cref="ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
     public static _casting_public_partial_record_classNoneImplicitSystem_DateTimeOffset Parse(global::System.ReadOnlySpan<char> input, global::System.IFormatProvider formatProvider, global::System.Globalization.DateTimeStyles styles) {
@@ -352,7 +352,7 @@ public static ValueObjectOrError<_casting_public_partial_record_classNoneImplici
     /// <summary>
     /// </summary>
     /// <returns>
-    /// The value created via the <see cref="From"/> method.
+    /// The value created by calling the Parse method method on the primitive.
     /// </returns>
     /// <exception cref="ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
     public static _casting_public_partial_record_classNoneImplicitSystem_DateTimeOffset Parse(string input) {
@@ -364,7 +364,7 @@ public static ValueObjectOrError<_casting_public_partial_record_classNoneImplici
     /// <summary>
     /// </summary>
     /// <returns>
-    /// The value created via the <see cref="From"/> method.
+    /// The value created by calling the Parse method method on the primitive.
     /// </returns>
     /// <exception cref="ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
     public static _casting_public_partial_record_classNoneImplicitSystem_DateTimeOffset Parse(string input, global::System.IFormatProvider formatProvider) {
@@ -376,7 +376,7 @@ public static ValueObjectOrError<_casting_public_partial_record_classNoneImplici
     /// <summary>
     /// </summary>
     /// <returns>
-    /// The value created via the <see cref="From"/> method.
+    /// The value created by calling the Parse method method on the primitive.
     /// </returns>
     /// <exception cref="ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
     public static _casting_public_partial_record_classNoneImplicitSystem_DateTimeOffset Parse(string input, global::System.IFormatProvider formatProvider, global::System.Globalization.DateTimeStyles styles) {

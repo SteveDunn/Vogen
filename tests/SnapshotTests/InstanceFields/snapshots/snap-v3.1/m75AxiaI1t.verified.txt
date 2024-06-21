@@ -284,7 +284,7 @@ public static ValueObjectOrError<public_sealed_partial_recordstring> TryFrom(Sys
     /// <summary>
     /// </summary>
     /// <returns>
-    /// The value created via the <see cref="From"/> method.
+    /// The value created via the <see cref="From(global::System.String)"/> method.
     /// </returns>
     /// <exception cref="ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
     public static public_sealed_partial_recordstring Parse(global::System.String s, global::System.IFormatProvider provider) {

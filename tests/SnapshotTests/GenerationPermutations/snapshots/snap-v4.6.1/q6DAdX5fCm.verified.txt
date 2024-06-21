@@ -281,7 +281,7 @@ public static ValueObjectOrError<public_sealed_partial_recordConversions_Nonestr
     /// <summary>
     /// </summary>
     /// <returns>
-    /// The value created via the <see cref="From"/> method.
+    /// The value created via the <see cref="From(global::System.String)"/> method.
     /// </returns>
     /// <exception cref="ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
     public static public_sealed_partial_recordConversions_Nonestring Parse(global::System.String s, global::System.IFormatProvider provider) {

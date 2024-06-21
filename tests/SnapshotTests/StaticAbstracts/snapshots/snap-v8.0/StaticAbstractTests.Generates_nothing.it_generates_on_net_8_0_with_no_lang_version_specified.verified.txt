@@ -340,7 +340,7 @@ public static ValueObjectOrError<MyVo> TryFrom(System.Guid value)
     /// <summary>
     /// </summary>
     /// <returns>
-    /// The value created via the <see cref="From"/> method.
+    /// The value created by calling the Parse method method on the primitive.
     /// </returns>
     /// <exception cref="ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
     public static MyVo Parse(global::System.ReadOnlySpan<char> input) {
@@ -352,7 +352,7 @@ public static ValueObjectOrError<MyVo> TryFrom(System.Guid value)
     /// <summary>
     /// </summary>
     /// <returns>
-    /// The value created via the <see cref="From"/> method.
+    /// The value created by calling the Parse method method on the primitive.
     /// </returns>
     /// <exception cref="ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
     public static MyVo Parse(global::System.ReadOnlySpan<char> s, global::System.IFormatProvider provider) {
@@ -364,7 +364,7 @@ public static ValueObjectOrError<MyVo> TryFrom(System.Guid value)
     /// <summary>
     /// </summary>
     /// <returns>
-    /// The value created via the <see cref="From"/> method.
+    /// The value created by calling the Parse method method on the primitive.
     /// </returns>
     /// <exception cref="ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
     public static MyVo Parse(string input) {
@@ -376,7 +376,7 @@ public static ValueObjectOrError<MyVo> TryFrom(System.Guid value)
     /// <summary>
     /// </summary>
     /// <returns>
-    /// The value created via the <see cref="From"/> method.
+    /// The value created by calling the Parse method method on the primitive.
     /// </returns>
     /// <exception cref="ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
     public static MyVo Parse(string s, global::System.IFormatProvider provider) {

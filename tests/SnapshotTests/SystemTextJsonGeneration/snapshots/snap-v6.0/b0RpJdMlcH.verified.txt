@@ -337,7 +337,7 @@ public static ValueObjectOrError<stj_number_as_string_public_sealed_partial_clas
     /// <summary>
     /// </summary>
     /// <returns>
-    /// The value created via the <see cref="From"/> method.
+    /// The value created by calling the Parse method method on the primitive.
     /// </returns>
     /// <exception cref="ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
     public static stj_number_as_string_public_sealed_partial_classConversions_SystemTextJson_customized Parse(global::System.ReadOnlySpan<char> s, global::System.Globalization.NumberStyles style, global::System.IFormatProvider provider) {
@@ -349,7 +349,7 @@ public static ValueObjectOrError<stj_number_as_string_public_sealed_partial_clas
     /// <summary>
     /// </summary>
     /// <returns>
-    /// The value created via the <see cref="From"/> method.
+    /// The value created by calling the Parse method method on the primitive.
     /// </returns>
     /// <exception cref="ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
     public static stj_number_as_string_public_sealed_partial_classConversions_SystemTextJson_customized Parse(string s) {
@@ -361,7 +361,7 @@ public static ValueObjectOrError<stj_number_as_string_public_sealed_partial_clas
     /// <summary>
     /// </summary>
     /// <returns>
-    /// The value created via the <see cref="From"/> method.
+    /// The value created by calling the Parse method method on the primitive.
     /// </returns>
     /// <exception cref="ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
     public static stj_number_as_string_public_sealed_partial_classConversions_SystemTextJson_customized Parse(string s, global::System.Globalization.NumberStyles style) {
@@ -373,7 +373,7 @@ public static ValueObjectOrError<stj_number_as_string_public_sealed_partial_clas
     /// <summary>
     /// </summary>
     /// <returns>
-    /// The value created via the <see cref="From"/> method.
+    /// The value created by calling the Parse method method on the primitive.
     /// </returns>
     /// <exception cref="ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
     public static stj_number_as_string_public_sealed_partial_classConversions_SystemTextJson_customized Parse(string s, global::System.Globalization.NumberStyles style, global::System.IFormatProvider provider) {
@@ -385,7 +385,7 @@ public static ValueObjectOrError<stj_number_as_string_public_sealed_partial_clas
     /// <summary>
     /// </summary>
     /// <returns>
-    /// The value created via the <see cref="From"/> method.
+    /// The value created by calling the Parse method method on the primitive.
     /// </returns>
     /// <exception cref="ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
     public static stj_number_as_string_public_sealed_partial_classConversions_SystemTextJson_customized Parse(string s, global::System.IFormatProvider provider) {

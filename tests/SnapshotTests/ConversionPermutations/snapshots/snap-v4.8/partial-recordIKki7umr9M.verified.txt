@@ -300,7 +300,7 @@ public static ValueObjectOrError<MyIntVo> TryFrom(System.Int32 value)
     /// <summary>
     /// </summary>
     /// <returns>
-    /// The value created via the <see cref="From"/> method.
+    /// The value created by calling the Parse method method on the primitive.
     /// </returns>
     /// <exception cref="ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
     public static MyIntVo Parse(string s) {
@@ -312,7 +312,7 @@ public static ValueObjectOrError<MyIntVo> TryFrom(System.Int32 value)
     /// <summary>
     /// </summary>
     /// <returns>
-    /// The value created via the <see cref="From"/> method.
+    /// The value created by calling the Parse method method on the primitive.
     /// </returns>
     /// <exception cref="ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
     public static MyIntVo Parse(string s, global::System.Globalization.NumberStyles style) {
@@ -324,7 +324,7 @@ public static ValueObjectOrError<MyIntVo> TryFrom(System.Int32 value)
     /// <summary>
     /// </summary>
     /// <returns>
-    /// The value created via the <see cref="From"/> method.
+    /// The value created by calling the Parse method method on the primitive.
     /// </returns>
     /// <exception cref="ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
     public static MyIntVo Parse(string s, global::System.IFormatProvider provider) {
@@ -336,7 +336,7 @@ public static ValueObjectOrError<MyIntVo> TryFrom(System.Int32 value)
     /// <summary>
     /// </summary>
     /// <returns>
-    /// The value created via the <see cref="From"/> method.
+    /// The value created by calling the Parse method method on the primitive.
     /// </returns>
     /// <exception cref="ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
     public static MyIntVo Parse(string s, global::System.Globalization.NumberStyles style, global::System.IFormatProvider provider) {
