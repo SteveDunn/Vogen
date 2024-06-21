@@ -78,6 +78,10 @@ namespace Vogen
             IsInitializedMethodGeneration isInitializedMethodGeneration = IsInitializedMethodGeneration.Unspecified,
             PrimitiveEqualityGeneration primitiveEqualityGeneration = PrimitiveEqualityGeneration.Unspecified)
         {
+            // DO NOT ADD PARAMETERS HERE, INSTEAD, CREATE OVERLOADS (at least until a new major version).
+            // This is because some users use reflection to find this attribute, and changing the amount
+            // of parameters is a binary-breaking change. See https://github.com/dotnet/runtime/issues/103722
+            // for more information.
         }
     }
 }
