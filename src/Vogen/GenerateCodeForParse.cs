@@ -125,14 +125,14 @@ internal static class GenerateCodeForParse
         var inheritDocRef = methodSymbol.ToString()!
             .Replace("<", "{")
             .Replace(">", "}");
-            
+
         var ret =
             @$"
     /// <inheritdoc cref=""{inheritDocRef}""/>
     /// <summary>
     /// </summary>
     /// <returns>
-    /// The value created by calling the Parse method method on the primitive.
+    /// The value created by calling the Parse method on the primitive.
     /// </returns>
     /// <exception cref=""ValueObjectValidationException"">Thrown when the value can be parsed, but is not valid.</exception>
     public {staticOrNot}{item.VoTypeName} Parse({parameters}) {{
