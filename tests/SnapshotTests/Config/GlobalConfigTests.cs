@@ -94,24 +94,59 @@ public partial struct CustomerId
     [Fact]
     public Task Exception_override()
     {
-        var source = @"using System;
-using Vogen;
+        var source = """
+                     using System;
+                     using Vogen;
 
-[assembly: VogenDefaults(throws: typeof(Whatever.MyValidationException))]
+                     [assembly: VogenDefaults(throws: typeof(Whatever.MyValidationException))]
 
-namespace Whatever;
+                     namespace Whatever;
 
-[ValueObject]
-public partial struct CustomerId
-{
-    private static Validation Validate(int value) => value > 0 ? Validation.Ok : Validation.Invalid(""xxxx"");
-}
+                     [ValueObject]
+                     public partial struct CustomerId
+                     {
+                         private static Validation Validate(int value) => value > 0 ? Validation.Ok : Validation.Invalid("xxxx");
+                     }
 
-public class MyValidationException : Exception
-{
-    public MyValidationException(string message) : base(message) { }
-}
-";
+                     public class MyValidationException : Exception
+                     {
+                         public MyValidationException(string message) : base(message) { }
+                     }
+
+                     """;
+
+        return new SnapshotRunner<ValueObjectGenerator>()
+            .WithSource(source)
+            .RunOnAllFrameworks();
+    }
+
+    [Fact]
+    public Task Exception_override_in_different_namespace()
+    {
+        var source = """
+                     using System;
+                     using Vogen;
+
+                     [assembly: VogenDefaults(throws: typeof(Whatever2.MyValidationException))]
+
+                     namespace Whatever
+                     {
+                         [ValueObject]
+                         public partial struct CustomerId
+                         {
+                             private static Validation Validate(int value) => value > 0 ? Validation.Ok : Validation.Invalid("xxxx");
+                         }
+                     }
+                     
+                     namespace Whatever2
+                     {
+                         public class MyValidationException : Exception
+                         {
+                             public MyValidationException(string message) : base(message) { }
+                         }
+                     }
+
+                     """;
 
         return new SnapshotRunner<ValueObjectGenerator>()
             .WithSource(source)
