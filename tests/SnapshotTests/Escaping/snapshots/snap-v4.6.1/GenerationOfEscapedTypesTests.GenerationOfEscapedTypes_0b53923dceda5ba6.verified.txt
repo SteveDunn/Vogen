@@ -274,7 +274,7 @@ public static ValueObjectOrError<escapedTestspublic_sealed_partial_recordConvers
     /// <summary>
     /// </summary>
     /// <returns>
-    /// The value created by calling the Parse method method on the primitive.
+    /// The value created by calling the Parse method on the primitive.
     /// </returns>
     /// <exception cref="ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
     public static escapedTestspublic_sealed_partial_recordConversions_NewtonsoftJsonSystem_Guid Parse(string input) {
