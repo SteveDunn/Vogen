@@ -19,11 +19,11 @@ internal static class GenerateEfCoreTypes
         string sectionToCut = isWritingAsInnerClass ? "__WHEN_OUTER__" : "__WHEN_INNER__";
         string sectionToKeep = isWritingAsInnerClass ? "__WHEN_INNER__" : "__WHEN_OUTER__";
         string classPrefix = isWritingAsInnerClass ? string.Empty : voSymbol.Name;
-        string voTypeName = isWritingAsInnerClass ? voSymbol.Name : voSymbol.ToDisplayString(SymbolDisplayFormat.FullyQualifiedFormat);
+        string voTypeName = isWritingAsInnerClass ? voSymbol.Name : voSymbol.FullName() ?? voSymbol.Name;
         
         var isKnownPrimitive = Templates.IsKnownPrimitive(primitiveType);
 
-        var primitiveFullName =  primitiveType.ToDisplayString(SymbolDisplayFormat.FullyQualifiedFormat);
+        var primitiveFullName =  primitiveType.FullName() ?? primitiveType.Name;
 
         string code = isKnownPrimitive ? _converterForKnownTypes : _converterForAnyOtherType;
 
@@ -49,7 +49,7 @@ internal static class GenerateEfCoreTypes
 
     public static string GenerateOuterExtensionMethod(EfCoreConverterSpec spec)
     {
-        string voTypeName = spec.VoSymbol.ToDisplayString(SymbolDisplayFormat.FullyQualifiedFormat);
+        string voTypeName = spec.VoSymbol.FullName() ?? spec.VoSymbol.Name;
         
         string code = _extensionMethodForOuter;
 
