@@ -214,7 +214,7 @@ namespace @class
         private readonly System.Guid _value;
         
         /// <summary>
-        /// Gets the underlying <see cref="System.Guid" /> value if set, otherwise a <see cref="ValueObjectValidationException" /> is thrown.
+        /// Gets the underlying <see cref="System.Guid" /> value if set, otherwise a <see cref="global::Vogen.ValueObjectValidationException" /> is thrown.
         /// </summary>
         public System.Guid Value
         {
@@ -471,7 +471,7 @@ public static ValueObjectOrError<escapedTestspublic_sealed_partial_recordConvers
     /// <returns>
     /// The value created by calling the Parse method on the primitive.
     /// </returns>
-    /// <exception cref="ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
+    /// <exception cref="global::Vogen.ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
     public static escapedTestspublic_sealed_partial_recordConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterSystem_Guid Parse(global::System.ReadOnlySpan<char> input) {
         var r = System.Guid.Parse(input);
         return From(r);
@@ -483,7 +483,7 @@ public static ValueObjectOrError<escapedTestspublic_sealed_partial_recordConvers
     /// <returns>
     /// The value created by calling the Parse method on the primitive.
     /// </returns>
-    /// <exception cref="ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
+    /// <exception cref="global::Vogen.ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
     public static escapedTestspublic_sealed_partial_recordConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterSystem_Guid Parse(global::System.ReadOnlySpan<char> s, global::System.IFormatProvider provider) {
         var r = System.Guid.Parse(s, provider);
         return From(r);
@@ -495,7 +495,7 @@ public static ValueObjectOrError<escapedTestspublic_sealed_partial_recordConvers
     /// <returns>
     /// The value created by calling the Parse method on the primitive.
     /// </returns>
-    /// <exception cref="ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
+    /// <exception cref="global::Vogen.ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
     public static escapedTestspublic_sealed_partial_recordConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterSystem_Guid Parse(string input) {
         var r = System.Guid.Parse(input);
         return From(r);
@@ -507,7 +507,7 @@ public static ValueObjectOrError<escapedTestspublic_sealed_partial_recordConvers
     /// <returns>
     /// The value created by calling the Parse method on the primitive.
     /// </returns>
-    /// <exception cref="ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
+    /// <exception cref="global::Vogen.ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
     public static escapedTestspublic_sealed_partial_recordConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterSystem_Guid Parse(string s, global::System.IFormatProvider provider) {
         var r = System.Guid.Parse(s, provider);
         return From(r);

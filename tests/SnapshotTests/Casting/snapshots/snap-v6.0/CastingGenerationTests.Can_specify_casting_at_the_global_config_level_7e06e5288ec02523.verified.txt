@@ -88,7 +88,7 @@ namespace Whatever
         private readonly System.Boolean _value;
 
         /// <summary>
-        /// Gets the underlying <see cref="System.Boolean" /> value if set, otherwise a <see cref="ValueObjectValidationException" /> is thrown.
+        /// Gets the underlying <see cref="System.Boolean" /> value if set, otherwise a <see cref="global::Vogen.ValueObjectValidationException" /> is thrown.
         /// </summary>
         public readonly System.Boolean Value
         {
@@ -288,7 +288,7 @@ public static ValueObjectOrError<_casting_public_partial_record_structImplicitNo
     /// <returns>
     /// The value created by calling the Parse method on the primitive.
     /// </returns>
-    /// <exception cref="ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
+    /// <exception cref="global::Vogen.ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
     public static _casting_public_partial_record_structImplicitNonebool Parse(global::System.ReadOnlySpan<char> value) {
         var r = System.Boolean.Parse(value);
         return From(r);
@@ -300,7 +300,7 @@ public static ValueObjectOrError<_casting_public_partial_record_structImplicitNo
     /// <returns>
     /// The value created by calling the Parse method on the primitive.
     /// </returns>
-    /// <exception cref="ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
+    /// <exception cref="global::Vogen.ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
     public static _casting_public_partial_record_structImplicitNonebool Parse(string value) {
         var r = System.Boolean.Parse(value);
         return From(r);

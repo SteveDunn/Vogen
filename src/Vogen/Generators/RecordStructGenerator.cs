@@ -28,7 +28,7 @@ using Vogen;
         private readonly {itemUnderlyingType} _value;
 
         /// <summary>
-        /// Gets the underlying <see cref=""{itemUnderlyingType}"" /> value if set, otherwise a <see cref=""{nameof(ValueObjectValidationException)}"" /> is thrown.
+        /// Gets the underlying <see cref=""{itemUnderlyingType}"" /> value if set, otherwise a <see cref=""{item.ValidationExceptionFullName}"" /> is thrown.
         /// </summary>
         public readonly {itemUnderlyingType} Value
         {{

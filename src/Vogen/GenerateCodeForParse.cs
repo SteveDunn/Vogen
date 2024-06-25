@@ -87,7 +87,7 @@ internal static class GenerateCodeForParse
     /// <returns>
     /// The value created via the <see cref=""From(global::System.String)""/> method.
     /// </returns>
-    /// <exception cref=""ValueObjectValidationException"">Thrown when the value can be parsed, but is not valid.</exception>
+    /// <exception cref=""{item.ValidationExceptionFullName}"">Thrown when the value can be parsed, but is not valid.</exception>
     {methodDecl}(global::System.String s, global::System.IFormatProvider provider) {{
         return From(s);
     }}";
@@ -134,7 +134,7 @@ internal static class GenerateCodeForParse
     /// <returns>
     /// The value created by calling the Parse method on the primitive.
     /// </returns>
-    /// <exception cref=""ValueObjectValidationException"">Thrown when the value can be parsed, but is not valid.</exception>
+    /// <exception cref=""{item.ValidationExceptionFullName}"">Thrown when the value can be parsed, but is not valid.</exception>
     public {staticOrNot}{item.VoTypeName} Parse({parameters}) {{
         var r = {item.UnderlyingTypeFullName}.Parse({parameterNames});
         return From(r);

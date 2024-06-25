@@ -86,7 +86,7 @@ namespace Whatever
         private readonly System.Decimal _value;
         
         /// <summary>
-        /// Gets the underlying <see cref="System.Decimal" /> value if set, otherwise a <see cref="ValueObjectValidationException" /> is thrown.
+        /// Gets the underlying <see cref="System.Decimal" /> value if set, otherwise a <see cref="global::Vogen.ValueObjectValidationException" /> is thrown.
         /// </summary>
         public System.Decimal Value
         {
@@ -345,7 +345,7 @@ public static ValueObjectOrError<_casting_public_partial_record_classImplicitExp
     /// <returns>
     /// The value created by calling the Parse method on the primitive.
     /// </returns>
-    /// <exception cref="ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
+    /// <exception cref="global::Vogen.ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
     public static _casting_public_partial_record_classImplicitExplicitdecimal Parse(global::System.ReadOnlySpan<char> s, global::System.Globalization.NumberStyles style, global::System.IFormatProvider provider) {
         var r = System.Decimal.Parse(s, style, provider);
         return From(r);
@@ -357,7 +357,7 @@ public static ValueObjectOrError<_casting_public_partial_record_classImplicitExp
     /// <returns>
     /// The value created by calling the Parse method on the primitive.
     /// </returns>
-    /// <exception cref="ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
+    /// <exception cref="global::Vogen.ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
     public static _casting_public_partial_record_classImplicitExplicitdecimal Parse(string s) {
         var r = System.Decimal.Parse(s);
         return From(r);
@@ -369,7 +369,7 @@ public static ValueObjectOrError<_casting_public_partial_record_classImplicitExp
     /// <returns>
     /// The value created by calling the Parse method on the primitive.
     /// </returns>
-    /// <exception cref="ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
+    /// <exception cref="global::Vogen.ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
     public static _casting_public_partial_record_classImplicitExplicitdecimal Parse(string s, global::System.Globalization.NumberStyles style) {
         var r = System.Decimal.Parse(s, style);
         return From(r);
@@ -381,7 +381,7 @@ public static ValueObjectOrError<_casting_public_partial_record_classImplicitExp
     /// <returns>
     /// The value created by calling the Parse method on the primitive.
     /// </returns>
-    /// <exception cref="ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
+    /// <exception cref="global::Vogen.ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
     public static _casting_public_partial_record_classImplicitExplicitdecimal Parse(string s, global::System.Globalization.NumberStyles style, global::System.IFormatProvider provider) {
         var r = System.Decimal.Parse(s, style, provider);
         return From(r);
@@ -393,7 +393,7 @@ public static ValueObjectOrError<_casting_public_partial_record_classImplicitExp
     /// <returns>
     /// The value created by calling the Parse method on the primitive.
     /// </returns>
-    /// <exception cref="ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
+    /// <exception cref="global::Vogen.ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
     public static _casting_public_partial_record_classImplicitExplicitdecimal Parse(string s, global::System.IFormatProvider provider) {
         var r = System.Decimal.Parse(s, provider);
         return From(r);

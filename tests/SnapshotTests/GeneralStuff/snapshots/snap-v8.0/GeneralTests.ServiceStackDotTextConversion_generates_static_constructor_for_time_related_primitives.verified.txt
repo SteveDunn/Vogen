@@ -84,7 +84,7 @@ using Vogen;
         private readonly System.TimeOnly _value;
 
         /// <summary>
-        /// Gets the underlying <see cref="System.TimeOnly" /> value if set, otherwise a <see cref="ValueObjectValidationException" /> is thrown.
+        /// Gets the underlying <see cref="System.TimeOnly" /> value if set, otherwise a <see cref="global::Vogen.ValueObjectValidationException" /> is thrown.
         /// </summary>
         public readonly System.TimeOnly Value
         {
@@ -371,7 +371,7 @@ public static ValueObjectOrError<MyVo> TryFrom(System.TimeOnly value)
     /// <returns>
     /// The value created by calling the Parse method on the primitive.
     /// </returns>
-    /// <exception cref="ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
+    /// <exception cref="global::Vogen.ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
     public static MyVo Parse(global::System.ReadOnlySpan<char> s, global::System.IFormatProvider provider) {
         var r = System.TimeOnly.Parse(s, provider);
         return From(r);
@@ -383,7 +383,7 @@ public static ValueObjectOrError<MyVo> TryFrom(System.TimeOnly value)
     /// <returns>
     /// The value created by calling the Parse method on the primitive.
     /// </returns>
-    /// <exception cref="ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
+    /// <exception cref="global::Vogen.ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
     public static MyVo Parse(global::System.ReadOnlySpan<char> s, global::System.IFormatProvider provider, global::System.Globalization.DateTimeStyles style) {
         var r = System.TimeOnly.Parse(s, provider, style);
         return From(r);
@@ -395,7 +395,7 @@ public static ValueObjectOrError<MyVo> TryFrom(System.TimeOnly value)
     /// <returns>
     /// The value created by calling the Parse method on the primitive.
     /// </returns>
-    /// <exception cref="ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
+    /// <exception cref="global::Vogen.ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
     public static MyVo Parse(string s) {
         var r = System.TimeOnly.Parse(s);
         return From(r);
@@ -407,7 +407,7 @@ public static ValueObjectOrError<MyVo> TryFrom(System.TimeOnly value)
     /// <returns>
     /// The value created by calling the Parse method on the primitive.
     /// </returns>
-    /// <exception cref="ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
+    /// <exception cref="global::Vogen.ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
     public static MyVo Parse(string s, global::System.IFormatProvider provider) {
         var r = System.TimeOnly.Parse(s, provider);
         return From(r);
@@ -419,7 +419,7 @@ public static ValueObjectOrError<MyVo> TryFrom(System.TimeOnly value)
     /// <returns>
     /// The value created by calling the Parse method on the primitive.
     /// </returns>
-    /// <exception cref="ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
+    /// <exception cref="global::Vogen.ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
     public static MyVo Parse(string s, global::System.IFormatProvider provider, global::System.Globalization.DateTimeStyles style) {
         var r = System.TimeOnly.Parse(s, provider, style);
         return From(r);

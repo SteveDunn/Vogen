@@ -122,7 +122,7 @@ namespace MyNamespace
         private readonly MyNamespace.C _value;
         
 /// <summary>
-/// Gets the underlying <see cref="MyNamespace.C" /> value if set, otherwise a <see cref="ValueObjectValidationException" /> is thrown.
+/// Gets the underlying <see cref="MyNamespace.C" /> value if set, otherwise a <see cref="global::Vogen.ValueObjectValidationException" /> is thrown.
 /// </summary>
 public MyNamespace.C Value
         {
@@ -322,7 +322,7 @@ public static ValueObjectOrError<MyVo> TryFrom(MyNamespace.C value)
     /// <returns>
     /// The value created by calling the Parse method on the primitive.
     /// </returns>
-    /// <exception cref="ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
+    /// <exception cref="global::Vogen.ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
     public static MyVo Parse(string s, global::System.IFormatProvider provider) {
         var r = MyNamespace.C.Parse(s, provider);
         return From(r);

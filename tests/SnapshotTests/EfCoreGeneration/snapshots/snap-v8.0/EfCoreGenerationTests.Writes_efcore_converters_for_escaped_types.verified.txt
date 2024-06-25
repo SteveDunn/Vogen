@@ -1055,7 +1055,7 @@ namespace @int
         private readonly System.Byte _value;
 
         /// <summary>
-        /// Gets the underlying <see cref="System.Byte" /> value if set, otherwise a <see cref="ValueObjectValidationException" /> is thrown.
+        /// Gets the underlying <see cref="System.Byte" /> value if set, otherwise a <see cref="global::Vogen.ValueObjectValidationException" /> is thrown.
         /// </summary>
         public readonly System.Byte Value
         {
@@ -1405,7 +1405,7 @@ public static ValueObjectOrError<@byte> TryFrom(System.Byte value)
     /// <returns>
     /// The value created by calling the Parse method on the primitive.
     /// </returns>
-    /// <exception cref="ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
+    /// <exception cref="global::Vogen.ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
     public static @byte Parse(global::System.ReadOnlySpan<byte> utf8Text, global::System.Globalization.NumberStyles style, global::System.IFormatProvider provider) {
         var r = System.Byte.Parse(utf8Text, style, provider);
         return From(r);
@@ -1417,7 +1417,7 @@ public static ValueObjectOrError<@byte> TryFrom(System.Byte value)
     /// <returns>
     /// The value created by calling the Parse method on the primitive.
     /// </returns>
-    /// <exception cref="ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
+    /// <exception cref="global::Vogen.ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
     public static @byte Parse(global::System.ReadOnlySpan<byte> utf8Text, global::System.IFormatProvider provider) {
         var r = System.Byte.Parse(utf8Text, provider);
         return From(r);
@@ -1429,7 +1429,7 @@ public static ValueObjectOrError<@byte> TryFrom(System.Byte value)
     /// <returns>
     /// The value created by calling the Parse method on the primitive.
     /// </returns>
-    /// <exception cref="ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
+    /// <exception cref="global::Vogen.ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
     public static @byte Parse(global::System.ReadOnlySpan<char> s, global::System.Globalization.NumberStyles style, global::System.IFormatProvider provider) {
         var r = System.Byte.Parse(s, style, provider);
         return From(r);
@@ -1441,7 +1441,7 @@ public static ValueObjectOrError<@byte> TryFrom(System.Byte value)
     /// <returns>
     /// The value created by calling the Parse method on the primitive.
     /// </returns>
-    /// <exception cref="ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
+    /// <exception cref="global::Vogen.ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
     public static @byte Parse(global::System.ReadOnlySpan<char> s, global::System.IFormatProvider provider) {
         var r = System.Byte.Parse(s, provider);
         return From(r);
@@ -1453,7 +1453,7 @@ public static ValueObjectOrError<@byte> TryFrom(System.Byte value)
     /// <returns>
     /// The value created by calling the Parse method on the primitive.
     /// </returns>
-    /// <exception cref="ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
+    /// <exception cref="global::Vogen.ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
     public static @byte Parse(string s) {
         var r = System.Byte.Parse(s);
         return From(r);
@@ -1465,7 +1465,7 @@ public static ValueObjectOrError<@byte> TryFrom(System.Byte value)
     /// <returns>
     /// The value created by calling the Parse method on the primitive.
     /// </returns>
-    /// <exception cref="ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
+    /// <exception cref="global::Vogen.ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
     public static @byte Parse(string s, global::System.Globalization.NumberStyles style) {
         var r = System.Byte.Parse(s, style);
         return From(r);
@@ -1477,7 +1477,7 @@ public static ValueObjectOrError<@byte> TryFrom(System.Byte value)
     /// <returns>
     /// The value created by calling the Parse method on the primitive.
     /// </returns>
-    /// <exception cref="ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
+    /// <exception cref="global::Vogen.ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
     public static @byte Parse(string s, global::System.Globalization.NumberStyles style, global::System.IFormatProvider provider) {
         var r = System.Byte.Parse(s, style, provider);
         return From(r);
@@ -1489,7 +1489,7 @@ public static ValueObjectOrError<@byte> TryFrom(System.Byte value)
     /// <returns>
     /// The value created by calling the Parse method on the primitive.
     /// </returns>
-    /// <exception cref="ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
+    /// <exception cref="global::Vogen.ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
     public static @byte Parse(string s, global::System.IFormatProvider provider) {
         var r = System.Byte.Parse(s, provider);
         return From(r);
@@ -1681,7 +1681,7 @@ namespace @int
         private readonly System.String _value;
 
         /// <summary>
-        /// Gets the underlying <see cref="System.String" /> value if set, otherwise a <see cref="ValueObjectValidationException" /> is thrown.
+        /// Gets the underlying <see cref="System.String" /> value if set, otherwise a <see cref="global::Vogen.ValueObjectValidationException" /> is thrown.
         /// </summary>
         public readonly System.String Value
         {
@@ -1858,7 +1858,7 @@ public static ValueObjectOrError<@string> TryFrom(System.String value)
     /// <returns>
     /// The value created via the <see cref="From(global::System.String)"/> method.
     /// </returns>
-    /// <exception cref="ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
+    /// <exception cref="global::Vogen.ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
     public static @string Parse(global::System.String s, global::System.IFormatProvider provider) {
         return From(s);
     }
@@ -2033,7 +2033,7 @@ namespace Whatever
         private readonly System.Int32 _value;
 
         /// <summary>
-        /// Gets the underlying <see cref="System.Int32" /> value if set, otherwise a <see cref="ValueObjectValidationException" /> is thrown.
+        /// Gets the underlying <see cref="System.Int32" /> value if set, otherwise a <see cref="global::Vogen.ValueObjectValidationException" /> is thrown.
         /// </summary>
         public readonly System.Int32 Value
         {
@@ -2383,7 +2383,7 @@ public static ValueObjectOrError<MyVo1> TryFrom(System.Int32 value)
     /// <returns>
     /// The value created by calling the Parse method on the primitive.
     /// </returns>
-    /// <exception cref="ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
+    /// <exception cref="global::Vogen.ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
     public static MyVo1 Parse(global::System.ReadOnlySpan<byte> utf8Text, global::System.Globalization.NumberStyles style, global::System.IFormatProvider provider) {
         var r = System.Int32.Parse(utf8Text, style, provider);
         return From(r);
@@ -2395,7 +2395,7 @@ public static ValueObjectOrError<MyVo1> TryFrom(System.Int32 value)
     /// <returns>
     /// The value created by calling the Parse method on the primitive.
     /// </returns>
-    /// <exception cref="ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
+    /// <exception cref="global::Vogen.ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
     public static MyVo1 Parse(global::System.ReadOnlySpan<byte> utf8Text, global::System.IFormatProvider provider) {
         var r = System.Int32.Parse(utf8Text, provider);
         return From(r);
@@ -2407,7 +2407,7 @@ public static ValueObjectOrError<MyVo1> TryFrom(System.Int32 value)
     /// <returns>
     /// The value created by calling the Parse method on the primitive.
     /// </returns>
-    /// <exception cref="ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
+    /// <exception cref="global::Vogen.ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
     public static MyVo1 Parse(global::System.ReadOnlySpan<char> s, global::System.Globalization.NumberStyles style, global::System.IFormatProvider provider) {
         var r = System.Int32.Parse(s, style, provider);
         return From(r);
@@ -2419,7 +2419,7 @@ public static ValueObjectOrError<MyVo1> TryFrom(System.Int32 value)
     /// <returns>
     /// The value created by calling the Parse method on the primitive.
     /// </returns>
-    /// <exception cref="ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
+    /// <exception cref="global::Vogen.ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
     public static MyVo1 Parse(global::System.ReadOnlySpan<char> s, global::System.IFormatProvider provider) {
         var r = System.Int32.Parse(s, provider);
         return From(r);
@@ -2431,7 +2431,7 @@ public static ValueObjectOrError<MyVo1> TryFrom(System.Int32 value)
     /// <returns>
     /// The value created by calling the Parse method on the primitive.
     /// </returns>
-    /// <exception cref="ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
+    /// <exception cref="global::Vogen.ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
     public static MyVo1 Parse(string s) {
         var r = System.Int32.Parse(s);
         return From(r);
@@ -2443,7 +2443,7 @@ public static ValueObjectOrError<MyVo1> TryFrom(System.Int32 value)
     /// <returns>
     /// The value created by calling the Parse method on the primitive.
     /// </returns>
-    /// <exception cref="ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
+    /// <exception cref="global::Vogen.ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
     public static MyVo1 Parse(string s, global::System.Globalization.NumberStyles style) {
         var r = System.Int32.Parse(s, style);
         return From(r);
@@ -2455,7 +2455,7 @@ public static ValueObjectOrError<MyVo1> TryFrom(System.Int32 value)
     /// <returns>
     /// The value created by calling the Parse method on the primitive.
     /// </returns>
-    /// <exception cref="ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
+    /// <exception cref="global::Vogen.ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
     public static MyVo1 Parse(string s, global::System.Globalization.NumberStyles style, global::System.IFormatProvider provider) {
         var r = System.Int32.Parse(s, style, provider);
         return From(r);
@@ -2467,7 +2467,7 @@ public static ValueObjectOrError<MyVo1> TryFrom(System.Int32 value)
     /// <returns>
     /// The value created by calling the Parse method on the primitive.
     /// </returns>
-    /// <exception cref="ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
+    /// <exception cref="global::Vogen.ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
     public static MyVo1 Parse(string s, global::System.IFormatProvider provider) {
         var r = System.Int32.Parse(s, provider);
         return From(r);
@@ -2653,7 +2653,7 @@ namespace Whatever
         private readonly System.String _value;
         
 /// <summary>
-/// Gets the underlying <see cref="System.String" /> value if set, otherwise a <see cref="ValueObjectValidationException" /> is thrown.
+/// Gets the underlying <see cref="System.String" /> value if set, otherwise a <see cref="global::Vogen.ValueObjectValidationException" /> is thrown.
 /// </summary>
 public System.String Value
         {
@@ -2854,7 +2854,7 @@ public static ValueObjectOrError<MyVo2> TryFrom(System.String value)
     /// <returns>
     /// The value created via the <see cref="From(global::System.String)"/> method.
     /// </returns>
-    /// <exception cref="ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
+    /// <exception cref="global::Vogen.ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
     public static MyVo2 Parse(global::System.String s, global::System.IFormatProvider provider) {
         return From(s);
     }
@@ -3030,7 +3030,7 @@ namespace Whatever
         private readonly System.String _value;
 
         /// <summary>
-        /// Gets the underlying <see cref="System.String" /> value if set, otherwise a <see cref="ValueObjectValidationException" /> is thrown.
+        /// Gets the underlying <see cref="System.String" /> value if set, otherwise a <see cref="global::Vogen.ValueObjectValidationException" /> is thrown.
         /// </summary>
         public readonly System.String Value
         {
@@ -3200,7 +3200,7 @@ public static ValueObjectOrError<MyVo3> TryFrom(System.String value)
     /// <returns>
     /// The value created via the <see cref="From(global::System.String)"/> method.
     /// </returns>
-    /// <exception cref="ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
+    /// <exception cref="global::Vogen.ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
     public static MyVo3 Parse(global::System.String s, global::System.IFormatProvider provider) {
         return From(s);
     }
@@ -3374,7 +3374,7 @@ namespace Whatever
         private readonly System.Int32 _value;
 
         /// <summary>
-        /// Gets the underlying <see cref="System.Int32" /> value if set, otherwise a <see cref="ValueObjectValidationException" /> is thrown.
+        /// Gets the underlying <see cref="System.Int32" /> value if set, otherwise a <see cref="global::Vogen.ValueObjectValidationException" /> is thrown.
         /// </summary>
         public readonly System.Int32 Value
         {
@@ -3724,7 +3724,7 @@ public static ValueObjectOrError<MyVo4> TryFrom(System.Int32 value)
     /// <returns>
     /// The value created by calling the Parse method on the primitive.
     /// </returns>
-    /// <exception cref="ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
+    /// <exception cref="global::Vogen.ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
     public static MyVo4 Parse(global::System.ReadOnlySpan<byte> utf8Text, global::System.Globalization.NumberStyles style, global::System.IFormatProvider provider) {
         var r = System.Int32.Parse(utf8Text, style, provider);
         return From(r);
@@ -3736,7 +3736,7 @@ public static ValueObjectOrError<MyVo4> TryFrom(System.Int32 value)
     /// <returns>
     /// The value created by calling the Parse method on the primitive.
     /// </returns>
-    /// <exception cref="ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
+    /// <exception cref="global::Vogen.ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
     public static MyVo4 Parse(global::System.ReadOnlySpan<byte> utf8Text, global::System.IFormatProvider provider) {
         var r = System.Int32.Parse(utf8Text, provider);
         return From(r);
@@ -3748,7 +3748,7 @@ public static ValueObjectOrError<MyVo4> TryFrom(System.Int32 value)
     /// <returns>
     /// The value created by calling the Parse method on the primitive.
     /// </returns>
-    /// <exception cref="ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
+    /// <exception cref="global::Vogen.ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
     public static MyVo4 Parse(global::System.ReadOnlySpan<char> s, global::System.Globalization.NumberStyles style, global::System.IFormatProvider provider) {
         var r = System.Int32.Parse(s, style, provider);
         return From(r);
@@ -3760,7 +3760,7 @@ public static ValueObjectOrError<MyVo4> TryFrom(System.Int32 value)
     /// <returns>
     /// The value created by calling the Parse method on the primitive.
     /// </returns>
-    /// <exception cref="ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
+    /// <exception cref="global::Vogen.ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
     public static MyVo4 Parse(global::System.ReadOnlySpan<char> s, global::System.IFormatProvider provider) {
         var r = System.Int32.Parse(s, provider);
         return From(r);
@@ -3772,7 +3772,7 @@ public static ValueObjectOrError<MyVo4> TryFrom(System.Int32 value)
     /// <returns>
     /// The value created by calling the Parse method on the primitive.
     /// </returns>
-    /// <exception cref="ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
+    /// <exception cref="global::Vogen.ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
     public static MyVo4 Parse(string s) {
         var r = System.Int32.Parse(s);
         return From(r);
@@ -3784,7 +3784,7 @@ public static ValueObjectOrError<MyVo4> TryFrom(System.Int32 value)
     /// <returns>
     /// The value created by calling the Parse method on the primitive.
     /// </returns>
-    /// <exception cref="ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
+    /// <exception cref="global::Vogen.ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
     public static MyVo4 Parse(string s, global::System.Globalization.NumberStyles style) {
         var r = System.Int32.Parse(s, style);
         return From(r);
@@ -3796,7 +3796,7 @@ public static ValueObjectOrError<MyVo4> TryFrom(System.Int32 value)
     /// <returns>
     /// The value created by calling the Parse method on the primitive.
     /// </returns>
-    /// <exception cref="ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
+    /// <exception cref="global::Vogen.ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
     public static MyVo4 Parse(string s, global::System.Globalization.NumberStyles style, global::System.IFormatProvider provider) {
         var r = System.Int32.Parse(s, style, provider);
         return From(r);
@@ -3808,7 +3808,7 @@ public static ValueObjectOrError<MyVo4> TryFrom(System.Int32 value)
     /// <returns>
     /// The value created by calling the Parse method on the primitive.
     /// </returns>
-    /// <exception cref="ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
+    /// <exception cref="global::Vogen.ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
     public static MyVo4 Parse(string s, global::System.IFormatProvider provider) {
         var r = System.Int32.Parse(s, provider);
         return From(r);
@@ -3996,7 +3996,7 @@ namespace Whatever
         private readonly System.Int32 _value;
 
         /// <summary>
-        /// Gets the underlying <see cref="System.Int32" /> value if set, otherwise a <see cref="ValueObjectValidationException" /> is thrown.
+        /// Gets the underlying <see cref="System.Int32" /> value if set, otherwise a <see cref="global::Vogen.ValueObjectValidationException" /> is thrown.
         /// </summary>
         public readonly System.Int32 Value
         {
@@ -4349,7 +4349,7 @@ public static ValueObjectOrError<MyVo5> TryFrom(System.Int32 value)
     /// <returns>
     /// The value created by calling the Parse method on the primitive.
     /// </returns>
-    /// <exception cref="ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
+    /// <exception cref="global::Vogen.ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
     public static MyVo5 Parse(global::System.ReadOnlySpan<byte> utf8Text, global::System.Globalization.NumberStyles style, global::System.IFormatProvider provider) {
         var r = System.Int32.Parse(utf8Text, style, provider);
         return From(r);
@@ -4361,7 +4361,7 @@ public static ValueObjectOrError<MyVo5> TryFrom(System.Int32 value)
     /// <returns>
     /// The value created by calling the Parse method on the primitive.
     /// </returns>
-    /// <exception cref="ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
+    /// <exception cref="global::Vogen.ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
     public static MyVo5 Parse(global::System.ReadOnlySpan<byte> utf8Text, global::System.IFormatProvider provider) {
         var r = System.Int32.Parse(utf8Text, provider);
         return From(r);
@@ -4373,7 +4373,7 @@ public static ValueObjectOrError<MyVo5> TryFrom(System.Int32 value)
     /// <returns>
     /// The value created by calling the Parse method on the primitive.
     /// </returns>
-    /// <exception cref="ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
+    /// <exception cref="global::Vogen.ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
     public static MyVo5 Parse(global::System.ReadOnlySpan<char> s, global::System.Globalization.NumberStyles style, global::System.IFormatProvider provider) {
         var r = System.Int32.Parse(s, style, provider);
         return From(r);
@@ -4385,7 +4385,7 @@ public static ValueObjectOrError<MyVo5> TryFrom(System.Int32 value)
     /// <returns>
     /// The value created by calling the Parse method on the primitive.
     /// </returns>
-    /// <exception cref="ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
+    /// <exception cref="global::Vogen.ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
     public static MyVo5 Parse(global::System.ReadOnlySpan<char> s, global::System.IFormatProvider provider) {
         var r = System.Int32.Parse(s, provider);
         return From(r);
@@ -4397,7 +4397,7 @@ public static ValueObjectOrError<MyVo5> TryFrom(System.Int32 value)
     /// <returns>
     /// The value created by calling the Parse method on the primitive.
     /// </returns>
-    /// <exception cref="ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
+    /// <exception cref="global::Vogen.ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
     public static MyVo5 Parse(string s) {
         var r = System.Int32.Parse(s);
         return From(r);
@@ -4409,7 +4409,7 @@ public static ValueObjectOrError<MyVo5> TryFrom(System.Int32 value)
     /// <returns>
     /// The value created by calling the Parse method on the primitive.
     /// </returns>
-    /// <exception cref="ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
+    /// <exception cref="global::Vogen.ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
     public static MyVo5 Parse(string s, global::System.Globalization.NumberStyles style) {
         var r = System.Int32.Parse(s, style);
         return From(r);
@@ -4421,7 +4421,7 @@ public static ValueObjectOrError<MyVo5> TryFrom(System.Int32 value)
     /// <returns>
     /// The value created by calling the Parse method on the primitive.
     /// </returns>
-    /// <exception cref="ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
+    /// <exception cref="global::Vogen.ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
     public static MyVo5 Parse(string s, global::System.Globalization.NumberStyles style, global::System.IFormatProvider provider) {
         var r = System.Int32.Parse(s, style, provider);
         return From(r);
@@ -4433,7 +4433,7 @@ public static ValueObjectOrError<MyVo5> TryFrom(System.Int32 value)
     /// <returns>
     /// The value created by calling the Parse method on the primitive.
     /// </returns>
-    /// <exception cref="ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
+    /// <exception cref="global::Vogen.ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
     public static MyVo5 Parse(string s, global::System.IFormatProvider provider) {
         var r = System.Int32.Parse(s, provider);
         return From(r);
@@ -4620,7 +4620,7 @@ namespace Whatever
         private readonly System.Int32 _value;
         
         /// <summary>
-        /// Gets the underlying <see cref="System.Int32" /> value if set, otherwise a <see cref="ValueObjectValidationException" /> is thrown.
+        /// Gets the underlying <see cref="System.Int32" /> value if set, otherwise a <see cref="global::Vogen.ValueObjectValidationException" /> is thrown.
         /// </summary>
         public System.Int32 Value
         {
@@ -4987,7 +4987,7 @@ public static ValueObjectOrError<MyVo6> TryFrom(System.Int32 value)
     /// <returns>
     /// The value created by calling the Parse method on the primitive.
     /// </returns>
-    /// <exception cref="ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
+    /// <exception cref="global::Vogen.ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
     public static MyVo6 Parse(global::System.ReadOnlySpan<byte> utf8Text, global::System.Globalization.NumberStyles style, global::System.IFormatProvider provider) {
         var r = System.Int32.Parse(utf8Text, style, provider);
         return From(r);
@@ -4999,7 +4999,7 @@ public static ValueObjectOrError<MyVo6> TryFrom(System.Int32 value)
     /// <returns>
     /// The value created by calling the Parse method on the primitive.
     /// </returns>
-    /// <exception cref="ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
+    /// <exception cref="global::Vogen.ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
     public static MyVo6 Parse(global::System.ReadOnlySpan<byte> utf8Text, global::System.IFormatProvider provider) {
         var r = System.Int32.Parse(utf8Text, provider);
         return From(r);
@@ -5011,7 +5011,7 @@ public static ValueObjectOrError<MyVo6> TryFrom(System.Int32 value)
     /// <returns>
     /// The value created by calling the Parse method on the primitive.
     /// </returns>
-    /// <exception cref="ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
+    /// <exception cref="global::Vogen.ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
     public static MyVo6 Parse(global::System.ReadOnlySpan<char> s, global::System.Globalization.NumberStyles style, global::System.IFormatProvider provider) {
         var r = System.Int32.Parse(s, style, provider);
         return From(r);
@@ -5023,7 +5023,7 @@ public static ValueObjectOrError<MyVo6> TryFrom(System.Int32 value)
     /// <returns>
     /// The value created by calling the Parse method on the primitive.
     /// </returns>
-    /// <exception cref="ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
+    /// <exception cref="global::Vogen.ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
     public static MyVo6 Parse(global::System.ReadOnlySpan<char> s, global::System.IFormatProvider provider) {
         var r = System.Int32.Parse(s, provider);
         return From(r);
@@ -5035,7 +5035,7 @@ public static ValueObjectOrError<MyVo6> TryFrom(System.Int32 value)
     /// <returns>
     /// The value created by calling the Parse method on the primitive.
     /// </returns>
-    /// <exception cref="ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
+    /// <exception cref="global::Vogen.ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
     public static MyVo6 Parse(string s) {
         var r = System.Int32.Parse(s);
         return From(r);
@@ -5047,7 +5047,7 @@ public static ValueObjectOrError<MyVo6> TryFrom(System.Int32 value)
     /// <returns>
     /// The value created by calling the Parse method on the primitive.
     /// </returns>
-    /// <exception cref="ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
+    /// <exception cref="global::Vogen.ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
     public static MyVo6 Parse(string s, global::System.Globalization.NumberStyles style) {
         var r = System.Int32.Parse(s, style);
         return From(r);
@@ -5059,7 +5059,7 @@ public static ValueObjectOrError<MyVo6> TryFrom(System.Int32 value)
     /// <returns>
     /// The value created by calling the Parse method on the primitive.
     /// </returns>
-    /// <exception cref="ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
+    /// <exception cref="global::Vogen.ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
     public static MyVo6 Parse(string s, global::System.Globalization.NumberStyles style, global::System.IFormatProvider provider) {
         var r = System.Int32.Parse(s, style, provider);
         return From(r);
@@ -5071,7 +5071,7 @@ public static ValueObjectOrError<MyVo6> TryFrom(System.Int32 value)
     /// <returns>
     /// The value created by calling the Parse method on the primitive.
     /// </returns>
-    /// <exception cref="ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
+    /// <exception cref="global::Vogen.ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
     public static MyVo6 Parse(string s, global::System.IFormatProvider provider) {
         var r = System.Int32.Parse(s, provider);
         return From(r);
@@ -5262,7 +5262,7 @@ namespace Whatever
         private readonly System.Int32 _value;
 
         /// <summary>
-        /// Gets the underlying <see cref="System.Int32" /> value if set, otherwise a <see cref="ValueObjectValidationException" /> is thrown.
+        /// Gets the underlying <see cref="System.Int32" /> value if set, otherwise a <see cref="global::Vogen.ValueObjectValidationException" /> is thrown.
         /// </summary>
         public readonly System.Int32 Value
         {
@@ -5615,7 +5615,7 @@ public static ValueObjectOrError<@int> TryFrom(System.Int32 value)
     /// <returns>
     /// The value created by calling the Parse method on the primitive.
     /// </returns>
-    /// <exception cref="ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
+    /// <exception cref="global::Vogen.ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
     public static @int Parse(global::System.ReadOnlySpan<byte> utf8Text, global::System.Globalization.NumberStyles style, global::System.IFormatProvider provider) {
         var r = System.Int32.Parse(utf8Text, style, provider);
         return From(r);
@@ -5627,7 +5627,7 @@ public static ValueObjectOrError<@int> TryFrom(System.Int32 value)
     /// <returns>
     /// The value created by calling the Parse method on the primitive.
     /// </returns>
-    /// <exception cref="ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
+    /// <exception cref="global::Vogen.ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
     public static @int Parse(global::System.ReadOnlySpan<byte> utf8Text, global::System.IFormatProvider provider) {
         var r = System.Int32.Parse(utf8Text, provider);
         return From(r);
@@ -5639,7 +5639,7 @@ public static ValueObjectOrError<@int> TryFrom(System.Int32 value)
     /// <returns>
     /// The value created by calling the Parse method on the primitive.
     /// </returns>
-    /// <exception cref="ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
+    /// <exception cref="global::Vogen.ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
     public static @int Parse(global::System.ReadOnlySpan<char> s, global::System.Globalization.NumberStyles style, global::System.IFormatProvider provider) {
         var r = System.Int32.Parse(s, style, provider);
         return From(r);
@@ -5651,7 +5651,7 @@ public static ValueObjectOrError<@int> TryFrom(System.Int32 value)
     /// <returns>
     /// The value created by calling the Parse method on the primitive.
     /// </returns>
-    /// <exception cref="ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
+    /// <exception cref="global::Vogen.ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
     public static @int Parse(global::System.ReadOnlySpan<char> s, global::System.IFormatProvider provider) {
         var r = System.Int32.Parse(s, provider);
         return From(r);
@@ -5663,7 +5663,7 @@ public static ValueObjectOrError<@int> TryFrom(System.Int32 value)
     /// <returns>
     /// The value created by calling the Parse method on the primitive.
     /// </returns>
-    /// <exception cref="ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
+    /// <exception cref="global::Vogen.ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
     public static @int Parse(string s) {
         var r = System.Int32.Parse(s);
         return From(r);
@@ -5675,7 +5675,7 @@ public static ValueObjectOrError<@int> TryFrom(System.Int32 value)
     /// <returns>
     /// The value created by calling the Parse method on the primitive.
     /// </returns>
-    /// <exception cref="ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
+    /// <exception cref="global::Vogen.ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
     public static @int Parse(string s, global::System.Globalization.NumberStyles style) {
         var r = System.Int32.Parse(s, style);
         return From(r);
@@ -5687,7 +5687,7 @@ public static ValueObjectOrError<@int> TryFrom(System.Int32 value)
     /// <returns>
     /// The value created by calling the Parse method on the primitive.
     /// </returns>
-    /// <exception cref="ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
+    /// <exception cref="global::Vogen.ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
     public static @int Parse(string s, global::System.Globalization.NumberStyles style, global::System.IFormatProvider provider) {
         var r = System.Int32.Parse(s, style, provider);
         return From(r);
@@ -5699,7 +5699,7 @@ public static ValueObjectOrError<@int> TryFrom(System.Int32 value)
     /// <returns>
     /// The value created by calling the Parse method on the primitive.
     /// </returns>
-    /// <exception cref="ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
+    /// <exception cref="global::Vogen.ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
     public static @int Parse(string s, global::System.IFormatProvider provider) {
         var r = System.Int32.Parse(s, provider);
         return From(r);
@@ -5888,7 +5888,7 @@ namespace Whatever
         private readonly System.Int32 _value;
 
         /// <summary>
-        /// Gets the underlying <see cref="System.Int32" /> value if set, otherwise a <see cref="ValueObjectValidationException" /> is thrown.
+        /// Gets the underlying <see cref="System.Int32" /> value if set, otherwise a <see cref="global::Vogen.ValueObjectValidationException" /> is thrown.
         /// </summary>
         public readonly System.Int32 Value
         {
@@ -6241,7 +6241,7 @@ public static ValueObjectOrError<@byte> TryFrom(System.Int32 value)
     /// <returns>
     /// The value created by calling the Parse method on the primitive.
     /// </returns>
-    /// <exception cref="ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
+    /// <exception cref="global::Vogen.ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
     public static @byte Parse(global::System.ReadOnlySpan<byte> utf8Text, global::System.Globalization.NumberStyles style, global::System.IFormatProvider provider) {
         var r = System.Int32.Parse(utf8Text, style, provider);
         return From(r);
@@ -6253,7 +6253,7 @@ public static ValueObjectOrError<@byte> TryFrom(System.Int32 value)
     /// <returns>
     /// The value created by calling the Parse method on the primitive.
     /// </returns>
-    /// <exception cref="ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
+    /// <exception cref="global::Vogen.ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
     public static @byte Parse(global::System.ReadOnlySpan<byte> utf8Text, global::System.IFormatProvider provider) {
         var r = System.Int32.Parse(utf8Text, provider);
         return From(r);
@@ -6265,7 +6265,7 @@ public static ValueObjectOrError<@byte> TryFrom(System.Int32 value)
     /// <returns>
     /// The value created by calling the Parse method on the primitive.
     /// </returns>
-    /// <exception cref="ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
+    /// <exception cref="global::Vogen.ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
     public static @byte Parse(global::System.ReadOnlySpan<char> s, global::System.Globalization.NumberStyles style, global::System.IFormatProvider provider) {
         var r = System.Int32.Parse(s, style, provider);
         return From(r);
@@ -6277,7 +6277,7 @@ public static ValueObjectOrError<@byte> TryFrom(System.Int32 value)
     /// <returns>
     /// The value created by calling the Parse method on the primitive.
     /// </returns>
-    /// <exception cref="ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
+    /// <exception cref="global::Vogen.ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
     public static @byte Parse(global::System.ReadOnlySpan<char> s, global::System.IFormatProvider provider) {
         var r = System.Int32.Parse(s, provider);
         return From(r);
@@ -6289,7 +6289,7 @@ public static ValueObjectOrError<@byte> TryFrom(System.Int32 value)
     /// <returns>
     /// The value created by calling the Parse method on the primitive.
     /// </returns>
-    /// <exception cref="ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
+    /// <exception cref="global::Vogen.ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
     public static @byte Parse(string s) {
         var r = System.Int32.Parse(s);
         return From(r);
@@ -6301,7 +6301,7 @@ public static ValueObjectOrError<@byte> TryFrom(System.Int32 value)
     /// <returns>
     /// The value created by calling the Parse method on the primitive.
     /// </returns>
-    /// <exception cref="ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
+    /// <exception cref="global::Vogen.ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
     public static @byte Parse(string s, global::System.Globalization.NumberStyles style) {
         var r = System.Int32.Parse(s, style);
         return From(r);
@@ -6313,7 +6313,7 @@ public static ValueObjectOrError<@byte> TryFrom(System.Int32 value)
     /// <returns>
     /// The value created by calling the Parse method on the primitive.
     /// </returns>
-    /// <exception cref="ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
+    /// <exception cref="global::Vogen.ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
     public static @byte Parse(string s, global::System.Globalization.NumberStyles style, global::System.IFormatProvider provider) {
         var r = System.Int32.Parse(s, style, provider);
         return From(r);
@@ -6325,7 +6325,7 @@ public static ValueObjectOrError<@byte> TryFrom(System.Int32 value)
     /// <returns>
     /// The value created by calling the Parse method on the primitive.
     /// </returns>
-    /// <exception cref="ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
+    /// <exception cref="global::Vogen.ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
     public static @byte Parse(string s, global::System.IFormatProvider provider) {
         var r = System.Int32.Parse(s, provider);
         return From(r);
@@ -6512,7 +6512,7 @@ namespace Whatever
         private readonly System.Int32 _value;
         
         /// <summary>
-        /// Gets the underlying <see cref="System.Int32" /> value if set, otherwise a <see cref="ValueObjectValidationException" /> is thrown.
+        /// Gets the underlying <see cref="System.Int32" /> value if set, otherwise a <see cref="global::Vogen.ValueObjectValidationException" /> is thrown.
         /// </summary>
         public System.Int32 Value
         {
@@ -6879,7 +6879,7 @@ public static ValueObjectOrError<MyInt> TryFrom(System.Int32 value)
     /// <returns>
     /// The value created by calling the Parse method on the primitive.
     /// </returns>
-    /// <exception cref="ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
+    /// <exception cref="global::Vogen.ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
     public static MyInt Parse(global::System.ReadOnlySpan<byte> utf8Text, global::System.Globalization.NumberStyles style, global::System.IFormatProvider provider) {
         var r = System.Int32.Parse(utf8Text, style, provider);
         return From(r);
@@ -6891,7 +6891,7 @@ public static ValueObjectOrError<MyInt> TryFrom(System.Int32 value)
     /// <returns>
     /// The value created by calling the Parse method on the primitive.
     /// </returns>
-    /// <exception cref="ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
+    /// <exception cref="global::Vogen.ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
     public static MyInt Parse(global::System.ReadOnlySpan<byte> utf8Text, global::System.IFormatProvider provider) {
         var r = System.Int32.Parse(utf8Text, provider);
         return From(r);
@@ -6903,7 +6903,7 @@ public static ValueObjectOrError<MyInt> TryFrom(System.Int32 value)
     /// <returns>
     /// The value created by calling the Parse method on the primitive.
     /// </returns>
-    /// <exception cref="ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
+    /// <exception cref="global::Vogen.ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
     public static MyInt Parse(global::System.ReadOnlySpan<char> s, global::System.Globalization.NumberStyles style, global::System.IFormatProvider provider) {
         var r = System.Int32.Parse(s, style, provider);
         return From(r);
@@ -6915,7 +6915,7 @@ public static ValueObjectOrError<MyInt> TryFrom(System.Int32 value)
     /// <returns>
     /// The value created by calling the Parse method on the primitive.
     /// </returns>
-    /// <exception cref="ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
+    /// <exception cref="global::Vogen.ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
     public static MyInt Parse(global::System.ReadOnlySpan<char> s, global::System.IFormatProvider provider) {
         var r = System.Int32.Parse(s, provider);
         return From(r);
@@ -6927,7 +6927,7 @@ public static ValueObjectOrError<MyInt> TryFrom(System.Int32 value)
     /// <returns>
     /// The value created by calling the Parse method on the primitive.
     /// </returns>
-    /// <exception cref="ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
+    /// <exception cref="global::Vogen.ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
     public static MyInt Parse(string s) {
         var r = System.Int32.Parse(s);
         return From(r);
@@ -6939,7 +6939,7 @@ public static ValueObjectOrError<MyInt> TryFrom(System.Int32 value)
     /// <returns>
     /// The value created by calling the Parse method on the primitive.
     /// </returns>
-    /// <exception cref="ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
+    /// <exception cref="global::Vogen.ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
     public static MyInt Parse(string s, global::System.Globalization.NumberStyles style) {
         var r = System.Int32.Parse(s, style);
         return From(r);
@@ -6951,7 +6951,7 @@ public static ValueObjectOrError<MyInt> TryFrom(System.Int32 value)
     /// <returns>
     /// The value created by calling the Parse method on the primitive.
     /// </returns>
-    /// <exception cref="ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
+    /// <exception cref="global::Vogen.ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
     public static MyInt Parse(string s, global::System.Globalization.NumberStyles style, global::System.IFormatProvider provider) {
         var r = System.Int32.Parse(s, style, provider);
         return From(r);
@@ -6963,7 +6963,7 @@ public static ValueObjectOrError<MyInt> TryFrom(System.Int32 value)
     /// <returns>
     /// The value created by calling the Parse method on the primitive.
     /// </returns>
-    /// <exception cref="ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
+    /// <exception cref="global::Vogen.ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
     public static MyInt Parse(string s, global::System.IFormatProvider provider) {
         var r = System.Int32.Parse(s, provider);
         return From(r);

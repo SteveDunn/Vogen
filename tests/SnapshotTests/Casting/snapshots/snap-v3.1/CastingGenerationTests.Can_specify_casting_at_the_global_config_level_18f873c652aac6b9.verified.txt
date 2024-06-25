@@ -86,7 +86,7 @@ namespace Whatever
         private readonly System.DateTime _value;
         
 /// <summary>
-/// Gets the underlying <see cref="System.DateTime" /> value if set, otherwise a <see cref="ValueObjectValidationException" /> is thrown.
+/// Gets the underlying <see cref="System.DateTime" /> value if set, otherwise a <see cref="global::Vogen.ValueObjectValidationException" /> is thrown.
 /// </summary>
 public System.DateTime Value
         {
@@ -339,7 +339,7 @@ public static ValueObjectOrError<_casting_public_sealed_partial_classNoneExplici
     /// <returns>
     /// The value created by calling the Parse method on the primitive.
     /// </returns>
-    /// <exception cref="ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
+    /// <exception cref="global::Vogen.ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
     public static _casting_public_sealed_partial_classNoneExplicitSystem_DateTime Parse(global::System.ReadOnlySpan<char> s, global::System.IFormatProvider provider, global::System.Globalization.DateTimeStyles styles) {
         var r = System.DateTime.Parse(s, provider, styles);
         return From(r);
@@ -351,7 +351,7 @@ public static ValueObjectOrError<_casting_public_sealed_partial_classNoneExplici
     /// <returns>
     /// The value created by calling the Parse method on the primitive.
     /// </returns>
-    /// <exception cref="ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
+    /// <exception cref="global::Vogen.ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
     public static _casting_public_sealed_partial_classNoneExplicitSystem_DateTime Parse(string s) {
         var r = System.DateTime.Parse(s);
         return From(r);
@@ -363,7 +363,7 @@ public static ValueObjectOrError<_casting_public_sealed_partial_classNoneExplici
     /// <returns>
     /// The value created by calling the Parse method on the primitive.
     /// </returns>
-    /// <exception cref="ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
+    /// <exception cref="global::Vogen.ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
     public static _casting_public_sealed_partial_classNoneExplicitSystem_DateTime Parse(string s, global::System.IFormatProvider provider) {
         var r = System.DateTime.Parse(s, provider);
         return From(r);
@@ -375,7 +375,7 @@ public static ValueObjectOrError<_casting_public_sealed_partial_classNoneExplici
     /// <returns>
     /// The value created by calling the Parse method on the primitive.
     /// </returns>
-    /// <exception cref="ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
+    /// <exception cref="global::Vogen.ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
     public static _casting_public_sealed_partial_classNoneExplicitSystem_DateTime Parse(string s, global::System.IFormatProvider provider, global::System.Globalization.DateTimeStyles styles) {
         var r = System.DateTime.Parse(s, provider, styles);
         return From(r);
