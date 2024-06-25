@@ -86,7 +86,7 @@ namespace Whatever
         private readonly System.String _value;
 
         /// <summary>
-        /// Gets the underlying <see cref="System.String" /> value if set, otherwise a <see cref="ValueObjectValidationException" /> is thrown.
+        /// Gets the underlying <see cref="System.String" /> value if set, otherwise a <see cref="global::Vogen.ValueObjectValidationException" /> is thrown.
         /// </summary>
         public readonly System.String Value
         {
@@ -256,7 +256,7 @@ public static ValueObjectOrError<internal_partial_structConversions_Nonestring> 
     /// <returns>
     /// The value created via the <see cref="From(global::System.String)"/> method.
     /// </returns>
-    /// <exception cref="ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
+    /// <exception cref="global::Vogen.ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
     public static internal_partial_structConversions_Nonestring Parse(global::System.String s, global::System.IFormatProvider provider) {
         return From(s);
     }

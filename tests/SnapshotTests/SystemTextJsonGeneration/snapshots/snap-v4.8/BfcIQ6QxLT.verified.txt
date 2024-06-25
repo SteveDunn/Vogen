@@ -85,7 +85,7 @@ namespace Whatever
         private readonly System.Char _value;
         
         /// <summary>
-        /// Gets the underlying <see cref="System.Char" /> value if set, otherwise a <see cref="ValueObjectValidationException" /> is thrown.
+        /// Gets the underlying <see cref="System.Char" /> value if set, otherwise a <see cref="global::Vogen.ValueObjectValidationException" /> is thrown.
         /// </summary>
         public System.Char Value
         {
@@ -276,7 +276,7 @@ public static ValueObjectOrError<stj_number_as_string_public_partial_record_clas
     /// <returns>
     /// The value created by calling the Parse method on the primitive.
     /// </returns>
-    /// <exception cref="ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
+    /// <exception cref="global::Vogen.ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
     public static stj_number_as_string_public_partial_record_classConversions_SystemTextJsonchar_customized Parse(string s) {
         var r = System.Char.Parse(s);
         return From(r);

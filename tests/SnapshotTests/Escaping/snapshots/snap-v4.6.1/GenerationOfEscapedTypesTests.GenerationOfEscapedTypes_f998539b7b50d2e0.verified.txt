@@ -86,7 +86,7 @@ namespace @class
         private readonly @class.@record.@struct.@float.@decimal _value;
         
         /// <summary>
-        /// Gets the underlying <see cref="@class.@record.@struct.@float.@decimal" /> value if set, otherwise a <see cref="ValueObjectValidationException" /> is thrown.
+        /// Gets the underlying <see cref="@class.@record.@struct.@float.@decimal" /> value if set, otherwise a <see cref="global::Vogen.ValueObjectValidationException" /> is thrown.
         /// </summary>
         public @class.@record.@struct.@float.@decimal Value
         {

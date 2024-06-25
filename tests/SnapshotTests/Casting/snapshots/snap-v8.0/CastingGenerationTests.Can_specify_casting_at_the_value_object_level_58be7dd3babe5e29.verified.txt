@@ -88,7 +88,7 @@ namespace Whatever
         private readonly System.DateTimeOffset _value;
 
         /// <summary>
-        /// Gets the underlying <see cref="System.DateTimeOffset" /> value if set, otherwise a <see cref="ValueObjectValidationException" /> is thrown.
+        /// Gets the underlying <see cref="System.DateTimeOffset" /> value if set, otherwise a <see cref="global::Vogen.ValueObjectValidationException" /> is thrown.
         /// </summary>
         public readonly System.DateTimeOffset Value
         {
@@ -375,7 +375,7 @@ public static ValueObjectOrError<_casting_public_readonly_partial_record_structE
     /// <returns>
     /// The value created by calling the Parse method on the primitive.
     /// </returns>
-    /// <exception cref="ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
+    /// <exception cref="global::Vogen.ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
     public static _casting_public_readonly_partial_record_structExplicitExplicitSystem_DateTimeOffset Parse(global::System.ReadOnlySpan<char> s, global::System.IFormatProvider provider) {
         var r = System.DateTimeOffset.Parse(s, provider);
         return From(r);
@@ -387,7 +387,7 @@ public static ValueObjectOrError<_casting_public_readonly_partial_record_structE
     /// <returns>
     /// The value created by calling the Parse method on the primitive.
     /// </returns>
-    /// <exception cref="ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
+    /// <exception cref="global::Vogen.ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
     public static _casting_public_readonly_partial_record_structExplicitExplicitSystem_DateTimeOffset Parse(global::System.ReadOnlySpan<char> input, global::System.IFormatProvider formatProvider, global::System.Globalization.DateTimeStyles styles) {
         var r = System.DateTimeOffset.Parse(input, formatProvider, styles);
         return From(r);
@@ -399,7 +399,7 @@ public static ValueObjectOrError<_casting_public_readonly_partial_record_structE
     /// <returns>
     /// The value created by calling the Parse method on the primitive.
     /// </returns>
-    /// <exception cref="ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
+    /// <exception cref="global::Vogen.ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
     public static _casting_public_readonly_partial_record_structExplicitExplicitSystem_DateTimeOffset Parse(string input) {
         var r = System.DateTimeOffset.Parse(input);
         return From(r);
@@ -411,7 +411,7 @@ public static ValueObjectOrError<_casting_public_readonly_partial_record_structE
     /// <returns>
     /// The value created by calling the Parse method on the primitive.
     /// </returns>
-    /// <exception cref="ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
+    /// <exception cref="global::Vogen.ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
     public static _casting_public_readonly_partial_record_structExplicitExplicitSystem_DateTimeOffset Parse(string input, global::System.IFormatProvider formatProvider) {
         var r = System.DateTimeOffset.Parse(input, formatProvider);
         return From(r);
@@ -423,7 +423,7 @@ public static ValueObjectOrError<_casting_public_readonly_partial_record_structE
     /// <returns>
     /// The value created by calling the Parse method on the primitive.
     /// </returns>
-    /// <exception cref="ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
+    /// <exception cref="global::Vogen.ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
     public static _casting_public_readonly_partial_record_structExplicitExplicitSystem_DateTimeOffset Parse(string input, global::System.IFormatProvider formatProvider, global::System.Globalization.DateTimeStyles styles) {
         var r = System.DateTimeOffset.Parse(input, formatProvider, styles);
         return From(r);
