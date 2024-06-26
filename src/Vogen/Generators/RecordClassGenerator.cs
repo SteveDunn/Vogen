@@ -22,7 +22,9 @@ using Vogen;
     {Util.GenerateModifiersFor(tds)} record class {className} : global::System.IEquatable<{className}>{GenerateEqualsMethodsAndOperators.GenerateInterfaceIfNeeded(", ", itemUnderlyingType, item)}{GenerateComparableCode.GenerateIComparableHeaderIfNeeded(", ", item, tds)}{GenerateCodeForIParsableInterfaceDeclarations.GenerateIfNeeded(", ", item, tds)}{WriteStaticAbstracts.WriteHeaderIfNeeded(", ", item, tds)}
     {{
 {DebugGeneration.GenerateStackTraceFieldIfNeeded(item)}
+#if !VOGEN_NO_VALIDATION
         private readonly global::System.Boolean _isInitialized;
+#endif
         private readonly {itemUnderlyingType} _value;
         
         /// <summary>
@@ -57,7 +59,9 @@ using Vogen;
 #if DEBUG
             {DebugGeneration.SetStackTraceIfNeeded(item)}
 #endif
+#if !VOGEN_NO_VALIDATION
             _isInitialized = false;
+#endif
             _value = default;
         }}
 
@@ -65,7 +69,9 @@ using Vogen;
         private {className}({itemUnderlyingType} value)
         {{
             _value = value;
+#if !VOGEN_NO_VALIDATION
             _isInitialized = true;
+#endif
         }}
 
         /// <summary>
@@ -88,7 +94,7 @@ using Vogen;
 
         {GenerateCodeForTryFrom.GenerateForAStruct(item, className, itemUnderlyingType)}
 
-{(item.Config.IsInitializedMethodGeneration == IsInitializedMethodGeneration.Generate ? Util.GenerateIsInitializedMethod() : string.Empty)}
+{Util.GenerateIsInitializedMethod(false, item)}
 
 {GenerateStringComparers.GenerateIfNeeded(item, tds)}  
         // only called internally when something has been deserialized into
@@ -115,7 +121,7 @@ using Vogen;
 
         private void EnsureInitialized()
         {{
-            if (!_isInitialized)
+            if (!IsInitialized())
             {{
 #if DEBUG
                 {DebugGeneration.GenerateMessageForUninitializedValueObject(item)}

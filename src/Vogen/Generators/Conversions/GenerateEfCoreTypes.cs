@@ -121,18 +121,16 @@ internal static class GenerateEfCoreTypes
                 {
                     public __CLASS_PREFIX__EfCoreValueComparer() : base(
                         (left, right) => DoCompare(left, right), 
-        __WHEN_INNER__                instance => instance._isInitialized ? instance.GetHashCode() : 0) 
-        __WHEN_OUTER__                instance => instance.IsInitialized() ? instance.GetHashCode() : 0) 
+                        instance => instance.IsInitialized() ? instance.GetHashCode() : 0) 
                     { 
                     }
                     
                     static bool DoCompare(VOTYPE left, VOTYPE right)
                     {
                         // if neither are initialized, then they're equal
-        __WHEN_INNER__                if(!left._isInitialized && !right._isInitialized) return true;
-        __WHEN_OUTER__                if(!left.IsInitialized() && !right.IsInitialized()) return true;
+                        if(!left.IsInitialized() && !right.IsInitialized()) return true;
                         
-        __WHEN_INNER__                return left._isInitialized && right._isInitialized && left._value.Equals(right._value);
+        __WHEN_INNER__                return left.IsInitialized() && right.IsInitialized() && left._value.Equals(right._value);
         __WHEN_OUTER__                return left.IsInitialized() && right.IsInitialized() && UnderlyingValue(left).Equals(UnderlyingValue(right));
                     }
         __WHEN_OUTER__ private static VOUNDERLYINGTYPE UnderlyingValue(VOTYPE i) => UnsafeValueField(__NEEDS_REF__ i);
@@ -148,7 +146,7 @@ internal static class GenerateEfCoreTypes
                                                                {
                                                                    public __CLASS_PREFIX__EfCoreValueComparer() : base(
                                                                        (left, right) => DoCompare(left, right), 
-                                                        __WHEN_INNER__                instance => instance._isInitialized ? instance._value.GetHashCode() : 0) 
+                                                        __WHEN_INNER__                instance => instance.IsInitialized() ? instance._value.GetHashCode() : 0) 
                                                         __WHEN_OUTER__                instance => instance.IsInitialized() ? UnderlyingValue(instance).GetHashCode() : 0) 
                                                                    { 
                                                                    }
@@ -165,10 +163,9 @@ internal static class GenerateEfCoreTypes
                                                                        if (ReferenceEquals(left, right)) return true;
                                                                        
                                                                        // if neither are initialized, then they're equal
-                                                        __WHEN_INNER__                if(!left._isInitialized && !right._isInitialized) return true;
-                                                        __WHEN_OUTER__                if(!left.IsInitialized() && !right.IsInitialized()) return true;
+                                                                        if(!left.IsInitialized() && !right.IsInitialized()) return true;
                                                                        
-                                                        __WHEN_INNER__                return left._isInitialized && right._isInitialized && left._value.Equals(right._value);            
+                                                        __WHEN_INNER__                return left.IsInitialized() && right.IsInitialized() && left._value.Equals(right._value);            
                                                         __WHEN_OUTER__                return left.IsInitialized() && right.IsInitialized() && UnderlyingValue(left).Equals(UnderlyingValue(right));            
                                                                    }                
                                                         __WHEN_OUTER__ private static VOUNDERLYINGTYPE UnderlyingValue(VOTYPE i) => UnsafeValueField(__NEEDS_REF__ i);

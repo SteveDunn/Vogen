@@ -1,3 +1,4 @@
+using System.Runtime.InteropServices;
 using @double;
 using @bool.@byte.@short.@float.@object;
 using Vogen.Tests.Types;
@@ -18,6 +19,8 @@ namespace ConsumerTests
         public void Creation_Happy_Path_MyIntGeneric()
         {
             MyIntGeneric vo1 = MyIntGeneric.From(123);
+            int n = Marshal.SizeOf<MyIntStruct>();
+            int n2 = Marshal.SizeOf<int>();
             MyIntGeneric vo2 = MyIntGeneric.From(123);
 
             vo1.Should().Be(vo2);

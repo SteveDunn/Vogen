@@ -244,9 +244,9 @@ $$"""
                     _t = t;
                 }
 
-                public global::System.Boolean IsInitialized => _t._isInitialized;
+                public global::System.Boolean IsInitialized => _t.IsInitialized();
                 public global::System.String UnderlyingType => "{{item.UnderlyingTypeFullName}}";
-                public global::System.String Value => _t._isInitialized ? _t._value.ToString() : "[not initialized]" ;
+                public global::System.String Value => _t.IsInitialized() ? _t._value.ToString() : "[not initialized]" ;
 
                 #if DEBUG
                     {{createdWithMethod}};
@@ -293,7 +293,7 @@ $$"""
         return item.UserProvidedOverloads.ToStringInfo.WasSupplied
             ? string.Empty
             : $@"/// <summary>Returns the string representation of the underlying <see cref=""{item.UnderlyingTypeFullName}"" />.</summary>
-    public{ro} override global::System.String ToString() =>_isInitialized ? Value.ToString() : ""[UNINITIALIZED]"";";
+    public{ro} override global::System.String ToString() =>IsInitialized() ? Value.ToString() : ""[UNINITIALIZED]"";";
     }
 
     public static string GenerateGuidFactoryMethodIfNeeded(VoWorkItem item, TypeDeclarationSyntax tds)
@@ -306,7 +306,19 @@ $$"""
         return string.Empty;
     }
 
-    public static string GenerateIsInitializedMethod() => """        public bool IsInitialized() => _isInitialized;""";
+    public static string GenerateIsInitializedMethod(bool @readonly, VoWorkItem item)
+    {
+        string ro = @readonly ? " readonly" : "";
+        string accessibility = item.Config.IsInitializedMethodGeneration == IsInitializedMethodGeneration.Generate ? "public" : "private";
+        return $$"""
+               [global::System.Runtime.CompilerServices.MethodImpl(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
+               #if VOGEN_NO_VALIDATION
+                 {{accessibility}}{{ro}} bool IsInitialized() => true;
+               #else
+                 {{accessibility}}{{ro}} bool IsInitialized() => _isInitialized;
+               #endif
+               """;
+    }
 }
 
 public static class DebugGeneration
