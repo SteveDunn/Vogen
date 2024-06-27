@@ -1,4 +1,5 @@
 using System.Diagnostics.CodeAnalysis;
+using ConsumerTests;
 using Vogen.Tests.Types;
 
 namespace Vogen.Tests.ValidationTests;
@@ -50,11 +51,18 @@ public class ValidationTests
         vo.Should().ThrowExactly<InvalidAmountException>().WithMessage("must be greater than zero");
     }
     
-    [Fact]
+    [SkippableIfBuiltWithNoValidationFlagFact]
     public void TryFrom_that_fails_for_a_struct_has_an_uninitialized_instance()
     {
         VoStruct.TryFrom(-1, out var vo).Should().BeFalse();
         vo.IsInitialized().Should().BeFalse();
+    }
+
+    [SkippableIfNotBuiltWithNoValidationFlagFact]
+    public void TryFrom_that_fails_for_a_struct_has_an_default_instance()
+    {
+        VoStruct.TryFrom(-1, out var vo).Should().BeFalse();
+        vo.IsInitialized().Should().BeTrue();
     }
 
     [Fact]

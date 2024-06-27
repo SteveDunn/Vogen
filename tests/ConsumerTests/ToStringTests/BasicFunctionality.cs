@@ -4,12 +4,21 @@ namespace ConsumerTests.ToStringTests;
 
 public class BasicFunctionality
 {
-    [Fact]
+    [SkippableIfBuiltWithNoValidationFlagFact]
     public void ToString_does_not_throw_for_something_uninitialized()
     {
 #pragma warning disable VOG010
         Age age = new Age();
         age.ToString().Should().Be("[UNINITIALIZED]");
+#pragma warning restore VOG010
+    }
+
+    [SkippableIfNotBuiltWithNoValidationFlagFact]
+    public void ToString_does_not_show_uninitialized_when_no_validation_is_on()
+    {
+#pragma warning disable VOG010
+        Age age = new Age();
+        age.ToString().Should().Be("0");
 #pragma warning restore VOG010
     }
 

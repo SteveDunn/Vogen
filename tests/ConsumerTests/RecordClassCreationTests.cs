@@ -42,7 +42,7 @@ public class RecordClassCreationTests
         action.Should().Throw<ValueObjectValidationException>().WithMessage("must be greater than zero");
     }
 
-    [Fact]
+    [SkippableIfBuiltWithNoValidationFlagFact]
     public void Default_vo_throws_at_runtime()
     {
         MyRecordClassInt vo = (MyRecordClassInt) Activator.CreateInstance(Type.GetType("Vogen.Tests.Types.MyRecordClassInt")!)!;

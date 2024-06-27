@@ -62,7 +62,7 @@ public class RecordClassTests
         a.Should().ThrowExactly<ValueObjectValidationException>().WithMessage("must be zero or more");
     }
 
-    [Fact]
+    [SkippableIfBuiltWithNoValidationFlagFact]
     public void Using_init_still_throws()
     {
 #pragma warning disable VOG010

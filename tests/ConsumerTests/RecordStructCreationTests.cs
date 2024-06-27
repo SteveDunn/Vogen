@@ -40,7 +40,7 @@ public class RecordStructCreationTests
         action.Should().Throw<ValueObjectValidationException>().WithMessage("must be greater than zero");
     }
 
-    [Fact]
+    [SkippableIfBuiltWithNoValidationFlagFact]
     public void Default_vo_throws_at_runtime()
     {
         MyRecordStructInt vo =
