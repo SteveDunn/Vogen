@@ -122,7 +122,9 @@ using Vogen;
 #if DEBUG   
         private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
 #endif
+#if !VOGEN_NO_VALIDATION
         private readonly global::System.Boolean _isInitialized;
+#endif
         private readonly System.Int32 _value;
         
 /// <summary>
@@ -146,7 +148,9 @@ public System.Int32 Value
 #if DEBUG
             _stackTrace = new global::System.Diagnostics.StackTrace();
 #endif
+#if !VOGEN_NO_VALIDATION
             _isInitialized = false;
+#endif
             _value = default;
         }
 
@@ -154,7 +158,9 @@ public System.Int32 Value
         private MyVoInt(System.Int32 value)
         {
             _value = value;
+#if !VOGEN_NO_VALIDATION
             _isInitialized = true;
+#endif
         }
 
         /// <summary>
@@ -215,7 +221,12 @@ public static ValueObjectOrError<MyVoInt> TryFrom(System.Int32 value)
     return new ValueObjectOrError<MyVoInt>(new MyVoInt(value));
 }
 
-        public bool IsInitialized() => _isInitialized;
+[global::System.Runtime.CompilerServices.MethodImpl(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
+#if VOGEN_NO_VALIDATION
+  public bool IsInitialized() => true;
+#else
+  public bool IsInitialized() => _isInitialized;
+#endif
 
           
 
@@ -241,7 +252,7 @@ public static ValueObjectOrError<MyVoInt> TryFrom(System.Int32 value)
 
               // It's possible to create uninitialized instances via converters such as EfCore (HasDefaultValue), which call Equals.
               // We treat anything uninitialized as not equal to anything, even other uninitialized instances of this type.
-              if(!_isInitialized || !other._isInitialized) return false;
+              if(!IsInitialized() || !other.IsInitialized()) return false;
 
               if (ReferenceEquals(this, other))
               {
@@ -595,7 +606,7 @@ public static ValueObjectOrError<MyVoInt> TryFrom(System.Int32 value)
 
         private void EnsureInitialized()
         {
-            if (!_isInitialized)
+            if (!IsInitialized())
             {
 #if DEBUG
                 global::System.String message = "Use of uninitialized Value Object at: " + _stackTrace ?? "";
@@ -611,7 +622,7 @@ public static ValueObjectOrError<MyVoInt> TryFrom(System.Int32 value)
         
 
         /// <summary>Returns the string representation of the underlying <see cref="System.Int32" />.</summary>
-    public override global::System.String ToString() =>_isInitialized ? Value.ToString() : "[UNINITIALIZED]";
+    public override global::System.String ToString() =>IsInitialized() ? Value.ToString() : "[UNINITIALIZED]";
 
         
         /// <summary>
@@ -756,7 +767,9 @@ using Vogen;
 #if DEBUG   
         private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
 #endif
+#if !VOGEN_NO_VALIDATION
         private readonly global::System.Boolean _isInitialized;
+#endif
         private readonly System.Single _value;
         
 /// <summary>
@@ -780,7 +793,9 @@ public System.Single Value
 #if DEBUG
             _stackTrace = new global::System.Diagnostics.StackTrace();
 #endif
+#if !VOGEN_NO_VALIDATION
             _isInitialized = false;
+#endif
             _value = default;
         }
 
@@ -788,7 +803,9 @@ public System.Single Value
         private MyVoFloat(System.Single value)
         {
             _value = value;
+#if !VOGEN_NO_VALIDATION
             _isInitialized = true;
+#endif
         }
 
         /// <summary>
@@ -849,7 +866,12 @@ public static ValueObjectOrError<MyVoFloat> TryFrom(System.Single value)
     return new ValueObjectOrError<MyVoFloat>(new MyVoFloat(value));
 }
 
-        public bool IsInitialized() => _isInitialized;
+[global::System.Runtime.CompilerServices.MethodImpl(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
+#if VOGEN_NO_VALIDATION
+  public bool IsInitialized() => true;
+#else
+  public bool IsInitialized() => _isInitialized;
+#endif
 
           
 
@@ -875,7 +897,7 @@ public static ValueObjectOrError<MyVoFloat> TryFrom(System.Single value)
 
               // It's possible to create uninitialized instances via converters such as EfCore (HasDefaultValue), which call Equals.
               // We treat anything uninitialized as not equal to anything, even other uninitialized instances of this type.
-              if(!_isInitialized || !other._isInitialized) return false;
+              if(!IsInitialized() || !other.IsInitialized()) return false;
 
               if (ReferenceEquals(this, other))
               {
@@ -1229,7 +1251,7 @@ public static ValueObjectOrError<MyVoFloat> TryFrom(System.Single value)
 
         private void EnsureInitialized()
         {
-            if (!_isInitialized)
+            if (!IsInitialized())
             {
 #if DEBUG
                 global::System.String message = "Use of uninitialized Value Object at: " + _stackTrace ?? "";
@@ -1245,7 +1267,7 @@ public static ValueObjectOrError<MyVoFloat> TryFrom(System.Single value)
         
 
         /// <summary>Returns the string representation of the underlying <see cref="System.Single" />.</summary>
-    public override global::System.String ToString() =>_isInitialized ? Value.ToString() : "[UNINITIALIZED]";
+    public override global::System.String ToString() =>IsInitialized() ? Value.ToString() : "[UNINITIALIZED]";
 
         
         /// <summary>
@@ -1390,7 +1412,9 @@ using Vogen;
 #if DEBUG   
         private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
 #endif
+#if !VOGEN_NO_VALIDATION
         private readonly global::System.Boolean _isInitialized;
+#endif
         private readonly System.Decimal _value;
         
 /// <summary>
@@ -1414,7 +1438,9 @@ public System.Decimal Value
 #if DEBUG
             _stackTrace = new global::System.Diagnostics.StackTrace();
 #endif
+#if !VOGEN_NO_VALIDATION
             _isInitialized = false;
+#endif
             _value = default;
         }
 
@@ -1422,7 +1448,9 @@ public System.Decimal Value
         private MyVoDecimal(System.Decimal value)
         {
             _value = value;
+#if !VOGEN_NO_VALIDATION
             _isInitialized = true;
+#endif
         }
 
         /// <summary>
@@ -1483,7 +1511,12 @@ public static ValueObjectOrError<MyVoDecimal> TryFrom(System.Decimal value)
     return new ValueObjectOrError<MyVoDecimal>(new MyVoDecimal(value));
 }
 
-        public bool IsInitialized() => _isInitialized;
+[global::System.Runtime.CompilerServices.MethodImpl(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
+#if VOGEN_NO_VALIDATION
+  public bool IsInitialized() => true;
+#else
+  public bool IsInitialized() => _isInitialized;
+#endif
 
           
 
@@ -1509,7 +1542,7 @@ public static ValueObjectOrError<MyVoDecimal> TryFrom(System.Decimal value)
 
               // It's possible to create uninitialized instances via converters such as EfCore (HasDefaultValue), which call Equals.
               // We treat anything uninitialized as not equal to anything, even other uninitialized instances of this type.
-              if(!_isInitialized || !other._isInitialized) return false;
+              if(!IsInitialized() || !other.IsInitialized()) return false;
 
               if (ReferenceEquals(this, other))
               {
@@ -1863,7 +1896,7 @@ public static ValueObjectOrError<MyVoDecimal> TryFrom(System.Decimal value)
 
         private void EnsureInitialized()
         {
-            if (!_isInitialized)
+            if (!IsInitialized())
             {
 #if DEBUG
                 global::System.String message = "Use of uninitialized Value Object at: " + _stackTrace ?? "";
@@ -1879,7 +1912,7 @@ public static ValueObjectOrError<MyVoDecimal> TryFrom(System.Decimal value)
         
 
         /// <summary>Returns the string representation of the underlying <see cref="System.Decimal" />.</summary>
-    public override global::System.String ToString() =>_isInitialized ? Value.ToString() : "[UNINITIALIZED]";
+    public override global::System.String ToString() =>IsInitialized() ? Value.ToString() : "[UNINITIALIZED]";
 
         
         /// <summary>
@@ -2024,7 +2057,9 @@ using Vogen;
 #if DEBUG   
         private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
 #endif
+#if !VOGEN_NO_VALIDATION
         private readonly global::System.Boolean _isInitialized;
+#endif
         private readonly System.Double _value;
         
 /// <summary>
@@ -2048,7 +2083,9 @@ public System.Double Value
 #if DEBUG
             _stackTrace = new global::System.Diagnostics.StackTrace();
 #endif
+#if !VOGEN_NO_VALIDATION
             _isInitialized = false;
+#endif
             _value = default;
         }
 
@@ -2056,7 +2093,9 @@ public System.Double Value
         private MyVoDouble(System.Double value)
         {
             _value = value;
+#if !VOGEN_NO_VALIDATION
             _isInitialized = true;
+#endif
         }
 
         /// <summary>
@@ -2117,7 +2156,12 @@ public static ValueObjectOrError<MyVoDouble> TryFrom(System.Double value)
     return new ValueObjectOrError<MyVoDouble>(new MyVoDouble(value));
 }
 
-        public bool IsInitialized() => _isInitialized;
+[global::System.Runtime.CompilerServices.MethodImpl(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
+#if VOGEN_NO_VALIDATION
+  public bool IsInitialized() => true;
+#else
+  public bool IsInitialized() => _isInitialized;
+#endif
 
           
 
@@ -2143,7 +2187,7 @@ public static ValueObjectOrError<MyVoDouble> TryFrom(System.Double value)
 
               // It's possible to create uninitialized instances via converters such as EfCore (HasDefaultValue), which call Equals.
               // We treat anything uninitialized as not equal to anything, even other uninitialized instances of this type.
-              if(!_isInitialized || !other._isInitialized) return false;
+              if(!IsInitialized() || !other.IsInitialized()) return false;
 
               if (ReferenceEquals(this, other))
               {
@@ -2497,7 +2541,7 @@ public static ValueObjectOrError<MyVoDouble> TryFrom(System.Double value)
 
         private void EnsureInitialized()
         {
-            if (!_isInitialized)
+            if (!IsInitialized())
             {
 #if DEBUG
                 global::System.String message = "Use of uninitialized Value Object at: " + _stackTrace ?? "";
@@ -2513,7 +2557,7 @@ public static ValueObjectOrError<MyVoDouble> TryFrom(System.Double value)
         
 
         /// <summary>Returns the string representation of the underlying <see cref="System.Double" />.</summary>
-    public override global::System.String ToString() =>_isInitialized ? Value.ToString() : "[UNINITIALIZED]";
+    public override global::System.String ToString() =>IsInitialized() ? Value.ToString() : "[UNINITIALIZED]";
 
         
         /// <summary>
@@ -2659,7 +2703,9 @@ using Vogen;
 #if DEBUG   
         private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
 #endif
+#if !VOGEN_NO_VALIDATION
         private readonly global::System.Boolean _isInitialized;
+#endif
         private readonly System.String _value;
         
 /// <summary>
@@ -2683,7 +2729,9 @@ public System.String Value
 #if DEBUG
             _stackTrace = new global::System.Diagnostics.StackTrace();
 #endif
+#if !VOGEN_NO_VALIDATION
             _isInitialized = false;
+#endif
             _value = default;
         }
 
@@ -2691,7 +2739,9 @@ public System.String Value
         private MyVoString(System.String value)
         {
             _value = value;
+#if !VOGEN_NO_VALIDATION
             _isInitialized = true;
+#endif
         }
 
         /// <summary>
@@ -2765,7 +2815,12 @@ public static ValueObjectOrError<MyVoString> TryFrom(System.String value)
     return new ValueObjectOrError<MyVoString>(new MyVoString(value));
 }
 
-        public bool IsInitialized() => _isInitialized;
+[global::System.Runtime.CompilerServices.MethodImpl(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
+#if VOGEN_NO_VALIDATION
+  public bool IsInitialized() => true;
+#else
+  public bool IsInitialized() => _isInitialized;
+#endif
 
           
 
@@ -2795,7 +2850,7 @@ public static ValueObjectOrError<MyVoString> TryFrom(System.String value)
 
               // It's possible to create uninitialized instances via converters such as EfCore (HasDefaultValue), which call Equals.
               // We treat anything uninitialized as not equal to anything, even other uninitialized instances of this type.
-              if(!_isInitialized || !other._isInitialized) return false;
+              if(!IsInitialized() || !other.IsInitialized()) return false;
 
               if (ReferenceEquals(this, other))
               {
@@ -2883,7 +2938,7 @@ public static ValueObjectOrError<MyVoString> TryFrom(System.String value)
 
         private void EnsureInitialized()
         {
-            if (!_isInitialized)
+            if (!IsInitialized())
             {
 #if DEBUG
                 global::System.String message = "Use of uninitialized Value Object at: " + _stackTrace ?? "";
@@ -2899,7 +2954,7 @@ public static ValueObjectOrError<MyVoString> TryFrom(System.String value)
         
 
         /// <summary>Returns the string representation of the underlying <see cref="System.String" />.</summary>
-    public override global::System.String ToString() =>_isInitialized ? Value.ToString() : "[UNINITIALIZED]";
+    public override global::System.String ToString() =>IsInitialized() ? Value.ToString() : "[UNINITIALIZED]";
 
         
         /// <summary>
@@ -3032,7 +3087,9 @@ using Vogen;
 #if DEBUG   
         private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
 #endif
+#if !VOGEN_NO_VALIDATION
         private readonly global::System.Boolean _isInitialized;
+#endif
         private readonly System.Boolean _value;
         
 /// <summary>
@@ -3056,7 +3113,9 @@ public System.Boolean Value
 #if DEBUG
             _stackTrace = new global::System.Diagnostics.StackTrace();
 #endif
+#if !VOGEN_NO_VALIDATION
             _isInitialized = false;
+#endif
             _value = default;
         }
 
@@ -3064,7 +3123,9 @@ public System.Boolean Value
         private MyVoBool(System.Boolean value)
         {
             _value = value;
+#if !VOGEN_NO_VALIDATION
             _isInitialized = true;
+#endif
         }
 
         /// <summary>
@@ -3125,7 +3186,12 @@ public static ValueObjectOrError<MyVoBool> TryFrom(System.Boolean value)
     return new ValueObjectOrError<MyVoBool>(new MyVoBool(value));
 }
 
-        public bool IsInitialized() => _isInitialized;
+[global::System.Runtime.CompilerServices.MethodImpl(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
+#if VOGEN_NO_VALIDATION
+  public bool IsInitialized() => true;
+#else
+  public bool IsInitialized() => _isInitialized;
+#endif
 
           
 
@@ -3151,7 +3217,7 @@ public static ValueObjectOrError<MyVoBool> TryFrom(System.Boolean value)
 
               // It's possible to create uninitialized instances via converters such as EfCore (HasDefaultValue), which call Equals.
               // We treat anything uninitialized as not equal to anything, even other uninitialized instances of this type.
-              if(!_isInitialized || !other._isInitialized) return false;
+              if(!IsInitialized() || !other.IsInitialized()) return false;
 
               if (ReferenceEquals(this, other))
               {
@@ -3279,7 +3345,7 @@ public static ValueObjectOrError<MyVoBool> TryFrom(System.Boolean value)
 
         private void EnsureInitialized()
         {
-            if (!_isInitialized)
+            if (!IsInitialized())
             {
 #if DEBUG
                 global::System.String message = "Use of uninitialized Value Object at: " + _stackTrace ?? "";
@@ -3295,7 +3361,7 @@ public static ValueObjectOrError<MyVoBool> TryFrom(System.Boolean value)
         
 
         /// <summary>Returns the string representation of the underlying <see cref="System.Boolean" />.</summary>
-    public override global::System.String ToString() =>_isInitialized ? Value.ToString() : "[UNINITIALIZED]";
+    public override global::System.String ToString() =>IsInitialized() ? Value.ToString() : "[UNINITIALIZED]";
 
         
         /// <summary>
@@ -3432,7 +3498,9 @@ using Vogen;
 #if DEBUG   
         private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
 #endif
+#if !VOGEN_NO_VALIDATION
         private readonly global::System.Boolean _isInitialized;
+#endif
         private readonly System.Boolean _value;
         
 /// <summary>
@@ -3456,7 +3524,9 @@ public System.Boolean Value
 #if DEBUG
             _stackTrace = new global::System.Diagnostics.StackTrace();
 #endif
+#if !VOGEN_NO_VALIDATION
             _isInitialized = false;
+#endif
             _value = default;
         }
 
@@ -3464,7 +3534,9 @@ public System.Boolean Value
         private @bool(System.Boolean value)
         {
             _value = value;
+#if !VOGEN_NO_VALIDATION
             _isInitialized = true;
+#endif
         }
 
         /// <summary>
@@ -3525,7 +3597,12 @@ public static ValueObjectOrError<@bool> TryFrom(System.Boolean value)
     return new ValueObjectOrError<@bool>(new @bool(value));
 }
 
-        public bool IsInitialized() => _isInitialized;
+[global::System.Runtime.CompilerServices.MethodImpl(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
+#if VOGEN_NO_VALIDATION
+  public bool IsInitialized() => true;
+#else
+  public bool IsInitialized() => _isInitialized;
+#endif
 
           
 
@@ -3551,7 +3628,7 @@ public static ValueObjectOrError<@bool> TryFrom(System.Boolean value)
 
               // It's possible to create uninitialized instances via converters such as EfCore (HasDefaultValue), which call Equals.
               // We treat anything uninitialized as not equal to anything, even other uninitialized instances of this type.
-              if(!_isInitialized || !other._isInitialized) return false;
+              if(!IsInitialized() || !other.IsInitialized()) return false;
 
               if (ReferenceEquals(this, other))
               {
@@ -3679,7 +3756,7 @@ public static ValueObjectOrError<@bool> TryFrom(System.Boolean value)
 
         private void EnsureInitialized()
         {
-            if (!_isInitialized)
+            if (!IsInitialized())
             {
 #if DEBUG
                 global::System.String message = "Use of uninitialized Value Object at: " + _stackTrace ?? "";
@@ -3695,7 +3772,7 @@ public static ValueObjectOrError<@bool> TryFrom(System.Boolean value)
         
 
         /// <summary>Returns the string representation of the underlying <see cref="System.Boolean" />.</summary>
-    public override global::System.String ToString() =>_isInitialized ? Value.ToString() : "[UNINITIALIZED]";
+    public override global::System.String ToString() =>IsInitialized() ? Value.ToString() : "[UNINITIALIZED]";
 
         
         /// <summary>

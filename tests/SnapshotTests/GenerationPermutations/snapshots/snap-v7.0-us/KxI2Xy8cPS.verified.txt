@@ -82,7 +82,9 @@ namespace Whatever
 #if DEBUG   
         private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
 #endif
+#if !VOGEN_NO_VALIDATION
         private readonly global::System.Boolean _isInitialized;
+#endif
         private readonly System.DateTimeOffset _value;
         
 /// <summary>
@@ -106,7 +108,9 @@ public System.DateTimeOffset Value
 #if DEBUG
             _stackTrace = new global::System.Diagnostics.StackTrace();
 #endif
+#if !VOGEN_NO_VALIDATION
             _isInitialized = false;
+#endif
             _value = default;
         }
 
@@ -114,7 +118,9 @@ public System.DateTimeOffset Value
         private internal_partial_classConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterSystem_DateTimeOffset(System.DateTimeOffset value)
         {
             _value = value;
+#if !VOGEN_NO_VALIDATION
             _isInitialized = true;
+#endif
         }
 
         /// <summary>
@@ -175,7 +181,12 @@ public static ValueObjectOrError<internal_partial_classConversions_NewtonsoftJso
     return new ValueObjectOrError<internal_partial_classConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterSystem_DateTimeOffset>(new internal_partial_classConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterSystem_DateTimeOffset(value));
 }
 
-        public bool IsInitialized() => _isInitialized;
+[global::System.Runtime.CompilerServices.MethodImpl(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
+#if VOGEN_NO_VALIDATION
+  public bool IsInitialized() => true;
+#else
+  public bool IsInitialized() => _isInitialized;
+#endif
 
           
 
@@ -201,7 +212,7 @@ public static ValueObjectOrError<internal_partial_classConversions_NewtonsoftJso
 
               // It's possible to create uninitialized instances via converters such as EfCore (HasDefaultValue), which call Equals.
               // We treat anything uninitialized as not equal to anything, even other uninitialized instances of this type.
-              if(!_isInitialized || !other._isInitialized) return false;
+              if(!IsInitialized() || !other.IsInitialized()) return false;
 
               if (ReferenceEquals(this, other))
               {
@@ -453,7 +464,7 @@ public static ValueObjectOrError<internal_partial_classConversions_NewtonsoftJso
 
         private void EnsureInitialized()
         {
-            if (!_isInitialized)
+            if (!IsInitialized())
             {
 #if DEBUG
                 global::System.String message = "Use of uninitialized Value Object at: " + _stackTrace ?? "";
@@ -469,7 +480,7 @@ public static ValueObjectOrError<internal_partial_classConversions_NewtonsoftJso
         
 
         /// <summary>Returns the string representation of the underlying <see cref="System.DateTimeOffset" />.</summary>
-    public override global::System.String ToString() =>_isInitialized ? Value.ToString() : "[UNINITIALIZED]";
+    public override global::System.String ToString() =>IsInitialized() ? Value.ToString() : "[UNINITIALIZED]";
 
         
         /// <summary>
@@ -556,7 +567,7 @@ public static ValueObjectOrError<internal_partial_classConversions_NewtonsoftJso
        {
            public EfCoreValueComparer() : base(
                (left, right) => DoCompare(left, right), 
-                instance => instance._isInitialized ? instance._value.GetHashCode() : 0) 
+                instance => instance.IsInitialized() ? instance._value.GetHashCode() : 0) 
            { 
            }
                
@@ -572,9 +583,9 @@ public static ValueObjectOrError<internal_partial_classConversions_NewtonsoftJso
                if (ReferenceEquals(left, right)) return true;
                
                // if neither are initialized, then they're equal
-                if(!left._isInitialized && !right._isInitialized) return true;
+                if(!left.IsInitialized() && !right.IsInitialized()) return true;
                
-                return left._isInitialized && right._isInitialized && left._value.Equals(right._value);            
+                return left.IsInitialized() && right.IsInitialized() && left._value.Equals(right._value);            
            }                
 }
 

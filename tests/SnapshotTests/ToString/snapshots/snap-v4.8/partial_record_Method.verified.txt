@@ -82,7 +82,9 @@ namespace Whatever
 #if DEBUG   
         private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
 #endif
+#if !VOGEN_NO_VALIDATION
         private readonly global::System.Boolean _isInitialized;
+#endif
         private readonly System.Int32 _value;
         
         /// <summary>
@@ -117,7 +119,9 @@ namespace Whatever
 #if DEBUG
             _stackTrace = new global::System.Diagnostics.StackTrace();
 #endif
+#if !VOGEN_NO_VALIDATION
             _isInitialized = false;
+#endif
             _value = default;
         }
 
@@ -125,7 +129,9 @@ namespace Whatever
         private partial_record_Method(System.Int32 value)
         {
             _value = value;
+#if !VOGEN_NO_VALIDATION
             _isInitialized = true;
+#endif
         }
 
         /// <summary>
@@ -186,7 +192,12 @@ public static ValueObjectOrError<partial_record_Method> TryFrom(System.Int32 val
     return new ValueObjectOrError<partial_record_Method>(new partial_record_Method(value));
 }
 
-        public bool IsInitialized() => _isInitialized;
+[global::System.Runtime.CompilerServices.MethodImpl(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
+#if VOGEN_NO_VALIDATION
+  public bool IsInitialized() => true;
+#else
+  public bool IsInitialized() => _isInitialized;
+#endif
 
   
         // only called internally when something has been deserialized into
@@ -211,7 +222,7 @@ public static ValueObjectOrError<partial_record_Method> TryFrom(System.Int32 val
 
               // It's possible to create uninitialized instances via converters such as EfCore (HasDefaultValue), which call Equals.
               // We treat anything uninitialized as not equal to anything, even other uninitialized instances of this type.
-              if(!_isInitialized || !other._isInitialized) return false;
+              if(!IsInitialized() || !other.IsInitialized()) return false;
 
               if (ReferenceEquals(this, other))
               {
@@ -356,7 +367,7 @@ public static ValueObjectOrError<partial_record_Method> TryFrom(System.Int32 val
 
         private void EnsureInitialized()
         {
-            if (!_isInitialized)
+            if (!IsInitialized())
             {
 #if DEBUG
                 global::System.String message = "Use of uninitialized Value Object at: " + _stackTrace ?? "";
