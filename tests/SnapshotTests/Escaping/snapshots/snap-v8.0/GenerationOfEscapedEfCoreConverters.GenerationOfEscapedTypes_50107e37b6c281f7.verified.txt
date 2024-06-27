@@ -201,7 +201,9 @@ namespace @class
         private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
 #endif
 
+#if !VOGEN_NO_VALIDATION
         private readonly global::System.Boolean _isInitialized;
+#endif
         
         private readonly @class.@record.@struct.@float.@event _value;
 
@@ -227,7 +229,9 @@ namespace @class
             _stackTrace = new global::System.Diagnostics.StackTrace();
 #endif
 
+#if !VOGEN_NO_VALIDATION
             _isInitialized = false;
+#endif
             _value = default;
         }
 
@@ -235,7 +239,9 @@ namespace @class
         private escapedTestspublic_readonly_partial_structConversions_NewtonsoftJsonrecord__struct__float__event(@class.@record.@struct.@float.@event value) 
         {
             _value = value;
+#if !VOGEN_NO_VALIDATION
             _isInitialized = true;
+#endif
         }
 
         /// <summary>
@@ -294,7 +300,12 @@ public static ValueObjectOrError<escapedTestspublic_readonly_partial_structConve
     return new ValueObjectOrError<escapedTestspublic_readonly_partial_structConversions_NewtonsoftJsonrecord__struct__float__event>(new escapedTestspublic_readonly_partial_structConversions_NewtonsoftJsonrecord__struct__float__event(value));
 }
 
-        public bool IsInitialized() => _isInitialized;
+[global::System.Runtime.CompilerServices.MethodImpl(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
+#if VOGEN_NO_VALIDATION
+  public readonly bool IsInitialized() => true;
+#else
+  public readonly bool IsInitialized() => _isInitialized;
+#endif
 
         
 
@@ -315,7 +326,7 @@ public static ValueObjectOrError<escapedTestspublic_readonly_partial_structConve
           {
             // It's possible to create uninitialized instances via converters such as EfCore (HasDefaultValue), which call Equals.
             // We treat anything uninitialized as not equal to anything, even other uninitialized instances of this type.
-            if(!_isInitialized || !other._isInitialized) return false;
+            if(!IsInitialized() || !other.IsInitialized()) return false;
 
             return global::System.Collections.Generic.EqualityComparer<@class.@record.@struct.@float.@event>.Default.Equals(Value, other.Value);
           }
@@ -355,11 +366,11 @@ public static ValueObjectOrError<escapedTestspublic_readonly_partial_structConve
           }
 
         /// <summary>Returns the string representation of the underlying <see cref="@class.@record.@struct.@float.@event" />.</summary>
-    public readonly override global::System.String ToString() =>_isInitialized ? Value.ToString() : "[UNINITIALIZED]";
+    public readonly override global::System.String ToString() =>IsInitialized() ? Value.ToString() : "[UNINITIALIZED]";
 
         private readonly void EnsureInitialized()
         {
-            if (!_isInitialized)
+            if (!IsInitialized())
             {
 #if DEBUG
                 global::System.String message = "Use of uninitialized Value Object at: " + _stackTrace ?? "";
@@ -410,9 +421,9 @@ public static ValueObjectOrError<escapedTestspublic_readonly_partial_structConve
                     _t = t;
                 }
 
-                public global::System.Boolean IsInitialized => _t._isInitialized;
+                public global::System.Boolean IsInitialized => _t.IsInitialized();
                 public global::System.String UnderlyingType => "@class.@record.@struct.@float.@event";
-                public global::System.String Value => _t._isInitialized ? _t._value.ToString() : "[not initialized]" ;
+                public global::System.String Value => _t.IsInitialized() ? _t._value.ToString() : "[not initialized]" ;
 
                 #if DEBUG
                     public global::System.String CreatedWith => _t._stackTrace?.ToString() ?? "the From method";

@@ -83,7 +83,9 @@ namespace Whatever
         private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
 #endif
 
+#if !VOGEN_NO_VALIDATION
         private readonly global::System.Boolean _isInitialized;
+#endif
         
         private readonly System.Decimal _value;
 
@@ -120,7 +122,9 @@ namespace Whatever
             _stackTrace = new global::System.Diagnostics.StackTrace();
 #endif
 
+#if !VOGEN_NO_VALIDATION
             _isInitialized = false;
+#endif
             _value = default;
         }
 
@@ -128,7 +132,9 @@ namespace Whatever
         private _casting_public_readonly_partial_record_structImplicitExplicitdecimal(System.Decimal value) 
         {
             _value = value;
+#if !VOGEN_NO_VALIDATION
             _isInitialized = true;
+#endif
         }
 
         /// <summary>
@@ -187,7 +193,12 @@ public static ValueObjectOrError<_casting_public_readonly_partial_record_structI
     return new ValueObjectOrError<_casting_public_readonly_partial_record_structImplicitExplicitdecimal>(new _casting_public_readonly_partial_record_structImplicitExplicitdecimal(value));
 }
 
-        public bool IsInitialized() => _isInitialized;
+[global::System.Runtime.CompilerServices.MethodImpl(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
+#if VOGEN_NO_VALIDATION
+  public readonly bool IsInitialized() => true;
+#else
+  public readonly bool IsInitialized() => _isInitialized;
+#endif
 
         
         public static explicit operator System.Decimal(_casting_public_readonly_partial_record_structImplicitExplicitdecimal value) => value.Value;
@@ -209,7 +220,7 @@ public static ValueObjectOrError<_casting_public_readonly_partial_record_structI
           {
             // It's possible to create uninitialized instances via converters such as EfCore (HasDefaultValue), which call Equals.
             // We treat anything uninitialized as not equal to anything, even other uninitialized instances of this type.
-            if(!_isInitialized || !other._isInitialized) return false;
+            if(!IsInitialized() || !other.IsInitialized()) return false;
 
             return global::System.Collections.Generic.EqualityComparer<System.Decimal>.Default.Equals(Value, other.Value);
           }
@@ -340,7 +351,7 @@ public static ValueObjectOrError<_casting_public_readonly_partial_record_structI
 
         private readonly void EnsureInitialized()
         {
-            if (!_isInitialized)
+            if (!IsInitialized())
             {
 #if DEBUG
                 global::System.String message = "Use of uninitialized Value Object at: " + _stackTrace ?? "";
@@ -354,7 +365,7 @@ public static ValueObjectOrError<_casting_public_readonly_partial_record_structI
 
         // record enumerates fields - we just want our Value and to throw if it's not initialized.
         /// <summary>Returns the string representation of the underlying <see cref="System.Decimal" />.</summary>
-    public readonly override global::System.String ToString() =>_isInitialized ? Value.ToString() : "[UNINITIALIZED]";
+    public readonly override global::System.String ToString() =>IsInitialized() ? Value.ToString() : "[UNINITIALIZED]";
 
         
  
@@ -451,9 +462,9 @@ public static ValueObjectOrError<_casting_public_readonly_partial_record_structI
                     _t = t;
                 }
 
-                public global::System.Boolean IsInitialized => _t._isInitialized;
+                public global::System.Boolean IsInitialized => _t.IsInitialized();
                 public global::System.String UnderlyingType => "System.Decimal";
-                public global::System.String Value => _t._isInitialized ? _t._value.ToString() : "[not initialized]" ;
+                public global::System.String Value => _t.IsInitialized() ? _t._value.ToString() : "[not initialized]" ;
 
                 #if DEBUG
                     public global::System.String CreatedWith => _t._stackTrace?.ToString() ?? "the From method";

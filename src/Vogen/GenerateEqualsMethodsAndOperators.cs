@@ -23,7 +23,7 @@ $$"""
 
               // It's possible to create uninitialized instances via converters such as EfCore (HasDefaultValue), which call Equals.
               // We treat anything uninitialized as not equal to anything, even other uninitialized instances of this type.
-              if(!_isInitialized || !other._isInitialized) return false;
+              if(!IsInitialized() || !other.IsInitialized()) return false;
 
               if (ReferenceEquals(this, other))
               {
@@ -69,7 +69,7 @@ $$"""
             {
               // It's possible to create uninitialized instances via converters such as EfCore (HasDefaultValue), which call Equals.
               // We treat anything uninitialized as not equal to anything, even other uninitialized instances of this type.
-              if(!_isInitialized || !other._isInitialized) return false;
+              if(!IsInitialized() || !other.IsInitialized()) return false;
 
               return {{$"global::System.Collections.Generic.EqualityComparer<{item.UnderlyingTypeFullName}>.Default.Equals(Value, other.Value)"}};
             }

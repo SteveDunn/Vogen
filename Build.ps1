@@ -99,11 +99,17 @@ exec { & dotnet clean Consumers.sln -c Release --verbosity $verbosity}
 exec { & dotnet restore Consumers.sln -p UseLocallyBuiltPackage=true --force --no-cache --packages $localPackages --configfile ./nuget.private.config --verbosity $verbosity }
 
 exec { & dotnet build Consumers.sln -c Debug --no-restore --verbosity $verbosity }
+exec { & dotnet build Consumers.sln -c Release --no-restore --verbosity $verbosity }
 
-WriteStage("Running end to end tests with the local version of the NuGet package:" +$version)
-
+WriteStage("Running consumer tests in debug with the local version of the NuGet package:" +$version)
 exec { & dotnet test ./tests/ConsumerTests -c Debug --no-build --no-restore --verbosity $verbosity }
 
+WriteStage("Re-running tests in release with the local version of the NuGet package:" +$version)
+exec { & dotnet test ./tests/ConsumerTests -c Release --no-build --no-restore --verbosity $verbosity }
+
+WriteStage("Re-running tests in release with no validation with the local version of the NuGet package:" +$version)
+exec { & dotnet build Consumers.sln -c Release -p:DefineConstants="VOGEN_NO_VALIDATION" --no-restore --verbosity $verbosity }
+exec { & dotnet test ./tests/ConsumerTests -c Release --no-build --no-restore --verbosity $verbosity }
 
 WriteStage("Building samples using the local version of the NuGet package...")
 

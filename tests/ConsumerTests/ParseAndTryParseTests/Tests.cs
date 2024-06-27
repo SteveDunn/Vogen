@@ -90,26 +90,29 @@ public class Tests
         ivo.Value.Should().Be(12);
     }
 
-    [Fact]
+    [SkippableIfBuiltWithNoValidationFlagFact]
     public void Bools()
     {
         StructBoolVo.Parse("True").Should().Be(StructBoolVo.From(true));
+        
         {
             StructBoolVo.TryParse("True", out var ivo).Should().BeTrue();
             ivo.Value.Should().Be(true);
         }
+
         {
             StructBoolVo.TryParse("TrueDat", out var ivo).Should().BeFalse();
             Func<bool> a = () => ivo.Value;
-            a.Should().ThrowExactly<ValueObjectValidationException>().WithMessage("Use of uninitialized Value Object at:*");
+            a.Should().ThrowExactly<ValueObjectValidationException>().WithMessage("Use of uninitialized Value Object*");
         }
-
-
+        
         ClassBoolVo.Parse("True").Should().Be(ClassBoolVo.From(true));
+        
         {
             ClassBoolVo.TryParse("True", out var ivo).Should().BeTrue();
             ivo.Value.Should().Be(true);
         }
+        
         {
             ClassBoolVo.TryParse("TrueDat", out var ivo).Should().BeFalse();
             Func<bool> a = () => ivo.Value;
@@ -118,17 +121,21 @@ public class Tests
         }
 
         RecordClassBoolVo.Parse("True").Should().Be(RecordClassBoolVo.From(true));
+        
         {
             RecordClassBoolVo.TryParse("True", out var ivo).Should().BeTrue();
             ivo.Value.Should().Be(true);
         }
+        
         {
             RecordClassBoolVo.TryParse("TrueDat", out var ivo).Should().BeFalse();
             Func<bool> a = () => ivo.Value;
             a.Should().NotThrow<ValueObjectValidationException>();
             ivo.Should().Be(null);
         }
+        
         RecordStructBoolVo.Parse("True").Should().Be(RecordStructBoolVo.From(true));
+        
         {
             RecordStructBoolVo.TryParse("True", out var ivo).Should().BeTrue();
             ivo.Value.Should().Be(true);
@@ -136,7 +143,7 @@ public class Tests
         {
             RecordStructBoolVo.TryParse("TrueDat", out var ivo).Should().BeFalse();
             Func<bool> a = () => ivo.Value;
-            a.Should().ThrowExactly<ValueObjectValidationException>().WithMessage("Use of uninitialized Value Object at:*");
+            a.Should().ThrowExactly<ValueObjectValidationException>().WithMessage("Use of uninitialized Value Object*");
         }
     }
 
@@ -156,7 +163,7 @@ public class Tests
         ivo.Value.Should().Be(123.45);
     }
 
-    [Fact]
+    [SkippableIfBuiltWithNoValidationFlagFact]
     public void When_parsing_fails_for_structs()
     {
         {
@@ -170,11 +177,11 @@ public class Tests
 
             Action a = () => _ = ivo.Value;
 
-            a.Should().ThrowExactly<ValueObjectValidationException>().WithMessage("Use of uninitialized Value Object at:*");
+            a.Should().ThrowExactly<ValueObjectValidationException>().WithMessage("Use of uninitialized Value Object*");
         }
     }
 
-    [Fact]
+    [SkippableIfBuiltWithNoValidationFlagFact]
     public void When_parsing_fails_for_record_structs()
     {
         {
@@ -188,7 +195,7 @@ public class Tests
 
             Action a = () => _ = ivo.Value;
 
-            a.Should().ThrowExactly<ValueObjectValidationException>().WithMessage("Use of uninitialized Value Object at:*");
+            a.Should().ThrowExactly<ValueObjectValidationException>().WithMessage("Use of uninitialized Value Object*");
         }
     }
 
@@ -232,16 +239,16 @@ public class Tests
         a.Should().ThrowExactly<ValueObjectValidationException>().WithMessage("must be less than 100");
     }
 
-    [Fact]
+    [SkippableIfBuiltWithNoValidationFlagFact]
     public void When_try_parse_succeeds_but_fails_validation_a_default_instance_exists_and_try_parse()
     {
         StructIntVo.TryParse("100", out var sut).Should().BeFalse();
         
         Func<int> f = () => sut.Value;
-        f.Should().ThrowExactly<ValueObjectValidationException>().WithMessage("Use of uninitialized Value Object at:*");
+        f.Should().ThrowExactly<ValueObjectValidationException>().WithMessage("Use of uninitialized Value Object*");
     }
 
-    [Fact]
+    [SkippableIfBuiltWithNoValidationFlagFact]
     public void Try_parse_calls_the_provided_normalize_method()
     {
         {
@@ -249,12 +256,13 @@ public class Tests
             StructIntVoWithNormalization.TryParse("120", out var sut).Should().BeTrue();
             sut.Value.Should().Be(60);
         }
+
         {
             // the normalization halves the number, but it's so big to start with that it fails validation.
             StructIntVoWithNormalization.TryParse("200", out var sut).Should().BeFalse();
 
             Func<int> f = () => sut.Value;
-            f.Should().ThrowExactly<ValueObjectValidationException>().WithMessage("Use of uninitialized Value Object at:*");
+            f.Should().ThrowExactly<ValueObjectValidationException>().WithMessage("Use of uninitialized Value Object*");
         }
     }
 

@@ -23,7 +23,9 @@ using Vogen;
     {{
 {DebugGeneration.GenerateStackTraceFieldIfNeeded(item)}
 
+#if !VOGEN_NO_VALIDATION
         private readonly global::System.Boolean _isInitialized;
+#endif
         
         private readonly {itemUnderlyingType} _value;
 
@@ -60,7 +62,9 @@ using Vogen;
             {DebugGeneration.SetStackTraceIfNeeded(item)}
 #endif
 
+#if !VOGEN_NO_VALIDATION
             _isInitialized = false;
+#endif
             _value = default;
         }}
 
@@ -68,7 +72,9 @@ using Vogen;
         private {structName}({itemUnderlyingType} value) 
         {{
             _value = value;
+#if !VOGEN_NO_VALIDATION
             _isInitialized = true;
+#endif
         }}
 
         /// <summary>
@@ -89,7 +95,7 @@ using Vogen;
 
         {GenerateCodeForTryFrom.GenerateForAStruct(item, structName, itemUnderlyingType)}
 
-{(item.Config.IsInitializedMethodGeneration == IsInitializedMethodGeneration.Generate ? Util.GenerateIsInitializedMethod() : string.Empty)}
+{Util.GenerateIsInitializedMethod(true, item)}
 
 {GenerateStringComparers.GenerateIfNeeded(item, tds)}        
 {GenerateCastingOperators.GenerateImplementations(item,tds)}{Util.GenerateGuidFactoryMethodIfNeeded(item, tds)}
@@ -114,7 +120,7 @@ using Vogen;
 
         private readonly void EnsureInitialized()
         {{
-            if (!_isInitialized)
+            if (!IsInitialized())
             {{
 #if DEBUG
                 {DebugGeneration.GenerateMessageForUninitializedValueObject(item)}

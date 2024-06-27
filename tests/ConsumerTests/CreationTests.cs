@@ -1,3 +1,5 @@
+using System.Diagnostics;
+using System.Runtime.InteropServices;
 using @double;
 using @bool.@byte.@short.@float.@object;
 using Vogen.Tests.Types;
@@ -72,7 +74,7 @@ namespace ConsumerTests
             action.Should().Throw<ValueObjectValidationException>().WithMessage("must be greater than zero");
         }
 
-        [Fact]
+        [SkippableIfBuiltWithNoValidationFlagFact]
         public void Default_vo_throws_at_runtime()
         {
             CustomerId[] ints = new CustomerId[10];
@@ -126,5 +128,42 @@ namespace ConsumerTests
             c1.Should().Be(c2);
             (c1 == c2).Should().BeTrue();
         }
+
+        public class Using_uninitialzed_value_objects
+        {
+
+            [SkippableIfNotDebugFact]
+            public void Produces_stack_trace_in_debug()
+            {
+#pragma warning disable VOG010
+                MyIntVo v = new();
+#pragma warning restore VOG010
+                Action a = () => _ = v.Value;
+                a.Should().ThrowExactly<ValueObjectValidationException>().WithMessage("Use of uninitialized Value Object at*");
+            }
+
+            [SkippableIfNotReleaseFact]
+            public void Does_not_produce_stack_trace_in_release()
+            {
+#pragma warning disable VOG010
+                MyIntVo v = new();
+#pragma warning restore VOG010
+                Action a = () => _ = v.Value;
+                a.Should().ThrowExactly<ValueObjectValidationException>().WithMessage("Use of uninitialized Value Object.");
+            }
+
+            [SkippableIfNotBuiltWithNoValidationFlagFact]
+            public void Does_not_throw_error_when_no_validation_flag_is_set_in_build()
+            {
+#pragma warning disable VOG010
+                MyIntVo v = new();
+#pragma warning restore VOG010
+                int vv = 123;
+                Action a = () => vv = v.Value;
+                a.Should().NotThrow();
+                vv.Should().Be(0);
+            }
+        }
     }
 }
+
