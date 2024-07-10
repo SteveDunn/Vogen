@@ -22,6 +22,8 @@ represent domain concepts (CustomerId, AccountBalance etc.)
 
 It adds new C# compilation errors to help stop the creation of invalid value objects. 
 
+[Documentation](https://stevedunn.github.io/Vogen/vogen.html)
+
 ## Overview
 
 The source generator generates strongly typed **domain concepts**. You provide this:
@@ -389,7 +391,7 @@ See the examples folder for more information.
 
 ### Is there a Wiki for this project?
 
-Yes, it's here: https://github.com/SteveDunn/Vogen/wiki
+Yes, it's here: https://stevedunn.github.io/Vogen/vogen.html
 
 ### What versions of .NET are supported?
 
