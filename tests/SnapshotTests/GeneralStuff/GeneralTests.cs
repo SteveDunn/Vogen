@@ -8,7 +8,6 @@ namespace SnapshotTests.GeneralStuff;
 // contrib: An ideal place to start a new feature. Write a new test for the feature here to get it working, then
 // add more tests. Move these tests if there are several of them, and it makes sense to group them.
 
-[UsesVerify]
 public class GeneralTests
 {
     [Fact]

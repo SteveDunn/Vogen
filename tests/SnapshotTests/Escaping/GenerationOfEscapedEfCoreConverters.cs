@@ -7,7 +7,6 @@ using Vogen;
 
 namespace SnapshotTests.Escaping;
 
-[UsesVerify]
 public class GenerationOfEscapedEfCoreConverters
 {
     public class Types : IEnumerable<object[]>

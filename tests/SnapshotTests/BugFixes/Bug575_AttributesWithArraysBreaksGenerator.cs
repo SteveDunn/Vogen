@@ -5,7 +5,6 @@ using Vogen;
 namespace SnapshotTests.BugFixes;
 
 // See https://github.com/SteveDunn/Vogen/issues/575
-[UsesVerify]
 public class Bug575_AttributesWithArraysBreaksGenerator
 {
     // Previously, any attribute found with an array as a parameter caused an

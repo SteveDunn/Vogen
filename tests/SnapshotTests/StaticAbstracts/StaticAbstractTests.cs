@@ -7,11 +7,9 @@ using Vogen;
 
 namespace SnapshotTests.StaticAbstracts;
 
-[UsesVerify]
 public class StaticAbstractTests
 {
-    [UsesVerify]
-    public class Generates_nothing
+        public class Generates_nothing
     {
         [Fact]
         public async Task when_run_on_less_than_csharp_11_even_when_specifying_it_should_generate()

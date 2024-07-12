@@ -9,7 +9,6 @@ namespace SnapshotTests.SystemTextJsonGeneration;
 /// <summary>
 /// These tests verify that types containing <see cref="Customizations.TreatNumberAsStringInSystemTextJson"/> are written correctly.
 /// </summary>
-[UsesVerify] 
 public class CustomizeNumbersAsStringsInSystemTextJson
 {
     public class Types : IEnumerable<object[]>

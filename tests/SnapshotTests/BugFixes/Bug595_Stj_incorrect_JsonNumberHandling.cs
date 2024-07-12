@@ -5,7 +5,6 @@ using Vogen;
 namespace SnapshotTests.BugFixes;
 
 // See https://github.com/SteveDunn/Vogen/issues/595
-[UsesVerify]
 public class Bug595_AttributesWithArraysBreaksGenerator
 {
     [Fact]

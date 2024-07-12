@@ -7,7 +7,6 @@ using Vogen;
 
 namespace SnapshotTests.ToString;
 
-[UsesVerify]
 public class ToStringGenerationTests
 {
     private class Types : IEnumerable<object[]>

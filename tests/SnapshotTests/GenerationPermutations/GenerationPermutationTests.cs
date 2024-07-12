@@ -7,7 +7,6 @@ using Xunit.Abstractions;
 
 namespace SnapshotTests.GenerationPermutations;
 
-[UsesVerify] 
 public class GenerationPermutationTests
 {
     private readonly ITestOutputHelper _logger;

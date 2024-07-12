@@ -4,7 +4,6 @@ using Vogen;
 
 namespace SnapshotTests.StringComparison;
 
-[UsesVerify]
 public class StringComparisonGenerationTests
 {
     [Fact]

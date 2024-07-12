@@ -5,7 +5,6 @@ using Vogen;
 namespace SnapshotTests.BugFixes;
 
 // See https://github.com/SteveDunn/Vogen/issues/581
-[UsesVerify]
 public class Bug581_StjDeserializer_throws_correct_exception
 {
     // The System.Text.Json converter called Guid.Parse, which in turn threw a NullReferenceException.

@@ -6,7 +6,6 @@ using Vogen;
 namespace SnapshotTests.BugFixes;
 
 // See https://github.com/SteveDunn/Vogen/issues/597
-[UsesVerify]
 public class Bug597_STJ_being_emitted_even_with_no_conversions_specified
 {
     [Fact]

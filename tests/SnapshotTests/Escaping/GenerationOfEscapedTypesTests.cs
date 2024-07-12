@@ -6,7 +6,6 @@ using Vogen;
 
 namespace SnapshotTests.Escaping;
 
-[UsesVerify]
 public class GenerationOfEscapedTypesTests
 {
     public class Types : IEnumerable<object[]>
