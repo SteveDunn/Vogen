@@ -4,7 +4,6 @@ using Vogen;
 
 namespace SnapshotTests.SystemTextJsonGeneration;
 
-[UsesVerify] 
 public class DeserializationStrictnessTests
 {
     [Fact]

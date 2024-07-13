@@ -6,7 +6,6 @@ using Vogen;
 namespace SnapshotTests.BugFixes;
 
 // See https://github.com/SteveDunn/Vogen/issues/608
-[UsesVerify]
 public class Bug608_swashbuckle_mappingTests
 {
     [Fact]

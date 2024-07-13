@@ -4,7 +4,6 @@ using Vogen;
 
 namespace SnapshotTests.Comparable;
 
-[UsesVerify]
 public class ComparisonGenerationTests
 {
     [Fact]

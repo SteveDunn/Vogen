@@ -11,8 +11,7 @@ public class PermutationsOfConversionsTests
     /// For different types (class, struct, readonly struct), generate types with different
     /// permutations of conversions to ensure that everything builds OK.
     /// </summary>
-    [UsesVerify]
-    public class ConversionPermutationTests
+        public class ConversionPermutationTests
     {
         static readonly string[] _permutations = new Permutations().Distinct().ToArray();
 

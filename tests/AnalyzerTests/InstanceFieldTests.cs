@@ -8,8 +8,7 @@ using Vogen;
 
 namespace AnalyzerTests
 {
-    [UsesVerify]
-    public class InstanceFieldTests
+        public class InstanceFieldTests
     {
         public class When_values_cannot_be_converted_to_their_underlying_types
         {

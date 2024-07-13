@@ -6,7 +6,6 @@ using Vogen;
 namespace SnapshotTests.BugFixes;
 
 // See https://github.com/SteveDunn/Vogen/issues/610
-[UsesVerify]
 public class Bug610_Inconsistent_casting
 {
     [Fact]

@@ -4,7 +4,6 @@ using Vogen;
 
 namespace SnapshotTests.Parsing;
 
-[UsesVerify]
 public class ParsingTestsForPrimitives
 {
     [Fact]

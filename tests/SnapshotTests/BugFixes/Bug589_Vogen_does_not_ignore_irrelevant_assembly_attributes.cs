@@ -6,7 +6,6 @@ using Vogen;
 namespace SnapshotTests.BugFixes;
 
 // See https://github.com/SteveDunn/Vogen/issues/589
-[UsesVerify]
 public class Bug589_Vogen_does_not_ignore_irrelevant_assembly_attributes
 {
     [Fact]

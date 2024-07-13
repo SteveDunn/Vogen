@@ -7,7 +7,6 @@ using Vogen;
 
 namespace SnapshotTests.InstanceFields;
 
-[UsesVerify] 
 public class InstanceFieldGenerationTests
 {
     [Fact]

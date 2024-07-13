@@ -5,7 +5,6 @@ using Vogen;
 
 namespace SnapshotTests.Parsing;
 
-[UsesVerify]
 public class ParsingTestsForStrings
 {
     [Fact]

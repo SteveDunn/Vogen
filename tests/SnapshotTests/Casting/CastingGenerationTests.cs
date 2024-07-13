@@ -6,7 +6,6 @@ using Vogen;
 
 namespace SnapshotTests.Casting;
 
-[UsesVerify] 
 public class CastingGenerationTests
 {
     public class Types : IEnumerable<object[]>

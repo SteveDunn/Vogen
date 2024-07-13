@@ -4,7 +4,6 @@ using Vogen;
 
 namespace SnapshotTests.Config;
 
-[UsesVerify] 
 public class GlobalConfigTests
 {
     [Fact]

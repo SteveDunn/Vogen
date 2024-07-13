@@ -5,7 +5,6 @@ using Vogen;
 
 namespace SnapshotTests;
 
-[UsesVerify]
 public class GenericAttributeTests
 {
     [SkippableFact]

@@ -9,7 +9,6 @@ using Vogen;
 
 namespace AnalyzerTests;
 
-[UsesVerify]
 public class EfCoreTests
 {
     public class Marker_class_attributes_must_reference_value_objects
