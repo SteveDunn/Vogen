@@ -10,6 +10,7 @@
         <toc-element topic="Home.md"/>
     </toc-element>
     <toc-element topic="Tutorials.topic">
+        <toc-element topic="Working-with-Guids.md"/>
         <toc-element topic="Installation.md"/>
         <toc-element topic="your-first-value-object.md"/>
         <toc-element topic="ValidationTutorial.md"/>

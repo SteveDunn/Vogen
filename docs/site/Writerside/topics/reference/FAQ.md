@@ -1,12 +1,7 @@
 # FAQ
 
-<note>
-This topic is incomplete and is currently being improved.
-</note>
-
-
 ## What tests are there
-There are unit tests for Vogen itself, and there are snapshot tests to test that the source code that is generated
+There are unit tests for Vogen itself, and snapshot tests to test that the source code that is generated
 matches what is expected.
 
 To run the unit tests for Vogen itself, you can either run them in your IDE, or via `Build.ps1`.
@@ -55,7 +50,9 @@ If you're using the generator in a .NET Framework project and using the old styl
 
 ```xml
   <ItemGroup>
-      <PackageReference Include="Vogen" Version="[LATEST_VERSION_HERE - E.G. 1.0.18]" PrivateAssets="all" />
+      <PackageReference Include="Vogen" 
+                        Version="[LATEST_VERSION_HERE - E.G. 1.0.18]" 
+                        PrivateAssets="all" />
   </ItemGroup>
 ```
 
@@ -63,8 +60,10 @@ If you're using the generator in a .NET Framework project and using the old styl
 
 ```c#
   <PropertyGroup>
-+    <LangVersion>latest</LangVersion>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+>>  <LangVersion>latest</LangVersion>
+    <Configuration Condition=" '$(Configuration)' == '' ">
+      Debug
+    </Configuration>
 ```
 
 ### Does it support C# 11 features?
@@ -94,7 +93,9 @@ Add this to your `.csproj` file:
 ```xml
 <PropertyGroup>
     <EmitCompilerGeneratedFiles>true</EmitCompilerGeneratedFiles>
-    <CompilerGeneratedFilesOutputPath>Generated</CompilerGeneratedFilesOutputPath>
+    <CompilerGeneratedFilesOutputPath>
+      Generated
+    </CompilerGeneratedFilesOutputPath>
 </PropertyGroup>
 
 <ItemGroup>
@@ -131,10 +132,9 @@ One of the opinions in Vogen is that any invalid data given to a Value Object th
 You could also use `default(CustomerId)` to evade validation.  In Vogen, there are analyzers that catch this and fail the build, e.g.:
 
 ```c#
-// error VOG009: Type 'CustomerId' cannot be constructed with default as it is prohibited.
+// error VOG009: Type 'CustomerId' cannot be constructed 
+// with default as it is prohibited.
 CustomerId c = default;
-
-// error VOG009: Type 'CustomerId' cannot be constructed with default as it is prohibited.
 var c2 = default(CustomerId);
 ```
 
@@ -160,7 +160,8 @@ but the TL;DR is:
 ```c#
         builder.Entity<SomeEntity>(b =>
         {
-            b.Property(e => e.Name).HasConversion(new Name.EfCoreValueConverter());
+            b.Property(e => e.Name)
+             .HasConversion(new Name.EfCoreValueConverter());
         });
 ```
 
@@ -174,11 +175,11 @@ You could, but to ensure consistency throughout your domain, you'd have to **val
 
 Concretely: *"When 5 things need to change, Shalloway will find at most, 4 of these things."*
 
-### If my VO is a `struct`, can I prohibit the use of `CustomerId customerId = default(CustomerId);`?
+### If my VO is a `struct`, can I prohibit using `CustomerId customerId = default(CustomerId);`?
 
 **Yes**. The analyzer generates a compilation error.
 
-### If my VO is a `struct`, can I prohibit the use of `CustomerId customerId = new(CustomerId);`?
+### If my VO is a `struct`, can I prohibit using `CustomerId customerId = new(CustomerId);`?
 
 **Yes**. The analyzer generates a compilation error.
 
@@ -192,17 +193,19 @@ If you add further constructors, then you will get a compilation error from the 
 [ValueObject(typeof(int))]
 public partial struct CustomerId {
     // Vogen already generates this as a private constructor:
-    // error CS0111: Type 'CustomerId' already defines a member called 'CustomerId' with the same parameter type
+    // error CS0111: Type 'CustomerId' already defines a member called
+    // 'CustomerId' with the same parameter type
     public CustomerId() { }
 
-    // error VOG008: Cannot have user defined constructors, please use the From method for creation.
+    // error VOG008: Cannot have user defined constructors, please use
+    // the From method for creation.
     public CustomerId(int value) { }
 }
 ```
 
 ### If my VO is a struct, can I have my own fields?
 
-You *could*, but you'd get compiler warning [CS0282-There is no defined ordering between fields in multiple declarations of partial class or struct 'type'](https://docs.microsoft.com/en-us/dotnet/csharp/misc/cs0282)
+You _could_, but you'd get compiler warning [CS0282-There is no defined ordering between fields in multiple declarations of partial class or struct 'type'](https://docs.microsoft.com/en-us/dotnet/csharp/misc/cs0282)
 
 ### Why are there, by default, no implicit conversions to and from the primitive types that are being wrapped?
 
@@ -243,7 +246,9 @@ Also, bear in mind that ease of use can cause confusion. Let's say there's a typ
 ```c#
 [ValueObject(typeof(int))]
 public readonly partial struct Age {
-    public static Validation Validate(int n) => n >= 0 ? Validation.Ok : Validation.Invalid("Must be zero or more");
+    public static Validation Validate(int n) => n >= 0 
+      ? Validation.Ok 
+      : Validation.Invalid("Must be zero or more");
 }
 ```
 
@@ -262,23 +267,34 @@ The implicit cast in `var age10 = age20 / 2` results in an `int` and not an `Age
 
 > _If I'm using a library that uses Vogen, I'd like to easily tell if the type is just a primitive wrapper or not by the fact that it implements an interface, such as `IValidated<T>`_
 
-Just like primitives have no interfaces, there's no need to have interfaces on Value Objects. The receiver that takes a `CustomerId` knows that it's a Value Object.  If it were instead to take an `IValidated<int>`, then it wouldn't have any more information; you'd still have to know to call `Value` to get the value.
+Just like primitives have no interfaces, there's usually no need to have interfaces on value objects. 
+The receiver that takes a `CustomerId` knows that it's a value object. 
+If it were instead to take an `IValidated<int>`, then it wouldn't have any more information; 
+you'd still have to know to call `Value` to get the value.
 
 It might also relax type-safety. Without the interface, we have signatures such as this:
 
 ```c#
-public void SomSomething(CustomerId customerId, SupplierId supplierId, ProductId productId);
+public void SomSomething(
+  CustomerId customerId, 
+  SupplierId supplierId, 
+  ProductId productId);
 ```
 
 ... but with the interface, we _could_ have signatures such as this:
 
 ```c#
-public void SomSomething(IValidate<int> customerId, IValidated<int> supplierId, IValidated<int> productId);
+public void SomSomething(
+  IValidate<int> customerId, 
+  IValidated<int> supplierId, 
+  IValidated<int> productId);
 ```
 
 So, callers could mess things up by calling `DoSomething(productId, supplierId, customerId)`)
 
 There would also be no need to know if it's validated, as, if it's in your domain, **it's valid** (there's no way to manually create invalid instances).  And with that said, there would also be no point in exposing the 'Validate' method via the interface because validation is done at creation.
+
+Having said that, outside of the domain, it can be useful to have an interface. The [Guids tutorial](how-to-guides.topic) describes how to generate the interface and when it's useful to do so. 
 
 ### Can I represent special values
 
@@ -297,8 +313,9 @@ public readonly partial struct Age
     public static readonly Age Unspecified = new(-1);
     public static readonly Age Invalid = new(-2);
     
-    private static Validation Validate(int value) =>
-        value > 0 ? Validation.Ok : Validation.Invalid("Must be greater than zero.");
+    private static Validation Validate(int value) => value > 0 
+      ? Validation.Ok 
+      : Validation.Invalid("Must be greater than zero.");
 }
 ```
 
@@ -316,7 +333,9 @@ public class Person {
 
 ```c#
 public void CanEnter(Age age) {
-    if(age == Age.Unspecified || age == Age.Invalid) throw CannotEnterException("Name not specified or is invalid")
+    if(age == Age.Unspecified || age == Age.Invalid) 
+      throw CannotEnterException("Name not specified or is invalid")
+    
     return age < 17;
 }
 ```
@@ -334,9 +353,8 @@ See [the how-to page](NormalizationHowTo.md) for more information.
 ### Can I create custom Value Object attributes with my own defaults?
 
 No, it used to be possible, but it impacts the performance of Vogen.
-A much better way is
+A much better way is 
 to use [type alias feature](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/using-directive#using-alias).
-```
 
 NOTE: *custom attributes must extend a ValueObjectAttribute class; you cannot layer custom attributes on top of each other*
 
@@ -356,7 +374,9 @@ One of the responses in the proposal says that the language team decided that va
 
 You might see this:
 ```
-.\Build.ps1 : File C:\Build.ps1 cannot be loaded. The file C:\Build.ps1 is not digitally signed. You cannot run this script on the current system. 
+.\Build.ps1 : File C:\Build.ps1 cannot be loaded. The file 
+  C:\Build.ps1 is not digitally signed. You cannot run this script 
+  on the current system. 
 ```
 
 To get around this, run `Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass`
@@ -402,10 +422,10 @@ For other types, generic type conversion and a serializer are applied. If you ar
 conversion and serialization, then specify `None` for converters and decorate your type with attributes for your own types, e.g.
 
 ```c#
-[ValueObject(typeof(SpecialPrimitive), conversions: Conversions.None)]
-[System.Text.Json.Serialization.JsonConverter(typeof(SpecialPrimitiveJsonConverter))]
-[System.ComponentModel.TypeConverter(typeof(SpecialPrimitiveTypeConverter))]
-public partial struct SpecialMeasurement { }
+[ValueObject<SpecialPrimitive>(conversions: Conversions.None)]
+[JsonConverter(typeof(SpecialPrimitiveJsonConverter))]
+[TypeConverter(typeof(SpecialPrimitiveTypeConverter))]
+public partial struct SpecialMeasurement;
 ```
 
 ### I've made a change that means the 'Snapshot' tests are expectedly failing in the build—what do I do?
@@ -415,16 +435,18 @@ to compare the output of the source generators to the expected output stored on 
 
 If your feature/fix changes the output of the source generators, then running the snapshot tests will bring up your
 configured code diff tool (for example, Beyond Compare), to show the differences. You can accept the differences in that
-tool, or, if there are a lot of differences (and they're all expected!), you have various options depending on your
+tool, or, if there are lots of differences (and they're all expected!), you have various options depending on your
 platform and tooling. Those are [described here](https://github.com/VerifyTests/Verify/blob/main/docs/clipboard.md).
 
-**NOTE: If the change to the source generators expectedly changes the majority of the snapshot tests, then you can tell the
+**NOTE: If the change to the source generators expectedly changes most of the snapshot output files, then you can tell the
 snapshot runner to overwrite the expected files with the actual files that are generated.**
 
-To do this, run `.\Build.ps1 -v "Minimal" -resetSnapshots $true`. This deletes all `snaphsot` folders under the `tests` folder
-and treats everything generated as the new baseline for future comparisons.
+To do this, run `.\RunSnapshots.ps1 -v "minimal" -reset`. 
+This deletes all `snaphsot` folders under the `tests` 
+folder and treats everything generated as the new baseline for future comparisons.
 
-This will mean that there are potentially **thousands** of changed files that will end up in the commit, but it's expected and unavoidable.
+This will mean there are potentially **thousands** of changed files that will end up in the commit, 
+but it's expected and unavoidable.
 
 ### How do I debug the source generator?
 
@@ -437,9 +459,7 @@ To debug an analyzer, select or write a test in the AnalyzerTests. There are tes
 It is challenging to run tests that _use_ the source generator in the same project **as** the source generator, so there
 is a separate solution for this. It's called `Consumers.sln`. What happens is that `build.ps1` builds the generator, runs
 the tests, and creates the NuGet package _in a private local folder_. The package is version `999.9.xxx` and the consumer
-references the latest version. The consumer can then really use the source generator, just like anything else.
-
-> Note: if you don't want to run the lengthy snapshot tests when building the local nuget package, run `.\Build.ps1 -v "minimal" -skiptests $true`
+references the latest version. The consumer can then _really_ use the source generator, just like anything else.
 
 ### Can I get it to throw my own exception?
 
@@ -458,9 +478,7 @@ Yes. Add a dependency to protobuf-net and set a surrogate attribute:
 ```c#
 [ValueObject(typeof(string))]
 [ProtoContract(Surrogate = typeof(string))]
-public partial class BoxId {
-//...
-}
+public partial class BoxId;
 ```
 
 The BoxId type will now be serialized as a `string` in all messages and grpc calls. If one is generating `.proto` files
@@ -477,9 +495,11 @@ Yes, use the `Customizations.AddFactoryMethodForGuids` in the global config attr
   customizations: Customizations.AddFactoryMethodForGuids)]
 
 [ValueObject<Guid>]
-public partial {{type}} CustomerId { }
+public partial struct CustomerId;
 
 ...
 
 var newCustomerId = CustomerId.FromNewGuid();
 ```
+
+> To customize the generation of Guids, please see [this tutorial](Working-with-Guids.md)

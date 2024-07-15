@@ -5,7 +5,7 @@ using LinqToDB.Mapping;
 using Vogen;
 using Vogen.Examples.Types;
 
-[assembly: VogenDefaults(staticAbstractsGeneration: StaticAbstractsGeneration.MostCommon | StaticAbstractsGeneration.InstanceMethodsAndProperties)]
+[assembly: VogenDefaults(staticAbstractsGeneration: StaticAbstractsGeneration.MostCommon)]
 
 namespace Vogen.Examples;
 
