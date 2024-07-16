@@ -45,7 +45,7 @@
 	</ItemGroup>
 
 	<ItemGroup Condition=" '$(UseLocallyBuiltPackage)' == ''">
-		<PackageReference Include="Vogen" Version="4.0.4" />
+		<PackageReference Include="Vogen" Version="4.0.13" />
 	</ItemGroup>
 
 

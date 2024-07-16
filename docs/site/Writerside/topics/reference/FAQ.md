@@ -503,3 +503,27 @@ var newCustomerId = CustomerId.FromNewGuid();
 ```
 
 > To customize the generation of Guids, please see [this tutorial](Working-with-Guids.md)
+> 
+
+### Can I use value objects instead of primitives as parameters in Blazor pages and components?
+
+You can, but it's not straightforward.
+Blazor, unlike ASP.NET Core, doesn't consider type converters.
+It passes around and stores parameters as objects,
+which means that the casting operators in Blazor are also not considered
+(it's not possible to have a cast operator that takes `object` in C#).
+
+There are two solutions:
+1. (for components only) - pass the value into the parameter as a value object (parameters can be complex objects)
+2. (for pages) override `SetParametersAsync` and convert the primitive to the value object, e.g.
+
+```c#
+    public override Task SetParametersAsync(ParameterView parameters)
+    {
+        if (parameters.TryGetValue<int>("Id", out var x))
+        {
+            Id = CustomerId.From(x);
+        }
+
+        ...
+```
