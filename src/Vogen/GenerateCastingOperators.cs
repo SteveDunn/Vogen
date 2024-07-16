@@ -41,12 +41,25 @@ public static class GenerateCastingOperators
 
         if (item.Config.FromPrimitiveCasting == CastOperator.Implicit)
         {
-            sb.AppendLine(
-                $$"""
-                          public static implicit operator {{className}}({{itemUnderlyingType}} value) {
-                            return new {{className}}(value);
-                  }
-                  """);
+            if (item.NormalizeInputMethod is not null)
+            {
+                sb.AppendLine(
+                    $$"""
+                              public static implicit operator {{className}}({{itemUnderlyingType}} value) {
+                                return new {{className}}({{className}}.NormalizeInput(value));
+                      }
+                      """);
+                
+            }
+            else
+            {
+                sb.AppendLine(
+                    $$"""
+                              public static implicit operator {{className}}({{itemUnderlyingType}} value) {
+                                return new {{className}}(value);
+                      }
+                      """);
+            }
         }
 
         if (sb.Length == 0)

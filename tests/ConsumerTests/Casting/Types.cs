@@ -15,6 +15,12 @@ public partial class Class_implicit_both_ways
 {
 }
 
+[ValueObject(typeof(string), toPrimitiveCasting: CastOperator.Implicit, fromPrimitiveCasting: CastOperator.Implicit)]
+public partial class Class_implicit_both_ways_with_normalization
+{
+    private static string NormalizeInput(string input) => input.ToUpper();
+}
+
 [ValueObject<string>(toPrimitiveCasting: CastOperator.None, fromPrimitiveCasting: CastOperator.None)]
 public partial class Class_default_generic
 {
@@ -33,6 +39,12 @@ public partial class Struct_implicit_to_primitive_nothing_from_primitive
 [ValueObject(typeof(string), toPrimitiveCasting: CastOperator.Implicit, fromPrimitiveCasting: CastOperator.Implicit)]
 public partial class Struct_implicit_both_ways
 {
+}
+
+[ValueObject(typeof(string), toPrimitiveCasting: CastOperator.Implicit, fromPrimitiveCasting: CastOperator.Implicit)]
+public partial class Struct_implicit_both_ways_with_normalization
+{
+    private static string NormalizeInput(string input) => input.ToUpper();
 }
 
 [ValueObject<string>(toPrimitiveCasting: CastOperator.None, fromPrimitiveCasting: CastOperator.None)]

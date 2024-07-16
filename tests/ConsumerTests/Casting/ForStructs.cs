@@ -46,4 +46,21 @@ public class ForStructs
         Struct_implicit_both_ways vo2 = prim;
         vo2.Should().Be(vo);
     }
+    
+    [Fact]
+    public void Implicit_both_ways_with_normalization()
+    {
+        using var _ = new AssertionScope();
+        
+        var vo = Struct_implicit_both_ways_with_normalization.From("abc");
+
+        string prim = vo;
+
+        prim.Should().Be(vo.Value);
+        
+        Struct_implicit_both_ways_with_normalization vo2 = prim;
+        vo2.Should().Be(vo);
+        vo2.Value.Should().Be("ABC");
+    }
+    
 }
