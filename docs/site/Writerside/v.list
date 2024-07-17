@@ -1,0 +1,7 @@
+<vars>
+    <var name="latest_version"
+         instance="hi"
+         value="4.0.14"
+         type="string"
+    />
+</vars>

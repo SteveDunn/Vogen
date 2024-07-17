@@ -502,7 +502,7 @@ public partial struct CustomerId;
 var newCustomerId = CustomerId.FromNewGuid();
 ```
 
-> To customize the generation of Guids, please see [this tutorial](Working-with-Guids.md)
+> To customize the generation of Guids, please see [this tutorial](Working-with-IDs.md)
 > 
 
 ### Can I use value objects instead of primitives as parameters in Blazor pages and components?

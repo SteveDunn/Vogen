@@ -18,7 +18,7 @@
         <toc-element topic="Serialization.md"/>
         <toc-element topic="Using-with-JSON.md"/>
         <toc-element topic="Working-with-logging-frameworks.md"/>
-        <toc-element topic="Working-with-Guids.md"/>
+        <toc-element topic="Working-with-IDs.md"/>
         <toc-element topic="Working-with-databases.md"/>
     </toc-element>
     <toc-element topic="how-to-guides.topic">

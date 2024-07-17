@@ -79,7 +79,7 @@ public void IncreaseQuantity(
     int customerId, int supplierId, int quantity) 
 ```
 
-... and a caller calls it like this:
+… and a caller calls it like this:
 
 ```C#
 _service.IncreaseQuantity(_supplierId, _customerId, _quantity)
@@ -92,5 +92,5 @@ the same ID for customer and supplier.
 
 With Value Objects representing `SupplierId`, `CustomerId`, and `Quantity`, the compiler **can** tell us
 if we mess up the order. These types make the domain code more understandable (more domain language and less C#
-types), and validation is as close to the data as possible; in this example, it likely means that all of these
+types), and validation is as close to the data as possible; in this example, it likely means that all these
 types cannot be zero or negative.
