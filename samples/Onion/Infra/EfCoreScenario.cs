@@ -14,7 +14,7 @@ namespace UsingTypesGeneratedInTheSameProject;
  * a converter generated for it.
  *
  * Then, we have two ways of registering all of these converters;
- * 1. override `ConfigureConventions` and call `RegisterAllInEfCoreConverters`
+ * 1. override `ConfigureConventions` and call `RegisterAllInVogenEfCoreConverters` (replacing the name after 'RegisterAllIn' with the name of your marker interface - in this example, there's two)
  * 2. call `HasVogenConversion` in `OnModelCreating`.
  */
 
@@ -25,9 +25,13 @@ namespace UsingTypesGeneratedInTheSameProject;
 [EfCoreConverter<Id>]
 [EfCoreConverter<Name>]
 [EfCoreConverter<Age>]
+internal sealed partial class VogenEfCoreConverters1;
+
+// We don't need two marker interfaces; this just demonstrates that you can break them up - see below
+// on how they're used (configurationBuilder.RegisterAllInVogenEfCoreConverters2();)
 [EfCoreConverter<Department>]
 [EfCoreConverter<HireDate>]
-internal sealed partial class EfCoreConverters;
+internal sealed partial class VogenEfCoreConverters2;
 
 public static class EfCoreScenario
 {
@@ -88,7 +92,8 @@ internal class DbContext : Microsoft.EntityFrameworkCore.DbContext
         
         // There are two ways of registering these, you can call the generated extension method here,
         // or register the converters individually, like below in `OnModelCreating`.
-        configurationBuilder.RegisterAllInEfCoreConverters();
+        configurationBuilder.RegisterAllInVogenEfCoreConverters1();
+        configurationBuilder.RegisterAllInVogenEfCoreConverters2();
     }
 
     protected override void OnModelCreating(ModelBuilder builder)

@@ -53,8 +53,8 @@ internal static class GenerateEfCoreTypes
         
         string code = _extensionMethodForOuter;
 
-        string generatedConverter = $"{spec.SourceType.FullNamespace()}.EfCoreConverters.{spec.VoSymbol.Name}EfCoreValueConverter";
-        string generatedComparer = $"{spec.SourceType.FullNamespace()}.EfCoreConverters.{spec.VoSymbol.Name}EfCoreValueComparer";
+        string generatedConverter = $"{spec.SourceType.FullNamespace()}.{spec.SourceType.Name}.{spec.VoSymbol.Name}EfCoreValueConverter";
+        string generatedComparer = $"{spec.SourceType.FullNamespace()}.{spec.SourceType.Name}.{spec.VoSymbol.Name}EfCoreValueComparer";
 
         code = code.Replace("__CLASS_PREFIX__", spec.VoSymbol.Name);
         code = code.Replace("__GENERATED_CONVERTER_NAME__", generatedConverter);
