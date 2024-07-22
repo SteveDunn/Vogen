@@ -136,27 +136,34 @@ internal class WriteOpenApiSchemaCustomizationCode
             var fqn = string.IsNullOrEmpty(workItem.FullNamespace)
                 ? $"{workItem.VoTypeName}"
                 : $"{workItem.FullNamespace}.{workItem.VoTypeName}";
+
+            TypeAndFormat typeAndPossibleFormat = MapUnderlyingTypeToJsonSchema(workItem);
+            string typeText = $"Type = \"{typeAndPossibleFormat.Type}\"";
+            string formatText = typeAndPossibleFormat.Format.Length == 0 ? "" : $", Format = \"{typeAndPossibleFormat.Format}\"";
             
             workItemCode.AppendLine(
-                $$"""global::Microsoft.Extensions.DependencyInjection.SwaggerGenOptionsExtensions.MapType<{{fqn}}>(o, () => new global::Microsoft.OpenApi.Models.OpenApiSchema { Type = "{{MapUnderlyingTypeToJsonSchema(workItem)}}" });""");
+                $$"""global::Microsoft.Extensions.DependencyInjection.SwaggerGenOptionsExtensions.MapType<{{fqn}}>(o, () => new global::Microsoft.OpenApi.Models.OpenApiSchema { {{typeText}}{{formatText}} });""");
         }
 
         return workItemCode.ToString();
     }
 
-    private static string MapUnderlyingTypeToJsonSchema(VoWorkItem workItem)
+    record struct TypeAndFormat(string Type, string Format = "");
+
+    private static TypeAndFormat MapUnderlyingTypeToJsonSchema(VoWorkItem workItem)
     {
         var primitiveType = workItem.UnderlyingTypeFullName;
         
-        string jsonType = primitiveType switch
+        TypeAndFormat jsonType = primitiveType switch
         {
-            "System.Int32" => "integer",
-            "System.Single" => "number",
-            "System.Decimal" => "number",
-            "System.Double" => "number",
-            "System.String" => "string",
-            "System.Boolean" => "boolean",
-            _ => TryMapComplexPrimitive(workItem)
+            "System.Int32" => new("integer"),
+            "System.Single" => new("number"),
+            "System.Decimal" =>new( "number"),
+            "System.Double" => new("number"),
+            "System.String" => new("string"),
+            "System.Boolean" =>new( "boolean"),
+            "System.Guid" =>new( "string", "uuid"),
+            _ => new(TryMapComplexPrimitive(workItem))
         };
 
         return jsonType;
