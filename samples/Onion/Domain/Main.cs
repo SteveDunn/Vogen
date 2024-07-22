@@ -6,8 +6,7 @@
 [assembly: VogenDefaults(
     systemTextJsonConverterFactoryGeneration: SystemTextJsonConverterFactoryGeneration.Omit, 
     conversions: Conversions.SystemTextJson | 
-                 Conversions.TypeConverter | 
-                 Conversions.SystemTextJson)]
+                 Conversions.TypeConverter)]
 
 namespace Domain;
 
