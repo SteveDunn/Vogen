@@ -98,7 +98,8 @@ Other converters/serializers are:
 They are controlled by the `Conversions` enum. The following has serializers for NSJ and STJ:
 
 ```c#
-[ValueObject(conversions: Conversions.NewtonsoftJson | Conversions.SystemTextJson, underlyingType: typeof(float))]
+[ValueObject<float>(conversions:
+    Conversions.NewtonsoftJson | Conversions.SystemTextJson)]
 public readonly partial struct Celsius { }
 ```
 

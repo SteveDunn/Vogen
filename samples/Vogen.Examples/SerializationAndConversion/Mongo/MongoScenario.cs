@@ -1,10 +1,14 @@
 using System;
+using System.Linq;
 using System.Threading.Tasks;
+using Bogus;
+using JetBrains.Annotations;
 using MongoDB.Bson;
-using MongoDB.Bson.IO;
 using MongoDB.Bson.Serialization;
+using MongoDB.Bson.Serialization.Attributes;
 using MongoDB.Bson.Serialization.Serializers;
 using MongoDB.Driver;
+using Testcontainers.MongoDb;
 
 namespace Vogen.Examples.SerializationAndConversion.Mongo;
 
@@ -15,86 +19,70 @@ public readonly partial struct Age;
 [ValueObject<string>]
 public readonly partial struct Name;
 
+[UsedImplicitly]
 public class Person
 {
+    [BsonId]
+    public ObjectId Id { get; set; }
     public Name Name { get; set; }
     public Age Age { get; set; }
 }
 
+[UsedImplicitly]
 public class MongoScenario : IScenario
 {
     public async Task Run()
     {
-        RunIt();
-        await Task.CompletedTask;
-    }
+        MongoDbContainer container = new MongoDbBuilder().WithImage("mongo:latest").Build();
+        
+        await container.StartAsync();
+        
+        var client = new MongoClient(container.GetConnectionString());
 
-    public static void RunIt()
-    {
-        string connectionString = "mongodb://root:secret@localhost:27017";
-        var client = new MongoClient(connectionString);
         var database = client.GetDatabase("testDatabase");
         var collection = database.GetCollection<Person>("peopleCollection");
 
-        // BsonSerializer.RegisterSerializer(new BsonSerializerAdapter<Age, int>(BsonSerializer.LookupSerializer<int>(), age => age.Value, Age.From));
-        // BsonSerializer.RegisterSerializer(new BsonSerializerAdapter<Name, string>(BsonSerializer.LookupSerializer<string>(), age => age.Value, Name.From));
         BsonSerializer.RegisterSerializer(new NameBsonSerializer());
         BsonSerializer.RegisterSerializer(new AgeBsonSerializer());
-        // BsonSerializer.RegisterSerializer(new BsonVogenSerializer<Name, string>());
-        // BsonSerializer.RegisterSerializer(new BsonVogenSerializer<Age, int>());
-        Person p = new Person
+        
+        // or, use the generated one for all value objects...
+        // BsonSerializationRegisterForVogen_Examples.TryRegister();
+
+        var personFaker = new Faker<Person>()
+            .RuleFor(p => p.Name, f => Name.From(f.Name.FirstName()))
+            .RuleFor(p => p.Age, f => Age.From(DateTime.Now.Year - f.Person.DateOfBirth.Year));
+
+        foreach (Person eachPerson in personFaker.Generate(10))
         {
-            Age = Age.From(44),
-            Name = Name.From("Barney Rubble")
-        };
-
-        collection.InsertOneAsync(p).GetAwaiter().GetResult();
+            await collection.InsertOneAsync(eachPerson);
+        }
         
-        // var serializer = MongoDB.Bson.Serialization.BsonSerializer.LookupSerializer<Person>();
-        //
-        // var bsonDocument = new BsonDocument();
-        // using (var writer = new BsonDocumentWriter(bsonDocument))
-        // {
-        //     serializer.Serialize(writer, typeof(Person), p, null);
-        // }
+        Console.WriteLine("Inserted people... Now finding them...");
 
-        
+        IAsyncCursor<Person> people = await collection.FindAsync("{}");
+        await people.ForEachAsync((person) => Console.WriteLine($"{person.Name} is {person.Age}"));
+
+        await container.DisposeAsync();
     }
 }
 
 
-public class BsonSerializerAdapter_old<TValue, TUnderlyingTypeValue>(
-    IBsonSerializer<TUnderlyingTypeValue> serializer,
-    Func<TValue, TUnderlyingTypeValue> to,
-    Func<TUnderlyingTypeValue, TValue> from)
-    : SerializerBase<TValue>
+
+// Note, if you don't want any generated BSON serializers, you can specify your own generic one like the one below.
+// Be aware that you'll need specify static abstracts generation in global config for this to work:
+// [assembly: VogenDefaults(
+//      staticAbstractsGeneration: StaticAbstractsGeneration.MostCommon | StaticAbstractsGeneration.InstanceMethodsAndProperties, 
+//      conversions: Conversions.Default | Conversions.Bson)]
+
+ // ReSharper disable once UnusedType.Global
+ public class BsonVogenSerializer<TValue, TUnderlyingTypeValue>  
+    : SerializerBase<TValue> where TValue : IVogen<TValue, TUnderlyingTypeValue>
 {
-    public override TValue Deserialize(BsonDeserializationContext context, BsonDeserializationArgs args)
-        => from.Invoke(serializer.Deserialize(context, args));
+    private readonly IBsonSerializer<TUnderlyingTypeValue> _serializer = BsonSerializer.LookupSerializer<TUnderlyingTypeValue>();
 
-    public override void Serialize(BsonSerializationContext context, BsonSerializationArgs args, TValue value)
-        => serializer.Serialize(context, args, to.Invoke(value));
-}
+    public override TValue Deserialize(BsonDeserializationContext context, BsonDeserializationArgs args) => 
+        TValue.From(_serializer.Deserialize(context, args));
 
-// public class BsonVogenSerializer<TValue, TUnderlyingTypeValue>  
-//     : SerializerBase<TValue> where TValue : IVogen<TValue, TUnderlyingTypeValue>
-// {
-//     private readonly IBsonSerializer<TUnderlyingTypeValue> _serializer = BsonSerializer.LookupSerializer<TUnderlyingTypeValue>();
-//
-//     public override TValue Deserialize(BsonDeserializationContext context, BsonDeserializationArgs args) => 
-//         TValue.From(_serializer.Deserialize(context, args));
-//
-//     public override void Serialize(BsonSerializationContext context, BsonSerializationArgs args, TValue value) => 
-//         _serializer.Serialize(context, args, value.Value);
-// }
-
-public class BsonNameSerializer : SerializerBase<Name>
-{
-    private readonly IBsonSerializer<string> _serializer = BsonSerializer.LookupSerializer<string>();
-
-    public override Name Deserialize(BsonDeserializationContext context, BsonDeserializationArgs args) => 
-        Name.From(_serializer.Deserialize(context, args));
-
-    public override void Serialize(BsonSerializationContext context, BsonSerializationArgs args, Name value) => 
+    public override void Serialize(BsonSerializationContext context, BsonSerializationArgs args, TValue value) => 
         _serializer.Serialize(context, args, value.Value);
 }
