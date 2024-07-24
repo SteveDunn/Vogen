@@ -25,7 +25,7 @@ public sealed partial class ProjectBuilder
 {
     public IList<DiagnosticAnalyzer> DiagnosticAnalyzers { get; } = new List<DiagnosticAnalyzer>();
     public IList<DiagnosticResult> ExpectedDiagnosticResults { get; } = new List<DiagnosticResult>();
-    
+
     public string? DefaultAnalyzerId { get; set; }
     public string? DefaultAnalyzerMessage { get; set; }
 
@@ -68,7 +68,6 @@ public sealed partial class ProjectBuilder
     }
 
 
-
     public ProjectBuilder ShouldExcludeSystemTextJson(bool excludeStj = false)
     {
         _excludeStj = excludeStj;
@@ -80,7 +79,7 @@ public sealed partial class ProjectBuilder
         _languageVersion = languageVersion;
         return this;
     }
-    
+
     public ProjectBuilder WithAnalyzerFromNuGet(string packageName, string version, string path, string[] ruleIds)
     {
         var ruleFound = false;
@@ -93,7 +92,7 @@ public sealed partial class ProjectBuilder
                 if (type.IsAbstract || !typeof(DiagnosticAnalyzer).IsAssignableFrom(type))
                     continue;
 
-                var instance = (DiagnosticAnalyzer)Activator.CreateInstance(type);
+                var instance = (DiagnosticAnalyzer) Activator.CreateInstance(type);
                 if (instance.SupportedDiagnostics.Any(d => ruleIds.Contains(d.Id, StringComparer.Ordinal)))
                 {
                     DiagnosticAnalyzers.Add(instance);
@@ -119,7 +118,7 @@ public sealed partial class ProjectBuilder
 
     private void AddNuGetReferences()
     {
-        if(_targetFramework is null)
+        if (_targetFramework is null)
         {
             throw new InvalidOperationException("No target framework!");
         }
@@ -169,7 +168,6 @@ public sealed partial class ProjectBuilder
                 AddNuGetReference("Microsoft.EntityFrameworkCore", "6.0.0", "lib/net6.0/");
                 AddNuGetReference("Dapper", "2.0.123", "lib/net5.0/");
                 AddNuGetReference("ServiceStack.Text", "6.11.0", "lib/net6.0");
-
                 break;
 
             case TargetFramework.Net7_0:
@@ -178,8 +176,6 @@ public sealed partial class ProjectBuilder
                 AddNuGetReference("Microsoft.EntityFrameworkCore", "7.0.0", "lib/net6.0/");
                 AddNuGetReference("Dapper", "2.0.123", "lib/net5.0/");
                 AddNuGetReference("ServiceStack.Text", "6.11.0", "lib/net6.0");
-
-
                 break;
 
             case TargetFramework.Net8_0:
@@ -188,7 +184,7 @@ public sealed partial class ProjectBuilder
                 AddNuGetReference("Microsoft.EntityFrameworkCore", "8.0.0", "lib/net8.0/");
                 AddNuGetReference("Dapper", "2.1.28", "lib/net7.0/");
                 AddNuGetReference("ServiceStack.Text", "8.2.2", "lib/net8.0");
-
+                AddNuGetReference("MongoDB.Bson", "2.27.0", "lib/netstandard2.0");
                 break;
 
             case TargetFramework.AspNetCore8_0:
@@ -196,20 +192,20 @@ public sealed partial class ProjectBuilder
                 AddNuGetReference("Microsoft.AspNetCore.App.Ref", "8.0.0", "ref/net8.0/");
                 AddNuGetReference("Swashbuckle.AspNetCore.SwaggerGen", "6.4.0", "lib/net6.0/");
                 AddNuGetReference("Microsoft.OpenApi", "1.4.3.0", "lib/netstandard2.0/");
+                AddNuGetReference("MongoDB.Bson", "2.27.0", "lib/netstandard2.0");
                 break;
-
         }
 
         AddNuGetReference("System.Collections.Immutable", "1.5.0", "lib/netstandard2.0/");
-            
+
         if (_targetFramework is not TargetFramework.Net7_0 and not TargetFramework.Net8_0)
         {
             AddNuGetReference("System.Numerics.Vectors", "4.5.0", "ref/netstandard2.0/");
         }
 
 
-        AddNuGetReference("Microsoft.CSharp", "4.7.0", "lib/netstandard2.0/");  // To support dynamic type
-        AddNuGetReference("Newtonsoft.Json", "13.0.2", "lib/netstandard2.0/"); 
+        AddNuGetReference("Microsoft.CSharp", "4.7.0", "lib/netstandard2.0/"); // To support dynamic type
+        AddNuGetReference("Newtonsoft.Json", "13.0.2", "lib/netstandard2.0/");
     }
 
     private void AddStjIfNeeded(string version, string pathPrefix)
@@ -238,7 +234,8 @@ public sealed partial class ProjectBuilder
             {
                 Directory.CreateDirectory(tempFolder);
                 using var httpClient = new HttpClient();
-                using var stream = await httpClient.GetStreamAsync(new Uri($"https://www.nuget.org/api/v2/package/{packageName}/{version}")).ConfigureAwait(false);
+                using var stream = await httpClient.GetStreamAsync(new Uri($"https://www.nuget.org/api/v2/package/{packageName}/{version}"))
+                    .ConfigureAwait(false);
                 using var zip = new ZipArchive(stream, ZipArchiveMode.Read);
 
                 foreach (var entry in zip.Entries.Where(file => file.FullName.StartsWith(path, StringComparison.Ordinal)))
@@ -252,7 +249,7 @@ public sealed partial class ProjectBuilder
             // Filter invalid .NET assembly
             var result = new List<string>();
             foreach (string eachDllNameAndPath in nameAndPathsForDlls)
-            {                                                                                                                         
+            {
                 if (Path.GetFileName(eachDllNameAndPath) == "System.EnterpriseServices.Wrapper.dll")
                     continue;
 
@@ -269,7 +266,7 @@ public sealed partial class ProjectBuilder
                 }
             }
 
-            if(result.Count == 0)
+            if (result.Count == 0)
             {
                 throw new InvalidOperationException($"Did not add any DLLs as references for {packageName}, v {version}, at {path}!");
             }
@@ -277,7 +274,7 @@ public sealed partial class ProjectBuilder
             return result.ToArray();
         }
     }
-    
+
     public ProjectBuilder WithAnalyzer<T>(string? id = null, string? message = null) where T : DiagnosticAnalyzer, new() =>
         WithAnalyzer(new T(), id, message);
 
@@ -302,7 +299,7 @@ public sealed partial class ProjectBuilder
         {
             AddNuGetReference(nuGetPackage.PackageName, nuGetPackage.Version, nuGetPackage.PathPrefix);
         }
-        
+
         return this;
     }
 
@@ -314,15 +311,18 @@ public sealed partial class ProjectBuilder
         where T : IIncrementalGenerator, new()
     {
         var parseOptions = new CSharpParseOptions(languageVersion: _languageVersion);
-        
+
         var usersSyntaxTree = CSharpSyntaxTree.ParseText(_userSource, parseOptions);
-        var isExternalInitSyntaxTree = CSharpSyntaxTree.ParseText(@"    namespace System.Runtime.CompilerServices
+        var isExternalInitSyntaxTree = CSharpSyntaxTree.ParseText(
+            @"    namespace System.Runtime.CompilerServices
     {
           internal static class IsExternalInit {}
     }
-", parseOptions);
+",
+            parseOptions);
 
-        MetadataReference r = valueObjectAttributeMetadata ?? MetadataReference.CreateFromFile(typeof(ValueObjectAttribute).Assembly.Location);
+        MetadataReference r = valueObjectAttributeMetadata ??
+                              MetadataReference.CreateFromFile(typeof(ValueObjectAttribute).Assembly.Location);
 
         _references.Add(r);
 
@@ -330,16 +330,17 @@ public sealed partial class ProjectBuilder
 
         var options = new CSharpCompilationOptions(
             OutputKind.DynamicallyLinkedLibrary,
-            moduleName: "VogenTests",            
+            moduleName: "VogenTests",
             specificDiagnosticOptions: _suppressedDiagnostics);
 
         var diagnostics = this.DiagnosticAnalyzers.SelectMany(
-            analyzer => analyzer.SupportedDiagnostics.Select(diag => new KeyValuePair<string, ReportDiagnostic>(diag.Id, GetReportDiagnostic(diag))));
+            analyzer => analyzer.SupportedDiagnostics.Select(
+                diag => new KeyValuePair<string, ReportDiagnostic>(diag.Id, GetReportDiagnostic(diag))));
 
         diagnostics = diagnostics.Concat(_suppressedDiagnostics);
-        
+
         options = options.WithSpecificDiagnosticOptions(diagnostics);
-        
+
         var compilation = CSharpCompilation.Create(
             assemblyName: "generator",
             syntaxTrees: new[] { usersSyntaxTree, isExternalInitSyntaxTree },
@@ -375,7 +376,7 @@ public sealed partial class ProjectBuilder
         var driver = CSharpGeneratorDriver
             .Create(generator)
             .WithUpdatedParseOptions(parseOptions.WithDocumentationMode(DocumentationMode.Diagnose));
-        
+
         driver.RunGeneratorsAndUpdateCompilation(compilation, out var outputCompilation, out var generatorDiags);
 
         var finalDiags = outputCompilation.GetDiagnostics();
@@ -405,7 +406,7 @@ public sealed partial class ProjectBuilder
         {
             var s = st.GetText().ToString();
             var fp = st.FilePath;
-            if (fp.Length == 0) fp =  $"file{++i}.cs";
+            if (fp.Length == 0) fp = $"file{++i}.cs";
             string p = Path.Combine(path, fp);
             Directory.CreateDirectory(Path.GetDirectoryName(p)!);
             File.WriteAllText(p, s.ToString());
@@ -423,9 +424,7 @@ public sealed partial class ProjectBuilder
             _ => ReportDiagnostic.Info, // Ensure the analyzer is enabled for the test
         };
     }
-
 }
-
 
 internal sealed class TestAnalyzerConfigOptionsProvider(Dictionary<string, string> values) : AnalyzerConfigOptionsProvider
 {

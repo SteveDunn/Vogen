@@ -58,4 +58,19 @@
     </Content>
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="BsonSerializationGeneration\snapshots\snap-v8.0\BsonSerializationGenerationTests.Writes_efcore_converters_for_escaped_types.verified.txt">
+      <ParentFile>EfCoreGenerationTests</ParentFile>
+      <DependentUpon>EfCoreGenerationTests.cs</DependentUpon>
+    </None>
+    <None Update="BsonSerializationGeneration\snapshots\snap-v8.0\BsonSerializationGenerationTests.Writes_efcore_converters_that_respect_namespaces.verified.txt">
+      <ParentFile>EfCoreGenerationTests</ParentFile>
+      <DependentUpon>EfCoreGenerationTests.cs</DependentUpon>
+    </None>
+    <None Update="BsonSerializationGeneration\snapshots\snap-v8.0\BsonSerializationGenerationTests.Writes_efcore_converters_if_attribute_present_and_on_net_8_or_greater.verified.txt">
+      <ParentFile>EfCoreGenerationTests</ParentFile>
+      <DependentUpon>EfCoreGenerationTests.cs</DependentUpon>
+    </None>
+  </ItemGroup>
+
 </Project>

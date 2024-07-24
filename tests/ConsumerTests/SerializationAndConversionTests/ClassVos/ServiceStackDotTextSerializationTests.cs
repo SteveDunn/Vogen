@@ -8,7 +8,7 @@ namespace ConsumerTests.SerializationAndConversionTests.ClassVos;
 public class ServiceStackDotTextSerializationTests
 {
     [Fact]
-    public void RoundTrip_Bool_WithSsdtProvider()
+    public void RoundTrip_Bool()
     {
         var vo = SsdtBoolVo.From(true);
 
@@ -20,7 +20,7 @@ public class ServiceStackDotTextSerializationTests
     }
 
     [Fact]
-    public void RoundTrip_Byte_WithSsdtProvider()
+    public void RoundTrip_Byte()
     {
         byte value = 123;
         var vo = SsdtByteVo.From(value);
@@ -32,7 +32,7 @@ public class ServiceStackDotTextSerializationTests
     }
 
     [Fact]
-    public void RoundTrip_Char_WithSsdtProvider()
+    public void RoundTrip_Char()
     {
         char value = 'a';
         var vo = SsdtCharVo.From(value);
@@ -44,7 +44,7 @@ public class ServiceStackDotTextSerializationTests
     }
 
     [Fact]
-    public void RoundTrip_WithSsdtProvider()
+    public void RoundTrip()
     {
         var value = "ABC";
         var vo = SsdtStringVo.From(value);
@@ -56,7 +56,7 @@ public class ServiceStackDotTextSerializationTests
     }
 
     [Fact]
-    public void RoundTrip_DateTimeOffset_WithSsdtProvider()
+    public void RoundTrip_DateTimeOffset()
     {
         var vo = SsdtDateTimeOffsetVo.From(Primitives.DateTimeOffset1);
         var json = JsonSerializer.SerializeToString(vo);
@@ -67,7 +67,7 @@ public class ServiceStackDotTextSerializationTests
     }
 
     [Fact]
-    public void RoundTrip_DateTime_WithSsdtProvider()
+    public void RoundTrip_DateTime()
     {
         var vo = SsdtDateTimeVo.From(Primitives.DateTime1);
         var json = JsonSerializer.SerializeToString(vo);
@@ -78,7 +78,7 @@ public class ServiceStackDotTextSerializationTests
     }
 
     [Fact]
-    public void RoundTrip_Decimal_WithSsdtProvider()
+    public void RoundTrip_Decimal()
     {
         var vo = SsdtDecimalVo.From(123.45m);
 
@@ -90,7 +90,7 @@ public class ServiceStackDotTextSerializationTests
     }
 
     [Fact]
-    public void RoundTrip_Double_WithSsdtProvider()
+    public void RoundTrip_Double()
     {
         var vo = SsdtDoubleVo.From(123.45d);
 
@@ -102,7 +102,7 @@ public class ServiceStackDotTextSerializationTests
     }
 
     [Fact]
-    public void RoundTrip_Float_WithSsdtProvider()
+    public void RoundTrip_Float()
     {
         var vo = SsdtFloatVo.From(123.45f);
 
@@ -113,7 +113,7 @@ public class ServiceStackDotTextSerializationTests
     }
 
     [Fact]
-    public void RoundTrip_Guid_WithSsdtProvider()
+    public void RoundTrip_Guid()
     {
         var vo = SsdtGuidVo.From(Primitives.Guid1);
 
@@ -124,7 +124,7 @@ public class ServiceStackDotTextSerializationTests
     }
 
     [Fact]
-    public void RoundTrip_Int_WithSsdtProvider()
+    public void RoundTrip_Int()
     {
         var vo = SsdtLongVo.From(123L);
 
@@ -146,7 +146,7 @@ public class ServiceStackDotTextSerializationTests
     }
 
     [Fact]
-    public void RoundTrip_String_WithSsdtProvider()
+    public void RoundTrip_String()
     {
         var vo = SsdtStringVo.From("aaa");
 
@@ -157,7 +157,7 @@ public class ServiceStackDotTextSerializationTests
     }
 
     [Fact]
-    public void RoundTrip_TimeOnly_WithSsdtProvider()
+    public void RoundTrip_TimeOnly()
     {
         var vo = SsdtTimeOnlyVo.From(Primitives.Time1);
 

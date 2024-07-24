@@ -97,6 +97,8 @@ public class ValueObjectGenerator : IIncrementalGenerator
         WriteOpenApiSchemaCustomizationCode.WriteIfNeeded(globalConfig, spc, compilation, workItems);
 
         WriteEfCoreSpecs.WriteIfNeeded(spc, compilation, efCoreConverterSpecs);
+        
+        WriteBsonSerializers.WriteIfNeeded(spc, compilation, workItems);
 
         if (workItems.Count > 0)
         {

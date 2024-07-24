@@ -2,6 +2,8 @@
 using Dapper;
 using LinqToDB.Mapping;
 
+[assembly: VogenDefaults(conversions: Conversions.Default | Conversions.Bson)]
+
 namespace ConsumerTests;
 
 public static class ModuleInitialization
@@ -9,6 +11,8 @@ public static class ModuleInitialization
     [ModuleInitializer]
     public static void Init()
     {
+        BsonSerializationRegisterForConsumerTests.TryRegister();
+        
         SqlMapper.AddTypeHandler(new DeserializationValidationTests.MyVoInt_should_not_bypass_validation.DapperTypeHandler());
         SqlMapper.AddTypeHandler(new DeserializationValidationTests.MyVoString_should_not_bypass_validation.DapperTypeHandler());
         SqlMapper.AddTypeHandler(new DeserializationValidationTests.MyVoString_should_bypass_validation.DapperTypeHandler());

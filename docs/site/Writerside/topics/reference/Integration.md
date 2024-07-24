@@ -73,7 +73,12 @@ public enum Conversions
     /// <summary>
     /// Sets the SerializeFn and DeSerializeFn members in JsConfig in a static constructor.
     /// </summary>
-    ServiceStackDotText = 1 << 7
+    ServiceStackDotText = 1 << 7,
+
+    /// <summary>
+    /// Creates a BSON serializer for each value object.
+    /// </summary>
+    Bson = 1 << 8,
 }
 ```
 
