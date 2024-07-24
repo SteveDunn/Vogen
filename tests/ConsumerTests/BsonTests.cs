@@ -18,6 +18,10 @@ public class Person
 
 public class BsonTests
 {
+    private readonly IBsonSerializer<Person> _lookupSerializer;
+
+    public BsonTests() => _lookupSerializer = BsonSerializer.LookupSerializer<Person>();
+
     // The register for all serializers is generated and is called in ModuleInitialization.cs (BsonSerializationRegisterForConsumerTests.TryRegister())
     [Fact]
     public void Value_objects_are_written_as_primitives()
@@ -33,7 +37,7 @@ public class BsonTests
         IBsonWriter writer = new JsonWriter(sw); 
         BsonSerializationContext context = BsonSerializationContext.CreateRoot(writer);
 
-        BsonSerializer.LookupSerializer<Person>().Serialize(context, person);
+        _lookupSerializer.Serialize(context, person);
         
         sw.Flush();
         sw.ToString().Should().Be($$"""{ "Name" : "Fred Flintstone", "Age" : 42 }""");
@@ -42,9 +46,10 @@ public class BsonTests
     [Fact]
     public void Value_objects_are_read_as_primitives()
     {
-        IBsonReader reader = new JsonReader("""{ "Name" : "Fred Flintstone", "Age" : 42 }""");
+        using IBsonReader reader = new JsonReader("""{ "Name" : "Fred Flintstone", "Age" : 42 }""");
         var context = BsonDeserializationContext.CreateRoot(reader);
-        var person = BsonSerializer.LookupSerializer<Person>().Deserialize(context);
+        
+        Person person = _lookupSerializer.Deserialize(context);
         person.Age.Value.Should().Be(42);
         person.Name.Value.Should().Be("Fred Flintstone");
     }
@@ -52,9 +57,10 @@ public class BsonTests
     [Fact]
     public void Missing_values_are_allowed_when_configured()
     {
-        IBsonReader reader = new JsonReader("""{ "Age" : 42 }""");
+        using IBsonReader reader = new JsonReader("""{ "Age" : 42 }""");
         var context = BsonDeserializationContext.CreateRoot(reader);
-        var person = BsonSerializer.LookupSerializer<Person>().Deserialize(context);
+        
+        Person person = _lookupSerializer.Deserialize(context);
         person.Age.Value.Should().Be(42);
         person.Name.IsInitialized().Should().BeFalse();
     }

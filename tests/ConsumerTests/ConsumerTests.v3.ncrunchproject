@@ -3,5 +3,20 @@
     <AdditionalFilesToIncludeForProject>
       <Value>..\..\local-global-packages\**.*</Value>
     </AdditionalFilesToIncludeForProject>
+    <HiddenComponentWarnings />
+    <IgnoredTests>
+      <NamedTestSelector>
+        <TestName>ConsumerTests.SerializationAndConversionTests.RecordClassVos.BsonSerializationTests.RoundTrip_TimeOnly</TestName>
+      </NamedTestSelector>
+      <NamedTestSelector>
+        <TestName>ConsumerTests.SerializationAndConversionTests.ClassVos.BsonSerializationTests.RoundTrip_TimeOnly</TestName>
+      </NamedTestSelector>
+      <NamedTestSelector>
+        <TestName>ConsumerTests.SerializationAndConversionTests.RecordStructVos.BsonSerializationTests.RoundTrip_TimeOnly</TestName>
+      </NamedTestSelector>
+      <NamedTestSelector>
+        <TestName>ConsumerTests.SerializationAndConversionTests.StructVos.BsonSerializationTests.RoundTrip_TimeOnly</TestName>
+      </NamedTestSelector>
+    </IgnoredTests>
   </Settings>
 </ProjectConfiguration>
