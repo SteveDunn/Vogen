@@ -18,9 +18,9 @@ public class Person
 
 public class BsonTests
 {
-    private readonly IBsonSerializer<Person> _lookupSerializer;
+    private readonly IBsonSerializer<Person> _serializer;
 
-    public BsonTests() => _lookupSerializer = BsonSerializer.LookupSerializer<Person>();
+    public BsonTests() => _serializer = BsonSerializer.LookupSerializer<Person>();
 
     // The register for all serializers is generated and is called in ModuleInitialization.cs (BsonSerializationRegisterForConsumerTests.TryRegister())
     [Fact]
@@ -37,7 +37,7 @@ public class BsonTests
         IBsonWriter writer = new JsonWriter(sw); 
         BsonSerializationContext context = BsonSerializationContext.CreateRoot(writer);
 
-        _lookupSerializer.Serialize(context, person);
+        _serializer.Serialize(context, person);
         
         sw.Flush();
         sw.ToString().Should().Be($$"""{ "Name" : "Fred Flintstone", "Age" : 42 }""");
@@ -49,19 +49,30 @@ public class BsonTests
         using IBsonReader reader = new JsonReader("""{ "Name" : "Fred Flintstone", "Age" : 42 }""");
         var context = BsonDeserializationContext.CreateRoot(reader);
         
-        Person person = _lookupSerializer.Deserialize(context);
+        Person person = _serializer.Deserialize(context);
         person.Age.Value.Should().Be(42);
         person.Name.Value.Should().Be("Fred Flintstone");
     }
 
-    [Fact]
+    [SkippableIfBuiltWithNoValidationFlagFact]
     public void Missing_values_are_allowed_when_configured()
     {
         using IBsonReader reader = new JsonReader("""{ "Age" : 42 }""");
         var context = BsonDeserializationContext.CreateRoot(reader);
         
-        Person person = _lookupSerializer.Deserialize(context);
+        Person person = _serializer.Deserialize(context);
         person.Age.Value.Should().Be(42);
         person.Name.IsInitialized().Should().BeFalse();
+    }
+
+    [SkippableIfNotBuiltWithNoValidationFlagFact]
+    public void Missing_values_are_still_show_as_initialized_if_built_with_no_validation_preprocessor()
+    {
+        using IBsonReader reader = new JsonReader("""{ "Age" : 42 }""");
+        var context = BsonDeserializationContext.CreateRoot(reader);
+        
+        Person person = _serializer.Deserialize(context);
+        person.Age.Value.Should().Be(42);
+        person.Name.IsInitialized().Should().BeTrue();
     }
 }
