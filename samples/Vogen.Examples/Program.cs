@@ -7,22 +7,20 @@ namespace Vogen.Examples
     class Program
     {
         // ReSharper disable once UnusedParameter.Local
-        static Task Main(string[] args)
+        static async Task Main(string[] args)
         {
             var scenarioTypes = typeof(Program).Assembly.GetTypes()
                 .Where(t => typeof(IScenario).IsAssignableFrom(t) && t != typeof(IScenario)).ToList();
 
             foreach (var eachScenarioType in scenarioTypes)
             {
-                var instance = (IScenario)Activator.CreateInstance(eachScenarioType);
+                var instance = (IScenario)Activator.CreateInstance(eachScenarioType)!;
                 WriteBanner(instance);
                 
-                instance!.Run();
+                await instance.Run();
             }
 
             Console.WriteLine("Finished");
-            
-            return Task.CompletedTask;
         }
 
         private static void WriteBanner(IScenario scenario)

@@ -2,6 +2,7 @@
 using System.ComponentModel;
 using System.Linq;
 using System.Threading.Tasks;
+using ConsumerTests;
 using Dapper;
 using Microsoft.Data.Sqlite;
 using Microsoft.EntityFrameworkCore;
@@ -80,6 +81,18 @@ public class ByteVoTests
         string json = JsonSerializer.SerializeToString(vo);
         
         var deserialised = JsonSerializer.DeserializeFromString<SsdtShortVo>(json);
+
+        vo.Value.Should().Be(deserialised.Value);
+    }
+
+    [Fact]
+    public void CanSerializeToByte_WithBson()
+    {
+        var vo = BsonShortVo.From(123);
+
+        string json = BsonSerializerButUsesJson.Serialize(vo);
+        
+        BsonShortVo deserialised = BsonSerializerButUsesJson.Deserialize<BsonShortVo>(json);
 
         vo.Value.Should().Be(deserialised.Value);
     }

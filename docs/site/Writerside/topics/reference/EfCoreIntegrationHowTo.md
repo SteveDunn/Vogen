@@ -15,7 +15,7 @@ public partial class Name
 ```
 
 Another way, if you're using .NET 8 or greater, is to use `EfCoreConverter` attributes on
-a marker class:
+a marker class, normally in a separate project from the value objects themselves:
 
 ```c#
 [EfCoreConverter<Domain.CustomerId>]

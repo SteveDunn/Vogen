@@ -9,6 +9,7 @@
 	</PropertyGroup>
 
 	<ItemGroup>
+		<PackageReference Include="Bogus" Version="35.6.0" />
 		<PackageReference Include="GitHubActionsTestLogger" Version="2.3.3">
 			<PrivateAssets>all</PrivateAssets>
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
@@ -17,11 +18,14 @@
 		<PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.5" />
 		<PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="7.0.5" />
 		<PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="7.0.0-rc.1.22426.7" />
+		<PackageReference Include="MongoDB.Driver" Version="2.27.0" />
 		<PackageReference Include="System.Text.Json" Version="8.0.4" />
 		<PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
 		<PackageReference Include="Dapper" Version="2.0.123" />
 		<PackageReference Include="linq2db" Version="3.7.0" />
 		<PackageReference Include="ServiceStack.Text" Version="8.2.2" />
+		<PackageReference Include="Testcontainers" Version="3.9.0" />
+		<PackageReference Include="Testcontainers.MongoDb" Version="3.9.0" />
 	</ItemGroup>
 
 	<ItemGroup Condition=" '$(UseLocallyBuiltPackage)' != ''">
