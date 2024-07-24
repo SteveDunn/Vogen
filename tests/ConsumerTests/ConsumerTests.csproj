@@ -54,6 +54,7 @@
   Run the tests with `.\test.ps1` in the root folder.-->
 
   <ItemGroup>
+    <PackageReference Include="MongoDB.Analyzer" Version="1.4.0" />
     <PackageReference Include="MongoDB.Bson" Version="2.27.0" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
     <PackageReference Include="Dapper" Version="2.0.123" />

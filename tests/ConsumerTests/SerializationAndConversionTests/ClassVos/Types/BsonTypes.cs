@@ -32,7 +32,7 @@ public partial class BsonDoubleVo;
 [ValueObject(conversions: Conversions.Bson, underlyingType: typeof(Bar))]
 public partial class BsonFooVo
 {
-    public static SsdtFooVo Parse(string s) => throw new Exception("todo!");
+    public static BsonFooVo Parse(string s) => throw new Exception("todo!");
 }
 
 [ValueObject(conversions: Conversions.Bson, underlyingType: typeof(Guid))]

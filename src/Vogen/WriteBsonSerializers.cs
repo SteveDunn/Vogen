@@ -99,7 +99,7 @@ internal class WriteBsonSerializers
 
         string wrapperName = Util.EscapeIfRequired(spec.WrapperType.Name);
         string underlyingTypeName = spec.UnderlyingTypeFullName;
-        
+
         string sb =
             $$"""
               {{GeneratedCodeSegments.Preamble}}
@@ -110,8 +110,12 @@ internal class WriteBsonSerializers
               {
                   private readonly global::MongoDB.Bson.Serialization.IBsonSerializer<{{underlyingTypeName}}> _serializer = global::MongoDB.Bson.Serialization.BsonSerializer.LookupSerializer<{{underlyingTypeName}}>();
               
-                  public override {{wrapperName}} Deserialize(global::MongoDB.Bson.Serialization.BsonDeserializationContext context, global::MongoDB.Bson.Serialization.BsonDeserializationArgs args) => 
-                    Deserialize(_serializer.Deserialize(context, args));
+                  public override {{wrapperName}} Deserialize(global::MongoDB.Bson.Serialization.BsonDeserializationContext context, global::MongoDB.Bson.Serialization.BsonDeserializationArgs args)
+                  { 
+                    var newArgs = new global::MongoDB.Bson.Serialization.BsonDeserializationArgs { NominalType = typeof({{underlyingTypeName}}) };
+              
+                    return Deserialize(_serializer.Deserialize(context, newArgs));
+                  }
               
                   public override void Serialize(global::MongoDB.Bson.Serialization.BsonSerializationContext context, global::MongoDB.Bson.Serialization.BsonSerializationArgs args, {{wrapperName}} value) => 
                     _serializer.Serialize(context, args, value.Value);
