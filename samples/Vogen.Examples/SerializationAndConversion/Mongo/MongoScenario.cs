@@ -33,6 +33,16 @@ public class MongoScenario : IScenario
 {
     public async Task Run()
     {
+        string runnerOs = Environment.GetEnvironmentVariable("RUNNER_OS");
+        
+        bool isLocalOrLinuxOnGitHub = string.IsNullOrEmpty(runnerOs) || runnerOs == "Linux";
+        
+        if (!isLocalOrLinuxOnGitHub)
+        {
+            Console.WriteLine("Skipping because not running locally or on Linux on a GitHub action.");
+            return;
+        }
+        
         MongoDbContainer container = new MongoDbBuilder().WithImage("mongo:latest").Build();
         
         await container.StartAsync();
