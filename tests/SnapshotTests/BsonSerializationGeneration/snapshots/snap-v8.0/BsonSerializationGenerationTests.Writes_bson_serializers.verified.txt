@@ -30,8 +30,12 @@ public partial class AgeBsonSerializer : global::MongoDB.Bson.Serialization.Seri
 {
     private readonly global::MongoDB.Bson.Serialization.IBsonSerializer<System.Int32> _serializer = global::MongoDB.Bson.Serialization.BsonSerializer.LookupSerializer<System.Int32>();
 
-    public override Age Deserialize(global::MongoDB.Bson.Serialization.BsonDeserializationContext context, global::MongoDB.Bson.Serialization.BsonDeserializationArgs args) => 
-      Deserialize(_serializer.Deserialize(context, args));
+    public override Age Deserialize(global::MongoDB.Bson.Serialization.BsonDeserializationContext context, global::MongoDB.Bson.Serialization.BsonDeserializationArgs args)
+    { 
+      var newArgs = new global::MongoDB.Bson.Serialization.BsonDeserializationArgs { NominalType = typeof(System.Int32) };
+
+      return Deserialize(_serializer.Deserialize(context, newArgs));
+    }
 
     public override void Serialize(global::MongoDB.Bson.Serialization.BsonSerializationContext context, global::MongoDB.Bson.Serialization.BsonSerializationArgs args, Age value) => 
       _serializer.Serialize(context, args, value.Value);
@@ -74,8 +78,12 @@ public partial class NameBsonSerializer : global::MongoDB.Bson.Serialization.Ser
 {
     private readonly global::MongoDB.Bson.Serialization.IBsonSerializer<System.String> _serializer = global::MongoDB.Bson.Serialization.BsonSerializer.LookupSerializer<System.String>();
 
-    public override Name Deserialize(global::MongoDB.Bson.Serialization.BsonDeserializationContext context, global::MongoDB.Bson.Serialization.BsonDeserializationArgs args) => 
-      Deserialize(_serializer.Deserialize(context, args));
+    public override Name Deserialize(global::MongoDB.Bson.Serialization.BsonDeserializationContext context, global::MongoDB.Bson.Serialization.BsonDeserializationArgs args)
+    { 
+      var newArgs = new global::MongoDB.Bson.Serialization.BsonDeserializationArgs { NominalType = typeof(System.String) };
+
+      return Deserialize(_serializer.Deserialize(context, newArgs));
+    }
 
     public override void Serialize(global::MongoDB.Bson.Serialization.BsonSerializationContext context, global::MongoDB.Bson.Serialization.BsonSerializationArgs args, Name value) => 
       _serializer.Serialize(context, args, value.Value);
