@@ -80,7 +80,38 @@ public partial struct CustomerId
     }
 
     [Fact]
-    public async Task Raises_for_two_method_that_throws_twice()
+    public async Task Raises_for_methods_named_NormalizeInput_and_Validate()
+    {
+        var source = """
+using System;
+using Vogen;
+
+namespace Whatever;
+
+[ValueObject]
+public partial struct CustomerId 
+{
+    public static int NormalizeInput(int value)
+    {
+        if(1 == 1) {|#0:throw new Exception("Oh no!");|} 
+        if(2 == 2) {|#1:throw new Exception("Oh no!");|} 
+    } 
+
+    public static Validation Validate(int value)
+    {
+        if(1 == 1) {|#2:throw new Exception("Oh no!");|} 
+        if(2 == 2) {|#3:throw new Exception("Oh no!");|} 
+    } 
+}
+""";
+        
+        await Run(
+            source,
+            WithDiagnostics("VOG032", DiagnosticSeverity.Warning, 0, 1, 2, 3));
+    }
+
+    [Fact]
+    public async Task Ignores_methods_that_are_not_NormalizeInput_or_Validate()
     {
         var source = """
 using System;
@@ -99,8 +130,49 @@ public partial struct CustomerId
 
     public static void AnotherMethods(int value)
     {
+        if(1 == 1) throw new Exception("Oh no!"); 
+        if(2 == 2) throw new Exception("Oh no!"); 
+    } 
+}
+""";
+        
+        await Run(
+            source,
+            WithDiagnostics("VOG032", DiagnosticSeverity.Warning, 0, 1));
+    }
+
+    [Fact]
+    public async Task Ignores_methods_that_are_not_NormalizeInput_or_Validate2()
+    {
+        var source = """
+using System;
+using Vogen;
+
+namespace Whatever;
+
+[ValueObject]
+public partial struct CustomerId 
+{
+    public static int NormalizeInput(int value)
+    {
+        if(1 == 1) {|#0:throw new Exception("Oh no!");|} 
+        if(2 == 2) {|#1:throw new Exception("Oh no!");|} 
+    } 
+
+    public static void AnotherMethod(int value)
+    {
+        if(1 == 1) throw new Exception("Oh no!"); 
+        if(2 == 2) throw new Exception("Oh no!"); 
+    } 
+
+    public static Validation Validate(int value)
+    {
         if(1 == 1) {|#2:throw new Exception("Oh no!");|} 
-        if(2 == 2) {|#3:throw new Exception("Oh no!");|} 
+        if(2 == 2) Throw();
+        
+        return Validation.Ok;
+        
+        void Throw() => {|#3:throw new Exception("Oh no!")|}; 
     } 
 }
 """;

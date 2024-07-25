@@ -35,16 +35,26 @@ public class DoNotThrowFromUserCodeAnalyzer : DiagnosticAnalyzer
     private static void Analyze(SyntaxNodeAnalysisContext ctx)
     {
         var throwStatement =  ctx.Node;
+        
         var containingType = throwStatement.AncestorsAndSelf().OfType<TypeDeclarationSyntax>().FirstOrDefault();
         if (containingType is null)
         {
             return;
         }
-        
-        if (VoFilter.IsTarget(containingType))
+
+        if (!VoFilter.IsTarget(containingType))
         {
-            var diagnostic = DiagnosticsCatalogue.BuildDiagnostic(_rule, containingType.Identifier.Text, throwStatement.GetLocation());
-            ctx.ReportDiagnostic(diagnostic);
+            return;
         }
+        
+        var containingMethod = throwStatement.AncestorsAndSelf().OfType<MethodDeclarationSyntax>().FirstOrDefault();
+
+        if (containingMethod?.Identifier.Text is not ("Validate" or "NormalizeInput"))
+        {
+            return;
+        }
+
+        var diagnostic = DiagnosticsCatalogue.BuildDiagnostic(_rule, containingType.Identifier.Text, throwStatement.GetLocation());
+        ctx.ReportDiagnostic(diagnostic);
     }
 }
