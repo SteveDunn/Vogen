@@ -19,7 +19,8 @@ internal class WriteStaticAbstracts
         StaticAbstractsGeneration generation = globalConfig?.StaticAbstractsGeneration ??
                                                VogenConfiguration.DefaultInstance.StaticAbstractsGeneration;
 
-        if (generation == StaticAbstractsGeneration.Omit)
+        // we don't want to generate if omitting or if we're only _using_ the interface (it could be declared somewhere else)
+        if (generation is StaticAbstractsGeneration.Omit or StaticAbstractsGeneration.ValueObjectsDeriveFromTheInterface)
         {
             return;
         }
@@ -127,16 +128,16 @@ internal class WriteStaticAbstracts
 
     public static string WriteHeaderIfNeeded(string precedingText, VoWorkItem item, TypeDeclarationSyntax tds)
     {
-        if (item.Config.StaticAbstractsGeneration == StaticAbstractsGeneration.Omit)
+        if (item.LanguageVersion < LanguageVersion.CSharp11)
         {
             return string.Empty;
         }
 
-        if (item.LanguageVersion >= LanguageVersion.CSharp11)
+        if (!item.Config.StaticAbstractsGeneration.HasFlag(StaticAbstractsGeneration.ValueObjectsDeriveFromTheInterface))
         {
-            return precedingText + $" IVogen<{tds.Identifier}, {item.UnderlyingTypeFullName}>";
+            return string.Empty;
         }
 
-        return string.Empty;
+        return precedingText + $" IVogen<{tds.Identifier}, {item.UnderlyingTypeFullName}>";
     }
 }
