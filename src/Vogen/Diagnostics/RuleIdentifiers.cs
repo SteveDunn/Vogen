@@ -39,4 +39,5 @@ public static class RuleIdentifiers
     public const string ExplicitlySpecifyTypeInValueObjectAttribute = "VOG029";
     public const string EfCoreTargetMustExplicitlySpecifyItsPrimitive = "VOG030";
     public const string EfCoreTargetMustBeAVo = "VOG031";
+    public const string DoNotThrowFromUserCode = "VOG032";
 }

@@ -48,3 +48,11 @@ VOG028 | Usage | Info | NormalizeInputMethodAnalyzer
 Rule ID | Category | Severity | Notes
 --------|----------|----------|-------
 VOG029 | Usage | Error | SpecifyTypeExplicitlyInValueObjectAttributeAnalzyer
+
+## Release 4.0.16
+
+### New Rules
+
+Rule ID | Category | Severity | Notes
+--------|----------|----------|-------
+VOG032 | Usage | Warning | DoNotThrowFromUserCodeAnalyzer

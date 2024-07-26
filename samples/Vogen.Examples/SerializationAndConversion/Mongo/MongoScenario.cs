@@ -33,46 +33,54 @@ public class MongoScenario : IScenario
 {
     public async Task Run()
     {
-        string runnerOs = Environment.GetEnvironmentVariable("RUNNER_OS");
-        
-        bool isLocalOrLinuxOnGitHub = string.IsNullOrEmpty(runnerOs) || runnerOs == "Linux";
-        
-        if (!isLocalOrLinuxOnGitHub)
+
+        try
         {
-            Console.WriteLine("Skipping because not running locally or on Linux on a GitHub action.");
-            return;
+            string runnerOs = Environment.GetEnvironmentVariable("RUNNER_OS");
+        
+            bool isLocalOrLinuxOnGitHub = string.IsNullOrEmpty(runnerOs) || runnerOs == "Linux";
+        
+            if (!isLocalOrLinuxOnGitHub)
+            {
+                Console.WriteLine("Skipping because not running locally or on Linux on a GitHub action.");
+                return;
+            }
+        
+            MongoDbContainer container = new MongoDbBuilder().WithImage("mongo:latest").Build();
+        
+            await container.StartAsync();
+        
+            var client = new MongoClient(container.GetConnectionString());
+
+            var database = client.GetDatabase("testDatabase");
+            var collection = database.GetCollection<Person>("peopleCollection");
+
+            BsonSerializer.RegisterSerializer(new NameBsonSerializer());
+            BsonSerializer.RegisterSerializer(new AgeBsonSerializer());
+        
+            // or, use the generated one for all value objects...
+            // BsonSerializationRegisterForVogen_Examples.TryRegister();
+
+            var personFaker = new Faker<Person>()
+                .RuleFor(p => p.Name, f => Name.From(f.Name.FirstName()))
+                .RuleFor(p => p.Age, f => Age.From(DateTime.Now.Year - f.Person.DateOfBirth.Year));
+
+            foreach (Person eachPerson in personFaker.Generate(10))
+            {
+                await collection.InsertOneAsync(eachPerson);
+            }
+        
+            Console.WriteLine("Inserted people... Now finding them...");
+
+            IAsyncCursor<Person> people = await collection.FindAsync("{}");
+            await people.ForEachAsync((person) => Console.WriteLine($"{person.Name} is {person.Age}"));
+
+            await container.DisposeAsync();
         }
-        
-        MongoDbContainer container = new MongoDbBuilder().WithImage("mongo:latest").Build();
-        
-        await container.StartAsync();
-        
-        var client = new MongoClient(container.GetConnectionString());
-
-        var database = client.GetDatabase("testDatabase");
-        var collection = database.GetCollection<Person>("peopleCollection");
-
-        BsonSerializer.RegisterSerializer(new NameBsonSerializer());
-        BsonSerializer.RegisterSerializer(new AgeBsonSerializer());
-        
-        // or, use the generated one for all value objects...
-        // BsonSerializationRegisterForVogen_Examples.TryRegister();
-
-        var personFaker = new Faker<Person>()
-            .RuleFor(p => p.Name, f => Name.From(f.Name.FirstName()))
-            .RuleFor(p => p.Age, f => Age.From(DateTime.Now.Year - f.Person.DateOfBirth.Year));
-
-        foreach (Person eachPerson in personFaker.Generate(10))
+        catch (Exception e) when (e.Message.StartsWith("Docker is either not running"))
         {
-            await collection.InsertOneAsync(eachPerson);
+            Console.WriteLine("Docker is not running - skipping this scenario");
         }
-        
-        Console.WriteLine("Inserted people... Now finding them...");
-
-        IAsyncCursor<Person> people = await collection.FindAsync("{}");
-        await people.ForEachAsync((person) => Console.WriteLine($"{person.Name} is {person.Age}"));
-
-        await container.DisposeAsync();
     }
 }
 
