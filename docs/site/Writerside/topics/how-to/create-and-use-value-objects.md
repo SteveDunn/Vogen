@@ -5,11 +5,7 @@ How to create and use Value Objects, how they better represent domain concepts, 
 that no invalid instances can be created.
 </card-summary>
 
-<note>
-This topic is incomplete and is currently being improved.
-</note>
-
-Create a new Value Object by decorating a partial type with the `ValueObject` attribute:
+Create a new value object by decorating a partial type with the `ValueObject` attribute:
 
 ```c#
 [ValueObject<int>] 
@@ -17,7 +13,7 @@ public partial struct CustomerId { }
 ```
 
 The type must be `partial` as the source generator augments the type with another partial class containing the
-generator code.
+generated code.
 
 Now, create a new instance by using the `From` method:
 
@@ -36,4 +32,10 @@ public void HandlePayment(
     PaymentAmount paymentAmount)
 ```
 
-[//]: # (TODO: enhance)
+If your type has [validation](Validate-values.md), then the `From` method will throw an exception if validation fails.
+
+This stops invalid instances being created, but exceptions might not be desirable. 
+In this case, use the `TryFrom` method.
+There are two overloads for this. 
+One returns a `ValueObjectOrError<T>` and one returns a bool and takes an `out` parameter.
+
