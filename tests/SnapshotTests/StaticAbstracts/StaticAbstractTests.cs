@@ -142,12 +142,12 @@ public class StaticAbstractTests
     }
 
     [Theory]
-    [InlineData("EqualsOperators")]
-    [InlineData("FactoryMethods")]
-    [InlineData("EqualsOperators", "FactoryMethods")]
-    [InlineData("InstanceMethodsAndProperties")]
-    [InlineData("InstanceMethodsAndProperties", "EqualsOperators", "FactoryMethods")]
-    [InlineData("InstanceMethodsAndProperties", "FactoryMethods", "EqualsOperators")]
+    [InlineData("ValueObjectsDeriveFromTheInterface", "EqualsOperators")]
+    [InlineData("ValueObjectsDeriveFromTheInterface", "FactoryMethods")]
+    [InlineData("ValueObjectsDeriveFromTheInterface", "EqualsOperators", "FactoryMethods")]
+    [InlineData("ValueObjectsDeriveFromTheInterface", "InstanceMethodsAndProperties")]
+    [InlineData("ValueObjectsDeriveFromTheInterface", "InstanceMethodsAndProperties", "EqualsOperators", "FactoryMethods")]
+    [InlineData("ValueObjectsDeriveFromTheInterface", "InstanceMethodsAndProperties", "FactoryMethods", "EqualsOperators")]
     public async Task Generates_code_for_different_variations(params string[] flags)
     {
         string attrs = string.Join(" | ", flags.Select(f => $"StaticAbstractsGeneration.{f}"));

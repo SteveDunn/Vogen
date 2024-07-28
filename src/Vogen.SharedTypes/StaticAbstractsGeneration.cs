@@ -13,7 +13,7 @@ public enum StaticAbstractsGeneration
     Unspecified = -1,
 
     /// <summary>
-    /// Do not generate the factory.
+    /// Do not generate the interface definition, nor make the value objects derive implement the interface.
     /// </summary>
     Omit = 0,
 
@@ -53,9 +53,17 @@ public enum StaticAbstractsGeneration
     InstanceMethodsAndProperties = 1 << 6,
 
     /// <summary>
-    /// The most common usage; generates equals, explicit casts, and factory methods.
+    /// Value objects that are generated derive from `: IVogen`. Use just this flag if you have several projects and only wish to
+    /// generate the definition in one of them, or if you want to define it yourself.
     /// </summary>
-    MostCommon = EqualsOperators |
+    ValueObjectsDeriveFromTheInterface = 1 << 7,
+
+    /// <summary>
+    /// The most common usage; generates the definition, containing equals, explicit casts, and factory methods, and
+    /// make value objects derive from it.
+    /// </summary>
+    MostCommon = ValueObjectsDeriveFromTheInterface |
+                 EqualsOperators |
                  ExplicitCastFromPrimitive |
                  ExplicitCastToPrimitive |
                  FactoryMethods
