@@ -13,6 +13,7 @@ public class StructGenerator : IGenerateSourceCode
 
         return $@"
 using Vogen;
+{Util.GenerateAssemblyConversionAttributes(tds, item)}
 
 {Util.WriteStartNamespace(item.FullNamespace)}
     [global::System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage] 
