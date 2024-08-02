@@ -58,6 +58,10 @@ public class GenerateOrleansConversions : IGenerateConversion, IGenerateAssembly
             return string.Empty;
         }
 
-        return $"[assembly: global::Orleans.Serialization.Configuration.TypeManifestProvider(typeof({item.FullNamespace}.{item.VoTypeName}.OrleansProvider))]";
+        var voNamespace = item.FullNamespace;
+
+        return string.IsNullOrWhiteSpace(voNamespace)
+            ? $"[assembly: global::Orleans.Serialization.Configuration.TypeManifestProvider({item.VoTypeName}.OrleansProvider))]"
+            : $"[assembly: global::Orleans.Serialization.Configuration.TypeManifestProvider(typeof({voNamespace}.{item.VoTypeName}.OrleansProvider))]";
     }
 }
