@@ -31,7 +31,7 @@ public class VogenTypesFactory : global::System.Text.Json.Serialization.JsonConv
     public VogenTypesFactory() { }
     private static readonly global::System.Collections.Generic.Dictionary<global::System.Type, global::System.Lazy<global::System.Text.Json.Serialization.JsonConverter>> _lookup = 
         new global::System.Collections.Generic.Dictionary<global::System.Type, global::System.Lazy<global::System.Text.Json.Serialization.JsonConverter>> {
-                { typeof(Whatever.sealed_partial_record_ExpressionBodiedMethod), new global::System.Lazy<global::System.Text.Json.Serialization.JsonConverter>(() => new Whatever.sealed_partial_record_ExpressionBodiedMethod.sealed_partial_record_ExpressionBodiedMethodSystemTextJsonConverter()) }
+                { typeof(global::Whatever.sealed_partial_record_ExpressionBodiedMethod), new global::System.Lazy<global::System.Text.Json.Serialization.JsonConverter>(() => new global::Whatever.sealed_partial_record_ExpressionBodiedMethod.sealed_partial_record_ExpressionBodiedMethodSystemTextJsonConverter()) }
         };
     
     public override bool CanConvert(global::System.Type typeToConvert) => _lookup.ContainsKey(typeToConvert);
