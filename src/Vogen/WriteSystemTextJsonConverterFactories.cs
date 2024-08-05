@@ -60,7 +60,7 @@ internal class WriteSystemTextJsonConverterFactories
     {
         var fqn = string.IsNullOrEmpty(eachStj.FullNamespace)
             ? $"{eachStj.VoTypeName}"
-            : $"{eachStj.FullNamespace}.{eachStj.VoTypeName}";
+            : $"global::{eachStj.FullNamespace}.{eachStj.VoTypeName}";
             
         return $$"""{ typeof({{fqn}}), new global::System.Lazy<global::System.Text.Json.Serialization.JsonConverter>(() => new {{fqn}}.{{eachStj.VoTypeName}}SystemTextJsonConverter()) }""";
     }
