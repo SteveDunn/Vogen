@@ -22,8 +22,7 @@ public static class Util
         new GenerateTypeConverterConversions(),
         new GenerateDapperConversions(),
         new GenerateEfCoreTypeConversions(),
-        new GenerateLinqToDbConversions(),
-        new GenerateOrleansConversions(),
+        new GenerateLinqToDbConversions()
     };
 
     public static string SanitizeToALegalFilename(string input) => input.Replace('@', '_');
@@ -209,23 +208,6 @@ public static class Util
             if (!string.IsNullOrEmpty(attribute))
             {
                 sb.AppendLine(attribute);
-            }
-        }
-
-        return sb.ToString();
-    }
-
-    public static string GenerateAssemblyConversionAttributes(TypeDeclarationSyntax tds, VoWorkItem item)
-    {
-        StringBuilder sb = new StringBuilder();
-
-        foreach (var conversionGenerator in _conversionGenerators.OfType<IGenerateAssemblyAttributes>())
-        {
-            var attribute = conversionGenerator.GenerateAssemblyAttributes(tds, item);
-
-            if (!string.IsNullOrEmpty(attribute))
-            {
-                sb.Append(attribute);
             }
         }
 

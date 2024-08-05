@@ -70,10 +70,10 @@ internal class BuildConfigurationFromAttributes
     }
 
     public static VogenConfigurationBuildResult TryBuildFromValueObjectAttribute(AttributeData matchingAttribute) => 
-        new BuildConfigurationFromAttributes(matchingAttribute).Build(false);
+        new BuildConfigurationFromAttributes(matchingAttribute).Build(argsAreFromVogenDefaultAttribute: false);
 
     public static VogenConfigurationBuildResult TryBuildFromVogenDefaultsAttribute(AttributeData matchingAttribute) => 
-        new BuildConfigurationFromAttributes(matchingAttribute).Build(true);
+        new BuildConfigurationFromAttributes(matchingAttribute).Build(argsAreFromVogenDefaultAttribute: true);
 
     private VogenConfigurationBuildResult Build(bool argsAreFromVogenDefaultAttribute)
     {

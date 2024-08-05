@@ -63,7 +63,8 @@ public enum Conversions
     Bson = 1 << 8,
 
     /// <summary>
-    /// Creates and registers a codec and copier for Microsoft Orleans
+    /// Creates and registers a codec and copier for Microsoft Orleans.
+    /// This feature requires .NET 8 and C#12 and cannot be polly-filled.
     /// </summary>
     Orleans = 1 << 9
 }
