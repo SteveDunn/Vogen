@@ -193,7 +193,7 @@ using Vogen;
 
 namespace Whatever;
 
-[ValueObject(conversions: (Conversions)666)]
+[ValueObject(conversions: (Conversions)4242)]
 public {type} CustomerId {{ }}
 ";
 
