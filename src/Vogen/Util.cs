@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using Microsoft.CodeAnalysis;
@@ -94,11 +93,10 @@ public static class Util
 
     public static string GenerateNotNullWhenTrueAttribute() =>
         """
-
         #if NETCOREAPP3_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)]
         #endif
-
+        
         """;
 
 
@@ -230,32 +228,36 @@ public static class Util
     public static string GenerateDebuggerProxyForStructs(VoWorkItem item)
     {
         var createdWithMethod = item.Config.DisableStackTraceRecordingInDebug
-            ? @"public global::System.String CreatedWith => ""the From method"""
-            : @"public global::System.String CreatedWith => _t._stackTrace?.ToString() ?? ""the From method""";
+            ? """
+              public global::System.String CreatedWith => "the From method"
+              """
+            : """
+              public global::System.String CreatedWith => _t._stackTrace?.ToString() ?? "the From method"
+              """;
 
         string code =
-$$"""
-
-            internal sealed class {{item.VoTypeName}}DebugView
-            {
-                private readonly {{item.VoTypeName}} _t;
-
-                {{item.VoTypeName}}DebugView({{item.VoTypeName}} t)
-                {
-                    _t = t;
-                }
-
-                public global::System.Boolean IsInitialized => _t.IsInitialized();
-                public global::System.String UnderlyingType => "{{item.UnderlyingTypeFullName}}";
-                public global::System.String Value => _t.IsInitialized() ? _t._value.ToString() : "[not initialized]" ;
-
-                #if DEBUG
-                    {{createdWithMethod}};
-                #endif
-
-                public global::System.String Conversions => @"{{Util.GenerateAnyConversionAttributesForDebuggerProxy(item)}}";
-            }
-""";
+            $$"""
+              
+              internal sealed class {{item.VoTypeName}}DebugView
+              {
+                  private readonly {{item.VoTypeName}} _t;
+  
+                  {{item.VoTypeName}}DebugView({{item.VoTypeName}} t)
+                  {
+                      _t = t;
+                  }
+  
+                  public global::System.Boolean IsInitialized => _t.IsInitialized();
+                  public global::System.String UnderlyingType => "{{item.UnderlyingTypeFullName}}";
+                  public global::System.String Value => _t.IsInitialized() ? _t._value.ToString() : "[not initialized]" ;
+  
+                  #if DEBUG
+                      {{createdWithMethod}};
+                  #endif
+  
+                  public global::System.String Conversions => @"{{Util.GenerateAnyConversionAttributesForDebuggerProxy(item)}}";
+              }
+              """;
 
         return code;
     }
@@ -293,15 +295,17 @@ $$"""
 
         return item.UserProvidedOverloads.ToStringInfo.WasSupplied
             ? string.Empty
-            : $@"/// <summary>Returns the string representation of the underlying <see cref=""{item.UnderlyingTypeFullName}"" />.</summary>
-    public{ro} override global::System.String ToString() =>IsInitialized() ? Value.ToString() : ""[UNINITIALIZED]"";";
+            : $"""
+               /// <summary>Returns the string representation of the underlying <see cref="{item.UnderlyingTypeFullName}" />.</summary>
+               public{ro} override global::System.String ToString() =>IsInitialized() ? Value.ToString() : "[UNINITIALIZED]";
+               """;
     }
 
-    public static string GenerateGuidFactoryMethodIfNeeded(VoWorkItem item, TypeDeclarationSyntax tds)
+    public static string GenerateGuidFactoryMethodIfNeeded(VoWorkItem item)
     {
         if (item.UnderlyingTypeFullName == "System.Guid" && item.Config.Customizations.HasFlag(Customizations.AddFactoryMethodForGuids))
         {
-            return $"public static {item.VoTypeName} FromNewGuid() {{ return From(global::System.Guid.NewGuid()); }}";
+            return $"public static {item.VoTypeName} FromNewGuid() => From(global::System.Guid.NewGuid());";
         }
 
         return string.Empty;
@@ -351,11 +355,11 @@ causes Rider's debugger to crash.
             return string.Empty;
         }
 
-        return $"""
-                #if DEBUG   
-                        private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
-                #endif
-                """;
+        return """
+               #if DEBUG   
+               private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
+               #endif
+               """;
 
     }
 

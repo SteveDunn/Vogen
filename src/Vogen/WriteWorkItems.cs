@@ -34,8 +34,10 @@ internal static class WriteWorkItems
         IGenerateSourceCode generator = GetGenerator(item);
 
         string classAsText = GeneratedCodeSegments.Preamble + Environment.NewLine + generator.BuildClass(item, voClass);
-
-        SourceText sourceText = SourceText.From(classAsText, Encoding.UTF8);
+        SyntaxTree syntaxTree = CSharpSyntaxTree.ParseText(classAsText);
+        SyntaxNode root = syntaxTree.GetRoot();
+        SyntaxNode formatted = root.NormalizeWhitespace();
+        SourceText sourceText = SourceText.From(formatted.ToFullString(), Encoding.UTF8);
         
         var unsanitized = $"{item.FullNamespace}_{voClass.Identifier}.g.cs";
 

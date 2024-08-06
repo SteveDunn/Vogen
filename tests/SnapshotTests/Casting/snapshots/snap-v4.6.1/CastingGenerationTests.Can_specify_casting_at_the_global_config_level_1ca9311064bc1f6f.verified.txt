@@ -29,6 +29,7 @@ namespace generator;
 public class VogenTypesFactory : global::System.Text.Json.Serialization.JsonConverterFactory
 {
     public VogenTypesFactory() { }
+    
     private static readonly global::System.Collections.Generic.Dictionary<global::System.Type, global::System.Lazy<global::System.Text.Json.Serialization.JsonConverter>> _lookup = 
         new global::System.Collections.Generic.Dictionary<global::System.Type, global::System.Lazy<global::System.Text.Json.Serialization.JsonConverter>> {
                 { typeof(global::Whatever._casting_public_readonly_partial_record_structImplicitExplicitchar), new global::System.Lazy<global::System.Text.Json.Serialization.JsonConverter>(() => new global::Whatever._casting_public_readonly_partial_record_structImplicitExplicitchar._casting_public_readonly_partial_record_structImplicitExplicitcharSystemTextJsonConverter()) }
@@ -48,49 +49,38 @@ public class VogenTypesFactory : global::System.Text.Json.Serialization.JsonConv
 //     the code is regenerated.
 // </auto-generated>
 // ------------------------------------------------------------------------------
-
 // Suppress warnings about [Obsolete] member usage in generated code.
 #pragma warning disable CS0618
-
 // Suppress warnings for 'Override methods on comparable types'.
 #pragma warning disable CA1036
-
 // Suppress Error MA0097 : A class that implements IComparable<T> or IComparable should override comparison operators
 #pragma warning disable MA0097
-
 // Suppress warning for 'The annotation for nullable reference types should only be used in code within a '#nullable' annotations context. Auto-generated code requires an explicit '#nullable' directive in source.'
 // The generator copies signatures from the BCL, e.g. for `TryParse`, and some of those have nullable annotations.
 #pragma warning disable CS8669
-
 // Suppress warnings about CS1591: Missing XML comment for publicly visible type or member 'Type_or_Member'
 #pragma warning disable CS1591
-
 using Vogen;
 
 namespace Whatever
 {
-
-    [global::System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage] 
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Vogen", "1.0.0.0")]
+    [global::System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Vogen", "1.0.0.0")]
     [global::System.Text.Json.Serialization.JsonConverter(typeof(_casting_public_readonly_partial_record_structImplicitExplicitcharSystemTextJsonConverter))]
-[global::System.ComponentModel.TypeConverter(typeof(_casting_public_readonly_partial_record_structImplicitExplicitcharTypeConverter))]
-
+    [global::System.ComponentModel.TypeConverter(typeof(_casting_public_readonly_partial_record_structImplicitExplicitcharTypeConverter))]
     [global::System.Diagnostics.DebuggerTypeProxyAttribute(typeof(_casting_public_readonly_partial_record_structImplicitExplicitcharDebugView))]
     [global::System.Diagnostics.DebuggerDisplayAttribute("Underlying type: System.Char, Value = { _value }")]
-    public readonly partial record struct _casting_public_readonly_partial_record_structImplicitExplicitchar : global::System.IEquatable<_casting_public_readonly_partial_record_structImplicitExplicitchar>, global::System.IEquatable<System.Char> ,  global::System.IComparable<_casting_public_readonly_partial_record_structImplicitExplicitchar>, global::System.IComparable
+    public readonly partial record struct _casting_public_readonly_partial_record_structImplicitExplicitchar : global::System.IEquatable<_casting_public_readonly_partial_record_structImplicitExplicitchar>, global::System.IEquatable<System.Char>, global::System.IComparable<_casting_public_readonly_partial_record_structImplicitExplicitchar>, global::System.IComparable
     {
-#if DEBUG   
-        private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
+#if DEBUG
+private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
 #endif
-
 #if !VOGEN_NO_VALIDATION
         private readonly global::System.Boolean _isInitialized;
 #endif
-        
         private readonly System.Char _value;
-
         /// <summary>
-        /// Gets the underlying <see cref="System.Char" /> value if set, otherwise a <see cref="global::Vogen.ValueObjectValidationException" /> is thrown.
+        /// Gets the underlying <see cref = "System.Char"/> value if set, otherwise a <see cref = "global::Vogen.ValueObjectValidationException"/> is thrown.
         /// </summary>
         public readonly System.Char Value
         {
@@ -100,19 +90,13 @@ namespace Whatever
                 EnsureInitialized();
                 return _value;
             }
+
             [global::System.Diagnostics.DebuggerStepThroughAttribute]
             init
             {
-                
-
-                
-
-                
-
                 _value = value;
             }
         }
-
 
         [global::System.Diagnostics.DebuggerStepThroughAttribute]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -121,7 +105,6 @@ namespace Whatever
 #if DEBUG
             _stackTrace = new global::System.Diagnostics.StackTrace();
 #endif
-
 #if !VOGEN_NO_VALIDATION
             _isInitialized = false;
 #endif
@@ -129,7 +112,7 @@ namespace Whatever
         }
 
         [global::System.Diagnostics.DebuggerStepThroughAttribute]
-        private _casting_public_readonly_partial_record_structImplicitExplicitchar(System.Char value) 
+        private _casting_public_readonly_partial_record_structImplicitExplicitchar(System.Char value)
         {
             _value = value;
 #if !VOGEN_NO_VALIDATION
@@ -140,156 +123,135 @@ namespace Whatever
         /// <summary>
         /// Builds an instance from the provided underlying type.
         /// </summary>
-        /// <param name="value">The underlying type.</param>
+        /// <param name = "value">The underlying type.</param>
         /// <returns>An instance of this type.</returns>
         public static _casting_public_readonly_partial_record_structImplicitExplicitchar From(System.Char value)
         {
-            
-
-            
-
             _casting_public_readonly_partial_record_structImplicitExplicitchar instance = new _casting_public_readonly_partial_record_structImplicitExplicitchar(value);
-
             return instance;
         }
 
         /// <summary>
-/// Tries to build an instance from the provided underlying type.
-/// If a normalization method is provided, it will be called.
-/// If validation is provided, and it fails, false will be returned.
-/// </summary>
-/// <param name="value">The underlying type.</param>
-/// <param name="vo">An instance of the value object.</param>
-/// <returns>True if the value object can be built, otherwise false.</returns>
-public static bool TryFrom(System.Char value, 
+        /// Tries to build an instance from the provided underlying type.
+        /// If a normalization method is provided, it will be called.
+        /// If validation is provided, and it fails, false will be returned.
+        /// </summary>
+        /// <param name = "value">The underlying type.</param>
+        /// <param name = "vo">An instance of the value object.</param>
+        /// <returns>True if the value object can be built, otherwise false.</returns>
+        public static bool TryFrom(System.Char value,
 #if NETCOREAPP3_0_OR_GREATER
 [global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)]
 #endif
  out _casting_public_readonly_partial_record_structImplicitExplicitchar vo)
-{
-    
-    
+        {
+            vo = new _casting_public_readonly_partial_record_structImplicitExplicitchar(value);
+            return true;
+        }
 
-    
+        /// <summary>
+        /// Tries to build an instance from the provided underlying value.
+        /// If a normalization method is provided, it will be called.
+        /// If validation is provided, and it fails, an error will be returned.
+        /// </summary>
+        /// <param name = "value">The primitive value.</param>
+        /// <returns>A <see cref = "ValueObjectOrError{T}"/> containing either the value object, or an error.</returns>
+        public static ValueObjectOrError<_casting_public_readonly_partial_record_structImplicitExplicitchar> TryFrom(System.Char value)
+        {
+            return new ValueObjectOrError<_casting_public_readonly_partial_record_structImplicitExplicitchar>(new _casting_public_readonly_partial_record_structImplicitExplicitchar(value));
+        }
 
-    vo = new _casting_public_readonly_partial_record_structImplicitExplicitchar(value);
-
-    return true;
-}/// <summary>
-/// Tries to build an instance from the provided underlying value.
-/// If a normalization method is provided, it will be called.
-/// If validation is provided, and it fails, an error will be returned.
-/// </summary>
-/// <param name="value">The primitive value.</param>
-/// <returns>A <see cref="ValueObjectOrError{T}"/> containing either the value object, or an error.</returns>
-public static ValueObjectOrError<_casting_public_readonly_partial_record_structImplicitExplicitchar> TryFrom(System.Char value)
-{
-    
-
-    
-
-    
-
-    return new ValueObjectOrError<_casting_public_readonly_partial_record_structImplicitExplicitchar>(new _casting_public_readonly_partial_record_structImplicitExplicitchar(value));
-}
-
-[global::System.Runtime.CompilerServices.MethodImpl(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
+        [global::System.Runtime.CompilerServices.MethodImpl(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 #if VOGEN_NO_VALIDATION
   public readonly bool IsInitialized() => true;
 #else
-  public readonly bool IsInitialized() => _isInitialized;
+        public readonly bool IsInitialized() => _isInitialized;
 #endif
-
-        
         public static explicit operator System.Char(_casting_public_readonly_partial_record_structImplicitExplicitchar value) => value.Value;
-        public static implicit operator _casting_public_readonly_partial_record_structImplicitExplicitchar(System.Char value) {
-          return new _casting_public_readonly_partial_record_structImplicitExplicitchar(value);
-}
+        public static implicit operator _casting_public_readonly_partial_record_structImplicitExplicitchar(System.Char value)
+        {
+            return new _casting_public_readonly_partial_record_structImplicitExplicitchar(value);
+        }
 
         // only called internally when something has been deserialized into
         // its primitive type.
         private static _casting_public_readonly_partial_record_structImplicitExplicitchar __Deserialize(System.Char value)
         {
-            
-
-            
-
             return new _casting_public_readonly_partial_record_structImplicitExplicitchar(value);
         }
-                  public readonly global::System.Boolean Equals(_casting_public_readonly_partial_record_structImplicitExplicitchar other)
-          {
+
+        public readonly global::System.Boolean Equals(_casting_public_readonly_partial_record_structImplicitExplicitchar other)
+        {
             // It's possible to create uninitialized instances via converters such as EfCore (HasDefaultValue), which call Equals.
             // We treat anything uninitialized as not equal to anything, even other uninitialized instances of this type.
-            if(!IsInitialized() || !other.IsInitialized()) return false;
-
+            if (!IsInitialized() || !other.IsInitialized())
+                return false;
             return global::System.Collections.Generic.EqualityComparer<System.Char>.Default.Equals(Value, other.Value);
-          }
-          public global::System.Boolean Equals(_casting_public_readonly_partial_record_structImplicitExplicitchar other, global::System.Collections.Generic.IEqualityComparer<_casting_public_readonly_partial_record_structImplicitExplicitchar> comparer)
-          {
+        }
+
+        public global::System.Boolean Equals(_casting_public_readonly_partial_record_structImplicitExplicitchar other, global::System.Collections.Generic.IEqualityComparer<_casting_public_readonly_partial_record_structImplicitExplicitchar> comparer)
+        {
             return comparer.Equals(this, other);
-          }
+        }
 
-          
-            public readonly global::System.Boolean Equals(System.Char primitive)
-            {
-              return Value.Equals(primitive);
-            }
-
+        public readonly global::System.Boolean Equals(System.Char primitive)
+        {
+            return Value.Equals(primitive);
+        }
 
         public static global::System.Boolean operator ==(_casting_public_readonly_partial_record_structImplicitExplicitchar left, System.Char right) => Equals(left.Value, right);
         public static global::System.Boolean operator !=(_casting_public_readonly_partial_record_structImplicitExplicitchar left, System.Char right) => !Equals(left.Value, right);
-
         public static global::System.Boolean operator ==(System.Char left, _casting_public_readonly_partial_record_structImplicitExplicitchar right) => Equals(left, right.Value);
         public static global::System.Boolean operator !=(System.Char left, _casting_public_readonly_partial_record_structImplicitExplicitchar right) => !Equals(left, right.Value);
-
         public int CompareTo(_casting_public_readonly_partial_record_structImplicitExplicitchar other) => Value.CompareTo(other.Value);
-        public int CompareTo(object other) {
-            if(other is null) return 1;
-            if(other is _casting_public_readonly_partial_record_structImplicitExplicitchar x) return CompareTo(x);
+        public int CompareTo(object other)
+        {
+            if (other is null)
+                return 1;
+            if (other is _casting_public_readonly_partial_record_structImplicitExplicitchar x)
+                return CompareTo(x);
             throw new global::System.ArgumentException("Cannot compare to object as it is not of type _casting_public_readonly_partial_record_structImplicitExplicitchar", nameof(other));
         }
 
-        
-    /// <inheritdoc cref="char.TryParse(string, out char)"/>
-    /// <summary>
-    /// </summary>
-    /// <returns>
-    /// True if the value could a) be parsed by the underlying type, and b) passes any validation (after running any optional normalization).
-    /// </returns>
-    public static global::System.Boolean TryParse(string s, 
+        /// <inheritdoc cref = "char.TryParse(string, out char)"/>
+        /// <summary>
+        /// </summary>
+        /// <returns>
+        /// True if the value could a) be parsed by the underlying type, and b) passes any validation (after running any optional normalization).
+        /// </returns>
+        public static global::System.Boolean TryParse(string s,
 #if NETCOREAPP3_0_OR_GREATER
 [global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)]
 #endif
- out _casting_public_readonly_partial_record_structImplicitExplicitchar result) {
-        if(System.Char.TryParse(s, out var __v)) {
-            
-            
-            result = new _casting_public_readonly_partial_record_structImplicitExplicitchar(__v);
-            return true;
+ out _casting_public_readonly_partial_record_structImplicitExplicitchar result)
+        {
+            if (System.Char.TryParse(s, out var __v))
+            {
+                result = new _casting_public_readonly_partial_record_structImplicitExplicitchar(__v);
+                return true;
+            }
+
+            result = default;
+            return false;
         }
 
-        result = default;
-        return false;
-    }
+        /// <inheritdoc cref = "char.Parse(string)"/>
+        /// <summary>
+        /// </summary>
+        /// <returns>
+        /// The value created by calling the Parse method on the primitive.
+        /// </returns>
+        /// <exception cref = "global::Vogen.ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
+        public static _casting_public_readonly_partial_record_structImplicitExplicitchar Parse(string s)
+        {
+            var r = System.Char.Parse(s);
+            return From(r);
+        }
 
-    /// <inheritdoc cref="char.Parse(string)"/>
-    /// <summary>
-    /// </summary>
-    /// <returns>
-    /// The value created by calling the Parse method on the primitive.
-    /// </returns>
-    /// <exception cref="global::Vogen.ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
-    public static _casting_public_readonly_partial_record_structImplicitExplicitchar Parse(string s) {
-        var r = System.Char.Parse(s);
-        return From(r);
-    }
-
-
-        
-          public readonly override global::System.Int32 GetHashCode()
-          {
+        public readonly override global::System.Int32 GetHashCode()
+        {
             return global::System.Collections.Generic.EqualityComparer<System.Char>.Default.GetHashCode(Value);
-          }
+        }
 
         private readonly void EnsureInitialized()
         {
@@ -300,18 +262,14 @@ public static ValueObjectOrError<_casting_public_readonly_partial_record_structI
 #else
                 global::System.String message = "Use of uninitialized Value Object.";
 #endif
-
                 throw new global::Vogen.ValueObjectValidationException(message);
             }
         }
 
         // record enumerates fields - we just want our Value and to throw if it's not initialized.
-        /// <summary>Returns the string representation of the underlying <see cref="System.Char" />.</summary>
-    public readonly override global::System.String ToString() =>IsInitialized() ? Value.ToString() : "[UNINITIALIZED]";
-
-        
- 
-                /// <summary>
+        /// <summary>Returns the string representation of the underlying <see cref = "System.Char"/>.</summary>
+        public readonly override global::System.String ToString() => IsInitialized() ? Value.ToString() : "[UNINITIALIZED]";
+        /// <summary>
         /// Converts a _casting_public_readonly_partial_record_structImplicitExplicitchar to or from JSON.
         /// </summary>
         public class _casting_public_readonly_partial_record_structImplicitExplicitcharSystemTextJsonConverter : global::System.Text.Json.Serialization.JsonConverter<_casting_public_readonly_partial_record_structImplicitExplicitchar>
@@ -319,7 +277,6 @@ public static ValueObjectOrError<_casting_public_readonly_partial_record_structI
             public override _casting_public_readonly_partial_record_structImplicitExplicitchar Read(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {
                 var s = reader.GetString();
-
                 return _casting_public_readonly_partial_record_structImplicitExplicitchar.__Deserialize(s[0]);
             }
 
@@ -327,7 +284,6 @@ public static ValueObjectOrError<_casting_public_readonly_partial_record_structI
             {
                 writer.WriteStringValue(value.Value.ToString());
             }
-
 #if NET6_0_OR_GREATER
             public override _casting_public_readonly_partial_record_structImplicitExplicitchar ReadAsPropertyName(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {
@@ -340,9 +296,8 @@ public static ValueObjectOrError<_casting_public_readonly_partial_record_structI
             {
                 writer.WritePropertyName(value.Value.ToString());
             }
-#endif            
+#endif
         }
-
 
         class _casting_public_readonly_partial_record_structImplicitExplicitcharTypeConverter : global::System.ComponentModel.TypeConverter
         {
@@ -359,7 +314,7 @@ public static ValueObjectOrError<_casting_public_readonly_partial_record_structI
                     global::System.Int16 shortValue => _casting_public_readonly_partial_record_structImplicitExplicitchar.__Deserialize((global::System.Char)shortValue),
                     global::System.Int32 intValue => _casting_public_readonly_partial_record_structImplicitExplicitchar.__Deserialize((global::System.Char)intValue),
                     global::System.Int64 longValue => _casting_public_readonly_partial_record_structImplicitExplicitchar.__Deserialize((global::System.Char)longValue),
-                    global::System.String stringValue when  !global::System.String.IsNullOrEmpty(stringValue) && global::System.Char.TryParse(stringValue, out var result) => _casting_public_readonly_partial_record_structImplicitExplicitchar.__Deserialize(result),
+                    global::System.String stringValue when !global::System.String.IsNullOrEmpty(stringValue) && global::System.Char.TryParse(stringValue, out var result) => _casting_public_readonly_partial_record_structImplicitExplicitchar.__Deserialize(result),
                     _ => base.ConvertFrom(context, culture, value),
                 };
             }
@@ -388,32 +343,22 @@ public static ValueObjectOrError<_casting_public_readonly_partial_record_structI
             }
         }
 
-
-
-
-
-        
-            internal sealed class _casting_public_readonly_partial_record_structImplicitExplicitcharDebugView
+        internal sealed class _casting_public_readonly_partial_record_structImplicitExplicitcharDebugView
+        {
+            private readonly _casting_public_readonly_partial_record_structImplicitExplicitchar _t;
+            _casting_public_readonly_partial_record_structImplicitExplicitcharDebugView(_casting_public_readonly_partial_record_structImplicitExplicitchar t)
             {
-                private readonly _casting_public_readonly_partial_record_structImplicitExplicitchar _t;
-
-                _casting_public_readonly_partial_record_structImplicitExplicitcharDebugView(_casting_public_readonly_partial_record_structImplicitExplicitchar t)
-                {
-                    _t = t;
-                }
-
-                public global::System.Boolean IsInitialized => _t.IsInitialized();
-                public global::System.String UnderlyingType => "System.Char";
-                public global::System.String Value => _t.IsInitialized() ? _t._value.ToString() : "[not initialized]" ;
-
-                #if DEBUG
-                    public global::System.String CreatedWith => _t._stackTrace?.ToString() ?? "the From method";
-                #endif
-
-                public global::System.String Conversions => @"Default";
+                _t = t;
             }
 
-}
-
+            public global::System.Boolean IsInitialized => _t.IsInitialized();
+            public global::System.String UnderlyingType => "System.Char";
+            public global::System.String Value => _t.IsInitialized() ? _t._value.ToString() : "[not initialized]";
+#if DEBUG
+        public global::System.String CreatedWith => _t._stackTrace?.ToString() ?? "the From method";
+#endif
+            public global::System.String Conversions => @"Default";
+        }
+    }
 }
 ]

@@ -5,7 +5,7 @@ namespace SnapshotTests
 {
     public static class Factory
     {
-        public static ImmutableHashSet<string> TypeVariations = new List<string>()
+        public static readonly ImmutableHashSet<string> TypeVariations = new List<string>
         {
             "partial class",
             "partial record",
@@ -26,7 +26,7 @@ namespace SnapshotTests
 #endif
         }.ToImmutableHashSet();
 
-        public static readonly ImmutableHashSet<string> UnderlyingTypes = new List<string>()
+        public static readonly ImmutableHashSet<string> UnderlyingTypes = new List<string>
         {
             "", // don't include underlying type - should default to int
             "int",

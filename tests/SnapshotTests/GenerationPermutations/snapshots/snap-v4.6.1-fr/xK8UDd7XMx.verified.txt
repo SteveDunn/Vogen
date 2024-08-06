@@ -29,6 +29,7 @@ namespace generator;
 public class VogenTypesFactory : global::System.Text.Json.Serialization.JsonConverterFactory
 {
     public VogenTypesFactory() { }
+    
     private static readonly global::System.Collections.Generic.Dictionary<global::System.Type, global::System.Lazy<global::System.Text.Json.Serialization.JsonConverter>> _lookup = 
         new global::System.Collections.Generic.Dictionary<global::System.Type, global::System.Lazy<global::System.Text.Json.Serialization.JsonConverter>> {
                 { typeof(global::Whatever.internal_partial_recordConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterlong), new global::System.Lazy<global::System.Text.Json.Serialization.JsonConverter>(() => new global::Whatever.internal_partial_recordConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterlong.internal_partial_recordConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterlongSystemTextJsonConverter()) }
@@ -48,47 +49,38 @@ public class VogenTypesFactory : global::System.Text.Json.Serialization.JsonConv
 //     the code is regenerated.
 // </auto-generated>
 // ------------------------------------------------------------------------------
-
 // Suppress warnings about [Obsolete] member usage in generated code.
 #pragma warning disable CS0618
-
 // Suppress warnings for 'Override methods on comparable types'.
 #pragma warning disable CA1036
-
 // Suppress Error MA0097 : A class that implements IComparable<T> or IComparable should override comparison operators
 #pragma warning disable MA0097
-
 // Suppress warning for 'The annotation for nullable reference types should only be used in code within a '#nullable' annotations context. Auto-generated code requires an explicit '#nullable' directive in source.'
 // The generator copies signatures from the BCL, e.g. for `TryParse`, and some of those have nullable annotations.
 #pragma warning disable CS8669
-
 // Suppress warnings about CS1591: Missing XML comment for publicly visible type or member 'Type_or_Member'
 #pragma warning disable CS1591
-
 using Vogen;
 
 namespace Whatever
 {
-
-    [global::System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage] 
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Vogen", "1.0.0.0")]
+    [global::System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Vogen", "1.0.0.0")]
     [global::System.Text.Json.Serialization.JsonConverter(typeof(internal_partial_recordConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterlongSystemTextJsonConverter))]
-[global::Newtonsoft.Json.JsonConverter(typeof(internal_partial_recordConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterlongNewtonsoftJsonConverter))]
-
+    [global::Newtonsoft.Json.JsonConverter(typeof(internal_partial_recordConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterlongNewtonsoftJsonConverter))]
     [global::System.Diagnostics.DebuggerTypeProxyAttribute(typeof(internal_partial_recordConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterlongDebugView))]
     [global::System.Diagnostics.DebuggerDisplayAttribute("Underlying type: System.Int64, Value = { _value }")]
-    internal partial record class internal_partial_recordConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterlong : global::System.IEquatable<internal_partial_recordConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterlong>, global::System.IEquatable<System.Int64> ,  global::System.IComparable<internal_partial_recordConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterlong>, global::System.IComparable
+    internal partial record class internal_partial_recordConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterlong : global::System.IEquatable<internal_partial_recordConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterlong>, global::System.IEquatable<System.Int64>, global::System.IComparable<internal_partial_recordConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterlong>, global::System.IComparable
     {
-#if DEBUG   
-        private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
+#if DEBUG
+private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
 #endif
 #if !VOGEN_NO_VALIDATION
         private readonly global::System.Boolean _isInitialized;
 #endif
         private readonly System.Int64 _value;
-        
         /// <summary>
-        /// Gets the underlying <see cref="System.Int64" /> value if set, otherwise a <see cref="global::Vogen.ValueObjectValidationException" /> is thrown.
+        /// Gets the underlying <see cref = "System.Int64"/> value if set, otherwise a <see cref = "global::Vogen.ValueObjectValidationException"/> is thrown.
         /// </summary>
         public System.Int64 Value
         {
@@ -98,19 +90,13 @@ namespace Whatever
                 EnsureInitialized();
                 return _value;
             }
+
             [global::System.Diagnostics.DebuggerStepThroughAttribute]
             init
             {
-                
-
-                
-
-                
-
                 _value = value;
             }
         }
-
 
         [global::System.Diagnostics.DebuggerStepThroughAttribute]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -137,233 +123,208 @@ namespace Whatever
         /// <summary>
         /// Builds an instance from the provided underlying type.
         /// </summary>
-        /// <param name="value">The underlying type.</param>
+        /// <param name = "value">The underlying type.</param>
         /// <returns>An instance of this type.</returns>
         public static internal_partial_recordConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterlong From(System.Int64 value)
         {
-            
-
-            
-
-            
-
             internal_partial_recordConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterlong instance = new internal_partial_recordConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterlong(value);
-
             return instance;
         }
 
         /// <summary>
-/// Tries to build an instance from the provided underlying type.
-/// If a normalization method is provided, it will be called.
-/// If validation is provided, and it fails, false will be returned.
-/// </summary>
-/// <param name="value">The underlying type.</param>
-/// <param name="vo">An instance of the value object.</param>
-/// <returns>True if the value object can be built, otherwise false.</returns>
-public static bool TryFrom(System.Int64 value, 
+        /// Tries to build an instance from the provided underlying type.
+        /// If a normalization method is provided, it will be called.
+        /// If validation is provided, and it fails, false will be returned.
+        /// </summary>
+        /// <param name = "value">The underlying type.</param>
+        /// <param name = "vo">An instance of the value object.</param>
+        /// <returns>True if the value object can be built, otherwise false.</returns>
+        public static bool TryFrom(System.Int64 value,
 #if NETCOREAPP3_0_OR_GREATER
 [global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)]
 #endif
  out internal_partial_recordConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterlong vo)
-{
-    
-    
+        {
+            vo = new internal_partial_recordConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterlong(value);
+            return true;
+        }
 
-    
+        /// <summary>
+        /// Tries to build an instance from the provided underlying value.
+        /// If a normalization method is provided, it will be called.
+        /// If validation is provided, and it fails, an error will be returned.
+        /// </summary>
+        /// <param name = "value">The primitive value.</param>
+        /// <returns>A <see cref = "ValueObjectOrError{T}"/> containing either the value object, or an error.</returns>
+        public static ValueObjectOrError<internal_partial_recordConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterlong> TryFrom(System.Int64 value)
+        {
+            return new ValueObjectOrError<internal_partial_recordConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterlong>(new internal_partial_recordConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterlong(value));
+        }
 
-    vo = new internal_partial_recordConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterlong(value);
-
-    return true;
-}/// <summary>
-/// Tries to build an instance from the provided underlying value.
-/// If a normalization method is provided, it will be called.
-/// If validation is provided, and it fails, an error will be returned.
-/// </summary>
-/// <param name="value">The primitive value.</param>
-/// <returns>A <see cref="ValueObjectOrError{T}"/> containing either the value object, or an error.</returns>
-public static ValueObjectOrError<internal_partial_recordConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterlong> TryFrom(System.Int64 value)
-{
-    
-
-    
-
-    
-
-    return new ValueObjectOrError<internal_partial_recordConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterlong>(new internal_partial_recordConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterlong(value));
-}
-
-[global::System.Runtime.CompilerServices.MethodImpl(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
+        [global::System.Runtime.CompilerServices.MethodImpl(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 #if VOGEN_NO_VALIDATION
   public bool IsInitialized() => true;
 #else
-  public bool IsInitialized() => _isInitialized;
+        public bool IsInitialized() => _isInitialized;
 #endif
-
-  
         // only called internally when something has been deserialized into
         // its primitive type.
         private static internal_partial_recordConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterlong __Deserialize(System.Int64 value)
         {
-            
-
-            
-
-            
-
             return new internal_partial_recordConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterlong(value);
         }
-        
-            public virtual global::System.Boolean Equals(internal_partial_recordConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterlong other)
+
+        public virtual global::System.Boolean Equals(internal_partial_recordConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterlong other)
+        {
+            if (ReferenceEquals(null, other))
             {
-              if (ReferenceEquals(null, other))
-              {
-                  return false;
-              }
-
-              // It's possible to create uninitialized instances via converters such as EfCore (HasDefaultValue), which call Equals.
-              // We treat anything uninitialized as not equal to anything, even other uninitialized instances of this type.
-              if(!IsInitialized() || !other.IsInitialized()) return false;
-
-              if (ReferenceEquals(this, other))
-              {
-                  return true;
-              }
-
-              return GetType() == other.GetType() && global::System.Collections.Generic.EqualityComparer<System.Int64>.Default.Equals(Value, other.Value);
-            }
-             public global::System.Boolean Equals(internal_partial_recordConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterlong other, global::System.Collections.Generic.IEqualityComparer<internal_partial_recordConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterlong> comparer)
-             {
-                 return comparer.Equals(this, other);
-             }
-
-             
-            public global::System.Boolean Equals(System.Int64 primitive)
-            {
-              return Value.Equals(primitive);
+                return false;
             }
 
+            // It's possible to create uninitialized instances via converters such as EfCore (HasDefaultValue), which call Equals.
+            // We treat anything uninitialized as not equal to anything, even other uninitialized instances of this type.
+            if (!IsInitialized() || !other.IsInitialized())
+                return false;
+            if (ReferenceEquals(this, other))
+            {
+                return true;
+            }
+
+            return GetType() == other.GetType() && global::System.Collections.Generic.EqualityComparer<System.Int64>.Default.Equals(Value, other.Value);
+        }
+
+        public global::System.Boolean Equals(internal_partial_recordConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterlong other, global::System.Collections.Generic.IEqualityComparer<internal_partial_recordConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterlong> comparer)
+        {
+            return comparer.Equals(this, other);
+        }
+
+        public global::System.Boolean Equals(System.Int64 primitive)
+        {
+            return Value.Equals(primitive);
+        }
 
         public static global::System.Boolean operator ==(internal_partial_recordConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterlong left, System.Int64 right) => Equals(left.Value, right);
         public static global::System.Boolean operator !=(internal_partial_recordConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterlong left, System.Int64 right) => !Equals(left.Value, right);
-
         public static global::System.Boolean operator ==(System.Int64 left, internal_partial_recordConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterlong right) => Equals(left, right.Value);
         public static global::System.Boolean operator !=(System.Int64 left, internal_partial_recordConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterlong right) => !Equals(left, right.Value);
-
         public static explicit operator internal_partial_recordConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterlong(System.Int64 value) => From(value);
         public static explicit operator System.Int64(internal_partial_recordConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterlong value) => value.Value;
-
         public int CompareTo(internal_partial_recordConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterlong other) => Value.CompareTo(other.Value);
-        public int CompareTo(object other) {
-            if(other is null) return 1;
-            if(other is internal_partial_recordConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterlong x) return CompareTo(x);
+        public int CompareTo(object other)
+        {
+            if (other is null)
+                return 1;
+            if (other is internal_partial_recordConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterlong x)
+                return CompareTo(x);
             throw new global::System.ArgumentException("Cannot compare to object as it is not of type internal_partial_recordConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterlong", nameof(other));
         }
 
-        
-    /// <inheritdoc cref="long.TryParse(string, System.Globalization.NumberStyles, System.IFormatProvider, out long)"/>
-    /// <summary>
-    /// </summary>
-    /// <returns>
-    /// True if the value could a) be parsed by the underlying type, and b) passes any validation (after running any optional normalization).
-    /// </returns>
-    public static global::System.Boolean TryParse(string s, global::System.Globalization.NumberStyles style, global::System.IFormatProvider provider, 
+        /// <inheritdoc cref = "long.TryParse(string, System.Globalization.NumberStyles, System.IFormatProvider, out long)"/>
+        /// <summary>
+        /// </summary>
+        /// <returns>
+        /// True if the value could a) be parsed by the underlying type, and b) passes any validation (after running any optional normalization).
+        /// </returns>
+        public static global::System.Boolean TryParse(string s, global::System.Globalization.NumberStyles style, global::System.IFormatProvider provider,
 #if NETCOREAPP3_0_OR_GREATER
 [global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)]
 #endif
- out internal_partial_recordConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterlong result) {
-        if(System.Int64.TryParse(s, style, provider, out var __v)) {
-            
-            
-            result = new internal_partial_recordConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterlong(__v);
-            return true;
+ out internal_partial_recordConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterlong result)
+        {
+            if (System.Int64.TryParse(s, style, provider, out var __v))
+            {
+                result = new internal_partial_recordConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterlong(__v);
+                return true;
+            }
+
+            result = default;
+            return false;
         }
 
-        result = default;
-        return false;
-    }
-
-    /// <inheritdoc cref="long.TryParse(string, out long)"/>
-    /// <summary>
-    /// </summary>
-    /// <returns>
-    /// True if the value could a) be parsed by the underlying type, and b) passes any validation (after running any optional normalization).
-    /// </returns>
-    public static global::System.Boolean TryParse(string s, 
+        /// <inheritdoc cref = "long.TryParse(string, out long)"/>
+        /// <summary>
+        /// </summary>
+        /// <returns>
+        /// True if the value could a) be parsed by the underlying type, and b) passes any validation (after running any optional normalization).
+        /// </returns>
+        public static global::System.Boolean TryParse(string s,
 #if NETCOREAPP3_0_OR_GREATER
 [global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)]
 #endif
- out internal_partial_recordConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterlong result) {
-        if(System.Int64.TryParse(s, out var __v)) {
-            
-            
-            result = new internal_partial_recordConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterlong(__v);
-            return true;
+ out internal_partial_recordConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterlong result)
+        {
+            if (System.Int64.TryParse(s, out var __v))
+            {
+                result = new internal_partial_recordConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterlong(__v);
+                return true;
+            }
+
+            result = default;
+            return false;
         }
 
-        result = default;
-        return false;
-    }
+        /// <inheritdoc cref = "long.Parse(string)"/>
+        /// <summary>
+        /// </summary>
+        /// <returns>
+        /// The value created by calling the Parse method on the primitive.
+        /// </returns>
+        /// <exception cref = "global::Vogen.ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
+        public static internal_partial_recordConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterlong Parse(string s)
+        {
+            var r = System.Int64.Parse(s);
+            return From(r);
+        }
 
-    /// <inheritdoc cref="long.Parse(string)"/>
-    /// <summary>
-    /// </summary>
-    /// <returns>
-    /// The value created by calling the Parse method on the primitive.
-    /// </returns>
-    /// <exception cref="global::Vogen.ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
-    public static internal_partial_recordConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterlong Parse(string s) {
-        var r = System.Int64.Parse(s);
-        return From(r);
-    }
+        /// <inheritdoc cref = "long.Parse(string, System.Globalization.NumberStyles)"/>
+        /// <summary>
+        /// </summary>
+        /// <returns>
+        /// The value created by calling the Parse method on the primitive.
+        /// </returns>
+        /// <exception cref = "global::Vogen.ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
+        public static internal_partial_recordConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterlong Parse(string s, global::System.Globalization.NumberStyles style)
+        {
+            var r = System.Int64.Parse(s, style);
+            return From(r);
+        }
 
-    /// <inheritdoc cref="long.Parse(string, System.Globalization.NumberStyles)"/>
-    /// <summary>
-    /// </summary>
-    /// <returns>
-    /// The value created by calling the Parse method on the primitive.
-    /// </returns>
-    /// <exception cref="global::Vogen.ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
-    public static internal_partial_recordConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterlong Parse(string s, global::System.Globalization.NumberStyles style) {
-        var r = System.Int64.Parse(s, style);
-        return From(r);
-    }
+        /// <inheritdoc cref = "long.Parse(string, System.Globalization.NumberStyles, System.IFormatProvider)"/>
+        /// <summary>
+        /// </summary>
+        /// <returns>
+        /// The value created by calling the Parse method on the primitive.
+        /// </returns>
+        /// <exception cref = "global::Vogen.ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
+        public static internal_partial_recordConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterlong Parse(string s, global::System.Globalization.NumberStyles style, global::System.IFormatProvider provider)
+        {
+            var r = System.Int64.Parse(s, style, provider);
+            return From(r);
+        }
 
-    /// <inheritdoc cref="long.Parse(string, System.Globalization.NumberStyles, System.IFormatProvider)"/>
-    /// <summary>
-    /// </summary>
-    /// <returns>
-    /// The value created by calling the Parse method on the primitive.
-    /// </returns>
-    /// <exception cref="global::Vogen.ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
-    public static internal_partial_recordConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterlong Parse(string s, global::System.Globalization.NumberStyles style, global::System.IFormatProvider provider) {
-        var r = System.Int64.Parse(s, style, provider);
-        return From(r);
-    }
+        /// <inheritdoc cref = "long.Parse(string, System.IFormatProvider)"/>
+        /// <summary>
+        /// </summary>
+        /// <returns>
+        /// The value created by calling the Parse method on the primitive.
+        /// </returns>
+        /// <exception cref = "global::Vogen.ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
+        public static internal_partial_recordConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterlong Parse(string s, global::System.IFormatProvider provider)
+        {
+            var r = System.Int64.Parse(s, provider);
+            return From(r);
+        }
 
-    /// <inheritdoc cref="long.Parse(string, System.IFormatProvider)"/>
-    /// <summary>
-    /// </summary>
-    /// <returns>
-    /// The value created by calling the Parse method on the primitive.
-    /// </returns>
-    /// <exception cref="global::Vogen.ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
-    public static internal_partial_recordConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterlong Parse(string s, global::System.IFormatProvider provider) {
-        var r = System.Int64.Parse(s, provider);
-        return From(r);
-    }
-
-
-
-          public override global::System.Int32 GetHashCode()
-          {
+        public override global::System.Int32 GetHashCode()
+        {
             unchecked // Overflow is fine, just wrap
             {
-                global::System.Int32 hash = (global::System.Int32) 2166136261;
+                global::System.Int32 hash = (global::System.Int32)2166136261;
                 hash = (hash * 16777619) ^ GetType().GetHashCode();
                 hash = (hash * 16777619) ^ global::System.Collections.Generic.EqualityComparer<System.Int64>.Default.GetHashCode(Value);
                 return hash;
             }
-          }
+        }
 
         private void EnsureInitialized()
         {
@@ -374,22 +335,16 @@ public static ValueObjectOrError<internal_partial_recordConversions_NewtonsoftJs
 #else
                 global::System.String message = "Use of uninitialized Value Object.";
 #endif
-
                 throw new global::Vogen.ValueObjectValidationException(message);
             }
         }
 
-
-        
-
         // record enumerates fields - we just want our Value and to throw if it's not initialized.
-        /// <summary>Returns the string representation of the underlying <see cref="System.Int64" />.</summary>
-    public override global::System.String ToString() =>IsInitialized() ? Value.ToString() : "[UNINITIALIZED]";
-
-        
-    /// <summary>
-    /// Converts a internal_partial_recordConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterlong to or from JSON.
-    /// </summary>
+        /// <summary>Returns the string representation of the underlying <see cref = "System.Int64"/>.</summary>
+        public override global::System.String ToString() => IsInitialized() ? Value.ToString() : "[UNINITIALIZED]";
+        /// <summary>
+        /// Converts a internal_partial_recordConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterlong to or from JSON.
+        /// </summary>
         public class internal_partial_recordConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterlongSystemTextJsonConverter : global::System.Text.Json.Serialization.JsonConverter<internal_partial_recordConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterlong>
         {
             public override internal_partial_recordConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterlong Read(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
@@ -403,13 +358,12 @@ public static ValueObjectOrError<internal_partial_recordConversions_NewtonsoftJs
 
             public override void Write(System.Text.Json.Utf8JsonWriter writer, internal_partial_recordConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterlong value, global::System.Text.Json.JsonSerializerOptions options)
             {
- #if NET5_0_OR_GREATER
+#if NET5_0_OR_GREATER
                 global::System.Text.Json.JsonSerializer.Serialize(writer, value.Value, options);
- #else
+#else
                 writer.WriteNumberValue(value.Value);
- #endif
+#endif
             }
-
 #if NET6_0_OR_GREATER
             public override internal_partial_recordConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterlong ReadAsPropertyName(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {
@@ -420,7 +374,7 @@ public static ValueObjectOrError<internal_partial_recordConversions_NewtonsoftJs
             {
                 writer.WritePropertyName(value.Value.ToString(global::System.Globalization.CultureInfo.InvariantCulture));
             }
-#endif            
+#endif
         }
 
         class internal_partial_recordConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterlongNewtonsoftJsonConverter : Newtonsoft.Json.JsonConverter
@@ -443,7 +397,6 @@ public static ValueObjectOrError<internal_partial_recordConversions_NewtonsoftJs
             }
         }
 
-
         public class DapperTypeHandler : global::Dapper.SqlMapper.TypeHandler<internal_partial_recordConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterlong>
         {
             public override void SetValue(global::System.Data.IDbDataParameter parameter, internal_partial_recordConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterlong value)
@@ -459,75 +412,68 @@ public static ValueObjectOrError<internal_partial_recordConversions_NewtonsoftJs
                     global::System.Int64 longValue => internal_partial_recordConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterlong.__Deserialize(longValue),
                     global::System.Int32 intValue => internal_partial_recordConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterlong.__Deserialize(intValue),
                     global::System.Int16 shortValue => internal_partial_recordConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterlong.__Deserialize(shortValue),
-                    global::System.String stringValue when  !global::System.String.IsNullOrEmpty(stringValue) && long.TryParse(stringValue, out var result) => internal_partial_recordConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterlong.__Deserialize(result),
+                    global::System.String stringValue when !global::System.String.IsNullOrEmpty(stringValue) && long.TryParse(stringValue, out var result) => internal_partial_recordConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterlong.__Deserialize(result),
                     _ => throw new global::System.InvalidCastException($"Unable to cast object of type {value.GetType()} to internal_partial_recordConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterlong"),
                 };
             }
         }
+
         public class EfCoreValueConverter : global::Microsoft.EntityFrameworkCore.Storage.ValueConversion.ValueConverter<internal_partial_recordConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterlong, System.Int64>
         {
-          public EfCoreValueConverter() : this(null) { }
-          public EfCoreValueConverter(global::Microsoft.EntityFrameworkCore.Storage.ValueConversion.ConverterMappingHints mappingHints = null)
-              : base(
-                  vo => vo.Value,
-                                                                      value => internal_partial_recordConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterlong.__Deserialize(value),
-                mappingHints
-              ) { }
+            public EfCoreValueConverter() : this(null)
+            {
+            }
 
+            public EfCoreValueConverter(global::Microsoft.EntityFrameworkCore.Storage.ValueConversion.ConverterMappingHints mappingHints = null) : base(vo => vo.Value, value => internal_partial_recordConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterlong.__Deserialize(value), mappingHints)
+            {
+            }
         }
-       public class EfCoreValueComparer : global::Microsoft.EntityFrameworkCore.ChangeTracking.ValueComparer<internal_partial_recordConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterlong>
-       {
-           public EfCoreValueComparer() : base(
-               (left, right) => DoCompare(left, right), 
-                instance => instance.IsInitialized() ? instance._value.GetHashCode() : 0) 
-           { 
-           }
-               
-           static bool DoCompare(internal_partial_recordConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterlong left, internal_partial_recordConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterlong right)
-           {
-               // if both null, then they're equal
-               if (left is null) return right is null;
-               
-               // if only right is null, then they're not equal
-               if (right is null) return false;
-               
-               // if they're both the same reference, then they're equal
-               if (ReferenceEquals(left, right)) return true;
-               
-               // if neither are initialized, then they're equal
-                if(!left.IsInitialized() && !right.IsInitialized()) return true;
-               
-                return left.IsInitialized() && right.IsInitialized() && left._value.Equals(right._value);            
-           }                
-}
+
+        public class EfCoreValueComparer : global::Microsoft.EntityFrameworkCore.ChangeTracking.ValueComparer<internal_partial_recordConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterlong>
+        {
+            public EfCoreValueComparer() : base((left, right) => DoCompare(left, right), instance => instance.IsInitialized() ? instance._value.GetHashCode() : 0)
+            {
+            }
+
+            static bool DoCompare(internal_partial_recordConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterlong left, internal_partial_recordConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterlong right)
+            {
+                // if both null, then they're equal
+                if (left is null)
+                    return right is null;
+                // if only right is null, then they're not equal
+                if (right is null)
+                    return false;
+                // if they're both the same reference, then they're equal
+                if (ReferenceEquals(left, right))
+                    return true;
+                // if neither are initialized, then they're equal
+                if (!left.IsInitialized() && !right.IsInitialized())
+                    return true;
+                return left.IsInitialized() && right.IsInitialized() && left._value.Equals(right._value);
+            }
+        }
 
         public class LinqToDbValueConverter : global::LinqToDB.Common.ValueConverter<internal_partial_recordConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterlong, global::System.Int64>
         {
-            public LinqToDbValueConverter()
-                : base(
-                      v => v.Value,
-                      p => internal_partial_recordConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterlong.__Deserialize(p),
-                      handlesNulls: false)
-            { }
+            public LinqToDbValueConverter() : base(v => v.Value, p => internal_partial_recordConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterlong.__Deserialize(p), handlesNulls: false)
+            {
+            }
         }
-
 
         internal sealed class internal_partial_recordConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterlongDebugView
         {
             private readonly internal_partial_recordConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterlong _t;
-
             internal_partial_recordConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterlongDebugView(internal_partial_recordConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterlong t)
             {
                 _t = t;
             }
 
             public global::System.String UnderlyingType => "System.Int64";
-            public System.Int64 Value => _t.Value ;
-
+            public System.Int64 Value => _t.Value;
             public global::System.String Conversions => @"[global::System.Text.Json.Serialization.JsonConverter(typeof(internal_partial_recordConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterlongSystemTextJsonConverter))]
 [global::Newtonsoft.Json.JsonConverter(typeof(internal_partial_recordConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterlongNewtonsoftJsonConverter))]
 ";
-                }
+        }
     }
 #if NETCOREAPP3_0_OR_GREATER
             public static class __internal_partial_recordConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterlongEfCoreExtensions 

@@ -10,7 +10,7 @@ public class NestingInfo
     private NestingInfo()
     {
     }
-    
+
     public static NestingInfo AsNestedIn(INamedTypeSymbol containingType) => new() { _containingType = containingType };
 
     public static readonly NestingInfo NotNested = new();

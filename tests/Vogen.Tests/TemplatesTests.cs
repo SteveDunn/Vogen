@@ -22,7 +22,7 @@ public class TemplatesTests
     {
         private readonly string[] _technologies;
 
-        public Types(string[] technologies) => _technologies = technologies;
+        protected Types(string[] technologies) => _technologies = technologies;
 
         public IEnumerator<object[]> GetEnumerator()
         {

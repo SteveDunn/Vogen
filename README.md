@@ -694,19 +694,6 @@ So I added a [language proposal for invariant records](https://github.com/dotnet
 
 One of the responses in the proposal says that the language team decided that validation policies should not be part of C#, but provided by source generators.
 
-### How do I run the benchmarks?
-
-`dotnet run -c Release -- --job short --framework net6.0 --filter *`
-
-### Why do I get a build a build error when running `.\Build.ps1`?
-
-You might see this:
-```
-.\Build.ps1 : File C:\Build.ps1 cannot be loaded. The file C:\Build.ps1 is not digitally signed. You cannot run this script on the current system. 
-```
-
-To get around this, run `Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
-
 ### What alternatives are there?
 
 [StronglyTypedId](https://github.com/andrewlock/StronglyTypedId)
@@ -752,39 +739,6 @@ For other types, a generic type conversion and serializer is applied. If you are
 [System.ComponentModel.TypeConverter(typeof(SpecialPrimitiveTypeConverter))]
 public partial struct SpecialMeasurement { }
 ```
-
-### I've made a change that means the 'Snapshot' tests are expectedly failing in the build - what do I do?
-
-Vogen uses a combination of unit tests, in-memory compilation tests, and snapshot tests. The snapshot tests are used
-to compare the output of the source generators to the expected output stored on disk.
-
-If your feature/fix changes the output of the source generators, then running the snapshot tests will bring up your 
-configured code diff tool, for instance, Beyond Compare, to show the differences. You can accept the differences in that
-tool, or, if there's a lot of differences (and they're all expected!), you have various options depending on your 
-platform and tooling. Those are [described here](https://github.com/VerifyTests/Verify/blob/main/docs/clipboard.md).
-                             
-**NOTE: If the change to the source generators expectedly changes the majority of the snapshot tests, then you can tell the 
-snapshot runner to overwrite the expected files with the actual files that are generated.**
-
-To do this, run `.\RunSnapshots.ps1 -v "Minimal" -reset $true`. This deletes all `snaphsot` folders under the `tests` folder
-and treats everything that's generated as the new baseline for future comparisons.
-
-This will mean that there are potentially **thousands** of changed files that will end up in the commit, but it's expected and unavoidable.
-
-### How do I debug the source generator?
-
-The easiest way is to debug the SnapshotTests. Put a breakpoint in the code, and then just debug a test somewhere.
-
-To debug an analyzer, select or write a test in the AnalyzerTests. There are tests that exercise the various analyzers and code-fixers.
-
-### How do I run the tests that actually use the source generator?
-
-It is difficult to run tests that _use_ the source generator in the same project **as** the source generator, so there 
-is a separate solution for this. It's called `Consumers.sln`. What happens is that `build.ps1` builds the generator, runs 
-the tests, and creates the NuGet package _in a private local folder_. The package is version `999.9.xxx` and the consumer 
-references the latest version. The consumer can then really use the source generator, just like anything else.
-
-> Note: if you want to run the lengthy snapshot tests, run `.\RunSnapshots.ps1 -v "minimal"`
 
 ### Can I get it to throw my own exception?
 

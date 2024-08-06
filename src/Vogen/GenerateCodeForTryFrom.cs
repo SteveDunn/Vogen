@@ -75,7 +75,7 @@ public static class GenerateCodeForTryFrom
     
     private static string GenerateNullCheckAndReturnFalseIfNeeded(VoWorkItem voWorkItem) =>
         voWorkItem.IsTheUnderlyingAValueType ? string.Empty
-            : $@"            if (value is null)
+            : $@"if (value is null)
             {{
                 vo = default;
                 return false;
@@ -83,11 +83,11 @@ public static class GenerateCodeForTryFrom
 ";
 
     private static string GenerateNullCheckAndReturnErrorIfNeeded(VoWorkItem item, SyntaxToken className) =>
-        item.IsTheUnderlyingAValueType ? string.Empty
-            : $@"            if (value is null)
+        item.IsTheUnderlyingAValueType
+            ? string.Empty
+            : $@"if (value is null)
             {{
                 return new ValueObjectOrError<{className}>(Validation.Invalid(""The value provided was null""));
-            }}
-";
+            }}";
 
 }

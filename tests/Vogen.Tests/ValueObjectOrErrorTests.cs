@@ -1,6 +1,7 @@
 using System;
 using FluentAssertions;
 using Xunit;
+// ReSharper disable CheckNamespace
 
 namespace Vogen.ValueObjectOrErrorTests;
 

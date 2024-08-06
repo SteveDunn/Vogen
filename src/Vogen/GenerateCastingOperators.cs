@@ -1,5 +1,4 @@
 using System.Text;
-using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 
 namespace Vogen;
@@ -15,50 +14,41 @@ public static class GenerateCastingOperators
 
         if (item.Config.FromPrimitiveCasting == CastOperator.Explicit)
         {
-            sb.AppendLine(
-                $$"""
-                          public static explicit operator {{className}}({{itemUnderlyingType}} value) => From(value);
-                  """);
+            sb.AppendLine($"public static explicit operator {className}({itemUnderlyingType} value) => From(value);");
         }
 
         // Generate the call to the Value property so that it throws if uninitialized.
         if (item.Config.ToPrimitiveCasting == CastOperator.Explicit)
         {
-            sb.AppendLine(
-                $$"""
-                          public static explicit operator {{itemUnderlyingType}}({{className}} value) => value.Value;
-                  """);
+            sb.AppendLine($"public static explicit operator {itemUnderlyingType}({className} value) => value.Value;");
         }
 
         // Generate the call to the _value field so that it doesn't throw if uninitialized.
         if (item.Config.ToPrimitiveCasting == CastOperator.Implicit)
         {
-            sb.AppendLine(
-                $$"""
-                          public static implicit operator {{itemUnderlyingType}}({{className}} vo) => vo._value;
-                  """);
+            sb.AppendLine($"public static implicit operator {itemUnderlyingType}({className} vo) => vo._value;");
         }
 
         if (item.Config.FromPrimitiveCasting == CastOperator.Implicit)
         {
             if (item.NormalizeInputMethod is not null)
             {
-                sb.AppendLine(
-                    $$"""
-                              public static implicit operator {{className}}({{itemUnderlyingType}} value) {
-                                return new {{className}}({{className}}.NormalizeInput(value));
-                      }
-                      """);
-                
+                sb.AppendLine($$"""
+                                public static implicit operator {{className}}({{itemUnderlyingType}} value) 
+                                {
+                                    return new {{className}}({{className}}.NormalizeInput(value));
+                                }
+                                """);
+
             }
             else
             {
-                sb.AppendLine(
-                    $$"""
-                              public static implicit operator {{className}}({{itemUnderlyingType}} value) {
-                                return new {{className}}(value);
-                      }
-                      """);
+                sb.AppendLine($$"""
+                                public static implicit operator {{className}}({{itemUnderlyingType}} value) 
+                                {
+                                  return new {{className}}(value);
+                                }
+                                """);
             }
         }
 

@@ -1,6 +1,13 @@
-﻿// ReSharper disable once CheckNamespace
+﻿// ReSharper disable CheckNamespace
+// ReSharper disable UnusedMember.Global
+// ReSharper disable UnusedMember.Local
+// ReSharper disable PossibleNullReferenceException
+// ReSharper disable AssignNullToNotNullAttribute
 
+// ReSharper disable EmptyNamespace
+#if !NET5_0_OR_GREATER
 using System.ComponentModel;
+#endif
 
 namespace System.Runtime.CompilerServices
 {

@@ -12,7 +12,8 @@ internal static class GenerateStaticConstructor
         if (UnderlyingIsDateOrTimeRelated())
         {
             return $$"""
-                     static {{item.VoTypeName}}() {
+                     static {{item.VoTypeName}}() 
+                     {
                         global::ServiceStack.Text.JsConfig<{{item.VoTypeName}}>.DeSerializeFn = v => {{item.VoTypeName}}.Parse(v, global::System.Globalization.CultureInfo.InvariantCulture);
                         global::ServiceStack.Text.JsConfig<{{item.VoTypeName}}>.SerializeFn = v => v.Value.ToString("o", global::System.Globalization.CultureInfo.InvariantCulture);
                      }
@@ -22,7 +23,8 @@ internal static class GenerateStaticConstructor
         if (UnderlyingIsADateTime())
         {
             return $$"""
-                     static {{item.VoTypeName}}() {
+                     static {{item.VoTypeName}}() 
+                     {
                         global::ServiceStack.Text.JsConfig<{{item.VoTypeName}}>.DeSerializeFn = v => From(global::System.DateTime.ParseExact(v, "O", global::System.Globalization.CultureInfo.InvariantCulture, global::System.Globalization.DateTimeStyles.RoundtripKind));
                         global::ServiceStack.Text.JsConfig<{{item.VoTypeName}}>.SerializeFn = v => v.Value.ToUniversalTime().ToString("O", global::System.Globalization.CultureInfo.InvariantCulture);
                      }
@@ -34,7 +36,8 @@ internal static class GenerateStaticConstructor
             : $"v => {item.VoTypeName}.Parse(v)";
 
         return $$"""
-                 static {{item.VoTypeName}}() {
+                 static {{item.VoTypeName}}() 
+                 {
                     global::ServiceStack.Text.JsConfig<{{item.VoTypeName}}>.DeSerializeFn = {{deserialiseFn}};
                     global::ServiceStack.Text.JsConfig<{{item.VoTypeName}}>.SerializeFn = v => v.ToString();
                  }

@@ -29,6 +29,7 @@ namespace generator;
 public class VogenTypesFactory : global::System.Text.Json.Serialization.JsonConverterFactory
 {
     public VogenTypesFactory() { }
+    
     private static readonly global::System.Collections.Generic.Dictionary<global::System.Type, global::System.Lazy<global::System.Text.Json.Serialization.JsonConverter>> _lookup = 
         new global::System.Collections.Generic.Dictionary<global::System.Type, global::System.Lazy<global::System.Text.Json.Serialization.JsonConverter>> {
                 
@@ -48,216 +49,183 @@ public class VogenTypesFactory : global::System.Text.Json.Serialization.JsonConv
 //     the code is regenerated.
 // </auto-generated>
 // ------------------------------------------------------------------------------
-
 // Suppress warnings about [Obsolete] member usage in generated code.
 #pragma warning disable CS0618
-
 // Suppress warnings for 'Override methods on comparable types'.
 #pragma warning disable CA1036
-
 // Suppress Error MA0097 : A class that implements IComparable<T> or IComparable should override comparison operators
 #pragma warning disable MA0097
-
 // Suppress warning for 'The annotation for nullable reference types should only be used in code within a '#nullable' annotations context. Auto-generated code requires an explicit '#nullable' directive in source.'
 // The generator copies signatures from the BCL, e.g. for `TryParse`, and some of those have nullable annotations.
 #pragma warning disable CS8669
-
 // Suppress warnings about CS1591: Missing XML comment for publicly visible type or member 'Type_or_Member'
 #pragma warning disable CS1591
-
 using Vogen;
 
-
-    [global::System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage] 
+[global::System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage]
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Vogen", "1.0.0.0")]
-    
-    [global::System.Diagnostics.DebuggerTypeProxyAttribute(typeof(MyVoDebugView))]
-    [global::System.Diagnostics.DebuggerDisplayAttribute("Underlying type: System.TimeOnly, Value = { _value }")]
-    public partial struct MyVo : global::System.IEquatable<MyVo>, global::System.IEquatable<System.TimeOnly> ,  global::System.IComparable<MyVo>, global::System.IComparable,  global::System.IParsable<MyVo>,  global::System.ISpanParsable<MyVo>
-    {
-#if DEBUG   
-        private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
+[global::System.Diagnostics.DebuggerTypeProxyAttribute(typeof(MyVoDebugView))]
+[global::System.Diagnostics.DebuggerDisplayAttribute("Underlying type: System.TimeOnly, Value = { _value }")]
+public partial struct MyVo : global::System.IEquatable<MyVo>, global::System.IEquatable<System.TimeOnly>, global::System.IComparable<MyVo>, global::System.IComparable, global::System.IParsable<MyVo>, global::System.ISpanParsable<MyVo>
+{
+#if DEBUG
+private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
 #endif
-
 #if !VOGEN_NO_VALIDATION
-        private readonly global::System.Boolean _isInitialized;
+    private readonly global::System.Boolean _isInitialized;
 #endif
-        
-        private readonly System.TimeOnly _value;
-
-        /// <summary>
-        /// Gets the underlying <see cref="System.TimeOnly" /> value if set, otherwise a <see cref="global::Vogen.ValueObjectValidationException" /> is thrown.
-        /// </summary>
-        public readonly System.TimeOnly Value
-        {
-            [global::System.Diagnostics.DebuggerStepThroughAttribute]
-            get
-            {
-                EnsureInitialized();
-                return _value;
-            }
-        }
-
-static MyVo() {
-   global::ServiceStack.Text.JsConfig<MyVo>.DeSerializeFn = v => MyVo.Parse(v, global::System.Globalization.CultureInfo.InvariantCulture);
-   global::ServiceStack.Text.JsConfig<MyVo>.SerializeFn = v => v.Value.ToString("o", global::System.Globalization.CultureInfo.InvariantCulture);
-}
+    private readonly System.TimeOnly _value;
+    /// <summary>
+    /// Gets the underlying <see cref = "System.TimeOnly"/> value if set, otherwise a <see cref = "global::Vogen.ValueObjectValidationException"/> is thrown.
+    /// </summary>
+    public readonly System.TimeOnly Value
+    {
         [global::System.Diagnostics.DebuggerStepThroughAttribute]
-        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
-        public MyVo()
+        get
         {
+            EnsureInitialized();
+            return _value;
+        }
+    }
+
+    static MyVo()
+    {
+        global::ServiceStack.Text.JsConfig<MyVo>.DeSerializeFn = v => MyVo.Parse(v, global::System.Globalization.CultureInfo.InvariantCulture);
+        global::ServiceStack.Text.JsConfig<MyVo>.SerializeFn = v => v.Value.ToString("o", global::System.Globalization.CultureInfo.InvariantCulture);
+    }
+
+    [global::System.Diagnostics.DebuggerStepThroughAttribute]
+    [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+    public MyVo()
+    {
 #if DEBUG
             _stackTrace = new global::System.Diagnostics.StackTrace();
 #endif
-
 #if !VOGEN_NO_VALIDATION
-            _isInitialized = false;
+        _isInitialized = false;
 #endif
-            _value = default;
-        }
+        _value = default;
+    }
 
-        [global::System.Diagnostics.DebuggerStepThroughAttribute]
-        private MyVo(System.TimeOnly value) 
-        {
-            _value = value;
+    [global::System.Diagnostics.DebuggerStepThroughAttribute]
+    private MyVo(System.TimeOnly value)
+    {
+        _value = value;
 #if !VOGEN_NO_VALIDATION
-            _isInitialized = true;
+        _isInitialized = true;
 #endif
-        }
+    }
 
-        /// <summary>
-        /// Builds an instance from the provided underlying type.
-        /// </summary>
-        /// <param name="value">The underlying type.</param>
-        /// <returns>An instance of this type.</returns>
-        public static MyVo From(System.TimeOnly value)
-        {
-            
+    /// <summary>
+    /// Builds an instance from the provided underlying type.
+    /// </summary>
+    /// <param name = "value">The underlying type.</param>
+    /// <returns>An instance of this type.</returns>
+    public static MyVo From(System.TimeOnly value)
+    {
+        MyVo instance = new MyVo(value);
+        return instance;
+    }
 
-            
-
-            MyVo instance = new MyVo(value);
-
-            return instance;
-        }
-
-        /// <summary>
-/// Tries to build an instance from the provided underlying type.
-/// If a normalization method is provided, it will be called.
-/// If validation is provided, and it fails, false will be returned.
-/// </summary>
-/// <param name="value">The underlying type.</param>
-/// <param name="vo">An instance of the value object.</param>
-/// <returns>True if the value object can be built, otherwise false.</returns>
-public static bool TryFrom(System.TimeOnly value, 
+    /// <summary>
+    /// Tries to build an instance from the provided underlying type.
+    /// If a normalization method is provided, it will be called.
+    /// If validation is provided, and it fails, false will be returned.
+    /// </summary>
+    /// <param name = "value">The underlying type.</param>
+    /// <param name = "vo">An instance of the value object.</param>
+    /// <returns>True if the value object can be built, otherwise false.</returns>
+    public static bool TryFrom(System.TimeOnly value,
 #if NETCOREAPP3_0_OR_GREATER
 [global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)]
 #endif
  out MyVo vo)
-{
-    
-    
+    {
+        vo = new MyVo(value);
+        return true;
+    }
 
-    
+    /// <summary>
+    /// Tries to build an instance from the provided underlying value.
+    /// If a normalization method is provided, it will be called.
+    /// If validation is provided, and it fails, an error will be returned.
+    /// </summary>
+    /// <param name = "value">The primitive value.</param>
+    /// <returns>A <see cref = "ValueObjectOrError{T}"/> containing either the value object, or an error.</returns>
+    public static ValueObjectOrError<MyVo> TryFrom(System.TimeOnly value)
+    {
+        return new ValueObjectOrError<MyVo>(new MyVo(value));
+    }
 
-    vo = new MyVo(value);
-
-    return true;
-}/// <summary>
-/// Tries to build an instance from the provided underlying value.
-/// If a normalization method is provided, it will be called.
-/// If validation is provided, and it fails, an error will be returned.
-/// </summary>
-/// <param name="value">The primitive value.</param>
-/// <returns>A <see cref="ValueObjectOrError{T}"/> containing either the value object, or an error.</returns>
-public static ValueObjectOrError<MyVo> TryFrom(System.TimeOnly value)
-{
-    
-
-    
-
-    
-
-    return new ValueObjectOrError<MyVo>(new MyVo(value));
-}
-
-[global::System.Runtime.CompilerServices.MethodImpl(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
+    [global::System.Runtime.CompilerServices.MethodImpl(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 #if VOGEN_NO_VALIDATION
   public readonly bool IsInitialized() => true;
 #else
-  public readonly bool IsInitialized() => _isInitialized;
+    public readonly bool IsInitialized() => _isInitialized;
 #endif
+    public static explicit operator MyVo(System.TimeOnly value) => From(value);
+    public static explicit operator System.TimeOnly(MyVo value) => value.Value;
+    // only called internally when something has been deserialized into
+    // its primitive type.
+    private static MyVo __Deserialize(System.TimeOnly value)
+    {
+        return new MyVo(value);
+    }
 
-        
+    public readonly global::System.Boolean Equals(MyVo other)
+    {
+        // It's possible to create uninitialized instances via converters such as EfCore (HasDefaultValue), which call Equals.
+        // We treat anything uninitialized as not equal to anything, even other uninitialized instances of this type.
+        if (!IsInitialized() || !other.IsInitialized())
+            return false;
+        return global::System.Collections.Generic.EqualityComparer<System.TimeOnly>.Default.Equals(Value, other.Value);
+    }
 
-        public static explicit operator MyVo(System.TimeOnly value) => From(value);
-        public static explicit operator System.TimeOnly(MyVo value) => value.Value;
+    public global::System.Boolean Equals(MyVo other, global::System.Collections.Generic.IEqualityComparer<MyVo> comparer)
+    {
+        return comparer.Equals(this, other);
+    }
 
-        // only called internally when something has been deserialized into
-        // its primitive type.
-        private static MyVo __Deserialize(System.TimeOnly value)
+    public readonly global::System.Boolean Equals(System.TimeOnly primitive)
+    {
+        return Value.Equals(primitive);
+    }
+
+    public readonly override global::System.Boolean Equals(global::System.Object obj)
+    {
+        return obj is MyVo && Equals((MyVo)obj);
+    }
+
+    public static global::System.Boolean operator ==(MyVo left, MyVo right) => Equals(left, right);
+    public static global::System.Boolean operator !=(MyVo left, MyVo right) => !(left == right);
+    public static global::System.Boolean operator ==(MyVo left, System.TimeOnly right) => Equals(left.Value, right);
+    public static global::System.Boolean operator !=(MyVo left, System.TimeOnly right) => !Equals(left.Value, right);
+    public static global::System.Boolean operator ==(System.TimeOnly left, MyVo right) => Equals(left, right.Value);
+    public static global::System.Boolean operator !=(System.TimeOnly left, MyVo right) => !Equals(left, right.Value);
+    public int CompareTo(MyVo other) => Value.CompareTo(other.Value);
+    public int CompareTo(object other)
+    {
+        if (other is null)
+            return 1;
+        if (other is MyVo x)
+            return CompareTo(x);
+        throw new global::System.ArgumentException("Cannot compare to object as it is not of type MyVo", nameof(other));
+    }
+
+    /// <inheritdoc cref = "System.TimeOnly.TryParse(System.ReadOnlySpan{char}, System.IFormatProvider? , System.Globalization.DateTimeStyles, out System.TimeOnly)"/>
+    /// <summary>
+    /// </summary>
+    /// <returns>
+    /// True if the value could a) be parsed by the underlying type, and b) passes any validation (after running any optional normalization).
+    /// </returns>
+    public static global::System.Boolean TryParse(global::System.ReadOnlySpan<char> s, global::System.IFormatProvider provider, global::System.Globalization.DateTimeStyles style,
+#if NETCOREAPP3_0_OR_GREATER
+[global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)]
+#endif
+ out MyVo result)
+    {
+        if (System.TimeOnly.TryParse(s, provider, style, out var __v))
         {
-            
-
-            
-
-            return new MyVo(value);
-        }
-                  public readonly global::System.Boolean Equals(MyVo other)
-          {
-            // It's possible to create uninitialized instances via converters such as EfCore (HasDefaultValue), which call Equals.
-            // We treat anything uninitialized as not equal to anything, even other uninitialized instances of this type.
-            if(!IsInitialized() || !other.IsInitialized()) return false;
-
-            return global::System.Collections.Generic.EqualityComparer<System.TimeOnly>.Default.Equals(Value, other.Value);
-          }
-          public global::System.Boolean Equals(MyVo other, global::System.Collections.Generic.IEqualityComparer<MyVo> comparer)
-          {
-            return comparer.Equals(this, other);
-          }
-
-          
-            public readonly global::System.Boolean Equals(System.TimeOnly primitive)
-            {
-              return Value.Equals(primitive);
-            }
-
-          public readonly override global::System.Boolean Equals(global::System.Object obj)
-          {
-            return obj is MyVo && Equals((MyVo) obj);
-          }
-
-        public static global::System.Boolean operator ==(MyVo left, MyVo right) => Equals(left, right);
-        public static global::System.Boolean operator !=(MyVo left, MyVo right) => !(left == right);
-
-        public static global::System.Boolean operator ==(MyVo left, System.TimeOnly right) => Equals(left.Value, right);
-        public static global::System.Boolean operator !=(MyVo left, System.TimeOnly right) => !Equals(left.Value, right);
-
-        public static global::System.Boolean operator ==(System.TimeOnly left, MyVo right) => Equals(left, right.Value);
-        public static global::System.Boolean operator !=(System.TimeOnly left, MyVo right) => !Equals(left, right.Value);
-
-        public int CompareTo(MyVo other) => Value.CompareTo(other.Value);
-        public int CompareTo(object other) {
-            if(other is null) return 1;
-            if(other is MyVo x) return CompareTo(x);
-            throw new global::System.ArgumentException("Cannot compare to object as it is not of type MyVo", nameof(other));
-        }
-
-        
-    /// <inheritdoc cref="System.TimeOnly.TryParse(System.ReadOnlySpan{char}, System.IFormatProvider?, System.Globalization.DateTimeStyles, out System.TimeOnly)"/>
-    /// <summary>
-    /// </summary>
-    /// <returns>
-    /// True if the value could a) be parsed by the underlying type, and b) passes any validation (after running any optional normalization).
-    /// </returns>
-    public static global::System.Boolean TryParse(global::System.ReadOnlySpan<char> s, global::System.IFormatProvider provider, global::System.Globalization.DateTimeStyles style, 
-#if NETCOREAPP3_0_OR_GREATER
-[global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)]
-#endif
- out MyVo result) {
-        if(System.TimeOnly.TryParse(s, provider, style, out var __v)) {
-            
-            
             result = new MyVo(__v);
             return true;
         }
@@ -266,20 +234,20 @@ public static ValueObjectOrError<MyVo> TryFrom(System.TimeOnly value)
         return false;
     }
 
-    /// <inheritdoc cref="System.TimeOnly.TryParse(System.ReadOnlySpan{char}, System.IFormatProvider?, out System.TimeOnly)"/>
+    /// <inheritdoc cref = "System.TimeOnly.TryParse(System.ReadOnlySpan{char}, System.IFormatProvider? , out System.TimeOnly)"/>
     /// <summary>
     /// </summary>
     /// <returns>
     /// True if the value could a) be parsed by the underlying type, and b) passes any validation (after running any optional normalization).
     /// </returns>
-    public static global::System.Boolean TryParse(global::System.ReadOnlySpan<char> s, global::System.IFormatProvider provider, 
+    public static global::System.Boolean TryParse(global::System.ReadOnlySpan<char> s, global::System.IFormatProvider provider,
 #if NETCOREAPP3_0_OR_GREATER
 [global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)]
 #endif
- out MyVo result) {
-        if(System.TimeOnly.TryParse(s, provider, out var __v)) {
-            
-            
+ out MyVo result)
+    {
+        if (System.TimeOnly.TryParse(s, provider, out var __v))
+        {
             result = new MyVo(__v);
             return true;
         }
@@ -288,20 +256,20 @@ public static ValueObjectOrError<MyVo> TryFrom(System.TimeOnly value)
         return false;
     }
 
-    /// <inheritdoc cref="System.TimeOnly.TryParse(System.ReadOnlySpan{char}, out System.TimeOnly)"/>
+    /// <inheritdoc cref = "System.TimeOnly.TryParse(System.ReadOnlySpan{char}, out System.TimeOnly)"/>
     /// <summary>
     /// </summary>
     /// <returns>
     /// True if the value could a) be parsed by the underlying type, and b) passes any validation (after running any optional normalization).
     /// </returns>
-    public static global::System.Boolean TryParse(global::System.ReadOnlySpan<char> s, 
+    public static global::System.Boolean TryParse(global::System.ReadOnlySpan<char> s,
 #if NETCOREAPP3_0_OR_GREATER
 [global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)]
 #endif
- out MyVo result) {
-        if(System.TimeOnly.TryParse(s, out var __v)) {
-            
-            
+ out MyVo result)
+    {
+        if (System.TimeOnly.TryParse(s, out var __v))
+        {
             result = new MyVo(__v);
             return true;
         }
@@ -310,20 +278,20 @@ public static ValueObjectOrError<MyVo> TryFrom(System.TimeOnly value)
         return false;
     }
 
-    /// <inheritdoc cref="System.TimeOnly.TryParse(string?, System.IFormatProvider?, System.Globalization.DateTimeStyles, out System.TimeOnly)"/>
+    /// <inheritdoc cref = "System.TimeOnly.TryParse(string? , System.IFormatProvider? , System.Globalization.DateTimeStyles, out System.TimeOnly)"/>
     /// <summary>
     /// </summary>
     /// <returns>
     /// True if the value could a) be parsed by the underlying type, and b) passes any validation (after running any optional normalization).
     /// </returns>
-    public static global::System.Boolean TryParse(string s, global::System.IFormatProvider provider, global::System.Globalization.DateTimeStyles style, 
+    public static global::System.Boolean TryParse(string s, global::System.IFormatProvider provider, global::System.Globalization.DateTimeStyles style,
 #if NETCOREAPP3_0_OR_GREATER
 [global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)]
 #endif
- out MyVo result) {
-        if(System.TimeOnly.TryParse(s, provider, style, out var __v)) {
-            
-            
+ out MyVo result)
+    {
+        if (System.TimeOnly.TryParse(s, provider, style, out var __v))
+        {
             result = new MyVo(__v);
             return true;
         }
@@ -332,20 +300,20 @@ public static ValueObjectOrError<MyVo> TryFrom(System.TimeOnly value)
         return false;
     }
 
-    /// <inheritdoc cref="System.TimeOnly.TryParse(string?, System.IFormatProvider?, out System.TimeOnly)"/>
+    /// <inheritdoc cref = "System.TimeOnly.TryParse(string? , System.IFormatProvider? , out System.TimeOnly)"/>
     /// <summary>
     /// </summary>
     /// <returns>
     /// True if the value could a) be parsed by the underlying type, and b) passes any validation (after running any optional normalization).
     /// </returns>
-    public static global::System.Boolean TryParse(string s, global::System.IFormatProvider provider, 
+    public static global::System.Boolean TryParse(string s, global::System.IFormatProvider provider,
 #if NETCOREAPP3_0_OR_GREATER
 [global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)]
 #endif
- out MyVo result) {
-        if(System.TimeOnly.TryParse(s, provider, out var __v)) {
-            
-            
+ out MyVo result)
+    {
+        if (System.TimeOnly.TryParse(s, provider, out var __v))
+        {
             result = new MyVo(__v);
             return true;
         }
@@ -354,20 +322,20 @@ public static ValueObjectOrError<MyVo> TryFrom(System.TimeOnly value)
         return false;
     }
 
-    /// <inheritdoc cref="System.TimeOnly.TryParse(string?, out System.TimeOnly)"/>
+    /// <inheritdoc cref = "System.TimeOnly.TryParse(string? , out System.TimeOnly)"/>
     /// <summary>
     /// </summary>
     /// <returns>
     /// True if the value could a) be parsed by the underlying type, and b) passes any validation (after running any optional normalization).
     /// </returns>
-    public static global::System.Boolean TryParse(string s, 
+    public static global::System.Boolean TryParse(string s,
 #if NETCOREAPP3_0_OR_GREATER
 [global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)]
 #endif
- out MyVo result) {
-        if(System.TimeOnly.TryParse(s, out var __v)) {
-            
-            
+ out MyVo result)
+    {
+        if (System.TimeOnly.TryParse(s, out var __v))
+        {
             result = new MyVo(__v);
             return true;
         }
@@ -376,122 +344,106 @@ public static ValueObjectOrError<MyVo> TryFrom(System.TimeOnly value)
         return false;
     }
 
-    /// <inheritdoc cref="System.TimeOnly.Parse(System.ReadOnlySpan{char}, System.IFormatProvider?)"/>
+    /// <inheritdoc cref = "System.TimeOnly.Parse(System.ReadOnlySpan{char}, System.IFormatProvider? )"/>
     /// <summary>
     /// </summary>
     /// <returns>
     /// The value created by calling the Parse method on the primitive.
     /// </returns>
-    /// <exception cref="global::Vogen.ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
-    public static MyVo Parse(global::System.ReadOnlySpan<char> s, global::System.IFormatProvider provider) {
+    /// <exception cref = "global::Vogen.ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
+    public static MyVo Parse(global::System.ReadOnlySpan<char> s, global::System.IFormatProvider provider)
+    {
         var r = System.TimeOnly.Parse(s, provider);
         return From(r);
     }
 
-    /// <inheritdoc cref="System.TimeOnly.Parse(System.ReadOnlySpan{char}, System.IFormatProvider?, System.Globalization.DateTimeStyles)"/>
+    /// <inheritdoc cref = "System.TimeOnly.Parse(System.ReadOnlySpan{char}, System.IFormatProvider? , System.Globalization.DateTimeStyles)"/>
     /// <summary>
     /// </summary>
     /// <returns>
     /// The value created by calling the Parse method on the primitive.
     /// </returns>
-    /// <exception cref="global::Vogen.ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
-    public static MyVo Parse(global::System.ReadOnlySpan<char> s, global::System.IFormatProvider provider, global::System.Globalization.DateTimeStyles style) {
+    /// <exception cref = "global::Vogen.ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
+    public static MyVo Parse(global::System.ReadOnlySpan<char> s, global::System.IFormatProvider provider, global::System.Globalization.DateTimeStyles style)
+    {
         var r = System.TimeOnly.Parse(s, provider, style);
         return From(r);
     }
 
-    /// <inheritdoc cref="System.TimeOnly.Parse(string)"/>
+    /// <inheritdoc cref = "System.TimeOnly.Parse(string)"/>
     /// <summary>
     /// </summary>
     /// <returns>
     /// The value created by calling the Parse method on the primitive.
     /// </returns>
-    /// <exception cref="global::Vogen.ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
-    public static MyVo Parse(string s) {
+    /// <exception cref = "global::Vogen.ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
+    public static MyVo Parse(string s)
+    {
         var r = System.TimeOnly.Parse(s);
         return From(r);
     }
 
-    /// <inheritdoc cref="System.TimeOnly.Parse(string, System.IFormatProvider?)"/>
+    /// <inheritdoc cref = "System.TimeOnly.Parse(string, System.IFormatProvider? )"/>
     /// <summary>
     /// </summary>
     /// <returns>
     /// The value created by calling the Parse method on the primitive.
     /// </returns>
-    /// <exception cref="global::Vogen.ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
-    public static MyVo Parse(string s, global::System.IFormatProvider provider) {
+    /// <exception cref = "global::Vogen.ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
+    public static MyVo Parse(string s, global::System.IFormatProvider provider)
+    {
         var r = System.TimeOnly.Parse(s, provider);
         return From(r);
     }
 
-    /// <inheritdoc cref="System.TimeOnly.Parse(string, System.IFormatProvider?, System.Globalization.DateTimeStyles)"/>
+    /// <inheritdoc cref = "System.TimeOnly.Parse(string, System.IFormatProvider? , System.Globalization.DateTimeStyles)"/>
     /// <summary>
     /// </summary>
     /// <returns>
     /// The value created by calling the Parse method on the primitive.
     /// </returns>
-    /// <exception cref="global::Vogen.ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
-    public static MyVo Parse(string s, global::System.IFormatProvider provider, global::System.Globalization.DateTimeStyles style) {
+    /// <exception cref = "global::Vogen.ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
+    public static MyVo Parse(string s, global::System.IFormatProvider provider, global::System.Globalization.DateTimeStyles style)
+    {
         var r = System.TimeOnly.Parse(s, provider, style);
         return From(r);
     }
 
-        
-        
-          public readonly override global::System.Int32 GetHashCode()
-          {
-            return global::System.Collections.Generic.EqualityComparer<System.TimeOnly>.Default.GetHashCode(Value);
-          }
+    public readonly override global::System.Int32 GetHashCode()
+    {
+        return global::System.Collections.Generic.EqualityComparer<System.TimeOnly>.Default.GetHashCode(Value);
+    }
 
-        /// <summary>Returns the string representation of the underlying <see cref="System.TimeOnly" />.</summary>
-    public readonly override global::System.String ToString() =>IsInitialized() ? Value.ToString() : "[UNINITIALIZED]";
-
-        private readonly void EnsureInitialized()
+    /// <summary>Returns the string representation of the underlying <see cref = "System.TimeOnly"/>.</summary>
+    public readonly override global::System.String ToString() => IsInitialized() ? Value.ToString() : "[UNINITIALIZED]";
+    private readonly void EnsureInitialized()
+    {
+        if (!IsInitialized())
         {
-            if (!IsInitialized())
-            {
 #if DEBUG
                 global::System.String message = "Use of uninitialized Value Object at: " + _stackTrace ?? "";
 #else
-                global::System.String message = "Use of uninitialized Value Object.";
+            global::System.String message = "Use of uninitialized Value Object.";
 #endif
+            throw new global::Vogen.ValueObjectValidationException(message);
+        }
+    }
 
-                throw new global::Vogen.ValueObjectValidationException(message);
-            }
+    internal sealed class MyVoDebugView
+    {
+        private readonly MyVo _t;
+        MyVoDebugView(MyVo t)
+        {
+            _t = t;
         }
 
-        
- 
-        
-
-
-
-
-
-
-
-        
-            internal sealed class MyVoDebugView
-            {
-                private readonly MyVo _t;
-
-                MyVoDebugView(MyVo t)
-                {
-                    _t = t;
-                }
-
-                public global::System.Boolean IsInitialized => _t.IsInitialized();
-                public global::System.String UnderlyingType => "System.TimeOnly";
-                public global::System.String Value => _t.IsInitialized() ? _t._value.ToString() : "[not initialized]" ;
-
-                #if DEBUG
-                    public global::System.String CreatedWith => _t._stackTrace?.ToString() ?? "the From method";
-                #endif
-
-                public global::System.String Conversions => @"ServiceStackDotText";
-            }
-
+        public global::System.Boolean IsInitialized => _t.IsInitialized();
+        public global::System.String UnderlyingType => "System.TimeOnly";
+        public global::System.String Value => _t.IsInitialized() ? _t._value.ToString() : "[not initialized]";
+#if DEBUG
+        public global::System.String CreatedWith => _t._stackTrace?.ToString() ?? "the From method";
+#endif
+        public global::System.String Conversions => @"ServiceStackDotText";
+    }
 }
-
-
 ]

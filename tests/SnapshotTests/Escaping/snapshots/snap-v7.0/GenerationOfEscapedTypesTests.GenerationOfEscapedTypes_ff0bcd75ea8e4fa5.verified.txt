@@ -29,6 +29,7 @@ namespace generator;
 public class VogenTypesFactory : global::System.Text.Json.Serialization.JsonConverterFactory
 {
     public VogenTypesFactory() { }
+    
     private static readonly global::System.Collections.Generic.Dictionary<global::System.Type, global::System.Lazy<global::System.Text.Json.Serialization.JsonConverter>> _lookup = 
         new global::System.Collections.Generic.Dictionary<global::System.Type, global::System.Lazy<global::System.Text.Json.Serialization.JsonConverter>> {
                 
@@ -48,46 +49,37 @@ public class VogenTypesFactory : global::System.Text.Json.Serialization.JsonConv
 //     the code is regenerated.
 // </auto-generated>
 // ------------------------------------------------------------------------------
-
 // Suppress warnings about [Obsolete] member usage in generated code.
 #pragma warning disable CS0618
-
 // Suppress warnings for 'Override methods on comparable types'.
 #pragma warning disable CA1036
-
 // Suppress Error MA0097 : A class that implements IComparable<T> or IComparable should override comparison operators
 #pragma warning disable MA0097
-
 // Suppress warning for 'The annotation for nullable reference types should only be used in code within a '#nullable' annotations context. Auto-generated code requires an explicit '#nullable' directive in source.'
 // The generator copies signatures from the BCL, e.g. for `TryParse`, and some of those have nullable annotations.
 #pragma warning disable CS8669
-
 // Suppress warnings about CS1591: Missing XML comment for publicly visible type or member 'Type_or_Member'
 #pragma warning disable CS1591
-
 using Vogen;
 
 namespace @class
 {
-
-    [global::System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage] 
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Vogen", "1.0.0.0")]
+    [global::System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Vogen", "1.0.0.0")]
     [global::Newtonsoft.Json.JsonConverter(typeof(escapedTestspublic_partial_recordConversions_NewtonsoftJsonbyteNewtonsoftJsonConverter))]
-
     [global::System.Diagnostics.DebuggerTypeProxyAttribute(typeof(escapedTestspublic_partial_recordConversions_NewtonsoftJsonbyteDebugView))]
     [global::System.Diagnostics.DebuggerDisplayAttribute("Underlying type: System.Byte, Value = { _value }")]
-    public partial record class escapedTestspublic_partial_recordConversions_NewtonsoftJsonbyte : global::System.IEquatable<escapedTestspublic_partial_recordConversions_NewtonsoftJsonbyte>, global::System.IEquatable<System.Byte> ,  global::System.IComparable<escapedTestspublic_partial_recordConversions_NewtonsoftJsonbyte>, global::System.IComparable,  global::System.IParsable<escapedTestspublic_partial_recordConversions_NewtonsoftJsonbyte>,  global::System.ISpanParsable<escapedTestspublic_partial_recordConversions_NewtonsoftJsonbyte>
+    public partial record class escapedTestspublic_partial_recordConversions_NewtonsoftJsonbyte : global::System.IEquatable<escapedTestspublic_partial_recordConversions_NewtonsoftJsonbyte>, global::System.IEquatable<System.Byte>, global::System.IComparable<escapedTestspublic_partial_recordConversions_NewtonsoftJsonbyte>, global::System.IComparable, global::System.IParsable<escapedTestspublic_partial_recordConversions_NewtonsoftJsonbyte>, global::System.ISpanParsable<escapedTestspublic_partial_recordConversions_NewtonsoftJsonbyte>
     {
-#if DEBUG   
-        private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
+#if DEBUG
+private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
 #endif
 #if !VOGEN_NO_VALIDATION
         private readonly global::System.Boolean _isInitialized;
 #endif
         private readonly System.Byte _value;
-        
         /// <summary>
-        /// Gets the underlying <see cref="System.Byte" /> value if set, otherwise a <see cref="global::Vogen.ValueObjectValidationException" /> is thrown.
+        /// Gets the underlying <see cref = "System.Byte"/> value if set, otherwise a <see cref = "global::Vogen.ValueObjectValidationException"/> is thrown.
         /// </summary>
         public System.Byte Value
         {
@@ -97,19 +89,13 @@ namespace @class
                 EnsureInitialized();
                 return _value;
             }
+
             [global::System.Diagnostics.DebuggerStepThroughAttribute]
             init
             {
-                
-
-                
-
-                
-
                 _value = value;
             }
         }
-
 
         [global::System.Diagnostics.DebuggerStepThroughAttribute]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -136,345 +122,322 @@ namespace @class
         /// <summary>
         /// Builds an instance from the provided underlying type.
         /// </summary>
-        /// <param name="value">The underlying type.</param>
+        /// <param name = "value">The underlying type.</param>
         /// <returns>An instance of this type.</returns>
         public static escapedTestspublic_partial_recordConversions_NewtonsoftJsonbyte From(System.Byte value)
         {
-            
-
-            
-
-            
-
             escapedTestspublic_partial_recordConversions_NewtonsoftJsonbyte instance = new escapedTestspublic_partial_recordConversions_NewtonsoftJsonbyte(value);
-
             return instance;
         }
 
         /// <summary>
-/// Tries to build an instance from the provided underlying type.
-/// If a normalization method is provided, it will be called.
-/// If validation is provided, and it fails, false will be returned.
-/// </summary>
-/// <param name="value">The underlying type.</param>
-/// <param name="vo">An instance of the value object.</param>
-/// <returns>True if the value object can be built, otherwise false.</returns>
-public static bool TryFrom(System.Byte value, 
+        /// Tries to build an instance from the provided underlying type.
+        /// If a normalization method is provided, it will be called.
+        /// If validation is provided, and it fails, false will be returned.
+        /// </summary>
+        /// <param name = "value">The underlying type.</param>
+        /// <param name = "vo">An instance of the value object.</param>
+        /// <returns>True if the value object can be built, otherwise false.</returns>
+        public static bool TryFrom(System.Byte value,
 #if NETCOREAPP3_0_OR_GREATER
 [global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)]
 #endif
  out escapedTestspublic_partial_recordConversions_NewtonsoftJsonbyte vo)
-{
-    
-    
+        {
+            vo = new escapedTestspublic_partial_recordConversions_NewtonsoftJsonbyte(value);
+            return true;
+        }
 
-    
+        /// <summary>
+        /// Tries to build an instance from the provided underlying value.
+        /// If a normalization method is provided, it will be called.
+        /// If validation is provided, and it fails, an error will be returned.
+        /// </summary>
+        /// <param name = "value">The primitive value.</param>
+        /// <returns>A <see cref = "ValueObjectOrError{T}"/> containing either the value object, or an error.</returns>
+        public static ValueObjectOrError<escapedTestspublic_partial_recordConversions_NewtonsoftJsonbyte> TryFrom(System.Byte value)
+        {
+            return new ValueObjectOrError<escapedTestspublic_partial_recordConversions_NewtonsoftJsonbyte>(new escapedTestspublic_partial_recordConversions_NewtonsoftJsonbyte(value));
+        }
 
-    vo = new escapedTestspublic_partial_recordConversions_NewtonsoftJsonbyte(value);
-
-    return true;
-}/// <summary>
-/// Tries to build an instance from the provided underlying value.
-/// If a normalization method is provided, it will be called.
-/// If validation is provided, and it fails, an error will be returned.
-/// </summary>
-/// <param name="value">The primitive value.</param>
-/// <returns>A <see cref="ValueObjectOrError{T}"/> containing either the value object, or an error.</returns>
-public static ValueObjectOrError<escapedTestspublic_partial_recordConversions_NewtonsoftJsonbyte> TryFrom(System.Byte value)
-{
-    
-
-    
-
-    
-
-    return new ValueObjectOrError<escapedTestspublic_partial_recordConversions_NewtonsoftJsonbyte>(new escapedTestspublic_partial_recordConversions_NewtonsoftJsonbyte(value));
-}
-
-[global::System.Runtime.CompilerServices.MethodImpl(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
+        [global::System.Runtime.CompilerServices.MethodImpl(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 #if VOGEN_NO_VALIDATION
   public bool IsInitialized() => true;
 #else
-  public bool IsInitialized() => _isInitialized;
+        public bool IsInitialized() => _isInitialized;
 #endif
-
-  
         // only called internally when something has been deserialized into
         // its primitive type.
         private static escapedTestspublic_partial_recordConversions_NewtonsoftJsonbyte __Deserialize(System.Byte value)
         {
-            
-
-            
-
-            
-
             return new escapedTestspublic_partial_recordConversions_NewtonsoftJsonbyte(value);
         }
-        
-            public virtual global::System.Boolean Equals(escapedTestspublic_partial_recordConversions_NewtonsoftJsonbyte other)
+
+        public virtual global::System.Boolean Equals(escapedTestspublic_partial_recordConversions_NewtonsoftJsonbyte other)
+        {
+            if (ReferenceEquals(null, other))
             {
-              if (ReferenceEquals(null, other))
-              {
-                  return false;
-              }
-
-              // It's possible to create uninitialized instances via converters such as EfCore (HasDefaultValue), which call Equals.
-              // We treat anything uninitialized as not equal to anything, even other uninitialized instances of this type.
-              if(!IsInitialized() || !other.IsInitialized()) return false;
-
-              if (ReferenceEquals(this, other))
-              {
-                  return true;
-              }
-
-              return GetType() == other.GetType() && global::System.Collections.Generic.EqualityComparer<System.Byte>.Default.Equals(Value, other.Value);
-            }
-             public global::System.Boolean Equals(escapedTestspublic_partial_recordConversions_NewtonsoftJsonbyte other, global::System.Collections.Generic.IEqualityComparer<escapedTestspublic_partial_recordConversions_NewtonsoftJsonbyte> comparer)
-             {
-                 return comparer.Equals(this, other);
-             }
-
-             
-            public global::System.Boolean Equals(System.Byte primitive)
-            {
-              return Value.Equals(primitive);
+                return false;
             }
 
+            // It's possible to create uninitialized instances via converters such as EfCore (HasDefaultValue), which call Equals.
+            // We treat anything uninitialized as not equal to anything, even other uninitialized instances of this type.
+            if (!IsInitialized() || !other.IsInitialized())
+                return false;
+            if (ReferenceEquals(this, other))
+            {
+                return true;
+            }
+
+            return GetType() == other.GetType() && global::System.Collections.Generic.EqualityComparer<System.Byte>.Default.Equals(Value, other.Value);
+        }
+
+        public global::System.Boolean Equals(escapedTestspublic_partial_recordConversions_NewtonsoftJsonbyte other, global::System.Collections.Generic.IEqualityComparer<escapedTestspublic_partial_recordConversions_NewtonsoftJsonbyte> comparer)
+        {
+            return comparer.Equals(this, other);
+        }
+
+        public global::System.Boolean Equals(System.Byte primitive)
+        {
+            return Value.Equals(primitive);
+        }
 
         public static global::System.Boolean operator ==(escapedTestspublic_partial_recordConversions_NewtonsoftJsonbyte left, System.Byte right) => Equals(left.Value, right);
         public static global::System.Boolean operator !=(escapedTestspublic_partial_recordConversions_NewtonsoftJsonbyte left, System.Byte right) => !Equals(left.Value, right);
-
         public static global::System.Boolean operator ==(System.Byte left, escapedTestspublic_partial_recordConversions_NewtonsoftJsonbyte right) => Equals(left, right.Value);
         public static global::System.Boolean operator !=(System.Byte left, escapedTestspublic_partial_recordConversions_NewtonsoftJsonbyte right) => !Equals(left, right.Value);
-
         public static explicit operator escapedTestspublic_partial_recordConversions_NewtonsoftJsonbyte(System.Byte value) => From(value);
         public static explicit operator System.Byte(escapedTestspublic_partial_recordConversions_NewtonsoftJsonbyte value) => value.Value;
-
         public int CompareTo(escapedTestspublic_partial_recordConversions_NewtonsoftJsonbyte other) => Value.CompareTo(other.Value);
-        public int CompareTo(object other) {
-            if(other is null) return 1;
-            if(other is escapedTestspublic_partial_recordConversions_NewtonsoftJsonbyte x) return CompareTo(x);
+        public int CompareTo(object other)
+        {
+            if (other is null)
+                return 1;
+            if (other is escapedTestspublic_partial_recordConversions_NewtonsoftJsonbyte x)
+                return CompareTo(x);
             throw new global::System.ArgumentException("Cannot compare to object as it is not of type escapedTestspublic_partial_recordConversions_NewtonsoftJsonbyte", nameof(other));
         }
 
-        
-    /// <inheritdoc cref="byte.TryParse(System.ReadOnlySpan{char}, out byte)"/>
-    /// <summary>
-    /// </summary>
-    /// <returns>
-    /// True if the value could a) be parsed by the underlying type, and b) passes any validation (after running any optional normalization).
-    /// </returns>
-    public static global::System.Boolean TryParse(global::System.ReadOnlySpan<char> s, 
+        /// <inheritdoc cref = "byte.TryParse(System.ReadOnlySpan{char}, out byte)"/>
+        /// <summary>
+        /// </summary>
+        /// <returns>
+        /// True if the value could a) be parsed by the underlying type, and b) passes any validation (after running any optional normalization).
+        /// </returns>
+        public static global::System.Boolean TryParse(global::System.ReadOnlySpan<char> s,
 #if NETCOREAPP3_0_OR_GREATER
 [global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)]
 #endif
- out escapedTestspublic_partial_recordConversions_NewtonsoftJsonbyte result) {
-        if(System.Byte.TryParse(s, out var __v)) {
-            
-            
-            result = new escapedTestspublic_partial_recordConversions_NewtonsoftJsonbyte(__v);
-            return true;
+ out escapedTestspublic_partial_recordConversions_NewtonsoftJsonbyte result)
+        {
+            if (System.Byte.TryParse(s, out var __v))
+            {
+                result = new escapedTestspublic_partial_recordConversions_NewtonsoftJsonbyte(__v);
+                return true;
+            }
+
+            result = default;
+            return false;
         }
 
-        result = default;
-        return false;
-    }
-
-    /// <inheritdoc cref="byte.TryParse(System.ReadOnlySpan{char}, System.Globalization.NumberStyles, System.IFormatProvider?, out byte)"/>
-    /// <summary>
-    /// </summary>
-    /// <returns>
-    /// True if the value could a) be parsed by the underlying type, and b) passes any validation (after running any optional normalization).
-    /// </returns>
-    public static global::System.Boolean TryParse(global::System.ReadOnlySpan<char> s, global::System.Globalization.NumberStyles style, global::System.IFormatProvider provider, 
+        /// <inheritdoc cref = "byte.TryParse(System.ReadOnlySpan{char}, System.Globalization.NumberStyles, System.IFormatProvider? , out byte)"/>
+        /// <summary>
+        /// </summary>
+        /// <returns>
+        /// True if the value could a) be parsed by the underlying type, and b) passes any validation (after running any optional normalization).
+        /// </returns>
+        public static global::System.Boolean TryParse(global::System.ReadOnlySpan<char> s, global::System.Globalization.NumberStyles style, global::System.IFormatProvider provider,
 #if NETCOREAPP3_0_OR_GREATER
 [global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)]
 #endif
- out escapedTestspublic_partial_recordConversions_NewtonsoftJsonbyte result) {
-        if(System.Byte.TryParse(s, style, provider, out var __v)) {
-            
-            
-            result = new escapedTestspublic_partial_recordConversions_NewtonsoftJsonbyte(__v);
-            return true;
+ out escapedTestspublic_partial_recordConversions_NewtonsoftJsonbyte result)
+        {
+            if (System.Byte.TryParse(s, style, provider, out var __v))
+            {
+                result = new escapedTestspublic_partial_recordConversions_NewtonsoftJsonbyte(__v);
+                return true;
+            }
+
+            result = default;
+            return false;
         }
 
-        result = default;
-        return false;
-    }
-
-    /// <inheritdoc cref="byte.TryParse(System.ReadOnlySpan{char}, System.IFormatProvider?, out byte)"/>
-    /// <summary>
-    /// </summary>
-    /// <returns>
-    /// True if the value could a) be parsed by the underlying type, and b) passes any validation (after running any optional normalization).
-    /// </returns>
-    public static global::System.Boolean TryParse(global::System.ReadOnlySpan<char> s, global::System.IFormatProvider provider, 
+        /// <inheritdoc cref = "byte.TryParse(System.ReadOnlySpan{char}, System.IFormatProvider? , out byte)"/>
+        /// <summary>
+        /// </summary>
+        /// <returns>
+        /// True if the value could a) be parsed by the underlying type, and b) passes any validation (after running any optional normalization).
+        /// </returns>
+        public static global::System.Boolean TryParse(global::System.ReadOnlySpan<char> s, global::System.IFormatProvider provider,
 #if NETCOREAPP3_0_OR_GREATER
 [global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)]
 #endif
- out escapedTestspublic_partial_recordConversions_NewtonsoftJsonbyte result) {
-        if(System.Byte.TryParse(s, provider, out var __v)) {
-            
-            
-            result = new escapedTestspublic_partial_recordConversions_NewtonsoftJsonbyte(__v);
-            return true;
+ out escapedTestspublic_partial_recordConversions_NewtonsoftJsonbyte result)
+        {
+            if (System.Byte.TryParse(s, provider, out var __v))
+            {
+                result = new escapedTestspublic_partial_recordConversions_NewtonsoftJsonbyte(__v);
+                return true;
+            }
+
+            result = default;
+            return false;
         }
 
-        result = default;
-        return false;
-    }
-
-    /// <inheritdoc cref="byte.TryParse(string?, out byte)"/>
-    /// <summary>
-    /// </summary>
-    /// <returns>
-    /// True if the value could a) be parsed by the underlying type, and b) passes any validation (after running any optional normalization).
-    /// </returns>
-    public static global::System.Boolean TryParse(string s, 
+        /// <inheritdoc cref = "byte.TryParse(string? , out byte)"/>
+        /// <summary>
+        /// </summary>
+        /// <returns>
+        /// True if the value could a) be parsed by the underlying type, and b) passes any validation (after running any optional normalization).
+        /// </returns>
+        public static global::System.Boolean TryParse(string s,
 #if NETCOREAPP3_0_OR_GREATER
 [global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)]
 #endif
- out escapedTestspublic_partial_recordConversions_NewtonsoftJsonbyte result) {
-        if(System.Byte.TryParse(s, out var __v)) {
-            
-            
-            result = new escapedTestspublic_partial_recordConversions_NewtonsoftJsonbyte(__v);
-            return true;
+ out escapedTestspublic_partial_recordConversions_NewtonsoftJsonbyte result)
+        {
+            if (System.Byte.TryParse(s, out var __v))
+            {
+                result = new escapedTestspublic_partial_recordConversions_NewtonsoftJsonbyte(__v);
+                return true;
+            }
+
+            result = default;
+            return false;
         }
 
-        result = default;
-        return false;
-    }
-
-    /// <inheritdoc cref="byte.TryParse(string?, System.Globalization.NumberStyles, System.IFormatProvider?, out byte)"/>
-    /// <summary>
-    /// </summary>
-    /// <returns>
-    /// True if the value could a) be parsed by the underlying type, and b) passes any validation (after running any optional normalization).
-    /// </returns>
-    public static global::System.Boolean TryParse(string s, global::System.Globalization.NumberStyles style, global::System.IFormatProvider provider, 
+        /// <inheritdoc cref = "byte.TryParse(string? , System.Globalization.NumberStyles, System.IFormatProvider? , out byte)"/>
+        /// <summary>
+        /// </summary>
+        /// <returns>
+        /// True if the value could a) be parsed by the underlying type, and b) passes any validation (after running any optional normalization).
+        /// </returns>
+        public static global::System.Boolean TryParse(string s, global::System.Globalization.NumberStyles style, global::System.IFormatProvider provider,
 #if NETCOREAPP3_0_OR_GREATER
 [global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)]
 #endif
- out escapedTestspublic_partial_recordConversions_NewtonsoftJsonbyte result) {
-        if(System.Byte.TryParse(s, style, provider, out var __v)) {
-            
-            
-            result = new escapedTestspublic_partial_recordConversions_NewtonsoftJsonbyte(__v);
-            return true;
+ out escapedTestspublic_partial_recordConversions_NewtonsoftJsonbyte result)
+        {
+            if (System.Byte.TryParse(s, style, provider, out var __v))
+            {
+                result = new escapedTestspublic_partial_recordConversions_NewtonsoftJsonbyte(__v);
+                return true;
+            }
+
+            result = default;
+            return false;
         }
 
-        result = default;
-        return false;
-    }
-
-    /// <inheritdoc cref="byte.TryParse(string?, System.IFormatProvider?, out byte)"/>
-    /// <summary>
-    /// </summary>
-    /// <returns>
-    /// True if the value could a) be parsed by the underlying type, and b) passes any validation (after running any optional normalization).
-    /// </returns>
-    public static global::System.Boolean TryParse(string s, global::System.IFormatProvider provider, 
+        /// <inheritdoc cref = "byte.TryParse(string? , System.IFormatProvider? , out byte)"/>
+        /// <summary>
+        /// </summary>
+        /// <returns>
+        /// True if the value could a) be parsed by the underlying type, and b) passes any validation (after running any optional normalization).
+        /// </returns>
+        public static global::System.Boolean TryParse(string s, global::System.IFormatProvider provider,
 #if NETCOREAPP3_0_OR_GREATER
 [global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)]
 #endif
- out escapedTestspublic_partial_recordConversions_NewtonsoftJsonbyte result) {
-        if(System.Byte.TryParse(s, provider, out var __v)) {
-            
-            
-            result = new escapedTestspublic_partial_recordConversions_NewtonsoftJsonbyte(__v);
-            return true;
+ out escapedTestspublic_partial_recordConversions_NewtonsoftJsonbyte result)
+        {
+            if (System.Byte.TryParse(s, provider, out var __v))
+            {
+                result = new escapedTestspublic_partial_recordConversions_NewtonsoftJsonbyte(__v);
+                return true;
+            }
+
+            result = default;
+            return false;
         }
 
-        result = default;
-        return false;
-    }
+        /// <inheritdoc cref = "byte.Parse(System.ReadOnlySpan{char}, System.Globalization.NumberStyles, System.IFormatProvider? )"/>
+        /// <summary>
+        /// </summary>
+        /// <returns>
+        /// The value created by calling the Parse method on the primitive.
+        /// </returns>
+        /// <exception cref = "global::Vogen.ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
+        public static escapedTestspublic_partial_recordConversions_NewtonsoftJsonbyte Parse(global::System.ReadOnlySpan<char> s, global::System.Globalization.NumberStyles style, global::System.IFormatProvider provider)
+        {
+            var r = System.Byte.Parse(s, style, provider);
+            return From(r);
+        }
 
-    /// <inheritdoc cref="byte.Parse(System.ReadOnlySpan{char}, System.Globalization.NumberStyles, System.IFormatProvider?)"/>
-    /// <summary>
-    /// </summary>
-    /// <returns>
-    /// The value created by calling the Parse method on the primitive.
-    /// </returns>
-    /// <exception cref="global::Vogen.ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
-    public static escapedTestspublic_partial_recordConversions_NewtonsoftJsonbyte Parse(global::System.ReadOnlySpan<char> s, global::System.Globalization.NumberStyles style, global::System.IFormatProvider provider) {
-        var r = System.Byte.Parse(s, style, provider);
-        return From(r);
-    }
+        /// <inheritdoc cref = "byte.Parse(System.ReadOnlySpan{char}, System.IFormatProvider? )"/>
+        /// <summary>
+        /// </summary>
+        /// <returns>
+        /// The value created by calling the Parse method on the primitive.
+        /// </returns>
+        /// <exception cref = "global::Vogen.ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
+        public static escapedTestspublic_partial_recordConversions_NewtonsoftJsonbyte Parse(global::System.ReadOnlySpan<char> s, global::System.IFormatProvider provider)
+        {
+            var r = System.Byte.Parse(s, provider);
+            return From(r);
+        }
 
-    /// <inheritdoc cref="byte.Parse(System.ReadOnlySpan{char}, System.IFormatProvider?)"/>
-    /// <summary>
-    /// </summary>
-    /// <returns>
-    /// The value created by calling the Parse method on the primitive.
-    /// </returns>
-    /// <exception cref="global::Vogen.ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
-    public static escapedTestspublic_partial_recordConversions_NewtonsoftJsonbyte Parse(global::System.ReadOnlySpan<char> s, global::System.IFormatProvider provider) {
-        var r = System.Byte.Parse(s, provider);
-        return From(r);
-    }
+        /// <inheritdoc cref = "byte.Parse(string)"/>
+        /// <summary>
+        /// </summary>
+        /// <returns>
+        /// The value created by calling the Parse method on the primitive.
+        /// </returns>
+        /// <exception cref = "global::Vogen.ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
+        public static escapedTestspublic_partial_recordConversions_NewtonsoftJsonbyte Parse(string s)
+        {
+            var r = System.Byte.Parse(s);
+            return From(r);
+        }
 
-    /// <inheritdoc cref="byte.Parse(string)"/>
-    /// <summary>
-    /// </summary>
-    /// <returns>
-    /// The value created by calling the Parse method on the primitive.
-    /// </returns>
-    /// <exception cref="global::Vogen.ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
-    public static escapedTestspublic_partial_recordConversions_NewtonsoftJsonbyte Parse(string s) {
-        var r = System.Byte.Parse(s);
-        return From(r);
-    }
+        /// <inheritdoc cref = "byte.Parse(string, System.Globalization.NumberStyles)"/>
+        /// <summary>
+        /// </summary>
+        /// <returns>
+        /// The value created by calling the Parse method on the primitive.
+        /// </returns>
+        /// <exception cref = "global::Vogen.ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
+        public static escapedTestspublic_partial_recordConversions_NewtonsoftJsonbyte Parse(string s, global::System.Globalization.NumberStyles style)
+        {
+            var r = System.Byte.Parse(s, style);
+            return From(r);
+        }
 
-    /// <inheritdoc cref="byte.Parse(string, System.Globalization.NumberStyles)"/>
-    /// <summary>
-    /// </summary>
-    /// <returns>
-    /// The value created by calling the Parse method on the primitive.
-    /// </returns>
-    /// <exception cref="global::Vogen.ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
-    public static escapedTestspublic_partial_recordConversions_NewtonsoftJsonbyte Parse(string s, global::System.Globalization.NumberStyles style) {
-        var r = System.Byte.Parse(s, style);
-        return From(r);
-    }
+        /// <inheritdoc cref = "byte.Parse(string, System.Globalization.NumberStyles, System.IFormatProvider? )"/>
+        /// <summary>
+        /// </summary>
+        /// <returns>
+        /// The value created by calling the Parse method on the primitive.
+        /// </returns>
+        /// <exception cref = "global::Vogen.ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
+        public static escapedTestspublic_partial_recordConversions_NewtonsoftJsonbyte Parse(string s, global::System.Globalization.NumberStyles style, global::System.IFormatProvider provider)
+        {
+            var r = System.Byte.Parse(s, style, provider);
+            return From(r);
+        }
 
-    /// <inheritdoc cref="byte.Parse(string, System.Globalization.NumberStyles, System.IFormatProvider?)"/>
-    /// <summary>
-    /// </summary>
-    /// <returns>
-    /// The value created by calling the Parse method on the primitive.
-    /// </returns>
-    /// <exception cref="global::Vogen.ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
-    public static escapedTestspublic_partial_recordConversions_NewtonsoftJsonbyte Parse(string s, global::System.Globalization.NumberStyles style, global::System.IFormatProvider provider) {
-        var r = System.Byte.Parse(s, style, provider);
-        return From(r);
-    }
+        /// <inheritdoc cref = "byte.Parse(string, System.IFormatProvider? )"/>
+        /// <summary>
+        /// </summary>
+        /// <returns>
+        /// The value created by calling the Parse method on the primitive.
+        /// </returns>
+        /// <exception cref = "global::Vogen.ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
+        public static escapedTestspublic_partial_recordConversions_NewtonsoftJsonbyte Parse(string s, global::System.IFormatProvider provider)
+        {
+            var r = System.Byte.Parse(s, provider);
+            return From(r);
+        }
 
-    /// <inheritdoc cref="byte.Parse(string, System.IFormatProvider?)"/>
-    /// <summary>
-    /// </summary>
-    /// <returns>
-    /// The value created by calling the Parse method on the primitive.
-    /// </returns>
-    /// <exception cref="global::Vogen.ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
-    public static escapedTestspublic_partial_recordConversions_NewtonsoftJsonbyte Parse(string s, global::System.IFormatProvider provider) {
-        var r = System.Byte.Parse(s, provider);
-        return From(r);
-    }
-
-
-
-          public override global::System.Int32 GetHashCode()
-          {
+        public override global::System.Int32 GetHashCode()
+        {
             unchecked // Overflow is fine, just wrap
             {
-                global::System.Int32 hash = (global::System.Int32) 2166136261;
+                global::System.Int32 hash = (global::System.Int32)2166136261;
                 hash = (hash * 16777619) ^ GetType().GetHashCode();
                 hash = (hash * 16777619) ^ global::System.Collections.Generic.EqualityComparer<System.Byte>.Default.GetHashCode(Value);
                 return hash;
             }
-          }
+        }
 
         private void EnsureInitialized()
         {
@@ -485,20 +448,13 @@ public static ValueObjectOrError<escapedTestspublic_partial_recordConversions_Ne
 #else
                 global::System.String message = "Use of uninitialized Value Object.";
 #endif
-
                 throw new global::Vogen.ValueObjectValidationException(message);
             }
         }
 
-
-        
-
         // record enumerates fields - we just want our Value and to throw if it's not initialized.
-        /// <summary>Returns the string representation of the underlying <see cref="System.Byte" />.</summary>
-    public override global::System.String ToString() =>IsInitialized() ? Value.ToString() : "[UNINITIALIZED]";
-
-        
-
+        /// <summary>Returns the string representation of the underlying <see cref = "System.Byte"/>.</summary>
+        public override global::System.String ToString() => IsInitialized() ? Value.ToString() : "[UNINITIALIZED]";
         class escapedTestspublic_partial_recordConversions_NewtonsoftJsonbyteNewtonsoftJsonConverter : Newtonsoft.Json.JsonConverter
         {
             public override bool CanConvert(System.Type objectType)
@@ -519,27 +475,19 @@ public static ValueObjectOrError<escapedTestspublic_partial_recordConversions_Ne
             }
         }
 
-
-
-
-
-
         internal sealed class escapedTestspublic_partial_recordConversions_NewtonsoftJsonbyteDebugView
         {
             private readonly escapedTestspublic_partial_recordConversions_NewtonsoftJsonbyte _t;
-
             escapedTestspublic_partial_recordConversions_NewtonsoftJsonbyteDebugView(escapedTestspublic_partial_recordConversions_NewtonsoftJsonbyte t)
             {
                 _t = t;
             }
 
             public global::System.String UnderlyingType => "System.Byte";
-            public System.Byte Value => _t.Value ;
-
+            public System.Byte Value => _t.Value;
             public global::System.String Conversions => @"[global::Newtonsoft.Json.JsonConverter(typeof(escapedTestspublic_partial_recordConversions_NewtonsoftJsonbyteNewtonsoftJsonConverter))]
 ";
-                }
+        }
     }
-
 }
 ]

@@ -79,18 +79,21 @@ public static class GenerateCodeForTryParse
             return string.Empty;
         }
         
-        return @$"
-    /// <summary>
-    /// </summary>
-    /// <returns>
-    /// True if the value passes any validation (after running any optional normalization).
-    /// </returns>
-    public static global::System.Boolean TryParse(global::System.String s, global::System.IFormatProvider provider, {Util.GenerateNotNullWhenTrueAttribute()} out {item.VoTypeName} result) {{
-            {Util.GenerateCallToNormalizeMethodIfNeeded(item, "s")}
-            {GenerateCallToValidationIfNeeded(item, "s")}
-            result = new {item.VoTypeName}(s);
-            return true;
-    }}";
+        return $$"""
+                 
+                     /// <summary>
+                     /// </summary>
+                     /// <returns>
+                     /// True if the value passes any validation (after running any optional normalization).
+                     /// </returns>
+                     public static global::System.Boolean TryParse(global::System.String s, global::System.IFormatProvider provider, {{Util.GenerateNotNullWhenTrueAttribute()}} out {{item.VoTypeName}} result) 
+                     {
+                             {{Util.GenerateCallToNormalizeMethodIfNeeded(item, "s")}}
+                             {{GenerateCallToValidationIfNeeded(item, "s")}}
+                             result = new {{item.VoTypeName}}(s);
+                             return true;
+                     }
+                 """;
     }
 
     private static bool UserHasSuppliedTheirOwn(VoWorkItem item) =>
@@ -114,24 +117,27 @@ public static class GenerateCodeForTryParse
             .Replace(">", "}");
             
         var ret =
-            @$"
-    /// <inheritdoc cref=""{inheritDocRef}""/>
-    /// <summary>
-    /// </summary>
-    /// <returns>
-    /// True if the value could a) be parsed by the underlying type, and b) passes any validation (after running any optional normalization).
-    /// </returns>
-    public {staticOrNot}global::System.Boolean TryParse({parameters}, {Util.GenerateNotNullWhenTrueAttribute()} out {item.VoTypeName} result) {{
-        if({item.UnderlyingTypeFullName}.TryParse({parameterNames}, out var __v)) {{
-            {Util.GenerateCallToNormalizeMethodIfNeeded(item, "__v")}
-            {GenerateCallToValidationIfNeeded(item, "__v")}
-            result = new {item.VoTypeName}(__v);
-            return true;
-        }}
-
-        result = default;
-        return false;
-    }}";
+            $$"""
+              
+                  /// <inheritdoc cref="{{inheritDocRef}}"/>
+                  /// <summary>
+                  /// </summary>
+                  /// <returns>
+                  /// True if the value could a) be parsed by the underlying type, and b) passes any validation (after running any optional normalization).
+                  /// </returns>
+                  public {{staticOrNot}}global::System.Boolean TryParse({{parameters}}, {{Util.GenerateNotNullWhenTrueAttribute()}} out {{item.VoTypeName}} result) 
+                  {
+                      if({{item.UnderlyingTypeFullName}}.TryParse({{parameterNames}}, out var __v)) {
+                          {{Util.GenerateCallToNormalizeMethodIfNeeded(item, "__v")}}
+                          {{GenerateCallToValidationIfNeeded(item, "__v")}}
+                          result = new {{item.VoTypeName}}(__v);
+                          return true;
+                      }
+              
+                      result = default;
+                      return false;
+                  }
+              """;
 
         sb.AppendLine(ret);
     }
@@ -140,13 +146,15 @@ public static class GenerateCodeForTryParse
     {
         if (workItem.ValidateMethod is not null)
         {
-            return @$"var validation = {workItem.TypeToAugment.Identifier}.{workItem.ValidateMethod.Identifier.Value}({parameterName});
-            if (validation != Vogen.Validation.Ok)
-            {{
-                result = default;
-                return false;
-            }}
-";
+            return $$"""
+                     var validation = {{workItem.TypeToAugment.Identifier}}.{{workItem.ValidateMethod.Identifier.Value}}({{parameterName}});
+                     if (validation != Vogen.Validation.Ok)
+                     {
+                         result = default;
+                         return false;
+                     }
+
+                     """;
         }
 
         return string.Empty;

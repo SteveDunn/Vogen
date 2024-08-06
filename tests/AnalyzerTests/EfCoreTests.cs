@@ -4,7 +4,6 @@ using System.Threading.Tasks;
 using FluentAssertions;
 using Microsoft.CodeAnalysis;
 using Shared;
-using VerifyXunit;
 using Vogen;
 
 namespace AnalyzerTests;

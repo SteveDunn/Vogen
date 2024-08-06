@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using VerifyXunit;
 using Vogen;
 using Xunit.Abstractions;
 
@@ -19,21 +18,20 @@ public class GenerationPermutationTests
         {
             foreach (string type in Factory.TypeVariations)
             {
-                foreach (string conversion in _conversions)
+                string conversion =
+                    "Conversions.NewtonsoftJson | Conversions.SystemTextJson | Conversions.EfCoreValueConverter | Conversions.DapperTypeHandler | Conversions.LinqToDbValueConverter";
+                foreach (string underlyingType in Factory.UnderlyingTypes)
                 {
-                    foreach (string underlyingType in Factory.UnderlyingTypes)
+                    foreach (string accessModifier in _accessModifiers)
                     {
-                        foreach (string accessModifier in _accessModifiers)
-                        {
-                            var qualifiedType = $"{accessModifier} {type}";
-                            yield return new object[]
-                            {
-                                qualifiedType, 
-                                conversion, 
-                                underlyingType,
-                                CreateClassName(qualifiedType, conversion, underlyingType)
-                            };
-                        }
+                        var qualifiedType = $"{accessModifier} {type}";
+                        yield return
+                        [
+                            qualifiedType,
+                            conversion,
+                            underlyingType,
+                            CreateClassName(qualifiedType, conversion, underlyingType)
+                        ];
                     }
                 }
             }
@@ -44,7 +42,6 @@ public class GenerationPermutationTests
 
         private static string Normalize(string input) => input.Replace(" ", "_").Replace("|", "_").Replace(".", "_").Replace("@", "_");
 
-
         private readonly string[] _accessModifiers =
         {
             "public"
@@ -53,13 +50,6 @@ public class GenerationPermutationTests
 #endif
         };
         
-        // for each of the types above, create classes for each one of these attributes
-        private readonly string[] _conversions = 
-        {
-            "Conversions.None",
-            "Conversions.NewtonsoftJson | Conversions.SystemTextJson | Conversions.EfCoreValueConverter | Conversions.DapperTypeHandler | Conversions.LinqToDbValueConverter",
-        };
-
         IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
     }
 
@@ -67,26 +57,32 @@ public class GenerationPermutationTests
     {
         _logger.WriteLine($"Running permutation, type: {type}, conversions: {conversions}, underlyingType: {underlyingType}, className: {className}, locale: {locale}");
 
-        string declaration = "";
+        string declaration;
 
         if (underlyingType.Length == 0)
         {
-            declaration = $@"
-  [ValueObject(conversions: {conversions})]
-  {type} {className} {{ }}";
+            declaration = $$"""
+
+                            [ValueObject(conversions: {{conversions}})]
+                            {{type}} {{className}} { }
+                            """;
         }
         else
         {
-            declaration = $@"
-  [ValueObject(conversions: {conversions}, underlyingType: typeof({underlyingType}))]
-  {type} {className} {{ }}";
+            declaration = $$"""
+
+                            [ValueObject(conversions: {{conversions}}, underlyingType: typeof({{underlyingType}}))]
+                            {{type}} {{className}} { }
+                            """;
         }
 
-        var source = @"using Vogen;
-namespace Whatever
-{
-" + declaration + @"
-}";
+        var source = $$"""
+                       using Vogen;
+                       namespace Whatever
+                       {
+                           {{declaration}}
+                       }
+                       """;
 
         return new SnapshotRunner<ValueObjectGenerator>()
             .WithLogger(_logger)

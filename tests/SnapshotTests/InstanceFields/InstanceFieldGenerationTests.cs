@@ -1,8 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using Shared;
-using VerifyXunit;
 using Vogen;
 
 namespace SnapshotTests.InstanceFields;

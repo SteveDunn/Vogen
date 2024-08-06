@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.Immutable;
-using System.Linq;
 using Analyzer.Utilities.Extensions;
 using Microsoft.CodeAnalysis;
 
@@ -358,9 +357,6 @@ internal static class MethodDiscovery
     }
 
     private static bool IsNotOverrideOrVirtual(IMethodSymbol eachMethod) => eachMethod is { IsOverride: false, IsVirtual: false };
-
-    private static bool DoesMethodReturnThisType(IMethodSymbol method, INamedTypeSymbol returnType) => 
-        SymbolEqualityComparer.Default.Equals(method.ReturnType, returnType);
 
     private static bool CannotGoFurtherInHierarchy(INamedTypeSymbol baseType) => 
         baseType.SpecialType is SpecialType.System_Object or SpecialType.System_ValueType;

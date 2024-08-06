@@ -1,6 +1,5 @@
 using System.Threading.Tasks;
 using Shared;
-using VerifyXunit;
 using Vogen;
 
 namespace SnapshotTests.Parsing;

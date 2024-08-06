@@ -1,7 +1,6 @@
 ﻿using System.Threading.Tasks;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.Testing;
-using SmallTests.AnalyzerTests;
 using Vogen.Rules;
 using VerifyCS = AnalyzerTests.Verifiers.CSharpCodeFixVerifier<Vogen.Rules.ValidationMethodAnalyzer, Vogen.Rules.ValidateMethodFixers.AddStaticToExistingMethodCodeFixProvider>;
 

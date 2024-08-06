@@ -29,6 +29,7 @@ namespace generator;
 public class VogenTypesFactory : global::System.Text.Json.Serialization.JsonConverterFactory
 {
     public VogenTypesFactory() { }
+    
     private static readonly global::System.Collections.Generic.Dictionary<global::System.Type, global::System.Lazy<global::System.Text.Json.Serialization.JsonConverter>> _lookup = 
         new global::System.Collections.Generic.Dictionary<global::System.Type, global::System.Lazy<global::System.Text.Json.Serialization.JsonConverter>> {
                 { typeof(BugFix516Vo), new global::System.Lazy<global::System.Text.Json.Serialization.JsonConverter>(() => new BugFix516Vo.BugFix516VoSystemTextJsonConverter()) }
@@ -48,268 +49,221 @@ public class VogenTypesFactory : global::System.Text.Json.Serialization.JsonConv
 //     the code is regenerated.
 // </auto-generated>
 // ------------------------------------------------------------------------------
-
 // Suppress warnings about [Obsolete] member usage in generated code.
 #pragma warning disable CS0618
-
 // Suppress warnings for 'Override methods on comparable types'.
 #pragma warning disable CA1036
-
 // Suppress Error MA0097 : A class that implements IComparable<T> or IComparable should override comparison operators
 #pragma warning disable MA0097
-
 // Suppress warning for 'The annotation for nullable reference types should only be used in code within a '#nullable' annotations context. Auto-generated code requires an explicit '#nullable' directive in source.'
 // The generator copies signatures from the BCL, e.g. for `TryParse`, and some of those have nullable annotations.
 #pragma warning disable CS8669
-
 // Suppress warnings about CS1591: Missing XML comment for publicly visible type or member 'Type_or_Member'
 #pragma warning disable CS1591
-
 using Vogen;
 
-
-    [global::System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage] 
+[global::System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage]
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Vogen", "1.0.0.0")]
-    [global::System.Text.Json.Serialization.JsonConverter(typeof(BugFix516VoSystemTextJsonConverter))]
+[global::System.Text.Json.Serialization.JsonConverter(typeof(BugFix516VoSystemTextJsonConverter))]
 [global::System.ComponentModel.TypeConverter(typeof(BugFix516VoTypeConverter))]
-
-    [global::System.Diagnostics.DebuggerTypeProxyAttribute(typeof(BugFix516VoDebugView))]
-    [global::System.Diagnostics.DebuggerDisplayAttribute("Underlying type: System.String, Value = { _value }")]
-    public readonly partial record struct BugFix516Vo : global::System.IEquatable<BugFix516Vo>, global::System.IEquatable<System.String> ,  global::System.IComparable<BugFix516Vo>, global::System.IComparable,  global::System.IParsable<BugFix516Vo>
-    {
-#if DEBUG   
-        private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
+[global::System.Diagnostics.DebuggerTypeProxyAttribute(typeof(BugFix516VoDebugView))]
+[global::System.Diagnostics.DebuggerDisplayAttribute("Underlying type: System.String, Value = { _value }")]
+public readonly partial record struct BugFix516Vo : global::System.IEquatable<BugFix516Vo>, global::System.IEquatable<System.String>, global::System.IComparable<BugFix516Vo>, global::System.IComparable, global::System.IParsable<BugFix516Vo>
+{
+#if DEBUG
+private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
 #endif
-
 #if !VOGEN_NO_VALIDATION
-        private readonly global::System.Boolean _isInitialized;
+    private readonly global::System.Boolean _isInitialized;
 #endif
-        
-        private readonly System.String _value;
-
-        /// <summary>
-        /// Gets the underlying <see cref="System.String" /> value if set, otherwise a <see cref="global::Vogen.ValueObjectValidationException" /> is thrown.
-        /// </summary>
-        public readonly System.String Value
+    private readonly System.String _value;
+    /// <summary>
+    /// Gets the underlying <see cref = "System.String"/> value if set, otherwise a <see cref = "global::Vogen.ValueObjectValidationException"/> is thrown.
+    /// </summary>
+    public readonly System.String Value
+    {
+        [global::System.Diagnostics.DebuggerStepThroughAttribute]
+        get
         {
-            [global::System.Diagnostics.DebuggerStepThroughAttribute]
-            get
-            {
-                EnsureInitialized();
-                return _value;
-            }
-            [global::System.Diagnostics.DebuggerStepThroughAttribute]
-            init
-            {
-                            if (value is null)
+            EnsureInitialized();
+            return _value;
+        }
+
+        [global::System.Diagnostics.DebuggerStepThroughAttribute]
+        init
+        {
+            if (value is null)
             {
                 throw new global::Vogen.ValueObjectValidationException("Cannot create a value object with null.");
             }
 
-
-                
-
-                
-
-                _value = value;
-            }
+            _value = value;
         }
+    }
 
-
-        [global::System.Diagnostics.DebuggerStepThroughAttribute]
-        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
-        public BugFix516Vo()
-        {
+    [global::System.Diagnostics.DebuggerStepThroughAttribute]
+    [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+    public BugFix516Vo()
+    {
 #if DEBUG
             _stackTrace = new global::System.Diagnostics.StackTrace();
 #endif
-
 #if !VOGEN_NO_VALIDATION
-            _isInitialized = false;
+        _isInitialized = false;
 #endif
-            _value = default;
-        }
+        _value = default;
+    }
 
-        [global::System.Diagnostics.DebuggerStepThroughAttribute]
-        private BugFix516Vo(System.String value) 
-        {
-            _value = value;
+    [global::System.Diagnostics.DebuggerStepThroughAttribute]
+    private BugFix516Vo(System.String value)
+    {
+        _value = value;
 #if !VOGEN_NO_VALIDATION
-            _isInitialized = true;
+        _isInitialized = true;
 #endif
-        }
+    }
 
-        /// <summary>
-        /// Builds an instance from the provided underlying type.
-        /// </summary>
-        /// <param name="value">The underlying type.</param>
-        /// <returns>An instance of this type.</returns>
-        public static BugFix516Vo From(System.String value)
-        {
-            
+    /// <summary>
+    /// Builds an instance from the provided underlying type.
+    /// </summary>
+    /// <param name = "value">The underlying type.</param>
+    /// <returns>An instance of this type.</returns>
+    public static BugFix516Vo From(System.String value)
+    {
+        BugFix516Vo instance = new BugFix516Vo(value);
+        return instance;
+    }
 
-            
-
-            BugFix516Vo instance = new BugFix516Vo(value);
-
-            return instance;
-        }
-
-        /// <summary>
-/// Tries to build an instance from the provided underlying type.
-/// If a normalization method is provided, it will be called.
-/// If validation is provided, and it fails, false will be returned.
-/// </summary>
-/// <param name="value">The underlying type.</param>
-/// <param name="vo">An instance of the value object.</param>
-/// <returns>True if the value object can be built, otherwise false.</returns>
-public static bool TryFrom(System.String value, 
+    /// <summary>
+    /// Tries to build an instance from the provided underlying type.
+    /// If a normalization method is provided, it will be called.
+    /// If validation is provided, and it fails, false will be returned.
+    /// </summary>
+    /// <param name = "value">The underlying type.</param>
+    /// <param name = "vo">An instance of the value object.</param>
+    /// <returns>True if the value object can be built, otherwise false.</returns>
+    public static bool TryFrom(System.String value,
 #if NETCOREAPP3_0_OR_GREATER
 [global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)]
 #endif
  out BugFix516Vo vo)
-{
-    
-    
+    {
+        vo = new BugFix516Vo(value);
+        return true;
+    }
 
-    
+    /// <summary>
+    /// Tries to build an instance from the provided underlying value.
+    /// If a normalization method is provided, it will be called.
+    /// If validation is provided, and it fails, an error will be returned.
+    /// </summary>
+    /// <param name = "value">The primitive value.</param>
+    /// <returns>A <see cref = "ValueObjectOrError{T}"/> containing either the value object, or an error.</returns>
+    public static ValueObjectOrError<BugFix516Vo> TryFrom(System.String value)
+    {
+        return new ValueObjectOrError<BugFix516Vo>(new BugFix516Vo(value));
+    }
 
-    vo = new BugFix516Vo(value);
-
-    return true;
-}/// <summary>
-/// Tries to build an instance from the provided underlying value.
-/// If a normalization method is provided, it will be called.
-/// If validation is provided, and it fails, an error will be returned.
-/// </summary>
-/// <param name="value">The primitive value.</param>
-/// <returns>A <see cref="ValueObjectOrError{T}"/> containing either the value object, or an error.</returns>
-public static ValueObjectOrError<BugFix516Vo> TryFrom(System.String value)
-{
-    
-
-    
-
-    
-
-    return new ValueObjectOrError<BugFix516Vo>(new BugFix516Vo(value));
-}
-
-[global::System.Runtime.CompilerServices.MethodImpl(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
+    [global::System.Runtime.CompilerServices.MethodImpl(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 #if VOGEN_NO_VALIDATION
   public readonly bool IsInitialized() => true;
 #else
-  public readonly bool IsInitialized() => _isInitialized;
+    public readonly bool IsInitialized() => _isInitialized;
 #endif
+    public static explicit operator BugFix516Vo(System.String value) => From(value);
+    public static explicit operator System.String(BugFix516Vo value) => value.Value;
+    // only called internally when something has been deserialized into
+    // its primitive type.
+    private static BugFix516Vo __Deserialize(System.String value)
+    {
+        return new BugFix516Vo(value);
+    }
 
-        
-        public static explicit operator BugFix516Vo(System.String value) => From(value);
-        public static explicit operator System.String(BugFix516Vo value) => value.Value;
+    public global::System.Boolean Equals(BugFix516Vo other, global::System.Collections.Generic.IEqualityComparer<BugFix516Vo> comparer)
+    {
+        return comparer.Equals(this, other);
+    }
 
-        // only called internally when something has been deserialized into
-        // its primitive type.
-        private static BugFix516Vo __Deserialize(System.String value)
-        {
-            
+    public readonly global::System.Boolean Equals(System.String primitive)
+    {
+        return Value.Equals(primitive);
+    }
 
-            
+    public readonly global::System.Boolean Equals(System.String primitive, global::System.StringComparer comparer)
+    {
+        return comparer.Equals(Value, primitive);
+    }
 
-            return new BugFix516Vo(value);
-        }
-        
-          public global::System.Boolean Equals(BugFix516Vo other, global::System.Collections.Generic.IEqualityComparer<BugFix516Vo> comparer)
-          {
-            return comparer.Equals(this, other);
-          }
+    public static global::System.Boolean operator ==(BugFix516Vo left, System.String right) => Equals(left.Value, right);
+    public static global::System.Boolean operator !=(BugFix516Vo left, System.String right) => !Equals(left.Value, right);
+    public static global::System.Boolean operator ==(System.String left, BugFix516Vo right) => Equals(left, right.Value);
+    public static global::System.Boolean operator !=(System.String left, BugFix516Vo right) => !Equals(left, right.Value);
+    public int CompareTo(BugFix516Vo other) => Value.CompareTo(other.Value);
+    public int CompareTo(object other)
+    {
+        if (other is null)
+            return 1;
+        if (other is BugFix516Vo x)
+            return CompareTo(x);
+        throw new global::System.ArgumentException("Cannot compare to object as it is not of type BugFix516Vo", nameof(other));
+    }
 
-          
-            public readonly global::System.Boolean Equals(System.String primitive)
-            {
-              return Value.Equals(primitive);
-            }
-
-            public readonly global::System.Boolean Equals(System.String primitive, global::System.StringComparer comparer) 
-            {
-                return comparer.Equals(Value, primitive);
-            }
-
-        public static global::System.Boolean operator ==(BugFix516Vo left, System.String right) => Equals(left.Value, right);
-        public static global::System.Boolean operator !=(BugFix516Vo left, System.String right) => !Equals(left.Value, right);
-
-        public static global::System.Boolean operator ==(System.String left, BugFix516Vo right) => Equals(left, right.Value);
-        public static global::System.Boolean operator !=(System.String left, BugFix516Vo right) => !Equals(left, right.Value);
-
-        public int CompareTo(BugFix516Vo other) => Value.CompareTo(other.Value);
-        public int CompareTo(object other) {
-            if(other is null) return 1;
-            if(other is BugFix516Vo x) return CompareTo(x);
-            throw new global::System.ArgumentException("Cannot compare to object as it is not of type BugFix516Vo", nameof(other));
-        }
-
-        
     /// <summary>
     /// </summary>
     /// <returns>
     /// True if the value passes any validation (after running any optional normalization).
     /// </returns>
-    public static global::System.Boolean TryParse(global::System.String s, global::System.IFormatProvider provider, 
+    public static global::System.Boolean TryParse(global::System.String s, global::System.IFormatProvider provider,
 #if NETCOREAPP3_0_OR_GREATER
 [global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)]
 #endif
- out BugFix516Vo result) {
-            
-            
-            result = new BugFix516Vo(s);
-            return true;
+ out BugFix516Vo result)
+    {
+        result = new BugFix516Vo(s);
+        return true;
     }
+
     /// <summary>
     /// </summary>
     /// <returns>
-    /// The value created via the <see cref="From(global::System.String)"/> method.
+    /// The value created via the <see cref = "From(global::System.String)"/> method.
     /// </returns>
-    /// <exception cref="global::Vogen.ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
-    public static BugFix516Vo Parse(global::System.String s, global::System.IFormatProvider provider) {
+    /// <exception cref = "global::Vogen.ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
+    public static BugFix516Vo Parse(global::System.String s, global::System.IFormatProvider provider)
+    {
         return From(s);
     }
 
-        
-
-        private readonly void EnsureInitialized()
+    private readonly void EnsureInitialized()
+    {
+        if (!IsInitialized())
         {
-            if (!IsInitialized())
-            {
 #if DEBUG
                 global::System.String message = "Use of uninitialized Value Object at: " + _stackTrace ?? "";
 #else
-                global::System.String message = "Use of uninitialized Value Object.";
+            global::System.String message = "Use of uninitialized Value Object.";
 #endif
+            throw new global::Vogen.ValueObjectValidationException(message);
+        }
+    }
 
-                throw new global::Vogen.ValueObjectValidationException(message);
-            }
+    // record enumerates fields - we just want our Value and to throw if it's not initialized.
+    /// <summary>Returns the string representation of the underlying <see cref = "System.String"/>.</summary>
+    public readonly override global::System.String ToString() => IsInitialized() ? Value.ToString() : "[UNINITIALIZED]";
+    /// <summary>
+    /// Converts a BugFix516Vo to or from JSON.
+    /// </summary>
+    public class BugFix516VoSystemTextJsonConverter : global::System.Text.Json.Serialization.JsonConverter<BugFix516Vo>
+    {
+        public override BugFix516Vo Read(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
+        {
+            return BugFix516Vo.__Deserialize(reader.GetString());
         }
 
-        // record enumerates fields - we just want our Value and to throw if it's not initialized.
-        /// <summary>Returns the string representation of the underlying <see cref="System.String" />.</summary>
-    public readonly override global::System.String ToString() =>IsInitialized() ? Value.ToString() : "[UNINITIALIZED]";
-
-        
- 
-        
-        /// <summary>
-        /// Converts a BugFix516Vo to or from JSON.
-        /// </summary>
-        public class BugFix516VoSystemTextJsonConverter : global::System.Text.Json.Serialization.JsonConverter<BugFix516Vo>
+        public override void Write(System.Text.Json.Utf8JsonWriter writer, BugFix516Vo value, global::System.Text.Json.JsonSerializerOptions options)
         {
-            public override BugFix516Vo Read(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
-            {
-                return BugFix516Vo.__Deserialize(reader.GetString());
-            }
-
-            public override void Write(System.Text.Json.Utf8JsonWriter writer, BugFix516Vo value, global::System.Text.Json.JsonSerializerOptions options)
-            {
-                writer.WriteStringValue(value.Value);
-            }
-
+            writer.WriteStringValue(value.Value);
+        }
 #if NET6_0_OR_GREATER
             public override BugFix516Vo ReadAsPropertyName(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {
@@ -320,73 +274,61 @@ public static ValueObjectOrError<BugFix516Vo> TryFrom(System.String value)
             {
                 writer.WritePropertyName(value.Value);
             }
-#endif            
-        }
+#endif
+    }
 
-
-        class BugFix516VoTypeConverter : global::System.ComponentModel.TypeConverter
+    class BugFix516VoTypeConverter : global::System.ComponentModel.TypeConverter
+    {
+        public override global::System.Boolean CanConvertFrom(global::System.ComponentModel.ITypeDescriptorContext context, global::System.Type sourceType)
         {
-            public override global::System.Boolean CanConvertFrom(global::System.ComponentModel.ITypeDescriptorContext context, global::System.Type sourceType)
-            {
-                return sourceType == typeof(global::System.String) || base.CanConvertFrom(context, sourceType);
-            }
-
-            public override global::System.Object ConvertFrom(global::System.ComponentModel.ITypeDescriptorContext context, global::System.Globalization.CultureInfo culture, global::System.Object value)
-            {
-                var stringValue = value as global::System.String;
-                if (stringValue is not null)
-                {
-                    return BugFix516Vo.__Deserialize(stringValue);
-                }
-
-                return base.ConvertFrom(context, culture, value);
-            }
-
-            public override bool CanConvertTo(global::System.ComponentModel.ITypeDescriptorContext context, global::System.Type sourceType)
-            {
-                return sourceType == typeof(global::System.String) || base.CanConvertTo(context, sourceType);
-            }
-
-            public override object ConvertTo(global::System.ComponentModel.ITypeDescriptorContext context, global::System.Globalization.CultureInfo culture, global::System.Object value, global::System.Type destinationType)
-            {
-                if (value is BugFix516Vo idValue)
-                {
-                    if (destinationType == typeof(global::System.String))
-                    {
-                        return idValue.Value;
-                    }
-                }
-
-                return base.ConvertTo(context, culture, value, destinationType);
-            }
+            return sourceType == typeof(global::System.String) || base.CanConvertFrom(context, sourceType);
         }
 
-
-
-
-
-        
-            internal sealed class BugFix516VoDebugView
+        public override global::System.Object ConvertFrom(global::System.ComponentModel.ITypeDescriptorContext context, global::System.Globalization.CultureInfo culture, global::System.Object value)
+        {
+            var stringValue = value as global::System.String;
+            if (stringValue is not null)
             {
-                private readonly BugFix516Vo _t;
-
-                BugFix516VoDebugView(BugFix516Vo t)
-                {
-                    _t = t;
-                }
-
-                public global::System.Boolean IsInitialized => _t.IsInitialized();
-                public global::System.String UnderlyingType => "System.String";
-                public global::System.String Value => _t.IsInitialized() ? _t._value.ToString() : "[not initialized]" ;
-
-                #if DEBUG
-                    public global::System.String CreatedWith => _t._stackTrace?.ToString() ?? "the From method";
-                #endif
-
-                public global::System.String Conversions => @"Default";
+                return BugFix516Vo.__Deserialize(stringValue);
             }
 
+            return base.ConvertFrom(context, culture, value);
+        }
+
+        public override bool CanConvertTo(global::System.ComponentModel.ITypeDescriptorContext context, global::System.Type sourceType)
+        {
+            return sourceType == typeof(global::System.String) || base.CanConvertTo(context, sourceType);
+        }
+
+        public override object ConvertTo(global::System.ComponentModel.ITypeDescriptorContext context, global::System.Globalization.CultureInfo culture, global::System.Object value, global::System.Type destinationType)
+        {
+            if (value is BugFix516Vo idValue)
+            {
+                if (destinationType == typeof(global::System.String))
+                {
+                    return idValue.Value;
+                }
+            }
+
+            return base.ConvertTo(context, culture, value, destinationType);
+        }
+    }
+
+    internal sealed class BugFix516VoDebugView
+    {
+        private readonly BugFix516Vo _t;
+        BugFix516VoDebugView(BugFix516Vo t)
+        {
+            _t = t;
+        }
+
+        public global::System.Boolean IsInitialized => _t.IsInitialized();
+        public global::System.String UnderlyingType => "System.String";
+        public global::System.String Value => _t.IsInitialized() ? _t._value.ToString() : "[not initialized]";
+#if DEBUG
+        public global::System.String CreatedWith => _t._stackTrace?.ToString() ?? "the From method";
+#endif
+        public global::System.String Conversions => @"Default";
+    }
 }
-
-
 ]

@@ -25,13 +25,13 @@ internal class WriteSystemTextJsonConverterFactories
         }
         
         
-        var stjs = workItems.Where(i => i.Config.Conversions.HasFlag(Conversions.SystemTextJson)).Select(BuildEntry);
+        var entries = workItems.Where(i => i.Config.Conversions.HasFlag(Conversions.SystemTextJson)).Select(BuildEntry);
 
-        var fullNamespace = compilation.Assembly.Name;//.ToDisplayString();
+        var fullNamespace = compilation.Assembly.Name;
 
         var ns = string.IsNullOrEmpty(fullNamespace) ? string.Empty : $"namespace {fullNamespace};";
         
-        string s2 =
+        string source =
             $$"""
             
             {{GeneratedCodeSegments.Preamble}}
@@ -41,9 +41,10 @@ internal class WriteSystemTextJsonConverterFactories
             public class VogenTypesFactory : global::System.Text.Json.Serialization.JsonConverterFactory
             {
                 public VogenTypesFactory() { }
+                
                 private static readonly global::System.Collections.Generic.Dictionary<global::System.Type, global::System.Lazy<global::System.Text.Json.Serialization.JsonConverter>> _lookup = 
                     new global::System.Collections.Generic.Dictionary<global::System.Type, global::System.Lazy<global::System.Text.Json.Serialization.JsonConverter>> {
-                            {{string.Join(",", stjs)}}
+                            {{string.Join(",", entries)}}
                     };
                 
                 public override bool CanConvert(global::System.Type typeToConvert) => _lookup.ContainsKey(typeToConvert);
@@ -53,7 +54,7 @@ internal class WriteSystemTextJsonConverterFactories
             }
             """;
 
-        context.AddSource("SystemTextJsonConverterFactory_g.cs", s2);
+        context.AddSource("SystemTextJsonConverterFactory_g.cs", source);
     }
 
     private static string BuildEntry(VoWorkItem eachStj)

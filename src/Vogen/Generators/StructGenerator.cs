@@ -88,7 +88,7 @@ using Vogen;
 
 {GenerateStringComparers.GenerateIfNeeded(item, tds)}        
 
-{GenerateCastingOperators.GenerateImplementations(item,tds)}{Util.GenerateGuidFactoryMethodIfNeeded(item, tds)}
+{GenerateCastingOperators.GenerateImplementations(item,tds)}{Util.GenerateGuidFactoryMethodIfNeeded(item)}
         // only called internally when something has been deserialized into
         // its primitive type.
         private static {structName} __Deserialize({itemUnderlyingType} value)

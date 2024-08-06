@@ -29,6 +29,7 @@ namespace generator;
 public class VogenTypesFactory : global::System.Text.Json.Serialization.JsonConverterFactory
 {
     public VogenTypesFactory() { }
+    
     private static readonly global::System.Collections.Generic.Dictionary<global::System.Type, global::System.Lazy<global::System.Text.Json.Serialization.JsonConverter>> _lookup = 
         new global::System.Collections.Generic.Dictionary<global::System.Type, global::System.Lazy<global::System.Text.Json.Serialization.JsonConverter>> {
                 { typeof(MyVo), new global::System.Lazy<global::System.Text.Json.Serialization.JsonConverter>(() => new MyVo.MyVoSystemTextJsonConverter()) }
@@ -48,218 +49,179 @@ public class VogenTypesFactory : global::System.Text.Json.Serialization.JsonConv
 //     the code is regenerated.
 // </auto-generated>
 // ------------------------------------------------------------------------------
-
 // Suppress warnings about [Obsolete] member usage in generated code.
 #pragma warning disable CS0618
-
 // Suppress warnings for 'Override methods on comparable types'.
 #pragma warning disable CA1036
-
 // Suppress Error MA0097 : A class that implements IComparable<T> or IComparable should override comparison operators
 #pragma warning disable MA0097
-
 // Suppress warning for 'The annotation for nullable reference types should only be used in code within a '#nullable' annotations context. Auto-generated code requires an explicit '#nullable' directive in source.'
 // The generator copies signatures from the BCL, e.g. for `TryParse`, and some of those have nullable annotations.
 #pragma warning disable CS8669
-
 // Suppress warnings about CS1591: Missing XML comment for publicly visible type or member 'Type_or_Member'
 #pragma warning disable CS1591
-
 using Vogen;
 
-
-    [global::System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage] 
+[global::System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage]
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Vogen", "1.0.0.0")]
-    [global::System.Text.Json.Serialization.JsonConverter(typeof(MyVoSystemTextJsonConverter))]
+[global::System.Text.Json.Serialization.JsonConverter(typeof(MyVoSystemTextJsonConverter))]
 [global::System.ComponentModel.TypeConverter(typeof(MyVoTypeConverter))]
-
-    [global::System.Diagnostics.DebuggerTypeProxyAttribute(typeof(MyVoDebugView))]
-    [global::System.Diagnostics.DebuggerDisplayAttribute("Underlying type: System.Guid, Value = { _value }")]
-    public partial record struct MyVo : global::System.IEquatable<MyVo>, global::System.IEquatable<System.Guid> ,  global::System.IComparable<MyVo>, global::System.IComparable,  global::System.IParsable<MyVo>,  global::System.ISpanParsable<MyVo>
-    {
-#if DEBUG   
-        private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
+[global::System.Diagnostics.DebuggerTypeProxyAttribute(typeof(MyVoDebugView))]
+[global::System.Diagnostics.DebuggerDisplayAttribute("Underlying type: System.Guid, Value = { _value }")]
+public partial record struct MyVo : global::System.IEquatable<MyVo>, global::System.IEquatable<System.Guid>, global::System.IComparable<MyVo>, global::System.IComparable, global::System.IParsable<MyVo>, global::System.ISpanParsable<MyVo>
+{
+#if DEBUG
+private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
 #endif
-
 #if !VOGEN_NO_VALIDATION
-        private readonly global::System.Boolean _isInitialized;
+    private readonly global::System.Boolean _isInitialized;
 #endif
-        
-        private readonly System.Guid _value;
-
-        /// <summary>
-        /// Gets the underlying <see cref="System.Guid" /> value if set, otherwise a <see cref="global::Vogen.ValueObjectValidationException" /> is thrown.
-        /// </summary>
-        public readonly System.Guid Value
+    private readonly System.Guid _value;
+    /// <summary>
+    /// Gets the underlying <see cref = "System.Guid"/> value if set, otherwise a <see cref = "global::Vogen.ValueObjectValidationException"/> is thrown.
+    /// </summary>
+    public readonly System.Guid Value
+    {
+        [global::System.Diagnostics.DebuggerStepThroughAttribute]
+        get
         {
-            [global::System.Diagnostics.DebuggerStepThroughAttribute]
-            get
-            {
-                EnsureInitialized();
-                return _value;
-            }
-            [global::System.Diagnostics.DebuggerStepThroughAttribute]
-            init
-            {
-                
-
-                
-
-                
-
-                _value = value;
-            }
+            EnsureInitialized();
+            return _value;
         }
 
-
         [global::System.Diagnostics.DebuggerStepThroughAttribute]
-        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
-        public MyVo()
+        init
         {
+            _value = value;
+        }
+    }
+
+    [global::System.Diagnostics.DebuggerStepThroughAttribute]
+    [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+    public MyVo()
+    {
 #if DEBUG
             _stackTrace = new global::System.Diagnostics.StackTrace();
 #endif
-
 #if !VOGEN_NO_VALIDATION
-            _isInitialized = false;
+        _isInitialized = false;
 #endif
-            _value = default;
-        }
+        _value = default;
+    }
 
-        [global::System.Diagnostics.DebuggerStepThroughAttribute]
-        private MyVo(System.Guid value) 
-        {
-            _value = value;
+    [global::System.Diagnostics.DebuggerStepThroughAttribute]
+    private MyVo(System.Guid value)
+    {
+        _value = value;
 #if !VOGEN_NO_VALIDATION
-            _isInitialized = true;
+        _isInitialized = true;
 #endif
-        }
+    }
 
-        /// <summary>
-        /// Builds an instance from the provided underlying type.
-        /// </summary>
-        /// <param name="value">The underlying type.</param>
-        /// <returns>An instance of this type.</returns>
-        public static MyVo From(System.Guid value)
-        {
-            
+    /// <summary>
+    /// Builds an instance from the provided underlying type.
+    /// </summary>
+    /// <param name = "value">The underlying type.</param>
+    /// <returns>An instance of this type.</returns>
+    public static MyVo From(System.Guid value)
+    {
+        MyVo instance = new MyVo(value);
+        return instance;
+    }
 
-            
-
-            MyVo instance = new MyVo(value);
-
-            return instance;
-        }
-
-        /// <summary>
-/// Tries to build an instance from the provided underlying type.
-/// If a normalization method is provided, it will be called.
-/// If validation is provided, and it fails, false will be returned.
-/// </summary>
-/// <param name="value">The underlying type.</param>
-/// <param name="vo">An instance of the value object.</param>
-/// <returns>True if the value object can be built, otherwise false.</returns>
-public static bool TryFrom(System.Guid value, 
+    /// <summary>
+    /// Tries to build an instance from the provided underlying type.
+    /// If a normalization method is provided, it will be called.
+    /// If validation is provided, and it fails, false will be returned.
+    /// </summary>
+    /// <param name = "value">The underlying type.</param>
+    /// <param name = "vo">An instance of the value object.</param>
+    /// <returns>True if the value object can be built, otherwise false.</returns>
+    public static bool TryFrom(System.Guid value,
 #if NETCOREAPP3_0_OR_GREATER
 [global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)]
 #endif
  out MyVo vo)
-{
-    
-    
+    {
+        vo = new MyVo(value);
+        return true;
+    }
 
-    
+    /// <summary>
+    /// Tries to build an instance from the provided underlying value.
+    /// If a normalization method is provided, it will be called.
+    /// If validation is provided, and it fails, an error will be returned.
+    /// </summary>
+    /// <param name = "value">The primitive value.</param>
+    /// <returns>A <see cref = "ValueObjectOrError{T}"/> containing either the value object, or an error.</returns>
+    public static ValueObjectOrError<MyVo> TryFrom(System.Guid value)
+    {
+        return new ValueObjectOrError<MyVo>(new MyVo(value));
+    }
 
-    vo = new MyVo(value);
-
-    return true;
-}/// <summary>
-/// Tries to build an instance from the provided underlying value.
-/// If a normalization method is provided, it will be called.
-/// If validation is provided, and it fails, an error will be returned.
-/// </summary>
-/// <param name="value">The primitive value.</param>
-/// <returns>A <see cref="ValueObjectOrError{T}"/> containing either the value object, or an error.</returns>
-public static ValueObjectOrError<MyVo> TryFrom(System.Guid value)
-{
-    
-
-    
-
-    
-
-    return new ValueObjectOrError<MyVo>(new MyVo(value));
-}
-
-[global::System.Runtime.CompilerServices.MethodImpl(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
+    [global::System.Runtime.CompilerServices.MethodImpl(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 #if VOGEN_NO_VALIDATION
   public readonly bool IsInitialized() => true;
 #else
-  public readonly bool IsInitialized() => _isInitialized;
+    public readonly bool IsInitialized() => _isInitialized;
 #endif
+    public static explicit operator MyVo(System.Guid value) => From(value);
+    public static explicit operator System.Guid(MyVo value) => value.Value;
+    public static MyVo FromNewGuid() => From(global::System.Guid.NewGuid());
+    // only called internally when something has been deserialized into
+    // its primitive type.
+    private static MyVo __Deserialize(System.Guid value)
+    {
+        return new MyVo(value);
+    }
 
-        
-        public static explicit operator MyVo(System.Guid value) => From(value);
-        public static explicit operator System.Guid(MyVo value) => value.Value;
-public static MyVo FromNewGuid() { return From(global::System.Guid.NewGuid()); }
-        // only called internally when something has been deserialized into
-        // its primitive type.
-        private static MyVo __Deserialize(System.Guid value)
+    public readonly global::System.Boolean Equals(MyVo other)
+    {
+        // It's possible to create uninitialized instances via converters such as EfCore (HasDefaultValue), which call Equals.
+        // We treat anything uninitialized as not equal to anything, even other uninitialized instances of this type.
+        if (!IsInitialized() || !other.IsInitialized())
+            return false;
+        return global::System.Collections.Generic.EqualityComparer<System.Guid>.Default.Equals(Value, other.Value);
+    }
+
+    public global::System.Boolean Equals(MyVo other, global::System.Collections.Generic.IEqualityComparer<MyVo> comparer)
+    {
+        return comparer.Equals(this, other);
+    }
+
+    public readonly global::System.Boolean Equals(System.Guid primitive)
+    {
+        return Value.Equals(primitive);
+    }
+
+    public static global::System.Boolean operator ==(MyVo left, System.Guid right) => Equals(left.Value, right);
+    public static global::System.Boolean operator !=(MyVo left, System.Guid right) => !Equals(left.Value, right);
+    public static global::System.Boolean operator ==(System.Guid left, MyVo right) => Equals(left, right.Value);
+    public static global::System.Boolean operator !=(System.Guid left, MyVo right) => !Equals(left, right.Value);
+    public int CompareTo(MyVo other) => Value.CompareTo(other.Value);
+    public int CompareTo(object other)
+    {
+        if (other is null)
+            return 1;
+        if (other is MyVo x)
+            return CompareTo(x);
+        throw new global::System.ArgumentException("Cannot compare to object as it is not of type MyVo", nameof(other));
+    }
+
+    /// <inheritdoc cref = "System.Guid.TryParse(System.ReadOnlySpan{char}, out System.Guid)"/>
+    /// <summary>
+    /// </summary>
+    /// <returns>
+    /// True if the value could a) be parsed by the underlying type, and b) passes any validation (after running any optional normalization).
+    /// </returns>
+    public static global::System.Boolean TryParse(global::System.ReadOnlySpan<char> input,
+#if NETCOREAPP3_0_OR_GREATER
+[global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)]
+#endif
+ out MyVo result)
+    {
+        if (System.Guid.TryParse(input, out var __v))
         {
-            
-
-            
-
-            return new MyVo(value);
-        }
-                  public readonly global::System.Boolean Equals(MyVo other)
-          {
-            // It's possible to create uninitialized instances via converters such as EfCore (HasDefaultValue), which call Equals.
-            // We treat anything uninitialized as not equal to anything, even other uninitialized instances of this type.
-            if(!IsInitialized() || !other.IsInitialized()) return false;
-
-            return global::System.Collections.Generic.EqualityComparer<System.Guid>.Default.Equals(Value, other.Value);
-          }
-          public global::System.Boolean Equals(MyVo other, global::System.Collections.Generic.IEqualityComparer<MyVo> comparer)
-          {
-            return comparer.Equals(this, other);
-          }
-
-          
-            public readonly global::System.Boolean Equals(System.Guid primitive)
-            {
-              return Value.Equals(primitive);
-            }
-
-
-        public static global::System.Boolean operator ==(MyVo left, System.Guid right) => Equals(left.Value, right);
-        public static global::System.Boolean operator !=(MyVo left, System.Guid right) => !Equals(left.Value, right);
-
-        public static global::System.Boolean operator ==(System.Guid left, MyVo right) => Equals(left, right.Value);
-        public static global::System.Boolean operator !=(System.Guid left, MyVo right) => !Equals(left, right.Value);
-
-        public int CompareTo(MyVo other) => Value.CompareTo(other.Value);
-        public int CompareTo(object other) {
-            if(other is null) return 1;
-            if(other is MyVo x) return CompareTo(x);
-            throw new global::System.ArgumentException("Cannot compare to object as it is not of type MyVo", nameof(other));
-        }
-
-        
-    /// <inheritdoc cref="System.Guid.TryParse(System.ReadOnlySpan{char}, out System.Guid)"/>
-    /// <summary>
-    /// </summary>
-    /// <returns>
-    /// True if the value could a) be parsed by the underlying type, and b) passes any validation (after running any optional normalization).
-    /// </returns>
-    public static global::System.Boolean TryParse(global::System.ReadOnlySpan<char> input, 
-#if NETCOREAPP3_0_OR_GREATER
-[global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)]
-#endif
- out MyVo result) {
-        if(System.Guid.TryParse(input, out var __v)) {
-            
-            
             result = new MyVo(__v);
             return true;
         }
@@ -268,20 +230,20 @@ public static MyVo FromNewGuid() { return From(global::System.Guid.NewGuid()); }
         return false;
     }
 
-    /// <inheritdoc cref="System.Guid.TryParse(System.ReadOnlySpan{char}, System.IFormatProvider?, out System.Guid)"/>
+    /// <inheritdoc cref = "System.Guid.TryParse(System.ReadOnlySpan{char}, System.IFormatProvider? , out System.Guid)"/>
     /// <summary>
     /// </summary>
     /// <returns>
     /// True if the value could a) be parsed by the underlying type, and b) passes any validation (after running any optional normalization).
     /// </returns>
-    public static global::System.Boolean TryParse(global::System.ReadOnlySpan<char> s, global::System.IFormatProvider provider, 
+    public static global::System.Boolean TryParse(global::System.ReadOnlySpan<char> s, global::System.IFormatProvider provider,
 #if NETCOREAPP3_0_OR_GREATER
 [global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)]
 #endif
- out MyVo result) {
-        if(System.Guid.TryParse(s, provider, out var __v)) {
-            
-            
+ out MyVo result)
+    {
+        if (System.Guid.TryParse(s, provider, out var __v))
+        {
             result = new MyVo(__v);
             return true;
         }
@@ -290,20 +252,20 @@ public static MyVo FromNewGuid() { return From(global::System.Guid.NewGuid()); }
         return false;
     }
 
-    /// <inheritdoc cref="System.Guid.TryParse(string?, out System.Guid)"/>
+    /// <inheritdoc cref = "System.Guid.TryParse(string? , out System.Guid)"/>
     /// <summary>
     /// </summary>
     /// <returns>
     /// True if the value could a) be parsed by the underlying type, and b) passes any validation (after running any optional normalization).
     /// </returns>
-    public static global::System.Boolean TryParse(string input, 
+    public static global::System.Boolean TryParse(string input,
 #if NETCOREAPP3_0_OR_GREATER
 [global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)]
 #endif
- out MyVo result) {
-        if(System.Guid.TryParse(input, out var __v)) {
-            
-            
+ out MyVo result)
+    {
+        if (System.Guid.TryParse(input, out var __v))
+        {
             result = new MyVo(__v);
             return true;
         }
@@ -312,20 +274,20 @@ public static MyVo FromNewGuid() { return From(global::System.Guid.NewGuid()); }
         return false;
     }
 
-    /// <inheritdoc cref="System.Guid.TryParse(string?, System.IFormatProvider?, out System.Guid)"/>
+    /// <inheritdoc cref = "System.Guid.TryParse(string? , System.IFormatProvider? , out System.Guid)"/>
     /// <summary>
     /// </summary>
     /// <returns>
     /// True if the value could a) be parsed by the underlying type, and b) passes any validation (after running any optional normalization).
     /// </returns>
-    public static global::System.Boolean TryParse(string s, global::System.IFormatProvider provider, 
+    public static global::System.Boolean TryParse(string s, global::System.IFormatProvider provider,
 #if NETCOREAPP3_0_OR_GREATER
 [global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)]
 #endif
- out MyVo result) {
-        if(System.Guid.TryParse(s, provider, out var __v)) {
-            
-            
+ out MyVo result)
+    {
+        if (System.Guid.TryParse(s, provider, out var __v))
+        {
             result = new MyVo(__v);
             return true;
         }
@@ -334,98 +296,95 @@ public static MyVo FromNewGuid() { return From(global::System.Guid.NewGuid()); }
         return false;
     }
 
-    /// <inheritdoc cref="System.Guid.Parse(System.ReadOnlySpan{char})"/>
+    /// <inheritdoc cref = "System.Guid.Parse(System.ReadOnlySpan{char})"/>
     /// <summary>
     /// </summary>
     /// <returns>
     /// The value created by calling the Parse method on the primitive.
     /// </returns>
-    /// <exception cref="global::Vogen.ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
-    public static MyVo Parse(global::System.ReadOnlySpan<char> input) {
+    /// <exception cref = "global::Vogen.ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
+    public static MyVo Parse(global::System.ReadOnlySpan<char> input)
+    {
         var r = System.Guid.Parse(input);
         return From(r);
     }
 
-    /// <inheritdoc cref="System.Guid.Parse(System.ReadOnlySpan{char}, System.IFormatProvider?)"/>
+    /// <inheritdoc cref = "System.Guid.Parse(System.ReadOnlySpan{char}, System.IFormatProvider? )"/>
     /// <summary>
     /// </summary>
     /// <returns>
     /// The value created by calling the Parse method on the primitive.
     /// </returns>
-    /// <exception cref="global::Vogen.ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
-    public static MyVo Parse(global::System.ReadOnlySpan<char> s, global::System.IFormatProvider provider) {
+    /// <exception cref = "global::Vogen.ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
+    public static MyVo Parse(global::System.ReadOnlySpan<char> s, global::System.IFormatProvider provider)
+    {
         var r = System.Guid.Parse(s, provider);
         return From(r);
     }
 
-    /// <inheritdoc cref="System.Guid.Parse(string)"/>
+    /// <inheritdoc cref = "System.Guid.Parse(string)"/>
     /// <summary>
     /// </summary>
     /// <returns>
     /// The value created by calling the Parse method on the primitive.
     /// </returns>
-    /// <exception cref="global::Vogen.ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
-    public static MyVo Parse(string input) {
+    /// <exception cref = "global::Vogen.ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
+    public static MyVo Parse(string input)
+    {
         var r = System.Guid.Parse(input);
         return From(r);
     }
 
-    /// <inheritdoc cref="System.Guid.Parse(string, System.IFormatProvider?)"/>
+    /// <inheritdoc cref = "System.Guid.Parse(string, System.IFormatProvider? )"/>
     /// <summary>
     /// </summary>
     /// <returns>
     /// The value created by calling the Parse method on the primitive.
     /// </returns>
-    /// <exception cref="global::Vogen.ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
-    public static MyVo Parse(string s, global::System.IFormatProvider provider) {
+    /// <exception cref = "global::Vogen.ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
+    public static MyVo Parse(string s, global::System.IFormatProvider provider)
+    {
         var r = System.Guid.Parse(s, provider);
         return From(r);
     }
 
+    public readonly override global::System.Int32 GetHashCode()
+    {
+        return global::System.Collections.Generic.EqualityComparer<System.Guid>.Default.GetHashCode(Value);
+    }
 
-        
-          public readonly override global::System.Int32 GetHashCode()
-          {
-            return global::System.Collections.Generic.EqualityComparer<System.Guid>.Default.GetHashCode(Value);
-          }
-
-        private readonly void EnsureInitialized()
+    private readonly void EnsureInitialized()
+    {
+        if (!IsInitialized())
         {
-            if (!IsInitialized())
-            {
 #if DEBUG
                 global::System.String message = "Use of uninitialized Value Object at: " + _stackTrace ?? "";
 #else
-                global::System.String message = "Use of uninitialized Value Object.";
+            global::System.String message = "Use of uninitialized Value Object.";
 #endif
+            throw new global::Vogen.ValueObjectValidationException(message);
+        }
+    }
 
-                throw new global::Vogen.ValueObjectValidationException(message);
-            }
+    // record enumerates fields - we just want our Value and to throw if it's not initialized.
+    /// <summary>Returns the string representation of the underlying <see cref = "System.Guid"/>.</summary>
+    public readonly override global::System.String ToString() => IsInitialized() ? Value.ToString() : "[UNINITIALIZED]";
+    /// <summary>
+    /// Converts a MyVo to or from JSON.
+    /// </summary>
+    public class MyVoSystemTextJsonConverter : global::System.Text.Json.Serialization.JsonConverter<MyVo>
+    {
+        public override MyVo Read(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
+        {
+            return MyVo.__Deserialize(reader.GetGuid());
         }
 
-        // record enumerates fields - we just want our Value and to throw if it's not initialized.
-        /// <summary>Returns the string representation of the underlying <see cref="System.Guid" />.</summary>
-    public readonly override global::System.String ToString() =>IsInitialized() ? Value.ToString() : "[UNINITIALIZED]";
-
-        
- 
-        
-        /// <summary>
-        /// Converts a MyVo to or from JSON.
-        /// </summary>
-        public class MyVoSystemTextJsonConverter : global::System.Text.Json.Serialization.JsonConverter<MyVo>
+        public override void Write(System.Text.Json.Utf8JsonWriter writer, MyVo value, global::System.Text.Json.JsonSerializerOptions options)
         {
-            public override MyVo Read(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
-            {
-                return MyVo.__Deserialize(reader.GetGuid());
-            }
-
-            public override void Write(System.Text.Json.Utf8JsonWriter writer, MyVo value, global::System.Text.Json.JsonSerializerOptions options)
-            {
-                writer.WriteStringValue(value.Value);
-            }
-
+            writer.WriteStringValue(value.Value);
+        }
 #if NET6_0_OR_GREATER // we can't call Read or use GetGuid from JsonReader as it expects a token type of string, but here we have have 'propertyname'.
+
             public override MyVo ReadAsPropertyName(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {
                 if (global::System.Guid.TryParse(reader.GetString(), out global::System.Guid g))
@@ -440,77 +399,65 @@ public static MyVo FromNewGuid() { return From(global::System.Guid.NewGuid()); }
             {
                 writer.WritePropertyName(value.Value.ToString());
             }
-#endif            
-        }
+#endif
+    }
 
-
-        class MyVoTypeConverter : global::System.ComponentModel.TypeConverter
+    class MyVoTypeConverter : global::System.ComponentModel.TypeConverter
+    {
+        public override global::System.Boolean CanConvertFrom(global::System.ComponentModel.ITypeDescriptorContext context, global::System.Type sourceType)
         {
-            public override global::System.Boolean CanConvertFrom(global::System.ComponentModel.ITypeDescriptorContext context, global::System.Type sourceType)
-            {
-                return sourceType == typeof(global::System.Guid) || sourceType == typeof(global::System.String) || base.CanConvertFrom(context, sourceType);
-            }
-
-            public override global::System.Object ConvertFrom(global::System.ComponentModel.ITypeDescriptorContext context, global::System.Globalization.CultureInfo culture, global::System.Object value)
-            {
-                return value switch
-                {
-                    global::System.Guid guidValue => MyVo.__Deserialize(guidValue),
-                    global::System.String stringValue when !global::System.String.IsNullOrEmpty(stringValue) && global::System.Guid.TryParse(stringValue, out var result) => MyVo.__Deserialize(result),
-                    _ => base.ConvertFrom(context, culture, value),
-                };
-            }
-
-            public override bool CanConvertTo(global::System.ComponentModel.ITypeDescriptorContext context, global::System.Type sourceType)
-            {
-                return sourceType == typeof(global::System.Guid) || sourceType == typeof(global::System.String) || base.CanConvertTo(context, sourceType);
-            }
-
-            public override object ConvertTo(global::System.ComponentModel.ITypeDescriptorContext context, global::System.Globalization.CultureInfo culture, global::System.Object value, global::System.Type destinationType)
-            {
-                if (value is MyVo idValue)
-                {
-                    if (destinationType == typeof(global::System.Guid))
-                    {
-                        return idValue.Value;
-                    }
-
-                    if (destinationType == typeof(global::System.String))
-                    {
-                        return idValue.Value.ToString();
-                    }
-                }
-
-                return base.ConvertTo(context, culture, value, destinationType);
-            }
+            return sourceType == typeof(global::System.Guid) || sourceType == typeof(global::System.String) || base.CanConvertFrom(context, sourceType);
         }
 
-
-
-
-
-        
-            internal sealed class MyVoDebugView
+        public override global::System.Object ConvertFrom(global::System.ComponentModel.ITypeDescriptorContext context, global::System.Globalization.CultureInfo culture, global::System.Object value)
+        {
+            return value switch
             {
-                private readonly MyVo _t;
+                global::System.Guid guidValue => MyVo.__Deserialize(guidValue),
+                global::System.String stringValue when !global::System.String.IsNullOrEmpty(stringValue) && global::System.Guid.TryParse(stringValue, out var result) => MyVo.__Deserialize(result),
+                _ => base.ConvertFrom(context, culture, value),
+            };
+        }
 
-                MyVoDebugView(MyVo t)
+        public override bool CanConvertTo(global::System.ComponentModel.ITypeDescriptorContext context, global::System.Type sourceType)
+        {
+            return sourceType == typeof(global::System.Guid) || sourceType == typeof(global::System.String) || base.CanConvertTo(context, sourceType);
+        }
+
+        public override object ConvertTo(global::System.ComponentModel.ITypeDescriptorContext context, global::System.Globalization.CultureInfo culture, global::System.Object value, global::System.Type destinationType)
+        {
+            if (value is MyVo idValue)
+            {
+                if (destinationType == typeof(global::System.Guid))
                 {
-                    _t = t;
+                    return idValue.Value;
                 }
 
-                public global::System.Boolean IsInitialized => _t.IsInitialized();
-                public global::System.String UnderlyingType => "System.Guid";
-                public global::System.String Value => _t.IsInitialized() ? _t._value.ToString() : "[not initialized]" ;
-
-                #if DEBUG
-                    public global::System.String CreatedWith => _t._stackTrace?.ToString() ?? "the From method";
-                #endif
-
-                public global::System.String Conversions => @"Default";
+                if (destinationType == typeof(global::System.String))
+                {
+                    return idValue.Value.ToString();
+                }
             }
 
+            return base.ConvertTo(context, culture, value, destinationType);
+        }
+    }
+
+    internal sealed class MyVoDebugView
+    {
+        private readonly MyVo _t;
+        MyVoDebugView(MyVo t)
+        {
+            _t = t;
+        }
+
+        public global::System.Boolean IsInitialized => _t.IsInitialized();
+        public global::System.String UnderlyingType => "System.Guid";
+        public global::System.String Value => _t.IsInitialized() ? _t._value.ToString() : "[not initialized]";
+#if DEBUG
+        public global::System.String CreatedWith => _t._stackTrace?.ToString() ?? "the From method";
+#endif
+        public global::System.String Conversions => @"Default";
+    }
 }
-
-
 ]

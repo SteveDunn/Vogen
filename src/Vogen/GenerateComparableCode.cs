@@ -40,15 +40,20 @@ public static class GenerateComparableCode
         }
     
         var primitive = tds.Identifier;
-        var s = $$"""
-                  public int CompareTo({{primitive}} other) => Value.CompareTo(other.Value);
-                          public int CompareTo(object other) {
-                              if(other is null) return 1;
-                              if(other is {{primitive}} x) return CompareTo(x);
-                              throw new global::System.ArgumentException("Cannot compare to object as it is not of type {{primitive}}", nameof(other));
-                          }
-                  """;
-    
-        return s;
+
+        return $$"""
+                 public int CompareTo({{primitive}} other) => Value.CompareTo(other.Value);
+
+                 public int CompareTo(object other) 
+                 {
+                     if(other is null) 
+                       return 1;
+                     
+                     if(other is {{primitive}} x) 
+                       return CompareTo(x);
+                     
+                     throw new global::System.ArgumentException("Cannot compare to object as it is not of type {{primitive}}", nameof(other));
+                 }
+                 """;
     }
 }

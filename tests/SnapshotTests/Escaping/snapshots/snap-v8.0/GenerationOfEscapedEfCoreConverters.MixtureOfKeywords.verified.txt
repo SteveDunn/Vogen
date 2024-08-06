@@ -546,6 +546,7 @@ namespace generator;
 public class VogenTypesFactory : global::System.Text.Json.Serialization.JsonConverterFactory
 {
     public VogenTypesFactory() { }
+    
     private static readonly global::System.Collections.Generic.Dictionary<global::System.Type, global::System.Lazy<global::System.Text.Json.Serialization.JsonConverter>> _lookup = 
         new global::System.Collections.Generic.Dictionary<global::System.Type, global::System.Lazy<global::System.Text.Json.Serialization.JsonConverter>> {
                 { typeof(global::@double.classFromEscapedNamespaceWithReservedUnderlyingType), new global::System.Lazy<global::System.Text.Json.Serialization.JsonConverter>(() => new global::@double.classFromEscapedNamespaceWithReservedUnderlyingType.classFromEscapedNamespaceWithReservedUnderlyingTypeSystemTextJsonConverter()) },{ typeof(global::@double.classFromEscapedNamespace), new global::System.Lazy<global::System.Text.Json.Serialization.JsonConverter>(() => new global::@double.classFromEscapedNamespace.classFromEscapedNamespaceSystemTextJsonConverter()) },{ typeof(global::@bool.@byte.@short.@float.@object.@class), new global::System.Lazy<global::System.Text.Json.Serialization.JsonConverter>(() => new global::@bool.@byte.@short.@float.@object.@class.@classSystemTextJsonConverter()) },{ typeof(global::@bool.@byte.@short.@float.@object.@event), new global::System.Lazy<global::System.Text.Json.Serialization.JsonConverter>(() => new global::@bool.@byte.@short.@float.@object.@event.@eventSystemTextJsonConverter()) },{ typeof(global::@bool.@byte.@short.@float.@object.@event2), new global::System.Lazy<global::System.Text.Json.Serialization.JsonConverter>(() => new global::@bool.@byte.@short.@float.@object.@event2.@event2SystemTextJsonConverter()) }
@@ -565,49 +566,40 @@ public class VogenTypesFactory : global::System.Text.Json.Serialization.JsonConv
 //     the code is regenerated.
 // </auto-generated>
 // ------------------------------------------------------------------------------
-
 // Suppress warnings about [Obsolete] member usage in generated code.
 #pragma warning disable CS0618
-
 // Suppress warnings for 'Override methods on comparable types'.
 #pragma warning disable CA1036
-
 // Suppress Error MA0097 : A class that implements IComparable<T> or IComparable should override comparison operators
 #pragma warning disable MA0097
-
 // Suppress warning for 'The annotation for nullable reference types should only be used in code within a '#nullable' annotations context. Auto-generated code requires an explicit '#nullable' directive in source.'
 // The generator copies signatures from the BCL, e.g. for `TryParse`, and some of those have nullable annotations.
 #pragma warning disable CS8669
-
 // Suppress warnings about CS1591: Missing XML comment for publicly visible type or member 'Type_or_Member'
 #pragma warning disable CS1591
-
 using Vogen;
 
 namespace @double
 {
-
-    [global::System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage] 
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Vogen", "1.0.0.0")]
+    [global::System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Vogen", "1.0.0.0")]
     [global::System.Text.Json.Serialization.JsonConverter(typeof(classFromEscapedNamespaceWithReservedUnderlyingTypeSystemTextJsonConverter))]
-[global::System.ComponentModel.TypeConverter(typeof(classFromEscapedNamespaceWithReservedUnderlyingTypeTypeConverter))]
-
+    [global::System.ComponentModel.TypeConverter(typeof(classFromEscapedNamespaceWithReservedUnderlyingTypeTypeConverter))]
     [global::System.Diagnostics.DebuggerTypeProxyAttribute(typeof(classFromEscapedNamespaceWithReservedUnderlyingTypeDebugView))]
     [global::System.Diagnostics.DebuggerDisplayAttribute("Underlying type: @double.@decimal, Value = { _value }")]
-    public partial class classFromEscapedNamespaceWithReservedUnderlyingType : global::System.IEquatable<classFromEscapedNamespaceWithReservedUnderlyingType>, global::System.IEquatable<@double.@decimal> 
+    public partial class classFromEscapedNamespaceWithReservedUnderlyingType : global::System.IEquatable<classFromEscapedNamespaceWithReservedUnderlyingType>, global::System.IEquatable<@double.@decimal>
     {
-#if DEBUG   
-        private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
+#if DEBUG
+private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
 #endif
 #if !VOGEN_NO_VALIDATION
         private readonly global::System.Boolean _isInitialized;
 #endif
         private readonly @double.@decimal _value;
-        
-/// <summary>
-/// Gets the underlying <see cref="@double.@decimal" /> value if set, otherwise a <see cref="global::Vogen.ValueObjectValidationException" /> is thrown.
-/// </summary>
-public @double.@decimal Value
+        /// <summary>
+        /// Gets the underlying <see cref = "@double.@decimal"/> value if set, otherwise a <see cref = "global::Vogen.ValueObjectValidationException"/> is thrown.
+        /// </summary>
+        public @double.@decimal Value
         {
             [global::System.Diagnostics.DebuggerStepThroughAttribute]
             get
@@ -616,7 +608,6 @@ public @double.@decimal Value
                 return _value;
             }
         }
-
 
         [global::System.Diagnostics.DebuggerStepThroughAttribute]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -643,144 +634,109 @@ public @double.@decimal Value
         /// <summary>
         /// Builds an instance from the provided underlying type.
         /// </summary>
-        /// <param name="value">The underlying type.</param>
+        /// <param name = "value">The underlying type.</param>
         /// <returns>An instance of this type.</returns>
         public static classFromEscapedNamespaceWithReservedUnderlyingType From(@double.@decimal value)
         {
-            
-
-            
-
-            
-
             classFromEscapedNamespaceWithReservedUnderlyingType instance = new classFromEscapedNamespaceWithReservedUnderlyingType(value);
-
             return instance;
         }
 
         /// <summary>
-/// Tries to build an instance from the provided underlying type.
-/// If a normalization method is provided, it will be called.
-/// If validation is provided, and it fails, false will be returned.
-/// </summary>
-/// <param name="value">The underlying type.</param>
-/// <param name="vo">An instance of the value object.</param>
-/// <returns>True if the value object can be built, otherwise false.</returns>
-public static bool TryFrom(@double.@decimal value, 
+        /// Tries to build an instance from the provided underlying type.
+        /// If a normalization method is provided, it will be called.
+        /// If validation is provided, and it fails, false will be returned.
+        /// </summary>
+        /// <param name = "value">The underlying type.</param>
+        /// <param name = "vo">An instance of the value object.</param>
+        /// <returns>True if the value object can be built, otherwise false.</returns>
+        public static bool TryFrom(@double.@decimal value,
 #if NETCOREAPP3_0_OR_GREATER
 [global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)]
 #endif
  out classFromEscapedNamespaceWithReservedUnderlyingType vo)
-{
-    
-    
+        {
+            vo = new classFromEscapedNamespaceWithReservedUnderlyingType(value);
+            return true;
+        }
 
-    
+        /// <summary>
+        /// Tries to build an instance from the provided underlying value.
+        /// If a normalization method is provided, it will be called.
+        /// If validation is provided, and it fails, an error will be returned.
+        /// </summary>
+        /// <param name = "value">The primitive value.</param>
+        /// <returns>A <see cref = "ValueObjectOrError{T}"/> containing either the value object, or an error.</returns>
+        public static ValueObjectOrError<classFromEscapedNamespaceWithReservedUnderlyingType> TryFrom(@double.@decimal value)
+        {
+            return new ValueObjectOrError<classFromEscapedNamespaceWithReservedUnderlyingType>(new classFromEscapedNamespaceWithReservedUnderlyingType(value));
+        }
 
-    vo = new classFromEscapedNamespaceWithReservedUnderlyingType(value);
-
-    return true;
-}/// <summary>
-/// Tries to build an instance from the provided underlying value.
-/// If a normalization method is provided, it will be called.
-/// If validation is provided, and it fails, an error will be returned.
-/// </summary>
-/// <param name="value">The primitive value.</param>
-/// <returns>A <see cref="ValueObjectOrError{T}"/> containing either the value object, or an error.</returns>
-public static ValueObjectOrError<classFromEscapedNamespaceWithReservedUnderlyingType> TryFrom(@double.@decimal value)
-{
-    
-
-    
-
-    
-
-    return new ValueObjectOrError<classFromEscapedNamespaceWithReservedUnderlyingType>(new classFromEscapedNamespaceWithReservedUnderlyingType(value));
-}
-
-[global::System.Runtime.CompilerServices.MethodImpl(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
+        [global::System.Runtime.CompilerServices.MethodImpl(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 #if VOGEN_NO_VALIDATION
   public bool IsInitialized() => true;
 #else
-  public bool IsInitialized() => _isInitialized;
+        public bool IsInitialized() => _isInitialized;
 #endif
-
-          
-
         // only called internally when something has been deserialized into
         // its primitive type.
         private static classFromEscapedNamespaceWithReservedUnderlyingType __Deserialize(@double.@decimal value)
         {
-            
-
-            
-
-            
-
             return new classFromEscapedNamespaceWithReservedUnderlyingType(value);
         }
-        
-            public  global::System.Boolean Equals(classFromEscapedNamespaceWithReservedUnderlyingType other)
+
+        public global::System.Boolean Equals(classFromEscapedNamespaceWithReservedUnderlyingType other)
+        {
+            if (ReferenceEquals(null, other))
             {
-              if (ReferenceEquals(null, other))
-              {
-                  return false;
-              }
-
-              // It's possible to create uninitialized instances via converters such as EfCore (HasDefaultValue), which call Equals.
-              // We treat anything uninitialized as not equal to anything, even other uninitialized instances of this type.
-              if(!IsInitialized() || !other.IsInitialized()) return false;
-
-              if (ReferenceEquals(this, other))
-              {
-                  return true;
-              }
-
-              return GetType() == other.GetType() && global::System.Collections.Generic.EqualityComparer<@double.@decimal>.Default.Equals(Value, other.Value);
-            }
-             public global::System.Boolean Equals(classFromEscapedNamespaceWithReservedUnderlyingType other, global::System.Collections.Generic.IEqualityComparer<classFromEscapedNamespaceWithReservedUnderlyingType> comparer)
-             {
-                 return comparer.Equals(this, other);
-             }
-
-             
-            public global::System.Boolean Equals(@double.@decimal primitive)
-            {
-              return Value.Equals(primitive);
+                return false;
             }
 
- public override global::System.Boolean Equals(global::System.Object obj)
- {
-     return Equals(obj as classFromEscapedNamespaceWithReservedUnderlyingType);
- }
+            // It's possible to create uninitialized instances via converters such as EfCore (HasDefaultValue), which call Equals.
+            // We treat anything uninitialized as not equal to anything, even other uninitialized instances of this type.
+            if (!IsInitialized() || !other.IsInitialized())
+                return false;
+            if (ReferenceEquals(this, other))
+            {
+                return true;
+            }
+
+            return GetType() == other.GetType() && global::System.Collections.Generic.EqualityComparer<@double.@decimal>.Default.Equals(Value, other.Value);
+        }
+
+        public global::System.Boolean Equals(classFromEscapedNamespaceWithReservedUnderlyingType other, global::System.Collections.Generic.IEqualityComparer<classFromEscapedNamespaceWithReservedUnderlyingType> comparer)
+        {
+            return comparer.Equals(this, other);
+        }
+
+        public global::System.Boolean Equals(@double.@decimal primitive)
+        {
+            return Value.Equals(primitive);
+        }
+
+        public override global::System.Boolean Equals(global::System.Object obj)
+        {
+            return Equals(obj as classFromEscapedNamespaceWithReservedUnderlyingType);
+        }
 
         public static global::System.Boolean operator ==(classFromEscapedNamespaceWithReservedUnderlyingType left, classFromEscapedNamespaceWithReservedUnderlyingType right) => Equals(left, right);
         public static global::System.Boolean operator !=(classFromEscapedNamespaceWithReservedUnderlyingType left, classFromEscapedNamespaceWithReservedUnderlyingType right) => !Equals(left, right);
-
         public static global::System.Boolean operator ==(classFromEscapedNamespaceWithReservedUnderlyingType left, @double.@decimal right) => Equals(left.Value, right);
         public static global::System.Boolean operator !=(classFromEscapedNamespaceWithReservedUnderlyingType left, @double.@decimal right) => !Equals(left.Value, right);
-
         public static global::System.Boolean operator ==(@double.@decimal left, classFromEscapedNamespaceWithReservedUnderlyingType right) => Equals(left, right.Value);
         public static global::System.Boolean operator !=(@double.@decimal left, classFromEscapedNamespaceWithReservedUnderlyingType right) => !Equals(left, right.Value);
-
         public static explicit operator classFromEscapedNamespaceWithReservedUnderlyingType(@double.@decimal value) => From(value);
         public static explicit operator @double.@decimal(classFromEscapedNamespaceWithReservedUnderlyingType value) => value.Value;
-
-        
-
-        
-
-
-          public override global::System.Int32 GetHashCode()
-          {
+        public override global::System.Int32 GetHashCode()
+        {
             unchecked // Overflow is fine, just wrap
             {
-                global::System.Int32 hash = (global::System.Int32) 2166136261;
+                global::System.Int32 hash = (global::System.Int32)2166136261;
                 hash = (hash * 16777619) ^ GetType().GetHashCode();
                 hash = (hash * 16777619) ^ global::System.Collections.Generic.EqualityComparer<@double.@decimal>.Default.GetHashCode(Value);
                 return hash;
             }
-          }
+        }
 
         private void EnsureInitialized()
         {
@@ -791,18 +747,12 @@ public static ValueObjectOrError<classFromEscapedNamespaceWithReservedUnderlying
 #else
                 global::System.String message = "Use of uninitialized Value Object.";
 #endif
-
                 throw new global::Vogen.ValueObjectValidationException(message);
             }
         }
 
-
-        
-
-        /// <summary>Returns the string representation of the underlying <see cref="@double.@decimal" />.</summary>
-    public override global::System.String ToString() =>IsInitialized() ? Value.ToString() : "[UNINITIALIZED]";
-
-        
+        /// <summary>Returns the string representation of the underlying <see cref = "@double.@decimal"/>.</summary>
+        public override global::System.String ToString() => IsInitialized() ? Value.ToString() : "[UNINITIALIZED]";
         /// <summary>
         /// Converts a classFromEscapedNamespaceWithReservedUnderlyingType to or from JSON.
         /// </summary>
@@ -818,7 +768,6 @@ public static ValueObjectOrError<classFromEscapedNamespaceWithReservedUnderlying
             {
                 global::System.Text.Json.JsonSerializer.Serialize(writer, value.Value, options);
             }
-
 #if NET6_0_OR_GREATER
             public override classFromEscapedNamespaceWithReservedUnderlyingType ReadAsPropertyName(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {
@@ -830,9 +779,8 @@ public static ValueObjectOrError<classFromEscapedNamespaceWithReservedUnderlying
             {
                 writer.WritePropertyName(global::System.Text.Json.JsonSerializer.Serialize(value.Value));
             }
-#endif            
+#endif
         }
-
 
         class classFromEscapedNamespaceWithReservedUnderlyingTypeTypeConverter : global::System.ComponentModel.TypeConverter
         {
@@ -840,53 +788,44 @@ public static ValueObjectOrError<classFromEscapedNamespaceWithReservedUnderlying
             {
                 return sourceType == typeof(@double.@decimal);
             }
-        
+
             public override global::System.Object ConvertFrom(global::System.ComponentModel.ITypeDescriptorContext context, global::System.Globalization.CultureInfo culture, global::System.Object value)
             {
                 @double.@decimal ut = (@double.@decimal)value;
-
                 return classFromEscapedNamespaceWithReservedUnderlyingType.__Deserialize(ut);
             }
-        
+
             public override bool CanConvertTo(global::System.ComponentModel.ITypeDescriptorContext context, global::System.Type sourceType)
             {
                 return sourceType == typeof(@double.@decimal);
             }
-        
+
             public override object ConvertTo(global::System.ComponentModel.ITypeDescriptorContext context, global::System.Globalization.CultureInfo culture, global::System.Object value, global::System.Type destinationType)
             {
                 if (value is classFromEscapedNamespaceWithReservedUnderlyingType idValue)
                 {
                     return idValue.Value;
                 }
-        
+
                 return base.ConvertTo(context, culture, value, destinationType);
             }
         }
 
-
-
-
-
-
         internal sealed class classFromEscapedNamespaceWithReservedUnderlyingTypeDebugView
         {
             private readonly classFromEscapedNamespaceWithReservedUnderlyingType _t;
-
             classFromEscapedNamespaceWithReservedUnderlyingTypeDebugView(classFromEscapedNamespaceWithReservedUnderlyingType t)
             {
                 _t = t;
             }
 
             public global::System.String UnderlyingType => "@double.@decimal";
-            public @double.@decimal Value => _t.Value ;
-
+            public @double.@decimal Value => _t.Value;
             public global::System.String Conversions => @"[global::System.Text.Json.Serialization.JsonConverter(typeof(classFromEscapedNamespaceWithReservedUnderlyingTypeSystemTextJsonConverter))]
 [global::System.ComponentModel.TypeConverter(typeof(classFromEscapedNamespaceWithReservedUnderlyingTypeTypeConverter))]
 ";
-                }
+        }
     }
-
 }
   
 // ------------------------------------------------------------------------------
@@ -897,49 +836,40 @@ public static ValueObjectOrError<classFromEscapedNamespaceWithReservedUnderlying
 //     the code is regenerated.
 // </auto-generated>
 // ------------------------------------------------------------------------------
-
 // Suppress warnings about [Obsolete] member usage in generated code.
 #pragma warning disable CS0618
-
 // Suppress warnings for 'Override methods on comparable types'.
 #pragma warning disable CA1036
-
 // Suppress Error MA0097 : A class that implements IComparable<T> or IComparable should override comparison operators
 #pragma warning disable MA0097
-
 // Suppress warning for 'The annotation for nullable reference types should only be used in code within a '#nullable' annotations context. Auto-generated code requires an explicit '#nullable' directive in source.'
 // The generator copies signatures from the BCL, e.g. for `TryParse`, and some of those have nullable annotations.
 #pragma warning disable CS8669
-
 // Suppress warnings about CS1591: Missing XML comment for publicly visible type or member 'Type_or_Member'
 #pragma warning disable CS1591
-
 using Vogen;
 
 namespace @double
 {
-
-    [global::System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage] 
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Vogen", "1.0.0.0")]
+    [global::System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Vogen", "1.0.0.0")]
     [global::System.Text.Json.Serialization.JsonConverter(typeof(classFromEscapedNamespaceSystemTextJsonConverter))]
-[global::System.ComponentModel.TypeConverter(typeof(classFromEscapedNamespaceTypeConverter))]
-
+    [global::System.ComponentModel.TypeConverter(typeof(classFromEscapedNamespaceTypeConverter))]
     [global::System.Diagnostics.DebuggerTypeProxyAttribute(typeof(classFromEscapedNamespaceDebugView))]
     [global::System.Diagnostics.DebuggerDisplayAttribute("Underlying type: System.Int32, Value = { _value }")]
-    public partial class classFromEscapedNamespace : global::System.IEquatable<classFromEscapedNamespace>, global::System.IEquatable<System.Int32> ,  global::System.IComparable<classFromEscapedNamespace>, global::System.IComparable,  global::System.IParsable<classFromEscapedNamespace>,  global::System.ISpanParsable<classFromEscapedNamespace>,  global::System.IUtf8SpanParsable<classFromEscapedNamespace>
+    public partial class classFromEscapedNamespace : global::System.IEquatable<classFromEscapedNamespace>, global::System.IEquatable<System.Int32>, global::System.IComparable<classFromEscapedNamespace>, global::System.IComparable, global::System.IParsable<classFromEscapedNamespace>, global::System.ISpanParsable<classFromEscapedNamespace>, global::System.IUtf8SpanParsable<classFromEscapedNamespace>
     {
-#if DEBUG   
-        private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
+#if DEBUG
+private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
 #endif
 #if !VOGEN_NO_VALIDATION
         private readonly global::System.Boolean _isInitialized;
 #endif
         private readonly System.Int32 _value;
-        
-/// <summary>
-/// Gets the underlying <see cref="System.Int32" /> value if set, otherwise a <see cref="global::Vogen.ValueObjectValidationException" /> is thrown.
-/// </summary>
-public System.Int32 Value
+        /// <summary>
+        /// Gets the underlying <see cref = "System.Int32"/> value if set, otherwise a <see cref = "global::Vogen.ValueObjectValidationException"/> is thrown.
+        /// </summary>
+        public System.Int32 Value
         {
             [global::System.Diagnostics.DebuggerStepThroughAttribute]
             get
@@ -948,7 +878,6 @@ public System.Int32 Value
                 return _value;
             }
         }
-
 
         [global::System.Diagnostics.DebuggerStepThroughAttribute]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -975,443 +904,421 @@ public System.Int32 Value
         /// <summary>
         /// Builds an instance from the provided underlying type.
         /// </summary>
-        /// <param name="value">The underlying type.</param>
+        /// <param name = "value">The underlying type.</param>
         /// <returns>An instance of this type.</returns>
         public static classFromEscapedNamespace From(System.Int32 value)
         {
-            
-
-            
-
-            
-
             classFromEscapedNamespace instance = new classFromEscapedNamespace(value);
-
             return instance;
         }
 
         /// <summary>
-/// Tries to build an instance from the provided underlying type.
-/// If a normalization method is provided, it will be called.
-/// If validation is provided, and it fails, false will be returned.
-/// </summary>
-/// <param name="value">The underlying type.</param>
-/// <param name="vo">An instance of the value object.</param>
-/// <returns>True if the value object can be built, otherwise false.</returns>
-public static bool TryFrom(System.Int32 value, 
+        /// Tries to build an instance from the provided underlying type.
+        /// If a normalization method is provided, it will be called.
+        /// If validation is provided, and it fails, false will be returned.
+        /// </summary>
+        /// <param name = "value">The underlying type.</param>
+        /// <param name = "vo">An instance of the value object.</param>
+        /// <returns>True if the value object can be built, otherwise false.</returns>
+        public static bool TryFrom(System.Int32 value,
 #if NETCOREAPP3_0_OR_GREATER
 [global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)]
 #endif
  out classFromEscapedNamespace vo)
-{
-    
-    
+        {
+            vo = new classFromEscapedNamespace(value);
+            return true;
+        }
 
-    
+        /// <summary>
+        /// Tries to build an instance from the provided underlying value.
+        /// If a normalization method is provided, it will be called.
+        /// If validation is provided, and it fails, an error will be returned.
+        /// </summary>
+        /// <param name = "value">The primitive value.</param>
+        /// <returns>A <see cref = "ValueObjectOrError{T}"/> containing either the value object, or an error.</returns>
+        public static ValueObjectOrError<classFromEscapedNamespace> TryFrom(System.Int32 value)
+        {
+            return new ValueObjectOrError<classFromEscapedNamespace>(new classFromEscapedNamespace(value));
+        }
 
-    vo = new classFromEscapedNamespace(value);
-
-    return true;
-}/// <summary>
-/// Tries to build an instance from the provided underlying value.
-/// If a normalization method is provided, it will be called.
-/// If validation is provided, and it fails, an error will be returned.
-/// </summary>
-/// <param name="value">The primitive value.</param>
-/// <returns>A <see cref="ValueObjectOrError{T}"/> containing either the value object, or an error.</returns>
-public static ValueObjectOrError<classFromEscapedNamespace> TryFrom(System.Int32 value)
-{
-    
-
-    
-
-    
-
-    return new ValueObjectOrError<classFromEscapedNamespace>(new classFromEscapedNamespace(value));
-}
-
-[global::System.Runtime.CompilerServices.MethodImpl(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
+        [global::System.Runtime.CompilerServices.MethodImpl(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 #if VOGEN_NO_VALIDATION
   public bool IsInitialized() => true;
 #else
-  public bool IsInitialized() => _isInitialized;
+        public bool IsInitialized() => _isInitialized;
 #endif
-
-          
-
         // only called internally when something has been deserialized into
         // its primitive type.
         private static classFromEscapedNamespace __Deserialize(System.Int32 value)
         {
-            
-
-            
-
-            
-
             return new classFromEscapedNamespace(value);
         }
-        
-            public  global::System.Boolean Equals(classFromEscapedNamespace other)
+
+        public global::System.Boolean Equals(classFromEscapedNamespace other)
+        {
+            if (ReferenceEquals(null, other))
             {
-              if (ReferenceEquals(null, other))
-              {
-                  return false;
-              }
-
-              // It's possible to create uninitialized instances via converters such as EfCore (HasDefaultValue), which call Equals.
-              // We treat anything uninitialized as not equal to anything, even other uninitialized instances of this type.
-              if(!IsInitialized() || !other.IsInitialized()) return false;
-
-              if (ReferenceEquals(this, other))
-              {
-                  return true;
-              }
-
-              return GetType() == other.GetType() && global::System.Collections.Generic.EqualityComparer<System.Int32>.Default.Equals(Value, other.Value);
-            }
-             public global::System.Boolean Equals(classFromEscapedNamespace other, global::System.Collections.Generic.IEqualityComparer<classFromEscapedNamespace> comparer)
-             {
-                 return comparer.Equals(this, other);
-             }
-
-             
-            public global::System.Boolean Equals(System.Int32 primitive)
-            {
-              return Value.Equals(primitive);
+                return false;
             }
 
- public override global::System.Boolean Equals(global::System.Object obj)
- {
-     return Equals(obj as classFromEscapedNamespace);
- }
+            // It's possible to create uninitialized instances via converters such as EfCore (HasDefaultValue), which call Equals.
+            // We treat anything uninitialized as not equal to anything, even other uninitialized instances of this type.
+            if (!IsInitialized() || !other.IsInitialized())
+                return false;
+            if (ReferenceEquals(this, other))
+            {
+                return true;
+            }
+
+            return GetType() == other.GetType() && global::System.Collections.Generic.EqualityComparer<System.Int32>.Default.Equals(Value, other.Value);
+        }
+
+        public global::System.Boolean Equals(classFromEscapedNamespace other, global::System.Collections.Generic.IEqualityComparer<classFromEscapedNamespace> comparer)
+        {
+            return comparer.Equals(this, other);
+        }
+
+        public global::System.Boolean Equals(System.Int32 primitive)
+        {
+            return Value.Equals(primitive);
+        }
+
+        public override global::System.Boolean Equals(global::System.Object obj)
+        {
+            return Equals(obj as classFromEscapedNamespace);
+        }
 
         public static global::System.Boolean operator ==(classFromEscapedNamespace left, classFromEscapedNamespace right) => Equals(left, right);
         public static global::System.Boolean operator !=(classFromEscapedNamespace left, classFromEscapedNamespace right) => !Equals(left, right);
-
         public static global::System.Boolean operator ==(classFromEscapedNamespace left, System.Int32 right) => Equals(left.Value, right);
         public static global::System.Boolean operator !=(classFromEscapedNamespace left, System.Int32 right) => !Equals(left.Value, right);
-
         public static global::System.Boolean operator ==(System.Int32 left, classFromEscapedNamespace right) => Equals(left, right.Value);
         public static global::System.Boolean operator !=(System.Int32 left, classFromEscapedNamespace right) => !Equals(left, right.Value);
-
         public static explicit operator classFromEscapedNamespace(System.Int32 value) => From(value);
         public static explicit operator System.Int32(classFromEscapedNamespace value) => value.Value;
-
         public int CompareTo(classFromEscapedNamespace other) => Value.CompareTo(other.Value);
-        public int CompareTo(object other) {
-            if(other is null) return 1;
-            if(other is classFromEscapedNamespace x) return CompareTo(x);
+        public int CompareTo(object other)
+        {
+            if (other is null)
+                return 1;
+            if (other is classFromEscapedNamespace x)
+                return CompareTo(x);
             throw new global::System.ArgumentException("Cannot compare to object as it is not of type classFromEscapedNamespace", nameof(other));
         }
 
-        
-    /// <inheritdoc cref="int.TryParse(System.ReadOnlySpan{byte}, System.Globalization.NumberStyles, System.IFormatProvider?, out int)"/>
-    /// <summary>
-    /// </summary>
-    /// <returns>
-    /// True if the value could a) be parsed by the underlying type, and b) passes any validation (after running any optional normalization).
-    /// </returns>
-    public static global::System.Boolean TryParse(global::System.ReadOnlySpan<byte> utf8Text, global::System.Globalization.NumberStyles style, global::System.IFormatProvider provider, 
+        /// <inheritdoc cref = "int.TryParse(System.ReadOnlySpan{byte}, System.Globalization.NumberStyles, System.IFormatProvider? , out int)"/>
+        /// <summary>
+        /// </summary>
+        /// <returns>
+        /// True if the value could a) be parsed by the underlying type, and b) passes any validation (after running any optional normalization).
+        /// </returns>
+        public static global::System.Boolean TryParse(global::System.ReadOnlySpan<byte> utf8Text, global::System.Globalization.NumberStyles style, global::System.IFormatProvider provider,
 #if NETCOREAPP3_0_OR_GREATER
 [global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)]
 #endif
- out classFromEscapedNamespace result) {
-        if(System.Int32.TryParse(utf8Text, style, provider, out var __v)) {
-            
-            
-            result = new classFromEscapedNamespace(__v);
-            return true;
+ out classFromEscapedNamespace result)
+        {
+            if (System.Int32.TryParse(utf8Text, style, provider, out var __v))
+            {
+                result = new classFromEscapedNamespace(__v);
+                return true;
+            }
+
+            result = default;
+            return false;
         }
 
-        result = default;
-        return false;
-    }
-
-    /// <inheritdoc cref="int.TryParse(System.ReadOnlySpan{byte}, System.IFormatProvider?, out int)"/>
-    /// <summary>
-    /// </summary>
-    /// <returns>
-    /// True if the value could a) be parsed by the underlying type, and b) passes any validation (after running any optional normalization).
-    /// </returns>
-    public static global::System.Boolean TryParse(global::System.ReadOnlySpan<byte> utf8Text, global::System.IFormatProvider provider, 
+        /// <inheritdoc cref = "int.TryParse(System.ReadOnlySpan{byte}, System.IFormatProvider? , out int)"/>
+        /// <summary>
+        /// </summary>
+        /// <returns>
+        /// True if the value could a) be parsed by the underlying type, and b) passes any validation (after running any optional normalization).
+        /// </returns>
+        public static global::System.Boolean TryParse(global::System.ReadOnlySpan<byte> utf8Text, global::System.IFormatProvider provider,
 #if NETCOREAPP3_0_OR_GREATER
 [global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)]
 #endif
- out classFromEscapedNamespace result) {
-        if(System.Int32.TryParse(utf8Text, provider, out var __v)) {
-            
-            
-            result = new classFromEscapedNamespace(__v);
-            return true;
+ out classFromEscapedNamespace result)
+        {
+            if (System.Int32.TryParse(utf8Text, provider, out var __v))
+            {
+                result = new classFromEscapedNamespace(__v);
+                return true;
+            }
+
+            result = default;
+            return false;
         }
 
-        result = default;
-        return false;
-    }
-
-    /// <inheritdoc cref="int.TryParse(System.ReadOnlySpan{byte}, out int)"/>
-    /// <summary>
-    /// </summary>
-    /// <returns>
-    /// True if the value could a) be parsed by the underlying type, and b) passes any validation (after running any optional normalization).
-    /// </returns>
-    public static global::System.Boolean TryParse(global::System.ReadOnlySpan<byte> utf8Text, 
+        /// <inheritdoc cref = "int.TryParse(System.ReadOnlySpan{byte}, out int)"/>
+        /// <summary>
+        /// </summary>
+        /// <returns>
+        /// True if the value could a) be parsed by the underlying type, and b) passes any validation (after running any optional normalization).
+        /// </returns>
+        public static global::System.Boolean TryParse(global::System.ReadOnlySpan<byte> utf8Text,
 #if NETCOREAPP3_0_OR_GREATER
 [global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)]
 #endif
- out classFromEscapedNamespace result) {
-        if(System.Int32.TryParse(utf8Text, out var __v)) {
-            
-            
-            result = new classFromEscapedNamespace(__v);
-            return true;
+ out classFromEscapedNamespace result)
+        {
+            if (System.Int32.TryParse(utf8Text, out var __v))
+            {
+                result = new classFromEscapedNamespace(__v);
+                return true;
+            }
+
+            result = default;
+            return false;
         }
 
-        result = default;
-        return false;
-    }
-
-    /// <inheritdoc cref="int.TryParse(System.ReadOnlySpan{char}, System.Globalization.NumberStyles, System.IFormatProvider?, out int)"/>
-    /// <summary>
-    /// </summary>
-    /// <returns>
-    /// True if the value could a) be parsed by the underlying type, and b) passes any validation (after running any optional normalization).
-    /// </returns>
-    public static global::System.Boolean TryParse(global::System.ReadOnlySpan<char> s, global::System.Globalization.NumberStyles style, global::System.IFormatProvider provider, 
+        /// <inheritdoc cref = "int.TryParse(System.ReadOnlySpan{char}, System.Globalization.NumberStyles, System.IFormatProvider? , out int)"/>
+        /// <summary>
+        /// </summary>
+        /// <returns>
+        /// True if the value could a) be parsed by the underlying type, and b) passes any validation (after running any optional normalization).
+        /// </returns>
+        public static global::System.Boolean TryParse(global::System.ReadOnlySpan<char> s, global::System.Globalization.NumberStyles style, global::System.IFormatProvider provider,
 #if NETCOREAPP3_0_OR_GREATER
 [global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)]
 #endif
- out classFromEscapedNamespace result) {
-        if(System.Int32.TryParse(s, style, provider, out var __v)) {
-            
-            
-            result = new classFromEscapedNamespace(__v);
-            return true;
+ out classFromEscapedNamespace result)
+        {
+            if (System.Int32.TryParse(s, style, provider, out var __v))
+            {
+                result = new classFromEscapedNamespace(__v);
+                return true;
+            }
+
+            result = default;
+            return false;
         }
 
-        result = default;
-        return false;
-    }
-
-    /// <inheritdoc cref="int.TryParse(System.ReadOnlySpan{char}, System.IFormatProvider?, out int)"/>
-    /// <summary>
-    /// </summary>
-    /// <returns>
-    /// True if the value could a) be parsed by the underlying type, and b) passes any validation (after running any optional normalization).
-    /// </returns>
-    public static global::System.Boolean TryParse(global::System.ReadOnlySpan<char> s, global::System.IFormatProvider provider, 
+        /// <inheritdoc cref = "int.TryParse(System.ReadOnlySpan{char}, System.IFormatProvider? , out int)"/>
+        /// <summary>
+        /// </summary>
+        /// <returns>
+        /// True if the value could a) be parsed by the underlying type, and b) passes any validation (after running any optional normalization).
+        /// </returns>
+        public static global::System.Boolean TryParse(global::System.ReadOnlySpan<char> s, global::System.IFormatProvider provider,
 #if NETCOREAPP3_0_OR_GREATER
 [global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)]
 #endif
- out classFromEscapedNamespace result) {
-        if(System.Int32.TryParse(s, provider, out var __v)) {
-            
-            
-            result = new classFromEscapedNamespace(__v);
-            return true;
+ out classFromEscapedNamespace result)
+        {
+            if (System.Int32.TryParse(s, provider, out var __v))
+            {
+                result = new classFromEscapedNamespace(__v);
+                return true;
+            }
+
+            result = default;
+            return false;
         }
 
-        result = default;
-        return false;
-    }
-
-    /// <inheritdoc cref="int.TryParse(System.ReadOnlySpan{char}, out int)"/>
-    /// <summary>
-    /// </summary>
-    /// <returns>
-    /// True if the value could a) be parsed by the underlying type, and b) passes any validation (after running any optional normalization).
-    /// </returns>
-    public static global::System.Boolean TryParse(global::System.ReadOnlySpan<char> s, 
+        /// <inheritdoc cref = "int.TryParse(System.ReadOnlySpan{char}, out int)"/>
+        /// <summary>
+        /// </summary>
+        /// <returns>
+        /// True if the value could a) be parsed by the underlying type, and b) passes any validation (after running any optional normalization).
+        /// </returns>
+        public static global::System.Boolean TryParse(global::System.ReadOnlySpan<char> s,
 #if NETCOREAPP3_0_OR_GREATER
 [global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)]
 #endif
- out classFromEscapedNamespace result) {
-        if(System.Int32.TryParse(s, out var __v)) {
-            
-            
-            result = new classFromEscapedNamespace(__v);
-            return true;
+ out classFromEscapedNamespace result)
+        {
+            if (System.Int32.TryParse(s, out var __v))
+            {
+                result = new classFromEscapedNamespace(__v);
+                return true;
+            }
+
+            result = default;
+            return false;
         }
 
-        result = default;
-        return false;
-    }
-
-    /// <inheritdoc cref="int.TryParse(string?, System.Globalization.NumberStyles, System.IFormatProvider?, out int)"/>
-    /// <summary>
-    /// </summary>
-    /// <returns>
-    /// True if the value could a) be parsed by the underlying type, and b) passes any validation (after running any optional normalization).
-    /// </returns>
-    public static global::System.Boolean TryParse(string s, global::System.Globalization.NumberStyles style, global::System.IFormatProvider provider, 
+        /// <inheritdoc cref = "int.TryParse(string? , System.Globalization.NumberStyles, System.IFormatProvider? , out int)"/>
+        /// <summary>
+        /// </summary>
+        /// <returns>
+        /// True if the value could a) be parsed by the underlying type, and b) passes any validation (after running any optional normalization).
+        /// </returns>
+        public static global::System.Boolean TryParse(string s, global::System.Globalization.NumberStyles style, global::System.IFormatProvider provider,
 #if NETCOREAPP3_0_OR_GREATER
 [global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)]
 #endif
- out classFromEscapedNamespace result) {
-        if(System.Int32.TryParse(s, style, provider, out var __v)) {
-            
-            
-            result = new classFromEscapedNamespace(__v);
-            return true;
+ out classFromEscapedNamespace result)
+        {
+            if (System.Int32.TryParse(s, style, provider, out var __v))
+            {
+                result = new classFromEscapedNamespace(__v);
+                return true;
+            }
+
+            result = default;
+            return false;
         }
 
-        result = default;
-        return false;
-    }
-
-    /// <inheritdoc cref="int.TryParse(string?, System.IFormatProvider?, out int)"/>
-    /// <summary>
-    /// </summary>
-    /// <returns>
-    /// True if the value could a) be parsed by the underlying type, and b) passes any validation (after running any optional normalization).
-    /// </returns>
-    public static global::System.Boolean TryParse(string s, global::System.IFormatProvider provider, 
+        /// <inheritdoc cref = "int.TryParse(string? , System.IFormatProvider? , out int)"/>
+        /// <summary>
+        /// </summary>
+        /// <returns>
+        /// True if the value could a) be parsed by the underlying type, and b) passes any validation (after running any optional normalization).
+        /// </returns>
+        public static global::System.Boolean TryParse(string s, global::System.IFormatProvider provider,
 #if NETCOREAPP3_0_OR_GREATER
 [global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)]
 #endif
- out classFromEscapedNamespace result) {
-        if(System.Int32.TryParse(s, provider, out var __v)) {
-            
-            
-            result = new classFromEscapedNamespace(__v);
-            return true;
+ out classFromEscapedNamespace result)
+        {
+            if (System.Int32.TryParse(s, provider, out var __v))
+            {
+                result = new classFromEscapedNamespace(__v);
+                return true;
+            }
+
+            result = default;
+            return false;
         }
 
-        result = default;
-        return false;
-    }
-
-    /// <inheritdoc cref="int.TryParse(string?, out int)"/>
-    /// <summary>
-    /// </summary>
-    /// <returns>
-    /// True if the value could a) be parsed by the underlying type, and b) passes any validation (after running any optional normalization).
-    /// </returns>
-    public static global::System.Boolean TryParse(string s, 
+        /// <inheritdoc cref = "int.TryParse(string? , out int)"/>
+        /// <summary>
+        /// </summary>
+        /// <returns>
+        /// True if the value could a) be parsed by the underlying type, and b) passes any validation (after running any optional normalization).
+        /// </returns>
+        public static global::System.Boolean TryParse(string s,
 #if NETCOREAPP3_0_OR_GREATER
 [global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)]
 #endif
- out classFromEscapedNamespace result) {
-        if(System.Int32.TryParse(s, out var __v)) {
-            
-            
-            result = new classFromEscapedNamespace(__v);
-            return true;
+ out classFromEscapedNamespace result)
+        {
+            if (System.Int32.TryParse(s, out var __v))
+            {
+                result = new classFromEscapedNamespace(__v);
+                return true;
+            }
+
+            result = default;
+            return false;
         }
 
-        result = default;
-        return false;
-    }
+        /// <inheritdoc cref = "int.Parse(System.ReadOnlySpan{byte}, System.Globalization.NumberStyles, System.IFormatProvider? )"/>
+        /// <summary>
+        /// </summary>
+        /// <returns>
+        /// The value created by calling the Parse method on the primitive.
+        /// </returns>
+        /// <exception cref = "global::Vogen.ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
+        public static classFromEscapedNamespace Parse(global::System.ReadOnlySpan<byte> utf8Text, global::System.Globalization.NumberStyles style, global::System.IFormatProvider provider)
+        {
+            var r = System.Int32.Parse(utf8Text, style, provider);
+            return From(r);
+        }
 
-    /// <inheritdoc cref="int.Parse(System.ReadOnlySpan{byte}, System.Globalization.NumberStyles, System.IFormatProvider?)"/>
-    /// <summary>
-    /// </summary>
-    /// <returns>
-    /// The value created by calling the Parse method on the primitive.
-    /// </returns>
-    /// <exception cref="global::Vogen.ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
-    public static classFromEscapedNamespace Parse(global::System.ReadOnlySpan<byte> utf8Text, global::System.Globalization.NumberStyles style, global::System.IFormatProvider provider) {
-        var r = System.Int32.Parse(utf8Text, style, provider);
-        return From(r);
-    }
+        /// <inheritdoc cref = "int.Parse(System.ReadOnlySpan{byte}, System.IFormatProvider? )"/>
+        /// <summary>
+        /// </summary>
+        /// <returns>
+        /// The value created by calling the Parse method on the primitive.
+        /// </returns>
+        /// <exception cref = "global::Vogen.ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
+        public static classFromEscapedNamespace Parse(global::System.ReadOnlySpan<byte> utf8Text, global::System.IFormatProvider provider)
+        {
+            var r = System.Int32.Parse(utf8Text, provider);
+            return From(r);
+        }
 
-    /// <inheritdoc cref="int.Parse(System.ReadOnlySpan{byte}, System.IFormatProvider?)"/>
-    /// <summary>
-    /// </summary>
-    /// <returns>
-    /// The value created by calling the Parse method on the primitive.
-    /// </returns>
-    /// <exception cref="global::Vogen.ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
-    public static classFromEscapedNamespace Parse(global::System.ReadOnlySpan<byte> utf8Text, global::System.IFormatProvider provider) {
-        var r = System.Int32.Parse(utf8Text, provider);
-        return From(r);
-    }
+        /// <inheritdoc cref = "int.Parse(System.ReadOnlySpan{char}, System.Globalization.NumberStyles, System.IFormatProvider? )"/>
+        /// <summary>
+        /// </summary>
+        /// <returns>
+        /// The value created by calling the Parse method on the primitive.
+        /// </returns>
+        /// <exception cref = "global::Vogen.ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
+        public static classFromEscapedNamespace Parse(global::System.ReadOnlySpan<char> s, global::System.Globalization.NumberStyles style, global::System.IFormatProvider provider)
+        {
+            var r = System.Int32.Parse(s, style, provider);
+            return From(r);
+        }
 
-    /// <inheritdoc cref="int.Parse(System.ReadOnlySpan{char}, System.Globalization.NumberStyles, System.IFormatProvider?)"/>
-    /// <summary>
-    /// </summary>
-    /// <returns>
-    /// The value created by calling the Parse method on the primitive.
-    /// </returns>
-    /// <exception cref="global::Vogen.ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
-    public static classFromEscapedNamespace Parse(global::System.ReadOnlySpan<char> s, global::System.Globalization.NumberStyles style, global::System.IFormatProvider provider) {
-        var r = System.Int32.Parse(s, style, provider);
-        return From(r);
-    }
+        /// <inheritdoc cref = "int.Parse(System.ReadOnlySpan{char}, System.IFormatProvider? )"/>
+        /// <summary>
+        /// </summary>
+        /// <returns>
+        /// The value created by calling the Parse method on the primitive.
+        /// </returns>
+        /// <exception cref = "global::Vogen.ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
+        public static classFromEscapedNamespace Parse(global::System.ReadOnlySpan<char> s, global::System.IFormatProvider provider)
+        {
+            var r = System.Int32.Parse(s, provider);
+            return From(r);
+        }
 
-    /// <inheritdoc cref="int.Parse(System.ReadOnlySpan{char}, System.IFormatProvider?)"/>
-    /// <summary>
-    /// </summary>
-    /// <returns>
-    /// The value created by calling the Parse method on the primitive.
-    /// </returns>
-    /// <exception cref="global::Vogen.ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
-    public static classFromEscapedNamespace Parse(global::System.ReadOnlySpan<char> s, global::System.IFormatProvider provider) {
-        var r = System.Int32.Parse(s, provider);
-        return From(r);
-    }
+        /// <inheritdoc cref = "int.Parse(string)"/>
+        /// <summary>
+        /// </summary>
+        /// <returns>
+        /// The value created by calling the Parse method on the primitive.
+        /// </returns>
+        /// <exception cref = "global::Vogen.ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
+        public static classFromEscapedNamespace Parse(string s)
+        {
+            var r = System.Int32.Parse(s);
+            return From(r);
+        }
 
-    /// <inheritdoc cref="int.Parse(string)"/>
-    /// <summary>
-    /// </summary>
-    /// <returns>
-    /// The value created by calling the Parse method on the primitive.
-    /// </returns>
-    /// <exception cref="global::Vogen.ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
-    public static classFromEscapedNamespace Parse(string s) {
-        var r = System.Int32.Parse(s);
-        return From(r);
-    }
+        /// <inheritdoc cref = "int.Parse(string, System.Globalization.NumberStyles)"/>
+        /// <summary>
+        /// </summary>
+        /// <returns>
+        /// The value created by calling the Parse method on the primitive.
+        /// </returns>
+        /// <exception cref = "global::Vogen.ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
+        public static classFromEscapedNamespace Parse(string s, global::System.Globalization.NumberStyles style)
+        {
+            var r = System.Int32.Parse(s, style);
+            return From(r);
+        }
 
-    /// <inheritdoc cref="int.Parse(string, System.Globalization.NumberStyles)"/>
-    /// <summary>
-    /// </summary>
-    /// <returns>
-    /// The value created by calling the Parse method on the primitive.
-    /// </returns>
-    /// <exception cref="global::Vogen.ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
-    public static classFromEscapedNamespace Parse(string s, global::System.Globalization.NumberStyles style) {
-        var r = System.Int32.Parse(s, style);
-        return From(r);
-    }
+        /// <inheritdoc cref = "int.Parse(string, System.Globalization.NumberStyles, System.IFormatProvider? )"/>
+        /// <summary>
+        /// </summary>
+        /// <returns>
+        /// The value created by calling the Parse method on the primitive.
+        /// </returns>
+        /// <exception cref = "global::Vogen.ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
+        public static classFromEscapedNamespace Parse(string s, global::System.Globalization.NumberStyles style, global::System.IFormatProvider provider)
+        {
+            var r = System.Int32.Parse(s, style, provider);
+            return From(r);
+        }
 
-    /// <inheritdoc cref="int.Parse(string, System.Globalization.NumberStyles, System.IFormatProvider?)"/>
-    /// <summary>
-    /// </summary>
-    /// <returns>
-    /// The value created by calling the Parse method on the primitive.
-    /// </returns>
-    /// <exception cref="global::Vogen.ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
-    public static classFromEscapedNamespace Parse(string s, global::System.Globalization.NumberStyles style, global::System.IFormatProvider provider) {
-        var r = System.Int32.Parse(s, style, provider);
-        return From(r);
-    }
+        /// <inheritdoc cref = "int.Parse(string, System.IFormatProvider? )"/>
+        /// <summary>
+        /// </summary>
+        /// <returns>
+        /// The value created by calling the Parse method on the primitive.
+        /// </returns>
+        /// <exception cref = "global::Vogen.ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
+        public static classFromEscapedNamespace Parse(string s, global::System.IFormatProvider provider)
+        {
+            var r = System.Int32.Parse(s, provider);
+            return From(r);
+        }
 
-    /// <inheritdoc cref="int.Parse(string, System.IFormatProvider?)"/>
-    /// <summary>
-    /// </summary>
-    /// <returns>
-    /// The value created by calling the Parse method on the primitive.
-    /// </returns>
-    /// <exception cref="global::Vogen.ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
-    public static classFromEscapedNamespace Parse(string s, global::System.IFormatProvider provider) {
-        var r = System.Int32.Parse(s, provider);
-        return From(r);
-    }
-
-
-
-          public override global::System.Int32 GetHashCode()
-          {
+        public override global::System.Int32 GetHashCode()
+        {
             unchecked // Overflow is fine, just wrap
             {
-                global::System.Int32 hash = (global::System.Int32) 2166136261;
+                global::System.Int32 hash = (global::System.Int32)2166136261;
                 hash = (hash * 16777619) ^ GetType().GetHashCode();
                 hash = (hash * 16777619) ^ global::System.Collections.Generic.EqualityComparer<System.Int32>.Default.GetHashCode(Value);
                 return hash;
             }
-          }
+        }
 
         private void EnsureInitialized()
         {
@@ -1422,18 +1329,12 @@ public static ValueObjectOrError<classFromEscapedNamespace> TryFrom(System.Int32
 #else
                 global::System.String message = "Use of uninitialized Value Object.";
 #endif
-
                 throw new global::Vogen.ValueObjectValidationException(message);
             }
         }
 
-
-        
-
-        /// <summary>Returns the string representation of the underlying <see cref="System.Int32" />.</summary>
-    public override global::System.String ToString() =>IsInitialized() ? Value.ToString() : "[UNINITIALIZED]";
-
-        
+        /// <summary>Returns the string representation of the underlying <see cref = "System.Int32"/>.</summary>
+        public override global::System.String ToString() => IsInitialized() ? Value.ToString() : "[UNINITIALIZED]";
         /// <summary>
         /// Converts a classFromEscapedNamespace to or from JSON.
         /// </summary>
@@ -1450,14 +1351,13 @@ public static ValueObjectOrError<classFromEscapedNamespace> TryFrom(System.Int32
 
             public override void Write(System.Text.Json.Utf8JsonWriter writer, classFromEscapedNamespace value, global::System.Text.Json.JsonSerializerOptions options)
             {
- #if NET5_0_OR_GREATER
+#if NET5_0_OR_GREATER
                 global::System.Text.Json.JsonSerializer.Serialize(writer, value.Value, options);
- #else
+#else
                 writer.WriteNumberValue(value.Value);
- #endif
+#endif
             }
-
-#if NET6_0_OR_GREATER            
+#if NET6_0_OR_GREATER
             public override classFromEscapedNamespace ReadAsPropertyName(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {
                 return classFromEscapedNamespace.__Deserialize(global::System.Int32.Parse(reader.GetString(), global::System.Globalization.NumberStyles.Any, global::System.Globalization.CultureInfo.InvariantCulture));
@@ -1469,7 +1369,6 @@ public static ValueObjectOrError<classFromEscapedNamespace> TryFrom(System.Int32
             }
 #endif
         }
-
 
         class classFromEscapedNamespaceTypeConverter : global::System.ComponentModel.TypeConverter
         {
@@ -1512,28 +1411,21 @@ public static ValueObjectOrError<classFromEscapedNamespace> TryFrom(System.Int32
             }
         }
 
-
-
-
-
         internal sealed class classFromEscapedNamespaceDebugView
         {
             private readonly classFromEscapedNamespace _t;
-
             classFromEscapedNamespaceDebugView(classFromEscapedNamespace t)
             {
                 _t = t;
             }
 
             public global::System.String UnderlyingType => "System.Int32";
-            public System.Int32 Value => _t.Value ;
-
+            public System.Int32 Value => _t.Value;
             public global::System.String Conversions => @"[global::System.Text.Json.Serialization.JsonConverter(typeof(classFromEscapedNamespaceSystemTextJsonConverter))]
 [global::System.ComponentModel.TypeConverter(typeof(classFromEscapedNamespaceTypeConverter))]
 ";
-                }
+        }
     }
-
 }
   
 // ------------------------------------------------------------------------------
@@ -1544,49 +1436,40 @@ public static ValueObjectOrError<classFromEscapedNamespace> TryFrom(System.Int32
 //     the code is regenerated.
 // </auto-generated>
 // ------------------------------------------------------------------------------
-
 // Suppress warnings about [Obsolete] member usage in generated code.
 #pragma warning disable CS0618
-
 // Suppress warnings for 'Override methods on comparable types'.
 #pragma warning disable CA1036
-
 // Suppress Error MA0097 : A class that implements IComparable<T> or IComparable should override comparison operators
 #pragma warning disable MA0097
-
 // Suppress warning for 'The annotation for nullable reference types should only be used in code within a '#nullable' annotations context. Auto-generated code requires an explicit '#nullable' directive in source.'
 // The generator copies signatures from the BCL, e.g. for `TryParse`, and some of those have nullable annotations.
 #pragma warning disable CS8669
-
 // Suppress warnings about CS1591: Missing XML comment for publicly visible type or member 'Type_or_Member'
 #pragma warning disable CS1591
-
 using Vogen;
 
 namespace @bool.@byte.@short.@float.@object
 {
-
-    [global::System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage] 
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Vogen", "1.0.0.0")]
+    [global::System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Vogen", "1.0.0.0")]
     [global::System.Text.Json.Serialization.JsonConverter(typeof(@classSystemTextJsonConverter))]
-[global::System.ComponentModel.TypeConverter(typeof(@classTypeConverter))]
-
+    [global::System.ComponentModel.TypeConverter(typeof(@classTypeConverter))]
     [global::System.Diagnostics.DebuggerTypeProxyAttribute(typeof(@classDebugView))]
     [global::System.Diagnostics.DebuggerDisplayAttribute("Underlying type: System.Int32, Value = { _value }")]
-    public partial class @class : global::System.IEquatable<@class>, global::System.IEquatable<System.Int32> ,  global::System.IComparable<@class>, global::System.IComparable,  global::System.IParsable<@class>,  global::System.ISpanParsable<@class>,  global::System.IUtf8SpanParsable<@class>
+    public partial class @class : global::System.IEquatable<@class>, global::System.IEquatable<System.Int32>, global::System.IComparable<@class>, global::System.IComparable, global::System.IParsable<@class>, global::System.ISpanParsable<@class>, global::System.IUtf8SpanParsable<@class>
     {
-#if DEBUG   
-        private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
+#if DEBUG
+private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
 #endif
 #if !VOGEN_NO_VALIDATION
         private readonly global::System.Boolean _isInitialized;
 #endif
         private readonly System.Int32 _value;
-        
-/// <summary>
-/// Gets the underlying <see cref="System.Int32" /> value if set, otherwise a <see cref="global::Vogen.ValueObjectValidationException" /> is thrown.
-/// </summary>
-public System.Int32 Value
+        /// <summary>
+        /// Gets the underlying <see cref = "System.Int32"/> value if set, otherwise a <see cref = "global::Vogen.ValueObjectValidationException"/> is thrown.
+        /// </summary>
+        public System.Int32 Value
         {
             [global::System.Diagnostics.DebuggerStepThroughAttribute]
             get
@@ -1595,7 +1478,6 @@ public System.Int32 Value
                 return _value;
             }
         }
-
 
         [global::System.Diagnostics.DebuggerStepThroughAttribute]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -1622,443 +1504,421 @@ public System.Int32 Value
         /// <summary>
         /// Builds an instance from the provided underlying type.
         /// </summary>
-        /// <param name="value">The underlying type.</param>
+        /// <param name = "value">The underlying type.</param>
         /// <returns>An instance of this type.</returns>
         public static @class From(System.Int32 value)
         {
-            
-
-            
-
-            
-
             @class instance = new @class(value);
-
             return instance;
         }
 
         /// <summary>
-/// Tries to build an instance from the provided underlying type.
-/// If a normalization method is provided, it will be called.
-/// If validation is provided, and it fails, false will be returned.
-/// </summary>
-/// <param name="value">The underlying type.</param>
-/// <param name="vo">An instance of the value object.</param>
-/// <returns>True if the value object can be built, otherwise false.</returns>
-public static bool TryFrom(System.Int32 value, 
+        /// Tries to build an instance from the provided underlying type.
+        /// If a normalization method is provided, it will be called.
+        /// If validation is provided, and it fails, false will be returned.
+        /// </summary>
+        /// <param name = "value">The underlying type.</param>
+        /// <param name = "vo">An instance of the value object.</param>
+        /// <returns>True if the value object can be built, otherwise false.</returns>
+        public static bool TryFrom(System.Int32 value,
 #if NETCOREAPP3_0_OR_GREATER
 [global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)]
 #endif
  out @class vo)
-{
-    
-    
+        {
+            vo = new @class(value);
+            return true;
+        }
 
-    
+        /// <summary>
+        /// Tries to build an instance from the provided underlying value.
+        /// If a normalization method is provided, it will be called.
+        /// If validation is provided, and it fails, an error will be returned.
+        /// </summary>
+        /// <param name = "value">The primitive value.</param>
+        /// <returns>A <see cref = "ValueObjectOrError{T}"/> containing either the value object, or an error.</returns>
+        public static ValueObjectOrError<@class> TryFrom(System.Int32 value)
+        {
+            return new ValueObjectOrError<@class>(new @class(value));
+        }
 
-    vo = new @class(value);
-
-    return true;
-}/// <summary>
-/// Tries to build an instance from the provided underlying value.
-/// If a normalization method is provided, it will be called.
-/// If validation is provided, and it fails, an error will be returned.
-/// </summary>
-/// <param name="value">The primitive value.</param>
-/// <returns>A <see cref="ValueObjectOrError{T}"/> containing either the value object, or an error.</returns>
-public static ValueObjectOrError<@class> TryFrom(System.Int32 value)
-{
-    
-
-    
-
-    
-
-    return new ValueObjectOrError<@class>(new @class(value));
-}
-
-[global::System.Runtime.CompilerServices.MethodImpl(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
+        [global::System.Runtime.CompilerServices.MethodImpl(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 #if VOGEN_NO_VALIDATION
   public bool IsInitialized() => true;
 #else
-  public bool IsInitialized() => _isInitialized;
+        public bool IsInitialized() => _isInitialized;
 #endif
-
-          
-
         // only called internally when something has been deserialized into
         // its primitive type.
         private static @class __Deserialize(System.Int32 value)
         {
-            
-
-            
-
-            
-
             return new @class(value);
         }
-        
-            public  global::System.Boolean Equals(@class other)
+
+        public global::System.Boolean Equals(@class other)
+        {
+            if (ReferenceEquals(null, other))
             {
-              if (ReferenceEquals(null, other))
-              {
-                  return false;
-              }
-
-              // It's possible to create uninitialized instances via converters such as EfCore (HasDefaultValue), which call Equals.
-              // We treat anything uninitialized as not equal to anything, even other uninitialized instances of this type.
-              if(!IsInitialized() || !other.IsInitialized()) return false;
-
-              if (ReferenceEquals(this, other))
-              {
-                  return true;
-              }
-
-              return GetType() == other.GetType() && global::System.Collections.Generic.EqualityComparer<System.Int32>.Default.Equals(Value, other.Value);
-            }
-             public global::System.Boolean Equals(@class other, global::System.Collections.Generic.IEqualityComparer<@class> comparer)
-             {
-                 return comparer.Equals(this, other);
-             }
-
-             
-            public global::System.Boolean Equals(System.Int32 primitive)
-            {
-              return Value.Equals(primitive);
+                return false;
             }
 
- public override global::System.Boolean Equals(global::System.Object obj)
- {
-     return Equals(obj as @class);
- }
+            // It's possible to create uninitialized instances via converters such as EfCore (HasDefaultValue), which call Equals.
+            // We treat anything uninitialized as not equal to anything, even other uninitialized instances of this type.
+            if (!IsInitialized() || !other.IsInitialized())
+                return false;
+            if (ReferenceEquals(this, other))
+            {
+                return true;
+            }
+
+            return GetType() == other.GetType() && global::System.Collections.Generic.EqualityComparer<System.Int32>.Default.Equals(Value, other.Value);
+        }
+
+        public global::System.Boolean Equals(@class other, global::System.Collections.Generic.IEqualityComparer<@class> comparer)
+        {
+            return comparer.Equals(this, other);
+        }
+
+        public global::System.Boolean Equals(System.Int32 primitive)
+        {
+            return Value.Equals(primitive);
+        }
+
+        public override global::System.Boolean Equals(global::System.Object obj)
+        {
+            return Equals(obj as @class);
+        }
 
         public static global::System.Boolean operator ==(@class left, @class right) => Equals(left, right);
         public static global::System.Boolean operator !=(@class left, @class right) => !Equals(left, right);
-
         public static global::System.Boolean operator ==(@class left, System.Int32 right) => Equals(left.Value, right);
         public static global::System.Boolean operator !=(@class left, System.Int32 right) => !Equals(left.Value, right);
-
         public static global::System.Boolean operator ==(System.Int32 left, @class right) => Equals(left, right.Value);
         public static global::System.Boolean operator !=(System.Int32 left, @class right) => !Equals(left, right.Value);
-
         public static explicit operator @class(System.Int32 value) => From(value);
         public static explicit operator System.Int32(@class value) => value.Value;
-
         public int CompareTo(@class other) => Value.CompareTo(other.Value);
-        public int CompareTo(object other) {
-            if(other is null) return 1;
-            if(other is @class x) return CompareTo(x);
+        public int CompareTo(object other)
+        {
+            if (other is null)
+                return 1;
+            if (other is @class x)
+                return CompareTo(x);
             throw new global::System.ArgumentException("Cannot compare to object as it is not of type @class", nameof(other));
         }
 
-        
-    /// <inheritdoc cref="int.TryParse(System.ReadOnlySpan{byte}, System.Globalization.NumberStyles, System.IFormatProvider?, out int)"/>
-    /// <summary>
-    /// </summary>
-    /// <returns>
-    /// True if the value could a) be parsed by the underlying type, and b) passes any validation (after running any optional normalization).
-    /// </returns>
-    public static global::System.Boolean TryParse(global::System.ReadOnlySpan<byte> utf8Text, global::System.Globalization.NumberStyles style, global::System.IFormatProvider provider, 
+        /// <inheritdoc cref = "int.TryParse(System.ReadOnlySpan{byte}, System.Globalization.NumberStyles, System.IFormatProvider? , out int)"/>
+        /// <summary>
+        /// </summary>
+        /// <returns>
+        /// True if the value could a) be parsed by the underlying type, and b) passes any validation (after running any optional normalization).
+        /// </returns>
+        public static global::System.Boolean TryParse(global::System.ReadOnlySpan<byte> utf8Text, global::System.Globalization.NumberStyles style, global::System.IFormatProvider provider,
 #if NETCOREAPP3_0_OR_GREATER
 [global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)]
 #endif
- out @class result) {
-        if(System.Int32.TryParse(utf8Text, style, provider, out var __v)) {
-            
-            
-            result = new @class(__v);
-            return true;
+ out @class result)
+        {
+            if (System.Int32.TryParse(utf8Text, style, provider, out var __v))
+            {
+                result = new @class(__v);
+                return true;
+            }
+
+            result = default;
+            return false;
         }
 
-        result = default;
-        return false;
-    }
-
-    /// <inheritdoc cref="int.TryParse(System.ReadOnlySpan{byte}, System.IFormatProvider?, out int)"/>
-    /// <summary>
-    /// </summary>
-    /// <returns>
-    /// True if the value could a) be parsed by the underlying type, and b) passes any validation (after running any optional normalization).
-    /// </returns>
-    public static global::System.Boolean TryParse(global::System.ReadOnlySpan<byte> utf8Text, global::System.IFormatProvider provider, 
+        /// <inheritdoc cref = "int.TryParse(System.ReadOnlySpan{byte}, System.IFormatProvider? , out int)"/>
+        /// <summary>
+        /// </summary>
+        /// <returns>
+        /// True if the value could a) be parsed by the underlying type, and b) passes any validation (after running any optional normalization).
+        /// </returns>
+        public static global::System.Boolean TryParse(global::System.ReadOnlySpan<byte> utf8Text, global::System.IFormatProvider provider,
 #if NETCOREAPP3_0_OR_GREATER
 [global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)]
 #endif
- out @class result) {
-        if(System.Int32.TryParse(utf8Text, provider, out var __v)) {
-            
-            
-            result = new @class(__v);
-            return true;
+ out @class result)
+        {
+            if (System.Int32.TryParse(utf8Text, provider, out var __v))
+            {
+                result = new @class(__v);
+                return true;
+            }
+
+            result = default;
+            return false;
         }
 
-        result = default;
-        return false;
-    }
-
-    /// <inheritdoc cref="int.TryParse(System.ReadOnlySpan{byte}, out int)"/>
-    /// <summary>
-    /// </summary>
-    /// <returns>
-    /// True if the value could a) be parsed by the underlying type, and b) passes any validation (after running any optional normalization).
-    /// </returns>
-    public static global::System.Boolean TryParse(global::System.ReadOnlySpan<byte> utf8Text, 
+        /// <inheritdoc cref = "int.TryParse(System.ReadOnlySpan{byte}, out int)"/>
+        /// <summary>
+        /// </summary>
+        /// <returns>
+        /// True if the value could a) be parsed by the underlying type, and b) passes any validation (after running any optional normalization).
+        /// </returns>
+        public static global::System.Boolean TryParse(global::System.ReadOnlySpan<byte> utf8Text,
 #if NETCOREAPP3_0_OR_GREATER
 [global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)]
 #endif
- out @class result) {
-        if(System.Int32.TryParse(utf8Text, out var __v)) {
-            
-            
-            result = new @class(__v);
-            return true;
+ out @class result)
+        {
+            if (System.Int32.TryParse(utf8Text, out var __v))
+            {
+                result = new @class(__v);
+                return true;
+            }
+
+            result = default;
+            return false;
         }
 
-        result = default;
-        return false;
-    }
-
-    /// <inheritdoc cref="int.TryParse(System.ReadOnlySpan{char}, System.Globalization.NumberStyles, System.IFormatProvider?, out int)"/>
-    /// <summary>
-    /// </summary>
-    /// <returns>
-    /// True if the value could a) be parsed by the underlying type, and b) passes any validation (after running any optional normalization).
-    /// </returns>
-    public static global::System.Boolean TryParse(global::System.ReadOnlySpan<char> s, global::System.Globalization.NumberStyles style, global::System.IFormatProvider provider, 
+        /// <inheritdoc cref = "int.TryParse(System.ReadOnlySpan{char}, System.Globalization.NumberStyles, System.IFormatProvider? , out int)"/>
+        /// <summary>
+        /// </summary>
+        /// <returns>
+        /// True if the value could a) be parsed by the underlying type, and b) passes any validation (after running any optional normalization).
+        /// </returns>
+        public static global::System.Boolean TryParse(global::System.ReadOnlySpan<char> s, global::System.Globalization.NumberStyles style, global::System.IFormatProvider provider,
 #if NETCOREAPP3_0_OR_GREATER
 [global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)]
 #endif
- out @class result) {
-        if(System.Int32.TryParse(s, style, provider, out var __v)) {
-            
-            
-            result = new @class(__v);
-            return true;
+ out @class result)
+        {
+            if (System.Int32.TryParse(s, style, provider, out var __v))
+            {
+                result = new @class(__v);
+                return true;
+            }
+
+            result = default;
+            return false;
         }
 
-        result = default;
-        return false;
-    }
-
-    /// <inheritdoc cref="int.TryParse(System.ReadOnlySpan{char}, System.IFormatProvider?, out int)"/>
-    /// <summary>
-    /// </summary>
-    /// <returns>
-    /// True if the value could a) be parsed by the underlying type, and b) passes any validation (after running any optional normalization).
-    /// </returns>
-    public static global::System.Boolean TryParse(global::System.ReadOnlySpan<char> s, global::System.IFormatProvider provider, 
+        /// <inheritdoc cref = "int.TryParse(System.ReadOnlySpan{char}, System.IFormatProvider? , out int)"/>
+        /// <summary>
+        /// </summary>
+        /// <returns>
+        /// True if the value could a) be parsed by the underlying type, and b) passes any validation (after running any optional normalization).
+        /// </returns>
+        public static global::System.Boolean TryParse(global::System.ReadOnlySpan<char> s, global::System.IFormatProvider provider,
 #if NETCOREAPP3_0_OR_GREATER
 [global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)]
 #endif
- out @class result) {
-        if(System.Int32.TryParse(s, provider, out var __v)) {
-            
-            
-            result = new @class(__v);
-            return true;
+ out @class result)
+        {
+            if (System.Int32.TryParse(s, provider, out var __v))
+            {
+                result = new @class(__v);
+                return true;
+            }
+
+            result = default;
+            return false;
         }
 
-        result = default;
-        return false;
-    }
-
-    /// <inheritdoc cref="int.TryParse(System.ReadOnlySpan{char}, out int)"/>
-    /// <summary>
-    /// </summary>
-    /// <returns>
-    /// True if the value could a) be parsed by the underlying type, and b) passes any validation (after running any optional normalization).
-    /// </returns>
-    public static global::System.Boolean TryParse(global::System.ReadOnlySpan<char> s, 
+        /// <inheritdoc cref = "int.TryParse(System.ReadOnlySpan{char}, out int)"/>
+        /// <summary>
+        /// </summary>
+        /// <returns>
+        /// True if the value could a) be parsed by the underlying type, and b) passes any validation (after running any optional normalization).
+        /// </returns>
+        public static global::System.Boolean TryParse(global::System.ReadOnlySpan<char> s,
 #if NETCOREAPP3_0_OR_GREATER
 [global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)]
 #endif
- out @class result) {
-        if(System.Int32.TryParse(s, out var __v)) {
-            
-            
-            result = new @class(__v);
-            return true;
+ out @class result)
+        {
+            if (System.Int32.TryParse(s, out var __v))
+            {
+                result = new @class(__v);
+                return true;
+            }
+
+            result = default;
+            return false;
         }
 
-        result = default;
-        return false;
-    }
-
-    /// <inheritdoc cref="int.TryParse(string?, System.Globalization.NumberStyles, System.IFormatProvider?, out int)"/>
-    /// <summary>
-    /// </summary>
-    /// <returns>
-    /// True if the value could a) be parsed by the underlying type, and b) passes any validation (after running any optional normalization).
-    /// </returns>
-    public static global::System.Boolean TryParse(string s, global::System.Globalization.NumberStyles style, global::System.IFormatProvider provider, 
+        /// <inheritdoc cref = "int.TryParse(string? , System.Globalization.NumberStyles, System.IFormatProvider? , out int)"/>
+        /// <summary>
+        /// </summary>
+        /// <returns>
+        /// True if the value could a) be parsed by the underlying type, and b) passes any validation (after running any optional normalization).
+        /// </returns>
+        public static global::System.Boolean TryParse(string s, global::System.Globalization.NumberStyles style, global::System.IFormatProvider provider,
 #if NETCOREAPP3_0_OR_GREATER
 [global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)]
 #endif
- out @class result) {
-        if(System.Int32.TryParse(s, style, provider, out var __v)) {
-            
-            
-            result = new @class(__v);
-            return true;
+ out @class result)
+        {
+            if (System.Int32.TryParse(s, style, provider, out var __v))
+            {
+                result = new @class(__v);
+                return true;
+            }
+
+            result = default;
+            return false;
         }
 
-        result = default;
-        return false;
-    }
-
-    /// <inheritdoc cref="int.TryParse(string?, System.IFormatProvider?, out int)"/>
-    /// <summary>
-    /// </summary>
-    /// <returns>
-    /// True if the value could a) be parsed by the underlying type, and b) passes any validation (after running any optional normalization).
-    /// </returns>
-    public static global::System.Boolean TryParse(string s, global::System.IFormatProvider provider, 
+        /// <inheritdoc cref = "int.TryParse(string? , System.IFormatProvider? , out int)"/>
+        /// <summary>
+        /// </summary>
+        /// <returns>
+        /// True if the value could a) be parsed by the underlying type, and b) passes any validation (after running any optional normalization).
+        /// </returns>
+        public static global::System.Boolean TryParse(string s, global::System.IFormatProvider provider,
 #if NETCOREAPP3_0_OR_GREATER
 [global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)]
 #endif
- out @class result) {
-        if(System.Int32.TryParse(s, provider, out var __v)) {
-            
-            
-            result = new @class(__v);
-            return true;
+ out @class result)
+        {
+            if (System.Int32.TryParse(s, provider, out var __v))
+            {
+                result = new @class(__v);
+                return true;
+            }
+
+            result = default;
+            return false;
         }
 
-        result = default;
-        return false;
-    }
-
-    /// <inheritdoc cref="int.TryParse(string?, out int)"/>
-    /// <summary>
-    /// </summary>
-    /// <returns>
-    /// True if the value could a) be parsed by the underlying type, and b) passes any validation (after running any optional normalization).
-    /// </returns>
-    public static global::System.Boolean TryParse(string s, 
+        /// <inheritdoc cref = "int.TryParse(string? , out int)"/>
+        /// <summary>
+        /// </summary>
+        /// <returns>
+        /// True if the value could a) be parsed by the underlying type, and b) passes any validation (after running any optional normalization).
+        /// </returns>
+        public static global::System.Boolean TryParse(string s,
 #if NETCOREAPP3_0_OR_GREATER
 [global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)]
 #endif
- out @class result) {
-        if(System.Int32.TryParse(s, out var __v)) {
-            
-            
-            result = new @class(__v);
-            return true;
+ out @class result)
+        {
+            if (System.Int32.TryParse(s, out var __v))
+            {
+                result = new @class(__v);
+                return true;
+            }
+
+            result = default;
+            return false;
         }
 
-        result = default;
-        return false;
-    }
+        /// <inheritdoc cref = "int.Parse(System.ReadOnlySpan{byte}, System.Globalization.NumberStyles, System.IFormatProvider? )"/>
+        /// <summary>
+        /// </summary>
+        /// <returns>
+        /// The value created by calling the Parse method on the primitive.
+        /// </returns>
+        /// <exception cref = "global::Vogen.ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
+        public static @class Parse(global::System.ReadOnlySpan<byte> utf8Text, global::System.Globalization.NumberStyles style, global::System.IFormatProvider provider)
+        {
+            var r = System.Int32.Parse(utf8Text, style, provider);
+            return From(r);
+        }
 
-    /// <inheritdoc cref="int.Parse(System.ReadOnlySpan{byte}, System.Globalization.NumberStyles, System.IFormatProvider?)"/>
-    /// <summary>
-    /// </summary>
-    /// <returns>
-    /// The value created by calling the Parse method on the primitive.
-    /// </returns>
-    /// <exception cref="global::Vogen.ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
-    public static @class Parse(global::System.ReadOnlySpan<byte> utf8Text, global::System.Globalization.NumberStyles style, global::System.IFormatProvider provider) {
-        var r = System.Int32.Parse(utf8Text, style, provider);
-        return From(r);
-    }
+        /// <inheritdoc cref = "int.Parse(System.ReadOnlySpan{byte}, System.IFormatProvider? )"/>
+        /// <summary>
+        /// </summary>
+        /// <returns>
+        /// The value created by calling the Parse method on the primitive.
+        /// </returns>
+        /// <exception cref = "global::Vogen.ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
+        public static @class Parse(global::System.ReadOnlySpan<byte> utf8Text, global::System.IFormatProvider provider)
+        {
+            var r = System.Int32.Parse(utf8Text, provider);
+            return From(r);
+        }
 
-    /// <inheritdoc cref="int.Parse(System.ReadOnlySpan{byte}, System.IFormatProvider?)"/>
-    /// <summary>
-    /// </summary>
-    /// <returns>
-    /// The value created by calling the Parse method on the primitive.
-    /// </returns>
-    /// <exception cref="global::Vogen.ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
-    public static @class Parse(global::System.ReadOnlySpan<byte> utf8Text, global::System.IFormatProvider provider) {
-        var r = System.Int32.Parse(utf8Text, provider);
-        return From(r);
-    }
+        /// <inheritdoc cref = "int.Parse(System.ReadOnlySpan{char}, System.Globalization.NumberStyles, System.IFormatProvider? )"/>
+        /// <summary>
+        /// </summary>
+        /// <returns>
+        /// The value created by calling the Parse method on the primitive.
+        /// </returns>
+        /// <exception cref = "global::Vogen.ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
+        public static @class Parse(global::System.ReadOnlySpan<char> s, global::System.Globalization.NumberStyles style, global::System.IFormatProvider provider)
+        {
+            var r = System.Int32.Parse(s, style, provider);
+            return From(r);
+        }
 
-    /// <inheritdoc cref="int.Parse(System.ReadOnlySpan{char}, System.Globalization.NumberStyles, System.IFormatProvider?)"/>
-    /// <summary>
-    /// </summary>
-    /// <returns>
-    /// The value created by calling the Parse method on the primitive.
-    /// </returns>
-    /// <exception cref="global::Vogen.ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
-    public static @class Parse(global::System.ReadOnlySpan<char> s, global::System.Globalization.NumberStyles style, global::System.IFormatProvider provider) {
-        var r = System.Int32.Parse(s, style, provider);
-        return From(r);
-    }
+        /// <inheritdoc cref = "int.Parse(System.ReadOnlySpan{char}, System.IFormatProvider? )"/>
+        /// <summary>
+        /// </summary>
+        /// <returns>
+        /// The value created by calling the Parse method on the primitive.
+        /// </returns>
+        /// <exception cref = "global::Vogen.ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
+        public static @class Parse(global::System.ReadOnlySpan<char> s, global::System.IFormatProvider provider)
+        {
+            var r = System.Int32.Parse(s, provider);
+            return From(r);
+        }
 
-    /// <inheritdoc cref="int.Parse(System.ReadOnlySpan{char}, System.IFormatProvider?)"/>
-    /// <summary>
-    /// </summary>
-    /// <returns>
-    /// The value created by calling the Parse method on the primitive.
-    /// </returns>
-    /// <exception cref="global::Vogen.ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
-    public static @class Parse(global::System.ReadOnlySpan<char> s, global::System.IFormatProvider provider) {
-        var r = System.Int32.Parse(s, provider);
-        return From(r);
-    }
+        /// <inheritdoc cref = "int.Parse(string)"/>
+        /// <summary>
+        /// </summary>
+        /// <returns>
+        /// The value created by calling the Parse method on the primitive.
+        /// </returns>
+        /// <exception cref = "global::Vogen.ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
+        public static @class Parse(string s)
+        {
+            var r = System.Int32.Parse(s);
+            return From(r);
+        }
 
-    /// <inheritdoc cref="int.Parse(string)"/>
-    /// <summary>
-    /// </summary>
-    /// <returns>
-    /// The value created by calling the Parse method on the primitive.
-    /// </returns>
-    /// <exception cref="global::Vogen.ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
-    public static @class Parse(string s) {
-        var r = System.Int32.Parse(s);
-        return From(r);
-    }
+        /// <inheritdoc cref = "int.Parse(string, System.Globalization.NumberStyles)"/>
+        /// <summary>
+        /// </summary>
+        /// <returns>
+        /// The value created by calling the Parse method on the primitive.
+        /// </returns>
+        /// <exception cref = "global::Vogen.ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
+        public static @class Parse(string s, global::System.Globalization.NumberStyles style)
+        {
+            var r = System.Int32.Parse(s, style);
+            return From(r);
+        }
 
-    /// <inheritdoc cref="int.Parse(string, System.Globalization.NumberStyles)"/>
-    /// <summary>
-    /// </summary>
-    /// <returns>
-    /// The value created by calling the Parse method on the primitive.
-    /// </returns>
-    /// <exception cref="global::Vogen.ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
-    public static @class Parse(string s, global::System.Globalization.NumberStyles style) {
-        var r = System.Int32.Parse(s, style);
-        return From(r);
-    }
+        /// <inheritdoc cref = "int.Parse(string, System.Globalization.NumberStyles, System.IFormatProvider? )"/>
+        /// <summary>
+        /// </summary>
+        /// <returns>
+        /// The value created by calling the Parse method on the primitive.
+        /// </returns>
+        /// <exception cref = "global::Vogen.ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
+        public static @class Parse(string s, global::System.Globalization.NumberStyles style, global::System.IFormatProvider provider)
+        {
+            var r = System.Int32.Parse(s, style, provider);
+            return From(r);
+        }
 
-    /// <inheritdoc cref="int.Parse(string, System.Globalization.NumberStyles, System.IFormatProvider?)"/>
-    /// <summary>
-    /// </summary>
-    /// <returns>
-    /// The value created by calling the Parse method on the primitive.
-    /// </returns>
-    /// <exception cref="global::Vogen.ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
-    public static @class Parse(string s, global::System.Globalization.NumberStyles style, global::System.IFormatProvider provider) {
-        var r = System.Int32.Parse(s, style, provider);
-        return From(r);
-    }
+        /// <inheritdoc cref = "int.Parse(string, System.IFormatProvider? )"/>
+        /// <summary>
+        /// </summary>
+        /// <returns>
+        /// The value created by calling the Parse method on the primitive.
+        /// </returns>
+        /// <exception cref = "global::Vogen.ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
+        public static @class Parse(string s, global::System.IFormatProvider provider)
+        {
+            var r = System.Int32.Parse(s, provider);
+            return From(r);
+        }
 
-    /// <inheritdoc cref="int.Parse(string, System.IFormatProvider?)"/>
-    /// <summary>
-    /// </summary>
-    /// <returns>
-    /// The value created by calling the Parse method on the primitive.
-    /// </returns>
-    /// <exception cref="global::Vogen.ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
-    public static @class Parse(string s, global::System.IFormatProvider provider) {
-        var r = System.Int32.Parse(s, provider);
-        return From(r);
-    }
-
-
-
-          public override global::System.Int32 GetHashCode()
-          {
+        public override global::System.Int32 GetHashCode()
+        {
             unchecked // Overflow is fine, just wrap
             {
-                global::System.Int32 hash = (global::System.Int32) 2166136261;
+                global::System.Int32 hash = (global::System.Int32)2166136261;
                 hash = (hash * 16777619) ^ GetType().GetHashCode();
                 hash = (hash * 16777619) ^ global::System.Collections.Generic.EqualityComparer<System.Int32>.Default.GetHashCode(Value);
                 return hash;
             }
-          }
+        }
 
         private void EnsureInitialized()
         {
@@ -2069,18 +1929,12 @@ public static ValueObjectOrError<@class> TryFrom(System.Int32 value)
 #else
                 global::System.String message = "Use of uninitialized Value Object.";
 #endif
-
                 throw new global::Vogen.ValueObjectValidationException(message);
             }
         }
 
-
-        
-
-        /// <summary>Returns the string representation of the underlying <see cref="System.Int32" />.</summary>
-    public override global::System.String ToString() =>IsInitialized() ? Value.ToString() : "[UNINITIALIZED]";
-
-        
+        /// <summary>Returns the string representation of the underlying <see cref = "System.Int32"/>.</summary>
+        public override global::System.String ToString() => IsInitialized() ? Value.ToString() : "[UNINITIALIZED]";
         /// <summary>
         /// Converts a @class to or from JSON.
         /// </summary>
@@ -2097,14 +1951,13 @@ public static ValueObjectOrError<@class> TryFrom(System.Int32 value)
 
             public override void Write(System.Text.Json.Utf8JsonWriter writer, @class value, global::System.Text.Json.JsonSerializerOptions options)
             {
- #if NET5_0_OR_GREATER
+#if NET5_0_OR_GREATER
                 global::System.Text.Json.JsonSerializer.Serialize(writer, value.Value, options);
- #else
+#else
                 writer.WriteNumberValue(value.Value);
- #endif
+#endif
             }
-
-#if NET6_0_OR_GREATER            
+#if NET6_0_OR_GREATER
             public override @class ReadAsPropertyName(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {
                 return @class.__Deserialize(global::System.Int32.Parse(reader.GetString(), global::System.Globalization.NumberStyles.Any, global::System.Globalization.CultureInfo.InvariantCulture));
@@ -2116,7 +1969,6 @@ public static ValueObjectOrError<@class> TryFrom(System.Int32 value)
             }
 #endif
         }
-
 
         class @classTypeConverter : global::System.ComponentModel.TypeConverter
         {
@@ -2159,28 +2011,21 @@ public static ValueObjectOrError<@class> TryFrom(System.Int32 value)
             }
         }
 
-
-
-
-
         internal sealed class @classDebugView
         {
             private readonly @class _t;
-
             @classDebugView(@class t)
             {
                 _t = t;
             }
 
             public global::System.String UnderlyingType => "System.Int32";
-            public System.Int32 Value => _t.Value ;
-
+            public System.Int32 Value => _t.Value;
             public global::System.String Conversions => @"[global::System.Text.Json.Serialization.JsonConverter(typeof(@classSystemTextJsonConverter))]
 [global::System.ComponentModel.TypeConverter(typeof(@classTypeConverter))]
 ";
-                }
+        }
     }
-
 }
   
 // ------------------------------------------------------------------------------
@@ -2191,49 +2036,40 @@ public static ValueObjectOrError<@class> TryFrom(System.Int32 value)
 //     the code is regenerated.
 // </auto-generated>
 // ------------------------------------------------------------------------------
-
 // Suppress warnings about [Obsolete] member usage in generated code.
 #pragma warning disable CS0618
-
 // Suppress warnings for 'Override methods on comparable types'.
 #pragma warning disable CA1036
-
 // Suppress Error MA0097 : A class that implements IComparable<T> or IComparable should override comparison operators
 #pragma warning disable MA0097
-
 // Suppress warning for 'The annotation for nullable reference types should only be used in code within a '#nullable' annotations context. Auto-generated code requires an explicit '#nullable' directive in source.'
 // The generator copies signatures from the BCL, e.g. for `TryParse`, and some of those have nullable annotations.
 #pragma warning disable CS8669
-
 // Suppress warnings about CS1591: Missing XML comment for publicly visible type or member 'Type_or_Member'
 #pragma warning disable CS1591
-
 using Vogen;
 
 namespace @bool.@byte.@short.@float.@object
 {
-
-    [global::System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage] 
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Vogen", "1.0.0.0")]
+    [global::System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Vogen", "1.0.0.0")]
     [global::System.Text.Json.Serialization.JsonConverter(typeof(@eventSystemTextJsonConverter))]
-[global::System.ComponentModel.TypeConverter(typeof(@eventTypeConverter))]
-
+    [global::System.ComponentModel.TypeConverter(typeof(@eventTypeConverter))]
     [global::System.Diagnostics.DebuggerTypeProxyAttribute(typeof(@eventDebugView))]
     [global::System.Diagnostics.DebuggerDisplayAttribute("Underlying type: System.String, Value = { _value }")]
-    public partial class @event : global::System.IEquatable<@event>, global::System.IEquatable<System.String> ,  global::System.IComparable<@event>, global::System.IComparable,  global::System.IParsable<@event>
+    public partial class @event : global::System.IEquatable<@event>, global::System.IEquatable<System.String>, global::System.IComparable<@event>, global::System.IComparable, global::System.IParsable<@event>
     {
-#if DEBUG   
-        private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
+#if DEBUG
+private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
 #endif
 #if !VOGEN_NO_VALIDATION
         private readonly global::System.Boolean _isInitialized;
 #endif
         private readonly System.String _value;
-        
-/// <summary>
-/// Gets the underlying <see cref="System.String" /> value if set, otherwise a <see cref="global::Vogen.ValueObjectValidationException" /> is thrown.
-/// </summary>
-public System.String Value
+        /// <summary>
+        /// Gets the underlying <see cref = "System.String"/> value if set, otherwise a <see cref = "global::Vogen.ValueObjectValidationException"/> is thrown.
+        /// </summary>
+        public System.String Value
         {
             [global::System.Diagnostics.DebuggerStepThroughAttribute]
             get
@@ -2242,7 +2078,6 @@ public System.String Value
                 return _value;
             }
         }
-
 
         [global::System.Diagnostics.DebuggerStepThroughAttribute]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -2269,194 +2104,171 @@ public System.String Value
         /// <summary>
         /// Builds an instance from the provided underlying type.
         /// </summary>
-        /// <param name="value">The underlying type.</param>
+        /// <param name = "value">The underlying type.</param>
         /// <returns>An instance of this type.</returns>
         public static @event From(System.String value)
         {
-                        if (value is null)
+            if (value is null)
             {
                 throw new global::Vogen.ValueObjectValidationException("Cannot create a value object with null.");
             }
 
-
-            
-
-            
-
             @event instance = new @event(value);
-
             return instance;
         }
 
         /// <summary>
-/// Tries to build an instance from the provided underlying type.
-/// If a normalization method is provided, it will be called.
-/// If validation is provided, and it fails, false will be returned.
-/// </summary>
-/// <param name="value">The underlying type.</param>
-/// <param name="vo">An instance of the value object.</param>
-/// <returns>True if the value object can be built, otherwise false.</returns>
-public static bool TryFrom(System.String value, 
+        /// Tries to build an instance from the provided underlying type.
+        /// If a normalization method is provided, it will be called.
+        /// If validation is provided, and it fails, false will be returned.
+        /// </summary>
+        /// <param name = "value">The underlying type.</param>
+        /// <param name = "vo">An instance of the value object.</param>
+        /// <returns>True if the value object can be built, otherwise false.</returns>
+        public static bool TryFrom(System.String value,
 #if NETCOREAPP3_0_OR_GREATER
 [global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)]
 #endif
  out @event vo)
-{
-                if (value is null)
+        {
+            if (value is null)
             {
                 vo = default;
                 return false;
             }
 
-    
+            vo = new @event(value);
+            return true;
+        }
 
-    
-
-    vo = new @event(value);
-
-    return true;
-}/// <summary>
-/// Tries to build an instance from the provided underlying value.
-/// If a normalization method is provided, it will be called.
-/// If validation is provided, and it fails, an error will be returned.
-/// </summary>
-/// <param name="value">The primitive value.</param>
-/// <returns>A <see cref="ValueObjectOrError{T}"/> containing either the value object, or an error.</returns>
-public static ValueObjectOrError<@event> TryFrom(System.String value)
-{
-                if (value is null)
+        /// <summary>
+        /// Tries to build an instance from the provided underlying value.
+        /// If a normalization method is provided, it will be called.
+        /// If validation is provided, and it fails, an error will be returned.
+        /// </summary>
+        /// <param name = "value">The primitive value.</param>
+        /// <returns>A <see cref = "ValueObjectOrError{T}"/> containing either the value object, or an error.</returns>
+        public static ValueObjectOrError<@event> TryFrom(System.String value)
+        {
+            if (value is null)
             {
                 return new ValueObjectOrError<@event>(Validation.Invalid("The value provided was null"));
             }
 
+            return new ValueObjectOrError<@event>(new @event(value));
+        }
 
-    
-
-    
-
-    return new ValueObjectOrError<@event>(new @event(value));
-}
-
-[global::System.Runtime.CompilerServices.MethodImpl(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
+        [global::System.Runtime.CompilerServices.MethodImpl(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 #if VOGEN_NO_VALIDATION
   public bool IsInitialized() => true;
 #else
-  public bool IsInitialized() => _isInitialized;
+        public bool IsInitialized() => _isInitialized;
 #endif
-
-          
-
         // only called internally when something has been deserialized into
         // its primitive type.
         private static @event __Deserialize(System.String value)
         {
-                        if (value is null)
+            if (value is null)
             {
                 throw new global::Vogen.ValueObjectValidationException("Cannot create a value object with null.");
             }
 
-
-            
-
-            
-
             return new @event(value);
         }
-        
-            public  global::System.Boolean Equals(@event other)
+
+        public global::System.Boolean Equals(@event other)
+        {
+            if (ReferenceEquals(null, other))
             {
-              if (ReferenceEquals(null, other))
-              {
-                  return false;
-              }
-
-              // It's possible to create uninitialized instances via converters such as EfCore (HasDefaultValue), which call Equals.
-              // We treat anything uninitialized as not equal to anything, even other uninitialized instances of this type.
-              if(!IsInitialized() || !other.IsInitialized()) return false;
-
-              if (ReferenceEquals(this, other))
-              {
-                  return true;
-              }
-
-              return GetType() == other.GetType() && global::System.Collections.Generic.EqualityComparer<System.String>.Default.Equals(Value, other.Value);
-            }
-             public global::System.Boolean Equals(@event other, global::System.Collections.Generic.IEqualityComparer<@event> comparer)
-             {
-                 return comparer.Equals(this, other);
-             }
-
-             
-            public global::System.Boolean Equals(System.String primitive)
-            {
-              return Value.Equals(primitive);
+                return false;
             }
 
-            public global::System.Boolean Equals(System.String primitive, global::System.StringComparer comparer) 
+            // It's possible to create uninitialized instances via converters such as EfCore (HasDefaultValue), which call Equals.
+            // We treat anything uninitialized as not equal to anything, even other uninitialized instances of this type.
+            if (!IsInitialized() || !other.IsInitialized())
+                return false;
+            if (ReferenceEquals(this, other))
             {
-                return comparer.Equals(Value, primitive);
+                return true;
             }
- public override global::System.Boolean Equals(global::System.Object obj)
- {
-     return Equals(obj as @event);
- }
+
+            return GetType() == other.GetType() && global::System.Collections.Generic.EqualityComparer<System.String>.Default.Equals(Value, other.Value);
+        }
+
+        public global::System.Boolean Equals(@event other, global::System.Collections.Generic.IEqualityComparer<@event> comparer)
+        {
+            return comparer.Equals(this, other);
+        }
+
+        public global::System.Boolean Equals(System.String primitive)
+        {
+            return Value.Equals(primitive);
+        }
+
+        public global::System.Boolean Equals(System.String primitive, global::System.StringComparer comparer)
+        {
+            return comparer.Equals(Value, primitive);
+        }
+
+        public override global::System.Boolean Equals(global::System.Object obj)
+        {
+            return Equals(obj as @event);
+        }
 
         public static global::System.Boolean operator ==(@event left, @event right) => Equals(left, right);
         public static global::System.Boolean operator !=(@event left, @event right) => !Equals(left, right);
-
         public static global::System.Boolean operator ==(@event left, System.String right) => Equals(left.Value, right);
         public static global::System.Boolean operator !=(@event left, System.String right) => !Equals(left.Value, right);
-
         public static global::System.Boolean operator ==(System.String left, @event right) => Equals(left, right.Value);
         public static global::System.Boolean operator !=(System.String left, @event right) => !Equals(left, right.Value);
-
         public static explicit operator @event(System.String value) => From(value);
         public static explicit operator System.String(@event value) => value.Value;
-
         public int CompareTo(@event other) => Value.CompareTo(other.Value);
-        public int CompareTo(object other) {
-            if(other is null) return 1;
-            if(other is @event x) return CompareTo(x);
+        public int CompareTo(object other)
+        {
+            if (other is null)
+                return 1;
+            if (other is @event x)
+                return CompareTo(x);
             throw new global::System.ArgumentException("Cannot compare to object as it is not of type @event", nameof(other));
         }
 
-        
-    /// <summary>
-    /// </summary>
-    /// <returns>
-    /// True if the value passes any validation (after running any optional normalization).
-    /// </returns>
-    public static global::System.Boolean TryParse(global::System.String s, global::System.IFormatProvider provider, 
+        /// <summary>
+        /// </summary>
+        /// <returns>
+        /// True if the value passes any validation (after running any optional normalization).
+        /// </returns>
+        public static global::System.Boolean TryParse(global::System.String s, global::System.IFormatProvider provider,
 #if NETCOREAPP3_0_OR_GREATER
 [global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)]
 #endif
- out @event result) {
-            
-            
+ out @event result)
+        {
             result = new @event(s);
             return true;
-    }
-    /// <summary>
-    /// </summary>
-    /// <returns>
-    /// The value created via the <see cref="From(global::System.String)"/> method.
-    /// </returns>
-    /// <exception cref="global::Vogen.ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
-    public static @event Parse(global::System.String s, global::System.IFormatProvider provider) {
-        return From(s);
-    }
+        }
 
+        /// <summary>
+        /// </summary>
+        /// <returns>
+        /// The value created via the <see cref = "From(global::System.String)"/> method.
+        /// </returns>
+        /// <exception cref = "global::Vogen.ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
+        public static @event Parse(global::System.String s, global::System.IFormatProvider provider)
+        {
+            return From(s);
+        }
 
-          public override global::System.Int32 GetHashCode()
-          {
+        public override global::System.Int32 GetHashCode()
+        {
             unchecked // Overflow is fine, just wrap
             {
-                global::System.Int32 hash = (global::System.Int32) 2166136261;
+                global::System.Int32 hash = (global::System.Int32)2166136261;
                 hash = (hash * 16777619) ^ GetType().GetHashCode();
                 hash = (hash * 16777619) ^ global::System.Collections.Generic.EqualityComparer<System.String>.Default.GetHashCode(Value);
                 return hash;
             }
-          }
+        }
 
         private void EnsureInitialized()
         {
@@ -2467,18 +2279,12 @@ public static ValueObjectOrError<@event> TryFrom(System.String value)
 #else
                 global::System.String message = "Use of uninitialized Value Object.";
 #endif
-
                 throw new global::Vogen.ValueObjectValidationException(message);
             }
         }
 
-
-        
-
-        /// <summary>Returns the string representation of the underlying <see cref="System.String" />.</summary>
-    public override global::System.String ToString() =>IsInitialized() ? Value.ToString() : "[UNINITIALIZED]";
-
-        
+        /// <summary>Returns the string representation of the underlying <see cref = "System.String"/>.</summary>
+        public override global::System.String ToString() => IsInitialized() ? Value.ToString() : "[UNINITIALIZED]";
         /// <summary>
         /// Converts a @event to or from JSON.
         /// </summary>
@@ -2493,7 +2299,6 @@ public static ValueObjectOrError<@event> TryFrom(System.String value)
             {
                 writer.WriteStringValue(value.Value);
             }
-
 #if NET6_0_OR_GREATER
             public override @event ReadAsPropertyName(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {
@@ -2504,9 +2309,8 @@ public static ValueObjectOrError<@event> TryFrom(System.String value)
             {
                 writer.WritePropertyName(value.Value);
             }
-#endif            
+#endif
         }
-
 
         class @eventTypeConverter : global::System.ComponentModel.TypeConverter
         {
@@ -2545,28 +2349,21 @@ public static ValueObjectOrError<@event> TryFrom(System.String value)
             }
         }
 
-
-
-
-
         internal sealed class @eventDebugView
         {
             private readonly @event _t;
-
             @eventDebugView(@event t)
             {
                 _t = t;
             }
 
             public global::System.String UnderlyingType => "System.String";
-            public System.String Value => _t.Value ;
-
+            public System.String Value => _t.Value;
             public global::System.String Conversions => @"[global::System.Text.Json.Serialization.JsonConverter(typeof(@eventSystemTextJsonConverter))]
 [global::System.ComponentModel.TypeConverter(typeof(@eventTypeConverter))]
 ";
-                }
+        }
     }
-
 }
   
 // ------------------------------------------------------------------------------
@@ -2577,49 +2374,40 @@ public static ValueObjectOrError<@event> TryFrom(System.String value)
 //     the code is regenerated.
 // </auto-generated>
 // ------------------------------------------------------------------------------
-
 // Suppress warnings about [Obsolete] member usage in generated code.
 #pragma warning disable CS0618
-
 // Suppress warnings for 'Override methods on comparable types'.
 #pragma warning disable CA1036
-
 // Suppress Error MA0097 : A class that implements IComparable<T> or IComparable should override comparison operators
 #pragma warning disable MA0097
-
 // Suppress warning for 'The annotation for nullable reference types should only be used in code within a '#nullable' annotations context. Auto-generated code requires an explicit '#nullable' directive in source.'
 // The generator copies signatures from the BCL, e.g. for `TryParse`, and some of those have nullable annotations.
 #pragma warning disable CS8669
-
 // Suppress warnings about CS1591: Missing XML comment for publicly visible type or member 'Type_or_Member'
 #pragma warning disable CS1591
-
 using Vogen;
 
 namespace @bool.@byte.@short.@float.@object
 {
-
-    [global::System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage] 
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Vogen", "1.0.0.0")]
+    [global::System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Vogen", "1.0.0.0")]
     [global::System.Text.Json.Serialization.JsonConverter(typeof(@event2SystemTextJsonConverter))]
-[global::System.ComponentModel.TypeConverter(typeof(@event2TypeConverter))]
-
+    [global::System.ComponentModel.TypeConverter(typeof(@event2TypeConverter))]
     [global::System.Diagnostics.DebuggerTypeProxyAttribute(typeof(@event2DebugView))]
     [global::System.Diagnostics.DebuggerDisplayAttribute("Underlying type: @record.@struct.@float.@decimal, Value = { _value }")]
-    public partial class @event2 : global::System.IEquatable<@event2>, global::System.IEquatable<@record.@struct.@float.@decimal> 
+    public partial class @event2 : global::System.IEquatable<@event2>, global::System.IEquatable<@record.@struct.@float.@decimal>
     {
-#if DEBUG   
-        private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
+#if DEBUG
+private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
 #endif
 #if !VOGEN_NO_VALIDATION
         private readonly global::System.Boolean _isInitialized;
 #endif
         private readonly @record.@struct.@float.@decimal _value;
-        
-/// <summary>
-/// Gets the underlying <see cref="@record.@struct.@float.@decimal" /> value if set, otherwise a <see cref="global::Vogen.ValueObjectValidationException" /> is thrown.
-/// </summary>
-public @record.@struct.@float.@decimal Value
+        /// <summary>
+        /// Gets the underlying <see cref = "@record.@struct.@float.@decimal"/> value if set, otherwise a <see cref = "global::Vogen.ValueObjectValidationException"/> is thrown.
+        /// </summary>
+        public @record.@struct.@float.@decimal Value
         {
             [global::System.Diagnostics.DebuggerStepThroughAttribute]
             get
@@ -2628,7 +2416,6 @@ public @record.@struct.@float.@decimal Value
                 return _value;
             }
         }
-
 
         [global::System.Diagnostics.DebuggerStepThroughAttribute]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -2655,144 +2442,109 @@ public @record.@struct.@float.@decimal Value
         /// <summary>
         /// Builds an instance from the provided underlying type.
         /// </summary>
-        /// <param name="value">The underlying type.</param>
+        /// <param name = "value">The underlying type.</param>
         /// <returns>An instance of this type.</returns>
         public static @event2 From(@record.@struct.@float.@decimal value)
         {
-            
-
-            
-
-            
-
             @event2 instance = new @event2(value);
-
             return instance;
         }
 
         /// <summary>
-/// Tries to build an instance from the provided underlying type.
-/// If a normalization method is provided, it will be called.
-/// If validation is provided, and it fails, false will be returned.
-/// </summary>
-/// <param name="value">The underlying type.</param>
-/// <param name="vo">An instance of the value object.</param>
-/// <returns>True if the value object can be built, otherwise false.</returns>
-public static bool TryFrom(@record.@struct.@float.@decimal value, 
+        /// Tries to build an instance from the provided underlying type.
+        /// If a normalization method is provided, it will be called.
+        /// If validation is provided, and it fails, false will be returned.
+        /// </summary>
+        /// <param name = "value">The underlying type.</param>
+        /// <param name = "vo">An instance of the value object.</param>
+        /// <returns>True if the value object can be built, otherwise false.</returns>
+        public static bool TryFrom(@record.@struct.@float.@decimal value,
 #if NETCOREAPP3_0_OR_GREATER
 [global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)]
 #endif
  out @event2 vo)
-{
-    
-    
+        {
+            vo = new @event2(value);
+            return true;
+        }
 
-    
+        /// <summary>
+        /// Tries to build an instance from the provided underlying value.
+        /// If a normalization method is provided, it will be called.
+        /// If validation is provided, and it fails, an error will be returned.
+        /// </summary>
+        /// <param name = "value">The primitive value.</param>
+        /// <returns>A <see cref = "ValueObjectOrError{T}"/> containing either the value object, or an error.</returns>
+        public static ValueObjectOrError<@event2> TryFrom(@record.@struct.@float.@decimal value)
+        {
+            return new ValueObjectOrError<@event2>(new @event2(value));
+        }
 
-    vo = new @event2(value);
-
-    return true;
-}/// <summary>
-/// Tries to build an instance from the provided underlying value.
-/// If a normalization method is provided, it will be called.
-/// If validation is provided, and it fails, an error will be returned.
-/// </summary>
-/// <param name="value">The primitive value.</param>
-/// <returns>A <see cref="ValueObjectOrError{T}"/> containing either the value object, or an error.</returns>
-public static ValueObjectOrError<@event2> TryFrom(@record.@struct.@float.@decimal value)
-{
-    
-
-    
-
-    
-
-    return new ValueObjectOrError<@event2>(new @event2(value));
-}
-
-[global::System.Runtime.CompilerServices.MethodImpl(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
+        [global::System.Runtime.CompilerServices.MethodImpl(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 #if VOGEN_NO_VALIDATION
   public bool IsInitialized() => true;
 #else
-  public bool IsInitialized() => _isInitialized;
+        public bool IsInitialized() => _isInitialized;
 #endif
-
-          
-
         // only called internally when something has been deserialized into
         // its primitive type.
         private static @event2 __Deserialize(@record.@struct.@float.@decimal value)
         {
-            
-
-            
-
-            
-
             return new @event2(value);
         }
-        
-            public  global::System.Boolean Equals(@event2 other)
+
+        public global::System.Boolean Equals(@event2 other)
+        {
+            if (ReferenceEquals(null, other))
             {
-              if (ReferenceEquals(null, other))
-              {
-                  return false;
-              }
-
-              // It's possible to create uninitialized instances via converters such as EfCore (HasDefaultValue), which call Equals.
-              // We treat anything uninitialized as not equal to anything, even other uninitialized instances of this type.
-              if(!IsInitialized() || !other.IsInitialized()) return false;
-
-              if (ReferenceEquals(this, other))
-              {
-                  return true;
-              }
-
-              return GetType() == other.GetType() && global::System.Collections.Generic.EqualityComparer<@record.@struct.@float.@decimal>.Default.Equals(Value, other.Value);
-            }
-             public global::System.Boolean Equals(@event2 other, global::System.Collections.Generic.IEqualityComparer<@event2> comparer)
-             {
-                 return comparer.Equals(this, other);
-             }
-
-             
-            public global::System.Boolean Equals(@record.@struct.@float.@decimal primitive)
-            {
-              return Value.Equals(primitive);
+                return false;
             }
 
- public override global::System.Boolean Equals(global::System.Object obj)
- {
-     return Equals(obj as @event2);
- }
+            // It's possible to create uninitialized instances via converters such as EfCore (HasDefaultValue), which call Equals.
+            // We treat anything uninitialized as not equal to anything, even other uninitialized instances of this type.
+            if (!IsInitialized() || !other.IsInitialized())
+                return false;
+            if (ReferenceEquals(this, other))
+            {
+                return true;
+            }
+
+            return GetType() == other.GetType() && global::System.Collections.Generic.EqualityComparer<@record.@struct.@float.@decimal>.Default.Equals(Value, other.Value);
+        }
+
+        public global::System.Boolean Equals(@event2 other, global::System.Collections.Generic.IEqualityComparer<@event2> comparer)
+        {
+            return comparer.Equals(this, other);
+        }
+
+        public global::System.Boolean Equals(@record.@struct.@float.@decimal primitive)
+        {
+            return Value.Equals(primitive);
+        }
+
+        public override global::System.Boolean Equals(global::System.Object obj)
+        {
+            return Equals(obj as @event2);
+        }
 
         public static global::System.Boolean operator ==(@event2 left, @event2 right) => Equals(left, right);
         public static global::System.Boolean operator !=(@event2 left, @event2 right) => !Equals(left, right);
-
         public static global::System.Boolean operator ==(@event2 left, @record.@struct.@float.@decimal right) => Equals(left.Value, right);
         public static global::System.Boolean operator !=(@event2 left, @record.@struct.@float.@decimal right) => !Equals(left.Value, right);
-
         public static global::System.Boolean operator ==(@record.@struct.@float.@decimal left, @event2 right) => Equals(left, right.Value);
         public static global::System.Boolean operator !=(@record.@struct.@float.@decimal left, @event2 right) => !Equals(left, right.Value);
-
         public static explicit operator @event2(@record.@struct.@float.@decimal value) => From(value);
         public static explicit operator @record.@struct.@float.@decimal(@event2 value) => value.Value;
-
-        
-
-        
-
-
-          public override global::System.Int32 GetHashCode()
-          {
+        public override global::System.Int32 GetHashCode()
+        {
             unchecked // Overflow is fine, just wrap
             {
-                global::System.Int32 hash = (global::System.Int32) 2166136261;
+                global::System.Int32 hash = (global::System.Int32)2166136261;
                 hash = (hash * 16777619) ^ GetType().GetHashCode();
                 hash = (hash * 16777619) ^ global::System.Collections.Generic.EqualityComparer<@record.@struct.@float.@decimal>.Default.GetHashCode(Value);
                 return hash;
             }
-          }
+        }
 
         private void EnsureInitialized()
         {
@@ -2803,18 +2555,12 @@ public static ValueObjectOrError<@event2> TryFrom(@record.@struct.@float.@decima
 #else
                 global::System.String message = "Use of uninitialized Value Object.";
 #endif
-
                 throw new global::Vogen.ValueObjectValidationException(message);
             }
         }
 
-
-        
-
-        /// <summary>Returns the string representation of the underlying <see cref="@record.@struct.@float.@decimal" />.</summary>
-    public override global::System.String ToString() =>IsInitialized() ? Value.ToString() : "[UNINITIALIZED]";
-
-        
+        /// <summary>Returns the string representation of the underlying <see cref = "@record.@struct.@float.@decimal"/>.</summary>
+        public override global::System.String ToString() => IsInitialized() ? Value.ToString() : "[UNINITIALIZED]";
         /// <summary>
         /// Converts a @event2 to or from JSON.
         /// </summary>
@@ -2830,7 +2576,6 @@ public static ValueObjectOrError<@event2> TryFrom(@record.@struct.@float.@decima
             {
                 global::System.Text.Json.JsonSerializer.Serialize(writer, value.Value, options);
             }
-
 #if NET6_0_OR_GREATER
             public override @event2 ReadAsPropertyName(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {
@@ -2842,9 +2587,8 @@ public static ValueObjectOrError<@event2> TryFrom(@record.@struct.@float.@decima
             {
                 writer.WritePropertyName(global::System.Text.Json.JsonSerializer.Serialize(value.Value));
             }
-#endif            
+#endif
         }
-
 
         class @event2TypeConverter : global::System.ComponentModel.TypeConverter
         {
@@ -2852,52 +2596,43 @@ public static ValueObjectOrError<@event2> TryFrom(@record.@struct.@float.@decima
             {
                 return sourceType == typeof(@record.@struct.@float.@decimal);
             }
-        
+
             public override global::System.Object ConvertFrom(global::System.ComponentModel.ITypeDescriptorContext context, global::System.Globalization.CultureInfo culture, global::System.Object value)
             {
                 @record.@struct.@float.@decimal ut = (@record.@struct.@float.@decimal)value;
-
                 return @event2.__Deserialize(ut);
             }
-        
+
             public override bool CanConvertTo(global::System.ComponentModel.ITypeDescriptorContext context, global::System.Type sourceType)
             {
                 return sourceType == typeof(@record.@struct.@float.@decimal);
             }
-        
+
             public override object ConvertTo(global::System.ComponentModel.ITypeDescriptorContext context, global::System.Globalization.CultureInfo culture, global::System.Object value, global::System.Type destinationType)
             {
                 if (value is @event2 idValue)
                 {
                     return idValue.Value;
                 }
-        
+
                 return base.ConvertTo(context, culture, value, destinationType);
             }
         }
 
-
-
-
-
-
         internal sealed class @event2DebugView
         {
             private readonly @event2 _t;
-
             @event2DebugView(@event2 t)
             {
                 _t = t;
             }
 
             public global::System.String UnderlyingType => "@record.@struct.@float.@decimal";
-            public @record.@struct.@float.@decimal Value => _t.Value ;
-
+            public @record.@struct.@float.@decimal Value => _t.Value;
             public global::System.String Conversions => @"[global::System.Text.Json.Serialization.JsonConverter(typeof(@event2SystemTextJsonConverter))]
 [global::System.ComponentModel.TypeConverter(typeof(@event2TypeConverter))]
 ";
-                }
+        }
     }
-
 }
 ]

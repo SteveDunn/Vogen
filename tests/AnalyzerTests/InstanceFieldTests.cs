@@ -3,7 +3,6 @@ using System.Linq;
 using System.Threading.Tasks;
 using FluentAssertions;
 using Microsoft.CodeAnalysis;
-using VerifyXunit;
 using Vogen;
 
 namespace AnalyzerTests

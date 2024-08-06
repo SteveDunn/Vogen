@@ -29,6 +29,7 @@ namespace generator;
 public class VogenTypesFactory : global::System.Text.Json.Serialization.JsonConverterFactory
 {
     public VogenTypesFactory() { }
+    
     private static readonly global::System.Collections.Generic.Dictionary<global::System.Type, global::System.Lazy<global::System.Text.Json.Serialization.JsonConverter>> _lookup = 
         new global::System.Collections.Generic.Dictionary<global::System.Type, global::System.Lazy<global::System.Text.Json.Serialization.JsonConverter>> {
                 { typeof(global::Whatever._casting_public_readonly_partial_structImplicitNonedecimal), new global::System.Lazy<global::System.Text.Json.Serialization.JsonConverter>(() => new global::Whatever._casting_public_readonly_partial_structImplicitNonedecimal._casting_public_readonly_partial_structImplicitNonedecimalSystemTextJsonConverter()) }
@@ -48,49 +49,38 @@ public class VogenTypesFactory : global::System.Text.Json.Serialization.JsonConv
 //     the code is regenerated.
 // </auto-generated>
 // ------------------------------------------------------------------------------
-
 // Suppress warnings about [Obsolete] member usage in generated code.
 #pragma warning disable CS0618
-
 // Suppress warnings for 'Override methods on comparable types'.
 #pragma warning disable CA1036
-
 // Suppress Error MA0097 : A class that implements IComparable<T> or IComparable should override comparison operators
 #pragma warning disable MA0097
-
 // Suppress warning for 'The annotation for nullable reference types should only be used in code within a '#nullable' annotations context. Auto-generated code requires an explicit '#nullable' directive in source.'
 // The generator copies signatures from the BCL, e.g. for `TryParse`, and some of those have nullable annotations.
 #pragma warning disable CS8669
-
 // Suppress warnings about CS1591: Missing XML comment for publicly visible type or member 'Type_or_Member'
 #pragma warning disable CS1591
-
 using Vogen;
 
 namespace Whatever
 {
-
-    [global::System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage] 
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Vogen", "1.0.0.0")]
+    [global::System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Vogen", "1.0.0.0")]
     [global::System.Text.Json.Serialization.JsonConverter(typeof(_casting_public_readonly_partial_structImplicitNonedecimalSystemTextJsonConverter))]
-[global::System.ComponentModel.TypeConverter(typeof(_casting_public_readonly_partial_structImplicitNonedecimalTypeConverter))]
-
+    [global::System.ComponentModel.TypeConverter(typeof(_casting_public_readonly_partial_structImplicitNonedecimalTypeConverter))]
     [global::System.Diagnostics.DebuggerTypeProxyAttribute(typeof(_casting_public_readonly_partial_structImplicitNonedecimalDebugView))]
     [global::System.Diagnostics.DebuggerDisplayAttribute("Underlying type: System.Decimal, Value = { _value }")]
-    public readonly partial struct _casting_public_readonly_partial_structImplicitNonedecimal : global::System.IEquatable<_casting_public_readonly_partial_structImplicitNonedecimal>, global::System.IEquatable<System.Decimal> ,  global::System.IComparable<_casting_public_readonly_partial_structImplicitNonedecimal>, global::System.IComparable
+    public readonly partial struct _casting_public_readonly_partial_structImplicitNonedecimal : global::System.IEquatable<_casting_public_readonly_partial_structImplicitNonedecimal>, global::System.IEquatable<System.Decimal>, global::System.IComparable<_casting_public_readonly_partial_structImplicitNonedecimal>, global::System.IComparable
     {
-#if DEBUG   
-        private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
+#if DEBUG
+private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
 #endif
-
 #if !VOGEN_NO_VALIDATION
         private readonly global::System.Boolean _isInitialized;
 #endif
-        
         private readonly System.Decimal _value;
-
         /// <summary>
-        /// Gets the underlying <see cref="System.Decimal" /> value if set, otherwise a <see cref="global::Vogen.ValueObjectValidationException" /> is thrown.
+        /// Gets the underlying <see cref = "System.Decimal"/> value if set, otherwise a <see cref = "global::Vogen.ValueObjectValidationException"/> is thrown.
         /// </summary>
         public readonly System.Decimal Value
         {
@@ -102,7 +92,6 @@ namespace Whatever
             }
         }
 
-
         [global::System.Diagnostics.DebuggerStepThroughAttribute]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public _casting_public_readonly_partial_structImplicitNonedecimal()
@@ -110,7 +99,6 @@ namespace Whatever
 #if DEBUG
             _stackTrace = new global::System.Diagnostics.StackTrace();
 #endif
-
 #if !VOGEN_NO_VALIDATION
             _isInitialized = false;
 #endif
@@ -118,7 +106,7 @@ namespace Whatever
         }
 
         [global::System.Diagnostics.DebuggerStepThroughAttribute]
-        private _casting_public_readonly_partial_structImplicitNonedecimal(System.Decimal value) 
+        private _casting_public_readonly_partial_structImplicitNonedecimal(System.Decimal value)
         {
             _value = value;
 #if !VOGEN_NO_VALIDATION
@@ -129,225 +117,205 @@ namespace Whatever
         /// <summary>
         /// Builds an instance from the provided underlying type.
         /// </summary>
-        /// <param name="value">The underlying type.</param>
+        /// <param name = "value">The underlying type.</param>
         /// <returns>An instance of this type.</returns>
         public static _casting_public_readonly_partial_structImplicitNonedecimal From(System.Decimal value)
         {
-            
-
-            
-
             _casting_public_readonly_partial_structImplicitNonedecimal instance = new _casting_public_readonly_partial_structImplicitNonedecimal(value);
-
             return instance;
         }
 
         /// <summary>
-/// Tries to build an instance from the provided underlying type.
-/// If a normalization method is provided, it will be called.
-/// If validation is provided, and it fails, false will be returned.
-/// </summary>
-/// <param name="value">The underlying type.</param>
-/// <param name="vo">An instance of the value object.</param>
-/// <returns>True if the value object can be built, otherwise false.</returns>
-public static bool TryFrom(System.Decimal value, 
+        /// Tries to build an instance from the provided underlying type.
+        /// If a normalization method is provided, it will be called.
+        /// If validation is provided, and it fails, false will be returned.
+        /// </summary>
+        /// <param name = "value">The underlying type.</param>
+        /// <param name = "vo">An instance of the value object.</param>
+        /// <returns>True if the value object can be built, otherwise false.</returns>
+        public static bool TryFrom(System.Decimal value,
 #if NETCOREAPP3_0_OR_GREATER
 [global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)]
 #endif
  out _casting_public_readonly_partial_structImplicitNonedecimal vo)
-{
-    
-    
+        {
+            vo = new _casting_public_readonly_partial_structImplicitNonedecimal(value);
+            return true;
+        }
 
-    
+        /// <summary>
+        /// Tries to build an instance from the provided underlying value.
+        /// If a normalization method is provided, it will be called.
+        /// If validation is provided, and it fails, an error will be returned.
+        /// </summary>
+        /// <param name = "value">The primitive value.</param>
+        /// <returns>A <see cref = "ValueObjectOrError{T}"/> containing either the value object, or an error.</returns>
+        public static ValueObjectOrError<_casting_public_readonly_partial_structImplicitNonedecimal> TryFrom(System.Decimal value)
+        {
+            return new ValueObjectOrError<_casting_public_readonly_partial_structImplicitNonedecimal>(new _casting_public_readonly_partial_structImplicitNonedecimal(value));
+        }
 
-    vo = new _casting_public_readonly_partial_structImplicitNonedecimal(value);
-
-    return true;
-}/// <summary>
-/// Tries to build an instance from the provided underlying value.
-/// If a normalization method is provided, it will be called.
-/// If validation is provided, and it fails, an error will be returned.
-/// </summary>
-/// <param name="value">The primitive value.</param>
-/// <returns>A <see cref="ValueObjectOrError{T}"/> containing either the value object, or an error.</returns>
-public static ValueObjectOrError<_casting_public_readonly_partial_structImplicitNonedecimal> TryFrom(System.Decimal value)
-{
-    
-
-    
-
-    
-
-    return new ValueObjectOrError<_casting_public_readonly_partial_structImplicitNonedecimal>(new _casting_public_readonly_partial_structImplicitNonedecimal(value));
-}
-
-[global::System.Runtime.CompilerServices.MethodImpl(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
+        [global::System.Runtime.CompilerServices.MethodImpl(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 #if VOGEN_NO_VALIDATION
   public readonly bool IsInitialized() => true;
 #else
-  public readonly bool IsInitialized() => _isInitialized;
+        public readonly bool IsInitialized() => _isInitialized;
 #endif
-
-        
-
-        public static implicit operator _casting_public_readonly_partial_structImplicitNonedecimal(System.Decimal value) {
-          return new _casting_public_readonly_partial_structImplicitNonedecimal(value);
-}
+        public static implicit operator _casting_public_readonly_partial_structImplicitNonedecimal(System.Decimal value)
+        {
+            return new _casting_public_readonly_partial_structImplicitNonedecimal(value);
+        }
 
         // only called internally when something has been deserialized into
         // its primitive type.
         private static _casting_public_readonly_partial_structImplicitNonedecimal __Deserialize(System.Decimal value)
         {
-            
-
-            
-
             return new _casting_public_readonly_partial_structImplicitNonedecimal(value);
         }
-                  public readonly global::System.Boolean Equals(_casting_public_readonly_partial_structImplicitNonedecimal other)
-          {
+
+        public readonly global::System.Boolean Equals(_casting_public_readonly_partial_structImplicitNonedecimal other)
+        {
             // It's possible to create uninitialized instances via converters such as EfCore (HasDefaultValue), which call Equals.
             // We treat anything uninitialized as not equal to anything, even other uninitialized instances of this type.
-            if(!IsInitialized() || !other.IsInitialized()) return false;
-
+            if (!IsInitialized() || !other.IsInitialized())
+                return false;
             return global::System.Collections.Generic.EqualityComparer<System.Decimal>.Default.Equals(Value, other.Value);
-          }
-          public global::System.Boolean Equals(_casting_public_readonly_partial_structImplicitNonedecimal other, global::System.Collections.Generic.IEqualityComparer<_casting_public_readonly_partial_structImplicitNonedecimal> comparer)
-          {
+        }
+
+        public global::System.Boolean Equals(_casting_public_readonly_partial_structImplicitNonedecimal other, global::System.Collections.Generic.IEqualityComparer<_casting_public_readonly_partial_structImplicitNonedecimal> comparer)
+        {
             return comparer.Equals(this, other);
-          }
+        }
 
-          
-            public readonly global::System.Boolean Equals(System.Decimal primitive)
-            {
-              return Value.Equals(primitive);
-            }
+        public readonly global::System.Boolean Equals(System.Decimal primitive)
+        {
+            return Value.Equals(primitive);
+        }
 
-          public readonly override global::System.Boolean Equals(global::System.Object obj)
-          {
-            return obj is _casting_public_readonly_partial_structImplicitNonedecimal && Equals((_casting_public_readonly_partial_structImplicitNonedecimal) obj);
-          }
+        public readonly override global::System.Boolean Equals(global::System.Object obj)
+        {
+            return obj is _casting_public_readonly_partial_structImplicitNonedecimal && Equals((_casting_public_readonly_partial_structImplicitNonedecimal)obj);
+        }
 
         public static global::System.Boolean operator ==(_casting_public_readonly_partial_structImplicitNonedecimal left, _casting_public_readonly_partial_structImplicitNonedecimal right) => Equals(left, right);
         public static global::System.Boolean operator !=(_casting_public_readonly_partial_structImplicitNonedecimal left, _casting_public_readonly_partial_structImplicitNonedecimal right) => !(left == right);
-
         public static global::System.Boolean operator ==(_casting_public_readonly_partial_structImplicitNonedecimal left, System.Decimal right) => Equals(left.Value, right);
         public static global::System.Boolean operator !=(_casting_public_readonly_partial_structImplicitNonedecimal left, System.Decimal right) => !Equals(left.Value, right);
-
         public static global::System.Boolean operator ==(System.Decimal left, _casting_public_readonly_partial_structImplicitNonedecimal right) => Equals(left, right.Value);
         public static global::System.Boolean operator !=(System.Decimal left, _casting_public_readonly_partial_structImplicitNonedecimal right) => !Equals(left, right.Value);
-
         public int CompareTo(_casting_public_readonly_partial_structImplicitNonedecimal other) => Value.CompareTo(other.Value);
-        public int CompareTo(object other) {
-            if(other is null) return 1;
-            if(other is _casting_public_readonly_partial_structImplicitNonedecimal x) return CompareTo(x);
+        public int CompareTo(object other)
+        {
+            if (other is null)
+                return 1;
+            if (other is _casting_public_readonly_partial_structImplicitNonedecimal x)
+                return CompareTo(x);
             throw new global::System.ArgumentException("Cannot compare to object as it is not of type _casting_public_readonly_partial_structImplicitNonedecimal", nameof(other));
         }
 
-        
-    /// <inheritdoc cref="decimal.TryParse(string, out decimal)"/>
-    /// <summary>
-    /// </summary>
-    /// <returns>
-    /// True if the value could a) be parsed by the underlying type, and b) passes any validation (after running any optional normalization).
-    /// </returns>
-    public static global::System.Boolean TryParse(string s, 
+        /// <inheritdoc cref = "decimal.TryParse(string, out decimal)"/>
+        /// <summary>
+        /// </summary>
+        /// <returns>
+        /// True if the value could a) be parsed by the underlying type, and b) passes any validation (after running any optional normalization).
+        /// </returns>
+        public static global::System.Boolean TryParse(string s,
 #if NETCOREAPP3_0_OR_GREATER
 [global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)]
 #endif
- out _casting_public_readonly_partial_structImplicitNonedecimal result) {
-        if(System.Decimal.TryParse(s, out var __v)) {
-            
-            
-            result = new _casting_public_readonly_partial_structImplicitNonedecimal(__v);
-            return true;
+ out _casting_public_readonly_partial_structImplicitNonedecimal result)
+        {
+            if (System.Decimal.TryParse(s, out var __v))
+            {
+                result = new _casting_public_readonly_partial_structImplicitNonedecimal(__v);
+                return true;
+            }
+
+            result = default;
+            return false;
         }
 
-        result = default;
-        return false;
-    }
-
-    /// <inheritdoc cref="decimal.TryParse(string, System.Globalization.NumberStyles, System.IFormatProvider, out decimal)"/>
-    /// <summary>
-    /// </summary>
-    /// <returns>
-    /// True if the value could a) be parsed by the underlying type, and b) passes any validation (after running any optional normalization).
-    /// </returns>
-    public static global::System.Boolean TryParse(string s, global::System.Globalization.NumberStyles style, global::System.IFormatProvider provider, 
+        /// <inheritdoc cref = "decimal.TryParse(string, System.Globalization.NumberStyles, System.IFormatProvider, out decimal)"/>
+        /// <summary>
+        /// </summary>
+        /// <returns>
+        /// True if the value could a) be parsed by the underlying type, and b) passes any validation (after running any optional normalization).
+        /// </returns>
+        public static global::System.Boolean TryParse(string s, global::System.Globalization.NumberStyles style, global::System.IFormatProvider provider,
 #if NETCOREAPP3_0_OR_GREATER
 [global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)]
 #endif
- out _casting_public_readonly_partial_structImplicitNonedecimal result) {
-        if(System.Decimal.TryParse(s, style, provider, out var __v)) {
-            
-            
-            result = new _casting_public_readonly_partial_structImplicitNonedecimal(__v);
-            return true;
+ out _casting_public_readonly_partial_structImplicitNonedecimal result)
+        {
+            if (System.Decimal.TryParse(s, style, provider, out var __v))
+            {
+                result = new _casting_public_readonly_partial_structImplicitNonedecimal(__v);
+                return true;
+            }
+
+            result = default;
+            return false;
         }
 
-        result = default;
-        return false;
-    }
+        /// <inheritdoc cref = "decimal.Parse(string)"/>
+        /// <summary>
+        /// </summary>
+        /// <returns>
+        /// The value created by calling the Parse method on the primitive.
+        /// </returns>
+        /// <exception cref = "global::Vogen.ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
+        public static _casting_public_readonly_partial_structImplicitNonedecimal Parse(string s)
+        {
+            var r = System.Decimal.Parse(s);
+            return From(r);
+        }
 
-    /// <inheritdoc cref="decimal.Parse(string)"/>
-    /// <summary>
-    /// </summary>
-    /// <returns>
-    /// The value created by calling the Parse method on the primitive.
-    /// </returns>
-    /// <exception cref="global::Vogen.ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
-    public static _casting_public_readonly_partial_structImplicitNonedecimal Parse(string s) {
-        var r = System.Decimal.Parse(s);
-        return From(r);
-    }
+        /// <inheritdoc cref = "decimal.Parse(string, System.Globalization.NumberStyles)"/>
+        /// <summary>
+        /// </summary>
+        /// <returns>
+        /// The value created by calling the Parse method on the primitive.
+        /// </returns>
+        /// <exception cref = "global::Vogen.ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
+        public static _casting_public_readonly_partial_structImplicitNonedecimal Parse(string s, global::System.Globalization.NumberStyles style)
+        {
+            var r = System.Decimal.Parse(s, style);
+            return From(r);
+        }
 
-    /// <inheritdoc cref="decimal.Parse(string, System.Globalization.NumberStyles)"/>
-    /// <summary>
-    /// </summary>
-    /// <returns>
-    /// The value created by calling the Parse method on the primitive.
-    /// </returns>
-    /// <exception cref="global::Vogen.ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
-    public static _casting_public_readonly_partial_structImplicitNonedecimal Parse(string s, global::System.Globalization.NumberStyles style) {
-        var r = System.Decimal.Parse(s, style);
-        return From(r);
-    }
+        /// <inheritdoc cref = "decimal.Parse(string, System.Globalization.NumberStyles, System.IFormatProvider)"/>
+        /// <summary>
+        /// </summary>
+        /// <returns>
+        /// The value created by calling the Parse method on the primitive.
+        /// </returns>
+        /// <exception cref = "global::Vogen.ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
+        public static _casting_public_readonly_partial_structImplicitNonedecimal Parse(string s, global::System.Globalization.NumberStyles style, global::System.IFormatProvider provider)
+        {
+            var r = System.Decimal.Parse(s, style, provider);
+            return From(r);
+        }
 
-    /// <inheritdoc cref="decimal.Parse(string, System.Globalization.NumberStyles, System.IFormatProvider)"/>
-    /// <summary>
-    /// </summary>
-    /// <returns>
-    /// The value created by calling the Parse method on the primitive.
-    /// </returns>
-    /// <exception cref="global::Vogen.ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
-    public static _casting_public_readonly_partial_structImplicitNonedecimal Parse(string s, global::System.Globalization.NumberStyles style, global::System.IFormatProvider provider) {
-        var r = System.Decimal.Parse(s, style, provider);
-        return From(r);
-    }
+        /// <inheritdoc cref = "decimal.Parse(string, System.IFormatProvider)"/>
+        /// <summary>
+        /// </summary>
+        /// <returns>
+        /// The value created by calling the Parse method on the primitive.
+        /// </returns>
+        /// <exception cref = "global::Vogen.ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
+        public static _casting_public_readonly_partial_structImplicitNonedecimal Parse(string s, global::System.IFormatProvider provider)
+        {
+            var r = System.Decimal.Parse(s, provider);
+            return From(r);
+        }
 
-    /// <inheritdoc cref="decimal.Parse(string, System.IFormatProvider)"/>
-    /// <summary>
-    /// </summary>
-    /// <returns>
-    /// The value created by calling the Parse method on the primitive.
-    /// </returns>
-    /// <exception cref="global::Vogen.ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
-    public static _casting_public_readonly_partial_structImplicitNonedecimal Parse(string s, global::System.IFormatProvider provider) {
-        var r = System.Decimal.Parse(s, provider);
-        return From(r);
-    }
-
-        
-        
-          public readonly override global::System.Int32 GetHashCode()
-          {
+        public readonly override global::System.Int32 GetHashCode()
+        {
             return global::System.Collections.Generic.EqualityComparer<System.Decimal>.Default.GetHashCode(Value);
-          }
+        }
 
-        /// <summary>Returns the string representation of the underlying <see cref="System.Decimal" />.</summary>
-    public readonly override global::System.String ToString() =>IsInitialized() ? Value.ToString() : "[UNINITIALIZED]";
-
+        /// <summary>Returns the string representation of the underlying <see cref = "System.Decimal"/>.</summary>
+        public readonly override global::System.String ToString() => IsInitialized() ? Value.ToString() : "[UNINITIALIZED]";
         private readonly void EnsureInitialized()
         {
             if (!IsInitialized())
@@ -357,14 +325,10 @@ public static ValueObjectOrError<_casting_public_readonly_partial_structImplicit
 #else
                 global::System.String message = "Use of uninitialized Value Object.";
 #endif
-
                 throw new global::Vogen.ValueObjectValidationException(message);
             }
         }
 
-        
- 
-        
         /// <summary>
         /// Converts a _casting_public_readonly_partial_structImplicitNonedecimal to or from JSON.
         /// </summary>
@@ -381,13 +345,12 @@ public static ValueObjectOrError<_casting_public_readonly_partial_structImplicit
 
             public override void Write(System.Text.Json.Utf8JsonWriter writer, _casting_public_readonly_partial_structImplicitNonedecimal value, global::System.Text.Json.JsonSerializerOptions options)
             {
- #if NET5_0_OR_GREATER
+#if NET5_0_OR_GREATER
                 global::System.Text.Json.JsonSerializer.Serialize(writer, value.Value, options);
- #else
+#else
                 writer.WriteNumberValue(value.Value);
- #endif
+#endif
             }
-
 #if NET6_0_OR_GREATER
             public override _casting_public_readonly_partial_structImplicitNonedecimal ReadAsPropertyName(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {
@@ -398,9 +361,8 @@ public static ValueObjectOrError<_casting_public_readonly_partial_structImplicit
             {
                 writer.WritePropertyName(value.Value.ToString(global::System.Globalization.CultureInfo.InvariantCulture));
             }
-#endif            
+#endif
         }
-
 
         class _casting_public_readonly_partial_structImplicitNonedecimalTypeConverter : global::System.ComponentModel.TypeConverter
         {
@@ -443,32 +405,22 @@ public static ValueObjectOrError<_casting_public_readonly_partial_structImplicit
             }
         }
 
-
-
-
-
-        
-            internal sealed class _casting_public_readonly_partial_structImplicitNonedecimalDebugView
+        internal sealed class _casting_public_readonly_partial_structImplicitNonedecimalDebugView
+        {
+            private readonly _casting_public_readonly_partial_structImplicitNonedecimal _t;
+            _casting_public_readonly_partial_structImplicitNonedecimalDebugView(_casting_public_readonly_partial_structImplicitNonedecimal t)
             {
-                private readonly _casting_public_readonly_partial_structImplicitNonedecimal _t;
-
-                _casting_public_readonly_partial_structImplicitNonedecimalDebugView(_casting_public_readonly_partial_structImplicitNonedecimal t)
-                {
-                    _t = t;
-                }
-
-                public global::System.Boolean IsInitialized => _t.IsInitialized();
-                public global::System.String UnderlyingType => "System.Decimal";
-                public global::System.String Value => _t.IsInitialized() ? _t._value.ToString() : "[not initialized]" ;
-
-                #if DEBUG
-                    public global::System.String CreatedWith => _t._stackTrace?.ToString() ?? "the From method";
-                #endif
-
-                public global::System.String Conversions => @"Default";
+                _t = t;
             }
 
-}
-
+            public global::System.Boolean IsInitialized => _t.IsInitialized();
+            public global::System.String UnderlyingType => "System.Decimal";
+            public global::System.String Value => _t.IsInitialized() ? _t._value.ToString() : "[not initialized]";
+#if DEBUG
+        public global::System.String CreatedWith => _t._stackTrace?.ToString() ?? "the From method";
+#endif
+            public global::System.String Conversions => @"Default";
+        }
+    }
 }
 ]

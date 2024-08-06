@@ -2,7 +2,6 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.CodeAnalysis.CSharp;
 using Shared;
-using VerifyXunit;
 using Vogen;
 
 namespace SnapshotTests.StaticAbstracts;

@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using VerifyXunit;
 using Vogen;
 
 namespace SnapshotTests.SystemTextJsonGeneration;

@@ -29,6 +29,7 @@ namespace generator;
 public class VogenTypesFactory : global::System.Text.Json.Serialization.JsonConverterFactory
 {
     public VogenTypesFactory() { }
+    
     private static readonly global::System.Collections.Generic.Dictionary<global::System.Type, global::System.Lazy<global::System.Text.Json.Serialization.JsonConverter>> _lookup = 
         new global::System.Collections.Generic.Dictionary<global::System.Type, global::System.Lazy<global::System.Text.Json.Serialization.JsonConverter>> {
                 { typeof(global::Whatever.internal_readonly_partial_structConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterdecimal), new global::System.Lazy<global::System.Text.Json.Serialization.JsonConverter>(() => new global::Whatever.internal_readonly_partial_structConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterdecimal.internal_readonly_partial_structConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterdecimalSystemTextJsonConverter()) }
@@ -48,49 +49,38 @@ public class VogenTypesFactory : global::System.Text.Json.Serialization.JsonConv
 //     the code is regenerated.
 // </auto-generated>
 // ------------------------------------------------------------------------------
-
 // Suppress warnings about [Obsolete] member usage in generated code.
 #pragma warning disable CS0618
-
 // Suppress warnings for 'Override methods on comparable types'.
 #pragma warning disable CA1036
-
 // Suppress Error MA0097 : A class that implements IComparable<T> or IComparable should override comparison operators
 #pragma warning disable MA0097
-
 // Suppress warning for 'The annotation for nullable reference types should only be used in code within a '#nullable' annotations context. Auto-generated code requires an explicit '#nullable' directive in source.'
 // The generator copies signatures from the BCL, e.g. for `TryParse`, and some of those have nullable annotations.
 #pragma warning disable CS8669
-
 // Suppress warnings about CS1591: Missing XML comment for publicly visible type or member 'Type_or_Member'
 #pragma warning disable CS1591
-
 using Vogen;
 
 namespace Whatever
 {
-
-    [global::System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage] 
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Vogen", "1.0.0.0")]
+    [global::System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Vogen", "1.0.0.0")]
     [global::System.Text.Json.Serialization.JsonConverter(typeof(internal_readonly_partial_structConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterdecimalSystemTextJsonConverter))]
-[global::Newtonsoft.Json.JsonConverter(typeof(internal_readonly_partial_structConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterdecimalNewtonsoftJsonConverter))]
-
+    [global::Newtonsoft.Json.JsonConverter(typeof(internal_readonly_partial_structConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterdecimalNewtonsoftJsonConverter))]
     [global::System.Diagnostics.DebuggerTypeProxyAttribute(typeof(internal_readonly_partial_structConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterdecimalDebugView))]
     [global::System.Diagnostics.DebuggerDisplayAttribute("Underlying type: System.Decimal, Value = { _value }")]
-    internal readonly partial struct internal_readonly_partial_structConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterdecimal : global::System.IEquatable<internal_readonly_partial_structConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterdecimal>, global::System.IEquatable<System.Decimal> ,  global::System.IComparable<internal_readonly_partial_structConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterdecimal>, global::System.IComparable,  global::System.IParsable<internal_readonly_partial_structConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterdecimal>,  global::System.ISpanParsable<internal_readonly_partial_structConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterdecimal>,  global::System.IUtf8SpanParsable<internal_readonly_partial_structConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterdecimal>
+    internal readonly partial struct internal_readonly_partial_structConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterdecimal : global::System.IEquatable<internal_readonly_partial_structConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterdecimal>, global::System.IEquatable<System.Decimal>, global::System.IComparable<internal_readonly_partial_structConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterdecimal>, global::System.IComparable, global::System.IParsable<internal_readonly_partial_structConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterdecimal>, global::System.ISpanParsable<internal_readonly_partial_structConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterdecimal>, global::System.IUtf8SpanParsable<internal_readonly_partial_structConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterdecimal>
     {
-#if DEBUG   
-        private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
+#if DEBUG
+private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
 #endif
-
 #if !VOGEN_NO_VALIDATION
         private readonly global::System.Boolean _isInitialized;
 #endif
-        
         private readonly System.Decimal _value;
-
         /// <summary>
-        /// Gets the underlying <see cref="System.Decimal" /> value if set, otherwise a <see cref="global::Vogen.ValueObjectValidationException" /> is thrown.
+        /// Gets the underlying <see cref = "System.Decimal"/> value if set, otherwise a <see cref = "global::Vogen.ValueObjectValidationException"/> is thrown.
         /// </summary>
         public readonly System.Decimal Value
         {
@@ -102,7 +92,6 @@ namespace Whatever
             }
         }
 
-
         [global::System.Diagnostics.DebuggerStepThroughAttribute]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public internal_readonly_partial_structConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterdecimal()
@@ -110,7 +99,6 @@ namespace Whatever
 #if DEBUG
             _stackTrace = new global::System.Diagnostics.StackTrace();
 #endif
-
 #if !VOGEN_NO_VALIDATION
             _isInitialized = false;
 #endif
@@ -118,7 +106,7 @@ namespace Whatever
         }
 
         [global::System.Diagnostics.DebuggerStepThroughAttribute]
-        private internal_readonly_partial_structConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterdecimal(System.Decimal value) 
+        private internal_readonly_partial_structConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterdecimal(System.Decimal value)
         {
             _value = value;
 #if !VOGEN_NO_VALIDATION
@@ -129,426 +117,408 @@ namespace Whatever
         /// <summary>
         /// Builds an instance from the provided underlying type.
         /// </summary>
-        /// <param name="value">The underlying type.</param>
+        /// <param name = "value">The underlying type.</param>
         /// <returns>An instance of this type.</returns>
         public static internal_readonly_partial_structConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterdecimal From(System.Decimal value)
         {
-            
-
-            
-
             internal_readonly_partial_structConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterdecimal instance = new internal_readonly_partial_structConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterdecimal(value);
-
             return instance;
         }
 
         /// <summary>
-/// Tries to build an instance from the provided underlying type.
-/// If a normalization method is provided, it will be called.
-/// If validation is provided, and it fails, false will be returned.
-/// </summary>
-/// <param name="value">The underlying type.</param>
-/// <param name="vo">An instance of the value object.</param>
-/// <returns>True if the value object can be built, otherwise false.</returns>
-public static bool TryFrom(System.Decimal value, 
+        /// Tries to build an instance from the provided underlying type.
+        /// If a normalization method is provided, it will be called.
+        /// If validation is provided, and it fails, false will be returned.
+        /// </summary>
+        /// <param name = "value">The underlying type.</param>
+        /// <param name = "vo">An instance of the value object.</param>
+        /// <returns>True if the value object can be built, otherwise false.</returns>
+        public static bool TryFrom(System.Decimal value,
 #if NETCOREAPP3_0_OR_GREATER
 [global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)]
 #endif
  out internal_readonly_partial_structConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterdecimal vo)
-{
-    
-    
+        {
+            vo = new internal_readonly_partial_structConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterdecimal(value);
+            return true;
+        }
 
-    
+        /// <summary>
+        /// Tries to build an instance from the provided underlying value.
+        /// If a normalization method is provided, it will be called.
+        /// If validation is provided, and it fails, an error will be returned.
+        /// </summary>
+        /// <param name = "value">The primitive value.</param>
+        /// <returns>A <see cref = "ValueObjectOrError{T}"/> containing either the value object, or an error.</returns>
+        public static ValueObjectOrError<internal_readonly_partial_structConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterdecimal> TryFrom(System.Decimal value)
+        {
+            return new ValueObjectOrError<internal_readonly_partial_structConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterdecimal>(new internal_readonly_partial_structConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterdecimal(value));
+        }
 
-    vo = new internal_readonly_partial_structConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterdecimal(value);
-
-    return true;
-}/// <summary>
-/// Tries to build an instance from the provided underlying value.
-/// If a normalization method is provided, it will be called.
-/// If validation is provided, and it fails, an error will be returned.
-/// </summary>
-/// <param name="value">The primitive value.</param>
-/// <returns>A <see cref="ValueObjectOrError{T}"/> containing either the value object, or an error.</returns>
-public static ValueObjectOrError<internal_readonly_partial_structConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterdecimal> TryFrom(System.Decimal value)
-{
-    
-
-    
-
-    
-
-    return new ValueObjectOrError<internal_readonly_partial_structConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterdecimal>(new internal_readonly_partial_structConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterdecimal(value));
-}
-
-[global::System.Runtime.CompilerServices.MethodImpl(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
+        [global::System.Runtime.CompilerServices.MethodImpl(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 #if VOGEN_NO_VALIDATION
   public readonly bool IsInitialized() => true;
 #else
-  public readonly bool IsInitialized() => _isInitialized;
+        public readonly bool IsInitialized() => _isInitialized;
 #endif
-
-        
-
         public static explicit operator internal_readonly_partial_structConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterdecimal(System.Decimal value) => From(value);
         public static explicit operator System.Decimal(internal_readonly_partial_structConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterdecimal value) => value.Value;
-
         // only called internally when something has been deserialized into
         // its primitive type.
         private static internal_readonly_partial_structConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterdecimal __Deserialize(System.Decimal value)
         {
-            
-
-            
-
             return new internal_readonly_partial_structConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterdecimal(value);
         }
-                  public readonly global::System.Boolean Equals(internal_readonly_partial_structConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterdecimal other)
-          {
+
+        public readonly global::System.Boolean Equals(internal_readonly_partial_structConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterdecimal other)
+        {
             // It's possible to create uninitialized instances via converters such as EfCore (HasDefaultValue), which call Equals.
             // We treat anything uninitialized as not equal to anything, even other uninitialized instances of this type.
-            if(!IsInitialized() || !other.IsInitialized()) return false;
-
+            if (!IsInitialized() || !other.IsInitialized())
+                return false;
             return global::System.Collections.Generic.EqualityComparer<System.Decimal>.Default.Equals(Value, other.Value);
-          }
-          public global::System.Boolean Equals(internal_readonly_partial_structConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterdecimal other, global::System.Collections.Generic.IEqualityComparer<internal_readonly_partial_structConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterdecimal> comparer)
-          {
+        }
+
+        public global::System.Boolean Equals(internal_readonly_partial_structConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterdecimal other, global::System.Collections.Generic.IEqualityComparer<internal_readonly_partial_structConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterdecimal> comparer)
+        {
             return comparer.Equals(this, other);
-          }
+        }
 
-          
-            public readonly global::System.Boolean Equals(System.Decimal primitive)
-            {
-              return Value.Equals(primitive);
-            }
+        public readonly global::System.Boolean Equals(System.Decimal primitive)
+        {
+            return Value.Equals(primitive);
+        }
 
-          public readonly override global::System.Boolean Equals(global::System.Object obj)
-          {
-            return obj is internal_readonly_partial_structConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterdecimal && Equals((internal_readonly_partial_structConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterdecimal) obj);
-          }
+        public readonly override global::System.Boolean Equals(global::System.Object obj)
+        {
+            return obj is internal_readonly_partial_structConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterdecimal && Equals((internal_readonly_partial_structConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterdecimal)obj);
+        }
 
         public static global::System.Boolean operator ==(internal_readonly_partial_structConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterdecimal left, internal_readonly_partial_structConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterdecimal right) => Equals(left, right);
         public static global::System.Boolean operator !=(internal_readonly_partial_structConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterdecimal left, internal_readonly_partial_structConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterdecimal right) => !(left == right);
-
         public static global::System.Boolean operator ==(internal_readonly_partial_structConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterdecimal left, System.Decimal right) => Equals(left.Value, right);
         public static global::System.Boolean operator !=(internal_readonly_partial_structConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterdecimal left, System.Decimal right) => !Equals(left.Value, right);
-
         public static global::System.Boolean operator ==(System.Decimal left, internal_readonly_partial_structConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterdecimal right) => Equals(left, right.Value);
         public static global::System.Boolean operator !=(System.Decimal left, internal_readonly_partial_structConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterdecimal right) => !Equals(left, right.Value);
-
         public int CompareTo(internal_readonly_partial_structConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterdecimal other) => Value.CompareTo(other.Value);
-        public int CompareTo(object other) {
-            if(other is null) return 1;
-            if(other is internal_readonly_partial_structConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterdecimal x) return CompareTo(x);
+        public int CompareTo(object other)
+        {
+            if (other is null)
+                return 1;
+            if (other is internal_readonly_partial_structConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterdecimal x)
+                return CompareTo(x);
             throw new global::System.ArgumentException("Cannot compare to object as it is not of type internal_readonly_partial_structConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterdecimal", nameof(other));
         }
 
-        
-    /// <inheritdoc cref="decimal.TryParse(System.ReadOnlySpan{byte}, out decimal)"/>
-    /// <summary>
-    /// </summary>
-    /// <returns>
-    /// True if the value could a) be parsed by the underlying type, and b) passes any validation (after running any optional normalization).
-    /// </returns>
-    public static global::System.Boolean TryParse(global::System.ReadOnlySpan<byte> utf8Text, 
+        /// <inheritdoc cref = "decimal.TryParse(System.ReadOnlySpan{byte}, out decimal)"/>
+        /// <summary>
+        /// </summary>
+        /// <returns>
+        /// True if the value could a) be parsed by the underlying type, and b) passes any validation (after running any optional normalization).
+        /// </returns>
+        public static global::System.Boolean TryParse(global::System.ReadOnlySpan<byte> utf8Text,
 #if NETCOREAPP3_0_OR_GREATER
 [global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)]
 #endif
- out internal_readonly_partial_structConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterdecimal result) {
-        if(System.Decimal.TryParse(utf8Text, out var __v)) {
-            
-            
-            result = new internal_readonly_partial_structConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterdecimal(__v);
-            return true;
+ out internal_readonly_partial_structConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterdecimal result)
+        {
+            if (System.Decimal.TryParse(utf8Text, out var __v))
+            {
+                result = new internal_readonly_partial_structConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterdecimal(__v);
+                return true;
+            }
+
+            result = default;
+            return false;
         }
 
-        result = default;
-        return false;
-    }
-
-    /// <inheritdoc cref="decimal.TryParse(System.ReadOnlySpan{byte}, System.Globalization.NumberStyles, System.IFormatProvider?, out decimal)"/>
-    /// <summary>
-    /// </summary>
-    /// <returns>
-    /// True if the value could a) be parsed by the underlying type, and b) passes any validation (after running any optional normalization).
-    /// </returns>
-    public static global::System.Boolean TryParse(global::System.ReadOnlySpan<byte> utf8Text, global::System.Globalization.NumberStyles style, global::System.IFormatProvider provider, 
+        /// <inheritdoc cref = "decimal.TryParse(System.ReadOnlySpan{byte}, System.Globalization.NumberStyles, System.IFormatProvider? , out decimal)"/>
+        /// <summary>
+        /// </summary>
+        /// <returns>
+        /// True if the value could a) be parsed by the underlying type, and b) passes any validation (after running any optional normalization).
+        /// </returns>
+        public static global::System.Boolean TryParse(global::System.ReadOnlySpan<byte> utf8Text, global::System.Globalization.NumberStyles style, global::System.IFormatProvider provider,
 #if NETCOREAPP3_0_OR_GREATER
 [global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)]
 #endif
- out internal_readonly_partial_structConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterdecimal result) {
-        if(System.Decimal.TryParse(utf8Text, style, provider, out var __v)) {
-            
-            
-            result = new internal_readonly_partial_structConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterdecimal(__v);
-            return true;
+ out internal_readonly_partial_structConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterdecimal result)
+        {
+            if (System.Decimal.TryParse(utf8Text, style, provider, out var __v))
+            {
+                result = new internal_readonly_partial_structConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterdecimal(__v);
+                return true;
+            }
+
+            result = default;
+            return false;
         }
 
-        result = default;
-        return false;
-    }
-
-    /// <inheritdoc cref="decimal.TryParse(System.ReadOnlySpan{byte}, System.IFormatProvider?, out decimal)"/>
-    /// <summary>
-    /// </summary>
-    /// <returns>
-    /// True if the value could a) be parsed by the underlying type, and b) passes any validation (after running any optional normalization).
-    /// </returns>
-    public static global::System.Boolean TryParse(global::System.ReadOnlySpan<byte> utf8Text, global::System.IFormatProvider provider, 
+        /// <inheritdoc cref = "decimal.TryParse(System.ReadOnlySpan{byte}, System.IFormatProvider? , out decimal)"/>
+        /// <summary>
+        /// </summary>
+        /// <returns>
+        /// True if the value could a) be parsed by the underlying type, and b) passes any validation (after running any optional normalization).
+        /// </returns>
+        public static global::System.Boolean TryParse(global::System.ReadOnlySpan<byte> utf8Text, global::System.IFormatProvider provider,
 #if NETCOREAPP3_0_OR_GREATER
 [global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)]
 #endif
- out internal_readonly_partial_structConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterdecimal result) {
-        if(System.Decimal.TryParse(utf8Text, provider, out var __v)) {
-            
-            
-            result = new internal_readonly_partial_structConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterdecimal(__v);
-            return true;
+ out internal_readonly_partial_structConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterdecimal result)
+        {
+            if (System.Decimal.TryParse(utf8Text, provider, out var __v))
+            {
+                result = new internal_readonly_partial_structConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterdecimal(__v);
+                return true;
+            }
+
+            result = default;
+            return false;
         }
 
-        result = default;
-        return false;
-    }
-
-    /// <inheritdoc cref="decimal.TryParse(System.ReadOnlySpan{char}, out decimal)"/>
-    /// <summary>
-    /// </summary>
-    /// <returns>
-    /// True if the value could a) be parsed by the underlying type, and b) passes any validation (after running any optional normalization).
-    /// </returns>
-    public static global::System.Boolean TryParse(global::System.ReadOnlySpan<char> s, 
+        /// <inheritdoc cref = "decimal.TryParse(System.ReadOnlySpan{char}, out decimal)"/>
+        /// <summary>
+        /// </summary>
+        /// <returns>
+        /// True if the value could a) be parsed by the underlying type, and b) passes any validation (after running any optional normalization).
+        /// </returns>
+        public static global::System.Boolean TryParse(global::System.ReadOnlySpan<char> s,
 #if NETCOREAPP3_0_OR_GREATER
 [global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)]
 #endif
- out internal_readonly_partial_structConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterdecimal result) {
-        if(System.Decimal.TryParse(s, out var __v)) {
-            
-            
-            result = new internal_readonly_partial_structConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterdecimal(__v);
-            return true;
+ out internal_readonly_partial_structConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterdecimal result)
+        {
+            if (System.Decimal.TryParse(s, out var __v))
+            {
+                result = new internal_readonly_partial_structConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterdecimal(__v);
+                return true;
+            }
+
+            result = default;
+            return false;
         }
 
-        result = default;
-        return false;
-    }
-
-    /// <inheritdoc cref="decimal.TryParse(System.ReadOnlySpan{char}, System.Globalization.NumberStyles, System.IFormatProvider?, out decimal)"/>
-    /// <summary>
-    /// </summary>
-    /// <returns>
-    /// True if the value could a) be parsed by the underlying type, and b) passes any validation (after running any optional normalization).
-    /// </returns>
-    public static global::System.Boolean TryParse(global::System.ReadOnlySpan<char> s, global::System.Globalization.NumberStyles style, global::System.IFormatProvider provider, 
+        /// <inheritdoc cref = "decimal.TryParse(System.ReadOnlySpan{char}, System.Globalization.NumberStyles, System.IFormatProvider? , out decimal)"/>
+        /// <summary>
+        /// </summary>
+        /// <returns>
+        /// True if the value could a) be parsed by the underlying type, and b) passes any validation (after running any optional normalization).
+        /// </returns>
+        public static global::System.Boolean TryParse(global::System.ReadOnlySpan<char> s, global::System.Globalization.NumberStyles style, global::System.IFormatProvider provider,
 #if NETCOREAPP3_0_OR_GREATER
 [global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)]
 #endif
- out internal_readonly_partial_structConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterdecimal result) {
-        if(System.Decimal.TryParse(s, style, provider, out var __v)) {
-            
-            
-            result = new internal_readonly_partial_structConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterdecimal(__v);
-            return true;
+ out internal_readonly_partial_structConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterdecimal result)
+        {
+            if (System.Decimal.TryParse(s, style, provider, out var __v))
+            {
+                result = new internal_readonly_partial_structConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterdecimal(__v);
+                return true;
+            }
+
+            result = default;
+            return false;
         }
 
-        result = default;
-        return false;
-    }
-
-    /// <inheritdoc cref="decimal.TryParse(System.ReadOnlySpan{char}, System.IFormatProvider?, out decimal)"/>
-    /// <summary>
-    /// </summary>
-    /// <returns>
-    /// True if the value could a) be parsed by the underlying type, and b) passes any validation (after running any optional normalization).
-    /// </returns>
-    public static global::System.Boolean TryParse(global::System.ReadOnlySpan<char> s, global::System.IFormatProvider provider, 
+        /// <inheritdoc cref = "decimal.TryParse(System.ReadOnlySpan{char}, System.IFormatProvider? , out decimal)"/>
+        /// <summary>
+        /// </summary>
+        /// <returns>
+        /// True if the value could a) be parsed by the underlying type, and b) passes any validation (after running any optional normalization).
+        /// </returns>
+        public static global::System.Boolean TryParse(global::System.ReadOnlySpan<char> s, global::System.IFormatProvider provider,
 #if NETCOREAPP3_0_OR_GREATER
 [global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)]
 #endif
- out internal_readonly_partial_structConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterdecimal result) {
-        if(System.Decimal.TryParse(s, provider, out var __v)) {
-            
-            
-            result = new internal_readonly_partial_structConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterdecimal(__v);
-            return true;
+ out internal_readonly_partial_structConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterdecimal result)
+        {
+            if (System.Decimal.TryParse(s, provider, out var __v))
+            {
+                result = new internal_readonly_partial_structConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterdecimal(__v);
+                return true;
+            }
+
+            result = default;
+            return false;
         }
 
-        result = default;
-        return false;
-    }
-
-    /// <inheritdoc cref="decimal.TryParse(string?, out decimal)"/>
-    /// <summary>
-    /// </summary>
-    /// <returns>
-    /// True if the value could a) be parsed by the underlying type, and b) passes any validation (after running any optional normalization).
-    /// </returns>
-    public static global::System.Boolean TryParse(string s, 
+        /// <inheritdoc cref = "decimal.TryParse(string? , out decimal)"/>
+        /// <summary>
+        /// </summary>
+        /// <returns>
+        /// True if the value could a) be parsed by the underlying type, and b) passes any validation (after running any optional normalization).
+        /// </returns>
+        public static global::System.Boolean TryParse(string s,
 #if NETCOREAPP3_0_OR_GREATER
 [global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)]
 #endif
- out internal_readonly_partial_structConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterdecimal result) {
-        if(System.Decimal.TryParse(s, out var __v)) {
-            
-            
-            result = new internal_readonly_partial_structConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterdecimal(__v);
-            return true;
+ out internal_readonly_partial_structConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterdecimal result)
+        {
+            if (System.Decimal.TryParse(s, out var __v))
+            {
+                result = new internal_readonly_partial_structConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterdecimal(__v);
+                return true;
+            }
+
+            result = default;
+            return false;
         }
 
-        result = default;
-        return false;
-    }
-
-    /// <inheritdoc cref="decimal.TryParse(string?, System.Globalization.NumberStyles, System.IFormatProvider?, out decimal)"/>
-    /// <summary>
-    /// </summary>
-    /// <returns>
-    /// True if the value could a) be parsed by the underlying type, and b) passes any validation (after running any optional normalization).
-    /// </returns>
-    public static global::System.Boolean TryParse(string s, global::System.Globalization.NumberStyles style, global::System.IFormatProvider provider, 
+        /// <inheritdoc cref = "decimal.TryParse(string? , System.Globalization.NumberStyles, System.IFormatProvider? , out decimal)"/>
+        /// <summary>
+        /// </summary>
+        /// <returns>
+        /// True if the value could a) be parsed by the underlying type, and b) passes any validation (after running any optional normalization).
+        /// </returns>
+        public static global::System.Boolean TryParse(string s, global::System.Globalization.NumberStyles style, global::System.IFormatProvider provider,
 #if NETCOREAPP3_0_OR_GREATER
 [global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)]
 #endif
- out internal_readonly_partial_structConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterdecimal result) {
-        if(System.Decimal.TryParse(s, style, provider, out var __v)) {
-            
-            
-            result = new internal_readonly_partial_structConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterdecimal(__v);
-            return true;
+ out internal_readonly_partial_structConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterdecimal result)
+        {
+            if (System.Decimal.TryParse(s, style, provider, out var __v))
+            {
+                result = new internal_readonly_partial_structConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterdecimal(__v);
+                return true;
+            }
+
+            result = default;
+            return false;
         }
 
-        result = default;
-        return false;
-    }
-
-    /// <inheritdoc cref="decimal.TryParse(string?, System.IFormatProvider?, out decimal)"/>
-    /// <summary>
-    /// </summary>
-    /// <returns>
-    /// True if the value could a) be parsed by the underlying type, and b) passes any validation (after running any optional normalization).
-    /// </returns>
-    public static global::System.Boolean TryParse(string s, global::System.IFormatProvider provider, 
+        /// <inheritdoc cref = "decimal.TryParse(string? , System.IFormatProvider? , out decimal)"/>
+        /// <summary>
+        /// </summary>
+        /// <returns>
+        /// True if the value could a) be parsed by the underlying type, and b) passes any validation (after running any optional normalization).
+        /// </returns>
+        public static global::System.Boolean TryParse(string s, global::System.IFormatProvider provider,
 #if NETCOREAPP3_0_OR_GREATER
 [global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)]
 #endif
- out internal_readonly_partial_structConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterdecimal result) {
-        if(System.Decimal.TryParse(s, provider, out var __v)) {
-            
-            
-            result = new internal_readonly_partial_structConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterdecimal(__v);
-            return true;
+ out internal_readonly_partial_structConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterdecimal result)
+        {
+            if (System.Decimal.TryParse(s, provider, out var __v))
+            {
+                result = new internal_readonly_partial_structConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterdecimal(__v);
+                return true;
+            }
+
+            result = default;
+            return false;
         }
 
-        result = default;
-        return false;
-    }
+        /// <inheritdoc cref = "decimal.Parse(System.ReadOnlySpan{byte}, System.Globalization.NumberStyles, System.IFormatProvider? )"/>
+        /// <summary>
+        /// </summary>
+        /// <returns>
+        /// The value created by calling the Parse method on the primitive.
+        /// </returns>
+        /// <exception cref = "global::Vogen.ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
+        public static internal_readonly_partial_structConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterdecimal Parse(global::System.ReadOnlySpan<byte> utf8Text, global::System.Globalization.NumberStyles style, global::System.IFormatProvider provider)
+        {
+            var r = System.Decimal.Parse(utf8Text, style, provider);
+            return From(r);
+        }
 
-    /// <inheritdoc cref="decimal.Parse(System.ReadOnlySpan{byte}, System.Globalization.NumberStyles, System.IFormatProvider?)"/>
-    /// <summary>
-    /// </summary>
-    /// <returns>
-    /// The value created by calling the Parse method on the primitive.
-    /// </returns>
-    /// <exception cref="global::Vogen.ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
-    public static internal_readonly_partial_structConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterdecimal Parse(global::System.ReadOnlySpan<byte> utf8Text, global::System.Globalization.NumberStyles style, global::System.IFormatProvider provider) {
-        var r = System.Decimal.Parse(utf8Text, style, provider);
-        return From(r);
-    }
+        /// <inheritdoc cref = "decimal.Parse(System.ReadOnlySpan{byte}, System.IFormatProvider? )"/>
+        /// <summary>
+        /// </summary>
+        /// <returns>
+        /// The value created by calling the Parse method on the primitive.
+        /// </returns>
+        /// <exception cref = "global::Vogen.ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
+        public static internal_readonly_partial_structConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterdecimal Parse(global::System.ReadOnlySpan<byte> utf8Text, global::System.IFormatProvider provider)
+        {
+            var r = System.Decimal.Parse(utf8Text, provider);
+            return From(r);
+        }
 
-    /// <inheritdoc cref="decimal.Parse(System.ReadOnlySpan{byte}, System.IFormatProvider?)"/>
-    /// <summary>
-    /// </summary>
-    /// <returns>
-    /// The value created by calling the Parse method on the primitive.
-    /// </returns>
-    /// <exception cref="global::Vogen.ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
-    public static internal_readonly_partial_structConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterdecimal Parse(global::System.ReadOnlySpan<byte> utf8Text, global::System.IFormatProvider provider) {
-        var r = System.Decimal.Parse(utf8Text, provider);
-        return From(r);
-    }
+        /// <inheritdoc cref = "decimal.Parse(System.ReadOnlySpan{char}, System.Globalization.NumberStyles, System.IFormatProvider? )"/>
+        /// <summary>
+        /// </summary>
+        /// <returns>
+        /// The value created by calling the Parse method on the primitive.
+        /// </returns>
+        /// <exception cref = "global::Vogen.ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
+        public static internal_readonly_partial_structConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterdecimal Parse(global::System.ReadOnlySpan<char> s, global::System.Globalization.NumberStyles style, global::System.IFormatProvider provider)
+        {
+            var r = System.Decimal.Parse(s, style, provider);
+            return From(r);
+        }
 
-    /// <inheritdoc cref="decimal.Parse(System.ReadOnlySpan{char}, System.Globalization.NumberStyles, System.IFormatProvider?)"/>
-    /// <summary>
-    /// </summary>
-    /// <returns>
-    /// The value created by calling the Parse method on the primitive.
-    /// </returns>
-    /// <exception cref="global::Vogen.ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
-    public static internal_readonly_partial_structConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterdecimal Parse(global::System.ReadOnlySpan<char> s, global::System.Globalization.NumberStyles style, global::System.IFormatProvider provider) {
-        var r = System.Decimal.Parse(s, style, provider);
-        return From(r);
-    }
+        /// <inheritdoc cref = "decimal.Parse(System.ReadOnlySpan{char}, System.IFormatProvider? )"/>
+        /// <summary>
+        /// </summary>
+        /// <returns>
+        /// The value created by calling the Parse method on the primitive.
+        /// </returns>
+        /// <exception cref = "global::Vogen.ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
+        public static internal_readonly_partial_structConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterdecimal Parse(global::System.ReadOnlySpan<char> s, global::System.IFormatProvider provider)
+        {
+            var r = System.Decimal.Parse(s, provider);
+            return From(r);
+        }
 
-    /// <inheritdoc cref="decimal.Parse(System.ReadOnlySpan{char}, System.IFormatProvider?)"/>
-    /// <summary>
-    /// </summary>
-    /// <returns>
-    /// The value created by calling the Parse method on the primitive.
-    /// </returns>
-    /// <exception cref="global::Vogen.ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
-    public static internal_readonly_partial_structConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterdecimal Parse(global::System.ReadOnlySpan<char> s, global::System.IFormatProvider provider) {
-        var r = System.Decimal.Parse(s, provider);
-        return From(r);
-    }
+        /// <inheritdoc cref = "decimal.Parse(string)"/>
+        /// <summary>
+        /// </summary>
+        /// <returns>
+        /// The value created by calling the Parse method on the primitive.
+        /// </returns>
+        /// <exception cref = "global::Vogen.ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
+        public static internal_readonly_partial_structConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterdecimal Parse(string s)
+        {
+            var r = System.Decimal.Parse(s);
+            return From(r);
+        }
 
-    /// <inheritdoc cref="decimal.Parse(string)"/>
-    /// <summary>
-    /// </summary>
-    /// <returns>
-    /// The value created by calling the Parse method on the primitive.
-    /// </returns>
-    /// <exception cref="global::Vogen.ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
-    public static internal_readonly_partial_structConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterdecimal Parse(string s) {
-        var r = System.Decimal.Parse(s);
-        return From(r);
-    }
+        /// <inheritdoc cref = "decimal.Parse(string, System.Globalization.NumberStyles)"/>
+        /// <summary>
+        /// </summary>
+        /// <returns>
+        /// The value created by calling the Parse method on the primitive.
+        /// </returns>
+        /// <exception cref = "global::Vogen.ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
+        public static internal_readonly_partial_structConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterdecimal Parse(string s, global::System.Globalization.NumberStyles style)
+        {
+            var r = System.Decimal.Parse(s, style);
+            return From(r);
+        }
 
-    /// <inheritdoc cref="decimal.Parse(string, System.Globalization.NumberStyles)"/>
-    /// <summary>
-    /// </summary>
-    /// <returns>
-    /// The value created by calling the Parse method on the primitive.
-    /// </returns>
-    /// <exception cref="global::Vogen.ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
-    public static internal_readonly_partial_structConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterdecimal Parse(string s, global::System.Globalization.NumberStyles style) {
-        var r = System.Decimal.Parse(s, style);
-        return From(r);
-    }
+        /// <inheritdoc cref = "decimal.Parse(string, System.Globalization.NumberStyles, System.IFormatProvider? )"/>
+        /// <summary>
+        /// </summary>
+        /// <returns>
+        /// The value created by calling the Parse method on the primitive.
+        /// </returns>
+        /// <exception cref = "global::Vogen.ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
+        public static internal_readonly_partial_structConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterdecimal Parse(string s, global::System.Globalization.NumberStyles style, global::System.IFormatProvider provider)
+        {
+            var r = System.Decimal.Parse(s, style, provider);
+            return From(r);
+        }
 
-    /// <inheritdoc cref="decimal.Parse(string, System.Globalization.NumberStyles, System.IFormatProvider?)"/>
-    /// <summary>
-    /// </summary>
-    /// <returns>
-    /// The value created by calling the Parse method on the primitive.
-    /// </returns>
-    /// <exception cref="global::Vogen.ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
-    public static internal_readonly_partial_structConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterdecimal Parse(string s, global::System.Globalization.NumberStyles style, global::System.IFormatProvider provider) {
-        var r = System.Decimal.Parse(s, style, provider);
-        return From(r);
-    }
+        /// <inheritdoc cref = "decimal.Parse(string, System.IFormatProvider? )"/>
+        /// <summary>
+        /// </summary>
+        /// <returns>
+        /// The value created by calling the Parse method on the primitive.
+        /// </returns>
+        /// <exception cref = "global::Vogen.ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
+        public static internal_readonly_partial_structConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterdecimal Parse(string s, global::System.IFormatProvider provider)
+        {
+            var r = System.Decimal.Parse(s, provider);
+            return From(r);
+        }
 
-    /// <inheritdoc cref="decimal.Parse(string, System.IFormatProvider?)"/>
-    /// <summary>
-    /// </summary>
-    /// <returns>
-    /// The value created by calling the Parse method on the primitive.
-    /// </returns>
-    /// <exception cref="global::Vogen.ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
-    public static internal_readonly_partial_structConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterdecimal Parse(string s, global::System.IFormatProvider provider) {
-        var r = System.Decimal.Parse(s, provider);
-        return From(r);
-    }
-
-        
-        
-          public readonly override global::System.Int32 GetHashCode()
-          {
+        public readonly override global::System.Int32 GetHashCode()
+        {
             return global::System.Collections.Generic.EqualityComparer<System.Decimal>.Default.GetHashCode(Value);
-          }
+        }
 
-        /// <summary>Returns the string representation of the underlying <see cref="System.Decimal" />.</summary>
-    public readonly override global::System.String ToString() =>IsInitialized() ? Value.ToString() : "[UNINITIALIZED]";
-
+        /// <summary>Returns the string representation of the underlying <see cref = "System.Decimal"/>.</summary>
+        public readonly override global::System.String ToString() => IsInitialized() ? Value.ToString() : "[UNINITIALIZED]";
         private readonly void EnsureInitialized()
         {
             if (!IsInitialized())
@@ -558,14 +528,10 @@ public static ValueObjectOrError<internal_readonly_partial_structConversions_New
 #else
                 global::System.String message = "Use of uninitialized Value Object.";
 #endif
-
                 throw new global::Vogen.ValueObjectValidationException(message);
             }
         }
 
-        
- 
-        
         /// <summary>
         /// Converts a internal_readonly_partial_structConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterdecimal to or from JSON.
         /// </summary>
@@ -582,13 +548,12 @@ public static ValueObjectOrError<internal_readonly_partial_structConversions_New
 
             public override void Write(System.Text.Json.Utf8JsonWriter writer, internal_readonly_partial_structConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterdecimal value, global::System.Text.Json.JsonSerializerOptions options)
             {
- #if NET5_0_OR_GREATER
+#if NET5_0_OR_GREATER
                 global::System.Text.Json.JsonSerializer.Serialize(writer, value.Value, options);
- #else
+#else
                 writer.WriteNumberValue(value.Value);
- #endif
+#endif
             }
-
 #if NET6_0_OR_GREATER
             public override internal_readonly_partial_structConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterdecimal ReadAsPropertyName(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {
@@ -599,7 +564,7 @@ public static ValueObjectOrError<internal_readonly_partial_structConversions_New
             {
                 writer.WritePropertyName(value.Value.ToString(global::System.Globalization.CultureInfo.InvariantCulture));
             }
-#endif            
+#endif
         }
 
         class internal_readonly_partial_structConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterdecimalNewtonsoftJsonConverter : Newtonsoft.Json.JsonConverter
@@ -622,7 +587,6 @@ public static ValueObjectOrError<internal_readonly_partial_structConversions_New
             }
         }
 
-
         public class DapperTypeHandler : global::Dapper.SqlMapper.TypeHandler<internal_readonly_partial_structConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterdecimal>
         {
             public override void SetValue(global::System.Data.IDbDataParameter parameter, internal_readonly_partial_structConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterdecimal value)
@@ -643,67 +607,57 @@ public static ValueObjectOrError<internal_readonly_partial_structConversions_New
                 };
             }
         }
+
         public class EfCoreValueConverter : global::Microsoft.EntityFrameworkCore.Storage.ValueConversion.ValueConverter<internal_readonly_partial_structConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterdecimal, System.Decimal>
         {
-          public EfCoreValueConverter() : this(null) { }
-          public EfCoreValueConverter(global::Microsoft.EntityFrameworkCore.Storage.ValueConversion.ConverterMappingHints mappingHints = null)
-              : base(
-                  vo => vo.Value,
-                                                                      value => internal_readonly_partial_structConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterdecimal.__Deserialize(value),
-                mappingHints
-              ) { }
+            public EfCoreValueConverter() : this(null)
+            {
+            }
 
+            public EfCoreValueConverter(global::Microsoft.EntityFrameworkCore.Storage.ValueConversion.ConverterMappingHints mappingHints = null) : base(vo => vo.Value, value => internal_readonly_partial_structConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterdecimal.__Deserialize(value), mappingHints)
+            {
+            }
         }
+
         public class EfCoreValueComparer : global::Microsoft.EntityFrameworkCore.ChangeTracking.ValueComparer<internal_readonly_partial_structConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterdecimal>
         {
-            public EfCoreValueComparer() : base(
-                (left, right) => DoCompare(left, right), 
-                instance => instance.IsInitialized() ? instance.GetHashCode() : 0) 
-            { 
+            public EfCoreValueComparer() : base((left, right) => DoCompare(left, right), instance => instance.IsInitialized() ? instance.GetHashCode() : 0)
+            {
             }
-            
+
             static bool DoCompare(internal_readonly_partial_structConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterdecimal left, internal_readonly_partial_structConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterdecimal right)
             {
                 // if neither are initialized, then they're equal
-                if(!left.IsInitialized() && !right.IsInitialized()) return true;
-                
+                if (!left.IsInitialized() && !right.IsInitialized())
+                    return true;
                 return left.IsInitialized() && right.IsInitialized() && left._value.Equals(right._value);
             }
         }
 
         public class LinqToDbValueConverter : global::LinqToDB.Common.ValueConverter<internal_readonly_partial_structConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterdecimal, global::System.Decimal>
         {
-            public LinqToDbValueConverter()
-                : base(
-                      v => v.Value,
-                      p => internal_readonly_partial_structConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterdecimal.__Deserialize(p),
-                      handlesNulls: false)
-            { }
+            public LinqToDbValueConverter() : base(v => v.Value, p => internal_readonly_partial_structConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterdecimal.__Deserialize(p), handlesNulls: false)
+            {
+            }
         }
 
-
-        
-            internal sealed class internal_readonly_partial_structConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterdecimalDebugView
+        internal sealed class internal_readonly_partial_structConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterdecimalDebugView
+        {
+            private readonly internal_readonly_partial_structConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterdecimal _t;
+            internal_readonly_partial_structConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterdecimalDebugView(internal_readonly_partial_structConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterdecimal t)
             {
-                private readonly internal_readonly_partial_structConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterdecimal _t;
-
-                internal_readonly_partial_structConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterdecimalDebugView(internal_readonly_partial_structConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterdecimal t)
-                {
-                    _t = t;
-                }
-
-                public global::System.Boolean IsInitialized => _t.IsInitialized();
-                public global::System.String UnderlyingType => "System.Decimal";
-                public global::System.String Value => _t.IsInitialized() ? _t._value.ToString() : "[not initialized]" ;
-
-                #if DEBUG
-                    public global::System.String CreatedWith => _t._stackTrace?.ToString() ?? "the From method";
-                #endif
-
-                public global::System.String Conversions => @"NewtonsoftJson, SystemTextJson, EfCoreValueConverter, DapperTypeHandler, LinqToDbValueConverter";
+                _t = t;
             }
 
-}
+            public global::System.Boolean IsInitialized => _t.IsInitialized();
+            public global::System.String UnderlyingType => "System.Decimal";
+            public global::System.String Value => _t.IsInitialized() ? _t._value.ToString() : "[not initialized]";
+#if DEBUG
+        public global::System.String CreatedWith => _t._stackTrace?.ToString() ?? "the From method";
+#endif
+            public global::System.String Conversions => @"NewtonsoftJson, SystemTextJson, EfCoreValueConverter, DapperTypeHandler, LinqToDbValueConverter";
+        }
+    }
 #if NETCOREAPP3_0_OR_GREATER
             public static class __internal_readonly_partial_structConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterdecimalEfCoreExtensions 
             {

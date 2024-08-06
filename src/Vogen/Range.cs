@@ -4,6 +4,8 @@
 // https://github.com/dotnet/runtime/blob/419e949d258ecee4c40a460fb09c66d974229623/src/libraries/System.Private.CoreLib/src/System/Range.cs
 
 using System.Runtime.CompilerServices;
+// ReSharper disable CompareNonConstrainedGenericWithNull
+// ReSharper disable AssignNullToNotNullAttribute
 
 namespace System
 {

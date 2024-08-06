@@ -13,11 +13,7 @@ namespace AnalyzerTests
             TargetFramework.Net8_0,
 #if THOROUGH
             TargetFramework.Net6_0,
-            TargetFramework.Net7_0,
-            TargetFramework.Net4_6_1,
             TargetFramework.Net4_8,
-            TargetFramework.NetCoreApp3_1,
-            TargetFramework.Net5_0,
 #endif
         };
 

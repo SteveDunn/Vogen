@@ -81,16 +81,19 @@ internal static class GenerateCodeForParse
         
         string methodDecl = needsExplicitImplementation ? $"static {item.VoTypeName} global::System.IParsable<{item.VoTypeName}>.Parse" : $"public static {item.VoTypeName} Parse";
         
-        return @$"
-    /// <summary>
-    /// </summary>
-    /// <returns>
-    /// The value created via the <see cref=""From(global::System.String)""/> method.
-    /// </returns>
-    /// <exception cref=""{item.ValidationExceptionFullName}"">Thrown when the value can be parsed, but is not valid.</exception>
-    {methodDecl}(global::System.String s, global::System.IFormatProvider provider) {{
-        return From(s);
-    }}";
+        return $$"""
+                 
+                 /// <summary>
+                 /// </summary>
+                 /// <returns>
+                 /// The value created via the <see cref="From(global::System.String)"/> method.
+                 /// </returns>
+                 /// <exception cref="{{item.ValidationExceptionFullName}}">Thrown when the value can be parsed, but is not valid.</exception>
+                 {{methodDecl}}(global::System.String s, global::System.IFormatProvider provider) 
+                 {
+                     return From(s);
+                 }
+                 """;
     }
 
     private static UserSuppliedParseMethods GetUserSuppliedParseWithFormatProviderMethodMatches(VoWorkItem item)
@@ -127,18 +130,21 @@ internal static class GenerateCodeForParse
             .Replace(">", "}");
 
         var ret =
-            @$"
-    /// <inheritdoc cref=""{inheritDocRef}""/>
-    /// <summary>
-    /// </summary>
-    /// <returns>
-    /// The value created by calling the Parse method on the primitive.
-    /// </returns>
-    /// <exception cref=""{item.ValidationExceptionFullName}"">Thrown when the value can be parsed, but is not valid.</exception>
-    public {staticOrNot}{item.VoTypeName} Parse({parameters}) {{
-        var r = {item.UnderlyingTypeFullName}.Parse({parameterNames});
-        return From(r);
-    }}";
+            $$"""
+          
+              /// <inheritdoc cref="{{inheritDocRef}}"/>
+              /// <summary>
+              /// </summary>
+              /// <returns>
+              /// The value created by calling the Parse method on the primitive.
+              /// </returns>
+              /// <exception cref="{{item.ValidationExceptionFullName}}">Thrown when the value can be parsed, but is not valid.</exception>
+              public {{staticOrNot}}{{item.VoTypeName}} Parse({{parameters}}) 
+              {
+                  var r = {{item.UnderlyingTypeFullName}}.Parse({{parameterNames}});
+                  return From(r);
+              }
+              """;
 
         sb.AppendLine(ret);
     }

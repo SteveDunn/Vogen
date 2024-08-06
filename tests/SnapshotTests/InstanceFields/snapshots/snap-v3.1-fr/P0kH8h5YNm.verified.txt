@@ -29,6 +29,7 @@ namespace generator;
 public class VogenTypesFactory : global::System.Text.Json.Serialization.JsonConverterFactory
 {
     public VogenTypesFactory() { }
+    
     private static readonly global::System.Collections.Generic.Dictionary<global::System.Type, global::System.Lazy<global::System.Text.Json.Serialization.JsonConverter>> _lookup = 
         new global::System.Collections.Generic.Dictionary<global::System.Type, global::System.Lazy<global::System.Text.Json.Serialization.JsonConverter>> {
                 { typeof(global::Whatever.public_partial_record_structbyte), new global::System.Lazy<global::System.Text.Json.Serialization.JsonConverter>(() => new global::Whatever.public_partial_record_structbyte.public_partial_record_structbyteSystemTextJsonConverter()) }
@@ -48,49 +49,38 @@ public class VogenTypesFactory : global::System.Text.Json.Serialization.JsonConv
 //     the code is regenerated.
 // </auto-generated>
 // ------------------------------------------------------------------------------
-
 // Suppress warnings about [Obsolete] member usage in generated code.
 #pragma warning disable CS0618
-
 // Suppress warnings for 'Override methods on comparable types'.
 #pragma warning disable CA1036
-
 // Suppress Error MA0097 : A class that implements IComparable<T> or IComparable should override comparison operators
 #pragma warning disable MA0097
-
 // Suppress warning for 'The annotation for nullable reference types should only be used in code within a '#nullable' annotations context. Auto-generated code requires an explicit '#nullable' directive in source.'
 // The generator copies signatures from the BCL, e.g. for `TryParse`, and some of those have nullable annotations.
 #pragma warning disable CS8669
-
 // Suppress warnings about CS1591: Missing XML comment for publicly visible type or member 'Type_or_Member'
 #pragma warning disable CS1591
-
 using Vogen;
 
 namespace Whatever
 {
-
-    [global::System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage] 
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Vogen", "1.0.0.0")]
+    [global::System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Vogen", "1.0.0.0")]
     [global::System.Text.Json.Serialization.JsonConverter(typeof(public_partial_record_structbyteSystemTextJsonConverter))]
-[global::System.ComponentModel.TypeConverter(typeof(public_partial_record_structbyteTypeConverter))]
-
+    [global::System.ComponentModel.TypeConverter(typeof(public_partial_record_structbyteTypeConverter))]
     [global::System.Diagnostics.DebuggerTypeProxyAttribute(typeof(public_partial_record_structbyteDebugView))]
     [global::System.Diagnostics.DebuggerDisplayAttribute("Underlying type: System.Byte, Value = { _value }")]
-    public partial record struct public_partial_record_structbyte : global::System.IEquatable<public_partial_record_structbyte>, global::System.IEquatable<System.Byte> ,  global::System.IComparable<public_partial_record_structbyte>, global::System.IComparable
+    public partial record struct public_partial_record_structbyte : global::System.IEquatable<public_partial_record_structbyte>, global::System.IEquatable<System.Byte>, global::System.IComparable<public_partial_record_structbyte>, global::System.IComparable
     {
-#if DEBUG   
-        private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
+#if DEBUG
+private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
 #endif
-
 #if !VOGEN_NO_VALIDATION
         private readonly global::System.Boolean _isInitialized;
 #endif
-        
         private readonly System.Byte _value;
-
         /// <summary>
-        /// Gets the underlying <see cref="System.Byte" /> value if set, otherwise a <see cref="global::Vogen.ValueObjectValidationException" /> is thrown.
+        /// Gets the underlying <see cref = "System.Byte"/> value if set, otherwise a <see cref = "global::Vogen.ValueObjectValidationException"/> is thrown.
         /// </summary>
         public readonly System.Byte Value
         {
@@ -100,19 +90,13 @@ namespace Whatever
                 EnsureInitialized();
                 return _value;
             }
+
             [global::System.Diagnostics.DebuggerStepThroughAttribute]
             init
             {
-                
-
-                
-
-                
-
                 _value = value;
             }
         }
-
 
         [global::System.Diagnostics.DebuggerStepThroughAttribute]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -121,7 +105,6 @@ namespace Whatever
 #if DEBUG
             _stackTrace = new global::System.Diagnostics.StackTrace();
 #endif
-
 #if !VOGEN_NO_VALIDATION
             _isInitialized = false;
 #endif
@@ -129,7 +112,7 @@ namespace Whatever
         }
 
         [global::System.Diagnostics.DebuggerStepThroughAttribute]
-        private public_partial_record_structbyte(System.Byte value) 
+        private public_partial_record_structbyte(System.Byte value)
         {
             _value = value;
 #if !VOGEN_NO_VALIDATION
@@ -140,269 +123,251 @@ namespace Whatever
         /// <summary>
         /// Builds an instance from the provided underlying type.
         /// </summary>
-        /// <param name="value">The underlying type.</param>
+        /// <param name = "value">The underlying type.</param>
         /// <returns>An instance of this type.</returns>
         public static public_partial_record_structbyte From(System.Byte value)
         {
-            
-
-            
-
             public_partial_record_structbyte instance = new public_partial_record_structbyte(value);
-
             return instance;
         }
 
         /// <summary>
-/// Tries to build an instance from the provided underlying type.
-/// If a normalization method is provided, it will be called.
-/// If validation is provided, and it fails, false will be returned.
-/// </summary>
-/// <param name="value">The underlying type.</param>
-/// <param name="vo">An instance of the value object.</param>
-/// <returns>True if the value object can be built, otherwise false.</returns>
-public static bool TryFrom(System.Byte value, 
+        /// Tries to build an instance from the provided underlying type.
+        /// If a normalization method is provided, it will be called.
+        /// If validation is provided, and it fails, false will be returned.
+        /// </summary>
+        /// <param name = "value">The underlying type.</param>
+        /// <param name = "vo">An instance of the value object.</param>
+        /// <returns>True if the value object can be built, otherwise false.</returns>
+        public static bool TryFrom(System.Byte value,
 #if NETCOREAPP3_0_OR_GREATER
 [global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)]
 #endif
  out public_partial_record_structbyte vo)
-{
-    
-    
+        {
+            vo = new public_partial_record_structbyte(value);
+            return true;
+        }
 
-    
+        /// <summary>
+        /// Tries to build an instance from the provided underlying value.
+        /// If a normalization method is provided, it will be called.
+        /// If validation is provided, and it fails, an error will be returned.
+        /// </summary>
+        /// <param name = "value">The primitive value.</param>
+        /// <returns>A <see cref = "ValueObjectOrError{T}"/> containing either the value object, or an error.</returns>
+        public static ValueObjectOrError<public_partial_record_structbyte> TryFrom(System.Byte value)
+        {
+            return new ValueObjectOrError<public_partial_record_structbyte>(new public_partial_record_structbyte(value));
+        }
 
-    vo = new public_partial_record_structbyte(value);
-
-    return true;
-}/// <summary>
-/// Tries to build an instance from the provided underlying value.
-/// If a normalization method is provided, it will be called.
-/// If validation is provided, and it fails, an error will be returned.
-/// </summary>
-/// <param name="value">The primitive value.</param>
-/// <returns>A <see cref="ValueObjectOrError{T}"/> containing either the value object, or an error.</returns>
-public static ValueObjectOrError<public_partial_record_structbyte> TryFrom(System.Byte value)
-{
-    
-
-    
-
-    
-
-    return new ValueObjectOrError<public_partial_record_structbyte>(new public_partial_record_structbyte(value));
-}
-
-[global::System.Runtime.CompilerServices.MethodImpl(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
+        [global::System.Runtime.CompilerServices.MethodImpl(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 #if VOGEN_NO_VALIDATION
   public readonly bool IsInitialized() => true;
 #else
-  public readonly bool IsInitialized() => _isInitialized;
+        public readonly bool IsInitialized() => _isInitialized;
 #endif
-
-        
         public static explicit operator public_partial_record_structbyte(System.Byte value) => From(value);
         public static explicit operator System.Byte(public_partial_record_structbyte value) => value.Value;
-
         // only called internally when something has been deserialized into
         // its primitive type.
         private static public_partial_record_structbyte __Deserialize(System.Byte value)
         {
-            
-
-                    if(value == MyValue.Value) return MyValue;
-
-
+            if (value == MyValue.Value)
+                return MyValue;
             return new public_partial_record_structbyte(value);
         }
-                  public readonly global::System.Boolean Equals(public_partial_record_structbyte other)
-          {
+
+        public readonly global::System.Boolean Equals(public_partial_record_structbyte other)
+        {
             // It's possible to create uninitialized instances via converters such as EfCore (HasDefaultValue), which call Equals.
             // We treat anything uninitialized as not equal to anything, even other uninitialized instances of this type.
-            if(!IsInitialized() || !other.IsInitialized()) return false;
-
+            if (!IsInitialized() || !other.IsInitialized())
+                return false;
             return global::System.Collections.Generic.EqualityComparer<System.Byte>.Default.Equals(Value, other.Value);
-          }
-          public global::System.Boolean Equals(public_partial_record_structbyte other, global::System.Collections.Generic.IEqualityComparer<public_partial_record_structbyte> comparer)
-          {
+        }
+
+        public global::System.Boolean Equals(public_partial_record_structbyte other, global::System.Collections.Generic.IEqualityComparer<public_partial_record_structbyte> comparer)
+        {
             return comparer.Equals(this, other);
-          }
+        }
 
-          
-            public readonly global::System.Boolean Equals(System.Byte primitive)
-            {
-              return Value.Equals(primitive);
-            }
-
+        public readonly global::System.Boolean Equals(System.Byte primitive)
+        {
+            return Value.Equals(primitive);
+        }
 
         public static global::System.Boolean operator ==(public_partial_record_structbyte left, System.Byte right) => Equals(left.Value, right);
         public static global::System.Boolean operator !=(public_partial_record_structbyte left, System.Byte right) => !Equals(left.Value, right);
-
         public static global::System.Boolean operator ==(System.Byte left, public_partial_record_structbyte right) => Equals(left, right.Value);
         public static global::System.Boolean operator !=(System.Byte left, public_partial_record_structbyte right) => !Equals(left, right.Value);
-
         public int CompareTo(public_partial_record_structbyte other) => Value.CompareTo(other.Value);
-        public int CompareTo(object other) {
-            if(other is null) return 1;
-            if(other is public_partial_record_structbyte x) return CompareTo(x);
+        public int CompareTo(object other)
+        {
+            if (other is null)
+                return 1;
+            if (other is public_partial_record_structbyte x)
+                return CompareTo(x);
             throw new global::System.ArgumentException("Cannot compare to object as it is not of type public_partial_record_structbyte", nameof(other));
         }
 
-        
-    /// <inheritdoc cref="byte.TryParse(System.ReadOnlySpan{char}, out byte)"/>
-    /// <summary>
-    /// </summary>
-    /// <returns>
-    /// True if the value could a) be parsed by the underlying type, and b) passes any validation (after running any optional normalization).
-    /// </returns>
-    public static global::System.Boolean TryParse(global::System.ReadOnlySpan<char> s, 
+        /// <inheritdoc cref = "byte.TryParse(System.ReadOnlySpan{char}, out byte)"/>
+        /// <summary>
+        /// </summary>
+        /// <returns>
+        /// True if the value could a) be parsed by the underlying type, and b) passes any validation (after running any optional normalization).
+        /// </returns>
+        public static global::System.Boolean TryParse(global::System.ReadOnlySpan<char> s,
 #if NETCOREAPP3_0_OR_GREATER
 [global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)]
 #endif
- out public_partial_record_structbyte result) {
-        if(System.Byte.TryParse(s, out var __v)) {
-            
-            
-            result = new public_partial_record_structbyte(__v);
-            return true;
+ out public_partial_record_structbyte result)
+        {
+            if (System.Byte.TryParse(s, out var __v))
+            {
+                result = new public_partial_record_structbyte(__v);
+                return true;
+            }
+
+            result = default;
+            return false;
         }
 
-        result = default;
-        return false;
-    }
-
-    /// <inheritdoc cref="byte.TryParse(System.ReadOnlySpan{char}, System.Globalization.NumberStyles, System.IFormatProvider?, out byte)"/>
-    /// <summary>
-    /// </summary>
-    /// <returns>
-    /// True if the value could a) be parsed by the underlying type, and b) passes any validation (after running any optional normalization).
-    /// </returns>
-    public static global::System.Boolean TryParse(global::System.ReadOnlySpan<char> s, global::System.Globalization.NumberStyles style, global::System.IFormatProvider provider, 
+        /// <inheritdoc cref = "byte.TryParse(System.ReadOnlySpan{char}, System.Globalization.NumberStyles, System.IFormatProvider? , out byte)"/>
+        /// <summary>
+        /// </summary>
+        /// <returns>
+        /// True if the value could a) be parsed by the underlying type, and b) passes any validation (after running any optional normalization).
+        /// </returns>
+        public static global::System.Boolean TryParse(global::System.ReadOnlySpan<char> s, global::System.Globalization.NumberStyles style, global::System.IFormatProvider provider,
 #if NETCOREAPP3_0_OR_GREATER
 [global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)]
 #endif
- out public_partial_record_structbyte result) {
-        if(System.Byte.TryParse(s, style, provider, out var __v)) {
-            
-            
-            result = new public_partial_record_structbyte(__v);
-            return true;
+ out public_partial_record_structbyte result)
+        {
+            if (System.Byte.TryParse(s, style, provider, out var __v))
+            {
+                result = new public_partial_record_structbyte(__v);
+                return true;
+            }
+
+            result = default;
+            return false;
         }
 
-        result = default;
-        return false;
-    }
-
-    /// <inheritdoc cref="byte.TryParse(string?, out byte)"/>
-    /// <summary>
-    /// </summary>
-    /// <returns>
-    /// True if the value could a) be parsed by the underlying type, and b) passes any validation (after running any optional normalization).
-    /// </returns>
-    public static global::System.Boolean TryParse(string s, 
+        /// <inheritdoc cref = "byte.TryParse(string? , out byte)"/>
+        /// <summary>
+        /// </summary>
+        /// <returns>
+        /// True if the value could a) be parsed by the underlying type, and b) passes any validation (after running any optional normalization).
+        /// </returns>
+        public static global::System.Boolean TryParse(string s,
 #if NETCOREAPP3_0_OR_GREATER
 [global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)]
 #endif
- out public_partial_record_structbyte result) {
-        if(System.Byte.TryParse(s, out var __v)) {
-            
-            
-            result = new public_partial_record_structbyte(__v);
-            return true;
+ out public_partial_record_structbyte result)
+        {
+            if (System.Byte.TryParse(s, out var __v))
+            {
+                result = new public_partial_record_structbyte(__v);
+                return true;
+            }
+
+            result = default;
+            return false;
         }
 
-        result = default;
-        return false;
-    }
-
-    /// <inheritdoc cref="byte.TryParse(string?, System.Globalization.NumberStyles, System.IFormatProvider?, out byte)"/>
-    /// <summary>
-    /// </summary>
-    /// <returns>
-    /// True if the value could a) be parsed by the underlying type, and b) passes any validation (after running any optional normalization).
-    /// </returns>
-    public static global::System.Boolean TryParse(string s, global::System.Globalization.NumberStyles style, global::System.IFormatProvider provider, 
+        /// <inheritdoc cref = "byte.TryParse(string? , System.Globalization.NumberStyles, System.IFormatProvider? , out byte)"/>
+        /// <summary>
+        /// </summary>
+        /// <returns>
+        /// True if the value could a) be parsed by the underlying type, and b) passes any validation (after running any optional normalization).
+        /// </returns>
+        public static global::System.Boolean TryParse(string s, global::System.Globalization.NumberStyles style, global::System.IFormatProvider provider,
 #if NETCOREAPP3_0_OR_GREATER
 [global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)]
 #endif
- out public_partial_record_structbyte result) {
-        if(System.Byte.TryParse(s, style, provider, out var __v)) {
-            
-            
-            result = new public_partial_record_structbyte(__v);
-            return true;
+ out public_partial_record_structbyte result)
+        {
+            if (System.Byte.TryParse(s, style, provider, out var __v))
+            {
+                result = new public_partial_record_structbyte(__v);
+                return true;
+            }
+
+            result = default;
+            return false;
         }
 
-        result = default;
-        return false;
-    }
+        /// <inheritdoc cref = "byte.Parse(System.ReadOnlySpan{char}, System.Globalization.NumberStyles, System.IFormatProvider? )"/>
+        /// <summary>
+        /// </summary>
+        /// <returns>
+        /// The value created by calling the Parse method on the primitive.
+        /// </returns>
+        /// <exception cref = "global::Vogen.ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
+        public static public_partial_record_structbyte Parse(global::System.ReadOnlySpan<char> s, global::System.Globalization.NumberStyles style, global::System.IFormatProvider provider)
+        {
+            var r = System.Byte.Parse(s, style, provider);
+            return From(r);
+        }
 
-    /// <inheritdoc cref="byte.Parse(System.ReadOnlySpan{char}, System.Globalization.NumberStyles, System.IFormatProvider?)"/>
-    /// <summary>
-    /// </summary>
-    /// <returns>
-    /// The value created by calling the Parse method on the primitive.
-    /// </returns>
-    /// <exception cref="global::Vogen.ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
-    public static public_partial_record_structbyte Parse(global::System.ReadOnlySpan<char> s, global::System.Globalization.NumberStyles style, global::System.IFormatProvider provider) {
-        var r = System.Byte.Parse(s, style, provider);
-        return From(r);
-    }
+        /// <inheritdoc cref = "byte.Parse(string)"/>
+        /// <summary>
+        /// </summary>
+        /// <returns>
+        /// The value created by calling the Parse method on the primitive.
+        /// </returns>
+        /// <exception cref = "global::Vogen.ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
+        public static public_partial_record_structbyte Parse(string s)
+        {
+            var r = System.Byte.Parse(s);
+            return From(r);
+        }
 
-    /// <inheritdoc cref="byte.Parse(string)"/>
-    /// <summary>
-    /// </summary>
-    /// <returns>
-    /// The value created by calling the Parse method on the primitive.
-    /// </returns>
-    /// <exception cref="global::Vogen.ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
-    public static public_partial_record_structbyte Parse(string s) {
-        var r = System.Byte.Parse(s);
-        return From(r);
-    }
+        /// <inheritdoc cref = "byte.Parse(string, System.Globalization.NumberStyles)"/>
+        /// <summary>
+        /// </summary>
+        /// <returns>
+        /// The value created by calling the Parse method on the primitive.
+        /// </returns>
+        /// <exception cref = "global::Vogen.ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
+        public static public_partial_record_structbyte Parse(string s, global::System.Globalization.NumberStyles style)
+        {
+            var r = System.Byte.Parse(s, style);
+            return From(r);
+        }
 
-    /// <inheritdoc cref="byte.Parse(string, System.Globalization.NumberStyles)"/>
-    /// <summary>
-    /// </summary>
-    /// <returns>
-    /// The value created by calling the Parse method on the primitive.
-    /// </returns>
-    /// <exception cref="global::Vogen.ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
-    public static public_partial_record_structbyte Parse(string s, global::System.Globalization.NumberStyles style) {
-        var r = System.Byte.Parse(s, style);
-        return From(r);
-    }
+        /// <inheritdoc cref = "byte.Parse(string, System.Globalization.NumberStyles, System.IFormatProvider? )"/>
+        /// <summary>
+        /// </summary>
+        /// <returns>
+        /// The value created by calling the Parse method on the primitive.
+        /// </returns>
+        /// <exception cref = "global::Vogen.ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
+        public static public_partial_record_structbyte Parse(string s, global::System.Globalization.NumberStyles style, global::System.IFormatProvider provider)
+        {
+            var r = System.Byte.Parse(s, style, provider);
+            return From(r);
+        }
 
-    /// <inheritdoc cref="byte.Parse(string, System.Globalization.NumberStyles, System.IFormatProvider?)"/>
-    /// <summary>
-    /// </summary>
-    /// <returns>
-    /// The value created by calling the Parse method on the primitive.
-    /// </returns>
-    /// <exception cref="global::Vogen.ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
-    public static public_partial_record_structbyte Parse(string s, global::System.Globalization.NumberStyles style, global::System.IFormatProvider provider) {
-        var r = System.Byte.Parse(s, style, provider);
-        return From(r);
-    }
+        /// <inheritdoc cref = "byte.Parse(string, System.IFormatProvider? )"/>
+        /// <summary>
+        /// </summary>
+        /// <returns>
+        /// The value created by calling the Parse method on the primitive.
+        /// </returns>
+        /// <exception cref = "global::Vogen.ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
+        public static public_partial_record_structbyte Parse(string s, global::System.IFormatProvider provider)
+        {
+            var r = System.Byte.Parse(s, provider);
+            return From(r);
+        }
 
-    /// <inheritdoc cref="byte.Parse(string, System.IFormatProvider?)"/>
-    /// <summary>
-    /// </summary>
-    /// <returns>
-    /// The value created by calling the Parse method on the primitive.
-    /// </returns>
-    /// <exception cref="global::Vogen.ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
-    public static public_partial_record_structbyte Parse(string s, global::System.IFormatProvider provider) {
-        var r = System.Byte.Parse(s, provider);
-        return From(r);
-    }
-
-
-        
-          public readonly override global::System.Int32 GetHashCode()
-          {
+        public readonly override global::System.Int32 GetHashCode()
+        {
             return global::System.Collections.Generic.EqualityComparer<System.Byte>.Default.GetHashCode(Value);
-          }
+        }
 
         private readonly void EnsureInitialized()
         {
@@ -413,22 +378,15 @@ public static ValueObjectOrError<public_partial_record_structbyte> TryFrom(Syste
 #else
                 global::System.String message = "Use of uninitialized Value Object.";
 #endif
-
                 throw new global::Vogen.ValueObjectValidationException(message);
             }
         }
 
         // record enumerates fields - we just want our Value and to throw if it's not initialized.
-        /// <summary>Returns the string representation of the underlying <see cref="System.Byte" />.</summary>
-    public readonly override global::System.String ToString() =>IsInitialized() ? Value.ToString() : "[UNINITIALIZED]";
-
-        
-// instance...
-
-public static readonly public_partial_record_structbyte MyValue = new public_partial_record_structbyte(42);
-
- 
-        
+        /// <summary>Returns the string representation of the underlying <see cref = "System.Byte"/>.</summary>
+        public readonly override global::System.String ToString() => IsInitialized() ? Value.ToString() : "[UNINITIALIZED]";
+        // instance...
+        public static readonly public_partial_record_structbyte MyValue = new public_partial_record_structbyte(42);
         /// <summary>
         /// Converts a public_partial_record_structbyte to or from JSON.
         /// </summary>
@@ -445,14 +403,12 @@ public static readonly public_partial_record_structbyte MyValue = new public_par
 
             public override void Write(global::System.Text.Json.Utf8JsonWriter writer, public_partial_record_structbyte value, global::System.Text.Json.JsonSerializerOptions options)
             {
-
- #if NET5_0_OR_GREATER
+#if NET5_0_OR_GREATER
                 global::System.Text.Json.JsonSerializer.Serialize(writer, value.Value, options);
- #else
+#else
                 writer.WriteNumberValue(value.Value);
- #endif
+#endif
             }
-
 #if NET6_0_OR_GREATER
             public override public_partial_record_structbyte ReadAsPropertyName(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {
@@ -463,9 +419,8 @@ public static readonly public_partial_record_structbyte MyValue = new public_par
             {
                 writer.WritePropertyName(value.Value.ToString(global::System.Globalization.CultureInfo.InvariantCulture));
             }
-#endif            
+#endif
         }
-
 
         class public_partial_record_structbyteTypeConverter : global::System.ComponentModel.TypeConverter
         {
@@ -482,7 +437,7 @@ public static readonly public_partial_record_structbyte MyValue = new public_par
                     global::System.Int16 shortValue => public_partial_record_structbyte.__Deserialize((global::System.Byte)shortValue),
                     global::System.Int32 intValue => public_partial_record_structbyte.__Deserialize((global::System.Byte)intValue),
                     global::System.Int64 longValue => public_partial_record_structbyte.__Deserialize((global::System.Byte)longValue),
-                    global::System.String stringValue when  !global::System.String.IsNullOrEmpty(stringValue) && global::System.Byte.TryParse(stringValue, out var result) => public_partial_record_structbyte.__Deserialize(result),
+                    global::System.String stringValue when !global::System.String.IsNullOrEmpty(stringValue) && global::System.Byte.TryParse(stringValue, out var result) => public_partial_record_structbyte.__Deserialize(result),
                     _ => base.ConvertFrom(context, culture, value),
                 };
             }
@@ -511,32 +466,22 @@ public static readonly public_partial_record_structbyte MyValue = new public_par
             }
         }
 
-
-
-
-
-        
-            internal sealed class public_partial_record_structbyteDebugView
+        internal sealed class public_partial_record_structbyteDebugView
+        {
+            private readonly public_partial_record_structbyte _t;
+            public_partial_record_structbyteDebugView(public_partial_record_structbyte t)
             {
-                private readonly public_partial_record_structbyte _t;
-
-                public_partial_record_structbyteDebugView(public_partial_record_structbyte t)
-                {
-                    _t = t;
-                }
-
-                public global::System.Boolean IsInitialized => _t.IsInitialized();
-                public global::System.String UnderlyingType => "System.Byte";
-                public global::System.String Value => _t.IsInitialized() ? _t._value.ToString() : "[not initialized]" ;
-
-                #if DEBUG
-                    public global::System.String CreatedWith => _t._stackTrace?.ToString() ?? "the From method";
-                #endif
-
-                public global::System.String Conversions => @"Default";
+                _t = t;
             }
 
-}
-
+            public global::System.Boolean IsInitialized => _t.IsInitialized();
+            public global::System.String UnderlyingType => "System.Byte";
+            public global::System.String Value => _t.IsInitialized() ? _t._value.ToString() : "[not initialized]";
+#if DEBUG
+        public global::System.String CreatedWith => _t._stackTrace?.ToString() ?? "the From method";
+#endif
+            public global::System.String Conversions => @"Default";
+        }
+    }
 }
 ]
