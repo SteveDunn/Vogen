@@ -1,0 +1,9 @@
+@OrleansExample_HostAddress = http://localhost:5242
+
+### Create shortened URL
+GET {{OrleansExample_HostAddress}}/shorten?url=https%3A%2F%2Fgithub.com%2FSteveDunn%2FVogen
+Accept: application/json
+
+### Create shortened URL that does not meet validation, this generated a 400 Bad Request
+GET {{OrleansExample_HostAddress}}/shorten?url=invalidUrl
+Accept: application/json

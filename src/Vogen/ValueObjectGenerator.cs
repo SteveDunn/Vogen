@@ -99,6 +99,8 @@ public class ValueObjectGenerator : IIncrementalGenerator
         WriteEfCoreSpecs.WriteIfNeeded(spc, compilation, efCoreConverterSpecs);
         
         WriteBsonSerializers.WriteIfNeeded(spc, compilation, workItems);
+        
+        WriteOrleansSerializers.WriteIfNeeded(spc, workItems);
 
         if (workItems.Count > 0)
         {

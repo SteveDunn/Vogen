@@ -178,7 +178,7 @@ public class MyValidationException { } // NOT AN EXCEPTION!
         var source = @"using System;
 using Vogen;
 
-[assembly: VogenDefaults(conversions: (Conversions)666)]
+[assembly: VogenDefaults(conversions: (Conversions)4242)]
 
 namespace Whatever;
 
@@ -279,7 +279,7 @@ public partial struct CustomerId { }
         var source = @"using System;
 using Vogen;
 
-[assembly: VogenDefaults(customizations: (Customizations)666, conversions: (Conversions)666)]
+[assembly: VogenDefaults(customizations: (Customizations)666, conversions: (Conversions)4242)]
 
 namespace Whatever;
 

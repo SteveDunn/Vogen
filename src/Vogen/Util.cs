@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using Microsoft.CodeAnalysis;
@@ -21,9 +22,9 @@ public static class Util
         new GenerateTypeConverterConversions(),
         new GenerateDapperConversions(),
         new GenerateEfCoreTypeConversions(),
-        new GenerateLinqToDbConversions(),
+        new GenerateLinqToDbConversions()
     };
-    
+
     public static string SanitizeToALegalFilename(string input) => input.Replace('@', '_');
 
     public static void TryWriteUsingUniqueFilename(string filename, SourceProductionContext context, SourceText sourceText)
@@ -49,7 +50,7 @@ public static class Util
             }
         }
     }
-    
+
 
 
     public static string GenerateCallToValidationAndThrowIfRequired(VoWorkItem workItem)
@@ -90,7 +91,7 @@ public static class Util
 
         return string.Empty;
     }
-    
+
     public static string GenerateNotNullWhenTrueAttribute() =>
         """
 
@@ -231,8 +232,8 @@ public static class Util
         var createdWithMethod = item.Config.DisableStackTraceRecordingInDebug
             ? @"public global::System.String CreatedWith => ""the From method"""
             : @"public global::System.String CreatedWith => _t._stackTrace?.ToString() ?? ""the From method""";
-        
-        string code = 
+
+        string code =
 $$"""
 
             internal sealed class {{item.VoTypeName}}DebugView
@@ -289,7 +290,7 @@ $$"""
     private static string GenerateToString(VoWorkItem item, bool isReadOnly)
     {
         string ro = isReadOnly ? " readonly" : string.Empty;
-        
+
         return item.UserProvidedOverloads.ToStringInfo.WasSupplied
             ? string.Empty
             : $@"/// <summary>Returns the string representation of the underlying <see cref=""{item.UnderlyingTypeFullName}"" />.</summary>
@@ -339,7 +340,7 @@ causes Rider's debugger to crash.
 
 */";
         }
-    
+
         return source;
     }
 
@@ -349,7 +350,7 @@ causes Rider's debugger to crash.
         {
             return string.Empty;
         }
-        
+
         return $"""
                 #if DEBUG   
                         private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
@@ -367,7 +368,7 @@ causes Rider's debugger to crash.
         if (item.Config.DisableStackTraceRecordingInDebug)
         {
             return $"""global::System.String message = "Use of uninitialized Value Object.";""";
-            
+
         }
         return $"""global::System.String message = "Use of uninitialized Value Object at: " + _stackTrace ?? "";""";
     }
