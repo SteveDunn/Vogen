@@ -101,7 +101,7 @@ using Vogen;
         }}
         {GenerateEqualsMethodsAndOperators.GenerateEqualsMethodsForAStruct(item, tds)}
 
-        public static global::System.Boolean operator ==({structName} left, {structName} right) => Equals(left, right);
+        public static global::System.Boolean operator ==({structName} left, {structName} right) => left.Equals(right);
         public static global::System.Boolean operator !=({structName} left, {structName} right) => !(left == right);
 {GenerateEqualsMethodsAndOperators.GenerateEqualsOperatorsForPrimitivesIfNeeded(itemUnderlyingType, structName, item)}
 
