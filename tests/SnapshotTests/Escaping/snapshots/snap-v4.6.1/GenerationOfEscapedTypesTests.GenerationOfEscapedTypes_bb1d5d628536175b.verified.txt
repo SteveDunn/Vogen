@@ -201,10 +201,10 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
             return Value.Equals(primitive);
         }
 
-        public static global::System.Boolean operator ==(escapedTestspublic_sealed_partial_record_classConversions_Nonedouble left, System.Double right) => Equals(left.Value, right);
-        public static global::System.Boolean operator !=(escapedTestspublic_sealed_partial_record_classConversions_Nonedouble left, System.Double right) => !Equals(left.Value, right);
-        public static global::System.Boolean operator ==(System.Double left, escapedTestspublic_sealed_partial_record_classConversions_Nonedouble right) => Equals(left, right.Value);
-        public static global::System.Boolean operator !=(System.Double left, escapedTestspublic_sealed_partial_record_classConversions_Nonedouble right) => !Equals(left, right.Value);
+        public static global::System.Boolean operator ==(escapedTestspublic_sealed_partial_record_classConversions_Nonedouble left, System.Double right) => left?.Value.Equals(right) ?? false;
+        public static global::System.Boolean operator !=(escapedTestspublic_sealed_partial_record_classConversions_Nonedouble left, System.Double right) => !(left == right);
+        public static global::System.Boolean operator ==(System.Double left, escapedTestspublic_sealed_partial_record_classConversions_Nonedouble right) => right?.Value.Equals(left) ?? false;
+        public static global::System.Boolean operator !=(System.Double left, escapedTestspublic_sealed_partial_record_classConversions_Nonedouble right) => !(left == right);
         public static explicit operator escapedTestspublic_sealed_partial_record_classConversions_Nonedouble(System.Double value) => From(value);
         public static explicit operator System.Double(escapedTestspublic_sealed_partial_record_classConversions_Nonedouble value) => value.Value;
         public int CompareTo(escapedTestspublic_sealed_partial_record_classConversions_Nonedouble other) => Value.CompareTo(other.Value);

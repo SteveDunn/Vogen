@@ -194,10 +194,10 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
         return comparer.Equals(Value, primitive);
     }
 
-    public static global::System.Boolean operator ==(BugFix516Vo left, System.String right) => Equals(left.Value, right);
-    public static global::System.Boolean operator !=(BugFix516Vo left, System.String right) => !Equals(left.Value, right);
-    public static global::System.Boolean operator ==(System.String left, BugFix516Vo right) => Equals(left, right.Value);
-    public static global::System.Boolean operator !=(System.String left, BugFix516Vo right) => !Equals(left, right.Value);
+    public static global::System.Boolean operator ==(BugFix516Vo left, System.String right) => left.Value.Equals(right);
+    public static global::System.Boolean operator !=(BugFix516Vo left, System.String right) => !(left == right);
+    public static global::System.Boolean operator ==(System.String left, BugFix516Vo right) => right.Value.Equals(left);
+    public static global::System.Boolean operator !=(System.String left, BugFix516Vo right) => !(left == right);
     public int CompareTo(BugFix516Vo other) => Value.CompareTo(other.Value);
     public int CompareTo(object other)
     {

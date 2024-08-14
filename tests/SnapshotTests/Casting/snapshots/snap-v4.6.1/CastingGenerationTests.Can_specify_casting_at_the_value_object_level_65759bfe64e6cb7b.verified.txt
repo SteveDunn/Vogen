@@ -195,10 +195,10 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
             return Value.Equals(primitive);
         }
 
-        public static global::System.Boolean operator ==(_casting_public_readonly_partial_record_structExplicitExplicitbool left, System.Boolean right) => Equals(left.Value, right);
-        public static global::System.Boolean operator !=(_casting_public_readonly_partial_record_structExplicitExplicitbool left, System.Boolean right) => !Equals(left.Value, right);
-        public static global::System.Boolean operator ==(System.Boolean left, _casting_public_readonly_partial_record_structExplicitExplicitbool right) => Equals(left, right.Value);
-        public static global::System.Boolean operator !=(System.Boolean left, _casting_public_readonly_partial_record_structExplicitExplicitbool right) => !Equals(left, right.Value);
+        public static global::System.Boolean operator ==(_casting_public_readonly_partial_record_structExplicitExplicitbool left, System.Boolean right) => left.Value.Equals(right);
+        public static global::System.Boolean operator !=(_casting_public_readonly_partial_record_structExplicitExplicitbool left, System.Boolean right) => !(left == right);
+        public static global::System.Boolean operator ==(System.Boolean left, _casting_public_readonly_partial_record_structExplicitExplicitbool right) => right.Value.Equals(left);
+        public static global::System.Boolean operator !=(System.Boolean left, _casting_public_readonly_partial_record_structExplicitExplicitbool right) => !(left == right);
         public int CompareTo(_casting_public_readonly_partial_record_structExplicitExplicitbool other) => Value.CompareTo(other.Value);
         public int CompareTo(object other)
         {

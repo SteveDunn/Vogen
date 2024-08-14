@@ -202,10 +202,10 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
             return Value.Equals(primitive);
         }
 
-        public static global::System.Boolean operator ==(stj_number_as_string_public_sealed_partial_record_classConversions_SystemTextJsonshort_customized left, System.Int16 right) => Equals(left.Value, right);
-        public static global::System.Boolean operator !=(stj_number_as_string_public_sealed_partial_record_classConversions_SystemTextJsonshort_customized left, System.Int16 right) => !Equals(left.Value, right);
-        public static global::System.Boolean operator ==(System.Int16 left, stj_number_as_string_public_sealed_partial_record_classConversions_SystemTextJsonshort_customized right) => Equals(left, right.Value);
-        public static global::System.Boolean operator !=(System.Int16 left, stj_number_as_string_public_sealed_partial_record_classConversions_SystemTextJsonshort_customized right) => !Equals(left, right.Value);
+        public static global::System.Boolean operator ==(stj_number_as_string_public_sealed_partial_record_classConversions_SystemTextJsonshort_customized left, System.Int16 right) => left?.Value.Equals(right) ?? false;
+        public static global::System.Boolean operator !=(stj_number_as_string_public_sealed_partial_record_classConversions_SystemTextJsonshort_customized left, System.Int16 right) => !(left == right);
+        public static global::System.Boolean operator ==(System.Int16 left, stj_number_as_string_public_sealed_partial_record_classConversions_SystemTextJsonshort_customized right) => right?.Value.Equals(left) ?? false;
+        public static global::System.Boolean operator !=(System.Int16 left, stj_number_as_string_public_sealed_partial_record_classConversions_SystemTextJsonshort_customized right) => !(left == right);
         public static explicit operator stj_number_as_string_public_sealed_partial_record_classConversions_SystemTextJsonshort_customized(System.Int16 value) => From(value);
         public static explicit operator System.Int16(stj_number_as_string_public_sealed_partial_record_classConversions_SystemTextJsonshort_customized value) => value.Value;
         public int CompareTo(stj_number_as_string_public_sealed_partial_record_classConversions_SystemTextJsonshort_customized other) => Value.CompareTo(other.Value);

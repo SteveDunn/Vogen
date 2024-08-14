@@ -204,10 +204,10 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
 
         public static global::System.Boolean operator ==(_casting_public_sealed_partial_classExplicitExplicitSystem_DateTime left, _casting_public_sealed_partial_classExplicitExplicitSystem_DateTime right) => Equals(left, right);
         public static global::System.Boolean operator !=(_casting_public_sealed_partial_classExplicitExplicitSystem_DateTime left, _casting_public_sealed_partial_classExplicitExplicitSystem_DateTime right) => !Equals(left, right);
-        public static global::System.Boolean operator ==(_casting_public_sealed_partial_classExplicitExplicitSystem_DateTime left, System.DateTime right) => Equals(left.Value, right);
-        public static global::System.Boolean operator !=(_casting_public_sealed_partial_classExplicitExplicitSystem_DateTime left, System.DateTime right) => !Equals(left.Value, right);
-        public static global::System.Boolean operator ==(System.DateTime left, _casting_public_sealed_partial_classExplicitExplicitSystem_DateTime right) => Equals(left, right.Value);
-        public static global::System.Boolean operator !=(System.DateTime left, _casting_public_sealed_partial_classExplicitExplicitSystem_DateTime right) => !Equals(left, right.Value);
+        public static global::System.Boolean operator ==(_casting_public_sealed_partial_classExplicitExplicitSystem_DateTime left, System.DateTime right) => left?.Value.Equals(right) ?? false;
+        public static global::System.Boolean operator !=(_casting_public_sealed_partial_classExplicitExplicitSystem_DateTime left, System.DateTime right) => !(left == right);
+        public static global::System.Boolean operator ==(System.DateTime left, _casting_public_sealed_partial_classExplicitExplicitSystem_DateTime right) => right?.Value.Equals(left) ?? false;
+        public static global::System.Boolean operator !=(System.DateTime left, _casting_public_sealed_partial_classExplicitExplicitSystem_DateTime right) => !(left == right);
         public static explicit operator _casting_public_sealed_partial_classExplicitExplicitSystem_DateTime(System.DateTime value) => From(value);
         public static explicit operator System.DateTime(_casting_public_sealed_partial_classExplicitExplicitSystem_DateTime value) => value.Value;
         public int CompareTo(_casting_public_sealed_partial_classExplicitExplicitSystem_DateTime other) => Value.CompareTo(other.Value);

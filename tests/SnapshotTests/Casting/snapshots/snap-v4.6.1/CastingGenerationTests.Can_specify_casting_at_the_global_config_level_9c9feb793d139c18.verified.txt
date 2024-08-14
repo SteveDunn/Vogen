@@ -203,10 +203,10 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
             return Value.Equals(primitive);
         }
 
-        public static global::System.Boolean operator ==(_casting_public_partial_record_classImplicitNonedouble left, System.Double right) => Equals(left.Value, right);
-        public static global::System.Boolean operator !=(_casting_public_partial_record_classImplicitNonedouble left, System.Double right) => !Equals(left.Value, right);
-        public static global::System.Boolean operator ==(System.Double left, _casting_public_partial_record_classImplicitNonedouble right) => Equals(left, right.Value);
-        public static global::System.Boolean operator !=(System.Double left, _casting_public_partial_record_classImplicitNonedouble right) => !Equals(left, right.Value);
+        public static global::System.Boolean operator ==(_casting_public_partial_record_classImplicitNonedouble left, System.Double right) => left?.Value.Equals(right) ?? false;
+        public static global::System.Boolean operator !=(_casting_public_partial_record_classImplicitNonedouble left, System.Double right) => !(left == right);
+        public static global::System.Boolean operator ==(System.Double left, _casting_public_partial_record_classImplicitNonedouble right) => right?.Value.Equals(left) ?? false;
+        public static global::System.Boolean operator !=(System.Double left, _casting_public_partial_record_classImplicitNonedouble right) => !(left == right);
         public static implicit operator _casting_public_partial_record_classImplicitNonedouble(System.Double value)
         {
             return new _casting_public_partial_record_classImplicitNonedouble(value);

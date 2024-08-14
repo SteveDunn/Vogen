@@ -206,10 +206,10 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
 
         public static global::System.Boolean operator ==(internal_partial_classlong left, internal_partial_classlong right) => Equals(left, right);
         public static global::System.Boolean operator !=(internal_partial_classlong left, internal_partial_classlong right) => !Equals(left, right);
-        public static global::System.Boolean operator ==(internal_partial_classlong left, System.Int64 right) => Equals(left.Value, right);
-        public static global::System.Boolean operator !=(internal_partial_classlong left, System.Int64 right) => !Equals(left.Value, right);
-        public static global::System.Boolean operator ==(System.Int64 left, internal_partial_classlong right) => Equals(left, right.Value);
-        public static global::System.Boolean operator !=(System.Int64 left, internal_partial_classlong right) => !Equals(left, right.Value);
+        public static global::System.Boolean operator ==(internal_partial_classlong left, System.Int64 right) => left?.Value.Equals(right) ?? false;
+        public static global::System.Boolean operator !=(internal_partial_classlong left, System.Int64 right) => !(left == right);
+        public static global::System.Boolean operator ==(System.Int64 left, internal_partial_classlong right) => right?.Value.Equals(left) ?? false;
+        public static global::System.Boolean operator !=(System.Int64 left, internal_partial_classlong right) => !(left == right);
         public static explicit operator internal_partial_classlong(System.Int64 value) => From(value);
         public static explicit operator System.Int64(internal_partial_classlong value) => value.Value;
         public int CompareTo(internal_partial_classlong other) => Value.CompareTo(other.Value);

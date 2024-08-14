@@ -203,10 +203,10 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
 
         public static global::System.Boolean operator ==(internal_readonly_partial_structstring left, internal_readonly_partial_structstring right) => left.Equals(right);
         public static global::System.Boolean operator !=(internal_readonly_partial_structstring left, internal_readonly_partial_structstring right) => !(left == right);
-        public static global::System.Boolean operator ==(internal_readonly_partial_structstring left, System.String right) => Equals(left.Value, right);
-        public static global::System.Boolean operator !=(internal_readonly_partial_structstring left, System.String right) => !Equals(left.Value, right);
-        public static global::System.Boolean operator ==(System.String left, internal_readonly_partial_structstring right) => Equals(left, right.Value);
-        public static global::System.Boolean operator !=(System.String left, internal_readonly_partial_structstring right) => !Equals(left, right.Value);
+        public static global::System.Boolean operator ==(internal_readonly_partial_structstring left, System.String right) => left.Value.Equals(right);
+        public static global::System.Boolean operator !=(internal_readonly_partial_structstring left, System.String right) => !(left == right);
+        public static global::System.Boolean operator ==(System.String left, internal_readonly_partial_structstring right) => right.Value.Equals(left);
+        public static global::System.Boolean operator !=(System.String left, internal_readonly_partial_structstring right) => !(left == right);
         public int CompareTo(internal_readonly_partial_structstring other) => Value.CompareTo(other.Value);
         public int CompareTo(object other)
         {

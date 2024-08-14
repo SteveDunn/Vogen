@@ -203,10 +203,10 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
             return Value.Equals(primitive);
         }
 
-        public static global::System.Boolean operator ==(_casting_public_sealed_partial_record_classNoneImplicitSystem_Guid left, System.Guid right) => Equals(left.Value, right);
-        public static global::System.Boolean operator !=(_casting_public_sealed_partial_record_classNoneImplicitSystem_Guid left, System.Guid right) => !Equals(left.Value, right);
-        public static global::System.Boolean operator ==(System.Guid left, _casting_public_sealed_partial_record_classNoneImplicitSystem_Guid right) => Equals(left, right.Value);
-        public static global::System.Boolean operator !=(System.Guid left, _casting_public_sealed_partial_record_classNoneImplicitSystem_Guid right) => !Equals(left, right.Value);
+        public static global::System.Boolean operator ==(_casting_public_sealed_partial_record_classNoneImplicitSystem_Guid left, System.Guid right) => left?.Value.Equals(right) ?? false;
+        public static global::System.Boolean operator !=(_casting_public_sealed_partial_record_classNoneImplicitSystem_Guid left, System.Guid right) => !(left == right);
+        public static global::System.Boolean operator ==(System.Guid left, _casting_public_sealed_partial_record_classNoneImplicitSystem_Guid right) => right?.Value.Equals(left) ?? false;
+        public static global::System.Boolean operator !=(System.Guid left, _casting_public_sealed_partial_record_classNoneImplicitSystem_Guid right) => !(left == right);
         public static implicit operator System.Guid(_casting_public_sealed_partial_record_classNoneImplicitSystem_Guid vo) => vo._value;
         public int CompareTo(_casting_public_sealed_partial_record_classNoneImplicitSystem_Guid other) => Value.CompareTo(other.Value);
         public int CompareTo(object other)

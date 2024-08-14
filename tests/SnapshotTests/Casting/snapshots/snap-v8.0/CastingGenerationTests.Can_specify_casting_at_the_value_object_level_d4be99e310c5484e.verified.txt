@@ -204,10 +204,10 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
 
         public static global::System.Boolean operator ==(_casting_public_partial_classImplicitNoneSystem_DateTimeOffset left, _casting_public_partial_classImplicitNoneSystem_DateTimeOffset right) => Equals(left, right);
         public static global::System.Boolean operator !=(_casting_public_partial_classImplicitNoneSystem_DateTimeOffset left, _casting_public_partial_classImplicitNoneSystem_DateTimeOffset right) => !Equals(left, right);
-        public static global::System.Boolean operator ==(_casting_public_partial_classImplicitNoneSystem_DateTimeOffset left, System.DateTimeOffset right) => Equals(left.Value, right);
-        public static global::System.Boolean operator !=(_casting_public_partial_classImplicitNoneSystem_DateTimeOffset left, System.DateTimeOffset right) => !Equals(left.Value, right);
-        public static global::System.Boolean operator ==(System.DateTimeOffset left, _casting_public_partial_classImplicitNoneSystem_DateTimeOffset right) => Equals(left, right.Value);
-        public static global::System.Boolean operator !=(System.DateTimeOffset left, _casting_public_partial_classImplicitNoneSystem_DateTimeOffset right) => !Equals(left, right.Value);
+        public static global::System.Boolean operator ==(_casting_public_partial_classImplicitNoneSystem_DateTimeOffset left, System.DateTimeOffset right) => left?.Value.Equals(right) ?? false;
+        public static global::System.Boolean operator !=(_casting_public_partial_classImplicitNoneSystem_DateTimeOffset left, System.DateTimeOffset right) => !(left == right);
+        public static global::System.Boolean operator ==(System.DateTimeOffset left, _casting_public_partial_classImplicitNoneSystem_DateTimeOffset right) => right?.Value.Equals(left) ?? false;
+        public static global::System.Boolean operator !=(System.DateTimeOffset left, _casting_public_partial_classImplicitNoneSystem_DateTimeOffset right) => !(left == right);
         public static implicit operator _casting_public_partial_classImplicitNoneSystem_DateTimeOffset(System.DateTimeOffset value)
         {
             return new _casting_public_partial_classImplicitNoneSystem_DateTimeOffset(value);

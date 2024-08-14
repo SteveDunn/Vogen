@@ -203,10 +203,10 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
             return Value.Equals(primitive);
         }
 
-        public static global::System.Boolean operator ==(_casting_public_partial_record_classImplicitImplicitint left, System.Int32 right) => Equals(left.Value, right);
-        public static global::System.Boolean operator !=(_casting_public_partial_record_classImplicitImplicitint left, System.Int32 right) => !Equals(left.Value, right);
-        public static global::System.Boolean operator ==(System.Int32 left, _casting_public_partial_record_classImplicitImplicitint right) => Equals(left, right.Value);
-        public static global::System.Boolean operator !=(System.Int32 left, _casting_public_partial_record_classImplicitImplicitint right) => !Equals(left, right.Value);
+        public static global::System.Boolean operator ==(_casting_public_partial_record_classImplicitImplicitint left, System.Int32 right) => left?.Value.Equals(right) ?? false;
+        public static global::System.Boolean operator !=(_casting_public_partial_record_classImplicitImplicitint left, System.Int32 right) => !(left == right);
+        public static global::System.Boolean operator ==(System.Int32 left, _casting_public_partial_record_classImplicitImplicitint right) => right?.Value.Equals(left) ?? false;
+        public static global::System.Boolean operator !=(System.Int32 left, _casting_public_partial_record_classImplicitImplicitint right) => !(left == right);
         public static implicit operator System.Int32(_casting_public_partial_record_classImplicitImplicitint vo) => vo._value;
         public static implicit operator _casting_public_partial_record_classImplicitImplicitint(System.Int32 value)
         {

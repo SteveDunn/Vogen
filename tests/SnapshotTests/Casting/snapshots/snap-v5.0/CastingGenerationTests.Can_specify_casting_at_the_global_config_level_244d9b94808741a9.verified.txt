@@ -201,10 +201,10 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
 
         public static global::System.Boolean operator ==(_casting_public_readonly_partial_structExplicitImplicitstring left, _casting_public_readonly_partial_structExplicitImplicitstring right) => left.Equals(right);
         public static global::System.Boolean operator !=(_casting_public_readonly_partial_structExplicitImplicitstring left, _casting_public_readonly_partial_structExplicitImplicitstring right) => !(left == right);
-        public static global::System.Boolean operator ==(_casting_public_readonly_partial_structExplicitImplicitstring left, System.String right) => Equals(left.Value, right);
-        public static global::System.Boolean operator !=(_casting_public_readonly_partial_structExplicitImplicitstring left, System.String right) => !Equals(left.Value, right);
-        public static global::System.Boolean operator ==(System.String left, _casting_public_readonly_partial_structExplicitImplicitstring right) => Equals(left, right.Value);
-        public static global::System.Boolean operator !=(System.String left, _casting_public_readonly_partial_structExplicitImplicitstring right) => !Equals(left, right.Value);
+        public static global::System.Boolean operator ==(_casting_public_readonly_partial_structExplicitImplicitstring left, System.String right) => left.Value.Equals(right);
+        public static global::System.Boolean operator !=(_casting_public_readonly_partial_structExplicitImplicitstring left, System.String right) => !(left == right);
+        public static global::System.Boolean operator ==(System.String left, _casting_public_readonly_partial_structExplicitImplicitstring right) => right.Value.Equals(left);
+        public static global::System.Boolean operator !=(System.String left, _casting_public_readonly_partial_structExplicitImplicitstring right) => !(left == right);
         public int CompareTo(_casting_public_readonly_partial_structExplicitImplicitstring other) => Value.CompareTo(other.Value);
         public int CompareTo(object other)
         {

@@ -203,10 +203,10 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
             return Value.Equals(primitive);
         }
 
-        public static global::System.Boolean operator ==(_casting_public_sealed_partial_record_classExplicitImplicitlong left, System.Int64 right) => Equals(left.Value, right);
-        public static global::System.Boolean operator !=(_casting_public_sealed_partial_record_classExplicitImplicitlong left, System.Int64 right) => !Equals(left.Value, right);
-        public static global::System.Boolean operator ==(System.Int64 left, _casting_public_sealed_partial_record_classExplicitImplicitlong right) => Equals(left, right.Value);
-        public static global::System.Boolean operator !=(System.Int64 left, _casting_public_sealed_partial_record_classExplicitImplicitlong right) => !Equals(left, right.Value);
+        public static global::System.Boolean operator ==(_casting_public_sealed_partial_record_classExplicitImplicitlong left, System.Int64 right) => left?.Value.Equals(right) ?? false;
+        public static global::System.Boolean operator !=(_casting_public_sealed_partial_record_classExplicitImplicitlong left, System.Int64 right) => !(left == right);
+        public static global::System.Boolean operator ==(System.Int64 left, _casting_public_sealed_partial_record_classExplicitImplicitlong right) => right?.Value.Equals(left) ?? false;
+        public static global::System.Boolean operator !=(System.Int64 left, _casting_public_sealed_partial_record_classExplicitImplicitlong right) => !(left == right);
         public static explicit operator _casting_public_sealed_partial_record_classExplicitImplicitlong(System.Int64 value) => From(value);
         public static implicit operator System.Int64(_casting_public_sealed_partial_record_classExplicitImplicitlong vo) => vo._value;
         public int CompareTo(_casting_public_sealed_partial_record_classExplicitImplicitlong other) => Value.CompareTo(other.Value);

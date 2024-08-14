@@ -204,10 +204,10 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
 
         public static global::System.Boolean operator ==(_casting_public_sealed_partial_classImplicitExplicit left, _casting_public_sealed_partial_classImplicitExplicit right) => Equals(left, right);
         public static global::System.Boolean operator !=(_casting_public_sealed_partial_classImplicitExplicit left, _casting_public_sealed_partial_classImplicitExplicit right) => !Equals(left, right);
-        public static global::System.Boolean operator ==(_casting_public_sealed_partial_classImplicitExplicit left, System.Int32 right) => Equals(left.Value, right);
-        public static global::System.Boolean operator !=(_casting_public_sealed_partial_classImplicitExplicit left, System.Int32 right) => !Equals(left.Value, right);
-        public static global::System.Boolean operator ==(System.Int32 left, _casting_public_sealed_partial_classImplicitExplicit right) => Equals(left, right.Value);
-        public static global::System.Boolean operator !=(System.Int32 left, _casting_public_sealed_partial_classImplicitExplicit right) => !Equals(left, right.Value);
+        public static global::System.Boolean operator ==(_casting_public_sealed_partial_classImplicitExplicit left, System.Int32 right) => left?.Value.Equals(right) ?? false;
+        public static global::System.Boolean operator !=(_casting_public_sealed_partial_classImplicitExplicit left, System.Int32 right) => !(left == right);
+        public static global::System.Boolean operator ==(System.Int32 left, _casting_public_sealed_partial_classImplicitExplicit right) => right?.Value.Equals(left) ?? false;
+        public static global::System.Boolean operator !=(System.Int32 left, _casting_public_sealed_partial_classImplicitExplicit right) => !(left == right);
         public static explicit operator System.Int32(_casting_public_sealed_partial_classImplicitExplicit value) => value.Value;
         public static implicit operator _casting_public_sealed_partial_classImplicitExplicit(System.Int32 value)
         {

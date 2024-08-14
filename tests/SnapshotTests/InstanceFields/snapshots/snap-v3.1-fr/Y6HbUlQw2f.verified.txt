@@ -205,10 +205,10 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
             return Value.Equals(primitive);
         }
 
-        public static global::System.Boolean operator ==(public_partial_recordbyte left, System.Byte right) => Equals(left.Value, right);
-        public static global::System.Boolean operator !=(public_partial_recordbyte left, System.Byte right) => !Equals(left.Value, right);
-        public static global::System.Boolean operator ==(System.Byte left, public_partial_recordbyte right) => Equals(left, right.Value);
-        public static global::System.Boolean operator !=(System.Byte left, public_partial_recordbyte right) => !Equals(left, right.Value);
+        public static global::System.Boolean operator ==(public_partial_recordbyte left, System.Byte right) => left?.Value.Equals(right) ?? false;
+        public static global::System.Boolean operator !=(public_partial_recordbyte left, System.Byte right) => !(left == right);
+        public static global::System.Boolean operator ==(System.Byte left, public_partial_recordbyte right) => right?.Value.Equals(left) ?? false;
+        public static global::System.Boolean operator !=(System.Byte left, public_partial_recordbyte right) => !(left == right);
         public static explicit operator public_partial_recordbyte(System.Byte value) => From(value);
         public static explicit operator System.Byte(public_partial_recordbyte value) => value.Value;
         public int CompareTo(public_partial_recordbyte other) => Value.CompareTo(other.Value);

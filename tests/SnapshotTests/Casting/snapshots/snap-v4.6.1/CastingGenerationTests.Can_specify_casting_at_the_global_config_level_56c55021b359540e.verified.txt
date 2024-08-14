@@ -200,10 +200,10 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
 
         public static global::System.Boolean operator ==(_casting_public_readonly_partial_structImplicitImplicitbool left, _casting_public_readonly_partial_structImplicitImplicitbool right) => left.Equals(right);
         public static global::System.Boolean operator !=(_casting_public_readonly_partial_structImplicitImplicitbool left, _casting_public_readonly_partial_structImplicitImplicitbool right) => !(left == right);
-        public static global::System.Boolean operator ==(_casting_public_readonly_partial_structImplicitImplicitbool left, System.Boolean right) => Equals(left.Value, right);
-        public static global::System.Boolean operator !=(_casting_public_readonly_partial_structImplicitImplicitbool left, System.Boolean right) => !Equals(left.Value, right);
-        public static global::System.Boolean operator ==(System.Boolean left, _casting_public_readonly_partial_structImplicitImplicitbool right) => Equals(left, right.Value);
-        public static global::System.Boolean operator !=(System.Boolean left, _casting_public_readonly_partial_structImplicitImplicitbool right) => !Equals(left, right.Value);
+        public static global::System.Boolean operator ==(_casting_public_readonly_partial_structImplicitImplicitbool left, System.Boolean right) => left.Value.Equals(right);
+        public static global::System.Boolean operator !=(_casting_public_readonly_partial_structImplicitImplicitbool left, System.Boolean right) => !(left == right);
+        public static global::System.Boolean operator ==(System.Boolean left, _casting_public_readonly_partial_structImplicitImplicitbool right) => right.Value.Equals(left);
+        public static global::System.Boolean operator !=(System.Boolean left, _casting_public_readonly_partial_structImplicitImplicitbool right) => !(left == right);
         public int CompareTo(_casting_public_readonly_partial_structImplicitImplicitbool other) => Value.CompareTo(other.Value);
         public int CompareTo(object other)
         {

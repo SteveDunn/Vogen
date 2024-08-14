@@ -202,10 +202,10 @@ namespace Whatever
             return comparer.Equals(Value, primitive);
         }
 
-        public static global::System.Boolean operator ==(CustomerId left, System.String right) => Equals(left.Value, right);
-        public static global::System.Boolean operator !=(CustomerId left, System.String right) => !Equals(left.Value, right);
-        public static global::System.Boolean operator ==(System.String left, CustomerId right) => Equals(left, right.Value);
-        public static global::System.Boolean operator !=(System.String left, CustomerId right) => !Equals(left, right.Value);
+        public static global::System.Boolean operator ==(CustomerId left, System.String right) => left.Value.Equals(right);
+        public static global::System.Boolean operator !=(CustomerId left, System.String right) => !(left == right);
+        public static global::System.Boolean operator ==(System.String left, CustomerId right) => right.Value.Equals(left);
+        public static global::System.Boolean operator !=(System.String left, CustomerId right) => !(left == right);
         public int CompareTo(CustomerId other) => Value.CompareTo(other.Value);
         public int CompareTo(object other)
         {
