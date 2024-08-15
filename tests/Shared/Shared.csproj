@@ -10,6 +10,8 @@
   </ItemGroup>
   
   <ItemGroup>
+    <PackageReference Include="System.Formats.Asn1" Version="8.0.1" />
+    
     <PackageReference Include="Microsoft.CodeAnalysis.Analyzer.Testing" Version="1.1.2" />
     <PackageReference Include="Microsoft.CodeAnalysis.CSharp.Workspaces" />
   </ItemGroup>
