@@ -188,7 +188,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
             return obj is CustomerId && Equals((CustomerId)obj);
         }
 
-        public static global::System.Boolean operator ==(CustomerId left, CustomerId right) => Equals(left, right);
+        public static global::System.Boolean operator ==(CustomerId left, CustomerId right) => left.Equals(right);
         public static global::System.Boolean operator !=(CustomerId left, CustomerId right) => !(left == right);
         public static global::System.Boolean operator ==(CustomerId left, System.String right) => Equals(left.Value, right);
         public static global::System.Boolean operator !=(CustomerId left, System.String right) => !Equals(left.Value, right);

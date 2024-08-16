@@ -199,7 +199,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
             return obj is City && Equals((City)obj);
         }
 
-        public static global::System.Boolean operator ==(City left, City right) => Equals(left, right);
+        public static global::System.Boolean operator ==(City left, City right) => left.Equals(right);
         public static global::System.Boolean operator !=(City left, City right) => !(left == right);
         public static global::System.Boolean operator ==(City left, System.String right) => Equals(left.Value, right);
         public static global::System.Boolean operator !=(City left, System.String right) => !Equals(left.Value, right);

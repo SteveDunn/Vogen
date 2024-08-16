@@ -192,7 +192,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
             return obj is escapedTestspublic_readonly_partial_structConversions_NoneSystem_Guid && Equals((escapedTestspublic_readonly_partial_structConversions_NoneSystem_Guid)obj);
         }
 
-        public static global::System.Boolean operator ==(escapedTestspublic_readonly_partial_structConversions_NoneSystem_Guid left, escapedTestspublic_readonly_partial_structConversions_NoneSystem_Guid right) => Equals(left, right);
+        public static global::System.Boolean operator ==(escapedTestspublic_readonly_partial_structConversions_NoneSystem_Guid left, escapedTestspublic_readonly_partial_structConversions_NoneSystem_Guid right) => left.Equals(right);
         public static global::System.Boolean operator !=(escapedTestspublic_readonly_partial_structConversions_NoneSystem_Guid left, escapedTestspublic_readonly_partial_structConversions_NoneSystem_Guid right) => !(left == right);
         public static global::System.Boolean operator ==(escapedTestspublic_readonly_partial_structConversions_NoneSystem_Guid left, System.Guid right) => Equals(left.Value, right);
         public static global::System.Boolean operator !=(escapedTestspublic_readonly_partial_structConversions_NoneSystem_Guid left, System.Guid right) => !Equals(left.Value, right);

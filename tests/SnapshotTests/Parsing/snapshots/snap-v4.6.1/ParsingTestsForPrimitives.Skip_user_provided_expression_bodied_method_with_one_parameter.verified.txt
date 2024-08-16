@@ -194,7 +194,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
             return obj is MyClass && Equals((MyClass)obj);
         }
 
-        public static global::System.Boolean operator ==(MyClass left, MyClass right) => Equals(left, right);
+        public static global::System.Boolean operator ==(MyClass left, MyClass right) => left.Equals(right);
         public static global::System.Boolean operator !=(MyClass left, MyClass right) => !(left == right);
         public static global::System.Boolean operator ==(MyClass left, System.Int32 right) => Equals(left.Value, right);
         public static global::System.Boolean operator !=(MyClass left, System.Int32 right) => !Equals(left.Value, right);

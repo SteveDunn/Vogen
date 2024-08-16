@@ -193,7 +193,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
             return obj is escapedTestspublic_partial_structConversions_NewtonsoftJsonbyte && Equals((escapedTestspublic_partial_structConversions_NewtonsoftJsonbyte)obj);
         }
 
-        public static global::System.Boolean operator ==(escapedTestspublic_partial_structConversions_NewtonsoftJsonbyte left, escapedTestspublic_partial_structConversions_NewtonsoftJsonbyte right) => Equals(left, right);
+        public static global::System.Boolean operator ==(escapedTestspublic_partial_structConversions_NewtonsoftJsonbyte left, escapedTestspublic_partial_structConversions_NewtonsoftJsonbyte right) => left.Equals(right);
         public static global::System.Boolean operator !=(escapedTestspublic_partial_structConversions_NewtonsoftJsonbyte left, escapedTestspublic_partial_structConversions_NewtonsoftJsonbyte right) => !(left == right);
         public static global::System.Boolean operator ==(escapedTestspublic_partial_structConversions_NewtonsoftJsonbyte left, System.Byte right) => Equals(left.Value, right);
         public static global::System.Boolean operator !=(escapedTestspublic_partial_structConversions_NewtonsoftJsonbyte left, System.Byte right) => !Equals(left.Value, right);
