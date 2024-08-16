@@ -193,7 +193,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
             return obj is _casting_public_partial_structNoneImplicitint && Equals((_casting_public_partial_structNoneImplicitint)obj);
         }
 
-        public static global::System.Boolean operator ==(_casting_public_partial_structNoneImplicitint left, _casting_public_partial_structNoneImplicitint right) => Equals(left, right);
+        public static global::System.Boolean operator ==(_casting_public_partial_structNoneImplicitint left, _casting_public_partial_structNoneImplicitint right) => left.Equals(right);
         public static global::System.Boolean operator !=(_casting_public_partial_structNoneImplicitint left, _casting_public_partial_structNoneImplicitint right) => !(left == right);
         public static global::System.Boolean operator ==(_casting_public_partial_structNoneImplicitint left, System.Int32 right) => Equals(left.Value, right);
         public static global::System.Boolean operator !=(_casting_public_partial_structNoneImplicitint left, System.Int32 right) => !Equals(left.Value, right);

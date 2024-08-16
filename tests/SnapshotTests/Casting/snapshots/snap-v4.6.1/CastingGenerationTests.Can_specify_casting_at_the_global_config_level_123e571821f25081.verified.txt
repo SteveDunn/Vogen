@@ -197,7 +197,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
             return obj is _casting_public_partial_structImplicitNonedouble && Equals((_casting_public_partial_structImplicitNonedouble)obj);
         }
 
-        public static global::System.Boolean operator ==(_casting_public_partial_structImplicitNonedouble left, _casting_public_partial_structImplicitNonedouble right) => Equals(left, right);
+        public static global::System.Boolean operator ==(_casting_public_partial_structImplicitNonedouble left, _casting_public_partial_structImplicitNonedouble right) => left.Equals(right);
         public static global::System.Boolean operator !=(_casting_public_partial_structImplicitNonedouble left, _casting_public_partial_structImplicitNonedouble right) => !(left == right);
         public static global::System.Boolean operator ==(_casting_public_partial_structImplicitNonedouble left, System.Double right) => Equals(left.Value, right);
         public static global::System.Boolean operator !=(_casting_public_partial_structImplicitNonedouble left, System.Double right) => !Equals(left.Value, right);

@@ -193,7 +193,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
             return obj is _casting_public_readonly_partial_structExplicitNonechar && Equals((_casting_public_readonly_partial_structExplicitNonechar)obj);
         }
 
-        public static global::System.Boolean operator ==(_casting_public_readonly_partial_structExplicitNonechar left, _casting_public_readonly_partial_structExplicitNonechar right) => Equals(left, right);
+        public static global::System.Boolean operator ==(_casting_public_readonly_partial_structExplicitNonechar left, _casting_public_readonly_partial_structExplicitNonechar right) => left.Equals(right);
         public static global::System.Boolean operator !=(_casting_public_readonly_partial_structExplicitNonechar left, _casting_public_readonly_partial_structExplicitNonechar right) => !(left == right);
         public static global::System.Boolean operator ==(_casting_public_readonly_partial_structExplicitNonechar left, System.Char right) => Equals(left.Value, right);
         public static global::System.Boolean operator !=(_casting_public_readonly_partial_structExplicitNonechar left, System.Char right) => !Equals(left.Value, right);
