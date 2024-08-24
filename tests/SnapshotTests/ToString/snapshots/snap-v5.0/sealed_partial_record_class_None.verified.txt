@@ -203,10 +203,10 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
             return Value.Equals(primitive);
         }
 
-        public static global::System.Boolean operator ==(sealed_partial_record_class_None left, System.Int32 right) => Equals(left.Value, right);
-        public static global::System.Boolean operator !=(sealed_partial_record_class_None left, System.Int32 right) => !Equals(left.Value, right);
-        public static global::System.Boolean operator ==(System.Int32 left, sealed_partial_record_class_None right) => Equals(left, right.Value);
-        public static global::System.Boolean operator !=(System.Int32 left, sealed_partial_record_class_None right) => !Equals(left, right.Value);
+        public static global::System.Boolean operator ==(sealed_partial_record_class_None left, System.Int32 right) => left?.Value.Equals(right) ?? false;
+        public static global::System.Boolean operator !=(sealed_partial_record_class_None left, System.Int32 right) => !(left == right);
+        public static global::System.Boolean operator ==(System.Int32 left, sealed_partial_record_class_None right) => right?.Value.Equals(left) ?? false;
+        public static global::System.Boolean operator !=(System.Int32 left, sealed_partial_record_class_None right) => !(left == right);
         public static explicit operator sealed_partial_record_class_None(System.Int32 value) => From(value);
         public static explicit operator System.Int32(sealed_partial_record_class_None value) => value.Value;
         public int CompareTo(sealed_partial_record_class_None other) => Value.CompareTo(other.Value);

@@ -203,10 +203,10 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
             return Value.Equals(primitive);
         }
 
-        public static global::System.Boolean operator ==(_casting_public_sealed_partial_record_classExplicitNonedouble left, System.Double right) => Equals(left.Value, right);
-        public static global::System.Boolean operator !=(_casting_public_sealed_partial_record_classExplicitNonedouble left, System.Double right) => !Equals(left.Value, right);
-        public static global::System.Boolean operator ==(System.Double left, _casting_public_sealed_partial_record_classExplicitNonedouble right) => Equals(left, right.Value);
-        public static global::System.Boolean operator !=(System.Double left, _casting_public_sealed_partial_record_classExplicitNonedouble right) => !Equals(left, right.Value);
+        public static global::System.Boolean operator ==(_casting_public_sealed_partial_record_classExplicitNonedouble left, System.Double right) => left?.Value.Equals(right) ?? false;
+        public static global::System.Boolean operator !=(_casting_public_sealed_partial_record_classExplicitNonedouble left, System.Double right) => !(left == right);
+        public static global::System.Boolean operator ==(System.Double left, _casting_public_sealed_partial_record_classExplicitNonedouble right) => right?.Value.Equals(left) ?? false;
+        public static global::System.Boolean operator !=(System.Double left, _casting_public_sealed_partial_record_classExplicitNonedouble right) => !(left == right);
         public static explicit operator _casting_public_sealed_partial_record_classExplicitNonedouble(System.Double value) => From(value);
         public int CompareTo(_casting_public_sealed_partial_record_classExplicitNonedouble other) => Value.CompareTo(other.Value);
         public int CompareTo(object other)

@@ -142,14 +142,30 @@ $$"""
     public static string GenerateEqualsOperatorsForPrimitivesIfNeeded(string itemUnderlyingType, SyntaxToken typeName, VoWorkItem item)
     {
         if (item.Config.PrimitiveEqualityGeneration.HasFlag(PrimitiveEqualityGeneration.GenerateOperators))
-            return $"""
+        {
+            if (item.IsTheWrapperAReferenceType)
+            {
+                return $"""
                     
-                            public static global::System.Boolean operator ==({typeName} left, {itemUnderlyingType} right) => Equals(left.Value, right);
-                            public static global::System.Boolean operator !=({typeName} left, {itemUnderlyingType} right) => !Equals(left.Value, right);
+                            public static global::System.Boolean operator ==({typeName} left, {itemUnderlyingType} right) => left?.Value.Equals(right) ?? false;
+                            public static global::System.Boolean operator !=({typeName} left, {itemUnderlyingType} right) => !(left == right);
                     
-                            public static global::System.Boolean operator ==({itemUnderlyingType} left, {typeName} right) => Equals(left, right.Value);
-                            public static global::System.Boolean operator !=({itemUnderlyingType} left, {typeName} right) => !Equals(left, right.Value);
-                    """;
+                            public static global::System.Boolean operator ==({itemUnderlyingType} left, {typeName} right) => right?.Value.Equals(left) ?? false;
+                            public static global::System.Boolean operator !=({itemUnderlyingType} left, {typeName} right) => !(left == right);
+                        """;
+            }
+            else
+            {
+                return $"""
+                    
+                            public static global::System.Boolean operator ==({typeName} left, {itemUnderlyingType} right) => left.Value.Equals(right);
+                            public static global::System.Boolean operator !=({typeName} left, {itemUnderlyingType} right) => !(left == right);
+                    
+                            public static global::System.Boolean operator ==({itemUnderlyingType} left, {typeName} right) => right.Value.Equals(left);
+                            public static global::System.Boolean operator !=({itemUnderlyingType} left, {typeName} right) => !(left == right);
+                        """;
+            }
+        }
 
         return string.Empty;
     }

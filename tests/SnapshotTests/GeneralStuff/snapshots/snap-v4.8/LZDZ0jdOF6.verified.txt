@@ -201,10 +201,10 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
         return Value.Equals(primitive);
     }
 
-    public static global::System.Boolean operator ==(MyVo left, System.Guid right) => Equals(left.Value, right);
-    public static global::System.Boolean operator !=(MyVo left, System.Guid right) => !Equals(left.Value, right);
-    public static global::System.Boolean operator ==(System.Guid left, MyVo right) => Equals(left, right.Value);
-    public static global::System.Boolean operator !=(System.Guid left, MyVo right) => !Equals(left, right.Value);
+    public static global::System.Boolean operator ==(MyVo left, System.Guid right) => left?.Value.Equals(right) ?? false;
+    public static global::System.Boolean operator !=(MyVo left, System.Guid right) => !(left == right);
+    public static global::System.Boolean operator ==(System.Guid left, MyVo right) => right?.Value.Equals(left) ?? false;
+    public static global::System.Boolean operator !=(System.Guid left, MyVo right) => !(left == right);
     public static explicit operator MyVo(System.Guid value) => From(value);
     public static explicit operator System.Guid(MyVo value) => value.Value;
     public static MyVo FromNewGuid() => From(global::System.Guid.NewGuid());

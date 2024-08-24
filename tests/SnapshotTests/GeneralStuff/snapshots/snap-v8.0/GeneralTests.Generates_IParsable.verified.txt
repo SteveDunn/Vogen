@@ -204,10 +204,10 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
 
         public static global::System.Boolean operator ==(Foo left, Foo right) => Equals(left, right);
         public static global::System.Boolean operator !=(Foo left, Foo right) => !Equals(left, right);
-        public static global::System.Boolean operator ==(Foo left, System.Boolean right) => Equals(left.Value, right);
-        public static global::System.Boolean operator !=(Foo left, System.Boolean right) => !Equals(left.Value, right);
-        public static global::System.Boolean operator ==(System.Boolean left, Foo right) => Equals(left, right.Value);
-        public static global::System.Boolean operator !=(System.Boolean left, Foo right) => !Equals(left, right.Value);
+        public static global::System.Boolean operator ==(Foo left, System.Boolean right) => left?.Value.Equals(right) ?? false;
+        public static global::System.Boolean operator !=(Foo left, System.Boolean right) => !(left == right);
+        public static global::System.Boolean operator ==(System.Boolean left, Foo right) => right?.Value.Equals(left) ?? false;
+        public static global::System.Boolean operator !=(System.Boolean left, Foo right) => !(left == right);
         public static explicit operator Foo(System.Boolean value) => From(value);
         public static explicit operator System.Boolean(Foo value) => value.Value;
         public int CompareTo(Foo other) => Value.CompareTo(other.Value);

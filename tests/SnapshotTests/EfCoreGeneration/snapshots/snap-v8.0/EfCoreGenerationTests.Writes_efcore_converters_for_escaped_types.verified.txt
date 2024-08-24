@@ -1163,10 +1163,10 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
 
         public static global::System.Boolean operator ==(@byte left, @byte right) => left.Equals(right);
         public static global::System.Boolean operator !=(@byte left, @byte right) => !(left == right);
-        public static global::System.Boolean operator ==(@byte left, System.Byte right) => Equals(left.Value, right);
-        public static global::System.Boolean operator !=(@byte left, System.Byte right) => !Equals(left.Value, right);
-        public static global::System.Boolean operator ==(System.Byte left, @byte right) => Equals(left, right.Value);
-        public static global::System.Boolean operator !=(System.Byte left, @byte right) => !Equals(left, right.Value);
+        public static global::System.Boolean operator ==(@byte left, System.Byte right) => left.Value.Equals(right);
+        public static global::System.Boolean operator !=(@byte left, System.Byte right) => !(left == right);
+        public static global::System.Boolean operator ==(System.Byte left, @byte right) => right.Value.Equals(left);
+        public static global::System.Boolean operator !=(System.Byte left, @byte right) => !(left == right);
         public int CompareTo(@byte other) => Value.CompareTo(other.Value);
         public int CompareTo(object other)
         {
@@ -1761,10 +1761,10 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
             return comparer.Equals(Value, primitive);
         }
 
-        public static global::System.Boolean operator ==(@string left, System.String right) => Equals(left.Value, right);
-        public static global::System.Boolean operator !=(@string left, System.String right) => !Equals(left.Value, right);
-        public static global::System.Boolean operator ==(System.String left, @string right) => Equals(left, right.Value);
-        public static global::System.Boolean operator !=(System.String left, @string right) => !Equals(left, right.Value);
+        public static global::System.Boolean operator ==(@string left, System.String right) => left.Value.Equals(right);
+        public static global::System.Boolean operator !=(@string left, System.String right) => !(left == right);
+        public static global::System.Boolean operator ==(System.String left, @string right) => right.Value.Equals(left);
+        public static global::System.Boolean operator !=(System.String left, @string right) => !(left == right);
         public int CompareTo(@string other) => Value.CompareTo(other.Value);
         public int CompareTo(object other)
         {
@@ -2060,10 +2060,10 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
 
         public static global::System.Boolean operator ==(MyVo1 left, MyVo1 right) => left.Equals(right);
         public static global::System.Boolean operator !=(MyVo1 left, MyVo1 right) => !(left == right);
-        public static global::System.Boolean operator ==(MyVo1 left, System.Int32 right) => Equals(left.Value, right);
-        public static global::System.Boolean operator !=(MyVo1 left, System.Int32 right) => !Equals(left.Value, right);
-        public static global::System.Boolean operator ==(System.Int32 left, MyVo1 right) => Equals(left, right.Value);
-        public static global::System.Boolean operator !=(System.Int32 left, MyVo1 right) => !Equals(left, right.Value);
+        public static global::System.Boolean operator ==(MyVo1 left, System.Int32 right) => left.Value.Equals(right);
+        public static global::System.Boolean operator !=(MyVo1 left, System.Int32 right) => !(left == right);
+        public static global::System.Boolean operator ==(System.Int32 left, MyVo1 right) => right.Value.Equals(left);
+        public static global::System.Boolean operator !=(System.Int32 left, MyVo1 right) => !(left == right);
         public int CompareTo(MyVo1 other) => Value.CompareTo(other.Value);
         public int CompareTo(object other)
         {
@@ -2680,10 +2680,10 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
 
         public static global::System.Boolean operator ==(MyVo2 left, MyVo2 right) => Equals(left, right);
         public static global::System.Boolean operator !=(MyVo2 left, MyVo2 right) => !Equals(left, right);
-        public static global::System.Boolean operator ==(MyVo2 left, System.String right) => Equals(left.Value, right);
-        public static global::System.Boolean operator !=(MyVo2 left, System.String right) => !Equals(left.Value, right);
-        public static global::System.Boolean operator ==(System.String left, MyVo2 right) => Equals(left, right.Value);
-        public static global::System.Boolean operator !=(System.String left, MyVo2 right) => !Equals(left, right.Value);
+        public static global::System.Boolean operator ==(MyVo2 left, System.String right) => left?.Value.Equals(right) ?? false;
+        public static global::System.Boolean operator !=(MyVo2 left, System.String right) => !(left == right);
+        public static global::System.Boolean operator ==(System.String left, MyVo2 right) => right?.Value.Equals(left) ?? false;
+        public static global::System.Boolean operator !=(System.String left, MyVo2 right) => !(left == right);
         public static explicit operator MyVo2(System.String value) => From(value);
         public static explicit operator System.String(MyVo2 value) => value.Value;
         public int CompareTo(MyVo2 other) => Value.CompareTo(other.Value);
@@ -2989,10 +2989,10 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
 
         public static global::System.Boolean operator ==(MyVo3 left, MyVo3 right) => left.Equals(right);
         public static global::System.Boolean operator !=(MyVo3 left, MyVo3 right) => !(left == right);
-        public static global::System.Boolean operator ==(MyVo3 left, System.String right) => Equals(left.Value, right);
-        public static global::System.Boolean operator !=(MyVo3 left, System.String right) => !Equals(left.Value, right);
-        public static global::System.Boolean operator ==(System.String left, MyVo3 right) => Equals(left, right.Value);
-        public static global::System.Boolean operator !=(System.String left, MyVo3 right) => !Equals(left, right.Value);
+        public static global::System.Boolean operator ==(MyVo3 left, System.String right) => left.Value.Equals(right);
+        public static global::System.Boolean operator !=(MyVo3 left, System.String right) => !(left == right);
+        public static global::System.Boolean operator ==(System.String left, MyVo3 right) => right.Value.Equals(left);
+        public static global::System.Boolean operator !=(System.String left, MyVo3 right) => !(left == right);
         public int CompareTo(MyVo3 other) => Value.CompareTo(other.Value);
         public int CompareTo(object other)
         {
@@ -3287,10 +3287,10 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
 
         public static global::System.Boolean operator ==(MyVo4 left, MyVo4 right) => left.Equals(right);
         public static global::System.Boolean operator !=(MyVo4 left, MyVo4 right) => !(left == right);
-        public static global::System.Boolean operator ==(MyVo4 left, System.Int32 right) => Equals(left.Value, right);
-        public static global::System.Boolean operator !=(MyVo4 left, System.Int32 right) => !Equals(left.Value, right);
-        public static global::System.Boolean operator ==(System.Int32 left, MyVo4 right) => Equals(left, right.Value);
-        public static global::System.Boolean operator !=(System.Int32 left, MyVo4 right) => !Equals(left, right.Value);
+        public static global::System.Boolean operator ==(MyVo4 left, System.Int32 right) => left.Value.Equals(right);
+        public static global::System.Boolean operator !=(MyVo4 left, System.Int32 right) => !(left == right);
+        public static global::System.Boolean operator ==(System.Int32 left, MyVo4 right) => right.Value.Equals(left);
+        public static global::System.Boolean operator !=(System.Int32 left, MyVo4 right) => !(left == right);
         public int CompareTo(MyVo4 other) => Value.CompareTo(other.Value);
         public int CompareTo(object other)
         {
@@ -3872,10 +3872,10 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
             return Value.Equals(primitive);
         }
 
-        public static global::System.Boolean operator ==(MyVo5 left, System.Int32 right) => Equals(left.Value, right);
-        public static global::System.Boolean operator !=(MyVo5 left, System.Int32 right) => !Equals(left.Value, right);
-        public static global::System.Boolean operator ==(System.Int32 left, MyVo5 right) => Equals(left, right.Value);
-        public static global::System.Boolean operator !=(System.Int32 left, MyVo5 right) => !Equals(left, right.Value);
+        public static global::System.Boolean operator ==(MyVo5 left, System.Int32 right) => left.Value.Equals(right);
+        public static global::System.Boolean operator !=(MyVo5 left, System.Int32 right) => !(left == right);
+        public static global::System.Boolean operator ==(System.Int32 left, MyVo5 right) => right.Value.Equals(left);
+        public static global::System.Boolean operator !=(System.Int32 left, MyVo5 right) => !(left == right);
         public int CompareTo(MyVo5 other) => Value.CompareTo(other.Value);
         public int CompareTo(object other)
         {
@@ -4466,10 +4466,10 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
             return Value.Equals(primitive);
         }
 
-        public static global::System.Boolean operator ==(MyVo6 left, System.Int32 right) => Equals(left.Value, right);
-        public static global::System.Boolean operator !=(MyVo6 left, System.Int32 right) => !Equals(left.Value, right);
-        public static global::System.Boolean operator ==(System.Int32 left, MyVo6 right) => Equals(left, right.Value);
-        public static global::System.Boolean operator !=(System.Int32 left, MyVo6 right) => !Equals(left, right.Value);
+        public static global::System.Boolean operator ==(MyVo6 left, System.Int32 right) => left?.Value.Equals(right) ?? false;
+        public static global::System.Boolean operator !=(MyVo6 left, System.Int32 right) => !(left == right);
+        public static global::System.Boolean operator ==(System.Int32 left, MyVo6 right) => right?.Value.Equals(left) ?? false;
+        public static global::System.Boolean operator !=(System.Int32 left, MyVo6 right) => !(left == right);
         public static explicit operator MyVo6(System.Int32 value) => From(value);
         public static explicit operator System.Int32(MyVo6 value) => value.Value;
         public int CompareTo(MyVo6 other) => Value.CompareTo(other.Value);
@@ -5058,10 +5058,10 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
             return Value.Equals(primitive);
         }
 
-        public static global::System.Boolean operator ==(@int left, System.Int32 right) => Equals(left.Value, right);
-        public static global::System.Boolean operator !=(@int left, System.Int32 right) => !Equals(left.Value, right);
-        public static global::System.Boolean operator ==(System.Int32 left, @int right) => Equals(left, right.Value);
-        public static global::System.Boolean operator !=(System.Int32 left, @int right) => !Equals(left, right.Value);
+        public static global::System.Boolean operator ==(@int left, System.Int32 right) => left.Value.Equals(right);
+        public static global::System.Boolean operator !=(@int left, System.Int32 right) => !(left == right);
+        public static global::System.Boolean operator ==(System.Int32 left, @int right) => right.Value.Equals(left);
+        public static global::System.Boolean operator !=(System.Int32 left, @int right) => !(left == right);
         public int CompareTo(@int other) => Value.CompareTo(other.Value);
         public int CompareTo(object other)
         {
@@ -5644,10 +5644,10 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
             return Value.Equals(primitive);
         }
 
-        public static global::System.Boolean operator ==(@byte left, System.Int32 right) => Equals(left.Value, right);
-        public static global::System.Boolean operator !=(@byte left, System.Int32 right) => !Equals(left.Value, right);
-        public static global::System.Boolean operator ==(System.Int32 left, @byte right) => Equals(left, right.Value);
-        public static global::System.Boolean operator !=(System.Int32 left, @byte right) => !Equals(left, right.Value);
+        public static global::System.Boolean operator ==(@byte left, System.Int32 right) => left.Value.Equals(right);
+        public static global::System.Boolean operator !=(@byte left, System.Int32 right) => !(left == right);
+        public static global::System.Boolean operator ==(System.Int32 left, @byte right) => right.Value.Equals(left);
+        public static global::System.Boolean operator !=(System.Int32 left, @byte right) => !(left == right);
         public int CompareTo(@byte other) => Value.CompareTo(other.Value);
         public int CompareTo(object other)
         {
@@ -6238,10 +6238,10 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
             return Value.Equals(primitive);
         }
 
-        public static global::System.Boolean operator ==(MyInt left, System.Int32 right) => Equals(left.Value, right);
-        public static global::System.Boolean operator !=(MyInt left, System.Int32 right) => !Equals(left.Value, right);
-        public static global::System.Boolean operator ==(System.Int32 left, MyInt right) => Equals(left, right.Value);
-        public static global::System.Boolean operator !=(System.Int32 left, MyInt right) => !Equals(left, right.Value);
+        public static global::System.Boolean operator ==(MyInt left, System.Int32 right) => left?.Value.Equals(right) ?? false;
+        public static global::System.Boolean operator !=(MyInt left, System.Int32 right) => !(left == right);
+        public static global::System.Boolean operator ==(System.Int32 left, MyInt right) => right?.Value.Equals(left) ?? false;
+        public static global::System.Boolean operator !=(System.Int32 left, MyInt right) => !(left == right);
         public static explicit operator MyInt(System.Int32 value) => From(value);
         public static explicit operator System.Int32(MyInt value) => value.Value;
         public int CompareTo(MyInt other) => Value.CompareTo(other.Value);

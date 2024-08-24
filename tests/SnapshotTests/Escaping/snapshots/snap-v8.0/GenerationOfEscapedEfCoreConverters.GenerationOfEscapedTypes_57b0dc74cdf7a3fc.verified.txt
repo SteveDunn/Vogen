@@ -313,10 +313,10 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
 
         public static global::System.Boolean operator ==(escapedTestspublic_readonly_partial_structConversions_Nonerecord__struct__float__event2 left, escapedTestspublic_readonly_partial_structConversions_Nonerecord__struct__float__event2 right) => left.Equals(right);
         public static global::System.Boolean operator !=(escapedTestspublic_readonly_partial_structConversions_Nonerecord__struct__float__event2 left, escapedTestspublic_readonly_partial_structConversions_Nonerecord__struct__float__event2 right) => !(left == right);
-        public static global::System.Boolean operator ==(escapedTestspublic_readonly_partial_structConversions_Nonerecord__struct__float__event2 left, @class.@record.@struct.@float.event2 right) => Equals(left.Value, right);
-        public static global::System.Boolean operator !=(escapedTestspublic_readonly_partial_structConversions_Nonerecord__struct__float__event2 left, @class.@record.@struct.@float.event2 right) => !Equals(left.Value, right);
-        public static global::System.Boolean operator ==(@class.@record.@struct.@float.event2 left, escapedTestspublic_readonly_partial_structConversions_Nonerecord__struct__float__event2 right) => Equals(left, right.Value);
-        public static global::System.Boolean operator !=(@class.@record.@struct.@float.event2 left, escapedTestspublic_readonly_partial_structConversions_Nonerecord__struct__float__event2 right) => !Equals(left, right.Value);
+        public static global::System.Boolean operator ==(escapedTestspublic_readonly_partial_structConversions_Nonerecord__struct__float__event2 left, @class.@record.@struct.@float.event2 right) => left.Value.Equals(right);
+        public static global::System.Boolean operator !=(escapedTestspublic_readonly_partial_structConversions_Nonerecord__struct__float__event2 left, @class.@record.@struct.@float.event2 right) => !(left == right);
+        public static global::System.Boolean operator ==(@class.@record.@struct.@float.event2 left, escapedTestspublic_readonly_partial_structConversions_Nonerecord__struct__float__event2 right) => right.Value.Equals(left);
+        public static global::System.Boolean operator !=(@class.@record.@struct.@float.event2 left, escapedTestspublic_readonly_partial_structConversions_Nonerecord__struct__float__event2 right) => !(left == right);
         public readonly override global::System.Int32 GetHashCode()
         {
             return global::System.Collections.Generic.EqualityComparer<@class.@record.@struct.@float.event2>.Default.GetHashCode(Value);

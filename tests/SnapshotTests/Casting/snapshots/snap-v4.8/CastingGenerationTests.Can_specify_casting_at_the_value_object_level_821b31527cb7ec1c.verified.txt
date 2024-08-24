@@ -230,10 +230,10 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
 
         public static global::System.Boolean operator ==(_casting_public_partial_classExplicitNonestring left, _casting_public_partial_classExplicitNonestring right) => Equals(left, right);
         public static global::System.Boolean operator !=(_casting_public_partial_classExplicitNonestring left, _casting_public_partial_classExplicitNonestring right) => !Equals(left, right);
-        public static global::System.Boolean operator ==(_casting_public_partial_classExplicitNonestring left, System.String right) => Equals(left.Value, right);
-        public static global::System.Boolean operator !=(_casting_public_partial_classExplicitNonestring left, System.String right) => !Equals(left.Value, right);
-        public static global::System.Boolean operator ==(System.String left, _casting_public_partial_classExplicitNonestring right) => Equals(left, right.Value);
-        public static global::System.Boolean operator !=(System.String left, _casting_public_partial_classExplicitNonestring right) => !Equals(left, right.Value);
+        public static global::System.Boolean operator ==(_casting_public_partial_classExplicitNonestring left, System.String right) => left?.Value.Equals(right) ?? false;
+        public static global::System.Boolean operator !=(_casting_public_partial_classExplicitNonestring left, System.String right) => !(left == right);
+        public static global::System.Boolean operator ==(System.String left, _casting_public_partial_classExplicitNonestring right) => right?.Value.Equals(left) ?? false;
+        public static global::System.Boolean operator !=(System.String left, _casting_public_partial_classExplicitNonestring right) => !(left == right);
         public static explicit operator _casting_public_partial_classExplicitNonestring(System.String value) => From(value);
         public int CompareTo(_casting_public_partial_classExplicitNonestring other) => Value.CompareTo(other.Value);
         public int CompareTo(object other)

@@ -204,10 +204,10 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
 
         public static global::System.Boolean operator ==(_casting_public_sealed_partial_classImplicitImplicitdecimal left, _casting_public_sealed_partial_classImplicitImplicitdecimal right) => Equals(left, right);
         public static global::System.Boolean operator !=(_casting_public_sealed_partial_classImplicitImplicitdecimal left, _casting_public_sealed_partial_classImplicitImplicitdecimal right) => !Equals(left, right);
-        public static global::System.Boolean operator ==(_casting_public_sealed_partial_classImplicitImplicitdecimal left, System.Decimal right) => Equals(left.Value, right);
-        public static global::System.Boolean operator !=(_casting_public_sealed_partial_classImplicitImplicitdecimal left, System.Decimal right) => !Equals(left.Value, right);
-        public static global::System.Boolean operator ==(System.Decimal left, _casting_public_sealed_partial_classImplicitImplicitdecimal right) => Equals(left, right.Value);
-        public static global::System.Boolean operator !=(System.Decimal left, _casting_public_sealed_partial_classImplicitImplicitdecimal right) => !Equals(left, right.Value);
+        public static global::System.Boolean operator ==(_casting_public_sealed_partial_classImplicitImplicitdecimal left, System.Decimal right) => left?.Value.Equals(right) ?? false;
+        public static global::System.Boolean operator !=(_casting_public_sealed_partial_classImplicitImplicitdecimal left, System.Decimal right) => !(left == right);
+        public static global::System.Boolean operator ==(System.Decimal left, _casting_public_sealed_partial_classImplicitImplicitdecimal right) => right?.Value.Equals(left) ?? false;
+        public static global::System.Boolean operator !=(System.Decimal left, _casting_public_sealed_partial_classImplicitImplicitdecimal right) => !(left == right);
         public static implicit operator System.Decimal(_casting_public_sealed_partial_classImplicitImplicitdecimal vo) => vo._value;
         public static implicit operator _casting_public_sealed_partial_classImplicitImplicitdecimal(System.Decimal value)
         {

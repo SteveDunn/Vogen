@@ -204,10 +204,10 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
 
         public static global::System.Boolean operator ==(_casting_public_partial_classImplicitExplicitbool left, _casting_public_partial_classImplicitExplicitbool right) => Equals(left, right);
         public static global::System.Boolean operator !=(_casting_public_partial_classImplicitExplicitbool left, _casting_public_partial_classImplicitExplicitbool right) => !Equals(left, right);
-        public static global::System.Boolean operator ==(_casting_public_partial_classImplicitExplicitbool left, System.Boolean right) => Equals(left.Value, right);
-        public static global::System.Boolean operator !=(_casting_public_partial_classImplicitExplicitbool left, System.Boolean right) => !Equals(left.Value, right);
-        public static global::System.Boolean operator ==(System.Boolean left, _casting_public_partial_classImplicitExplicitbool right) => Equals(left, right.Value);
-        public static global::System.Boolean operator !=(System.Boolean left, _casting_public_partial_classImplicitExplicitbool right) => !Equals(left, right.Value);
+        public static global::System.Boolean operator ==(_casting_public_partial_classImplicitExplicitbool left, System.Boolean right) => left?.Value.Equals(right) ?? false;
+        public static global::System.Boolean operator !=(_casting_public_partial_classImplicitExplicitbool left, System.Boolean right) => !(left == right);
+        public static global::System.Boolean operator ==(System.Boolean left, _casting_public_partial_classImplicitExplicitbool right) => right?.Value.Equals(left) ?? false;
+        public static global::System.Boolean operator !=(System.Boolean left, _casting_public_partial_classImplicitExplicitbool right) => !(left == right);
         public static explicit operator System.Boolean(_casting_public_partial_classImplicitExplicitbool value) => value.Value;
         public static implicit operator _casting_public_partial_classImplicitExplicitbool(System.Boolean value)
         {

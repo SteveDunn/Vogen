@@ -223,10 +223,10 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
             return comparer.Equals(Value, primitive);
         }
 
-        public static global::System.Boolean operator ==(_casting_public_sealed_partial_recordImplicitExplicitstring left, System.String right) => Equals(left.Value, right);
-        public static global::System.Boolean operator !=(_casting_public_sealed_partial_recordImplicitExplicitstring left, System.String right) => !Equals(left.Value, right);
-        public static global::System.Boolean operator ==(System.String left, _casting_public_sealed_partial_recordImplicitExplicitstring right) => Equals(left, right.Value);
-        public static global::System.Boolean operator !=(System.String left, _casting_public_sealed_partial_recordImplicitExplicitstring right) => !Equals(left, right.Value);
+        public static global::System.Boolean operator ==(_casting_public_sealed_partial_recordImplicitExplicitstring left, System.String right) => left?.Value.Equals(right) ?? false;
+        public static global::System.Boolean operator !=(_casting_public_sealed_partial_recordImplicitExplicitstring left, System.String right) => !(left == right);
+        public static global::System.Boolean operator ==(System.String left, _casting_public_sealed_partial_recordImplicitExplicitstring right) => right?.Value.Equals(left) ?? false;
+        public static global::System.Boolean operator !=(System.String left, _casting_public_sealed_partial_recordImplicitExplicitstring right) => !(left == right);
         public static explicit operator System.String(_casting_public_sealed_partial_recordImplicitExplicitstring value) => value.Value;
         public static implicit operator _casting_public_sealed_partial_recordImplicitExplicitstring(System.String value)
         {

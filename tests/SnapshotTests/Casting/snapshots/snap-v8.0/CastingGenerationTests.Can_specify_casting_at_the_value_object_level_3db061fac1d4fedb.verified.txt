@@ -204,10 +204,10 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
 
         public static global::System.Boolean operator ==(_casting_public_partial_classExplicitExplicit left, _casting_public_partial_classExplicitExplicit right) => Equals(left, right);
         public static global::System.Boolean operator !=(_casting_public_partial_classExplicitExplicit left, _casting_public_partial_classExplicitExplicit right) => !Equals(left, right);
-        public static global::System.Boolean operator ==(_casting_public_partial_classExplicitExplicit left, System.Int32 right) => Equals(left.Value, right);
-        public static global::System.Boolean operator !=(_casting_public_partial_classExplicitExplicit left, System.Int32 right) => !Equals(left.Value, right);
-        public static global::System.Boolean operator ==(System.Int32 left, _casting_public_partial_classExplicitExplicit right) => Equals(left, right.Value);
-        public static global::System.Boolean operator !=(System.Int32 left, _casting_public_partial_classExplicitExplicit right) => !Equals(left, right.Value);
+        public static global::System.Boolean operator ==(_casting_public_partial_classExplicitExplicit left, System.Int32 right) => left?.Value.Equals(right) ?? false;
+        public static global::System.Boolean operator !=(_casting_public_partial_classExplicitExplicit left, System.Int32 right) => !(left == right);
+        public static global::System.Boolean operator ==(System.Int32 left, _casting_public_partial_classExplicitExplicit right) => right?.Value.Equals(left) ?? false;
+        public static global::System.Boolean operator !=(System.Int32 left, _casting_public_partial_classExplicitExplicit right) => !(left == right);
         public static explicit operator _casting_public_partial_classExplicitExplicit(System.Int32 value) => From(value);
         public static explicit operator System.Int32(_casting_public_partial_classExplicitExplicit value) => value.Value;
         public int CompareTo(_casting_public_partial_classExplicitExplicit other) => Value.CompareTo(other.Value);

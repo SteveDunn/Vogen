@@ -204,10 +204,10 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
 
         public static global::System.Boolean operator ==(_casting_public_sealed_partial_classImplicitImplicitchar left, _casting_public_sealed_partial_classImplicitImplicitchar right) => Equals(left, right);
         public static global::System.Boolean operator !=(_casting_public_sealed_partial_classImplicitImplicitchar left, _casting_public_sealed_partial_classImplicitImplicitchar right) => !Equals(left, right);
-        public static global::System.Boolean operator ==(_casting_public_sealed_partial_classImplicitImplicitchar left, System.Char right) => Equals(left.Value, right);
-        public static global::System.Boolean operator !=(_casting_public_sealed_partial_classImplicitImplicitchar left, System.Char right) => !Equals(left.Value, right);
-        public static global::System.Boolean operator ==(System.Char left, _casting_public_sealed_partial_classImplicitImplicitchar right) => Equals(left, right.Value);
-        public static global::System.Boolean operator !=(System.Char left, _casting_public_sealed_partial_classImplicitImplicitchar right) => !Equals(left, right.Value);
+        public static global::System.Boolean operator ==(_casting_public_sealed_partial_classImplicitImplicitchar left, System.Char right) => left?.Value.Equals(right) ?? false;
+        public static global::System.Boolean operator !=(_casting_public_sealed_partial_classImplicitImplicitchar left, System.Char right) => !(left == right);
+        public static global::System.Boolean operator ==(System.Char left, _casting_public_sealed_partial_classImplicitImplicitchar right) => right?.Value.Equals(left) ?? false;
+        public static global::System.Boolean operator !=(System.Char left, _casting_public_sealed_partial_classImplicitImplicitchar right) => !(left == right);
         public static implicit operator System.Char(_casting_public_sealed_partial_classImplicitImplicitchar vo) => vo._value;
         public static implicit operator _casting_public_sealed_partial_classImplicitImplicitchar(System.Char value)
         {

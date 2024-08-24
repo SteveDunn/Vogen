@@ -222,10 +222,10 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
             return comparer.Equals(Value, primitive);
         }
 
-        public static global::System.Boolean operator ==(stj_number_as_string_public_sealed_partial_recordConversions_SystemTextJsonstring_customized left, System.String right) => Equals(left.Value, right);
-        public static global::System.Boolean operator !=(stj_number_as_string_public_sealed_partial_recordConversions_SystemTextJsonstring_customized left, System.String right) => !Equals(left.Value, right);
-        public static global::System.Boolean operator ==(System.String left, stj_number_as_string_public_sealed_partial_recordConversions_SystemTextJsonstring_customized right) => Equals(left, right.Value);
-        public static global::System.Boolean operator !=(System.String left, stj_number_as_string_public_sealed_partial_recordConversions_SystemTextJsonstring_customized right) => !Equals(left, right.Value);
+        public static global::System.Boolean operator ==(stj_number_as_string_public_sealed_partial_recordConversions_SystemTextJsonstring_customized left, System.String right) => left?.Value.Equals(right) ?? false;
+        public static global::System.Boolean operator !=(stj_number_as_string_public_sealed_partial_recordConversions_SystemTextJsonstring_customized left, System.String right) => !(left == right);
+        public static global::System.Boolean operator ==(System.String left, stj_number_as_string_public_sealed_partial_recordConversions_SystemTextJsonstring_customized right) => right?.Value.Equals(left) ?? false;
+        public static global::System.Boolean operator !=(System.String left, stj_number_as_string_public_sealed_partial_recordConversions_SystemTextJsonstring_customized right) => !(left == right);
         public static explicit operator stj_number_as_string_public_sealed_partial_recordConversions_SystemTextJsonstring_customized(System.String value) => From(value);
         public static explicit operator System.String(stj_number_as_string_public_sealed_partial_recordConversions_SystemTextJsonstring_customized value) => value.Value;
         public int CompareTo(stj_number_as_string_public_sealed_partial_recordConversions_SystemTextJsonstring_customized other) => Value.CompareTo(other.Value);

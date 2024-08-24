@@ -203,10 +203,10 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
             return Value.Equals(primitive);
         }
 
-        public static global::System.Boolean operator ==(_casting_public_partial_recordImplicitImplicitbyte left, System.Byte right) => Equals(left.Value, right);
-        public static global::System.Boolean operator !=(_casting_public_partial_recordImplicitImplicitbyte left, System.Byte right) => !Equals(left.Value, right);
-        public static global::System.Boolean operator ==(System.Byte left, _casting_public_partial_recordImplicitImplicitbyte right) => Equals(left, right.Value);
-        public static global::System.Boolean operator !=(System.Byte left, _casting_public_partial_recordImplicitImplicitbyte right) => !Equals(left, right.Value);
+        public static global::System.Boolean operator ==(_casting_public_partial_recordImplicitImplicitbyte left, System.Byte right) => left?.Value.Equals(right) ?? false;
+        public static global::System.Boolean operator !=(_casting_public_partial_recordImplicitImplicitbyte left, System.Byte right) => !(left == right);
+        public static global::System.Boolean operator ==(System.Byte left, _casting_public_partial_recordImplicitImplicitbyte right) => right?.Value.Equals(left) ?? false;
+        public static global::System.Boolean operator !=(System.Byte left, _casting_public_partial_recordImplicitImplicitbyte right) => !(left == right);
         public static implicit operator System.Byte(_casting_public_partial_recordImplicitImplicitbyte vo) => vo._value;
         public static implicit operator _casting_public_partial_recordImplicitImplicitbyte(System.Byte value)
         {

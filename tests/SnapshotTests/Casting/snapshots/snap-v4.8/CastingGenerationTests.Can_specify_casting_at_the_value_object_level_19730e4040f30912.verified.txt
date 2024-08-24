@@ -204,10 +204,10 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
 
         public static global::System.Boolean operator ==(_casting_public_partial_classExplicitImplicitchar left, _casting_public_partial_classExplicitImplicitchar right) => Equals(left, right);
         public static global::System.Boolean operator !=(_casting_public_partial_classExplicitImplicitchar left, _casting_public_partial_classExplicitImplicitchar right) => !Equals(left, right);
-        public static global::System.Boolean operator ==(_casting_public_partial_classExplicitImplicitchar left, System.Char right) => Equals(left.Value, right);
-        public static global::System.Boolean operator !=(_casting_public_partial_classExplicitImplicitchar left, System.Char right) => !Equals(left.Value, right);
-        public static global::System.Boolean operator ==(System.Char left, _casting_public_partial_classExplicitImplicitchar right) => Equals(left, right.Value);
-        public static global::System.Boolean operator !=(System.Char left, _casting_public_partial_classExplicitImplicitchar right) => !Equals(left, right.Value);
+        public static global::System.Boolean operator ==(_casting_public_partial_classExplicitImplicitchar left, System.Char right) => left?.Value.Equals(right) ?? false;
+        public static global::System.Boolean operator !=(_casting_public_partial_classExplicitImplicitchar left, System.Char right) => !(left == right);
+        public static global::System.Boolean operator ==(System.Char left, _casting_public_partial_classExplicitImplicitchar right) => right?.Value.Equals(left) ?? false;
+        public static global::System.Boolean operator !=(System.Char left, _casting_public_partial_classExplicitImplicitchar right) => !(left == right);
         public static explicit operator _casting_public_partial_classExplicitImplicitchar(System.Char value) => From(value);
         public static implicit operator System.Char(_casting_public_partial_classExplicitImplicitchar vo) => vo._value;
         public int CompareTo(_casting_public_partial_classExplicitImplicitchar other) => Value.CompareTo(other.Value);

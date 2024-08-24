@@ -203,10 +203,10 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
             return Value.Equals(primitive);
         }
 
-        public static global::System.Boolean operator ==(_casting_public_partial_recordExplicitNonechar left, System.Char right) => Equals(left.Value, right);
-        public static global::System.Boolean operator !=(_casting_public_partial_recordExplicitNonechar left, System.Char right) => !Equals(left.Value, right);
-        public static global::System.Boolean operator ==(System.Char left, _casting_public_partial_recordExplicitNonechar right) => Equals(left, right.Value);
-        public static global::System.Boolean operator !=(System.Char left, _casting_public_partial_recordExplicitNonechar right) => !Equals(left, right.Value);
+        public static global::System.Boolean operator ==(_casting_public_partial_recordExplicitNonechar left, System.Char right) => left?.Value.Equals(right) ?? false;
+        public static global::System.Boolean operator !=(_casting_public_partial_recordExplicitNonechar left, System.Char right) => !(left == right);
+        public static global::System.Boolean operator ==(System.Char left, _casting_public_partial_recordExplicitNonechar right) => right?.Value.Equals(left) ?? false;
+        public static global::System.Boolean operator !=(System.Char left, _casting_public_partial_recordExplicitNonechar right) => !(left == right);
         public static explicit operator _casting_public_partial_recordExplicitNonechar(System.Char value) => From(value);
         public int CompareTo(_casting_public_partial_recordExplicitNonechar other) => Value.CompareTo(other.Value);
         public int CompareTo(object other)

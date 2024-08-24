@@ -196,10 +196,10 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
 
         public static global::System.Boolean operator ==(partial_struct_None left, partial_struct_None right) => left.Equals(right);
         public static global::System.Boolean operator !=(partial_struct_None left, partial_struct_None right) => !(left == right);
-        public static global::System.Boolean operator ==(partial_struct_None left, System.Int32 right) => Equals(left.Value, right);
-        public static global::System.Boolean operator !=(partial_struct_None left, System.Int32 right) => !Equals(left.Value, right);
-        public static global::System.Boolean operator ==(System.Int32 left, partial_struct_None right) => Equals(left, right.Value);
-        public static global::System.Boolean operator !=(System.Int32 left, partial_struct_None right) => !Equals(left, right.Value);
+        public static global::System.Boolean operator ==(partial_struct_None left, System.Int32 right) => left.Value.Equals(right);
+        public static global::System.Boolean operator !=(partial_struct_None left, System.Int32 right) => !(left == right);
+        public static global::System.Boolean operator ==(System.Int32 left, partial_struct_None right) => right.Value.Equals(left);
+        public static global::System.Boolean operator !=(System.Int32 left, partial_struct_None right) => !(left == right);
         public int CompareTo(partial_struct_None other) => Value.CompareTo(other.Value);
         public int CompareTo(object other)
         {

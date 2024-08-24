@@ -203,10 +203,10 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
             return Value.Equals(primitive);
         }
 
-        public static global::System.Boolean operator ==(_casting_public_sealed_partial_recordExplicitNonebyte left, System.Byte right) => Equals(left.Value, right);
-        public static global::System.Boolean operator !=(_casting_public_sealed_partial_recordExplicitNonebyte left, System.Byte right) => !Equals(left.Value, right);
-        public static global::System.Boolean operator ==(System.Byte left, _casting_public_sealed_partial_recordExplicitNonebyte right) => Equals(left, right.Value);
-        public static global::System.Boolean operator !=(System.Byte left, _casting_public_sealed_partial_recordExplicitNonebyte right) => !Equals(left, right.Value);
+        public static global::System.Boolean operator ==(_casting_public_sealed_partial_recordExplicitNonebyte left, System.Byte right) => left?.Value.Equals(right) ?? false;
+        public static global::System.Boolean operator !=(_casting_public_sealed_partial_recordExplicitNonebyte left, System.Byte right) => !(left == right);
+        public static global::System.Boolean operator ==(System.Byte left, _casting_public_sealed_partial_recordExplicitNonebyte right) => right?.Value.Equals(left) ?? false;
+        public static global::System.Boolean operator !=(System.Byte left, _casting_public_sealed_partial_recordExplicitNonebyte right) => !(left == right);
         public static explicit operator _casting_public_sealed_partial_recordExplicitNonebyte(System.Byte value) => From(value);
         public int CompareTo(_casting_public_sealed_partial_recordExplicitNonebyte other) => Value.CompareTo(other.Value);
         public int CompareTo(object other)

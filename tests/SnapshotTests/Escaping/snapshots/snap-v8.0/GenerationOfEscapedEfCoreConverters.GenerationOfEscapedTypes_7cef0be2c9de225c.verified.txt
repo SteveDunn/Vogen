@@ -330,10 +330,10 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
             return Value.Equals(primitive);
         }
 
-        public static global::System.Boolean operator ==(escapedTestspublic_partial_record_classConversions_NewtonsoftJsonbyte left, System.Byte right) => Equals(left.Value, right);
-        public static global::System.Boolean operator !=(escapedTestspublic_partial_record_classConversions_NewtonsoftJsonbyte left, System.Byte right) => !Equals(left.Value, right);
-        public static global::System.Boolean operator ==(System.Byte left, escapedTestspublic_partial_record_classConversions_NewtonsoftJsonbyte right) => Equals(left, right.Value);
-        public static global::System.Boolean operator !=(System.Byte left, escapedTestspublic_partial_record_classConversions_NewtonsoftJsonbyte right) => !Equals(left, right.Value);
+        public static global::System.Boolean operator ==(escapedTestspublic_partial_record_classConversions_NewtonsoftJsonbyte left, System.Byte right) => left?.Value.Equals(right) ?? false;
+        public static global::System.Boolean operator !=(escapedTestspublic_partial_record_classConversions_NewtonsoftJsonbyte left, System.Byte right) => !(left == right);
+        public static global::System.Boolean operator ==(System.Byte left, escapedTestspublic_partial_record_classConversions_NewtonsoftJsonbyte right) => right?.Value.Equals(left) ?? false;
+        public static global::System.Boolean operator !=(System.Byte left, escapedTestspublic_partial_record_classConversions_NewtonsoftJsonbyte right) => !(left == right);
         public static explicit operator escapedTestspublic_partial_record_classConversions_NewtonsoftJsonbyte(System.Byte value) => From(value);
         public static explicit operator System.Byte(escapedTestspublic_partial_record_classConversions_NewtonsoftJsonbyte value) => value.Value;
         public int CompareTo(escapedTestspublic_partial_record_classConversions_NewtonsoftJsonbyte other) => Value.CompareTo(other.Value);

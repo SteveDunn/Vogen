@@ -230,10 +230,10 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
 
         public static global::System.Boolean operator ==(_casting_public_partial_classImplicitExplicitstring left, _casting_public_partial_classImplicitExplicitstring right) => Equals(left, right);
         public static global::System.Boolean operator !=(_casting_public_partial_classImplicitExplicitstring left, _casting_public_partial_classImplicitExplicitstring right) => !Equals(left, right);
-        public static global::System.Boolean operator ==(_casting_public_partial_classImplicitExplicitstring left, System.String right) => Equals(left.Value, right);
-        public static global::System.Boolean operator !=(_casting_public_partial_classImplicitExplicitstring left, System.String right) => !Equals(left.Value, right);
-        public static global::System.Boolean operator ==(System.String left, _casting_public_partial_classImplicitExplicitstring right) => Equals(left, right.Value);
-        public static global::System.Boolean operator !=(System.String left, _casting_public_partial_classImplicitExplicitstring right) => !Equals(left, right.Value);
+        public static global::System.Boolean operator ==(_casting_public_partial_classImplicitExplicitstring left, System.String right) => left?.Value.Equals(right) ?? false;
+        public static global::System.Boolean operator !=(_casting_public_partial_classImplicitExplicitstring left, System.String right) => !(left == right);
+        public static global::System.Boolean operator ==(System.String left, _casting_public_partial_classImplicitExplicitstring right) => right?.Value.Equals(left) ?? false;
+        public static global::System.Boolean operator !=(System.String left, _casting_public_partial_classImplicitExplicitstring right) => !(left == right);
         public static explicit operator System.String(_casting_public_partial_classImplicitExplicitstring value) => value.Value;
         public static implicit operator _casting_public_partial_classImplicitExplicitstring(System.String value)
         {

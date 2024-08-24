@@ -197,10 +197,10 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
             return Value.Equals(primitive);
         }
 
-        public static global::System.Boolean operator ==(internal_readonly_partial_record_structlong left, System.Int64 right) => Equals(left.Value, right);
-        public static global::System.Boolean operator !=(internal_readonly_partial_record_structlong left, System.Int64 right) => !Equals(left.Value, right);
-        public static global::System.Boolean operator ==(System.Int64 left, internal_readonly_partial_record_structlong right) => Equals(left, right.Value);
-        public static global::System.Boolean operator !=(System.Int64 left, internal_readonly_partial_record_structlong right) => !Equals(left, right.Value);
+        public static global::System.Boolean operator ==(internal_readonly_partial_record_structlong left, System.Int64 right) => left.Value.Equals(right);
+        public static global::System.Boolean operator !=(internal_readonly_partial_record_structlong left, System.Int64 right) => !(left == right);
+        public static global::System.Boolean operator ==(System.Int64 left, internal_readonly_partial_record_structlong right) => right.Value.Equals(left);
+        public static global::System.Boolean operator !=(System.Int64 left, internal_readonly_partial_record_structlong right) => !(left == right);
         public int CompareTo(internal_readonly_partial_record_structlong other) => Value.CompareTo(other.Value);
         public int CompareTo(object other)
         {

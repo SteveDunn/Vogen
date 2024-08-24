@@ -230,10 +230,10 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
 
         public static global::System.Boolean operator ==(StringThing left, StringThing right) => Equals(left, right);
         public static global::System.Boolean operator !=(StringThing left, StringThing right) => !Equals(left, right);
-        public static global::System.Boolean operator ==(StringThing left, System.String right) => Equals(left.Value, right);
-        public static global::System.Boolean operator !=(StringThing left, System.String right) => !Equals(left.Value, right);
-        public static global::System.Boolean operator ==(System.String left, StringThing right) => Equals(left, right.Value);
-        public static global::System.Boolean operator !=(System.String left, StringThing right) => !Equals(left, right.Value);
+        public static global::System.Boolean operator ==(StringThing left, System.String right) => left?.Value.Equals(right) ?? false;
+        public static global::System.Boolean operator !=(StringThing left, System.String right) => !(left == right);
+        public static global::System.Boolean operator ==(System.String left, StringThing right) => right?.Value.Equals(left) ?? false;
+        public static global::System.Boolean operator !=(System.String left, StringThing right) => !(left == right);
         public static explicit operator StringThing(System.String value) => From(value);
         public static explicit operator System.String(StringThing value) => value.Value;
         public int CompareTo(StringThing other) => Value.CompareTo(other.Value);
