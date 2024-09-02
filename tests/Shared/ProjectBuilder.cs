@@ -390,7 +390,7 @@ public sealed partial class ProjectBuilder
         {
             // uncomment to write out the source files - do a `dotnet new classlib` in that folder
             // and load it up in an IDE
-            // DumpSource(outputCompilation);
+            // if(Debugger.IsAttached) DumpSource(outputCompilation);
             return (finalDiags, []);
         }
 
