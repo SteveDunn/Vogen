@@ -15,6 +15,15 @@ namespace ConsumerTests;
 public class EqualityTests
 {
     [Fact]
+    public void equality_with_collections()
+    {
+        FileHash b1 = FileHash.From(new Hash<byte>([1, 2, 3]));
+        FileHash b2 = FileHash.From(new Hash<byte>([1, 2, 3]));
+        b1.Equals(b2).Should().BeTrue();
+        (b1 == b2).Should().BeTrue();
+    }
+
+    [Fact]
     public void equality_between_same_value_objects()
     {
         Age.From(18).Equals(Age.From(18)).Should().BeTrue();

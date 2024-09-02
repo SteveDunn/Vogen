@@ -37,6 +37,7 @@
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.0-rc.1.22426.7" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="7.0.0-rc.1.22426.7" />
     <PackageReference Include="System.Text.Json" Version="8.0.4" />
+    <PackageReference Include="System.Text.RegularExpressions" Version="4.3.1" />
     <PackageReference Include="ServiceStack.Text" Version="8.2.2" />
   </ItemGroup>
 
@@ -54,6 +55,8 @@
   Run the tests with `.\test.ps1` in the root folder.-->
 
   <ItemGroup>
+    
+    <PackageReference Include="System.Net.Http" Version="4.3.4" />
     <PackageReference Include="MongoDB.Analyzer" Version="1.4.0" />
     <PackageReference Include="MongoDB.Bson" Version="2.27.0" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />

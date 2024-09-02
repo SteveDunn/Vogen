@@ -23,6 +23,9 @@ public class BasicFunctionality
     }
 
     [Fact]
+    public void With_collections_it_uses_the_underlying_types_ToString() => FileHash.From(new Hash<byte>([1, 2, 3])).ToString().Should().Be("Vogen.Tests.Types.Hash`1[System.Byte]");
+
+    [Fact]
     public void ToString_uses_generated_method()
     {
         Age.From(18).ToString().Should().Be("18");

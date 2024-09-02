@@ -8,25 +8,25 @@ internal class WriteOpenApiSchemaCustomizationCode
 {
     public static void WriteIfNeeded(VogenConfiguration? globalConfig,
         SourceProductionContext context,
-        Compilation compilation,
-        List<VoWorkItem> workItems)
+        List<VoWorkItem> workItems,
+        VogenKnownSymbols knownSymbols)
     {
         var c = globalConfig?.OpenApiSchemaCustomizations ?? VogenConfiguration.DefaultInstance.OpenApiSchemaCustomizations;
 
         if (c.HasFlag(OpenApiSchemaCustomizations.GenerateSwashbuckleSchemaFilter))
         {
-            WriteSchemaFilter(context, compilation);
+            WriteSchemaFilter(context, knownSymbols);
         }
 
         if (c.HasFlag(OpenApiSchemaCustomizations.GenerateSwashbuckleMappingExtensionMethod))
         {
-            WriteExtensionMethodMapping(context, compilation, workItems);
+            WriteExtensionMethodMapping(context, workItems, knownSymbols);
         }
     }
 
-    private static void WriteSchemaFilter(SourceProductionContext context, Compilation compilation)
+    private static void WriteSchemaFilter(SourceProductionContext context, VogenKnownSymbols knownSymbols)
     {
-        if (!IsSwashbuckleReferenced(compilation))
+        if (!IsSwashbuckleReferenced(knownSymbols))
         {
             return;
         }
@@ -96,12 +96,11 @@ internal class WriteOpenApiSchemaCustomizationCode
         context.AddSource("SwashbuckleSchemaFilter_g.cs", source);
     }
 
-    private static void WriteExtensionMethodMapping(
-        SourceProductionContext context,
-        Compilation compilation,
-        List<VoWorkItem> workItems)
+    private static void WriteExtensionMethodMapping(SourceProductionContext context,
+        List<VoWorkItem> workItems,
+        VogenKnownSymbols knownSymbols)
     {
-        if (!IsSwashbuckleReferenced(compilation))
+        if (!IsSwashbuckleReferenced(knownSymbols))
         {
             return;
         }
@@ -125,8 +124,7 @@ internal class WriteOpenApiSchemaCustomizationCode
         context.AddSource("SwashbuckleSchemaExtensions_g.cs", source);
     }
 
-    private static bool IsSwashbuckleReferenced(Compilation compilation) =>
-        compilation.GetTypeByMetadataName("Swashbuckle.AspNetCore.SwaggerGen.ISchemaFilter") is not null;
+    private static bool IsSwashbuckleReferenced(VogenKnownSymbols vogenKnownSymbols) => vogenKnownSymbols.SwaggerISchemaFilter is not null;
 
     private static string MapWorkItems(List<VoWorkItem> workItems)
     {

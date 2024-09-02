@@ -17,10 +17,10 @@ internal static class BuildWorkItems
     public static VoWorkItem? TryBuild(VoTarget target,
         SourceProductionContext context,
         VogenConfiguration? globalConfig,
+        LanguageVersion languageVersion,
+        VogenKnownSymbols vogenKnownSymbols,
         Compilation compilation)
     {
-        var csharpCompilation = compilation as CSharpCompilation;
-        if (csharpCompilation is null) return null;
 
         TypeDeclarationSyntax voTypeSyntax = target.VoSyntaxInformation;
 
@@ -72,11 +72,16 @@ internal static class BuildWorkItems
         var config = CombineConfigurations.CombineAndResolveAnythingUnspecified(
             localConfig,
             globalConfig,
-            funcForDefaultUnderlyingType: () => compilation.GetSpecialType(SpecialType.System_Int32));
+            funcForDefaultUnderlyingType: () => vogenKnownSymbols.Int32);
 
         ReportErrorIfNestedType(context, voSymbolInformation, target.NestingInfo);
 
-        INamedTypeSymbol underlyingType = config.UnderlyingType ?? throw new InvalidOperationException("No underlying type");
+        if (config.UnderlyingType is null)
+        {
+            return null;
+        }
+
+        INamedTypeSymbol underlyingType = config.UnderlyingType;
         
         IEnumerable<InstanceProperties> instanceProperties =
             TryBuildInstanceProperties(allAttributes, voSymbolInformation, context, underlyingType).ToList();
@@ -123,14 +128,14 @@ internal static class BuildWorkItems
         
         return new VoWorkItem
         {
-            LanguageVersion = csharpCompilation.LanguageVersion,
+            LanguageVersion = languageVersion,
             InstanceProperties = instanceProperties.ToList(),
             TypeToAugment = voTypeSyntax,
             
             IsTheUnderlyingAValueType = IsUnderlyingAValueType(config),
             IsTheWrapperAValueType = isWrapperAValueType,
             
-            ParsingInformation = BuildParsingInformation(compilation, underlyingType),
+            ParsingInformation = BuildParsingInformation(underlyingType, vogenKnownSymbols),
             Config = config,
             
             UserProvidedOverloads = userProvidedOverloads,
@@ -141,21 +146,22 @@ internal static class BuildWorkItems
             FullNamespace = voSymbolInformation.FullNamespace(),
             IsSealed = voSymbolInformation.IsSealed,
             AccessibilityKeyword = voSymbolInformation.IsInternal() ? "internal" : "public",
+            DefaultValidationExceptionSymbol = vogenKnownSymbols.ValueObjectValidationException,
             
             WrapperType = voSymbolInformation
         };
     }
 
-    private static ParsingInformation BuildParsingInformation(Compilation compilation, INamedTypeSymbol underlyingType)
+    private static ParsingInformation BuildParsingInformation(INamedTypeSymbol underlyingType, VogenKnownSymbols vogenKnownSymbols)
     {
         ParsingInformation parsingInformation = new()
         {
             UnderlyingIsAString = underlyingType.SpecialType == SpecialType.System_String,
-            IParsableIsAvailable = compilation.GetTypeByMetadataName("System.IParsable`1") is not null,
-            IFormatProviderType = compilation.GetTypeByMetadataName("System.IFormatProvider"),
-            UnderlyingDerivesFromISpanParsable = DoesPubliclyImplementGenericInterface(underlyingType, compilation.GetTypeByMetadataName("System.ISpanParsable`1")),
-            UnderlyingDerivesFromIParsable = DoesPubliclyImplementGenericInterface(underlyingType, compilation.GetTypeByMetadataName("System.IParsable`1")),
-            UnderlyingDerivesFromIUtf8SpanParsable = DoesPubliclyImplementGenericInterface(underlyingType, compilation.GetTypeByMetadataName("System.IUtf8SpanParsable`1")),
+            IParsableIsAvailable = vogenKnownSymbols.IParsableOfT is not null,
+            IFormatProviderType = vogenKnownSymbols.IFormatProvider,
+            UnderlyingDerivesFromISpanParsable = DoesPubliclyImplementGenericInterface(underlyingType, vogenKnownSymbols.ISpanParsableOfT),
+            UnderlyingDerivesFromIParsable = DoesPubliclyImplementGenericInterface(underlyingType, vogenKnownSymbols.IParsableOfT),
+            UnderlyingDerivesFromIUtf8SpanParsable = DoesPubliclyImplementGenericInterface(underlyingType, vogenKnownSymbols.IUtf8SpanParsableOfT),
             
             TryParseMethodsOnThePrimitive = MethodDiscovery.FindTryParseMethodsOnThePrimitive(underlyingType).ToList(),
             ParseMethodsOnThePrimitive = MethodDiscovery.FindParseMethodsOnThePrimitive(underlyingType).ToList(),

@@ -14,6 +14,9 @@ namespace Vogen;
 
 public static class Util
 {
+    public static string EscapeTypeNameForTripleSlashComment(string typeName) => 
+        typeName.Replace("<", "{").Replace(">", "}");
+
     static readonly IGenerateConversion[] _conversionGenerators =
     {
         new GenerateSystemTextJsonConversions(),
@@ -296,7 +299,7 @@ public static class Util
         return item.UserProvidedOverloads.ToStringInfo.WasSupplied
             ? string.Empty
             : $"""
-               /// <summary>Returns the string representation of the underlying <see cref="{item.UnderlyingTypeFullName}" />.</summary>
+               /// <summary>Returns the string representation of the underlying <see cref="{EscapeTypeNameForTripleSlashComment(item.UnderlyingType)}" />.</summary>
                public{ro} override global::System.String ToString() =>IsInitialized() ? Value.ToString() : "[UNINITIALIZED]";
                """;
     }
@@ -324,6 +327,24 @@ public static class Util
                #endif
                """;
     }
+
+    public static string EscapeTypeNameForTripleSlashComment(INamedTypeSymbol symbol)
+    {
+        var symbolToUse = symbol.IsGenericType ? symbol.OriginalDefinition : symbol;
+        
+        var displayString = symbolToUse.FullName() ?? symbolToUse.Name;
+        
+        return symbolToUse.IsGenericType 
+            ? EscapeTypeNameForTripleSlashComment(symbolToUse.ToDisplayString()) 
+            : displayString;
+    }
+
+    public static string GenerateCommentForValueProperty(VoWorkItem item) =>
+        $"""
+         /// <summary>
+         /// Gets the underlying <see cref="{EscapeTypeNameForTripleSlashComment(item.UnderlyingType)}" /> value if set, otherwise a <see cref="{EscapeTypeNameForTripleSlashComment(item.ValidationExceptionSymbol)}" /> is thrown.
+         /// </summary>
+         """;
 }
 
 public static class DebugGeneration

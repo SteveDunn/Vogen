@@ -29,9 +29,7 @@ using Vogen;
         
         private readonly {itemUnderlyingType} _value;
 
-        /// <summary>
-        /// Gets the underlying <see cref=""{itemUnderlyingType}"" /> value if set, otherwise a <see cref=""{item.ValidationExceptionFullName}"" /> is thrown.
-        /// </summary>
+        {Util.GenerateCommentForValueProperty(item)}
         public readonly {itemUnderlyingType} Value
         {{
             [global::System.Diagnostics.DebuggerStepThroughAttribute]

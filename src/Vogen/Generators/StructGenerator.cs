@@ -29,9 +29,7 @@ using Vogen;
         
         private readonly {itemUnderlyingType} _value;
 
-        /// <summary>
-        /// Gets the underlying <see cref=""{itemUnderlyingType}"" /> value if set, otherwise a <see cref=""{item.ValidationExceptionFullName}"" /> is thrown.
-        /// </summary>
+        {Util.GenerateCommentForValueProperty(item)}
         public readonly {itemUnderlyingType} Value
         {{
             [global::System.Diagnostics.DebuggerStepThroughAttribute]
@@ -103,7 +101,7 @@ using Vogen;
 
         public static global::System.Boolean operator ==({structName} left, {structName} right) => left.Equals(right);
         public static global::System.Boolean operator !=({structName} left, {structName} right) => !(left == right);
-{GenerateEqualsMethodsAndOperators.GenerateEqualsOperatorsForPrimitivesIfNeeded(itemUnderlyingType, structName, item)}
+        {GenerateEqualsMethodsAndOperators.GenerateEqualsOperatorsForPrimitivesIfNeeded(itemUnderlyingType, structName, item)}
 
         {GenerateComparableCode.GenerateIComparableImplementationIfNeeded(item, tds)}
 
