@@ -11,7 +11,7 @@ public class ClassGenerator : IGenerateSourceCode
         SyntaxToken className = tds.Identifier;
 
         string itemUnderlyingType = item.UnderlyingTypeFullName;
-
+        
         return $@"
 using Vogen;
 
@@ -28,10 +28,8 @@ using Vogen;
 #endif
         private readonly {itemUnderlyingType} _value;
         
-/// <summary>
-/// Gets the underlying <see cref=""{itemUnderlyingType}"" /> value if set, otherwise a <see cref=""{item.ValidationExceptionFullName}"" /> is thrown.
-/// </summary>
-public {itemUnderlyingType} Value
+        {Util.GenerateCommentForValueProperty(item)}
+        public {itemUnderlyingType} Value
         {{
             [global::System.Diagnostics.DebuggerStepThroughAttribute]
             get

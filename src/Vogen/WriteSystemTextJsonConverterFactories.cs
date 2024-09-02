@@ -9,9 +9,10 @@ internal class WriteSystemTextJsonConverterFactories
     public static void WriteIfNeeded(VogenConfiguration? globalConfig,
         List<VoWorkItem> workItems,
         SourceProductionContext context,
-        Compilation compilation)
+        Compilation compilation,
+        VogenKnownSymbols vogenKnownSymbols)
     {
-        if (compilation.GetTypeByMetadataName("System.Text.Json.Serialization.JsonConverterFactory") is null)
+        if (vogenKnownSymbols.JsonConverterFactory is null)
         {
             return;
         }

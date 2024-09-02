@@ -2,6 +2,7 @@
 using System.Collections.Immutable;
 using System.Linq;
 using Microsoft.CodeAnalysis;
+using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 // ReSharper disable NullableWarningSuppressionIsUsed
 // ReSharper disable ConditionIsAlwaysTrueOrFalseAccordingToNullableAPIContract
@@ -15,8 +16,11 @@ public class ValueObjectGenerator : IIncrementalGenerator
     
     public void Initialize(IncrementalGeneratorInitializationContext context)
     {
-        Found found = GetTargets(context);
-
+        IncrementalValueProvider<VogenKnownSymbols> knownSymbols = context.CompilationProvider
+            .Select((compilation, _) => new VogenKnownSymbols(compilation));
+        
+        Found found = GetTargets(context.SyntaxProvider);
+        
         IncrementalValueProvider<ImmutableArray<VoTarget>> collectedVos = found.Vos.Collect();
             
         var targetsAndConfig = collectedVos.Combine(found.GlobalConfig.Collect());
@@ -24,30 +28,46 @@ public class ValueObjectGenerator : IIncrementalGenerator
         var targetsConfigAndEfCoreSpecs = targetsAndConfig.Combine(found.EfCoreConverterSpecs.Collect());
 
         var compilationAndValues = context.CompilationProvider.Combine(targetsConfigAndEfCoreSpecs);
+        
+        var everything = compilationAndValues.Combine(knownSymbols);
             
-        context.RegisterSourceOutput(compilationAndValues,
-            static (spc, source) => Execute(
-                source.Left, 
-                source.Right.Left.Left, 
-                source.Right.Left.Right, 
-                source.Right.Right,
-                spc));
+        context.RegisterSourceOutput(everything,
+            static (spc, source) =>
+            {
+                var left = source.Left;
+        
+                // todo: break apart building the work items, as that only needs global config,
+                // which will make the following less horrific!
+                Compilation compilation = left.Left;
+                var targets = left.Right.Left.Left;
+                var globalConfig = left.Right.Left.Right;
+                var ks = source.Right;
+                var ef = left.Right.Right;
+                
+                Execute(
+                    compilation,
+                    ks,
+                    targets,
+                    globalConfig,
+                    ef,
+                    spc);
+            });
     }
 
-    private static Found GetTargets(IncrementalGeneratorInitializationContext context)
+    private static Found GetTargets(SyntaxValueProvider syntaxProvider)
     {
-        IncrementalValuesProvider<VoTarget> targets = context.SyntaxProvider.CreateSyntaxProvider(
+        IncrementalValuesProvider<VoTarget> targets = syntaxProvider.CreateSyntaxProvider(
                 predicate: static (node, _) => VoFilter.IsTarget(node),
                 transform: static (ctx, _) => VoFilter.TryGetTarget(ctx))
             .Where(static m => m is not null)!;
 
-        IncrementalValuesProvider<VogenConfigurationBuildResult> globalConfig = context.SyntaxProvider.ForAttributeWithMetadataName(
+        IncrementalValuesProvider<VogenConfigurationBuildResult> globalConfig = syntaxProvider.ForAttributeWithMetadataName(
                 "Vogen.VogenDefaultsAttribute",
                 predicate: (node, _) => node is CompilationUnitSyntax,
                 transform: (ctx, _) => ManageAttributes.GetDefaultConfigFromGlobalAttribute(ctx))
             .Where(static m => m is not null)!;
 
-        IncrementalValuesProvider<EfCoreConverterMarkerClassResults> efCoreConverterSpecs = context.SyntaxProvider.ForAttributeWithMetadataName(
+        IncrementalValuesProvider<EfCoreConverterMarkerClassResults> efCoreConverterSpecs = syntaxProvider.ForAttributeWithMetadataName(
                 "Vogen.EfCoreConverterAttribute`1",
                 predicate: (node, _) => node is ClassDeclarationSyntax,
                 transform: (ctx, _) => ManageAttributes.GetEfCoreConverterSpecFromAttribute(ctx))
@@ -62,13 +82,17 @@ public class ValueObjectGenerator : IIncrementalGenerator
         IncrementalValuesProvider<EfCoreConverterMarkerClassResults> EfCoreConverterSpecs);
     
     private static void Execute(
-        Compilation compilation, 
+        Compilation compilation,
+        VogenKnownSymbols vogenKnownSymbols,
         ImmutableArray<VoTarget> targets,
         ImmutableArray<VogenConfigurationBuildResult> globalConfigBuildResult,
         ImmutableArray<EfCoreConverterMarkerClassResults> efCoreConverterSpecs,
         SourceProductionContext spc)
     {
-        using var internalDiags = InternalDiagnostics.TryCreateIfSpecialClassIsPresent(compilation, spc);
+        var csharpCompilation = compilation as CSharpCompilation;
+        if (csharpCompilation is null) return;
+
+        using var internalDiags = InternalDiagnostics.TryCreateIfSpecialClassIsPresent(compilation, spc, vogenKnownSymbols);
         internalDiags.IncrementGeneratedCount();
 
         internalDiags.RecordTargets(targets);
@@ -95,9 +119,9 @@ public class ValueObjectGenerator : IIncrementalGenerator
         internalDiags.RecordGlobalConfig(globalConfig);
 
         // get all the ValueObject types found.
-        List<VoWorkItem> workItems = GetWorkItems(targets, spc, globalConfig, compilation).ToList();
+        List<VoWorkItem> workItems = GetWorkItems(targets, spc, globalConfig, csharpCompilation.LanguageVersion, vogenKnownSymbols, compilation).ToList();
             
-        WriteOpenApiSchemaCustomizationCode.WriteIfNeeded(globalConfig, spc, compilation, workItems);
+        WriteOpenApiSchemaCustomizationCode.WriteIfNeeded(globalConfig, spc, workItems, vogenKnownSymbols);
 
         WriteEfCoreSpecs.WriteIfNeeded(spc, compilation, efCoreConverterSpecs);
         
@@ -113,11 +137,11 @@ public class ValueObjectGenerator : IIncrementalGenerator
                 
             WriteStaticAbstracts.WriteInterfacesAndMethodsIfNeeded(mergedConfig, spc, compilation);
 
-            WriteSystemTextJsonConverterFactories.WriteIfNeeded(mergedConfig, workItems, spc, compilation);
+            WriteSystemTextJsonConverterFactories.WriteIfNeeded(mergedConfig, workItems, spc, compilation, vogenKnownSymbols);
 
             foreach (var eachWorkItem in workItems)
             {
-                WriteWorkItems.WriteVo(eachWorkItem, spc);
+                WriteWorkItems.WriteVo(eachWorkItem, spc, vogenKnownSymbols);
             }
         }
     }
@@ -125,6 +149,8 @@ public class ValueObjectGenerator : IIncrementalGenerator
     private static IEnumerable<VoWorkItem> GetWorkItems(ImmutableArray<VoTarget> targets,
         SourceProductionContext context,
         VogenConfiguration? globalConfig,
+        LanguageVersion languageVersion,
+        VogenKnownSymbols vogenKnownSymbols,
         Compilation compilation)
     {
         if (targets.IsDefaultOrEmpty)
@@ -139,7 +165,7 @@ public class ValueObjectGenerator : IIncrementalGenerator
                 continue;
             }
                 
-            var ret = BuildWorkItems.TryBuild(eachTarget, context, globalConfig, compilation);
+            var ret = BuildWorkItems.TryBuild(eachTarget, context, globalConfig, languageVersion, vogenKnownSymbols, compilation);
                 
             if (ret is not null)
             {

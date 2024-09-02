@@ -10,6 +10,27 @@ namespace SnapshotTests.GeneralStuff;
 public class GeneralTests
 {
     [Fact]
+    public async Task Can_specify_a_generic_underlying()
+    {
+        var source =
+            """
+            using System;
+            using Vogen;
+
+            public class C<T>
+            {
+            }
+
+            [ValueObject<C<int>>]
+            public partial class MyVo;
+            """;
+
+            await new SnapshotRunner<ValueObjectGenerator>()
+                .WithSource(source)
+                .RunOn(TargetFramework.Net8_0);
+    }
+
+    [Fact]
     public async Task Can_specify_swashbuckle_filter_generation_for_openapi()
     {
         var source = $$"""

@@ -18,9 +18,8 @@ internal interface IInternalDiagnostics : IDisposable
     void IncrementGeneratedCount();
 }
 
-internal class InternalDiagnostics : IInternalDiagnostics
+internal sealed class InternalDiagnostics : IInternalDiagnostics
 {
-    private readonly bool _ignore;
     private VogenConfiguration? _userProvidedGlobalConfig;
     private VogenConfiguration? _resolvedGlobalConfig;
     private readonly Compilation _compilation;
@@ -31,8 +30,10 @@ internal class InternalDiagnostics : IInternalDiagnostics
     
     private static int _generatedCount = 0;
 
-    public static IInternalDiagnostics TryCreateIfSpecialClassIsPresent(Compilation compilation, SourceProductionContext context)
-        => compilation.GetTypeByMetadataName("Vogen.__ProduceDiagnostics") is null
+    public static IInternalDiagnostics TryCreateIfSpecialClassIsPresent(Compilation compilation,
+        SourceProductionContext context,
+        VogenKnownSymbols vogenKnownSymbols)
+        => vogenKnownSymbols.VogenProduceDiagnosticsMarkerType is null
             ? _nullImplementation
             : new InternalDiagnostics(compilation, context);
 
@@ -40,20 +41,14 @@ internal class InternalDiagnostics : IInternalDiagnostics
     {
         _compilation = compilation;
         _context = context;
-        _ignore = compilation.GetTypeByMetadataName("Vogen.__ProduceDiagnostics") is null;
     }
     
-    public void RecordGlobalConfig(VogenConfiguration? globalConfig) => _userProvidedGlobalConfig = _ignore ? null : globalConfig;
+    public void RecordGlobalConfig(VogenConfiguration? globalConfig) => _userProvidedGlobalConfig = globalConfig;
 
     public void Dispose() => WriteIfNeeded();
     
     public void WriteIfNeeded()
     {
-        if (_ignore)
-        {
-            return;
-        }
-        
         StringBuilder sb = new StringBuilder();
         sb.AppendLine("/*").AppendLine();
         sb.AppendLine($"Generator count: {_generatedCount}");
@@ -117,7 +112,7 @@ internal class InternalDiagnostics : IInternalDiagnostics
 
     public void RecordTargets(ImmutableArray<VoTarget> targets) => _targets = targets;
 
-    public void RecordResolvedGlobalConfig(VogenConfiguration mergedConfig) => _resolvedGlobalConfig = _ignore ? null : mergedConfig;
+    public void RecordResolvedGlobalConfig(VogenConfiguration mergedConfig) => _resolvedGlobalConfig = mergedConfig;
     public void IncrementGeneratedCount() => Interlocked.Increment(ref _generatedCount);
 }
 

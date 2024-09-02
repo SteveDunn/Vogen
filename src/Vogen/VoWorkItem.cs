@@ -48,6 +48,10 @@ public class VoWorkItem
 
     public string FullNamespace { get; init; } = string.Empty;
 
+    public INamedTypeSymbol ValidationExceptionSymbol => Config.ValidationExceptionType ?? DefaultValidationExceptionSymbol;
+    
+    public required INamedTypeSymbol DefaultValidationExceptionSymbol { get; init; }
+
     public string ValidationExceptionFullName => Config.ValidationExceptionType?.FullName() ?? "global::Vogen.ValueObjectValidationException";
 
     public string VoTypeName => TypeToAugment.Identifier.ToString();
