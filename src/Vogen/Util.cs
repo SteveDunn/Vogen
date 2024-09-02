@@ -332,10 +332,10 @@ public static class Util
     {
         var symbolToUse = symbol.IsGenericType ? symbol.OriginalDefinition : symbol;
         
-        var displayString = SymbolDisplay.ToDisplayString(symbolToUse);
+        var displayString = symbolToUse.FullName() ?? symbolToUse.Name;
         
         return symbolToUse.IsGenericType 
-            ? EscapeTypeNameForTripleSlashComment(displayString) 
+            ? EscapeTypeNameForTripleSlashComment(symbolToUse.ToDisplayString()) 
             : displayString;
     }
 
