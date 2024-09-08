@@ -11,7 +11,15 @@ public class StructGenerator : IGenerateSourceCode
 
         var itemUnderlyingType = item.UnderlyingTypeFullName;
 
-        return $@"
+        string underlyingNullAnnotation = item.Nullable.QuestionMarkForUnderlying;
+        string underlyingBang = item.Nullable.BangForUnderlying;
+        string wrapperBang = item.Nullable.BangForWrapper;
+
+        var code = Generate();
+        
+        return item.Nullable.WrapBlock(code);
+        
+        string Generate() => $@"
 using Vogen;
 
 {Util.WriteStartNamespace(item.FullNamespace)}
@@ -19,6 +27,7 @@ using Vogen;
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute(""{Util.GenerateYourAssemblyName()}"", ""{Util.GenerateYourAssemblyVersion()}"")]
     {Util.GenerateAnyConversionAttributes(tds, item)}
     {DebugGeneration.GenerateDebugAttributes(item, structName, itemUnderlyingType)}
+// ReSharper disable once UnusedType.Global
     { Util.GenerateModifiersFor(tds)} struct {structName} : global::System.IEquatable<{structName}>{GenerateEqualsMethodsAndOperators.GenerateInterfaceIfNeeded(", ", itemUnderlyingType, item)}{GenerateComparableCode.GenerateIComparableHeaderIfNeeded(", ", item, tds)}{GenerateCodeForIParsableInterfaceDeclarations.GenerateIfNeeded(", ", item, tds)}{WriteStaticAbstracts.WriteHeaderIfNeeded(", ", item, tds)}
     {{
 {DebugGeneration.GenerateStackTraceFieldIfNeeded(item)}
@@ -27,7 +36,7 @@ using Vogen;
         private readonly global::System.Boolean _isInitialized;
 #endif
         
-        private readonly {itemUnderlyingType} _value;
+        private readonly {itemUnderlyingType}{underlyingNullAnnotation} _value;
 
         {Util.GenerateCommentForValueProperty(item)}
         public readonly {itemUnderlyingType} Value
@@ -36,7 +45,7 @@ using Vogen;
             get
             {{
                 EnsureInitialized();
-                return _value;
+                return _value{underlyingBang};
             }}
         }}
 
@@ -52,7 +61,7 @@ using Vogen;
 #if !VOGEN_NO_VALIDATION
             _isInitialized = false;
 #endif
-            _value = default;
+            _value = default{wrapperBang};
         }}
 
         [global::System.Diagnostics.DebuggerStepThroughAttribute]
@@ -111,6 +120,8 @@ using Vogen;
 
         {Util.GenerateToStringReadOnly(item)}
 
+        [global::System.Diagnostics.CodeAnalysis.MemberNotNullAttribute(nameof(_value))]
+        [global::System.Diagnostics.CodeAnalysis.MemberNotNullAttribute(nameof(Value))]
         private readonly void EnsureInitialized()
         {{
             if (!IsInitialized())

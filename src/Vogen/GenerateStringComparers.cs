@@ -17,6 +17,8 @@ public static class GenerateStringComparers
         }
 
         return $$"""
+                 #nullable disable
+                 
                  public static class Comparers
                  {
                      private class __StringEqualityComparer : global::System.Collections.Generic.IEqualityComparer<{{tds.Identifier}}>
@@ -56,6 +58,8 @@ public static class GenerateStringComparers
                  
                      public static global::System.Collections.Generic.IEqualityComparer<{{tds.Identifier}}> InvariantCultureIgnoreCase =>
                             new __StringEqualityComparer(global::System.StringComparer.InvariantCultureIgnoreCase);
+                            
+                    #nullable restore
                  } 
                  """;
     }

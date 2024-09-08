@@ -51,7 +51,11 @@ internal class GenerateSystemTextJsonConversions : IGenerateConversion
         code = code.Replace("VOTYPE", item.VoTypeName);
         code = code.Replace("VOUNDERLYINGTYPE", item.UnderlyingTypeFullName);
 
-        return code;
+        return $"""
+                #nullable disable
+                {code}
+                #nullable restore
+                """;
     }
 
     private static string ResolveTemplate(VoWorkItem item) =>

@@ -6,18 +6,19 @@ namespace Vogen;
 public static class GenerateCodeForTryFrom
 {
     public static string GenerateForAClass(VoWorkItem item, SyntaxToken className, string itemUnderlyingType)
-        => Generate(item, className, itemUnderlyingType, includeNullCheck: true);
+        => Generate(item, className, itemUnderlyingType);
 
     public static string GenerateForAStruct(VoWorkItem item, SyntaxToken className, string itemUnderlyingType)
-        => Generate(item, className, itemUnderlyingType, includeNullCheck: false);
+        => Generate(item, className, itemUnderlyingType);
 
-    private static string Generate(VoWorkItem item, SyntaxToken className, string itemUnderlyingType, bool includeNullCheck)
+    private static string Generate(VoWorkItem item, SyntaxToken className, string itemUnderlyingType)
     {
-
         if (item.Config.TryFromGeneration == TryFromGeneration.Omit)
         {
             return string.Empty;
         }
+
+        string underlyingNullable = item.Nullable.QuestionMarkForUnderlying;
 
         StringBuilder sb = new();
 
@@ -32,9 +33,11 @@ public static class GenerateCodeForTryFrom
                         /// <param name="value">The underlying type.</param>
                         /// <param name="vo">An instance of the value object.</param>
                         /// <returns>True if the value object can be built, otherwise false.</returns>
-                        public static bool TryFrom({{itemUnderlyingType}} value, {{Util.GenerateNotNullWhenTrueAttribute()}} out {{className}} vo)
+                        #pragma warning disable CS8767 // Nullability of reference types in type of parameter doesn't match implicitly implemented member because of nullability attributes.
+                        public static bool TryFrom({{Util.GenerateNotNullWhenTrueAttribute()}} {{itemUnderlyingType}}{{underlyingNullable}} value, {{Util.GenerateMaybeNullWhenFalse()}} out {{className}} vo)
+                        #pragma warning restore CS8767 // Nullability of reference types in type of parameter doesn't match implicitly implemented member because of nullability attributes.
                         {
-                            {{(includeNullCheck ? GenerateNullCheckAndReturnFalseIfNeeded(item) : string.Empty)}}
+                            {{GenerateNullCheckAndReturnFalseIfNeeded(item)}}
                             {{Util.GenerateCallToNormalizeMethodIfNeeded(item)}}
                         
                             {{Util.GenerateCallToValidationAndReturnFalseIfNeeded(item)}}
@@ -58,7 +61,7 @@ public static class GenerateCodeForTryFrom
                         /// <returns>A <see cref="ValueObjectOrError{T}"/> containing either the value object, or an error.</returns>
                         public static ValueObjectOrError<{{className}}> TryFrom({{itemUnderlyingType}} value)
                         {
-                            {{(includeNullCheck ? GenerateNullCheckAndReturnErrorIfNeeded(item, className) : string.Empty)}}
+                            {{GenerateNullCheckAndReturnErrorIfNeeded(className, item)}}
                         
                             {{Util.GenerateCallToNormalizeMethodIfNeeded(item)}}
                         
@@ -71,23 +74,36 @@ public static class GenerateCodeForTryFrom
 
         return sb.ToString();
     }
-    
-    
-    private static string GenerateNullCheckAndReturnFalseIfNeeded(VoWorkItem voWorkItem) =>
-        voWorkItem.IsTheUnderlyingAValueType ? string.Empty
-            : $@"if (value is null)
-            {{
-                vo = default;
-                return false;
-            }}
-";
 
-    private static string GenerateNullCheckAndReturnErrorIfNeeded(VoWorkItem item, SyntaxToken className) =>
-        item.IsTheUnderlyingAValueType
-            ? string.Empty
-            : $@"if (value is null)
-            {{
-                return new ValueObjectOrError<{className}>(Validation.Invalid(""The value provided was null""));
-            }}";
 
+    private static string GenerateNullCheckAndReturnFalseIfNeeded(VoWorkItem item)
+    {
+        if (item.IsTheUnderlyingAValueType)
+        {
+            return string.Empty;
+        }
+
+        return $$"""
+               if (value is null)
+               {
+                   vo = default{{item.Nullable.BangForWrapper}};
+                   return false;
+               }
+               """;
+    }
+
+    private static string GenerateNullCheckAndReturnErrorIfNeeded(SyntaxToken className, VoWorkItem item)
+    {
+        if (item.IsTheUnderlyingAValueType)
+        {
+            return string.Empty;
+        }
+
+        return $$"""
+                 if (value is null)
+                 {
+                     return new ValueObjectOrError<{{className}}>(Validation.Invalid("The value provided was null"));
+                 }
+                 """;
+    }
 }

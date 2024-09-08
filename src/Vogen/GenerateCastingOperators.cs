@@ -10,6 +10,8 @@ public static class GenerateCastingOperators
         var className = tds.Identifier;
         var itemUnderlyingType = item.UnderlyingTypeFullName;
 
+        string primitiveBang = item.Nullable.BangForUnderlying;
+
         StringBuilder sb = new();
 
         if (item.Config.FromPrimitiveCasting == CastOperator.Explicit)
@@ -26,7 +28,7 @@ public static class GenerateCastingOperators
         // Generate the call to the _value field so that it doesn't throw if uninitialized.
         if (item.Config.ToPrimitiveCasting == CastOperator.Implicit)
         {
-            sb.AppendLine($"public static implicit operator {itemUnderlyingType}({className} vo) => vo._value;");
+            sb.AppendLine($"public static implicit operator {itemUnderlyingType}({className} vo) => vo._value{primitiveBang};");
         }
 
         if (item.Config.FromPrimitiveCasting == CastOperator.Implicit)

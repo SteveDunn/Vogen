@@ -1,4 +1,4 @@
-param($verbosity = "minimal") #quite|q, minimal|m, normal|n, detailed|d
+param($verbosity = "minimal", [switch] $quick = $false) #quite|q, minimal|m, normal|n, detailed|d
 
 $artifacts = ".\artifacts"
 $localPackages = ".\local-global-packages"
@@ -34,7 +34,7 @@ function Exec
     [CmdletBinding()]
     param(
         [Parameter(Position=0,Mandatory=1)][scriptblock]$cmd,
-        [Parameter(Position=1,Mandatory=0)][string]$errorMessage = ($msgs.error_bad_command -f $cmd)
+        [Parameter(Position=1,Mandatory=0)][string]$errorMessage = "Error executing command $cmd"
     )
     & $cmd
     if ($lastexitcode -ne 0) {
@@ -89,7 +89,7 @@ exec { & dotnet restore Vogen.sln --packages $localPackages --no-cache --verbosi
 exec { & dotnet build Vogen.sln -c Debug --no-restore --verbosity $verbosity}
 exec { & dotnet pack ./src/Vogen.Pack.csproj -c Debug -o:$localPackages /p:ForceVersion=$version --include-symbols --version-suffix:dev --no-restore --verbosity $verbosity }
 
-WriteStage("Cleaning and building consumers (tests and samples)")
+WriteStage("Cleaning and building consumers (tests and samples) - verbosity of $verbosity")
 
 exec { & dotnet restore Consumers.sln --no-cache --verbosity $verbosity }
 exec { & dotnet clean Consumers.sln -c Release --verbosity $verbosity}
@@ -98,28 +98,46 @@ exec { & dotnet clean Consumers.sln -c Release --verbosity $verbosity}
 # Restore the project using the custom config file, restoring packages to a local folder
 exec { & dotnet restore Consumers.sln -p UseLocallyBuiltPackage=true --force --no-cache --packages $localPackages --configfile ./nuget.private.config --verbosity $verbosity }
 
-exec { & dotnet build Consumers.sln -c Debug --no-restore --verbosity $verbosity }
-exec { & dotnet build Consumers.sln -c Release --no-restore --verbosity $verbosity }
+# Run both build tasks asynchronously
+
+$debugTask = Start-Process "dotnet" "build Consumers.sln --configuration Debug --no-restore --verbosity $verbosity" -NoNewWindow -PassThru
+$releaseTask = Start-Process "dotnet" "build Consumers.sln --configuration Release --no-restore --verbosity $verbosity" -NoNewWindow -PassThru
+
+# Wait for both tasks to complete
+$debugTask.WaitForExit()
+$releaseTask.WaitForExit()
+
+if ($debugTask.ExitCode -ne $null -and $debugTask.ExitCode -ne 0) {
+    Write-Host "debug build returned " + $debugTask.ExitCode
+    exit -1
+}
+if ($releaseTask.ExitCode -ne $null -and $releaseTask.ExitCode -ne 0) {
+    Write-Host "release build returned " + $releaseTask.ExitCode
+    exit -1
+}
+
+
+#exec { & dotnet build Consumers.sln -c Debug --no-restore --verbosity $verbosity }
+#exec { & dotnet build Consumers.sln -c Release --no-restore --verbosity $verbosity }
 
 WriteStage("Running consumer tests in debug with the local version of the NuGet package:" +$version)
 exec { & dotnet test ./tests/ConsumerTests -c Debug --no-build --no-restore --verbosity $verbosity }
 
-WriteStage("Re-running tests in release with the local version of the NuGet package:" +$version)
-exec { & dotnet test ./tests/ConsumerTests -c Release --no-build --no-restore --verbosity $verbosity }
+if(-not $quick)
+{
+    WriteStage("Re-running tests in release with the local version of the NuGet package:" + $version)
+    exec { & dotnet test ./tests/ConsumerTests -c Release --no-build --no-restore --verbosity $verbosity }
 
-WriteStage("Re-running tests in release with no validation with the local version of the NuGet package:" +$version)
-exec { & dotnet build Consumers.sln -c Release -p:DefineConstants="VOGEN_NO_VALIDATION" --no-restore --verbosity $verbosity }
-exec { & dotnet test ./tests/ConsumerTests -c Release --no-build --no-restore --verbosity $verbosity }
+    WriteStage("Re-running tests in release with no validation with the local version of the NuGet package:" +$version)
+    exec { & dotnet build Consumers.sln -c Release -p:DefineConstants="VOGEN_NO_VALIDATION" --no-restore --verbosity $verbosity }
+    exec { & dotnet test ./tests/ConsumerTests -c Release --no-build --no-restore --verbosity $verbosity }
 
-WriteStage("Building samples using the local version of the NuGet package...")
-
-
-exec { & dotnet run --project samples/Vogen.Examples/Vogen.Examples.csproj -c Debug --no-build --no-restore }
-
+    WriteStage("Building and running samples using the local version of the NuGet package...")
+    exec { & dotnet run --project samples/Vogen.Examples/Vogen.Examples.csproj -c Debug --no-build  --no-restore }
+    exec { & dotnet run --project samples/Vogen.Examples/Vogen.Examples.csproj -c Release --no-build --no-restore }
+}
 
 WriteStage("Finally, packing the release version into " + $artifacts)
-
-
 exec { & dotnet pack src/Vogen.Pack.csproj -c Release -o $artifacts --no-build --verbosity $verbosity }
 
 WriteStage("Done! Package generated at " + $artifacts)

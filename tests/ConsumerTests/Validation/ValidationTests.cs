@@ -1,6 +1,8 @@
 using System.Diagnostics.CodeAnalysis;
 using ConsumerTests;
 using Vogen.Tests.Types;
+#pragma warning disable CS8602 // Dereference of a possibly null reference.
+#pragma warning disable CS8625 // Cannot convert null literal to non-nullable reference type.
 
 namespace Vogen.Tests.ValidationTests;
 

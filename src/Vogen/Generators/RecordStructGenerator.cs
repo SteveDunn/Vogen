@@ -7,19 +7,26 @@ public class RecordStructGenerator : IGenerateSourceCode
 {
     public string BuildClass(VoWorkItem item, TypeDeclarationSyntax tds)
     {
-        var structName = tds.Identifier;
+        var wrapperName = tds.Identifier;
 
         var itemUnderlyingType = item.UnderlyingTypeFullName;
 
-        return $@"
+        string qmForUnderlying = item.Nullable.QuestionMarkForUnderlying;
+        string bangForUnderlying = item.Nullable.BangForUnderlying;
+        
+        var code = Generate();
+        
+        return item.Nullable.WrapBlock(code);
+        
+        string Generate() => $@"
 using Vogen;
 
 {Util.WriteStartNamespace(item.FullNamespace)}
     [global::System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage] 
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute(""{Util.GenerateYourAssemblyName()}"", ""{Util.GenerateYourAssemblyVersion()}"")]
     {Util.GenerateAnyConversionAttributes(tds, item)}
-    {DebugGeneration.GenerateDebugAttributes(item, structName, itemUnderlyingType)}
-    { Util.GenerateModifiersFor(tds)} record struct {structName} : global::System.IEquatable<{structName}>{GenerateEqualsMethodsAndOperators.GenerateInterfaceIfNeeded(", ", itemUnderlyingType, item)}{GenerateComparableCode.GenerateIComparableHeaderIfNeeded(", ", item, tds)}{GenerateCodeForIParsableInterfaceDeclarations.GenerateIfNeeded(", ", item, tds)}{WriteStaticAbstracts.WriteHeaderIfNeeded(", ", item, tds)}
+    {DebugGeneration.GenerateDebugAttributes(item, wrapperName, itemUnderlyingType)}
+    { Util.GenerateModifiersFor(tds)} record struct {wrapperName} : global::System.IEquatable<{wrapperName}>{GenerateEqualsMethodsAndOperators.GenerateInterfaceIfNeeded(", ", itemUnderlyingType, item)}{GenerateComparableCode.GenerateIComparableHeaderIfNeeded(", ", item, tds)}{GenerateCodeForIParsableInterfaceDeclarations.GenerateIfNeeded(", ", item, tds)}{WriteStaticAbstracts.WriteHeaderIfNeeded(", ", item, tds)}
     {{
 {DebugGeneration.GenerateStackTraceFieldIfNeeded(item)}
 
@@ -27,7 +34,7 @@ using Vogen;
         private readonly global::System.Boolean _isInitialized;
 #endif
         
-        private readonly {itemUnderlyingType} _value;
+        private readonly {itemUnderlyingType}{qmForUnderlying} _value;
 
         {Util.GenerateCommentForValueProperty(item)}
         public readonly {itemUnderlyingType} Value
@@ -36,7 +43,7 @@ using Vogen;
             get
             {{
                 EnsureInitialized();
-                return _value;
+                return _value{bangForUnderlying};
             }}
             [global::System.Diagnostics.DebuggerStepThroughAttribute]
             init
@@ -54,7 +61,7 @@ using Vogen;
 {GenerateStaticConstructor.GenerateIfNeeded(item)}
         [global::System.Diagnostics.DebuggerStepThroughAttribute]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
-        public {structName}()
+        public {wrapperName}()
         {{
 #if DEBUG
             {DebugGeneration.SetStackTraceIfNeeded(item)}
@@ -67,7 +74,7 @@ using Vogen;
         }}
 
         [global::System.Diagnostics.DebuggerStepThroughAttribute]
-        private {structName}({itemUnderlyingType} value) 
+        private {wrapperName}({itemUnderlyingType} value) 
         {{
             _value = value;
 #if !VOGEN_NO_VALIDATION
@@ -80,18 +87,18 @@ using Vogen;
         /// </summary>
         /// <param name=""value"">The underlying type.</param>
         /// <returns>An instance of this type.</returns>
-        public static {structName} From({itemUnderlyingType} value)
+        public static {wrapperName} From({itemUnderlyingType} value)
         {{
             {Util.GenerateCallToNormalizeMethodIfNeeded(item)}
 
             {Util.GenerateCallToValidationAndThrowIfRequired(item)}
 
-            {structName} instance = new {structName}(value);
+            {wrapperName} instance = new {wrapperName}(value);
 
             return instance;
         }}
 
-        {GenerateCodeForTryFrom.GenerateForAStruct(item, structName, itemUnderlyingType)}
+        {GenerateCodeForTryFrom.GenerateForAStruct(item, wrapperName, itemUnderlyingType)}
 
 {Util.GenerateIsInitializedMethod(true, item)}
 
@@ -99,16 +106,16 @@ using Vogen;
 {GenerateCastingOperators.GenerateImplementations(item,tds)}{Util.GenerateGuidFactoryMethodIfNeeded(item)}
         // only called internally when something has been deserialized into
         // its primitive type.
-        private static {structName} __Deserialize({itemUnderlyingType} value)
+        private static {wrapperName} __Deserialize({itemUnderlyingType} value)
         {{
             {Util.GenerateCallToNormalizeMethodIfNeeded(item)}
 
             {Util.GenerateCallToValidateForDeserializing(item)}
 
-            return new {structName}(value);
+            return new {wrapperName}(value);
         }}
         {GenerateEqualsMethodsAndOperators.GenerateEqualsMethodsForAStruct(item, tds)}
-{GenerateEqualsMethodsAndOperators.GenerateEqualsOperatorsForPrimitivesIfNeeded(itemUnderlyingType, structName, item)}
+{GenerateEqualsMethodsAndOperators.GenerateEqualsOperatorsForPrimitivesIfNeeded(itemUnderlyingType, wrapperName, item)}
 
         {GenerateComparableCode.GenerateIComparableImplementationIfNeeded(item, tds)}
 
@@ -116,6 +123,8 @@ using Vogen;
 
         {GenerateHashCodes.GenerateForAStruct(item)}
 
+        [global::System.Diagnostics.CodeAnalysis.MemberNotNullAttribute(nameof(_value))]
+        [global::System.Diagnostics.CodeAnalysis.MemberNotNullAttribute(nameof(Value))]
         private readonly void EnsureInitialized()
         {{
             if (!IsInitialized())
@@ -146,9 +155,11 @@ using Vogen;
 
     private static string GenerateNullCheckIfNeeded(VoWorkItem voWorkItem) =>
         voWorkItem.IsTheUnderlyingAValueType ? string.Empty
-            : $@"            if (value is null)
-            {{
-                throw new {voWorkItem.ValidationExceptionFullName}(""Cannot create a value object with null."");
-            }}
-";
+            : $$"""
+                    if (value is null)
+                    {
+                        throw new {{voWorkItem.ValidationExceptionFullName}}("Cannot create a value object with null.");
+                    }
+
+                """;
 }

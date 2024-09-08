@@ -10,6 +10,61 @@ namespace SnapshotTests.GeneralStuff;
 public class GeneralTests
 {
     [Fact]
+    public async Task No_validation()
+    {
+        var source =
+            $$"""
+            #define VOGEN_NO_VALIDATION
+
+            using System;
+            using Vogen;
+            
+            public class C<T>
+            {
+            }
+
+            #nullable enable
+            [ValueObject<C<int>>]
+            public partial class MyVo;
+            
+            #nullable restore
+            """;
+
+            await new SnapshotRunner<ValueObjectGenerator>()
+                .WithSource(source)
+                .RunOn(TargetFramework.Net8_0);
+    }
+
+    [Theory]
+    [InlineData("struct")]
+    [InlineData("class")]
+    [InlineData("record struct")]
+    [InlineData("record class")]
+    public async Task Nullable_enabled_if_set_in_scope(string type)
+    {
+        var source =
+            $$"""
+            using System;
+            using Vogen;
+
+            public class C<T>
+            {
+            }
+
+            #nullable enable
+            [ValueObject<C<int>>]
+            public partial {{type}} MyVo;
+            
+            #nullable restore
+            """;
+
+            await new SnapshotRunner<ValueObjectGenerator>()
+                .WithSource(source)
+                .CustomizeSettings(s => s.UseFileName(TestHelper.ShortenForFilename($"{nameof(Nullable_enabled_if_set_in_scope)}{type}")))
+                .RunOn(TargetFramework.Net8_0);
+    }
+
+    [Fact]
     public async Task Can_specify_a_generic_underlying()
     {
         var source =
@@ -23,6 +78,45 @@ public class GeneralTests
 
             [ValueObject<C<int>>]
             public partial class MyVo;
+            """;
+
+            await new SnapshotRunner<ValueObjectGenerator>()
+                .WithSource(source)
+                .RunOn(TargetFramework.Net8_0);
+    }
+
+    [Fact]
+    public async Task Nullable_Equals_override_with_object()
+    {
+        var source =
+            """
+            #nullable disable
+            
+            using System;
+            using Vogen;
+
+            [ValueObject<DateTimeOffset>]
+            public partial struct MyVo;
+            """;
+
+            await new SnapshotRunner<ValueObjectGenerator>()
+                .WithSource(source)
+                .RunOn(TargetFramework.Net8_0);
+    }
+
+    [Fact]
+    public async Task Nullable_enabled_does_not_allow_null_for_Parse_methods_for_underlying_string()
+    {
+        var source =
+            """
+            #nullable disable
+            
+            using System;
+            using Vogen;
+
+            [ValueObject<string>(comparison:ComparisonGeneration.UseUnderlying, parsableForPrimitives: ParsableForPrimitives.HoistMethodsAndInterfaces, parsableForStrings: ParsableForStrings.GenerateMethodsAndInterface)]
+            public partial class C;
+            
             """;
 
             await new SnapshotRunner<ValueObjectGenerator>()

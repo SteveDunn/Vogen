@@ -2,6 +2,7 @@
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Collections.Immutable;
+using System.Diagnostics;
 using System.IO;
 using System.IO.Compression;
 using System.Linq;
@@ -390,7 +391,12 @@ public sealed partial class ProjectBuilder
         {
             // uncomment to write out the source files - do a `dotnet new classlib` in that folder
             // and load it up in an IDE
-            // if(Debugger.IsAttached) DumpSource(outputCompilation);
+            #if DEBUG
+            if(Debugger.IsAttached)
+            {
+                DumpSource(outputCompilation);
+            }
+#endif
             return (finalDiags, []);
         }
 

@@ -25,13 +25,24 @@ internal class WriteStaticAbstracts
             return;
         }
 
-        string source =
-            $"""
-             {GeneratedCodeSegments.Preamble}
+        bool nullableEnabled =
+            (compilation.Options as CSharpCompilationOptions)!.NullableContextOptions.HasFlag(NullableContextOptions.Enable);
 
-             {GenerateSource()}
-             """;
+        string source = $"""
+                         {GeneratedCodeSegments.Preamble}
 
+                         {GenerateSource()}
+                         """;
+
+        if (nullableEnabled)
+        {
+            source = $"""
+                      #nullable enable
+                      {source}
+                      #nullable restore
+                      """;
+        }
+        
         context.AddSource("VogenInterfaces_g.cs", source);
 
         string GenerateSource()
@@ -69,10 +80,12 @@ internal class WriteStaticAbstracts
                     return string.Empty;
                 }
 
-                return """
-                       static abstract TSelf From(TPrimitive value);
-                       static abstract bool TryFrom(TPrimitive value, out TSelf vo);
-                       """;
+                string questionMarkForTSelf = nullableEnabled ? "?" : string.Empty;
+                
+                return $"""
+                        static abstract TSelf From(TPrimitive value);
+                        static abstract bool TryFrom(TPrimitive value, out TSelf{questionMarkForTSelf} vo);
+                        """;
             }
         }
 

@@ -1,3 +1,4 @@
+using System;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 
@@ -7,6 +8,8 @@ public static class GenerateEqualsMethodsAndOperators
 {
     public static string GenerateEqualsMethodsForAClass(VoWorkItem item, TypeDeclarationSyntax tds)
     {
+        string wrapperQ = item.Nullable.QuestionMarkForWrapper;
+
         var className = tds.Identifier;
         
         string virtualKeyword = item is { IsRecordClass: true, IsSealed: false } ? "virtual " : " ";
@@ -14,7 +17,7 @@ public static class GenerateEqualsMethodsAndOperators
         var ret = item.UserProvidedOverloads.EqualsForWrapper.WasProvided ? string.Empty : 
 $$"""
 
-            public {{virtualKeyword}}global::System.Boolean Equals({{className}} other)
+            public {{virtualKeyword}}global::System.Boolean Equals({{className}}{{wrapperQ}} other)
             {
               if (ReferenceEquals(null, other))
               {
@@ -37,7 +40,7 @@ $$"""
         ret += 
 $$"""
 
-             public global::System.Boolean Equals({{className}} other, global::System.Collections.Generic.IEqualityComparer<{{className}}> comparer)
+             public global::System.Boolean Equals({{className}}{{wrapperQ}} other, global::System.Collections.Generic.IEqualityComparer<{{className}}> comparer)
              {
                  return comparer.Equals(this, other);
              }
@@ -49,7 +52,7 @@ $$"""
         {
             ret += $$"""
 
-                      public override global::System.Boolean Equals(global::System.Object obj)
+                      public override global::System.Boolean Equals(global::System.Object{{item.Nullable.QuestionMarkForOtherReferences}} obj)
                       {
                           return Equals(obj as {{className}});
                       }
@@ -91,7 +94,7 @@ $$"""
             ret +=
 $$"""
 
-            public readonly override global::System.Boolean Equals(global::System.Object obj)
+            public readonly override global::System.Boolean Equals(global::System.Object{{item.Nullable.QuestionMarkForOtherReferences}} obj)
             {
               return obj is {{structName}} && Equals(({{structName}}) obj);
             }
@@ -103,6 +106,8 @@ $$"""
 
     private static string GenerateEqualsMethodForPrimitive(VoWorkItem item, bool isReadOnly)
     {
+        string underlyingQ = item.Nullable.QuestionMarkForUnderlying;
+
         if (!item.Config.PrimitiveEqualityGeneration.HasFlag(PrimitiveEqualityGeneration.GenerateMethods))
         {
             return string.Empty;
@@ -117,7 +122,7 @@ $$"""
         string output = item.UserProvidedOverloads.EqualsForUnderlying.WasProvided ? string.Empty :
 $$"""
 
-            public{{readonlyOrEmpty}} global::System.Boolean Equals({{itemUnderlyingType}} primitive)
+            public{{readonlyOrEmpty}} global::System.Boolean Equals({{itemUnderlyingType}}{{underlyingQ}} primitive)
             {
               return Value.Equals(primitive);
             }
@@ -129,7 +134,7 @@ $$"""
             output += 
 $$"""
 
-            public{{readonlyOrEmpty}} global::System.Boolean Equals({{itemUnderlyingType}} primitive, global::System.StringComparer comparer) 
+            public{{readonlyOrEmpty}} global::System.Boolean Equals({{itemUnderlyingType}}{{underlyingQ}} primitive, global::System.StringComparer comparer) 
             {
                 return comparer.Equals(Value, primitive);
             }
@@ -141,33 +146,24 @@ $$"""
 
     public static string GenerateEqualsOperatorsForPrimitivesIfNeeded(string itemUnderlyingType, SyntaxToken typeName, VoWorkItem item)
     {
-        if (item.Config.PrimitiveEqualityGeneration.HasFlag(PrimitiveEqualityGeneration.GenerateOperators))
+        if (!item.Config.PrimitiveEqualityGeneration.HasFlag(PrimitiveEqualityGeneration.GenerateOperators))
         {
-            if (item.IsTheWrapperAReferenceType)
-            {
-                return $"""
-                    
-                            public static global::System.Boolean operator ==({typeName} left, {itemUnderlyingType} right) => left?.Value.Equals(right) ?? false;
-                            public static global::System.Boolean operator !=({typeName} left, {itemUnderlyingType} right) => !(left == right);
-                    
-                            public static global::System.Boolean operator ==({itemUnderlyingType} left, {typeName} right) => right?.Value.Equals(left) ?? false;
-                            public static global::System.Boolean operator !=({itemUnderlyingType} left, {typeName} right) => !(left == right);
-                        """;
-            }
-            else
-            {
-                return $"""
-                    
-                            public static global::System.Boolean operator ==({typeName} left, {itemUnderlyingType} right) => left.Value.Equals(right);
-                            public static global::System.Boolean operator !=({typeName} left, {itemUnderlyingType} right) => !(left == right);
-                    
-                            public static global::System.Boolean operator ==({itemUnderlyingType} left, {typeName} right) => right.Value.Equals(left);
-                            public static global::System.Boolean operator !=({itemUnderlyingType} left, {typeName} right) => !(left == right);
-                        """;
-            }
+            return string.Empty;
         }
 
-        return string.Empty;
+        string w = item.Nullable.QuestionMarkForWrapper;
+        string u = item.Nullable.QuestionMarkForUnderlying;
+        
+        string wDefaultToFalse = item.Nullable.IsEnabled && item.IsTheWrapperAReferenceType ? "?? false" : string.Empty;
+
+        return $"""
+                
+                    public static global::System.Boolean operator ==({typeName}{w} left, {itemUnderlyingType}{u} right) => left{w}.Value.Equals(right) {wDefaultToFalse};
+                    public static global::System.Boolean operator ==({itemUnderlyingType}{u} left, {typeName}{w} right) => right{w}.Value.Equals(left) {wDefaultToFalse};
+
+                    public static global::System.Boolean operator !=({itemUnderlyingType}{u} left, {typeName}{w} right) => !(left == right);
+                    public static global::System.Boolean operator !=({typeName}{w} left, {itemUnderlyingType}{u} right) => !(left == right);
+                """;
     }
 
     public static string GenerateInterfaceIfNeeded(string prefix, string itemUnderlyingType, VoWorkItem item)

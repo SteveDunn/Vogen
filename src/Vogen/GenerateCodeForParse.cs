@@ -6,6 +6,34 @@ using Microsoft.CodeAnalysis;
 
 namespace Vogen;
 
+public static class DisplayFormats
+{
+    private static readonly SymbolDisplayMiscellaneousOptions _optionsWheNullabilityIsOn =
+        SymbolDisplayMiscellaneousOptions.EscapeKeywordIdentifiers |
+        SymbolDisplayMiscellaneousOptions.UseSpecialTypes |
+        SymbolDisplayMiscellaneousOptions.IncludeNullableReferenceTypeModifier;
+
+    private static readonly SymbolDisplayMiscellaneousOptions _optionsWheNullabilityIsOff =
+        SymbolDisplayMiscellaneousOptions.EscapeKeywordIdentifiers |
+        SymbolDisplayMiscellaneousOptions.UseSpecialTypes;
+
+    public static readonly SymbolDisplayFormat SymbolFormatWhenNullabilityIsOn =
+        new(
+            globalNamespaceStyle: SymbolDisplayGlobalNamespaceStyle.Included,
+            typeQualificationStyle: SymbolDisplayTypeQualificationStyle.NameAndContainingTypesAndNamespaces,
+            genericsOptions: SymbolDisplayGenericsOptions.IncludeTypeParameters,
+            miscellaneousOptions: _optionsWheNullabilityIsOn);
+
+    public static readonly SymbolDisplayFormat SymbolFormatWhenNullabilityIsOff =
+        new(
+            globalNamespaceStyle: SymbolDisplayGlobalNamespaceStyle.Included,
+            typeQualificationStyle: SymbolDisplayTypeQualificationStyle.NameAndContainingTypesAndNamespaces,
+            genericsOptions: SymbolDisplayGenericsOptions.IncludeTypeParameters,
+            miscellaneousOptions: _optionsWheNullabilityIsOff);
+    
+}
+    
+
 internal static class GenerateCodeForParse
 {
     public static string GenerateAnyHoistedParseMethods(VoWorkItem item)
@@ -80,18 +108,22 @@ internal static class GenerateCodeForParse
         bool needsExplicitImplementation = matches == UserSuppliedParseMethods.PartialMatchesButDifferentReturnType;
         
         string methodDecl = needsExplicitImplementation ? $"static {item.VoTypeName} global::System.IParsable<{item.VoTypeName}>.Parse" : $"public static {item.VoTypeName} Parse";
+
+        string underlyingBang = item.Nullable.BangForUnderlying;
+
+        var qmForOtherRefTypes = item.Nullable.QuestionMarkForOtherReferences;
         
         return $$"""
-                 
+
                  /// <summary>
                  /// </summary>
                  /// <returns>
                  /// The value created via the <see cref="From(global::System.String)"/> method.
                  /// </returns>
                  /// <exception cref="{{item.ValidationExceptionFullName}}">Thrown when the value can be parsed, but is not valid.</exception>
-                 {{methodDecl}}(global::System.String s, global::System.IFormatProvider provider) 
+                 {{methodDecl}}(global::System.String s, global::System.IFormatProvider{{qmForOtherRefTypes}} provider) 
                  {
-                     return From(s);
+                     return From(s{{underlyingBang}});
                  }
                  """;
     }
@@ -121,7 +153,7 @@ internal static class GenerateCodeForParse
 
     private static void BuildParseMethod(IMethodSymbol methodSymbol, StringBuilder sb, VoWorkItem item)
     {
-        string parameters = BuildParametersForParse(methodSymbol);
+        string parameters = BuildParametersForParse(methodSymbol, item);
         string parameterNames = BuildParameterNamesForParse(methodSymbol);
         string staticOrNot = methodSymbol.IsStatic ? "static " : string.Empty;
 
@@ -142,14 +174,14 @@ internal static class GenerateCodeForParse
               public {{staticOrNot}}{{item.VoTypeName}} Parse({{parameters}}) 
               {
                   var r = {{item.UnderlyingTypeFullName}}.Parse({{parameterNames}});
-                  return From(r);
+                  return From(r{{item.Nullable.BangForUnderlying}});
               }
               """;
 
         sb.AppendLine(ret);
     }
-
-    private static string BuildParametersForParse(IMethodSymbol methodSymbol)
+    
+    private static string BuildParametersForParse(IMethodSymbol methodSymbol, VoWorkItem item)
     {
         var parametersLength = methodSymbol.Parameters.Length;
         
@@ -161,7 +193,8 @@ internal static class GenerateCodeForParse
                 
             string refKind = BuildRefKind(eachParameter.RefKind);
 
-            string type = eachParameter.Type.ToDisplayString(SymbolDisplayFormat.FullyQualifiedFormat);
+            string type = eachParameter.Type.ToDisplayString(
+                item.Nullable.IsEnabled ? DisplayFormats.SymbolFormatWhenNullabilityIsOn : DisplayFormats.SymbolFormatWhenNullabilityIsOff);
 
             string name = Util.EscapeIfRequired(eachParameter.Name);
 

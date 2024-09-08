@@ -39,20 +39,36 @@ public static class GenerateComparableCode
             return string.Empty;
         }
     
-        var primitive = tds.Identifier;
+        //string nullAnnotation = item.ShouldShowNullAnnotations ? "?" : string.Empty;
+        string wrapperQ = item.Nullable.QuestionMarkForWrapper;
 
+        var wrapper = tds.Identifier;
+
+        string strongType = item.IsTheWrapperAReferenceType
+            ? $$"""
+                public int CompareTo({{wrapper}}{{wrapperQ}} other) 
+                {
+                    if(other is null) 
+                      return 1;
+                    
+                    return Value.CompareTo(other.Value);
+                }
+                """
+            : $"public int CompareTo({wrapper} other) => Value.CompareTo(other.Value);";
+
+        
         return $$"""
-                 public int CompareTo({{primitive}} other) => Value.CompareTo(other.Value);
+                 {{strongType}}
 
-                 public int CompareTo(object other) 
+                 public int CompareTo(object{{item.Nullable.QuestionMarkForOtherReferences}} other) 
                  {
                      if(other is null) 
                        return 1;
                      
-                     if(other is {{primitive}} x) 
+                     if(other is {{wrapper}} x) 
                        return CompareTo(x);
                      
-                     throw new global::System.ArgumentException("Cannot compare to object as it is not of type {{primitive}}", nameof(other));
+                     throw new global::System.ArgumentException("Cannot compare to object as it is not of type {{wrapper}}", nameof(other));
                  }
                  """;
     }

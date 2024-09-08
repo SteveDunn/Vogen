@@ -1,6 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <Target Name="main" DependsOnTargets="EnsureLocalPackagesFolderExists">
+
     <!-- Msbuild will process the first target in the file by default.
             By creating this target, and making it depend on the two following targets,
             we can ensure that they will all be executed
@@ -34,8 +35,9 @@
 
   <ItemGroup Condition=" '$(TargetFramework)' == 'net8.0'">
     <PackageReference Include="linq2db" Version="4.4.0" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.0-rc.1.22426.7" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="7.0.0-rc.1.22426.7" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.8" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="8.0.8" />
+    <PackageReference Include="SQLitePCLRaw.lib.e_sqlite3" Version="2.1.9" />
     <PackageReference Include="System.Text.Json" Version="8.0.4" />
     <PackageReference Include="System.Text.RegularExpressions" Version="4.3.1" />
     <PackageReference Include="ServiceStack.Text" Version="8.2.2" />

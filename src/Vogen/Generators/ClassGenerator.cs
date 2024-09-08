@@ -11,8 +11,18 @@ public class ClassGenerator : IGenerateSourceCode
         SyntaxToken className = tds.Identifier;
 
         string itemUnderlyingType = item.UnderlyingTypeFullName;
-        
-        return $@"
+
+        string wrapperQ = item.Nullable.QuestionMarkForWrapper;
+        string underlyingQ = item.Nullable.QuestionMarkForUnderlying;
+        string underlyingBang = item.Nullable.BangForUnderlying;
+        string wrapperBang = item.Nullable.BangForWrapper;
+
+        var code = Generate();
+
+        return item.Nullable.WrapBlock(code);
+    
+    
+    string Generate() => $@"
 using Vogen;
 
 {Util.WriteStartNamespace(item.FullNamespace)}
@@ -22,11 +32,11 @@ using Vogen;
     {DebugGeneration.GenerateDebugAttributes(item, className, itemUnderlyingType)}
     {Util.GenerateModifiersFor(tds)} class {className} : global::System.IEquatable<{className}>{GenerateEqualsMethodsAndOperators.GenerateInterfaceIfNeeded(", ", itemUnderlyingType, item)}{GenerateComparableCode.GenerateIComparableHeaderIfNeeded(", ", item, tds)}{GenerateCodeForIParsableInterfaceDeclarations.GenerateIfNeeded(", ", item, tds)}{WriteStaticAbstracts.WriteHeaderIfNeeded(", ", item, tds)}
     {{
-{DebugGeneration.GenerateStackTraceFieldIfNeeded(item)}
+        {DebugGeneration.GenerateStackTraceFieldIfNeeded(item)}
 #if !VOGEN_NO_VALIDATION
         private readonly global::System.Boolean _isInitialized;
 #endif
-        private readonly {itemUnderlyingType} _value;
+        private readonly {itemUnderlyingType}{underlyingQ} _value;
         
         {Util.GenerateCommentForValueProperty(item)}
         public {itemUnderlyingType} Value
@@ -35,7 +45,7 @@ using Vogen;
             get
             {{
                 EnsureInitialized();
-                return _value;
+                return _value{underlyingBang};
             }}
         }}
 
@@ -50,7 +60,7 @@ using Vogen;
 #if !VOGEN_NO_VALIDATION
             _isInitialized = false;
 #endif
-            _value = default;
+            _value = default{wrapperBang};
         }}
 
         [global::System.Diagnostics.DebuggerStepThroughAttribute]
@@ -82,7 +92,7 @@ using Vogen;
 
         {GenerateCodeForTryFrom.GenerateForAClass(item, className, itemUnderlyingType)}
 
-{Util.GenerateIsInitializedMethod(false, item)}
+        {Util.GenerateIsInitializedMethod(false, item)}
 
         {GenerateStringComparers.GenerateIfNeeded(item, tds)}  
 
@@ -100,17 +110,19 @@ using Vogen;
         }}
         {GenerateEqualsMethodsAndOperators.GenerateEqualsMethodsForAClass(item, tds)}
 
-        public static global::System.Boolean operator ==({className} left, {className} right) => Equals(left, right);
-        public static global::System.Boolean operator !=({className} left, {className} right) => !Equals(left, right);
-{GenerateEqualsMethodsAndOperators.GenerateEqualsOperatorsForPrimitivesIfNeeded(itemUnderlyingType, className, item)}
+        public static global::System.Boolean operator ==({className}{wrapperQ} left, {className}{wrapperQ} right) => Equals(left, right);
+        public static global::System.Boolean operator !=({className}{wrapperQ} left, {className}{wrapperQ} right) => !Equals(left, right);
+        {GenerateEqualsMethodsAndOperators.GenerateEqualsOperatorsForPrimitivesIfNeeded(itemUnderlyingType, className, item)}
 
-{GenerateCastingOperators.GenerateImplementations(item,tds)}{Util.GenerateGuidFactoryMethodIfNeeded(item)}
+        {GenerateCastingOperators.GenerateImplementations(item,tds)}{Util.GenerateGuidFactoryMethodIfNeeded(item)}
         {GenerateComparableCode.GenerateIComparableImplementationIfNeeded(item, tds)}
 
         {GenerateCodeForTryParse.GenerateAnyHoistedTryParseMethods(item)}{GenerateCodeForParse.GenerateAnyHoistedParseMethods(item)}
 
-{GenerateHashCodes.GenerateGetHashCodeForAClass(item)}
+        {GenerateHashCodes.GenerateGetHashCodeForAClass(item)}
 
+        [global::System.Diagnostics.CodeAnalysis.MemberNotNullAttribute(nameof(_value))]
+        [global::System.Diagnostics.CodeAnalysis.MemberNotNullAttribute(nameof(Value))]
         private void EnsureInitialized()
         {{
             if (!IsInitialized())
@@ -135,15 +147,18 @@ using Vogen;
         {Util.GenerateDebuggerProxyForClasses(tds, item)}
     }}
 {GenerateEfCoreExtensions.GenerateInnerIfNeeded(item)}
-{Util.WriteCloseNamespace(item.FullNamespace)}";
+{Util.WriteCloseNamespace(item.FullNamespace)}
+";
     }
 
     private static string GenerateNullCheckAndThrowIfNeeded(VoWorkItem voWorkItem) =>
         voWorkItem.IsTheUnderlyingAValueType ? string.Empty
-            : $@"            if (value is null)
-            {{
-                throw new {voWorkItem.ValidationExceptionFullName}(""Cannot create a value object with null."");
-            }}
-";
+            : $$"""
+                    if (value is null)
+                    {
+                        throw new {{voWorkItem.ValidationExceptionFullName}}("Cannot create a value object with null.");
+                    }
+
+                """;
 }
 
