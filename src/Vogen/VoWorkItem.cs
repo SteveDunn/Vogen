@@ -4,6 +4,7 @@ using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 // ReSharper disable NullableWarningSuppressionIsUsed
+// ReSharper disable InconsistentNaming
 
 namespace Vogen;
 
@@ -40,6 +41,7 @@ public class VoWorkItem
     public TypeDeclarationSyntax TypeToAugment { get; init; } = null!;
     
     public bool IsTheUnderlyingAValueType { get; init; }
+    public bool IsTheUnderlyingAReferenceType => !IsTheUnderlyingAValueType;
 
     public bool IsTheWrapperAValueType { get; init; }
     public bool IsTheWrapperAReferenceType => !IsTheWrapperAValueType;
@@ -64,25 +66,27 @@ public class VoWorkItem
     
     public required UserProvidedOverloads UserProvidedOverloads { get; init; }
     
-    public required INamedTypeSymbol WrapperType { get; set; }
+    public required INamedTypeSymbol WrapperType { get; init; }
     
-    public required ParsingInformation ParsingInformation { get; set; }
+    public required ParsingInformation ParsingInformation { get; init; }
 
-    public required LanguageVersion LanguageVersion { get; set; }
+    public required LanguageVersion LanguageVersion { get; init; }
     
-    public required VogenConfiguration Config { get; set; }
+    public required VogenConfiguration Config { get; init; }
+    public required Nullable Nullable { get; init; }
 }
 
 public class ParsingInformation
 {
-    public required List<IMethodSymbol> TryParseMethodsOnThePrimitive { get; set; }
+    public required List<IMethodSymbol> TryParseMethodsOnThePrimitive { get; init; }
     
-    public required List<IMethodSymbol> ParseMethodsOnThePrimitive { get; set; }
+    public required List<IMethodSymbol> ParseMethodsOnThePrimitive { get; init; }
 
     public bool PrimitiveHasNoParseOrTryParseMethods => TryParseMethodsOnThePrimitive.Count == 00 && ParseMethodsOnThePrimitive.Count == 0;
 
     public required bool UnderlyingIsAString { get; init; }
     
+    // ReSharper disable once InconsistentNaming
     public required bool IParsableIsAvailable { get; init; }
     
     public required bool UnderlyingDerivesFromIParsable { get; init; }
@@ -95,16 +99,16 @@ public class ParsingInformation
 
 public class UserProvidedOverloads
 {
-    public UserProvidedToString ToStringInfo { get; set; }
+    public UserProvidedToString ToStringInfo { get; init; }
 
-    public UserProvidedGetHashCode HashCodeInfo { get; set; }
+    public UserProvidedGetHashCode HashCodeInfo { get; init; }
     
-    public UserProvidedEqualsForWrapper EqualsForWrapper { get; set; }
+    public UserProvidedEqualsForWrapper EqualsForWrapper { get; init; }
     
-    public UserProvidedEqualsForUnderlying EqualsForUnderlying { get; set; }
+    public UserProvidedEqualsForUnderlying EqualsForUnderlying { get; init; }
     
-    public required UserProvidedParseMethods ParseMethods { get; set; }
+    public required UserProvidedParseMethods ParseMethods { get; init; }
     
-    public required UserProvidedTryParseMethods TryParseMethods { get; set; }
+    public required UserProvidedTryParseMethods TryParseMethods { get; init; }
 }
 

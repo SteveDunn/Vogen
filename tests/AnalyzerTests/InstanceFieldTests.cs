@@ -29,7 +29,7 @@ namespace Whatever
                     .ValidateWith(Validate)
                     .RunOnAllFrameworks();
 
-                void Validate(ImmutableArray<Diagnostic> diagnostics)
+                static void Validate(ImmutableArray<Diagnostic> diagnostics)
                 {
 #if NET7_0_OR_GREATER
             diagnostics.Single().GetMessage().Should().Be(
@@ -61,7 +61,7 @@ namespace Whatever
                     .ValidateWith(Validate)
                     .RunOnAllFrameworks();
 
-                void Validate(ImmutableArray<Diagnostic> diagnostics)
+                static void Validate(ImmutableArray<Diagnostic> diagnostics)
                 {
                     diagnostics.Should().HaveCount(1);
                     diagnostics.Single().GetMessage().Should().Contain(
@@ -89,7 +89,7 @@ namespace Whatever
                     .ValidateWith(Validate)
                     .RunOnAllFrameworks();
 
-                void Validate(ImmutableArray<Diagnostic> diagnostics)
+                static void Validate(ImmutableArray<Diagnostic> diagnostics)
                 {
                     diagnostics.Should().HaveCount(1);
                     diagnostics.Single().GetMessage().Should().Contain(

@@ -15,6 +15,7 @@ public sealed class MakeStructReadonlyCodeFixProvider : CodeFixProvider
     private const string _title = "Make struct readonly";
 
     public override ImmutableArray<string> FixableDiagnosticIds =>
+        // ReSharper disable once UseCollectionExpression
         ImmutableArray.Create(RuleIdentifiers.UseReadonlyStructInsteadOfStruct);
 
     public override FixAllProvider GetFixAllProvider() => WellKnownFixAllProviders.BatchFixer;

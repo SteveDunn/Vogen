@@ -25,7 +25,13 @@ class GenerateTypeConverterConversions : IGenerateConversion
                        Templates.GetForAnyType("TypeConverter");
 
         code = code.Replace("VOTYPE", item.VoTypeName);
-        return code.Replace("VOUNDERLYINGTYPE", item.UnderlyingTypeFullName);
+        code = code.Replace("VOUNDERLYINGTYPE", item.UnderlyingTypeFullName);
+
+        return $"""
+               #nullable disable
+               {code}
+               #nullable restore
+               """;
     }
 
 }

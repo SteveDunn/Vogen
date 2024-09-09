@@ -14,6 +14,7 @@ namespace Vogen.Rules.NormalizeInputMethodFixers
     public class AddStaticToExistingMethodCodeFixProvider : CodeFixProvider
     {
         public sealed override ImmutableArray<string> FixableDiagnosticIds => 
+            // ReSharper disable once UseCollectionExpression
             ImmutableArray.Create(RuleIdentifiers.AddStaticToExistingNormalizeInputMethod);
 
         public sealed override FixAllProvider GetFixAllProvider() => null!;

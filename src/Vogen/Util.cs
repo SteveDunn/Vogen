@@ -85,7 +85,7 @@ public static class Util
             return @$"var validation = {workItem.TypeToAugment.Identifier}.{workItem.ValidateMethod.Identifier.Value}(value);
             if (validation != Vogen.Validation.Ok)
             {{
-                vo = default;
+                vo = default!;
                 return false;
             }}
 ";
@@ -98,6 +98,14 @@ public static class Util
         """
         #if NETCOREAPP3_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)]
+        #endif
+        
+        """;
+
+    public static string GenerateMaybeNullWhenFalse() =>
+        """
+        #if NETCOREAPP3_0_OR_GREATER
+        [global::System.Diagnostics.CodeAnalysis.MaybeNullWhen(false)]
         #endif
         
         """;
@@ -234,12 +242,13 @@ public static class Util
             ? """
               public global::System.String CreatedWith => "the From method"
               """
-            : """
-              public global::System.String CreatedWith => _t._stackTrace?.ToString() ?? "the From method"
+            : $"""
+              public global::System.String CreatedWith => _t._stackTrace{item.Nullable.QuestionMarkForOtherReferences}.ToString() ?? "the From method"
               """;
 
         string code =
             $$"""
+              #nullable disable
               
               internal sealed class {{item.VoTypeName}}DebugView
               {
@@ -260,6 +269,8 @@ public static class Util
   
                   public global::System.String Conversions => @"{{Util.GenerateAnyConversionAttributesForDebuggerProxy(item)}}";
               }
+              
+              #nullable restore
               """;
 
         return code;
@@ -300,7 +311,7 @@ public static class Util
             ? string.Empty
             : $"""
                /// <summary>Returns the string representation of the underlying <see cref="{EscapeTypeNameForTripleSlashComment(item.UnderlyingType)}" />.</summary>
-               public{ro} override global::System.String ToString() =>IsInitialized() ? Value.ToString() : "[UNINITIALIZED]";
+               public{ro} override global::System.String{item.Nullable.QuestionMarkForOtherReferences} ToString() => IsInitialized() ? Value.ToString() : "[UNINITIALIZED]";
                """;
     }
 
@@ -320,8 +331,14 @@ public static class Util
         string accessibility = item.Config.IsInitializedMethodGeneration == IsInitializedMethodGeneration.Generate ? "public" : "private";
         return $$"""
                [global::System.Runtime.CompilerServices.MethodImpl(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
+               #if NETCOREAPP3_0_OR_GREATER
+               [global:: System.Diagnostics.CodeAnalysis.MemberNotNullWhenAttribute(true, nameof(_value))]
+               [global:: System.Diagnostics.CodeAnalysis.MemberNotNullWhenAttribute(true, nameof(Value))]
+               #endif
                #if VOGEN_NO_VALIDATION
+               #pragma warning disable CS8775
                  {{accessibility}}{{ro}} bool IsInitialized() => true;
+               #pragma warning restore CS8775
                #else
                  {{accessibility}}{{ro}} bool IsInitialized() => _isInitialized;
                #endif
@@ -375,13 +392,12 @@ causes Rider's debugger to crash.
         {
             return string.Empty;
         }
-
-        return """
+        
+        return $"""
                #if DEBUG   
-               private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
+               private readonly global::System.Diagnostics.StackTrace{item.Nullable.QuestionMarkForOtherReferences} _stackTrace = null!;
                #endif
                """;
-
     }
 
     public static string SetStackTraceIfNeeded(VoWorkItem voWorkItem) => voWorkItem.Config.DisableStackTraceRecordingInDebug

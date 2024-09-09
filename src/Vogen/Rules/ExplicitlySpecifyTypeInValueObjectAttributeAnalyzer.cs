@@ -25,6 +25,7 @@ public class ExplicitlySpecifyTypeInValueObjectAttributeAnalyzer : DiagnosticAna
         description:
         "This rule checks that value objects explicitly specify the type of primitive that they wrap. Value objects that don't make this explicit can be harder to read and understand.");
 
+    // ReSharper disable once UseCollectionExpression
     public override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics => ImmutableArray.Create(_rule);
 
     public override void Initialize(AnalysisContext context)

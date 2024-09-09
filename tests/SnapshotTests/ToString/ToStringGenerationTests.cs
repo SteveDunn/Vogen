@@ -14,26 +14,26 @@ public class ToStringGenerationTests
         {
             foreach (string type in Factory.TypeVariations)
             {
-                yield return new object[]
-                {
+                yield return
+                [
                     type,
                     CreateClassName(type, ToStringMethod.None),
-                    ToStringMethod.None,
-                };
+                    ToStringMethod.None
+                ];
 
-                yield return new object[]
-                {
+                yield return
+                [
                     type,
                     CreateClassName(type, ToStringMethod.Method),
-                    ToStringMethod.Method,
-                };
+                    ToStringMethod.Method
+                ];
 
-                yield return new object[]
-                {
+                yield return
+                [
                     type,
                     CreateClassName(type, ToStringMethod.ExpressionBodiedMethod),
-                    ToStringMethod.ExpressionBodiedMethod,
-                };
+                    ToStringMethod.ExpressionBodiedMethod
+                ];
             }
         }
 

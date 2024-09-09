@@ -23,7 +23,13 @@ internal class GenerateLinqToDbConversions : IGenerateConversion
         code = code.Replace("VOTYPE", item.VoTypeName);
         code = code.Replace("VOUNDERLYINGTYPE", item.UnderlyingTypeFullName);
         
-        return code;
+        return $"""
+                #nullable disable
+
+                {code}
+
+                #nullable restore
+                """;
     }
 
     private static bool IsOurs(Vogen.Conversions conversions) => conversions.HasFlag(Vogen.Conversions.LinqToDbValueConverter);

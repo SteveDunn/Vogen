@@ -19,7 +19,7 @@
 
 // Suppress warning for 'The annotation for nullable reference types should only be used in code within a '#nullable' annotations context. Auto-generated code requires an explicit '#nullable' directive in source.'
 // The generator copies signatures from the BCL, e.g. for `TryParse`, and some of those have nullable annotations.
-#pragma warning disable CS8669
+#pragma warning disable CS8669, CS8632
 
 // Suppress warnings about CS1591: Missing XML comment for publicly visible type or member 'Type_or_Member'
 #pragma warning disable CS1591
@@ -55,7 +55,7 @@ public static class VogenSwashbuckleExtensions
 
 // Suppress warning for 'The annotation for nullable reference types should only be used in code within a '#nullable' annotations context. Auto-generated code requires an explicit '#nullable' directive in source.'
 // The generator copies signatures from the BCL, e.g. for `TryParse`, and some of those have nullable annotations.
-#pragma warning disable CS8669
+#pragma warning disable CS8669, CS8632
 
 // Suppress warnings about CS1591: Missing XML comment for publicly visible type or member 'Type_or_Member'
 #pragma warning disable CS1591
@@ -93,9 +93,10 @@ public class VogenTypesFactory : global::System.Text.Json.Serialization.JsonConv
 #pragma warning disable MA0097
 // Suppress warning for 'The annotation for nullable reference types should only be used in code within a '#nullable' annotations context. Auto-generated code requires an explicit '#nullable' directive in source.'
 // The generator copies signatures from the BCL, e.g. for `TryParse`, and some of those have nullable annotations.
-#pragma warning disable CS8669
+#pragma warning disable CS8669, CS8632
 // Suppress warnings about CS1591: Missing XML comment for publicly visible type or member 'Type_or_Member'
 #pragma warning disable CS1591
+#nullable enable
 using Vogen;
 
 namespace MyNamespace
@@ -109,12 +110,12 @@ namespace MyNamespace
     public partial class MyVo : global::System.IEquatable<MyVo>, global::System.IEquatable<MyNamespace.C>, global::System.IParsable<MyVo>
     {
 #if DEBUG
-private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
+private readonly global::System.Diagnostics.StackTrace? _stackTrace = null!;
 #endif
 #if !VOGEN_NO_VALIDATION
         private readonly global::System.Boolean _isInitialized;
 #endif
-        private readonly MyNamespace.C _value;
+        private readonly MyNamespace.C? _value;
         /// <summary>
         /// Gets the underlying <see cref = "MyNamespace.C"/> value if set, otherwise a <see cref = "Vogen.ValueObjectValidationException"/> is thrown.
         /// </summary>
@@ -124,7 +125,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
             get
             {
                 EnsureInitialized();
-                return _value;
+                return _value!;
             }
         }
 
@@ -138,7 +139,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
 #if !VOGEN_NO_VALIDATION
             _isInitialized = false;
 #endif
-            _value = default;
+            _value = default !;
         }
 
         [global::System.Diagnostics.DebuggerStepThroughAttribute]
@@ -174,15 +175,24 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
         /// <param name = "value">The underlying type.</param>
         /// <param name = "vo">An instance of the value object.</param>
         /// <returns>True if the value object can be built, otherwise false.</returns>
-        public static bool TryFrom(MyNamespace.C value,
+        
+#pragma warning disable CS8767 // Nullability of reference types in type of parameter doesn't match implicitly implemented member because of nullability attributes.
+
+        public static bool TryFrom(
 #if NETCOREAPP3_0_OR_GREATER
 [global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)]
 #endif
+        MyNamespace.C? value,
+#if NETCOREAPP3_0_OR_GREATER
+[global::System.Diagnostics.CodeAnalysis.MaybeNullWhen(false)]
+#endif
  out MyVo vo)
+#pragma warning restore CS8767 // Nullability of reference types in type of parameter doesn't match implicitly implemented member because of nullability attributes.
+
         {
             if (value is null)
             {
-                vo = default;
+                vo = default !;
                 return false;
             }
 
@@ -208,8 +218,14 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
         }
 
         [global::System.Runtime.CompilerServices.MethodImpl(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
+#if NETCOREAPP3_0_OR_GREATER
+[global:: System.Diagnostics.CodeAnalysis.MemberNotNullWhenAttribute(true, nameof(_value))]
+[global:: System.Diagnostics.CodeAnalysis.MemberNotNullWhenAttribute(true, nameof(Value))]
+#endif
 #if VOGEN_NO_VALIDATION
+#pragma warning disable CS8775
   public bool IsInitialized() => true;
+#pragma warning restore CS8775
 #else
         public bool IsInitialized() => _isInitialized;
 #endif
@@ -225,7 +241,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
             return new MyVo(value);
         }
 
-        public global::System.Boolean Equals(MyVo other)
+        public global::System.Boolean Equals(MyVo? other)
         {
             if (ReferenceEquals(null, other))
             {
@@ -244,27 +260,27 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
             return GetType() == other.GetType() && global::System.Collections.Generic.EqualityComparer<MyNamespace.C>.Default.Equals(Value, other.Value);
         }
 
-        public global::System.Boolean Equals(MyVo other, global::System.Collections.Generic.IEqualityComparer<MyVo> comparer)
+        public global::System.Boolean Equals(MyVo? other, global::System.Collections.Generic.IEqualityComparer<MyVo> comparer)
         {
             return comparer.Equals(this, other);
         }
 
-        public global::System.Boolean Equals(MyNamespace.C primitive)
+        public global::System.Boolean Equals(MyNamespace.C? primitive)
         {
             return Value.Equals(primitive);
         }
 
-        public override global::System.Boolean Equals(global::System.Object obj)
+        public override global::System.Boolean Equals(global::System.Object? obj)
         {
             return Equals(obj as MyVo);
         }
 
-        public static global::System.Boolean operator ==(MyVo left, MyVo right) => Equals(left, right);
-        public static global::System.Boolean operator !=(MyVo left, MyVo right) => !Equals(left, right);
-        public static global::System.Boolean operator ==(MyVo left, MyNamespace.C right) => left?.Value.Equals(right) ?? false;
-        public static global::System.Boolean operator !=(MyVo left, MyNamespace.C right) => !(left == right);
-        public static global::System.Boolean operator ==(MyNamespace.C left, MyVo right) => right?.Value.Equals(left) ?? false;
-        public static global::System.Boolean operator !=(MyNamespace.C left, MyVo right) => !(left == right);
+        public static global::System.Boolean operator ==(MyVo? left, MyVo? right) => Equals(left, right);
+        public static global::System.Boolean operator !=(MyVo? left, MyVo? right) => !Equals(left, right);
+        public static global::System.Boolean operator ==(MyVo? left, MyNamespace.C? right) => left?.Value.Equals(right) ?? false;
+        public static global::System.Boolean operator ==(MyNamespace.C? left, MyVo? right) => right?.Value.Equals(left) ?? false;
+        public static global::System.Boolean operator !=(MyNamespace.C? left, MyVo? right) => !(left == right);
+        public static global::System.Boolean operator !=(MyVo? left, MyNamespace.C? right) => !(left == right);
         public static explicit operator MyVo(MyNamespace.C value) => From(value);
         public static explicit operator MyNamespace.C(MyVo value) => value.Value;
         /// <inheritdoc cref = "MyNamespace.C.TryParse(string? , System.IFormatProvider? , out MyNamespace.C)"/>
@@ -273,7 +289,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
         /// <returns>
         /// True if the value could a) be parsed by the underlying type, and b) passes any validation (after running any optional normalization).
         /// </returns>
-        public static global::System.Boolean TryParse(string s, global::System.IFormatProvider provider,
+        public static global::System.Boolean TryParse(string? s, global::System.IFormatProvider? provider,
 #if NETCOREAPP3_0_OR_GREATER
 [global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)]
 #endif
@@ -285,7 +301,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
                 return true;
             }
 
-            result = default;
+            result = default !;
             return false;
         }
 
@@ -296,10 +312,10 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
         /// The value created by calling the Parse method on the primitive.
         /// </returns>
         /// <exception cref = "global::Vogen.ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
-        public static MyVo Parse(string s, global::System.IFormatProvider provider)
+        public static MyVo Parse(string s, global::System.IFormatProvider? provider)
         {
             var r = MyNamespace.C.Parse(s, provider);
-            return From(r);
+            return From(r!);
         }
 
         public override global::System.Int32 GetHashCode()
@@ -313,6 +329,10 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
             }
         }
 
+#if NETCOREAPP3_0_OR_GREATER
+        [global::System.Diagnostics.CodeAnalysis.MemberNotNullAttribute(nameof(_value))]
+        [global::System.Diagnostics.CodeAnalysis.MemberNotNullAttribute(nameof(Value))]
+#endif
         private void EnsureInitialized()
         {
             if (!IsInitialized())
@@ -327,7 +347,8 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
         }
 
         /// <summary>Returns the string representation of the underlying <see cref = "MyNamespace.C"/>.</summary>
-        public override global::System.String ToString() => IsInitialized() ? Value.ToString() : "[UNINITIALIZED]";
+        public override global::System.String? ToString() => IsInitialized() ? Value.ToString() : "[UNINITIALIZED]";
+#nullable disable
         /// <summary>
         /// Converts a MyVo to or from JSON.
         /// </summary>
@@ -357,6 +378,8 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
 #endif
         }
 
+#nullable restore
+#nullable disable
         class MyVoTypeConverter : global::System.ComponentModel.TypeConverter
         {
             public override global::System.Boolean CanConvertFrom(global::System.ComponentModel.ITypeDescriptorContext context, global::System.Type sourceType)
@@ -386,6 +409,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
             }
         }
 
+#nullable restore
         internal sealed class MyVoDebugView
         {
             private readonly MyVo _t;
@@ -402,4 +426,6 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
         }
     }
 }
+#nullable restore
+
 ]

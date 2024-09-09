@@ -21,8 +21,9 @@ internal static class BuildWorkItems
         VogenKnownSymbols vogenKnownSymbols,
         Compilation compilation)
     {
-
         TypeDeclarationSyntax voTypeSyntax = target.VoSyntaxInformation;
+        
+        bool showNullAnnotations = ShouldShowNullAnnotations(compilation, target);
 
         INamedTypeSymbol voSymbolInformation = target.VoSymbolInformation;
 
@@ -125,14 +126,16 @@ internal static class BuildWorkItems
             RecordDeclarationSyntax rds when rds.IsKind(SyntaxKind.RecordStructDeclaration) => true,
             _ => false
         };
-        
+
+        var isTheUnderlyingAValueType = IsUnderlyingAValueType(config);
         return new VoWorkItem
         {
+            Nullable = new(showNullAnnotations, !isWrapperAValueType, !isTheUnderlyingAValueType),
             LanguageVersion = languageVersion,
             InstanceProperties = instanceProperties.ToList(),
             TypeToAugment = voTypeSyntax,
             
-            IsTheUnderlyingAValueType = IsUnderlyingAValueType(config),
+            IsTheUnderlyingAValueType = isTheUnderlyingAValueType,
             IsTheWrapperAValueType = isWrapperAValueType,
             
             ParsingInformation = BuildParsingInformation(underlyingType, vogenKnownSymbols),
@@ -148,8 +151,21 @@ internal static class BuildWorkItems
             AccessibilityKeyword = voSymbolInformation.IsInternal() ? "internal" : "public",
             DefaultValidationExceptionSymbol = vogenKnownSymbols.ValueObjectValidationException,
             
-            WrapperType = voSymbolInformation
+            WrapperType = voSymbolInformation,
         };
+    }
+
+    private static bool ShouldShowNullAnnotations(Compilation compilation, VoTarget target)
+    {
+        SemanticModel sm = compilation.GetSemanticModel(target.VoSyntaxInformation.SyntaxTree);
+        NullableContext nullableContext = sm.GetNullableContext(target.VoSyntaxInformation.GetLocation().SourceSpan.Start);
+        
+        if (nullableContext.HasFlag(NullableContext.AnnotationsContextInherited))
+        {
+            return (compilation.Options as CSharpCompilationOptions)!.NullableContextOptions.HasFlag(NullableContextOptions.Enable);
+        }
+
+        return nullableContext.HasFlag(NullableContext.AnnotationsEnabled);
     }
 
     private static ParsingInformation BuildParsingInformation(INamedTypeSymbol underlyingType, VogenKnownSymbols vogenKnownSymbols)

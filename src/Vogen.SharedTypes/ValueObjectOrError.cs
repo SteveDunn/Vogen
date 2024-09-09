@@ -10,8 +10,8 @@ namespace Vogen;
 public sealed class ValueObjectOrError<T>
 {
     private readonly bool _isSuccess;
-    private readonly T _valueObject;
-    private readonly Validation _error;
+    private readonly T? _valueObject;
+    private readonly Validation? _error;
 
     /// <summary>
     /// Creates a new instance representing a successful result
@@ -32,7 +32,7 @@ public sealed class ValueObjectOrError<T>
     public ValueObjectOrError(Validation error)
     {
         _isSuccess = false;
-        _valueObject = default;
+        _valueObject = default!;
         _error = error;
     }
 
@@ -47,7 +47,7 @@ public sealed class ValueObjectOrError<T>
     /// <summary>
     /// Returns the error, or if successful, a <see cref="Validation"/> representing 'OK'.
     /// </summary>
-    public Validation Error => _isSuccess ? Validation.Ok : _error;
+    public Validation Error => _isSuccess ? Validation.Ok : _error!;
 
     /// <summary>
     /// Returns the wrapper, or throws an exception if the result failed.
@@ -55,5 +55,5 @@ public sealed class ValueObjectOrError<T>
     /// <typeparam name="T">The type of the wrapper.</typeparam>
     /// <exception cref="System.InvalidOperationException">Throw when this type holds an error.</exception>
     public T ValueObject =>
-        _isSuccess ? _valueObject : throw new System.InvalidOperationException("Cannot access the value object as it is not valid: " + _error.ErrorMessage);
+        _isSuccess ? _valueObject : throw new System.InvalidOperationException("Cannot access the value object as it is not valid: " + _error!.ErrorMessage);
 }

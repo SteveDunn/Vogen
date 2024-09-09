@@ -14,6 +14,14 @@ internal class GenerateEfCoreTypeConversions : IGenerateConversion
             return string.Empty;
         }
 
-        return GenerateEfCoreTypes.GenerateInner(item.UnderlyingType, item.IsTheWrapperAValueType, item.WrapperType);
+        var code = GenerateEfCoreTypes.GenerateInner(item.UnderlyingType, item.IsTheWrapperAValueType, item.WrapperType);
+        
+        return $"""
+                #nullable disable
+
+                {code}
+
+                #nullable restore
+                """;
     }
 }

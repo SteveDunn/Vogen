@@ -7,25 +7,32 @@ public class RecordClassGenerator : IGenerateSourceCode
 {
     public string BuildClass(VoWorkItem item, TypeDeclarationSyntax tds)
     {
-        var className = tds.Identifier;
+        var wrapperName = tds.Identifier;
 
         var itemUnderlyingType = item.UnderlyingTypeFullName;
 
-        return $@"
+        string underlyingNullAnnotation = item.Nullable.QuestionMarkForUnderlying;
+        string underlyingBang = item.Nullable.BangForUnderlying;
+        
+        var code = Generate();
+        
+        return item.Nullable.WrapBlock(code);
+        
+        string Generate() => $@"
 using Vogen;
 
 {Util.WriteStartNamespace(item.FullNamespace)}
     [global::System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage] 
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute(""{Util.GenerateYourAssemblyName()}"", ""{Util.GenerateYourAssemblyVersion()}"")]
     {Util.GenerateAnyConversionAttributes(tds, item)}
-    {DebugGeneration.GenerateDebugAttributes(item, className, itemUnderlyingType)}
-    {Util.GenerateModifiersFor(tds)} record class {className} : global::System.IEquatable<{className}>{GenerateEqualsMethodsAndOperators.GenerateInterfaceIfNeeded(", ", itemUnderlyingType, item)}{GenerateComparableCode.GenerateIComparableHeaderIfNeeded(", ", item, tds)}{GenerateCodeForIParsableInterfaceDeclarations.GenerateIfNeeded(", ", item, tds)}{WriteStaticAbstracts.WriteHeaderIfNeeded(", ", item, tds)}
+    {DebugGeneration.GenerateDebugAttributes(item, wrapperName, itemUnderlyingType)}
+    {Util.GenerateModifiersFor(tds)} record class {wrapperName} : global::System.IEquatable<{wrapperName}>{GenerateEqualsMethodsAndOperators.GenerateInterfaceIfNeeded(", ", itemUnderlyingType, item)}{GenerateComparableCode.GenerateIComparableHeaderIfNeeded(", ", item, tds)}{GenerateCodeForIParsableInterfaceDeclarations.GenerateIfNeeded(", ", item, tds)}{WriteStaticAbstracts.WriteHeaderIfNeeded(", ", item, tds)}
     {{
 {DebugGeneration.GenerateStackTraceFieldIfNeeded(item)}
 #if !VOGEN_NO_VALIDATION
         private readonly global::System.Boolean _isInitialized;
 #endif
-        private readonly {itemUnderlyingType} _value;
+        private readonly {itemUnderlyingType}{underlyingNullAnnotation} _value;
         
         {Util.GenerateCommentForValueProperty(item)}
         public {itemUnderlyingType} Value
@@ -34,7 +41,7 @@ using Vogen;
             get
             {{
                 EnsureInitialized();
-                return _value;
+                return _value{underlyingBang};
             }}
             [global::System.Diagnostics.DebuggerStepThroughAttribute]
             init
@@ -52,7 +59,7 @@ using Vogen;
 {GenerateStaticConstructor.GenerateIfNeeded(item)}
         [global::System.Diagnostics.DebuggerStepThroughAttribute]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
-        public {className}()
+        public {wrapperName}()
         {{
 #if DEBUG
             {DebugGeneration.SetStackTraceIfNeeded(item)}
@@ -60,11 +67,11 @@ using Vogen;
 #if !VOGEN_NO_VALIDATION
             _isInitialized = false;
 #endif
-            _value = default;
+            _value = default{underlyingBang};
         }}
 
         [global::System.Diagnostics.DebuggerStepThroughAttribute]
-        private {className}({itemUnderlyingType} value)
+        private {wrapperName}({itemUnderlyingType} value)
         {{
             _value = value;
 #if !VOGEN_NO_VALIDATION
@@ -77,7 +84,7 @@ using Vogen;
         /// </summary>
         /// <param name=""value"">The underlying type.</param>
         /// <returns>An instance of this type.</returns>
-        public static {className} From({itemUnderlyingType} value)
+        public static {wrapperName} From({itemUnderlyingType} value)
         {{
             {GenerateNullCheckAndThrowIfNeeded(item)}
 
@@ -85,19 +92,19 @@ using Vogen;
 
             {Util.GenerateCallToValidationAndThrowIfRequired(item)}
 
-            {className} instance = new {className}(value);
+            {wrapperName} instance = new {wrapperName}(value);
 
             return instance;
         }}
 
-        {GenerateCodeForTryFrom.GenerateForAStruct(item, className, itemUnderlyingType)}
+        {GenerateCodeForTryFrom.GenerateForAStruct(item, wrapperName, itemUnderlyingType)}
 
 {Util.GenerateIsInitializedMethod(false, item)}
 
 {GenerateStringComparers.GenerateIfNeeded(item, tds)}  
         // only called internally when something has been deserialized into
         // its primitive type.
-        private static {className} __Deserialize({itemUnderlyingType} value)
+        private static {wrapperName} __Deserialize({itemUnderlyingType} value)
         {{
             {GenerateNullCheckAndThrowIfNeeded(item)}
 
@@ -105,10 +112,10 @@ using Vogen;
 
             {Util.GenerateCallToValidateForDeserializing(item)}
 
-            return new {className}(value);
+            return new {wrapperName}(value);
         }}
         {GenerateEqualsMethodsAndOperators.GenerateEqualsMethodsForAClass(item, tds)}
-{GenerateEqualsMethodsAndOperators.GenerateEqualsOperatorsForPrimitivesIfNeeded(itemUnderlyingType, className, item)}
+{GenerateEqualsMethodsAndOperators.GenerateEqualsOperatorsForPrimitivesIfNeeded(itemUnderlyingType, wrapperName, item)}
 
 {GenerateCastingOperators.GenerateImplementations(item,tds)}{Util.GenerateGuidFactoryMethodIfNeeded(item)}
         {GenerateComparableCode.GenerateIComparableImplementationIfNeeded(item, tds)}
@@ -117,6 +124,10 @@ using Vogen;
 
 {GenerateHashCodes.GenerateGetHashCodeForAClass(item)}
 
+#if NETCOREAPP3_0_OR_GREATER
+        [global::System.Diagnostics.CodeAnalysis.MemberNotNullAttribute(nameof(_value))]
+        [global::System.Diagnostics.CodeAnalysis.MemberNotNullAttribute(nameof(Value))]
+#endif
         private void EnsureInitialized()
         {{
             if (!IsInitialized())
@@ -147,9 +158,11 @@ using Vogen;
 
     private static string GenerateNullCheckAndThrowIfNeeded(VoWorkItem voWorkItem) =>
         voWorkItem.IsTheUnderlyingAValueType ? string.Empty
-            : $@"            if (value is null)
-            {{
-                throw new {voWorkItem.ValidationExceptionFullName}(""Cannot create a value object with null."");
-            }}
-";
+            : $$"""
+                    if (value is null)
+                    {
+                        throw new {{voWorkItem.ValidationExceptionFullName}}("Cannot create a value object with null.");
+                    }
+
+                """;
 }

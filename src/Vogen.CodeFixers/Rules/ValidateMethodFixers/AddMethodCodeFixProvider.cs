@@ -17,6 +17,7 @@ namespace Vogen.Rules.ValidateMethodFixers
     {
         public sealed override ImmutableArray<string> FixableDiagnosticIds
         {
+            // ReSharper disable once UseCollectionExpression
             get { return ImmutableArray.Create(RuleIdentifiers.AddValidationMethod); }
         }
 

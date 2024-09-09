@@ -29,7 +29,7 @@ internal static class GeneratedCodeSegments
 
             // Suppress warning for 'The annotation for nullable reference types should only be used in code within a '#nullable' annotations context. Auto-generated code requires an explicit '#nullable' directive in source.'
             // The generator copies signatures from the BCL, e.g. for `TryParse`, and some of those have nullable annotations.
-            #pragma warning disable CS8669
+            #pragma warning disable CS8669, CS8632
 
             // Suppress warnings about CS1591: Missing XML comment for publicly visible type or member 'Type_or_Member'
             #pragma warning disable CS1591

@@ -42,7 +42,7 @@ public static class GenerateCodeForTryParse
                 
             foreach (var eachSymbol in methodsToWrite)
             {
-                BuildTryParseMethod(eachSymbol, sb, item);
+                BuildHoistedTryParseMethod(eachSymbol, sb, item);
             }
 
             return sb.ToString();
@@ -50,7 +50,6 @@ public static class GenerateCodeForTryParse
         catch (Exception e)
         {
             throw new InvalidOperationException($"Cannot parse {primitiveSymbol} - {e}", e);
-
         }
         
         // We're given the TryParse methods on the primitive, and we want to filter out
@@ -78,22 +77,30 @@ public static class GenerateCodeForTryParse
         {
             return string.Empty;
         }
+
+        string wrapperBang = item.Nullable.BangForWrapper;
         
-        return $$"""
-                 
-                     /// <summary>
-                     /// </summary>
-                     /// <returns>
-                     /// True if the value passes any validation (after running any optional normalization).
-                     /// </returns>
-                     public static global::System.Boolean TryParse(global::System.String s, global::System.IFormatProvider provider, {{Util.GenerateNotNullWhenTrueAttribute()}} out {{item.VoTypeName}} result) 
-                     {
-                             {{Util.GenerateCallToNormalizeMethodIfNeeded(item, "s")}}
-                             {{GenerateCallToValidationIfNeeded(item, "s")}}
-                             result = new {{item.VoTypeName}}(s);
-                             return true;
-                     }
-                 """;
+        return
+            $$"""
+              /// <summary>
+              /// </summary>
+              /// <returns>
+              /// True if the value passes any validation (after running any optional normalization).
+              /// </returns>
+              public static global::System.Boolean TryParse({{Util.GenerateNotNullWhenTrueAttribute()}} global::System.String{{item.Nullable.QuestionMarkForOtherReferences}} s, global::System.IFormatProvider{{item.Nullable.QuestionMarkForOtherReferences}} provider, {{Util.GenerateMaybeNullWhenFalse()}} out {{item.VoTypeName}} result) 
+              {
+                  if(s is null)
+                  {
+                     result = default{{wrapperBang}};
+                     return false;
+                  }
+
+                  {{Util.GenerateCallToNormalizeMethodIfNeeded(item, "s")}}
+                  {{GenerateCallToValidationIfNeeded(item, "s")}}
+                  result = new {{item.VoTypeName}}(s);
+                  return true;
+              }
+              """;
     }
 
     private static bool UserHasSuppliedTheirOwn(VoWorkItem item) =>
@@ -106,12 +113,12 @@ public static class GenerateCodeForTryParse
                  SymbolEqualityComparer.Default.Equals(m.Parameters[2].Type, item.WrapperType) &&
                  m.Parameters[2].RefKind == RefKind.Out);
 
-    private static void BuildTryParseMethod(IMethodSymbol methodSymbol, StringBuilder sb, VoWorkItem item)
+    private static void BuildHoistedTryParseMethod(IMethodSymbol methodSymbol, StringBuilder sb, VoWorkItem item)
     {
-        string parameters = BuildParametersForTryParse(methodSymbol);
+        string parameters = BuildParametersForTryParse(methodSymbol, item);
         string parameterNames = BuildParameterNamesForTryParse(methodSymbol);
         string staticOrNot = methodSymbol.IsStatic ? "static " : string.Empty;
-        
+
         var inheritDocRef = methodSymbol.ToString()!
             .Replace("<", "{")
             .Replace(">", "}");
@@ -127,14 +134,15 @@ public static class GenerateCodeForTryParse
                   /// </returns>
                   public {{staticOrNot}}global::System.Boolean TryParse({{parameters}}, {{Util.GenerateNotNullWhenTrueAttribute()}} out {{item.VoTypeName}} result) 
                   {
-                      if({{item.UnderlyingTypeFullName}}.TryParse({{parameterNames}}, out var __v)) {
+                      if({{item.UnderlyingTypeFullName}}.TryParse({{parameterNames}}, out var __v)) 
+                      {
                           {{Util.GenerateCallToNormalizeMethodIfNeeded(item, "__v")}}
                           {{GenerateCallToValidationIfNeeded(item, "__v")}}
                           result = new {{item.VoTypeName}}(__v);
                           return true;
                       }
               
-                      result = default;
+                      result = default{{item.Nullable.BangForWrapper}};
                       return false;
                   }
               """;
@@ -144,13 +152,14 @@ public static class GenerateCodeForTryParse
     
     private static string GenerateCallToValidationIfNeeded(VoWorkItem workItem, string parameterName)
     {
+        string bangForWrapper = workItem.Nullable.BangForWrapper;
         if (workItem.ValidateMethod is not null)
         {
             return $$"""
                      var validation = {{workItem.TypeToAugment.Identifier}}.{{workItem.ValidateMethod.Identifier.Value}}({{parameterName}});
                      if (validation != Vogen.Validation.Ok)
                      {
-                         result = default;
+                         result = default{{bangForWrapper}};
                          return false;
                      }
 
@@ -160,8 +169,7 @@ public static class GenerateCodeForTryParse
         return string.Empty;
     }
 
-
-    private static string BuildParametersForTryParse(IMethodSymbol methodSymbol)
+    private static string BuildParametersForTryParse(IMethodSymbol methodSymbol, VoWorkItem item)
     {
         List<string> l = new();
 
@@ -171,7 +179,8 @@ public static class GenerateCodeForTryParse
                 
             string refKind = BuildRefKind(eachParameter.RefKind);
 
-            string type = eachParameter.Type.ToDisplayString(SymbolDisplayFormat.FullyQualifiedFormat);
+            string type = eachParameter.Type.ToDisplayString(
+                item.Nullable.IsEnabled ? DisplayFormats.SymbolFormatWhenNullabilityIsOn : DisplayFormats.SymbolFormatWhenNullabilityIsOff);
 
             string name = Util.EscapeIfRequired(eachParameter.Name);
 

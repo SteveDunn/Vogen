@@ -14,6 +14,7 @@ namespace Vogen.Rules.ValidateMethodFixers
     public class AddStaticToExistingMethodCodeFixProvider : CodeFixProvider
     {
         public sealed override ImmutableArray<string> FixableDiagnosticIds => 
+            // ReSharper disable once UseCollectionExpression
             ImmutableArray.Create(RuleIdentifiers.AddStaticToExistingValidationMethod);
 
         public sealed override FixAllProvider GetFixAllProvider() => null!;

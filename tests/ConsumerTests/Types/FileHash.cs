@@ -20,6 +20,6 @@ public readonly partial struct FileHash
             From(JsonSerializer.Deserialize<byte[]>(ref reader, options)!);
     
         public override void Write(Utf8JsonWriter writer, FileHash value, JsonSerializerOptions options) => 
-            JsonSerializer.Serialize(writer, (byte[])value._value, options);
+            JsonSerializer.Serialize(writer, (byte[])value._value!, options);
     }    
 }

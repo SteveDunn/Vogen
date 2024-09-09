@@ -19,7 +19,7 @@
 
 // Suppress warning for 'The annotation for nullable reference types should only be used in code within a '#nullable' annotations context. Auto-generated code requires an explicit '#nullable' directive in source.'
 // The generator copies signatures from the BCL, e.g. for `TryParse`, and some of those have nullable annotations.
-#pragma warning disable CS8669
+#pragma warning disable CS8669, CS8632
 
 // Suppress warnings about CS1591: Missing XML comment for publicly visible type or member 'Type_or_Member'
 #pragma warning disable CS1591
@@ -57,7 +57,7 @@ public class VogenTypesFactory : global::System.Text.Json.Serialization.JsonConv
 #pragma warning disable MA0097
 // Suppress warning for 'The annotation for nullable reference types should only be used in code within a '#nullable' annotations context. Auto-generated code requires an explicit '#nullable' directive in source.'
 // The generator copies signatures from the BCL, e.g. for `TryParse`, and some of those have nullable annotations.
-#pragma warning disable CS8669
+#pragma warning disable CS8669, CS8632
 // Suppress warnings about CS1591: Missing XML comment for publicly visible type or member 'Type_or_Member'
 #pragma warning disable CS1591
 using Vogen;
@@ -73,7 +73,7 @@ namespace Whatever
     public partial record class public_partial_recordlong : global::System.IEquatable<public_partial_recordlong>, global::System.IEquatable<System.Int64>, global::System.IComparable<public_partial_recordlong>, global::System.IComparable, global::System.IParsable<public_partial_recordlong>, global::System.ISpanParsable<public_partial_recordlong>, global::System.IUtf8SpanParsable<public_partial_recordlong>
     {
 #if DEBUG
-private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
+private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
 #endif
 #if !VOGEN_NO_VALIDATION
         private readonly global::System.Boolean _isInitialized;
@@ -139,11 +139,20 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
         /// <param name = "value">The underlying type.</param>
         /// <param name = "vo">An instance of the value object.</param>
         /// <returns>True if the value object can be built, otherwise false.</returns>
-        public static bool TryFrom(System.Int64 value,
+        
+#pragma warning disable CS8767 // Nullability of reference types in type of parameter doesn't match implicitly implemented member because of nullability attributes.
+
+        public static bool TryFrom(
 #if NETCOREAPP3_0_OR_GREATER
 [global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)]
 #endif
+        System.Int64 value,
+#if NETCOREAPP3_0_OR_GREATER
+[global::System.Diagnostics.CodeAnalysis.MaybeNullWhen(false)]
+#endif
  out public_partial_recordlong vo)
+#pragma warning restore CS8767 // Nullability of reference types in type of parameter doesn't match implicitly implemented member because of nullability attributes.
+
         {
             vo = new public_partial_recordlong(value);
             return true;
@@ -162,8 +171,14 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
         }
 
         [global::System.Runtime.CompilerServices.MethodImpl(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
+#if NETCOREAPP3_0_OR_GREATER
+[global:: System.Diagnostics.CodeAnalysis.MemberNotNullWhenAttribute(true, nameof(_value))]
+[global:: System.Diagnostics.CodeAnalysis.MemberNotNullWhenAttribute(true, nameof(Value))]
+#endif
 #if VOGEN_NO_VALIDATION
+#pragma warning disable CS8775
   public bool IsInitialized() => true;
+#pragma warning restore CS8775
 #else
         public bool IsInitialized() => _isInitialized;
 #endif
@@ -205,13 +220,19 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
             return Value.Equals(primitive);
         }
 
-        public static global::System.Boolean operator ==(public_partial_recordlong left, System.Int64 right) => left?.Value.Equals(right) ?? false;
-        public static global::System.Boolean operator !=(public_partial_recordlong left, System.Int64 right) => !(left == right);
-        public static global::System.Boolean operator ==(System.Int64 left, public_partial_recordlong right) => right?.Value.Equals(left) ?? false;
+        public static global::System.Boolean operator ==(public_partial_recordlong left, System.Int64 right) => left.Value.Equals(right);
+        public static global::System.Boolean operator ==(System.Int64 left, public_partial_recordlong right) => right.Value.Equals(left);
         public static global::System.Boolean operator !=(System.Int64 left, public_partial_recordlong right) => !(left == right);
+        public static global::System.Boolean operator !=(public_partial_recordlong left, System.Int64 right) => !(left == right);
         public static explicit operator public_partial_recordlong(System.Int64 value) => From(value);
         public static explicit operator System.Int64(public_partial_recordlong value) => value.Value;
-        public int CompareTo(public_partial_recordlong other) => Value.CompareTo(other.Value);
+        public int CompareTo(public_partial_recordlong other)
+        {
+            if (other is null)
+                return 1;
+            return Value.CompareTo(other.Value);
+        }
+
         public int CompareTo(object other)
         {
             if (other is null)
@@ -534,6 +555,10 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
             }
         }
 
+#if NETCOREAPP3_0_OR_GREATER
+        [global::System.Diagnostics.CodeAnalysis.MemberNotNullAttribute(nameof(_value))]
+        [global::System.Diagnostics.CodeAnalysis.MemberNotNullAttribute(nameof(Value))]
+#endif
         private void EnsureInitialized()
         {
             if (!IsInitialized())
@@ -552,6 +577,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
         // record enumerates fields - we just want our Value and to throw if it's not initialized.
         /// <summary>Returns the string representation of the underlying <see cref = "System.Int64"/>.</summary>
         public override global::System.String ToString() => IsInitialized() ? Value.ToString() : "[UNINITIALIZED]";
+#nullable disable
         /// <summary>
         /// Converts a public_partial_recordlong to or from JSON.
         /// </summary>
@@ -587,6 +613,8 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
 #endif
         }
 
+#nullable restore
+#nullable disable
         class public_partial_recordlongTypeConverter : global::System.ComponentModel.TypeConverter
         {
             public override global::System.Boolean CanConvertFrom(global::System.ComponentModel.ITypeDescriptorContext context, global::System.Type sourceType)
@@ -628,6 +656,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
             }
         }
 
+#nullable restore
         internal sealed class public_partial_recordlongDebugView
         {
             private readonly public_partial_recordlong _t;

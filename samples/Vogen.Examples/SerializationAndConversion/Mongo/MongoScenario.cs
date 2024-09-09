@@ -1,3 +1,7 @@
+#if NULLABLE_DISABLED_BUILD
+#pragma warning disable CS8632 // The annotation for nullable reference types should only be used in code within a '#nullable' annotations context.
+#endif
+
 using System;
 using System.Linq;
 using System.Threading.Tasks;
@@ -36,7 +40,7 @@ public class MongoScenario : IScenario
 
         try
         {
-            string runnerOs = Environment.GetEnvironmentVariable("RUNNER_OS");
+            string? runnerOs = Environment.GetEnvironmentVariable("RUNNER_OS");
         
             bool isLocalOrLinuxOnGitHub = string.IsNullOrEmpty(runnerOs) || runnerOs == "Linux";
         

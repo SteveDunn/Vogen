@@ -21,7 +21,7 @@
 
 // Suppress warning for 'The annotation for nullable reference types should only be used in code within a '#nullable' annotations context. Auto-generated code requires an explicit '#nullable' directive in source.'
 // The generator copies signatures from the BCL, e.g. for `TryParse`, and some of those have nullable annotations.
-#pragma warning disable CS8669
+#pragma warning disable CS8669, CS8632
 
 // Suppress warnings about CS1591: Missing XML comment for publicly visible type or member 'Type_or_Member'
 #pragma warning disable CS1591
@@ -71,7 +71,7 @@ configurationBuilder.Properties<Whatever.MyInt>().HaveConversion<Whatever.EfCore
 
 // Suppress warning for 'The annotation for nullable reference types should only be used in code within a '#nullable' annotations context. Auto-generated code requires an explicit '#nullable' directive in source.'
 // The generator copies signatures from the BCL, e.g. for `TryParse`, and some of those have nullable annotations.
-#pragma warning disable CS8669
+#pragma warning disable CS8669, CS8632
 
 // Suppress warnings about CS1591: Missing XML comment for publicly visible type or member 'Type_or_Member'
 #pragma warning disable CS1591
@@ -148,7 +148,7 @@ public static class MyVo1__Ext
 
 // Suppress warning for 'The annotation for nullable reference types should only be used in code within a '#nullable' annotations context. Auto-generated code requires an explicit '#nullable' directive in source.'
 // The generator copies signatures from the BCL, e.g. for `TryParse`, and some of those have nullable annotations.
-#pragma warning disable CS8669
+#pragma warning disable CS8669, CS8632
 
 // Suppress warnings about CS1591: Missing XML comment for publicly visible type or member 'Type_or_Member'
 #pragma warning disable CS1591
@@ -234,7 +234,7 @@ public static class MyVo2__Ext
 
 // Suppress warning for 'The annotation for nullable reference types should only be used in code within a '#nullable' annotations context. Auto-generated code requires an explicit '#nullable' directive in source.'
 // The generator copies signatures from the BCL, e.g. for `TryParse`, and some of those have nullable annotations.
-#pragma warning disable CS8669
+#pragma warning disable CS8669, CS8632
 
 // Suppress warnings about CS1591: Missing XML comment for publicly visible type or member 'Type_or_Member'
 #pragma warning disable CS1591
@@ -311,7 +311,7 @@ public static class MyVo3__Ext
 
 // Suppress warning for 'The annotation for nullable reference types should only be used in code within a '#nullable' annotations context. Auto-generated code requires an explicit '#nullable' directive in source.'
 // The generator copies signatures from the BCL, e.g. for `TryParse`, and some of those have nullable annotations.
-#pragma warning disable CS8669
+#pragma warning disable CS8669, CS8632
 
 // Suppress warnings about CS1591: Missing XML comment for publicly visible type or member 'Type_or_Member'
 #pragma warning disable CS1591
@@ -388,7 +388,7 @@ public static class MyVo4__Ext
 
 // Suppress warning for 'The annotation for nullable reference types should only be used in code within a '#nullable' annotations context. Auto-generated code requires an explicit '#nullable' directive in source.'
 // The generator copies signatures from the BCL, e.g. for `TryParse`, and some of those have nullable annotations.
-#pragma warning disable CS8669
+#pragma warning disable CS8669, CS8632
 
 // Suppress warnings about CS1591: Missing XML comment for publicly visible type or member 'Type_or_Member'
 #pragma warning disable CS1591
@@ -465,7 +465,7 @@ public static class MyVo5__Ext
 
 // Suppress warning for 'The annotation for nullable reference types should only be used in code within a '#nullable' annotations context. Auto-generated code requires an explicit '#nullable' directive in source.'
 // The generator copies signatures from the BCL, e.g. for `TryParse`, and some of those have nullable annotations.
-#pragma warning disable CS8669
+#pragma warning disable CS8669, CS8632
 
 // Suppress warnings about CS1591: Missing XML comment for publicly visible type or member 'Type_or_Member'
 #pragma warning disable CS1591
@@ -551,7 +551,7 @@ public static class MyVo6__Ext
 
 // Suppress warning for 'The annotation for nullable reference types should only be used in code within a '#nullable' annotations context. Auto-generated code requires an explicit '#nullable' directive in source.'
 // The generator copies signatures from the BCL, e.g. for `TryParse`, and some of those have nullable annotations.
-#pragma warning disable CS8669
+#pragma warning disable CS8669, CS8632
 
 // Suppress warnings about CS1591: Missing XML comment for publicly visible type or member 'Type_or_Member'
 #pragma warning disable CS1591
@@ -628,7 +628,7 @@ public static class int__Ext
 
 // Suppress warning for 'The annotation for nullable reference types should only be used in code within a '#nullable' annotations context. Auto-generated code requires an explicit '#nullable' directive in source.'
 // The generator copies signatures from the BCL, e.g. for `TryParse`, and some of those have nullable annotations.
-#pragma warning disable CS8669
+#pragma warning disable CS8669, CS8632
 
 // Suppress warnings about CS1591: Missing XML comment for publicly visible type or member 'Type_or_Member'
 #pragma warning disable CS1591
@@ -705,7 +705,7 @@ public static class byte__Ext
 
 // Suppress warning for 'The annotation for nullable reference types should only be used in code within a '#nullable' annotations context. Auto-generated code requires an explicit '#nullable' directive in source.'
 // The generator copies signatures from the BCL, e.g. for `TryParse`, and some of those have nullable annotations.
-#pragma warning disable CS8669
+#pragma warning disable CS8669, CS8632
 
 // Suppress warnings about CS1591: Missing XML comment for publicly visible type or member 'Type_or_Member'
 #pragma warning disable CS1591
@@ -791,7 +791,7 @@ public static class MyInt__Ext
 
 // Suppress warning for 'The annotation for nullable reference types should only be used in code within a '#nullable' annotations context. Auto-generated code requires an explicit '#nullable' directive in source.'
 // The generator copies signatures from the BCL, e.g. for `TryParse`, and some of those have nullable annotations.
-#pragma warning disable CS8669
+#pragma warning disable CS8669, CS8632
 
 // Suppress warnings about CS1591: Missing XML comment for publicly visible type or member 'Type_or_Member'
 #pragma warning disable CS1591
@@ -834,7 +834,7 @@ configurationBuilder.Properties<@int.@string>().HaveConversion<@byte.EfCoreConve
 
 // Suppress warning for 'The annotation for nullable reference types should only be used in code within a '#nullable' annotations context. Auto-generated code requires an explicit '#nullable' directive in source.'
 // The generator copies signatures from the BCL, e.g. for `TryParse`, and some of those have nullable annotations.
-#pragma warning disable CS8669
+#pragma warning disable CS8669, CS8632
 
 // Suppress warnings about CS1591: Missing XML comment for publicly visible type or member 'Type_or_Member'
 #pragma warning disable CS1591
@@ -911,7 +911,7 @@ public static class byte__Ext
 
 // Suppress warning for 'The annotation for nullable reference types should only be used in code within a '#nullable' annotations context. Auto-generated code requires an explicit '#nullable' directive in source.'
 // The generator copies signatures from the BCL, e.g. for `TryParse`, and some of those have nullable annotations.
-#pragma warning disable CS8669
+#pragma warning disable CS8669, CS8632
 
 // Suppress warnings about CS1591: Missing XML comment for publicly visible type or member 'Type_or_Member'
 #pragma warning disable CS1591
@@ -986,7 +986,7 @@ public static class string__Ext
 
 // Suppress warning for 'The annotation for nullable reference types should only be used in code within a '#nullable' annotations context. Auto-generated code requires an explicit '#nullable' directive in source.'
 // The generator copies signatures from the BCL, e.g. for `TryParse`, and some of those have nullable annotations.
-#pragma warning disable CS8669
+#pragma warning disable CS8669, CS8632
 
 // Suppress warnings about CS1591: Missing XML comment for publicly visible type or member 'Type_or_Member'
 #pragma warning disable CS1591
@@ -1024,7 +1024,7 @@ public class VogenTypesFactory : global::System.Text.Json.Serialization.JsonConv
 #pragma warning disable MA0097
 // Suppress warning for 'The annotation for nullable reference types should only be used in code within a '#nullable' annotations context. Auto-generated code requires an explicit '#nullable' directive in source.'
 // The generator copies signatures from the BCL, e.g. for `TryParse`, and some of those have nullable annotations.
-#pragma warning disable CS8669
+#pragma warning disable CS8669, CS8632
 // Suppress warnings about CS1591: Missing XML comment for publicly visible type or member 'Type_or_Member'
 #pragma warning disable CS1591
 using Vogen;
@@ -1037,10 +1037,11 @@ namespace @int
     [global::System.ComponentModel.TypeConverter(typeof(@byteTypeConverter))]
     [global::System.Diagnostics.DebuggerTypeProxyAttribute(typeof(@byteDebugView))]
     [global::System.Diagnostics.DebuggerDisplayAttribute("Underlying type: System.Byte, Value = { _value }")]
+    // ReSharper disable once UnusedType.Global
     public partial struct @byte : global::System.IEquatable<@byte>, global::System.IEquatable<System.Byte>, global::System.IComparable<@byte>, global::System.IComparable, global::System.IParsable<@byte>, global::System.ISpanParsable<@byte>, global::System.IUtf8SpanParsable<@byte>
     {
 #if DEBUG
-private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
+private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
 #endif
 #if !VOGEN_NO_VALIDATION
         private readonly global::System.Boolean _isInitialized;
@@ -1100,11 +1101,20 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
         /// <param name = "value">The underlying type.</param>
         /// <param name = "vo">An instance of the value object.</param>
         /// <returns>True if the value object can be built, otherwise false.</returns>
-        public static bool TryFrom(System.Byte value,
+        
+#pragma warning disable CS8767 // Nullability of reference types in type of parameter doesn't match implicitly implemented member because of nullability attributes.
+
+        public static bool TryFrom(
 #if NETCOREAPP3_0_OR_GREATER
 [global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)]
 #endif
+        System.Byte value,
+#if NETCOREAPP3_0_OR_GREATER
+[global::System.Diagnostics.CodeAnalysis.MaybeNullWhen(false)]
+#endif
  out @byte vo)
+#pragma warning restore CS8767 // Nullability of reference types in type of parameter doesn't match implicitly implemented member because of nullability attributes.
+
         {
             vo = new @byte(value);
             return true;
@@ -1123,8 +1133,14 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
         }
 
         [global::System.Runtime.CompilerServices.MethodImpl(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
+#if NETCOREAPP3_0_OR_GREATER
+[global:: System.Diagnostics.CodeAnalysis.MemberNotNullWhenAttribute(true, nameof(_value))]
+[global:: System.Diagnostics.CodeAnalysis.MemberNotNullWhenAttribute(true, nameof(Value))]
+#endif
 #if VOGEN_NO_VALIDATION
+#pragma warning disable CS8775
   public readonly bool IsInitialized() => true;
+#pragma warning restore CS8775
 #else
         public readonly bool IsInitialized() => _isInitialized;
 #endif
@@ -1164,9 +1180,9 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
         public static global::System.Boolean operator ==(@byte left, @byte right) => left.Equals(right);
         public static global::System.Boolean operator !=(@byte left, @byte right) => !(left == right);
         public static global::System.Boolean operator ==(@byte left, System.Byte right) => left.Value.Equals(right);
-        public static global::System.Boolean operator !=(@byte left, System.Byte right) => !(left == right);
         public static global::System.Boolean operator ==(System.Byte left, @byte right) => right.Value.Equals(left);
         public static global::System.Boolean operator !=(System.Byte left, @byte right) => !(left == right);
+        public static global::System.Boolean operator !=(@byte left, System.Byte right) => !(left == right);
         public int CompareTo(@byte other) => Value.CompareTo(other.Value);
         public int CompareTo(object other)
         {
@@ -1486,6 +1502,10 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
 
         /// <summary>Returns the string representation of the underlying <see cref = "System.Byte"/>.</summary>
         public readonly override global::System.String ToString() => IsInitialized() ? Value.ToString() : "[UNINITIALIZED]";
+#if NETCOREAPP3_0_OR_GREATER
+        [global::System.Diagnostics.CodeAnalysis.MemberNotNullAttribute(nameof(_value))]
+        [global::System.Diagnostics.CodeAnalysis.MemberNotNullAttribute(nameof(Value))]
+#endif
         private readonly void EnsureInitialized()
         {
             if (!IsInitialized())
@@ -1499,6 +1519,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
             }
         }
 
+#nullable disable
         /// <summary>
         /// Converts a @byte to or from JSON.
         /// </summary>
@@ -1534,6 +1555,8 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
 #endif
         }
 
+#nullable restore
+#nullable disable
         class @byteTypeConverter : global::System.ComponentModel.TypeConverter
         {
             public override global::System.Boolean CanConvertFrom(global::System.ComponentModel.ITypeDescriptorContext context, global::System.Type sourceType)
@@ -1578,6 +1601,8 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
             }
         }
 
+#nullable restore
+#nullable disable
         internal sealed class @byteDebugView
         {
             private readonly @byte _t;
@@ -1590,10 +1615,11 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
             public global::System.String UnderlyingType => "System.Byte";
             public global::System.String Value => _t.IsInitialized() ? _t._value.ToString() : "[not initialized]";
 #if DEBUG
-        public global::System.String CreatedWith => _t._stackTrace?.ToString() ?? "the From method";
+        public global::System.String CreatedWith => _t._stackTrace.ToString() ?? "the From method";
 #endif
             public global::System.String Conversions => @"Default";
         }
+#nullable restore
     }
 }
   
@@ -1613,7 +1639,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
 #pragma warning disable MA0097
 // Suppress warning for 'The annotation for nullable reference types should only be used in code within a '#nullable' annotations context. Auto-generated code requires an explicit '#nullable' directive in source.'
 // The generator copies signatures from the BCL, e.g. for `TryParse`, and some of those have nullable annotations.
-#pragma warning disable CS8669
+#pragma warning disable CS8669, CS8632
 // Suppress warnings about CS1591: Missing XML comment for publicly visible type or member 'Type_or_Member'
 #pragma warning disable CS1591
 using Vogen;
@@ -1629,7 +1655,7 @@ namespace @int
     public partial record struct @string : global::System.IEquatable<@string>, global::System.IEquatable<System.String>, global::System.IComparable<@string>, global::System.IComparable, global::System.IParsable<@string>
     {
 #if DEBUG
-private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
+private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
 #endif
 #if !VOGEN_NO_VALIDATION
         private readonly global::System.Boolean _isInitialized;
@@ -1700,12 +1726,27 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
         /// <param name = "value">The underlying type.</param>
         /// <param name = "vo">An instance of the value object.</param>
         /// <returns>True if the value object can be built, otherwise false.</returns>
-        public static bool TryFrom(System.String value,
+        
+#pragma warning disable CS8767 // Nullability of reference types in type of parameter doesn't match implicitly implemented member because of nullability attributes.
+
+        public static bool TryFrom(
 #if NETCOREAPP3_0_OR_GREATER
 [global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)]
 #endif
+        System.String value,
+#if NETCOREAPP3_0_OR_GREATER
+[global::System.Diagnostics.CodeAnalysis.MaybeNullWhen(false)]
+#endif
  out @string vo)
+#pragma warning restore CS8767 // Nullability of reference types in type of parameter doesn't match implicitly implemented member because of nullability attributes.
+
         {
+            if (value is null)
+            {
+                vo = default;
+                return false;
+            }
+
             vo = new @string(value);
             return true;
         }
@@ -1719,12 +1760,23 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
         /// <returns>A <see cref = "ValueObjectOrError{T}"/> containing either the value object, or an error.</returns>
         public static ValueObjectOrError<@string> TryFrom(System.String value)
         {
+            if (value is null)
+            {
+                return new ValueObjectOrError<@string>(Validation.Invalid("The value provided was null"));
+            }
+
             return new ValueObjectOrError<@string>(new @string(value));
         }
 
         [global::System.Runtime.CompilerServices.MethodImpl(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
+#if NETCOREAPP3_0_OR_GREATER
+[global:: System.Diagnostics.CodeAnalysis.MemberNotNullWhenAttribute(true, nameof(_value))]
+[global:: System.Diagnostics.CodeAnalysis.MemberNotNullWhenAttribute(true, nameof(Value))]
+#endif
 #if VOGEN_NO_VALIDATION
+#pragma warning disable CS8775
   public readonly bool IsInitialized() => true;
+#pragma warning restore CS8775
 #else
         public readonly bool IsInitialized() => _isInitialized;
 #endif
@@ -1762,9 +1814,9 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
         }
 
         public static global::System.Boolean operator ==(@string left, System.String right) => left.Value.Equals(right);
-        public static global::System.Boolean operator !=(@string left, System.String right) => !(left == right);
         public static global::System.Boolean operator ==(System.String left, @string right) => right.Value.Equals(left);
         public static global::System.Boolean operator !=(System.String left, @string right) => !(left == right);
+        public static global::System.Boolean operator !=(@string left, System.String right) => !(left == right);
         public int CompareTo(@string other) => Value.CompareTo(other.Value);
         public int CompareTo(object other)
         {
@@ -1780,12 +1832,22 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
         /// <returns>
         /// True if the value passes any validation (after running any optional normalization).
         /// </returns>
-        public static global::System.Boolean TryParse(global::System.String s, global::System.IFormatProvider provider,
+        public static global::System.Boolean TryParse(
 #if NETCOREAPP3_0_OR_GREATER
 [global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)]
 #endif
+        global::System.String s, global::System.IFormatProvider provider,
+#if NETCOREAPP3_0_OR_GREATER
+[global::System.Diagnostics.CodeAnalysis.MaybeNullWhen(false)]
+#endif
  out @string result)
         {
+            if (s is null)
+            {
+                result = default;
+                return false;
+            }
+
             result = new @string(s);
             return true;
         }
@@ -1806,6 +1868,10 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
             return global::System.Collections.Generic.EqualityComparer<System.String>.Default.GetHashCode(Value);
         }
 
+#if NETCOREAPP3_0_OR_GREATER
+        [global::System.Diagnostics.CodeAnalysis.MemberNotNullAttribute(nameof(_value))]
+        [global::System.Diagnostics.CodeAnalysis.MemberNotNullAttribute(nameof(Value))]
+#endif
         private readonly void EnsureInitialized()
         {
             if (!IsInitialized())
@@ -1822,6 +1888,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
         // record enumerates fields - we just want our Value and to throw if it's not initialized.
         /// <summary>Returns the string representation of the underlying <see cref = "System.String"/>.</summary>
         public readonly override global::System.String ToString() => IsInitialized() ? Value.ToString() : "[UNINITIALIZED]";
+#nullable disable
         /// <summary>
         /// Converts a @string to or from JSON.
         /// </summary>
@@ -1849,6 +1916,8 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
 #endif
         }
 
+#nullable restore
+#nullable disable
         class @stringTypeConverter : global::System.ComponentModel.TypeConverter
         {
             public override global::System.Boolean CanConvertFrom(global::System.ComponentModel.ITypeDescriptorContext context, global::System.Type sourceType)
@@ -1886,6 +1955,8 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
             }
         }
 
+#nullable restore
+#nullable disable
         internal sealed class @stringDebugView
         {
             private readonly @string _t;
@@ -1898,10 +1969,11 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
             public global::System.String UnderlyingType => "System.String";
             public global::System.String Value => _t.IsInitialized() ? _t._value.ToString() : "[not initialized]";
 #if DEBUG
-        public global::System.String CreatedWith => _t._stackTrace?.ToString() ?? "the From method";
+        public global::System.String CreatedWith => _t._stackTrace.ToString() ?? "the From method";
 #endif
             public global::System.String Conversions => @"Default";
         }
+#nullable restore
     }
 }
   
@@ -1921,7 +1993,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
 #pragma warning disable MA0097
 // Suppress warning for 'The annotation for nullable reference types should only be used in code within a '#nullable' annotations context. Auto-generated code requires an explicit '#nullable' directive in source.'
 // The generator copies signatures from the BCL, e.g. for `TryParse`, and some of those have nullable annotations.
-#pragma warning disable CS8669
+#pragma warning disable CS8669, CS8632
 // Suppress warnings about CS1591: Missing XML comment for publicly visible type or member 'Type_or_Member'
 #pragma warning disable CS1591
 using Vogen;
@@ -1934,10 +2006,11 @@ namespace Whatever
     [global::System.ComponentModel.TypeConverter(typeof(MyVo1TypeConverter))]
     [global::System.Diagnostics.DebuggerTypeProxyAttribute(typeof(MyVo1DebugView))]
     [global::System.Diagnostics.DebuggerDisplayAttribute("Underlying type: System.Int32, Value = { _value }")]
+    // ReSharper disable once UnusedType.Global
     public partial struct MyVo1 : global::System.IEquatable<MyVo1>, global::System.IEquatable<System.Int32>, global::System.IComparable<MyVo1>, global::System.IComparable, global::System.IParsable<MyVo1>, global::System.ISpanParsable<MyVo1>, global::System.IUtf8SpanParsable<MyVo1>
     {
 #if DEBUG
-private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
+private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
 #endif
 #if !VOGEN_NO_VALIDATION
         private readonly global::System.Boolean _isInitialized;
@@ -1997,11 +2070,20 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
         /// <param name = "value">The underlying type.</param>
         /// <param name = "vo">An instance of the value object.</param>
         /// <returns>True if the value object can be built, otherwise false.</returns>
-        public static bool TryFrom(System.Int32 value,
+        
+#pragma warning disable CS8767 // Nullability of reference types in type of parameter doesn't match implicitly implemented member because of nullability attributes.
+
+        public static bool TryFrom(
 #if NETCOREAPP3_0_OR_GREATER
 [global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)]
 #endif
+        System.Int32 value,
+#if NETCOREAPP3_0_OR_GREATER
+[global::System.Diagnostics.CodeAnalysis.MaybeNullWhen(false)]
+#endif
  out MyVo1 vo)
+#pragma warning restore CS8767 // Nullability of reference types in type of parameter doesn't match implicitly implemented member because of nullability attributes.
+
         {
             vo = new MyVo1(value);
             return true;
@@ -2020,8 +2102,14 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
         }
 
         [global::System.Runtime.CompilerServices.MethodImpl(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
+#if NETCOREAPP3_0_OR_GREATER
+[global:: System.Diagnostics.CodeAnalysis.MemberNotNullWhenAttribute(true, nameof(_value))]
+[global:: System.Diagnostics.CodeAnalysis.MemberNotNullWhenAttribute(true, nameof(Value))]
+#endif
 #if VOGEN_NO_VALIDATION
+#pragma warning disable CS8775
   public readonly bool IsInitialized() => true;
+#pragma warning restore CS8775
 #else
         public readonly bool IsInitialized() => _isInitialized;
 #endif
@@ -2061,9 +2149,9 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
         public static global::System.Boolean operator ==(MyVo1 left, MyVo1 right) => left.Equals(right);
         public static global::System.Boolean operator !=(MyVo1 left, MyVo1 right) => !(left == right);
         public static global::System.Boolean operator ==(MyVo1 left, System.Int32 right) => left.Value.Equals(right);
-        public static global::System.Boolean operator !=(MyVo1 left, System.Int32 right) => !(left == right);
         public static global::System.Boolean operator ==(System.Int32 left, MyVo1 right) => right.Value.Equals(left);
         public static global::System.Boolean operator !=(System.Int32 left, MyVo1 right) => !(left == right);
+        public static global::System.Boolean operator !=(MyVo1 left, System.Int32 right) => !(left == right);
         public int CompareTo(MyVo1 other) => Value.CompareTo(other.Value);
         public int CompareTo(object other)
         {
@@ -2383,6 +2471,10 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
 
         /// <summary>Returns the string representation of the underlying <see cref = "System.Int32"/>.</summary>
         public readonly override global::System.String ToString() => IsInitialized() ? Value.ToString() : "[UNINITIALIZED]";
+#if NETCOREAPP3_0_OR_GREATER
+        [global::System.Diagnostics.CodeAnalysis.MemberNotNullAttribute(nameof(_value))]
+        [global::System.Diagnostics.CodeAnalysis.MemberNotNullAttribute(nameof(Value))]
+#endif
         private readonly void EnsureInitialized()
         {
             if (!IsInitialized())
@@ -2396,6 +2488,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
             }
         }
 
+#nullable disable
         /// <summary>
         /// Converts a MyVo1 to or from JSON.
         /// </summary>
@@ -2431,6 +2524,8 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
 #endif
         }
 
+#nullable restore
+#nullable disable
         class MyVo1TypeConverter : global::System.ComponentModel.TypeConverter
         {
             public override global::System.Boolean CanConvertFrom(global::System.ComponentModel.ITypeDescriptorContext context, global::System.Type sourceType)
@@ -2472,6 +2567,8 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
             }
         }
 
+#nullable restore
+#nullable disable
         internal sealed class MyVo1DebugView
         {
             private readonly MyVo1 _t;
@@ -2484,10 +2581,11 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
             public global::System.String UnderlyingType => "System.Int32";
             public global::System.String Value => _t.IsInitialized() ? _t._value.ToString() : "[not initialized]";
 #if DEBUG
-        public global::System.String CreatedWith => _t._stackTrace?.ToString() ?? "the From method";
+        public global::System.String CreatedWith => _t._stackTrace.ToString() ?? "the From method";
 #endif
             public global::System.String Conversions => @"Default";
         }
+#nullable restore
     }
 }
   
@@ -2507,7 +2605,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
 #pragma warning disable MA0097
 // Suppress warning for 'The annotation for nullable reference types should only be used in code within a '#nullable' annotations context. Auto-generated code requires an explicit '#nullable' directive in source.'
 // The generator copies signatures from the BCL, e.g. for `TryParse`, and some of those have nullable annotations.
-#pragma warning disable CS8669
+#pragma warning disable CS8669, CS8632
 // Suppress warnings about CS1591: Missing XML comment for publicly visible type or member 'Type_or_Member'
 #pragma warning disable CS1591
 using Vogen;
@@ -2523,7 +2621,7 @@ namespace Whatever
     public partial class MyVo2 : global::System.IEquatable<MyVo2>, global::System.IEquatable<System.String>, global::System.IComparable<MyVo2>, global::System.IComparable, global::System.IParsable<MyVo2>
     {
 #if DEBUG
-private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
+private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
 #endif
 #if !VOGEN_NO_VALIDATION
         private readonly global::System.Boolean _isInitialized;
@@ -2588,11 +2686,20 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
         /// <param name = "value">The underlying type.</param>
         /// <param name = "vo">An instance of the value object.</param>
         /// <returns>True if the value object can be built, otherwise false.</returns>
-        public static bool TryFrom(System.String value,
+        
+#pragma warning disable CS8767 // Nullability of reference types in type of parameter doesn't match implicitly implemented member because of nullability attributes.
+
+        public static bool TryFrom(
 #if NETCOREAPP3_0_OR_GREATER
 [global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)]
 #endif
+        System.String value,
+#if NETCOREAPP3_0_OR_GREATER
+[global::System.Diagnostics.CodeAnalysis.MaybeNullWhen(false)]
+#endif
  out MyVo2 vo)
+#pragma warning restore CS8767 // Nullability of reference types in type of parameter doesn't match implicitly implemented member because of nullability attributes.
+
         {
             if (value is null)
             {
@@ -2622,8 +2729,14 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
         }
 
         [global::System.Runtime.CompilerServices.MethodImpl(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
+#if NETCOREAPP3_0_OR_GREATER
+[global:: System.Diagnostics.CodeAnalysis.MemberNotNullWhenAttribute(true, nameof(_value))]
+[global:: System.Diagnostics.CodeAnalysis.MemberNotNullWhenAttribute(true, nameof(Value))]
+#endif
 #if VOGEN_NO_VALIDATION
+#pragma warning disable CS8775
   public bool IsInitialized() => true;
+#pragma warning restore CS8775
 #else
         public bool IsInitialized() => _isInitialized;
 #endif
@@ -2680,13 +2793,19 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
 
         public static global::System.Boolean operator ==(MyVo2 left, MyVo2 right) => Equals(left, right);
         public static global::System.Boolean operator !=(MyVo2 left, MyVo2 right) => !Equals(left, right);
-        public static global::System.Boolean operator ==(MyVo2 left, System.String right) => left?.Value.Equals(right) ?? false;
-        public static global::System.Boolean operator !=(MyVo2 left, System.String right) => !(left == right);
-        public static global::System.Boolean operator ==(System.String left, MyVo2 right) => right?.Value.Equals(left) ?? false;
+        public static global::System.Boolean operator ==(MyVo2 left, System.String right) => left.Value.Equals(right);
+        public static global::System.Boolean operator ==(System.String left, MyVo2 right) => right.Value.Equals(left);
         public static global::System.Boolean operator !=(System.String left, MyVo2 right) => !(left == right);
+        public static global::System.Boolean operator !=(MyVo2 left, System.String right) => !(left == right);
         public static explicit operator MyVo2(System.String value) => From(value);
         public static explicit operator System.String(MyVo2 value) => value.Value;
-        public int CompareTo(MyVo2 other) => Value.CompareTo(other.Value);
+        public int CompareTo(MyVo2 other)
+        {
+            if (other is null)
+                return 1;
+            return Value.CompareTo(other.Value);
+        }
+
         public int CompareTo(object other)
         {
             if (other is null)
@@ -2701,12 +2820,22 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
         /// <returns>
         /// True if the value passes any validation (after running any optional normalization).
         /// </returns>
-        public static global::System.Boolean TryParse(global::System.String s, global::System.IFormatProvider provider,
+        public static global::System.Boolean TryParse(
 #if NETCOREAPP3_0_OR_GREATER
 [global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)]
 #endif
+        global::System.String s, global::System.IFormatProvider provider,
+#if NETCOREAPP3_0_OR_GREATER
+[global::System.Diagnostics.CodeAnalysis.MaybeNullWhen(false)]
+#endif
  out MyVo2 result)
         {
+            if (s is null)
+            {
+                result = default;
+                return false;
+            }
+
             result = new MyVo2(s);
             return true;
         }
@@ -2733,6 +2862,10 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
             }
         }
 
+#if NETCOREAPP3_0_OR_GREATER
+        [global::System.Diagnostics.CodeAnalysis.MemberNotNullAttribute(nameof(_value))]
+        [global::System.Diagnostics.CodeAnalysis.MemberNotNullAttribute(nameof(Value))]
+#endif
         private void EnsureInitialized()
         {
             if (!IsInitialized())
@@ -2748,6 +2881,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
 
         /// <summary>Returns the string representation of the underlying <see cref = "System.String"/>.</summary>
         public override global::System.String ToString() => IsInitialized() ? Value.ToString() : "[UNINITIALIZED]";
+#nullable disable
         /// <summary>
         /// Converts a MyVo2 to or from JSON.
         /// </summary>
@@ -2775,6 +2909,8 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
 #endif
         }
 
+#nullable restore
+#nullable disable
         class MyVo2TypeConverter : global::System.ComponentModel.TypeConverter
         {
             public override global::System.Boolean CanConvertFrom(global::System.ComponentModel.ITypeDescriptorContext context, global::System.Type sourceType)
@@ -2812,6 +2948,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
             }
         }
 
+#nullable restore
         internal sealed class MyVo2DebugView
         {
             private readonly MyVo2 _t;
@@ -2845,7 +2982,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
 #pragma warning disable MA0097
 // Suppress warning for 'The annotation for nullable reference types should only be used in code within a '#nullable' annotations context. Auto-generated code requires an explicit '#nullable' directive in source.'
 // The generator copies signatures from the BCL, e.g. for `TryParse`, and some of those have nullable annotations.
-#pragma warning disable CS8669
+#pragma warning disable CS8669, CS8632
 // Suppress warnings about CS1591: Missing XML comment for publicly visible type or member 'Type_or_Member'
 #pragma warning disable CS1591
 using Vogen;
@@ -2858,10 +2995,11 @@ namespace Whatever
     [global::System.ComponentModel.TypeConverter(typeof(MyVo3TypeConverter))]
     [global::System.Diagnostics.DebuggerTypeProxyAttribute(typeof(MyVo3DebugView))]
     [global::System.Diagnostics.DebuggerDisplayAttribute("Underlying type: System.String, Value = { _value }")]
+    // ReSharper disable once UnusedType.Global
     public readonly partial struct MyVo3 : global::System.IEquatable<MyVo3>, global::System.IEquatable<System.String>, global::System.IComparable<MyVo3>, global::System.IComparable, global::System.IParsable<MyVo3>
     {
 #if DEBUG
-private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
+private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
 #endif
 #if !VOGEN_NO_VALIDATION
         private readonly global::System.Boolean _isInitialized;
@@ -2921,12 +3059,27 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
         /// <param name = "value">The underlying type.</param>
         /// <param name = "vo">An instance of the value object.</param>
         /// <returns>True if the value object can be built, otherwise false.</returns>
-        public static bool TryFrom(System.String value,
+        
+#pragma warning disable CS8767 // Nullability of reference types in type of parameter doesn't match implicitly implemented member because of nullability attributes.
+
+        public static bool TryFrom(
 #if NETCOREAPP3_0_OR_GREATER
 [global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)]
 #endif
+        System.String value,
+#if NETCOREAPP3_0_OR_GREATER
+[global::System.Diagnostics.CodeAnalysis.MaybeNullWhen(false)]
+#endif
  out MyVo3 vo)
+#pragma warning restore CS8767 // Nullability of reference types in type of parameter doesn't match implicitly implemented member because of nullability attributes.
+
         {
+            if (value is null)
+            {
+                vo = default;
+                return false;
+            }
+
             vo = new MyVo3(value);
             return true;
         }
@@ -2940,12 +3093,23 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
         /// <returns>A <see cref = "ValueObjectOrError{T}"/> containing either the value object, or an error.</returns>
         public static ValueObjectOrError<MyVo3> TryFrom(System.String value)
         {
+            if (value is null)
+            {
+                return new ValueObjectOrError<MyVo3>(Validation.Invalid("The value provided was null"));
+            }
+
             return new ValueObjectOrError<MyVo3>(new MyVo3(value));
         }
 
         [global::System.Runtime.CompilerServices.MethodImpl(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
+#if NETCOREAPP3_0_OR_GREATER
+[global:: System.Diagnostics.CodeAnalysis.MemberNotNullWhenAttribute(true, nameof(_value))]
+[global:: System.Diagnostics.CodeAnalysis.MemberNotNullWhenAttribute(true, nameof(Value))]
+#endif
 #if VOGEN_NO_VALIDATION
+#pragma warning disable CS8775
   public readonly bool IsInitialized() => true;
+#pragma warning restore CS8775
 #else
         public readonly bool IsInitialized() => _isInitialized;
 #endif
@@ -2990,9 +3154,9 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
         public static global::System.Boolean operator ==(MyVo3 left, MyVo3 right) => left.Equals(right);
         public static global::System.Boolean operator !=(MyVo3 left, MyVo3 right) => !(left == right);
         public static global::System.Boolean operator ==(MyVo3 left, System.String right) => left.Value.Equals(right);
-        public static global::System.Boolean operator !=(MyVo3 left, System.String right) => !(left == right);
         public static global::System.Boolean operator ==(System.String left, MyVo3 right) => right.Value.Equals(left);
         public static global::System.Boolean operator !=(System.String left, MyVo3 right) => !(left == right);
+        public static global::System.Boolean operator !=(MyVo3 left, System.String right) => !(left == right);
         public int CompareTo(MyVo3 other) => Value.CompareTo(other.Value);
         public int CompareTo(object other)
         {
@@ -3008,12 +3172,22 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
         /// <returns>
         /// True if the value passes any validation (after running any optional normalization).
         /// </returns>
-        public static global::System.Boolean TryParse(global::System.String s, global::System.IFormatProvider provider,
+        public static global::System.Boolean TryParse(
 #if NETCOREAPP3_0_OR_GREATER
 [global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)]
 #endif
+        global::System.String s, global::System.IFormatProvider provider,
+#if NETCOREAPP3_0_OR_GREATER
+[global::System.Diagnostics.CodeAnalysis.MaybeNullWhen(false)]
+#endif
  out MyVo3 result)
         {
+            if (s is null)
+            {
+                result = default;
+                return false;
+            }
+
             result = new MyVo3(s);
             return true;
         }
@@ -3036,6 +3210,10 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
 
         /// <summary>Returns the string representation of the underlying <see cref = "System.String"/>.</summary>
         public readonly override global::System.String ToString() => IsInitialized() ? Value.ToString() : "[UNINITIALIZED]";
+#if NETCOREAPP3_0_OR_GREATER
+        [global::System.Diagnostics.CodeAnalysis.MemberNotNullAttribute(nameof(_value))]
+        [global::System.Diagnostics.CodeAnalysis.MemberNotNullAttribute(nameof(Value))]
+#endif
         private readonly void EnsureInitialized()
         {
             if (!IsInitialized())
@@ -3049,6 +3227,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
             }
         }
 
+#nullable disable
         /// <summary>
         /// Converts a MyVo3 to or from JSON.
         /// </summary>
@@ -3076,6 +3255,8 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
 #endif
         }
 
+#nullable restore
+#nullable disable
         class MyVo3TypeConverter : global::System.ComponentModel.TypeConverter
         {
             public override global::System.Boolean CanConvertFrom(global::System.ComponentModel.ITypeDescriptorContext context, global::System.Type sourceType)
@@ -3113,6 +3294,8 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
             }
         }
 
+#nullable restore
+#nullable disable
         internal sealed class MyVo3DebugView
         {
             private readonly MyVo3 _t;
@@ -3125,10 +3308,11 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
             public global::System.String UnderlyingType => "System.String";
             public global::System.String Value => _t.IsInitialized() ? _t._value.ToString() : "[not initialized]";
 #if DEBUG
-        public global::System.String CreatedWith => _t._stackTrace?.ToString() ?? "the From method";
+        public global::System.String CreatedWith => _t._stackTrace.ToString() ?? "the From method";
 #endif
             public global::System.String Conversions => @"Default";
         }
+#nullable restore
     }
 }
   
@@ -3148,7 +3332,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
 #pragma warning disable MA0097
 // Suppress warning for 'The annotation for nullable reference types should only be used in code within a '#nullable' annotations context. Auto-generated code requires an explicit '#nullable' directive in source.'
 // The generator copies signatures from the BCL, e.g. for `TryParse`, and some of those have nullable annotations.
-#pragma warning disable CS8669
+#pragma warning disable CS8669, CS8632
 // Suppress warnings about CS1591: Missing XML comment for publicly visible type or member 'Type_or_Member'
 #pragma warning disable CS1591
 using Vogen;
@@ -3161,10 +3345,11 @@ namespace Whatever
     [global::System.ComponentModel.TypeConverter(typeof(MyVo4TypeConverter))]
     [global::System.Diagnostics.DebuggerTypeProxyAttribute(typeof(MyVo4DebugView))]
     [global::System.Diagnostics.DebuggerDisplayAttribute("Underlying type: System.Int32, Value = { _value }")]
+    // ReSharper disable once UnusedType.Global
     public readonly partial struct MyVo4 : global::System.IEquatable<MyVo4>, global::System.IEquatable<System.Int32>, global::System.IComparable<MyVo4>, global::System.IComparable, global::System.IParsable<MyVo4>, global::System.ISpanParsable<MyVo4>, global::System.IUtf8SpanParsable<MyVo4>
     {
 #if DEBUG
-private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
+private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
 #endif
 #if !VOGEN_NO_VALIDATION
         private readonly global::System.Boolean _isInitialized;
@@ -3224,11 +3409,20 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
         /// <param name = "value">The underlying type.</param>
         /// <param name = "vo">An instance of the value object.</param>
         /// <returns>True if the value object can be built, otherwise false.</returns>
-        public static bool TryFrom(System.Int32 value,
+        
+#pragma warning disable CS8767 // Nullability of reference types in type of parameter doesn't match implicitly implemented member because of nullability attributes.
+
+        public static bool TryFrom(
 #if NETCOREAPP3_0_OR_GREATER
 [global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)]
 #endif
+        System.Int32 value,
+#if NETCOREAPP3_0_OR_GREATER
+[global::System.Diagnostics.CodeAnalysis.MaybeNullWhen(false)]
+#endif
  out MyVo4 vo)
+#pragma warning restore CS8767 // Nullability of reference types in type of parameter doesn't match implicitly implemented member because of nullability attributes.
+
         {
             vo = new MyVo4(value);
             return true;
@@ -3247,8 +3441,14 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
         }
 
         [global::System.Runtime.CompilerServices.MethodImpl(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
+#if NETCOREAPP3_0_OR_GREATER
+[global:: System.Diagnostics.CodeAnalysis.MemberNotNullWhenAttribute(true, nameof(_value))]
+[global:: System.Diagnostics.CodeAnalysis.MemberNotNullWhenAttribute(true, nameof(Value))]
+#endif
 #if VOGEN_NO_VALIDATION
+#pragma warning disable CS8775
   public readonly bool IsInitialized() => true;
+#pragma warning restore CS8775
 #else
         public readonly bool IsInitialized() => _isInitialized;
 #endif
@@ -3288,9 +3488,9 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
         public static global::System.Boolean operator ==(MyVo4 left, MyVo4 right) => left.Equals(right);
         public static global::System.Boolean operator !=(MyVo4 left, MyVo4 right) => !(left == right);
         public static global::System.Boolean operator ==(MyVo4 left, System.Int32 right) => left.Value.Equals(right);
-        public static global::System.Boolean operator !=(MyVo4 left, System.Int32 right) => !(left == right);
         public static global::System.Boolean operator ==(System.Int32 left, MyVo4 right) => right.Value.Equals(left);
         public static global::System.Boolean operator !=(System.Int32 left, MyVo4 right) => !(left == right);
+        public static global::System.Boolean operator !=(MyVo4 left, System.Int32 right) => !(left == right);
         public int CompareTo(MyVo4 other) => Value.CompareTo(other.Value);
         public int CompareTo(object other)
         {
@@ -3610,6 +3810,10 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
 
         /// <summary>Returns the string representation of the underlying <see cref = "System.Int32"/>.</summary>
         public readonly override global::System.String ToString() => IsInitialized() ? Value.ToString() : "[UNINITIALIZED]";
+#if NETCOREAPP3_0_OR_GREATER
+        [global::System.Diagnostics.CodeAnalysis.MemberNotNullAttribute(nameof(_value))]
+        [global::System.Diagnostics.CodeAnalysis.MemberNotNullAttribute(nameof(Value))]
+#endif
         private readonly void EnsureInitialized()
         {
             if (!IsInitialized())
@@ -3623,6 +3827,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
             }
         }
 
+#nullable disable
         /// <summary>
         /// Converts a MyVo4 to or from JSON.
         /// </summary>
@@ -3658,6 +3863,8 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
 #endif
         }
 
+#nullable restore
+#nullable disable
         class MyVo4TypeConverter : global::System.ComponentModel.TypeConverter
         {
             public override global::System.Boolean CanConvertFrom(global::System.ComponentModel.ITypeDescriptorContext context, global::System.Type sourceType)
@@ -3699,6 +3906,8 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
             }
         }
 
+#nullable restore
+#nullable disable
         internal sealed class MyVo4DebugView
         {
             private readonly MyVo4 _t;
@@ -3711,10 +3920,11 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
             public global::System.String UnderlyingType => "System.Int32";
             public global::System.String Value => _t.IsInitialized() ? _t._value.ToString() : "[not initialized]";
 #if DEBUG
-        public global::System.String CreatedWith => _t._stackTrace?.ToString() ?? "the From method";
+        public global::System.String CreatedWith => _t._stackTrace.ToString() ?? "the From method";
 #endif
             public global::System.String Conversions => @"Default";
         }
+#nullable restore
     }
 }
   
@@ -3734,7 +3944,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
 #pragma warning disable MA0097
 // Suppress warning for 'The annotation for nullable reference types should only be used in code within a '#nullable' annotations context. Auto-generated code requires an explicit '#nullable' directive in source.'
 // The generator copies signatures from the BCL, e.g. for `TryParse`, and some of those have nullable annotations.
-#pragma warning disable CS8669
+#pragma warning disable CS8669, CS8632
 // Suppress warnings about CS1591: Missing XML comment for publicly visible type or member 'Type_or_Member'
 #pragma warning disable CS1591
 using Vogen;
@@ -3750,7 +3960,7 @@ namespace Whatever
     public readonly partial record struct MyVo5 : global::System.IEquatable<MyVo5>, global::System.IEquatable<System.Int32>, global::System.IComparable<MyVo5>, global::System.IComparable, global::System.IParsable<MyVo5>, global::System.ISpanParsable<MyVo5>, global::System.IUtf8SpanParsable<MyVo5>
     {
 #if DEBUG
-private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
+private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
 #endif
 #if !VOGEN_NO_VALIDATION
         private readonly global::System.Boolean _isInitialized;
@@ -3816,11 +4026,20 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
         /// <param name = "value">The underlying type.</param>
         /// <param name = "vo">An instance of the value object.</param>
         /// <returns>True if the value object can be built, otherwise false.</returns>
-        public static bool TryFrom(System.Int32 value,
+        
+#pragma warning disable CS8767 // Nullability of reference types in type of parameter doesn't match implicitly implemented member because of nullability attributes.
+
+        public static bool TryFrom(
 #if NETCOREAPP3_0_OR_GREATER
 [global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)]
 #endif
+        System.Int32 value,
+#if NETCOREAPP3_0_OR_GREATER
+[global::System.Diagnostics.CodeAnalysis.MaybeNullWhen(false)]
+#endif
  out MyVo5 vo)
+#pragma warning restore CS8767 // Nullability of reference types in type of parameter doesn't match implicitly implemented member because of nullability attributes.
+
         {
             vo = new MyVo5(value);
             return true;
@@ -3839,8 +4058,14 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
         }
 
         [global::System.Runtime.CompilerServices.MethodImpl(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
+#if NETCOREAPP3_0_OR_GREATER
+[global:: System.Diagnostics.CodeAnalysis.MemberNotNullWhenAttribute(true, nameof(_value))]
+[global:: System.Diagnostics.CodeAnalysis.MemberNotNullWhenAttribute(true, nameof(Value))]
+#endif
 #if VOGEN_NO_VALIDATION
+#pragma warning disable CS8775
   public readonly bool IsInitialized() => true;
+#pragma warning restore CS8775
 #else
         public readonly bool IsInitialized() => _isInitialized;
 #endif
@@ -3873,9 +4098,9 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
         }
 
         public static global::System.Boolean operator ==(MyVo5 left, System.Int32 right) => left.Value.Equals(right);
-        public static global::System.Boolean operator !=(MyVo5 left, System.Int32 right) => !(left == right);
         public static global::System.Boolean operator ==(System.Int32 left, MyVo5 right) => right.Value.Equals(left);
         public static global::System.Boolean operator !=(System.Int32 left, MyVo5 right) => !(left == right);
+        public static global::System.Boolean operator !=(MyVo5 left, System.Int32 right) => !(left == right);
         public int CompareTo(MyVo5 other) => Value.CompareTo(other.Value);
         public int CompareTo(object other)
         {
@@ -4193,6 +4418,10 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
             return global::System.Collections.Generic.EqualityComparer<System.Int32>.Default.GetHashCode(Value);
         }
 
+#if NETCOREAPP3_0_OR_GREATER
+        [global::System.Diagnostics.CodeAnalysis.MemberNotNullAttribute(nameof(_value))]
+        [global::System.Diagnostics.CodeAnalysis.MemberNotNullAttribute(nameof(Value))]
+#endif
         private readonly void EnsureInitialized()
         {
             if (!IsInitialized())
@@ -4209,6 +4438,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
         // record enumerates fields - we just want our Value and to throw if it's not initialized.
         /// <summary>Returns the string representation of the underlying <see cref = "System.Int32"/>.</summary>
         public readonly override global::System.String ToString() => IsInitialized() ? Value.ToString() : "[UNINITIALIZED]";
+#nullable disable
         /// <summary>
         /// Converts a MyVo5 to or from JSON.
         /// </summary>
@@ -4244,6 +4474,8 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
 #endif
         }
 
+#nullable restore
+#nullable disable
         class MyVo5TypeConverter : global::System.ComponentModel.TypeConverter
         {
             public override global::System.Boolean CanConvertFrom(global::System.ComponentModel.ITypeDescriptorContext context, global::System.Type sourceType)
@@ -4285,6 +4517,8 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
             }
         }
 
+#nullable restore
+#nullable disable
         internal sealed class MyVo5DebugView
         {
             private readonly MyVo5 _t;
@@ -4297,10 +4531,11 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
             public global::System.String UnderlyingType => "System.Int32";
             public global::System.String Value => _t.IsInitialized() ? _t._value.ToString() : "[not initialized]";
 #if DEBUG
-        public global::System.String CreatedWith => _t._stackTrace?.ToString() ?? "the From method";
+        public global::System.String CreatedWith => _t._stackTrace.ToString() ?? "the From method";
 #endif
             public global::System.String Conversions => @"Default";
         }
+#nullable restore
     }
 }
   
@@ -4320,7 +4555,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
 #pragma warning disable MA0097
 // Suppress warning for 'The annotation for nullable reference types should only be used in code within a '#nullable' annotations context. Auto-generated code requires an explicit '#nullable' directive in source.'
 // The generator copies signatures from the BCL, e.g. for `TryParse`, and some of those have nullable annotations.
-#pragma warning disable CS8669
+#pragma warning disable CS8669, CS8632
 // Suppress warnings about CS1591: Missing XML comment for publicly visible type or member 'Type_or_Member'
 #pragma warning disable CS1591
 using Vogen;
@@ -4336,7 +4571,7 @@ namespace Whatever
     public partial record class MyVo6 : global::System.IEquatable<MyVo6>, global::System.IEquatable<System.Int32>, global::System.IComparable<MyVo6>, global::System.IComparable, global::System.IParsable<MyVo6>, global::System.ISpanParsable<MyVo6>, global::System.IUtf8SpanParsable<MyVo6>
     {
 #if DEBUG
-private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
+private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
 #endif
 #if !VOGEN_NO_VALIDATION
         private readonly global::System.Boolean _isInitialized;
@@ -4402,11 +4637,20 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
         /// <param name = "value">The underlying type.</param>
         /// <param name = "vo">An instance of the value object.</param>
         /// <returns>True if the value object can be built, otherwise false.</returns>
-        public static bool TryFrom(System.Int32 value,
+        
+#pragma warning disable CS8767 // Nullability of reference types in type of parameter doesn't match implicitly implemented member because of nullability attributes.
+
+        public static bool TryFrom(
 #if NETCOREAPP3_0_OR_GREATER
 [global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)]
 #endif
+        System.Int32 value,
+#if NETCOREAPP3_0_OR_GREATER
+[global::System.Diagnostics.CodeAnalysis.MaybeNullWhen(false)]
+#endif
  out MyVo6 vo)
+#pragma warning restore CS8767 // Nullability of reference types in type of parameter doesn't match implicitly implemented member because of nullability attributes.
+
         {
             vo = new MyVo6(value);
             return true;
@@ -4425,8 +4669,14 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
         }
 
         [global::System.Runtime.CompilerServices.MethodImpl(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
+#if NETCOREAPP3_0_OR_GREATER
+[global:: System.Diagnostics.CodeAnalysis.MemberNotNullWhenAttribute(true, nameof(_value))]
+[global:: System.Diagnostics.CodeAnalysis.MemberNotNullWhenAttribute(true, nameof(Value))]
+#endif
 #if VOGEN_NO_VALIDATION
+#pragma warning disable CS8775
   public bool IsInitialized() => true;
+#pragma warning restore CS8775
 #else
         public bool IsInitialized() => _isInitialized;
 #endif
@@ -4466,13 +4716,19 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
             return Value.Equals(primitive);
         }
 
-        public static global::System.Boolean operator ==(MyVo6 left, System.Int32 right) => left?.Value.Equals(right) ?? false;
-        public static global::System.Boolean operator !=(MyVo6 left, System.Int32 right) => !(left == right);
-        public static global::System.Boolean operator ==(System.Int32 left, MyVo6 right) => right?.Value.Equals(left) ?? false;
+        public static global::System.Boolean operator ==(MyVo6 left, System.Int32 right) => left.Value.Equals(right);
+        public static global::System.Boolean operator ==(System.Int32 left, MyVo6 right) => right.Value.Equals(left);
         public static global::System.Boolean operator !=(System.Int32 left, MyVo6 right) => !(left == right);
+        public static global::System.Boolean operator !=(MyVo6 left, System.Int32 right) => !(left == right);
         public static explicit operator MyVo6(System.Int32 value) => From(value);
         public static explicit operator System.Int32(MyVo6 value) => value.Value;
-        public int CompareTo(MyVo6 other) => Value.CompareTo(other.Value);
+        public int CompareTo(MyVo6 other)
+        {
+            if (other is null)
+                return 1;
+            return Value.CompareTo(other.Value);
+        }
+
         public int CompareTo(object other)
         {
             if (other is null)
@@ -4795,6 +5051,10 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
             }
         }
 
+#if NETCOREAPP3_0_OR_GREATER
+        [global::System.Diagnostics.CodeAnalysis.MemberNotNullAttribute(nameof(_value))]
+        [global::System.Diagnostics.CodeAnalysis.MemberNotNullAttribute(nameof(Value))]
+#endif
         private void EnsureInitialized()
         {
             if (!IsInitialized())
@@ -4811,6 +5071,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
         // record enumerates fields - we just want our Value and to throw if it's not initialized.
         /// <summary>Returns the string representation of the underlying <see cref = "System.Int32"/>.</summary>
         public override global::System.String ToString() => IsInitialized() ? Value.ToString() : "[UNINITIALIZED]";
+#nullable disable
         /// <summary>
         /// Converts a MyVo6 to or from JSON.
         /// </summary>
@@ -4846,6 +5107,8 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
 #endif
         }
 
+#nullable restore
+#nullable disable
         class MyVo6TypeConverter : global::System.ComponentModel.TypeConverter
         {
             public override global::System.Boolean CanConvertFrom(global::System.ComponentModel.ITypeDescriptorContext context, global::System.Type sourceType)
@@ -4887,6 +5150,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
             }
         }
 
+#nullable restore
         internal sealed class MyVo6DebugView
         {
             private readonly MyVo6 _t;
@@ -4920,7 +5184,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
 #pragma warning disable MA0097
 // Suppress warning for 'The annotation for nullable reference types should only be used in code within a '#nullable' annotations context. Auto-generated code requires an explicit '#nullable' directive in source.'
 // The generator copies signatures from the BCL, e.g. for `TryParse`, and some of those have nullable annotations.
-#pragma warning disable CS8669
+#pragma warning disable CS8669, CS8632
 // Suppress warnings about CS1591: Missing XML comment for publicly visible type or member 'Type_or_Member'
 #pragma warning disable CS1591
 using Vogen;
@@ -4936,7 +5200,7 @@ namespace Whatever
     public partial record struct @int : global::System.IEquatable<@int>, global::System.IEquatable<System.Int32>, global::System.IComparable<@int>, global::System.IComparable, global::System.IParsable<@int>, global::System.ISpanParsable<@int>, global::System.IUtf8SpanParsable<@int>
     {
 #if DEBUG
-private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
+private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
 #endif
 #if !VOGEN_NO_VALIDATION
         private readonly global::System.Boolean _isInitialized;
@@ -5002,11 +5266,20 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
         /// <param name = "value">The underlying type.</param>
         /// <param name = "vo">An instance of the value object.</param>
         /// <returns>True if the value object can be built, otherwise false.</returns>
-        public static bool TryFrom(System.Int32 value,
+        
+#pragma warning disable CS8767 // Nullability of reference types in type of parameter doesn't match implicitly implemented member because of nullability attributes.
+
+        public static bool TryFrom(
 #if NETCOREAPP3_0_OR_GREATER
 [global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)]
 #endif
+        System.Int32 value,
+#if NETCOREAPP3_0_OR_GREATER
+[global::System.Diagnostics.CodeAnalysis.MaybeNullWhen(false)]
+#endif
  out @int vo)
+#pragma warning restore CS8767 // Nullability of reference types in type of parameter doesn't match implicitly implemented member because of nullability attributes.
+
         {
             vo = new @int(value);
             return true;
@@ -5025,8 +5298,14 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
         }
 
         [global::System.Runtime.CompilerServices.MethodImpl(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
+#if NETCOREAPP3_0_OR_GREATER
+[global:: System.Diagnostics.CodeAnalysis.MemberNotNullWhenAttribute(true, nameof(_value))]
+[global:: System.Diagnostics.CodeAnalysis.MemberNotNullWhenAttribute(true, nameof(Value))]
+#endif
 #if VOGEN_NO_VALIDATION
+#pragma warning disable CS8775
   public readonly bool IsInitialized() => true;
+#pragma warning restore CS8775
 #else
         public readonly bool IsInitialized() => _isInitialized;
 #endif
@@ -5059,9 +5338,9 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
         }
 
         public static global::System.Boolean operator ==(@int left, System.Int32 right) => left.Value.Equals(right);
-        public static global::System.Boolean operator !=(@int left, System.Int32 right) => !(left == right);
         public static global::System.Boolean operator ==(System.Int32 left, @int right) => right.Value.Equals(left);
         public static global::System.Boolean operator !=(System.Int32 left, @int right) => !(left == right);
+        public static global::System.Boolean operator !=(@int left, System.Int32 right) => !(left == right);
         public int CompareTo(@int other) => Value.CompareTo(other.Value);
         public int CompareTo(object other)
         {
@@ -5379,6 +5658,10 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
             return global::System.Collections.Generic.EqualityComparer<System.Int32>.Default.GetHashCode(Value);
         }
 
+#if NETCOREAPP3_0_OR_GREATER
+        [global::System.Diagnostics.CodeAnalysis.MemberNotNullAttribute(nameof(_value))]
+        [global::System.Diagnostics.CodeAnalysis.MemberNotNullAttribute(nameof(Value))]
+#endif
         private readonly void EnsureInitialized()
         {
             if (!IsInitialized())
@@ -5395,6 +5678,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
         // record enumerates fields - we just want our Value and to throw if it's not initialized.
         /// <summary>Returns the string representation of the underlying <see cref = "System.Int32"/>.</summary>
         public readonly override global::System.String ToString() => IsInitialized() ? Value.ToString() : "[UNINITIALIZED]";
+#nullable disable
         /// <summary>
         /// Converts a @int to or from JSON.
         /// </summary>
@@ -5430,6 +5714,8 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
 #endif
         }
 
+#nullable restore
+#nullable disable
         class @intTypeConverter : global::System.ComponentModel.TypeConverter
         {
             public override global::System.Boolean CanConvertFrom(global::System.ComponentModel.ITypeDescriptorContext context, global::System.Type sourceType)
@@ -5471,6 +5757,8 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
             }
         }
 
+#nullable restore
+#nullable disable
         internal sealed class @intDebugView
         {
             private readonly @int _t;
@@ -5483,10 +5771,11 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
             public global::System.String UnderlyingType => "System.Int32";
             public global::System.String Value => _t.IsInitialized() ? _t._value.ToString() : "[not initialized]";
 #if DEBUG
-        public global::System.String CreatedWith => _t._stackTrace?.ToString() ?? "the From method";
+        public global::System.String CreatedWith => _t._stackTrace.ToString() ?? "the From method";
 #endif
             public global::System.String Conversions => @"Default";
         }
+#nullable restore
     }
 }
   
@@ -5506,7 +5795,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
 #pragma warning disable MA0097
 // Suppress warning for 'The annotation for nullable reference types should only be used in code within a '#nullable' annotations context. Auto-generated code requires an explicit '#nullable' directive in source.'
 // The generator copies signatures from the BCL, e.g. for `TryParse`, and some of those have nullable annotations.
-#pragma warning disable CS8669
+#pragma warning disable CS8669, CS8632
 // Suppress warnings about CS1591: Missing XML comment for publicly visible type or member 'Type_or_Member'
 #pragma warning disable CS1591
 using Vogen;
@@ -5522,7 +5811,7 @@ namespace Whatever
     public partial record struct @byte : global::System.IEquatable<@byte>, global::System.IEquatable<System.Int32>, global::System.IComparable<@byte>, global::System.IComparable, global::System.IParsable<@byte>, global::System.ISpanParsable<@byte>, global::System.IUtf8SpanParsable<@byte>
     {
 #if DEBUG
-private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
+private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
 #endif
 #if !VOGEN_NO_VALIDATION
         private readonly global::System.Boolean _isInitialized;
@@ -5588,11 +5877,20 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
         /// <param name = "value">The underlying type.</param>
         /// <param name = "vo">An instance of the value object.</param>
         /// <returns>True if the value object can be built, otherwise false.</returns>
-        public static bool TryFrom(System.Int32 value,
+        
+#pragma warning disable CS8767 // Nullability of reference types in type of parameter doesn't match implicitly implemented member because of nullability attributes.
+
+        public static bool TryFrom(
 #if NETCOREAPP3_0_OR_GREATER
 [global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)]
 #endif
+        System.Int32 value,
+#if NETCOREAPP3_0_OR_GREATER
+[global::System.Diagnostics.CodeAnalysis.MaybeNullWhen(false)]
+#endif
  out @byte vo)
+#pragma warning restore CS8767 // Nullability of reference types in type of parameter doesn't match implicitly implemented member because of nullability attributes.
+
         {
             vo = new @byte(value);
             return true;
@@ -5611,8 +5909,14 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
         }
 
         [global::System.Runtime.CompilerServices.MethodImpl(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
+#if NETCOREAPP3_0_OR_GREATER
+[global:: System.Diagnostics.CodeAnalysis.MemberNotNullWhenAttribute(true, nameof(_value))]
+[global:: System.Diagnostics.CodeAnalysis.MemberNotNullWhenAttribute(true, nameof(Value))]
+#endif
 #if VOGEN_NO_VALIDATION
+#pragma warning disable CS8775
   public readonly bool IsInitialized() => true;
+#pragma warning restore CS8775
 #else
         public readonly bool IsInitialized() => _isInitialized;
 #endif
@@ -5645,9 +5949,9 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
         }
 
         public static global::System.Boolean operator ==(@byte left, System.Int32 right) => left.Value.Equals(right);
-        public static global::System.Boolean operator !=(@byte left, System.Int32 right) => !(left == right);
         public static global::System.Boolean operator ==(System.Int32 left, @byte right) => right.Value.Equals(left);
         public static global::System.Boolean operator !=(System.Int32 left, @byte right) => !(left == right);
+        public static global::System.Boolean operator !=(@byte left, System.Int32 right) => !(left == right);
         public int CompareTo(@byte other) => Value.CompareTo(other.Value);
         public int CompareTo(object other)
         {
@@ -5965,6 +6269,10 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
             return global::System.Collections.Generic.EqualityComparer<System.Int32>.Default.GetHashCode(Value);
         }
 
+#if NETCOREAPP3_0_OR_GREATER
+        [global::System.Diagnostics.CodeAnalysis.MemberNotNullAttribute(nameof(_value))]
+        [global::System.Diagnostics.CodeAnalysis.MemberNotNullAttribute(nameof(Value))]
+#endif
         private readonly void EnsureInitialized()
         {
             if (!IsInitialized())
@@ -5981,6 +6289,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
         // record enumerates fields - we just want our Value and to throw if it's not initialized.
         /// <summary>Returns the string representation of the underlying <see cref = "System.Int32"/>.</summary>
         public readonly override global::System.String ToString() => IsInitialized() ? Value.ToString() : "[UNINITIALIZED]";
+#nullable disable
         /// <summary>
         /// Converts a @byte to or from JSON.
         /// </summary>
@@ -6016,6 +6325,8 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
 #endif
         }
 
+#nullable restore
+#nullable disable
         class @byteTypeConverter : global::System.ComponentModel.TypeConverter
         {
             public override global::System.Boolean CanConvertFrom(global::System.ComponentModel.ITypeDescriptorContext context, global::System.Type sourceType)
@@ -6057,6 +6368,8 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
             }
         }
 
+#nullable restore
+#nullable disable
         internal sealed class @byteDebugView
         {
             private readonly @byte _t;
@@ -6069,10 +6382,11 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
             public global::System.String UnderlyingType => "System.Int32";
             public global::System.String Value => _t.IsInitialized() ? _t._value.ToString() : "[not initialized]";
 #if DEBUG
-        public global::System.String CreatedWith => _t._stackTrace?.ToString() ?? "the From method";
+        public global::System.String CreatedWith => _t._stackTrace.ToString() ?? "the From method";
 #endif
             public global::System.String Conversions => @"Default";
         }
+#nullable restore
     }
 }
   
@@ -6092,7 +6406,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
 #pragma warning disable MA0097
 // Suppress warning for 'The annotation for nullable reference types should only be used in code within a '#nullable' annotations context. Auto-generated code requires an explicit '#nullable' directive in source.'
 // The generator copies signatures from the BCL, e.g. for `TryParse`, and some of those have nullable annotations.
-#pragma warning disable CS8669
+#pragma warning disable CS8669, CS8632
 // Suppress warnings about CS1591: Missing XML comment for publicly visible type or member 'Type_or_Member'
 #pragma warning disable CS1591
 using Vogen;
@@ -6108,7 +6422,7 @@ namespace Whatever
     public partial record class MyInt : global::System.IEquatable<MyInt>, global::System.IEquatable<System.Int32>, global::System.IComparable<MyInt>, global::System.IComparable, global::System.IParsable<MyInt>, global::System.ISpanParsable<MyInt>, global::System.IUtf8SpanParsable<MyInt>
     {
 #if DEBUG
-private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
+private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
 #endif
 #if !VOGEN_NO_VALIDATION
         private readonly global::System.Boolean _isInitialized;
@@ -6174,11 +6488,20 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
         /// <param name = "value">The underlying type.</param>
         /// <param name = "vo">An instance of the value object.</param>
         /// <returns>True if the value object can be built, otherwise false.</returns>
-        public static bool TryFrom(System.Int32 value,
+        
+#pragma warning disable CS8767 // Nullability of reference types in type of parameter doesn't match implicitly implemented member because of nullability attributes.
+
+        public static bool TryFrom(
 #if NETCOREAPP3_0_OR_GREATER
 [global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)]
 #endif
+        System.Int32 value,
+#if NETCOREAPP3_0_OR_GREATER
+[global::System.Diagnostics.CodeAnalysis.MaybeNullWhen(false)]
+#endif
  out MyInt vo)
+#pragma warning restore CS8767 // Nullability of reference types in type of parameter doesn't match implicitly implemented member because of nullability attributes.
+
         {
             vo = new MyInt(value);
             return true;
@@ -6197,8 +6520,14 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
         }
 
         [global::System.Runtime.CompilerServices.MethodImpl(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
+#if NETCOREAPP3_0_OR_GREATER
+[global:: System.Diagnostics.CodeAnalysis.MemberNotNullWhenAttribute(true, nameof(_value))]
+[global:: System.Diagnostics.CodeAnalysis.MemberNotNullWhenAttribute(true, nameof(Value))]
+#endif
 #if VOGEN_NO_VALIDATION
+#pragma warning disable CS8775
   public bool IsInitialized() => true;
+#pragma warning restore CS8775
 #else
         public bool IsInitialized() => _isInitialized;
 #endif
@@ -6238,13 +6567,19 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
             return Value.Equals(primitive);
         }
 
-        public static global::System.Boolean operator ==(MyInt left, System.Int32 right) => left?.Value.Equals(right) ?? false;
-        public static global::System.Boolean operator !=(MyInt left, System.Int32 right) => !(left == right);
-        public static global::System.Boolean operator ==(System.Int32 left, MyInt right) => right?.Value.Equals(left) ?? false;
+        public static global::System.Boolean operator ==(MyInt left, System.Int32 right) => left.Value.Equals(right);
+        public static global::System.Boolean operator ==(System.Int32 left, MyInt right) => right.Value.Equals(left);
         public static global::System.Boolean operator !=(System.Int32 left, MyInt right) => !(left == right);
+        public static global::System.Boolean operator !=(MyInt left, System.Int32 right) => !(left == right);
         public static explicit operator MyInt(System.Int32 value) => From(value);
         public static explicit operator System.Int32(MyInt value) => value.Value;
-        public int CompareTo(MyInt other) => Value.CompareTo(other.Value);
+        public int CompareTo(MyInt other)
+        {
+            if (other is null)
+                return 1;
+            return Value.CompareTo(other.Value);
+        }
+
         public int CompareTo(object other)
         {
             if (other is null)
@@ -6567,6 +6902,10 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
             }
         }
 
+#if NETCOREAPP3_0_OR_GREATER
+        [global::System.Diagnostics.CodeAnalysis.MemberNotNullAttribute(nameof(_value))]
+        [global::System.Diagnostics.CodeAnalysis.MemberNotNullAttribute(nameof(Value))]
+#endif
         private void EnsureInitialized()
         {
             if (!IsInitialized())
@@ -6583,6 +6922,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
         // record enumerates fields - we just want our Value and to throw if it's not initialized.
         /// <summary>Returns the string representation of the underlying <see cref = "System.Int32"/>.</summary>
         public override global::System.String ToString() => IsInitialized() ? Value.ToString() : "[UNINITIALIZED]";
+#nullable disable
         /// <summary>
         /// Converts a MyInt to or from JSON.
         /// </summary>
@@ -6618,6 +6958,8 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
 #endif
         }
 
+#nullable restore
+#nullable disable
         class MyIntTypeConverter : global::System.ComponentModel.TypeConverter
         {
             public override global::System.Boolean CanConvertFrom(global::System.ComponentModel.ITypeDescriptorContext context, global::System.Type sourceType)
@@ -6659,6 +7001,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
             }
         }
 
+#nullable restore
         internal sealed class MyIntDebugView
         {
             private readonly MyInt _t;

@@ -21,17 +21,26 @@ internal class GenerateNewtonsoftJsonConversions : IGenerateConversion
             return string.Empty;
         }
 
-        string? code =
-            Templates.TryGetForSpecificType(item.UnderlyingType, "NewtonsoftJsonConverter");
+        string? code = Templates.TryGetForSpecificType(item.UnderlyingType, "NewtonsoftJsonConverter");
+        
         if (code is null)
         {
-            code = item.UnderlyingType.IsValueType ? Templates.GetForAnyType("NewtonsoftJsonConverterValueType") : Templates.GetForAnyType("NewtonsoftJsonConverterReferenceType");
+            code = item.UnderlyingType.IsValueType
+                ? Templates.GetForAnyType("NewtonsoftJsonConverterValueType")
+                : Templates.GetForAnyType("NewtonsoftJsonConverterReferenceType");
         }
 
         code = code.Replace("VOTYPE", item.VoTypeName);
         code = code.Replace("VOUNDERLYINGTYPE", item.UnderlyingTypeFullName);
-        
-        return code;
+
+        return $"""
+                #nullable disable
+                
+                {code}
+                
+                #nullable restore
+                """;
+
     }
 
     private static bool IsOurs(Vogen.Conversions conversions) => conversions.HasFlag(Vogen.Conversions.NewtonsoftJson);
