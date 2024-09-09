@@ -15,14 +15,7 @@
 ## Give a Star! :star:
 If you like or are using this project please give it a star. Thanks!
       
-Vogen is often mispronounced as Vogen, but it's actually pronounced Vogen:
-
-"Voh Jen"
-
-<audio controls>
-  <source src="assets/voh-jen.wav" type="audio/wav">
-  Your browser does not support the audio element.
-</audio>
+_Vogen is often mispronounced as Vogen, but it's actually pronounced Vogen: **"Voh Jen"** [#](assets/voh-jen.wav)
 
 # Vogen: cure your Primitive Obsession
 
