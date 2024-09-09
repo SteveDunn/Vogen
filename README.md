@@ -15,7 +15,9 @@
 ## Give a Star! :star:
 If you like or are using this project please give it a star. Thanks!
       
-Pronounced "Voh Jen"
+Vogen is often mispronounced as Vogen, but it's actually pronounced Vogen:
+
+"Voh Jen"
 
 <audio controls>
   <source src="assets/voh-jen.wav" type="audio/wav">
@@ -37,20 +39,23 @@ The source generator generates strongly typed **domain concepts**. You provide t
 
 ```csharp
 [ValueObject<int>]
-public partial struct CustomerId {
-}
+public partial struct CustomerId;
 ```
 
 ... and Vogen generates source similar to this:
 
 ```csharp
-    public partial struct CustomerId : System.IEquatable<CustomerId>, System.IComparable<CustomerId>, System.IComparable {
+    public partial struct CustomerId : 
+        System.IEquatable<CustomerId>, 
+        System.IComparable<CustomerId>, System.IComparable 
+    {
         private readonly int _value;
 
         public readonly int Value => _value;
 
         public CustomerId() {
-            throw new Vogen.ValueObjectValidationException("Validation skipped by attempting to use the default constructor...");
+            throw new Vogen.ValueObjectValidationException(
+                "Validation skipped by attempting to use the default constructor...");
         }
 
         private CustomerId(int value) => _value = value;
@@ -93,10 +98,10 @@ public void SendInvoice(CustomerId customerId) { ... }
 
 ```csharp
 [ValueObject<decimal>] 
-public partial struct AccountBalance { }
+public partial struct AccountBalance;
 
 [ValueObject(typeof(string))]
-public partial class LegalEntityName { }
+public partial class LegalEntityName;
 ```
 
 The main goal of Vogen is to **ensure the validity of your value objects**, the code analyser helps you to avoid mistakes which 
@@ -108,9 +113,11 @@ could mean that you forget to set a value, so **Vogen doesn't allow you to have 
 
 ```csharp
 [ValueObject]
-public partial struct CustomerId {
+public partial struct CustomerId 
+{
     // Vogen deliberately generates this so that you can't create your own:
-    // error CS0111: Type 'CustomerId' already defines a member called 'CustomerId' with the same parameter type
+    // error CS0111: Type 'CustomerId' already defines a member called 'CustomerId' 
+    // with the same parameter type
     public CustomerId() { }
 
     // error VOG008: Cannot have user defined constructors, please use the From method for creation.
@@ -129,7 +136,8 @@ var c = default(CustomerId); // error VOG009: Type 'CustomerId' cannot be constr
 var c = GetCustomerId(); // error VOG010: Type 'CustomerId' cannot be constructed with 'new' as it is prohibited
 
 var c = Activator.CreateInstance<CustomerId>(); // error VOG025: Type 'CustomerId' cannot be constructed via Reflection as it is prohibited.
-var c = Activator.CreateInstance(typeof(CustomerId)); // error VOG025: Type 'MyVo' cannot be constructed via Reflection as it is prohibited
+var c = Activator.CreateInstance(<CustomerId>); // error VOG025: Type 'MyVo' cannot be constructed via Reflection as 
+it is prohibited
 
 // catches lambda expressions
 Func<CustomerId> f = () => default; // error VOG009: Type 'CustomerId' cannot be constructed with default as it is prohibited.
@@ -179,15 +187,14 @@ It's as simple as creating types like this:
 
 ```csharp
 [ValueObject] 
-public partial struct CustomerId { }
+public partial struct CustomerId;
 
 [ValueObject] 
-public partial struct AccountId { }
+public partial struct AccountId;
 
 [ValueObject<decimal>] 
-public partial struct PaymentAmount { }
+public partial struct PaymentAmount;
 ```
-
 
 ## More on Primitive Obsession
 The source generator generates [value objects](https://wiki.c2.com/?ValueObject). value objects help combat Primitive Obsession by wrapping simple primitives such as `int`, `string`, `double` etc. in a strongly-typed type.
@@ -286,7 +293,7 @@ public void Process(Person person) {
 We can also specify other instance properties:
 
 ```csharp
-[ValueObject(typeof(float))]
+[ValueObject<float>]
 [Instance("Freezing", 0)]
 [Instance("Boiling", 100)]
 public readonly partial struct Celsius {
@@ -297,7 +304,7 @@ public readonly partial struct Celsius {
 
 ## Configuration
 
-Each value object can have it's own *optional* configuration. Configuration includes:
+Each value object can have its own *optional* configuration. Configuration includes:
 
 * The underlying type
 * Any 'conversions' (Dapper, System.Text.Json, Newtonsoft.Json, etc.) - see [the Integrations page](https://stevedunn.github.io/Vogen/integration.html) in the wiki for more information
@@ -306,7 +313,10 @@ Each value object can have it's own *optional* configuration. Configuration incl
 If any of those above are not specified, then global configuration is inferred. It looks like this:
 
 ```csharp
-[assembly: VogenDefaults(underlyingType: typeof(int), conversions: Conversions.Default, throws: typeof(ValueObjectValidationException))]
+[assembly: VogenDefaults(
+    underlyingType: typeof(int), 
+    conversions: Conversions.Default, 
+    throws: typeof(ValueObjectValidationException))]
 ```
 
 Those again are optional. If they're not specified, then they are defaulted to:
@@ -378,8 +388,8 @@ By default, each VO is decorated with a `TypeConverter` and `System.Text.Json` (
 They are controlled by the `Conversions` enum. The following has serializers for NSJ and STJ:
 
 ```csharp
-[ValueObject(conversions: Conversions.NewtonsoftJson | Conversions.SystemTextJson, underlyingType: typeof(float))]
-public readonly partial struct Celsius { }
+[ValueObject<float>(conversions: Conversions.NewtonsoftJson | Conversions.SystemTextJson)]
+public readonly partial struct Celsius;
 ```
 
 If you don't want any conversions, then specify `Conversions.None`.
@@ -395,6 +405,8 @@ SqlMapper.AddTypeHandler(new Customer.DapperTypeHandler());
 See the examples folder for more information.
 
 ## FAQ
+
+What follows is an excerpt from the [full FAQ page in the Wiki](https://stevedunn.github.io/Vogen/faq.html).
 
 ### Is there a Wiki for this project?
 
@@ -423,16 +435,6 @@ If you're using the generator in a .NET Framework project and using the old styl
 
 ```
 
-### Does it support C# 11 features?
-This is primarily a source generator. The source it generates is mostly C# 6 for compatibility. But if you use features from a later language version, for instance `records` from C# 9, then it will also generate records.
-
-Source generation is driven by attributes, and, if you're using .NET 7 or above, the generic version of the `ValueObject` attribute is exposed:
-
-```csharp
-[ValueObject<int>]
-public partial struct Age { }
-```
-
 ### Why are they called 'value objects'?
 
 The term value object represents a small object who's equality is based on value and not identity. From [Wikipedia](https://en.wikipedia.org/wiki/Value_object)
@@ -442,29 +444,6 @@ The term value object represents a small object who's equality is based on value
 In DDD, a value object is (again, from [Wikipedia](https://en.wikipedia.org/wiki/Domain-driven_design#Building_blocks))
 
 >  _... a value object is an immutable object that contains attributes but has no conceptual identity_
-
-### How can I view the code that is generated?
-
-Add this to your `.csproj` file:
-
-```xml
-<PropertyGroup>
-    <EmitCompilerGeneratedFiles>true</EmitCompilerGeneratedFiles>
-    <CompilerGeneratedFilesOutputPath>Generated</CompilerGeneratedFilesOutputPath>
-</PropertyGroup>
-
-<ItemGroup>
-    <Compile Remove="Generated/*/**/*.cs" />
-</ItemGroup>
-```
-
-Then, you can view the generated files in the `Generated` folder. In Visual Studio, you need to select 'Show all files' in the Solution Explorer window:
-
-![the solution explorer window showing the 'show all files' option](./docs/img/20220425061514.png)
-
-Here's an example from the included `Samples` project:
-
-![the solution explorer window showing generated files](docs/img/20220425061733.png)
 
 ### Why can't I just use `public record struct CustomerId(int Value);`?
 
@@ -499,6 +478,9 @@ Yes. By default, each VO is decorated with a `TypeConverter` and `System.Text.Js
 * Dapper
 * EFCore
 * LINQ to DB
+* MongoDB/BSON
+* Orleans
+* ServiceStack.Text
 
 ### Can I use them in EFCore?
 
@@ -540,7 +522,7 @@ Concretely: *"When 5 things need to change, Shalloway will find at most, 4 of th
 If you add further constructors, then you will get a compilation error from the code generator, e.g.
 
 ```csharp
-[ValueObject(typeof(int))]
+[ValueObject<int>)]
 public partial struct CustomerId {
     // Vogen already generates this as a private constructor:
     // error CS0111: Type 'CustomerId' already defines a member called 'CustomerId' with the same parameter type
@@ -555,119 +537,6 @@ public partial struct CustomerId {
 
 You *could*, but you'd get compiler warning [CS0282-There is no defined ordering between fields in multiple declarations of partial class or struct 'type'](https://docs.microsoft.com/en-us/dotnet/csharp/misc/cs0282)
 
-### Why are there, by default, no implicit conversions to and from the primitive types that are being wrapped?
-
-Implicit operators can be useful, but for value objects, they can confuse things. Take the following code **without** any implicit conversions:
-
-```csharp
-Age age1 = Age.From(1);
-OsVersion osVersion = OsVersion.From(1);
-
-Console.WriteLine(age1 == osVersion); // won't compile! \o/
-```
-
-That makes perfect sense. But adding in an implicit operator **from** `Age` **to** `int`, and it does compile!
-
-`Console.WriteLine(age1 == osVersion); // TRUE! (◎_◎;)`
-
-If we remove that implicit operator and replace it with an implicit operator **from** `int` **to** `Age`, it no longer compiles, which is great (we've got type safety back), but we end up [violating the rules of implicit operators](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/operators/user-defined-conversion-operators):
-
-> Predefined C# implicit conversions always succeed and never throw an exception. User-defined implicit conversions should behave in that way as well. If a custom conversion can throw an exception or lose information, define it as an explicit conversion
-
-In my research, I read some other opinions, and noted that the guidelines listed in [this answer](https://softwareengineering.stackexchange.com/a/284377/30906) say:
-
-* If the conversion can throw an `InvalidCast` exception, then it shouldn't be implicit.
-* If the conversion causes a heap allocation each time it is performed, then it shouldn't be implicit.
-
-Which is interesting - Vogen _wouldn't_ throw an `InvalidCastException` (only an `ValueObjectValidationException`).  Also, for `struct`s, we _wouldn't_ create a heap allocation.
-
-But since users of Vogen can declare a value object as a `class` **or** `struct`, then we wouldn't want implicit operators (from `primitive` => `ValueObject`) for just `structs` and not `class`es.
-
-### Can you opt-in to implicit conversions?
-
-Yes, by specifying the `toPrimitiveCasting` and `fromPrimitiveCasting` in either local or global config.
-By default, explicit operators are generated for both. Bear in mind that you can only define implicit _or_ explicit operators;
-you can't have both.
-
-Also, bear in mind that ease of use can cause confusions. Let's say there's a type like this (and imagine that there's implicit conversions to `Age` and to `int`'):
-
-```csharp
-[ValueObject(typeof(int))]
-public readonly partial struct Age {
-    public static Validation Validate(int n) => n >= 0 ? Validation.Ok : Validation.Invalid("Must be zero or more");
-}
-```
-
-That says that `Age` instances can never be negative.  So you would probably expect the following to throw, but it doesn't:
-
-```csharp
-var age20 = Age.From(20);
-var age10 = age20 / 2;
-++age10;
-age10 -= 12; // bang - goes negative??
-```
-
-The implicit cast in `var age10 = age20 / 2` results in an `int` and not an `Age`. Changing it to `Age age10 = age20 / 2` fixes it. But this does go to show that it can be confusing.
-
-### Why is there no interface?
-
-> _If I'm using a library that uses Vogen, I'd like to easily tell if the type is just a primitive wrapper or not by the fact that it implements an interface, such as `IValidated<T>`_
-
-Just like primitives have no interfaces, there's no need to have interfaces on value objects. The receiver that takes a `CustomerId` knows that it's a value object.  If it were instead to take an `IValidated<int>`, then it wouldn't have any more information; you'd still have to know to call `Value` to get the value.
-
-It might also relax type safety. Without the interface, we have signatures such as this:
-
-```csharp
-public void SomSomething(CustomerId customerId, SupplierId supplierId, ProductId productId);
-```
-
-... but with the interface, we _could_ have signatures such as this:
-
-```csharp
-public void SomSomething(IValidate<int> customerId, IValidated<int> supplierId, IValidated<int> productId);
-```
-
-So, callers could mess things up by calling `DoSomething(productId, supplierId, customerId)`)
-
-There would also be no need to know if it's validated, as, if it's in your domain, **it's valid** (there's no way to manually create invalid instances).  And with that said, there would also be no point in exposing the 'Validate' method via the interface because validation is done at creation.
-
-### Can I represent special values
-
-Yes. You might want to represent special values for things like invalid or unspecified instances, e.g.
-
-```csharp
-/*
-* Instances are the only way to avoid validation, so we can create instances
-* that nobody else can. This is useful for creating special instances
-* that represent concepts such as 'invalid' and 'unspecified'.
-*/
-[ValueObject]
-[Instance("Unspecified", -1)]
-[Instance("Invalid", -2)]
-public readonly partial struct Age
-{
-    private static Validation Validate(int value) =>
-        value > 0 ? Validation.Ok : Validation.Invalid("Must be greater than zero.");
-}
-```
-
-You can then use default values when using these types, e.g.
-
-```csharp
-public class Person {
-    public Age Age { get; set; } = Age.Unspecified
-}
-```
-
-... and if you take an Age, you can compare it to an instance that is invalid/unspecified
-
-```csharp
-public void CanEnter(Age age) {
-    if(age == Age.Unspecified || age == Age.Invalid) throw CannotEnterException("Age not specified or is invalid")
-    return age < 17;
-}
-```
-
 ### Can I normalize the value when a VO is created?
 I'd like normalize/sanitize the values used, for example, trimming the input. Is this possible?
 
@@ -677,21 +546,6 @@ Yes, add NormalizeInput method, e.g.
 ```
 See [wiki](https://stevedunn.github.io/Vogen/normalization.html) for more information.
 
-
-### Can I create custom value object attributes with my own defaults?
-
-Yes, but (at the moment) it requires that you put your defaults in your attribute's constructor - not in the call to 
-the base class' constructor (see [this comment](https://github.com/SteveDunn/Vogen/pull/321#issuecomment-1399324832)).
-
-```csharp
-public class CustomValueObjectAttribute : ValueObjectAttribute<long>
-{
-    // This attribute will default to having both the default conversions and EF Core type conversions
-    public CustomValueObjectAttribute(Conversions conversions = Conversions.Default | Conversions.EfCoreValueConverter) { }
-}
-```
-
-NOTE: *custom attributes must extend a ValueObjectAttribute class; you cannot layer custom attributes on top of each other*
 
 ### Why isn't this concept part of the C# language?
 
@@ -741,10 +595,10 @@ Any type can be wrapped. Serialisation and type conversions have implementations
 For other types, a generic type conversion and serializer is applied. If you are supplying your own converters for type conversion and serialization, then specify `None` for converters and decorate your type with attributes for your own types, e.g.
 
 ```csharp
-[ValueObject(typeof(SpecialPrimitive), conversions: Conversions.None)]
+[ValueObject<SpecialPrimitive>(conversions: Conversions.None)]
 [System.Text.Json.Serialization.JsonConverter(typeof(SpecialPrimitiveJsonConverter))]
 [System.ComponentModel.TypeConverter(typeof(SpecialPrimitiveTypeConverter))]
-public partial struct SpecialMeasurement { }
+public partial struct SpecialMeasurement;
 ```
 
 ### Can I get it to throw my own exception?
@@ -762,7 +616,7 @@ Linq2DB 4.0 or greater supports `DateOnly` and `TimeOnly`. Vogen generates value
 Yes. Add a dependency to protobuf-net and set a surrogate attribute:
 
 ```csharp
-[ValueObject(typeof(string))]
+[ValueObject<string>]
 [ProtoContract(Surrogate = typeof(string))]
 public partial class BoxId {
 //...
