@@ -120,8 +120,10 @@ using Vogen;
 
         {Util.GenerateToStringReadOnly(item)}
 
+#if NETCOREAPP3_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.MemberNotNullAttribute(nameof(_value))]
         [global::System.Diagnostics.CodeAnalysis.MemberNotNullAttribute(nameof(Value))]
+#endif
         private readonly void EnsureInitialized()
         {{
             if (!IsInitialized())

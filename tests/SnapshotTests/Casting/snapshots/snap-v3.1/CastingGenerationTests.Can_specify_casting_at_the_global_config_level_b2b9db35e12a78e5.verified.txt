@@ -19,7 +19,7 @@
 
 // Suppress warning for 'The annotation for nullable reference types should only be used in code within a '#nullable' annotations context. Auto-generated code requires an explicit '#nullable' directive in source.'
 // The generator copies signatures from the BCL, e.g. for `TryParse`, and some of those have nullable annotations.
-#pragma warning disable CS8669
+#pragma warning disable CS8669, CS8632
 
 // Suppress warnings about CS1591: Missing XML comment for publicly visible type or member 'Type_or_Member'
 #pragma warning disable CS1591
@@ -57,7 +57,7 @@ public class VogenTypesFactory : global::System.Text.Json.Serialization.JsonConv
 #pragma warning disable MA0097
 // Suppress warning for 'The annotation for nullable reference types should only be used in code within a '#nullable' annotations context. Auto-generated code requires an explicit '#nullable' directive in source.'
 // The generator copies signatures from the BCL, e.g. for `TryParse`, and some of those have nullable annotations.
-#pragma warning disable CS8669
+#pragma warning disable CS8669, CS8632
 // Suppress warnings about CS1591: Missing XML comment for publicly visible type or member 'Type_or_Member'
 #pragma warning disable CS1591
 using Vogen;
@@ -73,7 +73,7 @@ namespace Whatever
     public sealed partial record class _casting_public_sealed_partial_recordImplicitNonebool : global::System.IEquatable<_casting_public_sealed_partial_recordImplicitNonebool>, global::System.IEquatable<System.Boolean>, global::System.IComparable<_casting_public_sealed_partial_recordImplicitNonebool>, global::System.IComparable
     {
 #if DEBUG
-private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
+private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
 #endif
 #if !VOGEN_NO_VALIDATION
         private readonly global::System.Boolean _isInitialized;
@@ -139,11 +139,20 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
         /// <param name = "value">The underlying type.</param>
         /// <param name = "vo">An instance of the value object.</param>
         /// <returns>True if the value object can be built, otherwise false.</returns>
-        public static bool TryFrom(System.Boolean value,
+        
+#pragma warning disable CS8767 // Nullability of reference types in type of parameter doesn't match implicitly implemented member because of nullability attributes.
+
+        public static bool TryFrom(
 #if NETCOREAPP3_0_OR_GREATER
 [global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)]
 #endif
+        System.Boolean value,
+#if NETCOREAPP3_0_OR_GREATER
+[global::System.Diagnostics.CodeAnalysis.MaybeNullWhen(false)]
+#endif
  out _casting_public_sealed_partial_recordImplicitNonebool vo)
+#pragma warning restore CS8767 // Nullability of reference types in type of parameter doesn't match implicitly implemented member because of nullability attributes.
+
         {
             vo = new _casting_public_sealed_partial_recordImplicitNonebool(value);
             return true;
@@ -162,8 +171,14 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
         }
 
         [global::System.Runtime.CompilerServices.MethodImpl(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
+#if NETCOREAPP3_0_OR_GREATER
+[global:: System.Diagnostics.CodeAnalysis.MemberNotNullWhenAttribute(true, nameof(_value))]
+[global:: System.Diagnostics.CodeAnalysis.MemberNotNullWhenAttribute(true, nameof(Value))]
+#endif
 #if VOGEN_NO_VALIDATION
+#pragma warning disable CS8775
   public bool IsInitialized() => true;
+#pragma warning restore CS8775
 #else
         public bool IsInitialized() => _isInitialized;
 #endif
@@ -203,16 +218,22 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
             return Value.Equals(primitive);
         }
 
-        public static global::System.Boolean operator ==(_casting_public_sealed_partial_recordImplicitNonebool left, System.Boolean right) => left?.Value.Equals(right) ?? false;
-        public static global::System.Boolean operator !=(_casting_public_sealed_partial_recordImplicitNonebool left, System.Boolean right) => !(left == right);
-        public static global::System.Boolean operator ==(System.Boolean left, _casting_public_sealed_partial_recordImplicitNonebool right) => right?.Value.Equals(left) ?? false;
+        public static global::System.Boolean operator ==(_casting_public_sealed_partial_recordImplicitNonebool left, System.Boolean right) => left.Value.Equals(right);
+        public static global::System.Boolean operator ==(System.Boolean left, _casting_public_sealed_partial_recordImplicitNonebool right) => right.Value.Equals(left);
         public static global::System.Boolean operator !=(System.Boolean left, _casting_public_sealed_partial_recordImplicitNonebool right) => !(left == right);
+        public static global::System.Boolean operator !=(_casting_public_sealed_partial_recordImplicitNonebool left, System.Boolean right) => !(left == right);
         public static implicit operator _casting_public_sealed_partial_recordImplicitNonebool(System.Boolean value)
         {
             return new _casting_public_sealed_partial_recordImplicitNonebool(value);
         }
 
-        public int CompareTo(_casting_public_sealed_partial_recordImplicitNonebool other) => Value.CompareTo(other.Value);
+        public int CompareTo(_casting_public_sealed_partial_recordImplicitNonebool other)
+        {
+            if (other is null)
+                return 1;
+            return Value.CompareTo(other.Value);
+        }
+
         public int CompareTo(object other)
         {
             if (other is null)
@@ -303,6 +324,10 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
             }
         }
 
+#if NETCOREAPP3_0_OR_GREATER
+        [global::System.Diagnostics.CodeAnalysis.MemberNotNullAttribute(nameof(_value))]
+        [global::System.Diagnostics.CodeAnalysis.MemberNotNullAttribute(nameof(Value))]
+#endif
         private void EnsureInitialized()
         {
             if (!IsInitialized())
@@ -319,6 +344,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
         // record enumerates fields - we just want our Value and to throw if it's not initialized.
         /// <summary>Returns the string representation of the underlying <see cref = "System.Boolean"/>.</summary>
         public override global::System.String ToString() => IsInitialized() ? Value.ToString() : "[UNINITIALIZED]";
+#nullable disable
         /// <summary>
         /// Converts a _casting_public_sealed_partial_recordImplicitNonebool to or from JSON.
         /// </summary>
@@ -346,6 +372,8 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
 #endif
         }
 
+#nullable restore
+#nullable disable
         class _casting_public_sealed_partial_recordImplicitNoneboolTypeConverter : global::System.ComponentModel.TypeConverter
         {
             public override global::System.Boolean CanConvertFrom(global::System.ComponentModel.ITypeDescriptorContext context, global::System.Type sourceType)
@@ -387,6 +415,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
             }
         }
 
+#nullable restore
         internal sealed class _casting_public_sealed_partial_recordImplicitNoneboolDebugView
         {
             private readonly _casting_public_sealed_partial_recordImplicitNonebool _t;

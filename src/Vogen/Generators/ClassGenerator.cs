@@ -121,8 +121,10 @@ using Vogen;
 
         {GenerateHashCodes.GenerateGetHashCodeForAClass(item)}
 
+#if NETCOREAPP3_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.MemberNotNullAttribute(nameof(_value))]
         [global::System.Diagnostics.CodeAnalysis.MemberNotNullAttribute(nameof(Value))]
+#endif
         private void EnsureInitialized()
         {{
             if (!IsInitialized())

@@ -37,7 +37,7 @@ public {type} CustomerId(int SomethingElse)
                 .ValidateWith(Validate)
                 .RunOnAllFrameworks();
 
-            void Validate(ImmutableArray<Diagnostic> diagnostics)
+            static void Validate(ImmutableArray<Diagnostic> diagnostics)
             {
                 diagnostics.Should().HaveCount(1);
                 Diagnostic diagnostic = diagnostics.Single();
@@ -70,7 +70,7 @@ public {type} CustomerId(int SomethingElse, string Name, int Age)
                 .ValidateWith(Validate)
                 .RunOnAllFrameworks();
 
-            void Validate(ImmutableArray<Diagnostic> diagnostics)
+            static void Validate(ImmutableArray<Diagnostic> diagnostics)
             {
                 diagnostics.Should().HaveCount(1);
                 Diagnostic diagnostic = diagnostics.Single();
@@ -103,7 +103,7 @@ public {type} CustomerId()
                 .ValidateWith(Validate)
                 .RunOnAllFrameworks();
 
-            void Validate(ImmutableArray<Diagnostic> diagnostics)
+            static void Validate(ImmutableArray<Diagnostic> diagnostics)
             {
                 diagnostics.Should().HaveCount(1);
                 Diagnostic diagnostic = diagnostics.Single();
@@ -142,7 +142,7 @@ public {type} CustomerId
                 .ValidateWith(Validate)
                 .RunOnAllFrameworks();
 
-            void Validate(ImmutableArray<Diagnostic> diagnostics)
+            static void Validate(ImmutableArray<Diagnostic> diagnostics)
             {
 
                 diagnostics.Should().HaveCount(1);
@@ -179,7 +179,7 @@ public {type} CustomerId
                 .ValidateWith(Validate)
                 .RunOnAllFrameworks();
 
-            void Validate(ImmutableArray<Diagnostic> diagnostics)
+            static void Validate(ImmutableArray<Diagnostic> diagnostics)
             {
 
                 diagnostics.Should().HaveCount(1);
@@ -215,7 +215,7 @@ public {type} CustomerId
                 .ValidateWith(Validate)
                 .RunOnAllFrameworks();
 
-            void Validate(ImmutableArray<Diagnostic> diagnostics)
+            static void Validate(ImmutableArray<Diagnostic> diagnostics)
             {
 
                 diagnostics.Should().HaveCount(1);

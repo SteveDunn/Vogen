@@ -331,8 +331,10 @@ public static class Util
         string accessibility = item.Config.IsInitializedMethodGeneration == IsInitializedMethodGeneration.Generate ? "public" : "private";
         return $$"""
                [global::System.Runtime.CompilerServices.MethodImpl(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
+               #if NETCOREAPP3_0_OR_GREATER
                [global:: System.Diagnostics.CodeAnalysis.MemberNotNullWhenAttribute(true, nameof(_value))]
                [global:: System.Diagnostics.CodeAnalysis.MemberNotNullWhenAttribute(true, nameof(Value))]
+               #endif
                #if VOGEN_NO_VALIDATION
                #pragma warning disable CS8775
                  {{accessibility}}{{ro}} bool IsInitialized() => true;

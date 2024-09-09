@@ -23,6 +23,7 @@ public class DoNotUseReflectionAnalyzer : DiagnosticAnalyzer
         isEnabledByDefault: true,
         description: "Do not use Reflection to create Value Objects.");
 
+    // ReSharper disable once UseCollectionExpression
     public override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics => ImmutableArray.Create(_rule);
 
     public override void Initialize(AnalysisContext context)

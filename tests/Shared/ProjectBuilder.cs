@@ -407,15 +407,23 @@ public sealed partial class ProjectBuilder
     private static void DumpSource(Compilation outputCompilation)
     {
         string path = @"e:\temp\vogen-source";
+        
         int i = 0;
-        foreach (var st in outputCompilation.SyntaxTrees)
+        
+        foreach (var eachSyntaxTree in outputCompilation.SyntaxTrees)
         {
-            var s = st.GetText().ToString();
-            var fp = st.FilePath;
-            if (fp.Length == 0) fp = $"file{++i}.cs";
-            string p = Path.Combine(path, fp);
-            Directory.CreateDirectory(Path.GetDirectoryName(p)!);
-            File.WriteAllText(p, s.ToString());
+            string source = eachSyntaxTree.GetText().ToString();
+            var filePath = eachSyntaxTree.FilePath;
+            if (filePath.Length == 0)
+            {
+                filePath = $"file{++i}.cs";
+            }
+
+            string combinedPath = Path.Combine(path, filePath);
+            
+            Directory.CreateDirectory(Path.GetDirectoryName(combinedPath)!);
+            
+            File.WriteAllText(combinedPath, source);
         }
     }
 

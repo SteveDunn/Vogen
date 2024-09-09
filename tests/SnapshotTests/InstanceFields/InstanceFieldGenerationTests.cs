@@ -125,12 +125,10 @@ public class TestData : IEnumerable<object[]>
                 foreach ((string underlyingType, string instanceValue) in _underlyingTypes)
                 {
                     var qualifiedType = "public " + type;
-                    yield return new object[]
-                        {qualifiedType, underlyingType, instanceValue, CreateClassName(qualifiedType, underlyingType)};
+                    yield return [qualifiedType, underlyingType, instanceValue, CreateClassName(qualifiedType, underlyingType)];
 
                     qualifiedType = "internal " + type;
-                    yield return new object[]
-                        {qualifiedType, underlyingType, instanceValue, CreateClassName(qualifiedType, underlyingType)};
+                    yield return [qualifiedType, underlyingType, instanceValue, CreateClassName(qualifiedType, underlyingType)];
                 }
             }
         }
@@ -140,16 +138,16 @@ public class TestData : IEnumerable<object[]>
         type.Replace(" ", "_") + underlyingType;
 
     // for each of the attributes above, use this underlying type
-    private readonly (string underlyingType, string instanceValue)[] _underlyingTypes = new[]
-    {
+    private readonly (string underlyingType, string instanceValue)[] _underlyingTypes =
+    [
         ("byte", "42"),
         ("char", "'x'"),
         ("double", "123.45d"),
         ("float", "123.45f"),
         ("int", "123"),
         ("long", "123L"),
-        ("string", """123"""),
-    };
+        ("string", """123""")
+    ];
 
     IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
 }

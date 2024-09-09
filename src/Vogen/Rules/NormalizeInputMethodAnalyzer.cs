@@ -42,6 +42,7 @@ public class NormalizeInputMethodAnalyzer : DiagnosticAnalyzer
 
 
     public override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics =>
+        // ReSharper disable once UseCollectionExpression
         ImmutableArray.Create(_ruleNotFound, RuleNotStatic, RuleWrongInputType);
 
     public override void Initialize(AnalysisContext context)

@@ -19,7 +19,7 @@
 
 // Suppress warning for 'The annotation for nullable reference types should only be used in code within a '#nullable' annotations context. Auto-generated code requires an explicit '#nullable' directive in source.'
 // The generator copies signatures from the BCL, e.g. for `TryParse`, and some of those have nullable annotations.
-#pragma warning disable CS8669
+#pragma warning disable CS8669, CS8632
 
 // Suppress warnings about CS1591: Missing XML comment for publicly visible type or member 'Type_or_Member'
 #pragma warning disable CS1591
@@ -57,7 +57,7 @@ public class VogenTypesFactory : global::System.Text.Json.Serialization.JsonConv
 #pragma warning disable MA0097
 // Suppress warning for 'The annotation for nullable reference types should only be used in code within a '#nullable' annotations context. Auto-generated code requires an explicit '#nullable' directive in source.'
 // The generator copies signatures from the BCL, e.g. for `TryParse`, and some of those have nullable annotations.
-#pragma warning disable CS8669
+#pragma warning disable CS8669, CS8632
 // Suppress warnings about CS1591: Missing XML comment for publicly visible type or member 'Type_or_Member'
 #pragma warning disable CS1591
 using Vogen;
@@ -71,7 +71,7 @@ using Vogen;
 public readonly partial record struct BugFix516Vo : global::System.IEquatable<BugFix516Vo>, global::System.IEquatable<System.String>, global::System.IComparable<BugFix516Vo>, global::System.IComparable, global::System.IParsable<BugFix516Vo>
 {
 #if DEBUG
-private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
+private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
 #endif
 #if !VOGEN_NO_VALIDATION
     private readonly global::System.Boolean _isInitialized;
@@ -142,12 +142,27 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
     /// <param name = "value">The underlying type.</param>
     /// <param name = "vo">An instance of the value object.</param>
     /// <returns>True if the value object can be built, otherwise false.</returns>
-    public static bool TryFrom(System.String value,
+    
+#pragma warning disable CS8767 // Nullability of reference types in type of parameter doesn't match implicitly implemented member because of nullability attributes.
+
+    public static bool TryFrom(
 #if NETCOREAPP3_0_OR_GREATER
 [global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)]
 #endif
+    System.String value,
+#if NETCOREAPP3_0_OR_GREATER
+[global::System.Diagnostics.CodeAnalysis.MaybeNullWhen(false)]
+#endif
  out BugFix516Vo vo)
+#pragma warning restore CS8767 // Nullability of reference types in type of parameter doesn't match implicitly implemented member because of nullability attributes.
+
     {
+        if (value is null)
+        {
+            vo = default;
+            return false;
+        }
+
         vo = new BugFix516Vo(value);
         return true;
     }
@@ -161,12 +176,23 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
     /// <returns>A <see cref = "ValueObjectOrError{T}"/> containing either the value object, or an error.</returns>
     public static ValueObjectOrError<BugFix516Vo> TryFrom(System.String value)
     {
+        if (value is null)
+        {
+            return new ValueObjectOrError<BugFix516Vo>(Validation.Invalid("The value provided was null"));
+        }
+
         return new ValueObjectOrError<BugFix516Vo>(new BugFix516Vo(value));
     }
 
     [global::System.Runtime.CompilerServices.MethodImpl(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
+#if NETCOREAPP3_0_OR_GREATER
+[global:: System.Diagnostics.CodeAnalysis.MemberNotNullWhenAttribute(true, nameof(_value))]
+[global:: System.Diagnostics.CodeAnalysis.MemberNotNullWhenAttribute(true, nameof(Value))]
+#endif
 #if VOGEN_NO_VALIDATION
+#pragma warning disable CS8775
   public readonly bool IsInitialized() => true;
+#pragma warning restore CS8775
 #else
     public readonly bool IsInitialized() => _isInitialized;
 #endif
@@ -195,9 +221,9 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
     }
 
     public static global::System.Boolean operator ==(BugFix516Vo left, System.String right) => left.Value.Equals(right);
-    public static global::System.Boolean operator !=(BugFix516Vo left, System.String right) => !(left == right);
     public static global::System.Boolean operator ==(System.String left, BugFix516Vo right) => right.Value.Equals(left);
     public static global::System.Boolean operator !=(System.String left, BugFix516Vo right) => !(left == right);
+    public static global::System.Boolean operator !=(BugFix516Vo left, System.String right) => !(left == right);
     public int CompareTo(BugFix516Vo other) => Value.CompareTo(other.Value);
     public int CompareTo(object other)
     {
@@ -213,12 +239,22 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
     /// <returns>
     /// True if the value passes any validation (after running any optional normalization).
     /// </returns>
-    public static global::System.Boolean TryParse(global::System.String s, global::System.IFormatProvider provider,
+    public static global::System.Boolean TryParse(
 #if NETCOREAPP3_0_OR_GREATER
 [global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)]
 #endif
+    global::System.String s, global::System.IFormatProvider provider,
+#if NETCOREAPP3_0_OR_GREATER
+[global::System.Diagnostics.CodeAnalysis.MaybeNullWhen(false)]
+#endif
  out BugFix516Vo result)
     {
+        if (s is null)
+        {
+            result = default;
+            return false;
+        }
+
         result = new BugFix516Vo(s);
         return true;
     }
@@ -234,6 +270,10 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
         return From(s);
     }
 
+#if NETCOREAPP3_0_OR_GREATER
+        [global::System.Diagnostics.CodeAnalysis.MemberNotNullAttribute(nameof(_value))]
+        [global::System.Diagnostics.CodeAnalysis.MemberNotNullAttribute(nameof(Value))]
+#endif
     private readonly void EnsureInitialized()
     {
         if (!IsInitialized())
@@ -250,6 +290,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
     // record enumerates fields - we just want our Value and to throw if it's not initialized.
     /// <summary>Returns the string representation of the underlying <see cref = "System.String"/>.</summary>
     public readonly override global::System.String ToString() => IsInitialized() ? Value.ToString() : "[UNINITIALIZED]";
+#nullable disable
     /// <summary>
     /// Converts a BugFix516Vo to or from JSON.
     /// </summary>
@@ -277,6 +318,8 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
 #endif
     }
 
+#nullable restore
+#nullable disable
     class BugFix516VoTypeConverter : global::System.ComponentModel.TypeConverter
     {
         public override global::System.Boolean CanConvertFrom(global::System.ComponentModel.ITypeDescriptorContext context, global::System.Type sourceType)
@@ -314,6 +357,8 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
         }
     }
 
+#nullable restore
+#nullable disable
     internal sealed class BugFix516VoDebugView
     {
         private readonly BugFix516Vo _t;
@@ -326,9 +371,10 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
         public global::System.String UnderlyingType => "System.String";
         public global::System.String Value => _t.IsInitialized() ? _t._value.ToString() : "[not initialized]";
 #if DEBUG
-        public global::System.String CreatedWith => _t._stackTrace?.ToString() ?? "the From method";
+        public global::System.String CreatedWith => _t._stackTrace.ToString() ?? "the From method";
 #endif
         public global::System.String Conversions => @"Default";
     }
+#nullable restore
 }
 ]

@@ -14,6 +14,7 @@ namespace Vogen.Rules.ValidateMethodFixers
     public class FixInputTypeCodeFixProvider : CodeFixProvider
     {
         public sealed override ImmutableArray<string> FixableDiagnosticIds => 
+            // ReSharper disable once UseCollectionExpression
             ImmutableArray.Create(RuleIdentifiers.FixInputTypeOfValidationMethod);
 
         public sealed override FixAllProvider GetFixAllProvider() => null!;

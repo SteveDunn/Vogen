@@ -42,7 +42,7 @@ public static class GenerateCodeForTryParse
                 
             foreach (var eachSymbol in methodsToWrite)
             {
-                BuildTryParseMethod(eachSymbol, sb, item);
+                BuildHoistedTryParseMethod(eachSymbol, sb, item);
             }
 
             return sb.ToString();
@@ -50,7 +50,6 @@ public static class GenerateCodeForTryParse
         catch (Exception e)
         {
             throw new InvalidOperationException($"Cannot parse {primitiveSymbol} - {e}", e);
-
         }
         
         // We're given the TryParse methods on the primitive, and we want to filter out
@@ -79,7 +78,6 @@ public static class GenerateCodeForTryParse
             return string.Empty;
         }
 
-        string wrapperQ = item.Nullable.QuestionMarkForWrapper;
         string wrapperBang = item.Nullable.BangForWrapper;
         
         return
@@ -89,7 +87,7 @@ public static class GenerateCodeForTryParse
               /// <returns>
               /// True if the value passes any validation (after running any optional normalization).
               /// </returns>
-              public static global::System.Boolean TryParse(global::System.String{{item.Nullable.QuestionMarkForOtherReferences}} s, global::System.IFormatProvider{{item.Nullable.QuestionMarkForOtherReferences}} provider, {{Util.GenerateNotNullWhenTrueAttribute()}} out {{item.VoTypeName}}{{wrapperQ}} result) 
+              public static global::System.Boolean TryParse({{Util.GenerateNotNullWhenTrueAttribute()}} global::System.String{{item.Nullable.QuestionMarkForOtherReferences}} s, global::System.IFormatProvider{{item.Nullable.QuestionMarkForOtherReferences}} provider, {{Util.GenerateMaybeNullWhenFalse()}} out {{item.VoTypeName}} result) 
               {
                   if(s is null)
                   {
@@ -115,14 +113,12 @@ public static class GenerateCodeForTryParse
                  SymbolEqualityComparer.Default.Equals(m.Parameters[2].Type, item.WrapperType) &&
                  m.Parameters[2].RefKind == RefKind.Out);
 
-    private static void BuildTryParseMethod(IMethodSymbol methodSymbol, StringBuilder sb, VoWorkItem item)
+    private static void BuildHoistedTryParseMethod(IMethodSymbol methodSymbol, StringBuilder sb, VoWorkItem item)
     {
         string parameters = BuildParametersForTryParse(methodSymbol, item);
         string parameterNames = BuildParameterNamesForTryParse(methodSymbol);
         string staticOrNot = methodSymbol.IsStatic ? "static " : string.Empty;
 
-        string wrapperQm = item.Nullable.QuestionMarkForWrapper;
-        
         var inheritDocRef = methodSymbol.ToString()!
             .Replace("<", "{")
             .Replace(">", "}");
@@ -136,7 +132,7 @@ public static class GenerateCodeForTryParse
                   /// <returns>
                   /// True if the value could a) be parsed by the underlying type, and b) passes any validation (after running any optional normalization).
                   /// </returns>
-                  public {{staticOrNot}}global::System.Boolean TryParse({{parameters}}, {{Util.GenerateNotNullWhenTrueAttribute()}} out {{item.VoTypeName}}{{wrapperQm}} result) 
+                  public {{staticOrNot}}global::System.Boolean TryParse({{parameters}}, {{Util.GenerateNotNullWhenTrueAttribute()}} out {{item.VoTypeName}} result) 
                   {
                       if({{item.UnderlyingTypeFullName}}.TryParse({{parameterNames}}, out var __v)) 
                       {

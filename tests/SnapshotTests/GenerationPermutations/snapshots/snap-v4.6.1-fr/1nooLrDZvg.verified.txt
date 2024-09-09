@@ -19,7 +19,7 @@
 
 // Suppress warning for 'The annotation for nullable reference types should only be used in code within a '#nullable' annotations context. Auto-generated code requires an explicit '#nullable' directive in source.'
 // The generator copies signatures from the BCL, e.g. for `TryParse`, and some of those have nullable annotations.
-#pragma warning disable CS8669
+#pragma warning disable CS8669, CS8632
 
 // Suppress warnings about CS1591: Missing XML comment for publicly visible type or member 'Type_or_Member'
 #pragma warning disable CS1591
@@ -57,7 +57,7 @@ public class VogenTypesFactory : global::System.Text.Json.Serialization.JsonConv
 #pragma warning disable MA0097
 // Suppress warning for 'The annotation for nullable reference types should only be used in code within a '#nullable' annotations context. Auto-generated code requires an explicit '#nullable' directive in source.'
 // The generator copies signatures from the BCL, e.g. for `TryParse`, and some of those have nullable annotations.
-#pragma warning disable CS8669
+#pragma warning disable CS8669, CS8632
 // Suppress warnings about CS1591: Missing XML comment for publicly visible type or member 'Type_or_Member'
 #pragma warning disable CS1591
 using Vogen;
@@ -73,7 +73,7 @@ namespace Whatever
     public sealed partial class public_sealed_partial_classConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterfloat : global::System.IEquatable<public_sealed_partial_classConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterfloat>, global::System.IEquatable<System.Single>, global::System.IComparable<public_sealed_partial_classConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterfloat>, global::System.IComparable
     {
 #if DEBUG
-private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
+private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
 #endif
 #if !VOGEN_NO_VALIDATION
         private readonly global::System.Boolean _isInitialized;
@@ -133,11 +133,20 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
         /// <param name = "value">The underlying type.</param>
         /// <param name = "vo">An instance of the value object.</param>
         /// <returns>True if the value object can be built, otherwise false.</returns>
-        public static bool TryFrom(System.Single value,
+        
+#pragma warning disable CS8767 // Nullability of reference types in type of parameter doesn't match implicitly implemented member because of nullability attributes.
+
+        public static bool TryFrom(
 #if NETCOREAPP3_0_OR_GREATER
 [global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)]
 #endif
+        System.Single value,
+#if NETCOREAPP3_0_OR_GREATER
+[global::System.Diagnostics.CodeAnalysis.MaybeNullWhen(false)]
+#endif
  out public_sealed_partial_classConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterfloat vo)
+#pragma warning restore CS8767 // Nullability of reference types in type of parameter doesn't match implicitly implemented member because of nullability attributes.
+
         {
             vo = new public_sealed_partial_classConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterfloat(value);
             return true;
@@ -156,8 +165,14 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
         }
 
         [global::System.Runtime.CompilerServices.MethodImpl(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
+#if NETCOREAPP3_0_OR_GREATER
+[global:: System.Diagnostics.CodeAnalysis.MemberNotNullWhenAttribute(true, nameof(_value))]
+[global:: System.Diagnostics.CodeAnalysis.MemberNotNullWhenAttribute(true, nameof(Value))]
+#endif
 #if VOGEN_NO_VALIDATION
+#pragma warning disable CS8775
   public bool IsInitialized() => true;
+#pragma warning restore CS8775
 #else
         public bool IsInitialized() => _isInitialized;
 #endif
@@ -204,13 +219,19 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
 
         public static global::System.Boolean operator ==(public_sealed_partial_classConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterfloat left, public_sealed_partial_classConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterfloat right) => Equals(left, right);
         public static global::System.Boolean operator !=(public_sealed_partial_classConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterfloat left, public_sealed_partial_classConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterfloat right) => !Equals(left, right);
-        public static global::System.Boolean operator ==(public_sealed_partial_classConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterfloat left, System.Single right) => left?.Value.Equals(right) ?? false;
-        public static global::System.Boolean operator !=(public_sealed_partial_classConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterfloat left, System.Single right) => !(left == right);
-        public static global::System.Boolean operator ==(System.Single left, public_sealed_partial_classConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterfloat right) => right?.Value.Equals(left) ?? false;
+        public static global::System.Boolean operator ==(public_sealed_partial_classConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterfloat left, System.Single right) => left.Value.Equals(right);
+        public static global::System.Boolean operator ==(System.Single left, public_sealed_partial_classConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterfloat right) => right.Value.Equals(left);
         public static global::System.Boolean operator !=(System.Single left, public_sealed_partial_classConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterfloat right) => !(left == right);
+        public static global::System.Boolean operator !=(public_sealed_partial_classConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterfloat left, System.Single right) => !(left == right);
         public static explicit operator public_sealed_partial_classConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterfloat(System.Single value) => From(value);
         public static explicit operator System.Single(public_sealed_partial_classConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterfloat value) => value.Value;
-        public int CompareTo(public_sealed_partial_classConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterfloat other) => Value.CompareTo(other.Value);
+        public int CompareTo(public_sealed_partial_classConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterfloat other)
+        {
+            if (other is null)
+                return 1;
+            return Value.CompareTo(other.Value);
+        }
+
         public int CompareTo(object other)
         {
             if (other is null)
@@ -327,6 +348,10 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
             }
         }
 
+#if NETCOREAPP3_0_OR_GREATER
+        [global::System.Diagnostics.CodeAnalysis.MemberNotNullAttribute(nameof(_value))]
+        [global::System.Diagnostics.CodeAnalysis.MemberNotNullAttribute(nameof(Value))]
+#endif
         private void EnsureInitialized()
         {
             if (!IsInitialized())
@@ -342,6 +367,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
 
         /// <summary>Returns the string representation of the underlying <see cref = "System.Single"/>.</summary>
         public override global::System.String ToString() => IsInitialized() ? Value.ToString() : "[UNINITIALIZED]";
+#nullable disable
         /// <summary>
         /// Converts a public_sealed_partial_classConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterfloat to or from JSON.
         /// </summary>
@@ -377,6 +403,8 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
 #endif
         }
 
+#nullable restore
+#nullable disable
         class public_sealed_partial_classConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterfloatNewtonsoftJsonConverter : Newtonsoft.Json.JsonConverter
         {
             public override bool CanConvert(System.Type objectType)
@@ -397,6 +425,8 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
             }
         }
 
+#nullable restore
+#nullable disable
         public class DapperTypeHandler : global::Dapper.SqlMapper.TypeHandler<public_sealed_partial_classConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterfloat>
         {
             public override void SetValue(global::System.Data.IDbDataParameter parameter, public_sealed_partial_classConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterfloat value)
@@ -419,6 +449,8 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
             }
         }
 
+#nullable restore
+#nullable disable
         public class EfCoreValueConverter : global::Microsoft.EntityFrameworkCore.Storage.ValueConversion.ValueConverter<public_sealed_partial_classConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterfloat, System.Single>
         {
             public EfCoreValueConverter() : this(null)
@@ -454,6 +486,8 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
             }
         }
 
+#nullable restore
+#nullable disable
         public class LinqToDbValueConverter : global::LinqToDB.Common.ValueConverter<public_sealed_partial_classConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterfloat, global::System.Single>
         {
             public LinqToDbValueConverter() : base(v => v.Value, p => public_sealed_partial_classConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterfloat.__Deserialize(p), handlesNulls: false)
@@ -461,6 +495,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null;
             }
         }
 
+#nullable restore
         internal sealed class public_sealed_partial_classConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterfloatDebugView
         {
             private readonly public_sealed_partial_classConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterfloat _t;
