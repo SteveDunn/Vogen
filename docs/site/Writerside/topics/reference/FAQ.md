@@ -412,7 +412,7 @@ Similar to Vogen, but less focused on validation and no code analyzer.
 
 ## What primitive types are supported?
 
-Any type can be wrapped. Serialisation and type conversions have implementations for:
+Any type (except `ICollection`) can be wrapped. Serialisation and type conversions have implementations for:
 * string
 
 * int
@@ -442,6 +442,10 @@ conversion and serialization, then specify `None` for converters and decorate yo
 [TypeConverter(typeof(SpecialPrimitiveTypeConverter))]
 public partial struct SpecialMeasurement;
 ```
+
+Collections are not allowed as they don't exhibit value-equality.
+It is worth considering if the type you are wrapping in your value object exhibits value-equality.
+For types that don't, it completely breaks down the principal of value objects.
 
 ## I've made a change that means the 'Snapshot' tests are expectedly failing in the build—what do I do?
 
