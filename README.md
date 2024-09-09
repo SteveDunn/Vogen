@@ -14,6 +14,13 @@
 [![Sparkline](https://stars.medv.io/stevedunn/vogen.svg)](https://stars.medv.io/stevedunn/vogen)
 ## Give a Star! :star:
 If you like or are using this project please give it a star. Thanks!
+      
+Pronounced "Voh Jen"
+
+<audio controls>
+  <source src="assets/voh-jen.wav" type="audio/wav">
+  Your browser does not support the audio element.
+</audio>
 
 # Vogen: cure your Primitive Obsession
 

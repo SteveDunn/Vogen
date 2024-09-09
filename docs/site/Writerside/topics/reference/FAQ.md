@@ -527,3 +527,37 @@ There are two solutions:
 
         ...
 ```
+
+### Are value objects any bigger than the primitives that they wrap?
+They are by default, but they can be configured so that they're not.
+
+They're bigger because Vogen generates code that stores a field named `_isInitialized`. This
+is used to check that the instance is initialized, e.g. after deserializing.
+If you don't want that, then you can specify in your project that you don't want validation, e.g.
+
+```xml
+<PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net8.0</TargetFramework>
+    ➕ <DefineConstants>VOGEN_NO_VALIDATION</DefineConstants>
+</PropertyGroup>
+```
+
+With this set, when we run in debug mode, we can see that there's no size difference:
+
+```c#
+[ValueObject]
+public readonly partial struct Age;
+
+Console.WriteLine(Marshal.SizeOf<Age>());
+Console.WriteLine(Marshal.SizeOf<int>());
+
+// outputs 4, 4
+```
+
+In debug builds, Vogen, by default, includes a stack trace field. This is used in the exception when an uninitialized value object is accessed.
+If it is important that your debug builds have the same size value objects as your release builds, then add the following in your global config:
+
+```c#
+[assembly: VogenDefaults(disableStackTraceRecordingInDebug: true)]
+```

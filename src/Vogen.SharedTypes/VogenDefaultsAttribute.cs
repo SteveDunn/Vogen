@@ -29,8 +29,8 @@ public class VogenDefaultsAttribute : Attribute
     /// <param name="fromPrimitiveCasting">Controls how cast operators are generated for casting from the primitive to the Value Object.
     /// Options are implicit or explicit or none.  Explicit is preferred over implicit if you really need them, but isn't recommended.
     /// See &lt;see href="https://github.com/SteveDunn/Vogen/wiki/Casting"/&gt; for more information.</param>
-    /// <param name="disableStackTraceRecordingInDebug">If Debug, a stack trace is recorded if something is created in an uninitialized state.
-    /// This stack trace is heap based which might be unwanted if your Value Object is stack based.</param>
+    /// <param name="disableStackTraceRecordingInDebug">disables stack trace recording; in Debug builds, a stack trace is recorded and is
+    /// thrown in the exception when something is created in an uninitialized state, e.g. after deserialization</param>
     /// <param name="parsableForStrings">Specifies the functionality around parsing (IParsable etc.)</param>
     /// <param name="parsableForPrimitives">Specifies the functionality around parsing (IParsable etc.)</param>
     /// <param name="tryFromGeneration">Controls what is generated for the TryFrom methods.</param>

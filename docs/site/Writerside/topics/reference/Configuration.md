@@ -31,6 +31,7 @@ Most values are present in both `ValueObject` and `VogenDefaults`. The parameter
 * `parsableForPrimitives` - specifies what is generated for `Parse` and `TryParse` methods - defaults to `ParsableForPrimitives.HoistMethodsAndInterfaces`
 * `tryFromGeneration` - specifies what to write for `TryFrom` methods—defaults to `TryFromGeneration.GenerateBoolAndErrorOrMethods`
 * `isInitializedMethodGeneration` - specifies whether to generate an `IsInitialized()` method - defaults to `IsInitializedMethodGeneration.Generate`
+* `primitiveEqualityGeneration` - specified whether to generate primitive comparison operators.
 
 The values that are specified only to global configuration are:
 
@@ -39,6 +40,7 @@ The values that are specified only to global configuration are:
 * `openApiSchemaCustomizations` - determines what is generated to assist in OpenAPI scenarios, for instance, generate a schema filter for Swashbuckle, or generate an extension method with `MapType` calls - defaults to `OpenApiSchemaCustomizations.Omit`
 * `explicitlySpecifyTypeInValueObject` - specifies whether individual value objects should explicitly define the primitive type that they wrap - 
   defaults to `false`
+* `disableStackTraceRecordingInDebug` - disables stack trace recording; in Debug buids, a stack trace is recorded and is thrown in the exception when something is created in an uninitialized state, e.g. after deserialization
 
 Several code analysis warnings exist for invalid configuration, including:
 

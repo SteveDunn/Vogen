@@ -35,6 +35,25 @@ public class GeneralTests
                 .RunOn(TargetFramework.Net8_0);
     }
 
+    [Fact]
+    public async Task Disable_stack_trace_in_debug()
+    {
+        var source =
+            """
+            using System;
+            using Vogen;
+
+            [assembly: VogenDefaults(disableStackTraceRecordingInDebug: true)]
+
+            [ValueObject]
+            public partial class MyVo;
+            """;
+
+            await new SnapshotRunner<ValueObjectGenerator>()
+                .WithSource(source)
+                .RunOn(TargetFramework.Net8_0);
+    }
+
     [Theory]
     [InlineData("struct")]
     [InlineData("class")]
