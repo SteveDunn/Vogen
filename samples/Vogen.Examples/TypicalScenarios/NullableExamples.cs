@@ -9,7 +9,6 @@
 // ReSharper disable ClassNeverInstantiated.Global
 
 
-
 // ReSharper disable RedundantNullableDirective
 
 using System;
@@ -32,11 +31,6 @@ internal class BasicExamples : IScenario
 
         void NullableDisabledClassValueObjectWrappingAnInt()
         {
-            // Error CS1503 : Argument 1: cannot convert from '<null>' to 'int'
-            // Even though nullability was disabled, because it wraps an int, we can pass null.
-            // _ = NullableDisabledClassWrappingInt.From(null);
-            _ = NullableDisabledClassWrappingInt.TryFrom(null);
-            
             var nd1 = NullableDisabledClassWrappingInt.From(1);
             var nd2 = NullableDisabledClassWrappingInt.From(2);
 
@@ -47,7 +41,7 @@ internal class BasicExamples : IScenario
             // Even though we turned off nullability for this value object, the signatures for some methods
             // are 'hoisted' from the primitive.
             // _ = NullableDisabledClassWrappingInt.TryParse((string)null, out _);
-            
+
             _ = nd1.CompareTo(null);
 
             _ = nd1.Equals(null as object);
@@ -60,11 +54,6 @@ internal class BasicExamples : IScenario
 
         void NullableEnabledClassValueObjectWrappingAnInt()
         {
-            // Error CS1503 : Argument 1: cannot convert from '<null>' to 'int'
-            // Even though nullability was disabled, because it wraps an int, we can pass null.
-            // NullableEnabledClassWrappingInt.From(null);
-            // NullableEnabledClassWrappingInt.TryFrom(null);
-            
             var nd1 = NullableEnabledClassWrappingInt.From(1);
             var nd2 = NullableEnabledClassWrappingInt.From(2);
 
@@ -76,7 +65,7 @@ internal class BasicExamples : IScenario
             // Even though we turned off nullability for this value object, the signatures for some methods
             // are 'hoisted' from the primitive.
             // _ = NullableEnabledClassWrappingInt.TryParse((string)null, out _);
-            
+
             _ = nd1.CompareTo(null);
 
             _ = nd1.Equals(null);
@@ -88,11 +77,6 @@ internal class BasicExamples : IScenario
 
         void NullableDisabledStructValueObjectWrappingAnInt()
         {
-            // Error CS1503 : Argument 1: cannot convert from '<null>' to 'int'
-            // Even though nullability was disabled, because it wraps an int, we can pass null.
-            // _ = NullableDisabledStructWrappingInt.From(null);
-            // NullableDisabledStructWrappingInt.TryFrom(null);
-            
             var nd1 = NullableDisabledStructWrappingInt.From(1);
             var nd2 = NullableDisabledStructWrappingInt.From(2);
 
@@ -103,26 +87,20 @@ internal class BasicExamples : IScenario
             // Even though we turned off nullability for this value object, the signatures for some methods
             // are 'hoisted' from the primitive.
             // _ = NullableDisabledStructWrappingInt.TryParse((string)null, out _);
-            
+
             _ = nd1.CompareTo(null);
 
             _ = nd1.Equals(null);
 
             _ = nd1 == nd2;
             _ = nd1 == 1;
-            
+
             // makes no sense to compare to null as it's a struct, resulting in Error CS8073 : The result of the expression is always 'false'
             // _ = nd1 == null;
         }
 
         void NullableEnabledStructValueObjectWrappingAnInt()
         {
-            // Error CS1503 : Argument 1: cannot convert from '<null>' to 'int'
-            // Even though nullability was enabled, because the value object itself
-            // is a class, we still get CS1503
-            // NullableEnabledStructWrappingInt.From(null);
-            // NullableEnabledStructWrappingInt.TryFrom(null);
-            
             var nd1 = NullableEnabledStructWrappingInt.From(1);
             var nd2 = NullableEnabledStructWrappingInt.From(2);
 
@@ -134,7 +112,7 @@ internal class BasicExamples : IScenario
             // Even though we turned off nullability for this value object, the signatures for some methods
             // are 'hoisted' from the primitive.
             // _ = NullableEnabledStructWrappingInt.TryParse((string)null, out _);
-            
+
             _ = nd1.CompareTo(null);
 
             _ = nd1.Equals(null);
@@ -149,12 +127,12 @@ internal class BasicExamples : IScenario
         {
             // No issues - we've disabled null when creating this value object, so no warnings
             NullableDisabledClassWrappingString c1 = NullableDisabledClassWrappingString.From(null);
-            
+
             // CS8600 - even though nullability is disabled, the `MaybeNullWhen` creates the error. 
             // _ = NullableDisabledClassWrappingString.TryFrom(null, out NullableDisabledClassWrappingString c2);
-            
+
             Console.WriteLine(c1.Value); // NullReferenceException
-            
+
             var nd1 = NullableDisabledClassWrappingString.From("1");
             var nd2 = NullableDisabledClassWrappingString.From("2");
 
@@ -167,7 +145,7 @@ internal class BasicExamples : IScenario
             // Even though we turned off nullability for this value object, the signatures for some methods
             // are 'hoisted' from the primitive.
             // _ = NullableDisabledClassWrappingString.TryParse((string)null, out _);
-            
+
             _ = nd1.CompareTo(null);
 
             // not marked as nullable
@@ -187,13 +165,13 @@ internal class BasicExamples : IScenario
         {
             // CS8625 - cannot provide null as nullability is enabled in the generated value object
             // NullableEnabledClassWrappingString c1 = NullableEnabledClassWrappingString.From(null);
-            
+
             // CS8600 - needs nullable 
             // _ = NullableEnabledClassWrappingString.TryFrom(null, out NullableEnabledClassWrappingString c2);
-            
+
             // OK
             _ = NullableEnabledClassWrappingString.TryFrom(null, out NullableEnabledClassWrappingString? _);
-            
+
             var vo1 = NullableEnabledClassWrappingString.From("1");
             var vo2 = NullableEnabledClassWrappingString.From("2");
 
@@ -202,17 +180,17 @@ internal class BasicExamples : IScenario
 
             // OK
             _ = NullableEnabledClassWrappingString.TryParse(null, CultureInfo.InvariantCulture, out _);
-            
+
             // CS8602 dereference of possibly null reference
             // Console.WriteLine(r.Value);
-            
+
             _ = vo1.CompareTo(null);
 
             // not marked as nullable
             _ = vo1.Equals(null as string);
 
             // CS8600 - as not marked as nullable
-            
+
             //OK
             _ = vo1.Equals(null as string);
             _ = vo1.Equals(null as NullableEnabledClassWrappingString);
@@ -229,13 +207,13 @@ internal class BasicExamples : IScenario
         {
             // CS8625 - cannot provide null as nullability is enabled in the generated value object
             // NullableEnabledStructWrappingString c1 = NullableEnabledStructWrappingString.From(null);
-            
+
             // CS8600 - needs nullable 
             // _ = NullableEnabledStructWrappingString.TryFrom(null, out NullableEnabledStructWrappingString c2);
-            
+
             // OK - nullable not needed because the value object is a value type
             _ = NullableEnabledStructWrappingString.TryFrom(null, out NullableEnabledStructWrappingString _);
-            
+
             var vo1 = NullableEnabledStructWrappingString.From("1");
             var vo2 = NullableEnabledStructWrappingString.From("2");
 
@@ -244,7 +222,7 @@ internal class BasicExamples : IScenario
 
             // OK
             _ = NullableEnabledStructWrappingString.TryParse(null, CultureInfo.InvariantCulture, out _);
-            
+
             _ = vo1.CompareTo(null);
 
             // marked as nullable
@@ -264,10 +242,10 @@ internal class BasicExamples : IScenario
         {
             // OK - even though nullability is disabled, the 
             _ = NullableDisabledStructWrappingString.From(null);
-            
+
             // OK
             _ = NullableDisabledStructWrappingString.TryFrom(null, out NullableDisabledStructWrappingString _);
-            
+
             var vo1 = NullableDisabledStructWrappingString.From("1");
             var vo2 = NullableDisabledStructWrappingString.From("2");
 
@@ -276,17 +254,17 @@ internal class BasicExamples : IScenario
 
             // OK
             _ = NullableDisabledStructWrappingString.TryParse(null, CultureInfo.InvariantCulture, out _);
-            
+
             // CS8602 dereference of possibly null reference
             // Console.WriteLine(r.Value);
-            
+
             _ = vo1.CompareTo(null);
 
             // not marked as nullable
             _ = vo1.Equals(null);
 
             // CS8600 - as not marked as nullable
-            
+
             //OK
             _ = vo1.Equals(null);
             _ = vo1.Equals(null as object);
@@ -301,32 +279,37 @@ internal class BasicExamples : IScenario
 }
 
 #nullable disable
-[ValueObject(comparison:UseUnderlying, parsableForPrimitives: HoistMethodsAndInterfaces)]
+[ValueObject(comparison: UseUnderlying, parsableForPrimitives: HoistMethodsAndInterfaces)]
 public partial class NullableDisabledClassWrappingInt;
 
-[ValueObject(comparison:UseUnderlying, parsableForPrimitives: HoistMethodsAndInterfaces)]
+[ValueObject(comparison: UseUnderlying, parsableForPrimitives: HoistMethodsAndInterfaces)]
 public partial struct NullableDisabledStructWrappingInt;
 
-[ValueObject<string>(comparison:UseUnderlying, parsableForPrimitives: HoistMethodsAndInterfaces, parsableForStrings: GenerateMethodsAndInterface)]
+[ValueObject<string>(comparison: UseUnderlying, parsableForPrimitives: HoistMethodsAndInterfaces,
+    parsableForStrings: GenerateMethodsAndInterface)]
 public partial class NullableDisabledClassWrappingString;
 
-[ValueObject<string>(comparison:UseUnderlying, parsableForPrimitives: HoistMethodsAndInterfaces, parsableForStrings: GenerateMethodsAndInterface)]
+[ValueObject<string>(comparison: UseUnderlying, parsableForPrimitives: HoistMethodsAndInterfaces,
+    parsableForStrings: GenerateMethodsAndInterface)]
 public partial struct NullableDisabledStructWrappingString;
 
 #nullable restore
 
+
 #nullable enable
 
-[ValueObject(comparison:UseUnderlying, parsableForPrimitives: HoistMethodsAndInterfaces)]
+[ValueObject(comparison: UseUnderlying, parsableForPrimitives: HoistMethodsAndInterfaces)]
 public partial class NullableEnabledClassWrappingInt;
 
-[ValueObject(comparison:UseUnderlying, parsableForPrimitives: HoistMethodsAndInterfaces)]
+[ValueObject(comparison: UseUnderlying, parsableForPrimitives: HoistMethodsAndInterfaces)]
 public partial struct NullableEnabledStructWrappingInt;
 
-[ValueObject<string>(comparison:UseUnderlying, parsableForPrimitives: HoistMethodsAndInterfaces, parsableForStrings: GenerateMethodsAndInterface)]
+[ValueObject<string>(comparison: UseUnderlying, parsableForPrimitives: HoistMethodsAndInterfaces,
+    parsableForStrings: GenerateMethodsAndInterface)]
 public partial class NullableEnabledClassWrappingString;
 
-[ValueObject<string>(comparison:UseUnderlying, parsableForPrimitives: HoistMethodsAndInterfaces, parsableForStrings: GenerateMethodsAndInterface)]
+[ValueObject<string>(comparison: UseUnderlying, parsableForPrimitives: HoistMethodsAndInterfaces,
+    parsableForStrings: GenerateMethodsAndInterface)]
 public partial struct NullableEnabledStructWrappingString;
 
 #nullable restore

@@ -51,7 +51,6 @@
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-		<DefineConstants>NULLABLE_ENABLED_BUILD</DefineConstants>
 		<Nullable>enable</Nullable>
 	</PropertyGroup>
 

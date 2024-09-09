@@ -44,23 +44,45 @@ public class GeneralTests
     {
         var source =
             $$"""
+            #nullable enable
+
             using System;
             using Vogen;
 
-            public class C<T>
-            {
-            }
-
-            #nullable enable
-            [ValueObject<C<int>>]
+            [ValueObject]
             public partial {{type}} MyVo;
-            
-            #nullable restore
             """;
 
             await new SnapshotRunner<ValueObjectGenerator>()
                 .WithSource(source)
                 .CustomizeSettings(s => s.UseFileName(TestHelper.ShortenForFilename($"{nameof(Nullable_enabled_if_set_in_scope)}{type}")))
+                .RunOn(TargetFramework.Net8_0);
+    }
+
+    [Theory]
+    [InlineData("struct")]
+    [InlineData("class")]
+    [InlineData("record struct")]
+    [InlineData("record class")]
+    public async Task Nullable_try_parse_if_validation_supplied(string type)
+    {
+        var source =
+            $$"""
+            #nullable enable
+
+            using System;
+            using Vogen;
+
+            [ValueObject]
+            public partial {{type}} MyVo
+            {
+                private static Validation Validate(int value) => value > 0 ? Validation.Ok : Validation.Invalid("Must be > 0");
+            }
+            """;
+
+            await new SnapshotRunner<ValueObjectGenerator>()
+                .WithSource(source)
+                .CustomizeSettings(s => s.UseFileName(TestHelper.ShortenForFilename($"{nameof(Nullable_try_parse_if_validation_supplied)}{type}")))
                 .RunOn(TargetFramework.Net8_0);
     }
 

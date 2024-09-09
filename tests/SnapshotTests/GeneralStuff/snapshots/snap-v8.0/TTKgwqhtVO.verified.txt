@@ -121,6 +121,21 @@ private readonly global::System.Diagnostics.StackTrace? _stackTrace = null!;
     /// <returns>An instance of this type.</returns>
     public static MyVo From(System.Int32 value)
     {
+        var validation = MyVo.Validate(value);
+        if (validation != Vogen.Validation.Ok)
+        {
+            var ex = new global::Vogen.ValueObjectValidationException(validation.ErrorMessage);
+            if (validation.Data is not null)
+            {
+                foreach (var kvp in validation.Data)
+                {
+                    ex.Data[kvp.Key] = kvp.Value;
+                }
+            }
+
+            throw ex;
+        }
+
         MyVo instance = new MyVo(value);
         return instance;
     }
@@ -148,6 +163,13 @@ private readonly global::System.Diagnostics.StackTrace? _stackTrace = null!;
 #pragma warning restore CS8767 // Nullability of reference types in type of parameter doesn't match implicitly implemented member because of nullability attributes.
 
     {
+        var validation = MyVo.Validate(value);
+        if (validation != Vogen.Validation.Ok)
+        {
+            vo = default !;
+            return false;
+        }
+
         vo = new MyVo(value);
         return true;
     }
@@ -161,6 +183,12 @@ private readonly global::System.Diagnostics.StackTrace? _stackTrace = null!;
     /// <returns>A <see cref = "ValueObjectOrError{T}"/> containing either the value object, or an error.</returns>
     public static ValueObjectOrError<MyVo> TryFrom(System.Int32 value)
     {
+        var validation = MyVo.Validate(value);
+        if (validation != Vogen.Validation.Ok)
+        {
+            return new ValueObjectOrError<MyVo>(validation);
+        }
+
         return new ValueObjectOrError<MyVo>(new MyVo(value));
     }
 
@@ -182,6 +210,12 @@ private readonly global::System.Diagnostics.StackTrace? _stackTrace = null!;
     // its primitive type.
     private static MyVo __Deserialize(System.Int32 value)
     {
+        var validation = MyVo.Validate(value);
+        if (validation != Vogen.Validation.Ok)
+        {
+            throw new global::Vogen.ValueObjectValidationException(validation.ErrorMessage);
+        }
+
         return new MyVo(value);
     }
 
@@ -239,6 +273,13 @@ private readonly global::System.Diagnostics.StackTrace? _stackTrace = null!;
     {
         if (System.Int32.TryParse(utf8Text, style, provider, out var __v))
         {
+            var validation = MyVo.Validate(__v);
+            if (validation != Vogen.Validation.Ok)
+            {
+                result = default;
+                return false;
+            }
+
             result = new MyVo(__v);
             return true;
         }
@@ -261,6 +302,13 @@ private readonly global::System.Diagnostics.StackTrace? _stackTrace = null!;
     {
         if (System.Int32.TryParse(utf8Text, provider, out var __v))
         {
+            var validation = MyVo.Validate(__v);
+            if (validation != Vogen.Validation.Ok)
+            {
+                result = default;
+                return false;
+            }
+
             result = new MyVo(__v);
             return true;
         }
@@ -283,6 +331,13 @@ private readonly global::System.Diagnostics.StackTrace? _stackTrace = null!;
     {
         if (System.Int32.TryParse(utf8Text, out var __v))
         {
+            var validation = MyVo.Validate(__v);
+            if (validation != Vogen.Validation.Ok)
+            {
+                result = default;
+                return false;
+            }
+
             result = new MyVo(__v);
             return true;
         }
@@ -305,6 +360,13 @@ private readonly global::System.Diagnostics.StackTrace? _stackTrace = null!;
     {
         if (System.Int32.TryParse(s, style, provider, out var __v))
         {
+            var validation = MyVo.Validate(__v);
+            if (validation != Vogen.Validation.Ok)
+            {
+                result = default;
+                return false;
+            }
+
             result = new MyVo(__v);
             return true;
         }
@@ -327,6 +389,13 @@ private readonly global::System.Diagnostics.StackTrace? _stackTrace = null!;
     {
         if (System.Int32.TryParse(s, provider, out var __v))
         {
+            var validation = MyVo.Validate(__v);
+            if (validation != Vogen.Validation.Ok)
+            {
+                result = default;
+                return false;
+            }
+
             result = new MyVo(__v);
             return true;
         }
@@ -349,6 +418,13 @@ private readonly global::System.Diagnostics.StackTrace? _stackTrace = null!;
     {
         if (System.Int32.TryParse(s, out var __v))
         {
+            var validation = MyVo.Validate(__v);
+            if (validation != Vogen.Validation.Ok)
+            {
+                result = default;
+                return false;
+            }
+
             result = new MyVo(__v);
             return true;
         }
@@ -371,6 +447,13 @@ private readonly global::System.Diagnostics.StackTrace? _stackTrace = null!;
     {
         if (System.Int32.TryParse(s, style, provider, out var __v))
         {
+            var validation = MyVo.Validate(__v);
+            if (validation != Vogen.Validation.Ok)
+            {
+                result = default;
+                return false;
+            }
+
             result = new MyVo(__v);
             return true;
         }
@@ -393,6 +476,13 @@ private readonly global::System.Diagnostics.StackTrace? _stackTrace = null!;
     {
         if (System.Int32.TryParse(s, provider, out var __v))
         {
+            var validation = MyVo.Validate(__v);
+            if (validation != Vogen.Validation.Ok)
+            {
+                result = default;
+                return false;
+            }
+
             result = new MyVo(__v);
             return true;
         }
@@ -415,6 +505,13 @@ private readonly global::System.Diagnostics.StackTrace? _stackTrace = null!;
     {
         if (System.Int32.TryParse(s, out var __v))
         {
+            var validation = MyVo.Validate(__v);
+            if (validation != Vogen.Validation.Ok)
+            {
+                result = default;
+                return false;
+            }
+
             result = new MyVo(__v);
             return true;
         }

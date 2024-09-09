@@ -152,13 +152,14 @@ public static class GenerateCodeForTryParse
     
     private static string GenerateCallToValidationIfNeeded(VoWorkItem workItem, string parameterName)
     {
+        string bangForWrapper = workItem.Nullable.BangForWrapper;
         if (workItem.ValidateMethod is not null)
         {
             return $$"""
                      var validation = {{workItem.TypeToAugment.Identifier}}.{{workItem.ValidateMethod.Identifier.Value}}({{parameterName}});
                      if (validation != Vogen.Validation.Ok)
                      {
-                         result = default;
+                         result = default{{bangForWrapper}};
                          return false;
                      }
 

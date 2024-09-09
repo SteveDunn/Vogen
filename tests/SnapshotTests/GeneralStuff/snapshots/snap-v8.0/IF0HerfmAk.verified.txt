@@ -68,8 +68,8 @@ using Vogen;
 [global::System.Text.Json.Serialization.JsonConverter(typeof(MyVoSystemTextJsonConverter))]
 [global::System.ComponentModel.TypeConverter(typeof(MyVoTypeConverter))]
 [global::System.Diagnostics.DebuggerTypeProxyAttribute(typeof(MyVoDebugView))]
-[global::System.Diagnostics.DebuggerDisplayAttribute("Underlying type: C<System.Int32>, Value = { _value }")]
-public partial class MyVo : global::System.IEquatable<MyVo>, global::System.IEquatable<C<System.Int32>>
+[global::System.Diagnostics.DebuggerDisplayAttribute("Underlying type: System.Int32, Value = { _value }")]
+public partial class MyVo : global::System.IEquatable<MyVo>, global::System.IEquatable<System.Int32>, global::System.IComparable<MyVo>, global::System.IComparable, global::System.IParsable<MyVo>, global::System.ISpanParsable<MyVo>, global::System.IUtf8SpanParsable<MyVo>
 {
 #if DEBUG
 private readonly global::System.Diagnostics.StackTrace? _stackTrace = null!;
@@ -77,17 +77,17 @@ private readonly global::System.Diagnostics.StackTrace? _stackTrace = null!;
 #if !VOGEN_NO_VALIDATION
     private readonly global::System.Boolean _isInitialized;
 #endif
-    private readonly C<System.Int32>? _value;
+    private readonly System.Int32 _value;
     /// <summary>
-    /// Gets the underlying <see cref = "C{T}"/> value if set, otherwise a <see cref = "Vogen.ValueObjectValidationException"/> is thrown.
+    /// Gets the underlying <see cref = "System.Int32"/> value if set, otherwise a <see cref = "Vogen.ValueObjectValidationException"/> is thrown.
     /// </summary>
-    public C<System.Int32> Value
+    public System.Int32 Value
     {
         [global::System.Diagnostics.DebuggerStepThroughAttribute]
         get
         {
             EnsureInitialized();
-            return _value!;
+            return _value;
         }
     }
 
@@ -105,7 +105,7 @@ private readonly global::System.Diagnostics.StackTrace? _stackTrace = null!;
     }
 
     [global::System.Diagnostics.DebuggerStepThroughAttribute]
-    private MyVo(C<System.Int32> value)
+    private MyVo(System.Int32 value)
     {
         _value = value;
 #if !VOGEN_NO_VALIDATION
@@ -118,13 +118,8 @@ private readonly global::System.Diagnostics.StackTrace? _stackTrace = null!;
     /// </summary>
     /// <param name = "value">The underlying type.</param>
     /// <returns>An instance of this type.</returns>
-    public static MyVo From(C<System.Int32> value)
+    public static MyVo From(System.Int32 value)
     {
-        if (value is null)
-        {
-            throw new global::Vogen.ValueObjectValidationException("Cannot create a value object with null.");
-        }
-
         MyVo instance = new MyVo(value);
         return instance;
     }
@@ -144,7 +139,7 @@ private readonly global::System.Diagnostics.StackTrace? _stackTrace = null!;
 #if NETCOREAPP3_0_OR_GREATER
 [global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)]
 #endif
-    C<System.Int32>? value,
+    System.Int32 value,
 #if NETCOREAPP3_0_OR_GREATER
 [global::System.Diagnostics.CodeAnalysis.MaybeNullWhen(false)]
 #endif
@@ -152,12 +147,6 @@ private readonly global::System.Diagnostics.StackTrace? _stackTrace = null!;
 #pragma warning restore CS8767 // Nullability of reference types in type of parameter doesn't match implicitly implemented member because of nullability attributes.
 
     {
-        if (value is null)
-        {
-            vo = default !;
-            return false;
-        }
-
         vo = new MyVo(value);
         return true;
     }
@@ -169,13 +158,8 @@ private readonly global::System.Diagnostics.StackTrace? _stackTrace = null!;
     /// </summary>
     /// <param name = "value">The primitive value.</param>
     /// <returns>A <see cref = "ValueObjectOrError{T}"/> containing either the value object, or an error.</returns>
-    public static ValueObjectOrError<MyVo> TryFrom(C<System.Int32> value)
+    public static ValueObjectOrError<MyVo> TryFrom(System.Int32 value)
     {
-        if (value is null)
-        {
-            return new ValueObjectOrError<MyVo>(Validation.Invalid("The value provided was null"));
-        }
-
         return new ValueObjectOrError<MyVo>(new MyVo(value));
     }
 
@@ -193,13 +177,8 @@ private readonly global::System.Diagnostics.StackTrace? _stackTrace = null!;
 #endif
     // only called internally when something has been deserialized into
     // its primitive type.
-    private static MyVo __Deserialize(C<System.Int32> value)
+    private static MyVo __Deserialize(System.Int32 value)
     {
-        if (value is null)
-        {
-            throw new global::Vogen.ValueObjectValidationException("Cannot create a value object with null.");
-        }
-
         return new MyVo(value);
     }
 
@@ -219,7 +198,7 @@ private readonly global::System.Diagnostics.StackTrace? _stackTrace = null!;
             return true;
         }
 
-        return GetType() == other.GetType() && global::System.Collections.Generic.EqualityComparer<C<System.Int32>>.Default.Equals(Value, other.Value);
+        return GetType() == other.GetType() && global::System.Collections.Generic.EqualityComparer<System.Int32>.Default.Equals(Value, other.Value);
     }
 
     public global::System.Boolean Equals(MyVo? other, global::System.Collections.Generic.IEqualityComparer<MyVo> comparer)
@@ -227,7 +206,7 @@ private readonly global::System.Diagnostics.StackTrace? _stackTrace = null!;
         return comparer.Equals(this, other);
     }
 
-    public global::System.Boolean Equals(C<System.Int32>? primitive)
+    public global::System.Boolean Equals(System.Int32 primitive)
     {
         return Value.Equals(primitive);
     }
@@ -239,19 +218,337 @@ private readonly global::System.Diagnostics.StackTrace? _stackTrace = null!;
 
     public static global::System.Boolean operator ==(MyVo? left, MyVo? right) => Equals(left, right);
     public static global::System.Boolean operator !=(MyVo? left, MyVo? right) => !Equals(left, right);
-    public static global::System.Boolean operator ==(MyVo? left, C<System.Int32>? right) => left?.Value.Equals(right) ?? false;
-    public static global::System.Boolean operator ==(C<System.Int32>? left, MyVo? right) => right?.Value.Equals(left) ?? false;
-    public static global::System.Boolean operator !=(C<System.Int32>? left, MyVo? right) => !(left == right);
-    public static global::System.Boolean operator !=(MyVo? left, C<System.Int32>? right) => !(left == right);
-    public static explicit operator MyVo(C<System.Int32> value) => From(value);
-    public static explicit operator C<System.Int32>(MyVo value) => value.Value;
+    public static global::System.Boolean operator ==(MyVo? left, System.Int32 right) => left?.Value.Equals(right) ?? false;
+    public static global::System.Boolean operator ==(System.Int32 left, MyVo? right) => right?.Value.Equals(left) ?? false;
+    public static global::System.Boolean operator !=(System.Int32 left, MyVo? right) => !(left == right);
+    public static global::System.Boolean operator !=(MyVo? left, System.Int32 right) => !(left == right);
+    public static explicit operator MyVo(System.Int32 value) => From(value);
+    public static explicit operator System.Int32(MyVo value) => value.Value;
+    public int CompareTo(MyVo? other)
+    {
+        if (other is null)
+            return 1;
+        return Value.CompareTo(other.Value);
+    }
+
+    public int CompareTo(object? other)
+    {
+        if (other is null)
+            return 1;
+        if (other is MyVo x)
+            return CompareTo(x);
+        throw new global::System.ArgumentException("Cannot compare to object as it is not of type MyVo", nameof(other));
+    }
+
+    /// <inheritdoc cref = "int.TryParse(System.ReadOnlySpan{byte}, System.Globalization.NumberStyles, System.IFormatProvider? , out int)"/>
+    /// <summary>
+    /// </summary>
+    /// <returns>
+    /// True if the value could a) be parsed by the underlying type, and b) passes any validation (after running any optional normalization).
+    /// </returns>
+    public static global::System.Boolean TryParse(global::System.ReadOnlySpan<byte> utf8Text, global::System.Globalization.NumberStyles style, global::System.IFormatProvider? provider,
+#if NETCOREAPP3_0_OR_GREATER
+[global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)]
+#endif
+ out MyVo result)
+    {
+        if (System.Int32.TryParse(utf8Text, style, provider, out var __v))
+        {
+            result = new MyVo(__v);
+            return true;
+        }
+
+        result = default !;
+        return false;
+    }
+
+    /// <inheritdoc cref = "int.TryParse(System.ReadOnlySpan{byte}, System.IFormatProvider? , out int)"/>
+    /// <summary>
+    /// </summary>
+    /// <returns>
+    /// True if the value could a) be parsed by the underlying type, and b) passes any validation (after running any optional normalization).
+    /// </returns>
+    public static global::System.Boolean TryParse(global::System.ReadOnlySpan<byte> utf8Text, global::System.IFormatProvider? provider,
+#if NETCOREAPP3_0_OR_GREATER
+[global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)]
+#endif
+ out MyVo result)
+    {
+        if (System.Int32.TryParse(utf8Text, provider, out var __v))
+        {
+            result = new MyVo(__v);
+            return true;
+        }
+
+        result = default !;
+        return false;
+    }
+
+    /// <inheritdoc cref = "int.TryParse(System.ReadOnlySpan{byte}, out int)"/>
+    /// <summary>
+    /// </summary>
+    /// <returns>
+    /// True if the value could a) be parsed by the underlying type, and b) passes any validation (after running any optional normalization).
+    /// </returns>
+    public static global::System.Boolean TryParse(global::System.ReadOnlySpan<byte> utf8Text,
+#if NETCOREAPP3_0_OR_GREATER
+[global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)]
+#endif
+ out MyVo result)
+    {
+        if (System.Int32.TryParse(utf8Text, out var __v))
+        {
+            result = new MyVo(__v);
+            return true;
+        }
+
+        result = default !;
+        return false;
+    }
+
+    /// <inheritdoc cref = "int.TryParse(System.ReadOnlySpan{char}, System.Globalization.NumberStyles, System.IFormatProvider? , out int)"/>
+    /// <summary>
+    /// </summary>
+    /// <returns>
+    /// True if the value could a) be parsed by the underlying type, and b) passes any validation (after running any optional normalization).
+    /// </returns>
+    public static global::System.Boolean TryParse(global::System.ReadOnlySpan<char> s, global::System.Globalization.NumberStyles style, global::System.IFormatProvider? provider,
+#if NETCOREAPP3_0_OR_GREATER
+[global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)]
+#endif
+ out MyVo result)
+    {
+        if (System.Int32.TryParse(s, style, provider, out var __v))
+        {
+            result = new MyVo(__v);
+            return true;
+        }
+
+        result = default !;
+        return false;
+    }
+
+    /// <inheritdoc cref = "int.TryParse(System.ReadOnlySpan{char}, System.IFormatProvider? , out int)"/>
+    /// <summary>
+    /// </summary>
+    /// <returns>
+    /// True if the value could a) be parsed by the underlying type, and b) passes any validation (after running any optional normalization).
+    /// </returns>
+    public static global::System.Boolean TryParse(global::System.ReadOnlySpan<char> s, global::System.IFormatProvider? provider,
+#if NETCOREAPP3_0_OR_GREATER
+[global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)]
+#endif
+ out MyVo result)
+    {
+        if (System.Int32.TryParse(s, provider, out var __v))
+        {
+            result = new MyVo(__v);
+            return true;
+        }
+
+        result = default !;
+        return false;
+    }
+
+    /// <inheritdoc cref = "int.TryParse(System.ReadOnlySpan{char}, out int)"/>
+    /// <summary>
+    /// </summary>
+    /// <returns>
+    /// True if the value could a) be parsed by the underlying type, and b) passes any validation (after running any optional normalization).
+    /// </returns>
+    public static global::System.Boolean TryParse(global::System.ReadOnlySpan<char> s,
+#if NETCOREAPP3_0_OR_GREATER
+[global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)]
+#endif
+ out MyVo result)
+    {
+        if (System.Int32.TryParse(s, out var __v))
+        {
+            result = new MyVo(__v);
+            return true;
+        }
+
+        result = default !;
+        return false;
+    }
+
+    /// <inheritdoc cref = "int.TryParse(string? , System.Globalization.NumberStyles, System.IFormatProvider? , out int)"/>
+    /// <summary>
+    /// </summary>
+    /// <returns>
+    /// True if the value could a) be parsed by the underlying type, and b) passes any validation (after running any optional normalization).
+    /// </returns>
+    public static global::System.Boolean TryParse(string? s, global::System.Globalization.NumberStyles style, global::System.IFormatProvider? provider,
+#if NETCOREAPP3_0_OR_GREATER
+[global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)]
+#endif
+ out MyVo result)
+    {
+        if (System.Int32.TryParse(s, style, provider, out var __v))
+        {
+            result = new MyVo(__v);
+            return true;
+        }
+
+        result = default !;
+        return false;
+    }
+
+    /// <inheritdoc cref = "int.TryParse(string? , System.IFormatProvider? , out int)"/>
+    /// <summary>
+    /// </summary>
+    /// <returns>
+    /// True if the value could a) be parsed by the underlying type, and b) passes any validation (after running any optional normalization).
+    /// </returns>
+    public static global::System.Boolean TryParse(string? s, global::System.IFormatProvider? provider,
+#if NETCOREAPP3_0_OR_GREATER
+[global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)]
+#endif
+ out MyVo result)
+    {
+        if (System.Int32.TryParse(s, provider, out var __v))
+        {
+            result = new MyVo(__v);
+            return true;
+        }
+
+        result = default !;
+        return false;
+    }
+
+    /// <inheritdoc cref = "int.TryParse(string? , out int)"/>
+    /// <summary>
+    /// </summary>
+    /// <returns>
+    /// True if the value could a) be parsed by the underlying type, and b) passes any validation (after running any optional normalization).
+    /// </returns>
+    public static global::System.Boolean TryParse(string? s,
+#if NETCOREAPP3_0_OR_GREATER
+[global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)]
+#endif
+ out MyVo result)
+    {
+        if (System.Int32.TryParse(s, out var __v))
+        {
+            result = new MyVo(__v);
+            return true;
+        }
+
+        result = default !;
+        return false;
+    }
+
+    /// <inheritdoc cref = "int.Parse(System.ReadOnlySpan{byte}, System.Globalization.NumberStyles, System.IFormatProvider? )"/>
+    /// <summary>
+    /// </summary>
+    /// <returns>
+    /// The value created by calling the Parse method on the primitive.
+    /// </returns>
+    /// <exception cref = "global::Vogen.ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
+    public static MyVo Parse(global::System.ReadOnlySpan<byte> utf8Text, global::System.Globalization.NumberStyles style, global::System.IFormatProvider? provider)
+    {
+        var r = System.Int32.Parse(utf8Text, style, provider);
+        return From(r);
+    }
+
+    /// <inheritdoc cref = "int.Parse(System.ReadOnlySpan{byte}, System.IFormatProvider? )"/>
+    /// <summary>
+    /// </summary>
+    /// <returns>
+    /// The value created by calling the Parse method on the primitive.
+    /// </returns>
+    /// <exception cref = "global::Vogen.ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
+    public static MyVo Parse(global::System.ReadOnlySpan<byte> utf8Text, global::System.IFormatProvider? provider)
+    {
+        var r = System.Int32.Parse(utf8Text, provider);
+        return From(r);
+    }
+
+    /// <inheritdoc cref = "int.Parse(System.ReadOnlySpan{char}, System.Globalization.NumberStyles, System.IFormatProvider? )"/>
+    /// <summary>
+    /// </summary>
+    /// <returns>
+    /// The value created by calling the Parse method on the primitive.
+    /// </returns>
+    /// <exception cref = "global::Vogen.ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
+    public static MyVo Parse(global::System.ReadOnlySpan<char> s, global::System.Globalization.NumberStyles style, global::System.IFormatProvider? provider)
+    {
+        var r = System.Int32.Parse(s, style, provider);
+        return From(r);
+    }
+
+    /// <inheritdoc cref = "int.Parse(System.ReadOnlySpan{char}, System.IFormatProvider? )"/>
+    /// <summary>
+    /// </summary>
+    /// <returns>
+    /// The value created by calling the Parse method on the primitive.
+    /// </returns>
+    /// <exception cref = "global::Vogen.ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
+    public static MyVo Parse(global::System.ReadOnlySpan<char> s, global::System.IFormatProvider? provider)
+    {
+        var r = System.Int32.Parse(s, provider);
+        return From(r);
+    }
+
+    /// <inheritdoc cref = "int.Parse(string)"/>
+    /// <summary>
+    /// </summary>
+    /// <returns>
+    /// The value created by calling the Parse method on the primitive.
+    /// </returns>
+    /// <exception cref = "global::Vogen.ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
+    public static MyVo Parse(string s)
+    {
+        var r = System.Int32.Parse(s);
+        return From(r);
+    }
+
+    /// <inheritdoc cref = "int.Parse(string, System.Globalization.NumberStyles)"/>
+    /// <summary>
+    /// </summary>
+    /// <returns>
+    /// The value created by calling the Parse method on the primitive.
+    /// </returns>
+    /// <exception cref = "global::Vogen.ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
+    public static MyVo Parse(string s, global::System.Globalization.NumberStyles style)
+    {
+        var r = System.Int32.Parse(s, style);
+        return From(r);
+    }
+
+    /// <inheritdoc cref = "int.Parse(string, System.Globalization.NumberStyles, System.IFormatProvider? )"/>
+    /// <summary>
+    /// </summary>
+    /// <returns>
+    /// The value created by calling the Parse method on the primitive.
+    /// </returns>
+    /// <exception cref = "global::Vogen.ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
+    public static MyVo Parse(string s, global::System.Globalization.NumberStyles style, global::System.IFormatProvider? provider)
+    {
+        var r = System.Int32.Parse(s, style, provider);
+        return From(r);
+    }
+
+    /// <inheritdoc cref = "int.Parse(string, System.IFormatProvider? )"/>
+    /// <summary>
+    /// </summary>
+    /// <returns>
+    /// The value created by calling the Parse method on the primitive.
+    /// </returns>
+    /// <exception cref = "global::Vogen.ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
+    public static MyVo Parse(string s, global::System.IFormatProvider? provider)
+    {
+        var r = System.Int32.Parse(s, provider);
+        return From(r);
+    }
+
     public override global::System.Int32 GetHashCode()
     {
         unchecked // Overflow is fine, just wrap
         {
             global::System.Int32 hash = (global::System.Int32)2166136261;
             hash = (hash * 16777619) ^ GetType().GetHashCode();
-            hash = (hash * 16777619) ^ global::System.Collections.Generic.EqualityComparer<C<System.Int32>>.Default.GetHashCode(Value);
+            hash = (hash * 16777619) ^ global::System.Collections.Generic.EqualityComparer<System.Int32>.Default.GetHashCode(Value);
             return hash;
         }
     }
@@ -273,7 +570,7 @@ private readonly global::System.Diagnostics.StackTrace? _stackTrace = null!;
         }
     }
 
-    /// <summary>Returns the string representation of the underlying <see cref = "C{T}"/>.</summary>
+    /// <summary>Returns the string representation of the underlying <see cref = "System.Int32"/>.</summary>
     public override global::System.String? ToString() => IsInitialized() ? Value.ToString() : "[UNINITIALIZED]";
 #nullable disable
     /// <summary>
@@ -283,24 +580,30 @@ private readonly global::System.Diagnostics.StackTrace? _stackTrace = null!;
     {
         public override MyVo Read(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
         {
-            var primitive = global::System.Text.Json.JsonSerializer.Deserialize<C<System.Int32>>(ref reader, options);
-            return MyVo.__Deserialize(primitive);
+#if NET5_0_OR_GREATER
+                return MyVo.__Deserialize(global::System.Text.Json.JsonSerializer.Deserialize(ref reader, (global::System.Text.Json.Serialization.Metadata.JsonTypeInfo<global::System.Int32>)options.GetTypeInfo(typeof(global::System.Int32))));
+#else
+            return MyVo.__Deserialize(reader.GetInt32());
+#endif
         }
 
         public override void Write(System.Text.Json.Utf8JsonWriter writer, MyVo value, global::System.Text.Json.JsonSerializerOptions options)
         {
-            global::System.Text.Json.JsonSerializer.Serialize(writer, value.Value, options);
+#if NET5_0_OR_GREATER
+                global::System.Text.Json.JsonSerializer.Serialize(writer, value.Value, options);
+#else
+            writer.WriteNumberValue(value.Value);
+#endif
         }
 #if NET6_0_OR_GREATER
             public override MyVo ReadAsPropertyName(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {
-                var primitive = global::System.Text.Json.JsonSerializer.Deserialize<C<System.Int32>>(ref reader, options);
-                return MyVo.__Deserialize(primitive);
+                return MyVo.__Deserialize(global::System.Int32.Parse(reader.GetString(), global::System.Globalization.NumberStyles.Any, global::System.Globalization.CultureInfo.InvariantCulture));
             }
 
             public override void WriteAsPropertyName(System.Text.Json.Utf8JsonWriter writer, MyVo value, global::System.Text.Json.JsonSerializerOptions options)
             {
-                writer.WritePropertyName(global::System.Text.Json.JsonSerializer.Serialize(value.Value));
+                writer.WritePropertyName(value.Value.ToString(global::System.Globalization.CultureInfo.InvariantCulture));
             }
 #endif
     }
@@ -311,25 +614,37 @@ private readonly global::System.Diagnostics.StackTrace? _stackTrace = null!;
     {
         public override global::System.Boolean CanConvertFrom(global::System.ComponentModel.ITypeDescriptorContext context, global::System.Type sourceType)
         {
-            return sourceType == typeof(C<System.Int32>);
+            return sourceType == typeof(global::System.Int32) || sourceType == typeof(global::System.String) || base.CanConvertFrom(context, sourceType);
         }
 
         public override global::System.Object ConvertFrom(global::System.ComponentModel.ITypeDescriptorContext context, global::System.Globalization.CultureInfo culture, global::System.Object value)
         {
-            C<System.Int32> ut = (C<System.Int32>)value;
-            return MyVo.__Deserialize(ut);
+            return value switch
+            {
+                global::System.Int32 intValue => MyVo.__Deserialize(intValue),
+                global::System.String stringValue when !global::System.String.IsNullOrEmpty(stringValue) && global::System.Int32.TryParse(stringValue, out var result) => MyVo.__Deserialize(result),
+                _ => base.ConvertFrom(context, culture, value),
+            };
         }
 
         public override bool CanConvertTo(global::System.ComponentModel.ITypeDescriptorContext context, global::System.Type sourceType)
         {
-            return sourceType == typeof(C<System.Int32>);
+            return sourceType == typeof(global::System.Int32) || sourceType == typeof(global::System.String) || base.CanConvertTo(context, sourceType);
         }
 
         public override object ConvertTo(global::System.ComponentModel.ITypeDescriptorContext context, global::System.Globalization.CultureInfo culture, global::System.Object value, global::System.Type destinationType)
         {
             if (value is MyVo idValue)
             {
-                return idValue.Value;
+                if (destinationType == typeof(global::System.Int32))
+                {
+                    return idValue.Value;
+                }
+
+                if (destinationType == typeof(global::System.String))
+                {
+                    return idValue.Value.ToString();
+                }
             }
 
             return base.ConvertTo(context, culture, value, destinationType);
@@ -345,8 +660,8 @@ private readonly global::System.Diagnostics.StackTrace? _stackTrace = null!;
             _t = t;
         }
 
-        public global::System.String UnderlyingType => "C<System.Int32>";
-        public C<System.Int32> Value => _t.Value;
+        public global::System.String UnderlyingType => "System.Int32";
+        public System.Int32 Value => _t.Value;
         public global::System.String Conversions => @"[global::System.Text.Json.Serialization.JsonConverter(typeof(MyVoSystemTextJsonConverter))]
 [global::System.ComponentModel.TypeConverter(typeof(MyVoTypeConverter))]
 ";
