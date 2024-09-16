@@ -15,16 +15,17 @@
 ## Give a Star! :star:
 If you like or are using this project please give it a star. Thanks!
       
-_Vogen is often mispronounced as Vogen, but it's actually pronounced Vogen: **"Voh Jen"** [#](assets/voh-jen.wav)
-
 # Vogen: cure your Primitive Obsession
 
-Vogen is a .NET Source Generator and analyzer. It turns your primitives (ints, decimals etc.) into value objects that 
+Vogen (_pronounced "Voh Jen"_) is a .NET Source Generator and analyzer. It turns your primitives 
+(ints, decimals etc.) into 
+value objects that 
 represent domain concepts (CustomerId, AccountBalance etc.)
 
 It adds new C# compilation errors to help stop the creation of invalid value objects. 
 
-[Documentation](https://stevedunn.github.io/Vogen/vogen.html)
+This readme covers some of the functionality. Please see the [Wiki](https://stevedunn.github.io/Vogen/vogen.html) 
+for more detailed information, such as getting started, tutorials, and how-tos. 
 
 ## Overview
 
@@ -38,40 +39,40 @@ public partial struct CustomerId;
 ... and Vogen generates source similar to this:
 
 ```csharp
-    public partial struct CustomerId : 
-        System.IEquatable<CustomerId>, 
-        System.IComparable<CustomerId>, System.IComparable 
-    {
-        private readonly int _value;
+public partial struct CustomerId : 
+    System.IEquatable<CustomerId>, 
+    System.IComparable<CustomerId>, System.IComparable 
+{
+    private readonly int _value;
 
-        public readonly int Value => _value;
+    public readonly int Value => _value;
 
-        public CustomerId() {
-            throw new Vogen.ValueObjectValidationException(
-                "Validation skipped by attempting to use the default constructor...");
-        }
-
-        private CustomerId(int value) => _value = value;
-
-        public static CustomerId From(int value) {
-            CustomerId instance = new CustomerId(value);
-            return instance;
-        }
-
-        public readonly bool Equals(CustomerId other) ...
-        public readonly bool Equals(int primitive) ...
-        public readonly override bool Equals(object obj) ...
-        public static bool operator ==(CustomerId left, CustomerId right) ...
-        public static bool operator !=(CustomerId left, CustomerId right) ...
-        public static bool operator ==(CustomerId left, int right) ...
-        public static bool operator !=(CustomerId left, int right) ...
-        public static bool operator ==(int left, CustomerId right) ...
-        public static bool operator !=(int left, CustomerId right) ...
-
-        public readonly override int GetHashCode() ...
-
-        public readonly override string ToString() ...
+    public CustomerId() {
+        throw new Vogen.ValueObjectValidationException(
+            "Validation skipped by attempting to use the default constructor...");
     }
+
+    private CustomerId(int value) => _value = value;
+
+    public static CustomerId From(int value) {
+        CustomerId instance = new CustomerId(value);
+        return instance;
+    }
+
+    public readonly bool Equals(CustomerId other) ...
+    public readonly bool Equals(int primitive) ...
+    public readonly override bool Equals(object obj) ...
+    public static bool operator ==(CustomerId left, CustomerId right) ...
+    public static bool operator !=(CustomerId left, CustomerId right) ...
+    public static bool operator ==(CustomerId left, int right) ...
+    public static bool operator !=(CustomerId left, int right) ...
+    public static bool operator ==(int left, CustomerId right) ...
+    public static bool operator !=(int left, CustomerId right) ...
+
+    public readonly override int GetHashCode() ...
+
+    public readonly override string ToString() ...
+}
 ```
 
 You then use `CustomerId` instead of `int` in your domain in the full knowledge that it is valid and safe to use:
@@ -84,16 +85,17 @@ SendInvoice(customerId);
 public void SendInvoice(CustomerId customerId) { ... }
 ```
 
-**Note:**    
-> `int` is the default type for value objects, but it is generally a good idea to explicitly declare each type
-> for clarity. Plus, although `int` is the default, you can - individually or globally - configure them to be 
-> other types. See the Configuration section later in the document, but here's some brief examples:
+`int` is the default type for value objects. It is generally a good idea to explicitly declare each type
+for clarity. You can also - individually or globally - configure them to be 
+other types. See the Configuration section later in the document.
+
+Here's some other examples:
 
 ```csharp
 [ValueObject<decimal>] 
 public partial struct AccountBalance;
 
-[ValueObject(typeof(string))]
+[ValueObject<string>]
 public partial class LegalEntityName;
 ```
 
@@ -113,7 +115,8 @@ public partial struct CustomerId
     // with the same parameter type
     public CustomerId() { }
 
-    // error VOG008: Cannot have user defined constructors, please use the From method for creation.
+    // error VOG008: Cannot have user defined constructors, 
+    // please use the From method for creation.
     public CustomerId(int value) { }
 }
 ```
