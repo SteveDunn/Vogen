@@ -362,6 +362,31 @@ public static class Util
          /// Gets the underlying <see cref="{EscapeTypeNameForTripleSlashComment(item.UnderlyingType)}" /> value if set, otherwise a <see cref="{EscapeTypeNameForTripleSlashComment(item.ValidationExceptionSymbol)}" /> is thrown.
          /// </summary>
          """;
+
+    public static string GenerateEnsureInitializedMethod(VoWorkItem item, bool readOnly)
+    {
+        string ro = readOnly ? "readonly " : " ";
+        return $$"""
+                 #if NETCOREAPP3_0_OR_GREATER
+                         [global::System.Diagnostics.CodeAnalysis.MemberNotNullAttribute(nameof(_value))]
+                         [global::System.Diagnostics.CodeAnalysis.MemberNotNullAttribute(nameof(Value))]
+                 #endif
+                         [global::System.Runtime.CompilerServices.MethodImpl(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
+                         private {{ro}}void EnsureInitialized()
+                         {
+                             if (!IsInitialized())
+                             {
+                 #if DEBUG
+                                 {{DebugGeneration.GenerateMessageForUninitializedValueObject(item)}}
+                 #else
+                                 global::System.String message = "Use of uninitialized Value Object.";
+                 #endif
+                 
+                                 throw new {{item.ValidationExceptionFullName}}(message);
+                             }
+                         }
+                 """;
+    }
 }
 
 public static class DebugGeneration

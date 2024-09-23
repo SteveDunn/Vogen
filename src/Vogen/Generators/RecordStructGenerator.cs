@@ -39,6 +39,7 @@ using Vogen;
         {Util.GenerateCommentForValueProperty(item)}
         public readonly {itemUnderlyingType} Value
         {{
+            [global::System.Runtime.CompilerServices.MethodImpl(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
             [global::System.Diagnostics.DebuggerStepThroughAttribute]
             get
             {{
@@ -123,23 +124,7 @@ using Vogen;
 
         {GenerateHashCodes.GenerateForAStruct(item)}
 
-#if NETCOREAPP3_0_OR_GREATER
-        [global::System.Diagnostics.CodeAnalysis.MemberNotNullAttribute(nameof(_value))]
-        [global::System.Diagnostics.CodeAnalysis.MemberNotNullAttribute(nameof(Value))]
-#endif
-        private readonly void EnsureInitialized()
-        {{
-            if (!IsInitialized())
-            {{
-#if DEBUG
-                {DebugGeneration.GenerateMessageForUninitializedValueObject(item)}
-#else
-                global::System.String message = ""Use of uninitialized Value Object."";
-#endif
-
-                throw new {item.ValidationExceptionFullName}(message);
-            }}
-        }}
+        {Util.GenerateEnsureInitializedMethod(item, readOnly: true)}
 
         // record enumerates fields - we just want our Value and to throw if it's not initialized.
         {Util.GenerateToStringReadOnly(item)}

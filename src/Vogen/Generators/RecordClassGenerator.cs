@@ -37,6 +37,7 @@ using Vogen;
         {Util.GenerateCommentForValueProperty(item)}
         public {itemUnderlyingType} Value
         {{
+            [global::System.Runtime.CompilerServices.MethodImpl(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
             [global::System.Diagnostics.DebuggerStepThroughAttribute]
             get
             {{
@@ -122,26 +123,9 @@ using Vogen;
 
         {GenerateCodeForTryParse.GenerateAnyHoistedTryParseMethods(item)}{GenerateCodeForParse.GenerateAnyHoistedParseMethods(item)}
 
-{GenerateHashCodes.GenerateGetHashCodeForAClass(item)}
+        {GenerateHashCodes.GenerateGetHashCodeForAClass(item)}
 
-#if NETCOREAPP3_0_OR_GREATER
-        [global::System.Diagnostics.CodeAnalysis.MemberNotNullAttribute(nameof(_value))]
-        [global::System.Diagnostics.CodeAnalysis.MemberNotNullAttribute(nameof(Value))]
-#endif
-        private void EnsureInitialized()
-        {{
-            if (!IsInitialized())
-            {{
-#if DEBUG
-                {DebugGeneration.GenerateMessageForUninitializedValueObject(item)}
-#else
-                global::System.String message = ""Use of uninitialized Value Object."";
-#endif
-
-                throw new {item.ValidationExceptionFullName}(message);
-            }}
-        }}
-
+        {Util.GenerateEnsureInitializedMethod(item, readOnly: false)}
 
         {InstanceGeneration.GenerateAnyInstances(tds, item)}
 
