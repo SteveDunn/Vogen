@@ -327,10 +327,6 @@ public static class Util
         string accessibility = item.Config.IsInitializedMethodGeneration == IsInitializedMethodGeneration.Generate ? "public" : "private";
         return $$"""
                [global::System.Runtime.CompilerServices.MethodImpl(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
-               // #if NETCOREAPP3_0_OR_GREATER
-               // [global:: System.Diagnostics.CodeAnalysis.MemberNotNullWhenAttribute(true, nameof(_value))]
-               // [global:: System.Diagnostics.CodeAnalysis.MemberNotNullWhenAttribute(true, nameof(Value))]
-               // #endif
                #if VOGEN_NO_VALIDATION
                #pragma warning disable CS8775
                  {{accessibility}}{{ro}} bool IsInitialized() => true;
@@ -362,18 +358,15 @@ public static class Util
     public static string GenerateEnsureInitializedMethod(VoWorkItem item, bool readOnly)
     {
         string ro = readOnly ? "readonly " : " ";
+        string st = item.Config.DisableStackTraceRecordingInDebug ? string.Empty : "_stackTrace";
         return $$"""
-                 // #if NETCOREAPP3_0_OR_GREATER
-                 //         [global::System.Diagnostics.CodeAnalysis.MemberNotNullAttribute(nameof(_value))]
-                 //         [global::System.Diagnostics.CodeAnalysis.MemberNotNullAttribute(nameof(Value))]
-                 // #endif
                          [global::System.Runtime.CompilerServices.MethodImpl(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
                          private {{ro}}void EnsureInitialized()
                          {
                              if (!IsInitialized())
                              {
                              #if DEBUG
-                                ThrowHelper.ThrowWhenNotInitialized(_stackTrace);
+                                ThrowHelper.ThrowWhenNotInitialized({{st}});
                             #else
                              ThrowHelper.ThrowWhenNotInitialized();
                             #endif
@@ -387,25 +380,37 @@ public static class Util
         return $$"""
                  static class ThrowHelper
                  {
+                     #if NETCOREAPP3_0_OR_GREATER
                      [global::System.Diagnostics.CodeAnalysis.DoesNotReturnAttribute]
+                     #endif
                      internal static void ThrowInvalidOperationException(string message) => throw new global::System.InvalidOperationException(message);
 
+                     #if NETCOREAPP3_0_OR_GREATER
                      [global::System.Diagnostics.CodeAnalysis.DoesNotReturnAttribute]
+                     #endif
                      internal static void ThrowArgumentException(string message, string arg) => throw new global::System.ArgumentException(message, arg);
 
+                     #if NETCOREAPP3_0_OR_GREATER
                      [global::System.Diagnostics.CodeAnalysis.DoesNotReturnAttribute]
+                     #endif
                      internal static void ThrowWhenCreatedWithNull() => 
                             throw new {{item.ValidationExceptionFullName}}("Cannot create a value object with null.");
 
+                     #if NETCOREAPP3_0_OR_GREATER
                      [global::System.Diagnostics.CodeAnalysis.DoesNotReturnAttribute]
+                     #endif
                      internal static void ThrowWhenNotInitialized() => 
                         throw new {{item.ValidationExceptionFullName}}("Use of uninitialized Value Object.");
                      
+                     #if NETCOREAPP3_0_OR_GREATER
                      [global::System.Diagnostics.CodeAnalysis.DoesNotReturnAttribute]
+                     #endif
                      internal static void ThrowWhenNotInitialized(global::System.Diagnostics.StackTrace{{item.Nullable.QuestionMarkForOtherReferences}} stackTrace) =>  
                         throw new {{item.ValidationExceptionFullName}}({{GetMessageToReport(item)}});
  
+                     #if NETCOREAPP3_0_OR_GREATER
                      [global::System.Diagnostics.CodeAnalysis.DoesNotReturnAttribute]
+                     #endif
                      internal static void ThrowWhenValidationFails(Vogen.Validation validation)
                      {
                          var ex = new {{item.ValidationExceptionFullName}}(validation.ErrorMessage);

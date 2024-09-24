@@ -144,6 +144,7 @@ using Vogen;
                   if (value is null)
                   {
                       ThrowHelper.ThrowWhenCreatedWithNull();
+                      return default!;
                   }
 
               """;
