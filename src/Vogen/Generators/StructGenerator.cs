@@ -79,15 +79,14 @@ using Vogen;
         /// </summary>
         /// <param name=""value"">The underlying type.</param>
         /// <returns>An instance of this type.</returns>
+        [global::System.Runtime.CompilerServices.MethodImpl(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
         public static {structName} From({itemUnderlyingType} value)
         {{
             {Util.GenerateCallToNormalizeMethodIfNeeded(item)}
 
             {Util.GenerateCallToValidationAndThrowIfRequired(item)}
 
-            {structName} instance = new {structName}(value);
-
-            return instance;
+            return new {structName}(value);
         }}
 
         {GenerateCodeForTryFrom.GenerateForAStruct(item, structName, itemUnderlyingType)}
@@ -129,6 +128,7 @@ using Vogen;
 
         {Util.GenerateDebuggerProxyForStructs(item)}
 
+        {Util.GenerateThrowHelper(item)}
 }}
 {GenerateEfCoreExtensions.GenerateInnerIfNeeded(item)}
 {Util.WriteCloseNamespace(item.FullNamespace)}";

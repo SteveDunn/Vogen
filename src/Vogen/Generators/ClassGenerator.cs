@@ -78,6 +78,7 @@ using Vogen;
         /// </summary>
         /// <param name=""value"">The underlying type.</param>
         /// <returns>An instance of this type.</returns>
+        [global::System.Runtime.CompilerServices.MethodImpl(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
         public static {className} From({itemUnderlyingType} value)
         {{
             {GenerateNullCheckAndThrowIfNeeded(item)}
@@ -86,9 +87,7 @@ using Vogen;
 
             {Util.GenerateCallToValidationAndThrowIfRequired(item)}
 
-            {className} instance = new {className}(value);
-
-            return instance;
+            return new {className}(value);
         }}
 
         {GenerateCodeForTryFrom.GenerateForAClass(item, className, itemUnderlyingType)}
@@ -131,6 +130,8 @@ using Vogen;
         {Util.GenerateAnyConversionBodies(tds, item)}
 
         {Util.GenerateDebuggerProxyForClasses(tds, item)}
+
+        {Util.GenerateThrowHelper(item)}
     }}
 {GenerateEfCoreExtensions.GenerateInnerIfNeeded(item)}
 {Util.WriteCloseNamespace(item.FullNamespace)}
@@ -139,12 +140,12 @@ using Vogen;
 
     private static string GenerateNullCheckAndThrowIfNeeded(VoWorkItem voWorkItem) =>
         voWorkItem.IsTheUnderlyingAValueType ? string.Empty
-            : $$"""
-                    if (value is null)
-                    {
-                        throw new {{voWorkItem.ValidationExceptionFullName}}("Cannot create a value object with null.");
-                    }
+            : """
+                  if (value is null)
+                  {
+                      ThrowHelper.ThrowWhenCreatedWithNull();
+                  }
 
-                """;
+              """;
 }
 

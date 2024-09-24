@@ -1,12 +1,13 @@
 ﻿using System.ComponentModel;
 using BenchmarkDotNet.Attributes;
+using BenchmarkDotNet.Diagnostics.Windows.Configs;
 using BenchmarkDotNet.Jobs;
 
 // ReSharper disable FieldCanBeMadeReadOnly.Local
 
 namespace Vogen.Benchmarks.NoValidation
 {
-    [MemoryDiagnoser, Description("The underlying type is int and there is no validation")]
+    [MemoryDiagnoser, InliningDiagnoser(logFailuresOnly: false, filterByNamespace: true), Description("The underlying type is int and there is no validation")]
     // [SimpleJob(RuntimeMoniker.Net60)]
     // [SimpleJob(RuntimeMoniker.Net80)]
     public class Underlying_Int_With_No_Validation
@@ -42,7 +43,7 @@ namespace Vogen.Benchmarks.NoValidation
         public NumberAsClass UsingValueObjectAsClass() => Calculator.Add(_c1, _c2);
     }
 
-    [MemoryDiagnoser, Description("The underlying type is string and there is no validation")]
+    [MemoryDiagnoser, InliningDiagnoser(logFailuresOnly: false, filterByNamespace: true), Description("The underlying type is string and there is no validation")]
     // [SimpleJob(RuntimeMoniker.Net60)]
     // [SimpleJob(RuntimeMoniker.Net80)]
     public class Underlying_string_With_No_Validation

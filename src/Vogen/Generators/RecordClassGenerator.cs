@@ -85,6 +85,7 @@ using Vogen;
         /// </summary>
         /// <param name=""value"">The underlying type.</param>
         /// <returns>An instance of this type.</returns>
+        [global::System.Runtime.CompilerServices.MethodImpl(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
         public static {wrapperName} From({itemUnderlyingType} value)
         {{
             {GenerateNullCheckAndThrowIfNeeded(item)}
@@ -93,9 +94,7 @@ using Vogen;
 
             {Util.GenerateCallToValidationAndThrowIfRequired(item)}
 
-            {wrapperName} instance = new {wrapperName}(value);
-
-            return instance;
+            return new {wrapperName}(value);
         }}
 
         {GenerateCodeForTryFrom.GenerateForAStruct(item, wrapperName, itemUnderlyingType)}
@@ -135,7 +134,9 @@ using Vogen;
         {Util.GenerateAnyConversionBodies(tds, item)}
 
         {Util.GenerateDebuggerProxyForClasses(tds, item)}
-    }}
+
+        {Util.GenerateThrowHelper(item)}
+   }}
 {GenerateEfCoreExtensions.GenerateInnerIfNeeded(item)}
 {Util.WriteCloseNamespace(item.FullNamespace)}";
     }
