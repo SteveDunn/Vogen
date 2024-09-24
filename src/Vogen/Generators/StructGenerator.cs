@@ -42,6 +42,7 @@ using Vogen;
         public readonly {itemUnderlyingType} Value
         {{
             [global::System.Diagnostics.DebuggerStepThroughAttribute]
+            [global::System.Runtime.CompilerServices.MethodImpl(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
             get
             {{
                 EnsureInitialized();
@@ -78,15 +79,14 @@ using Vogen;
         /// </summary>
         /// <param name=""value"">The underlying type.</param>
         /// <returns>An instance of this type.</returns>
+        [global::System.Runtime.CompilerServices.MethodImpl(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
         public static {structName} From({itemUnderlyingType} value)
         {{
             {Util.GenerateCallToNormalizeMethodIfNeeded(item)}
 
             {Util.GenerateCallToValidationAndThrowIfRequired(item)}
 
-            {structName} instance = new {structName}(value);
-
-            return instance;
+            return new {structName}(value);
         }}
 
         {GenerateCodeForTryFrom.GenerateForAStruct(item, structName, itemUnderlyingType)}
@@ -120,23 +120,7 @@ using Vogen;
 
         {Util.GenerateToStringReadOnly(item)}
 
-#if NETCOREAPP3_0_OR_GREATER
-        [global::System.Diagnostics.CodeAnalysis.MemberNotNullAttribute(nameof(_value))]
-        [global::System.Diagnostics.CodeAnalysis.MemberNotNullAttribute(nameof(Value))]
-#endif
-        private readonly void EnsureInitialized()
-        {{
-            if (!IsInitialized())
-            {{
-#if DEBUG
-                {DebugGeneration.GenerateMessageForUninitializedValueObject(item)}
-#else
-                global::System.String message = ""Use of uninitialized Value Object."";
-#endif
-
-                throw new {item.ValidationExceptionFullName}(message);
-            }}
-        }}
+        {Util.GenerateEnsureInitializedMethod(item, readOnly: true)}
 
         {InstanceGeneration.GenerateAnyInstances(tds, item)}
  
@@ -144,6 +128,7 @@ using Vogen;
 
         {Util.GenerateDebuggerProxyForStructs(item)}
 
+        {Util.GenerateThrowHelper(item)}
 }}
 {GenerateEfCoreExtensions.GenerateInnerIfNeeded(item)}
 {Util.WriteCloseNamespace(item.FullNamespace)}";

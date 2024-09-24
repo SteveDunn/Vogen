@@ -102,7 +102,7 @@ public static class GenerateCodeForTryFrom
         return $$"""
                  if (value is null)
                  {
-                     return new ValueObjectOrError<{{className}}>(Validation.Invalid("The value provided was null"));
+                     return new ValueObjectOrError<{{className}}>(Vogen.Validation.Invalid("The value provided was null"));
                  }
                  """;
     }

@@ -84,6 +84,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
         /// </summary>
         public System.Guid Value
         {
+            [global::System.Runtime.CompilerServices.MethodImpl(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
             [global::System.Diagnostics.DebuggerStepThroughAttribute]
             get
             {
@@ -125,10 +126,10 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
         /// </summary>
         /// <param name = "value">The underlying type.</param>
         /// <returns>An instance of this type.</returns>
+        [global::System.Runtime.CompilerServices.MethodImpl(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
         public static _casting_public_partial_recordExplicitExplicitSystem_Guid From(System.Guid value)
         {
-            _casting_public_partial_recordExplicitExplicitSystem_Guid instance = new _casting_public_partial_recordExplicitExplicitSystem_Guid(value);
-            return instance;
+            return new _casting_public_partial_recordExplicitExplicitSystem_Guid(value);
         }
 
         /// <summary>
@@ -171,10 +172,6 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
         }
 
         [global::System.Runtime.CompilerServices.MethodImpl(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
-#if NETCOREAPP3_0_OR_GREATER
-[global:: System.Diagnostics.CodeAnalysis.MemberNotNullWhenAttribute(true, nameof(_value))]
-[global:: System.Diagnostics.CodeAnalysis.MemberNotNullWhenAttribute(true, nameof(Value))]
-#endif
 #if VOGEN_NO_VALIDATION
 #pragma warning disable CS8775
   public bool IsInitialized() => true;
@@ -237,7 +234,8 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
                 return 1;
             if (other is _casting_public_partial_recordExplicitExplicitSystem_Guid x)
                 return CompareTo(x);
-            throw new global::System.ArgumentException("Cannot compare to object as it is not of type _casting_public_partial_recordExplicitExplicitSystem_Guid", nameof(other));
+            ThrowHelper.ThrowArgumentException("Cannot compare to object as it is not of type _casting_public_partial_recordExplicitExplicitSystem_Guid", nameof(other));
+            return 0;
         }
 
         /// <inheritdoc cref = "System.Guid.TryParse(System.ReadOnlySpan{char}, out System.Guid)"/>
@@ -391,20 +389,16 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
             }
         }
 
-#if NETCOREAPP3_0_OR_GREATER
-        [global::System.Diagnostics.CodeAnalysis.MemberNotNullAttribute(nameof(_value))]
-        [global::System.Diagnostics.CodeAnalysis.MemberNotNullAttribute(nameof(Value))]
-#endif
+        [global::System.Runtime.CompilerServices.MethodImpl(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
         private void EnsureInitialized()
         {
             if (!IsInitialized())
             {
 #if DEBUG
-                global::System.String message = "Use of uninitialized Value Object at: " + _stackTrace ?? "";
+               ThrowHelper.ThrowWhenNotInitialized(_stackTrace);
 #else
-                global::System.String message = "Use of uninitialized Value Object.";
+                ThrowHelper.ThrowWhenNotInitialized();
 #endif
-                throw new global::Vogen.ValueObjectValidationException(message);
             }
         }
 
@@ -502,6 +496,46 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
             public global::System.String Conversions => @"[global::System.Text.Json.Serialization.JsonConverter(typeof(_casting_public_partial_recordExplicitExplicitSystem_GuidSystemTextJsonConverter))]
 [global::System.ComponentModel.TypeConverter(typeof(_casting_public_partial_recordExplicitExplicitSystem_GuidTypeConverter))]
 ";
+        }
+
+        static class ThrowHelper
+        {
+#if NETCOREAPP3_0_OR_GREATER
+    [global::System.Diagnostics.CodeAnalysis.DoesNotReturnAttribute]
+#endif
+            internal static void ThrowInvalidOperationException(string message) => throw new global::System.InvalidOperationException(message);
+#if NETCOREAPP3_0_OR_GREATER
+    [global::System.Diagnostics.CodeAnalysis.DoesNotReturnAttribute]
+#endif
+            internal static void ThrowArgumentException(string message, string arg) => throw new global::System.ArgumentException(message, arg);
+#if NETCOREAPP3_0_OR_GREATER
+    [global::System.Diagnostics.CodeAnalysis.DoesNotReturnAttribute]
+#endif
+            internal static void ThrowWhenCreatedWithNull() => throw new global::Vogen.ValueObjectValidationException("Cannot create a value object with null.");
+#if NETCOREAPP3_0_OR_GREATER
+    [global::System.Diagnostics.CodeAnalysis.DoesNotReturnAttribute]
+#endif
+            internal static void ThrowWhenNotInitialized() => throw new global::Vogen.ValueObjectValidationException("Use of uninitialized Value Object.");
+#if NETCOREAPP3_0_OR_GREATER
+    [global::System.Diagnostics.CodeAnalysis.DoesNotReturnAttribute]
+#endif
+            internal static void ThrowWhenNotInitialized(global::System.Diagnostics.StackTrace stackTrace) => throw new global::Vogen.ValueObjectValidationException("Use of uninitialized Value Object at: " + stackTrace ?? "");
+#if NETCOREAPP3_0_OR_GREATER
+    [global::System.Diagnostics.CodeAnalysis.DoesNotReturnAttribute]
+#endif
+            internal static void ThrowWhenValidationFails(Vogen.Validation validation)
+            {
+                var ex = new global::Vogen.ValueObjectValidationException(validation.ErrorMessage);
+                if (validation.Data is not null)
+                {
+                    foreach (var kvp in validation.Data)
+                    {
+                        ex.Data[kvp.Key] = kvp.Value;
+                    }
+                }
+
+                throw ex;
+            }
         }
     }
 }

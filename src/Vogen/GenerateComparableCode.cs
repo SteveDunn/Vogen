@@ -68,7 +68,8 @@ public static class GenerateComparableCode
                      if(other is {{wrapper}} x) 
                        return CompareTo(x);
                      
-                     throw new global::System.ArgumentException("Cannot compare to object as it is not of type {{wrapper}}", nameof(other));
+                     ThrowHelper.ThrowArgumentException("Cannot compare to object as it is not of type {{wrapper}}", nameof(other));
+                     return 0;
                  }
                  """;
     }

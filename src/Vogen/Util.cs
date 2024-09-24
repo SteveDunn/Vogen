@@ -59,20 +59,14 @@ public static class Util
     {
         if (workItem.ValidateMethod is not null)
         {
-            return @$"var validation = {workItem.TypeToAugment.Identifier}.{workItem.ValidateMethod.Identifier.Value}(value);
-            if (validation != Vogen.Validation.Ok)
-            {{
-                var ex = new {workItem.ValidationExceptionFullName}(validation.ErrorMessage);
-                if (validation.Data is not null) 
-                {{
-                    foreach (var kvp in validation.Data)
-                    {{
-                        ex.Data[kvp.Key] = kvp.Value;
-                    }}
-                }}
-                throw ex;
-            }}
-";
+            return $$"""
+                     var validation = {{workItem.TypeToAugment.Identifier}}.{{workItem.ValidateMethod.Identifier.Value}}(value);
+                     if (validation != Vogen.Validation.Ok)
+                     {
+                         ThrowHelper.ThrowWhenValidationFails(validation);
+                     }
+
+                     """;
         }
 
         return string.Empty;
@@ -146,11 +140,13 @@ public static class Util
 
         if (workItem.Config.DeserializationStrictness.HasFlag(DeserializationStrictness.RunMyValidationMethod))
         {
-            sb.AppendLine(@$"var validation = {workItem.TypeToAugment.Identifier}.{workItem.ValidateMethod.Identifier.Value}(value);
-            if (validation != Vogen.Validation.Ok)
-            {{
-                throw new {workItem.ValidationExceptionFullName}(validation.ErrorMessage);
-            }}");
+            sb.AppendLine($$"""
+                            var validation = {{workItem.TypeToAugment.Identifier}}.{{workItem.ValidateMethod.Identifier.Value}}(value);
+                            if (validation != Vogen.Validation.Ok)
+                            {
+                                ThrowHelper.ThrowWhenValidationFails(validation);
+                            }
+                            """);
         }
 
         return sb.ToString();
@@ -331,10 +327,6 @@ public static class Util
         string accessibility = item.Config.IsInitializedMethodGeneration == IsInitializedMethodGeneration.Generate ? "public" : "private";
         return $$"""
                [global::System.Runtime.CompilerServices.MethodImpl(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
-               #if NETCOREAPP3_0_OR_GREATER
-               [global:: System.Diagnostics.CodeAnalysis.MemberNotNullWhenAttribute(true, nameof(_value))]
-               [global:: System.Diagnostics.CodeAnalysis.MemberNotNullWhenAttribute(true, nameof(Value))]
-               #endif
                #if VOGEN_NO_VALIDATION
                #pragma warning disable CS8775
                  {{accessibility}}{{ro}} bool IsInitialized() => true;
@@ -362,6 +354,85 @@ public static class Util
          /// Gets the underlying <see cref="{EscapeTypeNameForTripleSlashComment(item.UnderlyingType)}" /> value if set, otherwise a <see cref="{EscapeTypeNameForTripleSlashComment(item.ValidationExceptionSymbol)}" /> is thrown.
          /// </summary>
          """;
+
+    public static string GenerateEnsureInitializedMethod(VoWorkItem item, bool readOnly)
+    {
+        string ro = readOnly ? "readonly " : " ";
+        string st = item.Config.DisableStackTraceRecordingInDebug ? string.Empty : "_stackTrace";
+        return $$"""
+                         [global::System.Runtime.CompilerServices.MethodImpl(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
+                         private {{ro}}void EnsureInitialized()
+                         {
+                             if (!IsInitialized())
+                             {
+                             #if DEBUG
+                                ThrowHelper.ThrowWhenNotInitialized({{st}});
+                            #else
+                             ThrowHelper.ThrowWhenNotInitialized();
+                            #endif
+                             }
+                         }
+                 """;
+    }
+
+    public static string GenerateThrowHelper(VoWorkItem item)
+    {
+        return $$"""
+                 static class ThrowHelper
+                 {
+                     #if NETCOREAPP3_0_OR_GREATER
+                     [global::System.Diagnostics.CodeAnalysis.DoesNotReturnAttribute]
+                     #endif
+                     internal static void ThrowInvalidOperationException(string message) => throw new global::System.InvalidOperationException(message);
+
+                     #if NETCOREAPP3_0_OR_GREATER
+                     [global::System.Diagnostics.CodeAnalysis.DoesNotReturnAttribute]
+                     #endif
+                     internal static void ThrowArgumentException(string message, string arg) => throw new global::System.ArgumentException(message, arg);
+
+                     #if NETCOREAPP3_0_OR_GREATER
+                     [global::System.Diagnostics.CodeAnalysis.DoesNotReturnAttribute]
+                     #endif
+                     internal static void ThrowWhenCreatedWithNull() => 
+                            throw new {{item.ValidationExceptionFullName}}("Cannot create a value object with null.");
+
+                     #if NETCOREAPP3_0_OR_GREATER
+                     [global::System.Diagnostics.CodeAnalysis.DoesNotReturnAttribute]
+                     #endif
+                     internal static void ThrowWhenNotInitialized() => 
+                        throw new {{item.ValidationExceptionFullName}}("Use of uninitialized Value Object.");
+                     
+                     #if NETCOREAPP3_0_OR_GREATER
+                     [global::System.Diagnostics.CodeAnalysis.DoesNotReturnAttribute]
+                     #endif
+                     internal static void ThrowWhenNotInitialized(global::System.Diagnostics.StackTrace{{item.Nullable.QuestionMarkForOtherReferences}} stackTrace) =>  
+                        throw new {{item.ValidationExceptionFullName}}({{GetMessageToReport(item)}});
+ 
+                     #if NETCOREAPP3_0_OR_GREATER
+                     [global::System.Diagnostics.CodeAnalysis.DoesNotReturnAttribute]
+                     #endif
+                     internal static void ThrowWhenValidationFails(Vogen.Validation validation)
+                     {
+                         var ex = new {{item.ValidationExceptionFullName}}(validation.ErrorMessage);
+
+                         if (validation.Data is not null) 
+                         {
+                             foreach (var kvp in validation.Data)
+                             {
+                                 ex.Data[kvp.Key] = kvp.Value;
+                             }
+                         }
+                         
+                         throw ex;
+                     }
+                 }
+                 """;
+        
+        static string GetMessageToReport(VoWorkItem item) => 
+            item.Config.DisableStackTraceRecordingInDebug 
+                ? "\"Use of uninitialized Value Object.\"" 
+                : "\"Use of uninitialized Value Object at: \" + stackTrace ?? \"\" ";
+    }
 }
 
 public static class DebugGeneration
@@ -403,14 +474,4 @@ causes Rider's debugger to crash.
     public static string SetStackTraceIfNeeded(VoWorkItem voWorkItem) => voWorkItem.Config.DisableStackTraceRecordingInDebug
         ? string.Empty
         : "_stackTrace = new global::System.Diagnostics.StackTrace();";
-
-    public static string GenerateMessageForUninitializedValueObject(VoWorkItem item)
-    {
-        if (item.Config.DisableStackTraceRecordingInDebug)
-        {
-            return $"""global::System.String message = "Use of uninitialized Value Object.";""";
-
-        }
-        return $"""global::System.String message = "Use of uninitialized Value Object at: " + _stackTrace ?? "";""";
-    }
 }

@@ -39,6 +39,7 @@ using Vogen;
         {Util.GenerateCommentForValueProperty(item)}
         public readonly {itemUnderlyingType} Value
         {{
+            [global::System.Runtime.CompilerServices.MethodImpl(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
             [global::System.Diagnostics.DebuggerStepThroughAttribute]
             get
             {{
@@ -87,15 +88,14 @@ using Vogen;
         /// </summary>
         /// <param name=""value"">The underlying type.</param>
         /// <returns>An instance of this type.</returns>
+        [global::System.Runtime.CompilerServices.MethodImpl(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
         public static {wrapperName} From({itemUnderlyingType} value)
         {{
             {Util.GenerateCallToNormalizeMethodIfNeeded(item)}
 
             {Util.GenerateCallToValidationAndThrowIfRequired(item)}
 
-            {wrapperName} instance = new {wrapperName}(value);
-
-            return instance;
+            return new {wrapperName}(value);
         }}
 
         {GenerateCodeForTryFrom.GenerateForAStruct(item, wrapperName, itemUnderlyingType)}
@@ -123,23 +123,7 @@ using Vogen;
 
         {GenerateHashCodes.GenerateForAStruct(item)}
 
-#if NETCOREAPP3_0_OR_GREATER
-        [global::System.Diagnostics.CodeAnalysis.MemberNotNullAttribute(nameof(_value))]
-        [global::System.Diagnostics.CodeAnalysis.MemberNotNullAttribute(nameof(Value))]
-#endif
-        private readonly void EnsureInitialized()
-        {{
-            if (!IsInitialized())
-            {{
-#if DEBUG
-                {DebugGeneration.GenerateMessageForUninitializedValueObject(item)}
-#else
-                global::System.String message = ""Use of uninitialized Value Object."";
-#endif
-
-                throw new {item.ValidationExceptionFullName}(message);
-            }}
-        }}
+        {Util.GenerateEnsureInitializedMethod(item, readOnly: true)}
 
         // record enumerates fields - we just want our Value and to throw if it's not initialized.
         {Util.GenerateToStringReadOnly(item)}
@@ -150,6 +134,7 @@ using Vogen;
 
         {Util.GenerateDebuggerProxyForStructs(item)}
 
+        {Util.GenerateThrowHelper(item)}
 }}
 {GenerateEfCoreExtensions.GenerateInnerIfNeeded(item)}
 {Util.WriteCloseNamespace(item.FullNamespace)}";
@@ -160,7 +145,8 @@ using Vogen;
             : $$"""
                     if (value is null)
                     {
-                        throw new {{voWorkItem.ValidationExceptionFullName}}("Cannot create a value object with null.");
+                        ThrowHelper.ThrowWhenCreatedWithNull();
+                        return;
                     }
 
                 """;

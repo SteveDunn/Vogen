@@ -1,50 +1,29 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-
   <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
     <OutputType>Exe</OutputType>
-    <TargetFrameworks>net6.0</TargetFrameworks>
-    <ImplicitUsings>disable</ImplicitUsings>
-    <Nullable>enable</Nullable>
+    <LangVersion>latest</LangVersion>
     <IsPackable>false</IsPackable>
+    <Nullable>enable</Nullable>
   </PropertyGroup>
-
   <PropertyGroup>
-    <EmitCompilerGeneratedFiles>true</EmitCompilerGeneratedFiles>
-    <CompilerGeneratedFilesOutputPath>Generated</CompilerGeneratedFilesOutputPath>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <DebugSymbols>true</DebugSymbols>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <IsPackable>false</IsPackable>
+    <CheckForOverflowUnderflow>True</CheckForOverflowUnderflow>
   </PropertyGroup>
-
   <ItemGroup>
-    <!-- Don't include the output from a previous source generator execution into future runs; the */** trick here ensures that there's
-  at least one subdirectory, which is our key that it's coming from a source generator as opposed to something that is coming from
-  some other tool. -->
-    <Compile Remove="Generated/*/**/*.cs" />
+    <PackageReference Include="System.Text.Json" Version="8.0.4" />
   </ItemGroup>
-
   <ItemGroup>
-    <PackageReference Include="linq2db" Version="3.7.0" />
-    <PackageReference Include="Dapper" Version="2.0.123" />
+    <!-- Note that this is not a "normal" ProjectReference.
+         It needs the additional 'OutputItemType' and 'ReferenceOutputAssmbly' attributes. -->
+    <ProjectReference Configuration="Debug" Include="..\..\src\Vogen.SharedTypes\Vogen.SharedTypes.csproj"  OutputItemType="Analyzer" ReferenceOutputAssembly="true">
 
-    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.0-rc.1.22426.7" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="7.0.0-rc.1.22426.7" />
-    <PackageReference Include="System.Text.Json" Version="7.0.0-rc.1.22426.10" />
-
-
-    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
-
-
-<!--    <PackageReference Include="Vogen" Version="3.0.2-alpha.3" />-->
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\..\src\Vogen.SharedTypes\Vogen.SharedTypes.csproj"  OutputItemType="Analyzer" ReferenceOutputAssembly="true" />
+    </ProjectReference>
     <ProjectReference Include="..\..\src\Vogen\Vogen.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="false" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <PackageReference Include="Microsoft.Net.Compilers.Toolset" Version="4.3.1">
-      <PrivateAssets>all</PrivateAssets>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-    </PackageReference>
   </ItemGroup>
 
 </Project>
