@@ -1,12 +1,12 @@
-[![NuGet](https://img.shields.io/nuget/dt/vogen.svg)](https://www.nuget.org/packages/vogen) 
-![Build](https://github.com/stevedunn/vogen/actions/workflows/build.yaml/badge.svg)
-[![GitHub release](https://img.shields.io/github/release/stevedunn/vogen.svg)](https://GitHub.com/stevedunn/vogen/releases/) [![GitHub license](https://img.shields.io/github/license/stevedunn/vogen.svg)](https://github.com/SteveDunn/Vogen/blob/main/LICENSE) 
-[![GitHub issues](https://img.shields.io/github/issues/Naereen/StrapDown.js.svg)](https://GitHub.com/stevedunn/vogen/issues/) [![GitHub issues-closed](https://img.shields.io/github/issues-closed/Naereen/StrapDown.js.svg)](https://GitHub.com/stevedunn/vogen/issues?q=is%3Aissue+is%3Aclosed) 
-
 <!--suppress HtmlDeprecatedAttribute -->
 <p align="center">
   <img src="./assets/cavey.png" alt="Picture of caveman holding the number '1'">
 </p>
+
+[![NuGet](https://img.shields.io/nuget/dt/vogen.svg)](https://www.nuget.org/packages/vogen) 
+![Build](https://github.com/stevedunn/vogen/actions/workflows/build.yaml/badge.svg)
+[![GitHub release](https://img.shields.io/github/release/stevedunn/vogen.svg)](https://GitHub.com/stevedunn/vogen/releases/) [![GitHub license](https://img.shields.io/github/license/stevedunn/vogen.svg)](https://github.com/SteveDunn/Vogen/blob/main/LICENSE) 
+[![GitHub issues](https://img.shields.io/github/issues/Naereen/StrapDown.js.svg)](https://GitHub.com/stevedunn/vogen/issues/) [![GitHub issues-closed](https://img.shields.io/github/issues-closed/Naereen/StrapDown.js.svg)](https://GitHub.com/stevedunn/vogen/issues?q=is%3Aissue+is%3Aclosed) 
 
 [![Sparkline](https://stars.medv.io/stevedunn/vogen.svg)](https://stars.medv.io/stevedunn/vogen)
 ## Give a Star! :star:
