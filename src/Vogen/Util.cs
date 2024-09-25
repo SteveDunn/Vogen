@@ -112,7 +112,7 @@ public static class Util
             return @$"var validation = {workItem.TypeToAugment.Identifier}.{workItem.ValidateMethod.Identifier.Value}(value);
             if (validation != Vogen.Validation.Ok)
             {{
-                return new ValueObjectOrError<{className}>(validation);
+                return new Vogen.ValueObjectOrError<{className}>(validation);
             }}
 ";
         }

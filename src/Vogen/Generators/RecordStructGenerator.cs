@@ -19,7 +19,6 @@ public class RecordStructGenerator : IGenerateSourceCode
         return item.Nullable.WrapBlock(code);
         
         string Generate() => $@"
-using Vogen;
 
 {Util.WriteStartNamespace(item.FullNamespace)}
     [global::System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage] 

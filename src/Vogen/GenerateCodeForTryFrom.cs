@@ -58,8 +58,8 @@ public static class GenerateCodeForTryFrom
                         /// If validation is provided, and it fails, an error will be returned.
                         /// </summary>
                         /// <param name="value">The primitive value.</param>
-                        /// <returns>A <see cref="ValueObjectOrError{T}"/> containing either the value object, or an error.</returns>
-                        public static ValueObjectOrError<{{className}}> TryFrom({{itemUnderlyingType}} value)
+                        /// <returns>A <see cref="Vogen.ValueObjectOrError{T}"/> containing either the value object, or an error.</returns>
+                        public static Vogen.ValueObjectOrError<{{className}}> TryFrom({{itemUnderlyingType}} value)
                         {
                             {{GenerateNullCheckAndReturnErrorIfNeeded(className, item)}}
                         
@@ -67,7 +67,7 @@ public static class GenerateCodeForTryFrom
                         
                             {{Util.GenerateCallToValidationAndReturnValueObjectOrErrorIfNeeded(className, item)}}
                         
-                            return new ValueObjectOrError<{{className}}>(new {{className}}(value));
+                            return new Vogen.ValueObjectOrError<{{className}}>(new {{className}}(value));
                         }
                         """);
         }
@@ -102,7 +102,7 @@ public static class GenerateCodeForTryFrom
         return $$"""
                  if (value is null)
                  {
-                     return new ValueObjectOrError<{{className}}>(Vogen.Validation.Invalid("The value provided was null"));
+                     return new Vogen.ValueObjectOrError<{{className}}>(Vogen.Validation.Invalid("The value provided was null"));
                  }
                  """;
     }

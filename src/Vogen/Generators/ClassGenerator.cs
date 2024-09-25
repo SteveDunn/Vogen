@@ -23,7 +23,6 @@ public class ClassGenerator : IGenerateSourceCode
     
     
     string Generate() => $@"
-using Vogen;
 
 {Util.WriteStartNamespace(item.FullNamespace)}
     [global::System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage] 
