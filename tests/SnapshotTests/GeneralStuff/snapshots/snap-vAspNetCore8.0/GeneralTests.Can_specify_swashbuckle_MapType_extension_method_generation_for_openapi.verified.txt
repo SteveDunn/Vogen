@@ -101,8 +101,6 @@ public class VogenTypesFactory : global::System.Text.Json.Serialization.JsonConv
 #pragma warning disable CS8669, CS8632
 // Suppress warnings about CS1591: Missing XML comment for publicly visible type or member 'Type_or_Member'
 #pragma warning disable CS1591
-using Vogen;
-
 [global::System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage]
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Vogen", "1.0.0.0")]
 [global::System.Text.Json.Serialization.JsonConverter(typeof(MyVoIntSystemTextJsonConverter))]
@@ -198,10 +196,10 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
     /// If validation is provided, and it fails, an error will be returned.
     /// </summary>
     /// <param name = "value">The primitive value.</param>
-    /// <returns>A <see cref = "ValueObjectOrError{T}"/> containing either the value object, or an error.</returns>
-    public static ValueObjectOrError<MyVoInt> TryFrom(System.Int32 value)
+    /// <returns>A <see cref = "Vogen.ValueObjectOrError{T}"/> containing either the value object, or an error.</returns>
+    public static Vogen.ValueObjectOrError<MyVoInt> TryFrom(System.Int32 value)
     {
-        return new ValueObjectOrError<MyVoInt>(new MyVoInt(value));
+        return new Vogen.ValueObjectOrError<MyVoInt>(new MyVoInt(value));
     }
 
     [global::System.Runtime.CompilerServices.MethodImpl(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
@@ -761,8 +759,6 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
 #pragma warning disable CS8669, CS8632
 // Suppress warnings about CS1591: Missing XML comment for publicly visible type or member 'Type_or_Member'
 #pragma warning disable CS1591
-using Vogen;
-
 [global::System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage]
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Vogen", "1.0.0.0")]
 [global::System.Text.Json.Serialization.JsonConverter(typeof(MyVoFloatSystemTextJsonConverter))]
@@ -858,10 +854,10 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
     /// If validation is provided, and it fails, an error will be returned.
     /// </summary>
     /// <param name = "value">The primitive value.</param>
-    /// <returns>A <see cref = "ValueObjectOrError{T}"/> containing either the value object, or an error.</returns>
-    public static ValueObjectOrError<MyVoFloat> TryFrom(System.Single value)
+    /// <returns>A <see cref = "Vogen.ValueObjectOrError{T}"/> containing either the value object, or an error.</returns>
+    public static Vogen.ValueObjectOrError<MyVoFloat> TryFrom(System.Single value)
     {
-        return new ValueObjectOrError<MyVoFloat>(new MyVoFloat(value));
+        return new Vogen.ValueObjectOrError<MyVoFloat>(new MyVoFloat(value));
     }
 
     [global::System.Runtime.CompilerServices.MethodImpl(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
@@ -1421,8 +1417,6 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
 #pragma warning disable CS8669, CS8632
 // Suppress warnings about CS1591: Missing XML comment for publicly visible type or member 'Type_or_Member'
 #pragma warning disable CS1591
-using Vogen;
-
 [global::System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage]
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Vogen", "1.0.0.0")]
 [global::System.Text.Json.Serialization.JsonConverter(typeof(MyVoDecimalSystemTextJsonConverter))]
@@ -1518,10 +1512,10 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
     /// If validation is provided, and it fails, an error will be returned.
     /// </summary>
     /// <param name = "value">The primitive value.</param>
-    /// <returns>A <see cref = "ValueObjectOrError{T}"/> containing either the value object, or an error.</returns>
-    public static ValueObjectOrError<MyVoDecimal> TryFrom(System.Decimal value)
+    /// <returns>A <see cref = "Vogen.ValueObjectOrError{T}"/> containing either the value object, or an error.</returns>
+    public static Vogen.ValueObjectOrError<MyVoDecimal> TryFrom(System.Decimal value)
     {
-        return new ValueObjectOrError<MyVoDecimal>(new MyVoDecimal(value));
+        return new Vogen.ValueObjectOrError<MyVoDecimal>(new MyVoDecimal(value));
     }
 
     [global::System.Runtime.CompilerServices.MethodImpl(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
@@ -2081,8 +2075,6 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
 #pragma warning disable CS8669, CS8632
 // Suppress warnings about CS1591: Missing XML comment for publicly visible type or member 'Type_or_Member'
 #pragma warning disable CS1591
-using Vogen;
-
 [global::System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage]
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Vogen", "1.0.0.0")]
 [global::System.Text.Json.Serialization.JsonConverter(typeof(MyVoDoubleSystemTextJsonConverter))]
@@ -2178,10 +2170,10 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
     /// If validation is provided, and it fails, an error will be returned.
     /// </summary>
     /// <param name = "value">The primitive value.</param>
-    /// <returns>A <see cref = "ValueObjectOrError{T}"/> containing either the value object, or an error.</returns>
-    public static ValueObjectOrError<MyVoDouble> TryFrom(System.Double value)
+    /// <returns>A <see cref = "Vogen.ValueObjectOrError{T}"/> containing either the value object, or an error.</returns>
+    public static Vogen.ValueObjectOrError<MyVoDouble> TryFrom(System.Double value)
     {
-        return new ValueObjectOrError<MyVoDouble>(new MyVoDouble(value));
+        return new Vogen.ValueObjectOrError<MyVoDouble>(new MyVoDouble(value));
     }
 
     [global::System.Runtime.CompilerServices.MethodImpl(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
@@ -2742,8 +2734,6 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
 #pragma warning disable CS8669, CS8632
 // Suppress warnings about CS1591: Missing XML comment for publicly visible type or member 'Type_or_Member'
 #pragma warning disable CS1591
-using Vogen;
-
 [global::System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage]
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Vogen", "1.0.0.0")]
 [global::System.Text.Json.Serialization.JsonConverter(typeof(MyVoStringSystemTextJsonConverter))]
@@ -2851,15 +2841,15 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
     /// If validation is provided, and it fails, an error will be returned.
     /// </summary>
     /// <param name = "value">The primitive value.</param>
-    /// <returns>A <see cref = "ValueObjectOrError{T}"/> containing either the value object, or an error.</returns>
-    public static ValueObjectOrError<MyVoString> TryFrom(System.String value)
+    /// <returns>A <see cref = "Vogen.ValueObjectOrError{T}"/> containing either the value object, or an error.</returns>
+    public static Vogen.ValueObjectOrError<MyVoString> TryFrom(System.String value)
     {
         if (value is null)
         {
-            return new ValueObjectOrError<MyVoString>(Vogen.Validation.Invalid("The value provided was null"));
+            return new Vogen.ValueObjectOrError<MyVoString>(Vogen.Validation.Invalid("The value provided was null"));
         }
 
-        return new ValueObjectOrError<MyVoString>(new MyVoString(value));
+        return new Vogen.ValueObjectOrError<MyVoString>(new MyVoString(value));
     }
 
     [global::System.Runtime.CompilerServices.MethodImpl(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
@@ -3152,8 +3142,6 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
 #pragma warning disable CS8669, CS8632
 // Suppress warnings about CS1591: Missing XML comment for publicly visible type or member 'Type_or_Member'
 #pragma warning disable CS1591
-using Vogen;
-
 [global::System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage]
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Vogen", "1.0.0.0")]
 [global::System.Text.Json.Serialization.JsonConverter(typeof(MyVoBoolSystemTextJsonConverter))]
@@ -3249,10 +3237,10 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
     /// If validation is provided, and it fails, an error will be returned.
     /// </summary>
     /// <param name = "value">The primitive value.</param>
-    /// <returns>A <see cref = "ValueObjectOrError{T}"/> containing either the value object, or an error.</returns>
-    public static ValueObjectOrError<MyVoBool> TryFrom(System.Boolean value)
+    /// <returns>A <see cref = "Vogen.ValueObjectOrError{T}"/> containing either the value object, or an error.</returns>
+    public static Vogen.ValueObjectOrError<MyVoBool> TryFrom(System.Boolean value)
     {
-        return new ValueObjectOrError<MyVoBool>(new MyVoBool(value));
+        return new Vogen.ValueObjectOrError<MyVoBool>(new MyVoBool(value));
     }
 
     [global::System.Runtime.CompilerServices.MethodImpl(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]

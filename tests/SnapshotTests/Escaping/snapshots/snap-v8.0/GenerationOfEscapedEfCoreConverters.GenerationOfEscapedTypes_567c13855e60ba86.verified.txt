@@ -179,8 +179,6 @@ public class VogenTypesFactory : global::System.Text.Json.Serialization.JsonConv
 #pragma warning disable CS8669, CS8632
 // Suppress warnings about CS1591: Missing XML comment for publicly visible type or member 'Type_or_Member'
 #pragma warning disable CS1591
-using Vogen;
-
 namespace @class
 {
     [global::System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage]
@@ -278,10 +276,10 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
         /// If validation is provided, and it fails, an error will be returned.
         /// </summary>
         /// <param name = "value">The primitive value.</param>
-        /// <returns>A <see cref = "ValueObjectOrError{T}"/> containing either the value object, or an error.</returns>
-        public static ValueObjectOrError<escapedTestspublic_partial_structConversions_NewtonsoftJsonrecord__struct__float__event> TryFrom(@class.@record.@struct.@float.@event value)
+        /// <returns>A <see cref = "Vogen.ValueObjectOrError{T}"/> containing either the value object, or an error.</returns>
+        public static Vogen.ValueObjectOrError<escapedTestspublic_partial_structConversions_NewtonsoftJsonrecord__struct__float__event> TryFrom(@class.@record.@struct.@float.@event value)
         {
-            return new ValueObjectOrError<escapedTestspublic_partial_structConversions_NewtonsoftJsonrecord__struct__float__event>(new escapedTestspublic_partial_structConversions_NewtonsoftJsonrecord__struct__float__event(value));
+            return new Vogen.ValueObjectOrError<escapedTestspublic_partial_structConversions_NewtonsoftJsonrecord__struct__float__event>(new escapedTestspublic_partial_structConversions_NewtonsoftJsonrecord__struct__float__event(value));
         }
 
         [global::System.Runtime.CompilerServices.MethodImpl(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]

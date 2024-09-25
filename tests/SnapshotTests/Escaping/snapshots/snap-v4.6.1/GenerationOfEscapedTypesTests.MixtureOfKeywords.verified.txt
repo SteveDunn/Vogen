@@ -60,8 +60,6 @@ public class VogenTypesFactory : global::System.Text.Json.Serialization.JsonConv
 #pragma warning disable CS8669, CS8632
 // Suppress warnings about CS1591: Missing XML comment for publicly visible type or member 'Type_or_Member'
 #pragma warning disable CS1591
-using Vogen;
-
 namespace @double
 {
     [global::System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage]
@@ -159,10 +157,10 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
         /// If validation is provided, and it fails, an error will be returned.
         /// </summary>
         /// <param name = "value">The primitive value.</param>
-        /// <returns>A <see cref = "ValueObjectOrError{T}"/> containing either the value object, or an error.</returns>
-        public static ValueObjectOrError<classFromEscapedNamespaceWithReservedUnderlyingType> TryFrom(@double.@decimal value)
+        /// <returns>A <see cref = "Vogen.ValueObjectOrError{T}"/> containing either the value object, or an error.</returns>
+        public static Vogen.ValueObjectOrError<classFromEscapedNamespaceWithReservedUnderlyingType> TryFrom(@double.@decimal value)
         {
-            return new ValueObjectOrError<classFromEscapedNamespaceWithReservedUnderlyingType>(new classFromEscapedNamespaceWithReservedUnderlyingType(value));
+            return new Vogen.ValueObjectOrError<classFromEscapedNamespaceWithReservedUnderlyingType>(new classFromEscapedNamespaceWithReservedUnderlyingType(value));
         }
 
         [global::System.Runtime.CompilerServices.MethodImpl(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
@@ -386,8 +384,6 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
 #pragma warning disable CS8669, CS8632
 // Suppress warnings about CS1591: Missing XML comment for publicly visible type or member 'Type_or_Member'
 #pragma warning disable CS1591
-using Vogen;
-
 namespace @double
 {
     [global::System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage]
@@ -485,10 +481,10 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
         /// If validation is provided, and it fails, an error will be returned.
         /// </summary>
         /// <param name = "value">The primitive value.</param>
-        /// <returns>A <see cref = "ValueObjectOrError{T}"/> containing either the value object, or an error.</returns>
-        public static ValueObjectOrError<classFromEscapedNamespace> TryFrom(System.Int32 value)
+        /// <returns>A <see cref = "Vogen.ValueObjectOrError{T}"/> containing either the value object, or an error.</returns>
+        public static Vogen.ValueObjectOrError<classFromEscapedNamespace> TryFrom(System.Int32 value)
         {
-            return new ValueObjectOrError<classFromEscapedNamespace>(new classFromEscapedNamespace(value));
+            return new Vogen.ValueObjectOrError<classFromEscapedNamespace>(new classFromEscapedNamespace(value));
         }
 
         [global::System.Runtime.CompilerServices.MethodImpl(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
@@ -843,8 +839,6 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
 #pragma warning disable CS8669, CS8632
 // Suppress warnings about CS1591: Missing XML comment for publicly visible type or member 'Type_or_Member'
 #pragma warning disable CS1591
-using Vogen;
-
 namespace @bool.@byte.@short.@float.@object
 {
     [global::System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage]
@@ -942,10 +936,10 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
         /// If validation is provided, and it fails, an error will be returned.
         /// </summary>
         /// <param name = "value">The primitive value.</param>
-        /// <returns>A <see cref = "ValueObjectOrError{T}"/> containing either the value object, or an error.</returns>
-        public static ValueObjectOrError<@class> TryFrom(System.Int32 value)
+        /// <returns>A <see cref = "Vogen.ValueObjectOrError{T}"/> containing either the value object, or an error.</returns>
+        public static Vogen.ValueObjectOrError<@class> TryFrom(System.Int32 value)
         {
-            return new ValueObjectOrError<@class>(new @class(value));
+            return new Vogen.ValueObjectOrError<@class>(new @class(value));
         }
 
         [global::System.Runtime.CompilerServices.MethodImpl(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
@@ -1300,8 +1294,6 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
 #pragma warning disable CS8669, CS8632
 // Suppress warnings about CS1591: Missing XML comment for publicly visible type or member 'Type_or_Member'
 #pragma warning disable CS1591
-using Vogen;
-
 namespace @bool.@byte.@short.@float.@object
 {
     [global::System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage]
@@ -1399,10 +1391,10 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
         /// If validation is provided, and it fails, an error will be returned.
         /// </summary>
         /// <param name = "value">The primitive value.</param>
-        /// <returns>A <see cref = "ValueObjectOrError{T}"/> containing either the value object, or an error.</returns>
-        public static ValueObjectOrError<@event> TryFrom(System.Int32 value)
+        /// <returns>A <see cref = "Vogen.ValueObjectOrError{T}"/> containing either the value object, or an error.</returns>
+        public static Vogen.ValueObjectOrError<@event> TryFrom(System.Int32 value)
         {
-            return new ValueObjectOrError<@event>(new @event(value));
+            return new Vogen.ValueObjectOrError<@event>(new @event(value));
         }
 
         [global::System.Runtime.CompilerServices.MethodImpl(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
@@ -1757,8 +1749,6 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
 #pragma warning disable CS8669, CS8632
 // Suppress warnings about CS1591: Missing XML comment for publicly visible type or member 'Type_or_Member'
 #pragma warning disable CS1591
-using Vogen;
-
 namespace @bool.@byte.@short.@float.@object
 {
     [global::System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage]
@@ -1856,10 +1846,10 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
         /// If validation is provided, and it fails, an error will be returned.
         /// </summary>
         /// <param name = "value">The primitive value.</param>
-        /// <returns>A <see cref = "ValueObjectOrError{T}"/> containing either the value object, or an error.</returns>
-        public static ValueObjectOrError<@event2> TryFrom(@record.@struct.@float.@decimal value)
+        /// <returns>A <see cref = "Vogen.ValueObjectOrError{T}"/> containing either the value object, or an error.</returns>
+        public static Vogen.ValueObjectOrError<@event2> TryFrom(@record.@struct.@float.@decimal value)
         {
-            return new ValueObjectOrError<@event2>(new @event2(value));
+            return new Vogen.ValueObjectOrError<@event2>(new @event2(value));
         }
 
         [global::System.Runtime.CompilerServices.MethodImpl(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]

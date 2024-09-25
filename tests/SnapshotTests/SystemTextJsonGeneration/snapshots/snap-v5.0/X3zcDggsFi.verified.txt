@@ -60,8 +60,6 @@ public class VogenTypesFactory : global::System.Text.Json.Serialization.JsonConv
 #pragma warning disable CS8669, CS8632
 // Suppress warnings about CS1591: Missing XML comment for publicly visible type or member 'Type_or_Member'
 #pragma warning disable CS1591
-using Vogen;
-
 namespace Whatever
 {
     [global::System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage]
@@ -164,10 +162,10 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
         /// If validation is provided, and it fails, an error will be returned.
         /// </summary>
         /// <param name = "value">The primitive value.</param>
-        /// <returns>A <see cref = "ValueObjectOrError{T}"/> containing either the value object, or an error.</returns>
-        public static ValueObjectOrError<stj_number_as_string_public_sealed_partial_recordConversions_SystemTextJsonbool_customized> TryFrom(System.Boolean value)
+        /// <returns>A <see cref = "Vogen.ValueObjectOrError{T}"/> containing either the value object, or an error.</returns>
+        public static Vogen.ValueObjectOrError<stj_number_as_string_public_sealed_partial_recordConversions_SystemTextJsonbool_customized> TryFrom(System.Boolean value)
         {
-            return new ValueObjectOrError<stj_number_as_string_public_sealed_partial_recordConversions_SystemTextJsonbool_customized>(new stj_number_as_string_public_sealed_partial_recordConversions_SystemTextJsonbool_customized(value));
+            return new Vogen.ValueObjectOrError<stj_number_as_string_public_sealed_partial_recordConversions_SystemTextJsonbool_customized>(new stj_number_as_string_public_sealed_partial_recordConversions_SystemTextJsonbool_customized(value));
         }
 
         [global::System.Runtime.CompilerServices.MethodImpl(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
