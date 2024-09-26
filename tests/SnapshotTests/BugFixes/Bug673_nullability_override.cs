@@ -17,14 +17,10 @@ public class Bug673_nullability_override
                      
                      namespace Foo;
                      
-                     internal abstract record B<T>
-                     {
-                     }
+                     internal abstract record B;
                      
                      [ValueObject]
-                     internal partial record D : B<D>
-                     {
-                     }
+                     internal partial record D : B;
                      """;
 
         await new SnapshotRunner<ValueObjectGenerator>()
