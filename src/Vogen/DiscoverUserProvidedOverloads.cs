@@ -45,7 +45,7 @@ internal class DiscoverUserProvidedOverloads
 
     private static UserProvidedToString HasToStringOverload(ITypeSymbol typeSymbol)
     {
-        var method = MethodDiscovery.TryGetToStringOverload(typeSymbol);
+        IMethodSymbol? method = MethodDiscovery.TryGetToStringOverride(typeSymbol);
         return method is null
             ? UserProvidedToString.NotProvided
             : new UserProvidedToString(

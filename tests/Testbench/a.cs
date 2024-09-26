@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Globalization;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 using Vogen;
 [assembly: VogenDefaults(disableStackTraceRecordingInDebug: true)]
 
@@ -20,3 +22,12 @@ public readonly partial record struct TenantId
         return parsed;
     }
 }
+
+public struct C
+{
+    
+}
+
+[ValueObject<C>(Conversions.None)]
+[JsonConverter(typeof(JsonConverter))]
+public readonly partial struct FileHash;

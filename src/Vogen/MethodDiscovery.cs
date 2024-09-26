@@ -9,13 +9,14 @@ namespace Vogen;
 internal static class MethodDiscovery
 {
     /// <summary>
-    /// Tries to get the ToString overload on the Value Object or base types.
-    /// It only includes overrides or virtuals.
-    /// It ignores the implicitly declared ToString on records.
+    /// Tries to get the ToString override on the Value Object or base types.
+    /// It only includes overrides or virtual methods.
+    /// We ignore the implicitly generated ToStrings when a VO *is* a record or *derives from* a record, as we still want to
+    /// generate one ourselves as we don't want the default behaviour.
     /// </summary>
     /// <param name="typeSymbol"></param>
-    /// <returns></returns>
-    public static IMethodSymbol? TryGetToStringOverload(ITypeSymbol typeSymbol)
+    /// <returns>null if no overloads</returns>
+    public static IMethodSymbol? TryGetToStringOverride(ITypeSymbol typeSymbol)
     {
         var toStringMethods = typeSymbol.GetMembers("ToString").OfType<IMethodSymbol>();
 
@@ -63,7 +64,7 @@ internal static class MethodDiscovery
             return null;
         }
 
-        return TryGetToStringOverload(baseType);
+        return TryGetToStringOverride(baseType);
     }
 
     public static ITypeSymbol? TryGetHashCodeOverload(ITypeSymbol vo)
