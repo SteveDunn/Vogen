@@ -454,7 +454,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
 
         // record enumerates fields - we just want our Value and to throw if it's not initialized.
         /// <summary>Returns the string representation of the underlying <see cref = "System.Byte"/>.</summary>
-        public readonly override global::System.String ToString() => IsInitialized() ? Value.ToString() : "[UNINITIALIZED]";
+        public readonly override global::System.String ToString() => IsInitialized() ? Value.ToString() ?? "" : "[UNINITIALIZED]";
 #nullable disable
         /// <summary>
         /// Converts a _casting_public_readonly_partial_record_structImplicitExplicitbyte to or from JSON.

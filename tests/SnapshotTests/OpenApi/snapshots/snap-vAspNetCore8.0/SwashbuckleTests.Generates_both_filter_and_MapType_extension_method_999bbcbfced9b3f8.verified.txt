@@ -686,7 +686,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
         }
 
         /// <summary>Returns the string representation of the underlying <see cref = "System.Int32"/>.</summary>
-        public override global::System.String ToString() => IsInitialized() ? Value.ToString() : "[UNINITIALIZED]";
+        public override global::System.String ToString() => IsInitialized() ? Value.ToString() ?? "" : "[UNINITIALIZED]";
 #nullable disable
         /// <summary>
         /// Converts a MyVoInt to or from JSON.
@@ -1347,7 +1347,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
         }
 
         /// <summary>Returns the string representation of the underlying <see cref = "System.Single"/>.</summary>
-        public override global::System.String ToString() => IsInitialized() ? Value.ToString() : "[UNINITIALIZED]";
+        public override global::System.String ToString() => IsInitialized() ? Value.ToString() ?? "" : "[UNINITIALIZED]";
 #nullable disable
         /// <summary>
         /// Converts a MyVoFloat to or from JSON.
@@ -2008,7 +2008,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
         }
 
         /// <summary>Returns the string representation of the underlying <see cref = "System.Decimal"/>.</summary>
-        public override global::System.String ToString() => IsInitialized() ? Value.ToString() : "[UNINITIALIZED]";
+        public override global::System.String ToString() => IsInitialized() ? Value.ToString() ?? "" : "[UNINITIALIZED]";
 #nullable disable
         /// <summary>
         /// Converts a MyVoDecimal to or from JSON.
@@ -2669,7 +2669,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
         }
 
         /// <summary>Returns the string representation of the underlying <see cref = "System.Double"/>.</summary>
-        public override global::System.String ToString() => IsInitialized() ? Value.ToString() : "[UNINITIALIZED]";
+        public override global::System.String ToString() => IsInitialized() ? Value.ToString() ?? "" : "[UNINITIALIZED]";
 #nullable disable
         /// <summary>
         /// Converts a MyVoDouble to or from JSON.
@@ -3093,7 +3093,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
         }
 
         /// <summary>Returns the string representation of the underlying <see cref = "System.String"/>.</summary>
-        public override global::System.String ToString() => IsInitialized() ? Value.ToString() : "[UNINITIALIZED]";
+        public override global::System.String ToString() => IsInitialized() ? Value.ToString() ?? "" : "[UNINITIALIZED]";
 #nullable disable
         /// <summary>
         /// Converts a MyVoString to or from JSON.
@@ -3510,7 +3510,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
         }
 
         /// <summary>Returns the string representation of the underlying <see cref = "System.Boolean"/>.</summary>
-        public override global::System.String ToString() => IsInitialized() ? Value.ToString() : "[UNINITIALIZED]";
+        public override global::System.String ToString() => IsInitialized() ? Value.ToString() ?? "" : "[UNINITIALIZED]";
 #nullable disable
         /// <summary>
         /// Converts a MyVoBool to or from JSON.

@@ -4,6 +4,27 @@ namespace ConsumerTests.ToStringTests;
 
 public class BasicFunctionality
 {
+    [Fact]
+    public void Defaults_to_empty_string_if_primitive_returns_null()
+    {
+        VoWrappingNaughtyPrimitive v = VoWrappingNaughtyPrimitive.From(new NaughtyPrimitive());
+        v.ToString().Should().Be(string.Empty);
+    }
+
+    [Fact]
+    public void Does_not_use_ToString_from_record()
+    {
+        MyRecordVo record = MyRecordVo.From(123);
+        record.ToString().Should().Be("123");
+    }
+
+    [Fact]
+    public void Generates_correct_nullability_for_when_vo_record_derives_from_a_record()
+    {
+        MyDerivedRecordVo record = MyDerivedRecordVo.From(123);
+        record.ToString().Should().Be("123");
+    }
+    
     [SkippableIfBuiltWithNoValidationFlagFact]
     public void ToString_does_not_throw_for_something_uninitialized()
     {
@@ -37,3 +58,21 @@ public class BasicFunctionality
         Name.From("wilma").ToString().Should().Be("wilma");
     }
 }
+
+[ValueObject<NaughtyPrimitive>]
+public partial class VoWrappingNaughtyPrimitive
+{
+}
+
+public class NaughtyPrimitive
+{
+    public override string? ToString() => null;
+}
+
+[ValueObject]
+public partial record MyRecordVo;
+
+public record BaseRecord;
+
+[ValueObject]
+public partial record MyDerivedRecordVo : BaseRecord;

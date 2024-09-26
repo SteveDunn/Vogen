@@ -245,7 +245,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
         }
 
         /// <summary>Returns the string representation of the underlying <see cref = "@double.@decimal"/>.</summary>
-        public override global::System.String ToString() => IsInitialized() ? Value.ToString() : "[UNINITIALIZED]";
+        public override global::System.String ToString() => IsInitialized() ? Value.ToString() ?? "" : "[UNINITIALIZED]";
 #nullable disable
         /// <summary>
         /// Converts a classFromEscapedNamespaceWithReservedUnderlyingType to or from JSON.
@@ -888,7 +888,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
         }
 
         /// <summary>Returns the string representation of the underlying <see cref = "System.Int32"/>.</summary>
-        public override global::System.String ToString() => IsInitialized() ? Value.ToString() : "[UNINITIALIZED]";
+        public override global::System.String ToString() => IsInitialized() ? Value.ToString() ?? "" : "[UNINITIALIZED]";
 #nullable disable
         /// <summary>
         /// Converts a classFromEscapedNamespace to or from JSON.
@@ -1549,7 +1549,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
         }
 
         /// <summary>Returns the string representation of the underlying <see cref = "System.Int32"/>.</summary>
-        public override global::System.String ToString() => IsInitialized() ? Value.ToString() : "[UNINITIALIZED]";
+        public override global::System.String ToString() => IsInitialized() ? Value.ToString() ?? "" : "[UNINITIALIZED]";
 #nullable disable
         /// <summary>
         /// Converts a @class to or from JSON.
@@ -2210,7 +2210,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
         }
 
         /// <summary>Returns the string representation of the underlying <see cref = "System.Int32"/>.</summary>
-        public override global::System.String ToString() => IsInitialized() ? Value.ToString() : "[UNINITIALIZED]";
+        public override global::System.String ToString() => IsInitialized() ? Value.ToString() ?? "" : "[UNINITIALIZED]";
 #nullable disable
         /// <summary>
         /// Converts a @event to or from JSON.
@@ -2552,7 +2552,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
         }
 
         /// <summary>Returns the string representation of the underlying <see cref = "@record.@struct.@float.@decimal"/>.</summary>
-        public override global::System.String ToString() => IsInitialized() ? Value.ToString() : "[UNINITIALIZED]";
+        public override global::System.String ToString() => IsInitialized() ? Value.ToString() ?? "" : "[UNINITIALIZED]";
 #nullable disable
         /// <summary>
         /// Converts a @event2 to or from JSON.

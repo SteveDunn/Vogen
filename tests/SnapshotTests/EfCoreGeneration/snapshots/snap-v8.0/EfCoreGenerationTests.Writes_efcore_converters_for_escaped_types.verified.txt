@@ -1497,7 +1497,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
         }
 
         /// <summary>Returns the string representation of the underlying <see cref = "System.Byte"/>.</summary>
-        public readonly override global::System.String ToString() => IsInitialized() ? Value.ToString() : "[UNINITIALIZED]";
+        public readonly override global::System.String ToString() => IsInitialized() ? Value.ToString() ?? "" : "[UNINITIALIZED]";
         [global::System.Runtime.CompilerServices.MethodImpl(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
         private readonly void EnsureInitialized()
         {
@@ -1912,7 +1912,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
 
         // record enumerates fields - we just want our Value and to throw if it's not initialized.
         /// <summary>Returns the string representation of the underlying <see cref = "System.String"/>.</summary>
-        public readonly override global::System.String ToString() => IsInitialized() ? Value.ToString() : "[UNINITIALIZED]";
+        public readonly override global::System.String ToString() => IsInitialized() ? Value.ToString() ?? "" : "[UNINITIALIZED]";
 #nullable disable
         /// <summary>
         /// Converts a @string to or from JSON.
@@ -2531,7 +2531,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
         }
 
         /// <summary>Returns the string representation of the underlying <see cref = "System.Int32"/>.</summary>
-        public readonly override global::System.String ToString() => IsInitialized() ? Value.ToString() : "[UNINITIALIZED]";
+        public readonly override global::System.String ToString() => IsInitialized() ? Value.ToString() ?? "" : "[UNINITIALIZED]";
         [global::System.Runtime.CompilerServices.MethodImpl(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
         private readonly void EnsureInitialized()
         {
@@ -2971,7 +2971,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
         }
 
         /// <summary>Returns the string representation of the underlying <see cref = "System.String"/>.</summary>
-        public override global::System.String ToString() => IsInitialized() ? Value.ToString() : "[UNINITIALIZED]";
+        public override global::System.String ToString() => IsInitialized() ? Value.ToString() ?? "" : "[UNINITIALIZED]";
 #nullable disable
         /// <summary>
         /// Converts a MyVo2 to or from JSON.
@@ -3336,7 +3336,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
         }
 
         /// <summary>Returns the string representation of the underlying <see cref = "System.String"/>.</summary>
-        public readonly override global::System.String ToString() => IsInitialized() ? Value.ToString() : "[UNINITIALIZED]";
+        public readonly override global::System.String ToString() => IsInitialized() ? Value.ToString() ?? "" : "[UNINITIALIZED]";
         [global::System.Runtime.CompilerServices.MethodImpl(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
         private readonly void EnsureInitialized()
         {
@@ -3968,7 +3968,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
         }
 
         /// <summary>Returns the string representation of the underlying <see cref = "System.Int32"/>.</summary>
-        public readonly override global::System.String ToString() => IsInitialized() ? Value.ToString() : "[UNINITIALIZED]";
+        public readonly override global::System.String ToString() => IsInitialized() ? Value.ToString() ?? "" : "[UNINITIALIZED]";
         [global::System.Runtime.CompilerServices.MethodImpl(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
         private readonly void EnsureInitialized()
         {
@@ -4624,7 +4624,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
 
         // record enumerates fields - we just want our Value and to throw if it's not initialized.
         /// <summary>Returns the string representation of the underlying <see cref = "System.Int32"/>.</summary>
-        public readonly override global::System.String ToString() => IsInitialized() ? Value.ToString() : "[UNINITIALIZED]";
+        public readonly override global::System.String ToString() => IsInitialized() ? Value.ToString() ?? "" : "[UNINITIALIZED]";
 #nullable disable
         /// <summary>
         /// Converts a MyVo5 to or from JSON.
@@ -5289,7 +5289,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
 
         // record enumerates fields - we just want our Value and to throw if it's not initialized.
         /// <summary>Returns the string representation of the underlying <see cref = "System.Int32"/>.</summary>
-        public override global::System.String ToString() => IsInitialized() ? Value.ToString() : "[UNINITIALIZED]";
+        public override global::System.String ToString() => IsInitialized() ? Value.ToString() ?? "" : "[UNINITIALIZED]";
 #nullable disable
         /// <summary>
         /// Converts a MyVo6 to or from JSON.
@@ -5928,7 +5928,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
 
         // record enumerates fields - we just want our Value and to throw if it's not initialized.
         /// <summary>Returns the string representation of the underlying <see cref = "System.Int32"/>.</summary>
-        public readonly override global::System.String ToString() => IsInitialized() ? Value.ToString() : "[UNINITIALIZED]";
+        public readonly override global::System.String ToString() => IsInitialized() ? Value.ToString() ?? "" : "[UNINITIALIZED]";
 #nullable disable
         /// <summary>
         /// Converts a @int to or from JSON.
@@ -6571,7 +6571,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
 
         // record enumerates fields - we just want our Value and to throw if it's not initialized.
         /// <summary>Returns the string representation of the underlying <see cref = "System.Int32"/>.</summary>
-        public readonly override global::System.String ToString() => IsInitialized() ? Value.ToString() : "[UNINITIALIZED]";
+        public readonly override global::System.String ToString() => IsInitialized() ? Value.ToString() ?? "" : "[UNINITIALIZED]";
 #nullable disable
         /// <summary>
         /// Converts a @byte to or from JSON.
@@ -7236,7 +7236,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
 
         // record enumerates fields - we just want our Value and to throw if it's not initialized.
         /// <summary>Returns the string representation of the underlying <see cref = "System.Int32"/>.</summary>
-        public override global::System.String ToString() => IsInitialized() ? Value.ToString() : "[UNINITIALIZED]";
+        public override global::System.String ToString() => IsInitialized() ? Value.ToString() ?? "" : "[UNINITIALIZED]";
 #nullable disable
         /// <summary>
         /// Converts a MyInt to or from JSON.
