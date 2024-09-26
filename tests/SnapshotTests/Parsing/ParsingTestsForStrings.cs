@@ -64,7 +64,7 @@ public class ParsingTestsForStrings
             new SnapshotRunner<ValueObjectGenerator>()
                 .WithSource(source)
                 .IgnoreInitialCompilationErrors()
-                .RunOn(TargetFramework.Net7_0, TargetFramework.Net8_0);
+                .RunOnAllFrameworks();
     }
 
 
@@ -124,7 +124,7 @@ public class ParsingTestsForStrings
         static Task RunTest(string source) =>
             new SnapshotRunner<ValueObjectGenerator>()
                 .WithSource(source)
-                .RunOn(TargetFramework.Net7_0, TargetFramework.Net8_0);
+                .RunOnAllFrameworks();
         
     }
 

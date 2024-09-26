@@ -26,6 +26,6 @@ public class Bug597_STJ_being_emitted_even_with_no_conversions_specified
                 .WithSource(source)
                 .ExcludeSystemTextJsonNugetPackage()
                 .IgnoreInitialCompilationErrors()
-                .RunOn(TargetFramework.Net4_6_1);
+                .RunOn(TargetFramework.Net4_8);
     }
 }

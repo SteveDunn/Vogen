@@ -24,7 +24,7 @@ public partial struct CustomerId
         new SnapshotRunner<ValueObjectGenerator>()
             .WithSource(source)
             .IgnoreInitialCompilationErrors()
-            .RunOn(TargetFramework.Net7_0);
+            .RunOn(TargetFramework.Latest);
 
     [SkippableFact]
     public Task No_namespace() =>
