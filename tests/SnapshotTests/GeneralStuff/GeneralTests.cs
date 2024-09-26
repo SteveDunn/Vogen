@@ -459,7 +459,7 @@ public readonly partial record struct MyVo
         await new SnapshotRunner<ValueObjectGenerator>()
             .WithSource(source)
             .IgnoreInitialCompilationErrors()
-            .RunOn(TargetFramework.Net7_0);
+            .RunOnAllFrameworks();
     }
 
     [Fact]

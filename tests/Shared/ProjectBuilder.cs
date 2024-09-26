@@ -126,25 +126,6 @@ public sealed partial class ProjectBuilder
 
         switch (_targetFramework)
         {
-            case TargetFramework.NetCoreApp3_1:
-                AddNuGetReference("Microsoft.NETCore.App.Ref", "3.1.0", "ref/netcoreapp3.1/");
-                AddNuGetReference("linq2db", "3.7.0", "lib/netcoreapp3.1/");
-                AddNuGetReference("Microsoft.EntityFrameworkCore", "5.0.17", "lib/netstandard2.1/");
-                AddNuGetReference("Dapper", "1.60.6", "lib/netstandard2.0/");
-                AddNuGetReference("ServiceStack.Text", "5.14.0", "lib/netstandard2.0");
-                break;
-
-            case TargetFramework.Net4_6_1:
-                AddNuGetReference("Microsoft.NETFramework.ReferenceAssemblies.net461", "1.0.0", "build/.NETFramework/v4.6.1/");
-                AddNuGetReference("NETStandard.Library", "2.0.3", "build/netstandard2.0/ref/");
-                AddNuGetReference("linq2db", "3.0.0", "lib/net46/");
-                AddNuGetReference("Microsoft.EntityFrameworkCore", "3.1.31", "lib/netstandard2.0/");
-                AddNuGetReference("Dapper", "2.0.123", "lib/net461/");
-                AddStjIfNeeded("8.0.0", "lib/net462/");
-                AddNuGetReference("System.Memory", "4.5.5", "lib/net461/");
-                AddNuGetReference("ServiceStack.Text", "4.0.62", "lib/net40");
-                break;
-
             case TargetFramework.Net4_8:
                 AddNuGetReference("Microsoft.NETFramework.ReferenceAssemblies.net48", "1.0.0", "build/.NETFramework/v4.8/");
                 AddNuGetReference("linq2db", "3.7.0", "lib/netstandard2.1/");
@@ -155,26 +136,10 @@ public sealed partial class ProjectBuilder
                 AddNuGetReference("ServiceStack.Text", "6.11.0", "lib/netstandard2.0");
                 break;
 
-            case TargetFramework.Net5_0:
-                AddNuGetReference("Microsoft.NETCore.App.Ref", "5.0.0", "ref/net5.0/");
-                AddNuGetReference("linq2db", "3.7.0", "lib/netstandard2.1/");
-                AddNuGetReference("Microsoft.EntityFrameworkCore", "5.0.17", "lib/netstandard2.1/");
-                AddNuGetReference("Dapper", "2.0.123", "lib/net5.0/");
-                AddNuGetReference("ServiceStack.Text", "5.5.0", "lib/netstandard2.0");
-                break;
-
             case TargetFramework.Net6_0:
                 AddNuGetReference("Microsoft.NETCore.App.Ref", "6.0.0", "ref/net6.0/");
                 AddNuGetReference("linq2db", "3.7.0", "lib/netstandard2.1/");
                 AddNuGetReference("Microsoft.EntityFrameworkCore", "6.0.0", "lib/net6.0/");
-                AddNuGetReference("Dapper", "2.0.123", "lib/net5.0/");
-                AddNuGetReference("ServiceStack.Text", "6.11.0", "lib/net6.0");
-                break;
-
-            case TargetFramework.Net7_0:
-                AddNuGetReference("Microsoft.NETCore.App.Ref", "7.0.0", "ref/net7.0/");
-                AddNuGetReference("linq2db", "4.3.0", "lib/net6.0/");
-                AddNuGetReference("Microsoft.EntityFrameworkCore", "7.0.0", "lib/net6.0/");
                 AddNuGetReference("Dapper", "2.0.123", "lib/net5.0/");
                 AddNuGetReference("ServiceStack.Text", "6.11.0", "lib/net6.0");
                 break;
@@ -199,7 +164,7 @@ public sealed partial class ProjectBuilder
 
         AddNuGetReference("System.Collections.Immutable", "1.5.0", "lib/netstandard2.0/");
 
-        if (_targetFramework is not TargetFramework.Net7_0 and not TargetFramework.Net8_0)
+        if (_targetFramework is not TargetFramework.Net8_0)
         {
             AddNuGetReference("System.Numerics.Vectors", "4.5.0", "ref/netstandard2.0/");
         }
