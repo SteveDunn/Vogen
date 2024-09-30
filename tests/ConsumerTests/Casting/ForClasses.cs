@@ -1,23 +1,26 @@
 ﻿using FluentAssertions.Execution;
 
-namespace ConsumerTests.CastOperators;
+namespace ConsumerTests.CastOperators.Classes;
 
 public class ForClasses
 {
     [Fact]
-    public void Defaulting()
+    public void Explicit_casting()
     {
         using var _ = new AssertionScope();
         
-        var vo = Class_default.From("abc");
+        Vo originalVo = Vo.From("abc");
 
-        string prim = (string) vo;
+        Vo voCastFromString = (Vo) "abc";
+        string stringCastFromVo = (string)originalVo;
 
-        prim.Should().Be(vo.Value);
+        voCastFromString.Should().Be(originalVo);
+        voCastFromString.Value.Should().Be(stringCastFromVo);
 
-        var vo2 = (Class_default) prim;
+        stringCastFromVo.Should().Be(originalVo.Value);
 
-        vo2.Value.Should().Be(prim);
+        var voRecastFromCastedString = (Vo) stringCastFromVo;
+        voRecastFromCastedString.Value.Should().Be(stringCastFromVo);
     }
 
     [Fact]
@@ -25,7 +28,7 @@ public class ForClasses
     {
         using var _ = new AssertionScope();
         
-        var vo = Class_implicit_to_primitive_nothing_from_primitive.From("abc");
+        var vo = Implicit_to_primitive_nothing_from_primitive.From("abc");
 
         string prim = vo;
 
@@ -33,17 +36,17 @@ public class ForClasses
     }
 
     [Fact]
-    public void Implicit_both_ways()
+    public void implicit_casting_both_ways()
     {
         using var _ = new AssertionScope();
         
-        var vo = Class_implicit_both_ways.From("abc");
+        var vo = Implicit_both_ways.From("abc");
 
         string prim = vo;
 
         prim.Should().Be(vo.Value);
         
-        Class_implicit_both_ways vo2 = prim;
+        Implicit_both_ways vo2 = prim;
         vo2.Should().Be(vo);
     }
 
@@ -52,14 +55,30 @@ public class ForClasses
     {
         using var _ = new AssertionScope();
         
-        var vo = Class_implicit_both_ways_with_normalization.From("abc");
+        var vo = Classes.Implicit_both_ways_with_normalization.From("abc");
 
         string prim = vo;
 
         prim.Should().Be(vo.Value);
         
-        Class_implicit_both_ways_with_normalization vo2 = prim;
+        Implicit_both_ways_with_normalization vo2 = prim;
         vo2.Should().Be(vo);
         vo2.Value.Should().Be("ABC");
     }
+}
+
+
+[ValueObject<string>]
+public partial class Vo;
+
+[ValueObject<string>(toPrimitiveCasting: CastOperator.Implicit, fromPrimitiveCasting: CastOperator.None)]
+public partial class Implicit_to_primitive_nothing_from_primitive;
+
+[ValueObject<string>(toPrimitiveCasting: CastOperator.Implicit, fromPrimitiveCasting: CastOperator.Implicit)]
+public partial class Implicit_both_ways;
+
+[ValueObject<string>(toPrimitiveCasting: CastOperator.Implicit, fromPrimitiveCasting: CastOperator.Implicit)]
+public partial class Implicit_both_ways_with_normalization
+{
+    private static string NormalizeInput(string input) => input.ToUpper();
 }

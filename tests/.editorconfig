@@ -15,3 +15,8 @@ indent_style = unset
 insert_final_newline = false
 tab_width = unset
 trim_trailing_whitespace = false
+
+dotnet_style_namespace_match_folder = false
+dotnet_naming_rule.types_should_be_pascal_case.severity = none
+
+resharper_inconsistent_naming_highlighting = none;
