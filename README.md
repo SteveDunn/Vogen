@@ -620,6 +620,11 @@ BoxId type now will be serialized as a string in all messages/grpc calls. If one
 applications from C# code, proto files will include Surrogate type as the type. 
 _thank you to [@DomasM](https://github.com/DomasM) for this information_.
 
+## Thanks
+
+Thanks to all the people who have contributed!
+
+[![contributors](https://contributors-img.web.app/image?repo=stevedunn/vogen)](https://github.com/stevedunn/vogen/graphs/contributors)
 
 ## Attribution
 
