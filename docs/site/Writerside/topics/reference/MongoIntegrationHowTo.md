@@ -20,7 +20,7 @@ This static class has a static method named `TryRegister`, which registers the s
 BsonSerializer.TryRegisterSerializer(new CustomerIdBsonSerializer());
 BsonSerializer.TryRegisterSerializer(new EnergyUsedBsonSerializer());
 ```
-A [MongoDB example is included in the source](https://github.com/SteveDunn/Vogen/tree/main/samples/Vogen.Examples/SerializationAndConversion/MongoScenario).
+A [MongoDB example is included in the source](https://github.com/SteveDunn/Vogen/tree/main/samples/Vogen.Examples/SerializationAndConversion/Mongo).
 
 Below is a walkthrough of that sample.
 
