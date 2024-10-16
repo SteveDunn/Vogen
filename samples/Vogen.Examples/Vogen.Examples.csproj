@@ -23,7 +23,7 @@
 		<PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="8.0.8" />
 
 		<PackageReference Include="MongoDB.Driver" Version="2.28.0" />
-		<PackageReference Include="System.Text.Json" Version="8.0.4" />
+		<PackageReference Include="System.Text.Json" Version="8.0.5" />
 		<PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
 		<PackageReference Include="Dapper" Version="2.0.123" />
 		<PackageReference Include="linq2db" Version="3.7.0" />
