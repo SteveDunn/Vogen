@@ -124,18 +124,32 @@ internal class WriteStaticAbstracts
             {
                 return string.Empty;
             }
-
-            return """
+            
+            string s = """
                    static abstract bool operator ==(TSelf left, TSelf right);
                    static abstract bool operator !=(TSelf left, TSelf right);
 
-                   static abstract bool operator ==(TSelf left, TPrimitive right);
-                   static abstract bool operator !=(TSelf left, TPrimitive right);
-
                    static abstract bool operator ==(TPrimitive left, TSelf right);
                    static abstract bool operator !=(TPrimitive left, TSelf right);
-
                    """;
+
+            var primitiveOperatorGeneration = globalConfig?.PrimitiveEqualityGeneration ??
+                                              VogenConfiguration.DefaultInstance.PrimitiveEqualityGeneration;
+
+            if (primitiveOperatorGeneration.HasFlag(PrimitiveEqualityGeneration.GenerateOperators))
+            {
+                s = s + """
+
+                        static abstract bool operator ==(TSelf left, TPrimitive right);
+                        static abstract bool operator !=(TSelf left, TPrimitive right);
+
+                        static abstract bool operator ==(TPrimitive left, TSelf right);
+                        static abstract bool operator !=(TPrimitive left, TSelf right);
+                        
+                        """;
+            }
+
+            return s;
         }
     }
 

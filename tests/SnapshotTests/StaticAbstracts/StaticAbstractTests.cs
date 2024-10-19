@@ -8,7 +8,7 @@ namespace SnapshotTests.StaticAbstracts;
 
 public class StaticAbstractTests
 {
-        public class Generates_nothing
+    public class Generates_nothing
     {
         [Fact]
         public async Task when_run_on_less_than_csharp_11_even_when_specifying_it_should_generate()
@@ -90,7 +90,7 @@ public class StaticAbstractTests
                 .RunOn(TargetFramework.Net8_0);
         }
     }
-    
+
     [Fact]
     public async Task when_using_implicit_operators()
     {
@@ -104,6 +104,27 @@ public class StaticAbstractTests
                      staticAbstractsGeneration: StaticAbstractsGeneration.FactoryMethods | StaticAbstractsGeneration.EqualsOperators | StaticAbstractsGeneration.ImplicitCastFromPrimitive | StaticAbstractsGeneration.ImplicitCastToPrimitive)]
 
                      [ValueObject<Guid>(toPrimitiveCasting: CastOperator.Implicit, fromPrimitiveCasting: CastOperator.Implicit)]
+                     public partial class MyVo { }
+                     """;
+
+        await new SnapshotRunner<ValueObjectGenerator>()
+            .WithSource(source)
+            .RunOn(TargetFramework.Net8_0);
+    }
+
+    [Fact]
+    public async Task Omits_equality_operators_to_primitives_if_specified_in_global_config()
+    {
+        var source = """
+                     using System;
+                     using Vogen;
+
+                     [assembly: VogenDefaults(
+                        primitiveEqualityGeneration: PrimitiveEqualityGeneration.Omit, 
+                        conversions: Conversions.None, 
+                        staticAbstractsGeneration: StaticAbstractsGeneration.FactoryMethods | StaticAbstractsGeneration.EqualsOperators | StaticAbstractsGeneration.ImplicitCastFromPrimitive | StaticAbstractsGeneration.ImplicitCastToPrimitive)]
+
+                     [ValueObject<Guid>]
                      public partial class MyVo { }
                      """;
 
@@ -128,7 +149,7 @@ public class StaticAbstractTests
                        systemTextJsonConverterFactoryGeneration: SystemTextJsonConverterFactoryGeneration.Omit, 
                        conversions: Conversions.None, 
                        staticAbstractsGeneration: StaticAbstractsGeneration.MostCommon)]
-                       
+
                        [ValueObject<Guid>]
                        public partial {{type}} MyVo { }
 
@@ -158,7 +179,7 @@ public class StaticAbstractTests
                        systemTextJsonConverterFactoryGeneration: SystemTextJsonConverterFactoryGeneration.Omit, 
                        conversions: Conversions.None, 
                        staticAbstractsGeneration: {{attrs}})]
-                       
+
                        [ValueObject<Guid>]
                        public partial struct MyVo { }
 
