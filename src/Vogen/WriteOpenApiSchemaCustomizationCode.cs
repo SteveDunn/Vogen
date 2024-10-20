@@ -93,7 +93,7 @@ internal class WriteOpenApiSchemaCustomizationCode
               }
               """;
 
-        context.AddSource("SwashbuckleSchemaFilter_g.cs", source);
+        context.AddSource("SwashbuckleSchemaFilter_g.cs", Util.FormatSource(source));
     }
 
     private static void WriteExtensionMethodMapping(SourceProductionContext context,

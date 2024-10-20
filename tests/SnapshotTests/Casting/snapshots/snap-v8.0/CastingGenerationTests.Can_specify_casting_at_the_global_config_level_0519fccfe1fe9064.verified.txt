@@ -7,38 +7,33 @@
 //     the code is regenerated.
 // </auto-generated>
 // ------------------------------------------------------------------------------
-
 // Suppress warnings about [Obsolete] member usage in generated code.
 #pragma warning disable CS0618
-
 // Suppress warnings for 'Override methods on comparable types'.
 #pragma warning disable CA1036
-
 // Suppress Error MA0097 : A class that implements IComparable<T> or IComparable should override comparison operators
 #pragma warning disable MA0097
-
 // Suppress warning for 'The annotation for nullable reference types should only be used in code within a '#nullable' annotations context. Auto-generated code requires an explicit '#nullable' directive in source.'
 // The generator copies signatures from the BCL, e.g. for `TryParse`, and some of those have nullable annotations.
 #pragma warning disable CS8669, CS8632
-
 // Suppress warnings about CS1591: Missing XML comment for publicly visible type or member 'Type_or_Member'
 #pragma warning disable CS1591
-
 namespace generator;
-
 public class VogenTypesFactory : global::System.Text.Json.Serialization.JsonConverterFactory
 {
-    public VogenTypesFactory() { }
-    
-    private static readonly global::System.Collections.Generic.Dictionary<global::System.Type, global::System.Lazy<global::System.Text.Json.Serialization.JsonConverter>> _lookup = 
-        new global::System.Collections.Generic.Dictionary<global::System.Type, global::System.Lazy<global::System.Text.Json.Serialization.JsonConverter>> {
-                { typeof(global::Whatever._casting_public_partial_structImplicitNoneint), new global::System.Lazy<global::System.Text.Json.Serialization.JsonConverter>(() => new global::Whatever._casting_public_partial_structImplicitNoneint._casting_public_partial_structImplicitNoneintSystemTextJsonConverter()) }
-        };
-    
+    public VogenTypesFactory()
+    {
+    }
+
+    private static readonly global::System.Collections.Generic.Dictionary<global::System.Type, global::System.Lazy<global::System.Text.Json.Serialization.JsonConverter>> _lookup = new global::System.Collections.Generic.Dictionary<global::System.Type, global::System.Lazy<global::System.Text.Json.Serialization.JsonConverter>>
+    {
+        {
+            typeof(global::Whatever._casting_public_partial_structImplicitNoneint),
+            new global::System.Lazy<global::System.Text.Json.Serialization.JsonConverter>(() => new global::Whatever._casting_public_partial_structImplicitNoneint._casting_public_partial_structImplicitNoneintSystemTextJsonConverter())
+        }
+    };
     public override bool CanConvert(global::System.Type typeToConvert) => _lookup.ContainsKey(typeToConvert);
-    
-    public override global::System.Text.Json.Serialization.JsonConverter CreateConverter(global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options) =>
-        _lookup[typeToConvert].Value;
+    public override global::System.Text.Json.Serialization.JsonConverter CreateConverter(global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options) => _lookup[typeToConvert].Value;
 }
   
 // ------------------------------------------------------------------------------

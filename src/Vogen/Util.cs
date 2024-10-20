@@ -29,6 +29,15 @@ public static class Util
 
     public static string SanitizeToALegalFilename(string input) => input.Replace('@', '_');
 
+    public static SourceText FormatSource(string source)
+    {
+        SyntaxTree syntaxTree = CSharpSyntaxTree.ParseText(source);
+        SyntaxNode root = syntaxTree.GetRoot();
+        SyntaxNode formatted = root.NormalizeWhitespace();
+        
+        return SourceText.From(formatted.ToFullString(), Encoding.UTF8);
+    }
+
     public static void TryWriteUsingUniqueFilename(string filename, SourceProductionContext context, SourceText sourceText)
     {
         int count = 0;

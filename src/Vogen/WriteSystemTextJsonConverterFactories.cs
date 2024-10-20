@@ -55,7 +55,7 @@ internal class WriteSystemTextJsonConverterFactories
             }
             """;
 
-        context.AddSource("SystemTextJsonConverterFactory_g.cs", source);
+        context.AddSource("SystemTextJsonConverterFactory_g.cs", Util.FormatSource(source));
     }
 
     private static string BuildEntry(VoWorkItem eachStj)
