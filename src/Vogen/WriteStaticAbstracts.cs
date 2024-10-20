@@ -43,7 +43,7 @@ internal class WriteStaticAbstracts
                       """;
         }
         
-        context.AddSource("VogenInterfaces_g.cs", source);
+        context.AddSource("VogenInterfaces_g.cs", Util.FormatSource(source));
 
         string GenerateSource()
         {
@@ -128,9 +128,6 @@ internal class WriteStaticAbstracts
             string s = """
                    static abstract bool operator ==(TSelf left, TSelf right);
                    static abstract bool operator !=(TSelf left, TSelf right);
-
-                   static abstract bool operator ==(TPrimitive left, TSelf right);
-                   static abstract bool operator !=(TPrimitive left, TSelf right);
                    """;
 
             var primitiveOperatorGeneration = globalConfig?.PrimitiveEqualityGeneration ??
