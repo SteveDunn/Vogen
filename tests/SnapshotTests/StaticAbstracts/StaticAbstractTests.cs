@@ -133,6 +133,27 @@ public class StaticAbstractTests
             .RunOn(TargetFramework.Net8_0);
     }
 
+    [Fact]
+    public async Task Emits_equality_operators_to_primitives_if_specified_in_global_config()
+    {
+        var source = """
+                     using System;
+                     using Vogen;
+
+                     [assembly: VogenDefaults(
+                        primitiveEqualityGeneration: PrimitiveEqualityGeneration.GenerateOperatorsAndMethods, 
+                        conversions: Conversions.None, 
+                        staticAbstractsGeneration: StaticAbstractsGeneration.FactoryMethods | StaticAbstractsGeneration.EqualsOperators | StaticAbstractsGeneration.ImplicitCastFromPrimitive | StaticAbstractsGeneration.ImplicitCastToPrimitive)]
+
+                     [ValueObject<Guid>]
+                     public partial class MyVo { }
+                     """;
+
+        await new SnapshotRunner<ValueObjectGenerator>()
+            .WithSource(source)
+            .RunOn(TargetFramework.Net8_0);
+    }
+
 
     [Theory]
     [InlineData("struct")]
