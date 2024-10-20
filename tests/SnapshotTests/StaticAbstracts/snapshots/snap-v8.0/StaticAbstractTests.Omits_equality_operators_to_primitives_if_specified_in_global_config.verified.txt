@@ -7,42 +7,26 @@
 //     the code is regenerated.
 // </auto-generated>
 // ------------------------------------------------------------------------------
-
 // Suppress warnings about [Obsolete] member usage in generated code.
 #pragma warning disable CS0618
-
 // Suppress warnings for 'Override methods on comparable types'.
 #pragma warning disable CA1036
-
 // Suppress Error MA0097 : A class that implements IComparable<T> or IComparable should override comparison operators
 #pragma warning disable MA0097
-
 // Suppress warning for 'The annotation for nullable reference types should only be used in code within a '#nullable' annotations context. Auto-generated code requires an explicit '#nullable' directive in source.'
 // The generator copies signatures from the BCL, e.g. for `TryParse`, and some of those have nullable annotations.
 #pragma warning disable CS8669, CS8632
-
 // Suppress warnings about CS1591: Missing XML comment for publicly visible type or member 'Type_or_Member'
 #pragma warning disable CS1591
-
 public interface IVogen<TSelf, TPrimitive>
     where TSelf : IVogen<TSelf, TPrimitive>
 {
     static abstract implicit operator TSelf(TPrimitive value);
-static abstract implicit operator TPrimitive(TSelf value);
-
+    static abstract implicit operator TPrimitive(TSelf value);
     static abstract bool operator ==(TSelf left, TSelf right);
-static abstract bool operator !=(TSelf left, TSelf right);
-
-static abstract bool operator ==(TPrimitive left, TSelf right);
-static abstract bool operator !=(TPrimitive left, TSelf right);
-static abstract bool operator ==(TSelf left, TPrimitive right);
-static abstract bool operator !=(TSelf left, TPrimitive right);
-
-
+    static abstract bool operator !=(TSelf left, TSelf right);
     static abstract TSelf From(TPrimitive value);
-static abstract bool TryFrom(TPrimitive value, out TSelf vo);
-
-    
+    static abstract bool TryFrom(TPrimitive value, out TSelf vo);
 }
   
 // ------------------------------------------------------------------------------
@@ -53,38 +37,29 @@ static abstract bool TryFrom(TPrimitive value, out TSelf vo);
 //     the code is regenerated.
 // </auto-generated>
 // ------------------------------------------------------------------------------
-
 // Suppress warnings about [Obsolete] member usage in generated code.
 #pragma warning disable CS0618
-
 // Suppress warnings for 'Override methods on comparable types'.
 #pragma warning disable CA1036
-
 // Suppress Error MA0097 : A class that implements IComparable<T> or IComparable should override comparison operators
 #pragma warning disable MA0097
-
 // Suppress warning for 'The annotation for nullable reference types should only be used in code within a '#nullable' annotations context. Auto-generated code requires an explicit '#nullable' directive in source.'
 // The generator copies signatures from the BCL, e.g. for `TryParse`, and some of those have nullable annotations.
 #pragma warning disable CS8669, CS8632
-
 // Suppress warnings about CS1591: Missing XML comment for publicly visible type or member 'Type_or_Member'
 #pragma warning disable CS1591
-
 namespace generator;
-
 public class VogenTypesFactory : global::System.Text.Json.Serialization.JsonConverterFactory
 {
-    public VogenTypesFactory() { }
-    
-    private static readonly global::System.Collections.Generic.Dictionary<global::System.Type, global::System.Lazy<global::System.Text.Json.Serialization.JsonConverter>> _lookup = 
-        new global::System.Collections.Generic.Dictionary<global::System.Type, global::System.Lazy<global::System.Text.Json.Serialization.JsonConverter>> {
-                
-        };
-    
+    public VogenTypesFactory()
+    {
+    }
+
+    private static readonly global::System.Collections.Generic.Dictionary<global::System.Type, global::System.Lazy<global::System.Text.Json.Serialization.JsonConverter>> _lookup = new global::System.Collections.Generic.Dictionary<global::System.Type, global::System.Lazy<global::System.Text.Json.Serialization.JsonConverter>>
+    {
+    };
     public override bool CanConvert(global::System.Type typeToConvert) => _lookup.ContainsKey(typeToConvert);
-    
-    public override global::System.Text.Json.Serialization.JsonConverter CreateConverter(global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options) =>
-        _lookup[typeToConvert].Value;
+    public override global::System.Text.Json.Serialization.JsonConverter CreateConverter(global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options) => _lookup[typeToConvert].Value;
 }
   
 // ------------------------------------------------------------------------------
@@ -110,7 +85,7 @@ public class VogenTypesFactory : global::System.Text.Json.Serialization.JsonConv
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Vogen", "1.0.0.0")]
 [global::System.Diagnostics.DebuggerTypeProxyAttribute(typeof(MyVoDebugView))]
 [global::System.Diagnostics.DebuggerDisplayAttribute("Underlying type: System.Guid, Value = { _value }")]
-public partial class MyVo : global::System.IEquatable<MyVo>, global::System.IEquatable<System.Guid>, global::System.IComparable<MyVo>, global::System.IComparable, global::System.IParsable<MyVo>, global::System.ISpanParsable<MyVo>
+public partial class MyVo : global::System.IEquatable<MyVo>, global::System.IComparable<MyVo>, global::System.IComparable, global::System.IParsable<MyVo>, global::System.ISpanParsable<MyVo>
 {
 #if DEBUG
 private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
@@ -244,11 +219,6 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
         return comparer.Equals(this, other);
     }
 
-    public global::System.Boolean Equals(System.Guid primitive)
-    {
-        return Value.Equals(primitive);
-    }
-
     public override global::System.Boolean Equals(global::System.Object obj)
     {
         return Equals(obj as MyVo);
@@ -256,10 +226,6 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
 
     public static global::System.Boolean operator ==(MyVo left, MyVo right) => Equals(left, right);
     public static global::System.Boolean operator !=(MyVo left, MyVo right) => !Equals(left, right);
-    public static global::System.Boolean operator ==(MyVo left, System.Guid right) => left.Value.Equals(right);
-    public static global::System.Boolean operator ==(System.Guid left, MyVo right) => right.Value.Equals(left);
-    public static global::System.Boolean operator !=(System.Guid left, MyVo right) => !(left == right);
-    public static global::System.Boolean operator !=(MyVo left, System.Guid right) => !(left == right);
     public static explicit operator MyVo(System.Guid value) => From(value);
     public static explicit operator System.Guid(MyVo value) => value.Value;
     public int CompareTo(MyVo other)
