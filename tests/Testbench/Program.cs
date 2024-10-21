@@ -11,6 +11,7 @@ public static class Program
 {
     public static void Main()
     {
-        EfCoreScenario.Run();
+        // EfCoreScenario.Run();
+        ToStringScenario.Runner.Run();
     }
 }

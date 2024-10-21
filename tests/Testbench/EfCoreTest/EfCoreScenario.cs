@@ -56,8 +56,8 @@ public static class EfCoreScenario
             Console.WriteLine("FILTERING ITEMS...");
             using var ctx = new MyContext();
 
-            int age = 50;
-            var entities = from e in ctx.Entities where e != null && e.Age == age select e;
+            // int age = 50;
+            // var entities = from e in ctx.Entities where e != null && e.Age == age select e;
             //Console.WriteLine(string.Join(Environment.NewLine, entities.Select(e => $"ID: {e.Id.Value}, Name: {e.Name}, Age: {e.TheAge}")));
 
         }
