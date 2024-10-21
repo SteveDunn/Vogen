@@ -147,7 +147,7 @@ public sealed partial class ProjectBuilder
             case TargetFramework.Net8_0:
                 AddNuGetReference("Microsoft.NETCore.App.Ref", "8.0.0", "ref/net8.0/");
                 AddNuGetReference("linq2db", "4.3.0", "lib/net6.0/");
-                AddNuGetReference("Microsoft.EntityFrameworkCore", "8.0.0", "lib/net8.0/");
+                AddNuGetReference("Microsoft.EntityFrameworkCore", "8.0.10", "lib/net8.0/");
                 AddNuGetReference("Dapper", "2.1.28", "lib/net7.0/");
                 AddNuGetReference("ServiceStack.Text", "8.2.2", "lib/net8.0");
                 AddNuGetReference("MongoDB.Bson", "2.27.0", "lib/netstandard2.0");
@@ -155,7 +155,7 @@ public sealed partial class ProjectBuilder
 
             case TargetFramework.AspNetCore8_0:
                 AddNuGetReference("Microsoft.NETCore.App.Ref", "8.0.0", "ref/net8.0/");
-                AddNuGetReference("Microsoft.AspNetCore.App.Ref", "8.0.0", "ref/net8.0/");
+                AddNuGetReference("Microsoft.AspNetCore.App.Ref", "8.0.10", "ref/net8.0/");
                 AddNuGetReference("Swashbuckle.AspNetCore.SwaggerGen", "6.4.0", "lib/net6.0/");
                 AddNuGetReference("Microsoft.OpenApi", "1.4.3.0", "lib/netstandard2.0/");
                 AddNuGetReference("MongoDB.Bson", "2.27.0", "lib/netstandard2.0");
