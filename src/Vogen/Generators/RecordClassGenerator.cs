@@ -128,7 +128,7 @@ public class RecordClassGenerator : IGenerateSourceCode
         {InstanceGeneration.GenerateAnyInstances(tds, item)}
 
         // record enumerates fields - we just want our Value and to throw if it's not initialized.
-        {Util.GenerateToString(item)}
+        {GenerateCodeForToString.GenerateNonReadOnly(item)}
 
         {Util.GenerateAnyConversionBodies(tds, item)}
 

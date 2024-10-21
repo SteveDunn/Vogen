@@ -117,7 +117,7 @@ public class StructGenerator : IGenerateSourceCode
         
         {GenerateHashCodes.GenerateForAStruct(item)}
 
-        {Util.GenerateToStringReadOnly(item)}
+        {GenerateCodeForToString.GenerateReadOnly(item)}
 
         {Util.GenerateEnsureInitializedMethod(item, readOnly: true)}
 
