@@ -14,8 +14,8 @@ internal class DiscoverUserProvidedOverloads
         
         return new UserProvidedOverloads
         {
-            ToStringInfo = HasToStringOverload(vo),
-            ToStringMethods = DiscoverParseMethods(vo, underlyingType),
+            ToStringOverloads = new UserProvidedToStringMethods(
+                MethodDiscovery.GetAnyUserProvidedToStringOverrides(vo).ToList()),
 
             HashCodeInfo = HasGetHashCodeOverload(vo),
 
@@ -44,25 +44,8 @@ internal class DiscoverUserProvidedOverloads
             MethodDiscovery.TryGetUserSuppliedTryParseMethods(wrapperType).ToList());
     }
 
-    private static UserProvidedToString HasToStringOverload(ITypeSymbol typeSymbol)
-    {
-        IMethodSymbol? method = MethodDiscovery.TryGetToStringOverrides(typeSymbol);
-        return method is null
-            ? UserProvidedToString.NotProvided
-            : new UserProvidedToString(
-                WasSupplied: true,
-                IsRecordClass: typeSymbol is { IsRecord: true, IsReferenceType: true },
-                IsSealed: method.IsSealed,
-                method);
-    }
-
     private static UserProvidedGetHashCode HasGetHashCodeOverload(ITypeSymbol typeSymbol) => 
         new(WasProvided: MethodDiscovery.TryGetHashCodeOverload(typeSymbol) is not null);
-}
-
-public record struct UserProvidedToString(bool WasSupplied, bool IsRecordClass, bool IsSealed, IMethodSymbol? Method)
-{
-    public static readonly UserProvidedToString NotProvided = new(false, false, false, null);
 }
 
 public record struct UserProvidedGetHashCode(bool WasProvided);
@@ -122,6 +105,7 @@ public class UserProvidedParseMethods : IEnumerable<IMethodSymbol>
 
     IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
 }
+
 
 /// <summary>
 /// Represents the TryParse methods that the user supplied.

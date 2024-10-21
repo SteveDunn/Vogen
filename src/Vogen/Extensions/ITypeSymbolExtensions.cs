@@ -18,6 +18,8 @@ namespace Analyzer.Utilities.Extensions
 {
     internal static class ITypeSymbolExtensions
     {
+        internal static bool IsRecordClass(this ITypeSymbol? typeSymbol) => typeSymbol is { IsRecord: true, IsReferenceType: true };
+        
 #if CODEANALYSIS_V3_OR_BETTER
         public static bool IsAssignableTo(
             this ITypeSymbol? fromSymbol,

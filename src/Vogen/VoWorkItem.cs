@@ -69,6 +69,8 @@ public class VoWorkItem
     public required INamedTypeSymbol WrapperType { get; init; }
     
     public required ParsingInformation ParsingInformation { get; init; }
+    
+    public required ToStringInformation ToStringInformation { get; init; }
 
     public required LanguageVersion LanguageVersion { get; init; }
     
@@ -97,9 +99,16 @@ public class ParsingInformation
     public required INamedTypeSymbol? IFormatProviderType { get; init; }
 }
 
+public class ToStringInformation
+{
+    public required List<IMethodSymbol> ToStringMethodsOnThePrimitive { get; init; }
+    
+    public required bool UnderlyingIsAString { get; init; }
+}
+
 public class UserProvidedOverloads
 {
-    public UserProvidedToString ToStringInfo { get; init; }
+    public required UserProvidedToStringMethods ToStringOverloads { get; init; }
 
     public UserProvidedGetHashCode HashCodeInfo { get; init; }
     
@@ -110,7 +119,5 @@ public class UserProvidedOverloads
     public required UserProvidedParseMethods ParseMethods { get; init; }
     
     public required UserProvidedTryParseMethods TryParseMethods { get; init; }
-    
-    public UserProvidedParseMethods ToStringMethods { get; set; }
 }
 

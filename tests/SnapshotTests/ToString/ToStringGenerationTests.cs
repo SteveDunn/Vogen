@@ -8,6 +8,66 @@ namespace SnapshotTests.ToString;
 
 public class ToStringGenerationTests
 {
+    [Fact]
+    public Task Hoists_methods_onto_the_struct_wrapper()
+    {
+        var source = $$"""
+                       using System;
+                       using Vogen;
+                       namespace Whatever;
+
+                       [ValueObject<DateOnly>(conversions: Conversions.None)]
+                       public partial struct CreationDate;
+                       """;
+
+        return new SnapshotRunner<ValueObjectGenerator>()
+            .WithSource(source)
+            .RunOnAllFrameworks();
+    }
+
+    [Fact]
+    public Task Hoists_methods_onto_the_struct_wrapper_and_skips_user_supplied_ones()
+    {
+        var source = $$"""
+                       using System;
+                       using Vogen;
+                       namespace Whatever;
+
+                       [ValueObject<DateOnly>(conversions: Conversions.None)]
+                       public partial struct CreationDate
+                       {
+                            public string ToString(string format) => "!!";
+                       }
+                       """;
+
+        return new SnapshotRunner<ValueObjectGenerator>()
+            .WithSource(source)
+            .RunOnAllFrameworks();
+    }
+
+    [Theory]
+    [ClassData(typeof(Types))]
+    public Task Test(string type, string className, ToStringMethod addToStringMethod)
+    {
+        string declaration = $$"""
+                               
+                                 [ValueObject]
+                                 public {{type}} {{className}} { {{WriteToStringMethod(addToStringMethod, type.EndsWith("record class") || type.EndsWith("record"))}} }
+                               """;
+        var source = $$"""
+                       using Vogen;
+                       namespace Whatever
+                       {
+                       {{declaration}}
+                       }
+                       """;
+
+        return new SnapshotRunner<ValueObjectGenerator>()
+            .WithSource(source)
+            .CustomizeSettings(s => s.UseFileName(className))
+            .RunOnAllFrameworks();
+    }
+
     private class Types : IEnumerable<object[]>
     {
         public IEnumerator<object[]> GetEnumerator()
@@ -41,29 +101,6 @@ public class ToStringGenerationTests
             type.Replace(" ", "_") + "_" + toStringMethod;
 
         IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
-    }
-
-    [Theory]
-    [ClassData(typeof(Types))]
-    public Task Test(string type, string className, ToStringMethod addToStringMethod)
-    {
-        string declaration = $$"""
-                               
-                                 [ValueObject]
-                                 public {{type}} {{className}} { {{WriteToStringMethod(addToStringMethod, type.EndsWith("record class") || type.EndsWith("record"))}} }
-                               """;
-        var source = $$"""
-                       using Vogen;
-                       namespace Whatever
-                       {
-                       {{declaration}}
-                       }
-                       """;
-
-        return new SnapshotRunner<ValueObjectGenerator>()
-            .WithSource(source)
-            .CustomizeSettings(s => s.UseFileName(className))
-            .RunOnAllFrameworks();
     }
 
     private static string WriteToStringMethod(ToStringMethod toStringMethod, bool isARecordClass)

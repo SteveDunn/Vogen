@@ -90,7 +90,7 @@ internal static class BuildWorkItems
         UserProvidedOverloads userProvidedOverloads =
             DiscoverUserProvidedOverloads.Discover(voSymbolInformation, underlyingType);
 
-        ThrowIfToStringOverrideOnRecordIsUnsealed(target, context, userProvidedOverloads.ToStringInfo);
+        ThrowIfAnyToStringOverrideOnRecordIsUnsealed(target, context, userProvidedOverloads.ToStringOverloads);
 
         MethodDeclarationSyntax? validateMethod = null;
         MethodDeclarationSyntax? normalizeInputMethod = null;
@@ -139,6 +139,7 @@ internal static class BuildWorkItems
             IsTheWrapperAValueType = isWrapperAValueType,
             
             ParsingInformation = BuildParsingInformation(underlyingType, vogenKnownSymbols),
+            ToStringInformation = BuildToStringInformation(underlyingType, vogenKnownSymbols),
             Config = config,
             
             UserProvidedOverloads = userProvidedOverloads,
@@ -186,22 +187,36 @@ internal static class BuildWorkItems
         return parsingInformation;
     }
 
+    private static ToStringInformation BuildToStringInformation(INamedTypeSymbol underlyingType, VogenKnownSymbols vogenKnownSymbols)
+    {
+        ToStringInformation info = new()
+        {
+            UnderlyingIsAString = underlyingType.SpecialType == SpecialType.System_String,
+            ToStringMethodsOnThePrimitive = MethodDiscovery.FindToStringMethodsOnThePrimitive(underlyingType).ToList(),
+        };
+        
+        return info;
+    }
+
     private static bool DoesPubliclyImplementGenericInterface(INamedTypeSymbol underlyingType, INamedTypeSymbol? openGeneric)
     {
         INamedTypeSymbol? closedGeneric = openGeneric?.Construct(underlyingType);
         return MethodDiscovery.DoesPrimitivePubliclyImplementThisInterface(underlyingType, closedGeneric);
     }
 
-    private static void ThrowIfToStringOverrideOnRecordIsUnsealed(VoTarget target,
+    private static void ThrowIfAnyToStringOverrideOnRecordIsUnsealed(VoTarget target,
         SourceProductionContext context,
-        UserProvidedToString info)
+        UserProvidedToStringMethods infos)
     {
-        if (info is { WasSupplied: true, Method: not null, IsRecordClass: true, IsSealed: false })
+        foreach (IMethodSymbol info in infos)
         {
-            context.ReportDiagnostic(
-                DiagnosticsCatalogue.RecordToStringOverloadShouldBeSealed(
-                    info.Method.Locations[0],
-                    target.VoSymbolInformation.Name));
+            if(target.VoSymbolInformation.IsRecordClass() && !info.IsSealed)
+            {
+                context.ReportDiagnostic(
+                    DiagnosticsCatalogue.RecordToStringOverloadShouldBeSealed(
+                        info.Locations[0],
+                        target.VoSymbolInformation.Name));
+            }
         }
     }
 

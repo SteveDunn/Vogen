@@ -16,57 +16,46 @@ internal static class MethodDiscovery
     /// </summary>
     /// <param name="typeSymbol"></param>
     /// <returns>null if no overloads</returns>
-    public static IEnumerable<IMethodSymbol> TryGetToStringOverrides(ITypeSymbol typeSymbol)
+    public static IEnumerable<IMethodSymbol> GetAnyUserProvidedToStringOverrides(ITypeSymbol typeSymbol)
     {
-        var toStringMethods = typeSymbol.GetMembers("ToString").OfType<IMethodSymbol>();
-
-        foreach (IMethodSymbol eachMethod in toStringMethods)
+        while (true)
         {
-            // we could have "public virtual new string ToString() => "xxx" 
-            if (IsNotOverrideOrVirtual(eachMethod))
+            var toStringMethods = typeSymbol.GetMembers("ToString").OfType<IMethodSymbol>();
+
+            foreach (IMethodSymbol eachMethod in toStringMethods)
             {
-                continue;
+                // can't change access rights
+                if (IsNotPublicOrProtected(eachMethod))
+                {
+                    continue;
+                }
+
+                // records always have an implicitly declared ToString method. In C# 10, the user can differentiate this
+                // by making the method sealed.
+                if (typeSymbol.IsRecord && eachMethod.IsImplicitlyDeclared)
+                {
+                    continue;
+                }
+
+                // In C# 10, the user can differentiate a ToString overload by making the method sealed.
+                // We report back if it's sealed or not so that we can emit an error if it's not sealed.
+                // The error stops another compilation error; if unsealed, the generator generates a duplicate ToString() method.
+                yield return eachMethod;
             }
 
-            // can't change access rights
-            if (IsNotPublicOrProtected(eachMethod))
+            INamedTypeSymbol? baseType = typeSymbol.BaseType;
+
+            if (baseType is null)
             {
-                continue;
+                yield break;
             }
 
-            if (eachMethod.Parameters.Length != 0)
+            if (CannotGoFurtherInHierarchy(baseType))
             {
-                continue;
+                yield break;
             }
 
-            // records always have an implicitly declared ToString method. In C# 10, the user can differentiate this
-            // by making the method sealed.
-            if (typeSymbol.IsRecord && eachMethod.IsImplicitlyDeclared)
-            {
-                continue;
-            }
-
-            // In C# 10, the user can differentiate a ToString overload by making the method sealed.
-            // We report back if it's sealed or not so that we can emit an error if it's not sealed.
-            // The error stops another compilation error; if unsealed, the generator generates a duplicate ToString() method.
-            yield return eachMethod;
-        }
-
-        INamedTypeSymbol? baseType = typeSymbol.BaseType;
-
-        if (baseType is null)
-        {
-            yield break;
-        }
-
-        if (CannotGoFurtherInHierarchy(baseType))
-        {
-            yield break;
-        }
-
-        foreach (var eachOverride in TryGetToStringOverrides(baseType))
-        {
-            yield return eachOverride;
+            typeSymbol = baseType;
         }
     }
 
@@ -79,7 +68,7 @@ internal static class MethodDiscovery
             foreach (IMethodSymbol eachMethod in toStringMethods)
             {
                 // we could have "public virtual new string ToString() => "xxx" 
-                if (IsNotOverrideOrVirtual(eachMethod))
+                if (IsNotVirtual(eachMethod))
                 {
                     continue;
                 }
@@ -318,6 +307,27 @@ internal static class MethodDiscovery
         }
     }
 
+    public static IEnumerable<IMethodSymbol> FindToStringMethodsOnThePrimitive(INamedTypeSymbol primitiveSymbol)
+    {
+        ImmutableArray<ISymbol> members = primitiveSymbol.GetMembers("ToString");
+
+        if (members.Length == 0)
+        {
+            yield break;
+        }
+
+        foreach (ISymbol eachMember in members)
+        {
+            if (eachMember is IMethodSymbol s)
+            {
+                if (s.IsStatic) continue;
+                if (s.ReturnType.SpecialType != SpecialType.System_String) continue;
+
+                yield return s;
+            }
+        }
+    }
+
     /// <summary>
     /// Checks to see whether the primitive implements all of the methods on the interface.
     /// A primitive that doesn't implement them all, or implements them privately in the case of 
@@ -360,7 +370,7 @@ internal static class MethodDiscovery
         return implementation?.DeclaredAccessibility is not Accessibility.Private;
     }
 
-    private static bool IsNotOverrideOrVirtual(IMethodSymbol eachMethod) => eachMethod is { IsOverride: false, IsVirtual: false };
+    private static bool IsNotVirtual(IMethodSymbol eachMethod) => eachMethod is { IsVirtual: false };
 
     private static bool CannotGoFurtherInHierarchy(INamedTypeSymbol baseType) => 
         baseType.SpecialType is SpecialType.System_Object or SpecialType.System_ValueType;

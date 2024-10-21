@@ -4,7 +4,13 @@ using Vogen;
 namespace Testbench.ToStringScenario;
 
 [ValueObject<DateOnly>]
-public partial struct CreationDate;
+public partial struct CreationDate
+{
+    // public override string ToString() => "!";
+    // public string ToString(string format) => "!!";
+    // public string ToString(string format, IFormatProvider p) => "!!!";
+    // public string ToString(IFormatProvider p) => "!!!!";
+}
 
 
 public static class Runner
@@ -20,6 +26,6 @@ public static class Runner
         Console.WriteLine();
         Console.WriteLine("iso parameter:");
         Console.WriteLine(primitive.ToString("o"));
-        Console.WriteLine(wrapper.ToString());
+        Console.WriteLine(wrapper.ToString("o"));
     }
 }

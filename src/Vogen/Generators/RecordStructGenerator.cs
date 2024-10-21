@@ -125,7 +125,7 @@ public class RecordStructGenerator : IGenerateSourceCode
         {Util.GenerateEnsureInitializedMethod(item, readOnly: true)}
 
         // record enumerates fields - we just want our Value and to throw if it's not initialized.
-        {GenerateCodeForToString.GenerateReadOnly(item)}
+        {GenerateCodeForToString.GenerateForAStruct(item)}
 
         {InstanceGeneration.GenerateAnyInstances(tds, item)}
  
