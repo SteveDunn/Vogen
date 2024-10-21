@@ -388,8 +388,6 @@ public class DoNotCompareWithPrimitivesInEfCoreAnalyzerTests
 
             var strippedSource = _placeholderPattern.Replace(userSource, string.Empty).Replace("|}", string.Empty);
 
-            NuGetPackage[] packages = [new("Microsoft.EntityFrameworkCore", "8.0.10", string.Empty)];
-
             (ImmutableArray<Diagnostic> Diagnostics, SyntaxTree[] GeneratedSources) output = await new ProjectBuilder()
                 .WithUserSource(strippedSource)
                 //.WithNugetPackages(packages)
