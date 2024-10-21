@@ -5,5 +5,5 @@
 
 Rule ID | Category | Severity | Notes
 --------|----------|----------|-------
-VOG033 | Usage | Info | UseReadonlyStructInsteadOfStructAnalyzer
+
 

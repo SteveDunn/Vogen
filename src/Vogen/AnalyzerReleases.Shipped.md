@@ -56,3 +56,12 @@ VOG029 | Usage | Error | SpecifyTypeExplicitlyInValueObjectAttributeAnalzyer
 Rule ID | Category | Severity | Notes
 --------|----------|----------|-------
 VOG032 | Usage | Warning | DoNotThrowFromUserCodeAnalyzer
+
+## Release 5.0.4
+
+### New Rules
+
+Rule ID | Category | Severity | Notes
+--------|----------|----------|-------
+VOG033 | Usage | Info | UseReadonlyStructInsteadOfStructAnalyzer
+VOG034 | Usage | Error | DoNotCompareWithPrimitivesInEfCoreAnalyzer
