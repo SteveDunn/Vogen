@@ -41,4 +41,5 @@ public static class RuleIdentifiers
     public const string EfCoreTargetMustBeAVo = "VOG031";
     public const string DoNotThrowFromUserCode = "VOG032";
     public const string UseReadonlyStructInsteadOfStruct = "VOG033";
+    public const string DoNotCompareWithPrimitivesInEfCore = "VOG034";
 }

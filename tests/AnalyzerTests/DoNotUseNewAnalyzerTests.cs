@@ -53,46 +53,52 @@ namespace AnalyzerTests
             var test = @"";
             await VerifyCS.VerifyAnalyzerAsync(test);
         }
+
 #if NET7_0_OR_GREATER
         [Theory(DisplayName = "Bug https://github.com/SteveDunn/Vogen/issues/389")]
         [ClassData(typeof(Types))]
         public async Task Disallow_new_for_creating_value_objects_using_generic_attribute(string type)
         {
-            var source = $@"using Vogen;
-namespace Whatever;
+            var source = $$"""
+                           using Vogen;
+                           namespace Whatever;
 
-[ValueObject<int>()]
-public {type} MyVo {{ }}
+                           [ValueObject<int>()]
+                           public {{type}} MyVo { }
 
-public class Test {{
-    public Test() {{
-        var c = {{|#0:new MyVo()|}};
-        MyVo c2 = {{|#1:new()|}};
-    }}
-}}
-";
+                           public class Test {
+                               public Test() {
+                                   var c = {|#0:new MyVo()|};
+                                   MyVo c2 = {|#1:new()|};
+                               }
+                           }
+
+                           """;
             await Run(
                 source,
                 WithDiagnostics("VOG010", DiagnosticSeverity.Error, "MyVo", 0, 1));
         }
 #endif
+
         [Theory]
         [ClassData(typeof(Types))]
         public async Task Disallow_new_for_creating_value_objects(string type)
         {
-            var source = $@"using Vogen;
-namespace Whatever;
+            var source = $$"""
+                           using Vogen;
+                           namespace Whatever;
 
-[ValueObject(typeof(int))]
-public {type} MyVo {{ }}
+                           [ValueObject(typeof(int))]
+                           public {{type}} MyVo { }
 
-public class Test {{
-    public Test() {{
-        var c = {{|#0:new MyVo()|}};
-        MyVo c2 = {{|#1:new()|}};
-    }}
-}}
-";
+                           public class Test {
+                               public Test() {
+                                   var c = {|#0:new MyVo()|};
+                                   MyVo c2 = {|#1:new()|};
+                               }
+                           }
+
+                           """;
             await Run(
                 source,
                 WithDiagnostics("VOG010", DiagnosticSeverity.Error, "MyVo", 0, 1));
@@ -102,18 +108,20 @@ public class Test {{
         [ClassData(typeof(Types))]
         public async Task Disallow_new_for_method_return_type(string type)
         {
-            var source = $@"
-using Vogen;
-namespace Whatever;
+            var source = $$"""
 
-[ValueObject]
-public {type} MyVo {{ }}
+                           using Vogen;
+                           namespace Whatever;
 
-public class Test {{
-    public MyVo Get() => {{|#0:new MyVo()|}};
-    public MyVo Get2() => {{|#1:new MyVo()|}};
-}}
-";
+                           [ValueObject]
+                           public {{type}} MyVo { }
+
+                           public class Test {
+                               public MyVo Get() => {|#0:new MyVo()|};
+                               public MyVo Get2() => {|#1:new MyVo()|};
+                           }
+
+                           """;
 
             await Run(
                 source,
@@ -241,23 +249,25 @@ public class Test {{
         [ClassData(typeof(Types))]
         public async Task Disallow_new_from_func(string type)
         {
-            var source = $@"
-using System;
-using System.Threading.Tasks;
-using Vogen;
-namespace Whatever;
+            var source = $$"""
 
-[ValueObject]
-public {type} MyVo {{ }}
+                           using System;
+                           using System.Threading.Tasks;
+                           using Vogen;
+                           namespace Whatever;
 
-public class Test {{
-        Func<MyVo> f = () =>  {{|#0:new MyVo()|}};
-        Func<MyVo> f2 = () =>  {{|#1:new()|}};
-        Func<int, int, MyVo, string, MyVo> f3 = (a,b,c,d) =>  {{|#2:new MyVo()|}};
-        Func<int, int, MyVo, string, MyVo> f4 = (a,b,c,d) =>  {{|#3:new()|}};
-        Func<int, int, MyVo, string, Task<MyVo>> f5 = async (a,b,c,d) => await Task.FromResult({{|#4:new MyVo()|}});
-}}
-";
+                           [ValueObject]
+                           public {{type}} MyVo { }
+
+                           public class Test {
+                                   Func<MyVo> f = () =>  {|#0:new MyVo()|};
+                                   Func<MyVo> f2 = () =>  {|#1:new()|};
+                                   Func<int, int, MyVo, string, MyVo> f3 = (a,b,c,d) =>  {|#2:new MyVo()|};
+                                   Func<int, int, MyVo, string, MyVo> f4 = (a,b,c,d) =>  {|#3:new()|};
+                                   Func<int, int, MyVo, string, Task<MyVo>> f5 = async (a,b,c,d) => await Task.FromResult({|#4:new MyVo()|});
+                           }
+
+                           """;
 
             await Run(
                 source,
@@ -267,25 +277,27 @@ public class Test {{
         [Fact(DisplayName = "Bug https://github.com/SteveDunn/Vogen/issues/182")]
         public async Task Analyzer_false_position_for_implicit_new_in_array_initializer()
         {
-            var source = @"using System;
-using System.Threading.Tasks;
-using Vogen;
+            var source = """
+                         using System;
+                         using System.Threading.Tasks;
+                         using Vogen;
 
-public class Test {
-    Vo c = Create(new Object[]
-    {
-        // This call is the issue
-        new()
-    });
+                         public class Test {
+                             Vo c = Create(new Object[]
+                             {
+                                 // This call is the issue
+                                 new()
+                             });
+                         
+                             static Vo Create(Object[] normalObject)
+                             {
+                                 throw null; // we don't actually generate the VO in this test
+                             }
+                         }
 
-    static Vo Create(Object[] normalObject)
-    {
-        throw null; // we don't actually generate the VO in this test
-    }
-}
-
-[ValueObject(typeof(int))]
-public partial class Vo { }";
+                         [ValueObject(typeof(int))]
+                         public partial class Vo { }
+                         """;
 
             await Run(
                 source,

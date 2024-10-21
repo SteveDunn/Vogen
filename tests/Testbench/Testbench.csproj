@@ -15,15 +15,29 @@
     <CheckForOverflowUnderflow>True</CheckForOverflowUnderflow>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="System.Text.Json" Version="8.0.5" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="8.0.10">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="8.0.10">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="System.Text.Json" Version="8.0.5"/>
   </ItemGroup>
   <ItemGroup>
     <!-- Note that this is not a "normal" ProjectReference.
          It needs the additional 'OutputItemType' and 'ReferenceOutputAssmbly' attributes. -->
-    <ProjectReference Configuration="Debug" Include="..\..\src\Vogen.SharedTypes\Vogen.SharedTypes.csproj"  OutputItemType="Analyzer" ReferenceOutputAssembly="true">
+    <ProjectReference Configuration="Debug" Include="..\..\src\Vogen.SharedTypes\Vogen.SharedTypes.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="true">
 
     </ProjectReference>
-    <ProjectReference Include="..\..\src\Vogen\Vogen.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="false" />
+    <ProjectReference Include="..\..\src\Vogen\Vogen.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="false"/>
   </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.10"/>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="8.0.10" />
+  </ItemGroup>
+
 
 </Project>
