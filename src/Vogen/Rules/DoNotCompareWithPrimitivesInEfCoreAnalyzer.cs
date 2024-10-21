@@ -36,6 +36,7 @@ public class DoNotCompareWithPrimitivesInEfCoreAnalyzer : DiagnosticAnalyzer
         context.EnableConcurrentExecution();
 
         context.RegisterSyntaxNodeAction(AnalyzeInvocation, SyntaxKind.InvocationExpression);
+        context.RegisterSyntaxNodeAction(AnalyzeQieryExpression, SyntaxKind.QueryExpression);
     }
 
     private static void AnalyzeInvocation(SyntaxNodeAnalysisContext context)
@@ -68,9 +69,47 @@ public class DoNotCompareWithPrimitivesInEfCoreAnalyzer : DiagnosticAnalyzer
         }
     }
 
+    private static void AnalyzeQieryExpression(SyntaxNodeAnalysisContext context)
+    {
+        var queryExpr = (QueryExpressionSyntax) context.Node;
+        var whereClauses = queryExpr.Body.DescendantNodes().OfType<WhereClauseSyntax>();
+        var fromClause = queryExpr.FromClause;
+
+        if (!IsAMemberOfDbSet(context, fromClause)) return;
+
+        foreach (var eachArgument in whereClauses)
+        {
+            foreach (BinaryExpressionSyntax eachBinaryExpression in eachArgument.DescendantNodes().OfType<BinaryExpressionSyntax>())
+            {
+                ITypeSymbol? left = context.SemanticModel.GetTypeInfo(eachBinaryExpression.Left).Type;
+                ITypeSymbol? right = context.SemanticModel.GetTypeInfo(eachBinaryExpression.Right).Type;
+
+                if (left is null || right is null) continue;
+
+                // Check if left is ValueObject and right is integer
+                if (IsValueObject(left) && right.SpecialType == SpecialType.System_Int32)
+                {
+                    context.ReportDiagnostic(DiagnosticsCatalogue.BuildDiagnostic(_rule, left.Name, eachBinaryExpression.GetLocation()));
+                }
+            }
+        }
+    }
+
     private static bool IsAMemberOfDbSet(SyntaxNodeAnalysisContext context, MemberAccessExpressionSyntax memberAccessExpr)
     {
         var symbolInfo = context.SemanticModel.GetSymbolInfo(memberAccessExpr.Expression);
+        if (symbolInfo.Symbol is not IPropertySymbol ps) return false;
+
+        var dbSetType = context.SemanticModel.Compilation.GetTypeByMetadataName("Microsoft.EntityFrameworkCore.DbSet`1");
+        
+        if (dbSetType is null) return false;
+
+        return InheritsFrom(ps.Type, dbSetType);
+    }
+
+    private static bool IsAMemberOfDbSet(SyntaxNodeAnalysisContext context, FromClauseSyntax fromClauseSyntax)
+    {
+        var symbolInfo = context.SemanticModel.GetSymbolInfo(fromClauseSyntax.Expression);
         if (symbolInfo.Symbol is not IPropertySymbol ps) return false;
 
         var dbSetType = context.SemanticModel.Compilation.GetTypeByMetadataName("Microsoft.EntityFrameworkCore.DbSet`1");

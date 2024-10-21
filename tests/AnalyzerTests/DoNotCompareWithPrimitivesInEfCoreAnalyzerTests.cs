@@ -80,154 +80,333 @@ public class DoNotCompareWithPrimitivesInEfCoreAnalyzerTests
         await VerifyCS.VerifyAnalyzerAsync(test);
     }
 
-
-    [Fact]
-    public async Task Triggers_when_found_in_IQueryableOfDbSet()
+    public class NonQuerySyntax
     {
-        var source = _source + """
-
-                               public static class Test
-                               {
-                                   public static void FilterItems()
-                                   {
-                                       using var ctx = new DbContext();
-                                   
-                                       var entities = ctx.Entities.Where(e => {|#0:e.Age == 50|});
-                                   }
-                               }
-                               """;
-        var sources = await CombineUserAndGeneratedSource(source);
-
-        await Run(
-            sources,
-            WithDiagnostics("VOG034", DiagnosticSeverity.Error, "Age", 0));
-    }
-
-    [Fact]
-    public async Task Triggers_when_found_in_complex_IQueryableOfDbSet()
-    {
-        var source = _source + """
-
-                               public static class Test
-                               {
-                                   public static void FilterItems()
-                                   {
-                                       using var ctx = new DbContext();
-                                   
-                                       var entities = ctx.Entities.Where(e => e != null && {|#0:e.Age == 50|});
-                                   }
-                               }
-                               """;
-        var sources = await CombineUserAndGeneratedSource(source);
-
-        await Run(
-            sources,
-            WithDiagnostics("VOG034", DiagnosticSeverity.Error, "Age", 0));
-    }
-    
-    [Fact]
-    public async Task Triggers_when_found_in_complex_IQueryableOfDbSet_Single()
-    {
-        var source = _source + """
-
-                               public static class Test
-                               {
-                                   public static void FilterItems()
-                                   {
-                                       using var ctx = new DbContext();
-                                   
-                                       var entity = ctx.Entities.Single(e => e != null && {|#0:e.Age == 50|});
-                                   }
-                               }
-                               """;
-        var sources = await CombineUserAndGeneratedSource(source);
-
-        await Run(
-            sources,
-            WithDiagnostics("VOG034", DiagnosticSeverity.Error, "Age", 0));
-    }
-
-    [Fact]
-    public async Task Not_triggered_when_found_in_non_IQueryableOfDbSet()
-    {
-        var source = _source + """
-
-                               public static class Test
-                               {
-                                   public static void FilterItems()
-                                   {
-                                       var employees = new[] 
-                                       { 
-                                        new EmployeeEntity {Name = Name.From("Fred"),   Age = Age.From(50) }, 
-                                        new EmployeeEntity {Name = Name.From("Barney"), Age = Age.From(42) }
-                                        };
-                                   
-                                       var matching = employees.Where(e => e.Age == 50);
-                                   }
-                               }
-                               """;
-        var sources = await CombineUserAndGeneratedSource(source);
-
-        await Run(sources, Enumerable.Empty<DiagnosticResult>());
-    }
-
-
-    private static IEnumerable<DiagnosticResult> WithDiagnostics(string code,
-        DiagnosticSeverity severity,
-        string arguments,
-        params int[] locations)
-    {
-        foreach (var location in locations)
+        [Fact]
+        public async Task Triggers_when_found_in_IQueryableOfDbSet()
         {
-            yield return VerifyCS.Diagnostic(code).WithSeverity(severity).WithLocation(location)
-                .WithArguments(arguments);
+            var source = _source + """
+
+                                   public static class Test
+                                   {
+                                       public static void FilterItems()
+                                       {
+                                           using var ctx = new DbContext();
+                                       
+                                           var entities = ctx.Entities.Where(e => {|#0:e.Age == 50|});
+                                       }
+                                   }
+                                   """;
+            var sources = await CombineUserAndGeneratedSource(source);
+
+            await Run(
+                sources,
+                WithDiagnostics("VOG034", DiagnosticSeverity.Error, "Age", 0));
+        }
+
+        [Fact]
+        public async Task Triggers_when_found_using_query_syntax()
+        {
+            var source = _source + """
+
+                                   public static class Test
+                                   {
+                                       public static void FilterItems()
+                                       {
+                                           using var ctx = new DbContext();
+                                           
+                                           var entities = from e in ctx.Entities
+                                           where {|#0:e.Age == 50|}
+                                           select e;        
+                                       }
+                                   }
+                                   """;
+            var sources = await CombineUserAndGeneratedSource(source);
+
+            await Run(
+                sources,
+                WithDiagnostics("VOG034", DiagnosticSeverity.Error, "Age", 0));
+        }
+
+        [Fact]
+        public async Task Triggers_when_found_in_complex_IQueryableOfDbSet()
+        {
+            var source = _source + """
+
+                                   public static class Test
+                                   {
+                                       public static void FilterItems()
+                                       {
+                                           using var ctx = new DbContext();
+                                       
+                                           var entities = ctx.Entities.Where(e => e != null && {|#0:e.Age == 50|});
+                                       }
+                                   }
+                                   """;
+            var sources = await CombineUserAndGeneratedSource(source);
+
+            await Run(
+                sources,
+                WithDiagnostics("VOG034", DiagnosticSeverity.Error, "Age", 0));
+        }
+
+        [Fact]
+        public async Task Triggers_when_found_in_complex_IQueryableOfDbSet_Single()
+        {
+            var source = _source + """
+
+                                   public static class Test
+                                   {
+                                       public static void FilterItems()
+                                       {
+                                           using var ctx = new DbContext();
+                                       
+                                           var entity = ctx.Entities.Single(e => e != null && {|#0:e.Age == 50|});
+                                       }
+                                   }
+                                   """;
+            var sources = await CombineUserAndGeneratedSource(source);
+
+            await Run(
+                sources,
+                WithDiagnostics("VOG034", DiagnosticSeverity.Error, "Age", 0));
+        }
+
+        [Fact]
+        public async Task Not_triggered_when_found_in_non_IQueryableOfDbSet()
+        {
+            var source = _source + """
+
+                                   public static class Test
+                                   {
+                                       public static void FilterItems()
+                                       {
+                                           var employees = new[] 
+                                           { 
+                                            new EmployeeEntity {Name = Name.From("Fred"),   Age = Age.From(50) }, 
+                                            new EmployeeEntity {Name = Name.From("Barney"), Age = Age.From(42) }
+                                            };
+                                       
+                                           var matching = employees.Where(e => e.Age == 50);
+                                       }
+                                   }
+                                   """;
+            var sources = await CombineUserAndGeneratedSource(source);
+
+            await Run(sources, Enumerable.Empty<DiagnosticResult>());
+        }
+
+
+        private static IEnumerable<DiagnosticResult> WithDiagnostics(string code,
+            DiagnosticSeverity severity,
+            string arguments,
+            params int[] locations)
+        {
+            foreach (var location in locations)
+            {
+                yield return VerifyCS.Diagnostic(code).WithSeverity(severity).WithLocation(location)
+                    .WithArguments(arguments);
+            }
+        }
+
+        private async Task Run(string source, IEnumerable<DiagnosticResult> expected) => await Run([source], expected);
+
+        private async Task Run(string[] sources, IEnumerable<DiagnosticResult> expected)
+        {
+            var test = new VerifyCS.Test
+            {
+                CompilerDiagnostics = CompilerDiagnostics.Errors,
+                ReferenceAssemblies = References.Net80WithEfCoreAndOurs.Value,
+            };
+
+            foreach (var eachSource in sources)
+            {
+                test.TestState.Sources.Add(eachSource);
+            }
+
+            test.ExpectedDiagnostics.AddRange(expected);
+
+            await test.RunAsync();
+        }
+
+        private static async Task<string[]> CombineUserAndGeneratedSource(string userSource)
+        {
+            PortableExecutableReference peReference = MetadataReference.CreateFromFile(typeof(ValueObjectAttribute).Assembly.Location);
+
+            var strippedSource = _placeholderPattern.Replace(userSource, string.Empty).Replace("|}", string.Empty);
+
+            NuGetPackage[] packages = [new("Microsoft.EntityFrameworkCore", "8.0.10", string.Empty)];
+
+            (ImmutableArray<Diagnostic> Diagnostics, SyntaxTree[] GeneratedSources) output = await new ProjectBuilder()
+                .WithUserSource(strippedSource)
+                //.WithNugetPackages(packages)
+                .WithTargetFramework(TargetFramework.Net8_0)
+                .GetGeneratedOutput<ValueObjectGenerator>(ignoreInitialCompilationErrors: true, peReference);
+
+            if (output.Diagnostics.Length > 0)
+            {
+                throw new AssertFailedException(
+                    $"""
+                     Expected user source to be error and generated code to be free from errors:
+                                                                     User source: {userSource}
+                                                                     Errors: {string.Join(",", output.Diagnostics.Select(d => d.ToString()))}
+                     """);
+            }
+
+            return [userSource, ..output.GeneratedSources.Select(o => o.ToString())];
         }
     }
 
-    private async Task Run(string source, IEnumerable<DiagnosticResult> expected) => await Run([source], expected);
-
-    private async Task Run(string[] sources, IEnumerable<DiagnosticResult> expected)
+    public class QuerySyntax
     {
-        var test = new VerifyCS.Test
+        [Fact]
+        public async Task Triggers_when_found_in_IQueryableOfDbSet()
         {
-            CompilerDiagnostics = CompilerDiagnostics.Errors,
-            ReferenceAssemblies = References.Net80WithEfCoreAndOurs.Value,
-        };
+            var source = _source + """
 
-        foreach (var eachSource in sources)
-        {
-            test.TestState.Sources.Add(eachSource);
+                                   public static class Test
+                                   {
+                                       public static void FilterItems()
+                                       {
+                                           using var ctx = new DbContext();
+                                       
+                                           var entities = from e in ctx.Entities where {|#0:e.Age == 50|} select e;
+                                       }
+                                   }
+                                   """;
+            var sources = await CombineUserAndGeneratedSource(source);
+
+            await Run(
+                sources,
+                WithDiagnostics("VOG034", DiagnosticSeverity.Error, "Age", 0));
         }
 
-        test.ExpectedDiagnostics.AddRange(expected);
-
-        await test.RunAsync();
-    }
-
-    private static async Task<string[]> CombineUserAndGeneratedSource(string userSource)
-    {
-        PortableExecutableReference peReference = MetadataReference.CreateFromFile(typeof(ValueObjectAttribute).Assembly.Location);
-
-        var strippedSource = _placeholderPattern.Replace(userSource, string.Empty).Replace("|}", string.Empty);
-
-        NuGetPackage[] packages = [new("Microsoft.EntityFrameworkCore", "8.0.10", string.Empty)];
-
-        (ImmutableArray<Diagnostic> Diagnostics, SyntaxTree[] GeneratedSources) output = await new ProjectBuilder()
-            .WithUserSource(strippedSource)
-            //.WithNugetPackages(packages)
-            .WithTargetFramework(TargetFramework.Net8_0)
-            .GetGeneratedOutput<ValueObjectGenerator>(ignoreInitialCompilationErrors: true, peReference);
-
-        if (output.Diagnostics.Length > 0)
+        [Fact]
+        public async Task Triggers_when_found_in_complex_IQueryableOfDbSet()
         {
-            throw new AssertFailedException(
-                $"""
-                 Expected user source to be error and generated code to be free from errors:
-                                                                 User source: {userSource}
-                                                                 Errors: {string.Join(",", output.Diagnostics.Select(d => d.ToString()))}
-                 """);
+            var source = _source + """
+
+                                   public static class Test
+                                   {
+                                       public static void FilterItems()
+                                       {
+                                           using var ctx = new DbContext();
+                                       
+                                           var entities = from e in ctx.Entities where e != null && {|#0:e.Age == 50|} select e;
+                                       }
+                                   }
+                                   """;
+            var sources = await CombineUserAndGeneratedSource(source);
+
+            await Run(
+                sources,
+                WithDiagnostics("VOG034", DiagnosticSeverity.Error, "Age", 0));
         }
 
-        return [userSource, ..output.GeneratedSources.Select(o => o.ToString())];
+        [Fact]
+        public async Task Triggers_when_found_in_complex_IQueryableOfDbSet_Single()
+        {
+            var source = _source + """
+
+                                   public static class Test
+                                   {
+                                       public static void FilterItems()
+                                       {
+                                           using var ctx = new DbContext();
+                                       
+                                           var entity = (from e in ctx.Entities where e != null && {|#0:e.Age == 50|} select e).Single();
+                                       }
+                                   }
+                                   """;
+            var sources = await CombineUserAndGeneratedSource(source);
+
+            await Run(
+                sources,
+                WithDiagnostics("VOG034", DiagnosticSeverity.Error, "Age", 0));
+        }
+
+        [Fact]
+        public async Task Not_triggered_when_found_in_non_IQueryableOfDbSet()
+        {
+            var source = _source + """
+
+                                   public static class Test
+                                   {
+                                       public static void FilterItems()
+                                       {
+                                           var employees = new[] 
+                                           { 
+                                            new EmployeeEntity {Name = Name.From("Fred"),   Age = Age.From(50) }, 
+                                            new EmployeeEntity {Name = Name.From("Barney"), Age = Age.From(42) }
+                                            };
+                                       
+                                           var matching = from e in employees where e.Age == 50 select e;
+                                       }
+                                   }
+                                   """;
+            var sources = await CombineUserAndGeneratedSource(source);
+
+            await Run(sources, Enumerable.Empty<DiagnosticResult>());
+        }
+
+
+        private static IEnumerable<DiagnosticResult> WithDiagnostics(string code,
+            DiagnosticSeverity severity,
+            string arguments,
+            params int[] locations)
+        {
+            foreach (var location in locations)
+            {
+                yield return VerifyCS.Diagnostic(code).WithSeverity(severity).WithLocation(location)
+                    .WithArguments(arguments);
+            }
+        }
+
+        private async Task Run(string source, IEnumerable<DiagnosticResult> expected) => await Run([source], expected);
+
+        private async Task Run(string[] sources, IEnumerable<DiagnosticResult> expected)
+        {
+            var test = new VerifyCS.Test
+            {
+                CompilerDiagnostics = CompilerDiagnostics.Errors,
+                ReferenceAssemblies = References.Net80WithEfCoreAndOurs.Value,
+            };
+
+            foreach (var eachSource in sources)
+            {
+                test.TestState.Sources.Add(eachSource);
+            }
+
+            test.ExpectedDiagnostics.AddRange(expected);
+
+            await test.RunAsync();
+        }
+
+        private static async Task<string[]> CombineUserAndGeneratedSource(string userSource)
+        {
+            PortableExecutableReference peReference = MetadataReference.CreateFromFile(typeof(ValueObjectAttribute).Assembly.Location);
+
+            var strippedSource = _placeholderPattern.Replace(userSource, string.Empty).Replace("|}", string.Empty);
+
+            NuGetPackage[] packages = [new("Microsoft.EntityFrameworkCore", "8.0.10", string.Empty)];
+
+            (ImmutableArray<Diagnostic> Diagnostics, SyntaxTree[] GeneratedSources) output = await new ProjectBuilder()
+                .WithUserSource(strippedSource)
+                //.WithNugetPackages(packages)
+                .WithTargetFramework(TargetFramework.Net8_0)
+                .GetGeneratedOutput<ValueObjectGenerator>(ignoreInitialCompilationErrors: true, peReference);
+
+            if (output.Diagnostics.Length > 0)
+            {
+                throw new AssertFailedException(
+                    $"""
+                     Expected user source to be error and generated code to be free from errors:
+                                                                     User source: {userSource}
+                                                                     Errors: {string.Join(",", output.Diagnostics.Select(d => d.ToString()))}
+                     """);
+            }
+
+            return [userSource, ..output.GeneratedSources.Select(o => o.ToString())];
+        }
     }
 }

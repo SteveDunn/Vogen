@@ -17,7 +17,7 @@ public static class EfCoreScenario
         AddAndSaveItems(amount: 10);
 
         PrintItems();
-        
+
         FilterItems();
 
         return;
@@ -56,8 +56,11 @@ public static class EfCoreScenario
             Console.WriteLine("FILTERING ITEMS...");
             using var ctx = new MyContext();
 
-            var entities = ctx.Entities.GroupBy(e => e.Id).Where(x => x.Key == 1);
+            int age = 50;
+            var entities = from e in ctx.Entities where e != null && e.Age == age select e;
             //Console.WriteLine(string.Join(Environment.NewLine, entities.Select(e => $"ID: {e.Id.Value}, Name: {e.Name}, Age: {e.TheAge}")));
+
         }
     }
+
 }
