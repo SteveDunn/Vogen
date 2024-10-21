@@ -16,7 +16,7 @@ internal static class MethodDiscovery
     /// </summary>
     /// <param name="typeSymbol"></param>
     /// <returns>null if no overloads</returns>
-    public static IMethodSymbol? TryGetToStringOverride(ITypeSymbol typeSymbol)
+    public static IEnumerable<IMethodSymbol> TryGetToStringOverrides(ITypeSymbol typeSymbol)
     {
         var toStringMethods = typeSymbol.GetMembers("ToString").OfType<IMethodSymbol>();
 
@@ -49,22 +49,25 @@ internal static class MethodDiscovery
             // In C# 10, the user can differentiate a ToString overload by making the method sealed.
             // We report back if it's sealed or not so that we can emit an error if it's not sealed.
             // The error stops another compilation error; if unsealed, the generator generates a duplicate ToString() method.
-            return eachMethod;
+            yield return eachMethod;
         }
 
         INamedTypeSymbol? baseType = typeSymbol.BaseType;
 
         if (baseType is null)
         {
-            return null;
+            yield break;
         }
 
         if (CannotGoFurtherInHierarchy(baseType))
         {
-            return null;
+            yield break;
         }
 
-        return TryGetToStringOverride(baseType);
+        foreach (var eachOverride in TryGetToStringOverrides(baseType))
+        {
+            yield return eachOverride;
+        }
     }
 
     public static ITypeSymbol? TryGetHashCodeOverload(ITypeSymbol vo)

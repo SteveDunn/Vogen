@@ -15,6 +15,7 @@ internal class DiscoverUserProvidedOverloads
         return new UserProvidedOverloads
         {
             ToStringInfo = HasToStringOverload(vo),
+            ToStringMethods = DiscoverParseMethods(vo, underlyingType),
 
             HashCodeInfo = HasGetHashCodeOverload(vo),
 
@@ -45,7 +46,7 @@ internal class DiscoverUserProvidedOverloads
 
     private static UserProvidedToString HasToStringOverload(ITypeSymbol typeSymbol)
     {
-        IMethodSymbol? method = MethodDiscovery.TryGetToStringOverride(typeSymbol);
+        IMethodSymbol? method = MethodDiscovery.TryGetToStringOverrides(typeSymbol);
         return method is null
             ? UserProvidedToString.NotProvided
             : new UserProvidedToString(
@@ -57,117 +58,6 @@ internal class DiscoverUserProvidedOverloads
 
     private static UserProvidedGetHashCode HasGetHashCodeOverload(ITypeSymbol typeSymbol) => 
         new(WasProvided: MethodDiscovery.TryGetHashCodeOverload(typeSymbol) is not null);
-
-    // private static UserProvidedEqualsForWrapper HasUserGeneratedEqualsForWrapper(
-    //     ITypeSymbol vo, 
-    //     INamedTypeSymbol? wrapperType)
-    // {
-    //     while (true)
-    //     {
-    //         var matchingMethods = vo.GetMembers("Equals").OfType<IMethodSymbol>();
-    //
-    //         foreach (IMethodSymbol eachMethod in matchingMethods)
-    //         {
-    //             if (eachMethod.IsImplicitlyDeclared)
-    //             {
-    //                 continue;
-    //             }
-    //             
-    //             // can't change access rights
-    //             if (IsNotPublicOrProtected(eachMethod))
-    //             {
-    //                 continue;
-    //             }
-    //
-    //             if (DoesNotHaveJustOneParameter(eachMethod))
-    //             {
-    //                 continue;
-    //             }
-    //
-    //             IParameterSymbol onlyParameter = eachMethod.Parameters[0];
-    //
-    //             if (SymbolEqualityComparer.Default.Equals(onlyParameter, wrapperType))
-    //             {
-    //                 continue;
-    //             }
-    //
-    //             return new UserProvidedEqualsForWrapper(
-    //                 WasProvided: true);
-    //         }
-    //
-    //         INamedTypeSymbol? baseType = vo.BaseType;
-    //
-    //         if (baseType is null)
-    //         {
-    //             return new UserProvidedEqualsForWrapper(WasProvided: false);
-    //         }
-    //
-    //         if (CannotGoFurtherInHierarchy(baseType))
-    //         {
-    //             return new UserProvidedEqualsForWrapper(WasProvided: false);
-    //         }
-    //
-    //         vo = baseType;
-    //     }
-    // }
-
-    // private static UserProvidedEqualsForUnderlying HasUserGeneratedEqualsForUnderlying(
-    //     INamedTypeSymbol vo,
-    //     ITypeSymbol primitiveType)
-    // {
-    //     while (true)
-    //     {
-    //         var matchingMethods = vo.GetMembers("Equals").OfType<IMethodSymbol>();
-    //
-    //         foreach (IMethodSymbol eachMethod in matchingMethods)
-    //         {
-    //             if (eachMethod.IsImplicitlyDeclared)
-    //             {
-    //                 continue;
-    //             }
-    //
-    //             // can't change access rights
-    //             if (IsNotPublicOrProtected(eachMethod))
-    //             {
-    //                 continue;
-    //             }
-    //
-    //             if (DoesNotHaveJustOneParameter(eachMethod))
-    //             {
-    //                 continue;
-    //             }
-    //             
-    //             IParameterSymbol onlyParameter = eachMethod.Parameters[0];
-    //
-    //             if (SymbolEqualityComparer.Default.Equals(onlyParameter.Type, primitiveType))
-    //             {
-    //                 return new UserProvidedEqualsForUnderlying(WasProvided: true);
-    //             }
-    //         }
-    //
-    //         INamedTypeSymbol? baseType = primitiveType.BaseType;
-    //
-    //         if (baseType is null)
-    //         {
-    //             return new UserProvidedEqualsForUnderlying(WasProvided: false);
-    //         }
-    //
-    //         if (CannotGoFurtherInHierarchy(baseType))
-    //         {
-    //             return new UserProvidedEqualsForUnderlying(WasProvided: false);
-    //         }
-    //
-    //         primitiveType = baseType;
-    //     }
-    // }
-
-    // private static bool CannotGoFurtherInHierarchy(INamedTypeSymbol baseType) => 
-    //     baseType.SpecialType is SpecialType.System_Object or SpecialType.System_ValueType;
-    //
-    // private static bool DoesNotHaveJustOneParameter(IMethodSymbol eachMethod) => eachMethod.Parameters.Length != 1;
-    //
-    // private static bool IsNotPublicOrProtected(IMethodSymbol eachMethod) =>
-    //     eachMethod.DeclaredAccessibility is not (Accessibility.Public or Accessibility.Protected);
 }
 
 public record struct UserProvidedToString(bool WasSupplied, bool IsRecordClass, bool IsSealed, IMethodSymbol? Method)

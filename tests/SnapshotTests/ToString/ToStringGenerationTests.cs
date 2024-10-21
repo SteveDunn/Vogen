@@ -47,14 +47,18 @@ public class ToStringGenerationTests
     [ClassData(typeof(Types))]
     public Task Test(string type, string className, ToStringMethod addToStringMethod)
     {
-        string declaration = $@"
-  [ValueObject]
-  public {type} {className} {{ {WriteToStringMethod(addToStringMethod, type.EndsWith("record class") || type.EndsWith("record"))} }}";
-        var source = @"using Vogen;
-namespace Whatever
-{
-" + declaration + @"
-}";
+        string declaration = $$"""
+                               
+                                 [ValueObject]
+                                 public {{type}} {{className}} { {{WriteToStringMethod(addToStringMethod, type.EndsWith("record class") || type.EndsWith("record"))}} }
+                               """;
+        var source = $$"""
+                       using Vogen;
+                       namespace Whatever
+                       {
+                       {{declaration}}
+                       }
+                       """;
 
         return new SnapshotRunner<ValueObjectGenerator>()
             .WithSource(source)
@@ -68,16 +72,16 @@ namespace Whatever
         return toStringMethod switch
         {
             ToStringMethod.None => string.Empty,
-            ToStringMethod.Method => $"{s} {{return \"!\"; }}",
-            ToStringMethod.ExpressionBodiedMethod => $"{s} => \"!\";",
+            ToStringMethod.Method => $$"""{{s}} {return "!"; }""",
+            ToStringMethod.ExpressionBodiedMethod => $"""{s} => "!";""",
             _ => throw new InvalidOperationException($"Don't know what a {toStringMethod} is!")
         };
     }
 }
 
-    public enum ToStringMethod
-    {
-        None,
-        Method,
-        ExpressionBodiedMethod
-    }
+public enum ToStringMethod
+{
+    None,
+    Method,
+    ExpressionBodiedMethod
+}

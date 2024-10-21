@@ -110,5 +110,7 @@ public class UserProvidedOverloads
     public required UserProvidedParseMethods ParseMethods { get; init; }
     
     public required UserProvidedTryParseMethods TryParseMethods { get; init; }
+    
+    public UserProvidedParseMethods ToStringMethods { get; set; }
 }
 

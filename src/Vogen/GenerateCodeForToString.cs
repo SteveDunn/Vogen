@@ -1,3 +1,9 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using Microsoft.CodeAnalysis;
+
 namespace Vogen;
 
 public static class GenerateCodeForToString
@@ -23,4 +29,55 @@ public static class GenerateCodeForToString
                 public{ro} override global::System.String ToString() => IsInitialized() ? Value.ToString() ?? "" : "[UNINITIALIZED]";
                 """;
     }
+    
+    
+    public static string GenerateAnyHoistedToStringMethods(VoWorkItem item)
+    {
+        INamedTypeSymbol primitiveSymbol = item.UnderlyingType;
+
+        try
+        {
+            List<IMethodSymbol> methodsToWrite = FilterOutUserSuppliedMethods(
+                item.ParsingInformation.TryParseMethodsOnThePrimitive,
+                item.UserProvidedOverloads.TryParseMethods,
+                item).ToList();
+
+            if (methodsToWrite.Count == 0)
+            {
+                return string.Empty;
+            }
+
+            StringBuilder sb = new StringBuilder();
+                
+            foreach (var eachSymbol in methodsToWrite)
+            {
+                BuildHoistedTryParseMethod(eachSymbol, sb, item);
+            }
+
+            return sb.ToString();
+        }
+        catch (Exception e)
+        {
+            throw new InvalidOperationException($"Cannot parse {primitiveSymbol} - {e}", e);
+        }
+        
+        // We're given the ToString methods on the primitive, and we want to filter out
+        // any matching methods that the user has supplied.
+        // We want to include any TryParse methods that result in either the underlying primitive,
+        // or the wrapper.
+        static IEnumerable<IMethodSymbol> FilterOutUserSuppliedMethods(
+            List<IMethodSymbol> parseMethodsOnThePrimitive,
+            UserProvidedTryParseMethods parseMethodsOnTheVo, 
+            VoWorkItem vo)
+        {
+            foreach (var eachParseMethodOnThePrimitive in parseMethodsOnThePrimitive)
+            {
+                if (!parseMethodsOnTheVo.Contains(eachParseMethodOnThePrimitive, vo))
+                {
+                    yield return eachParseMethodOnThePrimitive;
+                }
+            }
+        }
+    }
+    
 }
