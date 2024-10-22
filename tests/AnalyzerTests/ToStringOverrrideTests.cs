@@ -39,7 +39,7 @@ namespace Whatever;
 
             diagnostic.Id.Should().Be("VOG020");
             diagnostic.ToString().Should().Match(
-                "*: error VOG020: ToString overrides should be sealed on records. See https://github.com/SteveDunn/Vogen/wiki/Records#tostring for more information.");
+                "*: error VOG020: ToString overrides should be sealed on records. See https://stevedunn.github.io/Vogen/records.html#tostring for more information.");
         }
     }
 
@@ -58,6 +58,33 @@ namespace Whatever;
     public override sealed string ToString() => string.Empty;
 }}
 ";
+
+        await new TestRunner<ValueObjectGenerator>()
+            .WithSource(source)
+            .ValidateWith(d => d.Should().HaveCount(0))
+            .RunOnAllFrameworks();
+    }
+
+    [Fact]
+    public async Task WithDerivedVoRecordsThatDoHaveSealedOverride_DoNotOutputErrors()
+    {
+        var source = $$"""
+                       using Vogen;
+
+                       namespace Whatever;
+                       
+                       public record R1
+                       {
+                           public override string ToString() => "R1!";
+                       }
+
+                       [ValueObject]
+                       public partial record class CustomerId : R1 
+                       {
+                           public override sealed string ToString() => string.Empty;
+                       }
+
+                       """;
 
         await new TestRunner<ValueObjectGenerator>()
             .WithSource(source)
