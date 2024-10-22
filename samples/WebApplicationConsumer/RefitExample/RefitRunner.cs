@@ -19,6 +19,11 @@ public static class RefitRunner
         await GetWeatherForecast(City.From("Peckham"));
         Console.WriteLine("=============");
 
+        Console.WriteLine("======Weather forecast using URL parameters... =======");
+
+        await GetWeatherForecastUsingUrlParameters(City.From("London"));
+        Console.WriteLine("=============");
+
         Console.WriteLine("======Historical weather forecast... =======");
 
         await GetHistoricalWeatherForecast(HistoricForecastId.FromNewGuid());
@@ -31,6 +36,22 @@ public static class RefitRunner
             try
             {
                 var forecasts = await api.GetWeatherForecastByCity(city);
+                foreach (var f in forecasts)
+                {
+                    Console.WriteLine($"City: {f.City}, TempC: {f.TemperatureC} ({f.TemperatureF.Value}F) - {f.Summary}");
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error: {ex.Message}");
+            }
+        }
+
+        async Task GetWeatherForecastUsingUrlParameters(City city)
+        {
+            try
+            {
+                var forecasts = await api.GetWeatherForecastByCityUsingUrlParameters(city);
                 foreach (var f in forecasts)
                 {
                     Console.WriteLine($"City: {f.City}, TempC: {f.TemperatureC} ({f.TemperatureF.Value}F) - {f.Summary}");
@@ -65,6 +86,9 @@ public interface IJsonPlaceholderApi
 
     [Get("/weatherforecast/{city}")]
     Task<List<WeatherForecast>> GetWeatherForecastByCity(City city);
+
+    [Get("/weatherforecast")]
+    Task<List<WeatherForecast>> GetWeatherForecastByCityUsingUrlParameters(City city);
 
     [Get("/historicweatherforecast/{historicForecastId}")]
     Task<WeatherForecast> GetHistoricForecastId(HistoricForecastId historicForecastId);
