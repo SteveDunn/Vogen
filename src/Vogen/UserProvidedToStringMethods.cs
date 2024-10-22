@@ -49,16 +49,6 @@ public class UserProvidedToStringMethods : IEnumerable<IMethodSymbol>
                 IParameterSymbol primitiveParameter = methodFromPrimitive.Parameters[i];
                 IParameterSymbol userParameter = usersMethod.Parameters[i];
 
-                // if it's the last parameter, then it's an out parameter, so we see if it's the
-                // wrapper type or the primitive type
-                if (i == usersMethodParameterCount - 1)
-                {
-                    if(SameTypeAndDirection(primitiveParameter, userParameter, vo.UnderlyingType))
-                    {
-                        return true;
-                    }
-                }
-
                 if (!SameTypeAndDirection(primitiveParameter, userParameter, userParameter.Type))
                 {
                     return false;

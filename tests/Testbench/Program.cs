@@ -15,10 +15,3 @@ public static class Program
         ToStringScenario.Runner.Run();
     }
 }
-
-[ValueObject<string>]
-internal sealed partial class T3 {
-    public bool Equals(T3? other) => Value == other?.Value;
-
-    public override int GetHashCode() => 0;
-}

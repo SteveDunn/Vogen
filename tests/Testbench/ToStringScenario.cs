@@ -29,6 +29,8 @@ public partial record class CustomerId : R1
     public sealed override string ToString() => string.Empty;
 }
 
+[ValueObject]
+public readonly partial struct Whatever1;
 
 public static class Runner
 {
@@ -44,5 +46,24 @@ public static class Runner
         Console.WriteLine("iso parameter:");
         Console.WriteLine(primitive.ToString("o"));
         Console.WriteLine(wrapper.ToString("o"));
+
+        Whatever1 w1 = Whatever1.From(42);
+
+        var r = new ROS();
+        r.DoSomething(w1);
+    }
+}
+
+public class Hash;
+
+[ValueObject<Hash>]
+public readonly partial struct FileHash; 
+
+public readonly struct ROS
+{
+    public readonly void DoSomething(in Whatever1 w)
+    {
+        Console.WriteLine(w.ToString());
+        
     }
 }

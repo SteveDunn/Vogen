@@ -16,16 +16,18 @@ public class ToStringOverrideTests
     [InlineData("public partial record")]
     public async Task WithRecordsThatHaveNoSealedOverride_OutputErrors(string type)
     {
-        var source = $@"using Vogen;
+        var source = $$"""
+                       using Vogen;
 
-namespace Whatever;
+                       namespace Whatever;
 
-[ValueObject]
-{type} CustomerId 
-{{
-    public override string ToString() => string.Empty;
-}}
-";
+                       [ValueObject]
+                       {{type}} CustomerId 
+                       {
+                           public override string ToString() => string.Empty;
+                       }
+
+                       """;
 
         await new TestRunner<ValueObjectGenerator>()
             .WithSource(source)

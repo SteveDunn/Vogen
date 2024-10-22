@@ -14,7 +14,7 @@ public static class GenerateCodeForToString
 
     private static string GenerateToString(VoWorkItem item, bool isReadOnly)
     {
-        return GenerateAnyHoistedToStringMethods(item);
+        return GenerateAnyHoistedToStringMethods(item, isReadOnly);
 //         if (item.UserProvidedOverloads.ToStringOverloads.Count == 0)
 //         {
 //             return string.Empty;
@@ -30,9 +30,9 @@ public static class GenerateCodeForToString
 //                 public{ro} override global::System.String ToString() => IsInitialized() ? Value.ToString() ?? "" : "[UNINITIALIZED]";
 //                 """;
     }
-    
-    
-    public static string GenerateAnyHoistedToStringMethods(VoWorkItem item)
+
+
+    private static string GenerateAnyHoistedToStringMethods(VoWorkItem item, bool isReadOnly)
     {
         INamedTypeSymbol primitiveSymbol = item.UnderlyingType;
 
@@ -43,16 +43,19 @@ public static class GenerateCodeForToString
                 item.UserProvidedOverloads.ToStringOverloads,
                 item).ToList();
 
-            if (methodsToWrite.Count == 0)
-            {
-                return string.Empty;
-            }
-
             StringBuilder sb = new StringBuilder();
                 
             foreach (var eachSymbol in methodsToWrite)
             {
                 BuildHoistedTryParseMethod(eachSymbol, sb, item);
+            }
+
+            bool hasDefaultToStringMethod = HasParameterlessMethod(methodsToWrite) ||
+                                            HasParameterlessMethod(item.UserProvidedOverloads.ToStringOverloads);
+
+            if (!hasDefaultToStringMethod)
+            {
+                sb.Append(GenerateDefaultToString(item, isReadOnly));
             }
 
             return sb.ToString();
@@ -61,6 +64,8 @@ public static class GenerateCodeForToString
         {
             throw new InvalidOperationException($"Cannot parse {primitiveSymbol} - {e}", e);
         }
+
+        static bool HasParameterlessMethod(IEnumerable<IMethodSymbol> methods) => methods.Any(m => m.Parameters.Length == 0); 
         
         // We're given the ToString methods on the primitive, and we want to filter out
         // any matching methods that the user has supplied.
@@ -80,7 +85,20 @@ public static class GenerateCodeForToString
             }
         }
     }
-    
+
+    private static string GenerateDefaultToString(VoWorkItem item, bool isReadOnly)
+    {
+         string ro = isReadOnly ? " readonly" : string.Empty;
+         
+         // we don't consider nullability here as *our* ToString never returns null, and we are free to 'narrow'
+         // the signature (going from nullable to non-nullable): https://github.com/dotnet/coreclr/pull/23466#discussion_r269822099
+         
+         return $"""
+                 /// <summary>Returns the string representation of the underlying <see cref="{Util.EscapeTypeNameForTripleSlashComment(item.UnderlyingType)}" />.</summary>
+                 public{ro} override global::System.String ToString() => IsInitialized() ? Value.ToString() ?? "" : "[UNINITIALIZED]";
+                 """;
+    }
+
     private static void BuildHoistedTryParseMethod(IMethodSymbol methodSymbol, StringBuilder sb, VoWorkItem item)
     {
         string parameters = BuildParameters(methodSymbol, item);
