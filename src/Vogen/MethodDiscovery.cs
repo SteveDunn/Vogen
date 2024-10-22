@@ -24,6 +24,11 @@ internal static class MethodDiscovery
 
             foreach (IMethodSymbol eachMethod in toStringMethods)
             {
+                if (IsNotOverrideOrVirtual(eachMethod))
+                {
+                    continue;
+                }
+                
                 // can't change access rights
                 if (IsNotPublicOrProtected(eachMethod))
                 {
@@ -58,6 +63,8 @@ internal static class MethodDiscovery
             typeSymbol = baseType;
         }
     }
+    
+    private static bool IsNotOverrideOrVirtual(IMethodSymbol eachMethod) => eachMethod is { IsOverride: false, IsVirtual: false };
 
     public static ITypeSymbol? TryGetHashCodeOverload(ITypeSymbol vo)
     {

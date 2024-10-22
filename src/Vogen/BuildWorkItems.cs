@@ -210,12 +210,20 @@ internal static class BuildWorkItems
     {
         foreach (IMethodSymbol info in infos)
         {
-            if(target.VoSymbolInformation.IsRecordClass() && !info.IsSealed)
+            // only report on implementations withing the value object itself, and not any derived methods.
+            var voSymbol = target.VoSymbolInformation;
+            
+            if (!SymbolEqualityComparer.Default.Equals(info.ContainingType, voSymbol))
+            {
+                continue;
+            }
+            
+            if(voSymbol.IsRecordClass() && !info.IsSealed)
             {
                 context.ReportDiagnostic(
                     DiagnosticsCatalogue.RecordToStringOverloadShouldBeSealed(
                         info.Locations[0],
-                        target.VoSymbolInformation.Name));
+                        voSymbol.Name));
             }
         }
     }
