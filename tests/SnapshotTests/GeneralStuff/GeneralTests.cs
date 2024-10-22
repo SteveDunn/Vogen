@@ -393,17 +393,20 @@ internal class C
     [Fact]
     public async Task User_supplied_GetHashCode()
     {
-        var source = @"using Vogen;
-[ValueObject(typeof(string))]
-public readonly partial record struct VoWithGetHashCode
-{
-    public override int GetHashCode()
-    {
-        // custom code
-        return 0;
-    }
-}
-";
+        var source = """
+                     using Vogen;
+                     
+                     [ValueObject<string>]
+                     public readonly partial record struct VoWithGetHashCode
+                     {
+                         public override int GetHashCode()
+                         {
+                             // custom code
+                             return 0;
+                         }
+                     }
+
+                     """;
 
         await RunTest(source);
     }

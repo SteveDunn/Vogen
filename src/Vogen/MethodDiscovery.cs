@@ -75,7 +75,7 @@ internal static class MethodDiscovery
             foreach (IMethodSymbol eachMethod in toStringMethods)
             {
                 // we could have "public virtual new string ToString() => "xxx" 
-                if (IsNotVirtual(eachMethod))
+                if (IsNotOverrideOrVirtual(eachMethod))
                 {
                     continue;
                 }
