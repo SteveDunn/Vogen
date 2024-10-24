@@ -28,7 +28,7 @@ namespace Analyzer.Utilities.Extensions
         /// <summary>
         /// Checks if the given method overrides <see cref="object.Equals(object)"/>.
         /// </summary>
-        public static bool IsObjectEqualsOverride(this IMethodSymbol method)
+        public static bool IsObjectEqualsOverride(this IMethodSymbol? method)
         {
             return method != null &&
                 method.IsOverride &&
@@ -42,7 +42,7 @@ namespace Analyzer.Utilities.Extensions
         /// <summary>
         /// Checks if the given method is <see cref="object.Equals(object)"/>.
         /// </summary>
-        public static bool IsObjectEquals(this IMethodSymbol method)
+        public static bool IsObjectEquals(this IMethodSymbol? method)
         {
             return method != null &&
                 method.ContainingType.SpecialType == SpecialType.System_Object &&
@@ -56,7 +56,7 @@ namespace Analyzer.Utilities.Extensions
         /// <summary>
         /// Checks if the given <paramref name="method"/> is <see cref="object.Equals(object, object)"/> or <see cref="object.ReferenceEquals(object, object)"/>.
         /// </summary>
-        public static bool IsStaticObjectEqualsOrReferenceEquals(this IMethodSymbol method)
+        public static bool IsStaticObjectEqualsOrReferenceEquals(this IMethodSymbol? method)
         {
             return method != null &&
                 method.IsStatic &&
@@ -71,7 +71,7 @@ namespace Analyzer.Utilities.Extensions
         /// <summary>
         /// Checks if the given method overrides Object.GetHashCode.
         /// </summary>
-        public static bool IsGetHashCodeOverride(this IMethodSymbol method)
+        public static bool IsGetHashCodeOverride(this IMethodSymbol? method)
         {
             return method != null &&
                    method.IsOverride &&
@@ -84,7 +84,7 @@ namespace Analyzer.Utilities.Extensions
         /// <summary>
         /// Checks if the given method overrides Object.ToString.
         /// </summary>
-        public static bool IsToStringOverride(this IMethodSymbol method)
+        public static bool IsToStringOverride(this IMethodSymbol? method)
         {
             return method != null &&
                    method.IsOverride &&
@@ -252,9 +252,10 @@ namespace Analyzer.Utilities.Extensions
                 method.ReturnsVoid && method.Parameters.Length == 1)
             {
                 IParameterSymbol parameter = method.Parameters[0];
+                // ReSharper disable once ConditionIsAlwaysTrueOrFalse
                 return parameter.Type != null &&
-                    parameter.Type.SpecialType == SpecialType.System_Boolean &&
-                    parameter.RefKind == RefKind.None;
+                       parameter.Type.SpecialType == SpecialType.System_Boolean &&
+                       parameter.RefKind == RefKind.None;
             }
 
             return false;

@@ -28,7 +28,7 @@ internal sealed class InternalDiagnostics : IInternalDiagnostics
 
     private static readonly IInternalDiagnostics _nullImplementation = new NullInternalDiagnostics();
     
-    private static int _generatedCount = 0;
+    private static int _generatedCount;
 
     public static IInternalDiagnostics TryCreateIfSpecialClassIsPresent(Compilation compilation,
         SourceProductionContext context,

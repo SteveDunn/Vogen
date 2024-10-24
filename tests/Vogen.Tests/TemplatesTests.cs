@@ -38,7 +38,7 @@ public class TemplatesTests
         private static readonly Type[] _types =
         [
             typeof(bool), typeof(byte), typeof(char), typeof(DateOnly), typeof(DateTime), typeof(DateTimeOffset), typeof(decimal),
-            typeof(double), typeof(float), typeof(Guid), typeof(System.Int32), typeof(long), typeof(short), typeof(string),
+            typeof(double), typeof(float), typeof(Guid), typeof(int), typeof(long), typeof(short), typeof(string),
             typeof(TimeOnly)
         ];
 

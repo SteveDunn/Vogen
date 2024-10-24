@@ -772,7 +772,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
             }
         }
 
-        /// <summary>Returns the string representation of the underlying <see cref = "@double.@decimal"/>.</summary>
+        /// <inheritdoc cref = "@double.@decimal.ToString()"/>
         public override global::System.String ToString() => IsInitialized() ? Value.ToString() ?? "" : "[UNINITIALIZED]";
 #nullable disable
         /// <summary>
@@ -1415,8 +1415,14 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
             }
         }
 
-        /// <summary>Returns the string representation of the underlying <see cref = "System.Int32"/>.</summary>
+        /// <inheritdoc cref = "System.Int32.ToString()"/>
         public override global::System.String ToString() => IsInitialized() ? Value.ToString() ?? "" : "[UNINITIALIZED]";
+        /// <inheritdoc cref = "System.Int32.ToString(System.IFormatProvider? )"/>
+        public global::System.String ToString(global::System.IFormatProvider provider) => IsInitialized() ? Value.ToString(provider) ?? "" : "[UNINITIALIZED]";
+        /// <inheritdoc cref = "System.Int32.ToString(string? )"/>
+        public global::System.String ToString([System.Diagnostics.CodeAnalysis.StringSyntaxAttribute("NumericFormat")] string format) => IsInitialized() ? Value.ToString(format) ?? "" : "[UNINITIALIZED]";
+        /// <inheritdoc cref = "System.Int32.ToString(string? , System.IFormatProvider? )"/>
+        public global::System.String ToString([System.Diagnostics.CodeAnalysis.StringSyntaxAttribute("NumericFormat")] string format, global::System.IFormatProvider provider) => IsInitialized() ? Value.ToString(format, provider) ?? "" : "[UNINITIALIZED]";
 #nullable disable
         /// <summary>
         /// Converts a classFromEscapedNamespace to or from JSON.
@@ -2076,8 +2082,14 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
             }
         }
 
-        /// <summary>Returns the string representation of the underlying <see cref = "System.Int32"/>.</summary>
+        /// <inheritdoc cref = "System.Int32.ToString()"/>
         public override global::System.String ToString() => IsInitialized() ? Value.ToString() ?? "" : "[UNINITIALIZED]";
+        /// <inheritdoc cref = "System.Int32.ToString(System.IFormatProvider? )"/>
+        public global::System.String ToString(global::System.IFormatProvider provider) => IsInitialized() ? Value.ToString(provider) ?? "" : "[UNINITIALIZED]";
+        /// <inheritdoc cref = "System.Int32.ToString(string? )"/>
+        public global::System.String ToString([System.Diagnostics.CodeAnalysis.StringSyntaxAttribute("NumericFormat")] string format) => IsInitialized() ? Value.ToString(format) ?? "" : "[UNINITIALIZED]";
+        /// <inheritdoc cref = "System.Int32.ToString(string? , System.IFormatProvider? )"/>
+        public global::System.String ToString([System.Diagnostics.CodeAnalysis.StringSyntaxAttribute("NumericFormat")] string format, global::System.IFormatProvider provider) => IsInitialized() ? Value.ToString(format, provider) ?? "" : "[UNINITIALIZED]";
 #nullable disable
         /// <summary>
         /// Converts a @class to or from JSON.
@@ -2499,8 +2511,10 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
             }
         }
 
-        /// <summary>Returns the string representation of the underlying <see cref = "System.String"/>.</summary>
+        /// <inheritdoc cref = "System.String.ToString()"/>
         public override global::System.String ToString() => IsInitialized() ? Value.ToString() ?? "" : "[UNINITIALIZED]";
+        /// <inheritdoc cref = "System.String.ToString(System.IFormatProvider? )"/>
+        public global::System.String ToString(global::System.IFormatProvider provider) => IsInitialized() ? Value.ToString(provider) ?? "" : "[UNINITIALIZED]";
 #nullable disable
         /// <summary>
         /// Converts a @event to or from JSON.
@@ -2829,7 +2843,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
             }
         }
 
-        /// <summary>Returns the string representation of the underlying <see cref = "@record.@struct.@float.@decimal"/>.</summary>
+        /// <inheritdoc cref = "@record.@struct.@float.@decimal.ToString()"/>
         public override global::System.String ToString() => IsInitialized() ? Value.ToString() ?? "" : "[UNINITIALIZED]";
 #nullable disable
         /// <summary>

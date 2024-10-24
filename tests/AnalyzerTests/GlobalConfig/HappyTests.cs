@@ -28,6 +28,7 @@ public partial struct CustomerId
             .WithSource(source)
             .ValidateWith(Validate)
             .RunOnAllFrameworks();
+        return;
 
         static void Validate(ImmutableArray<Diagnostic> diagnostics) => diagnostics.Should().BeEmpty();
     }
@@ -58,6 +59,7 @@ public class MyValidationException : Exception
             .WithSource(source)
             .ValidateWith(Validate)
             .RunOnAllFrameworks();
+        return;
 
         static void Validate(ImmutableArray<Diagnostic> diagnostics) => diagnostics.Should().BeEmpty();
     }
@@ -90,6 +92,7 @@ public class MyValidationException : Exception
             .WithSource(source)
             .ValidateWith(Validate)
             .RunOnAllFrameworks();
+        return;
 
         static void Validate(ImmutableArray<Diagnostic> diagnostics) => diagnostics.Should().BeEmpty();
     }
@@ -124,6 +127,7 @@ namespace Whatever2
             .WithSource(source)
             .ValidateWith(Validate)
             .RunOnAllFrameworks();
+        return;
 
         static void Validate(ImmutableArray<Diagnostic> diagnostics) => diagnostics.Should().BeEmpty();
     }
@@ -147,6 +151,7 @@ public partial struct CustomerId { }
             .WithSource(source)
             .ValidateWith(Validate)
             .RunOnAllFrameworks();
+        return;
 
         static void Validate(ImmutableArray<Diagnostic> diagnostics) => diagnostics.Should().BeEmpty();
     }
@@ -179,6 +184,7 @@ public partial struct CustomerId { }
             .WithSource(source)
             .ValidateWith(Validate)
             .RunOnAllFrameworks();
+        return;
 
         static void Validate(ImmutableArray<Diagnostic> diagnostics) => diagnostics.Should().BeEmpty();
     }

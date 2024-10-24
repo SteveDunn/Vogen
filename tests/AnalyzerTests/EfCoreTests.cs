@@ -55,6 +55,7 @@ public class EfCoreTests
                 .WithSource(source)
                 .ValidateWith(Validate)
                 .RunOn(TargetFramework.Net8_0);
+            return;
 
             static void Validate(ImmutableArray<Diagnostic> diagnostics)
             {

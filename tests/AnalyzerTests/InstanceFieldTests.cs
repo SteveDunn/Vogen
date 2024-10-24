@@ -28,6 +28,7 @@ namespace Whatever
                     .WithSource(source)
                     .ValidateWith(Validate)
                     .RunOnAllFrameworks();
+                return;
 
                 static void Validate(ImmutableArray<Diagnostic> diagnostics)
                 {
@@ -60,6 +61,7 @@ namespace Whatever
                     .WithSource(source)
                     .ValidateWith(Validate)
                     .RunOnAllFrameworks();
+                return;
 
                 static void Validate(ImmutableArray<Diagnostic> diagnostics)
                 {
@@ -88,6 +90,7 @@ namespace Whatever
                     .WithSource(source)
                     .ValidateWith(Validate)
                     .RunOnAllFrameworks();
+                return;
 
                 static void Validate(ImmutableArray<Diagnostic> diagnostics)
                 {

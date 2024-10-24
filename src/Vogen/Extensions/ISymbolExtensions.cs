@@ -17,6 +17,7 @@ using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Threading;
 using Microsoft.CodeAnalysis;
+// ReSharper disable All
 
 namespace Analyzer.Utilities.Extensions
 {

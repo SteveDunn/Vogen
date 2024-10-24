@@ -42,7 +42,7 @@ public sealed partial class ProjectBuilder
     private readonly IList<MetadataReference> _references = new List<MetadataReference>();
     private string _userSource = string.Empty;
     private TargetFramework? _targetFramework;
-    private bool _excludeStj = false;
+    private bool _excludeStj;
     private LanguageVersion _languageVersion = LanguageVersion.Default;
 
     public ProjectBuilder WithTargetFramework(TargetFramework targetFramework)
@@ -405,7 +405,7 @@ public sealed partial class ProjectBuilder
     }
 }
 
-internal sealed class TestAnalyzerConfigOptionsProvider(Dictionary<string, string> values) : AnalyzerConfigOptionsProvider
+internal sealed class TestAnalyzerConfigOptionsProvider(Dictionary<string, string>? values) : AnalyzerConfigOptionsProvider
 {
     private readonly Dictionary<string, string> _values = values ?? [];
 

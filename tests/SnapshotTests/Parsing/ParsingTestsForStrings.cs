@@ -44,88 +44,74 @@ public class ParsingTestsForStrings
     [Fact]
     public Task Generates_IParsable_except_if_it_is_already_specified()
     {
-        return RunTest(
-            """
-            using System;
-            using Vogen;
+        return new SnapshotRunner<ValueObjectGenerator>()
+            .WithSource("""
+                        using System;
+                        using Vogen;
 
-            namespace Whatever;
+                        namespace Whatever;
 
-            [ValueObject<string>]
-            public partial struct City : IParsable<City>
-            {
-                public static City Parse(string s, IFormatProvider provider) => From(s);
-                public static bool TryParse(string s, IFormatProvider provider, out City result) => throw new NotImplementedException();
-            }
+                        [ValueObject<string>]
+                        public partial struct City : IParsable<City>
+                        {
+                            public static City Parse(string s, IFormatProvider provider) => From(s);
+                            public static bool TryParse(string s, IFormatProvider provider, out City result) => throw new NotImplementedException();
+                        }
 
-            """);
-
-        static Task RunTest(string source) =>
-            new SnapshotRunner<ValueObjectGenerator>()
-                .WithSource(source)
-                .IgnoreInitialCompilationErrors()
-                .RunOn(TargetFramework.Net8_0); // nothing earlier as it needs static abstracts in interfaces
+                        """)
+            .IgnoreInitialCompilationErrors()
+            .RunOn(TargetFramework.Net8_0);
     }
 
 
     [Fact]
     public Task Omits_parse_method_if_user_provides_exact_match()
     {
-        return RunTest(
-            """
-            #nullable enable
+        return new SnapshotRunner<ValueObjectGenerator>()
+            .WithSource("""
+                        #nullable enable
 
-            using Vogen;
-            using System;
+                        using Vogen;
+                        using System;
 
-            namespace Whatever;
+                        namespace Whatever;
 
-            [ValueObject(typeof(string))]
-            public partial struct MyClass
-            {
-                public static MyClass Parse(string s, IFormatProvider? provider)
-                {
-                    throw new NotImplementedException();
-                }
-            }
+                        [ValueObject(typeof(string))]
+                        public partial struct MyClass
+                        {
+                            public static MyClass Parse(string s, IFormatProvider? provider)
+                            {
+                                throw new NotImplementedException();
+                            }
+                        }
 
-            """);
-        
-        static Task RunTest(string source) =>
-            new SnapshotRunner<ValueObjectGenerator>()
-                .WithSource(source)
-                .RunOn(TargetFramework.Net8_0);
-        
+                        """)
+            .RunOn(TargetFramework.Net8_0);
     }
 
     [Fact]
     public Task Writes_explicit_interface_implementation_if_user_provided_Parse_method()
     {
-        return RunTest(
-            """
-            #nullable enable
+        return new SnapshotRunner<ValueObjectGenerator>()
+            .WithSource("""
+                        #nullable enable
 
-            using Vogen;
-            using System;
+                        using Vogen;
+                        using System;
 
-            namespace Whatever;
+                        namespace Whatever;
 
-            [ValueObject(typeof(string))]
-            public partial struct MyClass
-            {
-                public static int Parse(string s, IFormatProvider? provider)
-                {
-                    throw new NotImplementedException();
-                }
-            }
+                        [ValueObject(typeof(string))]
+                        public partial struct MyClass
+                        {
+                            public static int Parse(string s, IFormatProvider? provider)
+                            {
+                                throw new NotImplementedException();
+                            }
+                        }
 
-            """);
-        
-        static Task RunTest(string source) =>
-            new SnapshotRunner<ValueObjectGenerator>()
-                .WithSource(source)
-                .RunOn(TargetFramework.Net8_0);
-        
+                        """)
+            .RunOn(TargetFramework.Net8_0);
     }
 
     

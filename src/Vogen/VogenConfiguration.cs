@@ -2,7 +2,7 @@
 
 namespace Vogen;
 
-public record class VogenConfiguration(
+public record VogenConfiguration(
     INamedTypeSymbol? UnderlyingType,
     INamedTypeSymbol? ValidationExceptionType,
     Conversions Conversions,

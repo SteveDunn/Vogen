@@ -25,8 +25,9 @@ public {type} CustomerId {{ }}
             .WithSource(source)
             .ValidateWith(Validate)
             .RunOnAllFrameworks();
+        return;
 
-        void Validate(ImmutableArray<Diagnostic> diagnostics)
+        static void Validate(ImmutableArray<Diagnostic> diagnostics)
         {
             diagnostics.Should().HaveCount(1);
             Diagnostic diagnostic = diagnostics.Single();

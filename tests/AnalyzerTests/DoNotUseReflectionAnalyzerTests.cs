@@ -13,12 +13,12 @@ namespace AnalyzerTests
         {
             public IEnumerator<object[]> GetEnumerator()
             {
-                yield return new[] {"partial class"};
-                yield return new[] {"partial struct"};
-                yield return new[] {"readonly partial struct"};
-                yield return new[] {"partial record class"};
-                yield return new[] {"partial record struct"};
-                yield return new[] {"readonly partial record struct"};
+                yield return ["partial class"];
+                yield return ["partial struct"];
+                yield return ["readonly partial struct"];
+                yield return ["partial record class"];
+                yield return ["partial record struct"];
+                yield return ["readonly partial record struct"];
             }
 
             IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();

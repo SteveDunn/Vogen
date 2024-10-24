@@ -124,7 +124,7 @@ public class ClassGenerator : IGenerateSourceCode
 
         {InstanceGeneration.GenerateAnyInstances(tds, item)}
 
-        {Util.GenerateToString(item)}
+        {GenerateCodeForToString.GenerateForAClass(item)}
 
         {Util.GenerateAnyConversionBodies(tds, item)}
 
