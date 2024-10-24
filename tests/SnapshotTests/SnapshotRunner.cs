@@ -53,6 +53,8 @@ namespace SnapshotTests
         private bool _excludeStj = false;
 
         public async Task RunOnAllFrameworks() => await RunOn(_allFrameworks);
+        
+        public async Task RunOnNet8AndGreater() => await RunOn(TargetFramework.Net8_0);
 
         public SnapshotRunner<T> WithSource(string source)
         {

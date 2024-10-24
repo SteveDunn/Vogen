@@ -362,7 +362,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
         }
 
         // record enumerates fields - we just want our Value and to throw if it's not initialized.
-        /// <summary>Returns the string representation of the underlying <see cref = "@class.@record.@struct.@float.@event"/>.</summary>
+        /// <inheritdoc cref = "@class.@record.@struct.@float.@event.ToString()"/>
         public override global::System.String ToString() => IsInitialized() ? Value.ToString() ?? "" : "[UNINITIALIZED]";
 #nullable disable
         class escapedTestspublic_sealed_partial_recordConversions_NewtonsoftJsonrecord__struct__float__eventNewtonsoftJsonConverter : Newtonsoft.Json.JsonConverter

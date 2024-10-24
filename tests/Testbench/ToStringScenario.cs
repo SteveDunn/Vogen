@@ -51,13 +51,36 @@ public static class Runner
 
         var r = new ROS();
         r.DoSomething(w1);
+
+        var h = new Hash();
+        h.ToString();
+        FileHash.From(h).ToString();
     }
 }
 
-public class Hash;
+public class Hash
+{
+    // /// <summary>
+    // /// Hash special to string!!
+    // /// </summary>
+    // /// <returns>aaaa</returns>
+    // public override string ToString() => base.ToString()!;
+}
 
 [ValueObject<Hash>]
-public readonly partial struct FileHash; 
+public readonly partial struct FileHash
+{
+    // /// <inheritdoc cref="Testbench.ToStringScenario.Hash.ToString()"/>
+    // // /// <returns>dd <inheritdoc cref="Testbench.ToStringScenario.Hash.ToString()"  select="returns"/></returns>
+    //
+    // public override string ToString() => IsInitialized() ? Value.ToString() ?? "" : "[UNINITIALIZED]";
+}
+
+// /// <inheritdoc cref="Testbench.ToStringScenario.Hash.ToString()"/>
+// /// <returns>bbbb
+// /// <inheritdoc select="returns"/>
+// /// </returns>
+
 
 public readonly struct ROS
 {
@@ -67,3 +90,7 @@ public readonly struct ROS
         
     }
 }
+
+
+
+                   

@@ -367,7 +367,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
             }
         }
 
-        /// <summary>Returns the string representation of the underlying <see cref = "@class.@record.@struct.@float.@decimal"/>.</summary>
+        /// <inheritdoc cref = "@class.@record.@struct.@float.@decimal.ToString()"/>
         public override global::System.String ToString() => IsInitialized() ? Value.ToString() ?? "" : "[UNINITIALIZED]";
 #nullable disable
         /// <summary>

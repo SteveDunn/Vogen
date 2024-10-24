@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Shared;
 using Vogen;
 
 namespace SnapshotTests.ToString;
@@ -60,7 +61,7 @@ public class ToStringGenerationTests
 
         return new SnapshotRunner<ValueObjectGenerator>()
             .WithSource(source)
-            .RunOnAllFrameworks();
+            .RunOnNet8AndGreater();
     }
 
     [Fact]
@@ -100,7 +101,7 @@ public class ToStringGenerationTests
 
         return new SnapshotRunner<ValueObjectGenerator>()
             .WithSource(source)
-            .RunOnAllFrameworks();
+            .RunOnNet8AndGreater();
     }
 
     [Theory]

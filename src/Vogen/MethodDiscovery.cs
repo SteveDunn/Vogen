@@ -16,7 +16,7 @@ internal static class MethodDiscovery
     /// </summary>
     /// <param name="typeSymbol"></param>
     /// <returns>null if no overloads</returns>
-    public static IEnumerable<IMethodSymbol> GetAnyUserProvidedToStringOverrides(ITypeSymbol typeSymbol)
+    public static IEnumerable<IMethodSymbol> GetAnyUserProvidedToStringMethods(ITypeSymbol typeSymbol)
     {
         while (true)
         {
@@ -24,10 +24,10 @@ internal static class MethodDiscovery
 
             foreach (IMethodSymbol eachMethod in toStringMethods)
             {
-                if (IsNotOverrideOrVirtual(eachMethod))
-                {
-                    continue;
-                }
+                // if (IsNotOverrideOrVirtual(eachMethod))
+                // {
+                //     continue;
+                // }
                 
                 // can't change access rights
                 if (IsNotPublicOrProtected(eachMethod))

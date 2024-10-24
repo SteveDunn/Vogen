@@ -15,7 +15,7 @@ internal class DiscoverUserProvidedOverloads
         return new UserProvidedOverloads
         {
             ToStringOverloads = new UserProvidedToStringMethods(
-                MethodDiscovery.GetAnyUserProvidedToStringOverrides(vo).ToList()),
+                MethodDiscovery.GetAnyUserProvidedToStringMethods(vo).ToList()),
 
             HashCodeInfo = HasGetHashCodeOverload(vo),
 
