@@ -10,6 +10,44 @@ namespace SnapshotTests.GeneralStuff;
 public class GeneralTests
 {
     [Fact]
+    public async Task Hoists_parameter_attributes_from_underlying_tostring_methods()
+    {
+        var source =
+            $$"""
+
+            using System;
+            using Vogen;
+            
+            [ValueObject<DateTimeOffset>]
+            public partial struct Dob;
+            """;
+
+            await new SnapshotRunner<ValueObjectGenerator>()
+                .WithSource(source)
+                .RunOn(TargetFramework.Net8_0);
+    }
+
+    [Fact]
+    public async Task Does_not_include_inheritdoc_if_underlying_has_no_tostring()
+    {
+        var source =
+            $$"""
+
+            using System;
+            using Vogen;
+            
+            public class D;
+            
+            [ValueObject<D>]
+            public partial struct Vo;
+            """;
+
+            await new SnapshotRunner<ValueObjectGenerator>()
+                .WithSource(source)
+                .RunOn(TargetFramework.Net8_0);
+    }
+
+    [Fact]
     public async Task No_validation()
     {
         var source =

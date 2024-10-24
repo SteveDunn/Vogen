@@ -193,6 +193,8 @@ internal static class BuildWorkItems
         {
             UnderlyingIsAString = underlyingType.SpecialType == SpecialType.System_String,
             ToStringMethodsOnThePrimitive = MethodDiscovery.FindToStringMethodsOnThePrimitive(underlyingType).ToList(),
+            
+            UnderlyingTypeHasADefaultToStringMethod = underlyingType.GetMembers().OfType<IMethodSymbol>().Any(m => m is { Name: "ToString", Parameters.Length: 0 })
         };
         
         return info;

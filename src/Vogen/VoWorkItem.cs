@@ -104,6 +104,8 @@ public class ToStringInformation
     public required List<IMethodSymbol> ToStringMethodsOnThePrimitive { get; init; }
     
     public required bool UnderlyingIsAString { get; init; }
+    
+    public required bool UnderlyingTypeHasADefaultToStringMethod { get; init; }
 }
 
 public class UserProvidedOverloads
