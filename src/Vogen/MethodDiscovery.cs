@@ -377,8 +377,6 @@ internal static class MethodDiscovery
         return implementation?.DeclaredAccessibility is not Accessibility.Private;
     }
 
-    private static bool IsNotVirtual(IMethodSymbol eachMethod) => eachMethod is { IsVirtual: false };
-
     private static bool CannotGoFurtherInHierarchy(INamedTypeSymbol baseType) => 
         baseType.SpecialType is SpecialType.System_Object or SpecialType.System_ValueType;
 

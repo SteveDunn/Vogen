@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using Microsoft.CodeAnalysis;
 
 namespace Vogen;
@@ -12,8 +11,6 @@ namespace Vogen;
 public class UserProvidedToStringMethods : IEnumerable<IMethodSymbol>
 {
     private readonly List<IMethodSymbol> _userMethods;
-
-    public int Count => _userMethods.Count;
 
     public UserProvidedToStringMethods(List<IMethodSymbol> userMethods) => _userMethods = userMethods;
 

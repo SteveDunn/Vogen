@@ -26,8 +26,9 @@ public {type} CustomerId {{ }}
             .WithSource(source)
             .ValidateWith(Validate)
             .RunOnAllFrameworks();
-        
-        void Validate(ImmutableArray<Diagnostic> diagnostics)
+        return;
+
+        static void Validate(ImmutableArray<Diagnostic> diagnostics)
         {
             diagnostics.Should().HaveCount(1);
             Diagnostic diagnostic = diagnostics.Single();
@@ -59,8 +60,9 @@ public class MyContainer {{
             .WithSource(source)
             .ValidateWith(Validate)
             .RunOnAllFrameworks();
+        return;
 
-        void Validate(ImmutableArray<Diagnostic> diagnostics)
+        static void Validate(ImmutableArray<Diagnostic> diagnostics)
         {
             diagnostics.Should().HaveCount(2);
             Diagnostic diagnostic = diagnostics.ElementAt(0);

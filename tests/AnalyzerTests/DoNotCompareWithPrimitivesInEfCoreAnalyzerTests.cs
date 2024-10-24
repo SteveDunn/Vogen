@@ -209,8 +209,6 @@ public class DoNotCompareWithPrimitivesInEfCoreAnalyzerTests
             }
         }
 
-        private async Task Run(string source, IEnumerable<DiagnosticResult> expected) => await Run([source], expected);
-
         private async Task Run(string[] sources, IEnumerable<DiagnosticResult> expected)
         {
             var test = new VerifyCS.Test
@@ -234,8 +232,6 @@ public class DoNotCompareWithPrimitivesInEfCoreAnalyzerTests
             PortableExecutableReference peReference = MetadataReference.CreateFromFile(typeof(ValueObjectAttribute).Assembly.Location);
 
             var strippedSource = _placeholderPattern.Replace(userSource, string.Empty).Replace("|}", string.Empty);
-
-            NuGetPackage[] packages = [new("Microsoft.EntityFrameworkCore", "8.0.10", string.Empty)];
 
             (ImmutableArray<Diagnostic> Diagnostics, SyntaxTree[] GeneratedSources) output = await new ProjectBuilder()
                 .WithUserSource(strippedSource)
@@ -361,8 +357,6 @@ public class DoNotCompareWithPrimitivesInEfCoreAnalyzerTests
                     .WithArguments(arguments);
             }
         }
-
-        private async Task Run(string source, IEnumerable<DiagnosticResult> expected) => await Run([source], expected);
 
         private async Task Run(string[] sources, IEnumerable<DiagnosticResult> expected)
         {

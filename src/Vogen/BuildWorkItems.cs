@@ -139,7 +139,7 @@ internal static class BuildWorkItems
             IsTheWrapperAValueType = isWrapperAValueType,
             
             ParsingInformation = BuildParsingInformation(underlyingType, vogenKnownSymbols),
-            ToStringInformation = BuildToStringInformation(underlyingType, vogenKnownSymbols),
+            ToStringInformation = BuildToStringInformation(underlyingType),
             Config = config,
             
             UserProvidedOverloads = userProvidedOverloads,
@@ -187,11 +187,10 @@ internal static class BuildWorkItems
         return parsingInformation;
     }
 
-    private static ToStringInformation BuildToStringInformation(INamedTypeSymbol underlyingType, VogenKnownSymbols vogenKnownSymbols)
+    private static ToStringInformation BuildToStringInformation(INamedTypeSymbol underlyingType)
     {
         ToStringInformation info = new()
         {
-            UnderlyingIsAString = underlyingType.SpecialType == SpecialType.System_String,
             ToStringMethodsOnThePrimitive = MethodDiscovery.FindToStringMethodsOnThePrimitive(underlyingType).ToList(),
             
             UnderlyingTypeHasADefaultToStringMethod = underlyingType.GetMembers().OfType<IMethodSymbol>().Any(m => m is { Name: "ToString", Parameters.Length: 0 })

@@ -41,7 +41,6 @@ public class VoWorkItem
     public TypeDeclarationSyntax TypeToAugment { get; init; } = null!;
     
     public bool IsTheUnderlyingAValueType { get; init; }
-    public bool IsTheUnderlyingAReferenceType => !IsTheUnderlyingAValueType;
 
     public bool IsTheWrapperAValueType { get; init; }
     public bool IsTheWrapperAReferenceType => !IsTheWrapperAValueType;
@@ -102,8 +101,6 @@ public class ParsingInformation
 public class ToStringInformation
 {
     public required List<IMethodSymbol> ToStringMethodsOnThePrimitive { get; init; }
-    
-    public required bool UnderlyingIsAString { get; init; }
     
     public required bool UnderlyingTypeHasADefaultToStringMethod { get; init; }
 }

@@ -111,7 +111,7 @@ public class DoNotCompareWithPrimitivesInEfCoreAnalyzer : DiagnosticAnalyzer
     private static bool IsValueObject(ITypeSymbol type) => 
         type is INamedTypeSymbol symbol && VoFilter.IsTarget(symbol);
 
-    private static bool InheritsFrom(ITypeSymbol type, INamedTypeSymbol baseType)
+    private static bool InheritsFrom(ITypeSymbol? type, INamedTypeSymbol baseType)
     {
         while (type != null)
         {

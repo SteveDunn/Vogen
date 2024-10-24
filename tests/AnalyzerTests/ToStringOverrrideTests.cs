@@ -33,6 +33,7 @@ public class ToStringOverrideTests
             .WithSource(source)
             .ValidateWith(Validate)
             .RunOnAllFrameworks();
+        return;
 
         static void Validate(ImmutableArray<Diagnostic> diagnostics)
         {

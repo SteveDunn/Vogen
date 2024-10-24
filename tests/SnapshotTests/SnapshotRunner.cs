@@ -50,7 +50,7 @@ namespace SnapshotTests
         private ITestOutputHelper? _logger;
         private readonly List<NuGetPackage> _additionalNuGetPackages = new();
         private LanguageVersion _languageVersion = LanguageVersion.Default;
-        private bool _excludeStj = false;
+        private bool _excludeStj;
 
         public async Task RunOnAllFrameworks() => await RunOn(_allFrameworks);
         
