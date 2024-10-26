@@ -19,8 +19,13 @@ public static class GenerateCodeForTryFormat
     public static string GenerateAnyHoistedTryFormatMethods(GenerationParameters parameters)
     {
         StringBuilder sb = new StringBuilder();
+        sb.AppendLine("#nullable disable");
+
         BuildFor(sb, parameters, parameters.VogenKnownSymbols.ISpanFormattable);
         BuildFor(sb, parameters, parameters.VogenKnownSymbols.IUtf8SpanFormattable);
+        
+        sb.AppendLine("#nullable restore");
+
         // don't worry about IFormattable, as that is a `ToString` that is hoisted separately.
         return sb.ToString();
     }
@@ -31,34 +36,28 @@ public static class GenerateCodeForTryFormat
 
         var primitiveSymbol = parameters.WorkItem.UnderlyingType;
         var wrapperSymbol = parameters.WorkItem.WrapperType;
-        if (wrapperSymbol is null) return;
-
-        //var classSymbol = parameters.Compilation.GetSemanticModel() semanticModel.GetDeclaredSymbol(classDeclaration);
-
-        // Checking if the class implements a specific interface
-        //      var interfaceType = typeof(IMyInterface); // Replace IMyInterface with your interface type
-//        var interfaceSymbol = compilation.GetTypeByMetadataName(interfaceType.FullName);
 
         if (!primitiveSymbol.AllInterfaces.Contains(interfaceSymbol)) return;
         if (wrapperSymbol.AllInterfaces.Contains(interfaceSymbol)) return;
 
         var methodsOnInterface = interfaceSymbol.GetMembers().OfType<IMethodSymbol>();
-        foreach (var eachMethod in methodsOnInterface)
+
+        foreach (var eachInterfaceMethod in methodsOnInterface)
         {
-            var v = primitiveSymbol.FindImplementationForInterfaceMember(eachMethod) as IMethodSymbol;
-            if (v is null)
+            var primitiveMethod = primitiveSymbol.FindImplementationForInterfaceMember(eachInterfaceMethod) as IMethodSymbol;
+        
+            if (primitiveMethod is null)
             {
                 continue;
             }
 
-            sb.AppendLine(GetMethodSignature(v, interfaceSymbol));
+            sb.AppendLine(HoistMethodFromPrimitive(primitiveMethod, interfaceSymbol));
         }
     }
 
-    public static string GetMethodSignature(IMethodSymbol methodSymbol, INamedTypeSymbol interfaceSymbol)
+    public static string HoistMethodFromPrimitive(IMethodSymbol methodSymbol, INamedTypeSymbol interfaceSymbol)
     {
         var sb = new StringBuilder();
-        sb.AppendLine("#nullable disable");
         
         bool isExplicitInterfaceImplementation = methodSymbol.IsImplementationOfAnyExplicitInterfaceMember();
         
@@ -76,7 +75,6 @@ public static class GenerateCodeForTryFormat
         
         string accessibility = isExplicitInterfaceImplementation ? "" : "public";
 
-
         // Append return type and method name
         sb.Append($"{accessibility} {methodSymbol.ReturnType} {methodSymbol.Name}(");
 
@@ -93,23 +91,12 @@ public static class GenerateCodeForTryFormat
                 parameterBuilder.Append($"[{attr}] ");
             }
 
-            string refKind = "";
-
-            // Append parameter modifiers (ref, out, in, params)
-            if (eachParam.RefKind != RefKind.None)
-            {
-                refKind = $"{eachParam.RefKind.ToString().ToLower()}";
-            }
-
-            if (eachParam.IsParams)
-            {
-                refKind = "params";
-            }
+            string refKind = GetRefKind(eachParam);
 
             // Append parameter type and name
             var parameterName = eachParam.Name;
             parameterBuilder.Append($"{refKind} {eachParam.Type} {parameterName}");
-            nameAndRefKinds.Add(new(parameterName, refKind.ToString()));
+            nameAndRefKinds.Add(new(parameterName, refKind));
             parameters.Add(parameterBuilder.ToString());
         }
 
@@ -118,6 +105,24 @@ public static class GenerateCodeForTryFormat
 
         string parameterNames = string.Join(", ", nameAndRefKinds.Select(x => $"{x.RefKind} {x.Name}"));
 
+        string valueAccessor = isExplicitInterfaceImplementation ? $"(Value as {interfaceSymbol.FullName()})" : "Value";
+
+        string body = $$"""
+                        {
+                            {{InitializeAnyOutParameters(nameAndRefKinds)}}
+                            
+                            return IsInitialized() ? {{valueAccessor}}.TryFormat({{parameterNames}}) : false;
+                        }
+                        """;
+
+        sb.AppendLine(body);
+        sb.AppendLine();
+
+        return sb.ToString();
+    }
+
+    private static string InitializeAnyOutParameters(List<ParameterRefAndName> nameAndRefKinds)
+    {
         StringBuilder osb = new();
         var outs = nameAndRefKinds.Where(p => p.RefKind == "out");
         foreach (var each in outs)
@@ -125,24 +130,25 @@ public static class GenerateCodeForTryFormat
             osb.AppendLine($"{each.Name} = default;");
         }
 
-        string s = isExplicitInterfaceImplementation ? $"(Value as {interfaceSymbol.FullName()})" : "Value";
+        return osb.ToString();
+    }
 
-        string body = $$"""
-                        {
-                            {{osb.ToString()}}
-                            
-                            return IsInitialized() ? {{s}}.TryFormat({{parameterNames}}) : false;
-                        }
-                        """;
-                
-                
+    private static string GetRefKind(IParameterSymbol eachParam)
+    {
+        string refKind = "";
 
-        sb.AppendLine(body);
-        sb.AppendLine();
+        // Append parameter modifiers (ref, out, in, params)
+        if (eachParam.RefKind != RefKind.None)
+        {
+            refKind = $"{eachParam.RefKind.ToString().ToLower()}";
+        }
 
-        sb.AppendLine("#nullable restore");
+        if (eachParam.IsParams)
+        {
+            refKind = "params";
+        }
 
-        return sb.ToString();
+        return refKind;
     }
 
     record ParameterRefAndName(string Name, string RefKind);
