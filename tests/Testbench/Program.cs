@@ -1,6 +1,7 @@
 ﻿using System;
+using System.Globalization;
+using System.Runtime.Serialization;
 using Vogen;
-using Vogen.EfCoreTest;
 
 [assembly: VogenDefaults(
     staticAbstractsGeneration: StaticAbstractsGeneration.MostCommon | StaticAbstractsGeneration.InstanceMethodsAndProperties, 
@@ -11,76 +12,65 @@ namespace Testbench;
 [ValueObject<DateTimeOffset>]
 public partial struct DateOfBirth;
 
-public class B
-{
-    /// <summary>
-    /// Summary in the base class
-    /// </summary>
-    /// <returns>the string, obvs!</returns>
-    public override string ToString() => base.ToString()!;
-}
+// [ValueObject<DateTimeOffset>]
+// public partial struct DateOfBirth : IFormatProvider, ICustomFormatter
+// {
+//     public object? GetFormat(Type? formatType)
+//     {
+//         if (formatType == typeof(DateOfBirth)) return DateTimeFormatInfo.GetInstance(null);
+//         if (formatType == typeof(DateTimeOffset)) return DateTimeFormatInfo.GetInstance(null);
+//         return null;
+//     }
+//
+//     public string Format(string? format, object? arg, IFormatProvider? formatProvider)
+//     {
+//         return "";
+//     }
+// }
 
-public class D : B
-{
-    //public override string ToString() => base.ToString()!;
-}
+[ValueObject<decimal>]
+public partial struct MyDecimal;
 
-class CC
-{
-    /// <summary>
-    /// This is my text.
-    ///  <para>
-    /// <inheritdoc/>
-    /// </para>
-    /// </summary>
-    /// <returns>
-    /// blah blah
-    /// <para>
-    /// <inheritdoc cref="D" />
-    /// </para>
-    /// </returns>
-    public override string ToString() => base.ToString()!;
-}
+[ValueObject<Guid>]
+public partial struct MyGuid;
+
+
+
 
 public static class Program
 {
     public static void Main()
     {
+        MyGuid g = MyGuid.From(Guid.NewGuid());
+        Console.WriteLine($"{g:X}");
+        g.ToString("X");
+        
+        var primitive = DateTimeOffset.Now;
+        var wrapper = DateOfBirth.From(primitive);
 
-        new CC().ToString();
-        var x = MyCustomVo.From(new C()).ToString();
-        var dob = DateOfBirth.From(DateTimeOffset.Now);
-        Console.WriteLine(dob.ToString(""));
-        DoubleVo.From(1.23).ToString("a");
+        Console.WriteLine(primitive.ToString(""));
+        Console.WriteLine(wrapper.ToString(""));
+
+
+
+
+
+
+        Console.WriteLine($"{primitive:o}");
+        Console.WriteLine($"{wrapper:G}");
+
+
+
+
+        Console.WriteLine($"{primitive}");
+        Console.WriteLine($"{wrapper}");
+        
+        Console.WriteLine(primitive.ToString("o"));
+        Console.WriteLine(wrapper.ToString("o"));
+        
+
+        var myd = MyDecimal.From(123.45m);
+        Console.WriteLine(string.Format("{0:C}", 123.45m));
+        Console.WriteLine(string.Format("{0:C}", myd));
     }
 }
-
-// public class X
-// {
-//     public string ToString() => "!!";
-// }
-
-[ValueObject<DateOnly>(conversions: Conversions.None)]
-public partial struct CreationDate
-{
-    public string ToString(string format) => "!!";
-}
-
-[ValueObject(typeof(double))]
-public partial struct DoubleVo { }
-
-public class C : IParsable<C>
-{
-    public static C Parse(string s, IFormatProvider? provider) => throw new NotImplementedException();
-
-    public static bool TryParse(string? s, IFormatProvider? provider, out C result) => throw new NotImplementedException();
-}
-
-[ValueObject<C>]
-public partial struct MyCustomVo
-{
-    /// <inheritdoc cref = "M:Testbench.C.ToString()"/>
-    public readonly override global::System.String ToString() => IsInitialized() ? Value.ToString() ?? "" : "[UNINITIALIZED]";
-
-}
-

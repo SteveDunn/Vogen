@@ -1,13 +1,14 @@
 ﻿using Microsoft.CodeAnalysis;
-using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Vogen.Generators.Conversions;
 
 namespace Vogen.Generators;
 
-public class ClassGenerator : IGenerateSourceCode
+public class ClassGenerator : IGenerateValueObjectSourceCode
 {
-    public string BuildClass(VoWorkItem item, TypeDeclarationSyntax tds)
+    public string Generate(GenerationParameters parameters)
     {
+        var item = parameters.WorkItem;
+        var tds = parameters.WorkItem.TypeToAugment;
         SyntaxToken className = tds.Identifier;
 
         string itemUnderlyingType = item.UnderlyingTypeFullName;
@@ -29,7 +30,7 @@ public class ClassGenerator : IGenerateSourceCode
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute(""{Util.GenerateYourAssemblyName()}"", ""{Util.GenerateYourAssemblyVersion()}"")]
     {Util.GenerateAnyConversionAttributes(tds, item)}
     {DebugGeneration.GenerateDebugAttributes(item, className, itemUnderlyingType)}
-    {Util.GenerateModifiersFor(tds)} class {className} : global::System.IEquatable<{className}>{GenerateEqualsMethodsAndOperators.GenerateInterfaceIfNeeded(", ", itemUnderlyingType, item)}{GenerateComparableCode.GenerateIComparableHeaderIfNeeded(", ", item, tds)}{GenerateCodeForIParsableInterfaceDeclarations.GenerateIfNeeded(", ", item, tds)}{WriteStaticAbstracts.WriteHeaderIfNeeded(", ", item, tds)}
+    {Util.GenerateModifiersFor(tds)} class {className} : global::System.IEquatable<{className}>{GenerateEqualsMethodsAndOperators.GenerateInterfaceIfNeeded(", ", itemUnderlyingType, item)}{GenerateComparableCode.GenerateIComparableHeaderIfNeeded(", ", item, tds)}{GenerateCodeForIParsableInterfaceDeclarations.GenerateIfNeeded(", ", item, tds)}{GenerateCodeForIFormattableInterfaceDeclarations.GenerateIfNeeded(", ", item, tds)}{WriteStaticAbstracts.WriteHeaderIfNeeded(", ", item, tds)}
     {{
         {DebugGeneration.GenerateStackTraceFieldIfNeeded(item)}
 #if !VOGEN_NO_VALIDATION
@@ -117,6 +118,8 @@ public class ClassGenerator : IGenerateSourceCode
         {GenerateComparableCode.GenerateIComparableImplementationIfNeeded(item, tds)}
 
         {GenerateCodeForTryParse.GenerateAnyHoistedTryParseMethods(item)}{GenerateCodeForParse.GenerateAnyHoistedParseMethods(item)}
+
+        {GenerateCodeForTryFormat.GenerateAnyHoistedTryFormatMethods(parameters)}
 
         {GenerateHashCodes.GenerateGetHashCodeForAClass(item)}
 

@@ -26,7 +26,8 @@ internal class DiscoverUserProvidedOverloads
             EqualsForUnderlying = new UserProvidedEqualsForUnderlying(WasProvided: equalsForUnderlying is not null) ,
 
             ParseMethods = DiscoverParseMethods(vo, underlyingType),
-            TryParseMethods = DiscoverTryParseMethods(vo)
+            TryParseMethods = DiscoverTryParseMethods(vo),
+            TryFormatMethods = DiscoverTryFormatMethods(vo)
         };
     }
 
@@ -42,6 +43,12 @@ internal class DiscoverUserProvidedOverloads
     {
         return new UserProvidedTryParseMethods(
             MethodDiscovery.TryGetUserSuppliedTryParseMethods(wrapperType).ToList());
+    }
+
+    private static UserProvidedTryFormatMethods DiscoverTryFormatMethods(INamedTypeSymbol wrapperType)
+    {
+        return new UserProvidedTryFormatMethods(
+            MethodDiscovery.TryGetUserSuppliedTryFormatMethods(wrapperType).ToList());
     }
 
     private static UserProvidedGetHashCode HasGetHashCodeOverload(ITypeSymbol typeSymbol) => 

@@ -264,9 +264,70 @@ internal static class MethodDiscovery
         }
     }
 
+    
+    public static IEnumerable<IMethodSymbol> TryGetUserSuppliedTryFormatMethods(INamedTypeSymbol typeSymbol)
+    {
+        var matchingMethods = typeSymbol.GetMembers("TryFormat").OfType<IMethodSymbol>();
+
+        foreach (IMethodSymbol eachMethod in matchingMethods)
+        {
+            if (eachMethod.IsImplicitlyDeclared)
+            {
+                continue;
+            }
+
+            if (eachMethod.ReturnType.Name != nameof(Boolean))
+            {
+                continue;
+            }
+
+            var ps = eachMethod.GetParameters();
+
+            if (ps.Length == 0)
+            {
+                continue;
+            }
+
+            // can't change access rights
+            if (IsNotPublicOrProtected(eachMethod))
+            {
+                continue;
+            }
+
+            yield return eachMethod;
+        }
+    }
+
     public static IEnumerable<IMethodSymbol> FindTryParseMethodsOnThePrimitive(INamedTypeSymbol primitiveSymbol)
     {
         ImmutableArray<ISymbol> members = primitiveSymbol.GetMembers("TryParse");
+
+        if (members.Length == 0) yield break;
+            
+        foreach (ISymbol eachMember in members)
+        {
+            if (eachMember is IMethodSymbol s)
+            {
+                var ps = s.GetParameters();
+
+                if (s.ReturnType.Name != nameof(Boolean))
+                {
+                    continue;
+                }
+
+                if (!SymbolEqualityComparer.Default.Equals(ps[ps.Length-1].Type, primitiveSymbol))
+                {
+                    continue;
+                }
+
+                yield return s;
+            }
+        }
+    }
+
+    public static IEnumerable<IMethodSymbol> FindTryFormatMethodsOnThePrimitive(INamedTypeSymbol primitiveSymbol)
+    {
+        ImmutableArray<ISymbol> members = primitiveSymbol.GetMembers("TryFormat");
 
         if (members.Length == 0) yield break;
             

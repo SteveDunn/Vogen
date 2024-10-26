@@ -26,14 +26,16 @@ internal static class WriteWorkItems
         _structGenerator = new StructGenerator();
     }
 
-    public static void WriteVo(VoWorkItem item, SourceProductionContext context, VogenKnownSymbols vogenKnownSymbols)
+    public static void WriteVo(GenerationParameters parameters)
     {
         // get the recorded user class
+        var item = parameters.WorkItem;
+        var context = parameters.Context;
         TypeDeclarationSyntax voClass = item.TypeToAugment;
 
-        IGenerateSourceCode generator = GetGenerator(item);
+        IGenerateValueObjectSourceCode generator = GetGenerator(item);
 
-        string classAsText = GeneratedCodeSegments.Preamble + Environment.NewLine + generator.BuildClass(item, voClass);
+        string classAsText = GeneratedCodeSegments.Preamble + Environment.NewLine + generator.Generate(parameters);
         SyntaxTree syntaxTree = CSharpSyntaxTree.ParseText(classAsText);
         SyntaxNode root = syntaxTree.GetRoot();
         SyntaxNode formatted = root.NormalizeWhitespace();
@@ -46,7 +48,7 @@ internal static class WriteWorkItems
         Util.TryWriteUsingUniqueFilename(filename, context, sourceText);
     }
 
-    private static IGenerateSourceCode GetGenerator(VoWorkItem item) =>
+    private static IGenerateValueObjectSourceCode GetGenerator(VoWorkItem item) =>
         item.TypeToAugment switch
         {
             ClassDeclarationSyntax => _classGenerator,

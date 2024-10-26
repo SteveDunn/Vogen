@@ -70,7 +70,12 @@ static class SemanticHelper
 
     public static bool HasParameters(this IPropertySymbol symbol) => symbol.Parameters.Any();
 
-    public static bool ImplementsInterfaceOrBaseClass(this INamedTypeSymbol? typeSymbol, Type typeToCheck)
+    public static bool ImplementsInterfaceOrBaseClass(this INamedTypeSymbol? typeSymbol, Type typeToCheck) =>
+        ImplementsInterfaceOrBaseClass(typeSymbol, typeToCheck, true);
+    public static bool ImplementsInterfaceOrBaseClassDirectly(this INamedTypeSymbol? typeSymbol, Type typeToCheck) =>
+        ImplementsInterfaceOrBaseClass(typeSymbol, typeToCheck, false);
+
+    private static bool ImplementsInterfaceOrBaseClass(this INamedTypeSymbol? typeSymbol, Type typeToCheck, bool recurse)
     {
         if (typeSymbol is null)
         {
@@ -95,7 +100,7 @@ static class SemanticHelper
             }
         }
 
-        if (typeSymbol.BaseType is not null)
+        if (recurse && typeSymbol.BaseType is not null)
         {
             return ImplementsInterfaceOrBaseClass(typeSymbol.BaseType, typeToCheck);
         }

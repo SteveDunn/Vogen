@@ -3,10 +3,13 @@ using Vogen.Generators.Conversions;
 
 namespace Vogen.Generators;
 
-public class StructGenerator : IGenerateSourceCode
+public class StructGenerator : IGenerateValueObjectSourceCode
 {
-    public string BuildClass(VoWorkItem item, TypeDeclarationSyntax tds)
+    public string Generate(GenerationParameters parameters)
     {
+        var item = parameters.WorkItem;
+        var tds = parameters.WorkItem.TypeToAugment;
+
         var structName = tds.Identifier;
 
         var itemUnderlyingType = item.UnderlyingTypeFullName;
@@ -27,7 +30,7 @@ public class StructGenerator : IGenerateSourceCode
     {Util.GenerateAnyConversionAttributes(tds, item)}
     {DebugGeneration.GenerateDebugAttributes(item, structName, itemUnderlyingType)}
 // ReSharper disable once UnusedType.Global
-    { Util.GenerateModifiersFor(tds)} struct {structName} : global::System.IEquatable<{structName}>{GenerateEqualsMethodsAndOperators.GenerateInterfaceIfNeeded(", ", itemUnderlyingType, item)}{GenerateComparableCode.GenerateIComparableHeaderIfNeeded(", ", item, tds)}{GenerateCodeForIParsableInterfaceDeclarations.GenerateIfNeeded(", ", item, tds)}{WriteStaticAbstracts.WriteHeaderIfNeeded(", ", item, tds)}
+    { Util.GenerateModifiersFor(tds)} struct {structName} : global::System.IEquatable<{structName}>{GenerateEqualsMethodsAndOperators.GenerateInterfaceIfNeeded(", ", itemUnderlyingType, item)}{GenerateComparableCode.GenerateIComparableHeaderIfNeeded(", ", item, tds)}{GenerateCodeForIParsableInterfaceDeclarations.GenerateIfNeeded(", ", item, tds)}{GenerateCodeForIFormattableInterfaceDeclarations.GenerateIfNeeded(", ", item, tds)}{WriteStaticAbstracts.WriteHeaderIfNeeded(", ", item, tds)}
     {{
 {DebugGeneration.GenerateStackTraceFieldIfNeeded(item)}
 
@@ -114,6 +117,8 @@ public class StructGenerator : IGenerateSourceCode
         {GenerateComparableCode.GenerateIComparableImplementationIfNeeded(item, tds)}
 
         {GenerateCodeForTryParse.GenerateAnyHoistedTryParseMethods(item)}{GenerateCodeForParse.GenerateAnyHoistedParseMethods(item)}
+        
+        {GenerateCodeForTryFormat.GenerateAnyHoistedTryFormatMethods(parameters)}
         
         {GenerateHashCodes.GenerateForAStruct(item)}
 

@@ -4,6 +4,8 @@ using System.Linq;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
+using Vogen.Generators;
+
 // ReSharper disable NullableWarningSuppressionIsUsed
 // ReSharper disable ConditionIsAlwaysTrueOrFalseAccordingToNullableAPIContract
 // ReSharper disable RedundantSuppressNullableWarningExpression
@@ -141,7 +143,8 @@ public class ValueObjectGenerator : IIncrementalGenerator
 
             foreach (var eachWorkItem in workItems)
             {
-                WriteWorkItems.WriteVo(eachWorkItem, spc, vogenKnownSymbols);
+                var parameters = new GenerationParameters(eachWorkItem, spc, vogenKnownSymbols, compilation);
+                WriteWorkItems.WriteVo(parameters);
             }
         }
     }

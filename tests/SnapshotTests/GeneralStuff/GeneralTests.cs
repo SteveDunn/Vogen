@@ -10,6 +10,24 @@ namespace SnapshotTests.GeneralStuff;
 public class GeneralTests
 {
     [Fact]
+    public async Task Hoists_ISpanFormattable()
+    {
+        var source =
+            $$"""
+
+            using System;
+            using Vogen;
+            
+            [ValueObject<DateTimeOffset>]
+            public partial struct Dob;
+            """;
+
+            await new SnapshotRunner<ValueObjectGenerator>()
+                .WithSource(source)
+                .RunOn(TargetFramework.Net8_0);
+    }
+
+    [Fact]
     public async Task Hoists_parameter_attributes_from_underlying_tostring_methods()
     {
         var source =
