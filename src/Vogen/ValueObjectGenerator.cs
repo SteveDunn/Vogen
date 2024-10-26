@@ -123,13 +123,13 @@ public class ValueObjectGenerator : IIncrementalGenerator
         // get all the ValueObject types found.
         List<VoWorkItem> workItems = GetWorkItems(targets, spc, globalConfig, csharpCompilation.LanguageVersion, vogenKnownSymbols, compilation).ToList();
             
-        WriteOpenApiSchemaCustomizationCode.WriteIfNeeded(globalConfig, spc, workItems, vogenKnownSymbols);
+        GenerateCodeForOpenApiSchemaCustomization.WriteIfNeeded(globalConfig, spc, workItems, vogenKnownSymbols);
 
-        WriteEfCoreSpecs.WriteIfNeeded(spc, compilation, efCoreConverterSpecs);
+        GenerateCodeForEfCoreSpecs.WriteIfNeeded(spc, compilation, efCoreConverterSpecs);
         
-        WriteBsonSerializers.WriteIfNeeded(spc, compilation, workItems);
+        GenerateCodeForBsonSerializers.WriteIfNeeded(spc, compilation, workItems);
         
-        WriteOrleansSerializers.WriteIfNeeded(spc, workItems);
+        GenerateCodeForOrleansSerializers.WriteIfNeeded(spc, workItems);
 
         if (workItems.Count > 0)
         {
@@ -137,9 +137,9 @@ public class ValueObjectGenerator : IIncrementalGenerator
 
             internalDiags.RecordResolvedGlobalConfig(mergedConfig);
                 
-            WriteStaticAbstracts.WriteInterfacesAndMethodsIfNeeded(mergedConfig, spc, compilation);
+            GenerateCodeForStaticAbstracts.WriteInterfacesAndMethodsIfNeeded(mergedConfig, spc, compilation);
 
-            WriteSystemTextJsonConverterFactories.WriteIfNeeded(mergedConfig, workItems, spc, compilation, vogenKnownSymbols);
+            GenerateCodeForSystemTextJsonConverterFactories.WriteIfNeeded(mergedConfig, workItems, spc, compilation, vogenKnownSymbols);
 
             foreach (var eachWorkItem in workItems)
             {

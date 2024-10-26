@@ -69,8 +69,6 @@ public class VoWorkItem
     
     public required ParsingInformation ParsingInformation { get; init; }
     
-    public required IFormattableInformation FormattableInformation { get; init; }
-    
     public required ToStringInformation ToStringInformation { get; init; }
 
     public required LanguageVersion LanguageVersion { get; init; }
@@ -98,21 +96,6 @@ public class ParsingInformation
     
     public required bool UnderlyingDerivesFromIUtf8SpanParsable { get; init; }
     public required INamedTypeSymbol? IFormatProviderType { get; init; }
-}
-
-public class IFormattableInformation
-{
-    public required List<IMethodSymbol> TryFormatMethodsOnThePrimitive { get; init; }
-    
-    public bool PrimitiveHasNoParseOrTryParseMethods => TryFormatMethodsOnThePrimitive.Count == 0;
-
-    // ReSharper disable once InconsistentNaming
-    public required bool IFormattableIsAvailable { get; init; }
-    
-    public required bool UnderlyingDerivesFromIFormattable { get; init; }
-    public required bool UnderlyingDerivesFromISpanFormattable { get; init; }
-    
-    public required bool UnderlyingDerivesFromIUtf8SpanFormattable { get; init; }
 }
 
 public class ToStringInformation

@@ -1,6 +1,6 @@
 namespace Vogen;
 
-public static class GenerateHashCodes
+public static class GenerateCodeForHashCodes
 {
     public static string GenerateGetHashCodeForAClass(VoWorkItem item)
     {

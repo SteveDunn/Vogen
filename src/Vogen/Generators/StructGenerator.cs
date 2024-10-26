@@ -1,5 +1,4 @@
-﻿using Microsoft.CodeAnalysis.CSharp.Syntax;
-using Vogen.Generators.Conversions;
+﻿using Vogen.Generators.Conversions;
 
 namespace Vogen.Generators;
 
@@ -18,11 +17,11 @@ public class StructGenerator : IGenerateValueObjectSourceCode
         string underlyingBang = item.Nullable.BangForUnderlying;
         string wrapperBang = item.Nullable.BangForWrapper;
 
-        var code = Generate();
+        var code = GenerateCode();
         
         return item.Nullable.WrapBlock(code);
         
-        string Generate() => $@"
+        string GenerateCode() => $@"
 
 {Util.WriteStartNamespace(item.FullNamespace)}
     [global::System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage] 
@@ -30,7 +29,13 @@ public class StructGenerator : IGenerateValueObjectSourceCode
     {Util.GenerateAnyConversionAttributes(tds, item)}
     {DebugGeneration.GenerateDebugAttributes(item, structName, itemUnderlyingType)}
 // ReSharper disable once UnusedType.Global
-    { Util.GenerateModifiersFor(tds)} struct {structName} : global::System.IEquatable<{structName}>{GenerateEqualsMethodsAndOperators.GenerateInterfaceIfNeeded(", ", itemUnderlyingType, item)}{GenerateComparableCode.GenerateIComparableHeaderIfNeeded(", ", item, tds)}{GenerateCodeForIParsableInterfaceDeclarations.GenerateIfNeeded(", ", item, tds)}{GenerateCodeForIFormattableInterfaceDeclarations.GenerateIfNeeded(", ", item, tds)}{WriteStaticAbstracts.WriteHeaderIfNeeded(", ", item, tds)}
+    { Util.GenerateModifiersFor(tds)} struct {structName} : 
+        global::System.IEquatable<{structName}>
+        {GenerateCodeForEqualsMethodsAndOperators.GenerateInterfaceDefinitionsIfNeeded(", ", item)}
+        {GenerateCodeForComparables.GenerateInterfaceDefinitionsIfNeeded(", ", item)}
+        {GenerateCodeForIParsableInterfaceDeclarations.GenerateIfNeeded(", ", item)}
+        {GenerateCodeForTryFormat.GenerateInterfaceDefinitionsIfNeeded(", ", parameters)}
+        {GenerateCodeForStaticAbstracts.GenerateInterfaceDefinitionIfNeeded(", ", item)}
     {{
 {DebugGeneration.GenerateStackTraceFieldIfNeeded(item)}
 
@@ -52,7 +57,7 @@ public class StructGenerator : IGenerateValueObjectSourceCode
             }}
         }}
 
-{GenerateStaticConstructor.GenerateIfNeeded(item)}
+{GenerateCodeForStaticConstructors.GenerateIfNeeded(item)}
         [global::System.Diagnostics.DebuggerStepThroughAttribute]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public {structName}()
@@ -95,9 +100,9 @@ public class StructGenerator : IGenerateValueObjectSourceCode
 
 {Util.GenerateIsInitializedMethod(true, item)}
 
-{GenerateStringComparers.GenerateIfNeeded(item, tds)}        
+{GenerateCodeForStringComparers.GenerateIfNeeded(item, tds)}        
 
-{GenerateCastingOperators.GenerateImplementations(item,tds)}{Util.GenerateGuidFactoryMethodIfNeeded(item)}
+{GenerateCodeForCastingOperators.GenerateImplementations(item,tds)}{Util.GenerateGuidFactoryMethodIfNeeded(item)}
         // only called internally when something has been deserialized into
         // its primitive type.
         private static {structName} __Deserialize({itemUnderlyingType} value)
@@ -108,19 +113,19 @@ public class StructGenerator : IGenerateValueObjectSourceCode
 
             return new {structName}(value);
         }}
-        {GenerateEqualsMethodsAndOperators.GenerateEqualsMethodsForAStruct(item, tds)}
+        {GenerateCodeForEqualsMethodsAndOperators.GenerateEqualsMethodsForAStruct(item, tds)}
 
         public static global::System.Boolean operator ==({structName} left, {structName} right) => left.Equals(right);
         public static global::System.Boolean operator !=({structName} left, {structName} right) => !(left == right);
-        {GenerateEqualsMethodsAndOperators.GenerateEqualsOperatorsForPrimitivesIfNeeded(itemUnderlyingType, structName, item)}
+        {GenerateCodeForEqualsMethodsAndOperators.GenerateEqualsOperatorsForPrimitivesIfNeeded(itemUnderlyingType, structName, item)}
 
-        {GenerateComparableCode.GenerateIComparableImplementationIfNeeded(item, tds)}
+        {GenerateCodeForComparables.GenerateIComparableImplementationIfNeeded(item, tds)}
 
         {GenerateCodeForTryParse.GenerateAnyHoistedTryParseMethods(item)}{GenerateCodeForParse.GenerateAnyHoistedParseMethods(item)}
         
         {GenerateCodeForTryFormat.GenerateAnyHoistedTryFormatMethods(parameters)}
         
-        {GenerateHashCodes.GenerateForAStruct(item)}
+        {GenerateCodeForHashCodes.GenerateForAStruct(item)}
 
         {GenerateCodeForToString.GenerateForAStruct(item)}
 

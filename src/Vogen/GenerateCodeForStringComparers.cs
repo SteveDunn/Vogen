@@ -2,7 +2,7 @@ using Microsoft.CodeAnalysis.CSharp.Syntax;
 
 namespace Vogen;
 
-public static class GenerateStringComparers
+public static class GenerateCodeForStringComparers
 {
     public static string GenerateIfNeeded(VoWorkItem item, TypeDeclarationSyntax tds)
     {

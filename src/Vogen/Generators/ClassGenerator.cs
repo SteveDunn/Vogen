@@ -30,7 +30,13 @@ public class ClassGenerator : IGenerateValueObjectSourceCode
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute(""{Util.GenerateYourAssemblyName()}"", ""{Util.GenerateYourAssemblyVersion()}"")]
     {Util.GenerateAnyConversionAttributes(tds, item)}
     {DebugGeneration.GenerateDebugAttributes(item, className, itemUnderlyingType)}
-    {Util.GenerateModifiersFor(tds)} class {className} : global::System.IEquatable<{className}>{GenerateEqualsMethodsAndOperators.GenerateInterfaceIfNeeded(", ", itemUnderlyingType, item)}{GenerateComparableCode.GenerateIComparableHeaderIfNeeded(", ", item, tds)}{GenerateCodeForIParsableInterfaceDeclarations.GenerateIfNeeded(", ", item, tds)}{GenerateCodeForIFormattableInterfaceDeclarations.GenerateIfNeeded(", ", item, tds)}{WriteStaticAbstracts.WriteHeaderIfNeeded(", ", item, tds)}
+    {Util.GenerateModifiersFor(tds)} class {className} : 
+        global::System.IEquatable<{className}>
+        {GenerateCodeForEqualsMethodsAndOperators.GenerateInterfaceDefinitionsIfNeeded(", ", item)}
+        {GenerateCodeForComparables.GenerateInterfaceDefinitionsIfNeeded(", ", item)}
+        {GenerateCodeForIParsableInterfaceDeclarations.GenerateIfNeeded(", ", item)}
+        {GenerateCodeForTryFormat.GenerateInterfaceDefinitionsIfNeeded(", ", parameters)}
+        {GenerateCodeForStaticAbstracts.GenerateInterfaceDefinitionIfNeeded(", ", item)}
     {{
         {DebugGeneration.GenerateStackTraceFieldIfNeeded(item)}
 #if !VOGEN_NO_VALIDATION
@@ -50,7 +56,7 @@ public class ClassGenerator : IGenerateValueObjectSourceCode
             }}
         }}
 
-{GenerateStaticConstructor.GenerateIfNeeded(item)}
+{GenerateCodeForStaticConstructors.GenerateIfNeeded(item)}
         [global::System.Diagnostics.DebuggerStepThroughAttribute]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public {className}()
@@ -94,7 +100,7 @@ public class ClassGenerator : IGenerateValueObjectSourceCode
 
         {Util.GenerateIsInitializedMethod(false, item)}
 
-        {GenerateStringComparers.GenerateIfNeeded(item, tds)}  
+        {GenerateCodeForStringComparers.GenerateIfNeeded(item, tds)}  
 
         // only called internally when something has been deserialized into
         // its primitive type.
@@ -108,20 +114,20 @@ public class ClassGenerator : IGenerateValueObjectSourceCode
 
             return new {className}(value);
         }}
-        {GenerateEqualsMethodsAndOperators.GenerateEqualsMethodsForAClass(item, tds)}
+        {GenerateCodeForEqualsMethodsAndOperators.GenerateEqualsMethodsForAClass(item, tds)}
 
         public static global::System.Boolean operator ==({className}{wrapperQ} left, {className}{wrapperQ} right) => Equals(left, right);
         public static global::System.Boolean operator !=({className}{wrapperQ} left, {className}{wrapperQ} right) => !Equals(left, right);
-        {GenerateEqualsMethodsAndOperators.GenerateEqualsOperatorsForPrimitivesIfNeeded(itemUnderlyingType, className, item)}
+        {GenerateCodeForEqualsMethodsAndOperators.GenerateEqualsOperatorsForPrimitivesIfNeeded(itemUnderlyingType, className, item)}
 
-        {GenerateCastingOperators.GenerateImplementations(item,tds)}{Util.GenerateGuidFactoryMethodIfNeeded(item)}
-        {GenerateComparableCode.GenerateIComparableImplementationIfNeeded(item, tds)}
+        {GenerateCodeForCastingOperators.GenerateImplementations(item,tds)}{Util.GenerateGuidFactoryMethodIfNeeded(item)}
+        {GenerateCodeForComparables.GenerateIComparableImplementationIfNeeded(item, tds)}
 
         {GenerateCodeForTryParse.GenerateAnyHoistedTryParseMethods(item)}{GenerateCodeForParse.GenerateAnyHoistedParseMethods(item)}
 
         {GenerateCodeForTryFormat.GenerateAnyHoistedTryFormatMethods(parameters)}
 
-        {GenerateHashCodes.GenerateGetHashCodeForAClass(item)}
+        {GenerateCodeForHashCodes.GenerateGetHashCodeForAClass(item)}
 
         {Util.GenerateEnsureInitializedMethod(item, readOnly: false)}
 

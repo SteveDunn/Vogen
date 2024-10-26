@@ -2,10 +2,10 @@
 
 # What is the package?
 
-This is a _semi_-opinionated library which is a Source Generator to generate [Value Objects](https://wiki.c2.com/?ValueObject).
-The main goal is that the Value Objects generated have almost the same speed and memory performance as using primitives.
+This is a _semi_-opinionated library which is a Source Generator to generate [value objects](https://wiki.c2.com/?ValueObject).
+The main goal is that the value objects generated have almost the same speed and memory performance as using primitives.
 
-The Value Objects wrap simple primitives such as `int`, `string`, `double` etc.
+The value objects wrap simple primitives such as `int`, `string`, `double` etc.
 
 To get started, add this package, and add a type such as:
 
@@ -34,7 +34,7 @@ void HandleCustomer(CustomerId customerId)
 
 The Source Generator generates code for things like creating the object and for performing equality.
 
-Value Objects help combat Primitive Obsession. Primitive Obsession means being obsessed with primitives.  It is a Code Smell that degrades the quality of software.
+Value objects help combat Primitive Obsession. Primitive Obsession means being obsessed with primitives.  It is a Code Smell that degrades the quality of software.
 
 > "*Primitive Obsession is using primitive data types to represent domain ideas*" [#](https://wiki.c2.com/?PrimitiveObsession)
 
@@ -45,7 +45,7 @@ Some examples:
 
 The opinions are expressed as:
 
-* A Value Object (VO) is constructed via a factory method named `From`, e.g. `Age.From(12)`
+* A value object (VO) is constructed via a factory method named `From`, e.g. `Age.From(12)`
 * A VO is equatable (`Age.From(12) == Age.From(12)`)
 * A VO, if validated, is validated with a private static method named `Validate` that returns a `Validation` result
 * Any validation that is not `Validation.Ok` results in a `ValueObjectValidationException` being thrown
@@ -70,7 +70,7 @@ public partial struct CustomerId
 {
 }
 ```
-That's all you need to do to switch from a primitive to a Value Object.
+That's all you need to do to switch from a primitive to a value object.
 
 Here it is again with some validation
 

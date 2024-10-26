@@ -139,7 +139,7 @@ internal static class BuildWorkItems
             IsTheWrapperAValueType = isWrapperAValueType,
             
             ParsingInformation = BuildParsingInformation(underlyingType, vogenKnownSymbols),
-            FormattableInformation = BuildFormattableInformation(underlyingType, vogenKnownSymbols),
+            //FormattableInformation = BuildFormattableInformation(underlyingType, vogenKnownSymbols),
             ToStringInformation = BuildToStringInformation(underlyingType),
             Config = config,
             
@@ -188,26 +188,6 @@ internal static class BuildWorkItems
         return parsingInformation;
     }
 
-    private static IFormattableInformation BuildFormattableInformation(INamedTypeSymbol underlyingType, VogenKnownSymbols vogenKnownSymbols)
-    {
-        IFormattableInformation parsingInformation = new()
-        {
-            IFormattableIsAvailable = vogenKnownSymbols.ISpanFormattable is not null,
-            UnderlyingDerivesFromIFormattable = DoesPubliclyAndDirectlyImplementInterface(underlyingType, vogenKnownSymbols.IFormattable),
-            UnderlyingDerivesFromISpanFormattable = DoesPubliclyAndDirectlyImplementInterface(underlyingType, vogenKnownSymbols.ISpanFormattable),
-            UnderlyingDerivesFromIUtf8SpanFormattable = DoesPubliclyAndDirectlyImplementInterface(underlyingType, vogenKnownSymbols.IUtf8SpanFormattable),
-            
-            TryFormatMethodsOnThePrimitive = MethodDiscovery.FindTryFormatMethodsOnThePrimitive(underlyingType).ToList(),
-        };
-        
-        return parsingInformation;
-    }
-
-    private static bool DoesPubliclyAndDirectlyImplementInterface(INamedTypeSymbol underlyingType, INamedTypeSymbol? @interface)
-    {
-        if (@interface is null) return false;
-        return underlyingType.AllInterfaces.Contains(@interface);
-    }
 
     private static ToStringInformation BuildToStringInformation(INamedTypeSymbol underlyingType)
     {

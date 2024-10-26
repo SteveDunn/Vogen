@@ -3,7 +3,7 @@ using Microsoft.CodeAnalysis.CSharp.Syntax;
 
 namespace Vogen;
 
-public static class GenerateEqualsMethodsAndOperators
+public static class GenerateCodeForEqualsMethodsAndOperators
 {
     public static string GenerateEqualsMethodsForAClass(VoWorkItem item, TypeDeclarationSyntax tds)
     {
@@ -165,13 +165,8 @@ $$"""
                 """;
     }
 
-    public static string GenerateInterfaceIfNeeded(string prefix, string itemUnderlyingType, VoWorkItem item)
-    {
-        if (!item.Config.PrimitiveEqualityGeneration.HasFlag(PrimitiveEqualityGeneration.GenerateMethods))
-        {
-            return string.Empty;
-        }
-        
-        return $"{prefix}global::System.IEquatable<{itemUnderlyingType}> ";
-    }
+    public static string GenerateInterfaceDefinitionsIfNeeded(string prefix, VoWorkItem item) =>
+        item.Config.PrimitiveEqualityGeneration.HasFlag(PrimitiveEqualityGeneration.GenerateMethods)
+            ? $"{prefix}global::System.IEquatable<{item.UnderlyingTypeFullName}> "
+            : string.Empty;
 }

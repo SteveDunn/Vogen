@@ -4,7 +4,7 @@ using Microsoft.CodeAnalysis;
 
 namespace Vogen;
 
-internal class WriteSystemTextJsonConverterFactories
+internal class GenerateCodeForSystemTextJsonConverterFactories
 {
     public static void WriteIfNeeded(VogenConfiguration? globalConfig,
         List<VoWorkItem> workItems,

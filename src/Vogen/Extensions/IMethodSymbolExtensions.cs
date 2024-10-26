@@ -25,6 +25,9 @@ namespace Analyzer.Utilities.Extensions
 {
     internal static class IMethodSymbolExtensions
     {
+        public static IEnumerable<AttributeData> GetAttributesExcludingNullableAttribute(this IMethodSymbol? methodSymbol) => 
+            methodSymbol is null ? Enumerable.Empty<AttributeData>() : methodSymbol.GetAttributes().Where(a => !a.AttributeClass.Name.Contains("NullableAttribute"));
+
         /// <summary>
         /// Checks if the given method overrides <see cref="object.Equals(object)"/>.
         /// </summary>

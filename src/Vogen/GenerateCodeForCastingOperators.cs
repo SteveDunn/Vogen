@@ -3,7 +3,7 @@ using Microsoft.CodeAnalysis.CSharp.Syntax;
 
 namespace Vogen;
 
-public static class GenerateCastingOperators
+public static class GenerateCodeForCastingOperators
 {
     public static string GenerateImplementations(VoWorkItem item, TypeDeclarationSyntax tds)
     {

@@ -1,5 +1,4 @@
-﻿using Microsoft.CodeAnalysis.CSharp.Syntax;
-using Vogen.Generators.Conversions;
+﻿using Vogen.Generators.Conversions;
 
 namespace Vogen.Generators;
 
@@ -17,18 +16,24 @@ public class RecordStructGenerator : IGenerateValueObjectSourceCode
         string qmForUnderlying = item.Nullable.QuestionMarkForUnderlying;
         string bangForUnderlying = item.Nullable.BangForUnderlying;
         
-        var code = Generate();
+        var code = GenerateCode();
         
         return item.Nullable.WrapBlock(code);
         
-        string Generate() => $@"
+        string GenerateCode() => $@"
 
 {Util.WriteStartNamespace(item.FullNamespace)}
     [global::System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage] 
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute(""{Util.GenerateYourAssemblyName()}"", ""{Util.GenerateYourAssemblyVersion()}"")]
     {Util.GenerateAnyConversionAttributes(tds, item)}
     {DebugGeneration.GenerateDebugAttributes(item, wrapperName, itemUnderlyingType)}
-    { Util.GenerateModifiersFor(tds)} record struct {wrapperName} : global::System.IEquatable<{wrapperName}>{GenerateEqualsMethodsAndOperators.GenerateInterfaceIfNeeded(", ", itemUnderlyingType, item)}{GenerateComparableCode.GenerateIComparableHeaderIfNeeded(", ", item, tds)}{GenerateCodeForIParsableInterfaceDeclarations.GenerateIfNeeded(", ", item, tds)}{GenerateCodeForIFormattableInterfaceDeclarations.GenerateIfNeeded(", ", item, tds)}{WriteStaticAbstracts.WriteHeaderIfNeeded(", ", item, tds)}
+    { Util.GenerateModifiersFor(tds)} record struct {wrapperName} : 
+        global::System.IEquatable<{wrapperName}>
+        {GenerateCodeForEqualsMethodsAndOperators.GenerateInterfaceDefinitionsIfNeeded(", ", item)}
+        {GenerateCodeForComparables.GenerateInterfaceDefinitionsIfNeeded(", ", item)}
+        {GenerateCodeForIParsableInterfaceDeclarations.GenerateIfNeeded(", ", item)}
+        {GenerateCodeForTryFormat.GenerateInterfaceDefinitionsIfNeeded(", ", parameters)}
+        {GenerateCodeForStaticAbstracts.GenerateInterfaceDefinitionIfNeeded(", ", item)}
     {{
 {DebugGeneration.GenerateStackTraceFieldIfNeeded(item)}
 
@@ -61,7 +66,7 @@ public class RecordStructGenerator : IGenerateValueObjectSourceCode
             }}
         }}
 
-{GenerateStaticConstructor.GenerateIfNeeded(item)}
+{GenerateCodeForStaticConstructors.GenerateIfNeeded(item)}
         [global::System.Diagnostics.DebuggerStepThroughAttribute]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public {wrapperName}()
@@ -104,8 +109,8 @@ public class RecordStructGenerator : IGenerateValueObjectSourceCode
 
 {Util.GenerateIsInitializedMethod(true, item)}
 
-{GenerateStringComparers.GenerateIfNeeded(item, tds)}        
-{GenerateCastingOperators.GenerateImplementations(item,tds)}{Util.GenerateGuidFactoryMethodIfNeeded(item)}
+{GenerateCodeForStringComparers.GenerateIfNeeded(item, tds)}        
+{GenerateCodeForCastingOperators.GenerateImplementations(item,tds)}{Util.GenerateGuidFactoryMethodIfNeeded(item)}
         // only called internally when something has been deserialized into
         // its primitive type.
         private static {wrapperName} __Deserialize({itemUnderlyingType} value)
@@ -116,16 +121,16 @@ public class RecordStructGenerator : IGenerateValueObjectSourceCode
 
             return new {wrapperName}(value);
         }}
-        {GenerateEqualsMethodsAndOperators.GenerateEqualsMethodsForAStruct(item, tds)}
-{GenerateEqualsMethodsAndOperators.GenerateEqualsOperatorsForPrimitivesIfNeeded(itemUnderlyingType, wrapperName, item)}
+        {GenerateCodeForEqualsMethodsAndOperators.GenerateEqualsMethodsForAStruct(item, tds)}
+{GenerateCodeForEqualsMethodsAndOperators.GenerateEqualsOperatorsForPrimitivesIfNeeded(itemUnderlyingType, wrapperName, item)}
 
-        {GenerateComparableCode.GenerateIComparableImplementationIfNeeded(item, tds)}
+        {GenerateCodeForComparables.GenerateIComparableImplementationIfNeeded(item, tds)}
 
         {GenerateCodeForTryParse.GenerateAnyHoistedTryParseMethods(item)}{GenerateCodeForParse.GenerateAnyHoistedParseMethods(item)}
 
         {GenerateCodeForTryFormat.GenerateAnyHoistedTryFormatMethods(parameters)}
 
-        {GenerateHashCodes.GenerateForAStruct(item)}
+        {GenerateCodeForHashCodes.GenerateForAStruct(item)}
 
         {Util.GenerateEnsureInitializedMethod(item, readOnly: true)}
 
