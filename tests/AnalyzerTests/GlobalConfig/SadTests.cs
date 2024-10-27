@@ -36,8 +36,9 @@ public class SadTests
             .WithSource(source)
             .ValidateWith(Validate)
             .RunOnAllFrameworks();
+        return;
 
-        void Validate(ImmutableArray<Diagnostic> diagnostics)
+        static void Validate(ImmutableArray<Diagnostic> diagnostics)
         {
             diagnostics.Should().HaveCount(1);
 
@@ -75,8 +76,9 @@ public class MyValidationException : Exception
             .WithSource(source)
             .ValidateWith(Validate)
             .RunOnAllFrameworks();
+        return;
 
-        void Validate(ImmutableArray<Diagnostic> diagnostics)
+        static void Validate(ImmutableArray<Diagnostic> diagnostics)
         {
             diagnostics.Should().HaveCount(1);
 
@@ -114,8 +116,9 @@ public class MyValidationException : Exception
             .WithSource(source)
             .ValidateWith(Validate)
             .RunOnAllFrameworks();
+        return;
 
-        void Validate(ImmutableArray<Diagnostic> diagnostics)
+        static void Validate(ImmutableArray<Diagnostic> diagnostics)
         {
             diagnostics.Should().HaveCount(1);
 
@@ -150,8 +153,9 @@ public class MyValidationException { } // NOT AN EXCEPTION!
             .WithSource(source)
             .ValidateWith(Validate)
             .RunOnAllFrameworks();
+        return;
 
-        void Validate(ImmutableArray<Diagnostic> diagnostics)
+        static void Validate(ImmutableArray<Diagnostic> diagnostics)
         {
 
             diagnostics.Should().HaveCount(2);
@@ -190,8 +194,9 @@ public partial struct CustomerId { }
             .WithSource(source)
             .ValidateWith(Validate)
             .RunOnAllFrameworks();
+        return;
 
-        void Validate(ImmutableArray<Diagnostic> diagnostics)
+        static void Validate(ImmutableArray<Diagnostic> diagnostics)
         {
 
             diagnostics.Should().HaveCount(1);
@@ -224,8 +229,9 @@ public partial struct CustomerId { }
             .WithSource(source)
             .ValidateWith(Validate)
             .RunOnAllFrameworks();
+        return;
 
-        void Validate(ImmutableArray<Diagnostic> diagnostics)
+        static void Validate(ImmutableArray<Diagnostic> diagnostics)
         {
             diagnostics.Should().HaveCount(1);
 
@@ -257,8 +263,9 @@ public partial struct CustomerId { }
             .WithSource(source)
             .ValidateWith(Validate)
             .RunOnAllFrameworks();
+        return;
 
-        void Validate(ImmutableArray<Diagnostic> diagnostics)
+        static void Validate(ImmutableArray<Diagnostic> diagnostics)
         {
 
             diagnostics.Should().HaveCount(1);
@@ -291,8 +298,9 @@ public partial struct CustomerId { }
             .WithSource(source)
             .ValidateWith(Validate)
             .RunOnAllFrameworks();
+        return;
 
-        void Validate(ImmutableArray<Diagnostic> diagnostics)
+        static void Validate(ImmutableArray<Diagnostic> diagnostics)
         {
             diagnostics.Should().HaveCount(2);
 

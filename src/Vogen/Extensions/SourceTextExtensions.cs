@@ -12,7 +12,7 @@ namespace Analyzer.Utilities.Extensions
     /// <summary>
     /// Class that contains extensions to <see cref="SourceText"/>.
     /// </summary>
-    internal static partial class SourceTextExtensions
+    internal static class SourceTextExtensions
     {
         /// <summary>
         /// Reads the <paramref name="text"/> contents into a stream and returns the result of calling the

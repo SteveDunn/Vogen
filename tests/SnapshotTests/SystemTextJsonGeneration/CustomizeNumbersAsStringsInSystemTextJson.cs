@@ -51,7 +51,7 @@ public class CustomizeNumbersAsStringsInSystemTextJson
             ? "Customizations.TreatNumberAsStringInSystemTextJson"
             : "Customizations.None";
 
-        string declaration = "";
+        string declaration;
         
         if (underlyingType.Length == 0)
         {

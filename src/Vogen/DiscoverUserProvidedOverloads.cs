@@ -14,7 +14,8 @@ internal class DiscoverUserProvidedOverloads
         
         return new UserProvidedOverloads
         {
-            ToStringInfo = HasToStringOverload(vo),
+            ToStringOverloads = new UserProvidedToStringMethods(
+                MethodDiscovery.GetAnyUserProvidedToStringMethods(vo).ToList()),
 
             HashCodeInfo = HasGetHashCodeOverload(vo),
 
@@ -25,7 +26,8 @@ internal class DiscoverUserProvidedOverloads
             EqualsForUnderlying = new UserProvidedEqualsForUnderlying(WasProvided: equalsForUnderlying is not null) ,
 
             ParseMethods = DiscoverParseMethods(vo, underlyingType),
-            TryParseMethods = DiscoverTryParseMethods(vo)
+            TryParseMethods = DiscoverTryParseMethods(vo),
+            TryFormatMethods = DiscoverTryFormatMethods(vo)
         };
     }
 
@@ -43,136 +45,14 @@ internal class DiscoverUserProvidedOverloads
             MethodDiscovery.TryGetUserSuppliedTryParseMethods(wrapperType).ToList());
     }
 
-    private static UserProvidedToString HasToStringOverload(ITypeSymbol typeSymbol)
+    private static UserProvidedTryFormatMethods DiscoverTryFormatMethods(INamedTypeSymbol wrapperType)
     {
-        IMethodSymbol? method = MethodDiscovery.TryGetToStringOverride(typeSymbol);
-        return method is null
-            ? UserProvidedToString.NotProvided
-            : new UserProvidedToString(
-                WasSupplied: true,
-                IsRecordClass: typeSymbol is { IsRecord: true, IsReferenceType: true },
-                IsSealed: method.IsSealed,
-                method);
+        return new UserProvidedTryFormatMethods(
+            MethodDiscovery.TryGetUserSuppliedTryFormatMethods(wrapperType).ToList());
     }
 
     private static UserProvidedGetHashCode HasGetHashCodeOverload(ITypeSymbol typeSymbol) => 
         new(WasProvided: MethodDiscovery.TryGetHashCodeOverload(typeSymbol) is not null);
-
-    // private static UserProvidedEqualsForWrapper HasUserGeneratedEqualsForWrapper(
-    //     ITypeSymbol vo, 
-    //     INamedTypeSymbol? wrapperType)
-    // {
-    //     while (true)
-    //     {
-    //         var matchingMethods = vo.GetMembers("Equals").OfType<IMethodSymbol>();
-    //
-    //         foreach (IMethodSymbol eachMethod in matchingMethods)
-    //         {
-    //             if (eachMethod.IsImplicitlyDeclared)
-    //             {
-    //                 continue;
-    //             }
-    //             
-    //             // can't change access rights
-    //             if (IsNotPublicOrProtected(eachMethod))
-    //             {
-    //                 continue;
-    //             }
-    //
-    //             if (DoesNotHaveJustOneParameter(eachMethod))
-    //             {
-    //                 continue;
-    //             }
-    //
-    //             IParameterSymbol onlyParameter = eachMethod.Parameters[0];
-    //
-    //             if (SymbolEqualityComparer.Default.Equals(onlyParameter, wrapperType))
-    //             {
-    //                 continue;
-    //             }
-    //
-    //             return new UserProvidedEqualsForWrapper(
-    //                 WasProvided: true);
-    //         }
-    //
-    //         INamedTypeSymbol? baseType = vo.BaseType;
-    //
-    //         if (baseType is null)
-    //         {
-    //             return new UserProvidedEqualsForWrapper(WasProvided: false);
-    //         }
-    //
-    //         if (CannotGoFurtherInHierarchy(baseType))
-    //         {
-    //             return new UserProvidedEqualsForWrapper(WasProvided: false);
-    //         }
-    //
-    //         vo = baseType;
-    //     }
-    // }
-
-    // private static UserProvidedEqualsForUnderlying HasUserGeneratedEqualsForUnderlying(
-    //     INamedTypeSymbol vo,
-    //     ITypeSymbol primitiveType)
-    // {
-    //     while (true)
-    //     {
-    //         var matchingMethods = vo.GetMembers("Equals").OfType<IMethodSymbol>();
-    //
-    //         foreach (IMethodSymbol eachMethod in matchingMethods)
-    //         {
-    //             if (eachMethod.IsImplicitlyDeclared)
-    //             {
-    //                 continue;
-    //             }
-    //
-    //             // can't change access rights
-    //             if (IsNotPublicOrProtected(eachMethod))
-    //             {
-    //                 continue;
-    //             }
-    //
-    //             if (DoesNotHaveJustOneParameter(eachMethod))
-    //             {
-    //                 continue;
-    //             }
-    //             
-    //             IParameterSymbol onlyParameter = eachMethod.Parameters[0];
-    //
-    //             if (SymbolEqualityComparer.Default.Equals(onlyParameter.Type, primitiveType))
-    //             {
-    //                 return new UserProvidedEqualsForUnderlying(WasProvided: true);
-    //             }
-    //         }
-    //
-    //         INamedTypeSymbol? baseType = primitiveType.BaseType;
-    //
-    //         if (baseType is null)
-    //         {
-    //             return new UserProvidedEqualsForUnderlying(WasProvided: false);
-    //         }
-    //
-    //         if (CannotGoFurtherInHierarchy(baseType))
-    //         {
-    //             return new UserProvidedEqualsForUnderlying(WasProvided: false);
-    //         }
-    //
-    //         primitiveType = baseType;
-    //     }
-    // }
-
-    // private static bool CannotGoFurtherInHierarchy(INamedTypeSymbol baseType) => 
-    //     baseType.SpecialType is SpecialType.System_Object or SpecialType.System_ValueType;
-    //
-    // private static bool DoesNotHaveJustOneParameter(IMethodSymbol eachMethod) => eachMethod.Parameters.Length != 1;
-    //
-    // private static bool IsNotPublicOrProtected(IMethodSymbol eachMethod) =>
-    //     eachMethod.DeclaredAccessibility is not (Accessibility.Public or Accessibility.Protected);
-}
-
-public record struct UserProvidedToString(bool WasSupplied, bool IsRecordClass, bool IsSealed, IMethodSymbol? Method)
-{
-    public static readonly UserProvidedToString NotProvided = new(false, false, false, null);
 }
 
 public record struct UserProvidedGetHashCode(bool WasProvided);
@@ -232,6 +112,7 @@ public class UserProvidedParseMethods : IEnumerable<IMethodSymbol>
 
     IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
 }
+
 
 /// <summary>
 /// Represents the TryParse methods that the user supplied.

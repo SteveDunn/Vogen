@@ -63,7 +63,7 @@ namespace Whatever
     [global::System.ComponentModel.TypeConverter(typeof(internal_sealed_partial_recordcharTypeConverter))]
     [global::System.Diagnostics.DebuggerTypeProxyAttribute(typeof(internal_sealed_partial_recordcharDebugView))]
     [global::System.Diagnostics.DebuggerDisplayAttribute("Underlying type: System.Char, Value = { _value }")]
-    internal sealed partial record class internal_sealed_partial_recordchar : global::System.IEquatable<internal_sealed_partial_recordchar>, global::System.IEquatable<System.Char>, global::System.IComparable<internal_sealed_partial_recordchar>, global::System.IComparable
+    internal sealed partial record class internal_sealed_partial_recordchar : global::System.IEquatable<internal_sealed_partial_recordchar>, global::System.IEquatable<System.Char>, global::System.IComparable<internal_sealed_partial_recordchar>, global::System.IComparable, global::System.IFormattable, global::System.ISpanFormattable, global::System.IUtf8SpanFormattable
     {
 #if DEBUG
 private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
@@ -268,6 +268,28 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
             return From(r);
         }
 
+#nullable disable
+        /// <inheritdoc cref = "System.IFormattable"/>
+        string System.IFormattable.ToString(string format, global::System.IFormatProvider formatProvider)
+        {
+            return IsInitialized() ? (Value as System.IFormattable).ToString(format, formatProvider) : "[UNINITIALIZED]";
+        }
+
+        /// <inheritdoc cref = "System.ISpanFormattable"/>
+        bool System.ISpanFormattable.TryFormat(global::System.Span<char> destination, out int charsWritten, global::System.ReadOnlySpan<char> format, global::System.IFormatProvider provider)
+        {
+            charsWritten = default;
+            return IsInitialized() ? (Value as System.ISpanFormattable).TryFormat(destination, out charsWritten, format, provider) : false;
+        }
+
+        /// <inheritdoc cref = "System.IUtf8SpanFormattable"/>
+        bool System.IUtf8SpanFormattable.TryFormat(global::System.Span<byte> utf8Destination, out int bytesWritten, global::System.ReadOnlySpan<char> format, global::System.IFormatProvider provider)
+        {
+            bytesWritten = default;
+            return IsInitialized() ? (Value as System.IUtf8SpanFormattable).TryFormat(utf8Destination, out bytesWritten, format, provider) : false;
+        }
+
+#nullable restore
         public override global::System.Int32 GetHashCode()
         {
             unchecked // Overflow is fine, just wrap
@@ -295,8 +317,10 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
         // instance...
         public static readonly internal_sealed_partial_recordchar MyValue = new internal_sealed_partial_recordchar('x');
         // record enumerates fields - we just want our Value and to throw if it's not initialized.
-        /// <summary>Returns the string representation of the underlying <see cref = "System.Char"/>.</summary>
+        /// <inheritdoc cref = "System.Char.ToString()"/>
         public override global::System.String ToString() => IsInitialized() ? Value.ToString() ?? "" : "[UNINITIALIZED]";
+        /// <inheritdoc cref = "System.Char.ToString(System.IFormatProvider? )"/>
+        public global::System.String ToString(global::System.IFormatProvider provider) => IsInitialized() ? Value.ToString(provider) ?? "" : "[UNINITIALIZED]";
 #nullable disable
         /// <summary>
         /// Converts a internal_sealed_partial_recordchar to or from JSON.

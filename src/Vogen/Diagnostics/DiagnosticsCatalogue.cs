@@ -21,7 +21,7 @@ internal static class DiagnosticsCatalogue
     private static readonly DiagnosticDescriptor _recordToStringOverloadShouldBeSealed = CreateDescriptor(
         RuleIdentifiers.RecordToStringOverloadShouldBeSealed,
         "Overrides of ToString on records should be sealed to differentiate it from the C# compiler-generated method. See https://github.com/SteveDunn/Vogen/wiki/Records#tostring for more information.",
-        "ToString overrides should be sealed on records. See https://github.com/SteveDunn/Vogen/wiki/Records#tostring for more information.");
+        "ToString overrides should be sealed on records. See https://stevedunn.github.io/Vogen/records.html#tostring for more information.");
 
     private static readonly DiagnosticDescriptor _typeShouldBePartial = CreateDescriptor(
         RuleIdentifiers.TypeShouldBePartial,

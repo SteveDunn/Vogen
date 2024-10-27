@@ -1,12 +1,14 @@
-﻿using Microsoft.CodeAnalysis.CSharp.Syntax;
-using Vogen.Generators.Conversions;
+﻿using Vogen.Generators.Conversions;
 
 namespace Vogen.Generators;
 
-public class RecordStructGenerator : IGenerateSourceCode
+public class RecordStructGenerator : IGenerateValueObjectSourceCode
 {
-    public string BuildClass(VoWorkItem item, TypeDeclarationSyntax tds)
+    public string Generate(GenerationParameters parameters)
     {
+        var item = parameters.WorkItem;
+        var tds = parameters.WorkItem.TypeToAugment;
+
         var wrapperName = tds.Identifier;
 
         var itemUnderlyingType = item.UnderlyingTypeFullName;
@@ -14,18 +16,24 @@ public class RecordStructGenerator : IGenerateSourceCode
         string qmForUnderlying = item.Nullable.QuestionMarkForUnderlying;
         string bangForUnderlying = item.Nullable.BangForUnderlying;
         
-        var code = Generate();
+        var code = GenerateCode();
         
         return item.Nullable.WrapBlock(code);
         
-        string Generate() => $@"
+        string GenerateCode() => $@"
 
 {Util.WriteStartNamespace(item.FullNamespace)}
     [global::System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage] 
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute(""{Util.GenerateYourAssemblyName()}"", ""{Util.GenerateYourAssemblyVersion()}"")]
     {Util.GenerateAnyConversionAttributes(tds, item)}
     {DebugGeneration.GenerateDebugAttributes(item, wrapperName, itemUnderlyingType)}
-    { Util.GenerateModifiersFor(tds)} record struct {wrapperName} : global::System.IEquatable<{wrapperName}>{GenerateEqualsMethodsAndOperators.GenerateInterfaceIfNeeded(", ", itemUnderlyingType, item)}{GenerateComparableCode.GenerateIComparableHeaderIfNeeded(", ", item, tds)}{GenerateCodeForIParsableInterfaceDeclarations.GenerateIfNeeded(", ", item, tds)}{WriteStaticAbstracts.WriteHeaderIfNeeded(", ", item, tds)}
+    { Util.GenerateModifiersFor(tds)} record struct {wrapperName} : 
+        global::System.IEquatable<{wrapperName}>
+        {GenerateCodeForEqualsMethodsAndOperators.GenerateInterfaceDefinitionsIfNeeded(", ", item)}
+        {GenerateCodeForComparables.GenerateInterfaceDefinitionsIfNeeded(", ", item)}
+        {GenerateCodeForIParsableInterfaceDeclarations.GenerateIfNeeded(", ", item)}
+        {GenerateCodeForTryFormat.GenerateInterfaceDefinitionsIfNeeded(", ", parameters)}
+        {GenerateCodeForStaticAbstracts.GenerateInterfaceDefinitionIfNeeded(", ", item)}
     {{
 {DebugGeneration.GenerateStackTraceFieldIfNeeded(item)}
 
@@ -58,7 +66,7 @@ public class RecordStructGenerator : IGenerateSourceCode
             }}
         }}
 
-{GenerateStaticConstructor.GenerateIfNeeded(item)}
+{GenerateCodeForStaticConstructors.GenerateIfNeeded(item)}
         [global::System.Diagnostics.DebuggerStepThroughAttribute]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public {wrapperName}()
@@ -101,8 +109,8 @@ public class RecordStructGenerator : IGenerateSourceCode
 
 {Util.GenerateIsInitializedMethod(true, item)}
 
-{GenerateStringComparers.GenerateIfNeeded(item, tds)}        
-{GenerateCastingOperators.GenerateImplementations(item,tds)}{Util.GenerateGuidFactoryMethodIfNeeded(item)}
+{GenerateCodeForStringComparers.GenerateIfNeeded(item, tds)}        
+{GenerateCodeForCastingOperators.GenerateImplementations(item,tds)}{Util.GenerateGuidFactoryMethodIfNeeded(item)}
         // only called internally when something has been deserialized into
         // its primitive type.
         private static {wrapperName} __Deserialize({itemUnderlyingType} value)
@@ -113,19 +121,21 @@ public class RecordStructGenerator : IGenerateSourceCode
 
             return new {wrapperName}(value);
         }}
-        {GenerateEqualsMethodsAndOperators.GenerateEqualsMethodsForAStruct(item, tds)}
-{GenerateEqualsMethodsAndOperators.GenerateEqualsOperatorsForPrimitivesIfNeeded(itemUnderlyingType, wrapperName, item)}
+        {GenerateCodeForEqualsMethodsAndOperators.GenerateEqualsMethodsForAStruct(item, tds)}
+{GenerateCodeForEqualsMethodsAndOperators.GenerateEqualsOperatorsForPrimitivesIfNeeded(itemUnderlyingType, wrapperName, item)}
 
-        {GenerateComparableCode.GenerateIComparableImplementationIfNeeded(item, tds)}
+        {GenerateCodeForComparables.GenerateIComparableImplementationIfNeeded(item, tds)}
 
         {GenerateCodeForTryParse.GenerateAnyHoistedTryParseMethods(item)}{GenerateCodeForParse.GenerateAnyHoistedParseMethods(item)}
 
-        {GenerateHashCodes.GenerateForAStruct(item)}
+        {GenerateCodeForTryFormat.GenerateAnyHoistedTryFormatMethods(parameters)}
+
+        {GenerateCodeForHashCodes.GenerateForAStruct(item)}
 
         {Util.GenerateEnsureInitializedMethod(item, readOnly: true)}
 
         // record enumerates fields - we just want our Value and to throw if it's not initialized.
-        {Util.GenerateToStringReadOnly(item)}
+        {GenerateCodeForToString.GenerateForAStruct(parameters)}
 
         {InstanceGeneration.GenerateAnyInstances(tds, item)}
  

@@ -1,6 +1,6 @@
 namespace Vogen;
 
-internal static class GenerateStaticConstructor
+internal static class GenerateCodeForStaticConstructors
 {
     public static string GenerateIfNeeded(VoWorkItem item)
     {

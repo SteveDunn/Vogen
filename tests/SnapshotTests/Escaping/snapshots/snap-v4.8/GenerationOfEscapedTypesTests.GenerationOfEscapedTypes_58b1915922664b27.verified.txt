@@ -204,6 +204,8 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
         public static global::System.Boolean operator ==(@class.@record.@struct.@float.event2 left, escapedTestspublic_partial_record_structConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterrecord__struct__float__event2 right) => right.Value.Equals(left);
         public static global::System.Boolean operator !=(@class.@record.@struct.@float.event2 left, escapedTestspublic_partial_record_structConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterrecord__struct__float__event2 right) => !(left == right);
         public static global::System.Boolean operator !=(escapedTestspublic_partial_record_structConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterrecord__struct__float__event2 left, @class.@record.@struct.@float.event2 right) => !(left == right);
+#nullable disable
+#nullable restore
         public readonly override global::System.Int32 GetHashCode()
         {
             return global::System.Collections.Generic.EqualityComparer<@class.@record.@struct.@float.event2>.Default.GetHashCode(Value);
@@ -223,8 +225,8 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
         }
 
         // record enumerates fields - we just want our Value and to throw if it's not initialized.
-        /// <summary>Returns the string representation of the underlying <see cref = "@class.@record.@struct.@float.event2"/>.</summary>
-        public readonly override global::System.String ToString() => IsInitialized() ? Value.ToString() ?? "" : "[UNINITIALIZED]";
+        /// <inheritdoc cref = "@class.@record.@struct.@float.event2.ToString()"/>
+        public override global::System.String ToString() => IsInitialized() ? Value.ToString() ?? "" : "[UNINITIALIZED]";
 #nullable disable
         /// <summary>
         /// Converts a escapedTestspublic_partial_record_structConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterrecord__struct__float__event2 to or from JSON.

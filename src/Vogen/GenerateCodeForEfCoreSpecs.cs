@@ -7,7 +7,7 @@ using Vogen.Generators.Conversions;
 
 namespace Vogen;
 
-internal class WriteEfCoreSpecs
+internal class GenerateCodeForEfCoreSpecs
 {
     public static void WriteIfNeeded(SourceProductionContext context, Compilation compilation, ImmutableArray<EfCoreConverterMarkerClassResults> convertSpecs)
     {

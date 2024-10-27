@@ -64,7 +64,7 @@ namespace Whatever
     [global::System.Diagnostics.DebuggerTypeProxyAttribute(typeof(_casting_public_partial_structExplicitExplicitfloatDebugView))]
     [global::System.Diagnostics.DebuggerDisplayAttribute("Underlying type: System.Single, Value = { _value }")]
     // ReSharper disable once UnusedType.Global
-    public partial struct _casting_public_partial_structExplicitExplicitfloat : global::System.IEquatable<_casting_public_partial_structExplicitExplicitfloat>, global::System.IEquatable<System.Single>, global::System.IComparable<_casting_public_partial_structExplicitExplicitfloat>, global::System.IComparable
+    public partial struct _casting_public_partial_structExplicitExplicitfloat : global::System.IEquatable<_casting_public_partial_structExplicitExplicitfloat>, global::System.IEquatable<System.Single>, global::System.IComparable<_casting_public_partial_structExplicitExplicitfloat>, global::System.IComparable, global::System.IFormattable
     {
 #if DEBUG
 private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
@@ -313,13 +313,26 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
             return From(r);
         }
 
+#nullable disable
+        /// <inheritdoc cref = "float.ToString(string, System.IFormatProvider)"/>
+        [System.Security.SecuritySafeCriticalAttribute]
+        public string ToString(string format, global::System.IFormatProvider provider)
+        {
+            return IsInitialized() ? Value.ToString(format, provider) : "[UNINITIALIZED]";
+        }
+
+#nullable restore
         public readonly override global::System.Int32 GetHashCode()
         {
             return global::System.Collections.Generic.EqualityComparer<System.Single>.Default.GetHashCode(Value);
         }
 
-        /// <summary>Returns the string representation of the underlying <see cref = "System.Single"/>.</summary>
-        public readonly override global::System.String ToString() => IsInitialized() ? Value.ToString() ?? "" : "[UNINITIALIZED]";
+        /// <inheritdoc cref = "System.Single.ToString()"/>
+        public override global::System.String ToString() => IsInitialized() ? Value.ToString() ?? "" : "[UNINITIALIZED]";
+        /// <inheritdoc cref = "System.Single.ToString(System.IFormatProvider)"/>
+        public global::System.String ToString(global::System.IFormatProvider provider) => IsInitialized() ? Value.ToString(provider) ?? "" : "[UNINITIALIZED]";
+        /// <inheritdoc cref = "System.Single.ToString(string)"/>
+        public global::System.String ToString(string format) => IsInitialized() ? Value.ToString(format) ?? "" : "[UNINITIALIZED]";
         [global::System.Runtime.CompilerServices.MethodImpl(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
         private readonly void EnsureInitialized()
         {

@@ -26,7 +26,7 @@ namespace Analyzer.Utilities.Extensions
         {
             if (property is null
                 || !property.Name.Equals("IsCompleted", StringComparison.Ordinal)
-                || property.Type?.SpecialType != SpecialType.System_Boolean)
+                || property.Type.SpecialType != SpecialType.System_Boolean)
             {
                 return false;
             }

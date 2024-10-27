@@ -7,7 +7,7 @@ using Microsoft.CodeAnalysis.Text;
 
 namespace Vogen;
 
-internal class WriteBsonSerializers
+internal class GenerateCodeForBsonSerializers
 {
     public static void WriteIfNeeded(SourceProductionContext context, Compilation compilation, List<VoWorkItem> workItems)
     {

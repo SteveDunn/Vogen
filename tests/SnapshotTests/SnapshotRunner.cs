@@ -50,9 +50,11 @@ namespace SnapshotTests
         private ITestOutputHelper? _logger;
         private readonly List<NuGetPackage> _additionalNuGetPackages = new();
         private LanguageVersion _languageVersion = LanguageVersion.Default;
-        private bool _excludeStj = false;
+        private bool _excludeStj;
 
         public async Task RunOnAllFrameworks() => await RunOn(_allFrameworks);
+        
+        public async Task RunOnNet8AndGreater() => await RunOn(TargetFramework.Net8_0);
 
         public SnapshotRunner<T> WithSource(string source)
         {

@@ -210,6 +210,8 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
         public static global::System.Boolean operator !=(escapedTestspublic_sealed_partial_classConversions_NewtonsoftJsonrecord__struct__float__decimal left, @class.@record.@struct.@float.@decimal right) => !(left == right);
         public static explicit operator escapedTestspublic_sealed_partial_classConversions_NewtonsoftJsonrecord__struct__float__decimal(@class.@record.@struct.@float.@decimal value) => From(value);
         public static explicit operator @class.@record.@struct.@float.@decimal(escapedTestspublic_sealed_partial_classConversions_NewtonsoftJsonrecord__struct__float__decimal value) => value.Value;
+#nullable disable
+#nullable restore
         public override global::System.Int32 GetHashCode()
         {
             unchecked // Overflow is fine, just wrap
@@ -234,7 +236,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
             }
         }
 
-        /// <summary>Returns the string representation of the underlying <see cref = "@class.@record.@struct.@float.@decimal"/>.</summary>
+        /// <inheritdoc cref = "@class.@record.@struct.@float.@decimal.ToString()"/>
         public override global::System.String ToString() => IsInitialized() ? Value.ToString() ?? "" : "[UNINITIALIZED]";
 #nullable disable
         class escapedTestspublic_sealed_partial_classConversions_NewtonsoftJsonrecord__struct__float__decimalNewtonsoftJsonConverter : Newtonsoft.Json.JsonConverter

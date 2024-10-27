@@ -1,11 +1,10 @@
 using System.Text;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
-using Microsoft.CodeAnalysis.CSharp.Syntax;
 
 namespace Vogen;
 
-internal class WriteStaticAbstracts
+internal class GenerateCodeForStaticAbstracts
 {
     public static void WriteInterfacesAndMethodsIfNeeded(VogenConfiguration? globalConfig,
         SourceProductionContext context,
@@ -150,7 +149,7 @@ internal class WriteStaticAbstracts
         }
     }
 
-    public static string WriteHeaderIfNeeded(string precedingText, VoWorkItem item, TypeDeclarationSyntax tds)
+    public static string GenerateInterfaceDefinitionIfNeeded(string precedingText, VoWorkItem item)
     {
         if (item.LanguageVersion < LanguageVersion.CSharp11)
         {
@@ -162,6 +161,6 @@ internal class WriteStaticAbstracts
             return string.Empty;
         }
 
-        return precedingText + $" IVogen<{tds.Identifier}, {item.UnderlyingTypeFullName}>";
+        return precedingText + $" IVogen<{item.TypeToAugment.Identifier}, {item.UnderlyingTypeFullName}>";
     }
 }

@@ -24,6 +24,15 @@ public class KnownSymbols(Compilation compilation)
     public INamedTypeSymbol? IParsableOfT => GetOrResolveType("System.IParsable`1", ref _IParsableOfT);
     private Option<INamedTypeSymbol?> _IParsableOfT;
 
+    public INamedTypeSymbol? IFormattable => GetOrResolveType("System.IFormattable", ref _IFormattable);
+    private Option<INamedTypeSymbol?> _IFormattable;
+
+    public INamedTypeSymbol? ISpanFormattable => GetOrResolveType("System.ISpanFormattable", ref _ISpanFormattable);
+    private Option<INamedTypeSymbol?> _ISpanFormattable;
+
+    public INamedTypeSymbol? IUtf8SpanFormattable => GetOrResolveType("System.IUtf8SpanFormattable", ref _IUtf8SpanFormattable);
+    private Option<INamedTypeSymbol?> _IUtf8SpanFormattable;
+
     public INamedTypeSymbol? ISpanParsableOfT => GetOrResolveType("System.ISpanParsable`1", ref _ISpanParsableOfT);
     private Option<INamedTypeSymbol?> _ISpanParsableOfT;
 

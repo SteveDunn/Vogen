@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using System.Text;
-using Microsoft.CodeAnalysis.CSharp.Syntax;
 
 namespace Vogen;
 
@@ -8,7 +7,7 @@ public static class GenerateCodeForIParsableInterfaceDeclarations
 {
     private static readonly string[] _allInterfacesForAString = ["IParsable"]; 
     
-    public static string GenerateIfNeeded(string precedingText, VoWorkItem item, TypeDeclarationSyntax tds)
+    public static string GenerateIfNeeded(string precedingText, VoWorkItem item)
     {
         var parsingInformation = item.ParsingInformation;
 
@@ -45,7 +44,7 @@ public static class GenerateCodeForIParsableInterfaceDeclarations
         
         foreach (var i in interfaces)
         {
-            sb.Append($"{precedingText} global::System.{i}<{tds.Identifier}>");
+            sb.Append($"{precedingText} global::System.{i}<{item.TypeToAugment.Identifier}>");
         }
         
         return sb.ToString() ;

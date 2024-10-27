@@ -62,7 +62,7 @@ namespace Whatever
     [global::System.Text.Json.Serialization.JsonConverter(typeof(stj_number_as_string_public_partial_record_classConversions_SystemTextJsonbyte_customizedSystemTextJsonConverter))]
     [global::System.Diagnostics.DebuggerTypeProxyAttribute(typeof(stj_number_as_string_public_partial_record_classConversions_SystemTextJsonbyte_customizedDebugView))]
     [global::System.Diagnostics.DebuggerDisplayAttribute("Underlying type: System.Byte, Value = { _value }")]
-    public partial record class stj_number_as_string_public_partial_record_classConversions_SystemTextJsonbyte_customized : global::System.IEquatable<stj_number_as_string_public_partial_record_classConversions_SystemTextJsonbyte_customized>, global::System.IEquatable<System.Byte>, global::System.IComparable<stj_number_as_string_public_partial_record_classConversions_SystemTextJsonbyte_customized>, global::System.IComparable
+    public partial record class stj_number_as_string_public_partial_record_classConversions_SystemTextJsonbyte_customized : global::System.IEquatable<stj_number_as_string_public_partial_record_classConversions_SystemTextJsonbyte_customized>, global::System.IEquatable<System.Byte>, global::System.IComparable<stj_number_as_string_public_partial_record_classConversions_SystemTextJsonbyte_customized>, global::System.IComparable, global::System.IFormattable
     {
 #if DEBUG
 private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
@@ -326,6 +326,15 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
             return From(r);
         }
 
+#nullable disable
+        /// <inheritdoc cref = "byte.ToString(string, System.IFormatProvider)"/>
+        [System.Security.SecuritySafeCriticalAttribute]
+        public string ToString(string format, global::System.IFormatProvider provider)
+        {
+            return IsInitialized() ? Value.ToString(format, provider) : "[UNINITIALIZED]";
+        }
+
+#nullable restore
         public override global::System.Int32 GetHashCode()
         {
             unchecked // Overflow is fine, just wrap
@@ -351,8 +360,12 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
         }
 
         // record enumerates fields - we just want our Value and to throw if it's not initialized.
-        /// <summary>Returns the string representation of the underlying <see cref = "System.Byte"/>.</summary>
+        /// <inheritdoc cref = "System.Byte.ToString()"/>
         public override global::System.String ToString() => IsInitialized() ? Value.ToString() ?? "" : "[UNINITIALIZED]";
+        /// <inheritdoc cref = "System.Byte.ToString(string)"/>
+        public global::System.String ToString(string format) => IsInitialized() ? Value.ToString(format) ?? "" : "[UNINITIALIZED]";
+        /// <inheritdoc cref = "System.Byte.ToString(System.IFormatProvider)"/>
+        public global::System.String ToString(global::System.IFormatProvider provider) => IsInitialized() ? Value.ToString(provider) ?? "" : "[UNINITIALIZED]";
 #nullable disable
         /// <summary>
         /// Converts a stj_number_as_string_public_partial_record_classConversions_SystemTextJsonbyte_customized to or from JSON.

@@ -300,6 +300,8 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
             return From(s);
         }
 
+#nullable disable
+#nullable restore
         public override global::System.Int32 GetHashCode()
         {
             unchecked // Overflow is fine, just wrap
@@ -327,8 +329,10 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
         // instance...
         public static readonly public_sealed_partial_record_classstring MyValue = new public_sealed_partial_record_classstring("123");
         // record enumerates fields - we just want our Value and to throw if it's not initialized.
-        /// <summary>Returns the string representation of the underlying <see cref = "System.String"/>.</summary>
+        /// <inheritdoc cref = "System.String.ToString()"/>
         public override global::System.String ToString() => IsInitialized() ? Value.ToString() ?? "" : "[UNINITIALIZED]";
+        /// <inheritdoc cref = "System.String.ToString(System.IFormatProvider)"/>
+        public global::System.String ToString(global::System.IFormatProvider provider) => IsInitialized() ? Value.ToString(provider) ?? "" : "[UNINITIALIZED]";
 #nullable disable
         /// <summary>
         /// Converts a public_sealed_partial_record_classstring to or from JSON.

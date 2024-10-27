@@ -48,6 +48,7 @@ public class NormalizeInputMethodTests
             .WithSource(source)
             .ValidateWith(Validate)
             .RunOnAllFrameworks();
+        return;
 
         static void Validate(ImmutableArray<Diagnostic> diagnostics)
         {
@@ -80,6 +81,7 @@ namespace Whatever;
             .WithSource(source)
             .ValidateWith(Validate)
             .RunOnAllFrameworks();
+        return;
 
         static void Validate(ImmutableArray<Diagnostic> diagnostics)
         {
@@ -113,6 +115,7 @@ namespace Whatever;
             .WithSource(source)
             .ValidateWith(Validate)
             .RunOnAllFrameworks();
+        return;
 
         static void Validate(ImmutableArray<Diagnostic> diagnostics)
         {
@@ -150,6 +153,7 @@ public partial struct Struct_WithDefaultedUnderlyingType
             .WithSource(source)
             .ValidateWith(Validate)
             .RunOnAllFrameworks();
+        return;
 
         static void Validate(ImmutableArray<Diagnostic> diagnostics)
         {
@@ -173,6 +177,7 @@ public partial struct Struct_WithDefaultedUnderlyingType
             .WithSource(source)
             .ValidateWith(Validate)
             .RunOnAllFrameworks();
+        return;
 
         static void Validate(ImmutableArray<Diagnostic> diagnostics)
         {

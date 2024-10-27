@@ -10,6 +10,80 @@ namespace SnapshotTests.GeneralStuff;
 public class GeneralTests
 {
     [Fact]
+    public async Task Skips_ToString_methods_that_implement_an_interface()
+    {
+        var source =
+            $$"""
+
+            using System;
+            using Vogen;
+            
+            [ValueObject]
+            public partial struct MyId;
+            """;
+
+            await new SnapshotRunner<ValueObjectGenerator>()
+                .WithSource(source)
+                .RunOn(TargetFramework.Net8_0);
+    }
+
+    [Fact]
+    public async Task Hoists_ISpanFormattable()
+    {
+        var source =
+            $$"""
+
+            using System;
+            using Vogen;
+            
+            [ValueObject<DateTimeOffset>]
+            public partial struct Dob;
+            """;
+
+            await new SnapshotRunner<ValueObjectGenerator>()
+                .WithSource(source)
+                .RunOn(TargetFramework.Net8_0);
+    }
+
+    [Fact]
+    public async Task Hoists_parameter_attributes_from_underlying_tostring_methods()
+    {
+        var source =
+            $$"""
+
+            using System;
+            using Vogen;
+            
+            [ValueObject<DateTimeOffset>]
+            public partial struct Dob;
+            """;
+
+            await new SnapshotRunner<ValueObjectGenerator>()
+                .WithSource(source)
+                .RunOn(TargetFramework.Net8_0);
+    }
+
+    [Fact]
+    public async Task Does_not_include_inheritdoc_if_underlying_has_no_tostring()
+    {
+        var source =
+            $$"""
+
+            using System;
+            using Vogen;
+            
+            public class D;
+            
+            [ValueObject<D>]
+            public partial struct Vo;
+            """;
+
+            await new SnapshotRunner<ValueObjectGenerator>()
+                .WithSource(source)
+                .RunOn(TargetFramework.Net8_0);
+    }
+
+    [Fact]
     public async Task No_validation()
     {
         var source =
@@ -290,12 +364,9 @@ public class GeneralTests
   public partial struct MyVo { }
 ";
 
-        await RunTest(source);
-
-        static Task RunTest(string source) =>
-            new SnapshotRunner<ValueObjectGenerator>()
-                .WithSource(source)
-                .RunOn(TargetFramework.Net8_0);
+        await new SnapshotRunner<ValueObjectGenerator>()
+            .WithSource(source)
+            .RunOn(TargetFramework.Net8_0);
     }
 
     [Fact]
@@ -306,13 +377,10 @@ public class GeneralTests
   public partial struct MyVo { }
 ";
 
-        await RunTest(source);
-
-        static Task RunTest(string source) =>
-            new SnapshotRunner<ValueObjectGenerator>()
-                .WithSource(source)
-                // .WithPackage(new NuGetPackage("ServiceStack.Text", "8.2.2", "lib/net8.0" ))
-                .RunOn(TargetFramework.Net8_0);
+        await new SnapshotRunner<ValueObjectGenerator>()
+            .WithSource(source)
+            // .WithPackage(new NuGetPackage("ServiceStack.Text", "8.2.2", "lib/net8.0" ))
+            .RunOn(TargetFramework.Net8_0);
     }
 
     [Fact]
@@ -324,12 +392,9 @@ public class GeneralTests
   public partial struct MyVo { }
 ";
 
-        await RunTest(source);
-
-        static Task RunTest(string source) =>
-            new SnapshotRunner<ValueObjectGenerator>()
-                .WithSource(source)
-                .RunOn(TargetFramework.Net8_0);
+        await new SnapshotRunner<ValueObjectGenerator>()
+            .WithSource(source)
+            .RunOn(TargetFramework.Net8_0);
     }
 
     [Fact]
@@ -341,12 +406,9 @@ public class GeneralTests
   public partial struct MyVo { }
 ";
 
-        await RunTest(source);
-
-        static Task RunTest(string source) =>
-            new SnapshotRunner<ValueObjectGenerator>()
-                .WithSource(source)
-                .RunOn(TargetFramework.Net8_0);
+        await new SnapshotRunner<ValueObjectGenerator>()
+            .WithSource(source)
+            .RunOn(TargetFramework.Net8_0);
     }
 
     [Fact]
@@ -370,13 +432,10 @@ internal class C
 }
 ";
 
-        await RunTest(source);
-
-        static Task RunTest(string source) =>
-            new SnapshotRunner<ValueObjectGenerator>()
-                .WithSource(source)
-                .IgnoreInitialCompilationErrors()
-                .RunOn(TargetFramework.Net8_0);
+        await new SnapshotRunner<ValueObjectGenerator>()
+            .WithSource(source)
+            .IgnoreInitialCompilationErrors()
+            .RunOn(TargetFramework.Net8_0);
     }
 
     [Fact]
@@ -393,17 +452,20 @@ internal class C
     [Fact]
     public async Task User_supplied_GetHashCode()
     {
-        var source = @"using Vogen;
-[ValueObject(typeof(string))]
-public readonly partial record struct VoWithGetHashCode
-{
-    public override int GetHashCode()
-    {
-        // custom code
-        return 0;
-    }
-}
-";
+        var source = """
+                     using Vogen;
+                     
+                     [ValueObject<string>]
+                     public readonly partial record struct VoWithGetHashCode
+                     {
+                         public override int GetHashCode()
+                         {
+                             // custom code
+                             return 0;
+                         }
+                     }
+
+                     """;
 
         await RunTest(source);
     }
@@ -682,20 +744,16 @@ public partial struct @class
     [Fact]
     public Task Generates_IParsable()
     {
-        return RunTest(
-            """
-            using Vogen;
+        return new SnapshotRunner<ValueObjectGenerator>()
+            .WithSource("""
+                        using Vogen;
 
-            namespace Whatever;
+                        namespace Whatever;
 
-            [ValueObject(typeof(bool))]
-            public sealed partial class Foo { }
-            """);
-        
-        static Task RunTest(string source) =>
-            new SnapshotRunner<ValueObjectGenerator>()
-                .WithSource(source)
-                .RunOn(TargetFramework.Net8_0);
+                        [ValueObject(typeof(bool))]
+                        public sealed partial class Foo { }
+                        """)
+            .RunOn(TargetFramework.Net8_0);
     }
 
     [Fact]
@@ -861,79 +919,65 @@ public partial struct @class
     [Fact]
     public Task Generates_IParsable_and_skip_user_provided_method_5()
     {
-        return RunTest(
-            """
-            using Vogen;
-            using System;
+        return new SnapshotRunner<ValueObjectGenerator>()
+            .WithSource("""
+                        using Vogen;
+                        using System;
 
-            namespace Whatever;
+                        namespace Whatever;
 
-            [ValueObject<int>]
-            public partial struct MyClass2
-            {
-                public static bool TryParse(string input, out MyClass2 s) => throw new NotImplementedException();
-            }
+                        [ValueObject<int>]
+                        public partial struct MyClass2
+                        {
+                            public static bool TryParse(string input, out MyClass2 s) => throw new NotImplementedException();
+                        }
 
-            """);
-        
-        static Task RunTest(string source) =>
-            new SnapshotRunner<ValueObjectGenerator>()
-                .WithSource(source)
-                .RunOn(TargetFramework.Net8_0);
-        
+                        """)
+            .RunOn(TargetFramework.Net8_0);
     }
 
     [Fact]
     public Task Generates_SystemTextJson_factory()
     {
-        return RunTest(
-            """
-            using Vogen;
-            using System;
+        return new SnapshotRunner<ValueObjectGenerator>()
+            .WithSource("""
+                        using Vogen;
+                        using System;
 
-            namespace Whatever;
+                        namespace Whatever;
 
-            [ValueObject<int>]
-            public partial struct MyClass1
-            {
-            }
+                        [ValueObject<int>]
+                        public partial struct MyClass1
+                        {
+                        }
 
-            [ValueObject<int>]
-            public partial struct MyClass2
-            {
-            }
+                        [ValueObject<int>]
+                        public partial struct MyClass2
+                        {
+                        }
 
-            """);
-        
-        static Task RunTest(string source) =>
-            new SnapshotRunner<ValueObjectGenerator>()
-                .WithSource(source)
-                .RunOn(TargetFramework.Net8_0);
+                        """)
+            .RunOn(TargetFramework.Net8_0);
     }
 
     [Fact]
     public Task Ignores_TryParse_where_last_parameter_is_not_out()
     {
-        return RunTest(
-            """
-            using Vogen;
-            using System;
+        return new SnapshotRunner<ValueObjectGenerator>()
+            .WithSource("""
+                        using Vogen;
+                        using System;
 
-            namespace Whatever;
+                        namespace Whatever;
 
-            [ValueObject<int>]
-            public partial struct MyClass2
-            {
-                public static bool TryParse(string input, MyClass2 s) => throw new NotImplementedException();
-            }
+                        [ValueObject<int>]
+                        public partial struct MyClass2
+                        {
+                            public static bool TryParse(string input, MyClass2 s) => throw new NotImplementedException();
+                        }
 
-            """);
-        
-        static Task RunTest(string source) =>
-            new SnapshotRunner<ValueObjectGenerator>()
-                .WithSource(source)
-                .RunOn(TargetFramework.Net8_0);
-        
+                        """)
+            .RunOn(TargetFramework.Net8_0);
     }
 
     private static Task RunTest(string source) =>

@@ -198,6 +198,8 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
         public static global::System.Boolean operator ==(@class.@record.@struct.@float.@event left, escapedTestspublic_partial_record_structConversions_Nonerecord__struct__float__event right) => right.Value.Equals(left);
         public static global::System.Boolean operator !=(@class.@record.@struct.@float.@event left, escapedTestspublic_partial_record_structConversions_Nonerecord__struct__float__event right) => !(left == right);
         public static global::System.Boolean operator !=(escapedTestspublic_partial_record_structConversions_Nonerecord__struct__float__event left, @class.@record.@struct.@float.@event right) => !(left == right);
+#nullable disable
+#nullable restore
         public readonly override global::System.Int32 GetHashCode()
         {
             return global::System.Collections.Generic.EqualityComparer<@class.@record.@struct.@float.@event>.Default.GetHashCode(Value);
@@ -217,8 +219,8 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
         }
 
         // record enumerates fields - we just want our Value and to throw if it's not initialized.
-        /// <summary>Returns the string representation of the underlying <see cref = "@class.@record.@struct.@float.@event"/>.</summary>
-        public readonly override global::System.String ToString() => IsInitialized() ? Value.ToString() ?? "" : "[UNINITIALIZED]";
+        /// <inheritdoc cref = "@class.@record.@struct.@float.@event.ToString()"/>
+        public override global::System.String ToString() => IsInitialized() ? Value.ToString() ?? "" : "[UNINITIALIZED]";
 #nullable disable
         internal sealed class escapedTestspublic_partial_record_structConversions_Nonerecord__struct__float__eventDebugView
         {

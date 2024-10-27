@@ -41,7 +41,6 @@ public class VoWorkItem
     public TypeDeclarationSyntax TypeToAugment { get; init; } = null!;
     
     public bool IsTheUnderlyingAValueType { get; init; }
-    public bool IsTheUnderlyingAReferenceType => !IsTheUnderlyingAValueType;
 
     public bool IsTheWrapperAValueType { get; init; }
     public bool IsTheWrapperAReferenceType => !IsTheWrapperAValueType;
@@ -69,6 +68,8 @@ public class VoWorkItem
     public required INamedTypeSymbol WrapperType { get; init; }
     
     public required ParsingInformation ParsingInformation { get; init; }
+    
+    public required ToStringInformation ToStringInformation { get; init; }
 
     public required LanguageVersion LanguageVersion { get; init; }
     
@@ -97,9 +98,16 @@ public class ParsingInformation
     public required INamedTypeSymbol? IFormatProviderType { get; init; }
 }
 
+public class ToStringInformation
+{
+    public required List<IMethodSymbol> ToStringMethodsOnThePrimitive { get; init; }
+    
+    public required bool UnderlyingTypeHasADefaultToStringMethod { get; init; }
+}
+
 public class UserProvidedOverloads
 {
-    public UserProvidedToString ToStringInfo { get; init; }
+    public required UserProvidedToStringMethods ToStringOverloads { get; init; }
 
     public UserProvidedGetHashCode HashCodeInfo { get; init; }
     
@@ -110,5 +118,6 @@ public class UserProvidedOverloads
     public required UserProvidedParseMethods ParseMethods { get; init; }
     
     public required UserProvidedTryParseMethods TryParseMethods { get; init; }
+    public required UserProvidedTryFormatMethods TryFormatMethods { get; init; }
 }
 

@@ -63,7 +63,7 @@ namespace Whatever
     [global::Newtonsoft.Json.JsonConverter(typeof(internal_partial_classConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConvertercharNewtonsoftJsonConverter))]
     [global::System.Diagnostics.DebuggerTypeProxyAttribute(typeof(internal_partial_classConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConvertercharDebugView))]
     [global::System.Diagnostics.DebuggerDisplayAttribute("Underlying type: System.Char, Value = { _value }")]
-    internal partial class internal_partial_classConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterchar : global::System.IEquatable<internal_partial_classConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterchar>, global::System.IEquatable<System.Char>, global::System.IComparable<internal_partial_classConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterchar>, global::System.IComparable
+    internal partial class internal_partial_classConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterchar : global::System.IEquatable<internal_partial_classConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterchar>, global::System.IEquatable<System.Char>, global::System.IComparable<internal_partial_classConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterchar>, global::System.IComparable, global::System.IFormattable, global::System.ISpanFormattable
     {
 #if DEBUG
 private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
@@ -267,6 +267,21 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
             return From(r);
         }
 
+#nullable disable
+        /// <inheritdoc cref = "System.IFormattable"/>
+        string System.IFormattable.ToString(string format, global::System.IFormatProvider formatProvider)
+        {
+            return IsInitialized() ? (Value as System.IFormattable).ToString(format, formatProvider) : "[UNINITIALIZED]";
+        }
+
+        /// <inheritdoc cref = "System.ISpanFormattable"/>
+        bool System.ISpanFormattable.TryFormat(global::System.Span<char> destination, out int charsWritten, global::System.ReadOnlySpan<char> format, global::System.IFormatProvider provider)
+        {
+            charsWritten = default;
+            return IsInitialized() ? (Value as System.ISpanFormattable).TryFormat(destination, out charsWritten, format, provider) : false;
+        }
+
+#nullable restore
         public override global::System.Int32 GetHashCode()
         {
             unchecked // Overflow is fine, just wrap
@@ -291,8 +306,10 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
             }
         }
 
-        /// <summary>Returns the string representation of the underlying <see cref = "System.Char"/>.</summary>
+        /// <inheritdoc cref = "System.Char.ToString()"/>
         public override global::System.String ToString() => IsInitialized() ? Value.ToString() ?? "" : "[UNINITIALIZED]";
+        /// <inheritdoc cref = "System.Char.ToString(System.IFormatProvider? )"/>
+        public global::System.String ToString(global::System.IFormatProvider provider) => IsInitialized() ? Value.ToString(provider) ?? "" : "[UNINITIALIZED]";
 #nullable disable
         /// <summary>
         /// Converts a internal_partial_classConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterchar to or from JSON.

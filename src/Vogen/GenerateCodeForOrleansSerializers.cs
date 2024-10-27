@@ -6,7 +6,7 @@ using Microsoft.CodeAnalysis.Text;
 
 namespace Vogen;
 
-internal class WriteOrleansSerializers
+internal class GenerateCodeForOrleansSerializers
 {
     public static void WriteIfNeeded(SourceProductionContext context, List<VoWorkItem> workItems)
     {

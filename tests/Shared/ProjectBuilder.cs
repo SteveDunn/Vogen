@@ -22,7 +22,7 @@ namespace Shared;
 
 public record struct NuGetPackage(string PackageName, string Version, string PathPrefix);
 
-public sealed partial class ProjectBuilder
+public sealed class ProjectBuilder
 {
     public IList<DiagnosticAnalyzer> DiagnosticAnalyzers { get; } = new List<DiagnosticAnalyzer>();
     public IList<DiagnosticResult> ExpectedDiagnosticResults { get; } = new List<DiagnosticResult>();
@@ -42,7 +42,7 @@ public sealed partial class ProjectBuilder
     private readonly IList<MetadataReference> _references = new List<MetadataReference>();
     private string _userSource = string.Empty;
     private TargetFramework? _targetFramework;
-    private bool _excludeStj = false;
+    private bool _excludeStj;
     private LanguageVersion _languageVersion = LanguageVersion.Default;
 
     public ProjectBuilder WithTargetFramework(TargetFramework targetFramework)
@@ -160,6 +160,10 @@ public sealed partial class ProjectBuilder
                 AddNuGetReference("Microsoft.OpenApi", "1.4.3.0", "lib/netstandard2.0/");
                 AddNuGetReference("MongoDB.Bson", "2.27.0", "lib/netstandard2.0");
                 break;
+            case null:
+                break;
+            default:
+                throw new ArgumentOutOfRangeException();
         }
 
         AddNuGetReference("System.Collections.Immutable", "1.5.0", "lib/netstandard2.0/");
@@ -227,6 +231,7 @@ public sealed partial class ProjectBuilder
                     var metadataReader = peFile.GetMetadataReader();
                     result.Add(eachDllNameAndPath);
                 }
+                // ReSharper disable once EmptyGeneralCatchClause
                 catch
                 {
                 }
@@ -405,7 +410,7 @@ public sealed partial class ProjectBuilder
     }
 }
 
-internal sealed class TestAnalyzerConfigOptionsProvider(Dictionary<string, string> values) : AnalyzerConfigOptionsProvider
+internal sealed class TestAnalyzerConfigOptionsProvider(Dictionary<string, string>? values) : AnalyzerConfigOptionsProvider
 {
     private readonly Dictionary<string, string> _values = values ?? [];
 

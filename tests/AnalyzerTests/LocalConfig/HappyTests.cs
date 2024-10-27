@@ -28,8 +28,9 @@ public {type} CustomerId {{ }}";
             .WithSource(source)
             .ValidateWith(Validate)
             .RunOnAllFrameworks();
+        return;
 
-        void Validate(ImmutableArray<Diagnostic> diagnostics)
+        static void Validate(ImmutableArray<Diagnostic> diagnostics)
         {
             diagnostics.Should().BeEmpty();
         }
@@ -64,8 +65,9 @@ public class MyValidationException : Exception
             .WithSource(source)
             .ValidateWith(Validate)
             .RunOnAllFrameworks();
+        return;
 
-        void Validate(ImmutableArray<Diagnostic> diagnostics)
+        static void Validate(ImmutableArray<Diagnostic> diagnostics)
         {
             diagnostics.Should().HaveCount(0);
         }
@@ -91,8 +93,9 @@ public {type} CustomerId {{ }}";
             .WithSource(source)
             .ValidateWith(Validate)
             .RunOnAllFrameworks();
+        return;
 
-        void Validate(ImmutableArray<Diagnostic> diagnostics)
+        static void Validate(ImmutableArray<Diagnostic> diagnostics)
         {
             diagnostics.Should().BeEmpty();
         }
@@ -128,8 +131,9 @@ public class MyValidationException : Exception
             .WithSource(source)
             .ValidateWith(Validate)
             .RunOnAllFrameworks();
+        return;
 
-        void Validate(ImmutableArray<Diagnostic> diagnostics)
+        static void Validate(ImmutableArray<Diagnostic> diagnostics)
         {
             diagnostics.Should().HaveCount(0);
         }
@@ -167,8 +171,9 @@ public class MyValidationException : Exception
             .WithSource(source)
             .ValidateWith(Validate)
             .RunOnAllFrameworks();
+        return;
 
-        void Validate(ImmutableArray<Diagnostic> diagnostics)
+        static void Validate(ImmutableArray<Diagnostic> diagnostics)
         {
             diagnostics.Should().BeEmpty();
         }

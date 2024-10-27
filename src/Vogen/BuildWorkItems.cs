@@ -90,7 +90,7 @@ internal static class BuildWorkItems
         UserProvidedOverloads userProvidedOverloads =
             DiscoverUserProvidedOverloads.Discover(voSymbolInformation, underlyingType);
 
-        ThrowIfToStringOverrideOnRecordIsUnsealed(target, context, userProvidedOverloads.ToStringInfo);
+        ThrowIfAnyToStringOverrideOnRecordIsUnsealed(target, context, userProvidedOverloads.ToStringOverloads);
 
         MethodDeclarationSyntax? validateMethod = null;
         MethodDeclarationSyntax? normalizeInputMethod = null;
@@ -139,6 +139,8 @@ internal static class BuildWorkItems
             IsTheWrapperAValueType = isWrapperAValueType,
             
             ParsingInformation = BuildParsingInformation(underlyingType, vogenKnownSymbols),
+            //FormattableInformation = BuildFormattableInformation(underlyingType, vogenKnownSymbols),
+            ToStringInformation = BuildToStringInformation(underlyingType),
             Config = config,
             
             UserProvidedOverloads = userProvidedOverloads,
@@ -186,22 +188,46 @@ internal static class BuildWorkItems
         return parsingInformation;
     }
 
+
+    private static ToStringInformation BuildToStringInformation(INamedTypeSymbol underlyingType)
+    {
+        ToStringInformation info = new()
+        {
+            ToStringMethodsOnThePrimitive = MethodDiscovery.FindToStringMethodsOnThePrimitive(underlyingType).ToList(),
+            
+            UnderlyingTypeHasADefaultToStringMethod = underlyingType.GetMembers().OfType<IMethodSymbol>().Any(m => m is { Name: "ToString", Parameters.Length: 0 })
+        };
+        
+        return info;
+    }
+
     private static bool DoesPubliclyImplementGenericInterface(INamedTypeSymbol underlyingType, INamedTypeSymbol? openGeneric)
     {
         INamedTypeSymbol? closedGeneric = openGeneric?.Construct(underlyingType);
         return MethodDiscovery.DoesPrimitivePubliclyImplementThisInterface(underlyingType, closedGeneric);
     }
 
-    private static void ThrowIfToStringOverrideOnRecordIsUnsealed(VoTarget target,
+    private static void ThrowIfAnyToStringOverrideOnRecordIsUnsealed(VoTarget target,
         SourceProductionContext context,
-        UserProvidedToString info)
+        UserProvidedToStringMethods infos)
     {
-        if (info is { WasSupplied: true, Method: not null, IsRecordClass: true, IsSealed: false })
+        foreach (IMethodSymbol info in infos)
         {
-            context.ReportDiagnostic(
-                DiagnosticsCatalogue.RecordToStringOverloadShouldBeSealed(
-                    info.Method.Locations[0],
-                    target.VoSymbolInformation.Name));
+            // only report on implementations withing the value object itself, and not any derived methods.
+            var voSymbol = target.VoSymbolInformation;
+            
+            if (!SymbolEqualityComparer.Default.Equals(info.ContainingType, voSymbol))
+            {
+                continue;
+            }
+            
+            if(voSymbol.IsRecordClass() && !info.IsSealed)
+            {
+                context.ReportDiagnostic(
+                    DiagnosticsCatalogue.RecordToStringOverloadShouldBeSealed(
+                        info.Locations[0],
+                        voSymbol.Name));
+            }
         }
     }
 

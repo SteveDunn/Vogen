@@ -4,9 +4,9 @@ using Microsoft.CodeAnalysis.CSharp.Syntax;
 
 namespace Vogen;
 
-public static class GenerateComparableCode
+public static class GenerateCodeForComparables
 {
-    public static string GenerateIComparableHeaderIfNeeded(string precedingText, VoWorkItem item, TypeDeclarationSyntax tds)
+    public static string GenerateInterfaceDefinitionsIfNeeded(string precedingText, VoWorkItem item)
     {
         if (item.Config.Comparison == ComparisonGeneration.Omit)
         {
@@ -15,7 +15,7 @@ public static class GenerateComparableCode
         
         if (item.Config.Comparison == ComparisonGeneration.UseUnderlying && item.UnderlyingType.ImplementsInterfaceOrBaseClass(typeof(IComparable<>)))
         {
-            return $"{precedingText} global::System.IComparable<{tds.Identifier}>, global::System.IComparable";
+            return $"{precedingText} global::System.IComparable<{item.TypeToAugment.Identifier}>, global::System.IComparable";
         }
     
         return string.Empty;

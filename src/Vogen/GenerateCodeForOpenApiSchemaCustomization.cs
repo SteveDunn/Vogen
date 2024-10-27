@@ -4,7 +4,7 @@ using Microsoft.CodeAnalysis;
 
 namespace Vogen;
 
-internal class WriteOpenApiSchemaCustomizationCode
+internal class GenerateCodeForOpenApiSchemaCustomization
 {
     public static void WriteIfNeeded(VogenConfiguration? globalConfig,
         SourceProductionContext context,

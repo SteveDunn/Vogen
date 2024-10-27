@@ -36,6 +36,7 @@ public {type} CustomerId(int SomethingElse)
                 .WithSource(source)
                 .ValidateWith(Validate)
                 .RunOnAllFrameworks();
+            return;
 
             static void Validate(ImmutableArray<Diagnostic> diagnostics)
             {
@@ -69,6 +70,7 @@ public {type} CustomerId(int SomethingElse, string Name, int Age)
                 .WithSource(source)
                 .ValidateWith(Validate)
                 .RunOnAllFrameworks();
+            return;
 
             static void Validate(ImmutableArray<Diagnostic> diagnostics)
             {
@@ -102,6 +104,7 @@ public {type} CustomerId()
                 .WithSource(source)
                 .ValidateWith(Validate)
                 .RunOnAllFrameworks();
+            return;
 
             static void Validate(ImmutableArray<Diagnostic> diagnostics)
             {
@@ -141,6 +144,7 @@ public {type} CustomerId
                 .WithSource(source)
                 .ValidateWith(Validate)
                 .RunOnAllFrameworks();
+            return;
 
             static void Validate(ImmutableArray<Diagnostic> diagnostics)
             {
@@ -178,6 +182,7 @@ public {type} CustomerId
                 .WithSource(source)
                 .ValidateWith(Validate)
                 .RunOnAllFrameworks();
+            return;
 
             static void Validate(ImmutableArray<Diagnostic> diagnostics)
             {
@@ -214,6 +219,7 @@ public {type} CustomerId
                 .WithSource(source)
                 .ValidateWith(Validate)
                 .RunOnAllFrameworks();
+            return;
 
             static void Validate(ImmutableArray<Diagnostic> diagnostics)
             {
