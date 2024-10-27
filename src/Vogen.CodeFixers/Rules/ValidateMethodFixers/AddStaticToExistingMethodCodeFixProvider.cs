@@ -38,7 +38,6 @@ namespace Vogen.Rules.ValidateMethodFixers
             var codeAction = CodeAction.Create(
                 title: title,
                 createChangedDocument: c => MakeMethodStatic(context.Document, declaration, c),
-                // createChangedSolution: c => GenerateValidationMethodAsync(context.Document, declaration, c),
                 equivalenceKey: title);
             
             context.RegisterCodeFix(codeAction, diagnostic);
