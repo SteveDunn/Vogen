@@ -38,29 +38,9 @@ public static class GenerateCodeForToString
                         null,
                         generationParameters.VogenKnownSymbols.IFormattable,
                         "ToString")) 
-//                    if (SignaturesMatch(eachFormattableMethod, eachMethod))
                 {
                     continue;
                 }
-
-// //                 bool match = false;
-// //                 foreach (var eachFormattableMethod in formattableMethods)
-// //                 {
-// //                     if (eachMethod.IsImplementationOfInterfaceMethod(
-// //                             null,
-// //                             generationParameters.VogenKnownSymbols.IFormattable,
-// //                             "ToString")) 
-// // //                    if (SignaturesMatch(eachFormattableMethod, eachMethod))
-// //                     {
-// //                         match = true;
-// //                         break;
-// //                     }
-// //                 }
-//
-//                 if (match)
-//                 {
-//                     continue;
-//                 }
                 
                 BuildHoistedToStringMethod(eachMethod, sb, item);
             }
@@ -100,14 +80,6 @@ public static class GenerateCodeForToString
             }
         }
     }
-
-    // private static bool SignaturesMatch(IMethodSymbol m1, IMethodSymbol m2)
-    // {
-    //     if
-    //     if (m1.Name != m2.Name) return false;
-    //     if(m1.Parameters.Length != m2.Parameters.Length) return false;
-    //     if()
-    // }
 
     private static string GenerateDefaultToString(VoWorkItem item, bool isReadOnly)
     {
