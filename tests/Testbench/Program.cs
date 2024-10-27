@@ -28,11 +28,11 @@ public partial struct DateOfBirth;
 //     }
 // }
 
-[ValueObject<decimal>]
-public partial struct MyDecimal;
-
 [ValueObject<Guid>]
 public partial struct MyGuid;
+
+[ValueObject<decimal>]
+public partial struct MyDecimal;
 
 
 #nullable disable
@@ -44,36 +44,14 @@ public static class Program
 {
     public static void Main()
     {
-        MyGuid g = MyGuid.From(Guid.NewGuid());
-        Console.WriteLine($"{g:X}");
-        g.ToString("X");
+        decimal d = 1.23m;
         
-        var primitive = DateTimeOffset.Now;
-        var wrapper = DateOfBirth.From(primitive);
-
-        Console.WriteLine(primitive.ToString(""));
-        Console.WriteLine(wrapper.ToString(""));
-
-
-
-
-
-
-        Console.WriteLine($"{primitive:o}");
-        Console.WriteLine($"{wrapper:G}");
-
-
-
-
-        Console.WriteLine($"{primitive}");
-        Console.WriteLine($"{wrapper}");
+        MyDecimal m = MyDecimal.From(1.23m);
+        Console.WriteLine($"{m:000.00}");
         
-        Console.WriteLine(primitive.ToString("o"));
-        Console.WriteLine(wrapper.ToString("o"));
-        
-
-        var myd = MyDecimal.From(123.45m);
-        Console.WriteLine(string.Format("{0:C}", 123.45m));
-        Console.WriteLine(string.Format("{0:C}", myd));
+        Span<char> s = stackalloc char[10];
+        d.TryFormat(s, out int written, "000.00", CultureInfo.InvariantCulture);
+        Console.WriteLine(s.ToString());
+        Console.WriteLine(written.ToString());
     }
 }
