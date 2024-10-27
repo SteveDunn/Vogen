@@ -15,6 +15,7 @@ using System.Collections.Immutable;
 using System.Diagnostics;
 using System.Linq;
 using Microsoft.CodeAnalysis;
+// ReSharper disable ConditionIsAlwaysTrueOrFalse
 
 #if HAS_IOPERATION
 using System.Threading;
@@ -739,7 +740,7 @@ namespace Analyzer.Utilities.Extensions
                 return false;
             }
 
-            var returnType = method.ReturnType?.OriginalDefinition;
+            var returnType = method.ReturnType.OriginalDefinition;
             if (returnType is null)
             {
                 return false;

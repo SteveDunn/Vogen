@@ -12,6 +12,11 @@ using LinqToDB;
 using LinqToDB.Data;
 using LinqToDB.DataProvider.SQLite;
 using LinqToDB.Mapping;
+// ReSharper disable EqualExpressionComparison
+// ReSharper disable SuspiciousTypeConversion.Global
+// ReSharper disable ArrangeMethodOrOperatorBody
+// ReSharper disable TryCastAlwaysSucceeds
+// ReSharper disable NullableWarningSuppressionIsUsed
 
 namespace Vogen.IntegrationTests.SerializationAndConversionTests.ClassVos;
 
@@ -172,7 +177,7 @@ public class StringVoTests
     [Fact]
     public async Task WhenDapperValueConverterUsesValueConverter()
     {
-        using var connection = new SqliteConnection("DataSource=:memory:");
+        await using var connection = new SqliteConnection("DataSource=:memory:");
         await connection.OpenAsync();
 
         IEnumerable<DapperStringVo> results = await connection.QueryAsync<DapperStringVo>("SELECT 'foo!'");
@@ -215,7 +220,7 @@ public class StringVoTests
         var converter = TypeDescriptor.GetConverter(typeof(NoJsonStringVo));
         var id = converter.ConvertFrom(value);
         Assert.IsType<NoJsonStringVo>(id);
-        Assert.Equal(NoJsonStringVo.From(value!.ToString()), id);
+        Assert.Equal(NoJsonStringVo.From(value.ToString()!), id);
 
         var reconverted = converter.ConvertTo(id, value.GetType());
         Assert.Equal(value, reconverted);
@@ -244,13 +249,13 @@ public class StringVoTests
 
     public class EfCoreTestEntity
     {
-        public EfCoreStringVo Id { get; set; }
+        public EfCoreStringVo Id { get; init; }
     }
 
     public class LinqToDbTestEntity
     {
         [Column(DataType = DataType.VarChar)]
         [ValueConverter(ConverterType = typeof(LinqToDbStringVo.LinqToDbValueConverter))]
-        public LinqToDbStringVo Id { get; set; }
+        public LinqToDbStringVo Id { get; init; }
     }
 }

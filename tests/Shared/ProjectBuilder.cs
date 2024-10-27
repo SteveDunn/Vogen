@@ -22,7 +22,7 @@ namespace Shared;
 
 public record struct NuGetPackage(string PackageName, string Version, string PathPrefix);
 
-public sealed partial class ProjectBuilder
+public sealed class ProjectBuilder
 {
     public IList<DiagnosticAnalyzer> DiagnosticAnalyzers { get; } = new List<DiagnosticAnalyzer>();
     public IList<DiagnosticResult> ExpectedDiagnosticResults { get; } = new List<DiagnosticResult>();
@@ -160,6 +160,10 @@ public sealed partial class ProjectBuilder
                 AddNuGetReference("Microsoft.OpenApi", "1.4.3.0", "lib/netstandard2.0/");
                 AddNuGetReference("MongoDB.Bson", "2.27.0", "lib/netstandard2.0");
                 break;
+            case null:
+                break;
+            default:
+                throw new ArgumentOutOfRangeException();
         }
 
         AddNuGetReference("System.Collections.Immutable", "1.5.0", "lib/netstandard2.0/");
@@ -227,6 +231,7 @@ public sealed partial class ProjectBuilder
                     var metadataReader = peFile.GetMetadataReader();
                     result.Add(eachDllNameAndPath);
                 }
+                // ReSharper disable once EmptyGeneralCatchClause
                 catch
                 {
                 }

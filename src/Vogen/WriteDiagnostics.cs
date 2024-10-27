@@ -73,7 +73,7 @@ internal sealed class InternalDiagnostics : IInternalDiagnostics
         
         foreach (var eachTarget in _targets)
         {
-            sb.AppendLine($"{eachTarget.VoSymbolInformation.ToString()}");
+            sb.AppendLine($"{eachTarget.VoSymbolInformation}");
         }
     }
 

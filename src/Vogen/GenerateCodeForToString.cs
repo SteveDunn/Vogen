@@ -17,8 +17,6 @@ public static class GenerateCodeForToString
 
     private static string GenerateAnyHoistedToStringMethods(GenerationParameters generationParameters, bool isReadOnly)
     {
-        List<IMethodSymbol> formattableMethods = generationParameters.VogenKnownSymbols.IFormattable.GetJustMethods().ToList();
-        
         var item = generationParameters.WorkItem; 
         
         INamedTypeSymbol primitiveSymbol = item.UnderlyingType;

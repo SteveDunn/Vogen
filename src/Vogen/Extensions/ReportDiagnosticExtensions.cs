@@ -8,18 +8,17 @@ namespace Microsoft.CodeAnalysis
 {
     internal static class ReportDiagnosticExtensions
     {
-        public static string ToAnalyzerConfigString(this ReportDiagnostic reportDiagnostic)
-        {
-            return reportDiagnostic switch
+        public static string ToAnalyzerConfigString(this ReportDiagnostic reportDiagnostic) =>
+            reportDiagnostic switch
             {
                 ReportDiagnostic.Error => "error",
                 ReportDiagnostic.Warn => "warning",
                 ReportDiagnostic.Info => "suggestion",
                 ReportDiagnostic.Hidden => "silent",
                 ReportDiagnostic.Suppress => "none",
+                ReportDiagnostic.Default => "none",
                 _ => throw new NotImplementedException(),
             };
-        }
 
         public static DiagnosticSeverity? ToDiagnosticSeverity(this ReportDiagnostic reportDiagnostic)
         {

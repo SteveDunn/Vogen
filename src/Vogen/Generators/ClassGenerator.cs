@@ -18,12 +18,12 @@ public class ClassGenerator : IGenerateValueObjectSourceCode
         string underlyingBang = item.Nullable.BangForUnderlying;
         string wrapperBang = item.Nullable.BangForWrapper;
 
-        var code = Generate();
+        var code = GenerateCode();
 
         return item.Nullable.WrapBlock(code);
     
     
-    string Generate() => $@"
+    string GenerateCode() => $@"
 
 {Util.WriteStartNamespace(item.FullNamespace)}
     [global::System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage] 
