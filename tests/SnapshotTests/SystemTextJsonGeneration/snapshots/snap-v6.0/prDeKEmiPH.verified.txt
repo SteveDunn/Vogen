@@ -62,7 +62,7 @@ namespace Whatever
     [global::System.Text.Json.Serialization.JsonConverter(typeof(stj_number_as_string_public_sealed_partial_recordConversions_SystemTextJsonSystem_DateTimeOffsetSystemTextJsonConverter))]
     [global::System.Diagnostics.DebuggerTypeProxyAttribute(typeof(stj_number_as_string_public_sealed_partial_recordConversions_SystemTextJsonSystem_DateTimeOffsetDebugView))]
     [global::System.Diagnostics.DebuggerDisplayAttribute("Underlying type: System.DateTimeOffset, Value = { _value }")]
-    public sealed partial record class stj_number_as_string_public_sealed_partial_recordConversions_SystemTextJsonSystem_DateTimeOffset : global::System.IEquatable<stj_number_as_string_public_sealed_partial_recordConversions_SystemTextJsonSystem_DateTimeOffset>, global::System.IEquatable<System.DateTimeOffset>, global::System.IComparable<stj_number_as_string_public_sealed_partial_recordConversions_SystemTextJsonSystem_DateTimeOffset>, global::System.IComparable
+    public sealed partial record class stj_number_as_string_public_sealed_partial_recordConversions_SystemTextJsonSystem_DateTimeOffset : global::System.IEquatable<stj_number_as_string_public_sealed_partial_recordConversions_SystemTextJsonSystem_DateTimeOffset>, global::System.IEquatable<System.DateTimeOffset>, global::System.IComparable<stj_number_as_string_public_sealed_partial_recordConversions_SystemTextJsonSystem_DateTimeOffset>, global::System.IComparable, global::System.IFormattable, global::System.ISpanFormattable
     {
 #if DEBUG
 private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
@@ -370,6 +370,21 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
             return From(r);
         }
 
+#nullable disable
+        /// <inheritdoc cref = "System.DateTimeOffset.ToString(string? , System.IFormatProvider? )"/>
+        public string ToString(string format, global::System.IFormatProvider formatProvider)
+        {
+            return IsInitialized() ? Value.ToString(format, formatProvider) : "[UNINITIALIZED]";
+        }
+
+        /// <inheritdoc cref = "System.DateTimeOffset.TryFormat(System.Span{char}, out int, System.ReadOnlySpan{char}, System.IFormatProvider? )"/>
+        public bool TryFormat(global::System.Span<char> destination, out int charsWritten, global::System.ReadOnlySpan<char> format, global::System.IFormatProvider formatProvider)
+        {
+            charsWritten = default;
+            return IsInitialized() ? Value.TryFormat(destination, out charsWritten, format, formatProvider) : false;
+        }
+
+#nullable restore
         public override global::System.Int32 GetHashCode()
         {
             unchecked // Overflow is fine, just wrap
@@ -401,8 +416,6 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
         public global::System.String ToString(global::System.IFormatProvider formatProvider) => IsInitialized() ? Value.ToString(formatProvider) ?? "" : "[UNINITIALIZED]";
         /// <inheritdoc cref = "System.DateTimeOffset.ToString(string? )"/>
         public global::System.String ToString(string format) => IsInitialized() ? Value.ToString(format) ?? "" : "[UNINITIALIZED]";
-        /// <inheritdoc cref = "System.DateTimeOffset.ToString(string? , System.IFormatProvider? )"/>
-        public global::System.String ToString(string format, global::System.IFormatProvider formatProvider) => IsInitialized() ? Value.ToString(format, formatProvider) ?? "" : "[UNINITIALIZED]";
 #nullable disable
         /// <summary>
         /// Converts a stj_number_as_string_public_sealed_partial_recordConversions_SystemTextJsonSystem_DateTimeOffset to or from JSON.

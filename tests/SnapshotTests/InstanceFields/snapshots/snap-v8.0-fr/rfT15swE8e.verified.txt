@@ -64,7 +64,7 @@ namespace Whatever
     [global::System.Diagnostics.DebuggerTypeProxyAttribute(typeof(internal_readonly_partial_structfloatDebugView))]
     [global::System.Diagnostics.DebuggerDisplayAttribute("Underlying type: System.Single, Value = { _value }")]
     // ReSharper disable once UnusedType.Global
-    internal readonly partial struct internal_readonly_partial_structfloat : global::System.IEquatable<internal_readonly_partial_structfloat>, global::System.IEquatable<System.Single>, global::System.IComparable<internal_readonly_partial_structfloat>, global::System.IComparable, global::System.IParsable<internal_readonly_partial_structfloat>, global::System.ISpanParsable<internal_readonly_partial_structfloat>, global::System.IUtf8SpanParsable<internal_readonly_partial_structfloat>
+    internal readonly partial struct internal_readonly_partial_structfloat : global::System.IEquatable<internal_readonly_partial_structfloat>, global::System.IEquatable<System.Single>, global::System.IComparable<internal_readonly_partial_structfloat>, global::System.IComparable, global::System.IParsable<internal_readonly_partial_structfloat>, global::System.ISpanParsable<internal_readonly_partial_structfloat>, global::System.IUtf8SpanParsable<internal_readonly_partial_structfloat>, global::System.IFormattable, global::System.ISpanFormattable, global::System.IUtf8SpanFormattable
     {
 #if DEBUG
 private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
@@ -521,6 +521,28 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
             return From(r);
         }
 
+#nullable disable
+        /// <inheritdoc cref = "float.ToString(string? , System.IFormatProvider? )"/>
+        public string ToString([System.Diagnostics.CodeAnalysis.StringSyntaxAttribute("NumericFormat")] string format, global::System.IFormatProvider provider)
+        {
+            return IsInitialized() ? Value.ToString(format, provider) : "[UNINITIALIZED]";
+        }
+
+        /// <inheritdoc cref = "float.TryFormat(System.Span{char}, out int, System.ReadOnlySpan{char}, System.IFormatProvider? )"/>
+        public bool TryFormat(global::System.Span<char> destination, out int charsWritten, [System.Diagnostics.CodeAnalysis.StringSyntaxAttribute("NumericFormat")] global::System.ReadOnlySpan<char> format, global::System.IFormatProvider provider)
+        {
+            charsWritten = default;
+            return IsInitialized() ? Value.TryFormat(destination, out charsWritten, format, provider) : false;
+        }
+
+        /// <inheritdoc cref = "float.TryFormat(System.Span{byte}, out int, System.ReadOnlySpan{char}, System.IFormatProvider? )"/>
+        public bool TryFormat(global::System.Span<byte> utf8Destination, out int bytesWritten, [System.Diagnostics.CodeAnalysis.StringSyntaxAttribute("NumericFormat")] global::System.ReadOnlySpan<char> format, global::System.IFormatProvider provider)
+        {
+            bytesWritten = default;
+            return IsInitialized() ? Value.TryFormat(utf8Destination, out bytesWritten, format, provider) : false;
+        }
+
+#nullable restore
         public readonly override global::System.Int32 GetHashCode()
         {
             return global::System.Collections.Generic.EqualityComparer<System.Single>.Default.GetHashCode(Value);
@@ -532,8 +554,6 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
         public global::System.String ToString(global::System.IFormatProvider provider) => IsInitialized() ? Value.ToString(provider) ?? "" : "[UNINITIALIZED]";
         /// <inheritdoc cref = "System.Single.ToString(string? )"/>
         public global::System.String ToString([System.Diagnostics.CodeAnalysis.StringSyntaxAttribute("NumericFormat")] string format) => IsInitialized() ? Value.ToString(format) ?? "" : "[UNINITIALIZED]";
-        /// <inheritdoc cref = "System.Single.ToString(string? , System.IFormatProvider? )"/>
-        public global::System.String ToString([System.Diagnostics.CodeAnalysis.StringSyntaxAttribute("NumericFormat")] string format, global::System.IFormatProvider provider) => IsInitialized() ? Value.ToString(format, provider) ?? "" : "[UNINITIALIZED]";
         [global::System.Runtime.CompilerServices.MethodImpl(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
         private readonly void EnsureInitialized()
         {

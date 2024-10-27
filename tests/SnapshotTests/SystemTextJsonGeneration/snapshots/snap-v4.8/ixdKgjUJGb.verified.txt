@@ -63,7 +63,7 @@ namespace Whatever
     [global::System.Diagnostics.DebuggerTypeProxyAttribute(typeof(stj_number_as_string_public_partial_structConversions_SystemTextJsonshort_customizedDebugView))]
     [global::System.Diagnostics.DebuggerDisplayAttribute("Underlying type: System.Int16, Value = { _value }")]
     // ReSharper disable once UnusedType.Global
-    public partial struct stj_number_as_string_public_partial_structConversions_SystemTextJsonshort_customized : global::System.IEquatable<stj_number_as_string_public_partial_structConversions_SystemTextJsonshort_customized>, global::System.IEquatable<System.Int16>, global::System.IComparable<stj_number_as_string_public_partial_structConversions_SystemTextJsonshort_customized>, global::System.IComparable
+    public partial struct stj_number_as_string_public_partial_structConversions_SystemTextJsonshort_customized : global::System.IEquatable<stj_number_as_string_public_partial_structConversions_SystemTextJsonshort_customized>, global::System.IEquatable<System.Int16>, global::System.IComparable<stj_number_as_string_public_partial_structConversions_SystemTextJsonshort_customized>, global::System.IComparable, global::System.IFormattable
     {
 #if DEBUG
 private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
@@ -312,6 +312,14 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
             return From(r);
         }
 
+#nullable disable
+        /// <inheritdoc cref = "short.ToString(string, System.IFormatProvider)"/>
+        public string ToString(string format, global::System.IFormatProvider provider)
+        {
+            return IsInitialized() ? Value.ToString(format, provider) : "[UNINITIALIZED]";
+        }
+
+#nullable restore
         public readonly override global::System.Int32 GetHashCode()
         {
             return global::System.Collections.Generic.EqualityComparer<System.Int16>.Default.GetHashCode(Value);
@@ -323,8 +331,6 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
         public global::System.String ToString(global::System.IFormatProvider provider) => IsInitialized() ? Value.ToString(provider) ?? "" : "[UNINITIALIZED]";
         /// <inheritdoc cref = "System.Int16.ToString(string)"/>
         public global::System.String ToString(string format) => IsInitialized() ? Value.ToString(format) ?? "" : "[UNINITIALIZED]";
-        /// <inheritdoc cref = "System.Int16.ToString(string, System.IFormatProvider)"/>
-        public global::System.String ToString(string format, global::System.IFormatProvider provider) => IsInitialized() ? Value.ToString(format, provider) ?? "" : "[UNINITIALIZED]";
         [global::System.Runtime.CompilerServices.MethodImpl(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
         private readonly void EnsureInitialized()
         {

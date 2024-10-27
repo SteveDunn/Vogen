@@ -62,7 +62,7 @@ namespace Whatever
     [global::System.Text.Json.Serialization.JsonConverter(typeof(stj_number_as_string_public_readonly_partial_record_structConversions_SystemTextJsonSystem_GuidSystemTextJsonConverter))]
     [global::System.Diagnostics.DebuggerTypeProxyAttribute(typeof(stj_number_as_string_public_readonly_partial_record_structConversions_SystemTextJsonSystem_GuidDebugView))]
     [global::System.Diagnostics.DebuggerDisplayAttribute("Underlying type: System.Guid, Value = { _value }")]
-    public readonly partial record struct stj_number_as_string_public_readonly_partial_record_structConversions_SystemTextJsonSystem_Guid : global::System.IEquatable<stj_number_as_string_public_readonly_partial_record_structConversions_SystemTextJsonSystem_Guid>, global::System.IEquatable<System.Guid>, global::System.IComparable<stj_number_as_string_public_readonly_partial_record_structConversions_SystemTextJsonSystem_Guid>, global::System.IComparable
+    public readonly partial record struct stj_number_as_string_public_readonly_partial_record_structConversions_SystemTextJsonSystem_Guid : global::System.IEquatable<stj_number_as_string_public_readonly_partial_record_structConversions_SystemTextJsonSystem_Guid>, global::System.IEquatable<System.Guid>, global::System.IComparable<stj_number_as_string_public_readonly_partial_record_structConversions_SystemTextJsonSystem_Guid>, global::System.IComparable, global::System.IFormattable, global::System.ISpanFormattable
     {
 #if DEBUG
 private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
@@ -284,6 +284,21 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
             return From(r);
         }
 
+#nullable disable
+        /// <inheritdoc cref = "System.Guid.ToString(string? , System.IFormatProvider? )"/>
+        public string ToString(string format, global::System.IFormatProvider provider)
+        {
+            return IsInitialized() ? Value.ToString(format, provider) : "[UNINITIALIZED]";
+        }
+
+        /// <inheritdoc cref = "System.ISpanFormattable"/>
+        bool System.ISpanFormattable.TryFormat(global::System.Span<char> destination, out int charsWritten, global::System.ReadOnlySpan<char> format, global::System.IFormatProvider provider)
+        {
+            charsWritten = default;
+            return IsInitialized() ? (Value as System.ISpanFormattable).TryFormat(destination, out charsWritten, format, provider) : false;
+        }
+
+#nullable restore
         public readonly override global::System.Int32 GetHashCode()
         {
             return global::System.Collections.Generic.EqualityComparer<System.Guid>.Default.GetHashCode(Value);
@@ -307,8 +322,6 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
         public override global::System.String ToString() => IsInitialized() ? Value.ToString() ?? "" : "[UNINITIALIZED]";
         /// <inheritdoc cref = "System.Guid.ToString(string? )"/>
         public global::System.String ToString(string format) => IsInitialized() ? Value.ToString(format) ?? "" : "[UNINITIALIZED]";
-        /// <inheritdoc cref = "System.Guid.ToString(string? , System.IFormatProvider? )"/>
-        public global::System.String ToString(string format, global::System.IFormatProvider provider) => IsInitialized() ? Value.ToString(format, provider) ?? "" : "[UNINITIALIZED]";
 #nullable disable
         /// <summary>
         /// Converts a stj_number_as_string_public_readonly_partial_record_structConversions_SystemTextJsonSystem_Guid to or from JSON.

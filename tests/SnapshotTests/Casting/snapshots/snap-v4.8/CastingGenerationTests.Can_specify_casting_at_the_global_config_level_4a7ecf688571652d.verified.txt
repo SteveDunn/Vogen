@@ -63,7 +63,7 @@ namespace Whatever
     [global::System.ComponentModel.TypeConverter(typeof(_casting_public_readonly_partial_record_structNoneNoneintTypeConverter))]
     [global::System.Diagnostics.DebuggerTypeProxyAttribute(typeof(_casting_public_readonly_partial_record_structNoneNoneintDebugView))]
     [global::System.Diagnostics.DebuggerDisplayAttribute("Underlying type: System.Int32, Value = { _value }")]
-    public readonly partial record struct _casting_public_readonly_partial_record_structNoneNoneint : global::System.IEquatable<_casting_public_readonly_partial_record_structNoneNoneint>, global::System.IEquatable<System.Int32>, global::System.IComparable<_casting_public_readonly_partial_record_structNoneNoneint>, global::System.IComparable
+    public readonly partial record struct _casting_public_readonly_partial_record_structNoneNoneint : global::System.IEquatable<_casting_public_readonly_partial_record_structNoneNoneint>, global::System.IEquatable<System.Int32>, global::System.IComparable<_casting_public_readonly_partial_record_structNoneNoneint>, global::System.IComparable, global::System.IFormattable
     {
 #if DEBUG
 private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
@@ -309,6 +309,15 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
             return From(r);
         }
 
+#nullable disable
+        /// <inheritdoc cref = "int.ToString(string, System.IFormatProvider)"/>
+        [System.Security.SecuritySafeCriticalAttribute]
+        public string ToString(string format, global::System.IFormatProvider provider)
+        {
+            return IsInitialized() ? Value.ToString(format, provider) : "[UNINITIALIZED]";
+        }
+
+#nullable restore
         public readonly override global::System.Int32 GetHashCode()
         {
             return global::System.Collections.Generic.EqualityComparer<System.Int32>.Default.GetHashCode(Value);
@@ -334,8 +343,6 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
         public global::System.String ToString(string format) => IsInitialized() ? Value.ToString(format) ?? "" : "[UNINITIALIZED]";
         /// <inheritdoc cref = "System.Int32.ToString(System.IFormatProvider)"/>
         public global::System.String ToString(global::System.IFormatProvider provider) => IsInitialized() ? Value.ToString(provider) ?? "" : "[UNINITIALIZED]";
-        /// <inheritdoc cref = "System.Int32.ToString(string, System.IFormatProvider)"/>
-        public global::System.String ToString(string format, global::System.IFormatProvider provider) => IsInitialized() ? Value.ToString(format, provider) ?? "" : "[UNINITIALIZED]";
 #nullable disable
         /// <summary>
         /// Converts a _casting_public_readonly_partial_record_structNoneNoneint to or from JSON.

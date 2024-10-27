@@ -63,7 +63,7 @@ namespace Whatever
     [global::System.ComponentModel.TypeConverter(typeof(_casting_public_sealed_partial_recordImplicitNoneshortTypeConverter))]
     [global::System.Diagnostics.DebuggerTypeProxyAttribute(typeof(_casting_public_sealed_partial_recordImplicitNoneshortDebugView))]
     [global::System.Diagnostics.DebuggerDisplayAttribute("Underlying type: System.Int16, Value = { _value }")]
-    public sealed partial record class _casting_public_sealed_partial_recordImplicitNoneshort : global::System.IEquatable<_casting_public_sealed_partial_recordImplicitNoneshort>, global::System.IEquatable<System.Int16>, global::System.IComparable<_casting_public_sealed_partial_recordImplicitNoneshort>, global::System.IComparable
+    public sealed partial record class _casting_public_sealed_partial_recordImplicitNoneshort : global::System.IEquatable<_casting_public_sealed_partial_recordImplicitNoneshort>, global::System.IEquatable<System.Int16>, global::System.IComparable<_casting_public_sealed_partial_recordImplicitNoneshort>, global::System.IComparable, global::System.IFormattable, global::System.ISpanFormattable
     {
 #if DEBUG
 private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
@@ -387,6 +387,21 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
             return From(r);
         }
 
+#nullable disable
+        /// <inheritdoc cref = "short.ToString(string? , System.IFormatProvider? )"/>
+        public string ToString(string format, global::System.IFormatProvider provider)
+        {
+            return IsInitialized() ? Value.ToString(format, provider) : "[UNINITIALIZED]";
+        }
+
+        /// <inheritdoc cref = "short.TryFormat(System.Span{char}, out int, System.ReadOnlySpan{char}, System.IFormatProvider? )"/>
+        public bool TryFormat(global::System.Span<char> destination, out int charsWritten, global::System.ReadOnlySpan<char> format, global::System.IFormatProvider provider)
+        {
+            charsWritten = default;
+            return IsInitialized() ? Value.TryFormat(destination, out charsWritten, format, provider) : false;
+        }
+
+#nullable restore
         public override global::System.Int32 GetHashCode()
         {
             unchecked // Overflow is fine, just wrap
@@ -418,8 +433,6 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
         public global::System.String ToString(global::System.IFormatProvider provider) => IsInitialized() ? Value.ToString(provider) ?? "" : "[UNINITIALIZED]";
         /// <inheritdoc cref = "System.Int16.ToString(string? )"/>
         public global::System.String ToString(string format) => IsInitialized() ? Value.ToString(format) ?? "" : "[UNINITIALIZED]";
-        /// <inheritdoc cref = "System.Int16.ToString(string? , System.IFormatProvider? )"/>
-        public global::System.String ToString(string format, global::System.IFormatProvider provider) => IsInitialized() ? Value.ToString(format, provider) ?? "" : "[UNINITIALIZED]";
 #nullable disable
         /// <summary>
         /// Converts a _casting_public_sealed_partial_recordImplicitNoneshort to or from JSON.

@@ -276,6 +276,8 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
             return From(s);
         }
 
+#nullable disable
+#nullable restore
         public readonly override global::System.Int32 GetHashCode()
         {
             return global::System.Collections.Generic.EqualityComparer<System.String>.Default.GetHashCode(Value);

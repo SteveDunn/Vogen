@@ -413,15 +413,21 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
     }
 
 #nullable disable
+    /// <inheritdoc cref = "System.DateTimeOffset.ToString(string? , System.IFormatProvider? )"/>
+    public string ToString([System.Diagnostics.CodeAnalysis.StringSyntaxAttribute("DateTimeFormat")] string format, global::System.IFormatProvider formatProvider)
+    {
+        return IsInitialized() ? Value.ToString(format, formatProvider) : "[UNINITIALIZED]";
+    }
+
     /// <inheritdoc cref = "System.DateTimeOffset.TryFormat(System.Span{char}, out int, System.ReadOnlySpan{char}, System.IFormatProvider? )"/>
-    public bool TryFormat(System.Span<char> destination, out int charsWritten, [System.Diagnostics.CodeAnalysis.StringSyntaxAttribute("DateTimeFormat")] System.ReadOnlySpan<char> format, System.IFormatProvider? formatProvider)
+    public bool TryFormat(global::System.Span<char> destination, out int charsWritten, [System.Diagnostics.CodeAnalysis.StringSyntaxAttribute("DateTimeFormat")] global::System.ReadOnlySpan<char> format, global::System.IFormatProvider formatProvider)
     {
         charsWritten = default;
         return IsInitialized() ? Value.TryFormat(destination, out charsWritten, format, formatProvider) : false;
     }
 
     /// <inheritdoc cref = "System.DateTimeOffset.TryFormat(System.Span{byte}, out int, System.ReadOnlySpan{char}, System.IFormatProvider? )"/>
-    public bool TryFormat(System.Span<byte> utf8Destination, out int bytesWritten, [System.Diagnostics.CodeAnalysis.StringSyntaxAttribute("DateTimeFormat")] System.ReadOnlySpan<char> format, System.IFormatProvider? formatProvider)
+    public bool TryFormat(global::System.Span<byte> utf8Destination, out int bytesWritten, [System.Diagnostics.CodeAnalysis.StringSyntaxAttribute("DateTimeFormat")] global::System.ReadOnlySpan<char> format, global::System.IFormatProvider formatProvider)
     {
         bytesWritten = default;
         return IsInitialized() ? Value.TryFormat(utf8Destination, out bytesWritten, format, formatProvider) : false;
@@ -439,8 +445,6 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
     public global::System.String ToString(global::System.IFormatProvider formatProvider) => IsInitialized() ? Value.ToString(formatProvider) ?? "" : "[UNINITIALIZED]";
     /// <inheritdoc cref = "System.DateTimeOffset.ToString(string? )"/>
     public global::System.String ToString([System.Diagnostics.CodeAnalysis.StringSyntaxAttribute("DateTimeFormat")] string format) => IsInitialized() ? Value.ToString(format) ?? "" : "[UNINITIALIZED]";
-    /// <inheritdoc cref = "System.DateTimeOffset.ToString(string? , System.IFormatProvider? )"/>
-    public global::System.String ToString([System.Diagnostics.CodeAnalysis.StringSyntaxAttribute("DateTimeFormat")] string format, global::System.IFormatProvider formatProvider) => IsInitialized() ? Value.ToString(format, formatProvider) ?? "" : "[UNINITIALIZED]";
     [global::System.Runtime.CompilerServices.MethodImpl(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
     private readonly void EnsureInitialized()
     {

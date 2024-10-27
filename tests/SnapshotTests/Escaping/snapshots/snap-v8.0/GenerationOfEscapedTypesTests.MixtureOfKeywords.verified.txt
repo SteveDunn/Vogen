@@ -231,6 +231,8 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
         public static global::System.Boolean operator !=(classFromEscapedNamespaceWithReservedUnderlyingType left, @double.@decimal right) => !(left == right);
         public static explicit operator classFromEscapedNamespaceWithReservedUnderlyingType(@double.@decimal value) => From(value);
         public static explicit operator @double.@decimal(classFromEscapedNamespaceWithReservedUnderlyingType value) => value.Value;
+#nullable disable
+#nullable restore
         public override global::System.Int32 GetHashCode()
         {
             unchecked // Overflow is fine, just wrap
@@ -403,7 +405,7 @@ namespace @double
     [global::System.ComponentModel.TypeConverter(typeof(classFromEscapedNamespaceTypeConverter))]
     [global::System.Diagnostics.DebuggerTypeProxyAttribute(typeof(classFromEscapedNamespaceDebugView))]
     [global::System.Diagnostics.DebuggerDisplayAttribute("Underlying type: System.Int32, Value = { _value }")]
-    public partial class classFromEscapedNamespace : global::System.IEquatable<classFromEscapedNamespace>, global::System.IEquatable<System.Int32>, global::System.IComparable<classFromEscapedNamespace>, global::System.IComparable, global::System.IParsable<classFromEscapedNamespace>, global::System.ISpanParsable<classFromEscapedNamespace>, global::System.IUtf8SpanParsable<classFromEscapedNamespace>
+    public partial class classFromEscapedNamespace : global::System.IEquatable<classFromEscapedNamespace>, global::System.IEquatable<System.Int32>, global::System.IComparable<classFromEscapedNamespace>, global::System.IComparable, global::System.IParsable<classFromEscapedNamespace>, global::System.ISpanParsable<classFromEscapedNamespace>, global::System.IUtf8SpanParsable<classFromEscapedNamespace>, global::System.IFormattable, global::System.ISpanFormattable, global::System.IUtf8SpanFormattable
     {
 #if DEBUG
 private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
@@ -874,6 +876,28 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
             return From(r);
         }
 
+#nullable disable
+        /// <inheritdoc cref = "int.ToString(string? , System.IFormatProvider? )"/>
+        public string ToString([System.Diagnostics.CodeAnalysis.StringSyntaxAttribute("NumericFormat")] string format, global::System.IFormatProvider provider)
+        {
+            return IsInitialized() ? Value.ToString(format, provider) : "[UNINITIALIZED]";
+        }
+
+        /// <inheritdoc cref = "int.TryFormat(System.Span{char}, out int, System.ReadOnlySpan{char}, System.IFormatProvider? )"/>
+        public bool TryFormat(global::System.Span<char> destination, out int charsWritten, [System.Diagnostics.CodeAnalysis.StringSyntaxAttribute("NumericFormat")] global::System.ReadOnlySpan<char> format, global::System.IFormatProvider provider)
+        {
+            charsWritten = default;
+            return IsInitialized() ? Value.TryFormat(destination, out charsWritten, format, provider) : false;
+        }
+
+        /// <inheritdoc cref = "int.TryFormat(System.Span{byte}, out int, System.ReadOnlySpan{char}, System.IFormatProvider? )"/>
+        public bool TryFormat(global::System.Span<byte> utf8Destination, out int bytesWritten, [System.Diagnostics.CodeAnalysis.StringSyntaxAttribute("NumericFormat")] global::System.ReadOnlySpan<char> format, global::System.IFormatProvider provider)
+        {
+            bytesWritten = default;
+            return IsInitialized() ? Value.TryFormat(utf8Destination, out bytesWritten, format, provider) : false;
+        }
+
+#nullable restore
         public override global::System.Int32 GetHashCode()
         {
             unchecked // Overflow is fine, just wrap
@@ -904,8 +928,6 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
         public global::System.String ToString(global::System.IFormatProvider provider) => IsInitialized() ? Value.ToString(provider) ?? "" : "[UNINITIALIZED]";
         /// <inheritdoc cref = "System.Int32.ToString(string? )"/>
         public global::System.String ToString([System.Diagnostics.CodeAnalysis.StringSyntaxAttribute("NumericFormat")] string format) => IsInitialized() ? Value.ToString(format) ?? "" : "[UNINITIALIZED]";
-        /// <inheritdoc cref = "System.Int32.ToString(string? , System.IFormatProvider? )"/>
-        public global::System.String ToString([System.Diagnostics.CodeAnalysis.StringSyntaxAttribute("NumericFormat")] string format, global::System.IFormatProvider provider) => IsInitialized() ? Value.ToString(format, provider) ?? "" : "[UNINITIALIZED]";
 #nullable disable
         /// <summary>
         /// Converts a classFromEscapedNamespace to or from JSON.
@@ -1070,7 +1092,7 @@ namespace @bool.@byte.@short.@float.@object
     [global::System.ComponentModel.TypeConverter(typeof(@classTypeConverter))]
     [global::System.Diagnostics.DebuggerTypeProxyAttribute(typeof(@classDebugView))]
     [global::System.Diagnostics.DebuggerDisplayAttribute("Underlying type: System.Int32, Value = { _value }")]
-    public partial class @class : global::System.IEquatable<@class>, global::System.IEquatable<System.Int32>, global::System.IComparable<@class>, global::System.IComparable, global::System.IParsable<@class>, global::System.ISpanParsable<@class>, global::System.IUtf8SpanParsable<@class>
+    public partial class @class : global::System.IEquatable<@class>, global::System.IEquatable<System.Int32>, global::System.IComparable<@class>, global::System.IComparable, global::System.IParsable<@class>, global::System.ISpanParsable<@class>, global::System.IUtf8SpanParsable<@class>, global::System.IFormattable, global::System.ISpanFormattable, global::System.IUtf8SpanFormattable
     {
 #if DEBUG
 private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
@@ -1541,6 +1563,28 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
             return From(r);
         }
 
+#nullable disable
+        /// <inheritdoc cref = "int.ToString(string? , System.IFormatProvider? )"/>
+        public string ToString([System.Diagnostics.CodeAnalysis.StringSyntaxAttribute("NumericFormat")] string format, global::System.IFormatProvider provider)
+        {
+            return IsInitialized() ? Value.ToString(format, provider) : "[UNINITIALIZED]";
+        }
+
+        /// <inheritdoc cref = "int.TryFormat(System.Span{char}, out int, System.ReadOnlySpan{char}, System.IFormatProvider? )"/>
+        public bool TryFormat(global::System.Span<char> destination, out int charsWritten, [System.Diagnostics.CodeAnalysis.StringSyntaxAttribute("NumericFormat")] global::System.ReadOnlySpan<char> format, global::System.IFormatProvider provider)
+        {
+            charsWritten = default;
+            return IsInitialized() ? Value.TryFormat(destination, out charsWritten, format, provider) : false;
+        }
+
+        /// <inheritdoc cref = "int.TryFormat(System.Span{byte}, out int, System.ReadOnlySpan{char}, System.IFormatProvider? )"/>
+        public bool TryFormat(global::System.Span<byte> utf8Destination, out int bytesWritten, [System.Diagnostics.CodeAnalysis.StringSyntaxAttribute("NumericFormat")] global::System.ReadOnlySpan<char> format, global::System.IFormatProvider provider)
+        {
+            bytesWritten = default;
+            return IsInitialized() ? Value.TryFormat(utf8Destination, out bytesWritten, format, provider) : false;
+        }
+
+#nullable restore
         public override global::System.Int32 GetHashCode()
         {
             unchecked // Overflow is fine, just wrap
@@ -1571,8 +1615,6 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
         public global::System.String ToString(global::System.IFormatProvider provider) => IsInitialized() ? Value.ToString(provider) ?? "" : "[UNINITIALIZED]";
         /// <inheritdoc cref = "System.Int32.ToString(string? )"/>
         public global::System.String ToString([System.Diagnostics.CodeAnalysis.StringSyntaxAttribute("NumericFormat")] string format) => IsInitialized() ? Value.ToString(format) ?? "" : "[UNINITIALIZED]";
-        /// <inheritdoc cref = "System.Int32.ToString(string? , System.IFormatProvider? )"/>
-        public global::System.String ToString([System.Diagnostics.CodeAnalysis.StringSyntaxAttribute("NumericFormat")] string format, global::System.IFormatProvider provider) => IsInitialized() ? Value.ToString(format, provider) ?? "" : "[UNINITIALIZED]";
 #nullable disable
         /// <summary>
         /// Converts a @class to or from JSON.
@@ -1737,7 +1779,7 @@ namespace @bool.@byte.@short.@float.@object
     [global::System.ComponentModel.TypeConverter(typeof(@eventTypeConverter))]
     [global::System.Diagnostics.DebuggerTypeProxyAttribute(typeof(@eventDebugView))]
     [global::System.Diagnostics.DebuggerDisplayAttribute("Underlying type: System.Int32, Value = { _value }")]
-    public partial class @event : global::System.IEquatable<@event>, global::System.IEquatable<System.Int32>, global::System.IComparable<@event>, global::System.IComparable, global::System.IParsable<@event>, global::System.ISpanParsable<@event>, global::System.IUtf8SpanParsable<@event>
+    public partial class @event : global::System.IEquatable<@event>, global::System.IEquatable<System.Int32>, global::System.IComparable<@event>, global::System.IComparable, global::System.IParsable<@event>, global::System.ISpanParsable<@event>, global::System.IUtf8SpanParsable<@event>, global::System.IFormattable, global::System.ISpanFormattable, global::System.IUtf8SpanFormattable
     {
 #if DEBUG
 private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
@@ -2208,6 +2250,28 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
             return From(r);
         }
 
+#nullable disable
+        /// <inheritdoc cref = "int.ToString(string? , System.IFormatProvider? )"/>
+        public string ToString([System.Diagnostics.CodeAnalysis.StringSyntaxAttribute("NumericFormat")] string format, global::System.IFormatProvider provider)
+        {
+            return IsInitialized() ? Value.ToString(format, provider) : "[UNINITIALIZED]";
+        }
+
+        /// <inheritdoc cref = "int.TryFormat(System.Span{char}, out int, System.ReadOnlySpan{char}, System.IFormatProvider? )"/>
+        public bool TryFormat(global::System.Span<char> destination, out int charsWritten, [System.Diagnostics.CodeAnalysis.StringSyntaxAttribute("NumericFormat")] global::System.ReadOnlySpan<char> format, global::System.IFormatProvider provider)
+        {
+            charsWritten = default;
+            return IsInitialized() ? Value.TryFormat(destination, out charsWritten, format, provider) : false;
+        }
+
+        /// <inheritdoc cref = "int.TryFormat(System.Span{byte}, out int, System.ReadOnlySpan{char}, System.IFormatProvider? )"/>
+        public bool TryFormat(global::System.Span<byte> utf8Destination, out int bytesWritten, [System.Diagnostics.CodeAnalysis.StringSyntaxAttribute("NumericFormat")] global::System.ReadOnlySpan<char> format, global::System.IFormatProvider provider)
+        {
+            bytesWritten = default;
+            return IsInitialized() ? Value.TryFormat(utf8Destination, out bytesWritten, format, provider) : false;
+        }
+
+#nullable restore
         public override global::System.Int32 GetHashCode()
         {
             unchecked // Overflow is fine, just wrap
@@ -2238,8 +2302,6 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
         public global::System.String ToString(global::System.IFormatProvider provider) => IsInitialized() ? Value.ToString(provider) ?? "" : "[UNINITIALIZED]";
         /// <inheritdoc cref = "System.Int32.ToString(string? )"/>
         public global::System.String ToString([System.Diagnostics.CodeAnalysis.StringSyntaxAttribute("NumericFormat")] string format) => IsInitialized() ? Value.ToString(format) ?? "" : "[UNINITIALIZED]";
-        /// <inheritdoc cref = "System.Int32.ToString(string? , System.IFormatProvider? )"/>
-        public global::System.String ToString([System.Diagnostics.CodeAnalysis.StringSyntaxAttribute("NumericFormat")] string format, global::System.IFormatProvider provider) => IsInitialized() ? Value.ToString(format, provider) ?? "" : "[UNINITIALIZED]";
 #nullable disable
         /// <summary>
         /// Converts a @event to or from JSON.
@@ -2556,6 +2618,8 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
         public static global::System.Boolean operator !=(@event2 left, @record.@struct.@float.@decimal right) => !(left == right);
         public static explicit operator @event2(@record.@struct.@float.@decimal value) => From(value);
         public static explicit operator @record.@struct.@float.@decimal(@event2 value) => value.Value;
+#nullable disable
+#nullable restore
         public override global::System.Int32 GetHashCode()
         {
             unchecked // Overflow is fine, just wrap

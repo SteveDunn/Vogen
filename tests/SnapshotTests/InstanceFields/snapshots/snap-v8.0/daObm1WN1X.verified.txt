@@ -63,7 +63,7 @@ namespace Whatever
     [global::System.ComponentModel.TypeConverter(typeof(internal_readonly_partial_record_structbyteTypeConverter))]
     [global::System.Diagnostics.DebuggerTypeProxyAttribute(typeof(internal_readonly_partial_record_structbyteDebugView))]
     [global::System.Diagnostics.DebuggerDisplayAttribute("Underlying type: System.Byte, Value = { _value }")]
-    internal readonly partial record struct internal_readonly_partial_record_structbyte : global::System.IEquatable<internal_readonly_partial_record_structbyte>, global::System.IEquatable<System.Byte>, global::System.IComparable<internal_readonly_partial_record_structbyte>, global::System.IComparable, global::System.IParsable<internal_readonly_partial_record_structbyte>, global::System.ISpanParsable<internal_readonly_partial_record_structbyte>, global::System.IUtf8SpanParsable<internal_readonly_partial_record_structbyte>
+    internal readonly partial record struct internal_readonly_partial_record_structbyte : global::System.IEquatable<internal_readonly_partial_record_structbyte>, global::System.IEquatable<System.Byte>, global::System.IComparable<internal_readonly_partial_record_structbyte>, global::System.IComparable, global::System.IParsable<internal_readonly_partial_record_structbyte>, global::System.ISpanParsable<internal_readonly_partial_record_structbyte>, global::System.IUtf8SpanParsable<internal_readonly_partial_record_structbyte>, global::System.IFormattable, global::System.ISpanFormattable, global::System.IUtf8SpanFormattable
     {
 #if DEBUG
 private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
@@ -519,6 +519,28 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
             return From(r);
         }
 
+#nullable disable
+        /// <inheritdoc cref = "byte.ToString(string? , System.IFormatProvider? )"/>
+        public string ToString([System.Diagnostics.CodeAnalysis.StringSyntaxAttribute("NumericFormat")] string format, global::System.IFormatProvider provider)
+        {
+            return IsInitialized() ? Value.ToString(format, provider) : "[UNINITIALIZED]";
+        }
+
+        /// <inheritdoc cref = "byte.TryFormat(System.Span{char}, out int, System.ReadOnlySpan{char}, System.IFormatProvider? )"/>
+        public bool TryFormat(global::System.Span<char> destination, out int charsWritten, [System.Diagnostics.CodeAnalysis.StringSyntaxAttribute("NumericFormat")] global::System.ReadOnlySpan<char> format, global::System.IFormatProvider provider)
+        {
+            charsWritten = default;
+            return IsInitialized() ? Value.TryFormat(destination, out charsWritten, format, provider) : false;
+        }
+
+        /// <inheritdoc cref = "byte.TryFormat(System.Span{byte}, out int, System.ReadOnlySpan{char}, System.IFormatProvider? )"/>
+        public bool TryFormat(global::System.Span<byte> utf8Destination, out int bytesWritten, [System.Diagnostics.CodeAnalysis.StringSyntaxAttribute("NumericFormat")] global::System.ReadOnlySpan<char> format, global::System.IFormatProvider provider)
+        {
+            bytesWritten = default;
+            return IsInitialized() ? Value.TryFormat(utf8Destination, out bytesWritten, format, provider) : false;
+        }
+
+#nullable restore
         public readonly override global::System.Int32 GetHashCode()
         {
             return global::System.Collections.Generic.EqualityComparer<System.Byte>.Default.GetHashCode(Value);
@@ -544,8 +566,6 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
         public global::System.String ToString(global::System.IFormatProvider provider) => IsInitialized() ? Value.ToString(provider) ?? "" : "[UNINITIALIZED]";
         /// <inheritdoc cref = "System.Byte.ToString(string? )"/>
         public global::System.String ToString([System.Diagnostics.CodeAnalysis.StringSyntaxAttribute("NumericFormat")] string format) => IsInitialized() ? Value.ToString(format) ?? "" : "[UNINITIALIZED]";
-        /// <inheritdoc cref = "System.Byte.ToString(string? , System.IFormatProvider? )"/>
-        public global::System.String ToString([System.Diagnostics.CodeAnalysis.StringSyntaxAttribute("NumericFormat")] string format, global::System.IFormatProvider provider) => IsInitialized() ? Value.ToString(format, provider) ?? "" : "[UNINITIALIZED]";
         // instance...
         public static readonly internal_readonly_partial_record_structbyte MyValue = new internal_readonly_partial_record_structbyte(42);
 #nullable disable

@@ -127,7 +127,7 @@ public class VogenTypesFactory : global::System.Text.Json.Serialization.JsonConv
 [global::System.ComponentModel.TypeConverter(typeof(MyVoIntTypeConverter))]
 [global::System.Diagnostics.DebuggerTypeProxyAttribute(typeof(MyVoIntDebugView))]
 [global::System.Diagnostics.DebuggerDisplayAttribute("Underlying type: System.Int32, Value = { _value }")]
-public partial class MyVoInt : global::System.IEquatable<MyVoInt>, global::System.IEquatable<System.Int32>, global::System.IComparable<MyVoInt>, global::System.IComparable, global::System.IParsable<MyVoInt>, global::System.ISpanParsable<MyVoInt>, global::System.IUtf8SpanParsable<MyVoInt>
+public partial class MyVoInt : global::System.IEquatable<MyVoInt>, global::System.IEquatable<System.Int32>, global::System.IComparable<MyVoInt>, global::System.IComparable, global::System.IParsable<MyVoInt>, global::System.ISpanParsable<MyVoInt>, global::System.IUtf8SpanParsable<MyVoInt>, global::System.IFormattable, global::System.ISpanFormattable, global::System.IUtf8SpanFormattable
 {
 #if DEBUG
 private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
@@ -598,6 +598,28 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
         return From(r);
     }
 
+#nullable disable
+    /// <inheritdoc cref = "int.ToString(string? , System.IFormatProvider? )"/>
+    public string ToString([System.Diagnostics.CodeAnalysis.StringSyntaxAttribute("NumericFormat")] string format, global::System.IFormatProvider provider)
+    {
+        return IsInitialized() ? Value.ToString(format, provider) : "[UNINITIALIZED]";
+    }
+
+    /// <inheritdoc cref = "int.TryFormat(System.Span{char}, out int, System.ReadOnlySpan{char}, System.IFormatProvider? )"/>
+    public bool TryFormat(global::System.Span<char> destination, out int charsWritten, [System.Diagnostics.CodeAnalysis.StringSyntaxAttribute("NumericFormat")] global::System.ReadOnlySpan<char> format, global::System.IFormatProvider provider)
+    {
+        charsWritten = default;
+        return IsInitialized() ? Value.TryFormat(destination, out charsWritten, format, provider) : false;
+    }
+
+    /// <inheritdoc cref = "int.TryFormat(System.Span{byte}, out int, System.ReadOnlySpan{char}, System.IFormatProvider? )"/>
+    public bool TryFormat(global::System.Span<byte> utf8Destination, out int bytesWritten, [System.Diagnostics.CodeAnalysis.StringSyntaxAttribute("NumericFormat")] global::System.ReadOnlySpan<char> format, global::System.IFormatProvider provider)
+    {
+        bytesWritten = default;
+        return IsInitialized() ? Value.TryFormat(utf8Destination, out bytesWritten, format, provider) : false;
+    }
+
+#nullable restore
     public override global::System.Int32 GetHashCode()
     {
         unchecked // Overflow is fine, just wrap
@@ -628,8 +650,6 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
     public global::System.String ToString(global::System.IFormatProvider provider) => IsInitialized() ? Value.ToString(provider) ?? "" : "[UNINITIALIZED]";
     /// <inheritdoc cref = "System.Int32.ToString(string? )"/>
     public global::System.String ToString([System.Diagnostics.CodeAnalysis.StringSyntaxAttribute("NumericFormat")] string format) => IsInitialized() ? Value.ToString(format) ?? "" : "[UNINITIALIZED]";
-    /// <inheritdoc cref = "System.Int32.ToString(string? , System.IFormatProvider? )"/>
-    public global::System.String ToString([System.Diagnostics.CodeAnalysis.StringSyntaxAttribute("NumericFormat")] string format, global::System.IFormatProvider provider) => IsInitialized() ? Value.ToString(format, provider) ?? "" : "[UNINITIALIZED]";
 #nullable disable
     /// <summary>
     /// Converts a MyVoInt to or from JSON.
@@ -791,7 +811,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
 [global::System.ComponentModel.TypeConverter(typeof(MyVoFloatTypeConverter))]
 [global::System.Diagnostics.DebuggerTypeProxyAttribute(typeof(MyVoFloatDebugView))]
 [global::System.Diagnostics.DebuggerDisplayAttribute("Underlying type: System.Single, Value = { _value }")]
-public partial class MyVoFloat : global::System.IEquatable<MyVoFloat>, global::System.IEquatable<System.Single>, global::System.IComparable<MyVoFloat>, global::System.IComparable, global::System.IParsable<MyVoFloat>, global::System.ISpanParsable<MyVoFloat>, global::System.IUtf8SpanParsable<MyVoFloat>
+public partial class MyVoFloat : global::System.IEquatable<MyVoFloat>, global::System.IEquatable<System.Single>, global::System.IComparable<MyVoFloat>, global::System.IComparable, global::System.IParsable<MyVoFloat>, global::System.ISpanParsable<MyVoFloat>, global::System.IUtf8SpanParsable<MyVoFloat>, global::System.IFormattable, global::System.ISpanFormattable, global::System.IUtf8SpanFormattable
 {
 #if DEBUG
 private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
@@ -1262,6 +1282,28 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
         return From(r);
     }
 
+#nullable disable
+    /// <inheritdoc cref = "float.ToString(string? , System.IFormatProvider? )"/>
+    public string ToString([System.Diagnostics.CodeAnalysis.StringSyntaxAttribute("NumericFormat")] string format, global::System.IFormatProvider provider)
+    {
+        return IsInitialized() ? Value.ToString(format, provider) : "[UNINITIALIZED]";
+    }
+
+    /// <inheritdoc cref = "float.TryFormat(System.Span{char}, out int, System.ReadOnlySpan{char}, System.IFormatProvider? )"/>
+    public bool TryFormat(global::System.Span<char> destination, out int charsWritten, [System.Diagnostics.CodeAnalysis.StringSyntaxAttribute("NumericFormat")] global::System.ReadOnlySpan<char> format, global::System.IFormatProvider provider)
+    {
+        charsWritten = default;
+        return IsInitialized() ? Value.TryFormat(destination, out charsWritten, format, provider) : false;
+    }
+
+    /// <inheritdoc cref = "float.TryFormat(System.Span{byte}, out int, System.ReadOnlySpan{char}, System.IFormatProvider? )"/>
+    public bool TryFormat(global::System.Span<byte> utf8Destination, out int bytesWritten, [System.Diagnostics.CodeAnalysis.StringSyntaxAttribute("NumericFormat")] global::System.ReadOnlySpan<char> format, global::System.IFormatProvider provider)
+    {
+        bytesWritten = default;
+        return IsInitialized() ? Value.TryFormat(utf8Destination, out bytesWritten, format, provider) : false;
+    }
+
+#nullable restore
     public override global::System.Int32 GetHashCode()
     {
         unchecked // Overflow is fine, just wrap
@@ -1292,8 +1334,6 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
     public global::System.String ToString(global::System.IFormatProvider provider) => IsInitialized() ? Value.ToString(provider) ?? "" : "[UNINITIALIZED]";
     /// <inheritdoc cref = "System.Single.ToString(string? )"/>
     public global::System.String ToString([System.Diagnostics.CodeAnalysis.StringSyntaxAttribute("NumericFormat")] string format) => IsInitialized() ? Value.ToString(format) ?? "" : "[UNINITIALIZED]";
-    /// <inheritdoc cref = "System.Single.ToString(string? , System.IFormatProvider? )"/>
-    public global::System.String ToString([System.Diagnostics.CodeAnalysis.StringSyntaxAttribute("NumericFormat")] string format, global::System.IFormatProvider provider) => IsInitialized() ? Value.ToString(format, provider) ?? "" : "[UNINITIALIZED]";
 #nullable disable
     /// <summary>
     /// Converts a MyVoFloat to or from JSON.
@@ -1455,7 +1495,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
 [global::System.ComponentModel.TypeConverter(typeof(MyVoDecimalTypeConverter))]
 [global::System.Diagnostics.DebuggerTypeProxyAttribute(typeof(MyVoDecimalDebugView))]
 [global::System.Diagnostics.DebuggerDisplayAttribute("Underlying type: System.Decimal, Value = { _value }")]
-public partial class MyVoDecimal : global::System.IEquatable<MyVoDecimal>, global::System.IEquatable<System.Decimal>, global::System.IComparable<MyVoDecimal>, global::System.IComparable, global::System.IParsable<MyVoDecimal>, global::System.ISpanParsable<MyVoDecimal>, global::System.IUtf8SpanParsable<MyVoDecimal>
+public partial class MyVoDecimal : global::System.IEquatable<MyVoDecimal>, global::System.IEquatable<System.Decimal>, global::System.IComparable<MyVoDecimal>, global::System.IComparable, global::System.IParsable<MyVoDecimal>, global::System.ISpanParsable<MyVoDecimal>, global::System.IUtf8SpanParsable<MyVoDecimal>, global::System.IFormattable, global::System.ISpanFormattable, global::System.IUtf8SpanFormattable
 {
 #if DEBUG
 private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
@@ -1926,6 +1966,28 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
         return From(r);
     }
 
+#nullable disable
+    /// <inheritdoc cref = "decimal.ToString(string? , System.IFormatProvider? )"/>
+    public string ToString([System.Diagnostics.CodeAnalysis.StringSyntaxAttribute("NumericFormat")] string format, global::System.IFormatProvider provider)
+    {
+        return IsInitialized() ? Value.ToString(format, provider) : "[UNINITIALIZED]";
+    }
+
+    /// <inheritdoc cref = "decimal.TryFormat(System.Span{char}, out int, System.ReadOnlySpan{char}, System.IFormatProvider? )"/>
+    public bool TryFormat(global::System.Span<char> destination, out int charsWritten, [System.Diagnostics.CodeAnalysis.StringSyntaxAttribute("NumericFormat")] global::System.ReadOnlySpan<char> format, global::System.IFormatProvider provider)
+    {
+        charsWritten = default;
+        return IsInitialized() ? Value.TryFormat(destination, out charsWritten, format, provider) : false;
+    }
+
+    /// <inheritdoc cref = "decimal.TryFormat(System.Span{byte}, out int, System.ReadOnlySpan{char}, System.IFormatProvider? )"/>
+    public bool TryFormat(global::System.Span<byte> utf8Destination, out int bytesWritten, [System.Diagnostics.CodeAnalysis.StringSyntaxAttribute("NumericFormat")] global::System.ReadOnlySpan<char> format, global::System.IFormatProvider provider)
+    {
+        bytesWritten = default;
+        return IsInitialized() ? Value.TryFormat(utf8Destination, out bytesWritten, format, provider) : false;
+    }
+
+#nullable restore
     public override global::System.Int32 GetHashCode()
     {
         unchecked // Overflow is fine, just wrap
@@ -1956,8 +2018,6 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
     public global::System.String ToString(global::System.IFormatProvider provider) => IsInitialized() ? Value.ToString(provider) ?? "" : "[UNINITIALIZED]";
     /// <inheritdoc cref = "System.Decimal.ToString(string? )"/>
     public global::System.String ToString([System.Diagnostics.CodeAnalysis.StringSyntaxAttribute("NumericFormat")] string format) => IsInitialized() ? Value.ToString(format) ?? "" : "[UNINITIALIZED]";
-    /// <inheritdoc cref = "System.Decimal.ToString(string? , System.IFormatProvider? )"/>
-    public global::System.String ToString([System.Diagnostics.CodeAnalysis.StringSyntaxAttribute("NumericFormat")] string format, global::System.IFormatProvider provider) => IsInitialized() ? Value.ToString(format, provider) ?? "" : "[UNINITIALIZED]";
 #nullable disable
     /// <summary>
     /// Converts a MyVoDecimal to or from JSON.
@@ -2119,7 +2179,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
 [global::System.ComponentModel.TypeConverter(typeof(MyVoDoubleTypeConverter))]
 [global::System.Diagnostics.DebuggerTypeProxyAttribute(typeof(MyVoDoubleDebugView))]
 [global::System.Diagnostics.DebuggerDisplayAttribute("Underlying type: System.Double, Value = { _value }")]
-public partial class MyVoDouble : global::System.IEquatable<MyVoDouble>, global::System.IEquatable<System.Double>, global::System.IComparable<MyVoDouble>, global::System.IComparable, global::System.IParsable<MyVoDouble>, global::System.ISpanParsable<MyVoDouble>, global::System.IUtf8SpanParsable<MyVoDouble>
+public partial class MyVoDouble : global::System.IEquatable<MyVoDouble>, global::System.IEquatable<System.Double>, global::System.IComparable<MyVoDouble>, global::System.IComparable, global::System.IParsable<MyVoDouble>, global::System.ISpanParsable<MyVoDouble>, global::System.IUtf8SpanParsable<MyVoDouble>, global::System.IFormattable, global::System.ISpanFormattable, global::System.IUtf8SpanFormattable
 {
 #if DEBUG
 private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
@@ -2590,6 +2650,28 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
         return From(r);
     }
 
+#nullable disable
+    /// <inheritdoc cref = "double.ToString(string? , System.IFormatProvider? )"/>
+    public string ToString([System.Diagnostics.CodeAnalysis.StringSyntaxAttribute("NumericFormat")] string format, global::System.IFormatProvider provider)
+    {
+        return IsInitialized() ? Value.ToString(format, provider) : "[UNINITIALIZED]";
+    }
+
+    /// <inheritdoc cref = "double.TryFormat(System.Span{char}, out int, System.ReadOnlySpan{char}, System.IFormatProvider? )"/>
+    public bool TryFormat(global::System.Span<char> destination, out int charsWritten, [System.Diagnostics.CodeAnalysis.StringSyntaxAttribute("NumericFormat")] global::System.ReadOnlySpan<char> format, global::System.IFormatProvider provider)
+    {
+        charsWritten = default;
+        return IsInitialized() ? Value.TryFormat(destination, out charsWritten, format, provider) : false;
+    }
+
+    /// <inheritdoc cref = "double.TryFormat(System.Span{byte}, out int, System.ReadOnlySpan{char}, System.IFormatProvider? )"/>
+    public bool TryFormat(global::System.Span<byte> utf8Destination, out int bytesWritten, [System.Diagnostics.CodeAnalysis.StringSyntaxAttribute("NumericFormat")] global::System.ReadOnlySpan<char> format, global::System.IFormatProvider provider)
+    {
+        bytesWritten = default;
+        return IsInitialized() ? Value.TryFormat(utf8Destination, out bytesWritten, format, provider) : false;
+    }
+
+#nullable restore
     public override global::System.Int32 GetHashCode()
     {
         unchecked // Overflow is fine, just wrap
@@ -2620,8 +2702,6 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
     public global::System.String ToString(global::System.IFormatProvider provider) => IsInitialized() ? Value.ToString(provider) ?? "" : "[UNINITIALIZED]";
     /// <inheritdoc cref = "System.Double.ToString(string? )"/>
     public global::System.String ToString([System.Diagnostics.CodeAnalysis.StringSyntaxAttribute("NumericFormat")] string format) => IsInitialized() ? Value.ToString(format) ?? "" : "[UNINITIALIZED]";
-    /// <inheritdoc cref = "System.Double.ToString(string? , System.IFormatProvider? )"/>
-    public global::System.String ToString([System.Diagnostics.CodeAnalysis.StringSyntaxAttribute("NumericFormat")] string format, global::System.IFormatProvider provider) => IsInitialized() ? Value.ToString(format, provider) ?? "" : "[UNINITIALIZED]";
 #nullable disable
     /// <summary>
     /// Converts a MyVoDouble to or from JSON.
@@ -3017,6 +3097,8 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
         return From(s);
     }
 
+#nullable disable
+#nullable restore
     public override global::System.Int32 GetHashCode()
     {
         unchecked // Overflow is fine, just wrap
@@ -3433,6 +3515,8 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
         return From(r);
     }
 
+#nullable disable
+#nullable restore
     public override global::System.Int32 GetHashCode()
     {
         unchecked // Overflow is fine, just wrap
@@ -3853,6 +3937,8 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
         return From(r);
     }
 
+#nullable disable
+#nullable restore
     public override global::System.Int32 GetHashCode()
     {
         unchecked // Overflow is fine, just wrap

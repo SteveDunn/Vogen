@@ -58,7 +58,7 @@ namespace @class
     [global::Newtonsoft.Json.JsonConverter(typeof(escapedTestspublic_partial_classConversions_NewtonsoftJsonbyteNewtonsoftJsonConverter))]
     [global::System.Diagnostics.DebuggerTypeProxyAttribute(typeof(escapedTestspublic_partial_classConversions_NewtonsoftJsonbyteDebugView))]
     [global::System.Diagnostics.DebuggerDisplayAttribute("Underlying type: System.Byte, Value = { _value }")]
-    public partial class escapedTestspublic_partial_classConversions_NewtonsoftJsonbyte : global::System.IEquatable<escapedTestspublic_partial_classConversions_NewtonsoftJsonbyte>, global::System.IEquatable<System.Byte>, global::System.IComparable<escapedTestspublic_partial_classConversions_NewtonsoftJsonbyte>, global::System.IComparable
+    public partial class escapedTestspublic_partial_classConversions_NewtonsoftJsonbyte : global::System.IEquatable<escapedTestspublic_partial_classConversions_NewtonsoftJsonbyte>, global::System.IEquatable<System.Byte>, global::System.IComparable<escapedTestspublic_partial_classConversions_NewtonsoftJsonbyte>, global::System.IComparable, global::System.IFormattable
     {
 #if DEBUG
 private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
@@ -323,6 +323,15 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
             return From(r);
         }
 
+#nullable disable
+        /// <inheritdoc cref = "byte.ToString(string, System.IFormatProvider)"/>
+        [System.Security.SecuritySafeCriticalAttribute]
+        public string ToString(string format, global::System.IFormatProvider provider)
+        {
+            return IsInitialized() ? Value.ToString(format, provider) : "[UNINITIALIZED]";
+        }
+
+#nullable restore
         public override global::System.Int32 GetHashCode()
         {
             unchecked // Overflow is fine, just wrap
@@ -353,8 +362,6 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
         public global::System.String ToString(string format) => IsInitialized() ? Value.ToString(format) ?? "" : "[UNINITIALIZED]";
         /// <inheritdoc cref = "System.Byte.ToString(System.IFormatProvider)"/>
         public global::System.String ToString(global::System.IFormatProvider provider) => IsInitialized() ? Value.ToString(provider) ?? "" : "[UNINITIALIZED]";
-        /// <inheritdoc cref = "System.Byte.ToString(string, System.IFormatProvider)"/>
-        public global::System.String ToString(string format, global::System.IFormatProvider provider) => IsInitialized() ? Value.ToString(format, provider) ?? "" : "[UNINITIALIZED]";
 #nullable disable
         class escapedTestspublic_partial_classConversions_NewtonsoftJsonbyteNewtonsoftJsonConverter : Newtonsoft.Json.JsonConverter
         {

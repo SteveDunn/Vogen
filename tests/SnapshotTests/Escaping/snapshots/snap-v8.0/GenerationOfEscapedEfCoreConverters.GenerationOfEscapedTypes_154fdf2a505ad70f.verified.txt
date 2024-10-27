@@ -185,7 +185,7 @@ namespace @class
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Vogen", "1.0.0.0")]
     [global::System.Diagnostics.DebuggerTypeProxyAttribute(typeof(escapedTestspublic_sealed_partial_recordConversions_NoneSystem_GuidDebugView))]
     [global::System.Diagnostics.DebuggerDisplayAttribute("Underlying type: System.Guid, Value = { _value }")]
-    public sealed partial record class escapedTestspublic_sealed_partial_recordConversions_NoneSystem_Guid : global::System.IEquatable<escapedTestspublic_sealed_partial_recordConversions_NoneSystem_Guid>, global::System.IEquatable<System.Guid>, global::System.IComparable<escapedTestspublic_sealed_partial_recordConversions_NoneSystem_Guid>, global::System.IComparable, global::System.IParsable<escapedTestspublic_sealed_partial_recordConversions_NoneSystem_Guid>, global::System.ISpanParsable<escapedTestspublic_sealed_partial_recordConversions_NoneSystem_Guid>
+    public sealed partial record class escapedTestspublic_sealed_partial_recordConversions_NoneSystem_Guid : global::System.IEquatable<escapedTestspublic_sealed_partial_recordConversions_NoneSystem_Guid>, global::System.IEquatable<System.Guid>, global::System.IComparable<escapedTestspublic_sealed_partial_recordConversions_NoneSystem_Guid>, global::System.IComparable, global::System.IParsable<escapedTestspublic_sealed_partial_recordConversions_NoneSystem_Guid>, global::System.ISpanParsable<escapedTestspublic_sealed_partial_recordConversions_NoneSystem_Guid>, global::System.IFormattable, global::System.ISpanFormattable, global::System.IUtf8SpanFormattable
     {
 #if DEBUG
 private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
@@ -493,6 +493,28 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
             return From(r);
         }
 
+#nullable disable
+        /// <inheritdoc cref = "System.Guid.ToString(string? , System.IFormatProvider? )"/>
+        public string ToString([System.Diagnostics.CodeAnalysis.StringSyntaxAttribute("GuidFormat")] string format, global::System.IFormatProvider provider)
+        {
+            return IsInitialized() ? Value.ToString(format, provider) : "[UNINITIALIZED]";
+        }
+
+        /// <inheritdoc cref = "System.ISpanFormattable"/>
+        bool System.ISpanFormattable.TryFormat(global::System.Span<char> destination, out int charsWritten, [System.Diagnostics.CodeAnalysis.StringSyntaxAttribute("GuidFormat")] global::System.ReadOnlySpan<char> format, global::System.IFormatProvider provider)
+        {
+            charsWritten = default;
+            return IsInitialized() ? (Value as System.ISpanFormattable).TryFormat(destination, out charsWritten, format, provider) : false;
+        }
+
+        /// <inheritdoc cref = "System.IUtf8SpanFormattable"/>
+        bool System.IUtf8SpanFormattable.TryFormat(global::System.Span<byte> utf8Destination, out int bytesWritten, [System.Diagnostics.CodeAnalysis.StringSyntaxAttribute("GuidFormat")] global::System.ReadOnlySpan<char> format, global::System.IFormatProvider provider)
+        {
+            bytesWritten = default;
+            return IsInitialized() ? (Value as System.IUtf8SpanFormattable).TryFormat(utf8Destination, out bytesWritten, format, provider) : false;
+        }
+
+#nullable restore
         public override global::System.Int32 GetHashCode()
         {
             unchecked // Overflow is fine, just wrap
@@ -522,8 +544,6 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
         public override global::System.String ToString() => IsInitialized() ? Value.ToString() ?? "" : "[UNINITIALIZED]";
         /// <inheritdoc cref = "System.Guid.ToString(string? )"/>
         public global::System.String ToString([System.Diagnostics.CodeAnalysis.StringSyntaxAttribute("GuidFormat")] string format) => IsInitialized() ? Value.ToString(format) ?? "" : "[UNINITIALIZED]";
-        /// <inheritdoc cref = "System.Guid.ToString(string? , System.IFormatProvider? )"/>
-        public global::System.String ToString([System.Diagnostics.CodeAnalysis.StringSyntaxAttribute("GuidFormat")] string format, global::System.IFormatProvider provider) => IsInitialized() ? Value.ToString(format, provider) ?? "" : "[UNINITIALIZED]";
         internal sealed class escapedTestspublic_sealed_partial_recordConversions_NoneSystem_GuidDebugView
         {
             private readonly escapedTestspublic_sealed_partial_recordConversions_NoneSystem_Guid _t;
