@@ -35,7 +35,10 @@ public partial struct MyDecimal;
 public partial struct MyGuid;
 
 
-
+#nullable disable
+[ValueObject]
+public partial class MyVo;
+#nullable restore
 
 public static class Program
 {

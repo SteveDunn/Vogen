@@ -127,7 +127,7 @@ public class StructGenerator : IGenerateValueObjectSourceCode
         
         {GenerateCodeForHashCodes.GenerateForAStruct(item)}
 
-        {GenerateCodeForToString.GenerateForAStruct(item)}
+        {GenerateCodeForToString.GenerateForAStruct(parameters)}
 
         {Util.GenerateEnsureInitializedMethod(item, readOnly: true)}
 

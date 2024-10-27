@@ -133,7 +133,7 @@ public class ClassGenerator : IGenerateValueObjectSourceCode
 
         {InstanceGeneration.GenerateAnyInstances(tds, item)}
 
-        {GenerateCodeForToString.GenerateForAClass(item)}
+        {GenerateCodeForToString.GenerateForAClass(parameters)}
 
         {Util.GenerateAnyConversionBodies(tds, item)}
 

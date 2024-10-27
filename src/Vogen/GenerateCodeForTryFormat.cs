@@ -29,13 +29,20 @@ public static class GenerateCodeForTryFormat
         return sb.ToString() ;
     }
 
+    enum FormattableType
+    {
+        ToString,
+        TryFormat
+    }
+
     public static string GenerateAnyHoistedTryFormatMethods(GenerationParameters parameters)
     {
         StringBuilder sb = new StringBuilder();
         sb.AppendLine("#nullable disable");
 
-        BuildFor(sb, parameters, parameters.VogenKnownSymbols.ISpanFormattable);
-        BuildFor(sb, parameters, parameters.VogenKnownSymbols.IUtf8SpanFormattable);
+        BuildFor(sb, parameters, parameters.VogenKnownSymbols.IFormattable, FormattableType.ToString );
+        BuildFor(sb, parameters, parameters.VogenKnownSymbols.ISpanFormattable, FormattableType.TryFormat);
+        BuildFor(sb, parameters, parameters.VogenKnownSymbols.IUtf8SpanFormattable, FormattableType.TryFormat);
         
         sb.AppendLine("#nullable restore");
 
@@ -43,7 +50,10 @@ public static class GenerateCodeForTryFormat
         return sb.ToString();
     }
 
-    private static void BuildFor(StringBuilder sb, GenerationParameters parameters, INamedTypeSymbol? interfaceSymbol)
+    private static void BuildFor(StringBuilder sb,
+        GenerationParameters parameters,
+        INamedTypeSymbol? interfaceSymbol,
+        FormattableType formattableType)
     {
         var primitiveSymbol = parameters.WorkItem.UnderlyingType;
         var wrapperSymbol = parameters.WorkItem.WrapperType;
@@ -60,7 +70,23 @@ public static class GenerateCodeForTryFormat
                 continue;
             }
 
-            sb.AppendLine(Hoisting.HoistMethodFromPrimitive(primitiveMethod, interfaceSymbol!));
+            sb.AppendLine(Hoisting.HoistMethodFromPrimitive(
+                primitiveMethod, 
+                interfaceSymbol!,
+                (valueAccessor, parameterNames) =>
+                {
+                    if (formattableType is FormattableType.ToString)
+                    {
+                        return $"""return IsInitialized() ? {valueAccessor}.ToString({parameterNames}) : "[UNINITIALIZED]";""";
+                    }
+
+                    if (formattableType is FormattableType.TryFormat)
+                    {
+                        return $"return IsInitialized() ? {valueAccessor}.TryFormat({parameterNames}) : false;";
+                    }
+
+                    return "return default!";
+                }));
         }
     }
 }

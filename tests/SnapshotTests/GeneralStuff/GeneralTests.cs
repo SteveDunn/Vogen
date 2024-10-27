@@ -10,6 +10,24 @@ namespace SnapshotTests.GeneralStuff;
 public class GeneralTests
 {
     [Fact]
+    public async Task Skips_ToString_methods_that_implement_an_interface()
+    {
+        var source =
+            $$"""
+
+            using System;
+            using Vogen;
+            
+            [ValueObject]
+            public partial struct MyId;
+            """;
+
+            await new SnapshotRunner<ValueObjectGenerator>()
+                .WithSource(source)
+                .RunOn(TargetFramework.Net8_0);
+    }
+
+    [Fact]
     public async Task Hoists_ISpanFormattable()
     {
         var source =

@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,7 +9,18 @@ namespace Vogen;
 
 public static class Hoisting
 {
-    public static string HoistMethodFromPrimitive(IMethodSymbol methodSymbol, INamedTypeSymbol interfaceSymbol)
+    /// <summary>
+    /// Generates a string that represents a complete method. The signature is the same as the provided <see cref="methodSymbol"/>.
+    /// If the method is an explicit implementation of the <see cref="interfaceSymbol"/>, then it is implemented privately.
+    /// The body of the method initialises any out parameters.
+    /// It then calls the <see cref="bodyBuilder"/> func to get the implementation.
+    /// Any XML documentation is copied.
+    /// </summary>
+    /// <param name="methodSymbol">The method to copy the signature from.</param>
+    /// <param name="interfaceSymbol">The interface</param>
+    /// <param name="bodyBuilder"></param>
+    /// <returns></returns>
+    public static string HoistMethodFromPrimitive(IMethodSymbol methodSymbol, INamedTypeSymbol interfaceSymbol, Func<string, string, string> bodyBuilder)
     {
         var sb = new StringBuilder();
 
@@ -71,7 +83,7 @@ public static class Hoisting
                         {
                             {{InitializeAnyOutParameters(nameAndRefKinds)}}
                             
-                            return IsInitialized() ? {{valueAccessor}}.TryFormat({{parameterNames}}) : false;
+                            {{bodyBuilder(valueAccessor, parameterNames)}}
                         }
                         """;
 
