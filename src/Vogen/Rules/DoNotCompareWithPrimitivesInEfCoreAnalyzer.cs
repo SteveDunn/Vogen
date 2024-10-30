@@ -11,7 +11,8 @@ namespace Vogen.Rules;
 [DiagnosticAnalyzer(LanguageNames.CSharp)]
 public class DoNotCompareWithPrimitivesInEfCoreAnalyzer : DiagnosticAnalyzer
 {
-    private static readonly ImmutableHashSet<string> _knownNames = new[] { "Where", "Single", "SkipWhile", "TakeWhile", "Select" }.ToImmutableHashSet();
+    private static readonly ImmutableHashSet<string> _knownNames =
+        new[] { "Where", "Single", "SkipWhile", "TakeWhile", "Select" }.ToImmutableHashSet();
 
     // ReSharper disable once ArrangeObjectCreationWhenTypeEvident - current bug in Roslyn analyzer means it
     // won't find this and will report:
@@ -36,46 +37,62 @@ public class DoNotCompareWithPrimitivesInEfCoreAnalyzer : DiagnosticAnalyzer
         context.EnableConcurrentExecution();
 
         context.RegisterSyntaxNodeAction(AnalyzeInvocation, SyntaxKind.InvocationExpression);
-        context.RegisterSyntaxNodeAction(AnalyzeQieryExpression, SyntaxKind.QueryExpression);
+        context.RegisterSyntaxNodeAction(AnalyzeQueryExpression, SyntaxKind.QueryExpression);
     }
 
     private static void AnalyzeInvocation(SyntaxNodeAnalysisContext context)
     {
         var invocationExpr = (InvocationExpressionSyntax) context.Node;
-        if (invocationExpr.Expression is not MemberAccessExpressionSyntax memberAccessExpr) return;
+        if (invocationExpr.Expression is not MemberAccessExpressionSyntax memberAccessExpr)
+        {
+            return;
+        }
 
         if (!_knownNames.Contains(memberAccessExpr.Name.Identifier.Text))
         {
             return;
         }
 
-        if (!IsAMemberOfDbSet(context, memberAccessExpr.Expression)) return;
+        ExpressionSyntax expressionSyntax = memberAccessExpr.Expression;
 
-        foreach (ArgumentSyntax eachArgument in invocationExpr.ArgumentList.Arguments.Where(e => e.Expression is LambdaExpressionSyntax))
+        if (!IsAMemberOfDbSet(context, expressionSyntax))
+        {
+            return;
+        }
+
+        foreach (ArgumentSyntax eachArgument in
+                 invocationExpr.ArgumentList.Arguments.Where(e => e.Expression is LambdaExpressionSyntax))
         {
             foreach (BinaryExpressionSyntax eachBinaryExpression in eachArgument.DescendantNodes().OfType<BinaryExpressionSyntax>())
             {
                 ITypeSymbol? left = context.SemanticModel.GetTypeInfo(eachBinaryExpression.Left).Type;
                 ITypeSymbol? right = context.SemanticModel.GetTypeInfo(eachBinaryExpression.Right).Type;
 
-                if (left is null || right is null) continue;
+                if (left is null || right is null)
+                {
+                    continue;
+                }
 
                 // Check if left is ValueObject and right is integer
                 if (IsValueObject(left) && right.SpecialType == SpecialType.System_Int32)
                 {
-                    context.ReportDiagnostic(DiagnosticsCatalogue.BuildDiagnostic(_rule, left.Name, eachBinaryExpression.GetLocation()));
+                    context.ReportDiagnostic(
+                        DiagnosticsCatalogue.BuildDiagnostic(_rule, left.Name, eachBinaryExpression.GetLocation()));
                 }
             }
         }
     }
 
-    private static void AnalyzeQieryExpression(SyntaxNodeAnalysisContext context)
+    private static void AnalyzeQueryExpression(SyntaxNodeAnalysisContext context)
     {
         var queryExpr = (QueryExpressionSyntax) context.Node;
         var whereClauses = queryExpr.Body.DescendantNodes().OfType<WhereClauseSyntax>();
         var fromClause = queryExpr.FromClause;
 
-        if (!IsAMemberOfDbSet(context, fromClause.Expression)) return;
+        if (!IsAMemberOfDbSet(context, fromClause.Expression))
+        {
+            return;
+        }
 
         foreach (var eachArgument in whereClauses)
         {
@@ -84,12 +101,16 @@ public class DoNotCompareWithPrimitivesInEfCoreAnalyzer : DiagnosticAnalyzer
                 ITypeSymbol? left = context.SemanticModel.GetTypeInfo(eachBinaryExpression.Left).Type;
                 ITypeSymbol? right = context.SemanticModel.GetTypeInfo(eachBinaryExpression.Right).Type;
 
-                if (left is null || right is null) continue;
+                if (left is null || right is null)
+                {
+                    continue;
+                }
 
                 // Check if left is ValueObject and right is integer
                 if (IsValueObject(left) && right.SpecialType == SpecialType.System_Int32)
                 {
-                    context.ReportDiagnostic(DiagnosticsCatalogue.BuildDiagnostic(_rule, left.Name, eachBinaryExpression.GetLocation()));
+                    context.ReportDiagnostic(
+                        DiagnosticsCatalogue.BuildDiagnostic(_rule, left.Name, eachBinaryExpression.GetLocation()));
                 }
             }
         }
@@ -99,20 +120,44 @@ public class DoNotCompareWithPrimitivesInEfCoreAnalyzer : DiagnosticAnalyzer
     {
         var symbolInfo = context.SemanticModel.GetSymbolInfo(expressionSyntax);
 
-        if (symbolInfo.Symbol is not IPropertySymbol ps) return false;
+        ITypeSymbol? typeSymbol = null;
+
+        if (symbolInfo.Symbol is IPropertySymbol ps)
+        {
+            typeSymbol = ps.Type;
+        }
+
+        if (symbolInfo.Symbol is ILocalSymbol ls)
+        {
+            typeSymbol = ls.Type;
+        }
+
+        if (typeSymbol is null)
+        {
+            return false;
+        }
 
         var dbSetType = context.SemanticModel.Compilation.GetTypeByMetadataName("Microsoft.EntityFrameworkCore.DbSet`1");
-        
-        if (dbSetType is null) return false;
 
-        return InheritsFrom(ps.Type, dbSetType);
+        if (dbSetType is null)
+        {
+            return false;
+        }
+
+        return InheritsFrom(typeSymbol, dbSetType);
     }
 
-    private static bool IsValueObject(ITypeSymbol type) => 
+
+    private static bool IsValueObject(ITypeSymbol type) =>
         type is INamedTypeSymbol symbol && VoFilter.IsTarget(symbol);
 
-    private static bool InheritsFrom(ITypeSymbol? type, INamedTypeSymbol baseType)
+    private static bool InheritsFrom(ITypeSymbol? type, INamedTypeSymbol? baseType)
     {
+        if (baseType is null)
+        {
+            return false;
+        }
+
         while (type != null)
         {
             if (SymbolEqualityComparer.Default.Equals(type.OriginalDefinition, baseType))

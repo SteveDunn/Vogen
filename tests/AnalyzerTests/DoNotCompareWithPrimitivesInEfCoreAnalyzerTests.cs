@@ -105,6 +105,53 @@ public class DoNotCompareWithPrimitivesInEfCoreAnalyzerTests
         }
 
         [Fact]
+        public async Task Triggers_when_found_in_IQueryableOfDbSet_in_separate_expression()
+        {
+            var source = _source + """
+
+                                   public static class Test
+                                   {
+                                       public static void FilterItems()
+                                       {
+                                           using var ctx = new DbContext();
+                                           
+                                           DbSet<EmployeeEntity> step1 = ctx.Entities;
+                                           var entities = step1.Where(e => {|#0:e.Age == 50|});
+                                       }
+                                   }
+                                   """;
+            var sources = await CombineUserAndGeneratedSource(source);
+
+            await Run(
+                sources,
+                WithDiagnostics("VOG034", DiagnosticSeverity.Error, "Age", 0));
+        }
+
+        [Fact(Skip = "It would be nice if this did work, but I couldn't get it working. Please see the thread at https://github.com/SteveDunn/Vogen/issues/684")]
+        public async Task Triggers_when_found_in_IQueryableOfDbSet_in_separate_expression_twice_removed()
+        {
+            var source = _source + """
+
+                                   public static class Test
+                                   {
+                                       public static void FilterItems()
+                                       {
+                                           using var ctx = new DbContext();
+                                           
+                                           DbSet<EmployeeEntity> step1 = ctx.Entities;
+                                           var step2 = step1.Take(4);
+                                           var entities = step2.Where(e => {|#0:e.Age == 50|});
+                                       }
+                                   }
+                                   """;
+            var sources = await CombineUserAndGeneratedSource(source);
+
+            await Run(
+                sources,
+                WithDiagnostics("VOG034", DiagnosticSeverity.Error, "Age", 0));
+        }
+
+        [Fact]
         public async Task Triggers_when_found_using_query_syntax()
         {
             var source = _source + """
