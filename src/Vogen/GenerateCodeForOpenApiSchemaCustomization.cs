@@ -9,22 +9,27 @@ internal class GenerateCodeForOpenApiSchemaCustomization
     public static void WriteIfNeeded(VogenConfiguration? globalConfig,
         SourceProductionContext context,
         List<VoWorkItem> workItems,
-        VogenKnownSymbols knownSymbols)
+        VogenKnownSymbols knownSymbols,
+        Compilation compilation)
     {
         var c = globalConfig?.OpenApiSchemaCustomizations ?? VogenConfiguration.DefaultInstance.OpenApiSchemaCustomizations;
 
+        var fullNamespace =  compilation.Assembly.Name;
+              
+        var theNamespace = string.IsNullOrEmpty(fullNamespace) ? string.Empty : $"namespace {fullNamespace};";
+
         if (c.HasFlag(OpenApiSchemaCustomizations.GenerateSwashbuckleSchemaFilter))
         {
-            WriteSchemaFilter(context, knownSymbols);
+            WriteSchemaFilter(context, knownSymbols, theNamespace);
         }
 
         if (c.HasFlag(OpenApiSchemaCustomizations.GenerateSwashbuckleMappingExtensionMethod))
         {
-            WriteExtensionMethodMapping(context, workItems, knownSymbols);
+            WriteExtensionMethodMapping(context, workItems, knownSymbols, theNamespace);
         }
     }
 
-    private static void WriteSchemaFilter(SourceProductionContext context, VogenKnownSymbols knownSymbols)
+    private static void WriteSchemaFilter(SourceProductionContext context, VogenKnownSymbols knownSymbols, string theNamespace)
     {
         if (!IsSwashbuckleReferenced(knownSymbols))
         {
@@ -35,6 +40,8 @@ internal class GenerateCodeForOpenApiSchemaCustomization
             $$"""
 
               {{GeneratedCodeSegments.Preamble}}
+              
+              {{theNamespace}}
 
               using System.Reflection;
               
@@ -98,18 +105,21 @@ internal class GenerateCodeForOpenApiSchemaCustomization
 
     private static void WriteExtensionMethodMapping(SourceProductionContext context,
         List<VoWorkItem> workItems,
-        VogenKnownSymbols knownSymbols)
+        VogenKnownSymbols knownSymbols,
+        string theNamespace)
     {
         if (!IsSwashbuckleReferenced(knownSymbols))
         {
             return;
         }
-        
+
         string source =
             $$"""
 
               {{GeneratedCodeSegments.Preamble}}
-
+              
+              {{theNamespace}}
+              
               public static class VogenSwashbuckleExtensions
               {
                   public static global::Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenOptions MapVogenTypes(this global::Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenOptions o)

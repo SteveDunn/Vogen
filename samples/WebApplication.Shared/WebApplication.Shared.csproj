@@ -1,27 +1,18 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
+        <OutputType>Library</OutputType>
         <TargetFramework>net8.0</TargetFramework>
-        <Nullable>enable</Nullable>
         <ImplicitUsings>enable</ImplicitUsings>
-        <UseLocallyBuiltPackage>true</UseLocallyBuiltPackage>
+        <Nullable>enable</Nullable>
         <OpenApiMode>Swashbuckle</OpenApiMode>
-    </PropertyGroup>
-
-    <PropertyGroup Condition=" '$(OpenApiMode)' == 'Swashbuckle'">
-        <TargetFramework>net8.0</TargetFramework>
-        <DefineConstants>USE_SWASHBUCKLE</DefineConstants>
+        <UseLocallyBuiltPackage>true</UseLocallyBuiltPackage>
     </PropertyGroup>
 
     <PropertyGroup Condition=" '$(OpenApiMode)' == 'MicrosoftAndScalar'">
         <TargetFramework>net9.0</TargetFramework>
         <DefineConstants>USE_MICROSOFT_OPENAPI_AND_SCALAR</DefineConstants>
     </PropertyGroup>
-
-    <ItemGroup>
-        <PackageReference Include="Refit" Version="7.0.0"/>
-        <PackageReference Include="System.Text.Json" Version="8.0.5" />
-    </ItemGroup>
 
     <ItemGroup Condition=" '$(OpenApiMode)' == 'MicrosoftAndScalar'">
         <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="9.0.0-preview.4.24267.6"/>
@@ -31,7 +22,7 @@
     <ItemGroup Condition=" '$(OpenApiMode)' == 'Swashbuckle'">
         <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="8.0.2"/>
         <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0"/>
-    </ItemGroup>
+    </ItemGroup>    
 
     <ItemGroup Condition=" '$(UseLocallyBuiltPackage)' != ''">
         <PackageReference Include="Vogen" Version="999.9.*"/>
@@ -39,10 +30,6 @@
 
     <ItemGroup Condition=" '$(UseLocallyBuiltPackage)' == ''">
         <PackageReference Include="Vogen" Version="999.9.10219943"/>
-    </ItemGroup>
-
-    <ItemGroup>
-      <ProjectReference Include="..\WebApplication.Shared\WebApplication.Shared.csproj" />
     </ItemGroup>
 
 

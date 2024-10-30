@@ -4,6 +4,7 @@ using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Query.Internal;
+// ReSharper disable UnusedVariable
 
 namespace Vogen.EfCoreTest;
 
@@ -57,13 +58,13 @@ public static class EfCoreScenario
             Console.WriteLine("FILTERING ITEMS...");
             using var ctx = new MyContext();
 
-            int age = 50;
+            // int age = 50;
             // var entities = from e in ctx.Entities where e != null && e.Age == age select e;
             // var entities2 = ctx.Entities.Where(e => e != null && e.Age == age);
 
             DbSet<EmployeeEntity> step1 = ctx.Entities;
             //IQueryable<EmployeeEntity> step2 = step1.Take(4);
-            var step3 = step1.Where(e => e.Age == age);
+            // var step3 = step1.Where(e => e.Age == age);
             
             
             

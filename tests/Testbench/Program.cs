@@ -5,6 +5,7 @@ using Vogen;
 using Vogen.EfCoreTest;
 
 [assembly: VogenDefaults(
+    openApiSchemaCustomizations: OpenApiSchemaCustomizations.GenerateSwashbuckleSchemaFilter | OpenApiSchemaCustomizations.GenerateSwashbuckleMappingExtensionMethod,
     staticAbstractsGeneration: StaticAbstractsGeneration.MostCommon | StaticAbstractsGeneration.InstanceMethodsAndProperties, 
     conversions: Conversions.EfCoreValueConverter)]
 
