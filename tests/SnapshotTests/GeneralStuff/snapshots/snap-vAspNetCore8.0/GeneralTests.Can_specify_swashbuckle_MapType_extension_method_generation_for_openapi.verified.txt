@@ -30,12 +30,12 @@ public static class VogenSwashbuckleExtensions
 {
     public static global::Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenOptions MapVogenTypes(this global::Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenOptions o)
     {
-        global::Microsoft.Extensions.DependencyInjection.SwaggerGenOptionsExtensions.MapType<MyVoInt>(o, () => new global::Microsoft.OpenApi.Models.OpenApiSchema { Type = "integer" });
-global::Microsoft.Extensions.DependencyInjection.SwaggerGenOptionsExtensions.MapType<MyVoFloat>(o, () => new global::Microsoft.OpenApi.Models.OpenApiSchema { Type = "number" });
-global::Microsoft.Extensions.DependencyInjection.SwaggerGenOptionsExtensions.MapType<MyVoDecimal>(o, () => new global::Microsoft.OpenApi.Models.OpenApiSchema { Type = "number" });
-global::Microsoft.Extensions.DependencyInjection.SwaggerGenOptionsExtensions.MapType<MyVoDouble>(o, () => new global::Microsoft.OpenApi.Models.OpenApiSchema { Type = "number" });
-global::Microsoft.Extensions.DependencyInjection.SwaggerGenOptionsExtensions.MapType<MyVoString>(o, () => new global::Microsoft.OpenApi.Models.OpenApiSchema { Type = "string" });
-global::Microsoft.Extensions.DependencyInjection.SwaggerGenOptionsExtensions.MapType<MyVoBool>(o, () => new global::Microsoft.OpenApi.Models.OpenApiSchema { Type = "boolean" });
+        global::Microsoft.Extensions.DependencyInjection.SwaggerGenOptionsExtensions.MapType<MyVoInt>(o, () => new global::Microsoft.OpenApi.Models.OpenApiSchema { Type = "integer", Format = "int32", Nullable = false });
+global::Microsoft.Extensions.DependencyInjection.SwaggerGenOptionsExtensions.MapType<MyVoFloat>(o, () => new global::Microsoft.OpenApi.Models.OpenApiSchema { Type = "number", Nullable = false });
+global::Microsoft.Extensions.DependencyInjection.SwaggerGenOptionsExtensions.MapType<MyVoDecimal>(o, () => new global::Microsoft.OpenApi.Models.OpenApiSchema { Type = "number", Format = "double", Nullable = false });
+global::Microsoft.Extensions.DependencyInjection.SwaggerGenOptionsExtensions.MapType<MyVoDouble>(o, () => new global::Microsoft.OpenApi.Models.OpenApiSchema { Type = "number", Format = "double", Nullable = false });
+global::Microsoft.Extensions.DependencyInjection.SwaggerGenOptionsExtensions.MapType<MyVoString>(o, () => new global::Microsoft.OpenApi.Models.OpenApiSchema { Type = "string", Nullable = false });
+global::Microsoft.Extensions.DependencyInjection.SwaggerGenOptionsExtensions.MapType<MyVoBool>(o, () => new global::Microsoft.OpenApi.Models.OpenApiSchema { Type = "boolean", Nullable = false });
 
 
         return o;

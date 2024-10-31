@@ -30,7 +30,8 @@ public static class VogenSwashbuckleExtensions
 {
     public static global::Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenOptions MapVogenTypes(this global::Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenOptions o)
     {
-        global::Microsoft.Extensions.DependencyInjection.SwaggerGenOptionsExtensions.MapType<MyLongNamespace.Vo>(o, () => new global::Microsoft.OpenApi.Models.OpenApiSchema { Type = "string", Format = "uuid" });
+        global::Microsoft.Extensions.DependencyInjection.SwaggerGenOptionsExtensions.MapType<MyLongNamespace.Vo>(o, () => new global::Microsoft.OpenApi.Models.OpenApiSchema { Type = "string", Format = "uuid", Nullable = false });
+global::Microsoft.Extensions.DependencyInjection.SwaggerGenOptionsExtensions.MapType<global::System.Nullable<MyLongNamespace.Vo>>(o, () => new global::Microsoft.OpenApi.Models.OpenApiSchema { Type = "string", Format = "uuid", Nullable = true });
 
 
         return o;
