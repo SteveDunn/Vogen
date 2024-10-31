@@ -15,6 +15,11 @@ namespace Testbench;
 [ValueObject<short>]
 public partial struct MyShort;
 
+[ValueObject<DateOnly>] public partial struct MyDateOnly;
+[ValueObject<DateTime>] public partial struct MyDateTime;
+[ValueObject<DateTimeOffset>] public partial struct MyDateTimeOffset;
+[ValueObject<byte>] public partial struct MyByte;
+
 [ValueObject<long>]
 public partial struct MyLong;
 
