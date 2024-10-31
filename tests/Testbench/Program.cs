@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Runtime.Serialization;
 using Vogen;
@@ -11,10 +12,17 @@ using Vogen.EfCoreTest;
 
 namespace Testbench;
 
+[ValueObject<short>]
+public partial struct MyShort;
+
+[ValueObject<long>]
+public partial struct MyLong;
+
 public static class Program
 {
     public static void Main()
     {
+
         EfCoreScenario.Run();
     }
 }
