@@ -16,6 +16,8 @@ public class StructGenerator : IGenerateValueObjectSourceCode
         string underlyingNullAnnotation = item.Nullable.QuestionMarkForUnderlying;
         string underlyingBang = item.Nullable.BangForUnderlying;
         string wrapperBang = item.Nullable.BangForWrapper;
+        
+        string readonlyForValueAndIsInitialized = Util.GetModifiersForValueAndIsInitializedFields(parameters.WorkItem); 
 
         var code = GenerateCode();
         
@@ -36,14 +38,15 @@ public class StructGenerator : IGenerateValueObjectSourceCode
         {GenerateCodeForIParsableInterfaceDeclarations.GenerateIfNeeded(", ", item)}
         {GenerateCodeForTryFormat.GenerateInterfaceDefinitionsIfNeeded(", ", parameters)}
         {GenerateCodeForStaticAbstracts.GenerateInterfaceDefinitionIfNeeded(", ", item)}
+        {GenerateCodeForXmlSerializable.GenerateInterfaceDefinitionIfNeeded(", ", item)}
     {{
 {DebugGeneration.GenerateStackTraceFieldIfNeeded(item)}
 
 #if !VOGEN_NO_VALIDATION
-        private readonly global::System.Boolean _isInitialized;
+        private {readonlyForValueAndIsInitialized} global::System.Boolean _isInitialized;
 #endif
         
-        private readonly {itemUnderlyingType}{underlyingNullAnnotation} _value;
+        private {readonlyForValueAndIsInitialized} {itemUnderlyingType}{underlyingNullAnnotation} _value;
 
         {Util.GenerateCommentForValueProperty(item)}
         public readonly {itemUnderlyingType} Value
@@ -134,6 +137,8 @@ public class StructGenerator : IGenerateValueObjectSourceCode
         {InstanceGeneration.GenerateAnyInstances(tds, item)}
  
         {Util.GenerateAnyConversionBodies(tds, item)}
+
+        {GenerateCodeForXmlSerializable.GenerateBodyIfNeeded(parameters)}
 
         {Util.GenerateDebuggerProxyForStructs(item)}
 

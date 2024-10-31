@@ -17,6 +17,8 @@ public class ClassGenerator : IGenerateValueObjectSourceCode
         string underlyingQ = item.Nullable.QuestionMarkForUnderlying;
         string underlyingBang = item.Nullable.BangForUnderlying;
         string wrapperBang = item.Nullable.BangForWrapper;
+        
+        string readonlyForValueAndIsInitialized = Util.GetModifiersForValueAndIsInitializedFields(parameters.WorkItem); 
 
         var code = GenerateCode();
 
@@ -37,12 +39,13 @@ public class ClassGenerator : IGenerateValueObjectSourceCode
         {GenerateCodeForIParsableInterfaceDeclarations.GenerateIfNeeded(", ", item)}
         {GenerateCodeForTryFormat.GenerateInterfaceDefinitionsIfNeeded(", ", parameters)}
         {GenerateCodeForStaticAbstracts.GenerateInterfaceDefinitionIfNeeded(", ", item)}
+        {GenerateCodeForXmlSerializable.GenerateInterfaceDefinitionIfNeeded(", ", item)}
     {{
         {DebugGeneration.GenerateStackTraceFieldIfNeeded(item)}
 #if !VOGEN_NO_VALIDATION
-        private readonly global::System.Boolean _isInitialized;
+        private {readonlyForValueAndIsInitialized} global::System.Boolean _isInitialized;
 #endif
-        private readonly {itemUnderlyingType}{underlyingQ} _value;
+        private {readonlyForValueAndIsInitialized} {itemUnderlyingType}{underlyingQ} _value;
         
         {Util.GenerateCommentForValueProperty(item)}
         public {itemUnderlyingType} Value
@@ -137,6 +140,8 @@ public class ClassGenerator : IGenerateValueObjectSourceCode
 
         {Util.GenerateAnyConversionBodies(tds, item)}
 
+        {GenerateCodeForXmlSerializable.GenerateBodyIfNeeded(parameters)}
+
         {Util.GenerateDebuggerProxyForClasses(tds, item)}
 
         {Util.GenerateThrowHelper(item)}
@@ -157,4 +162,3 @@ public class ClassGenerator : IGenerateValueObjectSourceCode
 
               """;
 }
-

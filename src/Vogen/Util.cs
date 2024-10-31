@@ -14,7 +14,7 @@ namespace Vogen;
 
 public static class Util
 {
-    public static string EscapeTypeNameForTripleSlashComment(string typeName) => 
+    public static string EscapeTypeNameForTripleSlashComment(string typeName) =>
         typeName.Replace("<", "{").Replace(">", "}");
 
     static readonly IGenerateConversion[] _conversionGenerators =
@@ -34,7 +34,7 @@ public static class Util
         SyntaxTree syntaxTree = CSharpSyntaxTree.ParseText(source);
         SyntaxNode root = syntaxTree.GetRoot();
         SyntaxNode formatted = root.NormalizeWhitespace();
-        
+
         return SourceText.From(formatted.ToFullString(), Encoding.UTF8);
     }
 
@@ -50,7 +50,7 @@ public static class Util
                 context.AddSource(hintName, sourceText);
                 return;
             }
-            catch(ArgumentException)
+            catch (ArgumentException)
             {
                 if (++count >= 10)
                 {
@@ -61,7 +61,6 @@ public static class Util
             }
         }
     }
-
 
 
     public static string GenerateCallToValidationAndThrowIfRequired(VoWorkItem workItem)
@@ -102,7 +101,7 @@ public static class Util
         #if NETCOREAPP3_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)]
         #endif
-        
+
         """;
 
     public static string GenerateMaybeNullWhenFalse() =>
@@ -110,7 +109,7 @@ public static class Util
         #if NETCOREAPP3_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.MaybeNullWhen(false)]
         #endif
-        
+
         """;
 
 
@@ -149,13 +148,14 @@ public static class Util
 
         if (workItem.Config.DeserializationStrictness.HasFlag(DeserializationStrictness.RunMyValidationMethod))
         {
-            sb.AppendLine($$"""
-                            var validation = {{workItem.TypeToAugment.Identifier}}.{{workItem.ValidateMethod.Identifier.Value}}(value);
-                            if (validation != Vogen.Validation.Ok)
-                            {
-                                ThrowHelper.ThrowWhenValidationFails(validation);
-                            }
-                            """);
+            sb.AppendLine(
+                $$"""
+                  var validation = {{workItem.TypeToAugment.Identifier}}.{{workItem.ValidateMethod.Identifier.Value}}(value);
+                  if (validation != Vogen.Validation.Ok)
+                  {
+                      ThrowHelper.ThrowWhenValidationFails(validation);
+                  }
+                  """);
         }
 
         return sb.ToString();
@@ -165,7 +165,8 @@ public static class Util
     {
         if (workItem.NormalizeInputMethod is not null)
         {
-            return @$"{nameOfValueVariable} = {workItem.TypeToAugment.Identifier}.{workItem.NormalizeInputMethod.Identifier.Value}({nameOfValueVariable});
+            return
+                @$"{nameOfValueVariable} = {workItem.TypeToAugment.Identifier}.{workItem.NormalizeInputMethod.Identifier.Value}({nameOfValueVariable});
 ";
         }
 
@@ -248,33 +249,33 @@ public static class Util
               public global::System.String CreatedWith => "the From method"
               """
             : $"""
-              public global::System.String CreatedWith => _t._stackTrace{item.Nullable.QuestionMarkForOtherReferences}.ToString() ?? "the From method"
-              """;
+               public global::System.String CreatedWith => _t._stackTrace{item.Nullable.QuestionMarkForOtherReferences}.ToString() ?? "the From method"
+               """;
 
         string code =
             $$"""
               #nullable disable
-              
+
               internal sealed class {{item.VoTypeName}}DebugView
               {
                   private readonly {{item.VoTypeName}} _t;
-  
+              
                   {{item.VoTypeName}}DebugView({{item.VoTypeName}} t)
                   {
                       _t = t;
                   }
-  
+              
                   public global::System.Boolean IsInitialized => _t.IsInitialized();
                   public global::System.String UnderlyingType => "{{item.UnderlyingTypeFullName}}";
                   public global::System.String Value => _t.IsInitialized() ? _t._value.ToString() : "[not initialized]" ;
-  
+              
                   #if DEBUG
                       {{createdWithMethod}};
                   #endif
-  
+              
                   public global::System.String Conversions => @"{{Util.GenerateAnyConversionAttributesForDebuggerProxy(item)}}";
               }
-              
+
               #nullable restore
               """;
 
@@ -319,25 +320,25 @@ public static class Util
         string ro = @readonly ? " readonly" : "";
         string accessibility = item.Config.IsInitializedMethodGeneration == IsInitializedMethodGeneration.Generate ? "public" : "private";
         return $$"""
-               [global::System.Runtime.CompilerServices.MethodImpl(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
-               #if VOGEN_NO_VALIDATION
-               #pragma warning disable CS8775
-                 {{accessibility}}{{ro}} bool IsInitialized() => true;
-               #pragma warning restore CS8775
-               #else
-                 {{accessibility}}{{ro}} bool IsInitialized() => _isInitialized;
-               #endif
-               """;
+                 [global::System.Runtime.CompilerServices.MethodImpl(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
+                 #if VOGEN_NO_VALIDATION
+                 #pragma warning disable CS8775
+                   {{accessibility}}{{ro}} bool IsInitialized() => true;
+                 #pragma warning restore CS8775
+                 #else
+                   {{accessibility}}{{ro}} bool IsInitialized() => _isInitialized;
+                 #endif
+                 """;
     }
 
     public static string EscapeTypeNameForTripleSlashComment(INamedTypeSymbol symbol)
     {
         var symbolToUse = symbol.IsGenericType ? symbol.OriginalDefinition : symbol;
-        
+
         var displayString = symbolToUse.FullName() ?? symbolToUse.Name;
-        
-        return symbolToUse.IsGenericType 
-            ? EscapeTypeNameForTripleSlashComment(symbolToUse.ToDisplayString()) 
+
+        return symbolToUse.IsGenericType
+            ? EscapeTypeNameForTripleSlashComment(symbolToUse.ToDisplayString())
             : displayString;
     }
 
@@ -377,18 +378,18 @@ public static class Util
                      [global::System.Diagnostics.CodeAnalysis.DoesNotReturnAttribute]
                      #endif
                      internal static void ThrowInvalidOperationException(string message) => throw new global::System.InvalidOperationException(message);
-
+                 
                      #if NETCOREAPP3_0_OR_GREATER
                      [global::System.Diagnostics.CodeAnalysis.DoesNotReturnAttribute]
                      #endif
                      internal static void ThrowArgumentException(string message, string arg) => throw new global::System.ArgumentException(message, arg);
-
+                 
                      #if NETCOREAPP3_0_OR_GREATER
                      [global::System.Diagnostics.CodeAnalysis.DoesNotReturnAttribute]
                      #endif
                      internal static void ThrowWhenCreatedWithNull() => 
                             throw new {{item.ValidationExceptionFullName}}("Cannot create a value object with null.");
-
+                 
                      #if NETCOREAPP3_0_OR_GREATER
                      [global::System.Diagnostics.CodeAnalysis.DoesNotReturnAttribute]
                      #endif
@@ -400,14 +401,14 @@ public static class Util
                      #endif
                      internal static void ThrowWhenNotInitialized(global::System.Diagnostics.StackTrace{{item.Nullable.QuestionMarkForOtherReferences}} stackTrace) =>  
                         throw new {{item.ValidationExceptionFullName}}({{GetMessageToReport(item)}});
- 
+                 
                      #if NETCOREAPP3_0_OR_GREATER
                      [global::System.Diagnostics.CodeAnalysis.DoesNotReturnAttribute]
                      #endif
                      internal static void ThrowWhenValidationFails(Vogen.Validation validation)
                      {
                          var ex = new {{item.ValidationExceptionFullName}}(validation.ErrorMessage);
-
+                 
                          if (validation.Data is not null) 
                          {
                              foreach (var kvp in validation.Data)
@@ -420,12 +421,21 @@ public static class Util
                      }
                  }
                  """;
-        
-        static string GetMessageToReport(VoWorkItem item) => 
-            item.Config.DisableStackTraceRecordingInDebug 
-                ? "\"Use of uninitialized Value Object.\"" 
+
+        static string GetMessageToReport(VoWorkItem item) =>
+            item.Config.DisableStackTraceRecordingInDebug
+                ? "\"Use of uninitialized Value Object.\""
                 : "\"Use of uninitialized Value Object at: \" + stackTrace ?? \"\" ";
     }
+
+    /// <summary>
+    ///  If we're generating `IXmlSerializable`, then we can't specify that _value and _isInitialized are readonly
+    /// as the 'ReadXml' method has to mutate these fields.
+    /// </summary>
+    /// <param name="workItem"></param>
+    /// <returns></returns>
+    public static string GetModifiersForValueAndIsInitializedFields(VoWorkItem workItem) => 
+        workItem.Config.Conversions.HasFlag(Vogen.Conversions.XmlSerializable) ? "" : "readonly";
 }
 
 public static class DebugGeneration
@@ -438,7 +448,8 @@ public static class DebugGeneration
                        """;
         if (item.Config.DebuggerAttributes == DebuggerAttributeGeneration.Basic)
         {
-            return $@"/* Debug attributes omitted because the 'debuggerAttributes' flag is set to {nameof(DebuggerAttributeGeneration.Basic)} on the Vogen attribute.
+            return
+                $@"/* Debug attributes omitted because the 'debuggerAttributes' flag is set to {nameof(DebuggerAttributeGeneration.Basic)} on the Vogen attribute.
 This is usually set to avoid issues in Rider where it doesn't fully handle the attributes support by Visual Studio and
 causes Rider's debugger to crash.
 
@@ -452,16 +463,16 @@ causes Rider's debugger to crash.
 
     public static string GenerateStackTraceFieldIfNeeded(VoWorkItem item)
     {
-        if(item.Config.DisableStackTraceRecordingInDebug)
+        if (item.Config.DisableStackTraceRecordingInDebug)
         {
             return string.Empty;
         }
-        
+
         return $"""
-               #if DEBUG   
-               private readonly global::System.Diagnostics.StackTrace{item.Nullable.QuestionMarkForOtherReferences} _stackTrace = null!;
-               #endif
-               """;
+                #if DEBUG   
+                private readonly global::System.Diagnostics.StackTrace{item.Nullable.QuestionMarkForOtherReferences} _stackTrace = null!;
+                #endif
+                """;
     }
 
     public static string SetStackTraceIfNeeded(VoWorkItem voWorkItem) => voWorkItem.Config.DisableStackTraceRecordingInDebug

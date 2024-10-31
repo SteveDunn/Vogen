@@ -66,5 +66,10 @@ public enum Conversions
     /// Creates and registers a codec and copier for Microsoft Orleans.
     /// This feature requires .NET 8 and C#12 and cannot be polly-filled.
     /// </summary>
-    Orleans = 1 << 9
+    Orleans = 1 << 9,
+
+    /// <summary>
+    /// Generates implementation of IXmlSerializable.
+    /// </summary>
+    XmlSerializable = 1 << 10
 }
