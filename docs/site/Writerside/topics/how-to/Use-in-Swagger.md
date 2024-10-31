@@ -24,7 +24,7 @@ Both ways include setting a parameter in Vogen's global config:
 
 ```C#
 [assembly: VogenDefaults(
-   openApiSchemaCustomizations: OpenApiSchemaCustomizations.[choices])]
+ openApiSchemaCustomizations: OpenApiSchemaCustomizations.[choices])]
 ```
 
 The choices are: `GenerateSwashbuckleMappingExtensionMethod` or `GenerateSwashbuckleSchemaFilter` 
@@ -33,7 +33,7 @@ The extension method mechanism is preferable to the schema filter mechanism, as 
 
 The extension method that is generated looks like this:
 ```C#
-public static SwaggerGenOptions MapVogenTypes(this SwaggerGenOptions o)
+static SwaggerGenOptions MapVogenTypes(this SwaggerGenOptions o)
 {
     o.MapType<Celcius>(() => new OpenApiSchema { Type = "number" });
     o.MapType<City>(() => new OpenApiSchema { Type = "string" });
@@ -45,6 +45,17 @@ You register it like this:
 ```C#
 builder.Services.AddSwaggerGen(opt => opt.MapVogenTypes());
 ```
+
+<note>
+If your value objects are defined in another project, that project will also need assembly-level Vogen configuration.
+Your other project will then emit a source generated extension method named `MapVogenTypes`.
+Because there are now two extension methods with the same signature, you'll need to call them explicitly, e.g.
+
+```c#
+    WebApp.VogenSwashbuckleExtensions.MapVogenTypes(opt);
+    WebApp.Shared.VogenSwashbuckleExtensions.MapVogenTypes(opt);
+```
+</note>
 
 If you decide to use the schema filter, it looks like this:
 
