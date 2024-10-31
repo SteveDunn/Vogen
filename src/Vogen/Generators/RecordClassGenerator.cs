@@ -16,6 +16,8 @@ public class RecordClassGenerator : IGenerateValueObjectSourceCode
         string underlyingNullAnnotation = item.Nullable.QuestionMarkForUnderlying;
         string underlyingBang = item.Nullable.BangForUnderlying;
         
+        string readonlyForValueAndIsInitialized = Util.GetModifiersForValueAndIsInitializedFields(parameters.WorkItem); 
+        
         var code = GenerateCode();
         
         return item.Nullable.WrapBlock(code);
@@ -34,12 +36,13 @@ public class RecordClassGenerator : IGenerateValueObjectSourceCode
         {GenerateCodeForIParsableInterfaceDeclarations.GenerateIfNeeded(", ", item)}
         {GenerateCodeForTryFormat.GenerateInterfaceDefinitionsIfNeeded(", ", parameters)}
         {GenerateCodeForStaticAbstracts.GenerateInterfaceDefinitionIfNeeded(", ", item)}
+        {GenerateCodeForXmlSerializable.GenerateInterfaceDefinitionIfNeeded(", ", item)}
     {{
 {DebugGeneration.GenerateStackTraceFieldIfNeeded(item)}
 #if !VOGEN_NO_VALIDATION
-        private readonly global::System.Boolean _isInitialized;
+        private {readonlyForValueAndIsInitialized} global::System.Boolean _isInitialized;
 #endif
-        private readonly {itemUnderlyingType}{underlyingNullAnnotation} _value;
+        private {readonlyForValueAndIsInitialized} {itemUnderlyingType}{underlyingNullAnnotation} _value;
         
         {Util.GenerateCommentForValueProperty(item)}
         public {itemUnderlyingType} Value
@@ -141,6 +144,8 @@ public class RecordClassGenerator : IGenerateValueObjectSourceCode
         {GenerateCodeForToString.GenerateForAClass(parameters)}
 
         {Util.GenerateAnyConversionBodies(tds, item)}
+
+        {GenerateCodeForXmlSerializable.GenerateBodyIfNeeded(parameters)}
 
         {Util.GenerateDebuggerProxyForClasses(tds, item)}
 
