@@ -52,7 +52,6 @@ public sealed class ValueObjectOrError<T>
     /// <summary>
     /// Returns the wrapper, or throws an exception if the result failed.
     /// </summary>
-    /// <typeparam name="T">The type of the wrapper.</typeparam>
     /// <exception cref="System.InvalidOperationException">Throw when this type holds an error.</exception>
     public T ValueObject =>
         _isSuccess ? _valueObject : throw new System.InvalidOperationException("Cannot access the value object as it is not valid: " + _error!.ErrorMessage);

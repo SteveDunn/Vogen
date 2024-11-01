@@ -5,4 +5,10 @@
     <RootNamespace>Vogen</RootNamespace>
     <IsPackable>false</IsPackable>
   </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <DocumentationFile>bin\Debug\Vogen.SharedTypes.xml</DocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <DocumentationFile>bin\Release\Vogen.SharedTypes.xml</DocumentationFile>
+  </PropertyGroup>
 </Project>

@@ -1,7 +1,11 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.IO;
+using System.Linq;
 using System.Xml.Serialization;
 using Vogen;
+// ReSharper disable UnusedVariable
 
 [assembly: VogenDefaults(
     openApiSchemaCustomizations: OpenApiSchemaCustomizations.GenerateSwashbuckleSchemaFilter |
@@ -11,10 +15,11 @@ using Vogen;
 
 namespace Testbench;
 
+
 [ValueObject<short>(conversions: Conversions.XmlSerializable)]
 public partial class MyShort;
 
-[ValueObject<int>(conversions: Conversions.XmlSerializable)]
+[ValueObject<int>(conversions: Conversions.XmlSerializable, primitiveEqualityGeneration: PrimitiveEqualityGeneration.GenerateOperatorsAndMethods)]
 public partial class MyInt;
 
 [ValueObject<DateOnly>]
@@ -43,11 +48,18 @@ public static class Program
 {
     public static void Main()
     {
+        MyInt i1 = MyInt.From(100);
+        MyInt i2 = MyInt.From(200);
+        bool smaller = i1.CompareTo(i2) < 0;
+        bool smaller2 = i1 == 100;
+        
         C c = new()
         {
             MyInt = MyInt.From(42),
             MyShort = MyShort.From(123)
         };
+        
+        
 
         // C2 c = new()
         // {

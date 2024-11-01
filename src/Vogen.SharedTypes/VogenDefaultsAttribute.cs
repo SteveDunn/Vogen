@@ -2,6 +2,7 @@
 // ReSharper disable UnusedType.Global
 
 // ReSharper disable UnusedParameter.Local
+
 namespace Vogen;
 
 using System;
@@ -17,12 +18,12 @@ public class VogenDefaultsAttribute : Attribute
     /// Creates a new instance of a type that represents the default
     /// values used for value object generation.
     /// </summary>
-    /// <param name="underlyingType">The primitive underlying type.</param>
-    /// <param name="conversions">Any conversions that need to be done for this type, e.g. to be serialized etc.</param>
-    /// <param name="throws">The type of exception that is thrown when validation fails.</param>
-    /// <param name="customizations">Any customizations, for instance, treating numbers in [de]serialization as strings.</param>
-    /// <param name="deserializationStrictness">The strictness of validation when deserializing.</param>
-    /// <param name="debuggerAttributes">Controls how debugger attributes are generated. This is useful in Rider where the attributes crash Rider's debugger.</param>
+    /// <param name="underlyingType">The type of the primitive that is being wrapped—defaults to int.</param>
+    /// <param name="conversions">Specifies what conversion code is generated - defaults to <see cref="Conversions.Default"/> which generates type converters and a converter to handle serialization using System.Text.Json</param>
+    /// <param name="throws">Specifies the type of exception thrown when validation fails—defaults to <see cref="ValueObjectValidationException"/>.</param>
+    /// <param name="customizations">Simple customization switches—defaults to <see cref="Customizations.None"/>.</param>
+    /// <param name="deserializationStrictness">Specifies how strict deserialization is, e.g. should your Validate method be called, or should pre-defined instances that otherwise invalid be allowed - defaults to <see cref="DeserializationStrictness.AllowValidAndKnownInstances"/>.</param>
+    /// <param name="debuggerAttributes">Specifies the level that debug attributes are written as some IDEs don't support all of them, e.g., Rider - defaults to <see cref="DebuggerAttributeGeneration.Full"/> which generates DebuggerDisplay and a debugger proxy type for IDEs that support them</param>
     /// <param name="toPrimitiveCasting">Controls how cast operators are generated for casting from the Value Object to the primitive.
     /// Options are implicit or explicit or none.  Explicit is preferred over implicit if you really need them, but isn't recommended.
     /// See <see href="https://github.com/SteveDunn/Vogen/wiki/Casting"/> for more information.</param>
@@ -31,15 +32,26 @@ public class VogenDefaultsAttribute : Attribute
     /// See &lt;see href="https://github.com/SteveDunn/Vogen/wiki/Casting"/&gt; for more information.</param>
     /// <param name="disableStackTraceRecordingInDebug">disables stack trace recording; in Debug builds, a stack trace is recorded and is
     /// thrown in the exception when something is created in an uninitialized state, e.g. after deserialization</param>
-    /// <param name="parsableForStrings">Specifies the functionality around parsing (IParsable etc.)</param>
-    /// <param name="parsableForPrimitives">Specifies the functionality around parsing (IParsable etc.)</param>
-    /// <param name="tryFromGeneration">Controls what is generated for the TryFrom methods.</param>
-    /// <param name="isInitializedMethodGeneration">Controls whether the IsInitialized method is generated.</param>
+    /// <param name="parsableForStrings">Specifies what is generated for IParsable types for strings - defaults to <see cref="ParsableForStrings.GenerateMethodsAndInterface"/>.</param>
+    /// <param name="parsableForPrimitives">Specifies what is generated for Parse and TryParse methods - defaults to <see cref="ParsableForPrimitives.HoistMethodsAndInterfaces"/>.</param>
+    /// <param name="tryFromGeneration">Specifies what to write for TryFrom methods—defaults to <see cref="TryFromGeneration.GenerateBoolAndErrorOrMethods"/>.</param>
+    /// <param name="isInitializedMethodGeneration">Specifies whether to generate an IsInitialized() method - defaults to <see cref="IsInitializedMethodGeneration.Generate"/>.</param>
+    /// <param name="primitiveEqualityGeneration">
+    /// Specifies whether to generate primitive comparison operators, allowing this type to be compared for equality to the primitive.
+    /// Defaults to <see cref="PrimitiveEqualityGeneration.GenerateOperatorsAndMethods"/>
+    /// <example>
+    /// <para>
+    /// var vo = MyInt.From(123);
+    /// </para>
+    /// <para>
+    /// bool same = vo == 123;
+    /// </para>
+    /// </example>
+    /// </param>
     /// <param name="systemTextJsonConverterFactoryGeneration">Controls the generation of the type factory for System.Text.Json.</param>
     /// <param name="staticAbstractsGeneration">Controls the generation of static abstract interfaces.</param>
     /// <param name="openApiSchemaCustomizations">Controls the generation of a Swashbuckle schema filter for OpenAPI.</param>
     /// <param name="explicitlySpecifyTypeInValueObject">Every ValueObject attribute must explicitly specify the type of the primitive.</param>
-    /// <param name="primitiveEqualityGeneration">Whether or not to generate primitive comparison operators.</param>
     public VogenDefaultsAttribute(
         Type? underlyingType = null,
         Conversions conversions = Conversions.Default,
