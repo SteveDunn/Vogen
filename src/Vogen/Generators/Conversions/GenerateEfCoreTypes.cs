@@ -47,7 +47,7 @@ internal static class GenerateEfCoreTypes
         return code;
     }
 
-    public static string GenerateOuterExtensionMethod(EfCoreConverterSpec spec)
+    public static string GenerateOuterExtensionMethod(ConverterMarker spec)
     {
         string voTypeName = spec.VoSymbol.FullName() ?? spec.VoSymbol.Name;
         

@@ -10,6 +10,52 @@ namespace SnapshotTests.GeneralStuff;
 public class GeneralTests
 {
     [Fact]
+    public async Task Generates_messagepack()
+    {
+        var source =
+            $$"""
+
+            using System;
+            using Vogen;
+            
+            namespace Whatever;
+            
+            [ValueObject(conversions: Conversions.MessagePack)]
+            public partial struct MyId;
+            """;
+
+            await new SnapshotRunner<ValueObjectGenerator>()
+                .WithSource(source)
+                .WithPackage(new NuGetPackage("MessagePack", "2.5.187", "lib/netstandard2.0" ))
+                .RunOn(TargetFramework.Net8_0);
+    }
+
+    [Fact]
+    public async Task Generates_messagepack_markers()
+    {
+        var source =
+            $$"""
+
+            using System;
+            using Vogen;
+            
+            namespace Whatever;
+            
+            [ValueObject(conversions: Conversions.None)]
+            public partial struct MyId;
+            
+            [MessagePack<MyId>]
+            public partial class MyMarkers;
+            
+            """;
+
+            await new SnapshotRunner<ValueObjectGenerator>()
+                .WithSource(source)
+                .WithPackage(new NuGetPackage("MessagePack", "2.5.187", "lib/netstandard2.0" ))
+                .RunOn(TargetFramework.Net8_0);
+    }
+
+    [Fact]
     public async Task Skips_ToString_methods_that_implement_an_interface()
     {
         var source =

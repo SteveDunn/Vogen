@@ -1,4 +1,6 @@
+using System.Collections.Generic;
 using System.Collections.Immutable;
+using System.Linq;
 using System.Text;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
@@ -7,29 +9,33 @@ using Vogen.Generators.Conversions;
 
 namespace Vogen;
 
-internal class GenerateCodeForEfCoreSpecs
+internal class GenerateCodeForConversionMarkers
 {
-    public static void WriteIfNeeded(SourceProductionContext context, Compilation compilation, ImmutableArray<EfCoreConverterMarkerClassResults> convertSpecs)
+    public static void Generate(SourceProductionContext context, Compilation compilation, ImmutableArray<ConversionMarkerClassDefinition> conversionMarkerClasses)
     {
         if (!compilation.IsAtLeastCSharpVersion(LanguageVersion.CSharp12))
         {
             return;
         }
         
-        foreach (EfCoreConverterMarkerClassResults? eachMarkerClass in convertSpecs)
+        foreach (ConversionMarkerClassDefinition? eachMarkerClass in conversionMarkerClasses)
         {
-            WriteEncompassingExtensionMethod(eachMarkerClass, context);
+            var matchingMarkers = eachMarkerClass.AttributeDefinitions.Where(a => a.Marker?.Kind == ConverterMarkerKind.EFCore);
             
-            foreach (EfCoreConverterSpecResult? eachAttributeInMarkerClass in eachMarkerClass.Specs)
+            WriteEncompassingExtensionMethod(
+                eachMarkerClass.MarkerClassSymbol, 
+                matchingMarkers, context);
+            
+            foreach (ConversionMarkerAttributeDefinition? eachAttributeInMarkerClass in matchingMarkers)
             {
                 WriteEachIfNeeded(context, eachAttributeInMarkerClass);
             }
         }
     }
 
-    private static void WriteEachIfNeeded(SourceProductionContext context, EfCoreConverterSpecResult specResult)
+    private static void WriteEachIfNeeded(SourceProductionContext context, ConversionMarkerAttributeDefinition specResult)
     {
-        EfCoreConverterSpec? spec = specResult.Spec;
+        ConverterMarker? spec = specResult.Marker;
         
         if (spec is null)
         {
@@ -73,9 +79,12 @@ $$"""
         Util.TryWriteUsingUniqueFilename(filename, context, sourceText);
     }
     
-    private static void WriteEncompassingExtensionMethod(EfCoreConverterMarkerClassResults resultsForAMarker, SourceProductionContext context)
+    private static void WriteEncompassingExtensionMethod(
+        INamedTypeSymbol? classDefinitionMarkerClassSymbol, 
+        IEnumerable<ConversionMarkerAttributeDefinition> conversionMarkerAttributeDefinitions,
+        SourceProductionContext context)
     {
-        INamedTypeSymbol? markerSymbol = resultsForAMarker.MarkerSymbol;
+        INamedTypeSymbol? markerSymbol = classDefinitionMarkerClassSymbol;
         
         if (markerSymbol is null)
         {
@@ -124,14 +133,14 @@ $$"""
         {
             StringBuilder sb = new StringBuilder();
 
-            foreach (EfCoreConverterSpecResult eachSpec in resultsForAMarker.Specs)
+            foreach (ConversionMarkerAttributeDefinition eachSpec in conversionMarkerAttributeDefinitions)
             {
-                if (eachSpec.Spec is null)
+                if (eachSpec.Marker is null)
                 {
                     continue;
                 }
 
-                var voSymbol = eachSpec.Spec.VoSymbol;
+                var voSymbol = eachSpec.Marker.VoSymbol;
                 sb.AppendLine($"configurationBuilder.Properties<{voSymbol.FullName()}>().HaveConversion<{markerSymbol.FullName()}.{voSymbol.Name}EfCoreValueConverter, {markerSymbol.FullName()}.{voSymbol.Name}EfCoreValueComparer>();");
             }
 

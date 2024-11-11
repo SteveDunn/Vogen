@@ -27,9 +27,9 @@ public class ValueObjectGenerator : IIncrementalGenerator
             
         var targetsAndConfig = collectedVos.Combine(found.GlobalConfig.Collect());
             
-        var targetsConfigAndEfCoreSpecs = targetsAndConfig.Combine(found.EfCoreConverterSpecs.Collect());
+        var targetsConfigAndConversionMarkers = targetsAndConfig.Combine(found.ConverterMarkerClasses.Collect());
 
-        var compilationAndValues = context.CompilationProvider.Combine(targetsConfigAndEfCoreSpecs);
+        var compilationAndValues = context.CompilationProvider.Combine(targetsConfigAndConversionMarkers);
         
         var everything = compilationAndValues.Combine(knownSymbols);
             
@@ -69,26 +69,25 @@ public class ValueObjectGenerator : IIncrementalGenerator
                 transform: (ctx, _) => ManageAttributes.GetDefaultConfigFromGlobalAttribute(ctx))
             .Where(static m => m is not null)!;
 
-        IncrementalValuesProvider<EfCoreConverterMarkerClassResults> efCoreConverterSpecs = syntaxProvider.ForAttributeWithMetadataName(
-                "Vogen.EfCoreConverterAttribute`1",
-                predicate: (node, _) => node is ClassDeclarationSyntax,
-                transform: (ctx, _) => ManageAttributes.GetEfCoreConverterSpecFromAttribute(ctx))
+        IncrementalValuesProvider<ConversionMarkerClassDefinition> converterMarkerClasses = syntaxProvider.CreateSyntaxProvider(
+                predicate: (node, _) => ConversionMarkers.IsTarget(node),
+                transform: (ctx, _) => ConversionMarkers.GetConversionMarkerClassDefinitionFromAttribute(ctx))
             .Where(static m => m is not null)!;
 
-        return new Found(targets, globalConfig, efCoreConverterSpecs);
+        return new Found(targets, globalConfig, converterMarkerClasses);
     }
 
     record struct Found(
         IncrementalValuesProvider<VoTarget> Vos,
         IncrementalValuesProvider<VogenConfigurationBuildResult> GlobalConfig,
-        IncrementalValuesProvider<EfCoreConverterMarkerClassResults> EfCoreConverterSpecs);
+        IncrementalValuesProvider<ConversionMarkerClassDefinition> ConverterMarkerClasses);
     
     private static void Execute(
         Compilation compilation,
         VogenKnownSymbols vogenKnownSymbols,
         ImmutableArray<VoTarget> targets,
         ImmutableArray<VogenConfigurationBuildResult> globalConfigBuildResult,
-        ImmutableArray<EfCoreConverterMarkerClassResults> efCoreConverterSpecs,
+        ImmutableArray<ConversionMarkerClassDefinition> conversionMarkerClassDefinitions,
         SourceProductionContext spc)
     {
         var csharpCompilation = compilation as CSharpCompilation;
@@ -99,7 +98,7 @@ public class ValueObjectGenerator : IIncrementalGenerator
 
         internalDiags.RecordTargets(targets);
 
-        var efSpecErrors = efCoreConverterSpecs.SelectMany(x => x.Diagnostics);
+        var efSpecErrors = conversionMarkerClassDefinitions.SelectMany(x => x.Diagnostics);
         
         foreach (var diagnostic in efSpecErrors)
         {
@@ -125,7 +124,12 @@ public class ValueObjectGenerator : IIncrementalGenerator
             
         GenerateCodeForOpenApiSchemaCustomization.WriteIfNeeded(globalConfig, spc, workItems, vogenKnownSymbols, compilation);
 
-        GenerateCodeForEfCoreSpecs.WriteIfNeeded(spc, compilation, efCoreConverterSpecs);
+        GenerateCodeForConversionMarkers.Generate(spc, compilation, conversionMarkerClassDefinitions);
+        
+        // the user can specify to create the MessagePack generated code as an attribute
+        // or as marker in another project.
+        GenerateCodeForMessagePack.GenerateForApplicableWorkItems(spc, compilation, workItems);
+        GenerateCodeForMessagePackMarkers.GenerateForMarkerClasses(spc, compilation, conversionMarkerClassDefinitions);
         
         GenerateCodeForBsonSerializers.WriteIfNeeded(spc, compilation, workItems);
         
