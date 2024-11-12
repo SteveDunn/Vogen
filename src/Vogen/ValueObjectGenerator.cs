@@ -69,7 +69,7 @@ public class ValueObjectGenerator : IIncrementalGenerator
                 transform: (ctx, _) => ManageAttributes.GetDefaultConfigFromGlobalAttribute(ctx))
             .Where(static m => m is not null)!;
 
-        IncrementalValuesProvider<ConversionMarkerClassDefinition> converterMarkerClasses = syntaxProvider.CreateSyntaxProvider(
+        IncrementalValuesProvider<MarkerClassDefinition> converterMarkerClasses = syntaxProvider.CreateSyntaxProvider(
                 predicate: (node, _) => ConversionMarkers.IsTarget(node),
                 transform: (ctx, _) => ConversionMarkers.GetConversionMarkerClassDefinitionFromAttribute(ctx))
             .Where(static m => m is not null)!;
@@ -80,14 +80,14 @@ public class ValueObjectGenerator : IIncrementalGenerator
     record struct Found(
         IncrementalValuesProvider<VoTarget> Vos,
         IncrementalValuesProvider<VogenConfigurationBuildResult> GlobalConfig,
-        IncrementalValuesProvider<ConversionMarkerClassDefinition> ConverterMarkerClasses);
+        IncrementalValuesProvider<MarkerClassDefinition> ConverterMarkerClasses);
     
     private static void Execute(
         Compilation compilation,
         VogenKnownSymbols vogenKnownSymbols,
         ImmutableArray<VoTarget> targets,
         ImmutableArray<VogenConfigurationBuildResult> globalConfigBuildResult,
-        ImmutableArray<ConversionMarkerClassDefinition> conversionMarkerClassDefinitions,
+        ImmutableArray<MarkerClassDefinition> markerClasses,
         SourceProductionContext spc)
     {
         var csharpCompilation = compilation as CSharpCompilation;
@@ -98,9 +98,9 @@ public class ValueObjectGenerator : IIncrementalGenerator
 
         internalDiags.RecordTargets(targets);
 
-        var efSpecErrors = conversionMarkerClassDefinitions.SelectMany(x => x.Diagnostics);
+        var conversionMarkerErrors = markerClasses.SelectMany(x => x.Diagnostics);
         
-        foreach (var diagnostic in efSpecErrors)
+        foreach (var diagnostic in conversionMarkerErrors)
         {
             spc.ReportDiagnostic(diagnostic);
         }
@@ -124,12 +124,12 @@ public class ValueObjectGenerator : IIncrementalGenerator
             
         GenerateCodeForOpenApiSchemaCustomization.WriteIfNeeded(globalConfig, spc, workItems, vogenKnownSymbols, compilation);
 
-        GenerateCodeForConversionMarkers.Generate(spc, compilation, conversionMarkerClassDefinitions);
+        GenerateCodeEfCoreMarkers.Generate(spc, compilation, markerClasses);
         
         // the user can specify to create the MessagePack generated code as an attribute
         // or as marker in another project.
-        GenerateCodeForMessagePack.GenerateForApplicableWorkItems(spc, compilation, workItems);
-        GenerateCodeForMessagePackMarkers.GenerateForMarkerClasses(spc, compilation, conversionMarkerClassDefinitions);
+        GenerateCodeForMessagePack.GenerateForApplicableValueObjects(spc, compilation, workItems);
+        GenerateCodeForMessagePackMarkers.GenerateForMarkerClasses(spc, compilation, markerClasses);
         
         GenerateCodeForBsonSerializers.WriteIfNeeded(spc, compilation, workItems);
         

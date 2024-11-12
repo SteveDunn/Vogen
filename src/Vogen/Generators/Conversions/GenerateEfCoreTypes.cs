@@ -4,17 +4,13 @@ namespace Vogen.Generators.Conversions;
 
 internal static class GenerateEfCoreTypes
 {
-    public static string GenerateInner(
-        INamedTypeSymbol primitiveType,
-        bool isWrapperAValueType,
-        INamedTypeSymbol voSymbol) => Generate(true, primitiveType, isWrapperAValueType, voSymbol);
+    public static string GenerateInner(INamedTypeSymbol primitiveType, bool isWrapperAValueType, INamedTypeSymbol voSymbol) =>
+        Generate(isWritingAsInnerClass: true, primitiveType, isWrapperAValueType, voSymbol);
 
-    public static string GenerateOuter(
-        INamedTypeSymbol primitiveType,
-        bool isWrapperAValueType,
-        INamedTypeSymbol voSymbol) => Generate(false, primitiveType, isWrapperAValueType, voSymbol);
+    public static string GenerateBodyForAMarkerClass(ConversionMarker markerClass) => 
+        Generate(isWritingAsInnerClass: false, markerClass.UnderlyingTypeSymbol, markerClass.VoSymbol.IsValueType,  markerClass.VoSymbol);
 
-    public static string Generate(bool isWritingAsInnerClass, INamedTypeSymbol primitiveType, bool isWrapperAValueType, INamedTypeSymbol voSymbol)
+    private static string Generate(bool isWritingAsInnerClass, INamedTypeSymbol primitiveType, bool isWrapperAValueType, INamedTypeSymbol voSymbol)
     {
         string sectionToCut = isWritingAsInnerClass ? "__WHEN_OUTER__" : "__WHEN_INNER__";
         string sectionToKeep = isWritingAsInnerClass ? "__WHEN_INNER__" : "__WHEN_OUTER__";
@@ -47,16 +43,19 @@ internal static class GenerateEfCoreTypes
         return code;
     }
 
-    public static string GenerateOuterExtensionMethod(ConverterMarker spec)
+    public static string GenerateMarkerExtensionMethod(ConversionMarker marker)
     {
-        string voTypeName = spec.VoSymbol.FullName() ?? spec.VoSymbol.Name;
+        var voSymbol = marker.VoSymbol;
+        var markerClassSymbol = marker.MarkerClassSymbol;
+
+        string voTypeName = voSymbol.FullName() ?? voSymbol.Name;
         
         string code = _extensionMethodForOuter;
+        
+        string generatedConverter = $"{markerClassSymbol.FullNamespace()}.{markerClassSymbol.Name}.{voSymbol.Name}EfCoreValueConverter";
+        string generatedComparer = $"{markerClassSymbol.FullNamespace()}.{markerClassSymbol.Name}.{voSymbol.Name}EfCoreValueComparer";
 
-        string generatedConverter = $"{spec.SourceType.FullNamespace()}.{spec.SourceType.Name}.{spec.VoSymbol.Name}EfCoreValueConverter";
-        string generatedComparer = $"{spec.SourceType.FullNamespace()}.{spec.SourceType.Name}.{spec.VoSymbol.Name}EfCoreValueComparer";
-
-        code = code.Replace("__CLASS_PREFIX__", spec.VoSymbol.Name);
+        code = code.Replace("__CLASS_PREFIX__", voSymbol.Name);
         code = code.Replace("__GENERATED_CONVERTER_NAME__", generatedConverter);
         code = code.Replace("__GENERATED_COMPARER_NAME__", generatedComparer);
         code = code.Replace("VOTYPE", voTypeName);

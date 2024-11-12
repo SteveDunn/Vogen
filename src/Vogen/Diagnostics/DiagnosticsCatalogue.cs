@@ -118,15 +118,15 @@ internal static class DiagnosticsCatalogue
         "Invalid custom exception",
         "{0} must have at least 1 public constructor with 1 parameter of type System.String");
 
-    private static readonly DiagnosticDescriptor _efCoreTargetMustExplicitlySpecifyItsPrimitive = CreateDescriptor(
-        RuleIdentifiers.EfCoreTargetMustExplicitlySpecifyItsPrimitive,
-        "Value objects must explicitly specify the primitive type",
-        "Type '{0}' must explicitly specify the primitive type that it wraps in order for its EFCore converter to be generated");
+    private static readonly DiagnosticDescriptor _voReferencedInAConversionMarkerMustExplicitlySpecifyPrimitive = CreateDescriptor(
+        RuleIdentifiers.VoReferencedInAConversionMarkerMustExplicitlySpecifyPrimitive,
+        "Value objects that are referenced in a conversion marker attribute must explicitly specify the primitive type",
+        "Marker class '{0}' specifies a target value object '{1}', but that type does not explicitly specify the primitive type that it wraps");
 
-    private static readonly DiagnosticDescriptor _efCoreTargetMustBeAVo = CreateDescriptor(
-        RuleIdentifiers.EfCoreTargetMustBeAVo,
-        "EFCore target must be a value object",
-        "Type '{0}' specifies a target value object of {1} but it is not a value object");
+    private static readonly DiagnosticDescriptor _typesReferencedInAConversionMarkerMustBeaValueObjects = CreateDescriptor(
+        RuleIdentifiers.TypesReferencedInAConversionMarkerMustBeaValueObjects,
+        "Types referenced in conversion markers by be value objects",
+        "Marker class '{0}' specifies a target value object '{1}', but that is not a value object");
 
     public static Diagnostic TypeCannotBeNested(INamedTypeSymbol typeModel, INamedTypeSymbol container) => 
         Create(_typeCannotBeNested, typeModel.Locations, typeModel.Name, container.Name);
@@ -191,11 +191,17 @@ internal static class DiagnosticsCatalogue
     public static Diagnostic CustomExceptionMustHaveValidConstructor(INamedTypeSymbol symbol) => 
         Create(_customExceptionMustHaveValidConstructor, symbol.Locations, symbol.Name);
 
-    public static Diagnostic VoMustExplicitlySpecifyPrimitiveToBeAnEfCoreTarget(INamedTypeSymbol symbol) => 
-        Create(_efCoreTargetMustExplicitlySpecifyItsPrimitive, symbol.Locations, symbol.Name);
+    public static Diagnostic VoReferencedInAConversionMarkerMustExplicitlySpecifyPrimitive(INamedTypeSymbol voSymbol,
+        INamedTypeSymbol markerClassSymbol,
+        Location? location) =>
+        Create(
+            _voReferencedInAConversionMarkerMustExplicitlySpecifyPrimitive, 
+            location,
+            voSymbol.Name,
+            markerClassSymbol.Name);
 
-    public static Diagnostic EfCoreTargetMustBeAVo(INamedTypeSymbol markerClassSymbol, INamedTypeSymbol voSymbol) => 
-        Create(_efCoreTargetMustBeAVo, voSymbol.Locations, markerClassSymbol.Name, voSymbol.Name);
+    public static Diagnostic TypesReferencedInAConversionMarkerMustBeaValueObjects(INamedTypeSymbol markerClassSymbol, INamedTypeSymbol voSymbol) => 
+        Create(_typesReferencedInAConversionMarkerMustBeaValueObjects, voSymbol.Locations, markerClassSymbol.Name, voSymbol.Name);
 
     private static DiagnosticDescriptor CreateDescriptor(string code, string title, string messageFormat, DiagnosticSeverity severity = DiagnosticSeverity.Error)
     {

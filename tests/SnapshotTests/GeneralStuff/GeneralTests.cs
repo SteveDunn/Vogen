@@ -39,12 +39,13 @@ public class GeneralTests
             using System;
             using Vogen;
             
-            namespace Whatever;
+            namespace @double;
             
-            [ValueObject(conversions: Conversions.None)]
+            [ValueObject<int>(conversions: Conversions.None)]
             public partial struct MyId;
             
             [MessagePack<MyId>]
+            [EfCoreConverter<MyId>]
             public partial class MyMarkers;
             
             """;

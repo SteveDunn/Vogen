@@ -9,49 +9,44 @@ using Vogen.Generators.Conversions;
 
 namespace Vogen;
 
-internal class GenerateCodeForConversionMarkers
+internal class GenerateCodeEfCoreMarkers
 {
-    public static void Generate(SourceProductionContext context, Compilation compilation, ImmutableArray<ConversionMarkerClassDefinition> conversionMarkerClasses)
+    public static void Generate(SourceProductionContext context, Compilation compilation, ImmutableArray<MarkerClassDefinition> markerClasses)
     {
         if (!compilation.IsAtLeastCSharpVersion(LanguageVersion.CSharp12))
         {
             return;
         }
         
-        foreach (ConversionMarkerClassDefinition? eachMarkerClass in conversionMarkerClasses)
+        foreach (MarkerClassDefinition? eachMarkerClass in markerClasses)
         {
-            var matchingMarkers = eachMarkerClass.AttributeDefinitions.Where(a => a.Marker?.Kind == ConverterMarkerKind.EFCore);
+            var matchingMarkers = eachMarkerClass.AttributeDefinitions.Where(a => a.Marker?.Kind == ConversionMarkerKind.EFCore);
             
-            WriteEncompassingExtensionMethod(
-                eachMarkerClass.MarkerClassSymbol, 
-                matchingMarkers, context);
+            StoreExtensionMethodToRegisterAllInMarkerClass(eachMarkerClass.MarkerClassSymbol, matchingMarkers, context);
             
-            foreach (ConversionMarkerAttributeDefinition? eachAttributeInMarkerClass in matchingMarkers)
+            foreach (MarkerAttributeDefinition? eachAttributeInMarkerClass in matchingMarkers)
             {
-                WriteEachIfNeeded(context, eachAttributeInMarkerClass);
+                WriteEachIfNeeded(context, eachAttributeInMarkerClass.Marker);
             }
         }
     }
 
-    private static void WriteEachIfNeeded(SourceProductionContext context, ConversionMarkerAttributeDefinition specResult)
+    private static void WriteEachIfNeeded(SourceProductionContext context, ConversionMarker? markerClass)
     {
-        ConverterMarker? spec = specResult.Marker;
-        
-        if (spec is null)
+        if (markerClass is null)
         {
             return;
         }
 
-        var body = GenerateEfCoreTypes.GenerateOuter(spec.UnderlyingType, spec.VoSymbol.IsValueType, spec.VoSymbol);
-        var extensionMethod = GenerateEfCoreTypes.GenerateOuterExtensionMethod(spec);
+        var body = GenerateEfCoreTypes.GenerateBodyForAMarkerClass(markerClass);
+        var extensionMethod = GenerateEfCoreTypes.GenerateMarkerExtensionMethod(markerClass);
 
-        var fullNamespace = spec.SourceType.FullNamespace();
+        var fullNamespace = markerClass.MarkerClassSymbol.FullNamespace();
 
-        var isPublic = spec.SourceType.DeclaredAccessibility.HasFlag(Accessibility.Public);
+        var isPublic = markerClass.MarkerClassSymbol.DeclaredAccessibility.HasFlag(Accessibility.Public);
         var accessor = isPublic ? "public" : "internal";
 
         var ns = string.IsNullOrEmpty(fullNamespace) ? string.Empty : $"namespace {fullNamespace};";
-        
         
         string sb =
 $$"""
@@ -61,7 +56,7 @@ $$"""
 
 {{ns}}
     
-{{accessor}} partial class {{spec.SourceType.Name}}
+{{accessor}} partial class {{markerClass.MarkerClassSymbol.Name}}
 {
     {{body}}
 }
@@ -73,19 +68,16 @@ $$"""
         
         SourceText sourceText = SourceText.From(sb, Encoding.UTF8);
 
-        var unsanitized = $"{spec.SourceType.ToDisplayString()}_{spec.VoSymbol.ToDisplayString()}.g.cs";
-        string filename = Util.SanitizeToALegalFilename(unsanitized);
+        string filename = Util.GetLegalMarkerClassFilename(markerClass.MarkerClassSymbol, markerClass.VoSymbol, markerClass.Kind);
 
         Util.TryWriteUsingUniqueFilename(filename, context, sourceText);
     }
     
-    private static void WriteEncompassingExtensionMethod(
-        INamedTypeSymbol? classDefinitionMarkerClassSymbol, 
-        IEnumerable<ConversionMarkerAttributeDefinition> conversionMarkerAttributeDefinitions,
+    private static void StoreExtensionMethodToRegisterAllInMarkerClass(
+        INamedTypeSymbol? markerSymbol, 
+        IEnumerable<MarkerAttributeDefinition> markerAttributes,
         SourceProductionContext context)
     {
-        INamedTypeSymbol? markerSymbol = classDefinitionMarkerClassSymbol;
-        
         if (markerSymbol is null)
         {
             return;
@@ -123,7 +115,9 @@ $$"""
 
         SourceText sourceText = SourceText.From(source, Encoding.UTF8);
 
-        string filename = Util.SanitizeToALegalFilename($"{markerSymbol.ToDisplayString()}.g.cs");
+        var filename = Util.GetLegalMarkerClassFilename(markerSymbol, ConversionMarkerKind.EFCore);
+
+        //string filename = Util.SanitizeToALegalFilename($"{markerSymbol.ToDisplayString()}.g.cs");
 
         Util.TryWriteUsingUniqueFilename(filename, context, sourceText);
         
@@ -133,7 +127,7 @@ $$"""
         {
             StringBuilder sb = new StringBuilder();
 
-            foreach (ConversionMarkerAttributeDefinition eachSpec in conversionMarkerAttributeDefinitions)
+            foreach (MarkerAttributeDefinition eachSpec in markerAttributes)
             {
                 if (eachSpec.Marker is null)
                 {
