@@ -13,6 +13,11 @@ internal class GenerateCodeForMessagePack
     public static void GenerateForAMarkerClass(SourceProductionContext context, Compilation compilation, MarkerClassDefinition markerClass)
     {
         var markerClassSymbol = markerClass.MarkerClassSymbol;
+
+        if (!markerClass.AttributeDefinitions.Any(m => m.Marker?.Kind is ConversionMarkerKind.MessagePack))
+        {
+            return;
+        }
         
         string pns = markerClassSymbol.FullNamespace() ?? "";
         

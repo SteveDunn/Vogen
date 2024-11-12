@@ -124,7 +124,7 @@ public class ValueObjectGenerator : IIncrementalGenerator
             
         GenerateCodeForOpenApiSchemaCustomization.WriteIfNeeded(globalConfig, spc, workItems, vogenKnownSymbols, compilation);
 
-        GenerateCodeEfCoreMarkers.Generate(spc, compilation, markerClasses);
+        GenerateCodeForEfCoreMarkers.Generate(spc, compilation, markerClasses);
         
         // the user can specify to create the MessagePack generated code as an attribute
         // or as marker in another project.
