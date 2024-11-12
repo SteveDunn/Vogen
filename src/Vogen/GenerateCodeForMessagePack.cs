@@ -7,7 +7,6 @@ using Microsoft.CodeAnalysis.Text;
 
 namespace Vogen;
 
-
 internal class GenerateCodeForMessagePack
 {
     public static void GenerateForAMarkerClass(SourceProductionContext context, Compilation compilation, MarkerClassDefinition markerClass)
@@ -18,11 +17,11 @@ internal class GenerateCodeForMessagePack
         {
             return;
         }
-        
+
         string pns = markerClassSymbol.FullNamespace() ?? "";
-        
+
         string ns = pns.Length == 0 ? "" : $"namespace {pns};";
-        
+
         var isPublic = markerClassSymbol.DeclaredAccessibility.HasFlag(Accessibility.Public);
         var accessor = isPublic ? "public" : "internal";
 
@@ -34,7 +33,8 @@ internal class GenerateCodeForMessagePack
 
                   {{accessor}} partial class {{markerClassSymbol.Name}}
                   {
-                     {{GenerateForEachAttribute()}}
+                     {{GenerateManifest()}}
+                     {{GenerateFormatters()}}
                   }
 
                   """;
@@ -47,11 +47,40 @@ internal class GenerateCodeForMessagePack
 
         return;
 
-        string GenerateForEachAttribute()
+        string GenerateManifest()
+        {
+            return
+                $$"""
+                  {{accessor}} static global::MessagePack.Formatters.IMessagePackFormatter[] MessagePackFormatters => new global::MessagePack.Formatters.IMessagePackFormatter[]
+                  {
+                      {{GenerateEach()}}
+                  };
+                  """;
+
+            string GenerateEach()
+            {
+                string?[] names = markerClass.AttributeDefinitions.Where(
+                    m => m.Marker?.Kind is ConversionMarkerKind.MessagePack).Select(
+                    x =>
+                    {
+                        if (x is null) return null;
+                        if (x.Marker is null) return null;
+                        
+                        string? wrapperNameShort = x.Marker.VoSymbol.Name;
+                        
+                        return $"new {wrapperNameShort}MessagePackFormatter()";
+                    }).ToArray();
+
+                return string.Join(", ", names);
+            }
+        }
+
+        string GenerateFormatters()
         {
             StringBuilder sb = new();
 
-            foreach (MarkerAttributeDefinition eachMarker in markerClass.AttributeDefinitions.Where(m => m.Marker?.Kind is ConversionMarkerKind.MessagePack))
+            foreach (MarkerAttributeDefinition eachMarker in markerClass.AttributeDefinitions.Where(
+                         m => m.Marker?.Kind is ConversionMarkerKind.MessagePack))
             {
                 sb.AppendLine(
                     $$"""
@@ -63,8 +92,9 @@ internal class GenerateCodeForMessagePack
         }
     }
 
-
-    public static void GenerateForApplicableValueObjects(SourceProductionContext context, Compilation compilation, List<VoWorkItem> valueObjects)
+    public static void GenerateForApplicableValueObjects(SourceProductionContext context,
+        Compilation compilation,
+        List<VoWorkItem> valueObjects)
     {
         if (!compilation.IsAtLeastCSharpVersion(LanguageVersion.CSharp12))
         {
@@ -77,7 +107,7 @@ internal class GenerateCodeForMessagePack
 
         List<FormatterSourceAndFilename> toWrite = items.Select(
             p => GenerateSourceAndFilename(p.WrapperAccessibility, p.WrapperType, p.ContainerNamespace, p.UnderlyingType)).ToList();
-        
+
         foreach (var eachToWrite in toWrite)
         {
             SourceText sourceText = Util.FormatSource(eachToWrite.SourceCode);
@@ -89,9 +119,9 @@ internal class GenerateCodeForMessagePack
     public record FormatterSourceAndFilename(string FormatterFullyQualifiedName, string Filename, string SourceCode);
 
     private static FormatterSourceAndFilename GenerateSourceAndFilename(
-        string accessibility, 
-        INamedTypeSymbol wrapperSymbol, 
-        string theNamespace, 
+        string accessibility,
+        INamedTypeSymbol wrapperSymbol,
+        string theNamespace,
         INamedTypeSymbol underlyingSymbol)
     {
         string wrapperName = Util.EscapeIfRequired(wrapperSymbol.Name);
@@ -101,9 +131,9 @@ internal class GenerateCodeForMessagePack
         string sb =
             $$"""
               {{GeneratedCodeSegments.Preamble}}
-            
+
               {{ns}}
-              
+
               {{GenerateSource(accessibility, wrapperSymbol, underlyingSymbol)}}          
               """;
 
@@ -124,6 +154,13 @@ internal class GenerateCodeForMessagePack
         string wrapperName = Util.EscapeIfRequired(wrapperSymbol.FullName() ?? wrapperSymbol.Name);
 
         string underlyingTypeName = underlyingSymbol.FullName() ?? wrapperSymbol.Name;
+        
+        string readMethod = GenerateReadMethod();
+
+        if (readMethod.Length == 0)
+        {
+            return "#error unsupported underlying type " + underlyingSymbol.SpecialType;
+        }
 
         string sb =
             $$"""
@@ -133,7 +170,7 @@ internal class GenerateCodeForMessagePack
                       writer.Write(value.Value);
               
                   public {{wrapperName}} Deserialize(ref global::MessagePack.MessagePackReader reader, global::MessagePack.MessagePackSerializerOptions options) =>
-                      Deserialize(reader.{{GenerateReadMethod()}});
+                      Deserialize(reader.{{readMethod}});
               
                 static {{wrapperName}} Deserialize({{underlyingTypeName}} value) => UnsafeDeserialize(default, value);
                 
@@ -143,10 +180,38 @@ internal class GenerateCodeForMessagePack
               """;
 
         return sb;
-    }
 
-    private static string GenerateReadMethod()
-    {
-        return "ReadInt32()";
+        string GenerateReadMethod()
+        {
+            if(underlyingSymbol.SpecialType == SpecialType.System_Boolean)
+                return "ReadBoolean()";
+            if(underlyingSymbol.SpecialType == SpecialType.System_SByte)
+                return "ReadSByte()";
+            if(underlyingSymbol.SpecialType == SpecialType.System_Byte)
+                return "ReadByte()";
+            if(underlyingSymbol.SpecialType == SpecialType.System_Char)
+                return "ReadChar()";
+            if(underlyingSymbol.SpecialType == SpecialType.System_DateTime)
+                return "ReadDateTime()";
+            if(underlyingSymbol.SpecialType == SpecialType.System_Double)
+                return "ReadDouble()";
+            if(underlyingSymbol.SpecialType == SpecialType.System_Single)
+                return "ReadSingle()";
+            if(underlyingSymbol.SpecialType == SpecialType.System_String)
+                return "ReadString()";
+            if(underlyingSymbol.SpecialType == SpecialType.System_Int16)
+                return "ReadInt16()";
+            if(underlyingSymbol.SpecialType == SpecialType.System_Int32)
+                return "ReadInt32()";
+            if(underlyingSymbol.SpecialType == SpecialType.System_Int64)
+                return "ReadInt64()";
+            if(underlyingSymbol.SpecialType == SpecialType.System_UInt16)
+                return "ReadUInt16()";
+            if(underlyingSymbol.SpecialType == SpecialType.System_UInt32)
+                return "ReadUInt32()";
+            if(underlyingSymbol.SpecialType == SpecialType.System_UInt64)
+                return "ReadUInt64()";
+            return "";
+        }
     }
 }
