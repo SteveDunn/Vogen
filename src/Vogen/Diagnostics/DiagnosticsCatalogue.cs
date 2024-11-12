@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
+// ReSharper disable UseCollectionExpression
 
 namespace Vogen.Diagnostics;
 
@@ -57,11 +58,6 @@ internal static class DiagnosticsCatalogue
         RuleIdentifiers.InvalidDeserializationStrictness,
         "Invalid Deserialization Strictness",
         $"The Deserialization Strictness specified does not match any known customizations - see the {nameof(DeserializationStrictness)} type for valid values");
-
-    private static readonly DiagnosticDescriptor _mismatchedParsableGeneration = CreateDescriptor(
-        RuleIdentifiers.InvalidDeserializationStrictness,
-        "Invalid Parsable Generation",
-        $"The Parsable Generation specified does not match the underlying primitive");
 
     private static readonly DiagnosticDescriptor _underlyingTypeMustNotBeSameAsValueObject = CreateDescriptor(
         RuleIdentifiers.UnderlyingTypeMustNotBeSameAsValueObject,
@@ -173,8 +169,6 @@ internal static class DiagnosticsCatalogue
     public static Diagnostic InvalidCustomizations(Location location) => Create(_invalidCustomizations, location);
     
     public static Diagnostic InvalidDeserializationStrictness(Location location) => Create(_invalidDeserializationStrictness, location);
-    
-    public static Diagnostic InvalidParsableGeneration(Location location) => Create(_mismatchedParsableGeneration, location);
 
     public static Diagnostic InstanceMethodCannotHaveNullArgumentName(INamedTypeSymbol voClass) => 
         Create(_instanceMethodCannotHaveNullArgumentName, voClass.Locations, voClass.Name);
@@ -212,9 +206,6 @@ internal static class DiagnosticsCatalogue
 
     public static Diagnostic BuildDiagnostic(DiagnosticDescriptor descriptor, string name, Location location) => 
         Diagnostic.Create(descriptor, location, name);
-
-    public static Diagnostic BuildDiagnostic(DiagnosticDescriptor descriptor, string name) => 
-        Diagnostic.Create(descriptor, null, name);
 
     private static Diagnostic Create(DiagnosticDescriptor descriptor, IEnumerable<Location> locations, params object?[] args)
     {
