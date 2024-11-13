@@ -27,9 +27,9 @@ public class ValueObjectGenerator : IIncrementalGenerator
             
         var targetsAndConfig = collectedVos.Combine(found.GlobalConfig.Collect());
             
-        var targetsConfigAndConversionMarkers = targetsAndConfig.Combine(found.ConverterMarkerClasses.Collect());
+        var targetsConfigAndMarkers = targetsAndConfig.Combine(found.ConverterMarkerClasses.Collect());
 
-        var compilationAndValues = context.CompilationProvider.Combine(targetsConfigAndConversionMarkers);
+        var compilationAndValues = context.CompilationProvider.Combine(targetsConfigAndMarkers);
         
         var everything = compilationAndValues.Combine(knownSymbols);
             
@@ -71,7 +71,7 @@ public class ValueObjectGenerator : IIncrementalGenerator
 
         IncrementalValuesProvider<MarkerClassDefinition> converterMarkerClasses = syntaxProvider.CreateSyntaxProvider(
                 predicate: (node, _) => ConversionMarkers.IsTarget(node),
-                transform: (ctx, _) => ConversionMarkers.GetConversionMarkerClassDefinitionFromAttribute(ctx))
+                transform: (ctx, _) => ConversionMarkers.GetConversionMarkerClassesFromAttribute(ctx))
             .Where(static m => m is not null)!;
 
         return new Found(targets, globalConfig, converterMarkerClasses);
@@ -129,7 +129,7 @@ public class ValueObjectGenerator : IIncrementalGenerator
         // the user can specify to create the MessagePack generated code as an attribute
         // or as marker in another project.
         GenerateCodeForMessagePack.GenerateForApplicableValueObjects(spc, compilation, workItems);
-        GenerateCodeForMessagePackMarkers.GenerateForMarkerClasses(spc, compilation, markerClasses, vogenKnownSymbols);
+        GenerateCodeForMessagePack.GenerateForMarkerClasses(spc, markerClasses);
         
         GenerateCodeForBsonSerializers.WriteIfNeeded(spc, compilation, workItems);
         

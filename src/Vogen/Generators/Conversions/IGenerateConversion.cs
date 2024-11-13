@@ -1,4 +1,5 @@
 ﻿using Microsoft.CodeAnalysis.CSharp.Syntax;
+// ReSharper disable UnusedParameter.Global
 
 namespace Vogen.Generators.Conversions;
 

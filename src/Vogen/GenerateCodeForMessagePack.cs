@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Collections.Immutable;
 using System.Linq;
 using System.Text;
 using Microsoft.CodeAnalysis;
@@ -9,7 +10,15 @@ namespace Vogen;
 
 internal class GenerateCodeForMessagePack
 {
-    public static void GenerateForAMarkerClass(SourceProductionContext context, MarkerClassDefinition markerClass)
+    public static void GenerateForMarkerClasses(SourceProductionContext context, ImmutableArray<MarkerClassDefinition> conversionMarkerClasses)
+    {
+        foreach (MarkerClassDefinition? eachMarkerClass in conversionMarkerClasses)
+        {
+            GenerateCodeForMessagePack.GenerateForAMarkerClass(context, eachMarkerClass);
+        }
+    }
+
+    private static void GenerateForAMarkerClass(SourceProductionContext context, MarkerClassDefinition markerClass)
     {
         var markerClassSymbol = markerClass.MarkerClassSymbol;
 
@@ -41,7 +50,7 @@ internal class GenerateCodeForMessagePack
 
         SourceText sourceText = Util.FormatSource(s);
 
-        string filename = Util.GetLegalMarkerClassFilename(markerClass.MarkerClassSymbol, ConversionMarkerKind.MessagePack);
+        string filename = Util.GetLegalFilenameForMarkerClass(markerClass.MarkerClassSymbol, ConversionMarkerKind.MessagePack);
 
         Util.TryWriteUsingUniqueFilename(filename, context, sourceText);
 
@@ -63,9 +72,11 @@ internal class GenerateCodeForMessagePack
                     m => m.Marker?.Kind is ConversionMarkerKind.MessagePack).Select(
                     x =>
                     {
-                        //if (x is null) return null;
-                        if (x.Marker is null) return null;
-                        
+                        if (x.Marker is null)
+                        {
+                            return null;
+                        }
+
                         string wrapperNameShort = x.Marker.VoSymbol.Name;
                         
                         return $"new {wrapperNameShort}MessagePackFormatter()";
@@ -139,7 +150,6 @@ internal class GenerateCodeForMessagePack
         return new FormatterSourceAndFilename(filename, sb);
     }
 
-
     private static string GenerateSource(string accessibility,
         INamedTypeSymbol wrapperSymbol,
         INamedTypeSymbol underlyingSymbol)
@@ -151,11 +161,6 @@ internal class GenerateCodeForMessagePack
 
         string underlyingTypeName = underlyingSymbol.FullName() ?? underlyingSymbol.Name;
         
-        // if (readAndWriteMethods.Item1.Length == 0)
-        // {
-        //     return $"#error unsupported underlying type '{underlyingSymbol.FullName()}' for value object '{wrapperSymbol.Name}' - you need to turn off MessagePack support for this value object and provide your own resolver";
-        // }
-
         string nativeReadMethod = TryGetNativeReadMethod(underlyingSymbol);
 
         if (!string.IsNullOrEmpty(nativeReadMethod))
@@ -224,4 +229,26 @@ internal class GenerateCodeForMessagePack
             SpecialType.System_UInt64 => "ReadUInt64()",
             _ => ""
         };
+    
+    /// <summary>
+    /// Represents a marker for a MessagePack conversion
+    /// </summary>
+    /// <param name="ContainerNamespace">The namespace of the containing marker class.</param>
+    /// <param name="WrapperType">The symbol for the value object wrapper class.</param>
+    /// <param name="UnderlyingType">The symbol for the underlying primitive type.</param>
+    /// <param name="WrapperAccessibility">The accessibility (public, internal, etc.) of the generated type.</param>
+    private record MessagePackStandalone(
+        string ContainerNamespace,
+        INamedTypeSymbol WrapperType, 
+        INamedTypeSymbol UnderlyingType, 
+        string WrapperAccessibility)
+    {
+        public static MessagePackStandalone FromWorkItem(VoWorkItem voWorkItem)
+        {
+            var isPublic = voWorkItem.WrapperType.DeclaredAccessibility.HasFlag(Accessibility.Public);
+            var accessor = isPublic ? "public" : "internal";
+
+            return new(voWorkItem.FullNamespace, voWorkItem.WrapperType, voWorkItem.UnderlyingType, accessor);
+        }
+    }    
 }

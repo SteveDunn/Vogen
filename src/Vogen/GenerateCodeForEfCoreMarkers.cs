@@ -73,7 +73,7 @@ $$"""
         
         SourceText sourceText = SourceText.From(sb, Encoding.UTF8);
 
-        string filename = Util.GetLegalMarkerClassFilename(markerClass.MarkerClassSymbol, markerClass.VoSymbol, markerClass.Kind);
+        string filename = Util.GetLegalFilenameForMarkerClass(markerClass.MarkerClassSymbol, markerClass.VoSymbol, markerClass.Kind);
 
         Util.TryWriteUsingUniqueFilename(filename, context, sourceText);
     }
@@ -120,9 +120,7 @@ $$"""
 
         SourceText sourceText = SourceText.From(source, Encoding.UTF8);
 
-        var filename = Util.GetLegalMarkerClassFilename(markerSymbol, ConversionMarkerKind.EFCore);
-
-        //string filename = Util.SanitizeToALegalFilename($"{markerSymbol.ToDisplayString()}.g.cs");
+        var filename = Util.GetLegalFilenameForMarkerClass(markerSymbol, ConversionMarkerKind.EFCore);
 
         Util.TryWriteUsingUniqueFilename(filename, context, sourceText);
         
@@ -146,5 +144,4 @@ $$"""
             return sb.ToString();
         }
     }
-    
 }

@@ -29,10 +29,8 @@ internal static class ConversionMarkers
             a => _knownMarkerAttributes.ContainsKey(a.AttributeClass?.MetadataName ?? ""));
     }
 
-    public static MarkerClassDefinition? GetConversionMarkerClassDefinitionFromAttribute(GeneratorSyntaxContext context)
+    public static MarkerClassDefinition? GetConversionMarkerClassesFromAttribute(GeneratorSyntaxContext context)
     {
-     //   var voSyntaxInformation = (TypeDeclarationSyntax) context.Node;
-
         var semanticModel = context.SemanticModel;
 
         ISymbol declaredSymbol = semanticModel.GetDeclaredSymbol(context.Node)!;
@@ -50,9 +48,8 @@ internal static class ConversionMarkers
 
     public static bool IsTarget(SyntaxNode node) => 
         node is TypeDeclarationSyntax { AttributeLists.Count: > 0 };
-    
-    
-    public static MarkerAttributeDefinition? TryBuild(AttributeData markerAtt, in INamedTypeSymbol? markerClassSymbol)
+
+    private static MarkerAttributeDefinition? TryBuild(AttributeData markerAtt, in INamedTypeSymbol? markerClassSymbol)
     {
         ImmutableArray<TypedConstant> args = markerAtt.ConstructorArguments;
 
@@ -64,54 +61,61 @@ internal static class ConversionMarkers
             return null;
         }
 
-        if (markerAtt.AttributeClass == null)
-        {
-            return null;
-        }
-
-        var voSymbol = markerAtt.AttributeClass.TypeArguments.SingleOrDefaultIfMultiple() as INamedTypeSymbol;
-        
-        if (voSymbol is null)
+        if (markerAtt.AttributeClass?.TypeArguments.SingleOrDefaultIfMultiple() is not INamedTypeSymbol voSymbol)
         {
             return null;
         }
 
         ConversionMarkerKind markerKind = ResolveMarkerKind(markerAtt);
         
-        if(markerKind is ConversionMarkerKind.Unrecognized) return null;
-        
+        if(markerKind is ConversionMarkerKind.Unrecognized)
+        {
+            return null;
+        }
+
         if (!VoFilter.IsTarget(voSymbol))
         {
-//            return ConversionMarkerAttributeDefinition.Error(markerKind, DiagnosticsCatalogue.VoReferencedInAConversionMarkerMustExplicitlySpecifyPrimitive(markerClassSymbol!, voSymbol));
-            return MarkerAttributeDefinition.Error(DiagnosticsCatalogue.TypesReferencedInAConversionMarkerMustBeaValueObjects(markerClassSymbol!, voSymbol));
+            return MarkerAttributeDefinition.Error(
+                DiagnosticsCatalogue.TypesReferencedInAConversionMarkerMustBeaValueObjects(markerClassSymbol!, voSymbol));
         }
 
         List<AttributeData> voAttributes = VoFilter.TryGetValueObjectAttributes(voSymbol).ToList();
         
-        if(voAttributes.Count != 1) return null;
+        if(voAttributes.Count != 1)
+        {
+            return null;
+        }
 
         AttributeData voAttribute = voAttributes[0];
         
         VogenConfigurationBuildResult config = BuildConfigurationFromAttributes.TryBuildFromValueObjectAttribute(voAttribute);
         
-        if(config.HasDiagnostics) return null;
+        if(config.HasDiagnostics)
+        {
+            return null;
+        }
 
         VogenConfiguration c = config.ResultingConfiguration!;
 
-        var underlyingType = c.UnderlyingType ?? ResolveUnderlyingType(voSymbol);
+        var underlyingType = c.UnderlyingType ?? TryResolveUnderlyingType(voSymbol);
 
         if (underlyingType is null)
         {
-            return MarkerAttributeDefinition.Error(DiagnosticsCatalogue.VoReferencedInAConversionMarkerMustExplicitlySpecifyPrimitive(markerClassSymbol!, voSymbol, markerAtt.ApplicationSyntaxReference?.GetSyntax().GetLocation()));
+            return MarkerAttributeDefinition.Error(
+                DiagnosticsCatalogue.VoReferencedInAConversionMarkerMustExplicitlySpecifyPrimitive(
+                    markerClassSymbol!, 
+                    voSymbol, 
+                    markerAtt.ApplicationSyntaxReference?.GetSyntax().GetLocation()));
         }
         
         return MarkerAttributeDefinition.Ok(markerKind, voSymbol, underlyingType, markerClassSymbol!);
     }
 
     private static ConversionMarkerKind ResolveMarkerKind(AttributeData att) => 
+        // ReSharper disable once CanSimplifyDictionaryTryGetValueWithGetValueOrDefault
         _knownMarkerAttributes.TryGetValue(att.AttributeClass?.MetadataName ?? "", out var kind) ? kind : ConversionMarkerKind.Unrecognized;
 
-    private static INamedTypeSymbol? ResolveUnderlyingType(INamedTypeSymbol method)
+    private static INamedTypeSymbol? TryResolveUnderlyingType(INamedTypeSymbol method)
     {
         ImmutableArray<ISymbol> ms = method.GetMembers("Value");
         
@@ -122,6 +126,6 @@ internal static class ConversionMarkers
 
         IPropertySymbol? prop = ms[0] as IPropertySymbol;
         
-        return (INamedTypeSymbol)prop!.Type;
+        return prop!.Type as INamedTypeSymbol;
     }
 }
