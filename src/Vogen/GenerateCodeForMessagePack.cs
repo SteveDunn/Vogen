@@ -9,7 +9,10 @@ namespace Vogen;
 
 internal class GenerateCodeForMessagePack
 {
-    public static void GenerateForAMarkerClass(SourceProductionContext context, Compilation compilation, MarkerClassDefinition markerClass)
+    public static void GenerateForAMarkerClass(SourceProductionContext context,
+        Compilation compilation,
+        MarkerClassDefinition markerClass,
+        VogenKnownSymbols vogenKnownSymbols)
     {
         var markerClassSymbol = markerClass.MarkerClassSymbol;
 
@@ -84,7 +87,7 @@ internal class GenerateCodeForMessagePack
             {
                 sb.AppendLine(
                     $$"""
-                          {{GenerateSource("public", eachMarker.Marker!.VoSymbol, eachMarker.Marker.UnderlyingTypeSymbol)}}
+                          {{GenerateSource("public", eachMarker.Marker!.VoSymbol, eachMarker.Marker.UnderlyingTypeSymbol, vogenKnownSymbols)}}
                       """);
             }
 
@@ -94,7 +97,8 @@ internal class GenerateCodeForMessagePack
 
     public static void GenerateForApplicableValueObjects(SourceProductionContext context,
         Compilation compilation,
-        List<VoWorkItem> valueObjects)
+        List<VoWorkItem> valueObjects,
+        VogenKnownSymbols knownSymbols)
     {
         if (!compilation.IsAtLeastCSharpVersion(LanguageVersion.CSharp12))
         {
@@ -106,7 +110,7 @@ internal class GenerateCodeForMessagePack
         List<MessagePackStandalone> items = matchingVos.Select(MessagePackStandalone.FromWorkItem).ToList();
 
         List<FormatterSourceAndFilename> toWrite = items.Select(
-            p => GenerateSourceAndFilename(p.WrapperAccessibility, p.WrapperType, p.ContainerNamespace, p.UnderlyingType)).ToList();
+            p => GenerateSourceAndFilename(p.WrapperAccessibility, p.WrapperType, p.ContainerNamespace, p.UnderlyingType, knownSymbols)).ToList();
 
         foreach (var eachToWrite in toWrite)
         {
@@ -118,11 +122,11 @@ internal class GenerateCodeForMessagePack
 
     public record FormatterSourceAndFilename(string FormatterFullyQualifiedName, string Filename, string SourceCode);
 
-    private static FormatterSourceAndFilename GenerateSourceAndFilename(
-        string accessibility,
+    private static FormatterSourceAndFilename GenerateSourceAndFilename(string accessibility,
         INamedTypeSymbol wrapperSymbol,
         string theNamespace,
-        INamedTypeSymbol underlyingSymbol)
+        INamedTypeSymbol underlyingSymbol,
+        VogenKnownSymbols knownSymbols)
     {
         string wrapperName = Util.EscapeIfRequired(wrapperSymbol.Name);
 
@@ -134,7 +138,7 @@ internal class GenerateCodeForMessagePack
 
               {{ns}}
 
-              {{GenerateSource(accessibility, wrapperSymbol, underlyingSymbol)}}          
+              {{GenerateSource(accessibility, wrapperSymbol, underlyingSymbol, knownSymbols)}}          
               """;
 
         var fn = string.IsNullOrEmpty(theNamespace) ? "" : theNamespace + ".";
@@ -146,72 +150,89 @@ internal class GenerateCodeForMessagePack
     }
 
 
-    private static string GenerateSource(string accessibility, INamedTypeSymbol wrapperSymbol, INamedTypeSymbol underlyingSymbol)
+    private static string GenerateSource(string accessibility,
+        INamedTypeSymbol wrapperSymbol,
+        INamedTypeSymbol underlyingSymbol,
+        VogenKnownSymbols vogenKnownSymbols)
     {
         var accessor = accessibility;
 
         string wrapperNameShort = Util.EscapeIfRequired(wrapperSymbol.Name);
         string wrapperName = Util.EscapeIfRequired(wrapperSymbol.FullName() ?? wrapperSymbol.Name);
 
-        string underlyingTypeName = underlyingSymbol.FullName() ?? wrapperSymbol.Name;
+        string underlyingTypeName = underlyingSymbol.FullName() ?? underlyingSymbol.Name;
         
-        string readMethod = GenerateReadMethod();
+        // if (readAndWriteMethods.Item1.Length == 0)
+        // {
+        //     return $"#error unsupported underlying type '{underlyingSymbol.FullName()}' for value object '{wrapperSymbol.Name}' - you need to turn off MessagePack support for this value object and provide your own resolver";
+        // }
 
-        if (readMethod.Length == 0)
+        string nativeReadMethod = TryGetNativeReadMethod(underlyingSymbol);
+
+        if (!string.IsNullOrEmpty(nativeReadMethod))
         {
-            return "#error unsupported underlying type " + underlyingSymbol.SpecialType;
+            return $$"""
+                     {{accessor}} partial class {{wrapperNameShort}}MessagePackFormatter : global::MessagePack.Formatters.IMessagePackFormatter<{{wrapperName}}>
+                     {
+                         public void Serialize(ref global::MessagePack.MessagePackWriter writer, {{wrapperName}} value, global::MessagePack.MessagePackSerializerOptions options) =>
+                             writer.Write(value.Value);
+                     
+                         public {{wrapperName}} Deserialize(ref global::MessagePack.MessagePackReader reader, global::MessagePack.MessagePackSerializerOptions options) =>
+                             Deserialize(reader.{{nativeReadMethod}});
+                     
+                       static {{wrapperName}} Deserialize({{underlyingTypeName}} value) => UnsafeDeserialize(default, value);
+                       
+                       [global::System.Runtime.CompilerServices.UnsafeAccessor(global::System.Runtime.CompilerServices.UnsafeAccessorKind.StaticMethod, Name = "__Deserialize")]
+                       static extern {{wrapperName}} UnsafeDeserialize({{wrapperName}} @this, {{underlyingTypeName}} value);      
+                     }
+                     """;
         }
 
-        string sb =
-            $$"""
-              {{accessor}} partial class {{wrapperNameShort}}MessagePackFormatter : global::MessagePack.Formatters.IMessagePackFormatter<{{wrapperName}}>
-              {
-                  public void Serialize(ref global::MessagePack.MessagePackWriter writer, {{wrapperName}} value, global::MessagePack.MessagePackSerializerOptions options) =>
-                      writer.Write(value.Value);
-              
-                  public {{wrapperName}} Deserialize(ref global::MessagePack.MessagePackReader reader, global::MessagePack.MessagePackSerializerOptions options) =>
-                      Deserialize(reader.{{readMethod}});
-              
-                static {{wrapperName}} Deserialize({{underlyingTypeName}} value) => UnsafeDeserialize(default, value);
-                
-                [global::System.Runtime.CompilerServices.UnsafeAccessor(global::System.Runtime.CompilerServices.UnsafeAccessorKind.StaticMethod, Name = "__Deserialize")]
-                static extern {{wrapperName}} UnsafeDeserialize({{wrapperName}} @this, {{underlyingTypeName}} value);      
-              }
-              """;
-
-        return sb;
-
-        string GenerateReadMethod()
-        {
-            if(underlyingSymbol.SpecialType == SpecialType.System_Boolean)
-                return "ReadBoolean()";
-            if(underlyingSymbol.SpecialType == SpecialType.System_SByte)
-                return "ReadSByte()";
-            if(underlyingSymbol.SpecialType == SpecialType.System_Byte)
-                return "ReadByte()";
-            if(underlyingSymbol.SpecialType == SpecialType.System_Char)
-                return "ReadChar()";
-            if(underlyingSymbol.SpecialType == SpecialType.System_DateTime)
-                return "ReadDateTime()";
-            if(underlyingSymbol.SpecialType == SpecialType.System_Double)
-                return "ReadDouble()";
-            if(underlyingSymbol.SpecialType == SpecialType.System_Single)
-                return "ReadSingle()";
-            if(underlyingSymbol.SpecialType == SpecialType.System_String)
-                return "ReadString()";
-            if(underlyingSymbol.SpecialType == SpecialType.System_Int16)
-                return "ReadInt16()";
-            if(underlyingSymbol.SpecialType == SpecialType.System_Int32)
-                return "ReadInt32()";
-            if(underlyingSymbol.SpecialType == SpecialType.System_Int64)
-                return "ReadInt64()";
-            if(underlyingSymbol.SpecialType == SpecialType.System_UInt16)
-                return "ReadUInt16()";
-            if(underlyingSymbol.SpecialType == SpecialType.System_UInt32)
-                return "ReadUInt32()";
-            if(underlyingSymbol.SpecialType == SpecialType.System_UInt64)
-                return "ReadUInt64()";
-            return "";
-        }
+        return $$"""
+                 {{accessor}} partial class {{wrapperNameShort}}MessagePackFormatter : global::MessagePack.Formatters.IMessagePackFormatter<{{wrapperName}}>
+                 {
+                     public void Serialize(ref global::MessagePack.MessagePackWriter writer, {{wrapperName}} value, global::MessagePack.MessagePackSerializerOptions options)
+                     {
+                         global::MessagePack.Formatters.IMessagePackFormatter<{{underlyingTypeName}}>? r = options.Resolver.GetFormatter<{{underlyingTypeName}}>();
+                         if (r is null) Throw("No formatter for underlying type of '{{underlyingTypeName}}' registered for value object '{{wrapperName}}'.");
+                         r.Serialize(ref writer, value.Value, options);
+                     }
+                 
+                     public {{wrapperName}} Deserialize(ref global::MessagePack.MessagePackReader reader, global::MessagePack.MessagePackSerializerOptions options)
+                     {
+                         global::MessagePack.Formatters.IMessagePackFormatter<{{underlyingTypeName}}>? r = options.Resolver.GetFormatter<{{underlyingTypeName}}>();
+                         if (r is null) Throw("No formatter for underlying type of '{{underlyingTypeName}}' registered for value object '{{wrapperName}}'.");
+                         {{underlyingTypeName}} g = r.Deserialize(ref reader, options);
+                         return Deserialize(g);
+                     }
+                     
+                     private static void Throw(string message) => throw new global::MessagePack.MessagePackSerializationException(message);
+                 
+                    static {{wrapperName}} Deserialize({{underlyingTypeName}} value) => UnsafeDeserialize(default, value);
+                   
+                    [global::System.Runtime.CompilerServices.UnsafeAccessor(global::System.Runtime.CompilerServices.UnsafeAccessorKind.StaticMethod, Name = "__Deserialize")]
+                    static extern {{wrapperName}} UnsafeDeserialize({{wrapperName}} @this, {{underlyingTypeName}} value);      
+                 }
+                 """;
     }
+
+    private static string TryGetNativeReadMethod(INamedTypeSymbol primitive) =>
+        primitive.SpecialType switch
+        {
+            SpecialType.System_Boolean => "ReadBoolean()",
+            SpecialType.System_SByte => "ReadSByte()",
+            SpecialType.System_Byte => "ReadByte()",
+            SpecialType.System_Char => "ReadChar()",
+            SpecialType.System_DateTime => "ReadDateTime()",
+            SpecialType.System_Double => "ReadDouble()",
+            SpecialType.System_Single => "ReadSingle()",
+            SpecialType.System_String => "ReadString()",
+            SpecialType.System_Int16 => "ReadInt16()",
+            SpecialType.System_Int32 => "ReadInt32()",
+            SpecialType.System_Int64 => "ReadInt64()",
+            SpecialType.System_UInt16 => "ReadUInt16()",
+            SpecialType.System_UInt32 => "ReadUInt32()",
+            SpecialType.System_UInt64 => "ReadUInt64()",
+            _ => ""
+        };
 }

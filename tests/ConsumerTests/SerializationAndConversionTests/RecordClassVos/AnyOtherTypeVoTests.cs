@@ -9,6 +9,7 @@ using LinqToDB.DataProvider.SQLite;
 using LinqToDB.Mapping;
 using Microsoft.Data.Sqlite;
 using Microsoft.EntityFrameworkCore;
+using Vogen.IntegrationTests.TestTypes;
 using Vogen.IntegrationTests.TestTypes.RecordClassVos;
 using NewtonsoftJsonSerializer = Newtonsoft.Json.JsonConvert;
 using SystemTextJsonSerializer = System.Text.Json.JsonSerializer;

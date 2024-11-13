@@ -1,7 +1,5 @@
 ﻿namespace Vogen.IntegrationTests.TestTypes.ClassVos;
 
-public record struct Bar(int Age, string Name);
-
 [ValueObject(conversions: Conversions.None, underlyingType: typeof(Bar))]
 public partial class FooVo { }
 

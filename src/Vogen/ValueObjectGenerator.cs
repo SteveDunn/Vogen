@@ -128,8 +128,8 @@ public class ValueObjectGenerator : IIncrementalGenerator
         
         // the user can specify to create the MessagePack generated code as an attribute
         // or as marker in another project.
-        GenerateCodeForMessagePack.GenerateForApplicableValueObjects(spc, compilation, workItems);
-        GenerateCodeForMessagePackMarkers.GenerateForMarkerClasses(spc, compilation, markerClasses);
+        GenerateCodeForMessagePack.GenerateForApplicableValueObjects(spc, compilation, workItems, vogenKnownSymbols);
+        GenerateCodeForMessagePackMarkers.GenerateForMarkerClasses(spc, compilation, markerClasses, vogenKnownSymbols);
         
         GenerateCodeForBsonSerializers.WriteIfNeeded(spc, compilation, workItems);
         

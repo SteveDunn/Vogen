@@ -1,5 +1,6 @@
 ﻿#nullable disable
 using ConsumerTests;
+using Vogen.IntegrationTests.TestTypes;
 
 // ReSharper disable FunctionComplexityOverflow
 
@@ -109,7 +110,7 @@ public class ComplexBson
     public Vogen.IntegrationTests.TestTypes.StructVos.BsonFloatVo ClassVos_BsonFloatVo { get; set; } =
         Vogen.IntegrationTests.TestTypes.StructVos.BsonFloatVo.From(5.55f);
 
-    public Vogen.IntegrationTests.TestTypes.StructVos.BsonFooVo ClassVos_BsonFooVo { get; set; } = Vogen.IntegrationTests.TestTypes.StructVos.BsonFooVo.From(new Vogen.IntegrationTests.TestTypes.StructVos.Bar(42,  "Fred"));
+    public Vogen.IntegrationTests.TestTypes.StructVos.BsonFooVo ClassVos_BsonFooVo { get; set; } = Vogen.IntegrationTests.TestTypes.StructVos.BsonFooVo.From(new Bar(42,  "Fred"));
 
     public Vogen.IntegrationTests.TestTypes.StructVos.BsonGuidVo ClassVos_BsonGuidVo { get; set; } =
         Vogen.IntegrationTests.TestTypes.StructVos.BsonGuidVo.From(Guid.Empty);
@@ -148,7 +149,7 @@ public class ComplexBson
     public Vogen.IntegrationTests.TestTypes.RecordClassVos.BsonFloatVo RecordClassVos_BsonFloatVo { get; set; } =
         Vogen.IntegrationTests.TestTypes.RecordClassVos.BsonFloatVo.From(5.55f);
 
-    public Vogen.IntegrationTests.TestTypes.RecordClassVos.BsonFooVo RecordClassVos_BsonFooVo { get; set; } = Vogen.IntegrationTests.TestTypes.RecordClassVos.BsonFooVo.From(new Vogen.IntegrationTests.TestTypes.RecordClassVos.Bar(42, "Fred"));
+    public Vogen.IntegrationTests.TestTypes.RecordClassVos.BsonFooVo RecordClassVos_BsonFooVo { get; set; } = Vogen.IntegrationTests.TestTypes.RecordClassVos.BsonFooVo.From(new Bar(42, "Fred"));
 
     public Vogen.IntegrationTests.TestTypes.RecordClassVos.BsonGuidVo RecordClassVos_BsonGuidVo { get; set; } =
         Vogen.IntegrationTests.TestTypes.RecordClassVos.BsonGuidVo.From(Guid.Empty);
@@ -185,7 +186,7 @@ public class ComplexBson
     public Vogen.IntegrationTests.TestTypes.StructVos.BsonFloatVo StructVos_BsonFloatVo { get; set; } =
         Vogen.IntegrationTests.TestTypes.StructVos.BsonFloatVo.From(5.55f);
 
-    public Vogen.IntegrationTests.TestTypes.StructVos.BsonFooVo StructVos_BsonFooVo { get; set; } = Vogen.IntegrationTests.TestTypes.StructVos.BsonFooVo.From(new Vogen.IntegrationTests.TestTypes.StructVos.Bar(42, "Fred"));
+    public Vogen.IntegrationTests.TestTypes.StructVos.BsonFooVo StructVos_BsonFooVo { get; set; } = Vogen.IntegrationTests.TestTypes.StructVos.BsonFooVo.From(new Bar(42, "Fred"));
 
     public Vogen.IntegrationTests.TestTypes.StructVos.BsonGuidVo StructVos_BsonGuidVo { get; set; } =
         Vogen.IntegrationTests.TestTypes.StructVos.BsonGuidVo.From(Guid.Empty);
@@ -224,7 +225,7 @@ public class ComplexBson
     public Vogen.IntegrationTests.TestTypes.RecordStructVos.BsonFloatVo RecordStructVos_BsonFloatVo { get; set; } =
         Vogen.IntegrationTests.TestTypes.RecordStructVos.BsonFloatVo.From(5.55f);
 
-    public Vogen.IntegrationTests.TestTypes.RecordStructVos.BsonFooVo RecordStructVos_BsonFooVo { get; set; } = Vogen.IntegrationTests.TestTypes.RecordStructVos.BsonFooVo.From(new Vogen.IntegrationTests.TestTypes.RecordStructVos.Bar(42, "Fred"));
+    public Vogen.IntegrationTests.TestTypes.RecordStructVos.BsonFooVo RecordStructVos_BsonFooVo { get; set; } = Vogen.IntegrationTests.TestTypes.RecordStructVos.BsonFooVo.From(new Bar(42, "Fred"));
 
     public Vogen.IntegrationTests.TestTypes.RecordStructVos.BsonGuidVo RecordStructVos_BsonGuidVo { get; set; } =
         Vogen.IntegrationTests.TestTypes.RecordStructVos.BsonGuidVo.From(Guid.Empty);

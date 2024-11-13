@@ -79,6 +79,22 @@ public enum Conversions
     /// Creates a BSON serializer for each value object.
     /// </summary>
     Bson = 1 << 8,
+    
+    /// <summary>
+    /// Creates and registers a codec and copier for Microsoft Orleans.
+    /// This feature requires .NET 8 and C#12 and cannot be polly-filled.
+    /// </summary>
+    Orleans = 1 << 9,
+
+    /// <summary>
+    /// Generates implementation of IXmlSerializable.
+    /// </summary>
+    XmlSerializable = 1 << 10,
+
+    /// <summary>
+    /// Generates implementation of IMessagePackFormatter.
+    /// </summary>
+    MessagePack = 1 << 11
 }
 ```
 

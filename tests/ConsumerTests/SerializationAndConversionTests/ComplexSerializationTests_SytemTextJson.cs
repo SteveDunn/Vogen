@@ -1,5 +1,7 @@
 ﻿#nullable disable
 using System.Text.Json;
+using Vogen.IntegrationTests.TestTypes;
+
 // ReSharper disable FunctionComplexityOverflow
 
 namespace MediumTests.SerializationAndConversionTests;
@@ -16,7 +18,7 @@ public partial class ComplexSerializationTests
         public Vogen.IntegrationTests.TestTypes.ClassVos.SystemTextJsonDecimalVo Vogen_IntegrationTests_TestTypes_ClassVos_SystemTextJsonDecimalVo { get; set; } = Vogen.IntegrationTests.TestTypes.ClassVos.SystemTextJsonDecimalVo.From(3.33m);
         public Vogen.IntegrationTests.TestTypes.ClassVos.SystemTextJsonDoubleVo Vogen_IntegrationTests_TestTypes_ClassVos_SystemTextJsonDoubleVo { get; set; } = Vogen.IntegrationTests.TestTypes.ClassVos.SystemTextJsonDoubleVo.From(4.44d);
         public Vogen.IntegrationTests.TestTypes.ClassVos.SystemTextJsonFloatVo Vogen_IntegrationTests_TestTypes_ClassVos_SystemTextJsonFloatVo { get; set; } = Vogen.IntegrationTests.TestTypes.ClassVos.SystemTextJsonFloatVo.From(5.55f);
-        public Vogen.IntegrationTests.TestTypes.ClassVos.SystemTextJsonFooVo Vogen_IntegrationTests_TestTypes_ClassVos_SystemTextJsonFooVo { get; set; } = Vogen.IntegrationTests.TestTypes.ClassVos.SystemTextJsonFooVo.From(new Vogen.IntegrationTests.TestTypes.ClassVos.Bar(42, "Fred"));
+        public Vogen.IntegrationTests.TestTypes.ClassVos.SystemTextJsonFooVo Vogen_IntegrationTests_TestTypes_ClassVos_SystemTextJsonFooVo { get; set; } = Vogen.IntegrationTests.TestTypes.ClassVos.SystemTextJsonFooVo.From(new Bar(42, "Fred"));
         public Vogen.IntegrationTests.TestTypes.ClassVos.SystemTextJsonGuidVo Vogen_IntegrationTests_TestTypes_ClassVos_SystemTextJsonGuidVo { get; set; } = Vogen.IntegrationTests.TestTypes.ClassVos.SystemTextJsonGuidVo.From(Guid.Empty);
         public Vogen.IntegrationTests.TestTypes.ClassVos.SystemTextJsonIntVo Vogen_IntegrationTests_TestTypes_ClassVos_SystemTextJsonIntVo { get; set; } = Vogen.IntegrationTests.TestTypes.ClassVos.SystemTextJsonIntVo.From(6);
         public Vogen.IntegrationTests.TestTypes.ClassVos.SystemTextJsonLongVo Vogen_IntegrationTests_TestTypes_ClassVos_SystemTextJsonLongVo { get; set; } = Vogen.IntegrationTests.TestTypes.ClassVos.SystemTextJsonLongVo.From(7L);
@@ -32,7 +34,7 @@ public partial class ComplexSerializationTests
         public Vogen.IntegrationTests.TestTypes.RecordClassVos.SystemTextJsonDecimalVo Vogen_IntegrationTests_TestTypes_RecordClassVos_SystemTextJsonDecimalVo { get; set; } = Vogen.IntegrationTests.TestTypes.RecordClassVos.SystemTextJsonDecimalVo.From(3.33m);
         public Vogen.IntegrationTests.TestTypes.RecordClassVos.SystemTextJsonDoubleVo Vogen_IntegrationTests_TestTypes_RecordClassVos_SystemTextJsonDoubleVo { get; set; } = Vogen.IntegrationTests.TestTypes.RecordClassVos.SystemTextJsonDoubleVo.From(4.44d);
         public Vogen.IntegrationTests.TestTypes.RecordClassVos.SystemTextJsonFloatVo Vogen_IntegrationTests_TestTypes_RecordClassVos_SystemTextJsonFloatVo { get; set; } = Vogen.IntegrationTests.TestTypes.RecordClassVos.SystemTextJsonFloatVo.From(5.55f);
-        public Vogen.IntegrationTests.TestTypes.RecordClassVos.SystemTextJsonFooVo Vogen_IntegrationTests_TestTypes_RecordClassVos_SystemTextJsonFooVo { get; set; } = Vogen.IntegrationTests.TestTypes.RecordClassVos.SystemTextJsonFooVo.From(new Vogen.IntegrationTests.TestTypes.RecordClassVos.Bar(42, "Fred"));
+        public Vogen.IntegrationTests.TestTypes.RecordClassVos.SystemTextJsonFooVo Vogen_IntegrationTests_TestTypes_RecordClassVos_SystemTextJsonFooVo { get; set; } = Vogen.IntegrationTests.TestTypes.RecordClassVos.SystemTextJsonFooVo.From(new Bar(42, "Fred"));
         public Vogen.IntegrationTests.TestTypes.RecordClassVos.SystemTextJsonGuidVo Vogen_IntegrationTests_TestTypes_RecordClassVos_SystemTextJsonGuidVo { get; set; } = Vogen.IntegrationTests.TestTypes.RecordClassVos.SystemTextJsonGuidVo.From(Guid.Empty);
         public Vogen.IntegrationTests.TestTypes.RecordClassVos.SystemTextJsonIntVo Vogen_IntegrationTests_TestTypes_RecordClassVos_SystemTextJsonIntVo { get; set; } = Vogen.IntegrationTests.TestTypes.RecordClassVos.SystemTextJsonIntVo.From(6);
         public Vogen.IntegrationTests.TestTypes.RecordClassVos.SystemTextJsonLongVo Vogen_IntegrationTests_TestTypes_RecordClassVos_SystemTextJsonLongVo { get; set; } = Vogen.IntegrationTests.TestTypes.RecordClassVos.SystemTextJsonLongVo.From(7L);
@@ -46,7 +48,7 @@ public partial class ComplexSerializationTests
         public Vogen.IntegrationTests.TestTypes.StructVos.SystemTextJsonDoubleVo Vogen_IntegrationTests_TestTypes_StructVos_SystemTextJsonDoubleVo { get; set; } = Vogen.IntegrationTests.TestTypes.StructVos.SystemTextJsonDoubleVo.From(4.44d);
         public Vogen.IntegrationTests.TestTypes.StructVos.SystemTextJsonFloatVo Vogen_IntegrationTests_TestTypes_StructVos_SystemTextJsonFloatVo { get; set; } = Vogen.IntegrationTests.TestTypes.StructVos.SystemTextJsonFloatVo.From(5.55f);
 
-        public Vogen.IntegrationTests.TestTypes.StructVos.SystemTextJsonFooVo Vogen_IntegrationTests_TestTypes_StructVos_SystemTextJsonFooVo { get; set; } = Vogen.IntegrationTests.TestTypes.StructVos.SystemTextJsonFooVo.From(new Vogen.IntegrationTests.TestTypes.StructVos.Bar(42, "Fred"));
+        public Vogen.IntegrationTests.TestTypes.StructVos.SystemTextJsonFooVo Vogen_IntegrationTests_TestTypes_StructVos_SystemTextJsonFooVo { get; set; } = Vogen.IntegrationTests.TestTypes.StructVos.SystemTextJsonFooVo.From(new Bar(42, "Fred"));
         public Vogen.IntegrationTests.TestTypes.StructVos.SystemTextJsonGuidVo Vogen_IntegrationTests_TestTypes_StructVos_SystemTextJsonGuidVo { get; set; } = Vogen.IntegrationTests.TestTypes.StructVos.SystemTextJsonGuidVo.From(Guid.Empty);
         public Vogen.IntegrationTests.TestTypes.StructVos.SystemTextJsonIntVo Vogen_IntegrationTests_TestTypes_StructVos_SystemTextJsonIntVo { get; set; } = Vogen.IntegrationTests.TestTypes.StructVos.SystemTextJsonIntVo.From(6);
         public Vogen.IntegrationTests.TestTypes.StructVos.SystemTextJsonLongVo Vogen_IntegrationTests_TestTypes_StructVos_SystemTextJsonLongVo { get; set; } = Vogen.IntegrationTests.TestTypes.StructVos.SystemTextJsonLongVo.From(7L);
@@ -61,7 +63,7 @@ public partial class ComplexSerializationTests
         public Vogen.IntegrationTests.TestTypes.RecordStructVos.SystemTextJsonDoubleVo Vogen_IntegrationTests_TestTypes_RecordStructVos_SystemTextJsonDoubleVo { get; set; } = Vogen.IntegrationTests.TestTypes.RecordStructVos.SystemTextJsonDoubleVo.From(4.44d);
         public Vogen.IntegrationTests.TestTypes.RecordStructVos.SystemTextJsonFloatVo Vogen_IntegrationTests_TestTypes_RecordStructVos_SystemTextJsonFloatVo { get; set; } = Vogen.IntegrationTests.TestTypes.RecordStructVos.SystemTextJsonFloatVo.From(5.55f);
 
-        public Vogen.IntegrationTests.TestTypes.RecordStructVos.SystemTextJsonFooVo Vogen_IntegrationTests_TestTypes_RecordStructVos_SystemTextJsonFooVo { get; set; } = Vogen.IntegrationTests.TestTypes.RecordStructVos.SystemTextJsonFooVo.From(new Vogen.IntegrationTests.TestTypes.RecordStructVos.Bar(42, "Fred"));
+        public Vogen.IntegrationTests.TestTypes.RecordStructVos.SystemTextJsonFooVo Vogen_IntegrationTests_TestTypes_RecordStructVos_SystemTextJsonFooVo { get; set; } = Vogen.IntegrationTests.TestTypes.RecordStructVos.SystemTextJsonFooVo.From(new Bar(42, "Fred"));
         public Vogen.IntegrationTests.TestTypes.RecordStructVos.SystemTextJsonGuidVo Vogen_IntegrationTests_TestTypes_RecordStructVos_SystemTextJsonGuidVo { get; set; } = Vogen.IntegrationTests.TestTypes.RecordStructVos.SystemTextJsonGuidVo.From(Guid.Empty);
         public Vogen.IntegrationTests.TestTypes.RecordStructVos.SystemTextJsonIntVo Vogen_IntegrationTests_TestTypes_RecordStructVos_SystemTextJsonIntVo { get; set; } = Vogen.IntegrationTests.TestTypes.RecordStructVos.SystemTextJsonIntVo.From(6);
         public Vogen.IntegrationTests.TestTypes.RecordStructVos.SystemTextJsonLongVo Vogen_IntegrationTests_TestTypes_RecordStructVos_SystemTextJsonLongVo { get; set; } = Vogen.IntegrationTests.TestTypes.RecordStructVos.SystemTextJsonLongVo.From(7L);
