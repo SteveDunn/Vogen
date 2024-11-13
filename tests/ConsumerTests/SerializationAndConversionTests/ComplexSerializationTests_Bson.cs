@@ -7,7 +7,7 @@ using Vogen.IntegrationTests.TestTypes;
 namespace MediumTests.SerializationAndConversionTests;
 
 
-public partial class ComplexSerializationTests
+public partial class ComplexSerializationTests_ServiceStackDotText
 {
     [Fact]
     public void Bson_CanSerializeAndDeserialize()

@@ -1,4 +1,3 @@
-using ConsumerTests.BugFixTests;
 using MessagePack;
 using MessagePack.Formatters;
 using Vogen.IntegrationTests.TestTypes;

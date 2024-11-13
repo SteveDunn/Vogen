@@ -140,6 +140,11 @@ public static class MyId__Ext
 namespace @double;
 public partial class MyMarkers
 {
+    public static global::MessagePack.Formatters.IMessagePackFormatter[] MessagePackFormatters => new global::MessagePack.Formatters.IMessagePackFormatter[]
+    {
+        new MyIdMessagePackFormatter()
+    };
+
     public partial class MyIdMessagePackFormatter : global::MessagePack.Formatters.IMessagePackFormatter<@double.MyId>
     {
         public void Serialize(ref global::MessagePack.MessagePackWriter writer, @double.MyId value, global::MessagePack.MessagePackSerializerOptions options) => writer.Write(value.Value);

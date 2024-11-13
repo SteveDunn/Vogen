@@ -9,10 +9,7 @@ namespace Vogen;
 
 internal class GenerateCodeForMessagePack
 {
-    public static void GenerateForAMarkerClass(SourceProductionContext context,
-        Compilation compilation,
-        MarkerClassDefinition markerClass,
-        VogenKnownSymbols vogenKnownSymbols)
+    public static void GenerateForAMarkerClass(SourceProductionContext context, MarkerClassDefinition markerClass)
     {
         var markerClassSymbol = markerClass.MarkerClassSymbol;
 
@@ -21,7 +18,7 @@ internal class GenerateCodeForMessagePack
             return;
         }
 
-        string pns = markerClassSymbol.FullNamespace() ?? "";
+        string pns = markerClassSymbol.FullNamespace();
 
         string ns = pns.Length == 0 ? "" : $"namespace {pns};";
 
@@ -66,10 +63,10 @@ internal class GenerateCodeForMessagePack
                     m => m.Marker?.Kind is ConversionMarkerKind.MessagePack).Select(
                     x =>
                     {
-                        if (x is null) return null;
+                        //if (x is null) return null;
                         if (x.Marker is null) return null;
                         
-                        string? wrapperNameShort = x.Marker.VoSymbol.Name;
+                        string wrapperNameShort = x.Marker.VoSymbol.Name;
                         
                         return $"new {wrapperNameShort}MessagePackFormatter()";
                     }).ToArray();
@@ -82,12 +79,12 @@ internal class GenerateCodeForMessagePack
         {
             StringBuilder sb = new();
 
-            foreach (MarkerAttributeDefinition eachMarker in markerClass.AttributeDefinitions.Where(
+            foreach (MarkerAttributeDefinition eachAttr in markerClass.AttributeDefinitions.Where(
                          m => m.Marker?.Kind is ConversionMarkerKind.MessagePack))
             {
                 sb.AppendLine(
                     $$"""
-                          {{GenerateSource("public", eachMarker.Marker!.VoSymbol, eachMarker.Marker.UnderlyingTypeSymbol, vogenKnownSymbols)}}
+                          {{GenerateSource("public", eachAttr.Marker!.VoSymbol, eachAttr.Marker.UnderlyingTypeSymbol)}}
                       """);
             }
 
@@ -97,8 +94,7 @@ internal class GenerateCodeForMessagePack
 
     public static void GenerateForApplicableValueObjects(SourceProductionContext context,
         Compilation compilation,
-        List<VoWorkItem> valueObjects,
-        VogenKnownSymbols knownSymbols)
+        List<VoWorkItem> valueObjects)
     {
         if (!compilation.IsAtLeastCSharpVersion(LanguageVersion.CSharp12))
         {
@@ -110,7 +106,7 @@ internal class GenerateCodeForMessagePack
         List<MessagePackStandalone> items = matchingVos.Select(MessagePackStandalone.FromWorkItem).ToList();
 
         List<FormatterSourceAndFilename> toWrite = items.Select(
-            p => GenerateSourceAndFilename(p.WrapperAccessibility, p.WrapperType, p.ContainerNamespace, p.UnderlyingType, knownSymbols)).ToList();
+            p => GenerateSourceAndFilename(p.WrapperAccessibility, p.WrapperType, p.ContainerNamespace, p.UnderlyingType)).ToList();
 
         foreach (var eachToWrite in toWrite)
         {
@@ -120,16 +116,13 @@ internal class GenerateCodeForMessagePack
         }
     }
 
-    public record FormatterSourceAndFilename(string FormatterFullyQualifiedName, string Filename, string SourceCode);
+    private record FormatterSourceAndFilename(string Filename, string SourceCode);
 
     private static FormatterSourceAndFilename GenerateSourceAndFilename(string accessibility,
         INamedTypeSymbol wrapperSymbol,
         string theNamespace,
-        INamedTypeSymbol underlyingSymbol,
-        VogenKnownSymbols knownSymbols)
+        INamedTypeSymbol underlyingSymbol)
     {
-        string wrapperName = Util.EscapeIfRequired(wrapperSymbol.Name);
-
         var ns = string.IsNullOrEmpty(theNamespace) ? string.Empty : $"namespace {theNamespace};";
 
         string sb =
@@ -138,22 +131,18 @@ internal class GenerateCodeForMessagePack
 
               {{ns}}
 
-              {{GenerateSource(accessibility, wrapperSymbol, underlyingSymbol, knownSymbols)}}          
+              {{GenerateSource(accessibility, wrapperSymbol, underlyingSymbol)}}          
               """;
-
-        var fn = string.IsNullOrEmpty(theNamespace) ? "" : theNamespace + ".";
-        string serializerFqn = $"{fn}{wrapperName}MessagePackFormatter";
 
         var unsanitized = $"{wrapperSymbol.ToDisplayString()}_messagepack.g.cs";
         string filename = Util.SanitizeToALegalFilename(unsanitized);
-        return new FormatterSourceAndFilename(serializerFqn, filename, sb);
+        return new FormatterSourceAndFilename(filename, sb);
     }
 
 
     private static string GenerateSource(string accessibility,
         INamedTypeSymbol wrapperSymbol,
-        INamedTypeSymbol underlyingSymbol,
-        VogenKnownSymbols vogenKnownSymbols)
+        INamedTypeSymbol underlyingSymbol)
     {
         var accessor = accessibility;
 

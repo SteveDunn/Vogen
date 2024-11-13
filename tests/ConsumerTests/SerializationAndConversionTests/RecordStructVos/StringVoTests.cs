@@ -12,6 +12,9 @@ using LinqToDB;
 using LinqToDB.Data;
 using LinqToDB.DataProvider.SQLite;
 using LinqToDB.Mapping;
+// ReSharper disable AssignNullToNotNullAttribute
+// ReSharper disable EqualExpressionComparison
+// ReSharper disable RedundantCast
 
 namespace Vogen.IntegrationTests.SerializationAndConversionTests.RecordStructVos;
 
@@ -40,10 +43,8 @@ public class StringVoTests
     }
 
     [Fact]
-    public void equality_between_different_value_objects()
-    {
+    public void equality_between_different_value_objects() => 
         StringVo.From("hello!").Equals(AnotherStringVo.From("hello!")).Should().BeFalse();
-    }
 
     [Fact]
     public void CanSerializeToString_WithNewtonsoftJsonProvider()

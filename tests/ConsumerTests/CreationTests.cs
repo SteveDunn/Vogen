@@ -1,5 +1,3 @@
-using System.Diagnostics;
-using System.Runtime.InteropServices;
 using @double;
 using @bool.@byte.@short.@float.@object;
 using Vogen.Tests.Types;

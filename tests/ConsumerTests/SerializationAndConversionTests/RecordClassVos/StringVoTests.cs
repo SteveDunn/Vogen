@@ -12,6 +12,7 @@ using LinqToDB;
 using LinqToDB.Data;
 using LinqToDB.DataProvider.SQLite;
 using LinqToDB.Mapping;
+// ReSharper disable AssignNullToNotNullAttribute
 
 namespace Vogen.IntegrationTests.SerializationAndConversionTests.RecordClassVos;
 

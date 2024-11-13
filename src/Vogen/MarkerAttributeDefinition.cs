@@ -29,7 +29,7 @@ internal sealed class MarkerAttributeDefinition
 
     public List<Diagnostic> Diagnostics { get; }
 
-    public static MarkerAttributeDefinition Error(ConversionMarkerKind kind, Diagnostic diag) => new(null, [diag]);
+    public static MarkerAttributeDefinition Error(Diagnostic diag) => new(null, [diag]);
 
     public static MarkerAttributeDefinition Ok(ConversionMarkerKind kind, INamedTypeSymbol voSymbol, INamedTypeSymbol underlyingTypeSymbol, INamedTypeSymbol sourceSymbol) =>
         new(marker: new ConversionMarker(kind, voSymbol, underlyingTypeSymbol, sourceSymbol), diagnostics: []);

@@ -12,7 +12,7 @@ internal class GenerateCodeForMessagePackMarkers
     {
         foreach (MarkerClassDefinition? eachMarkerClass in conversionMarkerClasses)
         {
-            GenerateCodeForMessagePack.GenerateForAMarkerClass(context, compilation, eachMarkerClass, vogenKnownSymbols);
+            GenerateCodeForMessagePack.GenerateForAMarkerClass(context, eachMarkerClass);
         }
     }
 }

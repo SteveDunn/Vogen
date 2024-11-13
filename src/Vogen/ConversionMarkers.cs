@@ -83,7 +83,7 @@ internal static class ConversionMarkers
         if (!VoFilter.IsTarget(voSymbol))
         {
 //            return ConversionMarkerAttributeDefinition.Error(markerKind, DiagnosticsCatalogue.VoReferencedInAConversionMarkerMustExplicitlySpecifyPrimitive(markerClassSymbol!, voSymbol));
-            return MarkerAttributeDefinition.Error(markerKind, DiagnosticsCatalogue.TypesReferencedInAConversionMarkerMustBeaValueObjects(markerClassSymbol!, voSymbol));
+            return MarkerAttributeDefinition.Error(DiagnosticsCatalogue.TypesReferencedInAConversionMarkerMustBeaValueObjects(markerClassSymbol!, voSymbol));
         }
 
         List<AttributeData> voAttributes = VoFilter.TryGetValueObjectAttributes(voSymbol).ToList();
@@ -102,9 +102,7 @@ internal static class ConversionMarkers
 
         if (underlyingType is null)
         {
-            return MarkerAttributeDefinition.Error(
-                markerKind, 
-                DiagnosticsCatalogue.VoReferencedInAConversionMarkerMustExplicitlySpecifyPrimitive(markerClassSymbol!, voSymbol, markerAtt.ApplicationSyntaxReference?.GetSyntax().GetLocation()));
+            return MarkerAttributeDefinition.Error(DiagnosticsCatalogue.VoReferencedInAConversionMarkerMustExplicitlySpecifyPrimitive(markerClassSymbol!, voSymbol, markerAtt.ApplicationSyntaxReference?.GetSyntax().GetLocation()));
         }
         
         return MarkerAttributeDefinition.Ok(markerKind, voSymbol, underlyingType, markerClassSymbol!);
