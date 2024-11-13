@@ -437,7 +437,7 @@ public static class Util
     public static string GetModifiersForValueAndIsInitializedFields(VoWorkItem workItem) => 
         workItem.Config.Conversions.HasFlag(Vogen.Conversions.XmlSerializable) ? "" : "readonly";
 
-    internal static string GetLegalMarkerClassFilename(INamedTypeSymbol markerClassSymbol, ConversionMarkerKind conversionKind)
+    internal static string GetLegalFilenameForMarkerClass(INamedTypeSymbol markerClassSymbol, ConversionMarkerKind conversionKind)
     {
         var unsanitized = $"{markerClassSymbol.ToDisplayString()}.{conversionKind}.g.cs";
         string filename = Util.SanitizeToALegalFilename(unsanitized);
@@ -445,7 +445,7 @@ public static class Util
         return filename;
     }
 
-    internal static string GetLegalMarkerClassFilename(INamedTypeSymbol markerClassSymbol, INamedTypeSymbol voSymbol, ConversionMarkerKind conversionKind)
+    internal static string GetLegalFilenameForMarkerClass(INamedTypeSymbol markerClassSymbol, INamedTypeSymbol voSymbol, ConversionMarkerKind conversionKind)
     {
         var unsanitized = $"{markerClassSymbol.ToDisplayString()}.{voSymbol.ToDisplayString()}.{conversionKind}.g.cs";
         string filename = Util.SanitizeToALegalFilename(unsanitized);
