@@ -71,5 +71,10 @@ public enum Conversions
     /// <summary>
     /// Generates implementation of IXmlSerializable.
     /// </summary>
-    XmlSerializable = 1 << 10
+    XmlSerializable = 1 << 10,
+
+    /// <summary>
+    /// Generates implementation of IMessagePackFormatter.
+    /// </summary>
+    MessagePack = 1 << 11
 }

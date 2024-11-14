@@ -25,8 +25,7 @@ public static class GenerateCodeForToString
         {
             List<IMethodSymbol> methodsToWrite = FilterOutUserSuppliedMethods(
                 item.ToStringInformation.ToStringMethodsOnThePrimitive,
-                item.UserProvidedOverloads.ToStringOverloads,
-                item).ToList();
+                item.UserProvidedOverloads.ToStringOverloads).ToList();
 
             StringBuilder sb = new StringBuilder();
 
@@ -66,12 +65,11 @@ public static class GenerateCodeForToString
         // or the wrapper.
         static IEnumerable<IMethodSymbol> FilterOutUserSuppliedMethods(
             List<IMethodSymbol> methodsOnThePrimitive,
-            UserProvidedToStringMethods methodsOnTheWrapper,
-            VoWorkItem vo)
+            UserProvidedToStringMethods methodsOnTheWrapper)
         {
             foreach (var eachMethod in methodsOnThePrimitive)
             {
-                if (!methodsOnTheWrapper.Contains(eachMethod, vo))
+                if (!methodsOnTheWrapper.Contains(eachMethod))
                 {
                     yield return eachMethod;
                 }

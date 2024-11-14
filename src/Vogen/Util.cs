@@ -436,6 +436,22 @@ public static class Util
     /// <returns></returns>
     public static string GetModifiersForValueAndIsInitializedFields(VoWorkItem workItem) => 
         workItem.Config.Conversions.HasFlag(Vogen.Conversions.XmlSerializable) ? "" : "readonly";
+
+    internal static string GetLegalFilenameForMarkerClass(INamedTypeSymbol markerClassSymbol, ConversionMarkerKind conversionKind)
+    {
+        var unsanitized = $"{markerClassSymbol.ToDisplayString()}.{conversionKind}.g.cs";
+        string filename = Util.SanitizeToALegalFilename(unsanitized);
+
+        return filename;
+    }
+
+    internal static string GetLegalFilenameForMarkerClass(INamedTypeSymbol markerClassSymbol, INamedTypeSymbol voSymbol, ConversionMarkerKind conversionKind)
+    {
+        var unsanitized = $"{markerClassSymbol.ToDisplayString()}.{voSymbol.ToDisplayString()}.{conversionKind}.g.cs";
+        string filename = Util.SanitizeToALegalFilename(unsanitized);
+
+        return filename;
+    }
 }
 
 public static class DebugGeneration

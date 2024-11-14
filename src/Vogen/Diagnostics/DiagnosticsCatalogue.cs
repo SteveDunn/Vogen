@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
+// ReSharper disable UseCollectionExpression
 
 namespace Vogen.Diagnostics;
 
@@ -57,11 +58,6 @@ internal static class DiagnosticsCatalogue
         RuleIdentifiers.InvalidDeserializationStrictness,
         "Invalid Deserialization Strictness",
         $"The Deserialization Strictness specified does not match any known customizations - see the {nameof(DeserializationStrictness)} type for valid values");
-
-    private static readonly DiagnosticDescriptor _mismatchedParsableGeneration = CreateDescriptor(
-        RuleIdentifiers.InvalidDeserializationStrictness,
-        "Invalid Parsable Generation",
-        $"The Parsable Generation specified does not match the underlying primitive");
 
     private static readonly DiagnosticDescriptor _underlyingTypeMustNotBeSameAsValueObject = CreateDescriptor(
         RuleIdentifiers.UnderlyingTypeMustNotBeSameAsValueObject,
@@ -118,15 +114,15 @@ internal static class DiagnosticsCatalogue
         "Invalid custom exception",
         "{0} must have at least 1 public constructor with 1 parameter of type System.String");
 
-    private static readonly DiagnosticDescriptor _efCoreTargetMustExplicitlySpecifyItsPrimitive = CreateDescriptor(
-        RuleIdentifiers.EfCoreTargetMustExplicitlySpecifyItsPrimitive,
-        "Value objects must explicitly specify the primitive type",
-        "Type '{0}' must explicitly specify the primitive type that it wraps in order for its EFCore converter to be generated");
+    private static readonly DiagnosticDescriptor _voReferencedInAConversionMarkerMustExplicitlySpecifyPrimitive = CreateDescriptor(
+        RuleIdentifiers.VoReferencedInAConversionMarkerMustExplicitlySpecifyPrimitive,
+        "Value objects that are referenced in a conversion marker attribute must explicitly specify the primitive type",
+        "Marker class '{0}' specifies a target value object '{1}', but that type does not explicitly specify the primitive type that it wraps");
 
-    private static readonly DiagnosticDescriptor _efCoreTargetMustBeAVo = CreateDescriptor(
-        RuleIdentifiers.EfCoreTargetMustBeAVo,
-        "EFCore target must be a value object",
-        "Type '{0}' specifies a target value object of {1} but it is not a value object");
+    private static readonly DiagnosticDescriptor _typesReferencedInAConversionMarkerMustBeaValueObjects = CreateDescriptor(
+        RuleIdentifiers.TypesReferencedInAConversionMarkerMustBeaValueObjects,
+        "Types referenced in conversion markers by be value objects",
+        "Marker class '{0}' specifies a target value object '{1}', but that is not a value object");
 
     public static Diagnostic TypeCannotBeNested(INamedTypeSymbol typeModel, INamedTypeSymbol container) => 
         Create(_typeCannotBeNested, typeModel.Locations, typeModel.Name, container.Name);
@@ -173,8 +169,6 @@ internal static class DiagnosticsCatalogue
     public static Diagnostic InvalidCustomizations(Location location) => Create(_invalidCustomizations, location);
     
     public static Diagnostic InvalidDeserializationStrictness(Location location) => Create(_invalidDeserializationStrictness, location);
-    
-    public static Diagnostic InvalidParsableGeneration(Location location) => Create(_mismatchedParsableGeneration, location);
 
     public static Diagnostic InstanceMethodCannotHaveNullArgumentName(INamedTypeSymbol voClass) => 
         Create(_instanceMethodCannotHaveNullArgumentName, voClass.Locations, voClass.Name);
@@ -191,11 +185,17 @@ internal static class DiagnosticsCatalogue
     public static Diagnostic CustomExceptionMustHaveValidConstructor(INamedTypeSymbol symbol) => 
         Create(_customExceptionMustHaveValidConstructor, symbol.Locations, symbol.Name);
 
-    public static Diagnostic VoMustExplicitlySpecifyPrimitiveToBeAnEfCoreTarget(INamedTypeSymbol symbol) => 
-        Create(_efCoreTargetMustExplicitlySpecifyItsPrimitive, symbol.Locations, symbol.Name);
+    public static Diagnostic VoReferencedInAConversionMarkerMustExplicitlySpecifyPrimitive(INamedTypeSymbol voSymbol,
+        INamedTypeSymbol markerClassSymbol,
+        Location? location) =>
+        Create(
+            _voReferencedInAConversionMarkerMustExplicitlySpecifyPrimitive, 
+            location,
+            voSymbol.Name,
+            markerClassSymbol.Name);
 
-    public static Diagnostic EfCoreTargetMustBeAVo(INamedTypeSymbol markerClassSymbol, INamedTypeSymbol voSymbol) => 
-        Create(_efCoreTargetMustBeAVo, voSymbol.Locations, markerClassSymbol.Name, voSymbol.Name);
+    public static Diagnostic TypesReferencedInAConversionMarkerMustBeaValueObjects(INamedTypeSymbol markerClassSymbol, INamedTypeSymbol voSymbol) => 
+        Create(_typesReferencedInAConversionMarkerMustBeaValueObjects, voSymbol.Locations, markerClassSymbol.Name, voSymbol.Name);
 
     private static DiagnosticDescriptor CreateDescriptor(string code, string title, string messageFormat, DiagnosticSeverity severity = DiagnosticSeverity.Error)
     {
@@ -206,9 +206,6 @@ internal static class DiagnosticsCatalogue
 
     public static Diagnostic BuildDiagnostic(DiagnosticDescriptor descriptor, string name, Location location) => 
         Diagnostic.Create(descriptor, location, name);
-
-    public static Diagnostic BuildDiagnostic(DiagnosticDescriptor descriptor, string name) => 
-        Diagnostic.Create(descriptor, null, name);
 
     private static Diagnostic Create(DiagnosticDescriptor descriptor, IEnumerable<Location> locations, params object?[] args)
     {

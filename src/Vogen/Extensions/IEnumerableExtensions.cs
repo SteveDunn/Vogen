@@ -12,6 +12,26 @@ namespace Analyzer.Utilities.Extensions
 {
     internal static class IEnumerableExtensions
     {
+        public static T? SingleOrDefaultIfMultiple<T>(this IEnumerable<T> source)
+        {
+            using var iterator = source.GetEnumerator();
+            try
+            {
+                if (iterator.MoveNext())
+                {
+                    var result = iterator.Current;
+                    if (!iterator.MoveNext())
+                        return result;
+                }
+            }
+            finally
+            {
+                iterator.Dispose();
+            }
+
+            return default!;
+        }
+        
         public static IEnumerable<T> Concat<T>(this IEnumerable<T> source, T value)
         {
             if (source == null)

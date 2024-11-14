@@ -1,90 +1,104 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.IO;
 using System.Linq;
-using System.Xml.Serialization;
+using MessagePack;
+using MessagePack.Formatters;
+using MessagePack.Resolvers;
+using N1;
+using N2;
 using Vogen;
 // ReSharper disable UnusedVariable
 
-[assembly: VogenDefaults(
-    openApiSchemaCustomizations: OpenApiSchemaCustomizations.GenerateSwashbuckleSchemaFilter |
-                                 OpenApiSchemaCustomizations.GenerateSwashbuckleMappingExtensionMethod,
-    staticAbstractsGeneration: StaticAbstractsGeneration.MostCommon | StaticAbstractsGeneration.InstanceMethodsAndProperties,
-    conversions: Conversions.EfCoreValueConverter)]
-
 namespace Testbench;
 
+[MessagePack<MyInt>()]
+[MessagePack<MyId>()]
+[MessagePack<MyBool>()]
+[MessagePack<Name>()]
+[MessagePack<StartDate>()]
+[MessagePack<MyString>()]
+[EfCoreConverter<MyInt>]
+internal partial class MyMarkers;
 
-[ValueObject<short>(conversions: Conversions.XmlSerializable)]
-public partial class MyShort;
-
-[ValueObject<int>(conversions: Conversions.XmlSerializable, primitiveEqualityGeneration: PrimitiveEqualityGeneration.GenerateOperatorsAndMethods)]
-public partial class MyInt;
-
-[ValueObject<DateOnly>]
-public partial struct MyDateOnly;
-
-[ValueObject<DateTime>]
-public partial struct MyDateTime;
-
-[ValueObject<DateTimeOffset>]
-public partial struct MyDateTimeOffset;
-
-[ValueObject<byte>]
-public partial struct MyByte;
-
-[ValueObject<long>]
-public partial struct MyLong;
-
-[Serializable]
-public class C
+[ValueObject<bool>]
+public partial struct MyBool
 {
-    public required MyInt MyInt { get; set; }
-    public required MyShort MyShort { get; set; }
 }
 
 public static class Program
 {
     public static void Main()
     {
-        MyInt i1 = MyInt.From(100);
-        MyInt i2 = MyInt.From(200);
-        bool smaller = i1.CompareTo(i2) < 0;
-        bool smaller2 = i1 == 100;
-        
-        C c = new()
+        // Create an instance of the sample class
+        var originalObject = new Sample
         {
-            MyInt = MyInt.From(42),
-            MyShort = MyShort.From(123)
+            Id = MyId.From(Guid.NewGuid()),
+            Name = Name.From("Test"),
+            StartDate = StartDate.From(DateTimeOffset.Now),
+            Active = MyBool.From(true)
         };
+
+
+        IMessagePackFormatter[] messagePackFormatters = MyMarkers.MessagePackFormatters;
         
+//messagePackFormatters = messagePackFormatters.Append(new MyGuidFormatter()).ToArray();
         
+        var customResolver = MessagePack.Resolvers.CompositeResolver.Create(
+            messagePackFormatters,
+//            new IMessagePackFormatter[] { new MyMarkers.MyIdMessagePackFormatter(), new MyMarkers.NameMessagePackFormatter(), new MyMarkers.MyBoolMessagePackFormatter() },
+            [MessagePack.Resolvers.StandardResolver.Instance]
+        );
 
-        // C2 c = new()
-        // {
-        //     MyInt = 42,
-        //     MyShort = 111,
-        //     MyShortXml = 222,
-        // };
+        var options = MessagePackSerializerOptions.Standard.WithResolver(customResolver);
 
-
-// Serialize 'c' to XML
-        XmlSerializer serializer = new XmlSerializer(typeof(C));
-        using StringWriter textWriter = new StringWriter();
-
-        serializer.Serialize(textWriter, c);
-        string xmlString = textWriter.ToString();
-        Console.WriteLine("Serialized XML:\n" + xmlString);
+        byte[] serializedObject = MessagePackSerializer.Serialize(originalObject, options);
 
 
-// Deserialize XML back to a 'C' object
-        using (StringReader textReader = new StringReader(xmlString))
-        {
-            C deserializedC = (C) serializer.Deserialize(textReader)!;
-            Console.WriteLine("Deserialized Object:");
-            Console.WriteLine("MyInt: " + deserializedC.MyInt);
-            Console.WriteLine("MyShort: " + deserializedC.MyShort);
-        }
+// Deserialize the byte array back to the Sample object using the custom options
+        var deserializedObject = MessagePackSerializer.Deserialize<Sample>(serializedObject, options);
+
+// Display the deserialized object
+        Console.WriteLine($"Id: {deserializedObject.Id}, Name: {deserializedObject.Name}, Active: {deserializedObject.Active}, StartDate: {deserializedObject.StartDate:o}");
+
     }
 }
+
+// public class MyGuidFormatter : IMessagePackFormatter<MyId>
+// {
+//     public void Serialize(ref MessagePackWriter writer, MyId value, MessagePackSerializerOptions options)
+//     {
+//         IMessagePackFormatter<Guid>? r = StandardResolver.Instance.GetFormatter<Guid>();
+//         if (r is null) throw new MessagePackSerializationException("");
+//         r.Serialize(ref writer, value.Value, options);
+//     }
+//     
+//     public MyId Deserialize(ref MessagePackReader reader, MessagePackSerializerOptions options)
+//     {
+//         IMessagePackFormatter<Guid>? r = StandardResolver.Instance.GetFormatter<Guid>();
+//         if (r is null) throw new MessagePackSerializationException("");
+//         Guid? g = r?.Deserialize(ref reader, options);
+//         
+//         return MyId.From(g!.Value);
+//     }
+// }
+
+[MessagePackObject]
+public class Sample
+{
+    [MessagePack.Key(0)]
+    public MyId Id { get; set; }
+
+    [MessagePack.Key(1)] public Name Name { get; set; } = Name.From("");
+    [MessagePack.Key(2)] public MyBool Active { get; set; } = MyBool.From(false);
+    [MessagePack.Key(3)] public StartDate StartDate { get; set; }
+}
+
+[ValueObject<DateTimeOffset>]
+public partial struct StartDate;
+
+[ValueObject<Guid>]
+public partial struct MyId;
+
+[ValueObject<string>]
+public partial struct Name;
+
+

@@ -117,6 +117,9 @@ public class KnownSymbols(Compilation compilation)
     public INamedTypeSymbol? FSharpMap => GetOrResolveType("Microsoft.FSharp.Collections.FSharpMap`2", ref _FSharpMap);
     private Option<INamedTypeSymbol?> _FSharpMap;
 
+    public INamedTypeSymbol? Guid => GetOrResolveType("System.Guid", ref _Guid);
+    private Option<INamedTypeSymbol?> _Guid;
+
 
     /// <summary>
     /// A "simple type" in this context defines a type that is either 

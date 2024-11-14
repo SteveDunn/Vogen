@@ -18,9 +18,8 @@ public class UserProvidedToStringMethods : IEnumerable<IMethodSymbol>
     /// Sees if the items held contains the method from the primitive.
     /// </summary>
     /// <param name="methodFromPrimitive"></param>
-    /// <param name="vo"></param>
     /// <returns></returns>
-    public bool Contains(IMethodSymbol methodFromPrimitive, VoWorkItem vo)
+    public bool Contains(IMethodSymbol methodFromPrimitive)
     {
         foreach (var eachUserMethod in _userMethods)
         {

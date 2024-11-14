@@ -1,6 +1,5 @@
 using System.Text.Json;
 using System.Text.Json.Serialization;
-using System.Text.Json.Serialization.Metadata;
 using SystemTextJsonSerializer = System.Text.Json.JsonSerializer;
 
 namespace ConsumerTests.BugFixTests.BugFix595;
