@@ -39,7 +39,7 @@ internal class GenerateCodeForOrleansSerializers
         var ns = string.IsNullOrEmpty(fullNamespace) ? string.Empty : $"namespace {fullNamespace};";
 
         string unescapedWrapperName = item.WrapperType.Name;
-        string wrapperName = Util.EscapeIfRequired(unescapedWrapperName);
+        string wrapperName = Util.EscapeKeywordsIfRequired(unescapedWrapperName);
         string underlyingTypeName = item.UnderlyingTypeFullName;
 
         var assemblyAttribute = string.IsNullOrWhiteSpace(fullNamespace)

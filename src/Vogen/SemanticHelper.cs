@@ -21,9 +21,9 @@ static class SemanticHelper
         }
 
         if (prefix != "")
-            return $"{prefix}.{Util.EscapeIfRequired(symbol.Name)}{suffix}";
+            return $"{prefix}.{Util.EscapeKeywordsIfRequired(symbol.Name)}{suffix}";
         else
-            return Util.EscapeIfRequired(symbol.Name) + suffix;
+            return Util.EscapeKeywordsIfRequired(symbol.Name) + suffix;
     }
 
     public static string FullNamespace(this ISymbol symbol)
@@ -34,7 +34,7 @@ static class SemanticHelper
         {
             if (!string.IsNullOrEmpty(iterator.Name))
             {
-                parts.Push(Util.EscapeIfRequired(iterator.Name));
+                parts.Push(Util.EscapeKeywordsIfRequired(iterator.Name));
             }
 
             iterator = iterator.ContainingNamespace;

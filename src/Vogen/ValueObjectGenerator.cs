@@ -71,7 +71,7 @@ public class ValueObjectGenerator : IIncrementalGenerator
 
         IncrementalValuesProvider<MarkerClassDefinition> converterMarkerClasses = syntaxProvider.CreateSyntaxProvider(
                 predicate: (node, _) => ConversionMarkers.IsTarget(node),
-                transform: (ctx, _) => ConversionMarkers.GetConversionMarkerClassesFromAttribute(ctx))
+                transform: (ctx, _) => ConversionMarkers.GetMarkerClassFromAttribute(ctx))
             .Where(static m => m is not null)!;
 
         return new Found(targets, globalConfig, converterMarkerClasses);
@@ -131,7 +131,8 @@ public class ValueObjectGenerator : IIncrementalGenerator
         GenerateCodeForMessagePack.GenerateForApplicableValueObjects(spc, compilation, workItems);
         GenerateCodeForMessagePack.GenerateForMarkerClasses(spc, markerClasses);
         
-        GenerateCodeForBsonSerializers.WriteIfNeeded(spc, compilation, workItems);
+        GenerateCodeForBsonSerializers.GenerateForApplicableValueObjects(spc, compilation, workItems);
+        GenerateCodeForBsonSerializers.GenerateForMarkerClasses(spc, compilation, markerClasses);
         
         GenerateCodeForOrleansSerializers.WriteIfNeeded(spc, workItems);
 

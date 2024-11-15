@@ -61,7 +61,7 @@ public static class Hoisting
             string refKind = GetRefKind(eachParam);
 
             // Append parameter type and name
-            var parameterName = Util.EscapeIfRequired(eachParam.Name);
+            var parameterName = Util.EscapeKeywordsIfRequired(eachParam.Name);
             
             string typeAsText = eachParam.Type.ToDisplayString(DisplayFormats.SymbolFormatWhenNullabilityIsOff);
 

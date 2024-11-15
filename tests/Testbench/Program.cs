@@ -5,6 +5,7 @@ using MessagePack.Formatters;
 using MessagePack.Resolvers;
 using N1;
 using N2;
+using Testbench.SubNamespace;
 using Vogen;
 // ReSharper disable UnusedVariable
 
@@ -17,12 +18,22 @@ namespace Testbench;
 [MessagePack<StartDate>()]
 [MessagePack<MyString>()]
 [EfCoreConverter<MyInt>]
-internal partial class MyMarkers;
+[BsonSerializer<MyInt>]
+[BsonSerializer<classFromEscapedNamespaceWithReservedUnderlyingType>]
+public partial class MyMarkers;
 
 [ValueObject<bool>]
 public partial struct MyBool
 {
 }
+
+public readonly record struct @decimal;
+
+[ValueObject(typeof(@decimal))]
+public partial class classFromEscapedNamespaceWithReservedUnderlyingType
+{
+}
+
 
 public static class Program
 {
@@ -97,8 +108,3 @@ public partial struct StartDate;
 
 [ValueObject<Guid>]
 public partial struct MyId;
-
-[ValueObject<string>]
-public partial struct Name;
-
-

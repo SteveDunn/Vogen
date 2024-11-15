@@ -182,7 +182,7 @@ public static class GenerateCodeForTryParse
             string type = eachParameter.Type.ToDisplayString(
                 item.Nullable.IsEnabled ? DisplayFormats.SymbolFormatWhenNullabilityIsOn : DisplayFormats.SymbolFormatWhenNullabilityIsOff);
 
-            string name = Util.EscapeIfRequired(eachParameter.Name);
+            string name = Util.EscapeKeywordsIfRequired(eachParameter.Name);
 
             l.Add($"{refKind}{type} {name}");
         }

@@ -31,4 +31,24 @@ public class BsonSerializationGenerationTests
                 .IgnoreInitialCompilationErrors()
                 .RunOn(TargetFramework.Net8_0);
     }
+
+    [Fact]
+    public async Task Escapes_namespaces()
+    {
+        var source = """
+                     using System;
+                     using Vogen;
+                     
+                     [assembly: VogenDefaults(conversions: Conversions.Bson)]
+
+                     namespace @int;
+                     [ValueObject<string>]
+                     public partial struct Name;
+                     """;
+
+            await new SnapshotRunner<ValueObjectGenerator>()
+                .WithSource(source)
+                .IgnoreInitialCompilationErrors()
+                .RunOn(TargetFramework.Net8_0);
+    }
 }

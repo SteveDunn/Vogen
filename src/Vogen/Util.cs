@@ -136,7 +136,7 @@ public static class Util
         {
             foreach (var eachInstance in workItem.InstanceProperties)
             {
-                string escapedName = EscapeIfRequired(eachInstance.Name);
+                string escapedName = EscapeKeywordsIfRequired(eachInstance.Name);
                 sb.AppendLine($"        if(value == {escapedName}.Value) return {escapedName};");
             }
         }
@@ -174,7 +174,7 @@ public static class Util
     }
 
 
-    public static string EscapeIfRequired(string name)
+    public static string EscapeKeywordsIfRequired(string name)
     {
         bool match = SyntaxFacts.GetKeywordKind(name) != SyntaxKind.None ||
                      SyntaxFacts.GetContextualKeywordKind(name) != SyntaxKind.None;
@@ -191,7 +191,7 @@ public static class Util
             return string.Empty;
         }
 
-        return @$"namespace {EscapeIfRequired(@namespace)}
+        return @$"namespace {EscapeKeywordsIfRequired(@namespace)}
 {{
 ";
     }
