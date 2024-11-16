@@ -5,6 +5,7 @@ using System.Text;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.Text;
+using Vogen.Types;
 
 namespace Vogen;
 
@@ -139,7 +140,6 @@ internal class GenerateCodeForBsonSerializers
         }
     }
 
-
     private static void WriteRegisterer(List<GeneratedSource> items, Compilation compilation, SourceProductionContext context)
     {
         if (items.Count == 0)
@@ -147,14 +147,11 @@ internal class GenerateCodeForBsonSerializers
             return;
         }
 
-        var assemblyName = compilation.AssemblyName?.Replace(".", "_") ?? "";
-        if (assemblyName.EndsWith("_dll") || assemblyName.EndsWith("_exe"))
-        {
-            assemblyName = assemblyName[..^4];
-        }
+
+        var assemblyName = new SanitizedAssemblyName(compilation.AssemblyName);
 
         string className = $"BsonSerializationRegister";
-        if(assemblyName.Length > 0)
+        if(assemblyName.Value.Length > 0)
         {
             className = className + "For" + assemblyName;
         }
@@ -191,30 +188,6 @@ internal class GenerateCodeForBsonSerializers
         return sb.ToString();
     }
 
-    // private record SerializerEntry(string SerializerFullyQualifiedName, string Filename, string SourceCode);
-
-    // private static string GetFilenameForValueObject(GeneratedSource eachToWrite)
-    // {
-    //     return $"{eachToWrite.ClassName}.bson.g.cs";
-    // }
-
-    public static string GetFilenameForStandalone(VoWorkItem vo)
-    {
-        //string fullNamespace = vo.FullNamespace; // eg. TestBench.SubNamespace
-        //var fn = string.IsNullOrEmpty(fullNamespace) ? "" : fullNamespace + "."; // Append dot if it has a namespace
-
-        //string wrapperNameShort = Util.EscapeKeywordsIfRequired(vo.VoTypeName);
-
-        //string serializerFqn = $"{fn}{wrapperNameShort}BsonSerializer";
-
-        var wrapperFqn = vo.WrapperType.ToDisplayString();
-        wrapperFqn = Util.EscapeKeywordsIfRequired(wrapperFqn);
-        string filename = Util.SanitizeToALegalFilename($"{wrapperFqn}_bson.g.cs");
-
-        return filename;
-    }
-
-
     private static GeneratedSource GenerateSource(
         string fullNamespace,
         INamedTypeSymbol wrapperSymbol,
@@ -238,42 +211,43 @@ internal class GenerateCodeForBsonSerializers
              {generatedSource.SourceCode}
              """);
     }
-    
-    record GeneratedSource(string ClassName, string FullyQualifiedClassName, string FileName, string SourceCode);
+
+    private record GeneratedSource(string ClassName, string FullyQualifiedClassName, Filename FileName, string SourceCode);
 
     private static GeneratedSource GenerateSource(INamedTypeSymbol wrapperSymbol, INamedTypeSymbol underlyingSymbol, string accessor)
     {
-        string wrapperFullName = Util.EscapeKeywordsIfRequired(wrapperSymbol.FullName() ?? wrapperSymbol.Name);
+        var wrapperName = new EscapedSymbolNames(wrapperSymbol);
 
-        string underlyingTypeName = Util.EscapeKeywordsIfRequired(underlyingSymbol.FullName() ?? underlyingSymbol.Name);
+        string underlyingTypeName = Util.EscapeKeywordsIfRequired(underlyingSymbol.FullName());
 
         string className = $"{Util.EscapeKeywordsIfRequired(wrapperSymbol.Name)}BsonSerializer";
-        string fullyQualifiedClassName = $"{Util.EscapeKeywordsIfRequired(wrapperSymbol.FullName() ?? wrapperSymbol.Name)}BsonSerializer";
+        string fullyQualifiedClassName = $"{Util.EscapeKeywordsIfRequired(wrapperSymbol.FullName())}BsonSerializer";
 
-        var wrapperFullName2 = Util.SanitizeToALegalFilename(wrapperSymbol.ToDisplayString());
+        Filename filename = new Filename(wrapperSymbol.ToDisplayString() + "_bson.g.cs");
+
         return new(
             className,
             fullyQualifiedClassName,
-            $"{wrapperFullName2}_bson.g.cs",
+            filename,
             $$"""
-              {{accessor}} partial class {{className}} : global::MongoDB.Bson.Serialization.Serializers.SerializerBase<{{wrapperFullName}}>
+              {{accessor}} partial class {{className}} : global::MongoDB.Bson.Serialization.Serializers.SerializerBase<{{wrapperName.FullName}}>
               {
                   private readonly global::MongoDB.Bson.Serialization.IBsonSerializer<{{underlyingTypeName}}> _serializer = global::MongoDB.Bson.Serialization.BsonSerializer.LookupSerializer<{{underlyingTypeName}}>();
               
-                  public override {{wrapperFullName}} Deserialize(global::MongoDB.Bson.Serialization.BsonDeserializationContext context, global::MongoDB.Bson.Serialization.BsonDeserializationArgs args)
+                  public override {{wrapperName.FullName}} Deserialize(global::MongoDB.Bson.Serialization.BsonDeserializationContext context, global::MongoDB.Bson.Serialization.BsonDeserializationArgs args)
                   { 
                     var newArgs = new global::MongoDB.Bson.Serialization.BsonDeserializationArgs { NominalType = typeof({{underlyingTypeName}}) };
               
                     return Deserialize(_serializer.Deserialize(context, newArgs));
                   }
               
-                  public override void Serialize(global::MongoDB.Bson.Serialization.BsonSerializationContext context, global::MongoDB.Bson.Serialization.BsonSerializationArgs args, {{wrapperFullName}} value) => 
+                  public override void Serialize(global::MongoDB.Bson.Serialization.BsonSerializationContext context, global::MongoDB.Bson.Serialization.BsonSerializationArgs args, {{wrapperName.FullName}} value) => 
                     _serializer.Serialize(context, args, value.Value);
                     
-                static {{wrapperFullName}} Deserialize({{underlyingTypeName}} value) => UnsafeDeserialize(default, value);
+                static {{wrapperName.FullName}} Deserialize({{underlyingTypeName}} value) => UnsafeDeserialize(default, value);
                 
                 [global::System.Runtime.CompilerServices.UnsafeAccessor(global::System.Runtime.CompilerServices.UnsafeAccessorKind.StaticMethod, Name = "__Deserialize")]
-                static extern {{wrapperFullName}} UnsafeDeserialize({{wrapperFullName}} @this, {{underlyingTypeName}} value);      
+                static extern {{wrapperName.FullName}} UnsafeDeserialize({{wrapperName.FullName}} @this, {{underlyingTypeName}} value);      
                     
               }
               """);

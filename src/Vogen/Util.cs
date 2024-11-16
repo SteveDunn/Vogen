@@ -6,13 +6,14 @@ using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.CodeAnalysis.Text;
 using Vogen.Generators.Conversions;
+using Vogen.Types;
 
 [assembly: InternalsVisibleTo("SmallTests")]
 [assembly: InternalsVisibleTo("Vogen.Tests")]
 
 namespace Vogen;
 
-public static class Util
+internal static class Util
 {
     public static string EscapeTypeNameForTripleSlashComment(string typeName) =>
         typeName.Replace("<", "{").Replace(">", "}");
@@ -37,6 +38,9 @@ public static class Util
 
         return SourceText.From(formatted.ToFullString(), Encoding.UTF8);
     }
+
+    public static void TryWriteUsingUniqueFilename(Filename filename, SourceProductionContext context, SourceText sourceText)
+        => TryWriteUsingUniqueFilename(filename.Value, context, sourceText);
 
     public static void TryWriteUsingUniqueFilename(string filename, SourceProductionContext context, SourceText sourceText)
     {
@@ -335,7 +339,7 @@ public static class Util
     {
         var symbolToUse = symbol.IsGenericType ? symbol.OriginalDefinition : symbol;
 
-        var displayString = symbolToUse.FullName() ?? symbolToUse.Name;
+        var displayString = symbolToUse.FullName();
 
         return symbolToUse.IsGenericType
             ? EscapeTypeNameForTripleSlashComment(symbolToUse.ToDisplayString())

@@ -5,12 +5,24 @@ using Microsoft.CodeAnalysis;
 
 namespace Vogen;
 
-static class SemanticHelper
+internal static class SemanticHelper
 {
+    /// <summary>
+    /// Returns the full name of a symbol, including the namespace.
+    /// The returned value is escaped in case in case there are any
+    /// keywords present. 
+    /// </summary>
+    /// <param name="symbol"></param>
+    /// <returns></returns>
+#if !NETSTANDARD
+    [return: System.Diagnostics.CodeAnalysis.NotNullIfNotNull(nameof(symbol))]
+#endif
     public static string? FullName(this INamedTypeSymbol? symbol)
     {
         if (symbol is null)
+        {
             return null;
+        }
 
         var prefix = FullNamespace(symbol);
         var suffix = "";
@@ -20,10 +32,12 @@ static class SemanticHelper
             suffix = $"<{string.Join(", ", symbol.TypeArguments.Select(a => FullName(a as INamedTypeSymbol)))}>";
         }
 
-        if (prefix != "")
+        if (prefix != string.Empty)
+        {
             return $"{prefix}.{Util.EscapeKeywordsIfRequired(symbol.Name)}{suffix}";
-        else
-            return Util.EscapeKeywordsIfRequired(symbol.Name) + suffix;
+        }
+
+        return Util.EscapeKeywordsIfRequired(symbol.Name) + suffix;
     }
 
     public static string FullNamespace(this ISymbol symbol)

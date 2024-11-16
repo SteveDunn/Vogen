@@ -18,9 +18,9 @@ internal class VoTarget
         ImmutableArray<AttributeData> dataForAttributes)
     {
         SemanticModel = semanticModel;
-        VoSyntaxInformation = typeToAugment ?? throw new InvalidOperationException("No type to augment!");
+        VoSyntaxInformation = typeToAugment;
         NestingInfo = nestingInfo;
-        VoSymbolInformation = symbolForType ?? throw new InvalidOperationException("No symbol for type!");
+        VoSymbolInformation = symbolForType;
         DataForAttributes = dataForAttributes;
     }
 
