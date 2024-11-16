@@ -25,25 +25,25 @@
 #pragma warning disable CS1591
 
 namespace Whatever;
-    
-public partial class AgeBsonSerializer : global::MongoDB.Bson.Serialization.Serializers.SerializerBase<Age>
+
+public partial class AgeBsonSerializer : global::MongoDB.Bson.Serialization.Serializers.SerializerBase<Whatever.Age>
 {
     private readonly global::MongoDB.Bson.Serialization.IBsonSerializer<System.Int32> _serializer = global::MongoDB.Bson.Serialization.BsonSerializer.LookupSerializer<System.Int32>();
 
-    public override Age Deserialize(global::MongoDB.Bson.Serialization.BsonDeserializationContext context, global::MongoDB.Bson.Serialization.BsonDeserializationArgs args)
+    public override Whatever.Age Deserialize(global::MongoDB.Bson.Serialization.BsonDeserializationContext context, global::MongoDB.Bson.Serialization.BsonDeserializationArgs args)
     { 
       var newArgs = new global::MongoDB.Bson.Serialization.BsonDeserializationArgs { NominalType = typeof(System.Int32) };
 
       return Deserialize(_serializer.Deserialize(context, newArgs));
     }
 
-    public override void Serialize(global::MongoDB.Bson.Serialization.BsonSerializationContext context, global::MongoDB.Bson.Serialization.BsonSerializationArgs args, Age value) => 
+    public override void Serialize(global::MongoDB.Bson.Serialization.BsonSerializationContext context, global::MongoDB.Bson.Serialization.BsonSerializationArgs args, Whatever.Age value) => 
       _serializer.Serialize(context, args, value.Value);
       
-  static Age Deserialize(System.Int32 value) => UnsafeDeserialize(default, value);
+  static Whatever.Age Deserialize(System.Int32 value) => UnsafeDeserialize(default, value);
   
   [global::System.Runtime.CompilerServices.UnsafeAccessor(global::System.Runtime.CompilerServices.UnsafeAccessorKind.StaticMethod, Name = "__Deserialize")]
-  static extern Age UnsafeDeserialize(Age @this, System.Int32 value);      
+  static extern Whatever.Age UnsafeDeserialize(Whatever.Age @this, System.Int32 value);      
       
 }
   
@@ -73,25 +73,25 @@ public partial class AgeBsonSerializer : global::MongoDB.Bson.Serialization.Seri
 #pragma warning disable CS1591
 
 namespace Whatever;
-    
-public partial class NameBsonSerializer : global::MongoDB.Bson.Serialization.Serializers.SerializerBase<Name>
+
+public partial class NameBsonSerializer : global::MongoDB.Bson.Serialization.Serializers.SerializerBase<Whatever.Name>
 {
     private readonly global::MongoDB.Bson.Serialization.IBsonSerializer<System.String> _serializer = global::MongoDB.Bson.Serialization.BsonSerializer.LookupSerializer<System.String>();
 
-    public override Name Deserialize(global::MongoDB.Bson.Serialization.BsonDeserializationContext context, global::MongoDB.Bson.Serialization.BsonDeserializationArgs args)
+    public override Whatever.Name Deserialize(global::MongoDB.Bson.Serialization.BsonDeserializationContext context, global::MongoDB.Bson.Serialization.BsonDeserializationArgs args)
     { 
       var newArgs = new global::MongoDB.Bson.Serialization.BsonDeserializationArgs { NominalType = typeof(System.String) };
 
       return Deserialize(_serializer.Deserialize(context, newArgs));
     }
 
-    public override void Serialize(global::MongoDB.Bson.Serialization.BsonSerializationContext context, global::MongoDB.Bson.Serialization.BsonSerializationArgs args, Name value) => 
+    public override void Serialize(global::MongoDB.Bson.Serialization.BsonSerializationContext context, global::MongoDB.Bson.Serialization.BsonSerializationArgs args, Whatever.Name value) => 
       _serializer.Serialize(context, args, value.Value);
       
-  static Name Deserialize(System.String value) => UnsafeDeserialize(default, value);
+  static Whatever.Name Deserialize(System.String value) => UnsafeDeserialize(default, value);
   
   [global::System.Runtime.CompilerServices.UnsafeAccessor(global::System.Runtime.CompilerServices.UnsafeAccessorKind.StaticMethod, Name = "__Deserialize")]
-  static extern Name UnsafeDeserialize(Name @this, System.String value);      
+  static extern Whatever.Name UnsafeDeserialize(Whatever.Name @this, System.String value);      
       
 }
   
