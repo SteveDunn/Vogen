@@ -15,11 +15,11 @@ internal static class GenerateEfCoreTypes
         string sectionToCut = isWritingAsInnerClass ? "__WHEN_OUTER__" : "__WHEN_INNER__";
         string sectionToKeep = isWritingAsInnerClass ? "__WHEN_INNER__" : "__WHEN_OUTER__";
         string classPrefix = isWritingAsInnerClass ? string.Empty : voSymbol.Name;
-        string voTypeName = isWritingAsInnerClass ? voSymbol.Name : voSymbol.FullName();
+        string voTypeName = isWritingAsInnerClass ? voSymbol.Name : voSymbol.EsacpedFullName();
         
         var isKnownPrimitive = Templates.IsKnownPrimitive(primitiveType);
 
-        var primitiveFullName =  primitiveType.FullName();
+        var primitiveFullName =  primitiveType.EsacpedFullName();
 
         string code = isKnownPrimitive ? _converterForKnownTypes : _converterForAnyOtherType;
 
@@ -48,7 +48,7 @@ internal static class GenerateEfCoreTypes
         var voSymbol = marker.VoSymbol;
         var markerClassSymbol = marker.MarkerClassSymbol;
 
-        string voTypeName = voSymbol.FullName() ?? voSymbol.Name;
+        string voTypeName = voSymbol.EsacpedFullName();
         
         string code = _extensionMethodForOuter;
         

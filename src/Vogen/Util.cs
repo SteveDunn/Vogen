@@ -339,7 +339,7 @@ internal static class Util
     {
         var symbolToUse = symbol.IsGenericType ? symbol.OriginalDefinition : symbol;
 
-        var displayString = symbolToUse.FullName();
+        var displayString = symbolToUse.EsacpedFullName();
 
         return symbolToUse.IsGenericType
             ? EscapeTypeNameForTripleSlashComment(symbolToUse.ToDisplayString())

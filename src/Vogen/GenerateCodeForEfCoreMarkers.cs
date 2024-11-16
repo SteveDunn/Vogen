@@ -138,7 +138,7 @@ $$"""
                 }
 
                 var voSymbol = eachSpec.Marker.VoSymbol;
-                sb.AppendLine($"configurationBuilder.Properties<{voSymbol.FullName()}>().HaveConversion<{markerSymbol.FullName()}.{voSymbol.Name}EfCoreValueConverter, {markerSymbol.FullName()}.{voSymbol.Name}EfCoreValueComparer>();");
+                sb.AppendLine($"configurationBuilder.Properties<{voSymbol.EsacpedFullName()}>().HaveConversion<{markerSymbol.EsacpedFullName()}.{voSymbol.Name}EfCoreValueConverter, {markerSymbol.EsacpedFullName()}.{voSymbol.Name}EfCoreValueComparer>();");
             }
 
             return sb.ToString();

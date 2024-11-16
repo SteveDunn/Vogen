@@ -17,7 +17,7 @@ internal static class SemanticHelper
 #if !NETSTANDARD
     [return: System.Diagnostics.CodeAnalysis.NotNullIfNotNull(nameof(symbol))]
 #endif
-    public static string? FullName(this INamedTypeSymbol? symbol)
+    public static string? EsacpedFullName(this INamedTypeSymbol? symbol)
     {
         if (symbol is null)
         {
@@ -29,7 +29,7 @@ internal static class SemanticHelper
         
         if (symbol.Arity > 0)
         {
-            suffix = $"<{string.Join(", ", symbol.TypeArguments.Select(a => FullName(a as INamedTypeSymbol)))}>";
+            suffix = $"<{string.Join(", ", symbol.TypeArguments.Select(a => EsacpedFullName(a as INamedTypeSymbol)))}>";
         }
 
         if (prefix != string.Empty)

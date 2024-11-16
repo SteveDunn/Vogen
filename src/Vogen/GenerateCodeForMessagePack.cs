@@ -157,9 +157,9 @@ internal class GenerateCodeForMessagePack
         var accessor = accessibility;
 
         string wrapperNameShort = Util.EscapeKeywordsIfRequired(wrapperSymbol.Name);
-        string wrapperName = Util.EscapeKeywordsIfRequired(wrapperSymbol.FullName());
+        string wrapperName = wrapperSymbol.EsacpedFullName();
 
-        string underlyingTypeName = underlyingSymbol.FullName();
+        string underlyingTypeName = underlyingSymbol.EsacpedFullName();
         
         string nativeReadMethod = TryGetNativeReadMethod(underlyingSymbol);
 

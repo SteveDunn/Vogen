@@ -23,8 +23,7 @@ public class VoWorkItem
         init
         {
             _underlyingType = value;
-            _underlyingTypeFullName = value.FullName() ?? value.Name ?? throw new InvalidOperationException(
-                "No underlying type specified - please file a bug at https://github.com/SteveDunn/Vogen/issues/new?assignees=&labels=bug&template=BUG_REPORT.yml");
+            _underlyingTypeFullName = value.EsacpedFullName();
             IsUnderlyingAString = typeof(string).IsAssignableFrom(Type.GetType(_underlyingTypeFullName));
         }
     }
@@ -53,7 +52,7 @@ public class VoWorkItem
     
     public required INamedTypeSymbol DefaultValidationExceptionSymbol { get; init; }
 
-    public string ValidationExceptionFullName => Config.ValidationExceptionType?.FullName() ?? "global::Vogen.ValueObjectValidationException";
+    public string ValidationExceptionFullName => Config.ValidationExceptionType?.EsacpedFullName() ?? "global::Vogen.ValueObjectValidationException";
 
     public string VoTypeName => TypeToAugment.Identifier.ToString();
     

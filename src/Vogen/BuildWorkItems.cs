@@ -354,7 +354,7 @@ internal static class BuildWorkItems
             return false;
         }
         
-        if(method.ReturnType is INamedTypeSymbol s && s.FullName() != "Vogen.Validation")
+        if(method.ReturnType is INamedTypeSymbol s && s.EsacpedFullName() != "Vogen.Validation")
         {
             context.ReportDiagnostic(DiagnosticsCatalogue.ValidationMustReturnValidationType(mds));
             return false;
@@ -381,7 +381,7 @@ internal static class BuildWorkItems
         INamedTypeSymbol underlyingType)
     {
         IEnumerable<AttributeData> matchingAttributes =
-            attributes.Where(a => a.AttributeClass?.FullName() is "Vogen.InstanceAttribute");
+            attributes.Where(a => a.AttributeClass?.EsacpedFullName() is "Vogen.InstanceAttribute");
 
         var props = BuildInstanceProperties.Build(matchingAttributes, context, voClass, underlyingType);
         

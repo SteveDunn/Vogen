@@ -4,14 +4,8 @@ namespace Vogen.Types;
 
 internal class EscapedSymbolFullName
 {
-    public EscapedSymbolFullName(INamedTypeSymbol symbol)
-    {
-        OriginalName = symbol.FullName();
+    public EscapedSymbolFullName(INamedTypeSymbol symbol) => Value = symbol.EsacpedFullName();
 
-        Value = Util.EscapeKeywordsIfRequired(symbol.FullName());
-    }
-
-    public string OriginalName { get; }
     public string Value { get; }
     
     public static implicit operator string(EscapedSymbolFullName name) => name.Value;

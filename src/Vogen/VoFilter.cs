@@ -21,9 +21,9 @@ internal static class VoFilter
         var attrs = voSymbolInformation.GetAttributes();
 
         return attrs.Where(
-            a => a.AttributeClass?.FullName() == "Vogen.ValueObjectAttribute"
-                 || a.AttributeClass?.BaseType?.FullName() == "Vogen.ValueObjectAttribute"
-                 || a.AttributeClass?.BaseType?.BaseType?.FullName() == "Vogen.ValueObjectAttribute");
+            a => a.AttributeClass?.EsacpedFullName() == "Vogen.ValueObjectAttribute"
+                 || a.AttributeClass?.BaseType?.EsacpedFullName() == "Vogen.ValueObjectAttribute"
+                 || a.AttributeClass?.BaseType?.BaseType?.EsacpedFullName() == "Vogen.ValueObjectAttribute");
     }
 
     /// <summary>

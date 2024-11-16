@@ -137,7 +137,7 @@ internal class BuildConfigurationFromAttributes
         }
 
         var isDerivedFromGenericAttribute =
-            attrClassSymbol.BaseType!.FullName().StartsWith("Vogen.ValueObjectAttribute<");
+            attrClassSymbol.BaseType!.EsacpedFullName().StartsWith("Vogen.ValueObjectAttribute<");
 
         // Extracts the generic argument from the base type when the derived type isn't generic
         // e.g. MyCustomVoAttribute : ValueObjectAttribute<long>

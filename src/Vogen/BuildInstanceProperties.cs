@@ -104,7 +104,7 @@ namespace Vogen
 
             var r = InstanceGeneration.TryBuildInstanceValueAsText(
                 (string)nameConstant.Value!, 
-                valueConstant.Value!, underlyingType.FullName());
+                valueConstant.Value!, underlyingType.EsacpedFullName());
 
             if (!r.Success)
             {

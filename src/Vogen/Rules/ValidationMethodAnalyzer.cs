@@ -143,7 +143,7 @@ public class ValidationMethodAnalyzer : DiagnosticAnalyzer
                 continue;
             }
 
-            if (mds.ReturnType is not INamedTypeSymbol s || s.FullName() != "Vogen.Validation")
+            if (mds.ReturnType is not INamedTypeSymbol s || s.EsacpedFullName() != "Vogen.Validation")
             {
                 continue;
             }

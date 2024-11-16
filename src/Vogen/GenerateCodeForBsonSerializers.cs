@@ -218,10 +218,10 @@ internal class GenerateCodeForBsonSerializers
     {
         var wrapperName = new EscapedSymbolNames(wrapperSymbol);
 
-        string underlyingTypeName = Util.EscapeKeywordsIfRequired(underlyingSymbol.FullName());
+        string underlyingTypeName = underlyingSymbol.EsacpedFullName();
 
         string className = $"{Util.EscapeKeywordsIfRequired(wrapperSymbol.Name)}BsonSerializer";
-        string fullyQualifiedClassName = $"{Util.EscapeKeywordsIfRequired(wrapperSymbol.FullName())}BsonSerializer";
+        string fullyQualifiedClassName = $"{wrapperSymbol.EsacpedFullName()}BsonSerializer";
 
         Filename filename = new Filename(wrapperSymbol.ToDisplayString() + "_bson.g.cs");
 
