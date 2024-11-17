@@ -14,36 +14,45 @@ internal static class SemanticHelper
     /// </summary>
     /// <param name="symbol"></param>
     /// <returns></returns>
-#if !NETSTANDARD
-    [return: System.Diagnostics.CodeAnalysis.NotNullIfNotNull(nameof(symbol))]
-#endif
-    public static string? EsacpedFullName(this INamedTypeSymbol? symbol)
+    public static string EscapedFullName(this ISymbol symbol)
     {
-        if (symbol is null)
-        {
-            return null;
-        }
-
         var prefix = FullNamespace(symbol);
         var suffix = "";
-        
-        if (symbol.Arity > 0)
-        {
-            suffix = $"<{string.Join(", ", symbol.TypeArguments.Select(a => EsacpedFullName(a as INamedTypeSymbol)))}>";
-        }
 
+        if (symbol is INamedTypeSymbol nts)
+        {
+            if (nts.Arity > 0)
+            {
+                suffix = $"<{string.Join(", ", nts.TypeArguments.Select(a => GetEscapedFullNameForTypeArgument(a)))}>";
+            }
+        }
+        
         if (prefix != string.Empty)
         {
             return $"{prefix}.{Util.EscapeKeywordsIfRequired(symbol.Name)}{suffix}";
         }
 
         return Util.EscapeKeywordsIfRequired(symbol.Name) + suffix;
+
+        static string? GetEscapedFullNameForTypeArgument(ITypeSymbol a)
+        {
+            if (!a.CanBeReferencedByName)
+            {
+                return null;
+            }
+            if(a is not ITypeSymbol nts)
+            {
+                return null;
+            }
+            return EscapedFullName(nts);
+        }
     }
 
     public static string FullNamespace(this ISymbol symbol)
     {
         var parts = new Stack<string>();
-        INamespaceSymbol? iterator = (symbol as INamespaceSymbol) ?? symbol.ContainingNamespace;
+        INamespaceSymbol? iterator = symbol as INamespaceSymbol ?? symbol.ContainingNamespace;
+        
         while (iterator is not null)
         {
             if (!string.IsNullOrEmpty(iterator.Name))

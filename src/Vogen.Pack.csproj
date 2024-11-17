@@ -51,8 +51,8 @@
     <None Include="$(MSBuildThisFileDirectory)\Vogen\bin\$(Configuration)\netstandard2.0\Vogen.SharedTypes.dll" Pack="true" PackagePath="analyzers/dotnet/cs" Visible="false" />
 
     <None Include="$(MSBuildThisFileDirectory)\Vogen\bin\$(Configuration)\netstandard2.0\Vogen.SharedTypes.dll" Pack="true" PackagePath="lib\netstandard2.0" Visible="true" />
-    <None Include="$(MSBuildThisFileDirectory)\Vogen\bin\$(Configuration)\net8.0\Vogen.SharedTypes.dll" Pack="true" PackagePath="lib\net8.0" Visible="true" />
-    <None Include="$(MSBuildThisFileDirectory)\Vogen\bin\$(Configuration)\net8.0\Vogen.SharedTypes.xml" Pack="true" PackagePath="lib\net8.0" Visible="true" />
+    <None Include="$(MSBuildThisFileDirectory)\Vogen\bin\$(Configuration)\net9.0\Vogen.SharedTypes.dll" Pack="true" PackagePath="lib\net9.0" Visible="true" />
+    <None Include="$(MSBuildThisFileDirectory)\Vogen\bin\$(Configuration)\net9.0\Vogen.SharedTypes.xml" Pack="true" PackagePath="lib\net9.0" Visible="true" />
   </ItemGroup>
 
 </Project>

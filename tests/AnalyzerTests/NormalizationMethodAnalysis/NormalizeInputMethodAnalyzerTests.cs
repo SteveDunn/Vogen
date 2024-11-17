@@ -42,7 +42,7 @@ namespace ConsoleApplication1
             },
 
             CompilerDiagnostics = CompilerDiagnostics.Suggestions,
-            ReferenceAssemblies = References.Net80AndOurs.Value,
+            ReferenceAssemblies = References.Net90AndOurs.Value,
         };
 
         test.DisabledDiagnostics.Add("CS1591");
@@ -98,7 +98,7 @@ public partial class {|#0:TypeName|}
             },
 
             CompilerDiagnostics = CompilerDiagnostics.Suggestions,
-            ReferenceAssemblies = References.Net80AndOurs.Value,
+            ReferenceAssemblies = References.Net90AndOurs.Value,
             FixedCode = expectedOutput,
             ExpectedDiagnostics = { expectedDiagnostic },
         };
@@ -141,7 +141,7 @@ public partial class TypeName
             },
 
             CompilerDiagnostics = CompilerDiagnostics.Suggestions,
-            ReferenceAssemblies = References.Net80AndOurs.Value,
+            ReferenceAssemblies = References.Net90AndOurs.Value,
             ExpectedDiagnostics = { expectedDiagnostic },
         };
 

@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>net8.0;netstandard2.0</TargetFrameworks>
+    <TargetFrameworks>net9.0;netstandard2.0</TargetFrameworks>
     <LanguageVersion>latest</LanguageVersion>
     <ImplicitUsings>disable</ImplicitUsings>
     <nullable>enable</nullable>
@@ -55,7 +55,7 @@
     <None Include="$(OutputPath)\netstandard2.0\Vogen.SharedTypes.dll" Pack="true" PackagePath="analyzers/dotnet/cs" Visible="false" />
 
     <None Include="$(OutputPath)\netstandard2.0\Vogen.SharedTypes.dll" Pack="true" PackagePath="lib\netstandard2.0" Visible="true" />
-    <None Include="$(OutputPath)\net8.0\Vogen.SharedTypes.dll" Pack="true" PackagePath="lib\net8.0" Visible="true" />
+    <None Include="$(OutputPath)\net9.0\Vogen.SharedTypes.dll" Pack="true" PackagePath="lib\net9.0" Visible="true" />
 
   </ItemGroup>
 

@@ -29,7 +29,7 @@ public class StaticAbstractTests
             await new SnapshotRunner<ValueObjectGenerator>()
                 .WithSource(source)
                 .WithLanguageVersion(LanguageVersion.CSharp10)
-                .RunOn(TargetFramework.Net6_0);
+                .RunOn(TargetFramework.Net8_0);
         }
 
         [Fact]

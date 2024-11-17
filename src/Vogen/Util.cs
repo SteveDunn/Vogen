@@ -339,7 +339,7 @@ internal static class Util
     {
         var symbolToUse = symbol.IsGenericType ? symbol.OriginalDefinition : symbol;
 
-        var displayString = symbolToUse.EsacpedFullName();
+        var displayString = symbolToUse.EscapedFullName();
 
         return symbolToUse.IsGenericType
             ? EscapeTypeNameForTripleSlashComment(symbolToUse.ToDisplayString())
@@ -439,7 +439,7 @@ internal static class Util
     /// <param name="workItem"></param>
     /// <returns></returns>
     public static string GetModifiersForValueAndIsInitializedFields(VoWorkItem workItem) => 
-        workItem.Config.Conversions.HasFlag(Vogen.Conversions.XmlSerializable) ? "" : "readonly";
+        workItem.Config.Conversions.HasFlag(Conversions.XmlSerializable) ? "" : "readonly";
 
     internal static string GetLegalFilenameForMarkerClass(INamedTypeSymbol markerClassSymbol, ConversionMarkerKind conversionKind)
     {

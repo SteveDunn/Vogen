@@ -115,7 +115,7 @@ This adds a `<PackageReference>` to your project. You can additionally mark the 
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
-    <TargetFramework>net8.0</TargetFramework>
+    <TargetFramework>net9.0</TargetFramework>
   </PropertyGroup>
 
   <!-- Add the package -->

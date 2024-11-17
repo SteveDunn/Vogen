@@ -20,10 +20,13 @@ public class VoWorkItem
     public INamedTypeSymbol UnderlyingType
     {
         get => _underlyingType;
+#if !NETSTANDARD
+        [System.Diagnostics.CodeAnalysis.MemberNotNull(nameof(_underlyingTypeFullName))]
+#endif
         init
         {
             _underlyingType = value;
-            _underlyingTypeFullName = value.EsacpedFullName();
+            _underlyingTypeFullName = value.EscapedFullName();
             IsUnderlyingAString = typeof(string).IsAssignableFrom(Type.GetType(_underlyingTypeFullName));
         }
     }
@@ -52,7 +55,7 @@ public class VoWorkItem
     
     public required INamedTypeSymbol DefaultValidationExceptionSymbol { get; init; }
 
-    public string ValidationExceptionFullName => Config.ValidationExceptionType?.EsacpedFullName() ?? "global::Vogen.ValueObjectValidationException";
+    public string ValidationExceptionFullName => Config.ValidationExceptionType?.EscapedFullName() ?? "global::Vogen.ValueObjectValidationException";
 
     public string VoTypeName => TypeToAugment.Identifier.ToString();
     
