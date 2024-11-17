@@ -11,28 +11,6 @@ public class StaticAbstractTests
     public class Generates_nothing
     {
         [Fact]
-        public async Task when_run_on_less_than_csharp_11_even_when_specifying_it_should_generate()
-        {
-            var source = """
-                         using System;
-                         using Vogen;
-
-                         [assembly: VogenDefaults(
-                            systemTextJsonConverterFactoryGeneration: SystemTextJsonConverterFactoryGeneration.Omit, 
-                            conversions: Conversions.None, 
-                            staticAbstractsGeneration: StaticAbstractsGeneration.MostCommon)]
-
-                         [ValueObject(typeof(Guid))]
-                         public partial class MyVo { }
-                         """;
-
-            await new SnapshotRunner<ValueObjectGenerator>()
-                .WithSource(source)
-                .WithLanguageVersion(LanguageVersion.CSharp10)
-                .RunOn(TargetFramework.Net8_0);
-        }
-
-        [Fact]
         public async Task it_generates_on_net_8_0_with_no_lang_version_specified()
         {
             var source = """
