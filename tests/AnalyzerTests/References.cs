@@ -22,7 +22,7 @@ namespace AnalyzerTests
 
         public static Lazy<ReferenceAssemblies> Net90WithEfCoreAndOurs = new(
             () =>
-                new ReferenceAssemblies("net8.0", new PackageIdentity("Microsoft.NETCore.App.Ref", "9.0.0"), Path.Combine("ref", "net9.0"))
+                new ReferenceAssemblies("net9.0", new PackageIdentity("Microsoft.NETCore.App.Ref", "9.0.0"), Path.Combine("ref", "net9.0"))
                     .AddAssemblies(ImmutableArray.Create("Vogen", "Vogen.SharedTypes", _loc.Replace(".dll", string.Empty)))
                     .AddPackages(ImmutableArray.Create(new PackageIdentity("Microsoft.EntityFrameworkCore", "9.0.0"))));
     }

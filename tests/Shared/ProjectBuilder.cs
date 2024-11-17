@@ -54,7 +54,7 @@ public sealed class ProjectBuilder
     public ProjectBuilder WithMicrosoftCodeAnalysisNetAnalyzers(params string[] ruleIds) =>
         WithAnalyzerFromNuGet(
             "Microsoft.CodeAnalysis.NetAnalyzers",
-            "7.0.1",
+            "9.0.0",
             "analyzers/dotnet/cs/Microsoft.CodeAnalysis",
             ruleIds);
 

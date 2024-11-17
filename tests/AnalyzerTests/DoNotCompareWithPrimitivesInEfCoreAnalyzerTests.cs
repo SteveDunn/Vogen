@@ -410,7 +410,7 @@ public class DoNotCompareWithPrimitivesInEfCoreAnalyzerTests
             var test = new VerifyCS.Test
             {
                 CompilerDiagnostics = CompilerDiagnostics.Errors,
-                ReferenceAssemblies = References.Net90WithEfCoreAndOurs.Value,
+                ReferenceAssemblies = References.Net90WithEfCoreAndOurs.Value
             };
 
             foreach (var eachSource in sources)
