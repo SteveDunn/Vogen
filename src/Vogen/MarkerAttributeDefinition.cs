@@ -18,6 +18,9 @@ internal sealed class MarkerAttributeDefinition
         Diagnostics = diagnostics.ToList();
     }
     
+    /// <summary>
+    /// Gets the marker, or null if the associated attribute has an error.
+    /// </summary>
     public ConversionMarker? Marker { get;  }
 
     public List<Diagnostic> Diagnostics { get; }

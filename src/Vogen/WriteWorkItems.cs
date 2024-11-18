@@ -28,7 +28,6 @@ internal static class WriteWorkItems
 
     public static void WriteVo(GenerationParameters parameters)
     {
-        // get the recorded user class
         var item = parameters.WorkItem;
         var context = parameters.Context;
         TypeDeclarationSyntax voClass = item.TypeToAugment;
