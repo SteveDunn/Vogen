@@ -7,44 +7,34 @@
 //     the code is regenerated.
 // </auto-generated>
 // ------------------------------------------------------------------------------
-
 // Suppress warnings about [Obsolete] member usage in generated code.
 #pragma warning disable CS0618
-
 // Suppress warnings for 'Override methods on comparable types'.
 #pragma warning disable CA1036
-
 // Suppress Error MA0097 : A class that implements IComparable<T> or IComparable should override comparison operators
 #pragma warning disable MA0097
-
 // Suppress warning for 'The annotation for nullable reference types should only be used in code within a '#nullable' annotations context. Auto-generated code requires an explicit '#nullable' directive in source.'
 // The generator copies signatures from the BCL, e.g. for `TryParse`, and some of those have nullable annotations.
 #pragma warning disable CS8669, CS8632
-
 // Suppress warnings about CS1591: Missing XML comment for publicly visible type or member 'Type_or_Member'
 #pragma warning disable CS1591
-
 namespace @int;
-
 public partial class NameBsonSerializer : global::MongoDB.Bson.Serialization.Serializers.SerializerBase<@int.Name>
 {
     private readonly global::MongoDB.Bson.Serialization.IBsonSerializer<System.String> _serializer = global::MongoDB.Bson.Serialization.BsonSerializer.LookupSerializer<System.String>();
-
     public override @int.Name Deserialize(global::MongoDB.Bson.Serialization.BsonDeserializationContext context, global::MongoDB.Bson.Serialization.BsonDeserializationArgs args)
-    { 
-      var newArgs = new global::MongoDB.Bson.Serialization.BsonDeserializationArgs { NominalType = typeof(System.String) };
-
-      return Deserialize(_serializer.Deserialize(context, newArgs));
+    {
+        var newArgs = new global::MongoDB.Bson.Serialization.BsonDeserializationArgs
+        {
+            NominalType = typeof(System.String)
+        };
+        return Deserialize(_serializer.Deserialize(context, newArgs));
     }
 
-    public override void Serialize(global::MongoDB.Bson.Serialization.BsonSerializationContext context, global::MongoDB.Bson.Serialization.BsonSerializationArgs args, @int.Name value) => 
-      _serializer.Serialize(context, args, value.Value);
-      
-  static @int.Name Deserialize(System.String value) => UnsafeDeserialize(default, value);
-  
-  [global::System.Runtime.CompilerServices.UnsafeAccessor(global::System.Runtime.CompilerServices.UnsafeAccessorKind.StaticMethod, Name = "__Deserialize")]
-  static extern @int.Name UnsafeDeserialize(@int.Name @this, System.String value);      
-      
+    public override void Serialize(global::MongoDB.Bson.Serialization.BsonSerializationContext context, global::MongoDB.Bson.Serialization.BsonSerializationArgs args, @int.Name value) => _serializer.Serialize(context, args, value.Value);
+    static @int.Name Deserialize(System.String value) => UnsafeDeserialize(default, value);
+    [global::System.Runtime.CompilerServices.UnsafeAccessor(global::System.Runtime.CompilerServices.UnsafeAccessorKind.StaticMethod, Name = "__Deserialize")]
+    static extern @int.Name UnsafeDeserialize(@int.Name @this, System.String value);
 }
   
 // ------------------------------------------------------------------------------
@@ -55,32 +45,27 @@ public partial class NameBsonSerializer : global::MongoDB.Bson.Serialization.Ser
 //     the code is regenerated.
 // </auto-generated>
 // ------------------------------------------------------------------------------
-
 // Suppress warnings about [Obsolete] member usage in generated code.
 #pragma warning disable CS0618
-
 // Suppress warnings for 'Override methods on comparable types'.
 #pragma warning disable CA1036
-
 // Suppress Error MA0097 : A class that implements IComparable<T> or IComparable should override comparison operators
 #pragma warning disable MA0097
-
 // Suppress warning for 'The annotation for nullable reference types should only be used in code within a '#nullable' annotations context. Auto-generated code requires an explicit '#nullable' directive in source.'
 // The generator copies signatures from the BCL, e.g. for `TryParse`, and some of those have nullable annotations.
 #pragma warning disable CS8669, CS8632
-
 // Suppress warnings about CS1591: Missing XML comment for publicly visible type or member 'Type_or_Member'
 #pragma warning disable CS1591
-
 public static class BsonSerializationRegisterForgenerator
 {
-      static BsonSerializationRegisterForgenerator()
-      {
-          global::MongoDB.Bson.Serialization.BsonSerializer.TryRegisterSerializer(new @int.NameBsonSerializer());
+    static BsonSerializationRegisterForgenerator()
+    {
+        global::MongoDB.Bson.Serialization.BsonSerializer.TryRegisterSerializer(new @int.NameBsonSerializer());
+    }
 
-      }
-      
-      public static void TryRegister() { }
+    public static void TryRegister()
+    {
+    }
 }
   
 // ------------------------------------------------------------------------------
