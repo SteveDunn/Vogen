@@ -25,7 +25,8 @@ internal static class Util
         new GenerateTypeConverterConversions(),
         new GenerateDapperConversions(),
         new GenerateEfCoreTypeConversions(),
-        new GenerateLinqToDbConversions()
+        new GenerateLinqToDbConversions(),
+        new GenerateCodeForMessagePack()
     };
 
     public static string SanitizeToALegalFilename(string input) => input.Replace('@', '_');

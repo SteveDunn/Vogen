@@ -39,7 +39,7 @@ public class MessagePackScenario_using_conversion_attributes : IScenario
     public Task Run()
     {
         var customResolver = MessagePack.Resolvers.CompositeResolver.Create(
-            [new PersonIdMessagePackFormatter(), new NameMessagePackFormatter(), new AgeMessagePackFormatter()],
+            [],//[new PersonIdMessagePackFormatter(), new NameMessagePackFormatter(), new AgeMessagePackFormatter()],
             [MessagePack.Resolvers.StandardResolver.Instance]
         );
 

@@ -4,11 +4,13 @@ using System.Linq;
 using System.Text;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.CodeAnalysis.Text;
+using Vogen.Generators.Conversions;
 
 namespace Vogen;
 
-internal class GenerateCodeForMessagePack
+internal class GenerateCodeForMessagePack : IGenerateConversion
 {
     public static void GenerateForMarkerClasses(SourceProductionContext context, ImmutableArray<MarkerClassDefinition> conversionMarkerClasses)
     {
@@ -162,7 +164,7 @@ internal class GenerateCodeForMessagePack
         string underlyingTypeName = underlyingSymbol.EscapedFullName();
         
         string nativeReadMethod = TryGetNativeReadMethod(underlyingSymbol);
-
+        
         if (!string.IsNullOrEmpty(nativeReadMethod))
         {
             return $$"""
@@ -250,5 +252,19 @@ internal class GenerateCodeForMessagePack
 
             return new(voWorkItem.FullNamespace, voWorkItem.WrapperType, voWorkItem.UnderlyingType, accessor);
         }
-    }    
+    }
+
+    public string GenerateAnyAttributes(TypeDeclarationSyntax tds, VoWorkItem item)
+    {
+        if (!item.HasConversion(Conversions.MessagePack))
+        {
+            return string.Empty;
+        }
+
+        string fqName = $"{item.WrapperType.EscapedFullName()}MessagePackFormatter";
+
+        return $"[global::MessagePack.MessagePackFormatterAttribute(typeof({fqName}))]";
+    }
+
+    public string GenerateAnyBody(TypeDeclarationSyntax tds, VoWorkItem item) => "";
 }
