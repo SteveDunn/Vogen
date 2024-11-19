@@ -263,7 +263,7 @@ internal class GenerateCodeForMessagePack : IGenerateConversion
 
         string fqName = $"{item.WrapperType.EscapedFullName()}MessagePackFormatter";
 
-        return $"[global::MessagePack.MessagePackFormatterAttribute(typeof({fqName}))]";
+        return $"[global::MessagePack.MessagePackFormatter(typeof({fqName}))]";
     }
 
     public string GenerateAnyBody(TypeDeclarationSyntax tds, VoWorkItem item) => "";

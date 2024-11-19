@@ -1,17 +1,77 @@
 # Serialize Value Objects
 
+Vogen can generate source code to integrate with other systems and technologies, including:
+
+* JSON (`System.Text.Json` and `Newtonsoft.Json`)
+* BSON
+* Dapper
+* LinqToDB
+* EF Core
+* ASP.NET Core (for MVC routes etc.), by generating a `TypeConverter`
+* protobuf-net (see the section in the [FAQ](FAQ.md#can-i-use-protobuf-net) for usage)
+
+… and many others. See the `Conversions` attribute for a full list
+
+This conversion code can be generated in the same project as the value object or in a different project.
+
+## Conversion code in the same project
+
+Here are two types where we want serializers for MessagePack and Mongo's BSON format:
+
+```c#
+[ValueObject<string>(
+    conversions: Conversions.MessagePack | Conversions.Bson)]
+public readonly partial struct Name { }
+
+[ValueObject<int>(
+    conversions: Conversions.MessagePack | Conversions.Bson)]
+public readonly partial struct Age { }
+```
+
+If you're following an architecture pattern where you separate infrastructure from other layers, then you'll want the generated converters to live in another project. This is described below.
+
+## Conversion code in a different project
+
 <note>
-This topic is incomplete and is currently being improved.
+Currently, the following conversions can be used from another project, but as Vogen evolves other conversions will be supported (please raise a GitHub issue if you'd like to see something implemented):
+
+* BSON
+* EFCore
+* MessagePack
+
 </note>
 
+Create a `partial class` (not a `struct`), and specify what converters you want for what type. For the two examples above, it'd be:
 
-Vogen integrates with other systems and technologies.
+```c#
+[BsonSerializer<Domain.Name>]
+[BsonSerializer<Domain.Age>]
+public partial class BsonConversions;
 
-The generated Value Objects can be converted to and from JSON.
+[MessagePack<Domain.Name>]
+[MessagePack<Domain.Age>]
+public partial class MessagePackConversions;
+```
 
-They can be used in Dapper, LinqToDB, and EF Core.
+... or just have them in one class:
 
-And it generates TypeConverter code, so that Value Objects can be used in things like ASP.NET Core MVC routes.
+```c#
+[BsonSerializer<Domain.Name>]
+[MessagePack<Domain.Name>]
+[BsonSerializer<Domain.Age>]
+[MessagePack<Domain.Age>]
+public partial class Conversions;
+```
+
+And reference them with something like `Conversions.NameBsonSerializer` etc. Here's an example to register all MessagePack formatters:  
+
+```c#
+        var customResolver = MessagePack.Resolvers.CompositeResolver.Create(
+            Conversions.MessagePackFormatters,
+            [MessagePack.Resolvers.StandardResolver.Instance]
+        );
+```
+
 
 Integration is handled by the `conversions` parameter in the `ValueObject` attribute. The current choices are:
 
@@ -100,17 +160,6 @@ public enum Conversions
 
 The default, as specified above in the `Defaults` property, is `TypeConverter` and `SystemTextJson`.
 
-[//]: # (TODO: merge this in)
-
-Other converters/serializers are:
-
-* Newtonsoft.Json (NSJ)
-* ServiceStack.Text
-* Dapper
-* EFCore
-* [LINQ to DB](https://github.com/linq2db/linq2db)
-* protobuf-net (see the FAQ section below)
-
 They are controlled by the `Conversions` enum. The following has serializers for NSJ and STJ:
 
 ```c#
@@ -121,7 +170,7 @@ public readonly partial struct Celsius { }
 
 If you don't want any conversions, then specify `Conversions.None`.
 
-If you want your own conversion, then again specify none, and implement them yourself, just like any other type.  But be aware that even serializers will get the same compilation errors for `new` and `default` when trying to create VOs.
+If you want your own conversion, then again specify none and implement them yourself, just like any other type. Be aware that even serializers will get the same compilation errors for `new` and `default` when trying to create VOs.
 
 If you want to use Dapper, remember to register it—something like this:
 

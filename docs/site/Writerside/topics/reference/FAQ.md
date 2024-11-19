@@ -64,7 +64,7 @@ If you're using the generator in a .NET Framework project and using the old styl
     </Configuration>
 ```
 
-## Does it support C# 11 features?
+## Does it support modern features of C#?
 This is primarily a source generator. The source it generates is mostly C# 6 for compatibility. But if you use features from a later language version, for instance, `records` from C# 9, then it will also generate records.
 
 Source generation is driven by attributes, and, if you're using .NET 7 or above, the generic version of the `ValueObject` attribute is exposed:
