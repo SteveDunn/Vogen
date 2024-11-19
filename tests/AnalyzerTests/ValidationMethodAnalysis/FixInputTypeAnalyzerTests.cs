@@ -57,7 +57,7 @@ public partial class TypeName
             },
 
             CompilerDiagnostics = CompilerDiagnostics.Suggestions,
-            ReferenceAssemblies = References.Net80AndOurs.Value,
+            ReferenceAssemblies = References.Net90AndOurs.Value,
             FixedCode = expectedOutput,
             ExpectedDiagnostics = { expectedDiagnostic },
         };
@@ -116,7 +116,7 @@ public partial class TypeName
             },
 
             CompilerDiagnostics = CompilerDiagnostics.Suggestions,
-            ReferenceAssemblies = References.Net80AndOurs.Value,
+            ReferenceAssemblies = References.Net90AndOurs.Value,
             FixedCode = expectedOutput,
             ExpectedDiagnostics = { expectedDiagnostic },
         };
@@ -183,7 +183,7 @@ public partial class TypeName
             },
 
             CompilerDiagnostics = CompilerDiagnostics.Suggestions,
-            ReferenceAssemblies = References.Net80AndOurs.Value,
+            ReferenceAssemblies = References.Net90AndOurs.Value,
             FixedCode = expectedOutput,
             ExpectedDiagnostics = { expectedDiagnostic },
         };

@@ -148,7 +148,7 @@ public static class GenerateCodeForToString
             string type = eachParameter.Type.ToDisplayString(
                 item.Nullable.IsEnabled ? DisplayFormats.SymbolFormatWhenNullabilityIsOn : DisplayFormats.SymbolFormatWhenNullabilityIsOff);
 
-            string name = Util.EscapeIfRequired(eachParameter.Name);
+            string name = Util.EscapeKeywordsIfRequired(eachParameter.Name);
 
             string attrs = string.Empty;
             var parameterAttributes = eachParameter.GetAttributes();

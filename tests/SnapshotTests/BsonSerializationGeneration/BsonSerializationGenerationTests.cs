@@ -31,4 +31,52 @@ public class BsonSerializationGenerationTests
                 .IgnoreInitialCompilationErrors()
                 .RunOn(TargetFramework.Net8_0);
     }
+
+    [Fact]
+    public async Task Escapes_namespaces()
+    {
+        var source = """
+                     using System;
+                     using Vogen;
+                     
+                     [assembly: VogenDefaults(conversions: Conversions.Bson)]
+
+                     namespace @int;
+                     [ValueObject<string>]
+                     public partial struct Name;
+                     """;
+
+            await new SnapshotRunner<ValueObjectGenerator>()
+                .WithSource(source)
+                .IgnoreInitialCompilationErrors()
+                .RunOn(TargetFramework.Net8_0);
+    }
+
+    [Fact]
+    public async Task Generates_from_a_marker()
+    {
+        var source = """
+                     using System;
+                     using Vogen;
+                     
+                     [assembly: VogenDefaults(conversions: Conversions.None)]
+
+                     namespace N;
+                     
+                     [ValueObject<string>]
+                     public partial struct Name;
+
+                     [ValueObject<int>]
+                     public partial struct Age;
+                     
+                     [BsonSerializer<Name>]
+                     [BsonSerializer<Age>]
+                     public partial class MyMarkers;
+                     """;
+
+            await new SnapshotRunner<ValueObjectGenerator>()
+                .WithSource(source)
+                .IgnoreInitialCompilationErrors()
+                .RunOn(TargetFramework.Net8_0);
+    }
 }

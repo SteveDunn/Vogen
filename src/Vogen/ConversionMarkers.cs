@@ -13,23 +13,11 @@ internal static class ConversionMarkers
     private static readonly Dictionary<string, ConversionMarkerKind> _knownMarkerAttributes = new()
     {
         { "EfCoreConverterAttribute`1", ConversionMarkerKind.EFCore },
-        { "MessagePackAttribute`1", ConversionMarkerKind.MessagePack }
+        { "MessagePackAttribute`1", ConversionMarkerKind.MessagePack },
+        { "BsonSerializerAttribute`1", ConversionMarkerKind.Bson }
     };
-    
-    /// <summary>
-    /// Tries to get any 'Market Object' attributes on a class.
-    /// </summary>
-    /// <param name="markerClass"></param>
-    /// <returns></returns>
-    public static IEnumerable<AttributeData> TryGetMarkerAttributes(INamedTypeSymbol markerClass)
-    {
-        var attrs = markerClass.GetAttributes();
 
-        return attrs.Where(
-            a => _knownMarkerAttributes.ContainsKey(a.AttributeClass?.MetadataName ?? ""));
-    }
-
-    public static MarkerClassDefinition? GetConversionMarkerClassesFromAttribute(GeneratorSyntaxContext context)
+    public static MarkerClassDefinition? GetMarkerClassFromAttribute(GeneratorSyntaxContext context)
     {
         var semanticModel = context.SemanticModel;
 
@@ -37,13 +25,24 @@ internal static class ConversionMarkers
 
         var markerClassSymbol = (INamedTypeSymbol) declaredSymbol;
 
-        ImmutableArray<AttributeData> attributeData = TryGetMarkerAttributes(markerClassSymbol).ToImmutableArray();
+        ImmutableArray<AttributeData> attributeData = GetAnyMarkerAttributes(markerClassSymbol).ToImmutableArray();
 
-        if (attributeData.Length == 0) return null;
+        if (attributeData.Length == 0)
+        {
+            return null;
+        }
 
         return new MarkerClassDefinition(
-            markerClassSymbol,
-            attributeData.Select(a => TryBuild(a, markerClassSymbol)));
+            markerClassSymbol, 
+            attributeData.Select(a => TryBuild(a, markerClassSymbol)).Where(a => a is not null)!);
+    }
+
+    private static IEnumerable<AttributeData> GetAnyMarkerAttributes(INamedTypeSymbol markerClass)
+    {
+        var attrs = markerClass.GetAttributes();
+
+        return attrs.Where(
+            a => _knownMarkerAttributes.ContainsKey(a.AttributeClass?.MetadataName ?? ""));
     }
 
     public static bool IsTarget(SyntaxNode node) => 

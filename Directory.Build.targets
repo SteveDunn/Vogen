@@ -88,14 +88,14 @@
 
     <Otherwise>
       <ItemGroup>
-        <PackageReference Update="Microsoft.CodeAnalysis.Analyzers" Version="3.11.0-beta1.23525.2" />
-        <PackageReference Update="Microsoft.CodeAnalysis.CSharp" Version="4.8.0" />
-        <PackageReference Update="Microsoft.CodeAnalysis.Workspaces.Common" Version="4.8.0" />
-        <PackageReference Update="Microsoft.CodeAnalysis.CSharp.Workspaces" Version="4.8.0" />
+        <PackageReference Update="Microsoft.CodeAnalysis.Analyzers" Version="3.11.0" />
+        <PackageReference Update="Microsoft.CodeAnalysis.CSharp" Version="4.11.0" />
+        <PackageReference Update="Microsoft.CodeAnalysis.Workspaces.Common" Version="4.11.0" />
+        <PackageReference Update="Microsoft.CodeAnalysis.CSharp.Workspaces" Version="4.11.0" />
       </ItemGroup>
       <PropertyGroup>
-        <DefineConstants>$(DefineConstants);ROSLYN4_8;ROSLYN_4_2_OR_GREATER;ROSLYN_4_4_OR_GREATER;ROSLYN_4_5_OR_GREATER;ROSLYN_4_6_OR_GREATER;ROSLYN_4_8_OR_GREATER</DefineConstants>
-        <DefineConstants>$(DefineConstants);CSHARP9_OR_GREATER;CSHARP10_OR_GREATER;CSHARP11_OR_GREATER;CSHARP12_OR_GREATER</DefineConstants>
+        <DefineConstants>$(DefineConstants);ROSLYN4_8;ROSLYN_4_2_OR_GREATER;ROSLYN_4_4_OR_GREATER;ROSLYN_4_5_OR_GREATER;ROSLYN_4_6_OR_GREATER;ROSLYN_4_8_OR_GREATER;ROSLYN_4_10_OR_GREATER</DefineConstants>
+        <DefineConstants>$(DefineConstants);CSHARP9_OR_GREATER;CSHARP10_OR_GREATER;CSHARP11_OR_GREATER;CSHARP12_OR_GREATER;CSHARP13_OR_GREATER</DefineConstants>
         <NoWarn>$(NoWarn);CS0618</NoWarn>
       </PropertyGroup>
     </Otherwise>
@@ -107,7 +107,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="MinVer" Version="5.0.0">
+    <PackageReference Include="MinVer" Version="6.0.0">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>

@@ -3,9 +3,10 @@
     public enum TargetFramework
     {
         Net4_8,
-        Net6_0,
         Net8_0,
         AspNetCore8_0,
-        Latest = Net8_0,
+        Net9_0,
+        AspNetCore9_0,
+        Latest = Net9_0
     }
 }

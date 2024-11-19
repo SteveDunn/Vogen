@@ -151,7 +151,7 @@ namespace AnalyzerTests
                 },
 
                 CompilerDiagnostics = CompilerDiagnostics.Errors,
-                ReferenceAssemblies = References.Net80AndOurs.Value,
+                ReferenceAssemblies = References.Net90AndOurs.Value,
             };
 
             test.ExpectedDiagnostics.AddRange(expected);

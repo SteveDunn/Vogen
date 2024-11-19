@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Immutable;
+﻿using System.Collections.Immutable;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 
@@ -18,9 +17,9 @@ internal class VoTarget
         ImmutableArray<AttributeData> dataForAttributes)
     {
         SemanticModel = semanticModel;
-        VoSyntaxInformation = typeToAugment ?? throw new InvalidOperationException("No type to augment!");
+        VoSyntaxInformation = typeToAugment;
         NestingInfo = nestingInfo;
-        VoSymbolInformation = symbolForType ?? throw new InvalidOperationException("No symbol for type!");
+        VoSymbolInformation = symbolForType;
         DataForAttributes = dataForAttributes;
     }
 

@@ -12,6 +12,7 @@ public class VoWorkItem
 {
     private readonly INamedTypeSymbol _underlyingType = null!;
     private readonly string _underlyingTypeFullName = null!;
+    
     public MethodDeclarationSyntax? NormalizeInputMethod { get; init; }
     
     public MethodDeclarationSyntax? ValidateMethod { get; init; }
@@ -19,11 +20,13 @@ public class VoWorkItem
     public INamedTypeSymbol UnderlyingType
     {
         get => _underlyingType;
+#if !NETSTANDARD
+        [System.Diagnostics.CodeAnalysis.MemberNotNull(nameof(_underlyingTypeFullName))]
+#endif
         init
         {
             _underlyingType = value;
-            _underlyingTypeFullName = value.FullName() ?? value.Name ?? throw new InvalidOperationException(
-                "No underlying type specified - please file a bug at https://github.com/SteveDunn/Vogen/issues/new?assignees=&labels=bug&template=BUG_REPORT.yml");
+            _underlyingTypeFullName = value.EscapedFullName();
             IsUnderlyingAString = typeof(string).IsAssignableFrom(Type.GetType(_underlyingTypeFullName));
         }
     }
@@ -32,34 +35,33 @@ public class VoWorkItem
     
     public bool IsRecordStruct => TypeToAugment is RecordDeclarationSyntax rds && rds.IsKind(SyntaxKind.RecordStructDeclaration);
 
-
     public bool IsUnderlyingAString { get; private set; }
     
     /// <summary>
     /// The syntax information for the type to augment.
     /// </summary>
-    public TypeDeclarationSyntax TypeToAugment { get; init; } = null!;
+    public required TypeDeclarationSyntax TypeToAugment { get; init; }
     
-    public bool IsTheUnderlyingAValueType { get; init; }
+    public required bool IsTheUnderlyingAValueType { get; init; }
 
-    public bool IsTheWrapperAValueType { get; init; }
+    public required bool IsTheWrapperAValueType { get; init; }
     public bool IsTheWrapperAReferenceType => !IsTheWrapperAValueType;
 
     public List<InstanceProperties> InstanceProperties { get; init; } = new();
 
-    public string FullNamespace { get; init; } = string.Empty;
+    public required string FullNamespace { get; init; }
 
     public INamedTypeSymbol ValidationExceptionSymbol => Config.ValidationExceptionType ?? DefaultValidationExceptionSymbol;
     
     public required INamedTypeSymbol DefaultValidationExceptionSymbol { get; init; }
 
-    public string ValidationExceptionFullName => Config.ValidationExceptionType?.FullName() ?? "global::Vogen.ValueObjectValidationException";
+    public string ValidationExceptionFullName => Config.ValidationExceptionType?.EscapedFullName() ?? "global::Vogen.ValueObjectValidationException";
 
     public string VoTypeName => TypeToAugment.Identifier.ToString();
     
     public string UnderlyingTypeFullName => _underlyingTypeFullName;
 
-    public bool IsSealed { get; init; }
+    public required bool IsSealed { get; init; }
 
     public string AccessibilityKeyword { get; init; } = "public";
     
@@ -74,7 +76,10 @@ public class VoWorkItem
     public required LanguageVersion LanguageVersion { get; init; }
     
     public required VogenConfiguration Config { get; init; }
+
     public required Nullable Nullable { get; init; }
+
+    public bool HasConversion(Conversions conversion) => this.Config.Conversions.HasFlag(conversion);
 }
 
 public class ParsingInformation

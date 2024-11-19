@@ -54,7 +54,7 @@ public sealed class ProjectBuilder
     public ProjectBuilder WithMicrosoftCodeAnalysisNetAnalyzers(params string[] ruleIds) =>
         WithAnalyzerFromNuGet(
             "Microsoft.CodeAnalysis.NetAnalyzers",
-            "7.0.1",
+            "9.0.0",
             "analyzers/dotnet/cs/Microsoft.CodeAnalysis",
             ruleIds);
 
@@ -136,14 +136,6 @@ public sealed class ProjectBuilder
                 AddNuGetReference("ServiceStack.Text", "6.11.0", "lib/netstandard2.0");
                 break;
 
-            case TargetFramework.Net6_0:
-                AddNuGetReference("Microsoft.NETCore.App.Ref", "6.0.0", "ref/net6.0/");
-                AddNuGetReference("linq2db", "3.7.0", "lib/netstandard2.1/");
-                AddNuGetReference("Microsoft.EntityFrameworkCore", "6.0.0", "lib/net6.0/");
-                AddNuGetReference("Dapper", "2.0.123", "lib/net5.0/");
-                AddNuGetReference("ServiceStack.Text", "6.11.0", "lib/net6.0");
-                break;
-
             case TargetFramework.Net8_0:
                 AddNuGetReference("Microsoft.NETCore.App.Ref", "8.0.0", "ref/net8.0/");
                 AddNuGetReference("linq2db", "4.3.0", "lib/net6.0/");
@@ -160,6 +152,23 @@ public sealed class ProjectBuilder
                 AddNuGetReference("Microsoft.OpenApi", "1.4.3.0", "lib/netstandard2.0/");
                 AddNuGetReference("MongoDB.Bson", "2.27.0", "lib/netstandard2.0");
                 break;
+
+            case TargetFramework.Net9_0:
+                AddNuGetReference("Microsoft.NETCore.App.Ref", "9.0.0", "ref/net9.0/");
+                AddNuGetReference("linq2db", "4.3.0", "lib/net6.0/");
+                AddNuGetReference("Microsoft.EntityFrameworkCore", "8.0.10", "lib/net8.0/");
+                AddNuGetReference("Dapper", "2.1.28", "lib/net7.0/");
+                AddNuGetReference("ServiceStack.Text", "8.2.2", "lib/net8.0");
+                AddNuGetReference("MongoDB.Bson", "2.27.0", "lib/netstandard2.0");
+                break;
+
+            case TargetFramework.AspNetCore9_0:
+                AddNuGetReference("Microsoft.NETCore.App.Ref", "9.0.0", "ref/net9.0/");
+                AddNuGetReference("Microsoft.AspNetCore.App.Ref", "9.0.0", "ref/net9.0/");
+                AddNuGetReference("Swashbuckle.AspNetCore.SwaggerGen", "6.4.0", "lib/net6.0/");
+                AddNuGetReference("Microsoft.OpenApi", "1.4.3.0", "lib/netstandard2.0/");
+                AddNuGetReference("MongoDB.Bson", "2.27.0", "lib/netstandard2.0");
+                break;
             case null:
                 break;
             default:
@@ -168,7 +177,7 @@ public sealed class ProjectBuilder
 
         AddNuGetReference("System.Collections.Immutable", "1.5.0", "lib/netstandard2.0/");
 
-        if (_targetFramework is not TargetFramework.Net8_0)
+        if (_targetFramework is not (TargetFramework.Net8_0 or TargetFramework.Net9_0))
         {
             AddNuGetReference("System.Numerics.Vectors", "4.5.0", "ref/netstandard2.0/");
         }

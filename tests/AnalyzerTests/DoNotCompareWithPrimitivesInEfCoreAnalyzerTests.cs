@@ -261,7 +261,7 @@ public class DoNotCompareWithPrimitivesInEfCoreAnalyzerTests
             var test = new VerifyCS.Test
             {
                 CompilerDiagnostics = CompilerDiagnostics.Errors,
-                ReferenceAssemblies = References.Net80WithEfCoreAndOurs.Value,
+                ReferenceAssemblies = References.Net90WithEfCoreAndOurs.Value,
             };
 
             foreach (var eachSource in sources)
@@ -283,7 +283,7 @@ public class DoNotCompareWithPrimitivesInEfCoreAnalyzerTests
             (ImmutableArray<Diagnostic> Diagnostics, SyntaxTree[] GeneratedSources) output = await new ProjectBuilder()
                 .WithUserSource(strippedSource)
                 //.WithNugetPackages(packages)
-                .WithTargetFramework(TargetFramework.Net8_0)
+                .WithTargetFramework(TargetFramework.Net9_0)
                 .GetGeneratedOutput<ValueObjectGenerator>(ignoreInitialCompilationErrors: true, peReference);
 
             if (output.Diagnostics.Length > 0)
@@ -410,7 +410,7 @@ public class DoNotCompareWithPrimitivesInEfCoreAnalyzerTests
             var test = new VerifyCS.Test
             {
                 CompilerDiagnostics = CompilerDiagnostics.Errors,
-                ReferenceAssemblies = References.Net80WithEfCoreAndOurs.Value,
+                ReferenceAssemblies = References.Net90WithEfCoreAndOurs.Value
             };
 
             foreach (var eachSource in sources)
@@ -432,7 +432,7 @@ public class DoNotCompareWithPrimitivesInEfCoreAnalyzerTests
             (ImmutableArray<Diagnostic> Diagnostics, SyntaxTree[] GeneratedSources) output = await new ProjectBuilder()
                 .WithUserSource(strippedSource)
                 //.WithNugetPackages(packages)
-                .WithTargetFramework(TargetFramework.Net8_0)
+                .WithTargetFramework(TargetFramework.Net9_0)
                 .GetGeneratedOutput<ValueObjectGenerator>(ignoreInitialCompilationErrors: true, peReference);
 
             if (output.Diagnostics.Length > 0)

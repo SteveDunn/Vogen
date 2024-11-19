@@ -321,7 +321,7 @@ namespace AnalyzerTests
             var test = new VerifyCS.Test
             {
                 CompilerDiagnostics = CompilerDiagnostics.Errors,
-                ReferenceAssemblies = References.Net80AndOurs.Value,
+                ReferenceAssemblies = References.Net90AndOurs.Value,
             };
 
             foreach (var eachSource in sources)

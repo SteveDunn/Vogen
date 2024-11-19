@@ -11,6 +11,14 @@ indent_style=tab
 indent_size=tab
 tab_width=4
 
+[*.cs]
+dotnet_diagnostic.IDE0058.severity = none
+dotnet_diagnostic.IDE0303.severity = none
+dotnet_diagnostic.CA1508.severity = none
+dotnet_diagnostic.CA2000.severity = none
+dotnet_diagnostic.RS1041.severity = none
+dotnet_diagnostic.RS2008.severity = none
+
 [*.{asax,ascx,aspx,cs,cshtml,css,htm,html,js,jsx,master,razor,skin,ts,tsx,vb,xaml,xamlx,xoml}]
 indent_style=space
 indent_size= 4

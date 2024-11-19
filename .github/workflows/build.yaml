@@ -15,10 +15,8 @@ jobs:
       - uses: actions/setup-dotnet@v4.1.0
         with:
           dotnet-version: |
+            9.0.x
             8.0.x
-            7.0.x
-            6.0.x
-            5.0.x
             3.1.x
       - name: Build and Test
         run: ./Build.ps1
@@ -31,10 +29,8 @@ jobs:
       - uses: actions/setup-dotnet@v4.1.0
         with:
           dotnet-version: |
+            9.0.x
             8.0.x
-            7.0.x
-            6.0.x
-            5.0.x
             3.1.x
       - name: Build and Test
         run: ./Build.ps1
@@ -47,7 +43,7 @@ jobs:
       - uses: actions/setup-dotnet@v4.1.0
         with:
           dotnet-version: |
-            8.0.x
+            9.0.x
       - name: Run Snapshots
         run: ./RunSnapshots.ps1
         shell: pwsh
@@ -59,10 +55,8 @@ jobs:
       - uses: actions/setup-dotnet@v4.1.0
         with:
           dotnet-version: |
+            9.0.x
             8.0.x
-            7.0.x
-            6.0.x
-            5.0.x
             3.1.x
       - name: Build and Test
         run: ./Build.ps1

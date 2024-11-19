@@ -29,7 +29,7 @@ public class PreferReadonlyStructsAnalyzerTests
                 Sources = { source }
             },
             CompilerDiagnostics = CompilerDiagnostics.Suggestions,
-            ReferenceAssemblies = References.Net80AndOurs.Value,
+            ReferenceAssemblies = References.Net90AndOurs.Value,
         };
 
         test.DisabledDiagnostics.Add("CS1591");
@@ -58,7 +58,7 @@ public class PreferReadonlyStructsAnalyzerTests
                 Sources = { source }
             },
             CompilerDiagnostics = CompilerDiagnostics.Suggestions,
-            ReferenceAssemblies = References.Net80AndOurs.Value,
+            ReferenceAssemblies = References.Net90AndOurs.Value,
         };
 
         test.DisabledDiagnostics.Add("CS1591");
@@ -104,7 +104,7 @@ public class PreferReadonlyStructsAnalyzerTests
                 Sources = { source }
             },
             CompilerDiagnostics = CompilerDiagnostics.Suggestions,
-            ReferenceAssemblies = References.Net80AndOurs.Value,
+            ReferenceAssemblies = References.Net90AndOurs.Value,
             ExpectedDiagnostics = { expectedDiagnostic },
             FixedCode = fixedCode
         };

@@ -31,6 +31,8 @@
 <!--    <PackageReference Include="Swashbuckle.AspNetCore.Swagger" Version="6.9.0" />-->
     <PackageReference Include="System.Text.Json" Version="8.0.5"/>
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0"/>
+    <PackageReference Include="MongoDB.Analyzer" Version="1.4.0" />
+    <PackageReference Include="MongoDB.Bson" Version="2.27.0" />
     
   </ItemGroup>
   <ItemGroup>

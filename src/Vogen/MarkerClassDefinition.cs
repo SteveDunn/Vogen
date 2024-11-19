@@ -9,17 +9,15 @@ namespace Vogen;
 /// </summary>
 internal sealed class MarkerClassDefinition
 {
-    public INamedTypeSymbol MarkerClassSymbol { get; }
-
-    public MarkerClassDefinition(INamedTypeSymbol markerClassSymbol, IEnumerable<MarkerAttributeDefinition?> markers)
+    public MarkerClassDefinition(INamedTypeSymbol markerClassSymbol, IEnumerable<MarkerAttributeDefinition> markers)
     {
         MarkerClassSymbol = markerClassSymbol;
-        Results = markers.Where(r => r is not null)!;
+        AttributeDefinitions = markers.ToList();
     }
 
-    private IEnumerable<MarkerAttributeDefinition> Results { get; }
+    public INamedTypeSymbol MarkerClassSymbol { get; }
 
-    public IEnumerable<Diagnostic> Diagnostics => Results.SelectMany(r => r.Diagnostics);
+    public IEnumerable<Diagnostic> Diagnostics => AttributeDefinitions.SelectMany(r => r.Diagnostics);
 
-    public IEnumerable<MarkerAttributeDefinition> AttributeDefinitions => Results;
+    public IEnumerable<MarkerAttributeDefinition> AttributeDefinitions { get; }
 }

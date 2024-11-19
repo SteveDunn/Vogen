@@ -6,13 +6,14 @@ using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.CodeAnalysis.Text;
 using Vogen.Generators.Conversions;
+using Vogen.Types;
 
 [assembly: InternalsVisibleTo("SmallTests")]
 [assembly: InternalsVisibleTo("Vogen.Tests")]
 
 namespace Vogen;
 
-public static class Util
+internal static class Util
 {
     public static string EscapeTypeNameForTripleSlashComment(string typeName) =>
         typeName.Replace("<", "{").Replace(">", "}");
@@ -37,6 +38,9 @@ public static class Util
 
         return SourceText.From(formatted.ToFullString(), Encoding.UTF8);
     }
+
+    public static void TryWriteUsingUniqueFilename(Filename filename, SourceProductionContext context, SourceText sourceText)
+        => TryWriteUsingUniqueFilename(filename.Value, context, sourceText);
 
     public static void TryWriteUsingUniqueFilename(string filename, SourceProductionContext context, SourceText sourceText)
     {
@@ -136,7 +140,7 @@ public static class Util
         {
             foreach (var eachInstance in workItem.InstanceProperties)
             {
-                string escapedName = EscapeIfRequired(eachInstance.Name);
+                string escapedName = EscapeKeywordsIfRequired(eachInstance.Name);
                 sb.AppendLine($"        if(value == {escapedName}.Value) return {escapedName};");
             }
         }
@@ -174,7 +178,7 @@ public static class Util
     }
 
 
-    public static string EscapeIfRequired(string name)
+    public static string EscapeKeywordsIfRequired(string name)
     {
         bool match = SyntaxFacts.GetKeywordKind(name) != SyntaxKind.None ||
                      SyntaxFacts.GetContextualKeywordKind(name) != SyntaxKind.None;
@@ -191,7 +195,7 @@ public static class Util
             return string.Empty;
         }
 
-        return @$"namespace {EscapeIfRequired(@namespace)}
+        return @$"namespace {EscapeKeywordsIfRequired(@namespace)}
 {{
 ";
     }
@@ -335,7 +339,7 @@ public static class Util
     {
         var symbolToUse = symbol.IsGenericType ? symbol.OriginalDefinition : symbol;
 
-        var displayString = symbolToUse.FullName() ?? symbolToUse.Name;
+        var displayString = symbolToUse.EscapedFullName();
 
         return symbolToUse.IsGenericType
             ? EscapeTypeNameForTripleSlashComment(symbolToUse.ToDisplayString())
@@ -435,7 +439,7 @@ public static class Util
     /// <param name="workItem"></param>
     /// <returns></returns>
     public static string GetModifiersForValueAndIsInitializedFields(VoWorkItem workItem) => 
-        workItem.Config.Conversions.HasFlag(Vogen.Conversions.XmlSerializable) ? "" : "readonly";
+        workItem.Config.Conversions.HasFlag(Conversions.XmlSerializable) ? "" : "readonly";
 
     internal static string GetLegalFilenameForMarkerClass(INamedTypeSymbol markerClassSymbol, ConversionMarkerKind conversionKind)
     {

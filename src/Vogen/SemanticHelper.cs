@@ -5,36 +5,59 @@ using Microsoft.CodeAnalysis;
 
 namespace Vogen;
 
-static class SemanticHelper
+internal static class SemanticHelper
 {
-    public static string? FullName(this INamedTypeSymbol? symbol)
+    /// <summary>
+    /// Returns the full name of a symbol, including the namespace.
+    /// The returned value is escaped in case in case there are any
+    /// keywords present. 
+    /// </summary>
+    /// <param name="symbol"></param>
+    /// <returns></returns>
+    public static string EscapedFullName(this ISymbol symbol)
     {
-        if (symbol is null)
-            return null;
-
         var prefix = FullNamespace(symbol);
         var suffix = "";
-        
-        if (symbol.Arity > 0)
+
+        if (symbol is INamedTypeSymbol nts)
         {
-            suffix = $"<{string.Join(", ", symbol.TypeArguments.Select(a => FullName(a as INamedTypeSymbol)))}>";
+            if (nts.Arity > 0)
+            {
+                suffix = $"<{string.Join(", ", nts.TypeArguments.Select(a => GetEscapedFullNameForTypeArgument(a)))}>";
+            }
+        }
+        
+        if (prefix != string.Empty)
+        {
+            return $"{prefix}.{Util.EscapeKeywordsIfRequired(symbol.Name)}{suffix}";
         }
 
-        if (prefix != "")
-            return $"{prefix}.{Util.EscapeIfRequired(symbol.Name)}{suffix}";
-        else
-            return Util.EscapeIfRequired(symbol.Name) + suffix;
+        return Util.EscapeKeywordsIfRequired(symbol.Name) + suffix;
+
+        static string? GetEscapedFullNameForTypeArgument(ITypeSymbol a)
+        {
+            if (!a.CanBeReferencedByName)
+            {
+                return null;
+            }
+            if(a is not ITypeSymbol nts)
+            {
+                return null;
+            }
+            return EscapedFullName(nts);
+        }
     }
 
     public static string FullNamespace(this ISymbol symbol)
     {
         var parts = new Stack<string>();
-        INamespaceSymbol? iterator = (symbol as INamespaceSymbol) ?? symbol.ContainingNamespace;
+        INamespaceSymbol? iterator = symbol as INamespaceSymbol ?? symbol.ContainingNamespace;
+        
         while (iterator is not null)
         {
             if (!string.IsNullOrEmpty(iterator.Name))
             {
-                parts.Push(Util.EscapeIfRequired(iterator.Name));
+                parts.Push(Util.EscapeKeywordsIfRequired(iterator.Name));
             }
 
             iterator = iterator.ContainingNamespace;

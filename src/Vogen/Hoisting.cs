@@ -61,7 +61,7 @@ public static class Hoisting
             string refKind = GetRefKind(eachParam);
 
             // Append parameter type and name
-            var parameterName = Util.EscapeIfRequired(eachParam.Name);
+            var parameterName = Util.EscapeKeywordsIfRequired(eachParam.Name);
             
             string typeAsText = eachParam.Type.ToDisplayString(DisplayFormats.SymbolFormatWhenNullabilityIsOff);
 
@@ -77,7 +77,7 @@ public static class Hoisting
 
         string parameterNames = string.Join(", ", nameAndRefKinds.Select(x => $"{x.RefKind} {x.Name}"));
 
-        string valueAccessor = isExplicitInterfaceImplementation ? $"(Value as {interfaceSymbol.FullName()})" : "Value";
+        string valueAccessor = isExplicitInterfaceImplementation ? $"(Value as {interfaceSymbol.EscapedFullName()})" : "Value";
 
         string body = $$"""
                         {

@@ -151,7 +151,7 @@ internal class GenerateCodeForOpenApiSchemaCustomization
         return sb.ToString();
     }
 
-    private static string MapWorkItems(IEnumerable<VoWorkItem> workItems, StringBuilder sb, bool nullable)
+    private static void MapWorkItems(IEnumerable<VoWorkItem> workItems, StringBuilder sb, bool nullable)
     {
         foreach (var workItem in workItems)
         {
@@ -174,8 +174,6 @@ internal class GenerateCodeForOpenApiSchemaCustomization
             sb.AppendLine(
                 $$"""global::Microsoft.Extensions.DependencyInjection.SwaggerGenOptionsExtensions.MapType<{{fqn}}>(o, () => new global::Microsoft.OpenApi.Models.OpenApiSchema { {{typeText}}{{formatText}}{{nullableText}} });""");
         }
-
-        return sb.ToString();
     }
 
     private record struct TypeAndFormat(string Type, string Format);

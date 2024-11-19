@@ -1,66 +1,161 @@
 using System.Collections.Generic;
+using System.Collections.Immutable;
 using System.Linq;
 using System.Text;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
-using Microsoft.CodeAnalysis.Text;
+using Vogen.Types;
 
 namespace Vogen;
 
 internal class GenerateCodeForBsonSerializers
 {
-    public static void WriteIfNeeded(SourceProductionContext context, Compilation compilation, List<VoWorkItem> workItems)
+    private const string _nameSuffix = "BsonSerializer";
+    
+    /// <summary>
+    /// For each value object that has a BSON conversion attribute, write a separate file with a serializer,
+    /// with a class name of '[WrapperName]BsonSerializer', and a filename of '[NameSpace].[WrapperName]_bson.g.cs' 
+    /// </summary>
+    /// <param name="context"></param>
+    /// <param name="compilation"></param>
+    /// <param name="workItems"></param>
+    public static void GenerateForApplicableValueObjects(SourceProductionContext context, Compilation compilation, List<VoWorkItem> workItems)
     {
         if (!compilation.IsAtLeastCSharpVersion(LanguageVersion.CSharp12))
         {
             return;
         }
 
-        var items = workItems.Where(i => i.Config.Conversions.HasFlag(Conversions.Bson)).ToList();
-
-        var toWrite = items.Select(GenerateSerializerReadyForWriting).ToList();
+        var applicableWrappers = workItems.Where(i => i.HasConversion(Conversions.Bson)).ToList();
         
-        foreach (var eachToWrite in toWrite)
+        foreach (var eachWrapper in applicableWrappers)
         {
-            WriteSerializer(eachToWrite, context);
+            string eachGenerated = GenerateSourceWithPreambleAndNamespace(eachWrapper);
+
+            var filename = new Filename(eachWrapper.WrapperType.ToDisplayString() + "_bson.g.cs");
+
+            Util.TryWriteUsingUniqueFilename(filename, context, Util.FormatSource(eachGenerated));
         }
         
-        WriteRegisterer(toWrite, compilation, context);
+        WriteRegistration(applicableWrappers, compilation, context);
     }
 
-    private static void WriteSerializer(SerializerEntry eachToWrite, SourceProductionContext context)
+    /// <summary>
+    /// For each marker class, write a separate file, with a type matching the FQN of the marker class appended with
+    /// 'Bson', and for each attribute, generate the serializer as a nested classed
+    /// </summary>
+    /// <param name="context"></param>
+    /// <param name="markerClass"></param>
+    public static void GenerateForMarkerClasses(SourceProductionContext context, ImmutableArray<MarkerClassDefinition> markerClass)
     {
-        SourceText sourceText = SourceText.From(eachToWrite.SourceCode, Encoding.UTF8);
-
-        Util.TryWriteUsingUniqueFilename(eachToWrite.Filename, context, sourceText);
+        foreach (var each in markerClass)
+        {
+            GenerateForMarkerClass(context, each);
+        }
     }
 
-    private static void WriteRegisterer(List<SerializerEntry> items, Compilation compilation, SourceProductionContext context)
+    private static void GenerateForMarkerClass(SourceProductionContext context, MarkerClassDefinition markerClass)
+    {
+        var markerClassSymbol = markerClass.MarkerClassSymbol;
+
+        if (!markerClass.AttributeDefinitions.Any(m => m.Marker?.Kind is ConversionMarkerKind.Bson))
+        {
+            return;
+        }
+
+        string pns = markerClassSymbol.FullNamespace();
+
+        string ns = pns.Length == 0 ? "" : $"namespace {pns};";
+
+        var isPublic = markerClassSymbol.DeclaredAccessibility.HasFlag(Accessibility.Public);
+        var accessor = isPublic ? "public" : "internal";
+
+        var sourceCode = $$"""
+                  {{GeneratedCodeSegments.Preamble}}
+
+                  {{ns}}
+
+                  {{accessor}} partial class {{markerClassSymbol.Name}}
+                  {
+                     {{GenerateManifest()}}
+                     {{GenerateSerializers()}}
+                  }
+
+                  """;
+
+        string filename = Util.GetLegalFilenameForMarkerClass(markerClass.MarkerClassSymbol, ConversionMarkerKind.Bson);
+
+        Util.TryWriteUsingUniqueFilename(filename, context, Util.FormatSource(sourceCode));
+
+        return;
+
+        string GenerateManifest()
+        {
+            return
+                $$"""
+                  {{accessor}} static global::MongoDB.Bson.Serialization.IBsonSerializer[] BsonSerializers => new global::MongoDB.Bson.Serialization.IBsonSerializer[]
+                  {
+                      {{GenerateEach()}}
+                  };
+                  """;
+
+            string GenerateEach()
+            {
+                string?[] names = markerClass.AttributeDefinitions.Where(
+                    m => m.Marker?.Kind is ConversionMarkerKind.Bson).Select(
+                    x =>
+                    {
+                        if (x.Marker is null)
+                        {
+                            return null;
+                        }
+
+                        string wrapperNameShort = x.Marker.VoSymbol.Name;
+                        
+                        return $"new {wrapperNameShort}{_nameSuffix}()";
+                    }).ToArray();
+
+                return string.Join(", ", names);
+            }
+        }
+
+        string GenerateSerializers()
+        {
+            StringBuilder sb = new();
+
+            foreach (MarkerAttributeDefinition eachAttr in markerClass.AttributeDefinitions.Where(
+                         m => m.Marker?.Kind is ConversionMarkerKind.Bson))
+            {
+                // ReSharper disable NullableWarningSuppressionIsUsed
+                string generatedSource = GenerateSource(eachAttr.Marker!.VoSymbol, eachAttr.Marker!.UnderlyingTypeSymbol, "public");
+                // ReSharper restore NullableWarningSuppressionIsUsed
+                
+                sb.AppendLine(
+                    $$"""
+                          {{generatedSource}}
+                      """);
+            }
+
+            return sb.ToString();
+        }
+    }
+
+    private static void WriteRegistration(List<VoWorkItem> items, Compilation compilation, SourceProductionContext context)
     {
         if (items.Count == 0)
         {
             return;
         }
 
-        var assemblyName = compilation.AssemblyName?.Replace(".", "_") ?? "";
-        if (assemblyName.EndsWith("_dll") || assemblyName.EndsWith("_exe"))
-        {
-            assemblyName = assemblyName[..^4];
-        }
-
-        string className = $"BsonSerializationRegister";
-        if(assemblyName.Length > 0)
-        {
-            className = className + "For" + assemblyName;
-        }
+        var classNameForRegistering = ClassNameForRegistering();
 
         string source =
             $$"""
               {{GeneratedCodeSegments.Preamble}}
 
-              public static class {{className}}
+              public static class {{classNameForRegistering}}
               {
-                    static {{className}}()
+                    static {{classNameForRegistering}}()
                     {
                         {{TextForEachRegisterCall(items)}}
                     }
@@ -68,71 +163,92 @@ internal class GenerateCodeForBsonSerializers
                     public static void TryRegister() { }
               }
               """;
-        
-        SourceText sourceText = SourceText.From(source, Encoding.UTF8);
 
-        Util.TryWriteUsingUniqueFilename(className, context, sourceText);
-        
+        Util.TryWriteUsingUniqueFilename(classNameForRegistering, context, Util.FormatSource(source));
+        return;
+
+        string ClassNameForRegistering()
+        {
+            var assemblyName = new SanitizedAssemblyName(compilation.AssemblyName);
+
+            string s = "BsonSerializationRegister";
+            if(assemblyName.Value.Length > 0)
+            {
+                s = $"{s}For{assemblyName}";
+            }
+
+            return s;
+        }
     }
 
-    private static string TextForEachRegisterCall(List<SerializerEntry> items)
+    private static string TextForEachRegisterCall(List<VoWorkItem> wrappers)
     {
         StringBuilder sb = new();
-        foreach (SerializerEntry eachEntry in items)
+        foreach (var eachWrapper in wrappers)
         {
-            sb.AppendLine($"global::MongoDB.Bson.Serialization.BsonSerializer.TryRegisterSerializer(new {eachEntry.SerializerFullyQualifiedName}());");
+            EscapedSymbolFullName n = new EscapedSymbolFullName(eachWrapper.WrapperType);
+
+            string className = $"{n}{_nameSuffix}";
+
+            sb.AppendLine(
+                $"global::MongoDB.Bson.Serialization.BsonSerializer.TryRegisterSerializer(new {className}());");
         }
 
         return sb.ToString();
     }
 
-    public record SerializerEntry(string SerializerFullyQualifiedName, string Filename, string SourceCode);
-
-    private static SerializerEntry GenerateSerializerReadyForWriting(VoWorkItem spec)
+    private static string GenerateSourceWithPreambleAndNamespace(VoWorkItem wrapper)
     {
-        var fullNamespace = spec.FullNamespace;
-
-        var isPublic = spec.WrapperType.DeclaredAccessibility.HasFlag(Accessibility.Public);
+        var isPublic = wrapper.WrapperType.DeclaredAccessibility.HasFlag(Accessibility.Public);
         var accessor = isPublic ? "public" : "internal";
 
+        string fullNamespace = wrapper.FullNamespace;
+        
         var ns = string.IsNullOrEmpty(fullNamespace) ? string.Empty : $"namespace {fullNamespace};";
 
-        string wrapperName = Util.EscapeIfRequired(spec.WrapperType.Name);
-        string underlyingTypeName = spec.UnderlyingTypeFullName;
+        var generatedSource = GenerateSource(wrapper.WrapperType, wrapper.UnderlyingType, accessor);
 
-        string sb =
+        return $"""
+                {GeneratedCodeSegments.Preamble}
+
+                {ns}
+
+                {generatedSource}
+                """;
+
+    }
+
+    private static string GenerateSource(INamedTypeSymbol wrapperSymbol, INamedTypeSymbol underlyingSymbol, string accessor)
+    {
+        var wrapperNames = new EscapedSymbolNames(wrapperSymbol);
+
+        EscapedSymbolFullName underlyingFullName = new EscapedSymbolFullName(underlyingSymbol);
+        EscapedSymbolFullName wrapperFullName = wrapperNames.FullName;
+
+        var className = $"{wrapperNames.ShortName}{_nameSuffix}";
+        
+        return
             $$"""
-              {{GeneratedCodeSegments.Preamble}}
-
-              {{ns}}
-                  
-              {{accessor}} partial class {{wrapperName}}BsonSerializer : global::MongoDB.Bson.Serialization.Serializers.SerializerBase<{{wrapperName}}>
+              {{accessor}} partial class {{className}} : global::MongoDB.Bson.Serialization.Serializers.SerializerBase<{{wrapperFullName}}>
               {
-                  private readonly global::MongoDB.Bson.Serialization.IBsonSerializer<{{underlyingTypeName}}> _serializer = global::MongoDB.Bson.Serialization.BsonSerializer.LookupSerializer<{{underlyingTypeName}}>();
+                  private readonly global::MongoDB.Bson.Serialization.IBsonSerializer<{{underlyingFullName}}> _serializer = global::MongoDB.Bson.Serialization.BsonSerializer.LookupSerializer<{{underlyingFullName}}>();
               
-                  public override {{wrapperName}} Deserialize(global::MongoDB.Bson.Serialization.BsonDeserializationContext context, global::MongoDB.Bson.Serialization.BsonDeserializationArgs args)
+                  public override {{wrapperFullName}} Deserialize(global::MongoDB.Bson.Serialization.BsonDeserializationContext context, global::MongoDB.Bson.Serialization.BsonDeserializationArgs args)
                   { 
-                    var newArgs = new global::MongoDB.Bson.Serialization.BsonDeserializationArgs { NominalType = typeof({{underlyingTypeName}}) };
+                    var newArgs = new global::MongoDB.Bson.Serialization.BsonDeserializationArgs { NominalType = typeof({{underlyingFullName}}) };
               
                     return Deserialize(_serializer.Deserialize(context, newArgs));
                   }
               
-                  public override void Serialize(global::MongoDB.Bson.Serialization.BsonSerializationContext context, global::MongoDB.Bson.Serialization.BsonSerializationArgs args, {{wrapperName}} value) => 
+                  public override void Serialize(global::MongoDB.Bson.Serialization.BsonSerializationContext context, global::MongoDB.Bson.Serialization.BsonSerializationArgs args, {{wrapperFullName}} value) => 
                     _serializer.Serialize(context, args, value.Value);
                     
-                static {{wrapperName}} Deserialize({{underlyingTypeName}} value) => UnsafeDeserialize(default, value);
+                static {{wrapperFullName}} Deserialize({{underlyingFullName}} value) => UnsafeDeserialize(default, value);
                 
                 [global::System.Runtime.CompilerServices.UnsafeAccessor(global::System.Runtime.CompilerServices.UnsafeAccessorKind.StaticMethod, Name = "__Deserialize")]
-                static extern {{wrapperName}} UnsafeDeserialize({{wrapperName}} @this, {{underlyingTypeName}} value);      
+                static extern {{wrapperFullName}} UnsafeDeserialize({{wrapperFullName}} @this, {{underlyingFullName}} value);      
                     
               }
               """;
-        
-        var fn = string.IsNullOrEmpty(fullNamespace) ? "" : fullNamespace + ".";
-        string serializerFqn = $"{fn}{wrapperName}BsonSerializer";
-        
-        var unsanitized = $"{spec.WrapperType.ToDisplayString()}_bson.g.cs";
-        string filename = Util.SanitizeToALegalFilename(unsanitized);
-        return new SerializerEntry(serializerFqn, filename, sb);
     }
 }
