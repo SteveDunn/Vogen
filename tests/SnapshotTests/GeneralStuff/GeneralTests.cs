@@ -27,6 +27,7 @@ public class GeneralTests
             await new SnapshotRunner<ValueObjectGenerator>()
                 .WithSource(source)
                 .WithPackage(new NuGetPackage("MessagePack", "2.5.187", "lib/netstandard2.0" ))
+                .WithPackage(new NuGetPackage("MessagePack.Annotations", "2.5.192", "lib/netstandard2.0" ))
                 .RunOn(TargetFramework.Net8_0);
     }
 

@@ -12,18 +12,18 @@ using Vogen;
 
 namespace Testbench;
 
-[MessagePack<MyInt>()]
-[MessagePack<MyId>()]
-[MessagePack<MyBool>()]
-[MessagePack<Name>()]
-[MessagePack<StartDate>()]
-[MessagePack<MyString>()]
+[MessagePack<MyInt>]
+[MessagePack<MyId>]
+[MessagePack<MyBool>]
+[MessagePack<Name>]
+[MessagePack<StartDate>]
+[MessagePack<MyString>]
 [EfCoreConverter<MyInt>]
 [BsonSerializer<MyInt>]
 [BsonSerializer<classFromEscapedNamespaceWithReservedUnderlyingType>]
 public partial class MyMarkers;
 
-[ValueObject<bool>]
+[ValueObject<bool>(Conversions.MessagePack)]
 public partial struct MyBool
 {
 }
