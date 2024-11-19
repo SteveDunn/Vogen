@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <WarningLevel>4</WarningLevel>
-    <TargetFramework>net8.0</TargetFramework>
+    <TargetFramework>net9.0</TargetFramework>
     <OutputType>Exe</OutputType>
     <LangVersion>latest</LangVersion>
     <IsPackable>false</IsPackable>
@@ -19,20 +19,20 @@
     <DocumentationFile>bin\Debug\Testbench.xml</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="MessagePack" Version="2.5.187" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="8.0.10">
+    <PackageReference Include="MessagePack" Version="2.5.192" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="9.0.0">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="8.0.10">
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="9.0.0">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
 <!--    <PackageReference Include="Swashbuckle.AspNetCore.Swagger" Version="6.9.0" />-->
-    <PackageReference Include="System.Text.Json" Version="8.0.5"/>
-    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0"/>
-    <PackageReference Include="MongoDB.Analyzer" Version="1.4.0" />
-    <PackageReference Include="MongoDB.Bson" Version="2.27.0" />
+    <PackageReference Include="System.Text.Json" Version="9.0.0"/>
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="7.0.0"/>
+    <PackageReference Include="MongoDB.Analyzer" Version="1.5.0" />
+    <PackageReference Include="MongoDB.Bson" Version="3.0.0" />
     
   </ItemGroup>
   <ItemGroup>
@@ -45,8 +45,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.10"/>
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="8.0.10" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="9.0.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="9.0.0" />
   </ItemGroup>
 
 
