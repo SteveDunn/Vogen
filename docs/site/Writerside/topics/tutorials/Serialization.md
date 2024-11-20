@@ -57,7 +57,7 @@ We're keeping things simple and just returning what we were provided:
 ```c#
 return Enumerable.Range(1, 5).Select(index => new WeatherForecast
     {
-        + CityName = cityName,
+        CityName = cityName,
         Date = DateOnly.FromDateTime(DateTime.Now.AddDays(index)),
         TemperatureC = Random.Shared.Next(-20, 55),
         Summary = Summaries[Random.Shared.Next(Summaries.Length)]
