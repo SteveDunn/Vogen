@@ -122,7 +122,7 @@ public class ValueObjectGenerator : IIncrementalGenerator
         // get all the ValueObject types found.
         List<VoWorkItem> workItems = GetWorkItems(targets, spc, globalConfig, csharpCompilation.LanguageVersion, vogenKnownSymbols, compilation).ToList();
             
-        GenerateCodeForOpenApiSchemaCustomization.WriteIfNeeded(globalConfig, spc, workItems, vogenKnownSymbols, compilation);
+        GenerateCodeForOpenApiSchemaCustomization.WriteIfNeeded(globalConfig, spc, workItems, vogenKnownSymbols);
 
         GenerateCodeForEfCoreMarkers.Generate(spc, compilation, markerClasses);
         

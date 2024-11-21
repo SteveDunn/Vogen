@@ -10,27 +10,22 @@ internal class GenerateCodeForOpenApiSchemaCustomization
     public static void WriteIfNeeded(VogenConfiguration? globalConfig,
         SourceProductionContext context,
         List<VoWorkItem> workItems,
-        VogenKnownSymbols knownSymbols,
-        Compilation compilation)
+        VogenKnownSymbols knownSymbols)
     {
         var c = globalConfig?.OpenApiSchemaCustomizations ?? VogenConfiguration.DefaultInstance.OpenApiSchemaCustomizations;
 
-        var fullNamespace = compilation.Assembly.Name;
-
-        var theNamespace = string.IsNullOrEmpty(fullNamespace) ? string.Empty : $"namespace {fullNamespace};";
-
         if (c.HasFlag(OpenApiSchemaCustomizations.GenerateSwashbuckleSchemaFilter))
         {
-            WriteSchemaFilter(context, knownSymbols, theNamespace);
+            WriteSchemaFilter(context, knownSymbols);
         }
 
         if (c.HasFlag(OpenApiSchemaCustomizations.GenerateSwashbuckleMappingExtensionMethod))
         {
-            WriteExtensionMethodMapping(context, workItems, knownSymbols, theNamespace);
+            WriteExtensionMethodMapping(context, workItems, knownSymbols);
         }
     }
 
-    private static void WriteSchemaFilter(SourceProductionContext context, VogenKnownSymbols knownSymbols, string theNamespace)
+    private static void WriteSchemaFilter(SourceProductionContext context, VogenKnownSymbols knownSymbols)
     {
         if (!IsSwashbuckleReferenced(knownSymbols))
         {
@@ -41,8 +36,6 @@ internal class GenerateCodeForOpenApiSchemaCustomization
             $$"""
 
               {{GeneratedCodeSegments.Preamble}}
-
-              {{theNamespace}}
 
               using System.Reflection;
 
@@ -106,8 +99,7 @@ internal class GenerateCodeForOpenApiSchemaCustomization
 
     private static void WriteExtensionMethodMapping(SourceProductionContext context,
         List<VoWorkItem> workItems,
-        VogenKnownSymbols knownSymbols,
-        string theNamespace)
+        VogenKnownSymbols knownSymbols)
     {
         if (!IsSwashbuckleReferenced(knownSymbols))
         {
@@ -118,8 +110,6 @@ internal class GenerateCodeForOpenApiSchemaCustomization
             $$"""
 
               {{GeneratedCodeSegments.Preamble}}
-
-              {{theNamespace}}
 
               public static class VogenSwashbuckleExtensions
               {
