@@ -32,8 +32,15 @@ public class TryFormatTests
     /// false from `TryFormat`. False is only ever used in the provided span wasn't big enough, which
     /// caused the runtime to increase the size and retry. 
     /// </summary>
-    [Fact]
+    [SkippableIfBuiltWithNoValidationFlagFact]
     public void Uninitialized_vos_output_nothing()
+    {
+        var vo = new TestContainer();
+        vo.ToString().Should().Be("ID1:'' - ID2:'00000000-0000-0000-0000-000000000000'");
+    }
+
+    [SkippableIfNotBuiltWithNoValidationFlagFact]
+    public void Uninitialized_vos_output_default_value_when_validation_is_turned_off()
     {
         var vo = new TestContainer();
         vo.ToString().Should().Be("ID1:'' - ID2:'00000000-0000-0000-0000-000000000000'");
