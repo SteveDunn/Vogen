@@ -6,7 +6,6 @@ using System;
 using System.Threading.Tasks;
 using JetBrains.Annotations;
 using MessagePack;
-using MessagePack.Formatters;
 
 namespace Vogen.Examples.SerializationAndConversion.MessagePackScenario.UsingConversionAttributes;
 

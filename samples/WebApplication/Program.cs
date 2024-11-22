@@ -1,11 +1,7 @@
-using System.ComponentModel.DataAnnotations;
-using Microsoft.AspNetCore.OpenApi;
 using Microsoft.OpenApi.Any;
-using Microsoft.OpenApi.Models;
 using Vogen;
 
 #if USE_SWASHBUCKLE
-using Swashbuckle.AspNetCore.SwaggerGen;
 #endif
 #if USE_MICROSOFT_OPENAPI_AND_SCALAR
 using Scalar.AspNetCore;

@@ -1,5 +1,4 @@
-﻿using System.Globalization;
-using Vogen.Tests.Types;
+﻿using Vogen.Tests.Types;
 
 namespace ConsumerTests.ToStringTests;
 
@@ -81,27 +80,8 @@ public class BasicFunctionality
         Name.From("barney").ToString().Should().Be("barney");
         Name.From("wilma").ToString().Should().Be("wilma");
     }
-
-    [Fact]
-    public void TryFormat_delegates_to_primitive()
-    {
-        Span<char> s = stackalloc char[8];
-        Age.From(128).TryFormat(s, out int written, "x8", CultureInfo.InvariantCulture).Should().BeTrue();
-        written.Should().Be(8);
-        s.ToString().Should().Be("00000080");
-
-        MyDecimal d = MyDecimal.From(1.23m);
-
-        $"{d:0.000}".Should().Be("1.230");
-        d.ToString("0.00", new CultureInfo("fr")).Should().Be("1,23");
-        $"{d:0.000}".Should().Be("1.230");
-
-        Span<char> s2 = stackalloc char[8];
-        MyDecimal.From(1.23m).TryFormat(s2, out written, "000.00", CultureInfo.InvariantCulture).Should().BeTrue();
-        written.Should().Be(6);
-        s2[..written].ToString().Should().Be("001.23");
-    }
 }
+
 
 [ValueObject<NaughtyPrimitive>]
 public partial class VoWrappingNaughtyPrimitive

@@ -1,4 +1,3 @@
-using Orleans.Runtime;
 using OrleansExample;
 
 var builder = WebApplication.CreateBuilder(args);
