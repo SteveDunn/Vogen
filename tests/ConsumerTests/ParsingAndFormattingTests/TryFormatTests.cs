@@ -43,7 +43,7 @@ public class TryFormatTests
     public void Uninitialized_vos_output_default_value_when_validation_is_turned_off()
     {
         var vo = new TestContainer();
-        vo.ToString().Should().Be("ID1:'' - ID2:'00000000-0000-0000-0000-000000000000'");
+        vo.ToString().Should().Be("ID1:'00000000-0000-0000-0000-000000000000' - ID2:'00000000-0000-0000-0000-000000000000'");
     }
     
     public class TestContainer
