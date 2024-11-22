@@ -1,16 +1,18 @@
 ﻿using System.Linq;
+// ReSharper disable RedundantRecordClassKeyword
+// ReSharper disable ArrangeStaticMemberQualifier
 
-namespace ConsumerTests.ParseAndTryParseTests;
+namespace ConsumerTests.ParsingAndFormattingTests;
+
+[ValueObject<decimal>]
+public partial struct MyDecimal;
+
 
 [ValueObject(typeof(int), parsableForPrimitives: ParsableForPrimitives.GenerateNothing)]
-public partial struct VoNoParsableNoHoisting
-{
-}
+public partial struct VoNoParsableNoHoisting;
 
 [ValueObject(typeof(int))]
-public partial struct StructIntVoNoValidation
-{
-}
+public partial struct StructIntVoNoValidation;
 
 [ValueObject(typeof(string), parsableForStrings: ParsableForStrings.GenerateMethodsAndInterface  )]
 public partial struct VoWithOwnInstanceParseMethod
@@ -50,19 +52,13 @@ public partial struct VoIntWithOwnStaticParseMethodWithFormatProvider
 }
 
 [ValueObject(typeof(int))]
-public partial class ClassIntVoNoValidation
-{
-}
+public partial class ClassIntVoNoValidation;
 
 [ValueObject(typeof(int))]
-public partial class RecordClassIntVoNoValidation
-{
-}
+public partial class RecordClassIntVoNoValidation;
 
 [ValueObject(typeof(int))]
-public partial class RecordStructIntVoNoValidation
-{
-}
+public partial class RecordStructIntVoNoValidation;
 
 [ValueObject<int>]
 public partial struct StructIntVo
@@ -102,28 +98,28 @@ public partial record class RecordClassIntVo
 }
 
 [ValueObject(typeof(byte))]
-public partial struct ByteVo { }
+public partial struct ByteVo;
 
 [ValueObject(typeof(bool))]
-public partial struct StructBoolVo { }
+public partial struct StructBoolVo;
 
 [ValueObject(typeof(bool))]
-public partial struct RecordStructBoolVo { }
+public partial struct RecordStructBoolVo;
 
 [ValueObject(typeof(bool))]
-public partial class ClassBoolVo { }
+public partial class ClassBoolVo;
 
 [ValueObject(typeof(bool))]
-public partial record class RecordClassBoolVo { }
+public partial record class RecordClassBoolVo;
 
 [ValueObject(typeof(char))]
-public partial struct CharVo { }
+public partial struct CharVo;
 
 [ValueObject(typeof(decimal))]
-public partial struct DecimalVo { }
+public partial struct DecimalVo;
 
 [ValueObject(typeof(double))]
-public partial struct DoubleVo { }
+public partial struct DoubleVo;
 
 public class C : IParsable<C>
 {
@@ -133,4 +129,4 @@ public class C : IParsable<C>
 }
 
 [ValueObject<C>]
-public partial struct MyCustomVo { }
+public partial struct MyCustomVo;

@@ -2,7 +2,7 @@
 #pragma warning disable CS8625 // Cannot convert null literal to non-nullable reference type.
 #pragma warning disable CS8602 // Dereference of a possibly null reference.
 
-namespace ConsumerTests.ParseAndTryParseTests;
+namespace ConsumerTests.ParsingAndFormattingTests;
 
 public class Tests
 {

@@ -1,5 +1,4 @@
 using Microsoft.AspNetCore.Mvc;
-using Vogen;
 
 [Route("api/[controller]")]
 public class OrdersController : ControllerBase
