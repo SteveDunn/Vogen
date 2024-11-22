@@ -1537,14 +1537,14 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
         public bool TryFormat(global::System.Span<char> destination, out int charsWritten, [System.Diagnostics.CodeAnalysis.StringSyntaxAttribute("NumericFormat")] global::System.ReadOnlySpan<char> format, global::System.IFormatProvider provider)
         {
             charsWritten = default;
-            return IsInitialized() ? Value.TryFormat(destination, out charsWritten, format, provider) : false;
+            return IsInitialized() ? Value.TryFormat(destination, out charsWritten, format, provider) : true;
         }
 
         /// <inheritdoc cref = "byte.TryFormat(System.Span{byte}, out int, System.ReadOnlySpan{char}, System.IFormatProvider? )"/>
         public bool TryFormat(global::System.Span<byte> utf8Destination, out int bytesWritten, [System.Diagnostics.CodeAnalysis.StringSyntaxAttribute("NumericFormat")] global::System.ReadOnlySpan<char> format, global::System.IFormatProvider provider)
         {
             bytesWritten = default;
-            return IsInitialized() ? Value.TryFormat(utf8Destination, out bytesWritten, format, provider) : false;
+            return IsInitialized() ? Value.TryFormat(utf8Destination, out bytesWritten, format, provider) : true;
         }
 
 #nullable restore
@@ -2601,14 +2601,14 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
         public bool TryFormat(global::System.Span<char> destination, out int charsWritten, [System.Diagnostics.CodeAnalysis.StringSyntaxAttribute("NumericFormat")] global::System.ReadOnlySpan<char> format, global::System.IFormatProvider provider)
         {
             charsWritten = default;
-            return IsInitialized() ? Value.TryFormat(destination, out charsWritten, format, provider) : false;
+            return IsInitialized() ? Value.TryFormat(destination, out charsWritten, format, provider) : true;
         }
 
         /// <inheritdoc cref = "int.TryFormat(System.Span{byte}, out int, System.ReadOnlySpan{char}, System.IFormatProvider? )"/>
         public bool TryFormat(global::System.Span<byte> utf8Destination, out int bytesWritten, [System.Diagnostics.CodeAnalysis.StringSyntaxAttribute("NumericFormat")] global::System.ReadOnlySpan<char> format, global::System.IFormatProvider provider)
         {
             bytesWritten = default;
-            return IsInitialized() ? Value.TryFormat(utf8Destination, out bytesWritten, format, provider) : false;
+            return IsInitialized() ? Value.TryFormat(utf8Destination, out bytesWritten, format, provider) : true;
         }
 
 #nullable restore
@@ -4072,14 +4072,14 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
         public bool TryFormat(global::System.Span<char> destination, out int charsWritten, [System.Diagnostics.CodeAnalysis.StringSyntaxAttribute("NumericFormat")] global::System.ReadOnlySpan<char> format, global::System.IFormatProvider provider)
         {
             charsWritten = default;
-            return IsInitialized() ? Value.TryFormat(destination, out charsWritten, format, provider) : false;
+            return IsInitialized() ? Value.TryFormat(destination, out charsWritten, format, provider) : true;
         }
 
         /// <inheritdoc cref = "int.TryFormat(System.Span{byte}, out int, System.ReadOnlySpan{char}, System.IFormatProvider? )"/>
         public bool TryFormat(global::System.Span<byte> utf8Destination, out int bytesWritten, [System.Diagnostics.CodeAnalysis.StringSyntaxAttribute("NumericFormat")] global::System.ReadOnlySpan<char> format, global::System.IFormatProvider provider)
         {
             bytesWritten = default;
-            return IsInitialized() ? Value.TryFormat(utf8Destination, out bytesWritten, format, provider) : false;
+            return IsInitialized() ? Value.TryFormat(utf8Destination, out bytesWritten, format, provider) : true;
         }
 
 #nullable restore
@@ -4740,14 +4740,14 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
         public bool TryFormat(global::System.Span<char> destination, out int charsWritten, [System.Diagnostics.CodeAnalysis.StringSyntaxAttribute("NumericFormat")] global::System.ReadOnlySpan<char> format, global::System.IFormatProvider provider)
         {
             charsWritten = default;
-            return IsInitialized() ? Value.TryFormat(destination, out charsWritten, format, provider) : false;
+            return IsInitialized() ? Value.TryFormat(destination, out charsWritten, format, provider) : true;
         }
 
         /// <inheritdoc cref = "int.TryFormat(System.Span{byte}, out int, System.ReadOnlySpan{char}, System.IFormatProvider? )"/>
         public bool TryFormat(global::System.Span<byte> utf8Destination, out int bytesWritten, [System.Diagnostics.CodeAnalysis.StringSyntaxAttribute("NumericFormat")] global::System.ReadOnlySpan<char> format, global::System.IFormatProvider provider)
         {
             bytesWritten = default;
-            return IsInitialized() ? Value.TryFormat(utf8Destination, out bytesWritten, format, provider) : false;
+            return IsInitialized() ? Value.TryFormat(utf8Destination, out bytesWritten, format, provider) : true;
         }
 
 #nullable restore
@@ -5425,14 +5425,14 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
         public bool TryFormat(global::System.Span<char> destination, out int charsWritten, [System.Diagnostics.CodeAnalysis.StringSyntaxAttribute("NumericFormat")] global::System.ReadOnlySpan<char> format, global::System.IFormatProvider provider)
         {
             charsWritten = default;
-            return IsInitialized() ? Value.TryFormat(destination, out charsWritten, format, provider) : false;
+            return IsInitialized() ? Value.TryFormat(destination, out charsWritten, format, provider) : true;
         }
 
         /// <inheritdoc cref = "int.TryFormat(System.Span{byte}, out int, System.ReadOnlySpan{char}, System.IFormatProvider? )"/>
         public bool TryFormat(global::System.Span<byte> utf8Destination, out int bytesWritten, [System.Diagnostics.CodeAnalysis.StringSyntaxAttribute("NumericFormat")] global::System.ReadOnlySpan<char> format, global::System.IFormatProvider provider)
         {
             bytesWritten = default;
-            return IsInitialized() ? Value.TryFormat(utf8Destination, out bytesWritten, format, provider) : false;
+            return IsInitialized() ? Value.TryFormat(utf8Destination, out bytesWritten, format, provider) : true;
         }
 
 #nullable restore
@@ -6096,14 +6096,14 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
         public bool TryFormat(global::System.Span<char> destination, out int charsWritten, [System.Diagnostics.CodeAnalysis.StringSyntaxAttribute("NumericFormat")] global::System.ReadOnlySpan<char> format, global::System.IFormatProvider provider)
         {
             charsWritten = default;
-            return IsInitialized() ? Value.TryFormat(destination, out charsWritten, format, provider) : false;
+            return IsInitialized() ? Value.TryFormat(destination, out charsWritten, format, provider) : true;
         }
 
         /// <inheritdoc cref = "int.TryFormat(System.Span{byte}, out int, System.ReadOnlySpan{char}, System.IFormatProvider? )"/>
         public bool TryFormat(global::System.Span<byte> utf8Destination, out int bytesWritten, [System.Diagnostics.CodeAnalysis.StringSyntaxAttribute("NumericFormat")] global::System.ReadOnlySpan<char> format, global::System.IFormatProvider provider)
         {
             bytesWritten = default;
-            return IsInitialized() ? Value.TryFormat(utf8Destination, out bytesWritten, format, provider) : false;
+            return IsInitialized() ? Value.TryFormat(utf8Destination, out bytesWritten, format, provider) : true;
         }
 
 #nullable restore
@@ -6765,14 +6765,14 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
         public bool TryFormat(global::System.Span<char> destination, out int charsWritten, [System.Diagnostics.CodeAnalysis.StringSyntaxAttribute("NumericFormat")] global::System.ReadOnlySpan<char> format, global::System.IFormatProvider provider)
         {
             charsWritten = default;
-            return IsInitialized() ? Value.TryFormat(destination, out charsWritten, format, provider) : false;
+            return IsInitialized() ? Value.TryFormat(destination, out charsWritten, format, provider) : true;
         }
 
         /// <inheritdoc cref = "int.TryFormat(System.Span{byte}, out int, System.ReadOnlySpan{char}, System.IFormatProvider? )"/>
         public bool TryFormat(global::System.Span<byte> utf8Destination, out int bytesWritten, [System.Diagnostics.CodeAnalysis.StringSyntaxAttribute("NumericFormat")] global::System.ReadOnlySpan<char> format, global::System.IFormatProvider provider)
         {
             bytesWritten = default;
-            return IsInitialized() ? Value.TryFormat(utf8Destination, out bytesWritten, format, provider) : false;
+            return IsInitialized() ? Value.TryFormat(utf8Destination, out bytesWritten, format, provider) : true;
         }
 
 #nullable restore
@@ -7450,14 +7450,14 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
         public bool TryFormat(global::System.Span<char> destination, out int charsWritten, [System.Diagnostics.CodeAnalysis.StringSyntaxAttribute("NumericFormat")] global::System.ReadOnlySpan<char> format, global::System.IFormatProvider provider)
         {
             charsWritten = default;
-            return IsInitialized() ? Value.TryFormat(destination, out charsWritten, format, provider) : false;
+            return IsInitialized() ? Value.TryFormat(destination, out charsWritten, format, provider) : true;
         }
 
         /// <inheritdoc cref = "int.TryFormat(System.Span{byte}, out int, System.ReadOnlySpan{char}, System.IFormatProvider? )"/>
         public bool TryFormat(global::System.Span<byte> utf8Destination, out int bytesWritten, [System.Diagnostics.CodeAnalysis.StringSyntaxAttribute("NumericFormat")] global::System.ReadOnlySpan<char> format, global::System.IFormatProvider provider)
         {
             bytesWritten = default;
-            return IsInitialized() ? Value.TryFormat(utf8Destination, out bytesWritten, format, provider) : false;
+            return IsInitialized() ? Value.TryFormat(utf8Destination, out bytesWritten, format, provider) : true;
         }
 
 #nullable restore

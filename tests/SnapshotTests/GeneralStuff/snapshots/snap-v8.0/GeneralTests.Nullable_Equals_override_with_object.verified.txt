@@ -423,14 +423,14 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
     public bool TryFormat(global::System.Span<char> destination, out int charsWritten, [System.Diagnostics.CodeAnalysis.StringSyntaxAttribute("DateTimeFormat")] global::System.ReadOnlySpan<char> format, global::System.IFormatProvider formatProvider)
     {
         charsWritten = default;
-        return IsInitialized() ? Value.TryFormat(destination, out charsWritten, format, formatProvider) : false;
+        return IsInitialized() ? Value.TryFormat(destination, out charsWritten, format, formatProvider) : true;
     }
 
     /// <inheritdoc cref = "System.DateTimeOffset.TryFormat(System.Span{byte}, out int, System.ReadOnlySpan{char}, System.IFormatProvider? )"/>
     public bool TryFormat(global::System.Span<byte> utf8Destination, out int bytesWritten, [System.Diagnostics.CodeAnalysis.StringSyntaxAttribute("DateTimeFormat")] global::System.ReadOnlySpan<char> format, global::System.IFormatProvider formatProvider)
     {
         bytesWritten = default;
-        return IsInitialized() ? Value.TryFormat(utf8Destination, out bytesWritten, format, formatProvider) : false;
+        return IsInitialized() ? Value.TryFormat(utf8Destination, out bytesWritten, format, formatProvider) : true;
     }
 
 #nullable restore
