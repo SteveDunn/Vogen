@@ -70,7 +70,7 @@ public static class GenerateCodeForTryFormat
                 continue;
             }
 
-            sb.AppendLine(Hoisting.HoistMethodFromPrimitive(
+            string hoistMethodFromPrimitive = Hoisting.HoistMethodFromPrimitive(
                 primitiveMethod, 
                 interfaceSymbol!,
                 (valueAccessor, parameterNames) =>
@@ -80,13 +80,16 @@ public static class GenerateCodeForTryFormat
                         return $"""return IsInitialized() ? {valueAccessor}.ToString({parameterNames}) : "[UNINITIALIZED]";""";
                     }
 
+
                     if (formattableType is FormattableType.TryFormat)
                     {
-                        return $"return IsInitialized() ? {valueAccessor}.TryFormat({parameterNames}) : false;";
+                        return $"return IsInitialized() ? {valueAccessor}.TryFormat({parameterNames}) : true;";
                     }
 
                     return "return default!";
-                }));
+                });
+            
+            sb.AppendLine(hoistMethodFromPrimitive);
         }
     }
 }
