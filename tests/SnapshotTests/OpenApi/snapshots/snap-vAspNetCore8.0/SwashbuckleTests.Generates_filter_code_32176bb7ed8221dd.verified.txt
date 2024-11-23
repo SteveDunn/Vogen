@@ -18,10 +18,9 @@
 #pragma warning disable CS8669, CS8632
 // Suppress warnings about CS1591: Missing XML comment for publicly visible type or member 'Type_or_Member'
 #pragma warning disable CS1591
-namespace generator;
 using System.Reflection;
 
-public class VogenSchemaFilter : global::Swashbuckle.AspNetCore.SwaggerGen.ISchemaFilter
+public class VogenSchemaFilterIngenerator : global::Swashbuckle.AspNetCore.SwaggerGen.ISchemaFilter
 {
     private const BindingFlags _flags = BindingFlags.Public | BindingFlags.Instance;
     public void Apply(global::Microsoft.OpenApi.Models.OpenApiSchema schema, global::Swashbuckle.AspNetCore.SwaggerGen.SchemaFilterContext context)

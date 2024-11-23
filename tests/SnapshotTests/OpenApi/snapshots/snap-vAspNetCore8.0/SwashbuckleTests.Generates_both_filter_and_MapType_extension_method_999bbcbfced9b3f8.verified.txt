@@ -18,10 +18,9 @@
 #pragma warning disable CS8669, CS8632
 // Suppress warnings about CS1591: Missing XML comment for publicly visible type or member 'Type_or_Member'
 #pragma warning disable CS1591
-namespace generator;
 using System.Reflection;
 
-public class VogenSchemaFilter : global::Swashbuckle.AspNetCore.SwaggerGen.ISchemaFilter
+public class VogenSchemaFilterIngenerator : global::Swashbuckle.AspNetCore.SwaggerGen.ISchemaFilter
 {
     private const BindingFlags _flags = BindingFlags.Public | BindingFlags.Instance;
     public void Apply(global::Microsoft.OpenApi.Models.OpenApiSchema schema, global::Swashbuckle.AspNetCore.SwaggerGen.SchemaFilterContext context)
@@ -92,11 +91,9 @@ public class VogenSchemaFilter : global::Swashbuckle.AspNetCore.SwaggerGen.ISche
 // Suppress warnings about CS1591: Missing XML comment for publicly visible type or member 'Type_or_Member'
 #pragma warning disable CS1591
 
-namespace generator;
-
 public static class VogenSwashbuckleExtensions
 {
-    public static global::Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenOptions MapVogenTypes(this global::Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenOptions o)
+    public static global::Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenOptions MapVogenTypesIngenerator(this global::Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenOptions o)
     {
         global::Microsoft.Extensions.DependencyInjection.SwaggerGenOptionsExtensions.MapType<MyNamespace.MyVoInt>(o, () => new global::Microsoft.OpenApi.Models.OpenApiSchema { Type = "integer", Format = "int32", Nullable = false });
 global::Microsoft.Extensions.DependencyInjection.SwaggerGenOptionsExtensions.MapType<MyNamespace.MyVoFloat>(o, () => new global::Microsoft.OpenApi.Models.OpenApiSchema { Type = "number", Nullable = false });
