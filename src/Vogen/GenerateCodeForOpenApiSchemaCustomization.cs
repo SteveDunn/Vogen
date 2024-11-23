@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Microsoft.CodeAnalysis;
+using Vogen.Types;
 
 namespace Vogen;
 
@@ -15,22 +16,22 @@ internal class GenerateCodeForOpenApiSchemaCustomization
     {
         var c = globalConfig?.OpenApiSchemaCustomizations ?? VogenConfiguration.DefaultInstance.OpenApiSchemaCustomizations;
 
-        var fullNamespace = compilation.Assembly.Name;
-
-        var theNamespace = string.IsNullOrEmpty(fullNamespace) ? string.Empty : $"namespace {fullNamespace};";
+        var projectName = ProjectName.FromAssemblyName(compilation.Assembly.Name);
+        
+        var inAppendage = string.IsNullOrEmpty(projectName) ? string.Empty : $"In{projectName}";
 
         if (c.HasFlag(OpenApiSchemaCustomizations.GenerateSwashbuckleSchemaFilter))
         {
-            WriteSchemaFilter(context, knownSymbols, theNamespace);
+            WriteSchemaFilter(context, knownSymbols, inAppendage);
         }
 
         if (c.HasFlag(OpenApiSchemaCustomizations.GenerateSwashbuckleMappingExtensionMethod))
         {
-            WriteExtensionMethodMapping(context, workItems, knownSymbols, theNamespace);
+            WriteExtensionMethodMapping(context, workItems, knownSymbols, inAppendage);
         }
     }
 
-    private static void WriteSchemaFilter(SourceProductionContext context, VogenKnownSymbols knownSymbols, string theNamespace)
+    private static void WriteSchemaFilter(SourceProductionContext context, VogenKnownSymbols knownSymbols, string inAppendage)
     {
         if (!IsSwashbuckleReferenced(knownSymbols))
         {
@@ -42,11 +43,9 @@ internal class GenerateCodeForOpenApiSchemaCustomization
 
               {{GeneratedCodeSegments.Preamble}}
 
-              {{theNamespace}}
-
               using System.Reflection;
 
-              public class VogenSchemaFilter : global::Swashbuckle.AspNetCore.SwaggerGen.ISchemaFilter
+              public class VogenSchemaFilter{{inAppendage}} : global::Swashbuckle.AspNetCore.SwaggerGen.ISchemaFilter
               {                                
                   private const BindingFlags _flags = BindingFlags.Public | BindingFlags.Instance;
               
@@ -107,7 +106,7 @@ internal class GenerateCodeForOpenApiSchemaCustomization
     private static void WriteExtensionMethodMapping(SourceProductionContext context,
         List<VoWorkItem> workItems,
         VogenKnownSymbols knownSymbols,
-        string theNamespace)
+        string inAppendage)
     {
         if (!IsSwashbuckleReferenced(knownSymbols))
         {
@@ -119,11 +118,9 @@ internal class GenerateCodeForOpenApiSchemaCustomization
 
               {{GeneratedCodeSegments.Preamble}}
 
-              {{theNamespace}}
-
               public static class VogenSwashbuckleExtensions
               {
-                  public static global::Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenOptions MapVogenTypes(this global::Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenOptions o)
+                  public static global::Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenOptions MapVogenTypes{{inAppendage}}(this global::Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenOptions o)
                   {
                       {{MapWorkItems(workItems)}}
               

@@ -25,9 +25,8 @@ builder.Services.AddSwaggerGen(opt =>
 {
     // the following extension method is available if you specify `GenerateSwashbuckleMappingExtensionMethod` - as shown above
     
-    //opt.MapVogenTypes();
-    WebApplication.VogenSwashbuckleExtensions.MapVogenTypes(opt);
-    WebApplication.Shared.VogenSwashbuckleExtensions.MapVogenTypes(opt);
+    opt.MapVogenTypesInWebApplication();
+    opt.MapVogenTypesInWebApplicationShared();
     
     // the following schema filter is generated if you specify GenerateSwashbuckleSchemaFilter as shown above
     // opt.SchemaFilter<MyVogenSchemaFilter>();
