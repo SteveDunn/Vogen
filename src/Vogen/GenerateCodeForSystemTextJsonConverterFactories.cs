@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.CodeAnalysis;
+using Vogen.Types;
 
 namespace Vogen;
 
@@ -27,10 +28,10 @@ internal class GenerateCodeForSystemTextJsonConverterFactories
         
         
         var entries = workItems.Where(i => i.Config.Conversions.HasFlag(Conversions.SystemTextJson)).Select(BuildEntry);
+        
+        var fullNamespace = ProjectName.FromAssemblyName(compilation.Assembly.Name);
 
-        var fullNamespace = compilation.Assembly.Name;
-
-        var ns = string.IsNullOrEmpty(fullNamespace) ? string.Empty : $"namespace {fullNamespace};";
+        var ns = $"namespace {fullNamespace};";
         
         string source =
             $$"""

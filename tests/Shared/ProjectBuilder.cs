@@ -44,6 +44,7 @@ public sealed class ProjectBuilder
     private TargetFramework? _targetFramework;
     private bool _excludeStj;
     private LanguageVersion _languageVersion = LanguageVersion.Default;
+    private string _assemblyName = "generator";
 
     public ProjectBuilder WithTargetFramework(TargetFramework targetFramework)
     {
@@ -273,6 +274,13 @@ public sealed class ProjectBuilder
         return this;
     }
 
+    public ProjectBuilder WithAssemblyName(string assemblyName)
+    {
+        _assemblyName = assemblyName;
+
+        return this;
+    }
+
     public ProjectBuilder WithNugetPackages(IEnumerable<NuGetPackage> packages)
     {
         foreach (var nuGetPackage in packages)
@@ -322,8 +330,8 @@ public sealed class ProjectBuilder
         options = options.WithSpecificDiagnosticOptions(diagnostics);
 
         var compilation = CSharpCompilation.Create(
-            assemblyName: "generator",
-            syntaxTrees: new[] { usersSyntaxTree, isExternalInitSyntaxTree },
+            assemblyName: _assemblyName,
+            syntaxTrees: [usersSyntaxTree, isExternalInitSyntaxTree],
             _references,
             options);
 

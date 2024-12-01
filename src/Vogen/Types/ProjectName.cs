@@ -4,11 +4,17 @@ internal class ProjectName
 {
     private ProjectName(string value) => Value = value;
     
+    /// <summary>
+    /// Replaces [., -] with [_] for use as type type names etc.
+    /// </summary>
+    /// <param name="assemblyName"></param>
+    /// <returns></returns>
     public static ProjectName FromAssemblyName(string assemblyName)
     {
-        assemblyName = assemblyName.Replace(".", "");
-        assemblyName = assemblyName.Replace(",", "");
-        assemblyName = assemblyName.Replace(" ", "");
+        assemblyName = assemblyName.Replace(".", "_");
+        assemblyName = assemblyName.Replace(",", "_");
+        assemblyName = assemblyName.Replace(" ", "_");
+        assemblyName = assemblyName.Replace("-", "_");
 
         return new(assemblyName);
     }
