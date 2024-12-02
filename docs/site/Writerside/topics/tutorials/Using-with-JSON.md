@@ -89,9 +89,13 @@ var json = JsonSerializer.Serialize(weather, ctx.Weather);
 Weather w2 = JsonSerializer.Deserialize(json, ctx.Weather)!;
 ```
 
+<note>
+The namespace used to generate the factory is based on the project name. If the project name contains illegal characters, such as commas, hyphens, or dots, they are replaced with underscores. 
+</note>
+
 The STJ converter factory is generated automatically if referencing the new STJ types in the `System.Text.Json.Serialization` namespace.
 
-You can turn this off via the `SystemTextJsonConverterFactoryGeneration` flag in config (either globally, or per value object)
+You can turn this off via the `SystemTextJsonConverterFactoryGeneration` flag in config (either globally or per value object)
 
 ## Summary
 

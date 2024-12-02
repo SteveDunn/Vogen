@@ -51,6 +51,7 @@ namespace SnapshotTests
         private readonly List<NuGetPackage> _additionalNuGetPackages = new();
         private LanguageVersion _languageVersion = LanguageVersion.Default;
         private bool _excludeStj;
+        private string _assemblyName = "generator";
 
         public async Task RunOnAllFrameworks() => await RunOn(_allFrameworks);
         
@@ -59,6 +60,12 @@ namespace SnapshotTests
         public SnapshotRunner<T> WithSource(string source)
         {
             _source = source;
+            return this;
+        }
+
+        public SnapshotRunner<T> WithAssemblyName(string assemblyName)
+        {
+            _assemblyName = assemblyName;
             return this;
         }
 
@@ -95,7 +102,7 @@ namespace SnapshotTests
 
                 using var scope = new AssertionScope();
 
-                (ImmutableArray<Diagnostic> diagnostics, SyntaxTree[] syntaxTrees) = await GetGeneratedOutput(_source, eachFramework);
+                (ImmutableArray<Diagnostic> diagnostics, SyntaxTree[] syntaxTrees) = await GetGeneratedOutput(eachFramework);
                 diagnostics.Should().BeEmpty(@$"because the following source code should compile on {eachFramework}: " + Environment.NewLine + _source + Environment.NewLine);
 
                 var outputFolder = Path.Combine(_path, SnapshotUtils.GetSnapshotDirectoryName(eachFramework, _locale));
@@ -111,12 +118,14 @@ namespace SnapshotTests
             }
         }
 
-        private async Task<(ImmutableArray<Diagnostic> Diagnostics, SyntaxTree[] GeneratedSource)> GetGeneratedOutput(string source, TargetFramework targetFramework)
+        private async Task<(ImmutableArray<Diagnostic> Diagnostics, SyntaxTree[] GeneratedSource)> GetGeneratedOutput(
+            TargetFramework targetFramework)
         {
             var r = MetadataReference.CreateFromFile(typeof(ValueObjectAttribute).Assembly.Location);
 
             var results = await new ProjectBuilder()
-                .WithUserSource(source)
+                .WithAssemblyName(_assemblyName)
+                .WithUserSource(_source!)
                 .WithNugetPackages(_additionalNuGetPackages)
                 .WithTargetFramework(targetFramework)
                 .WithLanguageVersion(_languageVersion)

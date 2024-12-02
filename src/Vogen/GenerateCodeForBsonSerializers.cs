@@ -169,12 +169,12 @@ internal class GenerateCodeForBsonSerializers
 
         string ClassNameForRegistering()
         {
-            var assemblyName = new SanitizedAssemblyName(compilation.AssemblyName);
+            string projectName = ProjectName.FromAssemblyName(compilation.AssemblyName ?? "").Value;
 
             string s = "BsonSerializationRegister";
-            if(assemblyName.Value.Length > 0)
+            if(projectName.Length > 0)
             {
-                s = $"{s}For{assemblyName}";
+                s = $"{s}For{projectName}";
             }
 
             return s;
