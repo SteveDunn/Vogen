@@ -64,7 +64,7 @@ namespace My_Namespace
     [global::System.Diagnostics.DebuggerTypeProxyAttribute(typeof(VoDebugView))]
     [global::System.Diagnostics.DebuggerDisplayAttribute("Underlying type: System.Guid, Value = { _value }")]
     // ReSharper disable once UnusedType.Global
-    public partial struct Vo : global::System.IEquatable<Vo>, global::System.IEquatable<System.Guid>, global::System.IComparable<Vo>, global::System.IComparable, global::System.IParsable<Vo>, global::System.ISpanParsable<Vo>, global::System.IFormattable, global::System.ISpanFormattable, global::System.IUtf8SpanFormattable
+    public partial struct Vo : global::System.IEquatable<Vo>, global::System.IEquatable<System.Guid>, global::System.IComparable<Vo>, global::System.IComparable, global::System.IFormattable
     {
 #if DEBUG
 private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
@@ -217,51 +217,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
             return 0;
         }
 
-        /// <inheritdoc cref = "System.Guid.TryParse(System.ReadOnlySpan{char}, out System.Guid)"/>
-        /// <summary>
-        /// </summary>
-        /// <returns>
-        /// True if the value could a) be parsed by the underlying type, and b) passes any validation (after running any optional normalization).
-        /// </returns>
-        public static global::System.Boolean TryParse(global::System.ReadOnlySpan<char> input,
-#if NETCOREAPP3_0_OR_GREATER
-[global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)]
-#endif
- out Vo result)
-        {
-            if (System.Guid.TryParse(input, out var __v))
-            {
-                result = new Vo(__v);
-                return true;
-            }
-
-            result = default;
-            return false;
-        }
-
-        /// <inheritdoc cref = "System.Guid.TryParse(System.ReadOnlySpan{char}, System.IFormatProvider? , out System.Guid)"/>
-        /// <summary>
-        /// </summary>
-        /// <returns>
-        /// True if the value could a) be parsed by the underlying type, and b) passes any validation (after running any optional normalization).
-        /// </returns>
-        public static global::System.Boolean TryParse(global::System.ReadOnlySpan<char> s, global::System.IFormatProvider provider,
-#if NETCOREAPP3_0_OR_GREATER
-[global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)]
-#endif
- out Vo result)
-        {
-            if (System.Guid.TryParse(s, provider, out var __v))
-            {
-                result = new Vo(__v);
-                return true;
-            }
-
-            result = default;
-            return false;
-        }
-
-        /// <inheritdoc cref = "System.Guid.TryParse(string? , out System.Guid)"/>
+        /// <inheritdoc cref = "System.Guid.TryParse(string, out System.Guid)"/>
         /// <summary>
         /// </summary>
         /// <returns>
@@ -283,54 +239,6 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
             return false;
         }
 
-        /// <inheritdoc cref = "System.Guid.TryParse(string? , System.IFormatProvider? , out System.Guid)"/>
-        /// <summary>
-        /// </summary>
-        /// <returns>
-        /// True if the value could a) be parsed by the underlying type, and b) passes any validation (after running any optional normalization).
-        /// </returns>
-        public static global::System.Boolean TryParse(string s, global::System.IFormatProvider provider,
-#if NETCOREAPP3_0_OR_GREATER
-[global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)]
-#endif
- out Vo result)
-        {
-            if (System.Guid.TryParse(s, provider, out var __v))
-            {
-                result = new Vo(__v);
-                return true;
-            }
-
-            result = default;
-            return false;
-        }
-
-        /// <inheritdoc cref = "System.Guid.Parse(System.ReadOnlySpan{char})"/>
-        /// <summary>
-        /// </summary>
-        /// <returns>
-        /// The value created by calling the Parse method on the primitive.
-        /// </returns>
-        /// <exception cref = "global::Vogen.ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
-        public static Vo Parse(global::System.ReadOnlySpan<char> input)
-        {
-            var r = System.Guid.Parse(input);
-            return From(r);
-        }
-
-        /// <inheritdoc cref = "System.Guid.Parse(System.ReadOnlySpan{char}, System.IFormatProvider? )"/>
-        /// <summary>
-        /// </summary>
-        /// <returns>
-        /// The value created by calling the Parse method on the primitive.
-        /// </returns>
-        /// <exception cref = "global::Vogen.ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
-        public static Vo Parse(global::System.ReadOnlySpan<char> s, global::System.IFormatProvider provider)
-        {
-            var r = System.Guid.Parse(s, provider);
-            return From(r);
-        }
-
         /// <inheritdoc cref = "System.Guid.Parse(string)"/>
         /// <summary>
         /// </summary>
@@ -344,38 +252,12 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
             return From(r);
         }
 
-        /// <inheritdoc cref = "System.Guid.Parse(string, System.IFormatProvider? )"/>
-        /// <summary>
-        /// </summary>
-        /// <returns>
-        /// The value created by calling the Parse method on the primitive.
-        /// </returns>
-        /// <exception cref = "global::Vogen.ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
-        public static Vo Parse(string s, global::System.IFormatProvider provider)
-        {
-            var r = System.Guid.Parse(s, provider);
-            return From(r);
-        }
-
 #nullable disable
-        /// <inheritdoc cref = "System.Guid.ToString(string? , System.IFormatProvider? )"/>
-        public string ToString([System.Diagnostics.CodeAnalysis.StringSyntaxAttribute("GuidFormat")] string format, global::System.IFormatProvider provider)
+        /// <inheritdoc cref = "System.Guid.ToString(string, System.IFormatProvider)"/>
+        [System.Security.SecuritySafeCriticalAttribute]
+        public string ToString(string format, global::System.IFormatProvider provider)
         {
             return IsInitialized() ? Value.ToString(format, provider) : "[UNINITIALIZED]";
-        }
-
-        /// <inheritdoc cref = "System.ISpanFormattable"/>
-        bool System.ISpanFormattable.TryFormat(global::System.Span<char> destination, out int charsWritten, [System.Diagnostics.CodeAnalysis.StringSyntaxAttribute("GuidFormat")] global::System.ReadOnlySpan<char> format, global::System.IFormatProvider provider)
-        {
-            charsWritten = default;
-            return IsInitialized() ? (Value as System.ISpanFormattable).TryFormat(destination, out charsWritten, format, provider) : true;
-        }
-
-        /// <inheritdoc cref = "System.IUtf8SpanFormattable"/>
-        bool System.IUtf8SpanFormattable.TryFormat(global::System.Span<byte> utf8Destination, out int bytesWritten, [System.Diagnostics.CodeAnalysis.StringSyntaxAttribute("GuidFormat")] global::System.ReadOnlySpan<char> format, global::System.IFormatProvider provider)
-        {
-            bytesWritten = default;
-            return IsInitialized() ? (Value as System.IUtf8SpanFormattable).TryFormat(utf8Destination, out bytesWritten, format, provider) : true;
         }
 
 #nullable restore
@@ -386,8 +268,8 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
 
         /// <inheritdoc cref = "System.Guid.ToString()"/>
         public override global::System.String ToString() => IsInitialized() ? Value.ToString() ?? "" : "[UNINITIALIZED]";
-        /// <inheritdoc cref = "System.Guid.ToString(string? )"/>
-        public global::System.String ToString([System.Diagnostics.CodeAnalysis.StringSyntaxAttribute("GuidFormat")] string format) => IsInitialized() ? Value.ToString(format) ?? "" : "[UNINITIALIZED]";
+        /// <inheritdoc cref = "System.Guid.ToString(string)"/>
+        public global::System.String ToString(string format) => IsInitialized() ? Value.ToString(format) ?? "" : "[UNINITIALIZED]";
         [global::System.Runtime.CompilerServices.MethodImpl(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
         private readonly void EnsureInitialized()
         {
