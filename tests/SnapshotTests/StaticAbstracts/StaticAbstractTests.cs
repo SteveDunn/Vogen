@@ -99,6 +99,8 @@ public class StaticAbstractTests
                      [assembly: VogenDefaults(
                         primitiveEqualityGeneration: PrimitiveEqualityGeneration.Omit, 
                         conversions: Conversions.None, 
+                        toPrimitiveCasting: CastOperator.Implicit,
+                        fromPrimitiveCasting: CastOperator.Implicit,
                         staticAbstractsGeneration: StaticAbstractsGeneration.FactoryMethods | StaticAbstractsGeneration.EqualsOperators | StaticAbstractsGeneration.ImplicitCastFromPrimitive | StaticAbstractsGeneration.ImplicitCastToPrimitive)]
 
                      [ValueObject<Guid>]
@@ -119,8 +121,13 @@ public class StaticAbstractTests
 
                      [assembly: VogenDefaults(
                         primitiveEqualityGeneration: PrimitiveEqualityGeneration.GenerateOperatorsAndMethods, 
-                        conversions: Conversions.None, 
-                        staticAbstractsGeneration: StaticAbstractsGeneration.FactoryMethods | StaticAbstractsGeneration.EqualsOperators | StaticAbstractsGeneration.ImplicitCastFromPrimitive | StaticAbstractsGeneration.ImplicitCastToPrimitive)]
+                        conversions: Conversions.None,
+                        toPrimitiveCasting: CastOperator.Implicit,
+                        fromPrimitiveCasting: CastOperator.Implicit,
+                        staticAbstractsGeneration: StaticAbstractsGeneration.FactoryMethods | 
+                            StaticAbstractsGeneration.EqualsOperators | 
+                            StaticAbstractsGeneration.ImplicitCastFromPrimitive | 
+                            StaticAbstractsGeneration.ImplicitCastToPrimitive)]
 
                      [ValueObject<Guid>]
                      public partial class MyVo { }

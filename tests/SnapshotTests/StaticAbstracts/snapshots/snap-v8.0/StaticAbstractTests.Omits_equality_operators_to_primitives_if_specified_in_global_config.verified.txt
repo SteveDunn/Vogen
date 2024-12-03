@@ -226,8 +226,12 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
 
     public static global::System.Boolean operator ==(MyVo left, MyVo right) => Equals(left, right);
     public static global::System.Boolean operator !=(MyVo left, MyVo right) => !Equals(left, right);
-    public static explicit operator MyVo(System.Guid value) => From(value);
-    public static explicit operator System.Guid(MyVo value) => value.Value;
+    public static implicit operator System.Guid(MyVo vo) => vo._value;
+    public static implicit operator MyVo(System.Guid value)
+    {
+        return new MyVo(value);
+    }
+
     public int CompareTo(MyVo other)
     {
         if (other is null)
