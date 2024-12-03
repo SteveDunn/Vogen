@@ -42,4 +42,5 @@ public static class RuleIdentifiers
     public const string UseReadonlyStructInsteadOfStruct = "VOG033";
     public const string DoNotCompareWithPrimitivesInEfCore = "VOG034";
     public const string VoReferencedInAConversionMarkerMustExplicitlySpecifyPrimitive = "VOG035";
+    public const string BothImplicitAndExplicitCastsSpecified = "VOG036";
 }

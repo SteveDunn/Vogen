@@ -75,6 +75,12 @@ internal static class BuildWorkItems
             globalConfig,
             funcForDefaultUnderlyingType: () => vogenKnownSymbols.Int32);
 
+        if (DuplicateCastOperatorsSpecified(config))
+        {
+            context.ReportDiagnostic(DiagnosticsCatalogue.BothImplicitAndExplicitCastsSpecified(target.VoSymbolInformation));
+            return null;
+        }
+
         ReportErrorIfNestedType(context, voSymbolInformation, target.NestingInfo);
 
         if (config.UnderlyingType is null)
@@ -155,6 +161,18 @@ internal static class BuildWorkItems
             
             WrapperType = voSymbolInformation,
         };
+    }
+
+    private static bool DuplicateCastOperatorsSpecified(VogenConfiguration config)
+    {
+        var sag = config.StaticAbstractsGeneration;
+        var explicitFromPrimitive = config.FromPrimitiveCasting == CastOperator.Explicit || sag.HasFlag(StaticAbstractsGeneration.ExplicitCastFromPrimitive);
+        var implicitFromPrimitive = config.FromPrimitiveCasting == CastOperator.Implicit || sag.HasFlag(StaticAbstractsGeneration.ImplicitCastFromPrimitive);
+
+        var explicitToPrimitive = config.ToPrimitiveCasting == CastOperator.Explicit || sag.HasFlag(StaticAbstractsGeneration.ExplicitCastToPrimitive);
+        var implicitToPrimitive = config.ToPrimitiveCasting == CastOperator.Implicit || sag.HasFlag(StaticAbstractsGeneration.ImplicitCastToPrimitive);
+        
+        return (explicitFromPrimitive && implicitFromPrimitive) || (explicitToPrimitive && implicitToPrimitive);
     }
 
     private static bool ShouldShowNullAnnotations(Compilation compilation, VoTarget target)

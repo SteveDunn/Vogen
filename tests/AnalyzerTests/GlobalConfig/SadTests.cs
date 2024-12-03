@@ -10,6 +10,40 @@ namespace AnalyzerTests.GlobalConfig;
 public class SadTests
 {
     [Fact]
+    public async Task Conflicting_casts()
+    {
+        var source = """
+            using Vogen;
+            
+            [assembly: VogenDefaults(
+            	toPrimitiveCasting: CastOperator.Implicit,
+            	staticAbstractsGeneration: StaticAbstractsGeneration.MostCommon)]
+            
+            namespace MyApp;
+            
+            [ValueObject<int>]
+            public readonly partial record struct ToDoItemId;
+            """;
+
+        await new TestRunner<ValueObjectGenerator>()
+            .WithSource(source)
+            .ValidateWith(Validate)
+            .RunOnAllFrameworks();
+        return;
+
+        static void Validate(ImmutableArray<Diagnostic> diagnostics)
+        {
+            diagnostics.Should().HaveCount(1);
+
+            Diagnostic diagnostic = diagnostics.Single();
+
+            diagnostic.Id.Should().Be("VOG036");
+            diagnostic.ToString().Should().Be(
+                "(10,39): error VOG036: 'ToDoItemId' should have either an explicit or implicit cast for casting to or from the wrapper or primitive, but not both. Check that the global config isn't specifying a conflicting casting operator. Check 'toPrimitiveCasting', 'fromPrimitiveCasting', and 'staticAbstractsGeneration'. 'staticAbstractGeneration' defaults to explicit casting, so if you change the default, you need to change it here too. See issue 720 (https://github.com/SteveDunn/Vogen/issues/720) for more information.");
+        }
+    }
+
+    [Fact]
     public async Task Missing_any_constructors()
     {
         var source = """

@@ -113,7 +113,7 @@ public class RecordStructGenerator : IGenerateValueObjectSourceCode
 {Util.GenerateIsInitializedMethod(true, item)}
 
 {GenerateCodeForStringComparers.GenerateIfNeeded(item, tds)}        
-{GenerateCodeForCastingOperators.GenerateImplementations(item,tds)}{Util.GenerateGuidFactoryMethodIfNeeded(item)}
+{GenerateCodeForCastingOperators.GenerateImplementations(parameters,tds)}{Util.GenerateGuidFactoryMethodIfNeeded(item)}
         // only called internally when something has been deserialized into
         // its primitive type.
         private static {wrapperName} __Deserialize({itemUnderlyingType} value)
