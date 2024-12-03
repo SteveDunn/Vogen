@@ -105,7 +105,7 @@ public class StructGenerator : IGenerateValueObjectSourceCode
 
 {GenerateCodeForStringComparers.GenerateIfNeeded(item, tds)}        
 
-{GenerateCodeForCastingOperators.GenerateImplementations(item,tds)}{Util.GenerateGuidFactoryMethodIfNeeded(item)}
+{GenerateCodeForCastingOperators.GenerateImplementations(parameters, tds)}{Util.GenerateGuidFactoryMethodIfNeeded(item)}
         // only called internally when something has been deserialized into
         // its primitive type.
         private static {structName} __Deserialize({itemUnderlyingType} value)

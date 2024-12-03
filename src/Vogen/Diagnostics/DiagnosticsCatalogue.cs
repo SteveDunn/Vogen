@@ -114,6 +114,11 @@ internal static class DiagnosticsCatalogue
         "Invalid custom exception",
         "{0} must have at least 1 public constructor with 1 parameter of type System.String");
 
+    private static readonly DiagnosticDescriptor _bothImplicitAndExplicitCastsSpecified = CreateDescriptor(
+        RuleIdentifiers.BothImplicitAndExplicitCastsSpecified,
+        "Both implicit and explicit casts specified",
+        "'{0}' should have either an explicit or implicit cast for casting to or from the wrapper or primitive, but not both. Check that the global config isn't specifying a conflicting casting operator. Check 'toPrimitiveCasting', 'fromPrimitiveCasting', and 'staticAbstractsGeneration'. 'staticAbstractGeneration' defaults to explicit casting, so if you change the default, you need to change it here too. See issue 720 (https://github.com/SteveDunn/Vogen/issues/720) for more information.");
+
     private static readonly DiagnosticDescriptor _voReferencedInAConversionMarkerMustExplicitlySpecifyPrimitive = CreateDescriptor(
         RuleIdentifiers.VoReferencedInAConversionMarkerMustExplicitlySpecifyPrimitive,
         "Value objects that are referenced in a conversion marker attribute must explicitly specify the primitive type",
@@ -193,6 +198,9 @@ internal static class DiagnosticsCatalogue
             location,
             voSymbol.Name,
             markerClassSymbol.Name);
+
+    public static Diagnostic BothImplicitAndExplicitCastsSpecified(INamedTypeSymbol voSymbol) =>
+        Create(_bothImplicitAndExplicitCastsSpecified, voSymbol.Locations, voSymbol.Name); 
 
     public static Diagnostic TypesReferencedInAConversionMarkerMustBeaValueObjects(INamedTypeSymbol markerClassSymbol, INamedTypeSymbol voSymbol) => 
         Create(_typesReferencedInAConversionMarkerMustBeaValueObjects, voSymbol.Locations, markerClassSymbol.Name, voSymbol.Name);
