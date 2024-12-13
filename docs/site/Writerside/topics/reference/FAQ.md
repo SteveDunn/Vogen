@@ -209,86 +209,37 @@ public partial struct CustomerId {
 
 You _could_, but you'd get compiler warning [CS0282-There is no defined ordering between fields in multiple declarations of partial class or struct 'type'](https://docs.microsoft.com/en-us/dotnet/csharp/misc/cs0282)
 
-## Why are there, by default, no implicit conversions to and from the primitive types that are being wrapped?
+## Can I explicitly convert to and from the primitive?
 
-Implicit operators can be useful, but for Value Objects, they can confuse things. Take the following code **with** implicit conversions:
+Yes, by default Vogen generates explicit operators. See the [casting page](Casting.md) for more information.
 
-```c#
-Age age = Age.From(1);
-int anInt = age;
-Print(anInt);
+## What about implicit casts?
 
-void Print(OsVersion osVersion) => Console.WriteLine(osVersion);
+Implicit casts are problematic:
 
-[ValueObject(
-  fromPrimitiveCasting: CastOperator.Implicit, 
-  toPrimitiveCasting: CastOperator.Implicit)]
-public partial class Age;
+* they bypass validation (since they should never throw an exception)
+* they potentially cause a heap allocation
+* they bypass normalization
+* they weaken type safety
 
-[ValueObject(
-  fromPrimitiveCasting: CastOperator.Implicit, 
-  toPrimitiveCasting: CastOperator.Implicit)]
-public readonly partial struct OsVersion;
-```
-
-We can see that we lose type-safety. An `Age` is implicitly an int, and an `OsVersion` is implicitly an int.
-
-There are also issues with validation that [violates the rules of implicit operators](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/operators/user-defined-conversion-operators), which is:
-
-> Predefined C# implicit conversions always succeed and never throw an exception. User-defined implicit conversions should behave in that way as well. If a custom conversion can throw an exception or lose information, define it as an explicit conversion
-
-But a primitive cast to a value object might not always succeed due to validation.
-
-In my research, I read some other opinions and noted that the guidelines listed in [this answer](https://softwareengineering.stackexchange.com/a/284377/30906) say:
-
-* If the conversion can throw an `InvalidCast` exception, then it shouldn't be implicit.
-* If the conversion causes a heap allocation each time it is performed, then it shouldn't be implicit.
-
-Which is interesting—Vogen _wouldn't_ throw an `InvalidCastException` (only an `ValueObjectValidationException`).  Also, for `struct`s, we _wouldn't_ create a heap allocation.
-
-But since users of Vogen can declare a Value Object as a `class` **or** `struct`, then we wouldn't want implicit operators (from `primitive` => `ValueObject`) for just `structs` and not `class`es.
-
-## Can you opt in to implicit conversions?
-
-Yes, by specifying the `toPrimitiveCasting` and `fromPrimitiveCasting` in either local or global config.
-By default, explicit operators are generated for both. Bear in mind that you can only define implicit _or_ explicit operators;
-you can't have both.
-
-Also, bear in mind that ease of use can cause confusion. Let's say there's a type like this (and imagine that there are implicit conversions to `Age` and to `int`):
-
-```c#
-[ValueObject(typeof(int))]
-public readonly partial struct Age {
-    public static Validation Validate(int n) => n >= 0 
-      ? Validation.Ok 
-      : Validation.Invalid("Must be zero or more");
-}
-```
-
-That says that `Age` instances can never be negative.  So you would probably expect the following to throw, but it doesn't:
-
-```c#
-var age20 = Age.From(20);
-var age10 = age20 / 2;
-++age10;
-age10 -= 12; // bang - goes negative??
-```
-
-The implicit cast in `var age10 = age20 / 2` results in an `int` and not an `Age`. Changing it to `Age age10 = age20 / 2` fixes it. But this does go to show that it can be confusing.
+The [casting page](Casting.md) describes these problems in more detail.
 
 ## Why is there no interface?
 
-> _If I'm using a library that uses Vogen, I'd like to easily tell if the type is just a primitive wrapper or not by the fact that it implements an interface, such as `IValidated<T>`_
+> _"I'd like to tell if a type is a Vogen value object by seeing if it implements an interface, such as `IValidated<T>"`_
 
-Just like primitives have no interfaces, there's usually no need to have interfaces on value objects. 
+**NOTE**
+Vogen _can_ now generate an interface, but it's a _[curiously recurring template](https://en.wikipedia.org/wiki/Curiously_recurring_template_pattern)_, and so isn't particularly useful in the same way as a _normal_ interface is and how it would be used in this context
+
+Just like primitives have no interfaces (aside from static abstract interfaces, such as those used in [generic math](https://dunnhq.com/posts/2021/generic-math/)), there's usually no need to have interfaces on value objects. 
 The receiver that takes a `CustomerId` knows that it's a value object. 
-If it were instead to take an `IValidated<int>`, then it wouldn't have any more information; 
+If it were instead to take (for example), an `IValidated<int>`, then it wouldn't have any more information; 
 you'd still have to know to call `Value` to get the value.
 
 It might also relax type-safety. Without the interface, we have signatures such as this:
 
 ```c#
-public void SomSomething(
+public void DoSomething(
   CustomerId customerId, 
   SupplierId supplierId, 
   ProductId productId);
@@ -297,7 +248,7 @@ public void SomSomething(
 … but with the interface, we _could_ have signatures such as this:
 
 ```c#
-public void SomSomething(
+public void DoSomething(
   IValidate<int> customerId, 
   IValidated<int> supplierId, 
   IValidated<int> productId);
@@ -315,9 +266,10 @@ Yes. You might want to represent special values for things like _invalid_ or _un
 
 ```c#
 /*
-* Instances are the only way to avoid validation, so we can create 
-* instances that nobody else can. This is useful for creating special 
-* instances that represent concepts such as 'invalid' and 
+* Instances are the only way to avoid validation, 
+* so we can create instances that nobody else can. 
+* This is useful for creating special instances 
+* that represent concepts such as 'invalid' and 
 * 'unspecified'.
 */
 [ValueObject]
@@ -326,9 +278,9 @@ public readonly partial struct Age
     public static readonly Age Unspecified = new(-1);
     public static readonly Age Invalid = new(-2);
     
-    private static Validation Validate(int value) => value > 0 
+    private static Validation Validate(int v) => v > 0 
       ? Validation.Ok 
-      : Validation.Invalid("Must be greater than zero.");
+      : Validation.Invalid("Must be zero or more.");
 }
 ```
 
@@ -406,7 +358,7 @@ This is my first attempt and is NON-source-generated. There is memory overhead b
 Like StringlyTyped - non-source-generated and no analyzers. This is also more relaxed and allows composite 'underlying' types.
 
 [ValueObjectGenerator](https://github.com/RyotaMurohoshi/ValueObjectGenerator)
-Similar to Vogen, but less focused on validation and no code analyzer.
+Like Vogen, but less focused on validation and no code analyzer.
 
 ## What primitive types are supported?
 
