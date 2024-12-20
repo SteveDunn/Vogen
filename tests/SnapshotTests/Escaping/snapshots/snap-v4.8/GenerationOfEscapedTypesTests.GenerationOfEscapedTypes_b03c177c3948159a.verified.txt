@@ -128,11 +128,11 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
 #if NETCOREAPP3_0_OR_GREATER
 [global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)]
 #endif
-        @class.@record.@struct.@float.@decimal value,
+        @class.@record.@struct.@float.@decimal value, 
 #if NETCOREAPP3_0_OR_GREATER
 [global::System.Diagnostics.CodeAnalysis.MaybeNullWhen(false)]
 #endif
- out escapedTestspublic_partial_classConversions_Nonerecord__struct__float__decimal vo)
+        out escapedTestspublic_partial_classConversions_Nonerecord__struct__float__decimal vo)
 #pragma warning restore CS8767 // Nullability of reference types in type of parameter doesn't match implicitly implemented member because of nullability attributes.
 
         {
