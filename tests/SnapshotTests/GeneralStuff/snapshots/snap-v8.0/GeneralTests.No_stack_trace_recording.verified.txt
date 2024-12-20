@@ -143,11 +143,11 @@ namespace Whatever
 #if NETCOREAPP3_0_OR_GREATER
 [global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)]
 #endif
-        System.String value,
+        System.String value, 
 #if NETCOREAPP3_0_OR_GREATER
 [global::System.Diagnostics.CodeAnalysis.MaybeNullWhen(false)]
 #endif
- out CustomerId vo)
+        out CustomerId vo)
 #pragma warning restore CS8767 // Nullability of reference types in type of parameter doesn't match implicitly implemented member because of nullability attributes.
 
         {
@@ -243,11 +243,11 @@ namespace Whatever
 #if NETCOREAPP3_0_OR_GREATER
 [global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)]
 #endif
-        global::System.String s, global::System.IFormatProvider provider,
+        global::System.String s, global::System.IFormatProvider provider, 
 #if NETCOREAPP3_0_OR_GREATER
 [global::System.Diagnostics.CodeAnalysis.MaybeNullWhen(false)]
 #endif
- out CustomerId result)
+        out CustomerId result)
         {
             if (s is null)
             {

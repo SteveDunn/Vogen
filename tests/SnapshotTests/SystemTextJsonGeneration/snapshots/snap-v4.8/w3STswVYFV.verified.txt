@@ -139,11 +139,11 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
 #if NETCOREAPP3_0_OR_GREATER
 [global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)]
 #endif
-        System.Single value,
+        System.Single value, 
 #if NETCOREAPP3_0_OR_GREATER
 [global::System.Diagnostics.CodeAnalysis.MaybeNullWhen(false)]
 #endif
- out stj_number_as_string_public_partial_recordConversions_SystemTextJsonfloat vo)
+        out stj_number_as_string_public_partial_recordConversions_SystemTextJsonfloat vo)
 #pragma warning restore CS8767 // Nullability of reference types in type of parameter doesn't match implicitly implemented member because of nullability attributes.
 
         {
@@ -236,11 +236,11 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
         /// <returns>
         /// True if the value could a) be parsed by the underlying type, and b) passes any validation (after running any optional normalization).
         /// </returns>
-        public static global::System.Boolean TryParse(string s,
+        public static global::System.Boolean TryParse(string s, 
 #if NETCOREAPP3_0_OR_GREATER
 [global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)]
 #endif
- out stj_number_as_string_public_partial_recordConversions_SystemTextJsonfloat result)
+        out stj_number_as_string_public_partial_recordConversions_SystemTextJsonfloat result)
         {
             if (System.Single.TryParse(s, out var __v))
             {
@@ -258,11 +258,11 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
         /// <returns>
         /// True if the value could a) be parsed by the underlying type, and b) passes any validation (after running any optional normalization).
         /// </returns>
-        public static global::System.Boolean TryParse(string s, global::System.Globalization.NumberStyles style, global::System.IFormatProvider provider,
+        public static global::System.Boolean TryParse(string s, global::System.Globalization.NumberStyles style, global::System.IFormatProvider provider, 
 #if NETCOREAPP3_0_OR_GREATER
 [global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)]
 #endif
- out stj_number_as_string_public_partial_recordConversions_SystemTextJsonfloat result)
+        out stj_number_as_string_public_partial_recordConversions_SystemTextJsonfloat result)
         {
             if (System.Single.TryParse(s, style, provider, out var __v))
             {
