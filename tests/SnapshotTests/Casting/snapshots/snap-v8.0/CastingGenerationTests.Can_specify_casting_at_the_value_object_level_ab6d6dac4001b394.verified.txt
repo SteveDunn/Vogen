@@ -140,11 +140,11 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
 #if NETCOREAPP3_0_OR_GREATER
 [global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)]
 #endif
-        System.Int32 value,
+        System.Int32 value, 
 #if NETCOREAPP3_0_OR_GREATER
 [global::System.Diagnostics.CodeAnalysis.MaybeNullWhen(false)]
 #endif
- out _casting_public_partial_recordExplicitImplicit vo)
+        out _casting_public_partial_recordExplicitImplicit vo)
 #pragma warning restore CS8767 // Nullability of reference types in type of parameter doesn't match implicitly implemented member because of nullability attributes.
 
         {
@@ -237,11 +237,11 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
         /// <returns>
         /// True if the value could a) be parsed by the underlying type, and b) passes any validation (after running any optional normalization).
         /// </returns>
-        public static global::System.Boolean TryParse(global::System.ReadOnlySpan<byte> utf8Text, global::System.Globalization.NumberStyles style, global::System.IFormatProvider provider,
+        public static global::System.Boolean TryParse(global::System.ReadOnlySpan<byte> utf8Text, global::System.Globalization.NumberStyles style, global::System.IFormatProvider provider, 
 #if NETCOREAPP3_0_OR_GREATER
 [global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)]
 #endif
- out _casting_public_partial_recordExplicitImplicit result)
+        out _casting_public_partial_recordExplicitImplicit result)
         {
             if (System.Int32.TryParse(utf8Text, style, provider, out var __v))
             {
@@ -259,11 +259,11 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
         /// <returns>
         /// True if the value could a) be parsed by the underlying type, and b) passes any validation (after running any optional normalization).
         /// </returns>
-        public static global::System.Boolean TryParse(global::System.ReadOnlySpan<byte> utf8Text, global::System.IFormatProvider provider,
+        public static global::System.Boolean TryParse(global::System.ReadOnlySpan<byte> utf8Text, global::System.IFormatProvider provider, 
 #if NETCOREAPP3_0_OR_GREATER
 [global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)]
 #endif
- out _casting_public_partial_recordExplicitImplicit result)
+        out _casting_public_partial_recordExplicitImplicit result)
         {
             if (System.Int32.TryParse(utf8Text, provider, out var __v))
             {
@@ -281,11 +281,11 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
         /// <returns>
         /// True if the value could a) be parsed by the underlying type, and b) passes any validation (after running any optional normalization).
         /// </returns>
-        public static global::System.Boolean TryParse(global::System.ReadOnlySpan<byte> utf8Text,
+        public static global::System.Boolean TryParse(global::System.ReadOnlySpan<byte> utf8Text, 
 #if NETCOREAPP3_0_OR_GREATER
 [global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)]
 #endif
- out _casting_public_partial_recordExplicitImplicit result)
+        out _casting_public_partial_recordExplicitImplicit result)
         {
             if (System.Int32.TryParse(utf8Text, out var __v))
             {
@@ -303,11 +303,11 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
         /// <returns>
         /// True if the value could a) be parsed by the underlying type, and b) passes any validation (after running any optional normalization).
         /// </returns>
-        public static global::System.Boolean TryParse(global::System.ReadOnlySpan<char> s, global::System.Globalization.NumberStyles style, global::System.IFormatProvider provider,
+        public static global::System.Boolean TryParse(global::System.ReadOnlySpan<char> s, global::System.Globalization.NumberStyles style, global::System.IFormatProvider provider, 
 #if NETCOREAPP3_0_OR_GREATER
 [global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)]
 #endif
- out _casting_public_partial_recordExplicitImplicit result)
+        out _casting_public_partial_recordExplicitImplicit result)
         {
             if (System.Int32.TryParse(s, style, provider, out var __v))
             {
@@ -325,11 +325,11 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
         /// <returns>
         /// True if the value could a) be parsed by the underlying type, and b) passes any validation (after running any optional normalization).
         /// </returns>
-        public static global::System.Boolean TryParse(global::System.ReadOnlySpan<char> s, global::System.IFormatProvider provider,
+        public static global::System.Boolean TryParse(global::System.ReadOnlySpan<char> s, global::System.IFormatProvider provider, 
 #if NETCOREAPP3_0_OR_GREATER
 [global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)]
 #endif
- out _casting_public_partial_recordExplicitImplicit result)
+        out _casting_public_partial_recordExplicitImplicit result)
         {
             if (System.Int32.TryParse(s, provider, out var __v))
             {
@@ -347,11 +347,11 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
         /// <returns>
         /// True if the value could a) be parsed by the underlying type, and b) passes any validation (after running any optional normalization).
         /// </returns>
-        public static global::System.Boolean TryParse(global::System.ReadOnlySpan<char> s,
+        public static global::System.Boolean TryParse(global::System.ReadOnlySpan<char> s, 
 #if NETCOREAPP3_0_OR_GREATER
 [global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)]
 #endif
- out _casting_public_partial_recordExplicitImplicit result)
+        out _casting_public_partial_recordExplicitImplicit result)
         {
             if (System.Int32.TryParse(s, out var __v))
             {
@@ -369,11 +369,11 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
         /// <returns>
         /// True if the value could a) be parsed by the underlying type, and b) passes any validation (after running any optional normalization).
         /// </returns>
-        public static global::System.Boolean TryParse(string s, global::System.Globalization.NumberStyles style, global::System.IFormatProvider provider,
+        public static global::System.Boolean TryParse(string s, global::System.Globalization.NumberStyles style, global::System.IFormatProvider provider, 
 #if NETCOREAPP3_0_OR_GREATER
 [global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)]
 #endif
- out _casting_public_partial_recordExplicitImplicit result)
+        out _casting_public_partial_recordExplicitImplicit result)
         {
             if (System.Int32.TryParse(s, style, provider, out var __v))
             {
@@ -391,11 +391,11 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
         /// <returns>
         /// True if the value could a) be parsed by the underlying type, and b) passes any validation (after running any optional normalization).
         /// </returns>
-        public static global::System.Boolean TryParse(string s, global::System.IFormatProvider provider,
+        public static global::System.Boolean TryParse(string s, global::System.IFormatProvider provider, 
 #if NETCOREAPP3_0_OR_GREATER
 [global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)]
 #endif
- out _casting_public_partial_recordExplicitImplicit result)
+        out _casting_public_partial_recordExplicitImplicit result)
         {
             if (System.Int32.TryParse(s, provider, out var __v))
             {
@@ -413,11 +413,11 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
         /// <returns>
         /// True if the value could a) be parsed by the underlying type, and b) passes any validation (after running any optional normalization).
         /// </returns>
-        public static global::System.Boolean TryParse(string s,
+        public static global::System.Boolean TryParse(string s, 
 #if NETCOREAPP3_0_OR_GREATER
 [global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)]
 #endif
- out _casting_public_partial_recordExplicitImplicit result)
+        out _casting_public_partial_recordExplicitImplicit result)
         {
             if (System.Int32.TryParse(s, out var __v))
             {
