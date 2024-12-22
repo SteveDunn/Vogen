@@ -1,4 +1,5 @@
-﻿using Vogen.Tests.Types;
+﻿using System.Globalization;
+using Vogen.Tests.Types;
 
 namespace ConsumerTests.ToStringTests;
 
@@ -74,7 +75,8 @@ public class BasicFunctionality
         Age.From(100).ToString("x8").Should().Be("00000064");
         
         
-        Age.From((int)Math.Pow(2, 8)).ToString("E").Should().Be("2.560000E+002");
+        Age.From((int)Math.Pow(2, 8)).ToString("E", CultureInfo.InvariantCulture)
+            .Should().Be("2.560000E+002");
         
         Name.From("fred").ToString().Should().Be("fred");
         Name.From("barney").ToString().Should().Be("barney");
