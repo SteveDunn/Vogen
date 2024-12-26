@@ -135,11 +135,11 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
 #if NETCOREAPP3_0_OR_GREATER
 [global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)]
 #endif
-        System.Boolean value,
+        System.Boolean value, 
 #if NETCOREAPP3_0_OR_GREATER
 [global::System.Diagnostics.CodeAnalysis.MaybeNullWhen(false)]
 #endif
- out _casting_public_readonly_partial_structImplicitNonebool vo)
+        out _casting_public_readonly_partial_structImplicitNonebool vo)
 #pragma warning restore CS8767 // Nullability of reference types in type of parameter doesn't match implicitly implemented member because of nullability attributes.
 
         {
@@ -226,11 +226,11 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
         /// <returns>
         /// True if the value could a) be parsed by the underlying type, and b) passes any validation (after running any optional normalization).
         /// </returns>
-        public static global::System.Boolean TryParse(global::System.ReadOnlySpan<char> value,
+        public static global::System.Boolean TryParse(global::System.ReadOnlySpan<char> value, 
 #if NETCOREAPP3_0_OR_GREATER
 [global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)]
 #endif
- out _casting_public_readonly_partial_structImplicitNonebool result)
+        out _casting_public_readonly_partial_structImplicitNonebool result)
         {
             if (System.Boolean.TryParse(value, out var __v))
             {
@@ -248,11 +248,11 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
         /// <returns>
         /// True if the value could a) be parsed by the underlying type, and b) passes any validation (after running any optional normalization).
         /// </returns>
-        public static global::System.Boolean TryParse(string value,
+        public static global::System.Boolean TryParse(string value, 
 #if NETCOREAPP3_0_OR_GREATER
 [global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)]
 #endif
- out _casting_public_readonly_partial_structImplicitNonebool result)
+        out _casting_public_readonly_partial_structImplicitNonebool result)
         {
             if (System.Boolean.TryParse(value, out var __v))
             {

@@ -103,6 +103,7 @@ internal static class Util
 
     public static string GenerateNotNullWhenTrueAttribute() =>
         """
+
         #if NETCOREAPP3_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)]
         #endif
@@ -111,6 +112,7 @@ internal static class Util
 
     public static string GenerateMaybeNullWhenFalse() =>
         """
+
         #if NETCOREAPP3_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.MaybeNullWhen(false)]
         #endif

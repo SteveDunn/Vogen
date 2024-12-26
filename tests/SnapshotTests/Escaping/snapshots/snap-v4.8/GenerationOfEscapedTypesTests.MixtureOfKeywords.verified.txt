@@ -150,11 +150,11 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
 #if NETCOREAPP3_0_OR_GREATER
 [global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)]
 #endif
-        @double.@decimal value,
+        @double.@decimal value, 
 #if NETCOREAPP3_0_OR_GREATER
 [global::System.Diagnostics.CodeAnalysis.MaybeNullWhen(false)]
 #endif
- out classFromEscapedNamespaceWithReservedUnderlyingType vo)
+        out classFromEscapedNamespaceWithReservedUnderlyingType vo)
 #pragma warning restore CS8767 // Nullability of reference types in type of parameter doesn't match implicitly implemented member because of nullability attributes.
 
         {
@@ -476,11 +476,11 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
 #if NETCOREAPP3_0_OR_GREATER
 [global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)]
 #endif
-        System.Int32 value,
+        System.Int32 value, 
 #if NETCOREAPP3_0_OR_GREATER
 [global::System.Diagnostics.CodeAnalysis.MaybeNullWhen(false)]
 #endif
- out classFromEscapedNamespace vo)
+        out classFromEscapedNamespace vo)
 #pragma warning restore CS8767 // Nullability of reference types in type of parameter doesn't match implicitly implemented member because of nullability attributes.
 
         {
@@ -580,11 +580,11 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
         /// <returns>
         /// True if the value could a) be parsed by the underlying type, and b) passes any validation (after running any optional normalization).
         /// </returns>
-        public static global::System.Boolean TryParse(string s,
+        public static global::System.Boolean TryParse(string s, 
 #if NETCOREAPP3_0_OR_GREATER
 [global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)]
 #endif
- out classFromEscapedNamespace result)
+        out classFromEscapedNamespace result)
         {
             if (System.Int32.TryParse(s, out var __v))
             {
@@ -602,11 +602,11 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
         /// <returns>
         /// True if the value could a) be parsed by the underlying type, and b) passes any validation (after running any optional normalization).
         /// </returns>
-        public static global::System.Boolean TryParse(string s, global::System.Globalization.NumberStyles style, global::System.IFormatProvider provider,
+        public static global::System.Boolean TryParse(string s, global::System.Globalization.NumberStyles style, global::System.IFormatProvider provider, 
 #if NETCOREAPP3_0_OR_GREATER
 [global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)]
 #endif
- out classFromEscapedNamespace result)
+        out classFromEscapedNamespace result)
         {
             if (System.Int32.TryParse(s, style, provider, out var __v))
             {
@@ -944,11 +944,11 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
 #if NETCOREAPP3_0_OR_GREATER
 [global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)]
 #endif
-        System.Int32 value,
+        System.Int32 value, 
 #if NETCOREAPP3_0_OR_GREATER
 [global::System.Diagnostics.CodeAnalysis.MaybeNullWhen(false)]
 #endif
- out @class vo)
+        out @class vo)
 #pragma warning restore CS8767 // Nullability of reference types in type of parameter doesn't match implicitly implemented member because of nullability attributes.
 
         {
@@ -1048,11 +1048,11 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
         /// <returns>
         /// True if the value could a) be parsed by the underlying type, and b) passes any validation (after running any optional normalization).
         /// </returns>
-        public static global::System.Boolean TryParse(string s,
+        public static global::System.Boolean TryParse(string s, 
 #if NETCOREAPP3_0_OR_GREATER
 [global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)]
 #endif
- out @class result)
+        out @class result)
         {
             if (System.Int32.TryParse(s, out var __v))
             {
@@ -1070,11 +1070,11 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
         /// <returns>
         /// True if the value could a) be parsed by the underlying type, and b) passes any validation (after running any optional normalization).
         /// </returns>
-        public static global::System.Boolean TryParse(string s, global::System.Globalization.NumberStyles style, global::System.IFormatProvider provider,
+        public static global::System.Boolean TryParse(string s, global::System.Globalization.NumberStyles style, global::System.IFormatProvider provider, 
 #if NETCOREAPP3_0_OR_GREATER
 [global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)]
 #endif
- out @class result)
+        out @class result)
         {
             if (System.Int32.TryParse(s, style, provider, out var __v))
             {
@@ -1412,11 +1412,11 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
 #if NETCOREAPP3_0_OR_GREATER
 [global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)]
 #endif
-        System.Int32 value,
+        System.Int32 value, 
 #if NETCOREAPP3_0_OR_GREATER
 [global::System.Diagnostics.CodeAnalysis.MaybeNullWhen(false)]
 #endif
- out @event vo)
+        out @event vo)
 #pragma warning restore CS8767 // Nullability of reference types in type of parameter doesn't match implicitly implemented member because of nullability attributes.
 
         {
@@ -1516,11 +1516,11 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
         /// <returns>
         /// True if the value could a) be parsed by the underlying type, and b) passes any validation (after running any optional normalization).
         /// </returns>
-        public static global::System.Boolean TryParse(string s,
+        public static global::System.Boolean TryParse(string s, 
 #if NETCOREAPP3_0_OR_GREATER
 [global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)]
 #endif
- out @event result)
+        out @event result)
         {
             if (System.Int32.TryParse(s, out var __v))
             {
@@ -1538,11 +1538,11 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
         /// <returns>
         /// True if the value could a) be parsed by the underlying type, and b) passes any validation (after running any optional normalization).
         /// </returns>
-        public static global::System.Boolean TryParse(string s, global::System.Globalization.NumberStyles style, global::System.IFormatProvider provider,
+        public static global::System.Boolean TryParse(string s, global::System.Globalization.NumberStyles style, global::System.IFormatProvider provider, 
 #if NETCOREAPP3_0_OR_GREATER
 [global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)]
 #endif
- out @event result)
+        out @event result)
         {
             if (System.Int32.TryParse(s, style, provider, out var __v))
             {
@@ -1880,11 +1880,11 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
 #if NETCOREAPP3_0_OR_GREATER
 [global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)]
 #endif
-        @record.@struct.@float.@decimal value,
+        @record.@struct.@float.@decimal value, 
 #if NETCOREAPP3_0_OR_GREATER
 [global::System.Diagnostics.CodeAnalysis.MaybeNullWhen(false)]
 #endif
- out @event2 vo)
+        out @event2 vo)
 #pragma warning restore CS8767 // Nullability of reference types in type of parameter doesn't match implicitly implemented member because of nullability attributes.
 
         {
