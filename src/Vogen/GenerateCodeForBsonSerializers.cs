@@ -3,7 +3,6 @@ using System.Collections.Immutable;
 using System.Linq;
 using System.Text;
 using Microsoft.CodeAnalysis;
-using Microsoft.CodeAnalysis.CSharp;
 using Vogen.Types;
 
 namespace Vogen;
@@ -21,7 +20,7 @@ internal class GenerateCodeForBsonSerializers
     /// <param name="workItems"></param>
     public static void GenerateForApplicableValueObjects(SourceProductionContext context, Compilation compilation, List<VoWorkItem> workItems)
     {
-        if (!compilation.IsAtLeastCSharpVersion(LanguageVersion.CSharp12))
+        if (!compilation.IsAtLeastCSharp12())
         {
             return;
         }

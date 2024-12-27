@@ -5,6 +5,10 @@
     <LanguageVersion>latest</LanguageVersion>
     <ImplicitUsings>disable</ImplicitUsings>
     <nullable>enable</nullable>
+    <DebugSymbols>True</DebugSymbols>
+    <DebugType>Embedded</DebugType>
+    <DisableImplicitNamespaceImports>true</DisableImplicitNamespaceImports>
+    <BaseOutputPath>bin\$(RoslynVersion)\</BaseOutputPath>
     <IsRoslynComponent>true</IsRoslynComponent>
 
     <AppendTargetFrameworkToOutputPath>true</AppendTargetFrameworkToOutputPath>
@@ -22,7 +26,6 @@
   <!-- only used at compile time and not run time-->
   <PropertyGroup>
     <IncludeBuildOutput>false</IncludeBuildOutput>
-     <!--<GeneratePackageOnBuild>True</GeneratePackageOnBuild>--> 
   </PropertyGroup>
   <ItemGroup>
     <Compile Remove="Generators\Conversions\JsonNetConverters\**" />
@@ -39,24 +42,10 @@
     <None Remove="Generators\Conversions\SystemTextJsonConverters\**" />
     <None Remove="Generators\Conversions\TypeConverters\**" />
   </ItemGroup>
-  <ItemGroup>
-    <None Remove="AnalyzerReleases.Shipped.md" />
-    <None Remove="AnalyzerReleases.Unshipped.md" />
-  </ItemGroup>
+
   <ItemGroup>
     <AdditionalFiles Include="AnalyzerReleases.Shipped.md" />
     <AdditionalFiles Include="AnalyzerReleases.Unshipped.md" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Include="..\..\docs\nuget-readme.md" Pack="true" PackagePath="\" />
-    <None Include="$(OutputPath)\netstandard2.0\$(AssemblyName).dll" Pack="true" PackagePath="analyzers/dotnet/cs" Visible="false" />
-    <None Include="$(MSBuildThisFileDirectory)\..\Vogen.CodeFixers\bin\$(Configuration)\netstandard2.0\Vogen.CodeFixers.dll" Pack="true" PackagePath="analyzers/dotnet/cs" Visible="false" />
-    <None Include="$(OutputPath)\netstandard2.0\Vogen.SharedTypes.dll" Pack="true" PackagePath="analyzers/dotnet/cs" Visible="false" />
-
-    <None Include="$(OutputPath)\netstandard2.0\Vogen.SharedTypes.dll" Pack="true" PackagePath="lib\netstandard2.0" Visible="true" />
-    <None Include="$(OutputPath)\net9.0\Vogen.SharedTypes.dll" Pack="true" PackagePath="lib\net9.0" Visible="true" />
-
   </ItemGroup>
 
   <ItemGroup>
