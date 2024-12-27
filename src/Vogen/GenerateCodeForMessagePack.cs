@@ -3,7 +3,6 @@ using System.Collections.Immutable;
 using System.Linq;
 using System.Text;
 using Microsoft.CodeAnalysis;
-using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.CodeAnalysis.Text;
 using Vogen.Generators.Conversions;
@@ -109,7 +108,7 @@ internal class GenerateCodeForMessagePack : IGenerateConversion
         Compilation compilation,
         List<VoWorkItem> valueObjects)
     {
-        if (!compilation.IsAtLeastCSharpVersion(LanguageVersion.CSharp12))
+        if (!compilation.IsAtLeastCSharp12())
         {
             return;
         }

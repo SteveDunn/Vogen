@@ -5,13 +5,14 @@ using Microsoft.CodeAnalysis.Diagnostics;
 using System.Collections.Immutable;
 using System.Linq;
 using Vogen.Diagnostics;
+// ReSharper disable ArrangeObjectCreationWhenTypeEvident
 
 namespace Vogen.Rules;
 
 [DiagnosticAnalyzer(LanguageNames.CSharp)]
 public sealed class PreferReadonlyStructAnalyzer : DiagnosticAnalyzer
 {
-    private static readonly DiagnosticDescriptor _rule = new(
+    private static readonly DiagnosticDescriptor _rule = new DiagnosticDescriptor(
         RuleIdentifiers.UseReadonlyStructInsteadOfStruct,
         "Use readonly struct instead of struct",
         "Type '{0}' should be a readonly struct",

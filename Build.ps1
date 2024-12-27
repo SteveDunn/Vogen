@@ -11,6 +11,19 @@ function WriteStage([string]$message)
     Write-Output ""
 }
 
+function BuildWith([string]$configuration)
+{
+    WriteStage("... building " + $configuration)
+
+    exec { & dotnet build Vogen.sln -c $configuration -p Thorough=true --no-restore --verbosity $verbosity}
+    exec { & dotnet build src/Vogen/Vogen.csproj -c $configuration -p Thorough=true -p RoslynVersion=roslyn4.4 --verbosity $verbosity}
+    exec { & dotnet build src/Vogen/Vogen.csproj -c $configuration -p Thorough=true -p RoslynVersion=roslyn4.6 --verbosity $verbosity}
+    exec { & dotnet build src/Vogen/Vogen.csproj -c $configuration -p Thorough=true -p RoslynVersion=roslyn4.8 --verbosity $verbosity}
+
+    exec { & dotnet build src/Vogen.CodeFixers/Vogen.CodeFixers.csproj -c $configuration -p Thorough=true -p RoslynVersion=roslyn4.4 --verbosity $verbosity}
+    exec { & dotnet build src/Vogen.CodeFixers/Vogen.CodeFixers.csproj -c $configuration -p Thorough=true -p RoslynVersion=roslyn4.6 --verbosity $verbosity}
+    exec { & dotnet build src/Vogen.CodeFixers/Vogen.CodeFixers.csproj -c $configuration -p Thorough=true -p RoslynVersion=roslyn4.8 --verbosity $verbosity}}
+
 function Get999VersionWithUniquePatch()
 {
     $date1 = Get-Date("2022-10-17");
@@ -60,7 +73,7 @@ exec { & dotnet clean Vogen.sln -c Release --verbosity $verbosity}
 WriteStage("... restore ...")
 exec { & dotnet restore Vogen.sln --no-cache --verbosity $verbosity }
 
-exec { & dotnet build Vogen.sln -c Release -p Thorough=true --no-restore --verbosity $verbosity}
+BuildWith("Release");
 
 # run the analyzer tests
 WriteStage("Running analyzer tests...")
@@ -86,7 +99,9 @@ $version = Get999VersionWithUniquePatch
 # **NOTE** - we don't want these 999.9.9.x packages ending up in %userprofile%\.nuget\packages because it'll polute it.
 
 exec { & dotnet restore Vogen.sln --packages $localPackages --no-cache --verbosity $verbosity }
-exec { & dotnet build Vogen.sln -c Debug --no-restore --verbosity $verbosity}
+
+BuildWith("Debug");
+
 exec { & dotnet pack ./src/Vogen.Pack.csproj -c Debug -o:$localPackages /p:ForceVersion=$version --include-symbols --version-suffix:dev --no-restore --verbosity $verbosity }
 
 WriteStage("Cleaning and building consumers (tests and samples) - verbosity of $verbosity")
@@ -107,11 +122,11 @@ $releaseTask = Start-Process "dotnet" "build Consumers.sln --configuration Relea
 $debugTask.WaitForExit()
 $releaseTask.WaitForExit()
 
-if ($debugTask.ExitCode -ne $null -and $debugTask.ExitCode -ne 0) {
+if ($null -ne $debugTask.ExitCode -and $debugTask.ExitCode -ne 0) {
     Write-Host "debug build returned " + $debugTask.ExitCode
     exit -1
 }
-if ($releaseTask.ExitCode -ne $null -and $releaseTask.ExitCode -ne 0) {
+if ($null -ne $releaseTask.ExitCode -and $releaseTask.ExitCode -ne 0) {
     Write-Host "release build returned " + $releaseTask.ExitCode
     exit -1
 }

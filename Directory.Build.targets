@@ -16,34 +16,6 @@
   </PropertyGroup>
 
   <Choose>
-    <When Condition="$(RoslynVersion) == 'roslyn3.8'">
-      <ItemGroup >
-        <PackageReference Update="Microsoft.CodeAnalysis.Analyzers" Version="3.3.3" />
-        <PackageReference Update="Microsoft.CodeAnalysis.CSharp" Version="3.8.0" />
-        <PackageReference Update="Microsoft.CodeAnalysis.Workspaces.Common" Version="3.8.0" />
-        <PackageReference Update="Microsoft.CodeAnalysis.CSharp.Workspaces" Version="3.8.0" />
-      </ItemGroup>
-      <PropertyGroup>
-        <DefineConstants>$(DefineConstants);ROSLYN_3_8</DefineConstants>
-        <DefineConstants>$(DefineConstants);CSHARP9_OR_GREATER</DefineConstants>
-        <NoWarn>$(NoWarn);nullable</NoWarn>
-      </PropertyGroup>
-    </When>
-
-    <When Condition="$(RoslynVersion) == 'roslyn4.2'">
-      <ItemGroup>
-        <PackageReference Update="Microsoft.CodeAnalysis.Analyzers" Version="3.3.3" />
-        <PackageReference Update="Microsoft.CodeAnalysis.CSharp" Version="4.2.0" />
-        <PackageReference Update="Microsoft.CodeAnalysis.Workspaces.Common" Version="4.2.0" />
-        <PackageReference Update="Microsoft.CodeAnalysis.CSharp.Workspaces" Version="4.2.0" />
-      </ItemGroup>
-      <PropertyGroup>
-        <DefineConstants>$(DefineConstants);ROSLYN_4_2;ROSLYN_4_2_OR_GREATER</DefineConstants>
-        <DefineConstants>$(DefineConstants);CSHARP9_OR_GREATER;CSHARP10_OR_GREATER</DefineConstants>
-        <NoWarn>$(NoWarn);nullable</NoWarn>
-      </PropertyGroup>
-    </When>
-
     <When Condition="$(RoslynVersion) == 'roslyn4.4'">
       <ItemGroup>
         <PackageReference Update="Microsoft.CodeAnalysis.Analyzers" Version="3.3.3" />

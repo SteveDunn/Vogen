@@ -9,6 +9,15 @@ namespace Vogen;
 
 internal static class CompilationExtensions
 {
+    public static bool IsAtLeastCSharp12(this Compilation compilation)
+    {
+#if ROSLYN_4_8_OR_GREATER
+        return (compilation as CSharpCompilation)?.LanguageVersion >= LanguageVersion.CSharp12;
+#else
+        return false;
+#endif
+    }
+
     public static bool IsAtLeastCSharpVersion(this Compilation compilation, LanguageVersion langVersion) => 
         (compilation as CSharpCompilation)?.LanguageVersion >= langVersion;
 
