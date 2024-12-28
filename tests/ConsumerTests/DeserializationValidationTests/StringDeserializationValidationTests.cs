@@ -151,6 +151,40 @@ public class StringDeserializationValidationTests
     }
 
     [Fact]
+    public void Deserialization_systemtextjson_as_property_name_should_not_bypass_validation_pass()
+    {
+        var validValue = SystemTextJsonSerializer.Serialize(
+            new Dictionary<object, int>
+            {
+                { MyVoString_should_not_bypass_validation.From("abcdefghijk"), 5 }
+            });
+
+        var actual = SystemTextJsonSerializer.Deserialize<Dictionary<MyVoString_should_not_bypass_validation, int>>(validValue)!;
+
+        var key = actual.Keys.Should().ContainSingle().Subject!;
+        key.Should().Be(MyVoString_should_not_bypass_validation.From("abcdefghijk"));
+    }
+
+    [Fact]
+    public void Deserialization_systemtextjson_as_property_name_should_not_bypass_validation_fail()
+    {
+        var invalidValue = SystemTextJsonSerializer.Serialize(
+            new Dictionary<object, int>
+            {
+                { MyVoString_should_not_bypass_validation.From("abcdefghijk"), 5 }
+            })
+            .Replace("abcdefghijk", "abc");
+
+        Action vo = () => SystemTextJsonSerializer.Deserialize<Dictionary<MyVoString_should_not_bypass_validation, int>>(invalidValue);
+
+        vo.Should().ThrowExactly<System.Text.Json.JsonException>()
+            .WithMessage("The JSON value could not be converted to ConsumerTests.DeserializationValidationTests.MyVoString_should_not_bypass_validation*")
+            .WithMessage("*Path: $.abc |*")
+            .WithInnerException<ValueObjectValidationException>()
+            .WithMessage("length must be greater than ten characters");
+    }
+
+    [Fact]
     public void Deserialization_newtonsoft_should_not_bypass_validation_pass()
     {
         var validValue = NewtonsoftJsonSerializer.SerializeObject(MyVoString_should_not_bypass_validation.From("abcdefghijk"));
