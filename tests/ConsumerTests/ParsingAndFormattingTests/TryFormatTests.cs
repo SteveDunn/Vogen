@@ -16,9 +16,9 @@ public class TryFormatTests
 
         MyDecimal d = MyDecimal.From(1.23m);
 
-        $"{d:0.000}".Should().Be("1.230");
+        FormattableString.Invariant($"{d:0.000}").Should().Be("1.230");
         d.ToString("0.00", new CultureInfo("fr")).Should().Be("1,23");
-        $"{d:0.000}".Should().Be("1.230");
+        FormattableString.Invariant($"{d:0.000}").Should().Be("1.230");
 
         Span<char> s2 = stackalloc char[8];
         MyDecimal.From(1.23m).TryFormat(s2, out written, "000.00", CultureInfo.InvariantCulture).Should().BeTrue();
