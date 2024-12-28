@@ -35,7 +35,11 @@ public class Tests
         string json = $$"""{"Rvo":null}""";
         
         Action a = () => JsonSerializer.Deserialize<StrictContainer>(json);
-        a.Should().ThrowExactly<ValueObjectValidationException>().WithMessage("Cannot create a value object with null.");
+        a.Should().ThrowExactly<JsonException>()
+            .WithMessage("The JSON value could not be converted to ConsumerTests.BugFixTests.BugFix624.StrictReferenceVo.*")
+            .WithMessage("*Path: $.Rvo |*")
+            .WithInnerException<ValueObjectValidationException>()
+            .WithMessage("Cannot create a value object with null.");
     }
 
     [Fact]
