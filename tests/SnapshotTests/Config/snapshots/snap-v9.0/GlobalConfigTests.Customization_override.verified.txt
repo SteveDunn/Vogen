@@ -576,17 +576,18 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
 #if NET5_0_OR_GREATER
 #else
 #endif
-                return CustomerId.__Deserialize(global::System.Int32.Parse(reader.GetString(), global::System.Globalization.NumberStyles.Any, global::System.Globalization.CultureInfo.InvariantCulture));
+                return DeserializeJson(global::System.Int32.Parse(reader.GetString(), global::System.Globalization.NumberStyles.Any, global::System.Globalization.CultureInfo.InvariantCulture));
             }
 
             public override void Write(System.Text.Json.Utf8JsonWriter writer, CustomerId value, global::System.Text.Json.JsonSerializerOptions options)
             {
                 writer.WriteStringValue(value.Value.ToString(global::System.Globalization.CultureInfo.InvariantCulture));
             }
+
 #if NET6_0_OR_GREATER
             public override CustomerId ReadAsPropertyName(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {
-                return CustomerId.__Deserialize(global::System.Int32.Parse(reader.GetString(), global::System.Globalization.NumberStyles.Any, global::System.Globalization.CultureInfo.InvariantCulture));
+                return DeserializeJson(global::System.Int32.Parse(reader.GetString(), global::System.Globalization.NumberStyles.Any, global::System.Globalization.CultureInfo.InvariantCulture));
             }
 
             public override void WriteAsPropertyName(System.Text.Json.Utf8JsonWriter writer, CustomerId value, global::System.Text.Json.JsonSerializerOptions options)
@@ -594,6 +595,17 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
                 writer.WritePropertyName(value.Value.ToString(global::System.Globalization.CultureInfo.InvariantCulture));
             }
 #endif
+            private static CustomerId DeserializeJson(System.Int32 value)
+            {
+                try
+                {
+                    return CustomerId.__Deserialize(value);
+                }
+                catch (System.Exception e)
+                {
+                    throw new global::System.Text.Json.JsonException(null, e);
+                }
+            }
         }
 
 #nullable restore
