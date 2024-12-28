@@ -10,11 +10,11 @@ __HANDLE_NULL__ #endif
             public override VOTYPE Read(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {
 #if NET5_0_OR_GREATER
-__NORMAL__                return VOTYPE.__Deserialize(global::System.Text.Json.JsonSerializer.Deserialize(ref reader, (global::System.Text.Json.Serialization.Metadata.JsonTypeInfo<global::System.Double>)options.GetTypeInfo(typeof(global::System.Double))));
+__NORMAL__                return __DeserializeSystemTextJson(global::System.Text.Json.JsonSerializer.Deserialize(ref reader, (global::System.Text.Json.Serialization.Metadata.JsonTypeInfo<global::System.Double>)options.GetTypeInfo(typeof(global::System.Double))));
 #else
-__NORMAL__                return VOTYPE.__Deserialize(reader.GetDouble());
+__NORMAL__                return __DeserializeSystemTextJson(reader.GetDouble());
 #endif
-__STRING__                return VOTYPE.__Deserialize(global::System.Double.Parse(reader.GetString(), global::System.Globalization.NumberStyles.Any, global::System.Globalization.CultureInfo.InvariantCulture));
+__STRING__                return __DeserializeSystemTextJson(global::System.Double.Parse(reader.GetString(), global::System.Globalization.NumberStyles.Any, global::System.Globalization.CultureInfo.InvariantCulture));
             }
 
             public override void Write(System.Text.Json.Utf8JsonWriter writer, VOTYPE value, global::System.Text.Json.JsonSerializerOptions options)
@@ -30,12 +30,23 @@ __STRING__                writer.WriteStringValue(value.Value.ToString(global::S
 #if NET6_0_OR_GREATER
             public override VOTYPE ReadAsPropertyName(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {
-                return VOTYPE.__Deserialize(global::System.Double.Parse(reader.GetString(), global::System.Globalization.NumberStyles.Any, global::System.Globalization.CultureInfo.InvariantCulture));
+                return __DeserializeSystemTextJson(global::System.Double.Parse(reader.GetString(), global::System.Globalization.NumberStyles.Any, global::System.Globalization.CultureInfo.InvariantCulture));
             }
 
             public override void WriteAsPropertyName(System.Text.Json.Utf8JsonWriter writer, VOTYPE value, global::System.Text.Json.JsonSerializerOptions options)
             {
                 writer.WritePropertyName(value.Value.ToString(global::System.Globalization.CultureInfo.InvariantCulture));
             }
-#endif            
+#endif
+            private static VOTYPE __DeserializeSystemTextJson(VOUNDERLYINGTYPE value)
+            {
+                try
+                {
+                    return VOTYPE.__Deserialize(value);
+                }
+                catch (System.Exception e)
+                {
+                    throw new global::System.Text.Json.JsonException(null, e);
+                }
+            }
         }

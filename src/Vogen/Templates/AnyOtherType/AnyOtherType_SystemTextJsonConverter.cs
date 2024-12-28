@@ -10,7 +10,7 @@ __HANDLE_NULL__ #endif
             public override VOTYPE Read(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {
                 var primitive = global::System.Text.Json.JsonSerializer.Deserialize<VOUNDERLYINGTYPE>(ref reader, options);
-                return VOTYPE.__Deserialize(primitive);
+                return DeserializeJson(primitive);
             }
 
             public override void Write(System.Text.Json.Utf8JsonWriter writer, VOTYPE value, global::System.Text.Json.JsonSerializerOptions options)
@@ -22,12 +22,23 @@ __HANDLE_NULL__ #endif
             public override VOTYPE ReadAsPropertyName(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {
                 var primitive = global::System.Text.Json.JsonSerializer.Deserialize<VOUNDERLYINGTYPE>(ref reader, options);
-                return VOTYPE.__Deserialize(primitive);
+                return DeserializeJson(primitive);
             }
 
             public override void WriteAsPropertyName(System.Text.Json.Utf8JsonWriter writer, VOTYPE value, global::System.Text.Json.JsonSerializerOptions options)
             {
                 writer.WritePropertyName(global::System.Text.Json.JsonSerializer.Serialize(value.Value));
             }
-#endif            
+#endif
+            private static VOTYPE DeserializeJson(VOUNDERLYINGTYPE value)
+            {
+                try
+                {
+                    return VOTYPE.__Deserialize(value);
+                }
+                catch (System.Exception e)
+                {
+                    throw new global::System.Text.Json.JsonException(null, e);
+                }
+            }
         }

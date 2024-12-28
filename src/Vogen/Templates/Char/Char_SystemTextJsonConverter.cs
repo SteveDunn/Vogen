@@ -10,7 +10,7 @@ __HANDLE_NULL__ #endif
             {
                 var s = reader.GetString();
 
-                return VOTYPE.__Deserialize(s[0]);
+                return DeserializeJson(s[0]);
             }
 
             public override void Write(System.Text.Json.Utf8JsonWriter writer, VOTYPE value, global::System.Text.Json.JsonSerializerOptions options)
@@ -23,12 +23,23 @@ __HANDLE_NULL__ #endif
             {
                 var s = reader.GetString();
 
-                return VOTYPE.__Deserialize(s[0]);
+                return DeserializeJson(s[0]);
             }
 
             public override void WriteAsPropertyName(System.Text.Json.Utf8JsonWriter writer, VOTYPE value, global::System.Text.Json.JsonSerializerOptions options)
             {
                 writer.WritePropertyName(value.Value.ToString());
             }
-#endif            
+#endif
+            private static VOTYPE DeserializeJson(VOUNDERLYINGTYPE value)
+            {
+                try
+                {
+                    return VOTYPE.__Deserialize(value);
+                }
+                catch (System.Exception e)
+                {
+                    throw new global::System.Text.Json.JsonException(null, e);
+                }
+            }
         }

@@ -9,7 +9,7 @@ __HANDLE_NULL__            public override bool HandleNull => true;
 __HANDLE_NULL__ #endif            
             public override VOTYPE Read(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {
-                return new VOTYPE(global::System.DateOnly.ParseExact(reader.GetString(), "yyyy-MM-dd", global::System.Globalization.CultureInfo.InvariantCulture));
+                return DeserializeJson(global::System.DateOnly.ParseExact(reader.GetString(), "yyyy-MM-dd", global::System.Globalization.CultureInfo.InvariantCulture));
             }
 
             public override void Write(System.Text.Json.Utf8JsonWriter writer, VOTYPE value, global::System.Text.Json.JsonSerializerOptions options)
@@ -19,12 +19,24 @@ __HANDLE_NULL__ #endif
 
             public override VOTYPE ReadAsPropertyName(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {
-                return new VOTYPE(global::System.DateOnly.ParseExact(reader.GetString(), "yyyy-MM-dd", global::System.Globalization.CultureInfo.InvariantCulture));
+                return DeserializeJson(global::System.DateOnly.ParseExact(reader.GetString(), "yyyy-MM-dd", global::System.Globalization.CultureInfo.InvariantCulture));
             }
 
             public override void WriteAsPropertyName(System.Text.Json.Utf8JsonWriter writer, VOTYPE value, global::System.Text.Json.JsonSerializerOptions options)
             {
                 writer.WritePropertyName(value.Value.ToString("yyyy-MM-dd", global::System.Globalization.CultureInfo.InvariantCulture));
+            }
+
+            private static VOTYPE DeserializeJson(VOUNDERLYINGTYPE value)
+            {
+                try
+                {
+                    return VOTYPE.__Deserialize(value);
+                }
+                catch (System.Exception e)
+                {
+                    throw new global::System.Text.Json.JsonException(null, e);
+                }
             }
         }
 #endif
