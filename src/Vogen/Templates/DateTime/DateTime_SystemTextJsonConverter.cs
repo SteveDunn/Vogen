@@ -30,15 +30,5 @@ __HANDLE_NULL__ #endif
                 writer.WritePropertyName(value.Value.ToUniversalTime().ToString("O", global::System.Globalization.CultureInfo.InvariantCulture));
             }
 #endif
-            private static VOTYPE DeserializeJson(VOUNDERLYINGTYPE value)
-            {
-                try
-                {
-                    return VOTYPE.__Deserialize(value);
-                }
-                catch (System.Exception e)
-                {
-                    throw new global::System.Text.Json.JsonException(null, e);
-                }
-            }
+            DESERIALIZEJSONMETHOD
         }

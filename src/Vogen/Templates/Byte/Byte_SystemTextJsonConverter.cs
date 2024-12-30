@@ -39,15 +39,5 @@ __STRING__                writer.WriteStringValue(value.Value.ToString(global::S
                 writer.WritePropertyName(value.Value.ToString(global::System.Globalization.CultureInfo.InvariantCulture));
             }
 #endif
-            private static VOTYPE DeserializeJson(VOUNDERLYINGTYPE value)
-            {
-                try
-                {
-                    return VOTYPE.__Deserialize(value);
-                }
-                catch (System.Exception e)
-                {
-                    throw new global::System.Text.Json.JsonException(null, e);
-                }
-            }
+            DESERIALIZEJSONMETHOD
         }

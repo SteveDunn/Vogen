@@ -4,6 +4,21 @@ namespace Vogen.Generators.Conversions;
 
 internal class GenerateSystemTextJsonConversions : IGenerateConversion
 {
+    private static readonly string DeserializeJsonMethod =
+        """
+        private static VOTYPE DeserializeJson(VOUNDERLYINGTYPE value)
+        {
+            try
+            {
+                return VOTYPE.__Deserialize(value);
+            }
+            catch (System.Exception e)
+            {
+                throw new global::System.Text.Json.JsonException(null, e);
+            }
+        }
+        """;
+
     public string GenerateAnyAttributes(TypeDeclarationSyntax tds, VoWorkItem item)
     {
         if (!item.Config.Conversions.HasFlag(Vogen.Conversions.SystemTextJson))
@@ -47,6 +62,8 @@ internal class GenerateSystemTextJsonConversions : IGenerateConversion
             code = CodeSections.CutSection(code, keepCut.cut);
             code = CodeSections.KeepSection(code, keepCut.keep);
         }
+
+        code = code.Replace("DESERIALIZEJSONMETHOD", DeserializeJsonMethod.Replace("\n", "\n            "));
 
         code = code.Replace("VOTYPE", item.VoTypeName);
         code = code.Replace("VOUNDERLYINGTYPE", item.UnderlyingTypeFullName);
