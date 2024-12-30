@@ -375,9 +375,9 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
             public override _casting_public_sealed_partial_classNoneExplicit Read(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {
 #if NET5_0_OR_GREATER
-                return _casting_public_sealed_partial_classNoneExplicit.__Deserialize(global::System.Text.Json.JsonSerializer.Deserialize(ref reader, (global::System.Text.Json.Serialization.Metadata.JsonTypeInfo<global::System.Int32>)options.GetTypeInfo(typeof(global::System.Int32))));
+                return DeserializeJson(global::System.Text.Json.JsonSerializer.Deserialize(ref reader, (global::System.Text.Json.Serialization.Metadata.JsonTypeInfo<global::System.Int32>)options.GetTypeInfo(typeof(global::System.Int32))));
 #else
-                return _casting_public_sealed_partial_classNoneExplicit.__Deserialize(reader.GetInt32());
+                return DeserializeJson(reader.GetInt32());
 #endif
             }
 
@@ -389,10 +389,11 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
                 writer.WriteNumberValue(value.Value);
 #endif
             }
+
 #if NET6_0_OR_GREATER
             public override _casting_public_sealed_partial_classNoneExplicit ReadAsPropertyName(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {
-                return _casting_public_sealed_partial_classNoneExplicit.__Deserialize(global::System.Int32.Parse(reader.GetString(), global::System.Globalization.NumberStyles.Any, global::System.Globalization.CultureInfo.InvariantCulture));
+                return DeserializeJson(global::System.Int32.Parse(reader.GetString(), global::System.Globalization.NumberStyles.Any, global::System.Globalization.CultureInfo.InvariantCulture));
             }
 
             public override void WriteAsPropertyName(System.Text.Json.Utf8JsonWriter writer, _casting_public_sealed_partial_classNoneExplicit value, global::System.Text.Json.JsonSerializerOptions options)
@@ -400,6 +401,17 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
                 writer.WritePropertyName(value.Value.ToString(global::System.Globalization.CultureInfo.InvariantCulture));
             }
 #endif
+            private static _casting_public_sealed_partial_classNoneExplicit DeserializeJson(System.Int32 value)
+            {
+                try
+                {
+                    return _casting_public_sealed_partial_classNoneExplicit.__Deserialize(value);
+                }
+                catch (System.Exception e)
+                {
+                    throw new global::System.Text.Json.JsonException(null, e);
+                }
+            }
         }
 
 #nullable restore

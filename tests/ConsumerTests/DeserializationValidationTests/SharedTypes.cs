@@ -4,6 +4,7 @@ using LinqToDB.DataProvider.SQLite;
 using LinqToDB.Mapping;
 using Microsoft.Data.Sqlite;
 using Microsoft.EntityFrameworkCore;
+using Vogen.IntegrationTests.TestTypes;
 
 namespace ConsumerTests.DeserializationValidationTests;
 
@@ -41,6 +42,18 @@ public partial class MyVoString_should_bypass_validation
             return Validation.Ok;
 
         return Validation.Invalid("length must be greater than ten characters");
+    }
+}
+
+[ValueObject(typeof(Bar), Conversions.DapperTypeHandler | Conversions.EfCoreValueConverter | Conversions.LinqToDbValueConverter | Conversions.NewtonsoftJson | Conversions.SystemTextJson | Conversions.TypeConverter)]
+public partial class MyVoBar_should_not_bypass_validation
+{
+    private static Validation validate(Bar value)
+    {
+        if (value.Age >= 18)
+            return Validation.Ok;
+
+        return Validation.Invalid("Bar must be 18");
     }
 }
 #endregion

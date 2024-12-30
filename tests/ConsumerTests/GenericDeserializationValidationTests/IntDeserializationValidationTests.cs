@@ -132,7 +132,45 @@ public class IntDeserializationValidationTests
 
         Action vo = () => SystemTextJsonSerializer.Deserialize<MyVoInt_should_not_bypass_validation>(invalidValue);
 
-        vo.Should().ThrowExactly<ValueObjectValidationException>().WithMessage("must be greater than zero");
+        vo.Should().ThrowExactly<System.Text.Json.JsonException>()
+            .WithMessage("The JSON value could not be converted to ConsumerTests.GenericDeserializationValidationTests.MyVoInt_should_not_bypass_validation.*")
+            .WithMessage("*Path: $ |*")
+            .WithInnerException<ValueObjectValidationException>()
+            .WithMessage("must be greater than zero");
+    }
+
+    [Fact]
+    public void Deserialization_systemtextjson_as_property_name_should_not_bypass_validation_pass()
+    {
+        var validValue = SystemTextJsonSerializer.Serialize(
+            new Dictionary<object, int>
+            {
+                { MyVoInt_should_not_bypass_validation.From(1), 5 }
+            });
+
+        var actual = SystemTextJsonSerializer.Deserialize<Dictionary<MyVoInt_should_not_bypass_validation, int>>(validValue)!;
+
+        var key = actual.Keys.Should().ContainSingle().Subject!;
+        key.Should().Be(MyVoInt_should_not_bypass_validation.From(1));
+    }
+
+    [Fact]
+    public void Deserialization_systemtextjson_as_property_name_should_not_bypass_validation_fail()
+    {
+        var invalidValue = SystemTextJsonSerializer.Serialize(
+            new Dictionary<object, int>
+            {
+                { MyVoInt_should_not_bypass_validation.From(1), 5 }
+            })
+            .Replace("1", "0");
+
+        Action vo = () => SystemTextJsonSerializer.Deserialize<Dictionary<MyVoInt_should_not_bypass_validation, int>>(invalidValue);
+
+        vo.Should().ThrowExactly<System.Text.Json.JsonException>()
+            .WithMessage("The JSON value could not be converted to ConsumerTests.GenericDeserializationValidationTests.MyVoInt_should_not_bypass_validation.*")
+            .WithMessage("*Path: $.0 |*")
+            .WithInnerException<ValueObjectValidationException>()
+            .WithMessage("must be greater than zero");
     }
 
     [Fact]

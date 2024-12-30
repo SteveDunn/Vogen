@@ -265,17 +265,18 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
         {
             public override City Read(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {
-                return City.__Deserialize(reader.GetString());
+                return DeserializeJson(reader.GetString());
             }
 
             public override void Write(System.Text.Json.Utf8JsonWriter writer, City value, global::System.Text.Json.JsonSerializerOptions options)
             {
                 writer.WriteStringValue(value.Value);
             }
+
 #if NET6_0_OR_GREATER
             public override City ReadAsPropertyName(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {
-                return City.__Deserialize(reader.GetString());
+                return DeserializeJson(reader.GetString());
             }
 
             public override void WriteAsPropertyName(System.Text.Json.Utf8JsonWriter writer, City value, global::System.Text.Json.JsonSerializerOptions options)
@@ -283,6 +284,17 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
                 writer.WritePropertyName(value.Value);
             }
 #endif
+            private static City DeserializeJson(System.String value)
+            {
+                try
+                {
+                    return City.__Deserialize(value);
+                }
+                catch (System.Exception e)
+                {
+                    throw new global::System.Text.Json.JsonException(null, e);
+                }
+            }
         }
 
 #nullable restore

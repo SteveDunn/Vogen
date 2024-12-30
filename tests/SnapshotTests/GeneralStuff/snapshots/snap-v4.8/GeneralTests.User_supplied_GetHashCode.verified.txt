@@ -299,17 +299,18 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
     {
         public override VoWithGetHashCode Read(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
         {
-            return VoWithGetHashCode.__Deserialize(reader.GetString());
+            return DeserializeJson(reader.GetString());
         }
 
         public override void Write(System.Text.Json.Utf8JsonWriter writer, VoWithGetHashCode value, global::System.Text.Json.JsonSerializerOptions options)
         {
             writer.WriteStringValue(value.Value);
         }
+
 #if NET6_0_OR_GREATER
             public override VoWithGetHashCode ReadAsPropertyName(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {
-                return VoWithGetHashCode.__Deserialize(reader.GetString());
+                return DeserializeJson(reader.GetString());
             }
 
             public override void WriteAsPropertyName(System.Text.Json.Utf8JsonWriter writer, VoWithGetHashCode value, global::System.Text.Json.JsonSerializerOptions options)
@@ -317,6 +318,17 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
                 writer.WritePropertyName(value.Value);
             }
 #endif
+        private static VoWithGetHashCode DeserializeJson(System.String value)
+        {
+            try
+            {
+                return VoWithGetHashCode.__Deserialize(value);
+            }
+            catch (System.Exception e)
+            {
+                throw new global::System.Text.Json.JsonException(null, e);
+            }
+        }
     }
 
 #nullable restore
