@@ -616,16 +616,18 @@ public partial class MyVo : global::System.IEquatable<MyVo>, global::System.IEqu
                 writer.WritePropertyName(value.Value.ToString(global::System.Globalization.CultureInfo.InvariantCulture));
             }
 #endif
-        private static MyVo DeserializeJson(System.Int32 value)
+#if NETCOREAPP3_0_OR_GREATER
+            [global::System.Diagnostics.CodeAnalysis.DoesNotReturnAttribute]
+#endif
+        private static void ThrowJsonExceptionWhenValidationFails(Vogen.Validation validation)
         {
-            try
-            {
-                return MyVo.__Deserialize(value);
-            }
-            catch (System.Exception e)
-            {
-                throw new global::System.Text.Json.JsonException(null, e);
-            }
+            var e = ThrowHelper.CreateValidationException(validation);
+            throw new global::System.Text.Json.JsonException(null, e);
+        }
+
+        public static MyVo DeserializeJson(System.Int32 value)
+        {
+            return new MyVo(value);
         }
     }
 
@@ -701,21 +703,28 @@ public partial class MyVo : global::System.IEquatable<MyVo>, global::System.IEqu
 #if NETCOREAPP3_0_OR_GREATER
     [global::System.Diagnostics.CodeAnalysis.DoesNotReturnAttribute]
 #endif
-        internal static void ThrowWhenCreatedWithNull() => throw new global::Vogen.ValueObjectValidationException("Cannot create a value object with null.");
+        internal static void ThrowWhenCreatedWithNull() => throw CreateCannotBeNullException();
 #if NETCOREAPP3_0_OR_GREATER
     [global::System.Diagnostics.CodeAnalysis.DoesNotReturnAttribute]
 #endif
-        internal static void ThrowWhenNotInitialized() => throw new global::Vogen.ValueObjectValidationException("Use of uninitialized Value Object.");
+        internal static void ThrowWhenNotInitialized() => throw CreateValidationException("Use of uninitialized Value Object.");
 #if NETCOREAPP3_0_OR_GREATER
     [global::System.Diagnostics.CodeAnalysis.DoesNotReturnAttribute]
 #endif
-        internal static void ThrowWhenNotInitialized(global::System.Diagnostics.StackTrace stackTrace) => throw new global::Vogen.ValueObjectValidationException("Use of uninitialized Value Object.");
+        internal static void ThrowWhenNotInitialized(global::System.Diagnostics.StackTrace stackTrace) => throw CreateValidationException("Use of uninitialized Value Object.");
 #if NETCOREAPP3_0_OR_GREATER
     [global::System.Diagnostics.CodeAnalysis.DoesNotReturnAttribute]
 #endif
         internal static void ThrowWhenValidationFails(Vogen.Validation validation)
         {
-            var ex = new global::Vogen.ValueObjectValidationException(validation.ErrorMessage);
+            throw CreateValidationException(validation);
+        }
+
+        internal static System.Exception CreateValidationException(string message) => new global::Vogen.ValueObjectValidationException(message);
+        internal static System.Exception CreateCannotBeNullException() => new global::Vogen.ValueObjectValidationException("Cannot create a value object with null.");
+        internal static System.Exception CreateValidationException(Vogen.Validation validation)
+        {
+            var ex = CreateValidationException(validation.ErrorMessage);
             if (validation.Data is not null)
             {
                 foreach (var kvp in validation.Data)
@@ -724,7 +733,7 @@ public partial class MyVo : global::System.IEquatable<MyVo>, global::System.IEqu
                 }
             }
 
-            throw ex;
+            return ex;
         }
     }
 }
