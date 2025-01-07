@@ -4,20 +4,48 @@ namespace Vogen.Generators.Conversions;
 
 internal class GenerateSystemTextJsonConversions : IGenerateConversion
 {
-    private static readonly string DeserializeJsonMethod =
-        """
-        private static VOTYPE DeserializeJson(VOUNDERLYINGTYPE value)
-        {
-            try
-            {
-                return VOTYPE.__Deserialize(value);
-            }
-            catch (System.Exception e)
-            {
-                throw new global::System.Text.Json.JsonException(null, e);
-            }
-        }
-        """;
+    private static string GenerateDeserializeJsonMethod(VoWorkItem item) => $$"""
+          #if NETCOREAPP3_0_OR_GREATER
+          [global::System.Diagnostics.CodeAnalysis.DoesNotReturnAttribute]
+          #endif
+          private static void ThrowJsonExceptionWhenValidationFails(Vogen.Validation validation)
+          {
+              var e = ThrowHelper.CreateValidationException(validation);
+              throw new global::System.Text.Json.JsonException(null, e);
+          }
+          {{GenerateThrowExceptionHelperIfNeeded(item)}}
+          
+          public static VOTYPE DeserializeJson(VOUNDERLYINGTYPE value)
+          {
+              {{GenerateNullCheckAndThrowJsonExceptionIfNeeded(item)}}
+              {{Util.GenerateCallToNormalizeMethodIfNeeded(item)}}
+          
+              {{Util.GenerateCallToValidationAndThrowIfRequired(item, "ThrowJsonExceptionWhenValidationFails")}}
+          
+              return new VOTYPE(value);
+          }
+          """
+        .Replace("\n", "\n            ");
+
+    private static string GenerateThrowExceptionHelperIfNeeded(VoWorkItem voWorkItem) =>
+        voWorkItem.IsTheUnderlyingAValueType ? string.Empty
+            : """
+                
+                private static void ThrowJsonExceptionWhenNull(VOUNDERLYINGTYPE value)
+                {
+                    if (value == null)
+                    {
+                        var e = ThrowHelper.CreateCannotBeNullException();
+                        throw new global::System.Text.Json.JsonException(null, e);
+                    }
+                }
+                """;
+
+    private static string GenerateNullCheckAndThrowJsonExceptionIfNeeded(VoWorkItem voWorkItem) =>
+        voWorkItem.IsTheUnderlyingAValueType ? string.Empty
+            : $$"""
+                ThrowJsonExceptionWhenNull(value);
+                """;
 
     public string GenerateAnyAttributes(TypeDeclarationSyntax tds, VoWorkItem item)
     {
@@ -47,9 +75,9 @@ internal class GenerateSystemTextJsonConversions : IGenerateConversion
             {
                 allowNullReferences = false;
             }
-            
+
         }
-        
+
         code = allowNullReferences ? CodeSections.CutSection(code, "__HANDLE_NULL__") : CodeSections.KeepSection(code, "__HANDLE_NULL__");
 
         if (code.Contains("__NORMAL__"))
@@ -63,7 +91,7 @@ internal class GenerateSystemTextJsonConversions : IGenerateConversion
             code = CodeSections.KeepSection(code, keepCut.keep);
         }
 
-        code = code.Replace("DESERIALIZEJSONMETHOD", DeserializeJsonMethod.Replace("\n", "\n            "));
+        code = code.Replace("DESERIALIZEJSONMETHOD", GenerateDeserializeJsonMethod(item));
 
         code = code.Replace("VOTYPE", item.VoTypeName);
         code = code.Replace("VOUNDERLYINGTYPE", item.UnderlyingTypeFullName);
