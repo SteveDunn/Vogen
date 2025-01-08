@@ -132,7 +132,11 @@ public class IntDeserializationValidationTests
 
         Action vo = () => SystemTextJsonSerializer.Deserialize<MyVoInt_should_not_bypass_validation>(invalidValue);
 
-        vo.Should().ThrowExactly<ValueObjectValidationException>().WithMessage("must be greater than zero");
+        vo.Should().ThrowExactly<System.Text.Json.JsonException>()
+            .WithMessage("The JSON value could not be converted to ConsumerTests.DeserializationValidationTests.*")
+            .WithMessage("*Path: $ |*")
+            .WithInnerException<ValueObjectValidationException>()
+            .WithMessage("must be greater than zero");
     }
 
     [Fact]

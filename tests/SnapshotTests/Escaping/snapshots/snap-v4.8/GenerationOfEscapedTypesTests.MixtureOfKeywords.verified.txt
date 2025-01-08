@@ -268,18 +268,19 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
             public override classFromEscapedNamespaceWithReservedUnderlyingType Read(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {
                 var primitive = global::System.Text.Json.JsonSerializer.Deserialize<@double.@decimal>(ref reader, options);
-                return classFromEscapedNamespaceWithReservedUnderlyingType.__Deserialize(primitive);
+                return DeserializeJson(primitive);
             }
 
             public override void Write(System.Text.Json.Utf8JsonWriter writer, classFromEscapedNamespaceWithReservedUnderlyingType value, global::System.Text.Json.JsonSerializerOptions options)
             {
                 global::System.Text.Json.JsonSerializer.Serialize(writer, value.Value, options);
             }
+
 #if NET6_0_OR_GREATER
             public override classFromEscapedNamespaceWithReservedUnderlyingType ReadAsPropertyName(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {
                 var primitive = global::System.Text.Json.JsonSerializer.Deserialize<@double.@decimal>(ref reader, options);
-                return classFromEscapedNamespaceWithReservedUnderlyingType.__Deserialize(primitive);
+                return DeserializeJson(primitive);
             }
 
             public override void WriteAsPropertyName(System.Text.Json.Utf8JsonWriter writer, classFromEscapedNamespaceWithReservedUnderlyingType value, global::System.Text.Json.JsonSerializerOptions options)
@@ -287,6 +288,19 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
                 writer.WritePropertyName(global::System.Text.Json.JsonSerializer.Serialize(value.Value));
             }
 #endif
+#if NETCOREAPP3_0_OR_GREATER
+            [global::System.Diagnostics.CodeAnalysis.DoesNotReturnAttribute]
+#endif
+            private static void ThrowJsonExceptionWhenValidationFails(Vogen.Validation validation)
+            {
+                var e = ThrowHelper.CreateValidationException(validation);
+                throw new global::System.Text.Json.JsonException(null, e);
+            }
+
+            public static classFromEscapedNamespaceWithReservedUnderlyingType DeserializeJson(@double.@decimal value)
+            {
+                return new classFromEscapedNamespaceWithReservedUnderlyingType(value);
+            }
         }
 
 #nullable restore
@@ -349,21 +363,28 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
 #if NETCOREAPP3_0_OR_GREATER
     [global::System.Diagnostics.CodeAnalysis.DoesNotReturnAttribute]
 #endif
-            internal static void ThrowWhenCreatedWithNull() => throw new global::Vogen.ValueObjectValidationException("Cannot create a value object with null.");
+            internal static void ThrowWhenCreatedWithNull() => throw CreateCannotBeNullException();
 #if NETCOREAPP3_0_OR_GREATER
     [global::System.Diagnostics.CodeAnalysis.DoesNotReturnAttribute]
 #endif
-            internal static void ThrowWhenNotInitialized() => throw new global::Vogen.ValueObjectValidationException("Use of uninitialized Value Object.");
+            internal static void ThrowWhenNotInitialized() => throw CreateValidationException("Use of uninitialized Value Object.");
 #if NETCOREAPP3_0_OR_GREATER
     [global::System.Diagnostics.CodeAnalysis.DoesNotReturnAttribute]
 #endif
-            internal static void ThrowWhenNotInitialized(global::System.Diagnostics.StackTrace stackTrace) => throw new global::Vogen.ValueObjectValidationException("Use of uninitialized Value Object at: " + stackTrace ?? "");
+            internal static void ThrowWhenNotInitialized(global::System.Diagnostics.StackTrace stackTrace) => throw CreateValidationException("Use of uninitialized Value Object at: " + stackTrace ?? "");
 #if NETCOREAPP3_0_OR_GREATER
     [global::System.Diagnostics.CodeAnalysis.DoesNotReturnAttribute]
 #endif
             internal static void ThrowWhenValidationFails(Vogen.Validation validation)
             {
-                var ex = new global::Vogen.ValueObjectValidationException(validation.ErrorMessage);
+                throw CreateValidationException(validation);
+            }
+
+            internal static System.Exception CreateValidationException(string message) => new global::Vogen.ValueObjectValidationException(message);
+            internal static System.Exception CreateCannotBeNullException() => new global::Vogen.ValueObjectValidationException("Cannot create a value object with null.");
+            internal static System.Exception CreateValidationException(Vogen.Validation validation)
+            {
+                var ex = CreateValidationException(validation.ErrorMessage);
                 if (validation.Data is not null)
                 {
                     foreach (var kvp in validation.Data)
@@ -372,7 +393,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
                     }
                 }
 
-                throw ex;
+                return ex;
             }
         }
     }
@@ -718,9 +739,9 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
             public override classFromEscapedNamespace Read(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {
 #if NET5_0_OR_GREATER
-                return classFromEscapedNamespace.__Deserialize(global::System.Text.Json.JsonSerializer.Deserialize(ref reader, (global::System.Text.Json.Serialization.Metadata.JsonTypeInfo<global::System.Int32>)options.GetTypeInfo(typeof(global::System.Int32))));
+                return DeserializeJson(global::System.Text.Json.JsonSerializer.Deserialize(ref reader, (global::System.Text.Json.Serialization.Metadata.JsonTypeInfo<global::System.Int32>)options.GetTypeInfo(typeof(global::System.Int32))));
 #else
-                return classFromEscapedNamespace.__Deserialize(reader.GetInt32());
+                return DeserializeJson(reader.GetInt32());
 #endif
             }
 
@@ -732,10 +753,11 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
                 writer.WriteNumberValue(value.Value);
 #endif
             }
+
 #if NET6_0_OR_GREATER
             public override classFromEscapedNamespace ReadAsPropertyName(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {
-                return classFromEscapedNamespace.__Deserialize(global::System.Int32.Parse(reader.GetString(), global::System.Globalization.NumberStyles.Any, global::System.Globalization.CultureInfo.InvariantCulture));
+                return DeserializeJson(global::System.Int32.Parse(reader.GetString(), global::System.Globalization.NumberStyles.Any, global::System.Globalization.CultureInfo.InvariantCulture));
             }
 
             public override void WriteAsPropertyName(System.Text.Json.Utf8JsonWriter writer, classFromEscapedNamespace value, global::System.Text.Json.JsonSerializerOptions options)
@@ -743,6 +765,19 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
                 writer.WritePropertyName(value.Value.ToString(global::System.Globalization.CultureInfo.InvariantCulture));
             }
 #endif
+#if NETCOREAPP3_0_OR_GREATER
+            [global::System.Diagnostics.CodeAnalysis.DoesNotReturnAttribute]
+#endif
+            private static void ThrowJsonExceptionWhenValidationFails(Vogen.Validation validation)
+            {
+                var e = ThrowHelper.CreateValidationException(validation);
+                throw new global::System.Text.Json.JsonException(null, e);
+            }
+
+            public static classFromEscapedNamespace DeserializeJson(System.Int32 value)
+            {
+                return new classFromEscapedNamespace(value);
+            }
         }
 
 #nullable restore
@@ -817,21 +852,28 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
 #if NETCOREAPP3_0_OR_GREATER
     [global::System.Diagnostics.CodeAnalysis.DoesNotReturnAttribute]
 #endif
-            internal static void ThrowWhenCreatedWithNull() => throw new global::Vogen.ValueObjectValidationException("Cannot create a value object with null.");
+            internal static void ThrowWhenCreatedWithNull() => throw CreateCannotBeNullException();
 #if NETCOREAPP3_0_OR_GREATER
     [global::System.Diagnostics.CodeAnalysis.DoesNotReturnAttribute]
 #endif
-            internal static void ThrowWhenNotInitialized() => throw new global::Vogen.ValueObjectValidationException("Use of uninitialized Value Object.");
+            internal static void ThrowWhenNotInitialized() => throw CreateValidationException("Use of uninitialized Value Object.");
 #if NETCOREAPP3_0_OR_GREATER
     [global::System.Diagnostics.CodeAnalysis.DoesNotReturnAttribute]
 #endif
-            internal static void ThrowWhenNotInitialized(global::System.Diagnostics.StackTrace stackTrace) => throw new global::Vogen.ValueObjectValidationException("Use of uninitialized Value Object at: " + stackTrace ?? "");
+            internal static void ThrowWhenNotInitialized(global::System.Diagnostics.StackTrace stackTrace) => throw CreateValidationException("Use of uninitialized Value Object at: " + stackTrace ?? "");
 #if NETCOREAPP3_0_OR_GREATER
     [global::System.Diagnostics.CodeAnalysis.DoesNotReturnAttribute]
 #endif
             internal static void ThrowWhenValidationFails(Vogen.Validation validation)
             {
-                var ex = new global::Vogen.ValueObjectValidationException(validation.ErrorMessage);
+                throw CreateValidationException(validation);
+            }
+
+            internal static System.Exception CreateValidationException(string message) => new global::Vogen.ValueObjectValidationException(message);
+            internal static System.Exception CreateCannotBeNullException() => new global::Vogen.ValueObjectValidationException("Cannot create a value object with null.");
+            internal static System.Exception CreateValidationException(Vogen.Validation validation)
+            {
+                var ex = CreateValidationException(validation.ErrorMessage);
                 if (validation.Data is not null)
                 {
                     foreach (var kvp in validation.Data)
@@ -840,7 +882,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
                     }
                 }
 
-                throw ex;
+                return ex;
             }
         }
     }
@@ -1186,9 +1228,9 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
             public override @class Read(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {
 #if NET5_0_OR_GREATER
-                return @class.__Deserialize(global::System.Text.Json.JsonSerializer.Deserialize(ref reader, (global::System.Text.Json.Serialization.Metadata.JsonTypeInfo<global::System.Int32>)options.GetTypeInfo(typeof(global::System.Int32))));
+                return DeserializeJson(global::System.Text.Json.JsonSerializer.Deserialize(ref reader, (global::System.Text.Json.Serialization.Metadata.JsonTypeInfo<global::System.Int32>)options.GetTypeInfo(typeof(global::System.Int32))));
 #else
-                return @class.__Deserialize(reader.GetInt32());
+                return DeserializeJson(reader.GetInt32());
 #endif
             }
 
@@ -1200,10 +1242,11 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
                 writer.WriteNumberValue(value.Value);
 #endif
             }
+
 #if NET6_0_OR_GREATER
             public override @class ReadAsPropertyName(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {
-                return @class.__Deserialize(global::System.Int32.Parse(reader.GetString(), global::System.Globalization.NumberStyles.Any, global::System.Globalization.CultureInfo.InvariantCulture));
+                return DeserializeJson(global::System.Int32.Parse(reader.GetString(), global::System.Globalization.NumberStyles.Any, global::System.Globalization.CultureInfo.InvariantCulture));
             }
 
             public override void WriteAsPropertyName(System.Text.Json.Utf8JsonWriter writer, @class value, global::System.Text.Json.JsonSerializerOptions options)
@@ -1211,6 +1254,19 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
                 writer.WritePropertyName(value.Value.ToString(global::System.Globalization.CultureInfo.InvariantCulture));
             }
 #endif
+#if NETCOREAPP3_0_OR_GREATER
+            [global::System.Diagnostics.CodeAnalysis.DoesNotReturnAttribute]
+#endif
+            private static void ThrowJsonExceptionWhenValidationFails(Vogen.Validation validation)
+            {
+                var e = ThrowHelper.CreateValidationException(validation);
+                throw new global::System.Text.Json.JsonException(null, e);
+            }
+
+            public static @class DeserializeJson(System.Int32 value)
+            {
+                return new @class(value);
+            }
         }
 
 #nullable restore
@@ -1285,21 +1341,28 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
 #if NETCOREAPP3_0_OR_GREATER
     [global::System.Diagnostics.CodeAnalysis.DoesNotReturnAttribute]
 #endif
-            internal static void ThrowWhenCreatedWithNull() => throw new global::Vogen.ValueObjectValidationException("Cannot create a value object with null.");
+            internal static void ThrowWhenCreatedWithNull() => throw CreateCannotBeNullException();
 #if NETCOREAPP3_0_OR_GREATER
     [global::System.Diagnostics.CodeAnalysis.DoesNotReturnAttribute]
 #endif
-            internal static void ThrowWhenNotInitialized() => throw new global::Vogen.ValueObjectValidationException("Use of uninitialized Value Object.");
+            internal static void ThrowWhenNotInitialized() => throw CreateValidationException("Use of uninitialized Value Object.");
 #if NETCOREAPP3_0_OR_GREATER
     [global::System.Diagnostics.CodeAnalysis.DoesNotReturnAttribute]
 #endif
-            internal static void ThrowWhenNotInitialized(global::System.Diagnostics.StackTrace stackTrace) => throw new global::Vogen.ValueObjectValidationException("Use of uninitialized Value Object at: " + stackTrace ?? "");
+            internal static void ThrowWhenNotInitialized(global::System.Diagnostics.StackTrace stackTrace) => throw CreateValidationException("Use of uninitialized Value Object at: " + stackTrace ?? "");
 #if NETCOREAPP3_0_OR_GREATER
     [global::System.Diagnostics.CodeAnalysis.DoesNotReturnAttribute]
 #endif
             internal static void ThrowWhenValidationFails(Vogen.Validation validation)
             {
-                var ex = new global::Vogen.ValueObjectValidationException(validation.ErrorMessage);
+                throw CreateValidationException(validation);
+            }
+
+            internal static System.Exception CreateValidationException(string message) => new global::Vogen.ValueObjectValidationException(message);
+            internal static System.Exception CreateCannotBeNullException() => new global::Vogen.ValueObjectValidationException("Cannot create a value object with null.");
+            internal static System.Exception CreateValidationException(Vogen.Validation validation)
+            {
+                var ex = CreateValidationException(validation.ErrorMessage);
                 if (validation.Data is not null)
                 {
                     foreach (var kvp in validation.Data)
@@ -1308,7 +1371,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
                     }
                 }
 
-                throw ex;
+                return ex;
             }
         }
     }
@@ -1654,9 +1717,9 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
             public override @event Read(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {
 #if NET5_0_OR_GREATER
-                return @event.__Deserialize(global::System.Text.Json.JsonSerializer.Deserialize(ref reader, (global::System.Text.Json.Serialization.Metadata.JsonTypeInfo<global::System.Int32>)options.GetTypeInfo(typeof(global::System.Int32))));
+                return DeserializeJson(global::System.Text.Json.JsonSerializer.Deserialize(ref reader, (global::System.Text.Json.Serialization.Metadata.JsonTypeInfo<global::System.Int32>)options.GetTypeInfo(typeof(global::System.Int32))));
 #else
-                return @event.__Deserialize(reader.GetInt32());
+                return DeserializeJson(reader.GetInt32());
 #endif
             }
 
@@ -1668,10 +1731,11 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
                 writer.WriteNumberValue(value.Value);
 #endif
             }
+
 #if NET6_0_OR_GREATER
             public override @event ReadAsPropertyName(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {
-                return @event.__Deserialize(global::System.Int32.Parse(reader.GetString(), global::System.Globalization.NumberStyles.Any, global::System.Globalization.CultureInfo.InvariantCulture));
+                return DeserializeJson(global::System.Int32.Parse(reader.GetString(), global::System.Globalization.NumberStyles.Any, global::System.Globalization.CultureInfo.InvariantCulture));
             }
 
             public override void WriteAsPropertyName(System.Text.Json.Utf8JsonWriter writer, @event value, global::System.Text.Json.JsonSerializerOptions options)
@@ -1679,6 +1743,19 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
                 writer.WritePropertyName(value.Value.ToString(global::System.Globalization.CultureInfo.InvariantCulture));
             }
 #endif
+#if NETCOREAPP3_0_OR_GREATER
+            [global::System.Diagnostics.CodeAnalysis.DoesNotReturnAttribute]
+#endif
+            private static void ThrowJsonExceptionWhenValidationFails(Vogen.Validation validation)
+            {
+                var e = ThrowHelper.CreateValidationException(validation);
+                throw new global::System.Text.Json.JsonException(null, e);
+            }
+
+            public static @event DeserializeJson(System.Int32 value)
+            {
+                return new @event(value);
+            }
         }
 
 #nullable restore
@@ -1753,21 +1830,28 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
 #if NETCOREAPP3_0_OR_GREATER
     [global::System.Diagnostics.CodeAnalysis.DoesNotReturnAttribute]
 #endif
-            internal static void ThrowWhenCreatedWithNull() => throw new global::Vogen.ValueObjectValidationException("Cannot create a value object with null.");
+            internal static void ThrowWhenCreatedWithNull() => throw CreateCannotBeNullException();
 #if NETCOREAPP3_0_OR_GREATER
     [global::System.Diagnostics.CodeAnalysis.DoesNotReturnAttribute]
 #endif
-            internal static void ThrowWhenNotInitialized() => throw new global::Vogen.ValueObjectValidationException("Use of uninitialized Value Object.");
+            internal static void ThrowWhenNotInitialized() => throw CreateValidationException("Use of uninitialized Value Object.");
 #if NETCOREAPP3_0_OR_GREATER
     [global::System.Diagnostics.CodeAnalysis.DoesNotReturnAttribute]
 #endif
-            internal static void ThrowWhenNotInitialized(global::System.Diagnostics.StackTrace stackTrace) => throw new global::Vogen.ValueObjectValidationException("Use of uninitialized Value Object at: " + stackTrace ?? "");
+            internal static void ThrowWhenNotInitialized(global::System.Diagnostics.StackTrace stackTrace) => throw CreateValidationException("Use of uninitialized Value Object at: " + stackTrace ?? "");
 #if NETCOREAPP3_0_OR_GREATER
     [global::System.Diagnostics.CodeAnalysis.DoesNotReturnAttribute]
 #endif
             internal static void ThrowWhenValidationFails(Vogen.Validation validation)
             {
-                var ex = new global::Vogen.ValueObjectValidationException(validation.ErrorMessage);
+                throw CreateValidationException(validation);
+            }
+
+            internal static System.Exception CreateValidationException(string message) => new global::Vogen.ValueObjectValidationException(message);
+            internal static System.Exception CreateCannotBeNullException() => new global::Vogen.ValueObjectValidationException("Cannot create a value object with null.");
+            internal static System.Exception CreateValidationException(Vogen.Validation validation)
+            {
+                var ex = CreateValidationException(validation.ErrorMessage);
                 if (validation.Data is not null)
                 {
                     foreach (var kvp in validation.Data)
@@ -1776,7 +1860,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
                     }
                 }
 
-                throw ex;
+                return ex;
             }
         }
     }
@@ -1998,18 +2082,19 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
             public override @event2 Read(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {
                 var primitive = global::System.Text.Json.JsonSerializer.Deserialize<@record.@struct.@float.@decimal>(ref reader, options);
-                return @event2.__Deserialize(primitive);
+                return DeserializeJson(primitive);
             }
 
             public override void Write(System.Text.Json.Utf8JsonWriter writer, @event2 value, global::System.Text.Json.JsonSerializerOptions options)
             {
                 global::System.Text.Json.JsonSerializer.Serialize(writer, value.Value, options);
             }
+
 #if NET6_0_OR_GREATER
             public override @event2 ReadAsPropertyName(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {
                 var primitive = global::System.Text.Json.JsonSerializer.Deserialize<@record.@struct.@float.@decimal>(ref reader, options);
-                return @event2.__Deserialize(primitive);
+                return DeserializeJson(primitive);
             }
 
             public override void WriteAsPropertyName(System.Text.Json.Utf8JsonWriter writer, @event2 value, global::System.Text.Json.JsonSerializerOptions options)
@@ -2017,6 +2102,19 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
                 writer.WritePropertyName(global::System.Text.Json.JsonSerializer.Serialize(value.Value));
             }
 #endif
+#if NETCOREAPP3_0_OR_GREATER
+            [global::System.Diagnostics.CodeAnalysis.DoesNotReturnAttribute]
+#endif
+            private static void ThrowJsonExceptionWhenValidationFails(Vogen.Validation validation)
+            {
+                var e = ThrowHelper.CreateValidationException(validation);
+                throw new global::System.Text.Json.JsonException(null, e);
+            }
+
+            public static @event2 DeserializeJson(@record.@struct.@float.@decimal value)
+            {
+                return new @event2(value);
+            }
         }
 
 #nullable restore
@@ -2079,21 +2177,28 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
 #if NETCOREAPP3_0_OR_GREATER
     [global::System.Diagnostics.CodeAnalysis.DoesNotReturnAttribute]
 #endif
-            internal static void ThrowWhenCreatedWithNull() => throw new global::Vogen.ValueObjectValidationException("Cannot create a value object with null.");
+            internal static void ThrowWhenCreatedWithNull() => throw CreateCannotBeNullException();
 #if NETCOREAPP3_0_OR_GREATER
     [global::System.Diagnostics.CodeAnalysis.DoesNotReturnAttribute]
 #endif
-            internal static void ThrowWhenNotInitialized() => throw new global::Vogen.ValueObjectValidationException("Use of uninitialized Value Object.");
+            internal static void ThrowWhenNotInitialized() => throw CreateValidationException("Use of uninitialized Value Object.");
 #if NETCOREAPP3_0_OR_GREATER
     [global::System.Diagnostics.CodeAnalysis.DoesNotReturnAttribute]
 #endif
-            internal static void ThrowWhenNotInitialized(global::System.Diagnostics.StackTrace stackTrace) => throw new global::Vogen.ValueObjectValidationException("Use of uninitialized Value Object at: " + stackTrace ?? "");
+            internal static void ThrowWhenNotInitialized(global::System.Diagnostics.StackTrace stackTrace) => throw CreateValidationException("Use of uninitialized Value Object at: " + stackTrace ?? "");
 #if NETCOREAPP3_0_OR_GREATER
     [global::System.Diagnostics.CodeAnalysis.DoesNotReturnAttribute]
 #endif
             internal static void ThrowWhenValidationFails(Vogen.Validation validation)
             {
-                var ex = new global::Vogen.ValueObjectValidationException(validation.ErrorMessage);
+                throw CreateValidationException(validation);
+            }
+
+            internal static System.Exception CreateValidationException(string message) => new global::Vogen.ValueObjectValidationException(message);
+            internal static System.Exception CreateCannotBeNullException() => new global::Vogen.ValueObjectValidationException("Cannot create a value object with null.");
+            internal static System.Exception CreateValidationException(Vogen.Validation validation)
+            {
+                var ex = CreateValidationException(validation.ErrorMessage);
                 if (validation.Data is not null)
                 {
                     foreach (var kvp in validation.Data)
@@ -2102,7 +2207,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
                     }
                 }
 
-                throw ex;
+                return ex;
             }
         }
     }

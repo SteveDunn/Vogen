@@ -4,12 +4,12 @@
         /// </summary>
         public class VOTYPESystemTextJsonConverter : global::System.Text.Json.Serialization.JsonConverter<VOTYPE>
         {
-__HANDLE_NULL__ #if NET5_0_OR_GREATER            
-__HANDLE_NULL__            public override bool HandleNull => true;            
-__HANDLE_NULL__ #endif            
+__HANDLE_NULL__ #if NET5_0_OR_GREATER        
+__HANDLE_NULL__            public override bool HandleNull => true;        
+__HANDLE_NULL__ #endif        
             public override VOTYPE Read(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {
-                return VOTYPE.__Deserialize(reader.GetGuid());
+                return DeserializeJson(reader.GetGuid());
             }
 
             public override void Write(System.Text.Json.Utf8JsonWriter writer, VOTYPE value, global::System.Text.Json.JsonSerializerOptions options)
@@ -22,7 +22,7 @@ __HANDLE_NULL__ #endif
             {
                 if (global::System.Guid.TryParse(reader.GetString(), out global::System.Guid g))
                 {
-                    return VOTYPE.__Deserialize(g);
+                    return DeserializeJson(g);
                 }
 
                 throw new global::System.Text.Json.JsonException("Unable to parse the GUID for an instance of VOTYPE");
@@ -32,5 +32,6 @@ __HANDLE_NULL__ #endif
             {
                 writer.WritePropertyName(value.Value.ToString());
             }
-#endif            
+#endif
+            DESERIALIZEJSONMETHOD
         }

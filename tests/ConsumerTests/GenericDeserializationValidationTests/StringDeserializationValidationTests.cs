@@ -143,7 +143,11 @@ public class StringDeserializationValidationTests
 
         Action vo = () => SystemTextJsonSerializer.Deserialize<MyVoString_should_not_bypass_validation>(invalidValue);
 
-        vo.Should().ThrowExactly<ValueObjectValidationException>().WithMessage("length must be greater than ten characters");
+        vo.Should().ThrowExactly<System.Text.Json.JsonException>()
+            .WithMessage("The JSON value could not be converted to ConsumerTests.GenericDeserializationValidationTests.MyVoString_should_not_bypass_validation.*")
+            .WithMessage("*Path: $ |*")
+            .WithInnerException<ValueObjectValidationException>()
+            .WithMessage("length must be greater than ten characters");
     }
 
     [Fact]

@@ -68,7 +68,7 @@ internal static class Util
     }
 
 
-    public static string GenerateCallToValidationAndThrowIfRequired(VoWorkItem workItem)
+    public static string GenerateCallToValidationAndThrowIfRequired(VoWorkItem workItem, string throwingMethod = "ThrowHelper.ThrowWhenValidationFails")
     {
         if (workItem.ValidateMethod is not null)
         {
@@ -76,7 +76,7 @@ internal static class Util
                      var validation = {{workItem.TypeToAugment.Identifier}}.{{workItem.ValidateMethod.Identifier.Value}}(value);
                      if (validation != Vogen.Validation.Ok)
                      {
-                         ThrowHelper.ThrowWhenValidationFails(validation);
+                         {{throwingMethod}}(validation);
                      }
 
                      """;
@@ -378,56 +378,67 @@ internal static class Util
 
     public static string GenerateThrowHelper(VoWorkItem item)
     {
-        return $$"""
-                 static class ThrowHelper
-                 {
-                     #if NETCOREAPP3_0_OR_GREATER
-                     [global::System.Diagnostics.CodeAnalysis.DoesNotReturnAttribute]
-                     #endif
-                     internal static void ThrowInvalidOperationException(string message) => throw new global::System.InvalidOperationException(message);
-                 
-                     #if NETCOREAPP3_0_OR_GREATER
-                     [global::System.Diagnostics.CodeAnalysis.DoesNotReturnAttribute]
-                     #endif
-                     internal static void ThrowArgumentException(string message, string arg) => throw new global::System.ArgumentException(message, arg);
-                 
-                     #if NETCOREAPP3_0_OR_GREATER
-                     [global::System.Diagnostics.CodeAnalysis.DoesNotReturnAttribute]
-                     #endif
-                     internal static void ThrowWhenCreatedWithNull() => 
-                            throw new {{item.ValidationExceptionFullName}}("Cannot create a value object with null.");
-                 
-                     #if NETCOREAPP3_0_OR_GREATER
-                     [global::System.Diagnostics.CodeAnalysis.DoesNotReturnAttribute]
-                     #endif
-                     internal static void ThrowWhenNotInitialized() => 
-                        throw new {{item.ValidationExceptionFullName}}("Use of uninitialized Value Object.");
-                     
-                     #if NETCOREAPP3_0_OR_GREATER
-                     [global::System.Diagnostics.CodeAnalysis.DoesNotReturnAttribute]
-                     #endif
-                     internal static void ThrowWhenNotInitialized(global::System.Diagnostics.StackTrace{{item.Nullable.QuestionMarkForOtherReferences}} stackTrace) =>  
-                        throw new {{item.ValidationExceptionFullName}}({{GetMessageToReport(item)}});
-                 
-                     #if NETCOREAPP3_0_OR_GREATER
-                     [global::System.Diagnostics.CodeAnalysis.DoesNotReturnAttribute]
-                     #endif
-                     internal static void ThrowWhenValidationFails(Vogen.Validation validation)
-                     {
-                         var ex = new {{item.ValidationExceptionFullName}}(validation.ErrorMessage);
-                 
-                         if (validation.Data is not null) 
-                         {
-                             foreach (var kvp in validation.Data)
-                             {
-                                 ex.Data[kvp.Key] = kvp.Value;
-                             }
-                         }
-                         
-                         throw ex;
-                     }
-                 }
-                 """;
+        return $$$"""
+                  static class ThrowHelper
+                  {
+                      #if NETCOREAPP3_0_OR_GREATER
+                      [global::System.Diagnostics.CodeAnalysis.DoesNotReturnAttribute]
+                      #endif
+                      internal static void ThrowInvalidOperationException(string message) => throw new global::System.InvalidOperationException(message);
+                  
+                      #if NETCOREAPP3_0_OR_GREATER
+                      [global::System.Diagnostics.CodeAnalysis.DoesNotReturnAttribute]
+                      #endif
+                      internal static void ThrowArgumentException(string message, string arg) => throw new global::System.ArgumentException(message, arg);
+                  
+                      #if NETCOREAPP3_0_OR_GREATER
+                      [global::System.Diagnostics.CodeAnalysis.DoesNotReturnAttribute]
+                      #endif
+                      internal static void ThrowWhenCreatedWithNull() => 
+                             throw CreateCannotBeNullException();
+                  
+                      #if NETCOREAPP3_0_OR_GREATER
+                      [global::System.Diagnostics.CodeAnalysis.DoesNotReturnAttribute]
+                      #endif
+                      internal static void ThrowWhenNotInitialized() => 
+                         throw CreateValidationException("Use of uninitialized Value Object.");
+                      
+                      #if NETCOREAPP3_0_OR_GREATER
+                      [global::System.Diagnostics.CodeAnalysis.DoesNotReturnAttribute]
+                      #endif
+                      internal static void ThrowWhenNotInitialized(global::System.Diagnostics.StackTrace{{{item.Nullable.QuestionMarkForOtherReferences}}} stackTrace) =>  
+                         throw CreateValidationException({{{GetMessageToReport(item)}}});
+                  
+                      #if NETCOREAPP3_0_OR_GREATER
+                      [global::System.Diagnostics.CodeAnalysis.DoesNotReturnAttribute]
+                      #endif
+                      internal static void ThrowWhenValidationFails(Vogen.Validation validation)
+                      {
+                          throw CreateValidationException(validation);
+                      }
+                      
+                      internal static System.Exception CreateValidationException(string message) =>
+                        new {{{item.ValidationExceptionFullName}}}(message);
+
+                      internal static System.Exception CreateCannotBeNullException() =>
+                        new {{{item.ValidationExceptionFullName}}}("Cannot create a value object with null.");
+                      
+                      internal static System.Exception CreateValidationException(Vogen.Validation validation)
+                      {
+                          var ex = CreateValidationException(validation.ErrorMessage);
+                      
+                          if (validation.Data is not null) 
+                          {
+                              foreach (var kvp in validation.Data)
+                              {
+                                  ex.Data[kvp.Key] = kvp.Value;
+                              }
+                          }
+                          
+                          return ex;
+                      }
+                  }
+                  """;
 
         static string GetMessageToReport(VoWorkItem item) =>
             item.Config.DisableStackTraceRecordingInDebug

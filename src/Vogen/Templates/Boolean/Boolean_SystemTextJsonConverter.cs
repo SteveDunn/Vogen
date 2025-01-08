@@ -4,12 +4,12 @@
         /// </summary>
         public class VOTYPESystemTextJsonConverter : global::System.Text.Json.Serialization.JsonConverter<VOTYPE>
         {
-__HANDLE_NULL__ #if NET5_0_OR_GREATER            
-__HANDLE_NULL__            public override bool HandleNull => true;            
-__HANDLE_NULL__ #endif            
+__HANDLE_NULL__ #if NET5_0_OR_GREATER        
+__HANDLE_NULL__            public override bool HandleNull => true;        
+__HANDLE_NULL__ #endif        
             public override VOTYPE Read(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {
-                return VOTYPE.__Deserialize(reader.GetBoolean());
+                return DeserializeJson(reader.GetBoolean());
             }
 
             public override void Write(global::System.Text.Json.Utf8JsonWriter writer, VOTYPE value, global::System.Text.Json.JsonSerializerOptions options)
@@ -20,12 +20,13 @@ __HANDLE_NULL__ #endif
 #if NET6_0_OR_GREATER
             public override VOTYPE ReadAsPropertyName(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {
-                return VOTYPE.__Deserialize(bool.Parse(reader.GetString()));
+                return DeserializeJson(bool.Parse(reader.GetString()));
             }
 
             public override void WriteAsPropertyName(global::System.Text.Json.Utf8JsonWriter writer, VOTYPE value, global::System.Text.Json.JsonSerializerOptions options)
             {
                 writer.WritePropertyName(value.Value.ToString());
             }
-#endif            
+#endif
+            DESERIALIZEJSONMETHOD
         }

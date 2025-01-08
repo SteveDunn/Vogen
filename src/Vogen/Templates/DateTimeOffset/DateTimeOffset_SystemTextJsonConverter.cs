@@ -4,12 +4,12 @@
         /// </summary>
         public class VOTYPESystemTextJsonConverter : global::System.Text.Json.Serialization.JsonConverter<VOTYPE>
         {
-__HANDLE_NULL__ #if NET5_0_OR_GREATER            
-__HANDLE_NULL__            public override bool HandleNull => true;            
-__HANDLE_NULL__ #endif            
+__HANDLE_NULL__ #if NET5_0_OR_GREATER        
+__HANDLE_NULL__            public override bool HandleNull => true;        
+__HANDLE_NULL__ #endif        
             public override VOTYPE Read(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {
-                return VOTYPE.__Deserialize(reader.GetDateTimeOffset());
+                return DeserializeJson(reader.GetDateTimeOffset());
             }
 
             public override void Write(System.Text.Json.Utf8JsonWriter writer, VOTYPE value, global::System.Text.Json.JsonSerializerOptions options)
@@ -20,12 +20,13 @@ __HANDLE_NULL__ #endif
 #if NET6_0_OR_GREATER
             public override VOTYPE ReadAsPropertyName(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {
-                return VOTYPE.__Deserialize(global::System.DateTimeOffset.ParseExact(reader.GetString(), "O", global::System.Globalization.CultureInfo.InvariantCulture));
+                return DeserializeJson(global::System.DateTimeOffset.ParseExact(reader.GetString(), "O", global::System.Globalization.CultureInfo.InvariantCulture));
             }
 
             public override void WriteAsPropertyName(System.Text.Json.Utf8JsonWriter writer, VOTYPE value, global::System.Text.Json.JsonSerializerOptions options)
             {
                 writer.WritePropertyName(value.Value.ToString("O"));
             }
-#endif            
+#endif
+            DESERIALIZEJSONMETHOD
         }
