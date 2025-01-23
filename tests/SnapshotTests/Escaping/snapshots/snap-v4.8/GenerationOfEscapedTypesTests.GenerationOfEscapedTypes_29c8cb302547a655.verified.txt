@@ -54,7 +54,7 @@ public class VogenTypesFactory : global::System.Text.Json.Serialization.JsonConv
 namespace @class
 {
     [global::System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage]
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Vogen", "7.0.0.0")]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Vogen", "1.0.0.0")]
     [global::System.Diagnostics.DebuggerTypeProxyAttribute(typeof(escapedTestspublic_partial_recordConversions_NonebyteDebugView))]
     [global::System.Diagnostics.DebuggerDisplayAttribute("Underlying type: System.Byte, Value = { _value }")]
     public partial record class escapedTestspublic_partial_recordConversions_Nonebyte : global::System.IEquatable<escapedTestspublic_partial_recordConversions_Nonebyte>, global::System.IEquatable<System.Byte>, global::System.IComparable<escapedTestspublic_partial_recordConversions_Nonebyte>, global::System.IComparable, global::System.IFormattable

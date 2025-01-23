@@ -117,7 +117,7 @@ public class VogenTypesFactory : global::System.Text.Json.Serialization.JsonConv
 // Suppress warnings about CS1591: Missing XML comment for publicly visible type or member 'Type_or_Member'
 #pragma warning disable CS1591
 [global::System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage]
-[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Vogen", "7.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Vogen", "1.0.0.0")]
 [global::System.Text.Json.Serialization.JsonConverter(typeof(MyVoIntSystemTextJsonConverter))]
 [global::System.ComponentModel.TypeConverter(typeof(MyVoIntTypeConverter))]
 [global::System.Diagnostics.DebuggerTypeProxyAttribute(typeof(MyVoIntDebugView))]
@@ -822,7 +822,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
 // Suppress warnings about CS1591: Missing XML comment for publicly visible type or member 'Type_or_Member'
 #pragma warning disable CS1591
 [global::System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage]
-[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Vogen", "7.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Vogen", "1.0.0.0")]
 [global::System.Text.Json.Serialization.JsonConverter(typeof(MyVoFloatSystemTextJsonConverter))]
 [global::System.ComponentModel.TypeConverter(typeof(MyVoFloatTypeConverter))]
 [global::System.Diagnostics.DebuggerTypeProxyAttribute(typeof(MyVoFloatDebugView))]
@@ -1527,7 +1527,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
 // Suppress warnings about CS1591: Missing XML comment for publicly visible type or member 'Type_or_Member'
 #pragma warning disable CS1591
 [global::System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage]
-[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Vogen", "7.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Vogen", "1.0.0.0")]
 [global::System.Text.Json.Serialization.JsonConverter(typeof(MyVoDecimalSystemTextJsonConverter))]
 [global::System.ComponentModel.TypeConverter(typeof(MyVoDecimalTypeConverter))]
 [global::System.Diagnostics.DebuggerTypeProxyAttribute(typeof(MyVoDecimalDebugView))]
@@ -2230,7 +2230,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
 // Suppress warnings about CS1591: Missing XML comment for publicly visible type or member 'Type_or_Member'
 #pragma warning disable CS1591
 [global::System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage]
-[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Vogen", "7.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Vogen", "1.0.0.0")]
 [global::System.Text.Json.Serialization.JsonConverter(typeof(MyVoDoubleSystemTextJsonConverter))]
 [global::System.ComponentModel.TypeConverter(typeof(MyVoDoubleTypeConverter))]
 [global::System.Diagnostics.DebuggerTypeProxyAttribute(typeof(MyVoDoubleDebugView))]
@@ -2934,7 +2934,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
 // Suppress warnings about CS1591: Missing XML comment for publicly visible type or member 'Type_or_Member'
 #pragma warning disable CS1591
 [global::System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage]
-[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Vogen", "7.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Vogen", "1.0.0.0")]
 [global::System.Text.Json.Serialization.JsonConverter(typeof(MyVoStringSystemTextJsonConverter))]
 [global::System.ComponentModel.TypeConverter(typeof(MyVoStringTypeConverter))]
 [global::System.Diagnostics.DebuggerTypeProxyAttribute(typeof(MyVoStringDebugView))]
@@ -3377,7 +3377,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
 // Suppress warnings about CS1591: Missing XML comment for publicly visible type or member 'Type_or_Member'
 #pragma warning disable CS1591
 [global::System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage]
-[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Vogen", "7.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Vogen", "1.0.0.0")]
 [global::System.Text.Json.Serialization.JsonConverter(typeof(MyVoBoolSystemTextJsonConverter))]
 [global::System.ComponentModel.TypeConverter(typeof(MyVoBoolTypeConverter))]
 [global::System.Diagnostics.DebuggerTypeProxyAttribute(typeof(MyVoBoolDebugView))]

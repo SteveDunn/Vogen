@@ -58,7 +58,7 @@ public class VogenTypesFactory : global::System.Text.Json.Serialization.JsonConv
 namespace Whatever
 {
     [global::System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage]
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Vogen", "7.0.0.0")]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Vogen", "1.0.0.0")]
     [global::System.Text.Json.Serialization.JsonConverter(typeof(_casting_public_readonly_partial_structExplicitImplicitshortSystemTextJsonConverter))]
     [global::System.ComponentModel.TypeConverter(typeof(_casting_public_readonly_partial_structExplicitImplicitshortTypeConverter))]
     [global::System.Diagnostics.DebuggerTypeProxyAttribute(typeof(_casting_public_readonly_partial_structExplicitImplicitshortDebugView))]

@@ -74,7 +74,7 @@ public class VogenTypesFactory : global::System.Text.Json.Serialization.JsonConv
 namespace @double
 {
     [global::System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage]
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Vogen", "7.0.0.0")]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Vogen", "1.0.0.0")]
     [global::System.Text.Json.Serialization.JsonConverter(typeof(classFromEscapedNamespaceWithReservedUnderlyingTypeSystemTextJsonConverter))]
     [global::System.ComponentModel.TypeConverter(typeof(classFromEscapedNamespaceWithReservedUnderlyingTypeTypeConverter))]
     [global::System.Diagnostics.DebuggerTypeProxyAttribute(typeof(classFromEscapedNamespaceWithReservedUnderlyingTypeDebugView))]
@@ -421,7 +421,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
 namespace @double
 {
     [global::System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage]
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Vogen", "7.0.0.0")]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Vogen", "1.0.0.0")]
     [global::System.Text.Json.Serialization.JsonConverter(typeof(classFromEscapedNamespaceSystemTextJsonConverter))]
     [global::System.ComponentModel.TypeConverter(typeof(classFromEscapedNamespaceTypeConverter))]
     [global::System.Diagnostics.DebuggerTypeProxyAttribute(typeof(classFromEscapedNamespaceDebugView))]
@@ -1129,7 +1129,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
 namespace @bool.@byte.@short.@float.@object
 {
     [global::System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage]
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Vogen", "7.0.0.0")]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Vogen", "1.0.0.0")]
     [global::System.Text.Json.Serialization.JsonConverter(typeof(@classSystemTextJsonConverter))]
     [global::System.ComponentModel.TypeConverter(typeof(@classTypeConverter))]
     [global::System.Diagnostics.DebuggerTypeProxyAttribute(typeof(@classDebugView))]
@@ -1837,7 +1837,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
 namespace @bool.@byte.@short.@float.@object
 {
     [global::System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage]
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Vogen", "7.0.0.0")]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Vogen", "1.0.0.0")]
     [global::System.Text.Json.Serialization.JsonConverter(typeof(@eventSystemTextJsonConverter))]
     [global::System.ComponentModel.TypeConverter(typeof(@eventTypeConverter))]
     [global::System.Diagnostics.DebuggerTypeProxyAttribute(typeof(@eventDebugView))]
@@ -2545,7 +2545,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
 namespace @bool.@byte.@short.@float.@object
 {
     [global::System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage]
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Vogen", "7.0.0.0")]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Vogen", "1.0.0.0")]
     [global::System.Text.Json.Serialization.JsonConverter(typeof(@event2SystemTextJsonConverter))]
     [global::System.ComponentModel.TypeConverter(typeof(@event2TypeConverter))]
     [global::System.Diagnostics.DebuggerTypeProxyAttribute(typeof(@event2DebugView))]

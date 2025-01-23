@@ -9,13 +9,13 @@ public static class ModuleInitializer
     public static void Init()
     {
         VerifySourceGenerators.Initialize();
-        
+
         VerifierSettings.AddScrubber(s =>
         {
             s.Replace("[global::System.CodeDom.Compiler.GeneratedCodeAttribute(\"Vogen\", \"0.0.0.0\")]",
                 "    [global::System.CodeDom.Compiler.GeneratedCodeAttribute(\"Vogen\", \"1.0.0.0\")]");
-            
-            s.Replace("[global::System.CodeDom.Compiler.GeneratedCodeAttribute(\"Vogen\", \"6.0.0.0\")]",
+
+            s.Replace("[global::System.CodeDom.Compiler.GeneratedCodeAttribute(\"Vogen\", \"7.0.0.0\")]",
                 "    [global::System.CodeDom.Compiler.GeneratedCodeAttribute(\"Vogen\", \"1.0.0.0\")]");
         });
     }
