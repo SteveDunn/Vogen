@@ -62,7 +62,7 @@ public class VogenTypesFactory : global::System.Text.Json.Serialization.JsonConv
 namespace Whatever
 {
     [global::System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Vogen", "1.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Vogen", "7.0.0.0")]
     [global::System.Text.Json.Serialization.JsonConverter(typeof(MyClass1SystemTextJsonConverter))]
     [global::System.ComponentModel.TypeConverter(typeof(MyClass1TypeConverter))]
     [global::System.Diagnostics.DebuggerTypeProxyAttribute(typeof(MyClass1DebugView))]
@@ -753,7 +753,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
 namespace Whatever
 {
     [global::System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Vogen", "1.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Vogen", "7.0.0.0")]
     [global::System.Text.Json.Serialization.JsonConverter(typeof(MyClass2SystemTextJsonConverter))]
     [global::System.ComponentModel.TypeConverter(typeof(MyClass2TypeConverter))]
     [global::System.Diagnostics.DebuggerTypeProxyAttribute(typeof(MyClass2DebugView))]

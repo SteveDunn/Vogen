@@ -776,7 +776,7 @@ public class VogenTypesFactory : global::System.Text.Json.Serialization.JsonConv
 namespace Foo
 {
     [global::System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Vogen", "1.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Vogen", "7.0.0.0")]
     [global::System.Text.Json.Serialization.JsonConverter(typeof(Vo1SystemTextJsonConverter))]
     [global::System.ComponentModel.TypeConverter(typeof(Vo1TypeConverter))]
     [global::System.Diagnostics.DebuggerTypeProxyAttribute(typeof(Vo1DebugView))]
@@ -1467,7 +1467,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
 namespace Foo
 {
     [global::System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Vogen", "1.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Vogen", "7.0.0.0")]
     [global::System.Text.Json.Serialization.JsonConverter(typeof(Vo2SystemTextJsonConverter))]
     [global::System.ComponentModel.TypeConverter(typeof(Vo2TypeConverter))]
     [global::System.Diagnostics.DebuggerTypeProxyAttribute(typeof(Vo2DebugView))]
@@ -1884,7 +1884,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
 namespace Bar
 {
     [global::System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Vogen", "1.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Vogen", "7.0.0.0")]
     [global::System.Text.Json.Serialization.JsonConverter(typeof(Vo1SystemTextJsonConverter))]
     [global::System.ComponentModel.TypeConverter(typeof(Vo1TypeConverter))]
     [global::System.Diagnostics.DebuggerTypeProxyAttribute(typeof(Vo1DebugView))]
@@ -2575,7 +2575,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
 namespace Bar
 {
     [global::System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Vogen", "1.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Vogen", "7.0.0.0")]
     [global::System.Text.Json.Serialization.JsonConverter(typeof(Vo2SystemTextJsonConverter))]
     [global::System.ComponentModel.TypeConverter(typeof(Vo2TypeConverter))]
     [global::System.Diagnostics.DebuggerTypeProxyAttribute(typeof(Vo2DebugView))]

@@ -58,7 +58,7 @@ public class VogenTypesFactory : global::System.Text.Json.Serialization.JsonConv
 namespace Whatever
 {
     [global::System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Vogen", "1.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Vogen", "7.0.0.0")]
     [global::System.Text.Json.Serialization.JsonConverter(typeof(internal_sealed_partial_recordConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterlongSystemTextJsonConverter))]
     [global::Newtonsoft.Json.JsonConverter(typeof(internal_sealed_partial_recordConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterlongNewtonsoftJsonConverter))]
     [global::System.Diagnostics.DebuggerTypeProxyAttribute(typeof(internal_sealed_partial_recordConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterlongDebugView))]
@@ -453,6 +453,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
             {
                 return value switch
                 {
+                    global::System.Decimal decimalValue when decimalValue < global::System.Int64.MaxValue && decimalValue % 1 == 0 => internal_sealed_partial_recordConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterlong.__Deserialize((global::System.Int64)decimalValue),
                     global::System.Int64 longValue => internal_sealed_partial_recordConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterlong.__Deserialize(longValue),
                     global::System.Int32 intValue => internal_sealed_partial_recordConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterlong.__Deserialize(intValue),
                     global::System.Int16 shortValue => internal_sealed_partial_recordConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterlong.__Deserialize(shortValue),

@@ -173,7 +173,7 @@ public class VogenTypesFactory : global::System.Text.Json.Serialization.JsonConv
 namespace @class
 {
     [global::System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Vogen", "1.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Vogen", "7.0.0.0")]
     [global::System.Diagnostics.DebuggerTypeProxyAttribute(typeof(escapedTestspublic_partial_structConversions_Nonerecord__struct__float__event2DebugView))]
     [global::System.Diagnostics.DebuggerDisplayAttribute("Underlying type: @class.@record.@struct.@float.event2, Value = { _value }")]
     // ReSharper disable once UnusedType.Global

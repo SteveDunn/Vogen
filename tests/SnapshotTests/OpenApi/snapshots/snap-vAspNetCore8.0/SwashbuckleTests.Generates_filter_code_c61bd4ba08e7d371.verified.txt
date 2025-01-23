@@ -123,7 +123,7 @@ public class VogenTypesFactory : global::System.Text.Json.Serialization.JsonConv
 // Suppress warnings about CS1591: Missing XML comment for publicly visible type or member 'Type_or_Member'
 #pragma warning disable CS1591
 [global::System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage]
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Vogen", "1.0.0.0")]
+[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Vogen", "7.0.0.0")]
 [global::System.Text.Json.Serialization.JsonConverter(typeof(MyVoSystemTextJsonConverter))]
 [global::System.ComponentModel.TypeConverter(typeof(MyVoTypeConverter))]
 [global::System.Diagnostics.DebuggerTypeProxyAttribute(typeof(MyVoDebugView))]

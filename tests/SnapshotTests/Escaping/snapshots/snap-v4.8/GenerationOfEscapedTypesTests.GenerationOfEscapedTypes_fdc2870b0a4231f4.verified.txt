@@ -54,7 +54,7 @@ public class VogenTypesFactory : global::System.Text.Json.Serialization.JsonConv
 namespace @class
 {
     [global::System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Vogen", "1.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Vogen", "7.0.0.0")]
     [global::System.Diagnostics.DebuggerTypeProxyAttribute(typeof(escapedTestspublic_partial_record_structConversions_NoneSystem_GuidDebugView))]
     [global::System.Diagnostics.DebuggerDisplayAttribute("Underlying type: System.Guid, Value = { _value }")]
     public partial record struct escapedTestspublic_partial_record_structConversions_NoneSystem_Guid : global::System.IEquatable<escapedTestspublic_partial_record_structConversions_NoneSystem_Guid>, global::System.IEquatable<System.Guid>, global::System.IComparable<escapedTestspublic_partial_record_structConversions_NoneSystem_Guid>, global::System.IComparable, global::System.IFormattable

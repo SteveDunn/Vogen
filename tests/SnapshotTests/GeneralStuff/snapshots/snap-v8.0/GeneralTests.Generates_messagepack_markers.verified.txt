@@ -91,7 +91,7 @@ public class VogenTypesFactory : global::System.Text.Json.Serialization.JsonConv
 namespace @double
 {
     [global::System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Vogen", "1.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Vogen", "7.0.0.0")]
     [global::System.Diagnostics.DebuggerTypeProxyAttribute(typeof(MyIdDebugView))]
     [global::System.Diagnostics.DebuggerDisplayAttribute("Underlying type: System.Int32, Value = { _value }")]
     // ReSharper disable once UnusedType.Global
