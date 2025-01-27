@@ -11,7 +11,6 @@
             {
                 return value switch
                 {
-                    global::System.Decimal decimalValue when decimalValue < global::System.Single.MaxValue => VOTYPE.__Deserialize((global::System.Single) decimalValue),
                     global::System.Single floatValue => VOTYPE.__Deserialize(floatValue),
                     global::System.Double doubleValue when doubleValue < global::System.Single.MaxValue => VOTYPE.__Deserialize((global::System.Single)doubleValue),
                     global::System.Int32 intValue => VOTYPE.__Deserialize(intValue),
