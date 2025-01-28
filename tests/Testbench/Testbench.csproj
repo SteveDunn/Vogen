@@ -34,7 +34,7 @@
     <PackageReference Include="Swashbuckle.AspNetCore" Version="7.0.0"/>
     <PackageReference Include="MongoDB.Analyzer" Version="1.5.0" />
     <PackageReference Include="MongoDB.Bson" Version="3.0.0" />
-    
+    <PackageReference Include="Dapper" Version="2.0.123" />    
   </ItemGroup>
   <ItemGroup>
     <!-- Note that this is not a "normal" ProjectReference.

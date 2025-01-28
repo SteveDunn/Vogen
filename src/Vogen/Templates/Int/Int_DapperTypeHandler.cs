@@ -12,6 +12,7 @@
                 return value switch
                 {
                     global::System.Decimal decimalValue when decimalValue < global::System.Int32.MaxValue && decimalValue % 1 == 0 => VOTYPE.__Deserialize((global::System.Int32) decimalValue),
+                    global::System.Double doubleValue when doubleValue < global::System.Int32.MaxValue && doubleValue % 1 == 0 => VOTYPE.__Deserialize((global::System.Int32) doubleValue),
                     global::System.Int32 intValue => VOTYPE.__Deserialize(intValue),
                     global::System.Int64 longValue when longValue < global::System.Int32.MaxValue => VOTYPE.__Deserialize((global::System.Int32)longValue),
                     global::System.String stringValue when !global::System.String.IsNullOrEmpty(stringValue) && global::System.Int32.TryParse(stringValue, out var result) => VOTYPE.__Deserialize(result),
