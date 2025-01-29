@@ -12,11 +12,13 @@ using LinqToDB;
 using LinqToDB.Data;
 using LinqToDB.DataProvider.SQLite;
 using LinqToDB.Mapping;
+// ReSharper disable RedundantCast
+// ReSharper disable ArrangeRedundantParentheses
 
 namespace Vogen.IntegrationTests.SerializationAndConversionTests.StructVos;
 
 [ValueObject(underlyingType: typeof(int))]
-public partial struct AnotherIntVo { }
+public partial struct AnotherIntVo;
 
 public class IntVoTests
 {
@@ -175,6 +177,10 @@ public class IntVoTests
         using var connection = new SqliteConnection("DataSource=:memory:");
         await connection.OpenAsync();
 
+        // We can't have any more accurate tests, at least using SQLite as
+        // all numeric column types can hold any numeric type - the type specified
+        // in the column is just a hint, e.g. `AS DECIMAL (10,4)` doens't mean anything other than documentation
+        // to the reader - it could just as well be `AS FLUFFYBUNNY` - https://stackoverflow.com/a/21758375/28901
         IEnumerable<DapperIntVo> results = await connection.QueryAsync<DapperIntVo>("SELECT 123");
 
         var value = Assert.Single(results);

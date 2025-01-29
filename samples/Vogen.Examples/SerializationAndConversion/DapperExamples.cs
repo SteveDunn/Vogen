@@ -21,6 +21,5 @@ namespace Vogen.Examples.SerializationAndConversion
 
             Console.WriteLine(result);
         }
-
     }
 }

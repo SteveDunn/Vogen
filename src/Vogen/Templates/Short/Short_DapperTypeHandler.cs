@@ -11,6 +11,7 @@
             {
                 return value switch
                 {
+                    global::System.Decimal decimalValue when decimalValue < global::System.Int16.MaxValue && decimalValue % 1 == 0 => VOTYPE.__Deserialize((global::System.Int16) decimalValue),
                     global::System.Int16 shortValue => VOTYPE.__Deserialize(shortValue),
                     global::System.Int32 intValue => VOTYPE.__Deserialize((global::System.Int16)intValue),
                     global::System.Int64 longValue => VOTYPE.__Deserialize((global::System.Int16)longValue),
