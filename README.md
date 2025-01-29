@@ -12,7 +12,11 @@
   
 [![Nuget version](https://img.shields.io/nuget/v/Vogen?color=ff4081&label=nuget%20version&logo=nuget&style=flat-square)](https://www.nuget.org/packages/Vogen/)
 [![Nuget downloads](https://img.shields.io/nuget/dt/Vogen?color=ff4081&label=nuget%20downloads&logo=nuget&style=flat-square)](https://www.nuget.org/packages/Vogen/)
+
+<p/>
+  
 [![Sparkline](https://stars.medv.io/stevedunn/vogen.svg)](https://stars.medv.io/stevedunn/vogen)
+
 ## Give a Star! :star:
 If you like or are using this project please give it a star. Thanks!
       
