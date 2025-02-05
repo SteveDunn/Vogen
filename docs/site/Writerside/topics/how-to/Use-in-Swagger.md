@@ -81,3 +81,46 @@ builder.Services.AddSwaggerGen(opt =>
     opt.SchemaFilter<VogenSchemaFilter>());
 ```
 Many thanks to [Vitalii Mikhailov](https://github.com/Aragas) for contributing the schema filter code.
+
+## Use with Azure Functions (Microsoft.Azure.WebJobs.Extensions.OpenApi)
+
+Since `MapType` is [not available](https://github.com/Azure/azure-functions-openapi-extension/issues/537), you will need to add custom `DocumentFilters` to your `IOpenApiConfigurationOptions` instance, for example:
+
+```csharp
+[ValueObject<Guid>]
+public readonly partial struct CustomerId;
+```
+
+```csharp
+public class OpenApiConfigurationOptions : DefaultOpenApiConfigurationOptions
+{
+    public OpenApiConfigurationOptions()
+    {
+        DocumentFilters.Add(new CustomTypeDocumentFilter<CustomerId>(new() { Type = "string", Format = "uuid" }));
+    }
+}
+```
+
+```csharp
+using Microsoft.Azure.WebJobs.Extensions.OpenApi.Core.Abstractions;
+using Microsoft.Azure.WebJobs.Extensions.OpenApi.Core.Extensions;
+using Microsoft.OpenApi.Models;
+using Newtonsoft.Json.Serialization;
+
+public class CustomTypeDocumentFilter<T> : IDocumentFilter
+{
+    private readonly static string _typeName = typeof(T).GetOpenApiTypeName(new CamelCaseNamingStrategy());
+    private readonly OpenApiSchema _schema;
+
+    public CustomTypeDocumentFilter(OpenApiSchema schema)
+    {
+        _schema = schema;
+    }
+
+    public void Apply(IHttpRequestDataObject req, OpenApiDocument document)
+    {
+        document.Components.Schemas[_typeName] = _schema;
+    }
+}
+```
+Credits to [Jacob Marks](https://github.com/jacobjmarks) for contributing the CustomTypeDocumentFilter code.
