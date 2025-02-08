@@ -33,8 +33,8 @@ won't help you here (remember, `42 == 42`!):
 
 ```c#
 (42 == 42) // true
-(SuppliedId.From(42) == SupplierId.From(42)) // true
-(SuppliedId.From(42) == VendorId.From(42)) // compilation error
+(SupplierId.From(42) == SupplierId.From(42)) // true
+(SupplierId.From(42) == VendorId.From(42)) // compilation error
 ```
 
 But sometimes, we need to denote that a Value Object isn't valid or has not been set. We don't want anyone _outside_ of the object doing this as it could be used accidentally.  It's common to have `Unspecified` instances, e.g.
