@@ -3,17 +3,17 @@
   <img src="./assets/cavey.png" alt="Picture of caveman holding the number '1'">
 </p>
 
-[![NuGet](https://img.shields.io/nuget/dt/vogen.svg)](https://www.nuget.org/packages/vogen) 
+[![Nuget version](https://img.shields.io/nuget/v/Vogen?color=ff4081&label=nuget%20version&logo=nuget&style=flat-square)](https://www.nuget.org/packages/Vogen/)
+[![Nuget downloads](https://img.shields.io/nuget/dt/Vogen?color=ff4081&label=nuget%20downloads&logo=nuget&style=flat-square)](https://www.nuget.org/packages/Vogen/)
+
+<p/>
+
 ![Build](https://github.com/stevedunn/vogen/actions/workflows/build.yaml/badge.svg)
 [![GitHub release](https://img.shields.io/github/release/stevedunn/vogen.svg)](https://GitHub.com/stevedunn/vogen/releases/) [![GitHub license](https://img.shields.io/github/license/stevedunn/vogen.svg)](https://github.com/SteveDunn/Vogen/blob/main/LICENSE) 
 [![GitHub issues](https://img.shields.io/github/issues/Naereen/StrapDown.js.svg)](https://GitHub.com/stevedunn/vogen/issues/) [![GitHub issues-closed](https://img.shields.io/github/issues-closed/Naereen/StrapDown.js.svg)](https://GitHub.com/stevedunn/vogen/issues?q=is%3Aissue+is%3Aclosed) 
 
 <p/>
   
-[![Nuget version](https://img.shields.io/nuget/v/Vogen?color=ff4081&label=nuget%20version&logo=nuget&style=flat-square)](https://www.nuget.org/packages/Vogen/)
-[![Nuget downloads](https://img.shields.io/nuget/dt/Vogen?color=ff4081&label=nuget%20downloads&logo=nuget&style=flat-square)](https://www.nuget.org/packages/Vogen/)
-
-<p/>
   
 [![Sparkline](https://stars.medv.io/stevedunn/vogen.svg)](https://stars.medv.io/stevedunn/vogen)
 
@@ -422,18 +422,19 @@ If you're using the generator in a .NET Framework project and using the old styl
 * add the reference using `PackageReference` in the .csproj file:
 
 ```xml
-  <ItemGroup>
-      <PackageReference Include="Vogen" Version="[LATEST_VERSION_HERE - E.G. 1.0.18]" PrivateAssets="all" />
-  </ItemGroup>
+<ItemGroup>
+  <PackageReference Include="Vogen" 
+                    Version="[LATEST_VERSION_HERE - E.G. 1.0.18]" 
+                    PrivateAssets="all" />
+</ItemGroup>
 ```
 
 * set the language version to `latest` (or anything `8` or more):
 
-```diff
-  <PropertyGroup>
-+    <LangVersion>latest</LangVersion>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-
+```xml
+<PropertyGroup>
+➡️<LangVersion>latest</LangVersion>
+  <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
 ```
 
 ### Why are they called 'value objects'?
@@ -485,17 +486,16 @@ Yes. By default, each VO is decorated with a `TypeConverter` and `System.Text.Js
 
 ### Can I use them in EFCore?
 
-Yes, although there are certain considerations. [Please see the EFCore page on the Wiki](https://stevedunn.github.io/Vogen/value-objects-in-efcore.html), 
-but the TL;DR is:
+Yes, although there are certain considerations. [Please see the EFCore page on the Wiki](https://stevedunn.github.io/Vogen/efcoreintegrationhowto.html) (and some other [EFCore tips](https://stevedunn.github.io/Vogen/efcore-tips.html)), but the TL;DR is:
 
 * You need a conversion to be generated, e.g. `[ValueObject<string>(conversions: Conversions.EfCoreValueConverter)]` 
 and you need to tell EFCore to use that converter in the `OnModelCreating` method, e.g.:
 
 ```csharp
-        builder.Entity<SomeEntity>(b =>
-        {
-            b.Property(e => e.Name).HasConversion(new Name.EfCoreValueConverter());
-        });
+builder.Entity<SomeEntity>(b =>
+{
+    b.Property(e => e.Name).HasConversion(new Name.EfCoreValueConverter());
+});
 ```
 
 
