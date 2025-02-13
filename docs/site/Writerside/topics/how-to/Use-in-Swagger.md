@@ -82,26 +82,28 @@ builder.Services.AddSwaggerGen(opt =>
 ```
 Many thanks to [Vitalii Mikhailov](https://github.com/Aragas) for contributing the schema filter code.
 
-## Use with Azure Functions (Microsoft.Azure.WebJobs.Extensions.OpenApi)
+## Use with Azure Functions (`Microsoft.Azure.WebJobs.Extensions.OpenApi`)
 
 Since `MapType` is [not available](https://github.com/Azure/azure-functions-openapi-extension/issues/537), you will need to add custom `DocumentFilters` to your `IOpenApiConfigurationOptions` instance, for example:
 
-```csharp
+```c#
 [ValueObject<Guid>]
 public readonly partial struct CustomerId;
 ```
 
-```csharp
-public class OpenApiConfigurationOptions : DefaultOpenApiConfigurationOptions
+```c#
+public class OpenApiConfigurationOptions 
+    : DefaultOpenApiConfigurationOptions
 {
     public OpenApiConfigurationOptions()
     {
-        DocumentFilters.Add(new CustomTypeDocumentFilter<CustomerId>(new() { Type = "string", Format = "uuid" }));
+        DocumentFilters.Add(new CustomTypeDocumentFilter<CustomerId>(
+            new() { Type = "string", Format = "uuid" }));
     }
 }
 ```
 
-```csharp
+```c#
 using Microsoft.Azure.WebJobs.Extensions.OpenApi.Core.Abstractions;
 using Microsoft.Azure.WebJobs.Extensions.OpenApi.Core.Extensions;
 using Microsoft.OpenApi.Models;
@@ -109,7 +111,8 @@ using Newtonsoft.Json.Serialization;
 
 public class CustomTypeDocumentFilter<T> : IDocumentFilter
 {
-    private readonly static string _typeName = typeof(T).GetOpenApiTypeName(new CamelCaseNamingStrategy());
+    private readonly static string _typeName = 
+        typeof(T).GetOpenApiTypeName(new CamelCaseNamingStrategy());
     private readonly OpenApiSchema _schema;
 
     public CustomTypeDocumentFilter(OpenApiSchema schema)
@@ -117,9 +120,9 @@ public class CustomTypeDocumentFilter<T> : IDocumentFilter
         _schema = schema;
     }
 
-    public void Apply(IHttpRequestDataObject req, OpenApiDocument document)
+    public void Apply(IHttpRequestDataObject req, OpenApiDocument doc)
     {
-        document.Components.Schemas[_typeName] = _schema;
+        doc.Components.Schemas[_typeName] = _schema;
     }
 }
 ```
