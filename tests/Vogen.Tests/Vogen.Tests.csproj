@@ -4,6 +4,10 @@
     <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
     <IsPackable>false</IsPackable>
     <TargetFramework>net9.0</TargetFramework>
+    <SignAssembly>true</SignAssembly>
+    <AssemblyOriginatorKeyFile>..\..\strongname.snk</AssemblyOriginatorKeyFile>
+    <PublicSign>true</PublicSign>
+
   </PropertyGroup>
 
   <ItemGroup>

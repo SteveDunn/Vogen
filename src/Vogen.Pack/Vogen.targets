@@ -1,0 +1,60 @@
+<Project>
+
+  <PropertyGroup>
+
+    <_VogenMSBuildMinVersion>17.4.0</_VogenMSBuildMinVersion>
+    
+  </PropertyGroup>
+
+  <Target Name="_VogenGatherAnalyzers">
+    <ItemGroup>
+      <_VogenAnalyzer Include="@(Analyzer)" Condition="'%(Analyzer.NuGetPackageId)' == 'Vogen'" />
+    </ItemGroup>
+  </Target>
+
+  <Target Name="_VogenRemoveAnalyzersNotMatchingRoslynVersion" 
+          Condition="'$(SupportsRoslynComponentVersioning)' != 'true'" 
+          AfterTargets="ResolvePackageDependenciesForBuild;ResolveNuGetPackageAssets"
+          DependsOnTargets="_VogenGatherAnalyzers">
+
+    <ItemGroup>
+      <!-- Remove all analyzers except roslyn4.4 -->
+      <Analyzer Remove="@(_VogenAnalyzer)"
+                Condition="$([System.String]::Copy('%(_VogenAnalyzer.Identity)').IndexOf('roslyn4.4')) == 0"/>
+    </ItemGroup>
+  </Target>
+
+  <Target Name="_VogenAnalyzerMultiTargeting" 
+          AfterTargets="ResolvePackageDependenciesForBuild;ResolveNuGetPackageAssets"
+          DependsOnTargets="_VogenGatherAnalyzers">
+
+    <ItemGroup>
+      <!-- Remove all analyzers except roslyn4.4 -->
+      <Analyzer Remove="@(_VogenAnalyzer)"
+                Condition="$([System.String]::Copy('%(_VogenAnalyzer.Identity)').IndexOf('roslyn4.4')) == 0"/>
+    </ItemGroup>
+  </Target>
+
+  <Target Name="_VogenRemoveAnalyzers" 
+          Condition="'$(DisableVogenSourceGenerator)' == 'true'"
+          AfterTargets="ResolvePackageDependenciesForBuild;ResolveNuGetPackageAssets"
+          DependsOnTargets="_VogenGatherAnalyzers">
+
+    <!-- Remove all our analyzers -->
+    <ItemGroup>
+      <Analyzer Remove="@(_VogenAnalyzer)" />
+    </ItemGroup>
+  </Target>
+
+  <Target Name="_VogenMSBuildVersionCheck"
+          Condition=" '$([System.Version]::Parse($(_VogenMSBuildMinVersion)).CompareTo($([System.Version]::Parse($(MSBuildVersion)))))' &gt; '0' "
+     BeforeTargets="ResolveAssemblyReferences;Build;Rebuild" >
+    <Error
+        Text = "Projects using Vogen cannot build using MSBuild '$(MSBuildVersion)'. MSBuild '$(_VogenMSBuildMinVersion)' or later is required." />
+  </Target>
+
+  <Target Name="_VogenProjectRestoreTypeCheck" BeforeTargets="ResolveAssemblyReferences;Build;Rebuild" DependsOnTargets="_GetRestoreProjectStyle">
+    <Error Condition="'$(RestoreProjectStyle)' == 'PackagesConfig'"
+           Text="Packages.config does not support Analyzers, including Source Generators. Migrate to PackageReference: 'https://devblogs.microsoft.com/nuget/migrate-packages-config-to-package-reference/'" />
+  </Target>
+</Project>

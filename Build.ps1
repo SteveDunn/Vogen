@@ -22,7 +22,8 @@ function BuildWith([string]$configuration)
 
     exec { & dotnet build src/Vogen.CodeFixers/Vogen.CodeFixers.csproj -c $configuration -p Thorough=true -p RoslynVersion=roslyn4.4 --verbosity $verbosity}
     exec { & dotnet build src/Vogen.CodeFixers/Vogen.CodeFixers.csproj -c $configuration -p Thorough=true -p RoslynVersion=roslyn4.6 --verbosity $verbosity}
-    exec { & dotnet build src/Vogen.CodeFixers/Vogen.CodeFixers.csproj -c $configuration -p Thorough=true -p RoslynVersion=roslyn4.8 --verbosity $verbosity}}
+    exec { & dotnet build src/Vogen.CodeFixers/Vogen.CodeFixers.csproj -c $configuration -p Thorough=true -p RoslynVersion=roslyn4.8 --verbosity $verbosity}
+}
 
 function Get999VersionWithUniquePatch()
 {
@@ -102,7 +103,7 @@ exec { & dotnet restore Vogen.sln --packages $localPackages --no-cache --verbosi
 
 BuildWith("Debug");
 
-exec { & dotnet pack ./src/Vogen.Pack.csproj -c Debug -o:$localPackages /p:ForceVersion=$version --include-symbols --version-suffix:dev --no-restore --verbosity $verbosity }
+exec { & dotnet pack ./src/Vogen.Pack/Vogen.Pack.csproj -c Debug -o:$localPackages /p:ForceVersion=$version --include-symbols --version-suffix:dev --no-restore --verbosity $verbosity }
 
 WriteStage("Cleaning and building consumers (tests and samples) - verbosity of $verbosity")
 
@@ -153,7 +154,7 @@ if(-not $quick)
 }
 
 WriteStage("Finally, packing the release version into " + $artifacts)
-exec { & dotnet pack src/Vogen.Pack.csproj -c Release -o $artifacts --no-build --verbosity $verbosity }
+exec { & dotnet pack src/Vogen.Pack/Vogen.Pack.csproj -c Release -o $artifacts --no-build --verbosity $verbosity }
 
 WriteStage("Done! Package generated at " + $artifacts)
 

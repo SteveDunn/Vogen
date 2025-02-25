@@ -10,6 +10,33 @@ namespace SnapshotTests.GeneralStuff;
 public class GeneralTests
 {
     [Fact]
+    public async Task Runs_on_old_frameworks()
+    {
+        var source =
+            $$"""
+
+            using System;
+            using Vogen;
+            
+            namespace Whatever;
+            
+            [ValueObject(typeof(int), conversions: Conversions.None)]
+            public partial struct TestItem
+            {
+                public int PlusOne()
+                {
+                    return Value + 1;
+                }
+            }
+            """;
+
+            await new SnapshotRunner<ValueObjectGenerator>()
+                .WithSource(source)
+                .IgnoreInitialCompilationErrors()
+                .RunOn(TargetFramework.Net4_8);
+    }
+
+    [Fact]
     public async Task Generates_messagepack()
     {
         var source =
