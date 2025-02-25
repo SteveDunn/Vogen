@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Runtime.CompilerServices;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
@@ -8,8 +9,7 @@ using Microsoft.CodeAnalysis.Text;
 using Vogen.Generators.Conversions;
 using Vogen.Types;
 
-[assembly: InternalsVisibleTo("SmallTests")]
-[assembly: InternalsVisibleTo("Vogen.Tests")]
+[assembly: InternalsVisibleTo("Vogen.Tests, PublicKey=00240000048000001401000006020000002400005253413100080000010001008575302965198d963e8bcffd71091f0d00be96f44db024d49d03b04c5e47a3c4d2d53c25ec89558c91bb68993a67b2461daff8d5a4a930f51982887dda3c5b2f3ad2686b18d32aee14c5b8182e25dfc6f281fb033beb9c2efa0297a7f9b4e33d93d60e453cb2f8abccc18d163cc2d82ad7e89fe65cdd4be1c9f2bfd958e59bee80fa7131e411a9e8466c6c593e998c142fd16795d2c80716c9c00283617d58a6eeecf27c281ed044277f79455e10b52a275784c53febf9a6ac456c8a5b6d628c3bc5321f09ddfe0da07e311a73c70621bedef7f48832a730fcab9b378694dfc04037e24339c5d3d04ad0f595f359c7ec99bb301236f7b4d30063b89534d3348e")]
 
 namespace Vogen;
 
@@ -66,7 +66,6 @@ internal static class Util
             }
         }
     }
-
 
     public static string GenerateCallToValidationAndThrowIfRequired(VoWorkItem workItem, string throwingMethod = "ThrowHelper.ThrowWhenValidationFails")
     {

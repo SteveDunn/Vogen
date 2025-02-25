@@ -6,6 +6,9 @@ MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{9955BB98-6ACF-4EC8-AE59-1B8DDCCBDCC6}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{57174048-09D4-46A6-932C-8F90F2B603D0}"
+	ProjectSection(SolutionItems) = preProject
+		strongname.snk = strongname.snk
+	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Vogen", "src\Vogen\Vogen.csproj", "{23A799DB-6FCE-462D-8F7D-76F4B1FAD20B}"
 EndProject
@@ -26,6 +29,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "_files", "_files", "{72AF0E
 		test.ps1 = test.ps1
 		RunSnapshots.ps1 = RunSnapshots.ps1
 		Directory.Build.targets = Directory.Build.targets
+		strongname.snk = strongname.snk
 	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Vogen.SharedTypes", "src\Vogen.SharedTypes\Vogen.SharedTypes.csproj", "{ACBCBC0B-430F-46A3-AD96-6AF28DBA7F9D}"
@@ -53,7 +57,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SnapshotTests", "tests\Snap
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vogen.CodeFixers", "src\Vogen.CodeFixers\Vogen.CodeFixers.csproj", "{7A9E16A8-0BF0-460C-A347-44FEEA091D52}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vogen.Pack", "src\Vogen.Pack.csproj", "{62298232-B862-4323-9737-0F70BCA7EC4A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vogen.Pack", "src\Vogen.Pack\Vogen.Pack.csproj", "{F154FCBC-EB35-4281-A482-4F37F10C056B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -89,10 +93,10 @@ Global
 		{7A9E16A8-0BF0-460C-A347-44FEEA091D52}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7A9E16A8-0BF0-460C-A347-44FEEA091D52}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7A9E16A8-0BF0-460C-A347-44FEEA091D52}.Release|Any CPU.Build.0 = Release|Any CPU
-		{62298232-B862-4323-9737-0F70BCA7EC4A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{62298232-B862-4323-9737-0F70BCA7EC4A}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{62298232-B862-4323-9737-0F70BCA7EC4A}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{62298232-B862-4323-9737-0F70BCA7EC4A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F154FCBC-EB35-4281-A482-4F37F10C056B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F154FCBC-EB35-4281-A482-4F37F10C056B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F154FCBC-EB35-4281-A482-4F37F10C056B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F154FCBC-EB35-4281-A482-4F37F10C056B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -107,7 +111,7 @@ Global
 		{D53F5547-E077-43FF-9342-ABA02A4FF360} = {9955BB98-6ACF-4EC8-AE59-1B8DDCCBDCC6}
 		{83488ED4-6EB4-42B2-BFAC-D75B02A6F9A6} = {9955BB98-6ACF-4EC8-AE59-1B8DDCCBDCC6}
 		{7A9E16A8-0BF0-460C-A347-44FEEA091D52} = {57174048-09D4-46A6-932C-8F90F2B603D0}
-		{62298232-B862-4323-9737-0F70BCA7EC4A} = {57174048-09D4-46A6-932C-8F90F2B603D0}
+		{F154FCBC-EB35-4281-A482-4F37F10C056B} = {57174048-09D4-46A6-932C-8F90F2B603D0}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {E4D5DD02-533B-4333-9CF9-ACD294C7F2EE}
