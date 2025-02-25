@@ -45,12 +45,25 @@ internal static class Util
 
     public static void TryWriteUsingUniqueFilename(string filename, SourceProductionContext context, SourceText sourceText)
     {
-        try
+        int count = 0;
+        string hintName = filename;
+
+        while (true)
         {
-            context.AddSource(filename, sourceText);
-        }
-        catch (ArgumentException)
-        {
+            try
+            {
+                context.AddSource(hintName, sourceText);
+                return;
+            }
+            catch (ArgumentException)
+            {
+                if (++count >= 10)
+                {
+                    throw;
+                }
+
+                hintName = $"{count}{filename}";
+            }
         }
     }
 
