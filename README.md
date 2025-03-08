@@ -90,6 +90,8 @@ SendInvoice(customerId);
 public void SendInvoice(CustomerId customerId) { ... }
 ```
 
+_(you'll see the default public constructor is created, but the alalyzer stops you from using it, as described in a bit...)_
+
 `int` is the default type for value objects. It is generally a good idea to explicitly declare each type
 for clarity. You can also - individually or globally - configure them to be 
 other types. See the Configuration section later in the document.
