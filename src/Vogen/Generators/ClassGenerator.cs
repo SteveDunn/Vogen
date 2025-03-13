@@ -103,6 +103,8 @@ public class ClassGenerator : IGenerateValueObjectSourceCode
 
         {Util.GenerateIsInitializedMethod(false, item)}
 
+        {Util.GenerateLinqPadDump(item)}
+
         {GenerateCodeForStringComparers.GenerateIfNeeded(item, tds)}  
 
         // only called internally when something has been deserialized into
