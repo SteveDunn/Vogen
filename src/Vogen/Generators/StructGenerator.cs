@@ -103,6 +103,8 @@ public class StructGenerator : IGenerateValueObjectSourceCode
 
 {Util.GenerateIsInitializedMethod(true, item)}
 
+{Util.GenerateLinqPadDump(item)}
+
 {GenerateCodeForStringComparers.GenerateIfNeeded(item, tds)}        
 
 {GenerateCodeForCastingOperators.GenerateImplementations(parameters, tds)}{Util.GenerateGuidFactoryMethodIfNeeded(item)}

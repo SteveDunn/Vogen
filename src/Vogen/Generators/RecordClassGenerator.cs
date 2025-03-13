@@ -111,6 +111,8 @@ public class RecordClassGenerator : IGenerateValueObjectSourceCode
 
 {Util.GenerateIsInitializedMethod(false, item)}
 
+{Util.GenerateLinqPadDump(item)}
+
 {GenerateCodeForStringComparers.GenerateIfNeeded(item, tds)}  
         // only called internally when something has been deserialized into
         // its primitive type.
