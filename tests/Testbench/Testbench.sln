@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Testbench", "Testbench.csproj", "{78F7AAEC-392F-4E9D-BCD7-17F2BCE6D23C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vogen.SharedTypes", "..\..\src\Vogen.SharedTypes\Vogen.SharedTypes.csproj", "{DDFF72AD-06AA-4200-A505-3B35AEBCD27B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{78F7AAEC-392F-4E9D-BCD7-17F2BCE6D23C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{78F7AAEC-392F-4E9D-BCD7-17F2BCE6D23C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{78F7AAEC-392F-4E9D-BCD7-17F2BCE6D23C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{78F7AAEC-392F-4E9D-BCD7-17F2BCE6D23C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DDFF72AD-06AA-4200-A505-3B35AEBCD27B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DDFF72AD-06AA-4200-A505-3B35AEBCD27B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DDFF72AD-06AA-4200-A505-3B35AEBCD27B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DDFF72AD-06AA-4200-A505-3B35AEBCD27B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
