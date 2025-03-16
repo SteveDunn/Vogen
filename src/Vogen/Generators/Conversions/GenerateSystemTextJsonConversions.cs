@@ -15,7 +15,7 @@ internal class GenerateSystemTextJsonConversions : IGenerateConversion
           }
           {{GenerateThrowExceptionHelperIfNeeded(item)}}
           
-          public static VOTYPE DeserializeJson(VOUNDERLYINGTYPE value)
+          private static VOTYPE DeserializeJson(VOUNDERLYINGTYPE value)
           {
               {{GenerateNullCheckAndThrowJsonExceptionIfNeeded(item)}}
               {{Util.GenerateCallToNormalizeMethodIfNeeded(item)}}
