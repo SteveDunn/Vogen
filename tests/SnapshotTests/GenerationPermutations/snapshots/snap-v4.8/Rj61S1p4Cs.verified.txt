@@ -389,7 +389,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
                 throw new global::System.Text.Json.JsonException(null, e);
             }
 
-            public static internal_partial_record_structConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterbyte DeserializeJson(System.Byte value)
+            private static internal_partial_record_structConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterbyte DeserializeJson(System.Byte value)
             {
                 return new internal_partial_record_structConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterbyte(value);
             }

@@ -369,7 +369,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
                 }
             }
 
-            public static _casting_public_sealed_partial_classNoneNonestring DeserializeJson(System.String value)
+            private static _casting_public_sealed_partial_classNoneNonestring DeserializeJson(System.String value)
             {
                 ThrowJsonExceptionWhenNull(value);
                 return new _casting_public_sealed_partial_classNoneNonestring(value);

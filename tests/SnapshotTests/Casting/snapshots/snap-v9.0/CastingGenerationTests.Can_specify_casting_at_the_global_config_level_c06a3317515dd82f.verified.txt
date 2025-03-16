@@ -463,7 +463,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
                 throw new global::System.Text.Json.JsonException(null, e);
             }
 
-            public static _casting_public_sealed_partial_recordNoneImplicitSystem_Guid DeserializeJson(System.Guid value)
+            private static _casting_public_sealed_partial_recordNoneImplicitSystem_Guid DeserializeJson(System.Guid value)
             {
                 return new _casting_public_sealed_partial_recordNoneImplicitSystem_Guid(value);
             }

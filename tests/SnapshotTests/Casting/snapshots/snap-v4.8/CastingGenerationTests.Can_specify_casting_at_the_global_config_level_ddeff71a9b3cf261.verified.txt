@@ -391,7 +391,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
                 throw new global::System.Text.Json.JsonException(null, e);
             }
 
-            public static _casting_public_partial_record_classNoneImplicitSystem_DateTime DeserializeJson(System.DateTime value)
+            private static _casting_public_partial_record_classNoneImplicitSystem_DateTime DeserializeJson(System.DateTime value)
             {
                 return new _casting_public_partial_record_classNoneImplicitSystem_DateTime(value);
             }

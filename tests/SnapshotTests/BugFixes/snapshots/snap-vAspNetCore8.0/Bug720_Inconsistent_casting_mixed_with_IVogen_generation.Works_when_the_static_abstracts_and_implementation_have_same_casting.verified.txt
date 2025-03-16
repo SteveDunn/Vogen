@@ -746,7 +746,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
                 throw new global::System.Text.Json.JsonException(null, e);
             }
 
-            public static ToDoItemId DeserializeJson(System.Int32 value)
+            private static ToDoItemId DeserializeJson(System.Int32 value)
             {
                 return new ToDoItemId(value);
             }

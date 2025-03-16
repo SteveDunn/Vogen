@@ -346,7 +346,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
                 throw new global::System.Text.Json.JsonException(null, e);
             }
 
-            public static internal_sealed_partial_classConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterSystem_Guid DeserializeJson(System.Guid value)
+            private static internal_sealed_partial_classConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterSystem_Guid DeserializeJson(System.Guid value)
             {
                 return new internal_sealed_partial_classConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterSystem_Guid(value);
             }

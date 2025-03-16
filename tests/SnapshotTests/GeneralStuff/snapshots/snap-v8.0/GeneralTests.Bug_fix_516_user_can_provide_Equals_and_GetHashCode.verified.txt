@@ -327,7 +327,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
             }
         }
 
-        public static BugFix516Vo DeserializeJson(System.String value)
+        private static BugFix516Vo DeserializeJson(System.String value)
         {
             ThrowJsonExceptionWhenNull(value);
             return new BugFix516Vo(value);

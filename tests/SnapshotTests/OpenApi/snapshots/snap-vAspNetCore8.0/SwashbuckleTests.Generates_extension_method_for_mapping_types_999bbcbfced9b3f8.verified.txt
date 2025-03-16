@@ -696,7 +696,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
                 throw new global::System.Text.Json.JsonException(null, e);
             }
 
-            public static MyVoInt DeserializeJson(System.Int32 value)
+            private static MyVoInt DeserializeJson(System.Int32 value)
             {
                 return new MyVoInt(value);
             }
@@ -1404,7 +1404,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
                 throw new global::System.Text.Json.JsonException(null, e);
             }
 
-            public static MyVoFloat DeserializeJson(System.Single value)
+            private static MyVoFloat DeserializeJson(System.Single value)
             {
                 return new MyVoFloat(value);
             }
@@ -3266,7 +3266,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
                 }
             }
 
-            public static MyVoString DeserializeJson(System.String value)
+            private static MyVoString DeserializeJson(System.String value)
             {
                 ThrowJsonExceptionWhenNull(value);
                 return new MyVoString(value);
@@ -3709,7 +3709,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
                 throw new global::System.Text.Json.JsonException(null, e);
             }
 
-            public static MyVoBool DeserializeJson(System.Boolean value)
+            private static MyVoBool DeserializeJson(System.Boolean value)
             {
                 return new MyVoBool(value);
             }
@@ -4155,7 +4155,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
                 throw new global::System.Text.Json.JsonException(null, e);
             }
 
-            public static @bool DeserializeJson(System.Boolean value)
+            private static @bool DeserializeJson(System.Boolean value)
             {
                 return new @bool(value);
             }

@@ -737,7 +737,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
                 throw new global::System.Text.Json.JsonException(null, e);
             }
 
-            public static HireDate DeserializeJson(System.DateTime value)
+            private static HireDate DeserializeJson(System.DateTime value)
             {
                 return new HireDate(value);
             }
@@ -1157,7 +1157,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
                 }
             }
 
-            public static Name DeserializeJson(System.String value)
+            private static Name DeserializeJson(System.String value)
             {
                 ThrowJsonExceptionWhenNull(value);
                 return new Name(value);
@@ -1845,7 +1845,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
                 throw new global::System.Text.Json.JsonException(null, e);
             }
 
-            public static Age DeserializeJson(System.Int32 value)
+            private static Age DeserializeJson(System.Int32 value)
             {
                 return new Age(value);
             }

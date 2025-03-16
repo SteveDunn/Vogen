@@ -634,8 +634,10 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
                 throw new global::System.Text.Json.JsonException(null, e);
             }
 
-            public static internal_sealed_partial_recordfloat DeserializeJson(System.Single value)
+            private static internal_sealed_partial_recordfloat DeserializeJson(System.Single value)
             {
+                if (value == MyValue.Value)
+                    return MyValue;
                 return new internal_sealed_partial_recordfloat(value);
             }
         }

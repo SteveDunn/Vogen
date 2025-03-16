@@ -1616,7 +1616,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
                 throw new global::System.Text.Json.JsonException(null, e);
             }
 
-            public static @byte DeserializeJson(System.Byte value)
+            private static @byte DeserializeJson(System.Byte value)
             {
                 return new @byte(value);
             }
@@ -2044,7 +2044,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
                 }
             }
 
-            public static @string DeserializeJson(System.String value)
+            private static @string DeserializeJson(System.String value)
             {
                 ThrowJsonExceptionWhenNull(value);
                 return new @string(value);
@@ -2732,7 +2732,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
                 throw new global::System.Text.Json.JsonException(null, e);
             }
 
-            public static MyVo1 DeserializeJson(System.Int32 value)
+            private static MyVo1 DeserializeJson(System.Int32 value)
             {
                 return new MyVo1(value);
             }
@@ -3185,7 +3185,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
                 }
             }
 
-            public static MyVo2 DeserializeJson(System.String value)
+            private static MyVo2 DeserializeJson(System.String value)
             {
                 ThrowJsonExceptionWhenNull(value);
                 return new MyVo2(value);
@@ -3598,7 +3598,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
                 }
             }
 
-            public static MyVo3 DeserializeJson(System.String value)
+            private static MyVo3 DeserializeJson(System.String value)
             {
                 ThrowJsonExceptionWhenNull(value);
                 return new MyVo3(value);
@@ -4286,7 +4286,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
                 throw new global::System.Text.Json.JsonException(null, e);
             }
 
-            public static MyVo4 DeserializeJson(System.Int32 value)
+            private static MyVo4 DeserializeJson(System.Int32 value)
             {
                 return new MyVo4(value);
             }
@@ -4976,7 +4976,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
                 throw new global::System.Text.Json.JsonException(null, e);
             }
 
-            public static MyVo5 DeserializeJson(System.Int32 value)
+            private static MyVo5 DeserializeJson(System.Int32 value)
             {
                 return new MyVo5(value);
             }
@@ -5688,7 +5688,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
                 throw new global::System.Text.Json.JsonException(null, e);
             }
 
-            public static MyVo6 DeserializeJson(System.Int32 value)
+            private static MyVo6 DeserializeJson(System.Int32 value)
             {
                 return new MyVo6(value);
             }
@@ -6374,7 +6374,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
                 throw new global::System.Text.Json.JsonException(null, e);
             }
 
-            public static @int DeserializeJson(System.Int32 value)
+            private static @int DeserializeJson(System.Int32 value)
             {
                 return new @int(value);
             }
@@ -7064,7 +7064,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
                 throw new global::System.Text.Json.JsonException(null, e);
             }
 
-            public static @byte DeserializeJson(System.Int32 value)
+            private static @byte DeserializeJson(System.Int32 value)
             {
                 return new @byte(value);
             }
@@ -7776,7 +7776,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
                 throw new global::System.Text.Json.JsonException(null, e);
             }
 
-            public static MyInt DeserializeJson(System.Int32 value)
+            private static MyInt DeserializeJson(System.Int32 value)
             {
                 return new MyInt(value);
             }
