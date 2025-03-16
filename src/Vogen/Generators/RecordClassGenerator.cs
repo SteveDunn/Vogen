@@ -61,7 +61,7 @@ public class RecordClassGenerator : IGenerateValueObjectSourceCode
 
                 {Util.GenerateCallToNormalizeMethodIfNeeded(item)}
 
-                {Util.GenerateCallToValidationAndThrowIfRequired(item)}
+                {GenerateCodeForCallingValidation.CallAndThrowIfRequired(item)}
 
                 _value = value;
             }}
@@ -102,7 +102,7 @@ public class RecordClassGenerator : IGenerateValueObjectSourceCode
 
             {Util.GenerateCallToNormalizeMethodIfNeeded(item)}
 
-            {Util.GenerateCallToValidationAndThrowIfRequired(item)}
+            {GenerateCodeForCallingValidation.CallAndThrowIfRequired(item)}
 
             return new {wrapperName}(value);
         }}
@@ -120,7 +120,9 @@ public class RecordClassGenerator : IGenerateValueObjectSourceCode
 
             {Util.GenerateCallToNormalizeMethodIfNeeded(item)}
 
-            {Util.GenerateCallToValidateForDeserializing(item)}
+            {Util.GenerateChecksForKnownInstancesIfRequired(item)}
+
+            {GenerateCodeForCallingValidation.CallWhenDeserializingAndCheckStrictnessFlag(item)}
 
             return new {wrapperName}(value);
         }}

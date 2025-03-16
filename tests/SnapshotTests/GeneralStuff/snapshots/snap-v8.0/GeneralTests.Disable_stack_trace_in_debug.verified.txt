@@ -625,7 +625,7 @@ public partial class MyVo : global::System.IEquatable<MyVo>, global::System.IEqu
             throw new global::System.Text.Json.JsonException(null, e);
         }
 
-        public static MyVo DeserializeJson(System.Int32 value)
+        private static MyVo DeserializeJson(System.Int32 value)
         {
             return new MyVo(value);
         }

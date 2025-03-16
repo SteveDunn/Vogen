@@ -606,7 +606,7 @@ namespace Whatever
                 throw new global::System.Text.Json.JsonException(null, e);
             }
 
-            public static CustomerId DeserializeJson(System.Int32 value)
+            private static CustomerId DeserializeJson(System.Int32 value)
             {
                 return new CustomerId(value);
             }

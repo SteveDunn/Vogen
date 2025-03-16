@@ -351,8 +351,10 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
                 throw new global::System.Text.Json.JsonException(null, e);
             }
 
-            public static BooleanThing DeserializeJson(System.Boolean value)
+            private static BooleanThing DeserializeJson(System.Boolean value)
             {
+                if (value == Invalid.Value)
+                    return Invalid;
                 return new BooleanThing(value);
             }
         }

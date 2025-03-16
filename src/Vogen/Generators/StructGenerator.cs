@@ -94,7 +94,7 @@ public class StructGenerator : IGenerateValueObjectSourceCode
         {{
             {Util.GenerateCallToNormalizeMethodIfNeeded(item)}
 
-            {Util.GenerateCallToValidationAndThrowIfRequired(item)}
+            {GenerateCodeForCallingValidation.CallAndThrowIfRequired(item)}
 
             return new {structName}(value);
         }}
@@ -112,7 +112,9 @@ public class StructGenerator : IGenerateValueObjectSourceCode
         {{
             {Util.GenerateCallToNormalizeMethodIfNeeded(item)}
 
-            {Util.GenerateCallToValidateForDeserializing(item)}
+            {Util.GenerateChecksForKnownInstancesIfRequired(item)}
+
+            {GenerateCodeForCallingValidation.CallWhenDeserializingAndCheckStrictnessFlag(item)}
 
             return new {structName}(value);
         }}

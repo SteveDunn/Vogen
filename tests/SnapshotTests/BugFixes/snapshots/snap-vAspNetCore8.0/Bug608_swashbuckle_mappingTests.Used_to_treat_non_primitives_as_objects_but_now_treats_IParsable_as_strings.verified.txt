@@ -480,7 +480,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
                 throw new global::System.Text.Json.JsonException(null, e);
             }
 
-            public static Vo DeserializeJson(System.Guid value)
+            private static Vo DeserializeJson(System.Guid value)
             {
                 return new Vo(value);
             }

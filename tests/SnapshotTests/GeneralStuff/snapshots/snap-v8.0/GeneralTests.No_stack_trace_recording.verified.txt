@@ -340,7 +340,7 @@ namespace Whatever
                 }
             }
 
-            public static CustomerId DeserializeJson(System.String value)
+            private static CustomerId DeserializeJson(System.String value)
             {
                 ThrowJsonExceptionWhenNull(value);
                 return new CustomerId(value);

@@ -624,7 +624,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
                 throw new global::System.Text.Json.JsonException(null, e);
             }
 
-            public static MyVo DeserializeJson(System.Half value)
+            private static MyVo DeserializeJson(System.Half value)
             {
                 return new MyVo(value);
             }

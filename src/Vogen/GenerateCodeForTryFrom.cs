@@ -40,7 +40,7 @@ public static class GenerateCodeForTryFrom
                             {{GenerateNullCheckAndReturnFalseIfNeeded(item)}}
                             {{Util.GenerateCallToNormalizeMethodIfNeeded(item)}}
                         
-                            {{Util.GenerateCallToValidationAndReturnFalseIfNeeded(item)}}
+                            {{GenerateCodeForCallingValidation.CallAndReturnFalseIfNeeded(item)}}
                         
                             vo = new {{className}}(value);
                         
@@ -65,7 +65,7 @@ public static class GenerateCodeForTryFrom
                         
                             {{Util.GenerateCallToNormalizeMethodIfNeeded(item)}}
                         
-                            {{Util.GenerateCallToValidationAndReturnValueObjectOrErrorIfNeeded(className, item)}}
+                            {{GenerateCodeForCallingValidation.CallAndReturnValueObjectOrErrorIfNeeded(className, item)}}
                         
                             return new Vogen.ValueObjectOrError<{{className}}>(new {{className}}(value));
                         }

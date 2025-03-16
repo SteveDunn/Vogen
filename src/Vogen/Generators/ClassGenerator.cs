@@ -94,7 +94,7 @@ public class ClassGenerator : IGenerateValueObjectSourceCode
 
             {Util.GenerateCallToNormalizeMethodIfNeeded(item)}
 
-            {Util.GenerateCallToValidationAndThrowIfRequired(item)}
+            {GenerateCodeForCallingValidation.CallAndThrowIfRequired(item)}
 
             return new {className}(value);
         }}
@@ -113,7 +113,9 @@ public class ClassGenerator : IGenerateValueObjectSourceCode
 
             {Util.GenerateCallToNormalizeMethodIfNeeded(item)}
 
-            {Util.GenerateCallToValidateForDeserializing(item)}
+            {Util.GenerateChecksForKnownInstancesIfRequired(item)}
+
+            {GenerateCodeForCallingValidation.CallWhenDeserializingAndCheckStrictnessFlag(item)}
 
             return new {className}(value);
         }}

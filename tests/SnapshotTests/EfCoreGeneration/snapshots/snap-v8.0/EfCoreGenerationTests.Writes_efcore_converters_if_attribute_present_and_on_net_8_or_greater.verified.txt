@@ -1327,7 +1327,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
                 throw new global::System.Text.Json.JsonException(null, e);
             }
 
-            public static Vo1 DeserializeJson(System.Int32 value)
+            private static Vo1 DeserializeJson(System.Int32 value)
             {
                 return new Vo1(value);
             }
@@ -1747,7 +1747,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
                 }
             }
 
-            public static Vo2 DeserializeJson(System.String value)
+            private static Vo2 DeserializeJson(System.String value)
             {
                 ThrowJsonExceptionWhenNull(value);
                 return new Vo2(value);
@@ -2435,7 +2435,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
                 throw new global::System.Text.Json.JsonException(null, e);
             }
 
-            public static Vo1 DeserializeJson(System.Int32 value)
+            private static Vo1 DeserializeJson(System.Int32 value)
             {
                 return new Vo1(value);
             }
@@ -2855,7 +2855,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
                 }
             }
 
-            public static Vo2 DeserializeJson(System.String value)
+            private static Vo2 DeserializeJson(System.String value)
             {
                 ThrowJsonExceptionWhenNull(value);
                 return new Vo2(value);

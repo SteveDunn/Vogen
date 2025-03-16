@@ -633,7 +633,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
                 throw new global::System.Text.Json.JsonException(null, e);
             }
 
-            public static _casting_public_partial_classImplicitNone DeserializeJson(System.Int32 value)
+            private static _casting_public_partial_classImplicitNone DeserializeJson(System.Int32 value)
             {
                 return new _casting_public_partial_classImplicitNone(value);
             }
