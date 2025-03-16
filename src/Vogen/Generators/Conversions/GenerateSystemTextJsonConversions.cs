@@ -19,8 +19,9 @@ internal class GenerateSystemTextJsonConversions : IGenerateConversion
           {
               {{GenerateNullCheckAndThrowJsonExceptionIfNeeded(item)}}
               {{Util.GenerateCallToNormalizeMethodIfNeeded(item)}}
-          
-              {{Util.GenerateCallToValidationAndThrowIfRequired(item, "ThrowJsonExceptionWhenValidationFails")}}
+              {{Util.GenerateChecksForKnownInstancesIfRequired(item)}}
+              
+              {{GenerateCodeForCallingValidation.CallWhenDeserializingAndCheckStrictnessFlag(item, "ThrowJsonExceptionWhenValidationFails")}}
           
               return new VOTYPE(value);
           }

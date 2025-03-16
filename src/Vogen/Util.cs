@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Runtime.CompilerServices;
-using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
@@ -67,38 +66,7 @@ internal static class Util
         }
     }
 
-    public static string GenerateCallToValidationAndThrowIfRequired(VoWorkItem workItem, string throwingMethod = "ThrowHelper.ThrowWhenValidationFails")
-    {
-        if (workItem.ValidateMethod is not null)
-        {
-            return $$"""
-                     var validation = {{workItem.TypeToAugment.Identifier}}.{{workItem.ValidateMethod.Identifier.Value}}(value);
-                     if (validation != Vogen.Validation.Ok)
-                     {
-                         {{throwingMethod}}(validation);
-                     }
 
-                     """;
-        }
-
-        return string.Empty;
-    }
-
-    public static string GenerateCallToValidationAndReturnFalseIfNeeded(VoWorkItem workItem)
-    {
-        if (workItem.ValidateMethod is not null)
-        {
-            return @$"var validation = {workItem.TypeToAugment.Identifier}.{workItem.ValidateMethod.Identifier.Value}(value);
-            if (validation != Vogen.Validation.Ok)
-            {{
-                vo = default!;
-                return false;
-            }}
-";
-        }
-
-        return string.Empty;
-    }
 
     public static string GenerateNotNullWhenTrueAttribute() =>
         """
@@ -118,50 +86,19 @@ internal static class Util
 
         """;
 
-
-    public static string GenerateCallToValidationAndReturnValueObjectOrErrorIfNeeded(SyntaxToken className, VoWorkItem workItem)
+    public static string GenerateChecksForKnownInstancesIfRequired(VoWorkItem workItem)
     {
-        if (workItem.ValidateMethod is not null)
+        if (!workItem.Config.DeserializationStrictness.HasFlag(DeserializationStrictness.AllowKnownInstances))
         {
-            return @$"var validation = {workItem.TypeToAugment.Identifier}.{workItem.ValidateMethod.Identifier.Value}(value);
-            if (validation != Vogen.Validation.Ok)
-            {{
-                return new Vogen.ValueObjectOrError<{className}>(validation);
-            }}
-";
+            return string.Empty;
         }
 
-        return string.Empty;
-    }
-
-    public static string GenerateCallToValidateForDeserializing(VoWorkItem workItem)
-    {
         StringBuilder sb = new StringBuilder();
-
-        if (workItem.Config.DeserializationStrictness.HasFlag(DeserializationStrictness.AllowKnownInstances))
+        
+        foreach (var eachInstance in workItem.InstanceProperties)
         {
-            foreach (var eachInstance in workItem.InstanceProperties)
-            {
-                string escapedName = EscapeKeywordsIfRequired(eachInstance.Name);
-                sb.AppendLine($"        if(value == {escapedName}.Value) return {escapedName};");
-            }
-        }
-
-        if (workItem.ValidateMethod is null)
-        {
-            return sb.ToString();
-        }
-
-        if (workItem.Config.DeserializationStrictness.HasFlag(DeserializationStrictness.RunMyValidationMethod))
-        {
-            sb.AppendLine(
-                $$"""
-                  var validation = {{workItem.TypeToAugment.Identifier}}.{{workItem.ValidateMethod.Identifier.Value}}(value);
-                  if (validation != Vogen.Validation.Ok)
-                  {
-                      ThrowHelper.ThrowWhenValidationFails(validation);
-                  }
-                  """);
+            string escapedName = EscapeKeywordsIfRequired(eachInstance.Name);
+            sb.AppendLine($"        if(value == {escapedName}.Value) return {escapedName};");
         }
 
         return sb.ToString();
