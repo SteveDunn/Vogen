@@ -12,7 +12,7 @@
     <!-- Test directory-->
     <LocalPackagesDirectory>$(MSBuildProjectDirectory)\..\..\local-global-packages</LocalPackagesDirectory>
   </PropertyGroup>
-  
+
     <Target Name="EnsureLocalPackagesFolderExists" BeforeTargets="Restore;CollectPackageReferences" Condition="'$(BuildingInsideVisualStudio)' == 'true'">
       <Error Condition="!Exists('$(LocalPackagesDirectory)')" Text="Run Test.ps1 to create the local packages folder that this project consumes" />
     </Target>
@@ -21,6 +21,7 @@
     <TargetFramework>net8.0</TargetFramework>
     <Nullable>enable</Nullable>
     <IsPackable>false</IsPackable>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
     <UseLocallyBuiltPackage>true</UseLocallyBuiltPackage>
     <LangVersion>preview</LangVersion>
@@ -58,7 +59,7 @@
   Run the tests with `.\test.ps1` in the root folder.-->
 
   <ItemGroup>
-    
+
     <PackageReference Include="System.Net.Http" Version="4.3.4" />
     <PackageReference Include="MongoDB.Analyzer" Version="1.4.0" />
     <PackageReference Include="MongoDB.Bson" Version="2.27.0" />
@@ -85,11 +86,9 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <EmitCompilerGeneratedFiles>true</EmitCompilerGeneratedFiles>
     <CompilerGeneratedFilesOutputPath>Generated</CompilerGeneratedFilesOutputPath>
-    <DocumentationFile>bin\Debug\ConsumerTests.xml</DocumentationFile>
   </PropertyGroup>
 
   <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
-    <DocumentationFile>bin\Release\ConsumerTests.xml</DocumentationFile>
   </PropertyGroup>
 
   <ItemGroup>
