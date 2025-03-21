@@ -6,13 +6,13 @@
 [![Nuget version](https://img.shields.io/nuget/v/Vogen?color=ff4081&label=nuget%20version&logo=nuget&style=flat-square)](https://www.nuget.org/packages/Vogen/)
 [![Nuget downloads](https://img.shields.io/nuget/dt/Vogen?color=ff4081&label=nuget%20downloads&logo=nuget&style=flat-square)](https://www.nuget.org/packages/Vogen/)
 
-<p/>
+<p></p>
 
 ![Build](https://github.com/stevedunn/vogen/actions/workflows/build.yaml/badge.svg)
 [![GitHub release](https://img.shields.io/github/release/stevedunn/vogen.svg)](https://GitHub.com/stevedunn/vogen/releases/) [![GitHub license](https://img.shields.io/github/license/stevedunn/vogen.svg)](https://github.com/SteveDunn/Vogen/blob/main/LICENSE) 
 [![GitHub issues](https://img.shields.io/github/issues/Naereen/StrapDown.js.svg)](https://GitHub.com/stevedunn/vogen/issues/) [![GitHub issues-closed](https://img.shields.io/github/issues-closed/Naereen/StrapDown.js.svg)](https://GitHub.com/stevedunn/vogen/issues?q=is%3Aissue+is%3Aclosed) 
 
-<p/>
+<p></p>
   
   
 [![Sparkline](https://stars.medv.io/stevedunn/vogen.svg)](https://stars.medv.io/stevedunn/vogen)
@@ -90,7 +90,7 @@ SendInvoice(customerId);
 public void SendInvoice(CustomerId customerId) { ... }
 ```
 
-_(you'll see the default public constructor is created, but the alalyzer stops you from using it, as described in a bit...)_
+_(you'll see the default public constructor is created, but the analyzer stops you from using it, as described in a bit...)_
 
 `int` is the default type for value objects. It is generally a good idea to explicitly declare each type
 for clarity. You can also - individually or globally - configure them to be 
@@ -437,6 +437,7 @@ If you're using the generator in a .NET Framework project and using the old styl
 <PropertyGroup>
 ➡️<LangVersion>latest</LangVersion>
   <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+</PropertyGroup>
 ```
 
 ### Why are they called 'value objects'?
