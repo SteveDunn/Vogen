@@ -10,6 +10,27 @@ namespace SnapshotTests.GeneralStuff;
 public class GeneralTests
 {
     [Fact]
+    public async Task Generates_LinqPadToDump()
+    {
+        var source =
+            $$"""
+
+            using System;
+            using Vogen;
+            
+            namespace Whatever;
+            
+            //[ValueObject(customizations: Customizations.LinqPadToDump)]
+            [ValueObject()]
+            public partial struct MyId;
+            """;
+
+            await new SnapshotRunner<ValueObjectGenerator>()
+                .WithSource(source)
+                .RunOn(TargetFramework.Net8_0);
+    }
+
+    [Fact]
     public async Task Generates_messagepack()
     {
         var source =
