@@ -20,8 +20,7 @@ public class GeneralTests
             
             namespace Whatever;
             
-            //[ValueObject(customizations: Customizations.LinqPadToDump)]
-            [ValueObject()]
+            [ValueObject(customizations: Customizations.GenerateLinqPadToDump)]
             public partial struct MyId;
             """;
 
