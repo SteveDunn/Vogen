@@ -112,6 +112,8 @@ public class RecordStructGenerator : IGenerateValueObjectSourceCode
 
 {Util.GenerateIsInitializedMethod(true, item)}
 
+{Util.GenerateLinqPadDump(item)}
+
 {GenerateCodeForStringComparers.GenerateIfNeeded(item, tds)}        
 {GenerateCodeForCastingOperators.GenerateImplementations(parameters,tds)}{Util.GenerateGuidFactoryMethodIfNeeded(item)}
         // only called internally when something has been deserialized into

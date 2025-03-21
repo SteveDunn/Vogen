@@ -382,6 +382,18 @@ internal static class Util
                 : "\"Use of uninitialized Value Object at: \" + stackTrace ?? \"\" ";
     }
 
+    public static string GenerateLinqPadDump(VoWorkItem item) =>
+        item.Config.Customizations.HasFlag(Customizations.GenerateLinqPadToDump)
+            ? """
+              private global::System.Object ToDump() =>
+              #if VOGEN_NO_VALIDATION 
+                   _value!
+              #else
+                  _isInitialized ? _value! : "[not initialized]";
+              #endif
+              """
+            : string.Empty;
+
     /// <summary>
     ///  If we're generating `IXmlSerializable`, then we can't specify that _value and _isInitialized are readonly
     /// as the 'ReadXml' method has to mutate these fields.

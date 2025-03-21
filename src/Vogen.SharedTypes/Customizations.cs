@@ -32,4 +32,9 @@ public enum Customizations
     /// For GUIDs, add a `FromNewGuid()` factory method, which is just `public static MyVo FromNewGuid() => From(Guid.NewGuid());`
     /// </summary>
     AddFactoryMethodForGuids = 1 << 1,
+
+    /// <summary>
+    /// Generate ToDump for LinqPad
+    /// </summary>
+    GenerateLinqPadToDump = 1 << 2
 }
