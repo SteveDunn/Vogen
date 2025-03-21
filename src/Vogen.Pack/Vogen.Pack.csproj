@@ -47,9 +47,7 @@
     <None Include="..\..\assets\logo\package_logo_128x128.png" Pack="true" PackagePath="" />
     <None Include="..\..\docs\nuget-readme.md" Pack="true" PackagePath="\" />
 
-    <None Include="Vogen.targets" Pack="true" PackagePath="build" Visible="false" />
-    <None Include="Vogen.targets" Pack="true" PackagePath="buildTransitive\net462" Visible="false" />    
-    <None Include="Vogen.targets" Pack="true" PackagePath="buildTransitive\netstandard2.0" Visible="false" />    
+    <None Include="Vogen.targets" Pack="true" PackagePath="buildTransitive" Visible="false" />    
 
     <None Include="$(MSBuildThisFileDirectory)\..\Vogen\bin\roslyn4.4\$(Configuration)\netstandard2.0\Vogen.dll" Pack="true" PackagePath="analyzers/dotnet/roslyn4.4/cs/" Visible="false" />
     <None Include="$(MSBuildThisFileDirectory)\..\Vogen.CodeFixers\bin\roslyn4.4\$(Configuration)\netstandard2.0\Vogen.CodeFixers.dll" Pack="true" PackagePath="analyzers/dotnet/roslyn4.4/cs" Visible="false" />
@@ -65,6 +63,7 @@
     <None Include="$(MSBuildThisFileDirectory)\..\Vogen\bin\roslyn4.8\$(Configuration)\netstandard2.0\Vogen.SharedTypes.dll" Pack="true" PackagePath="lib\netstandard2.0" Visible="true" />
     <None Include="$(MSBuildThisFileDirectory)\..\Vogen\bin\roslyn4.8\$(Configuration)\net9.0\Vogen.SharedTypes.dll" Pack="true" PackagePath="lib\net9.0" Visible="true" />
     <None Include="$(MSBuildThisFileDirectory)\..\Vogen\bin\roslyn4.8\$(Configuration)\net9.0\Vogen.SharedTypes.xml" Pack="true" PackagePath="lib\net9.0" Visible="true" />
+    <None Include="$(MSBuildThisFileDirectory)\..\Vogen\bin\roslyn4.8\$(Configuration)\net9.0\Vogen.SharedTypes.xml" Pack="true" PackagePath="lib\netstandard2.0" Visible="true" />
   </ItemGroup>
 
   <ItemGroup>
