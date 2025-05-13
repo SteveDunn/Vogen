@@ -130,6 +130,30 @@ namespace AnalyzerTests
 
         [Theory]
         [ClassData(typeof(Types))]
+        public async Task Disallow_new_from_property(string type)
+        {
+            var source = $$"""
+
+                           using Vogen;
+                           namespace Whatever;
+
+                           [ValueObject]
+                           public {{type}} MyVo { }
+
+                           public class Test {
+                               public MyVo Get { get; } = {|#0:new MyVo()|};
+                               public MyVo Get2 { get; } = {|#1:new()|};
+                           }
+
+                           """;
+
+            await Run(
+                source,
+                WithDiagnostics("VOG010", DiagnosticSeverity.Error, "MyVo", 0, 1));
+        }
+
+        [Theory]
+        [ClassData(typeof(Types))]
         public async Task Disallow_new_from_local_function(string type)
         {
             var source = $$"""
