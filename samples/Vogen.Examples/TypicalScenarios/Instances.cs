@@ -36,6 +36,17 @@ namespace Vogen.Examples.TypicalScenarios.Instances
             value >= AbsoluteZero.Value ? Validation.Ok : Validation.Invalid("Cannot be colder than absolute zero");
     }
 
+    [ValueObject<float>]
+    public readonly partial struct Fahrenheit
+    {
+        public static readonly Fahrenheit Freezing = new(32);
+        public static Fahrenheit Boiling { get; } = new(212);
+        public static Fahrenheit AbsoluteZero { get; } = new(-459.67f);
+
+        private static Validation Validate(float value) =>
+            value >= AbsoluteZero.Value ? Validation.Ok : Validation.Invalid("Cannot be colder than absolute zero");
+    }
+
     /*
      * Instances are the only way to avoid validation, so we can create instances
      * that nobody else can. This is useful for creating special instances
