@@ -184,6 +184,7 @@ internal class GenerateCodeForOpenApiSchemaCustomization
         {
             "System.Int32" => new("integer", "int32"),
             "System.Int64" => new("integer", "int64"),
+            "System.Int16" => new("number", ""),
             "System.Single" => new("number", ""),
             "System.Decimal" => new("number", "double"),
             "System.Double" => new("number", "double"),

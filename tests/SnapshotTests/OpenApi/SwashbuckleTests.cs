@@ -69,6 +69,9 @@ public class SwashbuckleTests
 
               [ValueObject<bool>]
               public partial class @bool { }
+              
+              [ValueObject<short>]
+              public partial class MyVoShort { }
               """;
 
         await new SnapshotRunner<ValueObjectGenerator>()
