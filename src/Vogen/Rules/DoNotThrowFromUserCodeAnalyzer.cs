@@ -42,7 +42,9 @@ public class DoNotThrowFromUserCodeAnalyzer : DiagnosticAnalyzer
             return;
         }
 
-        if (!VoFilter.IsTarget(containingType))
+        var symbol = ctx.SemanticModel.GetDeclaredSymbol(containingType);
+
+        if (!VoFilter.IsTarget(symbol))
         {
             return;
         }

@@ -271,6 +271,28 @@ public partial struct CustomerId
             WithDiagnostics("VOG032", DiagnosticSeverity.Warning, 0, 1, 2));
     }
     
+    [Fact]
+    public async Task Does_not_raise_when_method_is_not_in_a_ValueObject()
+    {
+        var source = """
+                     using System;
+
+                     namespace Whatever;
+
+                     [Obsolete("Only for testing")]
+                     public partial struct CustomerId
+                     {
+                          public static int NormalizeInput(int value)
+                          {
+                              {|#0:throw new Exception("Oh no!");|}
+                          }
+                     }
+                     """;
+
+        await Run(
+            source,[]);
+    }
+
     private static IEnumerable<DiagnosticResult> WithDiagnostics(string code, DiagnosticSeverity severity, params int[] locations)
     {
         foreach (var location in locations)
