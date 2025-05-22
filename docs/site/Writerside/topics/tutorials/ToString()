@@ -1,0 +1,98 @@
+# Formatting Value Objects in C#
+
+This tutorial explains how formatting works for value objects in Vogen, including `ToString()`, string interpolation, and advanced formatting scenarios.
+
+## Default ToString Behavior
+
+When using a value object created with Vogen, the default `ToString()` method is implemented like this:
+
+```csharp
+public override string ToString() => _isInitialized 
+    ? Value.ToString() 
+    : "[UNINITIALIZED]";
+```
+
+This means:
+- If the value is initialized, the underlying value’s `ToString()` is used.
+- If it’s not initialized (e.g., from deserialization), it returns `"[UNINITIALIZED]"`.
+
+### Example
+
+```csharp
+[ValueObject<int>]
+public readonly partial struct Age { }
+
+var age = Age.From(42);
+Console.WriteLine("Age is " + age); // Output: Age is 42
+```
+
+## Overriding ToString for Custom Formatting
+
+You can override `ToString()` in the value object for customized formatting. For example, padding the value:
+
+```csharp
+[ValueObject<int>]
+public readonly partial struct Age
+{
+    public override string ToString() => _isInitialized 
+        ? Value.ToString("D4") 
+        : "[UNINITIALIZED]";
+}
+```
+
+This will produce:
+
+```bash
+Age is 0042
+```
+
+## String Interpolation and TryFormat
+
+When using string interpolation, like:
+
+```csharp
+Console.WriteLine($"{uid}");
+```
+
+.NET uses `DefaultInterpolatedStringHandler`, which checks if the type implements `ISpanFormattable`. If it does, it calls `TryFormat`.
+
+Vogen-generated value objects already implement `ISpanFormattable` as:
+
+```csharp
+public bool TryFormat(
+    Span<char> destination,
+    out int charsWritten,
+    ReadOnlySpan<char> format,
+    IFormatProvider provider)
+{
+    charsWritten = default;
+    return IsInitialized() 
+        ? Value.TryFormat(destination, out charsWritten, format, provider) 
+        : true;
+}
+```
+
+You can override this for custom formatting behavior:
+
+```csharp
+bool ISpanFormattable.TryFormat(
+    Span<char> destination,
+    out int charsWritten,
+    ReadOnlySpan<char> format,
+    IFormatProvider provider)
+{
+    charsWritten = default;
+    return IsInitialized() 
+        ? Value.TryFormat(destination, out charsWritten, "D14", provider) 
+        : true;
+}
+```
+
+This forces a specific format like `"D14"` for numeric output.
+
+## Summary
+
+- `ToString()` is safe and customizable.
+- String interpolation routes through `TryFormat()` if available.
+- You can override `TryFormat()` to enforce formatting rules.
+- These capabilities make value objects integrate smoothly with .NET logging and formatting systems.
