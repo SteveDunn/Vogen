@@ -548,7 +548,7 @@ Yes, add NormalizeInput method, e.g.
 ```csharp
     private static string NormalizeInput(string input) => input.Trim();
 ```
-See [wiki](https://stevedunn.github.io/Vogen/normalization.html) for more information.
+See [wiki](https://stevedunn.github.io/Vogen/normalizationhowto.html) for more information.
 
 
 ### Why isn't this concept part of the C# language?
