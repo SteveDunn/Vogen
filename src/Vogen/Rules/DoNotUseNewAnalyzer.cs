@@ -32,7 +32,7 @@ public class DoNotUseNewAnalyzer : DiagnosticAnalyzer
         description:
         "The value object is created with a new expression. This can lead to invalid value objects in your domain. Use the From method instead.");
 
-    public override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics => 
+    public override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics =>
         ImmutableArray.Create(_rule, _rule2);
 
     public override void Initialize(AnalysisContext context)
@@ -56,15 +56,17 @@ public class DoNotUseNewAnalyzer : DiagnosticAnalyzer
         if (!VoFilter.IsTarget(symbol)) return;
 
         var instanceFieldState = IsAPublicStaticFieldInAValueObject();
-        
-        if (instanceFieldState == InstanceField.NotValid)
+        var staticPropertyState = IsAPublicStaticPropertyWithGetterWithoutSetterInAValueObject();
+
+        if (instanceFieldState == Member.NotValid && staticPropertyState != Member.Valid)
         {
             context.ReportDiagnostic(DiagnosticsCatalogue.BuildDiagnostic(_rule2, symbol.Name, context.Operation.Syntax.GetLocation()));
 
             return;
         }
-        
-        if (instanceFieldState == InstanceField.Valid) return;
+
+        if (instanceFieldState == Member.Valid) return;
+        if (staticPropertyState == Member.Valid) return;
 
         var diagnostic = DiagnosticsCatalogue.BuildDiagnostic(_rule, symbol.Name, context.Operation.Syntax.GetLocation());
 
@@ -72,30 +74,46 @@ public class DoNotUseNewAnalyzer : DiagnosticAnalyzer
 
         return;
 
-        InstanceField IsAPublicStaticFieldInAValueObject()
+        Member IsAPublicStaticFieldInAValueObject()
         {
             var cs = context.ContainingSymbol as IFieldSymbol;
-            if (cs is null) return InstanceField.NotApplicable;
+            if (cs is null) return Member.NotApplicable;
             var type = cs.ContainingType;
             var isVo = VoFilter.IsTarget(type);
             if (!isVo)
             {
-                return InstanceField.NotApplicable;
+                return Member.NotApplicable;
             }
-            
-            if (cs.DeclaredAccessibility != Accessibility.Public) return InstanceField.NotValid;
-            if (!cs.IsStatic) return InstanceField.NotValid;
 
-            return InstanceField.Valid;
+            if (cs.DeclaredAccessibility != Accessibility.Public) return Member.NotValid;
+            if (!cs.IsStatic) return Member.NotValid;
+
+            return Member.Valid;
         }
-        
+
+        Member IsAPublicStaticPropertyWithGetterWithoutSetterInAValueObject()
+        {
+            var cs = context.ContainingSymbol as IPropertySymbol;
+            if (cs is null) return Member.NotApplicable;
+            var type = cs.ContainingType;
+            var isVo = VoFilter.IsTarget(type);
+            if (!isVo)
+            {
+                return Member.NotApplicable;
+            }
+
+            if (cs.DeclaredAccessibility != Accessibility.Public) return Member.NotValid;
+            if (!cs.IsStatic) return Member.NotValid;
+            if (cs.SetMethod is not null) return Member.NotValid;
+
+            return Member.Valid;
+        }
     }
 
-    internal enum InstanceField
+    private enum Member
     {
         Valid,
         NotValid,
         NotApplicable
-                
     }
 }

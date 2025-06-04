@@ -130,6 +130,78 @@ namespace AnalyzerTests
 
         [Theory]
         [ClassData(typeof(Types))]
+        public async Task Disallow_new_from_property(string type)
+        {
+            var source = $$"""
+
+                           using Vogen;
+                           namespace Whatever;
+
+                           [ValueObject]
+                           public {{type}} MyVo { }
+
+                           public class Test {
+                               public MyVo Get { get; } = {|#0:new MyVo()|};
+                               public MyVo Get2 { get; } = {|#1:new()|};
+                           }
+
+                           """;
+
+            await Run(
+                source,
+                WithDiagnostics("VOG010", DiagnosticSeverity.Error, "MyVo", 0, 1));
+        }
+
+        [Theory]
+        [ClassData(typeof(Types))]
+        public async Task Allow_as_public_static_getter_property_in_a_VO(string type)
+        {
+            var userSource = $$"""
+
+                           using Vogen;
+                           namespace Whatever
+                           {
+                               [ValueObject]
+                               public {{type}} MyVo {
+                                    public static MyVo Unspecified { get; } = new MyVo(-1);
+                               }
+                           }
+
+                           """;
+            string[] sources = await CombineUserAndGeneratedSource(userSource);
+
+            await Run(sources, Enumerable.Empty<DiagnosticResult>());
+        }
+
+        [Theory]
+        [ClassData(typeof(Types))]
+        public async Task Disallow_as_setter_property_in_a_VO(string type)
+        {
+            var userSource = $$"""
+
+                           using Vogen;
+                           namespace Whatever
+                           {
+                               [ValueObject]
+                               public {{type}} MyVo {
+                                    public static MyVo Unspecified { get; set; } = {|#0:new MyVo()|};
+                                    public static MyVo Unspecified2 { get; set; } = {|#1:new()|};
+                                    private static MyVo Unspecified3 { get; set; } = {|#2:new MyVo()|};
+                                    private static MyVo Unspecified4 { get; set; } = {|#3:new()|};
+                               }
+                           }
+
+                           """;
+
+            string[] sources = await CombineUserAndGeneratedSource(userSource);
+
+            await Run(
+                sources,
+                WithDiagnostics("VOG010", DiagnosticSeverity.Error, "MyVo", 0, 1, 2, 3));
+        }
+
+        [Theory]
+        [ClassData(typeof(Types))]
         public async Task Disallow_new_from_local_function(string type)
         {
             var source = $$"""
