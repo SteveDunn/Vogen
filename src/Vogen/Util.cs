@@ -276,6 +276,11 @@ internal static class Util
 
     public static string EscapeTypeNameForTripleSlashComment(INamedTypeSymbol symbol)
     {
+        if (symbol.IsTupleType)
+        {
+            return EscapeTypeNameForTripleSlashComment(symbol.OriginalDefinition.ToDisplayString(_formatForTuples));
+        }
+
         var symbolToUse = symbol.IsGenericType ? symbol.OriginalDefinition : symbol;
 
         var displayString = symbolToUse.EscapedFullName();
@@ -285,6 +290,21 @@ internal static class Util
             : displayString;
     }
 
+    // private static readonly SymbolDisplayFormat _myFormat =
+    //     new(
+    //             typeQualificationStyle: SymbolDisplayTypeQualificationStyle.NameAndContainingTypesAndNamespaces);
+        
+
+    private static readonly SymbolDisplayFormat _formatForTuples =
+        new(
+            globalNamespaceStyle: SymbolDisplayGlobalNamespaceStyle.Included,
+            typeQualificationStyle: SymbolDisplayTypeQualificationStyle.NameAndContainingTypesAndNamespaces,
+            genericsOptions: SymbolDisplayGenericsOptions.IncludeTypeParameters,
+            miscellaneousOptions:
+                SymbolDisplayMiscellaneousOptions.EscapeKeywordIdentifiers |
+                SymbolDisplayMiscellaneousOptions.UseSpecialTypes |
+                SymbolDisplayMiscellaneousOptions.ExpandValueTuple);
+    
     public static string GenerateCommentForValueProperty(VoWorkItem item) =>
         $"""
          /// <summary>

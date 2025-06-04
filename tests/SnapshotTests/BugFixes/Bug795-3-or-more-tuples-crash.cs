@@ -7,6 +7,7 @@ namespace SnapshotTests.BugFixes;
 // See https://github.com/SteveDunn/Vogen/issues/795
 public class Bug795_tuples_with_3_or_more_items_crashes_generator
 {
+    // Previously, it would generate <see cref="(int, string)"/> which is invalid. Now it prints ValueTuple {int, string}
     [Fact]
     public async Task Correct_generates_xml_comments_for_tuples()
     {
@@ -50,6 +51,46 @@ public class Bug795_tuples_with_3_or_more_items_crashes_generator
                          private static (FarmId, FarmName) NormalizeInput((FarmId, FarmName) input)
                              => input;
                          private static Validation Validate((FarmId, FarmName) input)
+                             => Validation.Ok;
+                     }
+                     
+
+                     """;
+
+        await new SnapshotRunner<ValueObjectGenerator>()
+                .WithSource(source)
+                .IgnoreInitialCompilationErrors()
+                .RunOn(TargetFramework.Net9_0);
+    }
+
+    [Fact]
+    public async Task Works_with_three_tuples()
+    {
+        // we say that to primitive is implicit and we say that the static abstract interface matches.
+        var source = """
+                     using Vogen;
+                     
+                     namespace MyApp;
+                     
+                     [ValueObject]
+                     public partial struct Acres;
+
+                     [ValueObject]
+                     public partial struct FarmId;
+                     
+                     [ValueObject<string>]
+                     public partial struct FarmName;
+
+                     [ValueObject<(FarmId, FarmName, Acres)>]
+                     public partial class Farm  //or (readonly) struct
+                     {
+                         public FarmId Id => Value.Item1;
+                         public FarmName Name => Value.Item2;
+                         public Acres Acres => Value.Item3;
+                     
+                         private static (FarmId, FarmName, Acres) NormalizeInput((FarmId, FarmName, Acres) input)
+                             => input;
+                         private static Validation Validate((FarmId, FarmName, Acres) input)
                              => Validation.Ok;
                      }
                      
