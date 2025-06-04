@@ -393,7 +393,7 @@ public sealed class ProjectBuilder
     // ReSharper disable once UnusedMember.Local
     private static void DumpSource(Compilation outputCompilation)
     {
-        string path = @"e:\temp\vogen-source";
+        string path =Path.Combine(Path.GetTempPath(), "vogen-source");
         
         int i = 0;
         
