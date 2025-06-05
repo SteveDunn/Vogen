@@ -158,4 +158,35 @@ public class EfCoreGenerationTests
                 .WithSource(source)
                 .RunOn(TargetFramework.Net8_0);
     }
+
+    [Fact]
+    public async Task Uses_same_accessibility_as_the_placeholder_class()
+    {
+        var source = """
+                     using System;
+                     using Vogen;
+
+                     namespace Namespace1
+                     {
+                         [ValueObject<int>(conversions: Conversions.EfCoreValueConverter)]
+                         public partial class MyVo1 { }
+                     
+                         [EfCoreConverter<MyVo1>]
+                         public partial class EfCoreConverters { }
+                     }
+
+                     namespace Namespace2
+                     {
+                         [ValueObject<int>(conversions: Conversions.EfCoreValueConverter)]
+                         public partial class MyVo1 { }
+                     
+                         [EfCoreConverter<MyVo1>]
+                         internal partial class EfCoreConverters { }
+                     }
+                     """;
+
+            await new SnapshotRunner<ValueObjectGenerator>()
+                .WithSource(source)
+                .RunOn(TargetFramework.Net8_0);
+    }
 }

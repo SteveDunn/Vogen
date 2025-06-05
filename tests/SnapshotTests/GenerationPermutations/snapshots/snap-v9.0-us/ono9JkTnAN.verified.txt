@@ -763,7 +763,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
         }
     }
 #if NETCOREAPP3_0_OR_GREATER
-            public static class __internal_partial_structConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterdecimalEfCoreExtensions 
+            internal static class __internal_partial_structConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterdecimalEfCoreExtensions 
             {
                 internal static global::Microsoft.EntityFrameworkCore.Metadata.Builders.PropertyBuilder<internal_partial_structConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterdecimal> HasVogenConversion(this global::Microsoft.EntityFrameworkCore.Metadata.Builders.PropertyBuilder<internal_partial_structConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterdecimal> propertyBuilder) =>
                     propertyBuilder.HasConversion<internal_partial_structConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterdecimal.EfCoreValueConverter, internal_partial_structConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterdecimal.EfCoreValueComparer>();

@@ -52,12 +52,17 @@ internal static class GenerateEfCoreTypes
         
         string code = _extensionMethodForOuter;
         
+        var isPublic = markerClassSymbol.DeclaredAccessibility.HasFlag(Accessibility.Public);
+        var accessor = isPublic ? "public" : "internal";
+
+        
         string generatedConverter = $"{markerClassSymbol.FullNamespace()}.{markerClassSymbol.Name}.{voSymbol.Name}EfCoreValueConverter";
         string generatedComparer = $"{markerClassSymbol.FullNamespace()}.{markerClassSymbol.Name}.{voSymbol.Name}EfCoreValueComparer";
 
         code = code.Replace("__CLASS_PREFIX__", voSymbol.Name);
         code = code.Replace("__GENERATED_CONVERTER_NAME__", generatedConverter);
         code = code.Replace("__GENERATED_COMPARER_NAME__", generatedComparer);
+        code = code.Replace("__ACCESSIBILITY_OF_MARKER_CLASS__", accessor);
         code = code.Replace("VOTYPE", voTypeName);
 
         return code;
@@ -65,9 +70,9 @@ internal static class GenerateEfCoreTypes
     
     private const string _extensionMethodForOuter = 
         """
-        public static class __CLASS_PREFIX____Ext 
+        __ACCESSIBILITY_OF_MARKER_CLASS__ static class __CLASS_PREFIX____Ext 
         {
-                public static global::Microsoft.EntityFrameworkCore.Metadata.Builders.PropertyBuilder<VOTYPE> HasVogenConversion(this global::Microsoft.EntityFrameworkCore.Metadata.Builders.PropertyBuilder<VOTYPE> propertyBuilder) =>
+                __ACCESSIBILITY_OF_MARKER_CLASS__ static global::Microsoft.EntityFrameworkCore.Metadata.Builders.PropertyBuilder<VOTYPE> HasVogenConversion(this global::Microsoft.EntityFrameworkCore.Metadata.Builders.PropertyBuilder<VOTYPE> propertyBuilder) =>
                     propertyBuilder.HasConversion<__GENERATED_CONVERTER_NAME__, __GENERATED_COMPARER_NAME__>();
         }
         

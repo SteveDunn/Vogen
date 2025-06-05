@@ -13,7 +13,7 @@ internal static class GenerateEfCoreExtensions
 
         return $$"""
                  #if NETCOREAPP3_0_OR_GREATER
-                             public static class __{{item.VoTypeName}}EfCoreExtensions 
+                             {{accessibility}} static class __{{item.VoTypeName}}EfCoreExtensions 
                              {
                                  {{accessibility}} static global::Microsoft.EntityFrameworkCore.Metadata.Builders.PropertyBuilder<{{item.VoTypeName}}> HasVogenConversion(this global::Microsoft.EntityFrameworkCore.Metadata.Builders.PropertyBuilder<{{item.VoTypeName}}> propertyBuilder) =>
                                      propertyBuilder.HasConversion<{{item.VoTypeName}}.EfCoreValueConverter, {{item.VoTypeName}}.EfCoreValueComparer>();
