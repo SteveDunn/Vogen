@@ -111,9 +111,9 @@ internal partial class VogenEfCoreConverters
         }
 }
 
-public static class HireDate__Ext 
+internal static class HireDate__Ext 
 {
-        public static global::Microsoft.EntityFrameworkCore.Metadata.Builders.PropertyBuilder<Foo.HireDate> HasVogenConversion(this global::Microsoft.EntityFrameworkCore.Metadata.Builders.PropertyBuilder<Foo.HireDate> propertyBuilder) =>
+        internal static global::Microsoft.EntityFrameworkCore.Metadata.Builders.PropertyBuilder<Foo.HireDate> HasVogenConversion(this global::Microsoft.EntityFrameworkCore.Metadata.Builders.PropertyBuilder<Foo.HireDate> propertyBuilder) =>
             propertyBuilder.HasConversion<Foo.VogenEfCoreConverters.HireDateEfCoreValueConverter, Foo.VogenEfCoreConverters.HireDateEfCoreValueComparer>();
 }
 
@@ -188,9 +188,9 @@ internal partial class VogenEfCoreConverters
         }
 }
 
-public static class Name__Ext 
+internal static class Name__Ext 
 {
-        public static global::Microsoft.EntityFrameworkCore.Metadata.Builders.PropertyBuilder<Foo.Name> HasVogenConversion(this global::Microsoft.EntityFrameworkCore.Metadata.Builders.PropertyBuilder<Foo.Name> propertyBuilder) =>
+        internal static global::Microsoft.EntityFrameworkCore.Metadata.Builders.PropertyBuilder<Foo.Name> HasVogenConversion(this global::Microsoft.EntityFrameworkCore.Metadata.Builders.PropertyBuilder<Foo.Name> propertyBuilder) =>
             propertyBuilder.HasConversion<Foo.VogenEfCoreConverters.NameEfCoreValueConverter, Foo.VogenEfCoreConverters.NameEfCoreValueComparer>();
 }
 
@@ -265,9 +265,9 @@ internal partial class VogenEfCoreConverters
         }
 }
 
-public static class Age__Ext 
+internal static class Age__Ext 
 {
-        public static global::Microsoft.EntityFrameworkCore.Metadata.Builders.PropertyBuilder<Foo.Age> HasVogenConversion(this global::Microsoft.EntityFrameworkCore.Metadata.Builders.PropertyBuilder<Foo.Age> propertyBuilder) =>
+        internal static global::Microsoft.EntityFrameworkCore.Metadata.Builders.PropertyBuilder<Foo.Age> HasVogenConversion(this global::Microsoft.EntityFrameworkCore.Metadata.Builders.PropertyBuilder<Foo.Age> propertyBuilder) =>
             propertyBuilder.HasConversion<Foo.VogenEfCoreConverters.AgeEfCoreValueConverter, Foo.VogenEfCoreConverters.AgeEfCoreValueComparer>();
 }
 
