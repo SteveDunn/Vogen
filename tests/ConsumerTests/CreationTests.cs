@@ -65,6 +65,22 @@ namespace ConsumerTests
         }
 
         [Fact]
+        public void Creation_Unhappy_Path_MyString_No_Validation_method()
+        {
+            Action action = () => MyStringNoValidation.From(null!);
+
+            action.Should().Throw<ValueObjectValidationException>().WithMessage("Cannot create a value object with null.");
+        }
+
+        [Fact]
+        public void Creation_Unhappy_Path_MyStringStruct_No_Validation_method()
+        {
+            Action action = () => MyStringStructNoValidation.From(null!);
+
+            action.Should().Throw<ValueObjectValidationException>().WithMessage("Cannot create a value object with null.");
+        }
+
+        [Fact]
         public void Creation_Unhappy_Path_MyInt()
         {
             Action action = () => MyInt.From(-1);

@@ -9,14 +9,14 @@ public class ClassGenerator : IGenerateValueObjectSourceCode
     {
         var item = parameters.WorkItem;
         var tds = parameters.WorkItem.TypeToAugment;
-        SyntaxToken className = tds.Identifier;
+        
+        SyntaxToken wrapperName = tds.Identifier;
 
         string itemUnderlyingType = item.UnderlyingTypeFullName;
 
         string wrapperQ = item.Nullable.QuestionMarkForWrapper;
-        string underlyingQ = item.Nullable.QuestionMarkForUnderlying;
+        string underlyingNullAnnotation = item.Nullable.QuestionMarkForUnderlying;
         string underlyingBang = item.Nullable.BangForUnderlying;
-        string wrapperBang = item.Nullable.BangForWrapper;
         
         string readonlyForValueAndIsInitialized = Util.GetModifiersForValueAndIsInitializedFields(parameters.WorkItem); 
 
@@ -24,16 +24,15 @@ public class ClassGenerator : IGenerateValueObjectSourceCode
 
         return item.Nullable.WrapBlock(code);
     
-    
     string GenerateCode() => $@"
 
 {Util.WriteStartNamespace(item.FullNamespace)}
     [global::System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage] 
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute(""{Util.GenerateYourAssemblyName()}"", ""{Util.GenerateYourAssemblyVersion()}"")]
     {Util.GenerateAnyConversionAttributes(tds, item)}
-    {DebugGeneration.GenerateDebugAttributes(item, className, itemUnderlyingType)}
-    {Util.GenerateModifiersFor(tds)} class {className} : 
-        global::System.IEquatable<{className}>
+    {DebugGeneration.GenerateDebugAttributes(item, wrapperName, itemUnderlyingType)}
+    {Util.GenerateModifiersFor(tds)} class {wrapperName} : 
+        global::System.IEquatable<{wrapperName}>
         {GenerateCodeForEqualsMethodsAndOperators.GenerateInterfaceDefinitionsIfNeeded(", ", item)}
         {GenerateCodeForComparables.GenerateInterfaceDefinitionsIfNeeded(", ", item)}
         {GenerateCodeForIParsableInterfaceDeclarations.GenerateIfNeeded(", ", item)}
@@ -42,16 +41,18 @@ public class ClassGenerator : IGenerateValueObjectSourceCode
         {GenerateCodeForXmlSerializable.GenerateInterfaceDefinitionIfNeeded(", ", item)}
     {{
         {DebugGeneration.GenerateStackTraceFieldIfNeeded(item)}
+
 #if !VOGEN_NO_VALIDATION
         private {readonlyForValueAndIsInitialized} global::System.Boolean _isInitialized;
 #endif
-        private {readonlyForValueAndIsInitialized} {itemUnderlyingType}{underlyingQ} _value;
+        
+        private {readonlyForValueAndIsInitialized} {itemUnderlyingType}{underlyingNullAnnotation} _value;
         
         {Util.GenerateCommentForValueProperty(item)}
         public {itemUnderlyingType} Value
         {{
-            [global::System.Runtime.CompilerServices.MethodImpl(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
             [global::System.Diagnostics.DebuggerStepThroughAttribute]
+            [global::System.Runtime.CompilerServices.MethodImpl(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
             get
             {{
                 EnsureInitialized();
@@ -62,19 +63,20 @@ public class ClassGenerator : IGenerateValueObjectSourceCode
 {GenerateCodeForStaticConstructors.GenerateIfNeeded(item)}
         [global::System.Diagnostics.DebuggerStepThroughAttribute]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
-        public {className}()
+        public {wrapperName}()
         {{
 #if DEBUG
             {DebugGeneration.SetStackTraceIfNeeded(item)}
 #endif
+
 #if !VOGEN_NO_VALIDATION
             _isInitialized = false;
 #endif
-            _value = default{wrapperBang};
+            _value = default{underlyingBang};
         }}
 
         [global::System.Diagnostics.DebuggerStepThroughAttribute]
-        private {className}({itemUnderlyingType} value)
+        private {wrapperName}({itemUnderlyingType} value)
         {{
             _value = value;
 #if !VOGEN_NO_VALIDATION
@@ -88,7 +90,7 @@ public class ClassGenerator : IGenerateValueObjectSourceCode
         /// <param name=""value"">The underlying type.</param>
         /// <returns>An instance of this type.</returns>
         [global::System.Runtime.CompilerServices.MethodImpl(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
-        public static {className} From({itemUnderlyingType} value)
+        public static {wrapperName} From({itemUnderlyingType} value)
         {{
             {GenerateNullCheckAndThrowIfNeeded(item)}
 
@@ -96,10 +98,10 @@ public class ClassGenerator : IGenerateValueObjectSourceCode
 
             {GenerateCodeForCallingValidation.CallAndThrowIfRequired(item)}
 
-            return new {className}(value);
+            return new {wrapperName}(value);
         }}
 
-        {GenerateCodeForTryFrom.GenerateForAClass(item, className, itemUnderlyingType)}
+        {GenerateCodeForTryFrom.GenerateForAClass(item, wrapperName, itemUnderlyingType)}
 
         {Util.GenerateIsInitializedMethod(false, item)}
 
@@ -109,7 +111,7 @@ public class ClassGenerator : IGenerateValueObjectSourceCode
 
         // only called internally when something has been deserialized into
         // its primitive type.
-        private static {className} __Deserialize({itemUnderlyingType} value)
+        private static {wrapperName} __Deserialize({itemUnderlyingType} value)
         {{
             {GenerateNullCheckAndThrowIfNeeded(item)}
 
@@ -119,13 +121,13 @@ public class ClassGenerator : IGenerateValueObjectSourceCode
 
             {GenerateCodeForCallingValidation.CallWhenDeserializingAndCheckStrictnessFlag(item)}
 
-            return new {className}(value);
+            return new {wrapperName}(value);
         }}
         {GenerateCodeForEqualsMethodsAndOperators.GenerateEqualsMethodsForAClass(item, tds)}
 
-        public static global::System.Boolean operator ==({className}{wrapperQ} left, {className}{wrapperQ} right) => Equals(left, right);
-        public static global::System.Boolean operator !=({className}{wrapperQ} left, {className}{wrapperQ} right) => !Equals(left, right);
-        {GenerateCodeForEqualsMethodsAndOperators.GenerateEqualsOperatorsForPrimitivesIfNeeded(itemUnderlyingType, className, item)}
+        public static global::System.Boolean operator ==({wrapperName}{wrapperQ} left, {wrapperName}{wrapperQ} right) => Equals(left, right);
+        public static global::System.Boolean operator !=({wrapperName}{wrapperQ} left, {wrapperName}{wrapperQ} right) => !Equals(left, right);
+        {GenerateCodeForEqualsMethodsAndOperators.GenerateEqualsOperatorsForPrimitivesIfNeeded(itemUnderlyingType, wrapperName, item)}
 
         {GenerateCodeForCastingOperators.GenerateImplementations(parameters,tds)}{Util.GenerateGuidFactoryMethodIfNeeded(item)}
         {GenerateCodeForComparables.GenerateIComparableImplementationIfNeeded(item, tds)}
@@ -136,11 +138,11 @@ public class ClassGenerator : IGenerateValueObjectSourceCode
 
         {GenerateCodeForHashCodes.GenerateGetHashCodeForAClass(item)}
 
+        {GenerateCodeForToString.GenerateForAClass(parameters)}
+
         {Util.GenerateEnsureInitializedMethod(item, readOnly: false)}
 
         {InstanceGeneration.GenerateAnyInstances(tds, item)}
-
-        {GenerateCodeForToString.GenerateForAClass(parameters)}
 
         {Util.GenerateAnyConversionBodies(tds, item)}
 
@@ -150,9 +152,9 @@ public class ClassGenerator : IGenerateValueObjectSourceCode
 
         {Util.GenerateThrowHelper(item)}
     }}
+
 {GenerateEfCoreExtensions.GenerateInnerIfNeeded(item)}
-{Util.WriteCloseNamespace(item.FullNamespace)}
-";
+{Util.WriteCloseNamespace(item.FullNamespace)}";
     }
 
     private static string GenerateNullCheckAndThrowIfNeeded(VoWorkItem voWorkItem) =>
@@ -161,7 +163,6 @@ public class ClassGenerator : IGenerateValueObjectSourceCode
                   if (value is null)
                   {
                       ThrowHelper.ThrowWhenCreatedWithNull();
-                      return default!;
                   }
 
               """;
