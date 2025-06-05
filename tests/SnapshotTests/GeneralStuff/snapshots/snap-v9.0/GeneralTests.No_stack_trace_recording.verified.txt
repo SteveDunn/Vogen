@@ -74,8 +74,8 @@ namespace Whatever
         /// </summary>
         public readonly System.String Value
         {
-            [global::System.Runtime.CompilerServices.MethodImpl(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
             [global::System.Diagnostics.DebuggerStepThroughAttribute]
+            [global::System.Runtime.CompilerServices.MethodImpl(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
             get
             {
                 EnsureInitialized();
@@ -88,7 +88,6 @@ namespace Whatever
                 if (value is null)
                 {
                     ThrowHelper.ThrowWhenCreatedWithNull();
-                    return;
                 }
 
                 _value = value;
@@ -125,6 +124,12 @@ namespace Whatever
         [global::System.Runtime.CompilerServices.MethodImpl(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
         public static CustomerId From(System.String value)
         {
+            if (value is null)
+            {
+                ThrowHelper.ThrowWhenCreatedWithNull();
+                return default !;
+            }
+
             return new CustomerId(value);
         }
 
@@ -192,6 +197,12 @@ namespace Whatever
         // its primitive type.
         private static CustomerId __Deserialize(System.String value)
         {
+            if (value is null)
+            {
+                ThrowHelper.ThrowWhenCreatedWithNull();
+                return default !;
+            }
+
             return new CustomerId(value);
         }
 
@@ -277,6 +288,11 @@ namespace Whatever
             return global::System.Collections.Generic.EqualityComparer<System.String>.Default.GetHashCode(Value);
         }
 
+        // record enumerates fields - we just want our Value and to throw if it's not initialized.
+        /// <inheritdoc cref = "System.String.ToString()"/>
+        public override global::System.String ToString() => IsInitialized() ? Value.ToString() ?? "" : "[UNINITIALIZED]";
+        /// <inheritdoc cref = "System.String.ToString(System.IFormatProvider? )"/>
+        public global::System.String ToString(global::System.IFormatProvider provider) => IsInitialized() ? Value.ToString(provider) ?? "" : "[UNINITIALIZED]";
         [global::System.Runtime.CompilerServices.MethodImpl(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
         private readonly void EnsureInitialized()
         {
@@ -290,11 +306,6 @@ namespace Whatever
             }
         }
 
-        // record enumerates fields - we just want our Value and to throw if it's not initialized.
-        /// <inheritdoc cref = "System.String.ToString()"/>
-        public override global::System.String ToString() => IsInitialized() ? Value.ToString() ?? "" : "[UNINITIALIZED]";
-        /// <inheritdoc cref = "System.String.ToString(System.IFormatProvider? )"/>
-        public global::System.String ToString(global::System.IFormatProvider provider) => IsInitialized() ? Value.ToString(provider) ?? "" : "[UNINITIALIZED]";
 #nullable disable
         /// <summary>
         /// Converts a CustomerId to or from JSON.

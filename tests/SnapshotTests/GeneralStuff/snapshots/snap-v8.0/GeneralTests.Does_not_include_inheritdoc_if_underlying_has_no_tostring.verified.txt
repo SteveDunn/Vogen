@@ -115,6 +115,12 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
     [global::System.Runtime.CompilerServices.MethodImpl(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
     public static Vo From(D value)
     {
+        if (value is null)
+        {
+            ThrowHelper.ThrowWhenCreatedWithNull();
+            return default !;
+        }
+
         return new Vo(value);
     }
 
@@ -182,6 +188,12 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
     // its primitive type.
     private static Vo __Deserialize(D value)
     {
+        if (value is null)
+        {
+            ThrowHelper.ThrowWhenCreatedWithNull();
+            return default !;
+        }
+
         return new Vo(value);
     }
 

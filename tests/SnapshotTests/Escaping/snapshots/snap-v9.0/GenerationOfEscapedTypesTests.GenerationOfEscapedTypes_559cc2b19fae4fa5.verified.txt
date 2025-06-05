@@ -71,8 +71,8 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
         /// </summary>
         public System.String Value
         {
-            [global::System.Runtime.CompilerServices.MethodImpl(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
             [global::System.Diagnostics.DebuggerStepThroughAttribute]
+            [global::System.Runtime.CompilerServices.MethodImpl(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
             get
             {
                 EnsureInitialized();
@@ -84,7 +84,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
             {
                 if (value is null)
                 {
-                    throw new global::Vogen.ValueObjectValidationException("Cannot create a value object with null.");
+                    ThrowHelper.ThrowWhenCreatedWithNull();
                 }
 
                 _value = value;
@@ -123,7 +123,8 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
         {
             if (value is null)
             {
-                throw new global::Vogen.ValueObjectValidationException("Cannot create a value object with null.");
+                ThrowHelper.ThrowWhenCreatedWithNull();
+                return default !;
             }
 
             return new escapedTestspublic_sealed_partial_record_classConversions_Nonestring(value);
@@ -193,7 +194,8 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
         {
             if (value is null)
             {
-                throw new global::Vogen.ValueObjectValidationException("Cannot create a value object with null.");
+                ThrowHelper.ThrowWhenCreatedWithNull();
+                return default !;
             }
 
             return new escapedTestspublic_sealed_partial_record_classConversions_Nonestring(value);
@@ -305,6 +307,11 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
             }
         }
 
+        // record enumerates fields - we just want our Value and to throw if it's not initialized.
+        /// <inheritdoc cref = "System.String.ToString()"/>
+        public override global::System.String ToString() => IsInitialized() ? Value.ToString() ?? "" : "[UNINITIALIZED]";
+        /// <inheritdoc cref = "System.String.ToString(System.IFormatProvider? )"/>
+        public global::System.String ToString(global::System.IFormatProvider provider) => IsInitialized() ? Value.ToString(provider) ?? "" : "[UNINITIALIZED]";
         [global::System.Runtime.CompilerServices.MethodImpl(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
         private void EnsureInitialized()
         {
@@ -318,11 +325,6 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
             }
         }
 
-        // record enumerates fields - we just want our Value and to throw if it's not initialized.
-        /// <inheritdoc cref = "System.String.ToString()"/>
-        public override global::System.String ToString() => IsInitialized() ? Value.ToString() ?? "" : "[UNINITIALIZED]";
-        /// <inheritdoc cref = "System.String.ToString(System.IFormatProvider? )"/>
-        public global::System.String ToString(global::System.IFormatProvider provider) => IsInitialized() ? Value.ToString(provider) ?? "" : "[UNINITIALIZED]";
         internal sealed class escapedTestspublic_sealed_partial_record_classConversions_NonestringDebugView
         {
             private readonly escapedTestspublic_sealed_partial_record_classConversions_Nonestring _t;

@@ -75,8 +75,8 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
     /// </summary>
     public readonly System.String Value
     {
-        [global::System.Runtime.CompilerServices.MethodImpl(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
         [global::System.Diagnostics.DebuggerStepThroughAttribute]
+        [global::System.Runtime.CompilerServices.MethodImpl(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
         get
         {
             EnsureInitialized();
@@ -89,7 +89,6 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
             if (value is null)
             {
                 ThrowHelper.ThrowWhenCreatedWithNull();
-                return;
             }
 
             _value = value;
@@ -126,6 +125,12 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
     [global::System.Runtime.CompilerServices.MethodImpl(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
     public static BugFix516Vo From(System.String value)
     {
+        if (value is null)
+        {
+            ThrowHelper.ThrowWhenCreatedWithNull();
+            return default !;
+        }
+
         return new BugFix516Vo(value);
     }
 
@@ -193,6 +198,12 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
     // its primitive type.
     private static BugFix516Vo __Deserialize(System.String value)
     {
+        if (value is null)
+        {
+            ThrowHelper.ThrowWhenCreatedWithNull();
+            return default !;
+        }
+
         return new BugFix516Vo(value);
     }
 
@@ -264,6 +275,11 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
 
 #nullable disable
 #nullable restore
+    // record enumerates fields - we just want our Value and to throw if it's not initialized.
+    /// <inheritdoc cref = "System.String.ToString()"/>
+    public override global::System.String ToString() => IsInitialized() ? Value.ToString() ?? "" : "[UNINITIALIZED]";
+    /// <inheritdoc cref = "System.String.ToString(System.IFormatProvider? )"/>
+    public global::System.String ToString(global::System.IFormatProvider provider) => IsInitialized() ? Value.ToString(provider) ?? "" : "[UNINITIALIZED]";
     [global::System.Runtime.CompilerServices.MethodImpl(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
     private readonly void EnsureInitialized()
     {
@@ -277,11 +293,6 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
         }
     }
 
-    // record enumerates fields - we just want our Value and to throw if it's not initialized.
-    /// <inheritdoc cref = "System.String.ToString()"/>
-    public override global::System.String ToString() => IsInitialized() ? Value.ToString() ?? "" : "[UNINITIALIZED]";
-    /// <inheritdoc cref = "System.String.ToString(System.IFormatProvider? )"/>
-    public global::System.String ToString(global::System.IFormatProvider provider) => IsInitialized() ? Value.ToString(provider) ?? "" : "[UNINITIALIZED]";
 #nullable disable
     /// <summary>
     /// Converts a BugFix516Vo to or from JSON.
