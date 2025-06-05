@@ -36,5 +36,10 @@ public enum Customizations
     /// <summary>
     /// Generate ToDump for LinqPad
     /// </summary>
-    GenerateLinqPadToDump = 1 << 2
+    GenerateLinqPadToDump = 1 << 2,
+    
+    /// <summary>
+    /// Generate ToDump for LinqPad
+    /// </summary>
+    AllowSerializingUninitializedNewtonSoft = 1 << 3
 }
