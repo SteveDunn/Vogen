@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
@@ -27,7 +28,20 @@ public class VoWorkItem
         {
             _underlyingType = value;
             _underlyingTypeFullName = value.EscapedFullName();
-            IsUnderlyingAString = typeof(string).IsAssignableFrom(Type.GetType(_underlyingTypeFullName));
+            IsUnderlyingAString = SeeIfAssignableFromString();
+        }
+    }
+
+    private bool SeeIfAssignableFromString()
+    {
+        // for issue: https://github.com/dotnet/runtime/issues/113534
+        try
+        {
+            return typeof(string).IsAssignableFrom(Type.GetType(_underlyingTypeFullName));
+        }
+        catch (FileLoadException)
+        {
+            return false;
         }
     }
 
