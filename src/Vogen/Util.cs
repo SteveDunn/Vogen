@@ -302,8 +302,11 @@ internal static class Util
             genericsOptions: SymbolDisplayGenericsOptions.IncludeTypeParameters,
             miscellaneousOptions:
                 SymbolDisplayMiscellaneousOptions.EscapeKeywordIdentifiers |
-                SymbolDisplayMiscellaneousOptions.UseSpecialTypes |
-                SymbolDisplayMiscellaneousOptions.ExpandValueTuple);
+                SymbolDisplayMiscellaneousOptions.UseSpecialTypes
+#if ROSLYN_4_6_OR_GREATER
+                | SymbolDisplayMiscellaneousOptions.ExpandValueTuple
+#endif
+            );
     
     public static string GenerateCommentForValueProperty(VoWorkItem item) =>
         $"""
