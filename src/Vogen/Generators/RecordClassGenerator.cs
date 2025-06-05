@@ -60,7 +60,7 @@ public class RecordClassGenerator : IGenerateValueObjectSourceCode
             [global::System.Diagnostics.DebuggerStepThroughAttribute]
             init
             {{
-                {GenerateNullCheckAndThrowIfNeeded(item)}
+                {Util.GenerateNullCheckAndThrowIfNeeded(item)}
 
                 {Util.GenerateCallToNormalizeMethodIfNeeded(item)}
 
@@ -102,7 +102,7 @@ public class RecordClassGenerator : IGenerateValueObjectSourceCode
         [global::System.Runtime.CompilerServices.MethodImpl(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
         public static {wrapperName} From({itemUnderlyingType} value)
         {{
-            {GenerateNullCheckAndThrowIfNeeded(item)}
+            {Util.GenerateNullCheckAndThrowIfNeeded(item, generateReturnDefault: true)}
 
             {Util.GenerateCallToNormalizeMethodIfNeeded(item)}
 
@@ -122,7 +122,7 @@ public class RecordClassGenerator : IGenerateValueObjectSourceCode
         // its primitive type.
         private static {wrapperName} __Deserialize({itemUnderlyingType} value)
         {{
-            {GenerateNullCheckAndThrowIfNeeded(item)}
+            {Util.GenerateNullCheckAndThrowIfNeeded(item, generateReturnDefault: true)}
 
             {Util.GenerateCallToNormalizeMethodIfNeeded(item)}
 
@@ -163,14 +163,4 @@ public class RecordClassGenerator : IGenerateValueObjectSourceCode
 {GenerateEfCoreExtensions.GenerateInnerIfNeeded(item)}
 {Util.WriteCloseNamespace(item.FullNamespace)}";
     }
-
-    private static string GenerateNullCheckAndThrowIfNeeded(VoWorkItem voWorkItem) =>
-        voWorkItem.IsTheUnderlyingAValueType ? string.Empty
-            : $$"""
-                    if (value is null)
-                    {
-                        ThrowHelper.ThrowWhenCreatedWithNull();
-                    }
-
-                """;
 }
