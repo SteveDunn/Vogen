@@ -1,4 +1,5 @@
-﻿using Vogen.Generators.Conversions;
+﻿using Microsoft.CodeAnalysis;
+using Vogen.Generators.Conversions;
 
 namespace Vogen.Generators;
 
@@ -9,12 +10,12 @@ public class RecordStructGenerator : IGenerateValueObjectSourceCode
         var item = parameters.WorkItem;
         var tds = parameters.WorkItem.TypeToAugment;
 
-        var wrapperName = tds.Identifier;
+        SyntaxToken wrapperName = tds.Identifier;
 
-        var itemUnderlyingType = item.UnderlyingTypeFullName;
+        string itemUnderlyingType = item.UnderlyingTypeFullName;
 
-        string qmForUnderlying = item.Nullable.QuestionMarkForUnderlying;
-        string bangForUnderlying = item.Nullable.BangForUnderlying;
+        string underlyingNullAnnotation = item.Nullable.QuestionMarkForUnderlying;
+        string underlyingBang = item.Nullable.BangForUnderlying;
         
         string readonlyForValueAndIsInitialized = Util.GetModifiersForValueAndIsInitializedFields(parameters.WorkItem); 
 
@@ -44,22 +45,22 @@ public class RecordStructGenerator : IGenerateValueObjectSourceCode
         private {readonlyForValueAndIsInitialized} global::System.Boolean _isInitialized;
 #endif
         
-        private {readonlyForValueAndIsInitialized} {itemUnderlyingType}{qmForUnderlying} _value;
+        private {readonlyForValueAndIsInitialized} {itemUnderlyingType}{underlyingNullAnnotation} _value;
 
         {Util.GenerateCommentForValueProperty(item)}
         public readonly {itemUnderlyingType} Value
         {{
-            [global::System.Runtime.CompilerServices.MethodImpl(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
             [global::System.Diagnostics.DebuggerStepThroughAttribute]
+            [global::System.Runtime.CompilerServices.MethodImpl(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
             get
             {{
                 EnsureInitialized();
-                return _value{bangForUnderlying};
+                return _value{underlyingBang};
             }}
             [global::System.Diagnostics.DebuggerStepThroughAttribute]
             init
             {{
-                {GenerateNullCheckIfNeeded(item)}
+                {Util.GenerateNullCheckAndThrowIfNeeded(item)}
 
                 {Util.GenerateCallToNormalizeMethodIfNeeded(item)}
 
@@ -101,6 +102,8 @@ public class RecordStructGenerator : IGenerateValueObjectSourceCode
         [global::System.Runtime.CompilerServices.MethodImpl(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
         public static {wrapperName} From({itemUnderlyingType} value)
         {{
+            {Util.GenerateNullCheckAndThrowIfNeeded(item, generateReturnDefault: true)}
+
             {Util.GenerateCallToNormalizeMethodIfNeeded(item)}
 
             {GenerateCodeForCallingValidation.CallAndThrowIfRequired(item)}
@@ -110,16 +113,19 @@ public class RecordStructGenerator : IGenerateValueObjectSourceCode
 
         {GenerateCodeForTryFrom.GenerateForAStruct(item, wrapperName, itemUnderlyingType)}
 
-{Util.GenerateIsInitializedMethod(true, item)}
+{Util.GenerateIsInitializedMethod(@readonly: true, item)}
 
 {Util.GenerateLinqPadDump(item)}
 
 {GenerateCodeForStringComparers.GenerateIfNeeded(item, tds)}        
+
 {GenerateCodeForCastingOperators.GenerateImplementations(parameters,tds)}{Util.GenerateGuidFactoryMethodIfNeeded(item)}
         // only called internally when something has been deserialized into
         // its primitive type.
         private static {wrapperName} __Deserialize({itemUnderlyingType} value)
         {{
+            {Util.GenerateNullCheckAndThrowIfNeeded(item, generateReturnDefault: true)}
+
             {Util.GenerateCallToNormalizeMethodIfNeeded(item)}
 
             {Util.GenerateChecksForKnownInstancesIfRequired(item)}
@@ -129,7 +135,8 @@ public class RecordStructGenerator : IGenerateValueObjectSourceCode
             return new {wrapperName}(value);
         }}
         {GenerateCodeForEqualsMethodsAndOperators.GenerateEqualsMethodsForAStruct(item, tds)}
-{GenerateCodeForEqualsMethodsAndOperators.GenerateEqualsOperatorsForPrimitivesIfNeeded(itemUnderlyingType, wrapperName, item)}
+
+        {GenerateCodeForEqualsMethodsAndOperators.GenerateEqualsOperatorsForPrimitivesIfNeeded(itemUnderlyingType, wrapperName, item)}
 
         {GenerateCodeForComparables.GenerateIComparableImplementationIfNeeded(item, tds)}
 
@@ -139,13 +146,13 @@ public class RecordStructGenerator : IGenerateValueObjectSourceCode
 
         {GenerateCodeForHashCodes.GenerateForAStruct(item)}
 
-        {Util.GenerateEnsureInitializedMethod(item, readOnly: true)}
-
         // record enumerates fields - we just want our Value and to throw if it's not initialized.
         {GenerateCodeForToString.GenerateForAStruct(parameters)}
 
+        {Util.GenerateEnsureInitializedMethod(item, readOnly: true)}
+
         {InstanceGeneration.GenerateAnyInstances(tds, item)}
- 
+
         {Util.GenerateAnyConversionBodies(tds, item)}
 
         {GenerateCodeForXmlSerializable.GenerateBodyIfNeeded(parameters)}
@@ -154,18 +161,8 @@ public class RecordStructGenerator : IGenerateValueObjectSourceCode
 
         {Util.GenerateThrowHelper(item)}
 }}
+
 {GenerateEfCoreExtensions.GenerateInnerIfNeeded(item)}
 {Util.WriteCloseNamespace(item.FullNamespace)}";
     }
-
-    private static string GenerateNullCheckIfNeeded(VoWorkItem voWorkItem) =>
-        voWorkItem.IsTheUnderlyingAValueType ? string.Empty
-            : $$"""
-                    if (value is null)
-                    {
-                        ThrowHelper.ThrowWhenCreatedWithNull();
-                        return;
-                    }
-
-                """;
 }

@@ -77,8 +77,8 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
         /// </summary>
         public readonly System.Int32 Value
         {
-            [global::System.Runtime.CompilerServices.MethodImpl(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
             [global::System.Diagnostics.DebuggerStepThroughAttribute]
+            [global::System.Runtime.CompilerServices.MethodImpl(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
             get
             {
                 EnsureInitialized();
@@ -323,6 +323,13 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
             return global::System.Collections.Generic.EqualityComparer<System.Int32>.Default.GetHashCode(Value);
         }
 
+        // record enumerates fields - we just want our Value and to throw if it's not initialized.
+        /// <inheritdoc cref = "System.Int32.ToString()"/>
+        public override global::System.String ToString() => IsInitialized() ? Value.ToString() ?? "" : "[UNINITIALIZED]";
+        /// <inheritdoc cref = "System.Int32.ToString(string)"/>
+        public global::System.String ToString(string format) => IsInitialized() ? Value.ToString(format) ?? "" : "[UNINITIALIZED]";
+        /// <inheritdoc cref = "System.Int32.ToString(System.IFormatProvider)"/>
+        public global::System.String ToString(global::System.IFormatProvider provider) => IsInitialized() ? Value.ToString(provider) ?? "" : "[UNINITIALIZED]";
         [global::System.Runtime.CompilerServices.MethodImpl(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
         private readonly void EnsureInitialized()
         {
@@ -336,13 +343,6 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
             }
         }
 
-        // record enumerates fields - we just want our Value and to throw if it's not initialized.
-        /// <inheritdoc cref = "System.Int32.ToString()"/>
-        public override global::System.String ToString() => IsInitialized() ? Value.ToString() ?? "" : "[UNINITIALIZED]";
-        /// <inheritdoc cref = "System.Int32.ToString(string)"/>
-        public global::System.String ToString(string format) => IsInitialized() ? Value.ToString(format) ?? "" : "[UNINITIALIZED]";
-        /// <inheritdoc cref = "System.Int32.ToString(System.IFormatProvider)"/>
-        public global::System.String ToString(global::System.IFormatProvider provider) => IsInitialized() ? Value.ToString(provider) ?? "" : "[UNINITIALIZED]";
 #nullable disable
         /// <summary>
         /// Converts a _casting_public_readonly_partial_record_structNoneNoneint to or from JSON.

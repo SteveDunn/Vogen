@@ -190,8 +190,8 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
         /// </summary>
         public readonly @class.@record.@struct.@float.@event Value
         {
-            [global::System.Runtime.CompilerServices.MethodImpl(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
             [global::System.Diagnostics.DebuggerStepThroughAttribute]
+            [global::System.Runtime.CompilerServices.MethodImpl(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
             get
             {
                 EnsureInitialized();
@@ -324,6 +324,9 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
             return global::System.Collections.Generic.EqualityComparer<@class.@record.@struct.@float.@event>.Default.GetHashCode(Value);
         }
 
+        // record enumerates fields - we just want our Value and to throw if it's not initialized.
+        /// <inheritdoc cref = "@class.@record.@struct.@float.@event.ToString()"/>
+        public override global::System.String ToString() => IsInitialized() ? Value.ToString() ?? "" : "[UNINITIALIZED]";
         [global::System.Runtime.CompilerServices.MethodImpl(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
         private readonly void EnsureInitialized()
         {
@@ -337,9 +340,6 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
             }
         }
 
-        // record enumerates fields - we just want our Value and to throw if it's not initialized.
-        /// <inheritdoc cref = "@class.@record.@struct.@float.@event.ToString()"/>
-        public override global::System.String ToString() => IsInitialized() ? Value.ToString() ?? "" : "[UNINITIALIZED]";
 #nullable disable
         internal sealed class escapedTestspublic_readonly_partial_record_structConversions_Nonerecord__struct__float__eventDebugView
         {

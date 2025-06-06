@@ -816,6 +816,12 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
         [global::System.Runtime.CompilerServices.MethodImpl(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
         public static FarmName From(System.String value)
         {
+            if (value is null)
+            {
+                ThrowHelper.ThrowWhenCreatedWithNull();
+                return default !;
+            }
+
             return new FarmName(value);
         }
 
@@ -883,6 +889,12 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
         // its primitive type.
         private static FarmName __Deserialize(System.String value)
         {
+            if (value is null)
+            {
+                ThrowHelper.ThrowWhenCreatedWithNull();
+                return default !;
+            }
+
             return new FarmName(value);
         }
 
@@ -1193,8 +1205,8 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
         /// </summary>
         public System.ValueTuple<MyApp.FarmId, MyApp.FarmName> Value
         {
-            [global::System.Runtime.CompilerServices.MethodImpl(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
             [global::System.Diagnostics.DebuggerStepThroughAttribute]
+            [global::System.Runtime.CompilerServices.MethodImpl(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
             get
             {
                 EnsureInitialized();
@@ -1390,6 +1402,8 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
             }
         }
 
+        /// <inheritdoc cref = "global::System.ValueTuple{T1, T2}.ToString()"/>
+        public override global::System.String ToString() => IsInitialized() ? Value.ToString() ?? "" : "[UNINITIALIZED]";
         [global::System.Runtime.CompilerServices.MethodImpl(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
         private void EnsureInitialized()
         {
@@ -1403,8 +1417,6 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
             }
         }
 
-        /// <inheritdoc cref = "global::System.ValueTuple{T1, T2}.ToString()"/>
-        public override global::System.String ToString() => IsInitialized() ? Value.ToString() ?? "" : "[UNINITIALIZED]";
 #nullable disable
         /// <summary>
         /// Converts a Farm to or from JSON.

@@ -117,6 +117,12 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
         [global::System.Runtime.CompilerServices.MethodImpl(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
         public static _casting_public_partial_structExplicitImplicitstring From(System.String value)
         {
+            if (value is null)
+            {
+                ThrowHelper.ThrowWhenCreatedWithNull();
+                return default !;
+            }
+
             return new _casting_public_partial_structExplicitImplicitstring(value);
         }
 
@@ -184,6 +190,12 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
         // its primitive type.
         private static _casting_public_partial_structExplicitImplicitstring __Deserialize(System.String value)
         {
+            if (value is null)
+            {
+                ThrowHelper.ThrowWhenCreatedWithNull();
+                return default !;
+            }
+
             return new _casting_public_partial_structExplicitImplicitstring(value);
         }
 

@@ -230,6 +230,12 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
         [global::System.Runtime.CompilerServices.MethodImpl(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
         public static escapedTestspublic_partial_structConversions_Nonestring From(System.String value)
         {
+            if (value is null)
+            {
+                ThrowHelper.ThrowWhenCreatedWithNull();
+                return default !;
+            }
+
             return new escapedTestspublic_partial_structConversions_Nonestring(value);
         }
 
@@ -297,6 +303,12 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
         // its primitive type.
         private static escapedTestspublic_partial_structConversions_Nonestring __Deserialize(System.String value)
         {
+            if (value is null)
+            {
+                ThrowHelper.ThrowWhenCreatedWithNull();
+                return default !;
+            }
+
             return new escapedTestspublic_partial_structConversions_Nonestring(value);
         }
 

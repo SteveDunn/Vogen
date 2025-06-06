@@ -191,8 +191,8 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
         /// </summary>
         public readonly System.Guid Value
         {
-            [global::System.Runtime.CompilerServices.MethodImpl(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
             [global::System.Diagnostics.DebuggerStepThroughAttribute]
+            [global::System.Runtime.CompilerServices.MethodImpl(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
             get
             {
                 EnsureInitialized();
@@ -496,6 +496,11 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
             return global::System.Collections.Generic.EqualityComparer<System.Guid>.Default.GetHashCode(Value);
         }
 
+        // record enumerates fields - we just want our Value and to throw if it's not initialized.
+        /// <inheritdoc cref = "System.Guid.ToString()"/>
+        public override global::System.String ToString() => IsInitialized() ? Value.ToString() ?? "" : "[UNINITIALIZED]";
+        /// <inheritdoc cref = "System.Guid.ToString(string? )"/>
+        public global::System.String ToString([System.Diagnostics.CodeAnalysis.StringSyntaxAttribute("GuidFormat")] string format) => IsInitialized() ? Value.ToString(format) ?? "" : "[UNINITIALIZED]";
         [global::System.Runtime.CompilerServices.MethodImpl(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
         private readonly void EnsureInitialized()
         {
@@ -509,11 +514,6 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
             }
         }
 
-        // record enumerates fields - we just want our Value and to throw if it's not initialized.
-        /// <inheritdoc cref = "System.Guid.ToString()"/>
-        public override global::System.String ToString() => IsInitialized() ? Value.ToString() ?? "" : "[UNINITIALIZED]";
-        /// <inheritdoc cref = "System.Guid.ToString(string? )"/>
-        public global::System.String ToString([System.Diagnostics.CodeAnalysis.StringSyntaxAttribute("GuidFormat")] string format) => IsInitialized() ? Value.ToString(format) ?? "" : "[UNINITIALIZED]";
 #nullable disable
         class escapedTestspublic_readonly_partial_record_structConversions_NewtonsoftJsonSystem_GuidNewtonsoftJsonConverter : Newtonsoft.Json.JsonConverter
         {

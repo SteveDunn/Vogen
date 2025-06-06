@@ -114,8 +114,8 @@ private readonly global::System.Diagnostics.StackTrace? _stackTrace = null!;
         /// </summary>
         public MyNamespace.C Value
         {
-            [global::System.Runtime.CompilerServices.MethodImpl(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
             [global::System.Diagnostics.DebuggerStepThroughAttribute]
+            [global::System.Runtime.CompilerServices.MethodImpl(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
             get
             {
                 EnsureInitialized();
@@ -323,6 +323,13 @@ private readonly global::System.Diagnostics.StackTrace? _stackTrace = null!;
             }
         }
 
+        /// <summary>
+        /// Returns the wrapped primitive's ToString representation.
+        /// </summary>
+        /// <returns>
+        /// If this instance hasn't been initialised, it will return "[UNINITIALIZED]". Otherwise the wrapped primitive's ToString representation.
+        /// </returns>
+        public override global::System.String ToString() => IsInitialized() ? Value.ToString() ?? "" : "[UNINITIALIZED]";
         [global::System.Runtime.CompilerServices.MethodImpl(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
         private void EnsureInitialized()
         {
@@ -336,13 +343,6 @@ private readonly global::System.Diagnostics.StackTrace? _stackTrace = null!;
             }
         }
 
-        /// <summary>
-        /// Returns the wrapped primitive's ToString representation.
-        /// </summary>
-        /// <returns>
-        /// If this instance hasn't been initialised, it will return "[UNINITIALIZED]". Otherwise the wrapped primitive's ToString representation.
-        /// </returns>
-        public override global::System.String ToString() => IsInitialized() ? Value.ToString() ?? "" : "[UNINITIALIZED]";
 #nullable disable
         /// <summary>
         /// Converts a MyVo to or from JSON.

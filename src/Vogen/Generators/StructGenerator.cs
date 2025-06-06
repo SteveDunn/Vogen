@@ -1,4 +1,5 @@
-﻿using Vogen.Generators.Conversions;
+﻿using Microsoft.CodeAnalysis;
+using Vogen.Generators.Conversions;
 
 namespace Vogen.Generators;
 
@@ -9,30 +10,30 @@ public class StructGenerator : IGenerateValueObjectSourceCode
         var item = parameters.WorkItem;
         var tds = parameters.WorkItem.TypeToAugment;
 
-        var structName = tds.Identifier;
+        SyntaxToken wrapperName = tds.Identifier;
 
-        var itemUnderlyingType = item.UnderlyingTypeFullName;
+        string itemUnderlyingType = item.UnderlyingTypeFullName;
 
         string underlyingNullAnnotation = item.Nullable.QuestionMarkForUnderlying;
         string underlyingBang = item.Nullable.BangForUnderlying;
         string wrapperBang = item.Nullable.BangForWrapper;
-        
-        string readonlyForValueAndIsInitialized = Util.GetModifiersForValueAndIsInitializedFields(parameters.WorkItem); 
+
+        string readonlyForValueAndIsInitialized = Util.GetModifiersForValueAndIsInitializedFields(parameters.WorkItem);
 
         var code = GenerateCode();
-        
+
         return item.Nullable.WrapBlock(code);
-        
+
         string GenerateCode() => $@"
 
 {Util.WriteStartNamespace(item.FullNamespace)}
     [global::System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage] 
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute(""{Util.GenerateYourAssemblyName()}"", ""{Util.GenerateYourAssemblyVersion()}"")]
     {Util.GenerateAnyConversionAttributes(tds, item)}
-    {DebugGeneration.GenerateDebugAttributes(item, structName, itemUnderlyingType)}
+    {DebugGeneration.GenerateDebugAttributes(item, wrapperName, itemUnderlyingType)}
 // ReSharper disable once UnusedType.Global
-    { Util.GenerateModifiersFor(tds)} struct {structName} : 
-        global::System.IEquatable<{structName}>
+    {Util.GenerateModifiersFor(tds)} struct {wrapperName} : 
+        global::System.IEquatable<{wrapperName}>
         {GenerateCodeForEqualsMethodsAndOperators.GenerateInterfaceDefinitionsIfNeeded(", ", item)}
         {GenerateCodeForComparables.GenerateInterfaceDefinitionsIfNeeded(", ", item)}
         {GenerateCodeForIParsableInterfaceDeclarations.GenerateIfNeeded(", ", item)}
@@ -63,7 +64,7 @@ public class StructGenerator : IGenerateValueObjectSourceCode
 {GenerateCodeForStaticConstructors.GenerateIfNeeded(item)}
         [global::System.Diagnostics.DebuggerStepThroughAttribute]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
-        public {structName}()
+        public {wrapperName}()
         {{
 #if DEBUG
             {DebugGeneration.SetStackTraceIfNeeded(item)}
@@ -76,7 +77,7 @@ public class StructGenerator : IGenerateValueObjectSourceCode
         }}
 
         [global::System.Diagnostics.DebuggerStepThroughAttribute]
-        private {structName}({itemUnderlyingType} value) 
+        private {wrapperName}({itemUnderlyingType} value) 
         {{
             _value = value;
 #if !VOGEN_NO_VALIDATION
@@ -90,18 +91,20 @@ public class StructGenerator : IGenerateValueObjectSourceCode
         /// <param name=""value"">The underlying type.</param>
         /// <returns>An instance of this type.</returns>
         [global::System.Runtime.CompilerServices.MethodImpl(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
-        public static {structName} From({itemUnderlyingType} value)
+        public static {wrapperName} From({itemUnderlyingType} value)
         {{
+            {Util.GenerateNullCheckAndThrowIfNeeded(item, generateReturnDefault: true)}
+
             {Util.GenerateCallToNormalizeMethodIfNeeded(item)}
 
             {GenerateCodeForCallingValidation.CallAndThrowIfRequired(item)}
 
-            return new {structName}(value);
+            return new {wrapperName}(value);
         }}
 
-        {GenerateCodeForTryFrom.GenerateForAStruct(item, structName, itemUnderlyingType)}
+        {GenerateCodeForTryFrom.GenerateForAStruct(item, wrapperName, itemUnderlyingType)}
 
-{Util.GenerateIsInitializedMethod(true, item)}
+{Util.GenerateIsInitializedMethod(@readonly: true, item)}
 
 {Util.GenerateLinqPadDump(item)}
 
@@ -110,21 +113,23 @@ public class StructGenerator : IGenerateValueObjectSourceCode
 {GenerateCodeForCastingOperators.GenerateImplementations(parameters, tds)}{Util.GenerateGuidFactoryMethodIfNeeded(item)}
         // only called internally when something has been deserialized into
         // its primitive type.
-        private static {structName} __Deserialize({itemUnderlyingType} value)
+        private static {wrapperName} __Deserialize({itemUnderlyingType} value)
         {{
+            {Util.GenerateNullCheckAndThrowIfNeeded(item, generateReturnDefault: true)}
+
             {Util.GenerateCallToNormalizeMethodIfNeeded(item)}
 
             {Util.GenerateChecksForKnownInstancesIfRequired(item)}
 
             {GenerateCodeForCallingValidation.CallWhenDeserializingAndCheckStrictnessFlag(item)}
 
-            return new {structName}(value);
+            return new {wrapperName}(value);
         }}
         {GenerateCodeForEqualsMethodsAndOperators.GenerateEqualsMethodsForAStruct(item, tds)}
 
-        public static global::System.Boolean operator ==({structName} left, {structName} right) => left.Equals(right);
-        public static global::System.Boolean operator !=({structName} left, {structName} right) => !(left == right);
-        {GenerateCodeForEqualsMethodsAndOperators.GenerateEqualsOperatorsForPrimitivesIfNeeded(itemUnderlyingType, structName, item)}
+        public static global::System.Boolean operator ==({wrapperName} left, {wrapperName} right) => left.Equals(right);
+        public static global::System.Boolean operator !=({wrapperName} left, {wrapperName} right) => !(left == right);
+        {GenerateCodeForEqualsMethodsAndOperators.GenerateEqualsOperatorsForPrimitivesIfNeeded(itemUnderlyingType, wrapperName, item)}
 
         {GenerateCodeForComparables.GenerateIComparableImplementationIfNeeded(item, tds)}
 
@@ -148,6 +153,7 @@ public class StructGenerator : IGenerateValueObjectSourceCode
 
         {Util.GenerateThrowHelper(item)}
 }}
+
 {GenerateEfCoreExtensions.GenerateInnerIfNeeded(item)}
 {Util.WriteCloseNamespace(item.FullNamespace)}";
     }

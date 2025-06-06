@@ -14,6 +14,21 @@ namespace Vogen;
 
 internal static class Util
 {
+    public static string GenerateNullCheckAndThrowIfNeeded(VoWorkItem voWorkItem, bool generateReturnDefault = false)
+    {
+        string returnStatement = generateReturnDefault ? "return default!;" : string.Empty;
+        return voWorkItem.IsTheUnderlyingAValueType
+            ? string.Empty
+            : $$"""
+                  if (value is null)
+                  {
+                      ThrowHelper.ThrowWhenCreatedWithNull();
+                      {{returnStatement}}
+                  }
+
+              """;
+    }
+
     public static string EscapeTypeNameForTripleSlashComment(string typeName) =>
         typeName.Replace("<", "{").Replace(">", "}");
 
