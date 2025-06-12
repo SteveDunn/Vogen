@@ -7,16 +7,16 @@ using System.IO;
 using System.IO.Compression;
 using System.Linq;
 using System.Net.Http;
+using System.Reflection;
 using System.Reflection.Metadata;
 using System.Reflection.PortableExecutable;
+using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
-using Vogen;
-using System.Reflection;
-using System.Threading;
 using Microsoft.CodeAnalysis.Diagnostics;
 using Microsoft.CodeAnalysis.Testing;
+using Vogen;
 
 namespace Shared;
 
@@ -29,7 +29,6 @@ public sealed class ProjectBuilder
 
     public string? DefaultAnalyzerId { get; set; }
     public string? DefaultAnalyzerMessage { get; set; }
-
 
     private static readonly ConcurrentDictionary<string, Lazy<Task<string[]>>> _cache = new(StringComparer.Ordinal);
 
@@ -68,8 +67,6 @@ public sealed class ProjectBuilder
 
         return this;
     }
-
-
     public ProjectBuilder ShouldExcludeSystemTextJson(bool excludeStj = false)
     {
         _excludeStj = excludeStj;
@@ -108,7 +105,6 @@ public sealed class ProjectBuilder
 
         return this;
     }
-
 
     public void AddNuGetReference(string packageName, string version, string pathPrefix)
     {
@@ -161,14 +157,17 @@ public sealed class ProjectBuilder
                 AddNuGetReference("Dapper", "2.1.28", "lib/net7.0/");
                 AddNuGetReference("ServiceStack.Text", "8.2.2", "lib/net8.0");
                 AddNuGetReference("MongoDB.Bson", "2.27.0", "lib/netstandard2.0");
+                AddNuGetReference("Microsoft.AspNetCore.OpenApi", "9.0.6", "lib/net9.0");
+                AddNuGetReference("Microsoft.OpenApi", "1.6.17", "lib/netstandard2.0/");
                 break;
 
             case TargetFramework.AspNetCore9_0:
                 AddNuGetReference("Microsoft.NETCore.App.Ref", "9.0.0", "ref/net9.0/");
                 AddNuGetReference("Microsoft.AspNetCore.App.Ref", "9.0.0", "ref/net9.0/");
                 AddNuGetReference("Swashbuckle.AspNetCore.SwaggerGen", "6.4.0", "lib/net6.0/");
-                AddNuGetReference("Microsoft.OpenApi", "1.4.3.0", "lib/netstandard2.0/");
                 AddNuGetReference("MongoDB.Bson", "2.27.0", "lib/netstandard2.0");
+                AddNuGetReference("Microsoft.AspNetCore.OpenApi", "9.0.6", "lib/net9.0");
+                AddNuGetReference("Microsoft.OpenApi", "1.6.17", "lib/netstandard2.0/");
                 break;
             case null:
                 break;
@@ -182,7 +181,6 @@ public sealed class ProjectBuilder
         {
             AddNuGetReference("System.Numerics.Vectors", "4.5.0", "ref/netstandard2.0/");
         }
-
 
         AddNuGetReference("Microsoft.CSharp", "4.7.0", "lib/netstandard2.0/"); // To support dynamic type
         AddNuGetReference("Newtonsoft.Json", "13.0.2", "lib/netstandard2.0/");
@@ -352,7 +350,6 @@ public sealed class ProjectBuilder
             initialDiags = compilation.GetDiagnostics();
         }
 
-
         //var initialDiags = compilation.GetDiagnostics();
         if (initialDiags.Length != 0 && !ignoreInitialCompilationErrors)
         {
@@ -378,8 +375,8 @@ public sealed class ProjectBuilder
         {
             // uncomment to write out the source files - do a `dotnet new classlib` in that folder
             // and load it up in an IDE
-            #if DEBUG
-            if(Debugger.IsAttached)
+#if DEBUG
+            if (Debugger.IsAttached)
             {
                 DumpSource(outputCompilation);
             }
@@ -393,10 +390,10 @@ public sealed class ProjectBuilder
     // ReSharper disable once UnusedMember.Local
     private static void DumpSource(Compilation outputCompilation)
     {
-        string path =Path.Combine(Path.GetTempPath(), "vogen-source");
-        
+        string path = Path.Combine(Path.GetTempPath(), "vogen-source");
+
         int i = 0;
-        
+
         foreach (var eachSyntaxTree in outputCompilation.SyntaxTrees)
         {
             string source = eachSyntaxTree.GetText().ToString();
@@ -407,9 +404,9 @@ public sealed class ProjectBuilder
             }
 
             string combinedPath = Path.Combine(path, filePath);
-            
+
             Directory.CreateDirectory(Path.GetDirectoryName(combinedPath)!);
-            
+
             File.WriteAllText(combinedPath, source);
         }
     }
