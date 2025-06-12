@@ -4,48 +4,20 @@ using Vogen;
 
 namespace SnapshotTests.OpenApi;
 
-// contrib: An ideal place to start a new feature. Write a new test for the feature here to get it working, then
-// add more tests. Move these tests if there are several of them, and it makes sense to group them.
-
-public class SwashbuckleTests
+public class OpenApiTests
 {
     [Theory]
     [InlineData("")]
     [InlineData("namespace MyNamespace;")]
     [InlineData("namespace @double;")]
-    public async Task Generates_filter_code(string @namespace)
+    public async Task Generates_OpenApiMappingExtensionMethod(string @namespace)
     {
         var source =
             $$"""
               using System;
               using Vogen;
 
-              [assembly: VogenDefaults(openApiSchemaCustomizations: OpenApiSchemaCustomizations.GenerateSwashbuckleSchemaFilter)]
-
-              {{@namespace}}
-
-              [ValueObject<int>]
-              public partial class MyVo { }
-              """;
-
-        await new SnapshotRunner<ValueObjectGenerator>()
-            .WithSource(source)
-            .CustomizeSettings(s => s.UseHashedParameters(@namespace))
-            .RunOn(TargetFramework.AspNetCore8_0);
-    }
-
-    [Theory]
-    [InlineData("")]
-    [InlineData("namespace MyNamespace;")]
-    [InlineData("namespace @double;")]
-    public async Task Generates_extension_method_for_mapping_types(string @namespace)
-    {
-        var source =
-            $$"""
-              using System;
-              using Vogen;
-
-              [assembly: VogenDefaults(openApiSchemaCustomizations: OpenApiSchemaCustomizations.GenerateSwashbuckleMappingExtensionMethod)]
+              [assembly: VogenDefaults(openApiSchemaCustomizations: OpenApiSchemaCustomizations.GenerateOpenApiMappingExtensionMethod)]
 
               {{@namespace}}
 
@@ -77,13 +49,14 @@ public class SwashbuckleTests
         await new SnapshotRunner<ValueObjectGenerator>()
             .WithSource(source)
             .CustomizeSettings(s => s.UseHashedParameters(@namespace))
-            .RunOn(TargetFramework.AspNetCore8_0);
+            .RunOn(TargetFramework.Net9_0);
     }
 
     [Theory]
     [InlineData("")]
     [InlineData("namespace MyNamespace;")]
-    public async Task Generates_both_filter_and_MapType_extension_method(string @namespace)
+    [InlineData("namespace @double;")]
+    public async Task Generates_both_OpenApiMappingExtensionMethod_SwaggerMappingExtensionMethod(string @namespace)
     {
         var source =
             $$"""
@@ -91,8 +64,8 @@ public class SwashbuckleTests
               using Vogen;
 
               [assembly: VogenDefaults(openApiSchemaCustomizations: 
-                 OpenApiSchemaCustomizations.GenerateSwashbuckleMappingExtensionMethod | 
-                 OpenApiSchemaCustomizations.GenerateSwashbuckleSchemaFilter)]
+                 OpenApiSchemaCustomizations.GenerateOpenApiMappingExtensionMethod | 
+                 OpenApiSchemaCustomizations.GenerateSwashbuckleMappingExtensionMethod)]
 
               {{@namespace}}
 
@@ -113,12 +86,18 @@ public class SwashbuckleTests
 
               [ValueObject<bool>]
               public partial class MyVoBool { }
+
+              [ValueObject<bool>]
+              public partial class @bool { }
+              
+              [ValueObject<short>]
+              public partial class MyVoShort { }
               """;
 
         await new SnapshotRunner<ValueObjectGenerator>()
             .WithSource(source)
             .CustomizeSettings(s => s.UseHashedParameters(@namespace))
-            .RunOn(TargetFramework.AspNetCore8_0);
+            .RunOn(TargetFramework.AspNetCore9_0);
     }
 
     [Theory]
@@ -144,7 +123,7 @@ public class SwashbuckleTests
               using Vogen;
 
               [assembly: VogenDefaults(openApiSchemaCustomizations: 
-                 OpenApiSchemaCustomizations.GenerateSwashbuckleMappingExtensionMethod)]
+                 OpenApiSchemaCustomizations.GenerateOpenApiMappingExtensionMethod)]
 
               namespace MyNamespace;
 
@@ -156,7 +135,7 @@ public class SwashbuckleTests
             .WithSource(source)
             .IgnoreInitialCompilationErrors()
             .CustomizeSettings(s => s.UseHashedParameters(type))
-            .RunOn(TargetFramework.Net8_0);
+            .RunOn(TargetFramework.Net9_0);
     }
 
     [Fact]
@@ -170,7 +149,7 @@ public class SwashbuckleTests
               using Vogen;
 
               [assembly: VogenDefaults(openApiSchemaCustomizations: 
-                 OpenApiSchemaCustomizations.GenerateSwashbuckleMappingExtensionMethod)]
+                 OpenApiSchemaCustomizations.GenerateOpenApiMappingExtensionMethod)]
 
               namespace MyNamespace;
 
@@ -187,6 +166,6 @@ public class SwashbuckleTests
 
         await new SnapshotRunner<ValueObjectGenerator>()
             .WithSource(source)
-            .RunOn(TargetFramework.AspNetCore8_0);
+            .RunOn(TargetFramework.AspNetCore9_0);
     }
 }
