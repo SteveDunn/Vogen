@@ -27,8 +27,8 @@ public class DoNotCompareWithPrimitivesInEfCoreAnalyzerTests
         using Vogen;
         
         [assembly: VogenDefaults(
-        staticAbstractsGeneration: StaticAbstractsGeneration.MostCommon | StaticAbstractsGeneration.InstanceMethodsAndProperties, 
-          conversions: Conversions.EfCoreValueConverter)]
+        staticAbstractsGeneration: StaticAbstractsGeneration.MostCommon | StaticAbstractsGeneration.InstanceMethodsAndProperties,
+          conversions: Conversions.EfCoreValueConverter, openApiSchemaCustomizations: OpenApiSchemaCustomizations.Omit)]
 
         namespace Whatever;
 
@@ -68,7 +68,6 @@ public class DoNotCompareWithPrimitivesInEfCoreAnalyzerTests
             }
         }
         """;
-
 
     private static readonly Regex _placeholderPattern = new(@"{\|#\d+:", RegexOptions.Compiled);
 
@@ -243,7 +242,6 @@ public class DoNotCompareWithPrimitivesInEfCoreAnalyzerTests
             await Run(sources, Enumerable.Empty<DiagnosticResult>());
         }
 
-
         private static IEnumerable<DiagnosticResult> WithDiagnostics(string code,
             DiagnosticSeverity severity,
             string arguments,
@@ -296,7 +294,7 @@ public class DoNotCompareWithPrimitivesInEfCoreAnalyzerTests
                      """);
             }
 
-            return [userSource, ..output.GeneratedSources.Select(o => o.ToString())];
+            return [userSource, .. output.GeneratedSources.Select(o => o.ToString())];
         }
     }
 
@@ -392,7 +390,6 @@ public class DoNotCompareWithPrimitivesInEfCoreAnalyzerTests
             await Run(sources, Enumerable.Empty<DiagnosticResult>());
         }
 
-
         private static IEnumerable<DiagnosticResult> WithDiagnostics(string code,
             DiagnosticSeverity severity,
             string arguments,
@@ -445,7 +442,7 @@ public class DoNotCompareWithPrimitivesInEfCoreAnalyzerTests
                      """);
             }
 
-            return [userSource, ..output.GeneratedSources.Select(o => o.ToString())];
+            return [userSource, .. output.GeneratedSources.Select(o => o.ToString())];
         }
     }
 }
