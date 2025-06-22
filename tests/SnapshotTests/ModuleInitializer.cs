@@ -15,7 +15,7 @@ public static class ModuleInitializer
             s.Replace("[global::System.CodeDom.Compiler.GeneratedCodeAttribute(\"Vogen\", \"0.0.0.0\")]",
                 "    [global::System.CodeDom.Compiler.GeneratedCodeAttribute(\"Vogen\", \"1.0.0.0\")]");
 
-            s.Replace("[global::System.CodeDom.Compiler.GeneratedCodeAttribute(\"Vogen\", \"7.0.0.0\")]",
+            s.Replace("[global::System.CodeDom.Compiler.GeneratedCodeAttribute(\"Vogen\", \"8.0.0.0\")]",
                 "    [global::System.CodeDom.Compiler.GeneratedCodeAttribute(\"Vogen\", \"1.0.0.0\")]");
         });
     }
