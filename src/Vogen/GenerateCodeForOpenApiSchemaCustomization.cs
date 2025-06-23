@@ -17,7 +17,7 @@ internal class GenerateCodeForOpenApiSchemaCustomization
         var c = globalConfig?.OpenApiSchemaCustomizations ?? VogenConfiguration.DefaultInstance.OpenApiSchemaCustomizations;
 
         var projectName = ProjectName.FromAssemblyName(compilation.Assembly.Name);
-        
+
         var inAppendage = string.IsNullOrEmpty(projectName) ? string.Empty : $"In{projectName}";
 
         if (c.HasFlag(OpenApiSchemaCustomizations.GenerateSwashbuckleSchemaFilter))
@@ -27,7 +27,13 @@ internal class GenerateCodeForOpenApiSchemaCustomization
 
         if (c.HasFlag(OpenApiSchemaCustomizations.GenerateSwashbuckleMappingExtensionMethod))
         {
-            WriteExtensionMethodMapping(context, workItems, knownSymbols, inAppendage);
+            WriteSwashbuckleExtensionMethodMapping(context, workItems, knownSymbols, inAppendage);
+        }
+
+        if (c.HasFlag(OpenApiSchemaCustomizations.GenerateOpenApiMappingExtensionMethod))
+        {
+            GenerateCodeForAspNetCoreOpenApiSchema
+                .WriteOpenApiExtensionMethodMapping(context, workItems, knownSymbols, inAppendage);
         }
     }
 
@@ -103,7 +109,7 @@ internal class GenerateCodeForOpenApiSchemaCustomization
         context.AddSource("SwashbuckleSchemaFilter_g.cs", Util.FormatSource(source));
     }
 
-    private static void WriteExtensionMethodMapping(SourceProductionContext context,
+    private static void WriteSwashbuckleExtensionMethodMapping(SourceProductionContext context,
         List<VoWorkItem> workItems,
         VogenKnownSymbols knownSymbols,
         string inAppendage)
@@ -173,10 +179,10 @@ internal class GenerateCodeForOpenApiSchemaCustomization
         }
     }
 
-    private record struct TypeAndFormat(string Type, string Format);
+    internal record struct TypeAndFormat(string Type, string Format);
 
     // see https://spec.openapis.org/oas/v3.0.0.html#data-types
-    private static TypeAndFormat MapUnderlyingTypeToJsonSchema(VoWorkItem workItem)
+    internal static TypeAndFormat MapUnderlyingTypeToJsonSchema(VoWorkItem workItem)
     {
         var primitiveType = workItem.UnderlyingTypeFullName;
 

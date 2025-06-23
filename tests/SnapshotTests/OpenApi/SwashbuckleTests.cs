@@ -189,5 +189,4 @@ public class SwashbuckleTests
             .WithSource(source)
             .RunOn(TargetFramework.AspNetCore8_0);
     }
-    
 }
