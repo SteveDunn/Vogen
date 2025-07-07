@@ -16,4 +16,4 @@ Please see the [Parsing](Parsing.md) documentation for more information.
 ## IComparable
 
 If the underlying primitive implements this, and the configuration for `ComparisonGeneration` is `UseUnderlying`, then the generated wrapper will implement `IComparable<>` and `IComparable`, with the generic argument being the type of wrapped primitive.
-The method generated is `public into CompareTo([primitive] other)...`
+The method generated is `public int CompareTo([primitive] other)...`
