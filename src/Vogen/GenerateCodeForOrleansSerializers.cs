@@ -61,7 +61,7 @@ internal class GenerateCodeForOrleansSerializers
                       where TBufferWriter : global::System.Buffers.IBufferWriter<byte>
                   {
                       var baseCodec = writer.Session.CodecProvider.GetCodec<{{underlyingTypeName}}>();
-                      baseCodec.WriteField(ref writer, fieldIdDelta, typeof({{underlyingTypeName}}), value.Value);
+                      baseCodec.WriteField(ref writer, fieldIdDelta, typeof({{underlyingTypeName}}), value?.Value);
                   }
               
                   public {{item.VoTypeName}} ReadValue<TInput>(ref global::Orleans.Serialization.Buffers.Reader<TInput> reader, global::Orleans.Serialization.WireProtocol.Field field)
@@ -80,6 +80,7 @@ internal class GenerateCodeForOrleansSerializers
               {
                   public {{item.VoTypeName}} DeepCopy({{item.VoTypeName}} input, global::Orleans.Serialization.Cloning.CopyContext context)
                   {
+                      if (input is null) return null;
                       return {{item.VoTypeName}}.From(input.Value);
                   }
               }
