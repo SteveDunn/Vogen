@@ -172,7 +172,7 @@ public class VogenConfigurationTests
         }
 
         [Fact]
-        public void default_is_correct()
+        public void Default_is_correct()
         {
             var result = CombineConfigurations.CombineAndResolveAnythingUnspecified(
                 ConfigWithOmitConversionsAs(Conversions.Default),
@@ -182,22 +182,54 @@ public class VogenConfigurationTests
         }
 
         [Fact]
-        public void default_is_overridable_locally()
+        public void Unspecified_is_Default()
         {
             var result = CombineConfigurations.CombineAndResolveAnythingUnspecified(
-                ConfigWithOmitConversionsAs(Conversions.Default),
+                ConfigWithOmitConversionsAs(Conversions.Unspecified),
+                ConfigWithOmitConversionsAs(Conversions.Unspecified));
+
+            result.Conversions.Should().Be(Conversions.Default);
+        }
+
+        [Fact]
+        public void Unspecified_is_overridable_locally()
+        {
+            var result = CombineConfigurations.CombineAndResolveAnythingUnspecified(
+                ConfigWithOmitConversionsAs(Conversions.Unspecified),
                 ConfigWithOmitConversionsAs(Conversions.NewtonsoftJson));
 
             result.Conversions.Should().Be(Conversions.NewtonsoftJson);
         }
         [Fact]
-        public void default_is_overridable_globally()
+        public void Unspecified_is_overridable_globally()
         {
             var result = CombineConfigurations.CombineAndResolveAnythingUnspecified(
                 ConfigWithOmitConversionsAs(Conversions.NewtonsoftJson),
-                ConfigWithOmitConversionsAs(Conversions.Default));
+                ConfigWithOmitConversionsAs(Conversions.Unspecified));
 
             result.Conversions.Should().Be(Conversions.NewtonsoftJson);
+        }
+
+        [Fact]
+        public void Default_is_combinable_with_other_enum_members()
+        {
+            var result = CombineConfigurations.CombineAndResolveAnythingUnspecified(
+                ConfigWithOmitConversionsAs(Conversions.Default | Conversions.NewtonsoftJson),
+                ConfigWithOmitConversionsAs(Conversions.Unspecified));
+
+            result.Conversions.Should().Be(Conversions.NewtonsoftJson | Conversions.SystemTextJson | Conversions.TypeConverter);
+        }
+
+        [Fact]
+        public void Unspecified_when_combined_with_other_enum_members_forces_the_value_to_unspecified()
+        {
+            // This is a bit strange - but because of the -1 value of Unspecified - it works this way
+            // And I think that it is ok for this to be the behaviour
+            var result = CombineConfigurations.CombineAndResolveAnythingUnspecified(
+                ConfigWithOmitConversionsAs(Conversions.Unspecified | Conversions.NewtonsoftJson),
+                ConfigWithOmitConversionsAs(Conversions.Unspecified | Conversions.NewtonsoftJson));
+
+            result.Conversions.Should().Be(Conversions.Default);
         }
 
         private static VogenConfiguration ConfigWithOmitConversionsAs(Conversions conversions) =>
