@@ -42,7 +42,7 @@ internal class BuildConfigurationFromAttributes
         _matchingAttribute = att;
         _invalidExceptionType = null;
         _underlyingType = null;
-        _conversions = Conversions.Default;
+        _conversions = Conversions.Unspecified;
         _customizations = Customizations.None;
         _deserializationStrictness = DeserializationStrictness.Default;
         _debuggerAttributes = DebuggerAttributeGeneration.Default;

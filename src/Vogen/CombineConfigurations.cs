@@ -23,9 +23,9 @@ public static class CombineConfigurations
     {
         var conversions = (localValues.Conversions, globalValues?.Conversions) switch
         {
-            (Conversions.Default, null) => VogenConfiguration.DefaultInstance.Conversions,
-            (Conversions.Default, Conversions.Default) => VogenConfiguration.DefaultInstance.Conversions,
-            (Conversions.Default, var globalDefault) => globalDefault.Value,
+            (Conversions.Unspecified, null) => VogenConfiguration.DefaultInstance.Conversions,
+            (Conversions.Unspecified, Conversions.Unspecified) => VogenConfiguration.DefaultInstance.Conversions,
+            (Conversions.Unspecified, var globalDefault) => globalDefault.Value,
             (var specificValue, _) => specificValue
         };
 
