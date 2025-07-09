@@ -12,7 +12,7 @@ public class VogenConfigurationTests
         {
             var instance = VogenConfiguration.DefaultInstance;
             
-            instance.Conversions.Should().Be(Conversions.Default);
+            instance.Conversions.Should().Be(Conversions.TypeConverter | Conversions.SystemTextJson);
             instance.Customizations.Should().Be(Customizations.None);
             instance.DeserializationStrictness.Should().Be(DeserializationStrictness.Default);
             instance.DebuggerAttributes.Should().Be(DebuggerAttributeGeneration.Full);
@@ -159,6 +159,45 @@ public class VogenConfigurationTests
             var result = CombineConfigurations.CombineAndResolveAnythingUnspecified(ConfigWithOmitConversionsAs(Conversions.EfCoreValueConverter), ConfigWithOmitConversionsAs(Conversions.NewtonsoftJson));
 
             result.Conversions.Should().Be(Conversions.EfCoreValueConverter);
+        }
+
+        [Fact]
+        public void Local_beats_global_when_local_is_default_and_global_is_not()
+        {
+            var result = CombineConfigurations.CombineAndResolveAnythingUnspecified(
+                ConfigWithOmitConversionsAs(Conversions.SystemTextJson | Conversions.TypeConverter),
+                ConfigWithOmitConversionsAs(Conversions.NewtonsoftJson));
+
+            result.Conversions.Should().Be(Conversions.SystemTextJson | Conversions.TypeConverter);
+        }
+
+        [Fact]
+        public void default_is_correct()
+        {
+            var result = CombineConfigurations.CombineAndResolveAnythingUnspecified(
+                ConfigWithOmitConversionsAs(Conversions.Default),
+                ConfigWithOmitConversionsAs(Conversions.Default));
+
+            result.Conversions.Should().Be(Conversions.SystemTextJson | Conversions.TypeConverter);
+        }
+
+        [Fact]
+        public void default_is_overridable_locally()
+        {
+            var result = CombineConfigurations.CombineAndResolveAnythingUnspecified(
+                ConfigWithOmitConversionsAs(Conversions.Default),
+                ConfigWithOmitConversionsAs(Conversions.NewtonsoftJson));
+
+            result.Conversions.Should().Be(Conversions.NewtonsoftJson);
+        }
+        [Fact]
+        public void default_is_overridable_globally()
+        {
+            var result = CombineConfigurations.CombineAndResolveAnythingUnspecified(
+                ConfigWithOmitConversionsAs(Conversions.NewtonsoftJson),
+                ConfigWithOmitConversionsAs(Conversions.Default));
+
+            result.Conversions.Should().Be(Conversions.NewtonsoftJson);
         }
 
         private static VogenConfiguration ConfigWithOmitConversionsAs(Conversions conversions) =>
