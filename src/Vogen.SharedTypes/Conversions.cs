@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 
 namespace Vogen;
 
@@ -8,6 +9,11 @@ namespace Vogen;
 [Flags]
 public enum Conversions
 {
+
+    [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+    Unspecified = -1,
+
+
     // Used with HasFlag, so needs to be 1, 2, 4 etc
 
     /// <summary>
