@@ -585,7 +585,7 @@ public partial class MyVo : global::System.IEquatable<MyVo>, global::System.IEqu
     /// <summary>
     /// Converts a MyVo to or from JSON.
     /// </summary>
-    public class MyVoSystemTextJsonConverter : global::System.Text.Json.Serialization.JsonConverter<MyVo>
+    public partial class MyVoSystemTextJsonConverter : global::System.Text.Json.Serialization.JsonConverter<MyVo>
     {
         public override MyVo Read(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
         {

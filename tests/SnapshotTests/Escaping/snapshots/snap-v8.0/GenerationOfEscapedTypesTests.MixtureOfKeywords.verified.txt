@@ -263,7 +263,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
         /// <summary>
         /// Converts a classFromEscapedNamespaceWithReservedUnderlyingType to or from JSON.
         /// </summary>
-        public class classFromEscapedNamespaceWithReservedUnderlyingTypeSystemTextJsonConverter : global::System.Text.Json.Serialization.JsonConverter<classFromEscapedNamespaceWithReservedUnderlyingType>
+        public partial class classFromEscapedNamespaceWithReservedUnderlyingTypeSystemTextJsonConverter : global::System.Text.Json.Serialization.JsonConverter<classFromEscapedNamespaceWithReservedUnderlyingType>
         {
             public override classFromEscapedNamespaceWithReservedUnderlyingType Read(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {
@@ -953,7 +953,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
         /// <summary>
         /// Converts a classFromEscapedNamespace to or from JSON.
         /// </summary>
-        public class classFromEscapedNamespaceSystemTextJsonConverter : global::System.Text.Json.Serialization.JsonConverter<classFromEscapedNamespace>
+        public partial class classFromEscapedNamespaceSystemTextJsonConverter : global::System.Text.Json.Serialization.JsonConverter<classFromEscapedNamespace>
         {
             public override classFromEscapedNamespace Read(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {
@@ -1661,7 +1661,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
         /// <summary>
         /// Converts a @class to or from JSON.
         /// </summary>
-        public class @classSystemTextJsonConverter : global::System.Text.Json.Serialization.JsonConverter<@class>
+        public partial class @classSystemTextJsonConverter : global::System.Text.Json.Serialization.JsonConverter<@class>
         {
             public override @class Read(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {
@@ -2369,7 +2369,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
         /// <summary>
         /// Converts a @event to or from JSON.
         /// </summary>
-        public class @eventSystemTextJsonConverter : global::System.Text.Json.Serialization.JsonConverter<@event>
+        public partial class @eventSystemTextJsonConverter : global::System.Text.Json.Serialization.JsonConverter<@event>
         {
             public override @event Read(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {
@@ -2734,7 +2734,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
         /// <summary>
         /// Converts a @event2 to or from JSON.
         /// </summary>
-        public class @event2SystemTextJsonConverter : global::System.Text.Json.Serialization.JsonConverter<@event2>
+        public partial class @event2SystemTextJsonConverter : global::System.Text.Json.Serialization.JsonConverter<@event2>
         {
             public override @event2 Read(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {

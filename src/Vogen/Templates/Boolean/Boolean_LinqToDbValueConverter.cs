@@ -1,5 +1,5 @@
 ﻿
-        public class LinqToDbValueConverter : global::LinqToDB.Common.ValueConverter<VOTYPE, global::System.Boolean>
+        public partial class LinqToDbValueConverter : global::LinqToDB.Common.ValueConverter<VOTYPE, global::System.Boolean>
         {
             public LinqToDbValueConverter()
                 : base(

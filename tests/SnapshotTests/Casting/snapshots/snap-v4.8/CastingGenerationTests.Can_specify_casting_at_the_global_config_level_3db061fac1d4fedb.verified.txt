@@ -371,7 +371,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
         /// <summary>
         /// Converts a _casting_public_partial_classExplicitExplicit to or from JSON.
         /// </summary>
-        public class _casting_public_partial_classExplicitExplicitSystemTextJsonConverter : global::System.Text.Json.Serialization.JsonConverter<_casting_public_partial_classExplicitExplicit>
+        public partial class _casting_public_partial_classExplicitExplicitSystemTextJsonConverter : global::System.Text.Json.Serialization.JsonConverter<_casting_public_partial_classExplicitExplicit>
         {
             public override _casting_public_partial_classExplicitExplicit Read(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {

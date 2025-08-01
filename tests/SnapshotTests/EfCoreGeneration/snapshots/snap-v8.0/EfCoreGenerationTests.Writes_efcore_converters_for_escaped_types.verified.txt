@@ -1576,7 +1576,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
         /// <summary>
         /// Converts a @byte to or from JSON.
         /// </summary>
-        public class @byteSystemTextJsonConverter : global::System.Text.Json.Serialization.JsonConverter<@byte>
+        public partial class @byteSystemTextJsonConverter : global::System.Text.Json.Serialization.JsonConverter<@byte>
         {
             public override @byte Read(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {
@@ -2014,7 +2014,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
         /// <summary>
         /// Converts a @string to or from JSON.
         /// </summary>
-        public class @stringSystemTextJsonConverter : global::System.Text.Json.Serialization.JsonConverter<@string>
+        public partial class @stringSystemTextJsonConverter : global::System.Text.Json.Serialization.JsonConverter<@string>
         {
             public override @string Read(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {
@@ -2703,7 +2703,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
         /// <summary>
         /// Converts a MyVo1 to or from JSON.
         /// </summary>
-        public class MyVo1SystemTextJsonConverter : global::System.Text.Json.Serialization.JsonConverter<MyVo1>
+        public partial class MyVo1SystemTextJsonConverter : global::System.Text.Json.Serialization.JsonConverter<MyVo1>
         {
             public override MyVo1 Read(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {
@@ -3155,7 +3155,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
         /// <summary>
         /// Converts a MyVo2 to or from JSON.
         /// </summary>
-        public class MyVo2SystemTextJsonConverter : global::System.Text.Json.Serialization.JsonConverter<MyVo2>
+        public partial class MyVo2SystemTextJsonConverter : global::System.Text.Json.Serialization.JsonConverter<MyVo2>
         {
             public override MyVo2 Read(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {
@@ -3580,7 +3580,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
         /// <summary>
         /// Converts a MyVo3 to or from JSON.
         /// </summary>
-        public class MyVo3SystemTextJsonConverter : global::System.Text.Json.Serialization.JsonConverter<MyVo3>
+        public partial class MyVo3SystemTextJsonConverter : global::System.Text.Json.Serialization.JsonConverter<MyVo3>
         {
             public override MyVo3 Read(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {
@@ -4269,7 +4269,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
         /// <summary>
         /// Converts a MyVo4 to or from JSON.
         /// </summary>
-        public class MyVo4SystemTextJsonConverter : global::System.Text.Json.Serialization.JsonConverter<MyVo4>
+        public partial class MyVo4SystemTextJsonConverter : global::System.Text.Json.Serialization.JsonConverter<MyVo4>
         {
             public override MyVo4 Read(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {
@@ -4959,7 +4959,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
         /// <summary>
         /// Converts a MyVo5 to or from JSON.
         /// </summary>
-        public class MyVo5SystemTextJsonConverter : global::System.Text.Json.Serialization.JsonConverter<MyVo5>
+        public partial class MyVo5SystemTextJsonConverter : global::System.Text.Json.Serialization.JsonConverter<MyVo5>
         {
             public override MyVo5 Read(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {
@@ -5671,7 +5671,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
         /// <summary>
         /// Converts a MyVo6 to or from JSON.
         /// </summary>
-        public class MyVo6SystemTextJsonConverter : global::System.Text.Json.Serialization.JsonConverter<MyVo6>
+        public partial class MyVo6SystemTextJsonConverter : global::System.Text.Json.Serialization.JsonConverter<MyVo6>
         {
             public override MyVo6 Read(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {
@@ -6357,7 +6357,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
         /// <summary>
         /// Converts a @int to or from JSON.
         /// </summary>
-        public class @intSystemTextJsonConverter : global::System.Text.Json.Serialization.JsonConverter<@int>
+        public partial class @intSystemTextJsonConverter : global::System.Text.Json.Serialization.JsonConverter<@int>
         {
             public override @int Read(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {
@@ -7047,7 +7047,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
         /// <summary>
         /// Converts a @byte to or from JSON.
         /// </summary>
-        public class @byteSystemTextJsonConverter : global::System.Text.Json.Serialization.JsonConverter<@byte>
+        public partial class @byteSystemTextJsonConverter : global::System.Text.Json.Serialization.JsonConverter<@byte>
         {
             public override @byte Read(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {
@@ -7759,7 +7759,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
         /// <summary>
         /// Converts a MyInt to or from JSON.
         /// </summary>
-        public class MyIntSystemTextJsonConverter : global::System.Text.Json.Serialization.JsonConverter<MyInt>
+        public partial class MyIntSystemTextJsonConverter : global::System.Text.Json.Serialization.JsonConverter<MyInt>
         {
             public override MyInt Read(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {
