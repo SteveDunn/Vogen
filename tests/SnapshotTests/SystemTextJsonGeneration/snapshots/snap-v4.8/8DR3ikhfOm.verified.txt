@@ -356,7 +356,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
         /// <summary>
         /// Converts a stj_number_as_string_public_sealed_partial_record_classConversions_SystemTextJsonSystem_DateTime to or from JSON.
         /// </summary>
-        public class stj_number_as_string_public_sealed_partial_record_classConversions_SystemTextJsonSystem_DateTimeSystemTextJsonConverter : global::System.Text.Json.Serialization.JsonConverter<stj_number_as_string_public_sealed_partial_record_classConversions_SystemTextJsonSystem_DateTime>
+        public partial class stj_number_as_string_public_sealed_partial_record_classConversions_SystemTextJsonSystem_DateTimeSystemTextJsonConverter : global::System.Text.Json.Serialization.JsonConverter<stj_number_as_string_public_sealed_partial_record_classConversions_SystemTextJsonSystem_DateTime>
         {
             public override stj_number_as_string_public_sealed_partial_record_classConversions_SystemTextJsonSystem_DateTime Read(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {

@@ -718,7 +718,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
         /// <summary>
         /// Converts a escapedTestspublic_sealed_partial_recordConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterbyte to or from JSON.
         /// </summary>
-        public class escapedTestspublic_sealed_partial_recordConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterbyteSystemTextJsonConverter : global::System.Text.Json.Serialization.JsonConverter<escapedTestspublic_sealed_partial_recordConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterbyte>
+        public partial class escapedTestspublic_sealed_partial_recordConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterbyteSystemTextJsonConverter : global::System.Text.Json.Serialization.JsonConverter<escapedTestspublic_sealed_partial_recordConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterbyte>
         {
             public override escapedTestspublic_sealed_partial_recordConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterbyte Read(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {
@@ -788,7 +788,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
 
 #nullable restore
 #nullable disable
-        public class DapperTypeHandler : global::Dapper.SqlMapper.TypeHandler<escapedTestspublic_sealed_partial_recordConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterbyte>
+        public partial class DapperTypeHandler : global::Dapper.SqlMapper.TypeHandler<escapedTestspublic_sealed_partial_recordConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterbyte>
         {
             public override void SetValue(global::System.Data.IDbDataParameter parameter, escapedTestspublic_sealed_partial_recordConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterbyte value)
             {
@@ -849,7 +849,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
 
 #nullable restore
 #nullable disable
-        public class LinqToDbValueConverter : global::LinqToDB.Common.ValueConverter<escapedTestspublic_sealed_partial_recordConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterbyte, global::System.Byte>
+        public partial class LinqToDbValueConverter : global::LinqToDB.Common.ValueConverter<escapedTestspublic_sealed_partial_recordConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterbyte, global::System.Byte>
         {
             public LinqToDbValueConverter() : base(v => v.Value, p => escapedTestspublic_sealed_partial_recordConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterbyte.__Deserialize(p), handlesNulls: false)
             {

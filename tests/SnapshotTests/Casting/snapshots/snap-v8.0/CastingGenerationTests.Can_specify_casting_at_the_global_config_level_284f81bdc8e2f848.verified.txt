@@ -318,7 +318,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
         /// <summary>
         /// Converts a _casting_public_readonly_partial_record_structImplicitImplicitbool to or from JSON.
         /// </summary>
-        public class _casting_public_readonly_partial_record_structImplicitImplicitboolSystemTextJsonConverter : global::System.Text.Json.Serialization.JsonConverter<_casting_public_readonly_partial_record_structImplicitImplicitbool>
+        public partial class _casting_public_readonly_partial_record_structImplicitImplicitboolSystemTextJsonConverter : global::System.Text.Json.Serialization.JsonConverter<_casting_public_readonly_partial_record_structImplicitImplicitbool>
         {
             public override _casting_public_readonly_partial_record_structImplicitImplicitbool Read(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {

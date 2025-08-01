@@ -247,7 +247,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
         /// <summary>
         /// Converts a escapedTestspublic_partial_classConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterrecord__struct__float__event2 to or from JSON.
         /// </summary>
-        public class escapedTestspublic_partial_classConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterrecord__struct__float__event2SystemTextJsonConverter : global::System.Text.Json.Serialization.JsonConverter<escapedTestspublic_partial_classConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterrecord__struct__float__event2>
+        public partial class escapedTestspublic_partial_classConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterrecord__struct__float__event2SystemTextJsonConverter : global::System.Text.Json.Serialization.JsonConverter<escapedTestspublic_partial_classConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterrecord__struct__float__event2>
         {
             public override escapedTestspublic_partial_classConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterrecord__struct__float__event2 Read(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {
@@ -311,7 +311,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
 
 #nullable restore
 #nullable disable
-        public class DapperTypeHandler : global::Dapper.SqlMapper.TypeHandler<escapedTestspublic_partial_classConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterrecord__struct__float__event2>
+        public partial class DapperTypeHandler : global::Dapper.SqlMapper.TypeHandler<escapedTestspublic_partial_classConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterrecord__struct__float__event2>
         {
             public override void SetValue(global::System.Data.IDbDataParameter parameter, escapedTestspublic_partial_classConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterrecord__struct__float__event2 value)
             {
@@ -367,7 +367,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
 
 #nullable restore
 #nullable disable
-        public class LinqToDbValueConverter : global::LinqToDB.Common.ValueConverter<escapedTestspublic_partial_classConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterrecord__struct__float__event2, global::System.String>
+        public partial class LinqToDbValueConverter : global::LinqToDB.Common.ValueConverter<escapedTestspublic_partial_classConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterrecord__struct__float__event2, global::System.String>
         {
             public LinqToDbValueConverter() : base(v => global::System.Text.Json.JsonSerializer.Serialize(v.Value, default(global::System.Text.Json.JsonSerializerOptions)), p => escapedTestspublic_partial_classConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterrecord__struct__float__event2.__Deserialize(global::System.Text.Json.JsonSerializer.Deserialize<@class.@record.@struct.@float.event2>(p, default(global::System.Text.Json.JsonSerializerOptions))), handlesNulls: false)
             {

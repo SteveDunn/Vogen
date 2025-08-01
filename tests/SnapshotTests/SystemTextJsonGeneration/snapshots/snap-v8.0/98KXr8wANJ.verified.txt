@@ -462,7 +462,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
         /// <summary>
         /// Converts a stj_number_as_string_public_readonly_partial_record_structConversions_SystemTextJsonSystem_DateTimeOffset_customized to or from JSON.
         /// </summary>
-        public class stj_number_as_string_public_readonly_partial_record_structConversions_SystemTextJsonSystem_DateTimeOffset_customizedSystemTextJsonConverter : global::System.Text.Json.Serialization.JsonConverter<stj_number_as_string_public_readonly_partial_record_structConversions_SystemTextJsonSystem_DateTimeOffset_customized>
+        public partial class stj_number_as_string_public_readonly_partial_record_structConversions_SystemTextJsonSystem_DateTimeOffset_customizedSystemTextJsonConverter : global::System.Text.Json.Serialization.JsonConverter<stj_number_as_string_public_readonly_partial_record_structConversions_SystemTextJsonSystem_DateTimeOffset_customized>
         {
             public override stj_number_as_string_public_readonly_partial_record_structConversions_SystemTextJsonSystem_DateTimeOffset_customized Read(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {

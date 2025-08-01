@@ -661,7 +661,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
         /// <summary>
         /// Converts a MyVoInt to or from JSON.
         /// </summary>
-        public class MyVoIntSystemTextJsonConverter : global::System.Text.Json.Serialization.JsonConverter<MyVoInt>
+        public partial class MyVoIntSystemTextJsonConverter : global::System.Text.Json.Serialization.JsonConverter<MyVoInt>
         {
             public override MyVoInt Read(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {
@@ -1369,7 +1369,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
         /// <summary>
         /// Converts a MyVoFloat to or from JSON.
         /// </summary>
-        public class MyVoFloatSystemTextJsonConverter : global::System.Text.Json.Serialization.JsonConverter<MyVoFloat>
+        public partial class MyVoFloatSystemTextJsonConverter : global::System.Text.Json.Serialization.JsonConverter<MyVoFloat>
         {
             public override MyVoFloat Read(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {
@@ -2077,7 +2077,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
         /// <summary>
         /// Converts a MyVoDecimal to or from JSON.
         /// </summary>
-        public class MyVoDecimalSystemTextJsonConverter : global::System.Text.Json.Serialization.JsonConverter<MyVoDecimal>
+        public partial class MyVoDecimalSystemTextJsonConverter : global::System.Text.Json.Serialization.JsonConverter<MyVoDecimal>
         {
             public override MyVoDecimal Read(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {
@@ -2783,7 +2783,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
         /// <summary>
         /// Converts a MyVoDouble to or from JSON.
         /// </summary>
-        public class MyVoDoubleSystemTextJsonConverter : global::System.Text.Json.Serialization.JsonConverter<MyVoDouble>
+        public partial class MyVoDoubleSystemTextJsonConverter : global::System.Text.Json.Serialization.JsonConverter<MyVoDouble>
         {
             public override MyVoDouble Read(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {
@@ -3230,7 +3230,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
         /// <summary>
         /// Converts a MyVoString to or from JSON.
         /// </summary>
-        public class MyVoStringSystemTextJsonConverter : global::System.Text.Json.Serialization.JsonConverter<MyVoString>
+        public partial class MyVoStringSystemTextJsonConverter : global::System.Text.Json.Serialization.JsonConverter<MyVoString>
         {
             public override MyVoString Read(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {
@@ -3682,7 +3682,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
         /// <summary>
         /// Converts a MyVoBool to or from JSON.
         /// </summary>
-        public class MyVoBoolSystemTextJsonConverter : global::System.Text.Json.Serialization.JsonConverter<MyVoBool>
+        public partial class MyVoBoolSystemTextJsonConverter : global::System.Text.Json.Serialization.JsonConverter<MyVoBool>
         {
             public override MyVoBool Read(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {
@@ -4128,7 +4128,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
         /// <summary>
         /// Converts a @bool to or from JSON.
         /// </summary>
-        public class @boolSystemTextJsonConverter : global::System.Text.Json.Serialization.JsonConverter<@bool>
+        public partial class @boolSystemTextJsonConverter : global::System.Text.Json.Serialization.JsonConverter<@bool>
         {
             public override @bool Read(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {
@@ -4828,7 +4828,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
         /// <summary>
         /// Converts a MyVoShort to or from JSON.
         /// </summary>
-        public class MyVoShortSystemTextJsonConverter : global::System.Text.Json.Serialization.JsonConverter<MyVoShort>
+        public partial class MyVoShortSystemTextJsonConverter : global::System.Text.Json.Serialization.JsonConverter<MyVoShort>
         {
             public override MyVoShort Read(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {

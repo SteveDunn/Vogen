@@ -357,7 +357,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
         /// <summary>
         /// Converts a public_partial_classConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterSystem_DateTime to or from JSON.
         /// </summary>
-        public class public_partial_classConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterSystem_DateTimeSystemTextJsonConverter : global::System.Text.Json.Serialization.JsonConverter<public_partial_classConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterSystem_DateTime>
+        public partial class public_partial_classConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterSystem_DateTimeSystemTextJsonConverter : global::System.Text.Json.Serialization.JsonConverter<public_partial_classConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterSystem_DateTime>
         {
             public override public_partial_classConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterSystem_DateTime Read(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {
@@ -422,7 +422,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
 
 #nullable restore
 #nullable disable
-        public class DapperTypeHandler : global::Dapper.SqlMapper.TypeHandler<public_partial_classConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterSystem_DateTime>
+        public partial class DapperTypeHandler : global::Dapper.SqlMapper.TypeHandler<public_partial_classConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterSystem_DateTime>
         {
             public override void SetValue(global::System.Data.IDbDataParameter parameter, public_partial_classConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterSystem_DateTime value)
             {
@@ -480,7 +480,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
 
 #nullable restore
 #nullable disable
-        public class LinqToDbValueConverter : global::LinqToDB.Common.ValueConverter<public_partial_classConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterSystem_DateTime, global::System.DateTime>
+        public partial class LinqToDbValueConverter : global::LinqToDB.Common.ValueConverter<public_partial_classConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterSystem_DateTime, global::System.DateTime>
         {
             public LinqToDbValueConverter() : base(v => v.Value, p => public_partial_classConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterSystem_DateTime.__Deserialize(p), handlesNulls: false)
             {

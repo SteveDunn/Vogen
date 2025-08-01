@@ -1287,7 +1287,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
         /// <summary>
         /// Converts a Vo1 to or from JSON.
         /// </summary>
-        public class Vo1SystemTextJsonConverter : global::System.Text.Json.Serialization.JsonConverter<Vo1>
+        public partial class Vo1SystemTextJsonConverter : global::System.Text.Json.Serialization.JsonConverter<Vo1>
         {
             public override Vo1 Read(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {
@@ -1718,7 +1718,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
         /// <summary>
         /// Converts a Vo2 to or from JSON.
         /// </summary>
-        public class Vo2SystemTextJsonConverter : global::System.Text.Json.Serialization.JsonConverter<Vo2>
+        public partial class Vo2SystemTextJsonConverter : global::System.Text.Json.Serialization.JsonConverter<Vo2>
         {
             public override Vo2 Read(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {
@@ -2407,7 +2407,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
         /// <summary>
         /// Converts a Vo1 to or from JSON.
         /// </summary>
-        public class Vo1SystemTextJsonConverter : global::System.Text.Json.Serialization.JsonConverter<Vo1>
+        public partial class Vo1SystemTextJsonConverter : global::System.Text.Json.Serialization.JsonConverter<Vo1>
         {
             public override Vo1 Read(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {
@@ -2838,7 +2838,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
         /// <summary>
         /// Converts a Vo2 to or from JSON.
         /// </summary>
-        public class Vo2SystemTextJsonConverter : global::System.Text.Json.Serialization.JsonConverter<Vo2>
+        public partial class Vo2SystemTextJsonConverter : global::System.Text.Json.Serialization.JsonConverter<Vo2>
         {
             public override Vo2 Read(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {

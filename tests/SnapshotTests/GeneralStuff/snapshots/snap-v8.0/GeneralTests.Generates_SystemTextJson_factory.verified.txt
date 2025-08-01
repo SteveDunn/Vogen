@@ -573,7 +573,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
         /// <summary>
         /// Converts a MyClass1 to or from JSON.
         /// </summary>
-        public class MyClass1SystemTextJsonConverter : global::System.Text.Json.Serialization.JsonConverter<MyClass1>
+        public partial class MyClass1SystemTextJsonConverter : global::System.Text.Json.Serialization.JsonConverter<MyClass1>
         {
             public override MyClass1 Read(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {
@@ -1264,7 +1264,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
         /// <summary>
         /// Converts a MyClass2 to or from JSON.
         /// </summary>
-        public class MyClass2SystemTextJsonConverter : global::System.Text.Json.Serialization.JsonConverter<MyClass2>
+        public partial class MyClass2SystemTextJsonConverter : global::System.Text.Json.Serialization.JsonConverter<MyClass2>
         {
             public override MyClass2 Read(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {

@@ -347,7 +347,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
         /// <summary>
         /// Converts a partial_record_struct_Method to or from JSON.
         /// </summary>
-        public class partial_record_struct_MethodSystemTextJsonConverter : global::System.Text.Json.Serialization.JsonConverter<partial_record_struct_Method>
+        public partial class partial_record_struct_MethodSystemTextJsonConverter : global::System.Text.Json.Serialization.JsonConverter<partial_record_struct_Method>
         {
             public override partial_record_struct_Method Read(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {

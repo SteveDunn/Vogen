@@ -1,5 +1,5 @@
 ﻿
-        public class DapperTypeHandler : global::Dapper.SqlMapper.TypeHandler<VOTYPE>
+        public partial class DapperTypeHandler : global::Dapper.SqlMapper.TypeHandler<VOTYPE>
         {
             public override void SetValue(global::System.Data.IDbDataParameter parameter, VOTYPE value)
             {

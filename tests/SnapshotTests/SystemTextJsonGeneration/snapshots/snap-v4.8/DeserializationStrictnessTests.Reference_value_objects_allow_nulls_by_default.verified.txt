@@ -371,7 +371,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
         /// <summary>
         /// Converts a ReferenceVo to or from JSON.
         /// </summary>
-        public class ReferenceVoSystemTextJsonConverter : global::System.Text.Json.Serialization.JsonConverter<ReferenceVo>
+        public partial class ReferenceVoSystemTextJsonConverter : global::System.Text.Json.Serialization.JsonConverter<ReferenceVo>
         {
             public override ReferenceVo Read(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {

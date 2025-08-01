@@ -324,7 +324,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
         /// <summary>
         /// Converts a _casting_public_partial_classImplicitNonechar to or from JSON.
         /// </summary>
-        public class _casting_public_partial_classImplicitNonecharSystemTextJsonConverter : global::System.Text.Json.Serialization.JsonConverter<_casting_public_partial_classImplicitNonechar>
+        public partial class _casting_public_partial_classImplicitNonecharSystemTextJsonConverter : global::System.Text.Json.Serialization.JsonConverter<_casting_public_partial_classImplicitNonechar>
         {
             public override _casting_public_partial_classImplicitNonechar Read(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {

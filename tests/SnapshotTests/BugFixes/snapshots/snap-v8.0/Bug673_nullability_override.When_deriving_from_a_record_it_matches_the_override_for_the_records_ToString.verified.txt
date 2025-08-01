@@ -591,7 +591,7 @@ private readonly global::System.Diagnostics.StackTrace? _stackTrace = null!;
         /// <summary>
         /// Converts a D to or from JSON.
         /// </summary>
-        public class DSystemTextJsonConverter : global::System.Text.Json.Serialization.JsonConverter<D>
+        public partial class DSystemTextJsonConverter : global::System.Text.Json.Serialization.JsonConverter<D>
         {
             public override D Read(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {

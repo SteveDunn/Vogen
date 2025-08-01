@@ -1,5 +1,5 @@
 ﻿
-        public class LinqToDbValueConverter : global::LinqToDB.Common.ValueConverter<VOTYPE, global::System.Decimal>
+        public partial class LinqToDbValueConverter : global::LinqToDB.Common.ValueConverter<VOTYPE, global::System.Decimal>
         {
             public LinqToDbValueConverter()
                 : base(

@@ -566,7 +566,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
         }
 
 #nullable disable
-        public class LinqToDbValueConverter : global::LinqToDB.Common.ValueConverter<MyIntVo, global::System.Int32>
+        public partial class LinqToDbValueConverter : global::LinqToDB.Common.ValueConverter<MyIntVo, global::System.Int32>
         {
             public LinqToDbValueConverter() : base(v => v.Value, p => MyIntVo.__Deserialize(p), handlesNulls: false)
             {
