@@ -18,7 +18,7 @@ public enum Conversions
     /// <summary>
     /// Use the default converters for the value object.
     /// This will be the value provided in the <see cref="ValueObjectAttribute"/>, which falls back to
-    /// <see cref="TypeConverter"/> and <see cref="NewtonsoftJson"/>
+    /// <see cref="TypeConverter"/> and <see cref="SystemTextJson"/>
     /// </summary>
     Default = TypeConverter | SystemTextJson,
 
