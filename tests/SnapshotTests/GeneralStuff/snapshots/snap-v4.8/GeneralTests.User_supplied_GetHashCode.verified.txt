@@ -306,7 +306,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
     /// <summary>
     /// Converts a VoWithGetHashCode to or from JSON.
     /// </summary>
-    public class VoWithGetHashCodeSystemTextJsonConverter : global::System.Text.Json.Serialization.JsonConverter<VoWithGetHashCode>
+    public partial class VoWithGetHashCodeSystemTextJsonConverter : global::System.Text.Json.Serialization.JsonConverter<VoWithGetHashCode>
     {
         public override VoWithGetHashCode Read(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
         {

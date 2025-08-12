@@ -2,7 +2,7 @@
         /// <summary>
         /// Converts a VOTYPE to or from JSON.
         /// </summary>
-        public class VOTYPESystemTextJsonConverter : global::System.Text.Json.Serialization.JsonConverter<VOTYPE>
+        public partial class VOTYPESystemTextJsonConverter : global::System.Text.Json.Serialization.JsonConverter<VOTYPE>
         {
 __HANDLE_NULL__ #if NET5_0_OR_GREATER        
 __HANDLE_NULL__            public override bool HandleNull => true;        
