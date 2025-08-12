@@ -490,7 +490,7 @@ causes Rider's debugger to crash.
 
         return $"""
                 #if DEBUG   
-                private readonly global::System.Diagnostics.StackTrace{item.Nullable.QuestionMarkForOtherReferences} _stackTrace = null!;
+                private readonly global::System.Diagnostics.StackTrace{item.Nullable.QuestionMarkForOtherReferences} _stackTrace;
                 #endif
                 """;
     }

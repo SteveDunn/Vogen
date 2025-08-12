@@ -31,28 +31,27 @@ internal class GenerateCodeForSystemTextJsonConverterFactories
         
         var fullNamespace = ProjectName.FromAssemblyName(compilation.Assembly.Name);
 
-        var ns = $"namespace {fullNamespace};";
-        
         string source =
             $$"""
             
             {{GeneratedCodeSegments.Preamble}}
             
-            {{ns}}
-            
-            public class VogenTypesFactory : global::System.Text.Json.Serialization.JsonConverterFactory
+            namespace {{fullNamespace}}
             {
-                public VogenTypesFactory() { }
-                
-                private static readonly global::System.Collections.Generic.Dictionary<global::System.Type, global::System.Lazy<global::System.Text.Json.Serialization.JsonConverter>> _lookup = 
-                    new global::System.Collections.Generic.Dictionary<global::System.Type, global::System.Lazy<global::System.Text.Json.Serialization.JsonConverter>> {
-                            {{string.Join(",", entries)}}
-                    };
-                
-                public override bool CanConvert(global::System.Type typeToConvert) => _lookup.ContainsKey(typeToConvert);
-                
-                public override global::System.Text.Json.Serialization.JsonConverter CreateConverter(global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options) =>
-                    _lookup[typeToConvert].Value;
+                public class VogenTypesFactory : global::System.Text.Json.Serialization.JsonConverterFactory
+                {
+                    public VogenTypesFactory() { }
+                    
+                    private static readonly global::System.Collections.Generic.Dictionary<global::System.Type, global::System.Lazy<global::System.Text.Json.Serialization.JsonConverter>> _lookup = 
+                        new global::System.Collections.Generic.Dictionary<global::System.Type, global::System.Lazy<global::System.Text.Json.Serialization.JsonConverter>> {
+                                {{string.Join(",", entries)}}
+                        };
+                    
+                    public override bool CanConvert(global::System.Type typeToConvert) => _lookup.ContainsKey(typeToConvert);
+                    
+                    public override global::System.Text.Json.Serialization.JsonConverter CreateConverter(global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options) =>
+                        _lookup[typeToConvert].Value;
+                }
             }
             """;
 

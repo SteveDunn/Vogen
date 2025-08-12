@@ -36,6 +36,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OrleansExample", "samples\O
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApplication.Shared", "samples\WebApplication.Shared\WebApplication.Shared.csproj", "{111EE1B7-E2F0-45EF-9D2D-86B5EF9EE899}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetStandard21Consumer", "samples\NetStandard21Consumer\NetStandard21Consumer.csproj", "{F1397A79-D670-42D3-8965-D93F679E7269}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -78,6 +80,10 @@ Global
 		{111EE1B7-E2F0-45EF-9D2D-86B5EF9EE899}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{111EE1B7-E2F0-45EF-9D2D-86B5EF9EE899}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{111EE1B7-E2F0-45EF-9D2D-86B5EF9EE899}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F1397A79-D670-42D3-8965-D93F679E7269}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F1397A79-D670-42D3-8965-D93F679E7269}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F1397A79-D670-42D3-8965-D93F679E7269}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F1397A79-D670-42D3-8965-D93F679E7269}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
