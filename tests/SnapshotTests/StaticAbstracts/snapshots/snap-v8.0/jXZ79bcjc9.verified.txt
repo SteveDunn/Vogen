@@ -16,6 +16,8 @@
 // Suppress warning for 'The annotation for nullable reference types should only be used in code within a '#nullable' annotations context. Auto-generated code requires an explicit '#nullable' directive in source.'
 // The generator copies signatures from the BCL, e.g. for `TryParse`, and some of those have nullable annotations.
 #pragma warning disable CS8669, CS8632
+#pragma warning disable CS8604 // Possible null reference argument.
+
 // Suppress warnings about CS1591: Missing XML comment for publicly visible type or member 'Type_or_Member'
 #pragma warning disable CS1591
 public interface IVogen<TSelf, TPrimitive>
@@ -50,6 +52,8 @@ public interface IVogen<TSelf, TPrimitive>
 // Suppress warning for 'The annotation for nullable reference types should only be used in code within a '#nullable' annotations context. Auto-generated code requires an explicit '#nullable' directive in source.'
 // The generator copies signatures from the BCL, e.g. for `TryParse`, and some of those have nullable annotations.
 #pragma warning disable CS8669, CS8632
+#pragma warning disable CS8604 // Possible null reference argument.
+
 // Suppress warnings about CS1591: Missing XML comment for publicly visible type or member 'Type_or_Member'
 #pragma warning disable CS1591
 [global::System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage]
@@ -59,7 +63,7 @@ public interface IVogen<TSelf, TPrimitive>
 public partial class MyVo : global::System.IEquatable<MyVo>, global::System.IEquatable<System.Guid>, global::System.IComparable<MyVo>, global::System.IComparable, global::System.IParsable<MyVo>, global::System.ISpanParsable<MyVo>, global::System.IFormattable, global::System.ISpanFormattable, global::System.IUtf8SpanFormattable, IVogen<MyVo, System.Guid>
 {
 #if DEBUG
-private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
+private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
 #endif
 #if !VOGEN_NO_VALIDATION
     private readonly global::System.Boolean _isInitialized;
@@ -463,7 +467,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
         internal static System.Exception CreateValidationException(Vogen.Validation validation)
         {
             var ex = CreateValidationException(validation.ErrorMessage);
-            if (validation.Data is not null)
+            if (validation.Data != null)
             {
                 foreach (var kvp in validation.Data)
                 {

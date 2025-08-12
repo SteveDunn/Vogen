@@ -401,7 +401,7 @@ internal static class Util
                       {
                           var ex = CreateValidationException(validation.ErrorMessage);
                       
-                          if (validation.Data is not null) 
+                          if (validation.Data != null) 
                           {
                               foreach (var kvp in validation.Data)
                               {
@@ -488,14 +488,27 @@ causes Rider's debugger to crash.
             return string.Empty;
         }
 
+        string setter = "";
+        if (item.LanguageVersion >= LanguageVersion.CSharp10) setter = " = null!";
+            
+
         return $"""
                 #if DEBUG   
-                private readonly global::System.Diagnostics.StackTrace{item.Nullable.QuestionMarkForOtherReferences} _stackTrace = null!;
+                private readonly global::System.Diagnostics.StackTrace{item.Nullable.QuestionMarkForOtherReferences} _stackTrace {setter};
                 #endif
                 """;
     }
 
     public static string SetStackTraceIfNeeded(VoWorkItem voWorkItem) => voWorkItem.Config.DisableStackTraceRecordingInDebug
-        ? string.Empty
+        ? ""
         : "_stackTrace = new global::System.Diagnostics.StackTrace();";
+
+    /// <summary>
+    /// For structs before C# 10, fields couldn't be initialised. To we have to initialise them manually in the constructor.
+    /// </summary>
+    /// <param name="voWorkItem"></param>
+    /// <returns></returns>
+    public static string SetStackTraceToNullIfNeeded(VoWorkItem voWorkItem) => voWorkItem.Config.DisableStackTraceRecordingInDebug
+        ? ""
+        : "_stackTrace = null;";
 }

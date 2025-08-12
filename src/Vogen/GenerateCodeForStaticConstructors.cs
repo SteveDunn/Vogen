@@ -1,4 +1,35 @@
+using Microsoft.CodeAnalysis;
+using Microsoft.CodeAnalysis.CSharp;
+
 namespace Vogen;
+
+internal static class GenerateConstructors
+{
+    public static string GenerateParameterlessStructConstructorIfAllowed(VoWorkItem item)
+    {
+        SyntaxToken wrapperName = item.TypeToAugment.Identifier;
+        string wrapperBang = item.Nullable.BangForWrapper;
+        
+        if (item.LanguageVersion < LanguageVersion.CSharp10) return "";
+
+        return $$"""
+                         [global::System.Diagnostics.DebuggerStepThroughAttribute]
+                         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+                         public {{wrapperName}}()
+                         {
+                 #if DEBUG
+                             {{DebugGeneration.SetStackTraceIfNeeded(item)}}
+                 #endif
+                 
+
+                 #if !VOGEN_NO_VALIDATION
+                             _isInitialized = false;
+                 #endif
+                             _value = default{{wrapperBang}};
+                         }
+                 """;
+    }
+}
 
 internal static class GenerateCodeForStaticConstructors
 {

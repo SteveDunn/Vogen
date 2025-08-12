@@ -16,36 +16,40 @@
 // Suppress warning for 'The annotation for nullable reference types should only be used in code within a '#nullable' annotations context. Auto-generated code requires an explicit '#nullable' directive in source.'
 // The generator copies signatures from the BCL, e.g. for `TryParse`, and some of those have nullable annotations.
 #pragma warning disable CS8669, CS8632
+#pragma warning disable CS8604 // Possible null reference argument.
+
 // Suppress warnings about CS1591: Missing XML comment for publicly visible type or member 'Type_or_Member'
 #pragma warning disable CS1591
-namespace generator;
-public class VogenTypesFactory : global::System.Text.Json.Serialization.JsonConverterFactory
+namespace generator
 {
-    public VogenTypesFactory()
+    public class VogenTypesFactory : global::System.Text.Json.Serialization.JsonConverterFactory
     {
-    }
-
-    private static readonly global::System.Collections.Generic.Dictionary<global::System.Type, global::System.Lazy<global::System.Text.Json.Serialization.JsonConverter>> _lookup = new global::System.Collections.Generic.Dictionary<global::System.Type, global::System.Lazy<global::System.Text.Json.Serialization.JsonConverter>>
-    {
+        public VogenTypesFactory()
         {
-            typeof(global::MyApp.Acres),
-            new global::System.Lazy<global::System.Text.Json.Serialization.JsonConverter>(() => new global::MyApp.Acres.AcresSystemTextJsonConverter())
-        },
-        {
-            typeof(global::MyApp.FarmId),
-            new global::System.Lazy<global::System.Text.Json.Serialization.JsonConverter>(() => new global::MyApp.FarmId.FarmIdSystemTextJsonConverter())
-        },
-        {
-            typeof(global::MyApp.FarmName),
-            new global::System.Lazy<global::System.Text.Json.Serialization.JsonConverter>(() => new global::MyApp.FarmName.FarmNameSystemTextJsonConverter())
-        },
-        {
-            typeof(global::MyApp.Farm),
-            new global::System.Lazy<global::System.Text.Json.Serialization.JsonConverter>(() => new global::MyApp.Farm.FarmSystemTextJsonConverter())
         }
-    };
-    public override bool CanConvert(global::System.Type typeToConvert) => _lookup.ContainsKey(typeToConvert);
-    public override global::System.Text.Json.Serialization.JsonConverter CreateConverter(global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options) => _lookup[typeToConvert].Value;
+
+        private static readonly global::System.Collections.Generic.Dictionary<global::System.Type, global::System.Lazy<global::System.Text.Json.Serialization.JsonConverter>> _lookup = new global::System.Collections.Generic.Dictionary<global::System.Type, global::System.Lazy<global::System.Text.Json.Serialization.JsonConverter>>
+        {
+            {
+                typeof(global::MyApp.Acres),
+                new global::System.Lazy<global::System.Text.Json.Serialization.JsonConverter>(() => new global::MyApp.Acres.AcresSystemTextJsonConverter())
+            },
+            {
+                typeof(global::MyApp.FarmId),
+                new global::System.Lazy<global::System.Text.Json.Serialization.JsonConverter>(() => new global::MyApp.FarmId.FarmIdSystemTextJsonConverter())
+            },
+            {
+                typeof(global::MyApp.FarmName),
+                new global::System.Lazy<global::System.Text.Json.Serialization.JsonConverter>(() => new global::MyApp.FarmName.FarmNameSystemTextJsonConverter())
+            },
+            {
+                typeof(global::MyApp.Farm),
+                new global::System.Lazy<global::System.Text.Json.Serialization.JsonConverter>(() => new global::MyApp.Farm.FarmSystemTextJsonConverter())
+            }
+        };
+        public override bool CanConvert(global::System.Type typeToConvert) => _lookup.ContainsKey(typeToConvert);
+        public override global::System.Text.Json.Serialization.JsonConverter CreateConverter(global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options) => _lookup[typeToConvert].Value;
+    }
 }
   
 // ------------------------------------------------------------------------------
@@ -65,6 +69,8 @@ public class VogenTypesFactory : global::System.Text.Json.Serialization.JsonConv
 // Suppress warning for 'The annotation for nullable reference types should only be used in code within a '#nullable' annotations context. Auto-generated code requires an explicit '#nullable' directive in source.'
 // The generator copies signatures from the BCL, e.g. for `TryParse`, and some of those have nullable annotations.
 #pragma warning disable CS8669, CS8632
+#pragma warning disable CS8604 // Possible null reference argument.
+
 // Suppress warnings about CS1591: Missing XML comment for publicly visible type or member 'Type_or_Member'
 #pragma warning disable CS1591
 namespace MyApp
@@ -79,7 +85,7 @@ namespace MyApp
     public partial struct Acres : global::System.IEquatable<Acres>, global::System.IEquatable<System.Int32>, global::System.IComparable<Acres>, global::System.IComparable, global::System.IParsable<Acres>, global::System.ISpanParsable<Acres>, global::System.IUtf8SpanParsable<Acres>, global::System.IFormattable, global::System.ISpanFormattable, global::System.IUtf8SpanFormattable
     {
 #if DEBUG
-private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
+private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
 #endif
 #if !VOGEN_NO_VALIDATION
         private readonly global::System.Boolean _isInitialized;
@@ -118,6 +124,9 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
             _value = value;
 #if !VOGEN_NO_VALIDATION
             _isInitialized = true;
+#endif
+#if DEBUG
+            _stackTrace = null;
 #endif
         }
 
@@ -725,7 +734,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
             internal static System.Exception CreateValidationException(Vogen.Validation validation)
             {
                 var ex = CreateValidationException(validation.ErrorMessage);
-                if (validation.Data is not null)
+                if (validation.Data != null)
                 {
                     foreach (var kvp in validation.Data)
                     {
@@ -756,6 +765,8 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
 // Suppress warning for 'The annotation for nullable reference types should only be used in code within a '#nullable' annotations context. Auto-generated code requires an explicit '#nullable' directive in source.'
 // The generator copies signatures from the BCL, e.g. for `TryParse`, and some of those have nullable annotations.
 #pragma warning disable CS8669, CS8632
+#pragma warning disable CS8604 // Possible null reference argument.
+
 // Suppress warnings about CS1591: Missing XML comment for publicly visible type or member 'Type_or_Member'
 #pragma warning disable CS1591
 namespace MyApp
@@ -770,7 +781,7 @@ namespace MyApp
     public partial struct FarmId : global::System.IEquatable<FarmId>, global::System.IEquatable<System.Int32>, global::System.IComparable<FarmId>, global::System.IComparable, global::System.IParsable<FarmId>, global::System.ISpanParsable<FarmId>, global::System.IUtf8SpanParsable<FarmId>, global::System.IFormattable, global::System.ISpanFormattable, global::System.IUtf8SpanFormattable
     {
 #if DEBUG
-private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
+private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
 #endif
 #if !VOGEN_NO_VALIDATION
         private readonly global::System.Boolean _isInitialized;
@@ -809,6 +820,9 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
             _value = value;
 #if !VOGEN_NO_VALIDATION
             _isInitialized = true;
+#endif
+#if DEBUG
+            _stackTrace = null;
 #endif
         }
 
@@ -1416,7 +1430,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
             internal static System.Exception CreateValidationException(Vogen.Validation validation)
             {
                 var ex = CreateValidationException(validation.ErrorMessage);
-                if (validation.Data is not null)
+                if (validation.Data != null)
                 {
                     foreach (var kvp in validation.Data)
                     {
@@ -1447,6 +1461,8 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
 // Suppress warning for 'The annotation for nullable reference types should only be used in code within a '#nullable' annotations context. Auto-generated code requires an explicit '#nullable' directive in source.'
 // The generator copies signatures from the BCL, e.g. for `TryParse`, and some of those have nullable annotations.
 #pragma warning disable CS8669, CS8632
+#pragma warning disable CS8604 // Possible null reference argument.
+
 // Suppress warnings about CS1591: Missing XML comment for publicly visible type or member 'Type_or_Member'
 #pragma warning disable CS1591
 namespace MyApp
@@ -1461,7 +1477,7 @@ namespace MyApp
     public partial struct FarmName : global::System.IEquatable<FarmName>, global::System.IEquatable<System.String>, global::System.IComparable<FarmName>, global::System.IComparable, global::System.IParsable<FarmName>
     {
 #if DEBUG
-private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
+private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
 #endif
 #if !VOGEN_NO_VALIDATION
         private readonly global::System.Boolean _isInitialized;
@@ -1500,6 +1516,9 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
             _value = value;
 #if !VOGEN_NO_VALIDATION
             _isInitialized = true;
+#endif
+#if DEBUG
+            _stackTrace = null;
 #endif
         }
 
@@ -1763,7 +1782,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
             public override global::System.Object ConvertFrom(global::System.ComponentModel.ITypeDescriptorContext context, global::System.Globalization.CultureInfo culture, global::System.Object value)
             {
                 var stringValue = value as global::System.String;
-                if (stringValue is not null)
+                if (stringValue != null)
                 {
                     return FarmName.__Deserialize(stringValue);
                 }
@@ -1845,7 +1864,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
             internal static System.Exception CreateValidationException(Vogen.Validation validation)
             {
                 var ex = CreateValidationException(validation.ErrorMessage);
-                if (validation.Data is not null)
+                if (validation.Data != null)
                 {
                     foreach (var kvp in validation.Data)
                     {
@@ -1876,6 +1895,8 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
 // Suppress warning for 'The annotation for nullable reference types should only be used in code within a '#nullable' annotations context. Auto-generated code requires an explicit '#nullable' directive in source.'
 // The generator copies signatures from the BCL, e.g. for `TryParse`, and some of those have nullable annotations.
 #pragma warning disable CS8669, CS8632
+#pragma warning disable CS8604 // Possible null reference argument.
+
 // Suppress warnings about CS1591: Missing XML comment for publicly visible type or member 'Type_or_Member'
 #pragma warning disable CS1591
 namespace MyApp
@@ -1889,7 +1910,7 @@ namespace MyApp
     public partial class Farm : global::System.IEquatable<Farm>, global::System.IEquatable<System.ValueTuple<MyApp.FarmId, MyApp.FarmName, MyApp.Acres>>, global::System.IComparable<Farm>, global::System.IComparable
     {
 #if DEBUG
-private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
+private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
 #endif
 #if !VOGEN_NO_VALIDATION
         private readonly global::System.Boolean _isInitialized;
@@ -2245,7 +2266,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
             internal static System.Exception CreateValidationException(Vogen.Validation validation)
             {
                 var ex = CreateValidationException(validation.ErrorMessage);
-                if (validation.Data is not null)
+                if (validation.Data != null)
                 {
                     foreach (var kvp in validation.Data)
                     {

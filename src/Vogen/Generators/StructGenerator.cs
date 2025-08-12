@@ -16,7 +16,6 @@ public class StructGenerator : IGenerateValueObjectSourceCode
 
         string underlyingNullAnnotation = item.Nullable.QuestionMarkForUnderlying;
         string underlyingBang = item.Nullable.BangForUnderlying;
-        string wrapperBang = item.Nullable.BangForWrapper;
 
         string readonlyForValueAndIsInitialized = Util.GetModifiersForValueAndIsInitializedFields(parameters.WorkItem);
 
@@ -62,19 +61,7 @@ public class StructGenerator : IGenerateValueObjectSourceCode
         }}
 
 {GenerateCodeForStaticConstructors.GenerateIfNeeded(item)}
-        [global::System.Diagnostics.DebuggerStepThroughAttribute]
-        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
-        public {wrapperName}()
-        {{
-#if DEBUG
-            {DebugGeneration.SetStackTraceIfNeeded(item)}
-#endif
-
-#if !VOGEN_NO_VALIDATION
-            _isInitialized = false;
-#endif
-            _value = default{wrapperBang};
-        }}
+        {GenerateConstructors.GenerateParameterlessStructConstructorIfAllowed(item)}
 
         [global::System.Diagnostics.DebuggerStepThroughAttribute]
         private {wrapperName}({itemUnderlyingType} value) 
@@ -82,6 +69,9 @@ public class StructGenerator : IGenerateValueObjectSourceCode
             _value = value;
 #if !VOGEN_NO_VALIDATION
             _isInitialized = true;
+#endif
+#if DEBUG
+            {DebugGeneration.SetStackTraceToNullIfNeeded(item)}
 #endif
         }}
 
