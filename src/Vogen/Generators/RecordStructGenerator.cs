@@ -71,19 +71,7 @@ public class RecordStructGenerator : IGenerateValueObjectSourceCode
         }}
 
 {GenerateCodeForStaticConstructors.GenerateIfNeeded(item)}
-        [global::System.Diagnostics.DebuggerStepThroughAttribute]
-        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
-        public {wrapperName}()
-        {{
-#if DEBUG
-            {DebugGeneration.SetStackTraceIfNeeded(item)}
-#endif
-
-#if !VOGEN_NO_VALIDATION
-            _isInitialized = false;
-#endif
-            _value = default;
-        }}
+        {GenerateConstructors.GenerateParameterlessStructConstructorIfAllowed(item)}
 
         [global::System.Diagnostics.DebuggerStepThroughAttribute]
         private {wrapperName}({itemUnderlyingType} value) 
