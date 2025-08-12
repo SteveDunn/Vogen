@@ -18,22 +18,24 @@
 #pragma warning disable CS8669, CS8632
 // Suppress warnings about CS1591: Missing XML comment for publicly visible type or member 'Type_or_Member'
 #pragma warning disable CS1591
-namespace generator;
-public class VogenTypesFactory : global::System.Text.Json.Serialization.JsonConverterFactory
+namespace generator
 {
-    public VogenTypesFactory()
+    public class VogenTypesFactory : global::System.Text.Json.Serialization.JsonConverterFactory
     {
-    }
-
-    private static readonly global::System.Collections.Generic.Dictionary<global::System.Type, global::System.Lazy<global::System.Text.Json.Serialization.JsonConverter>> _lookup = new global::System.Collections.Generic.Dictionary<global::System.Type, global::System.Lazy<global::System.Text.Json.Serialization.JsonConverter>>
-    {
+        public VogenTypesFactory()
         {
-            typeof(global::Whatever._casting_public_sealed_partial_classNoneImplicitlong),
-            new global::System.Lazy<global::System.Text.Json.Serialization.JsonConverter>(() => new global::Whatever._casting_public_sealed_partial_classNoneImplicitlong._casting_public_sealed_partial_classNoneImplicitlongSystemTextJsonConverter())
         }
-    };
-    public override bool CanConvert(global::System.Type typeToConvert) => _lookup.ContainsKey(typeToConvert);
-    public override global::System.Text.Json.Serialization.JsonConverter CreateConverter(global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options) => _lookup[typeToConvert].Value;
+
+        private static readonly global::System.Collections.Generic.Dictionary<global::System.Type, global::System.Lazy<global::System.Text.Json.Serialization.JsonConverter>> _lookup = new global::System.Collections.Generic.Dictionary<global::System.Type, global::System.Lazy<global::System.Text.Json.Serialization.JsonConverter>>
+        {
+            {
+                typeof(global::Whatever._casting_public_sealed_partial_classNoneImplicitlong),
+                new global::System.Lazy<global::System.Text.Json.Serialization.JsonConverter>(() => new global::Whatever._casting_public_sealed_partial_classNoneImplicitlong._casting_public_sealed_partial_classNoneImplicitlongSystemTextJsonConverter())
+            }
+        };
+        public override bool CanConvert(global::System.Type typeToConvert) => _lookup.ContainsKey(typeToConvert);
+        public override global::System.Text.Json.Serialization.JsonConverter CreateConverter(global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options) => _lookup[typeToConvert].Value;
+    }
 }
   
 // ------------------------------------------------------------------------------
@@ -66,7 +68,7 @@ namespace Whatever
     public sealed partial class _casting_public_sealed_partial_classNoneImplicitlong : global::System.IEquatable<_casting_public_sealed_partial_classNoneImplicitlong>, global::System.IEquatable<System.Int64>, global::System.IComparable<_casting_public_sealed_partial_classNoneImplicitlong>, global::System.IComparable, global::System.IFormattable
     {
 #if DEBUG
-private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
+private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
 #endif
 #if !VOGEN_NO_VALIDATION
         private readonly global::System.Boolean _isInitialized;
@@ -510,7 +512,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
             internal static System.Exception CreateValidationException(Vogen.Validation validation)
             {
                 var ex = CreateValidationException(validation.ErrorMessage);
-                if (validation.Data is not null)
+                if (validation.Data != null)
                 {
                     foreach (var kvp in validation.Data)
                     {

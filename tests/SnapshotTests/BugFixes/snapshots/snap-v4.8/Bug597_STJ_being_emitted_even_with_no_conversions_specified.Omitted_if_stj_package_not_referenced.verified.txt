@@ -26,7 +26,7 @@
 public partial struct Vo : global::System.IEquatable<Vo>, global::System.IEquatable<System.Int32>, global::System.IComparable<Vo>, global::System.IComparable, global::System.IFormattable
 {
 #if DEBUG
-private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
+private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
 #endif
 #if !VOGEN_NO_VALIDATION
     private readonly global::System.Boolean _isInitialized;
@@ -65,6 +65,9 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
         _value = value;
 #if !VOGEN_NO_VALIDATION
         _isInitialized = true;
+#endif
+#if DEBUG
+            _stackTrace = null;
 #endif
     }
 
@@ -359,7 +362,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
         internal static System.Exception CreateValidationException(Vogen.Validation validation)
         {
             var ex = CreateValidationException(validation.ErrorMessage);
-            if (validation.Data is not null)
+            if (validation.Data != null)
             {
                 foreach (var kvp in validation.Data)
                 {

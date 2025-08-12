@@ -18,22 +18,24 @@
 #pragma warning disable CS8669, CS8632
 // Suppress warnings about CS1591: Missing XML comment for publicly visible type or member 'Type_or_Member'
 #pragma warning disable CS1591
-namespace generator;
-public class VogenTypesFactory : global::System.Text.Json.Serialization.JsonConverterFactory
+namespace generator
 {
-    public VogenTypesFactory()
+    public class VogenTypesFactory : global::System.Text.Json.Serialization.JsonConverterFactory
     {
-    }
-
-    private static readonly global::System.Collections.Generic.Dictionary<global::System.Type, global::System.Lazy<global::System.Text.Json.Serialization.JsonConverter>> _lookup = new global::System.Collections.Generic.Dictionary<global::System.Type, global::System.Lazy<global::System.Text.Json.Serialization.JsonConverter>>
-    {
+        public VogenTypesFactory()
         {
-            typeof(global::Whatever.City),
-            new global::System.Lazy<global::System.Text.Json.Serialization.JsonConverter>(() => new global::Whatever.City.CitySystemTextJsonConverter())
         }
-    };
-    public override bool CanConvert(global::System.Type typeToConvert) => _lookup.ContainsKey(typeToConvert);
-    public override global::System.Text.Json.Serialization.JsonConverter CreateConverter(global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options) => _lookup[typeToConvert].Value;
+
+        private static readonly global::System.Collections.Generic.Dictionary<global::System.Type, global::System.Lazy<global::System.Text.Json.Serialization.JsonConverter>> _lookup = new global::System.Collections.Generic.Dictionary<global::System.Type, global::System.Lazy<global::System.Text.Json.Serialization.JsonConverter>>
+        {
+            {
+                typeof(global::Whatever.City),
+                new global::System.Lazy<global::System.Text.Json.Serialization.JsonConverter>(() => new global::Whatever.City.CitySystemTextJsonConverter())
+            }
+        };
+        public override bool CanConvert(global::System.Type typeToConvert) => _lookup.ContainsKey(typeToConvert);
+        public override global::System.Text.Json.Serialization.JsonConverter CreateConverter(global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options) => _lookup[typeToConvert].Value;
+    }
 }
   
 // ------------------------------------------------------------------------------
@@ -67,7 +69,7 @@ namespace Whatever
     public partial struct City : global::System.IEquatable<City>, global::System.IEquatable<System.String>, global::System.IComparable<City>, global::System.IComparable, global::System.IParsable<City>
     {
 #if DEBUG
-private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
+private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
 #endif
 #if !VOGEN_NO_VALIDATION
         private readonly global::System.Boolean _isInitialized;
@@ -106,6 +108,9 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
             _value = value;
 #if !VOGEN_NO_VALIDATION
             _isInitialized = true;
+#endif
+#if DEBUG
+            _stackTrace = null;
 #endif
         }
 
@@ -333,7 +338,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
             public override global::System.Object ConvertFrom(global::System.ComponentModel.ITypeDescriptorContext context, global::System.Globalization.CultureInfo culture, global::System.Object value)
             {
                 var stringValue = value as global::System.String;
-                if (stringValue is not null)
+                if (stringValue != null)
                 {
                     return City.__Deserialize(stringValue);
                 }
@@ -415,7 +420,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
             internal static System.Exception CreateValidationException(Vogen.Validation validation)
             {
                 var ex = CreateValidationException(validation.ErrorMessage);
-                if (validation.Data is not null)
+                if (validation.Data != null)
                 {
                     foreach (var kvp in validation.Data)
                     {

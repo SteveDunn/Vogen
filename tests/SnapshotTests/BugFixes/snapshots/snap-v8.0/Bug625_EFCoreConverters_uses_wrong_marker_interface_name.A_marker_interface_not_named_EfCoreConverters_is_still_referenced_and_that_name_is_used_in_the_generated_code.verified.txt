@@ -305,7 +305,7 @@ namespace Foo
     public partial struct HireDate : global::System.IEquatable<HireDate>, global::System.IEquatable<System.DateTime>, global::System.IComparable<HireDate>, global::System.IComparable, global::System.IParsable<HireDate>, global::System.ISpanParsable<HireDate>, global::System.IFormattable, global::System.ISpanFormattable, global::System.IUtf8SpanFormattable
     {
 #if DEBUG
-private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
+private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
 #endif
 #if !VOGEN_NO_VALIDATION
         private readonly global::System.Boolean _isInitialized;
@@ -344,6 +344,9 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
             _value = value;
 #if !VOGEN_NO_VALIDATION
             _isInitialized = true;
+#endif
+#if DEBUG
+            _stackTrace = null;
 #endif
         }
 
@@ -841,7 +844,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
             internal static System.Exception CreateValidationException(Vogen.Validation validation)
             {
                 var ex = CreateValidationException(validation.ErrorMessage);
-                if (validation.Data is not null)
+                if (validation.Data != null)
                 {
                     foreach (var kvp in validation.Data)
                     {
@@ -886,7 +889,7 @@ namespace Foo
     public partial struct Name : global::System.IEquatable<Name>, global::System.IEquatable<System.String>, global::System.IComparable<Name>, global::System.IComparable, global::System.IParsable<Name>
     {
 #if DEBUG
-private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
+private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
 #endif
 #if !VOGEN_NO_VALIDATION
         private readonly global::System.Boolean _isInitialized;
@@ -925,6 +928,9 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
             _value = value;
 #if !VOGEN_NO_VALIDATION
             _isInitialized = true;
+#endif
+#if DEBUG
+            _stackTrace = null;
 #endif
         }
 
@@ -1188,7 +1194,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
             public override global::System.Object ConvertFrom(global::System.ComponentModel.ITypeDescriptorContext context, global::System.Globalization.CultureInfo culture, global::System.Object value)
             {
                 var stringValue = value as global::System.String;
-                if (stringValue is not null)
+                if (stringValue != null)
                 {
                     return Name.__Deserialize(stringValue);
                 }
@@ -1270,7 +1276,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
             internal static System.Exception CreateValidationException(Vogen.Validation validation)
             {
                 var ex = CreateValidationException(validation.ErrorMessage);
-                if (validation.Data is not null)
+                if (validation.Data != null)
                 {
                     foreach (var kvp in validation.Data)
                     {
@@ -1315,7 +1321,7 @@ namespace Foo
     public partial struct Age : global::System.IEquatable<Age>, global::System.IEquatable<System.Int32>, global::System.IComparable<Age>, global::System.IComparable, global::System.IParsable<Age>, global::System.ISpanParsable<Age>, global::System.IUtf8SpanParsable<Age>, global::System.IFormattable, global::System.ISpanFormattable, global::System.IUtf8SpanFormattable
     {
 #if DEBUG
-private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
+private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
 #endif
 #if !VOGEN_NO_VALIDATION
         private readonly global::System.Boolean _isInitialized;
@@ -1354,6 +1360,9 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
             _value = value;
 #if !VOGEN_NO_VALIDATION
             _isInitialized = true;
+#endif
+#if DEBUG
+            _stackTrace = null;
 #endif
         }
 
@@ -1961,7 +1970,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
             internal static System.Exception CreateValidationException(Vogen.Validation validation)
             {
                 var ex = CreateValidationException(validation.ErrorMessage);
-                if (validation.Data is not null)
+                if (validation.Data != null)
                 {
                     foreach (var kvp in validation.Data)
                     {

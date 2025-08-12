@@ -985,62 +985,64 @@ public static class string__Ext
 #pragma warning disable CS8669, CS8632
 // Suppress warnings about CS1591: Missing XML comment for publicly visible type or member 'Type_or_Member'
 #pragma warning disable CS1591
-namespace generator;
-public class VogenTypesFactory : global::System.Text.Json.Serialization.JsonConverterFactory
+namespace generator
 {
-    public VogenTypesFactory()
+    public class VogenTypesFactory : global::System.Text.Json.Serialization.JsonConverterFactory
     {
-    }
-
-    private static readonly global::System.Collections.Generic.Dictionary<global::System.Type, global::System.Lazy<global::System.Text.Json.Serialization.JsonConverter>> _lookup = new global::System.Collections.Generic.Dictionary<global::System.Type, global::System.Lazy<global::System.Text.Json.Serialization.JsonConverter>>
-    {
+        public VogenTypesFactory()
         {
-            typeof(global::@int.@byte),
-            new global::System.Lazy<global::System.Text.Json.Serialization.JsonConverter>(() => new global::@int.@byte.@byteSystemTextJsonConverter())
-        },
-        {
-            typeof(global::@int.@string),
-            new global::System.Lazy<global::System.Text.Json.Serialization.JsonConverter>(() => new global::@int.@string.@stringSystemTextJsonConverter())
-        },
-        {
-            typeof(global::Whatever.MyVo1),
-            new global::System.Lazy<global::System.Text.Json.Serialization.JsonConverter>(() => new global::Whatever.MyVo1.MyVo1SystemTextJsonConverter())
-        },
-        {
-            typeof(global::Whatever.MyVo2),
-            new global::System.Lazy<global::System.Text.Json.Serialization.JsonConverter>(() => new global::Whatever.MyVo2.MyVo2SystemTextJsonConverter())
-        },
-        {
-            typeof(global::Whatever.MyVo3),
-            new global::System.Lazy<global::System.Text.Json.Serialization.JsonConverter>(() => new global::Whatever.MyVo3.MyVo3SystemTextJsonConverter())
-        },
-        {
-            typeof(global::Whatever.MyVo4),
-            new global::System.Lazy<global::System.Text.Json.Serialization.JsonConverter>(() => new global::Whatever.MyVo4.MyVo4SystemTextJsonConverter())
-        },
-        {
-            typeof(global::Whatever.MyVo5),
-            new global::System.Lazy<global::System.Text.Json.Serialization.JsonConverter>(() => new global::Whatever.MyVo5.MyVo5SystemTextJsonConverter())
-        },
-        {
-            typeof(global::Whatever.MyVo6),
-            new global::System.Lazy<global::System.Text.Json.Serialization.JsonConverter>(() => new global::Whatever.MyVo6.MyVo6SystemTextJsonConverter())
-        },
-        {
-            typeof(global::Whatever.@int),
-            new global::System.Lazy<global::System.Text.Json.Serialization.JsonConverter>(() => new global::Whatever.@int.@intSystemTextJsonConverter())
-        },
-        {
-            typeof(global::Whatever.@byte),
-            new global::System.Lazy<global::System.Text.Json.Serialization.JsonConverter>(() => new global::Whatever.@byte.@byteSystemTextJsonConverter())
-        },
-        {
-            typeof(global::Whatever.MyInt),
-            new global::System.Lazy<global::System.Text.Json.Serialization.JsonConverter>(() => new global::Whatever.MyInt.MyIntSystemTextJsonConverter())
         }
-    };
-    public override bool CanConvert(global::System.Type typeToConvert) => _lookup.ContainsKey(typeToConvert);
-    public override global::System.Text.Json.Serialization.JsonConverter CreateConverter(global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options) => _lookup[typeToConvert].Value;
+
+        private static readonly global::System.Collections.Generic.Dictionary<global::System.Type, global::System.Lazy<global::System.Text.Json.Serialization.JsonConverter>> _lookup = new global::System.Collections.Generic.Dictionary<global::System.Type, global::System.Lazy<global::System.Text.Json.Serialization.JsonConverter>>
+        {
+            {
+                typeof(global::@int.@byte),
+                new global::System.Lazy<global::System.Text.Json.Serialization.JsonConverter>(() => new global::@int.@byte.@byteSystemTextJsonConverter())
+            },
+            {
+                typeof(global::@int.@string),
+                new global::System.Lazy<global::System.Text.Json.Serialization.JsonConverter>(() => new global::@int.@string.@stringSystemTextJsonConverter())
+            },
+            {
+                typeof(global::Whatever.MyVo1),
+                new global::System.Lazy<global::System.Text.Json.Serialization.JsonConverter>(() => new global::Whatever.MyVo1.MyVo1SystemTextJsonConverter())
+            },
+            {
+                typeof(global::Whatever.MyVo2),
+                new global::System.Lazy<global::System.Text.Json.Serialization.JsonConverter>(() => new global::Whatever.MyVo2.MyVo2SystemTextJsonConverter())
+            },
+            {
+                typeof(global::Whatever.MyVo3),
+                new global::System.Lazy<global::System.Text.Json.Serialization.JsonConverter>(() => new global::Whatever.MyVo3.MyVo3SystemTextJsonConverter())
+            },
+            {
+                typeof(global::Whatever.MyVo4),
+                new global::System.Lazy<global::System.Text.Json.Serialization.JsonConverter>(() => new global::Whatever.MyVo4.MyVo4SystemTextJsonConverter())
+            },
+            {
+                typeof(global::Whatever.MyVo5),
+                new global::System.Lazy<global::System.Text.Json.Serialization.JsonConverter>(() => new global::Whatever.MyVo5.MyVo5SystemTextJsonConverter())
+            },
+            {
+                typeof(global::Whatever.MyVo6),
+                new global::System.Lazy<global::System.Text.Json.Serialization.JsonConverter>(() => new global::Whatever.MyVo6.MyVo6SystemTextJsonConverter())
+            },
+            {
+                typeof(global::Whatever.@int),
+                new global::System.Lazy<global::System.Text.Json.Serialization.JsonConverter>(() => new global::Whatever.@int.@intSystemTextJsonConverter())
+            },
+            {
+                typeof(global::Whatever.@byte),
+                new global::System.Lazy<global::System.Text.Json.Serialization.JsonConverter>(() => new global::Whatever.@byte.@byteSystemTextJsonConverter())
+            },
+            {
+                typeof(global::Whatever.MyInt),
+                new global::System.Lazy<global::System.Text.Json.Serialization.JsonConverter>(() => new global::Whatever.MyInt.MyIntSystemTextJsonConverter())
+            }
+        };
+        public override bool CanConvert(global::System.Type typeToConvert) => _lookup.ContainsKey(typeToConvert);
+        public override global::System.Text.Json.Serialization.JsonConverter CreateConverter(global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options) => _lookup[typeToConvert].Value;
+    }
 }
   
 // ------------------------------------------------------------------------------
@@ -1074,7 +1076,7 @@ namespace @int
     public partial struct @byte : global::System.IEquatable<@byte>, global::System.IEquatable<System.Byte>, global::System.IComparable<@byte>, global::System.IComparable, global::System.IParsable<@byte>, global::System.ISpanParsable<@byte>, global::System.IUtf8SpanParsable<@byte>, global::System.IFormattable, global::System.ISpanFormattable, global::System.IUtf8SpanFormattable
     {
 #if DEBUG
-private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
+private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
 #endif
 #if !VOGEN_NO_VALIDATION
         private readonly global::System.Boolean _isInitialized;
@@ -1113,6 +1115,9 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
             _value = value;
 #if !VOGEN_NO_VALIDATION
             _isInitialized = true;
+#endif
+#if DEBUG
+            _stackTrace = null;
 #endif
         }
 
@@ -1723,7 +1728,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
             internal static System.Exception CreateValidationException(Vogen.Validation validation)
             {
                 var ex = CreateValidationException(validation.ErrorMessage);
-                if (validation.Data is not null)
+                if (validation.Data != null)
                 {
                     foreach (var kvp in validation.Data)
                     {
@@ -1767,7 +1772,7 @@ namespace @int
     public partial record struct @string : global::System.IEquatable<@string>, global::System.IEquatable<System.String>, global::System.IComparable<@string>, global::System.IComparable, global::System.IParsable<@string>
     {
 #if DEBUG
-private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
+private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
 #endif
 #if !VOGEN_NO_VALIDATION
         private readonly global::System.Boolean _isInitialized;
@@ -2074,7 +2079,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
             public override global::System.Object ConvertFrom(global::System.ComponentModel.ITypeDescriptorContext context, global::System.Globalization.CultureInfo culture, global::System.Object value)
             {
                 var stringValue = value as global::System.String;
-                if (stringValue is not null)
+                if (stringValue != null)
                 {
                     return @string.__Deserialize(stringValue);
                 }
@@ -2156,7 +2161,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
             internal static System.Exception CreateValidationException(Vogen.Validation validation)
             {
                 var ex = CreateValidationException(validation.ErrorMessage);
-                if (validation.Data is not null)
+                if (validation.Data != null)
                 {
                     foreach (var kvp in validation.Data)
                     {
@@ -2201,7 +2206,7 @@ namespace Whatever
     public partial struct MyVo1 : global::System.IEquatable<MyVo1>, global::System.IEquatable<System.Int32>, global::System.IComparable<MyVo1>, global::System.IComparable, global::System.IParsable<MyVo1>, global::System.ISpanParsable<MyVo1>, global::System.IUtf8SpanParsable<MyVo1>, global::System.IFormattable, global::System.ISpanFormattable, global::System.IUtf8SpanFormattable
     {
 #if DEBUG
-private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
+private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
 #endif
 #if !VOGEN_NO_VALIDATION
         private readonly global::System.Boolean _isInitialized;
@@ -2240,6 +2245,9 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
             _value = value;
 #if !VOGEN_NO_VALIDATION
             _isInitialized = true;
+#endif
+#if DEBUG
+            _stackTrace = null;
 #endif
         }
 
@@ -2847,7 +2855,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
             internal static System.Exception CreateValidationException(Vogen.Validation validation)
             {
                 var ex = CreateValidationException(validation.ErrorMessage);
-                if (validation.Data is not null)
+                if (validation.Data != null)
                 {
                     foreach (var kvp in validation.Data)
                     {
@@ -2891,7 +2899,7 @@ namespace Whatever
     public partial class MyVo2 : global::System.IEquatable<MyVo2>, global::System.IEquatable<System.String>, global::System.IComparable<MyVo2>, global::System.IComparable, global::System.IParsable<MyVo2>
     {
 #if DEBUG
-private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
+private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
 #endif
 #if !VOGEN_NO_VALIDATION
         private readonly global::System.Boolean _isInitialized;
@@ -3215,7 +3223,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
             public override global::System.Object ConvertFrom(global::System.ComponentModel.ITypeDescriptorContext context, global::System.Globalization.CultureInfo culture, global::System.Object value)
             {
                 var stringValue = value as global::System.String;
-                if (stringValue is not null)
+                if (stringValue != null)
                 {
                     return MyVo2.__Deserialize(stringValue);
                 }
@@ -3293,7 +3301,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
             internal static System.Exception CreateValidationException(Vogen.Validation validation)
             {
                 var ex = CreateValidationException(validation.ErrorMessage);
-                if (validation.Data is not null)
+                if (validation.Data != null)
                 {
                     foreach (var kvp in validation.Data)
                     {
@@ -3338,7 +3346,7 @@ namespace Whatever
     public readonly partial struct MyVo3 : global::System.IEquatable<MyVo3>, global::System.IEquatable<System.String>, global::System.IComparable<MyVo3>, global::System.IComparable, global::System.IParsable<MyVo3>
     {
 #if DEBUG
-private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
+private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
 #endif
 #if !VOGEN_NO_VALIDATION
         private readonly global::System.Boolean _isInitialized;
@@ -3377,6 +3385,9 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
             _value = value;
 #if !VOGEN_NO_VALIDATION
             _isInitialized = true;
+#endif
+#if DEBUG
+            _stackTrace = null;
 #endif
         }
 
@@ -3640,7 +3651,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
             public override global::System.Object ConvertFrom(global::System.ComponentModel.ITypeDescriptorContext context, global::System.Globalization.CultureInfo culture, global::System.Object value)
             {
                 var stringValue = value as global::System.String;
-                if (stringValue is not null)
+                if (stringValue != null)
                 {
                     return MyVo3.__Deserialize(stringValue);
                 }
@@ -3722,7 +3733,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
             internal static System.Exception CreateValidationException(Vogen.Validation validation)
             {
                 var ex = CreateValidationException(validation.ErrorMessage);
-                if (validation.Data is not null)
+                if (validation.Data != null)
                 {
                     foreach (var kvp in validation.Data)
                     {
@@ -3767,7 +3778,7 @@ namespace Whatever
     public readonly partial struct MyVo4 : global::System.IEquatable<MyVo4>, global::System.IEquatable<System.Int32>, global::System.IComparable<MyVo4>, global::System.IComparable, global::System.IParsable<MyVo4>, global::System.ISpanParsable<MyVo4>, global::System.IUtf8SpanParsable<MyVo4>, global::System.IFormattable, global::System.ISpanFormattable, global::System.IUtf8SpanFormattable
     {
 #if DEBUG
-private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
+private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
 #endif
 #if !VOGEN_NO_VALIDATION
         private readonly global::System.Boolean _isInitialized;
@@ -3806,6 +3817,9 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
             _value = value;
 #if !VOGEN_NO_VALIDATION
             _isInitialized = true;
+#endif
+#if DEBUG
+            _stackTrace = null;
 #endif
         }
 
@@ -4413,7 +4427,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
             internal static System.Exception CreateValidationException(Vogen.Validation validation)
             {
                 var ex = CreateValidationException(validation.ErrorMessage);
-                if (validation.Data is not null)
+                if (validation.Data != null)
                 {
                     foreach (var kvp in validation.Data)
                     {
@@ -4457,7 +4471,7 @@ namespace Whatever
     public readonly partial record struct MyVo5 : global::System.IEquatable<MyVo5>, global::System.IEquatable<System.Int32>, global::System.IComparable<MyVo5>, global::System.IComparable, global::System.IParsable<MyVo5>, global::System.ISpanParsable<MyVo5>, global::System.IUtf8SpanParsable<MyVo5>, global::System.IFormattable, global::System.ISpanFormattable, global::System.IUtf8SpanFormattable
     {
 #if DEBUG
-private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
+private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
 #endif
 #if !VOGEN_NO_VALIDATION
         private readonly global::System.Boolean _isInitialized;
@@ -5103,7 +5117,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
             internal static System.Exception CreateValidationException(Vogen.Validation validation)
             {
                 var ex = CreateValidationException(validation.ErrorMessage);
-                if (validation.Data is not null)
+                if (validation.Data != null)
                 {
                     foreach (var kvp in validation.Data)
                     {
@@ -5147,7 +5161,7 @@ namespace Whatever
     public partial record class MyVo6 : global::System.IEquatable<MyVo6>, global::System.IEquatable<System.Int32>, global::System.IComparable<MyVo6>, global::System.IComparable, global::System.IParsable<MyVo6>, global::System.ISpanParsable<MyVo6>, global::System.IUtf8SpanParsable<MyVo6>, global::System.IFormattable, global::System.ISpanFormattable, global::System.IUtf8SpanFormattable
     {
 #if DEBUG
-private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
+private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
 #endif
 #if !VOGEN_NO_VALIDATION
         private readonly global::System.Boolean _isInitialized;
@@ -5811,7 +5825,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
             internal static System.Exception CreateValidationException(Vogen.Validation validation)
             {
                 var ex = CreateValidationException(validation.ErrorMessage);
-                if (validation.Data is not null)
+                if (validation.Data != null)
                 {
                     foreach (var kvp in validation.Data)
                     {
@@ -5855,7 +5869,7 @@ namespace Whatever
     public partial record struct @int : global::System.IEquatable<@int>, global::System.IEquatable<System.Int32>, global::System.IComparable<@int>, global::System.IComparable, global::System.IParsable<@int>, global::System.ISpanParsable<@int>, global::System.IUtf8SpanParsable<@int>, global::System.IFormattable, global::System.ISpanFormattable, global::System.IUtf8SpanFormattable
     {
 #if DEBUG
-private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
+private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
 #endif
 #if !VOGEN_NO_VALIDATION
         private readonly global::System.Boolean _isInitialized;
@@ -6501,7 +6515,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
             internal static System.Exception CreateValidationException(Vogen.Validation validation)
             {
                 var ex = CreateValidationException(validation.ErrorMessage);
-                if (validation.Data is not null)
+                if (validation.Data != null)
                 {
                     foreach (var kvp in validation.Data)
                     {
@@ -6545,7 +6559,7 @@ namespace Whatever
     public partial record struct @byte : global::System.IEquatable<@byte>, global::System.IEquatable<System.Int32>, global::System.IComparable<@byte>, global::System.IComparable, global::System.IParsable<@byte>, global::System.ISpanParsable<@byte>, global::System.IUtf8SpanParsable<@byte>, global::System.IFormattable, global::System.ISpanFormattable, global::System.IUtf8SpanFormattable
     {
 #if DEBUG
-private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
+private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
 #endif
 #if !VOGEN_NO_VALIDATION
         private readonly global::System.Boolean _isInitialized;
@@ -7191,7 +7205,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
             internal static System.Exception CreateValidationException(Vogen.Validation validation)
             {
                 var ex = CreateValidationException(validation.ErrorMessage);
-                if (validation.Data is not null)
+                if (validation.Data != null)
                 {
                     foreach (var kvp in validation.Data)
                     {
@@ -7235,7 +7249,7 @@ namespace Whatever
     public partial record class MyInt : global::System.IEquatable<MyInt>, global::System.IEquatable<System.Int32>, global::System.IComparable<MyInt>, global::System.IComparable, global::System.IParsable<MyInt>, global::System.ISpanParsable<MyInt>, global::System.IUtf8SpanParsable<MyInt>, global::System.IFormattable, global::System.ISpanFormattable, global::System.IUtf8SpanFormattable
     {
 #if DEBUG
-private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
+private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
 #endif
 #if !VOGEN_NO_VALIDATION
         private readonly global::System.Boolean _isInitialized;
@@ -7899,7 +7913,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
             internal static System.Exception CreateValidationException(Vogen.Validation validation)
             {
                 var ex = CreateValidationException(validation.ErrorMessage);
-                if (validation.Data is not null)
+                if (validation.Data != null)
                 {
                     foreach (var kvp in validation.Data)
                     {

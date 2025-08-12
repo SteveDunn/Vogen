@@ -18,18 +18,20 @@
 #pragma warning disable CS8669, CS8632
 // Suppress warnings about CS1591: Missing XML comment for publicly visible type or member 'Type_or_Member'
 #pragma warning disable CS1591
-namespace generator;
-public class VogenTypesFactory : global::System.Text.Json.Serialization.JsonConverterFactory
+namespace generator
 {
-    public VogenTypesFactory()
+    public class VogenTypesFactory : global::System.Text.Json.Serialization.JsonConverterFactory
     {
-    }
+        public VogenTypesFactory()
+        {
+        }
 
-    private static readonly global::System.Collections.Generic.Dictionary<global::System.Type, global::System.Lazy<global::System.Text.Json.Serialization.JsonConverter>> _lookup = new global::System.Collections.Generic.Dictionary<global::System.Type, global::System.Lazy<global::System.Text.Json.Serialization.JsonConverter>>
-    {
-    };
-    public override bool CanConvert(global::System.Type typeToConvert) => _lookup.ContainsKey(typeToConvert);
-    public override global::System.Text.Json.Serialization.JsonConverter CreateConverter(global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options) => _lookup[typeToConvert].Value;
+        private static readonly global::System.Collections.Generic.Dictionary<global::System.Type, global::System.Lazy<global::System.Text.Json.Serialization.JsonConverter>> _lookup = new global::System.Collections.Generic.Dictionary<global::System.Type, global::System.Lazy<global::System.Text.Json.Serialization.JsonConverter>>
+        {
+        };
+        public override bool CanConvert(global::System.Type typeToConvert) => _lookup.ContainsKey(typeToConvert);
+        public override global::System.Text.Json.Serialization.JsonConverter CreateConverter(global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options) => _lookup[typeToConvert].Value;
+    }
 }
   
 // ------------------------------------------------------------------------------
@@ -61,7 +63,7 @@ namespace Whatever
     public readonly partial struct MyIntVo : global::System.IEquatable<MyIntVo>, global::System.IEquatable<System.Int32>, global::System.IComparable<MyIntVo>, global::System.IComparable, global::System.IParsable<MyIntVo>, global::System.ISpanParsable<MyIntVo>, global::System.IUtf8SpanParsable<MyIntVo>, global::System.IFormattable, global::System.ISpanFormattable, global::System.IUtf8SpanFormattable
     {
 #if DEBUG
-private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
+private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
 #endif
 #if !VOGEN_NO_VALIDATION
         private readonly global::System.Boolean _isInitialized;
@@ -100,6 +102,9 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
             _value = value;
 #if !VOGEN_NO_VALIDATION
             _isInitialized = true;
+#endif
+#if DEBUG
+            _stackTrace = null;
 #endif
         }
 
@@ -613,7 +618,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace = null!;
             internal static System.Exception CreateValidationException(Vogen.Validation validation)
             {
                 var ex = CreateValidationException(validation.ErrorMessage);
-                if (validation.Data is not null)
+                if (validation.Data != null)
                 {
                     foreach (var kvp in validation.Data)
                     {
