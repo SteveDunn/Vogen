@@ -55,6 +55,7 @@ internal sealed class classOrleansCopier : global::Orleans.Serialization.Cloning
 {
     public @class DeepCopy(@class input, global::Orleans.Serialization.Cloning.CopyContext context)
     {
+        
         return @class.From(input.Value);
     }
 }
