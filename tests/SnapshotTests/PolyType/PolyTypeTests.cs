@@ -38,7 +38,7 @@ public class PolyTypeTests
             {
                 public class TypeShapeAttribute : System.Attribute
                 {
-                    public System.Type? Marshaler { get; set; }
+                    public System.Type Marshaler { get; set; }
                     public TypeShapeKind Kind { get; set; }
                 }
                 
