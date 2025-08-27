@@ -456,6 +456,41 @@ internal static class Util
 
         return filename;
     }
+
+    /// <summary>
+    /// Generates PolyType attribute if PolyType.TypeShapeAttribute is available in the compilation
+    /// </summary>
+    public static string GeneratePolyTypeAttributeIfAvailable(VogenKnownSymbols knownSymbols)
+    {
+        if (knownSymbols.TypeShapeAttribute is null)
+        {
+            return string.Empty;
+        }
+
+        return @"    [global::PolyType.TypeShapeAttribute(Marshaler = typeof(PolyTypeMarshaler), Kind = global::PolyType.TypeShapeKind.None)]";
+    }
+
+    /// <summary>
+    /// Generates PolyType marshaler class if PolyType.TypeShapeAttribute is available in the compilation
+    /// </summary>
+    public static string GeneratePolyTypeMarshalerIfAvailable(VogenKnownSymbols knownSymbols, VoWorkItem item)
+    {
+        if (knownSymbols.TypeShapeAttribute is null)
+        {
+            return string.Empty;
+        }
+
+        var typeName = item.VoTypeName;
+        var underlyingType = item.UnderlyingTypeFullName;
+
+        return $@"
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public class PolyTypeMarshaler : global::PolyType.IMarshaler<{typeName}, {underlyingType}>
+        {{
+            {underlyingType} global::PolyType.IMarshaler<{typeName}, {underlyingType}>.Marshal({typeName} value) => value.Value;
+            {typeName} global::PolyType.IMarshaler<{typeName}, {underlyingType}>.Unmarshal({underlyingType} value) => From(value);
+        }}";
+    }
 }
 
 public static class DebugGeneration
