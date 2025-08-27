@@ -32,9 +32,7 @@ public class PolyTypeTests
             """
             using System;
             using Vogen;
-            
-            namespace Whatever;
-            
+
             // Simulate having PolyType available by defining the attribute
             namespace PolyType
             {
