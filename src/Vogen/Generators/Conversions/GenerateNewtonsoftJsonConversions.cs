@@ -21,6 +21,8 @@ internal class GenerateNewtonsoftJsonConversions : IGenerateConversion
             return string.Empty;
         }
 
+        var allowUninitialized = item.Config.Customizations.HasFlag(Customizations.AllowSerializingUninitializedNewtonSoft);
+
         string? code = Templates.TryGetForSpecificType(item.UnderlyingType, "NewtonsoftJsonConverter");
         
         if (code is null)
@@ -32,6 +34,19 @@ internal class GenerateNewtonsoftJsonConversions : IGenerateConversion
 
         code = code.Replace("VOTYPE", item.VoTypeName);
         code = code.Replace("VOUNDERLYINGTYPE", item.UnderlyingTypeFullName);
+
+        if (allowUninitialized)
+        {
+            code = code.Replace("serializer.Serialize(writer, id.Value);", @"
+                if (id.IsInitialized())
+                {
+                    serializer.Serialize(writer, id.Value);
+                }
+                else
+                {
+                    writer.WriteNull();
+                }");
+        }
 
         return $"""
                 #nullable disable
