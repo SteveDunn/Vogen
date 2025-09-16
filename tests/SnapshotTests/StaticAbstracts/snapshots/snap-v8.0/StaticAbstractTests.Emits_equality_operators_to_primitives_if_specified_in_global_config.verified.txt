@@ -58,6 +58,8 @@ public interface IVogen<TSelf, TPrimitive>
 #pragma warning disable CS1591
 namespace generator
 {
+    [global::System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Vogen", "1.0.0.0")]
     public class VogenTypesFactory : global::System.Text.Json.Serialization.JsonConverterFactory
     {
         public VogenTypesFactory()
