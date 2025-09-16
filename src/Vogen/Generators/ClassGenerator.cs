@@ -31,6 +31,7 @@ public class ClassGenerator : IGenerateValueObjectSourceCode
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute(""{Util.GenerateYourAssemblyName()}"", ""{Util.GenerateYourAssemblyVersion()}"")]
     {Util.GenerateAnyConversionAttributes(tds, item)}
     {DebugGeneration.GenerateDebugAttributes(item, wrapperName, itemUnderlyingType)}
+    {Util.GeneratePolyTypeAttributeIfAvailable(parameters.VogenKnownSymbols)}
     {Util.GenerateModifiersFor(tds)} class {wrapperName} : 
         global::System.IEquatable<{wrapperName}>
         {GenerateCodeForEqualsMethodsAndOperators.GenerateInterfaceDefinitionsIfNeeded(", ", item)}
@@ -151,6 +152,8 @@ public class ClassGenerator : IGenerateValueObjectSourceCode
         {Util.GenerateDebuggerProxyForClasses(tds, item)}
 
         {Util.GenerateThrowHelper(item)}
+
+        {Util.GeneratePolyTypeMarshalerIfAvailable(parameters.VogenKnownSymbols, item)}
     }}
 
 {GenerateEfCoreExtensions.GenerateInnerIfNeeded(item)}

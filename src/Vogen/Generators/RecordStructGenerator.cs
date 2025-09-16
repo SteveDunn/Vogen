@@ -30,6 +30,7 @@ public class RecordStructGenerator : IGenerateValueObjectSourceCode
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute(""{Util.GenerateYourAssemblyName()}"", ""{Util.GenerateYourAssemblyVersion()}"")]
     {Util.GenerateAnyConversionAttributes(tds, item)}
     {DebugGeneration.GenerateDebugAttributes(item, wrapperName, itemUnderlyingType)}
+    {Util.GeneratePolyTypeAttributeIfAvailable(parameters.VogenKnownSymbols)}
     { Util.GenerateModifiersFor(tds)} record struct {wrapperName} : 
         global::System.IEquatable<{wrapperName}>
         {GenerateCodeForEqualsMethodsAndOperators.GenerateInterfaceDefinitionsIfNeeded(", ", item)}
@@ -148,6 +149,8 @@ public class RecordStructGenerator : IGenerateValueObjectSourceCode
         {Util.GenerateDebuggerProxyForStructs(item)}
 
         {Util.GenerateThrowHelper(item)}
+
+        {Util.GeneratePolyTypeMarshalerIfAvailable(parameters.VogenKnownSymbols, item)}
 }}
 
 {GenerateEfCoreExtensions.GenerateInnerIfNeeded(item)}

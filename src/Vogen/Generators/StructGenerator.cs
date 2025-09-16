@@ -30,6 +30,7 @@ public class StructGenerator : IGenerateValueObjectSourceCode
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute(""{Util.GenerateYourAssemblyName()}"", ""{Util.GenerateYourAssemblyVersion()}"")]
     {Util.GenerateAnyConversionAttributes(tds, item)}
     {DebugGeneration.GenerateDebugAttributes(item, wrapperName, itemUnderlyingType)}
+    {Util.GeneratePolyTypeAttributeIfAvailable(parameters.VogenKnownSymbols)}
 // ReSharper disable once UnusedType.Global
     {Util.GenerateModifiersFor(tds)} struct {wrapperName} : 
         global::System.IEquatable<{wrapperName}>
@@ -142,6 +143,8 @@ public class StructGenerator : IGenerateValueObjectSourceCode
         {Util.GenerateDebuggerProxyForStructs(item)}
 
         {Util.GenerateThrowHelper(item)}
+
+        {Util.GeneratePolyTypeMarshalerIfAvailable(parameters.VogenKnownSymbols, item)}
 }}
 
 {GenerateEfCoreExtensions.GenerateInnerIfNeeded(item)}
