@@ -26,8 +26,7 @@ public class StructGenerator : IGenerateValueObjectSourceCode
         string GenerateCode() => $@"
 
 {Util.WriteStartNamespace(item.FullNamespace)}
-    [global::System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage] 
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute(""{Util.GenerateYourAssemblyName()}"", ""{Util.GenerateYourAssemblyVersion()}"")]
+    {Util.GenerateCoverageExcludeAndGeneratedCodeAttributes()}
     {Util.GenerateAnyConversionAttributes(tds, item)}
     {DebugGeneration.GenerateDebugAttributes(item, wrapperName, itemUnderlyingType)}
     {Util.GeneratePolyTypeAttributeIfAvailable(parameters.VogenKnownSymbols)}

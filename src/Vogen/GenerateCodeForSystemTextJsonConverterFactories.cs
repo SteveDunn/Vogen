@@ -38,6 +38,7 @@ internal class GenerateCodeForSystemTextJsonConverterFactories
             
             namespace {{fullNamespace}}
             {
+                {{Util.GenerateCoverageExcludeAndGeneratedCodeAttributes()}}
                 public class VogenTypesFactory : global::System.Text.Json.Serialization.JsonConverterFactory
                 {
                     public VogenTypesFactory() { }

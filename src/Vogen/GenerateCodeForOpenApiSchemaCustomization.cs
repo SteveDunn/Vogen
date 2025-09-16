@@ -51,21 +51,22 @@ internal class GenerateCodeForOpenApiSchemaCustomization
 
               using System.Reflection;
 
+              {{Util.GenerateCoverageExcludeAndGeneratedCodeAttributes()}}
               public class VogenSchemaFilter{{inAppendage}} : global::Swashbuckle.AspNetCore.SwaggerGen.ISchemaFilter
               {                                
                   private const BindingFlags _flags = BindingFlags.Public | BindingFlags.Instance;
-              
+
                   public void Apply(global::Microsoft.OpenApi.Models.OpenApiSchema schema, global::Swashbuckle.AspNetCore.SwaggerGen.SchemaFilterContext context)
                   {
                       if (context.Type.GetCustomAttribute<Vogen.ValueObjectAttribute>() is not { } attribute)
                           return;
-              
+
                       var type = attribute.GetType();
                       if (!type.IsGenericType || type.GenericTypeArguments.Length != 1)
                       {
                           return;
                       }
-              
+
                       var schemaValueObject = context.SchemaGenerator.GenerateSchema(
                           type.GenericTypeArguments[0], 
                           context.SchemaRepository, 
@@ -73,14 +74,14 @@ internal class GenerateCodeForOpenApiSchemaCustomization
                       
                       TryCopyPublicProperties(schemaValueObject, schema);
                   }
-              
+
                   private static void TryCopyPublicProperties<T>(T oldObject, T newObject) where T : class
                   {
                       if (ReferenceEquals(oldObject, newObject))
                       {
                           return;
                       }
-              
+
                       var type = typeof(T);
                       
                       var propertyList = type.GetProperties(_flags);
@@ -89,7 +90,7 @@ internal class GenerateCodeForOpenApiSchemaCustomization
                       {
                           return;
                       }
-              
+
                       foreach (var newObjProp in propertyList)
                       {
                           var oldProp = type.GetProperty(newObjProp.Name, _flags)!;
@@ -98,7 +99,7 @@ internal class GenerateCodeForOpenApiSchemaCustomization
                           {
                               continue;
                           }
-              
+
                           var value = oldProp.GetValue(oldObject);
                           newObjProp.SetValue(newObject, value);
                       }
@@ -129,7 +130,7 @@ internal class GenerateCodeForOpenApiSchemaCustomization
                   public static global::Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenOptions MapVogenTypes{{inAppendage}}(this global::Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenOptions o)
                   {
                       {{MapWorkItems(workItems)}}
-              
+
                       return o;
                   }
               }

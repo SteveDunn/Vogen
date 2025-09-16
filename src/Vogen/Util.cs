@@ -491,6 +491,12 @@ internal static class Util
             {typeName} global::PolyType.IMarshaler<{typeName}, {underlyingType}>.Unmarshal({underlyingType} value) => From(value);
         }}";
     }
+
+    public static string GenerateCoverageExcludeAndGeneratedCodeAttributes() =>
+        $"""
+         [global::System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage] 
+         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("{GenerateYourAssemblyName()}", "{GenerateYourAssemblyVersion()}")]
+         """;
 }
 
 public static class DebugGeneration
