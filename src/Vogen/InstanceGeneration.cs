@@ -84,6 +84,22 @@ public static class InstanceGeneration
                 }
             }
 
+            if (underlyingType == "System.DateOnly")
+            {
+                if(propertyValue is string s)
+                {
+                    return new(true, FormattableString.Invariant($"""global::System.DateOnly.ParseExact("{s}", "yyyy-MM-dd", global::System.Globalization.CultureInfo.InvariantCulture)"""));
+                }
+            }
+
+            if (underlyingType == "System.TimeOnly")
+            {
+                if(propertyValue is string s)
+                {
+                    return new(true, FormattableString.Invariant($"""global::System.TimeOnly.ParseExact("{s}", "HH-mm", global::System.Globalization.CultureInfo.InvariantCulture)"""));
+                }
+            }
+
             if (underlyingType == typeof(DateTimeOffset).FullName)
             {
                 if(propertyValue is string s)

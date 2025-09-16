@@ -6,6 +6,18 @@ using FluentAssertions.Execution;
 
 namespace ConsumerTests.Instances;
 
+[ValueObject(typeof(DateOnly))]
+[Instance(name: "year_month_day", value: "2022-12-13")]
+public readonly partial struct DateOnlyInstance
+{
+}
+
+[ValueObject(typeof(TimeOnly))]
+[Instance(name: "GinOClock", value: "16-30")]
+public readonly partial struct TimeOnlyInstance
+{
+}
+
 [ValueObject(typeof(DateTime))]
 [Instance(name: "iso8601_1", value: "2022-12-13")]
 [Instance(name: "iso8601_2", value: "2022-12-13T13:14:15Z")]
@@ -69,6 +81,24 @@ public readonly partial struct MyByteInstance
 
 public class InstanceTests
 {
+    public class DateOnlyTests
+    {
+        [Fact]
+        public void DateOnly()
+        {
+            DateOnlyInstance.year_month_day.Value.Should().Be(new DateOnly(2022, 12, 13));
+        }
+    }
+
+    public class TimeOnlyTests
+    {
+        [Fact]
+        public void DateOnly()
+        {
+            TimeOnlyInstance.GinOClock.Value.Should().Be(new TimeOnly(16, 30));
+        }
+    }
+
     public class DateTimeTests
     {
         [Fact]
