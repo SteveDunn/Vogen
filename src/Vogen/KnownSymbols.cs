@@ -13,6 +13,8 @@ namespace Vogen;
 /// <param name="compilation">The compilation from which information is being queried.</param>
 public class KnownSymbols(Compilation compilation)
 {
+    private HashSet<ITypeSymbol>? _simpleTypes;
+
     public Compilation Compilation { get; } = compilation;
 
     public IAssemblySymbol CoreLibAssembly => _CoreLibAssembly ??= Compilation.GetSpecialType(SpecialType.System_Int32).ContainingAssembly;
@@ -184,8 +186,6 @@ public class KnownSymbols(Compilation compilation)
             return simpleTypes;
         }
     }
-
-    private HashSet<ITypeSymbol>? _simpleTypes;
 
     /// <summary>
     /// Get or resolve a type by its fully qualified name.

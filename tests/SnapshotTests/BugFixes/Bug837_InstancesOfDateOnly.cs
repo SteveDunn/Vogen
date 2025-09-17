@@ -25,7 +25,7 @@ public class Bug837_InstancesOfDateOnly
         await new SnapshotRunner<ValueObjectGenerator>()
                 .WithSource(source)
                 .IgnoreInitialCompilationErrors()
-                .RunOnAllFrameworks();
+                .RunOnNet8AndGreater();
     }
 
     [Fact]
@@ -45,6 +45,6 @@ public class Bug837_InstancesOfDateOnly
         await new SnapshotRunner<ValueObjectGenerator>()
                 .WithSource(source)
                 .IgnoreInitialCompilationErrors()
-                .RunOnAllFrameworks();
+                .RunOnNet8AndGreater();
     }
 }

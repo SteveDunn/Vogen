@@ -91,7 +91,7 @@ internal static class BuildWorkItems
         INamedTypeSymbol underlyingType = config.UnderlyingType;
         
         IEnumerable<InstanceProperties> instanceProperties =
-            TryBuildInstanceProperties(allAttributes, voSymbolInformation, context, underlyingType).ToList();
+            TryBuildInstanceProperties(allAttributes, voSymbolInformation, context, underlyingType, vogenKnownSymbols).ToList();
 
         UserProvidedOverloads userProvidedOverloads =
             DiscoverUserProvidedOverloads.Discover(voSymbolInformation, underlyingType);
@@ -395,13 +395,14 @@ internal static class BuildWorkItems
     private static IEnumerable<InstanceProperties> TryBuildInstanceProperties(
         ImmutableArray<AttributeData> attributes,
         INamedTypeSymbol voClass,
-        SourceProductionContext context, 
-        INamedTypeSymbol underlyingType)
+        SourceProductionContext context,
+        INamedTypeSymbol underlyingType,
+        VogenKnownSymbols knownSymbols)
     {
         IEnumerable<AttributeData> matchingAttributes =
             attributes.Where(a => a.AttributeClass?.EscapedFullName() is "Vogen.InstanceAttribute");
 
-        var props = BuildInstanceProperties.Build(matchingAttributes, context, voClass, underlyingType);
+        var props = BuildInstanceProperties.Build(matchingAttributes, context, voClass, underlyingType, knownSymbols);
         
         return props.Where(a => a is not null)!;
     }

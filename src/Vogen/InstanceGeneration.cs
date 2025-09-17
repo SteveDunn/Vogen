@@ -3,6 +3,7 @@ using System.Globalization;
 using System.Text;
 using System.Xml.Linq;
 using Microsoft.CodeAnalysis;
+using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 
 namespace Vogen;
@@ -59,7 +60,11 @@ public static class InstanceGeneration
 
     // We don't need to consider a propertyValue of decimal here, as it cannot be passed in
     // via an attribute in C#
-    public static BuildResult TryBuildInstanceValueAsText(string propertyName, object propertyValue, string? underlyingType)
+    public static BuildResult TryBuildInstanceValueAsText(
+        string propertyName,
+        object propertyValue,
+        string? underlyingType,
+        VogenKnownSymbols knownSymbols)
     {
         try
         {
@@ -84,19 +89,32 @@ public static class InstanceGeneration
                 }
             }
 
-            if (underlyingType == "System.DateOnly")
+            if (knownSymbols.DateOnly is not null)
             {
-                if(propertyValue is string s)
+                if (underlyingType == "System.DateOnly")
                 {
-                    return new(true, FormattableString.Invariant($"""global::System.DateOnly.ParseExact("{s}", "yyyy-MM-dd", global::System.Globalization.CultureInfo.InvariantCulture)"""));
+                    if (propertyValue is string s)
+                    {
+                        return new(
+                            true,
+                            FormattableString.Invariant(
+                                $"""global::System.DateOnly.ParseExact("{s}", "yyyy-MM-dd", global::System.Globalization.CultureInfo.InvariantCulture)"""));
+                    }
                 }
             }
+            
+            if (knownSymbols.TimeOnly is not null)
+            {
 
             if (underlyingType == "System.TimeOnly")
-            {
-                if(propertyValue is string s)
                 {
-                    return new(true, FormattableString.Invariant($"""global::System.TimeOnly.ParseExact("{s}", "HH-mm", global::System.Globalization.CultureInfo.InvariantCulture)"""));
+                    if (propertyValue is string s)
+                    {
+                        return new(
+                            true,
+                            FormattableString.Invariant(
+                                $"""global::System.TimeOnly.ParseExact("{s}", "HH-mm", global::System.Globalization.CultureInfo.InvariantCulture)"""));
+                    }
                 }
             }
 

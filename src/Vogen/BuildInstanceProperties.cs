@@ -2,6 +2,7 @@
 using System.Collections.Immutable;
 using System.Linq;
 using Microsoft.CodeAnalysis;
+using Microsoft.CodeAnalysis.CSharp;
 using Vogen.Diagnostics;
 // ReSharper disable NullableWarningSuppressionIsUsed
 
@@ -11,17 +12,20 @@ namespace Vogen
     {
         public static IEnumerable<InstanceProperties?> Build(
             IEnumerable<AttributeData> allAttributes,
-            SourceProductionContext context, 
-            INamedTypeSymbol voClass, 
-            INamedTypeSymbol underlyingType)
-        {
-            return allAttributes.Select(a => Build(a, context, voClass, underlyingType));
-        }
-
-        private static InstanceProperties? Build(AttributeData matchingAttribute,
             SourceProductionContext context,
             INamedTypeSymbol voClass,
-            INamedTypeSymbol underlyingType)
+            INamedTypeSymbol underlyingType,
+            VogenKnownSymbols knownSymbols)
+        {
+            return allAttributes.Select(a => Build(a, context, voClass, underlyingType, knownSymbols));
+        }
+
+        private static InstanceProperties? Build(
+            AttributeData matchingAttribute,
+            SourceProductionContext context,
+            INamedTypeSymbol voClass,
+            INamedTypeSymbol underlyingType,
+            VogenKnownSymbols knownSymbols)
         {
             // try build it from non-named arguments
 
@@ -38,7 +42,7 @@ namespace Vogen
                     }
                 }
 
-                return TryBuild(args[0], args[1], args[2], voClass, context, underlyingType);
+                return TryBuild(args[0], args[1], args[2], voClass, context, underlyingType, knownSymbols);
             }
 
             // try build it from named arguments
@@ -70,19 +74,19 @@ namespace Vogen
                     }
                 }
 
-                return TryBuild(nameConstant, valueConstant, commentConstant, voClass, context, underlyingType);
+                return TryBuild(nameConstant, valueConstant, commentConstant, voClass, context, underlyingType, knownSymbols);
             }
 
             return null;
         }
 
-        private static InstanceProperties? TryBuild(
-            TypedConstant nameConstant, 
-            TypedConstant valueConstant, 
+        private static InstanceProperties? TryBuild(TypedConstant nameConstant,
+            TypedConstant valueConstant,
             TypedConstant commentConstant,
             INamedTypeSymbol voClass,
             SourceProductionContext context,
-            INamedTypeSymbol underlyingType)
+            INamedTypeSymbol underlyingType,
+            VogenKnownSymbols knownSymbols)
         {
             bool hasErrors = false;
             if (nameConstant.Value is null)
@@ -104,7 +108,8 @@ namespace Vogen
 
             var r = InstanceGeneration.TryBuildInstanceValueAsText(
                 (string)nameConstant.Value!, 
-                valueConstant.Value!, underlyingType.EscapedFullName());
+                valueConstant.Value!, underlyingType.EscapedFullName(),
+                knownSymbols);
 
             if (!r.Success)
             {

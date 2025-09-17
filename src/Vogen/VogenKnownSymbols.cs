@@ -22,4 +22,10 @@ public class VogenKnownSymbols(Compilation compilation) : KnownSymbols(compilati
 
     public INamedTypeSymbol? TypeShapeAttribute => GetOrResolveType("PolyType.TypeShapeAttribute", ref _TypeShapeAttribute);
     private Option<INamedTypeSymbol?> _TypeShapeAttribute;
+
+    public INamedTypeSymbol? DateOnly => GetOrResolveType("System.DateOnly", ref _DateOnly);
+    private Option<INamedTypeSymbol?> _DateOnly;
+
+    public INamedTypeSymbol? TimeOnly => GetOrResolveType("System.DateOnly", ref _TimeOnly);
+    private Option<INamedTypeSymbol?> _TimeOnly;
 }
