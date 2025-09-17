@@ -35,19 +35,15 @@ Console.WriteLine(Centigrade.AbsoluteZero);
 -273.15
 ```
 
-These known instances can bring domain terms into your code; for instance, it's easier to read this than 
-numeric literals of `0` and `-273.15`:
+These known instances can bring domain terms into your code; for instance, it's easier to read this than numeric literals of `0` and `-273.15`:
 
 ```C#
 if(waterTemperature == Centigrade.WaterFreezingPoint) ...
 ```
 
-Now, let's take a look at the other scenario of representing values that can't (and **shouldn't**) be
-created externally. The term 'externally' user here, means **users** of the class.
+Now, let's take a look at the other scenario of representing values that can't (and **shouldn't**) be created externally. The term 'externally' user here, means **users** of the class.
 
-Let's revisit our `CustomerId` from the [validation tutorial](ValidationTutorial.md). We want to say that an instance
-with a value of zero means that the customer wasn’t specified, but we don't want users to explicitly create
-instances with a value of zero. Let's try it out. Create this type again:  
+Let's revisit our `CustomerId` from the [validation tutorial](ValidationTutorial.md). We want to say that an instance with a value of zero means that the customer wasn’t specified, but we don't want users to explicitly create instances with a value of zero. Let's try it out. Create this type again:  
 
 ```C#
 [ValueObject<int>]

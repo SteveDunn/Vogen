@@ -28,8 +28,7 @@ If you know the value should be valid, and you have a `Validate` method, then us
 
 Previously in Vogen, you could only create instances via attributes because `new`, even inside the value object itself, was disallowed.
 
-This design turned out to be troublesome. For instance, [decimals are not a constance in C#](https://codeblog.
-jonskeet.uk/2014/08/22/when-is-a-constant-not-a-constant-when-its-a-decimal/), so this wasn't possible:
+This design turned out to be troublesome. For instance, [decimals are not a constant in C#](https://codeblog.jonskeet.uk/2014/08/22/when-is-a-constant-not-a-constant-when-its-a-decimal/), so this wasn't possible:
 
 ```C#
 [ValueObject<decimal>]
@@ -48,9 +47,7 @@ This couldn't be represented as a const, plus, representations could be either a
 [Instance(name: "iso8601_2", value: "2022-12-13T13:14:15Z")]   // uses `.Parse` using `RoundTripKind`
 [Instance(name: "ticks_as_long", value: 638064864000000000L)]  // uses ticks as UTC
 [Instance(name: "ticks_as_int", value: 2147483647)]            // uses ticks as UTC
-public readonly partial struct DateTimeInstances
-{
-}
+public readonly partial struct DateTimeInstances;
 ```
 
 It is much simpler to just write it as:

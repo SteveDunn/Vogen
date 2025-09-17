@@ -106,9 +106,9 @@ Add the package to your application using
 dotnet add package Vogen
 ```
 
-This adds a `<PackageReference>` to your project. You can additionally mark the package as `PrivateAssets="all"` and `ExcludeAssets="runtime"`.
+This adds a `<PackageReference>` to your project.
 
-> Setting `PrivateAssets="all"` means any projects referencing this one won't get a reference to the _Vogen_ package. Setting `ExcludeAssets="runtime"` ensures the _Vogen.SharedTypes.dll_ file is not copied to your build output (it is not required at runtime).
+> Unlike using some other source generators, specifying `PrivateAssets="all" ExcludeAssets="runtime"` with Vogen will cause exceptions at runtime because of missing types.
 
 ```xml
 <Project Sdk="Microsoft.NET.Sdk">
@@ -119,8 +119,7 @@ This adds a `<PackageReference>` to your project. You can additionally mark the 
   </PropertyGroup>
 
   <!-- Add the package -->
-  <PackageReference Include="Vogen" Version="7.0.3" 
-    PrivateAssets="all" ExcludeAssets="runtime" />
+  <PackageReference Include="Vogen" Version="8.0.2" />
   <!-- -->
 
 </Project>
