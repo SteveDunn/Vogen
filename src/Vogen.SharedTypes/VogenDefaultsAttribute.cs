@@ -54,7 +54,7 @@ public class VogenDefaultsAttribute : Attribute
     /// <param name="explicitlySpecifyTypeInValueObject">Every ValueObject attribute must explicitly specify the type of the primitive.</param>
     public VogenDefaultsAttribute(
         Type? underlyingType = null,
-        Conversions conversions = Conversions.Default,
+        Conversions conversions = Conversions.Unspecified,
         Type? throws = null,
         Customizations customizations = Customizations.None,
         DeserializationStrictness deserializationStrictness = DeserializationStrictness.AllowValidAndKnownInstances,
