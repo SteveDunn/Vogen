@@ -96,6 +96,9 @@ internal static class BuildWorkItems
         UserProvidedOverloads userProvidedOverloads =
             DiscoverUserProvidedOverloads.Discover(voSymbolInformation, underlyingType);
 
+        UserProvidedPartials userProvidedPartials =
+            DiscoverUserProvidedPartials.Discover(voSymbolInformation, underlyingType);
+
         ThrowIfAnyToStringOverrideOnRecordIsUnsealed(target, context, userProvidedOverloads.ToStringOverloads);
 
         MethodDeclarationSyntax? validateMethod = null;
@@ -150,6 +153,7 @@ internal static class BuildWorkItems
             Config = config,
             
             UserProvidedOverloads = userProvidedOverloads,
+            UserProvidedPartials = userProvidedPartials,
             
             UnderlyingType = underlyingType,
             ValidateMethod = validateMethod,

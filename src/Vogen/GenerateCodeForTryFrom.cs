@@ -34,7 +34,7 @@ public static class GenerateCodeForTryFrom
                         /// <param name="vo">An instance of the value object.</param>
                         /// <returns>True if the value object can be built, otherwise false.</returns>
                         #pragma warning disable CS8767 // Nullability of reference types in type of parameter doesn't match implicitly implemented member because of nullability attributes.
-                        public static bool TryFrom({{Util.GenerateNotNullWhenTrueAttribute()}} {{itemUnderlyingType}}{{underlyingNullable}} value, {{Util.GenerateMaybeNullWhenFalse()}} out {{className}} vo)
+                        {{Util.GenerateMethodModifiers(Accessibility.Public, ["static"], item.UserProvidedPartials.PartialBoolTryFrom)}} bool TryFrom({{Util.GenerateNotNullWhenTrueAttribute()}} {{itemUnderlyingType}}{{underlyingNullable}} value, {{Util.GenerateMaybeNullWhenFalse()}} out {{className}} vo)
                         #pragma warning restore CS8767 // Nullability of reference types in type of parameter doesn't match implicitly implemented member because of nullability attributes.
                         {
                             {{GenerateNullCheckAndReturnFalseIfNeeded(item)}}
@@ -59,7 +59,7 @@ public static class GenerateCodeForTryFrom
                         /// </summary>
                         /// <param name="value">The primitive value.</param>
                         /// <returns>A <see cref="Vogen.ValueObjectOrError{T}"/> containing either the value object, or an error.</returns>
-                        public static Vogen.ValueObjectOrError<{{className}}> TryFrom({{itemUnderlyingType}} value)
+                        {{Util.GenerateMethodModifiers(Accessibility.Public, ["static"], item.UserProvidedPartials.PartialErrorTryFrom)}} Vogen.ValueObjectOrError<{{className}}> TryFrom({{itemUnderlyingType}} value)
                         {
                             {{GenerateNullCheckAndReturnErrorIfNeeded(className, item)}}
                         

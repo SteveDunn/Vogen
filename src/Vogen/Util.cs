@@ -5,6 +5,7 @@ using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.CodeAnalysis.Text;
+using System.Collections.Generic;
 using Vogen.Generators.Conversions;
 using Vogen.Types;
 
@@ -27,6 +28,37 @@ internal static class Util
                   }
 
               """;
+    }
+
+    public static string GenerateMethodModifiers(
+        Accessibility defaultAccessibility,
+        IEnumerable<string> otherModifers,
+        UserProvidedPartial? userProvidedPartial
+    )
+    {
+#pragma warning disable CS8524 // A switch on enum handles all the values
+        var accessModifiers = (userProvidedPartial?.DeclaredAccessibility ?? defaultAccessibility) switch
+#pragma warning restore CS8524
+        {
+            Accessibility.NotApplicable => string.Empty,
+            Accessibility.Private => "private",
+            Accessibility.ProtectedAndInternal => "private protected",
+            Accessibility.Protected => "protected",
+            Accessibility.Internal => "internal",
+            Accessibility.ProtectedOrInternal => "protected internal",
+            Accessibility.Public => "public",
+        };
+
+        var modifiers = new List<string> { accessModifiers };
+
+        modifiers.AddRange(otherModifers);
+
+        if (userProvidedPartial is not null)
+        {
+            modifiers.Add("partial");
+        }
+
+        return string.Join(" ", modifiers);
     }
 
     public static string EscapeTypeNameForTripleSlashComment(string typeName) =>
