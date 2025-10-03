@@ -467,7 +467,7 @@ internal static class Util
             return string.Empty;
         }
 
-        return @"    [global::PolyType.TypeShapeAttribute(Marshaler = typeof(PolyTypeMarshaler)]";
+        return @"    [global::PolyType.TypeShapeAttribute(Marshaler = typeof(PolyTypeMarshaler))]";
     }
 
     /// <summary>
