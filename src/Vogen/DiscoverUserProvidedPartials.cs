@@ -1,5 +1,6 @@
 using Microsoft.CodeAnalysis;
 using System.Linq;
+using System.Reflection;
 
 namespace Vogen;
 
@@ -18,7 +19,7 @@ internal class DiscoverUserProvidedPartials
     {
         var property = vo.GetMembers(propertyName)
             .OfType<IPropertySymbol>()
-            .SingleOrDefault(x => x.IsPartialDefinition);
+            .SingleOrDefault(x => x.IsPartialDefinition());
 
         if (property is null)
             return null;
@@ -40,4 +41,15 @@ internal class DiscoverUserProvidedPartials
 
         return new(method.DeclaredAccessibility);
     }
+}
+
+file static class PropertySymbolExtensions
+{
+    private static PropertyInfo? _isPartialDefinitionProperty = typeof(IPropertySymbol).GetProperty("IsPartialDefinition");
+
+    // IPropertySymbol.IsPartialDefinition property is available since Roslyn 4.12.2
+    // We cannot know in advance the Roslyn version used by the user.
+    // This extension method tries to retrieve the property and, if missing, returns a fallback value.
+    public static bool IsPartialDefinition(this IPropertySymbol propertySymbol) =>
+        (bool?)_isPartialDefinitionProperty?.GetValue(propertySymbol) ?? false;
 }
