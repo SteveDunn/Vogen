@@ -467,7 +467,7 @@ internal static class Util
             return string.Empty;
         }
 
-        return @"    [global::PolyType.TypeShapeAttribute(Marshaler = typeof(PolyTypeMarshaler), Kind = global::PolyType.TypeShapeKind.None)]";
+        return @"    [global::PolyType.TypeShapeAttribute(Marshaler = typeof(PolyTypeMarshaler))]";
     }
 
     /// <summary>
@@ -484,12 +484,14 @@ internal static class Util
         var underlyingType = item.UnderlyingTypeFullName;
 
         return $@"
+        #nullable disable
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
-        public class PolyTypeMarshaler : global::PolyType.IMarshaler<{typeName}, {underlyingType}>
+        public sealed class PolyTypeMarshaler : global::PolyType.IMarshaler<{typeName}, {underlyingType}>
         {{
             {underlyingType} global::PolyType.IMarshaler<{typeName}, {underlyingType}>.Marshal({typeName} value) => value.Value;
             {typeName} global::PolyType.IMarshaler<{typeName}, {underlyingType}>.Unmarshal({underlyingType} value) => From(value);
-        }}";
+        }}
+        #nullable restore";
     }
 
     public static string GenerateCoverageExcludeAndGeneratedCodeAttributes() =>
