@@ -80,6 +80,7 @@ public class VoWorkItem
     public string AccessibilityKeyword { get; init; } = "public";
     
     public required UserProvidedOverloads UserProvidedOverloads { get; init; }
+    public required UserProvidedPartials UserProvidedPartials { get; init; }
     
     public required INamedTypeSymbol WrapperType { get; init; }
     
@@ -140,3 +141,14 @@ public class UserProvidedOverloads
     public required UserProvidedTryFormatMethods TryFormatMethods { get; init; }
 }
 
+public record UserProvidedPartial(
+    Accessibility DeclaredAccessibility
+);
+
+public class UserProvidedPartials
+{
+    public required UserProvidedPartial? PartialValue { get; init; }
+    public required UserProvidedPartial? PartialFrom { get; init; }
+    public required UserProvidedPartial? PartialBoolTryFrom { get; init; }
+    public required UserProvidedPartial? PartialErrorTryFrom { get; init; }
+}

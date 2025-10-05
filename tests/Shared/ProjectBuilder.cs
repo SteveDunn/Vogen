@@ -347,7 +347,8 @@ public sealed class ProjectBuilder
         }
         else
         {
-            initialDiags = compilation.GetDiagnostics();
+            initialDiags = compilation.GetDiagnostics()
+                .RemoveAll(x => x.Id is "CS8795"); // allow partial method implementation in generated code
         }
 
         //var initialDiags = compilation.GetDiagnostics();

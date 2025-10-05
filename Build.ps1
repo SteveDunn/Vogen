@@ -19,10 +19,14 @@ function BuildWith([string]$configuration)
     exec { & dotnet build src/Vogen/Vogen.csproj -c $configuration -p Thorough=true -p RoslynVersion=roslyn4.4 --verbosity $verbosity}
     exec { & dotnet build src/Vogen/Vogen.csproj -c $configuration -p Thorough=true -p RoslynVersion=roslyn4.6 --verbosity $verbosity}
     exec { & dotnet build src/Vogen/Vogen.csproj -c $configuration -p Thorough=true -p RoslynVersion=roslyn4.8 --verbosity $verbosity}
+    exec { & dotnet build src/Vogen/Vogen.csproj -c $configuration -p Thorough=true -p RoslynVersion=roslyn4.11 --verbosity $verbosity}
+    exec { & dotnet build src/Vogen/Vogen.csproj -c $configuration -p Thorough=true -p RoslynVersion=roslyn4.12 --verbosity $verbosity}
 
     exec { & dotnet build src/Vogen.CodeFixers/Vogen.CodeFixers.csproj -c $configuration -p Thorough=true -p RoslynVersion=roslyn4.4 --verbosity $verbosity}
     exec { & dotnet build src/Vogen.CodeFixers/Vogen.CodeFixers.csproj -c $configuration -p Thorough=true -p RoslynVersion=roslyn4.6 --verbosity $verbosity}
     exec { & dotnet build src/Vogen.CodeFixers/Vogen.CodeFixers.csproj -c $configuration -p Thorough=true -p RoslynVersion=roslyn4.8 --verbosity $verbosity}
+    exec { & dotnet build src/Vogen.CodeFixers/Vogen.CodeFixers.csproj -c $configuration -p Thorough=true -p RoslynVersion=roslyn4.11 --verbosity $verbosity}
+    exec { & dotnet build src/Vogen.CodeFixers/Vogen.CodeFixers.csproj -c $configuration -p Thorough=true -p RoslynVersion=roslyn4.12 --verbosity $verbosity}
 }
 
 function Get999VersionWithUniquePatch()
@@ -157,4 +161,3 @@ WriteStage("Finally, packing the release version into " + $artifacts)
 exec { & dotnet pack src/Vogen.Pack/Vogen.Pack.csproj -c Release -o $artifacts --no-build --verbosity $verbosity }
 
 WriteStage("Done! Package generated at " + $artifacts)
-

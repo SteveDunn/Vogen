@@ -48,7 +48,7 @@ public class RecordStructGenerator : IGenerateValueObjectSourceCode
         private {readonlyForValueAndIsInitialized} {itemUnderlyingType}{underlyingNullAnnotation} _value;
 
         {Util.GenerateCommentForValueProperty(item)}
-        public readonly {itemUnderlyingType} Value
+        {Util.GenerateMethodModifiers(Accessibility.Public, ["readonly"], item.UserProvidedPartials.PartialValue)} {itemUnderlyingType} Value
         {{
             [global::System.Diagnostics.DebuggerStepThroughAttribute]
             [global::System.Runtime.CompilerServices.MethodImpl(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
@@ -88,7 +88,7 @@ public class RecordStructGenerator : IGenerateValueObjectSourceCode
         /// <param name=""value"">The underlying type.</param>
         /// <returns>An instance of this type.</returns>
         [global::System.Runtime.CompilerServices.MethodImpl(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
-        public static {wrapperName} From({itemUnderlyingType} value)
+        {Util.GenerateMethodModifiers(Accessibility.Public, ["static"], item.UserProvidedPartials.PartialFrom)} {wrapperName} From({itemUnderlyingType} value)
         {{
             {Util.GenerateNullCheckAndThrowIfNeeded(item, generateReturnDefault: true)}
 
