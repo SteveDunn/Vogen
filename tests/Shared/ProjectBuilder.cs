@@ -58,6 +58,13 @@ public sealed class ProjectBuilder
             "analyzers/dotnet/cs/Microsoft.CodeAnalysis",
             ruleIds);
 
+    public ProjectBuilder WithSonarAnalyzers(params string[] ruleIds) =>
+        WithAnalyzerFromNuGet(
+            "SonarAnalyzer.CSharp",
+            "10.15.0.120848",
+            "analyzers/SonarAnalyzer.CSharp",
+            ruleIds);
+
     public ProjectBuilder ShouldReportDiagnostic(params DiagnosticResult[] expectedDiagnosticResults)
     {
         foreach (var diagnostic in expectedDiagnosticResults)
@@ -351,7 +358,7 @@ public sealed class ProjectBuilder
                 .RemoveAll(x => x.Id is "CS8795"); // allow partial method implementation in generated code
         }
 
-        //var initialDiags = compilation.GetDiagnostics();
+                            //var initialDiags = compilation.GetDiagnostics();
         if (initialDiags.Length != 0 && !ignoreInitialCompilationErrors)
         {
             return (initialDiags, []);
