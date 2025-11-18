@@ -254,7 +254,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
 #endif
         out _casting_public_sealed_partial_recordImplicitNonefloat result)
         {
-            if (System.Single.TryParse(s, out var __v))
+            if (global::System.Single.TryParse(s, out var __v))
             {
                 result = new _casting_public_sealed_partial_recordImplicitNonefloat(__v);
                 return true;
@@ -276,7 +276,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
 #endif
         out _casting_public_sealed_partial_recordImplicitNonefloat result)
         {
-            if (System.Single.TryParse(s, style, provider, out var __v))
+            if (global::System.Single.TryParse(s, style, provider, out var __v))
             {
                 result = new _casting_public_sealed_partial_recordImplicitNonefloat(__v);
                 return true;
@@ -295,7 +295,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
         /// <exception cref = "global::Vogen.ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
         public static _casting_public_sealed_partial_recordImplicitNonefloat Parse(string s)
         {
-            var r = System.Single.Parse(s);
+            var r = global::System.Single.Parse(s);
             return From(r);
         }
 
@@ -308,7 +308,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
         /// <exception cref = "global::Vogen.ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
         public static _casting_public_sealed_partial_recordImplicitNonefloat Parse(string s, global::System.Globalization.NumberStyles style)
         {
-            var r = System.Single.Parse(s, style);
+            var r = global::System.Single.Parse(s, style);
             return From(r);
         }
 
@@ -321,7 +321,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
         /// <exception cref = "global::Vogen.ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
         public static _casting_public_sealed_partial_recordImplicitNonefloat Parse(string s, global::System.IFormatProvider provider)
         {
-            var r = System.Single.Parse(s, provider);
+            var r = global::System.Single.Parse(s, provider);
             return From(r);
         }
 
@@ -334,7 +334,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
         /// <exception cref = "global::Vogen.ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
         public static _casting_public_sealed_partial_recordImplicitNonefloat Parse(string s, global::System.Globalization.NumberStyles style, global::System.IFormatProvider provider)
         {
-            var r = System.Single.Parse(s, style, provider);
+            var r = global::System.Single.Parse(s, style, provider);
             return From(r);
         }
 

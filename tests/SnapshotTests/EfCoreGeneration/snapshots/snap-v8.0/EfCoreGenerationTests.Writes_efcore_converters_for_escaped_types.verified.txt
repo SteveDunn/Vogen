@@ -124,7 +124,7 @@ public partial class EfCoreConverters
 public static class MyVo1__Ext 
 {
         public static global::Microsoft.EntityFrameworkCore.Metadata.Builders.PropertyBuilder<Whatever.MyVo1> HasVogenConversion(this global::Microsoft.EntityFrameworkCore.Metadata.Builders.PropertyBuilder<Whatever.MyVo1> propertyBuilder) =>
-            propertyBuilder.HasConversion<Whatever.EfCoreConverters.MyVo1EfCoreValueConverter, Whatever.EfCoreConverters.MyVo1EfCoreValueComparer>();
+            propertyBuilder.HasConversion<global::Whatever.EfCoreConverters.MyVo1EfCoreValueConverter, global::Whatever.EfCoreConverters.MyVo1EfCoreValueComparer>();
 }
 
 
@@ -212,7 +212,7 @@ public partial class EfCoreConverters
 public static class MyVo2__Ext 
 {
         public static global::Microsoft.EntityFrameworkCore.Metadata.Builders.PropertyBuilder<Whatever.MyVo2> HasVogenConversion(this global::Microsoft.EntityFrameworkCore.Metadata.Builders.PropertyBuilder<Whatever.MyVo2> propertyBuilder) =>
-            propertyBuilder.HasConversion<Whatever.EfCoreConverters.MyVo2EfCoreValueConverter, Whatever.EfCoreConverters.MyVo2EfCoreValueComparer>();
+            propertyBuilder.HasConversion<global::Whatever.EfCoreConverters.MyVo2EfCoreValueConverter, global::Whatever.EfCoreConverters.MyVo2EfCoreValueComparer>();
 }
 
 
@@ -291,7 +291,7 @@ public partial class EfCoreConverters
 public static class MyVo3__Ext 
 {
         public static global::Microsoft.EntityFrameworkCore.Metadata.Builders.PropertyBuilder<Whatever.MyVo3> HasVogenConversion(this global::Microsoft.EntityFrameworkCore.Metadata.Builders.PropertyBuilder<Whatever.MyVo3> propertyBuilder) =>
-            propertyBuilder.HasConversion<Whatever.EfCoreConverters.MyVo3EfCoreValueConverter, Whatever.EfCoreConverters.MyVo3EfCoreValueComparer>();
+            propertyBuilder.HasConversion<global::Whatever.EfCoreConverters.MyVo3EfCoreValueConverter, global::Whatever.EfCoreConverters.MyVo3EfCoreValueComparer>();
 }
 
 
@@ -370,7 +370,7 @@ public partial class EfCoreConverters
 public static class MyVo4__Ext 
 {
         public static global::Microsoft.EntityFrameworkCore.Metadata.Builders.PropertyBuilder<Whatever.MyVo4> HasVogenConversion(this global::Microsoft.EntityFrameworkCore.Metadata.Builders.PropertyBuilder<Whatever.MyVo4> propertyBuilder) =>
-            propertyBuilder.HasConversion<Whatever.EfCoreConverters.MyVo4EfCoreValueConverter, Whatever.EfCoreConverters.MyVo4EfCoreValueComparer>();
+            propertyBuilder.HasConversion<global::Whatever.EfCoreConverters.MyVo4EfCoreValueConverter, global::Whatever.EfCoreConverters.MyVo4EfCoreValueComparer>();
 }
 
 
@@ -449,7 +449,7 @@ public partial class EfCoreConverters
 public static class MyVo5__Ext 
 {
         public static global::Microsoft.EntityFrameworkCore.Metadata.Builders.PropertyBuilder<Whatever.MyVo5> HasVogenConversion(this global::Microsoft.EntityFrameworkCore.Metadata.Builders.PropertyBuilder<Whatever.MyVo5> propertyBuilder) =>
-            propertyBuilder.HasConversion<Whatever.EfCoreConverters.MyVo5EfCoreValueConverter, Whatever.EfCoreConverters.MyVo5EfCoreValueComparer>();
+            propertyBuilder.HasConversion<global::Whatever.EfCoreConverters.MyVo5EfCoreValueConverter, global::Whatever.EfCoreConverters.MyVo5EfCoreValueComparer>();
 }
 
 
@@ -537,7 +537,7 @@ public partial class EfCoreConverters
 public static class MyVo6__Ext 
 {
         public static global::Microsoft.EntityFrameworkCore.Metadata.Builders.PropertyBuilder<Whatever.MyVo6> HasVogenConversion(this global::Microsoft.EntityFrameworkCore.Metadata.Builders.PropertyBuilder<Whatever.MyVo6> propertyBuilder) =>
-            propertyBuilder.HasConversion<Whatever.EfCoreConverters.MyVo6EfCoreValueConverter, Whatever.EfCoreConverters.MyVo6EfCoreValueComparer>();
+            propertyBuilder.HasConversion<global::Whatever.EfCoreConverters.MyVo6EfCoreValueConverter, global::Whatever.EfCoreConverters.MyVo6EfCoreValueComparer>();
 }
 
 
@@ -616,7 +616,7 @@ public partial class EfCoreConverters
 public static class int__Ext 
 {
         public static global::Microsoft.EntityFrameworkCore.Metadata.Builders.PropertyBuilder<Whatever.@int> HasVogenConversion(this global::Microsoft.EntityFrameworkCore.Metadata.Builders.PropertyBuilder<Whatever.@int> propertyBuilder) =>
-            propertyBuilder.HasConversion<Whatever.EfCoreConverters.intEfCoreValueConverter, Whatever.EfCoreConverters.intEfCoreValueComparer>();
+            propertyBuilder.HasConversion<global::Whatever.EfCoreConverters.intEfCoreValueConverter, global::Whatever.EfCoreConverters.intEfCoreValueComparer>();
 }
 
 
@@ -695,7 +695,7 @@ public partial class EfCoreConverters
 public static class byte__Ext 
 {
         public static global::Microsoft.EntityFrameworkCore.Metadata.Builders.PropertyBuilder<Whatever.@byte> HasVogenConversion(this global::Microsoft.EntityFrameworkCore.Metadata.Builders.PropertyBuilder<Whatever.@byte> propertyBuilder) =>
-            propertyBuilder.HasConversion<Whatever.EfCoreConverters.byteEfCoreValueConverter, Whatever.EfCoreConverters.byteEfCoreValueComparer>();
+            propertyBuilder.HasConversion<global::Whatever.EfCoreConverters.byteEfCoreValueConverter, global::Whatever.EfCoreConverters.byteEfCoreValueComparer>();
 }
 
 
@@ -783,7 +783,7 @@ public partial class EfCoreConverters
 public static class MyInt__Ext 
 {
         public static global::Microsoft.EntityFrameworkCore.Metadata.Builders.PropertyBuilder<Whatever.MyInt> HasVogenConversion(this global::Microsoft.EntityFrameworkCore.Metadata.Builders.PropertyBuilder<Whatever.MyInt> propertyBuilder) =>
-            propertyBuilder.HasConversion<Whatever.EfCoreConverters.MyIntEfCoreValueConverter, Whatever.EfCoreConverters.MyIntEfCoreValueComparer>();
+            propertyBuilder.HasConversion<global::Whatever.EfCoreConverters.MyIntEfCoreValueConverter, global::Whatever.EfCoreConverters.MyIntEfCoreValueComparer>();
 }
 
 
@@ -907,7 +907,7 @@ public partial class EfCoreConverters
 public static class byte__Ext 
 {
         public static global::Microsoft.EntityFrameworkCore.Metadata.Builders.PropertyBuilder<@int.@byte> HasVogenConversion(this global::Microsoft.EntityFrameworkCore.Metadata.Builders.PropertyBuilder<@int.@byte> propertyBuilder) =>
-            propertyBuilder.HasConversion<@byte.EfCoreConverters.byteEfCoreValueConverter, @byte.EfCoreConverters.byteEfCoreValueComparer>();
+            propertyBuilder.HasConversion<global::@byte.EfCoreConverters.byteEfCoreValueConverter, global::@byte.EfCoreConverters.byteEfCoreValueComparer>();
 }
 
 
@@ -986,7 +986,7 @@ public partial class EfCoreConverters
 public static class string__Ext 
 {
         public static global::Microsoft.EntityFrameworkCore.Metadata.Builders.PropertyBuilder<@int.@string> HasVogenConversion(this global::Microsoft.EntityFrameworkCore.Metadata.Builders.PropertyBuilder<@int.@string> propertyBuilder) =>
-            propertyBuilder.HasConversion<@byte.EfCoreConverters.stringEfCoreValueConverter, @byte.EfCoreConverters.stringEfCoreValueComparer>();
+            propertyBuilder.HasConversion<global::@byte.EfCoreConverters.stringEfCoreValueConverter, global::@byte.EfCoreConverters.stringEfCoreValueComparer>();
 }
 
 
@@ -1273,7 +1273,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
 #endif
         out @byte result)
         {
-            if (System.Byte.TryParse(utf8Text, out var __v))
+            if (global::System.Byte.TryParse(utf8Text, out var __v))
             {
                 result = new @byte(__v);
                 return true;
@@ -1295,7 +1295,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
 #endif
         out @byte result)
         {
-            if (System.Byte.TryParse(utf8Text, style, provider, out var __v))
+            if (global::System.Byte.TryParse(utf8Text, style, provider, out var __v))
             {
                 result = new @byte(__v);
                 return true;
@@ -1317,7 +1317,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
 #endif
         out @byte result)
         {
-            if (System.Byte.TryParse(utf8Text, provider, out var __v))
+            if (global::System.Byte.TryParse(utf8Text, provider, out var __v))
             {
                 result = new @byte(__v);
                 return true;
@@ -1339,7 +1339,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
 #endif
         out @byte result)
         {
-            if (System.Byte.TryParse(s, out var __v))
+            if (global::System.Byte.TryParse(s, out var __v))
             {
                 result = new @byte(__v);
                 return true;
@@ -1361,7 +1361,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
 #endif
         out @byte result)
         {
-            if (System.Byte.TryParse(s, style, provider, out var __v))
+            if (global::System.Byte.TryParse(s, style, provider, out var __v))
             {
                 result = new @byte(__v);
                 return true;
@@ -1383,7 +1383,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
 #endif
         out @byte result)
         {
-            if (System.Byte.TryParse(s, provider, out var __v))
+            if (global::System.Byte.TryParse(s, provider, out var __v))
             {
                 result = new @byte(__v);
                 return true;
@@ -1405,7 +1405,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
 #endif
         out @byte result)
         {
-            if (System.Byte.TryParse(s, out var __v))
+            if (global::System.Byte.TryParse(s, out var __v))
             {
                 result = new @byte(__v);
                 return true;
@@ -1427,7 +1427,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
 #endif
         out @byte result)
         {
-            if (System.Byte.TryParse(s, style, provider, out var __v))
+            if (global::System.Byte.TryParse(s, style, provider, out var __v))
             {
                 result = new @byte(__v);
                 return true;
@@ -1449,7 +1449,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
 #endif
         out @byte result)
         {
-            if (System.Byte.TryParse(s, provider, out var __v))
+            if (global::System.Byte.TryParse(s, provider, out var __v))
             {
                 result = new @byte(__v);
                 return true;
@@ -1468,7 +1468,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
         /// <exception cref = "global::Vogen.ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
         public static @byte Parse(global::System.ReadOnlySpan<byte> utf8Text, global::System.Globalization.NumberStyles style, global::System.IFormatProvider provider)
         {
-            var r = System.Byte.Parse(utf8Text, style, provider);
+            var r = global::System.Byte.Parse(utf8Text, style, provider);
             return From(r);
         }
 
@@ -1481,7 +1481,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
         /// <exception cref = "global::Vogen.ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
         public static @byte Parse(global::System.ReadOnlySpan<byte> utf8Text, global::System.IFormatProvider provider)
         {
-            var r = System.Byte.Parse(utf8Text, provider);
+            var r = global::System.Byte.Parse(utf8Text, provider);
             return From(r);
         }
 
@@ -1494,7 +1494,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
         /// <exception cref = "global::Vogen.ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
         public static @byte Parse(global::System.ReadOnlySpan<char> s, global::System.Globalization.NumberStyles style, global::System.IFormatProvider provider)
         {
-            var r = System.Byte.Parse(s, style, provider);
+            var r = global::System.Byte.Parse(s, style, provider);
             return From(r);
         }
 
@@ -1507,7 +1507,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
         /// <exception cref = "global::Vogen.ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
         public static @byte Parse(global::System.ReadOnlySpan<char> s, global::System.IFormatProvider provider)
         {
-            var r = System.Byte.Parse(s, provider);
+            var r = global::System.Byte.Parse(s, provider);
             return From(r);
         }
 
@@ -1520,7 +1520,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
         /// <exception cref = "global::Vogen.ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
         public static @byte Parse(string s)
         {
-            var r = System.Byte.Parse(s);
+            var r = global::System.Byte.Parse(s);
             return From(r);
         }
 
@@ -1533,7 +1533,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
         /// <exception cref = "global::Vogen.ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
         public static @byte Parse(string s, global::System.Globalization.NumberStyles style)
         {
-            var r = System.Byte.Parse(s, style);
+            var r = global::System.Byte.Parse(s, style);
             return From(r);
         }
 
@@ -1546,7 +1546,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
         /// <exception cref = "global::Vogen.ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
         public static @byte Parse(string s, global::System.Globalization.NumberStyles style, global::System.IFormatProvider provider)
         {
-            var r = System.Byte.Parse(s, style, provider);
+            var r = global::System.Byte.Parse(s, style, provider);
             return From(r);
         }
 
@@ -1559,7 +1559,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
         /// <exception cref = "global::Vogen.ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
         public static @byte Parse(string s, global::System.IFormatProvider provider)
         {
-            var r = System.Byte.Parse(s, provider);
+            var r = global::System.Byte.Parse(s, provider);
             return From(r);
         }
 
@@ -2407,7 +2407,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
 #endif
         out MyVo1 result)
         {
-            if (System.Int32.TryParse(utf8Text, style, provider, out var __v))
+            if (global::System.Int32.TryParse(utf8Text, style, provider, out var __v))
             {
                 result = new MyVo1(__v);
                 return true;
@@ -2429,7 +2429,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
 #endif
         out MyVo1 result)
         {
-            if (System.Int32.TryParse(utf8Text, provider, out var __v))
+            if (global::System.Int32.TryParse(utf8Text, provider, out var __v))
             {
                 result = new MyVo1(__v);
                 return true;
@@ -2451,7 +2451,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
 #endif
         out MyVo1 result)
         {
-            if (System.Int32.TryParse(utf8Text, out var __v))
+            if (global::System.Int32.TryParse(utf8Text, out var __v))
             {
                 result = new MyVo1(__v);
                 return true;
@@ -2473,7 +2473,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
 #endif
         out MyVo1 result)
         {
-            if (System.Int32.TryParse(s, style, provider, out var __v))
+            if (global::System.Int32.TryParse(s, style, provider, out var __v))
             {
                 result = new MyVo1(__v);
                 return true;
@@ -2495,7 +2495,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
 #endif
         out MyVo1 result)
         {
-            if (System.Int32.TryParse(s, provider, out var __v))
+            if (global::System.Int32.TryParse(s, provider, out var __v))
             {
                 result = new MyVo1(__v);
                 return true;
@@ -2517,7 +2517,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
 #endif
         out MyVo1 result)
         {
-            if (System.Int32.TryParse(s, out var __v))
+            if (global::System.Int32.TryParse(s, out var __v))
             {
                 result = new MyVo1(__v);
                 return true;
@@ -2539,7 +2539,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
 #endif
         out MyVo1 result)
         {
-            if (System.Int32.TryParse(s, style, provider, out var __v))
+            if (global::System.Int32.TryParse(s, style, provider, out var __v))
             {
                 result = new MyVo1(__v);
                 return true;
@@ -2561,7 +2561,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
 #endif
         out MyVo1 result)
         {
-            if (System.Int32.TryParse(s, provider, out var __v))
+            if (global::System.Int32.TryParse(s, provider, out var __v))
             {
                 result = new MyVo1(__v);
                 return true;
@@ -2583,7 +2583,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
 #endif
         out MyVo1 result)
         {
-            if (System.Int32.TryParse(s, out var __v))
+            if (global::System.Int32.TryParse(s, out var __v))
             {
                 result = new MyVo1(__v);
                 return true;
@@ -2602,7 +2602,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
         /// <exception cref = "global::Vogen.ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
         public static MyVo1 Parse(global::System.ReadOnlySpan<byte> utf8Text, global::System.Globalization.NumberStyles style, global::System.IFormatProvider provider)
         {
-            var r = System.Int32.Parse(utf8Text, style, provider);
+            var r = global::System.Int32.Parse(utf8Text, style, provider);
             return From(r);
         }
 
@@ -2615,7 +2615,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
         /// <exception cref = "global::Vogen.ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
         public static MyVo1 Parse(global::System.ReadOnlySpan<byte> utf8Text, global::System.IFormatProvider provider)
         {
-            var r = System.Int32.Parse(utf8Text, provider);
+            var r = global::System.Int32.Parse(utf8Text, provider);
             return From(r);
         }
 
@@ -2628,7 +2628,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
         /// <exception cref = "global::Vogen.ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
         public static MyVo1 Parse(global::System.ReadOnlySpan<char> s, global::System.Globalization.NumberStyles style, global::System.IFormatProvider provider)
         {
-            var r = System.Int32.Parse(s, style, provider);
+            var r = global::System.Int32.Parse(s, style, provider);
             return From(r);
         }
 
@@ -2641,7 +2641,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
         /// <exception cref = "global::Vogen.ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
         public static MyVo1 Parse(global::System.ReadOnlySpan<char> s, global::System.IFormatProvider provider)
         {
-            var r = System.Int32.Parse(s, provider);
+            var r = global::System.Int32.Parse(s, provider);
             return From(r);
         }
 
@@ -2654,7 +2654,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
         /// <exception cref = "global::Vogen.ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
         public static MyVo1 Parse(string s)
         {
-            var r = System.Int32.Parse(s);
+            var r = global::System.Int32.Parse(s);
             return From(r);
         }
 
@@ -2667,7 +2667,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
         /// <exception cref = "global::Vogen.ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
         public static MyVo1 Parse(string s, global::System.Globalization.NumberStyles style)
         {
-            var r = System.Int32.Parse(s, style);
+            var r = global::System.Int32.Parse(s, style);
             return From(r);
         }
 
@@ -2680,7 +2680,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
         /// <exception cref = "global::Vogen.ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
         public static MyVo1 Parse(string s, global::System.Globalization.NumberStyles style, global::System.IFormatProvider provider)
         {
-            var r = System.Int32.Parse(s, style, provider);
+            var r = global::System.Int32.Parse(s, style, provider);
             return From(r);
         }
 
@@ -2693,7 +2693,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
         /// <exception cref = "global::Vogen.ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
         public static MyVo1 Parse(string s, global::System.IFormatProvider provider)
         {
-            var r = System.Int32.Parse(s, provider);
+            var r = global::System.Int32.Parse(s, provider);
             return From(r);
         }
 
@@ -3985,7 +3985,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
 #endif
         out MyVo4 result)
         {
-            if (System.Int32.TryParse(utf8Text, style, provider, out var __v))
+            if (global::System.Int32.TryParse(utf8Text, style, provider, out var __v))
             {
                 result = new MyVo4(__v);
                 return true;
@@ -4007,7 +4007,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
 #endif
         out MyVo4 result)
         {
-            if (System.Int32.TryParse(utf8Text, provider, out var __v))
+            if (global::System.Int32.TryParse(utf8Text, provider, out var __v))
             {
                 result = new MyVo4(__v);
                 return true;
@@ -4029,7 +4029,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
 #endif
         out MyVo4 result)
         {
-            if (System.Int32.TryParse(utf8Text, out var __v))
+            if (global::System.Int32.TryParse(utf8Text, out var __v))
             {
                 result = new MyVo4(__v);
                 return true;
@@ -4051,7 +4051,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
 #endif
         out MyVo4 result)
         {
-            if (System.Int32.TryParse(s, style, provider, out var __v))
+            if (global::System.Int32.TryParse(s, style, provider, out var __v))
             {
                 result = new MyVo4(__v);
                 return true;
@@ -4073,7 +4073,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
 #endif
         out MyVo4 result)
         {
-            if (System.Int32.TryParse(s, provider, out var __v))
+            if (global::System.Int32.TryParse(s, provider, out var __v))
             {
                 result = new MyVo4(__v);
                 return true;
@@ -4095,7 +4095,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
 #endif
         out MyVo4 result)
         {
-            if (System.Int32.TryParse(s, out var __v))
+            if (global::System.Int32.TryParse(s, out var __v))
             {
                 result = new MyVo4(__v);
                 return true;
@@ -4117,7 +4117,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
 #endif
         out MyVo4 result)
         {
-            if (System.Int32.TryParse(s, style, provider, out var __v))
+            if (global::System.Int32.TryParse(s, style, provider, out var __v))
             {
                 result = new MyVo4(__v);
                 return true;
@@ -4139,7 +4139,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
 #endif
         out MyVo4 result)
         {
-            if (System.Int32.TryParse(s, provider, out var __v))
+            if (global::System.Int32.TryParse(s, provider, out var __v))
             {
                 result = new MyVo4(__v);
                 return true;
@@ -4161,7 +4161,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
 #endif
         out MyVo4 result)
         {
-            if (System.Int32.TryParse(s, out var __v))
+            if (global::System.Int32.TryParse(s, out var __v))
             {
                 result = new MyVo4(__v);
                 return true;
@@ -4180,7 +4180,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
         /// <exception cref = "global::Vogen.ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
         public static MyVo4 Parse(global::System.ReadOnlySpan<byte> utf8Text, global::System.Globalization.NumberStyles style, global::System.IFormatProvider provider)
         {
-            var r = System.Int32.Parse(utf8Text, style, provider);
+            var r = global::System.Int32.Parse(utf8Text, style, provider);
             return From(r);
         }
 
@@ -4193,7 +4193,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
         /// <exception cref = "global::Vogen.ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
         public static MyVo4 Parse(global::System.ReadOnlySpan<byte> utf8Text, global::System.IFormatProvider provider)
         {
-            var r = System.Int32.Parse(utf8Text, provider);
+            var r = global::System.Int32.Parse(utf8Text, provider);
             return From(r);
         }
 
@@ -4206,7 +4206,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
         /// <exception cref = "global::Vogen.ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
         public static MyVo4 Parse(global::System.ReadOnlySpan<char> s, global::System.Globalization.NumberStyles style, global::System.IFormatProvider provider)
         {
-            var r = System.Int32.Parse(s, style, provider);
+            var r = global::System.Int32.Parse(s, style, provider);
             return From(r);
         }
 
@@ -4219,7 +4219,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
         /// <exception cref = "global::Vogen.ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
         public static MyVo4 Parse(global::System.ReadOnlySpan<char> s, global::System.IFormatProvider provider)
         {
-            var r = System.Int32.Parse(s, provider);
+            var r = global::System.Int32.Parse(s, provider);
             return From(r);
         }
 
@@ -4232,7 +4232,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
         /// <exception cref = "global::Vogen.ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
         public static MyVo4 Parse(string s)
         {
-            var r = System.Int32.Parse(s);
+            var r = global::System.Int32.Parse(s);
             return From(r);
         }
 
@@ -4245,7 +4245,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
         /// <exception cref = "global::Vogen.ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
         public static MyVo4 Parse(string s, global::System.Globalization.NumberStyles style)
         {
-            var r = System.Int32.Parse(s, style);
+            var r = global::System.Int32.Parse(s, style);
             return From(r);
         }
 
@@ -4258,7 +4258,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
         /// <exception cref = "global::Vogen.ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
         public static MyVo4 Parse(string s, global::System.Globalization.NumberStyles style, global::System.IFormatProvider provider)
         {
-            var r = System.Int32.Parse(s, style, provider);
+            var r = global::System.Int32.Parse(s, style, provider);
             return From(r);
         }
 
@@ -4271,7 +4271,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
         /// <exception cref = "global::Vogen.ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
         public static MyVo4 Parse(string s, global::System.IFormatProvider provider)
         {
-            var r = System.Int32.Parse(s, provider);
+            var r = global::System.Int32.Parse(s, provider);
             return From(r);
         }
 
@@ -4676,7 +4676,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
 #endif
         out MyVo5 result)
         {
-            if (System.Int32.TryParse(utf8Text, style, provider, out var __v))
+            if (global::System.Int32.TryParse(utf8Text, style, provider, out var __v))
             {
                 result = new MyVo5(__v);
                 return true;
@@ -4698,7 +4698,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
 #endif
         out MyVo5 result)
         {
-            if (System.Int32.TryParse(utf8Text, provider, out var __v))
+            if (global::System.Int32.TryParse(utf8Text, provider, out var __v))
             {
                 result = new MyVo5(__v);
                 return true;
@@ -4720,7 +4720,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
 #endif
         out MyVo5 result)
         {
-            if (System.Int32.TryParse(utf8Text, out var __v))
+            if (global::System.Int32.TryParse(utf8Text, out var __v))
             {
                 result = new MyVo5(__v);
                 return true;
@@ -4742,7 +4742,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
 #endif
         out MyVo5 result)
         {
-            if (System.Int32.TryParse(s, style, provider, out var __v))
+            if (global::System.Int32.TryParse(s, style, provider, out var __v))
             {
                 result = new MyVo5(__v);
                 return true;
@@ -4764,7 +4764,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
 #endif
         out MyVo5 result)
         {
-            if (System.Int32.TryParse(s, provider, out var __v))
+            if (global::System.Int32.TryParse(s, provider, out var __v))
             {
                 result = new MyVo5(__v);
                 return true;
@@ -4786,7 +4786,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
 #endif
         out MyVo5 result)
         {
-            if (System.Int32.TryParse(s, out var __v))
+            if (global::System.Int32.TryParse(s, out var __v))
             {
                 result = new MyVo5(__v);
                 return true;
@@ -4808,7 +4808,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
 #endif
         out MyVo5 result)
         {
-            if (System.Int32.TryParse(s, style, provider, out var __v))
+            if (global::System.Int32.TryParse(s, style, provider, out var __v))
             {
                 result = new MyVo5(__v);
                 return true;
@@ -4830,7 +4830,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
 #endif
         out MyVo5 result)
         {
-            if (System.Int32.TryParse(s, provider, out var __v))
+            if (global::System.Int32.TryParse(s, provider, out var __v))
             {
                 result = new MyVo5(__v);
                 return true;
@@ -4852,7 +4852,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
 #endif
         out MyVo5 result)
         {
-            if (System.Int32.TryParse(s, out var __v))
+            if (global::System.Int32.TryParse(s, out var __v))
             {
                 result = new MyVo5(__v);
                 return true;
@@ -4871,7 +4871,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
         /// <exception cref = "global::Vogen.ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
         public static MyVo5 Parse(global::System.ReadOnlySpan<byte> utf8Text, global::System.Globalization.NumberStyles style, global::System.IFormatProvider provider)
         {
-            var r = System.Int32.Parse(utf8Text, style, provider);
+            var r = global::System.Int32.Parse(utf8Text, style, provider);
             return From(r);
         }
 
@@ -4884,7 +4884,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
         /// <exception cref = "global::Vogen.ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
         public static MyVo5 Parse(global::System.ReadOnlySpan<byte> utf8Text, global::System.IFormatProvider provider)
         {
-            var r = System.Int32.Parse(utf8Text, provider);
+            var r = global::System.Int32.Parse(utf8Text, provider);
             return From(r);
         }
 
@@ -4897,7 +4897,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
         /// <exception cref = "global::Vogen.ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
         public static MyVo5 Parse(global::System.ReadOnlySpan<char> s, global::System.Globalization.NumberStyles style, global::System.IFormatProvider provider)
         {
-            var r = System.Int32.Parse(s, style, provider);
+            var r = global::System.Int32.Parse(s, style, provider);
             return From(r);
         }
 
@@ -4910,7 +4910,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
         /// <exception cref = "global::Vogen.ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
         public static MyVo5 Parse(global::System.ReadOnlySpan<char> s, global::System.IFormatProvider provider)
         {
-            var r = System.Int32.Parse(s, provider);
+            var r = global::System.Int32.Parse(s, provider);
             return From(r);
         }
 
@@ -4923,7 +4923,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
         /// <exception cref = "global::Vogen.ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
         public static MyVo5 Parse(string s)
         {
-            var r = System.Int32.Parse(s);
+            var r = global::System.Int32.Parse(s);
             return From(r);
         }
 
@@ -4936,7 +4936,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
         /// <exception cref = "global::Vogen.ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
         public static MyVo5 Parse(string s, global::System.Globalization.NumberStyles style)
         {
-            var r = System.Int32.Parse(s, style);
+            var r = global::System.Int32.Parse(s, style);
             return From(r);
         }
 
@@ -4949,7 +4949,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
         /// <exception cref = "global::Vogen.ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
         public static MyVo5 Parse(string s, global::System.Globalization.NumberStyles style, global::System.IFormatProvider provider)
         {
-            var r = System.Int32.Parse(s, style, provider);
+            var r = global::System.Int32.Parse(s, style, provider);
             return From(r);
         }
 
@@ -4962,7 +4962,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
         /// <exception cref = "global::Vogen.ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
         public static MyVo5 Parse(string s, global::System.IFormatProvider provider)
         {
-            var r = System.Int32.Parse(s, provider);
+            var r = global::System.Int32.Parse(s, provider);
             return From(r);
         }
 
@@ -5384,7 +5384,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
 #endif
         out MyVo6 result)
         {
-            if (System.Int32.TryParse(utf8Text, style, provider, out var __v))
+            if (global::System.Int32.TryParse(utf8Text, style, provider, out var __v))
             {
                 result = new MyVo6(__v);
                 return true;
@@ -5406,7 +5406,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
 #endif
         out MyVo6 result)
         {
-            if (System.Int32.TryParse(utf8Text, provider, out var __v))
+            if (global::System.Int32.TryParse(utf8Text, provider, out var __v))
             {
                 result = new MyVo6(__v);
                 return true;
@@ -5428,7 +5428,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
 #endif
         out MyVo6 result)
         {
-            if (System.Int32.TryParse(utf8Text, out var __v))
+            if (global::System.Int32.TryParse(utf8Text, out var __v))
             {
                 result = new MyVo6(__v);
                 return true;
@@ -5450,7 +5450,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
 #endif
         out MyVo6 result)
         {
-            if (System.Int32.TryParse(s, style, provider, out var __v))
+            if (global::System.Int32.TryParse(s, style, provider, out var __v))
             {
                 result = new MyVo6(__v);
                 return true;
@@ -5472,7 +5472,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
 #endif
         out MyVo6 result)
         {
-            if (System.Int32.TryParse(s, provider, out var __v))
+            if (global::System.Int32.TryParse(s, provider, out var __v))
             {
                 result = new MyVo6(__v);
                 return true;
@@ -5494,7 +5494,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
 #endif
         out MyVo6 result)
         {
-            if (System.Int32.TryParse(s, out var __v))
+            if (global::System.Int32.TryParse(s, out var __v))
             {
                 result = new MyVo6(__v);
                 return true;
@@ -5516,7 +5516,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
 #endif
         out MyVo6 result)
         {
-            if (System.Int32.TryParse(s, style, provider, out var __v))
+            if (global::System.Int32.TryParse(s, style, provider, out var __v))
             {
                 result = new MyVo6(__v);
                 return true;
@@ -5538,7 +5538,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
 #endif
         out MyVo6 result)
         {
-            if (System.Int32.TryParse(s, provider, out var __v))
+            if (global::System.Int32.TryParse(s, provider, out var __v))
             {
                 result = new MyVo6(__v);
                 return true;
@@ -5560,7 +5560,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
 #endif
         out MyVo6 result)
         {
-            if (System.Int32.TryParse(s, out var __v))
+            if (global::System.Int32.TryParse(s, out var __v))
             {
                 result = new MyVo6(__v);
                 return true;
@@ -5579,7 +5579,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
         /// <exception cref = "global::Vogen.ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
         public static MyVo6 Parse(global::System.ReadOnlySpan<byte> utf8Text, global::System.Globalization.NumberStyles style, global::System.IFormatProvider provider)
         {
-            var r = System.Int32.Parse(utf8Text, style, provider);
+            var r = global::System.Int32.Parse(utf8Text, style, provider);
             return From(r);
         }
 
@@ -5592,7 +5592,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
         /// <exception cref = "global::Vogen.ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
         public static MyVo6 Parse(global::System.ReadOnlySpan<byte> utf8Text, global::System.IFormatProvider provider)
         {
-            var r = System.Int32.Parse(utf8Text, provider);
+            var r = global::System.Int32.Parse(utf8Text, provider);
             return From(r);
         }
 
@@ -5605,7 +5605,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
         /// <exception cref = "global::Vogen.ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
         public static MyVo6 Parse(global::System.ReadOnlySpan<char> s, global::System.Globalization.NumberStyles style, global::System.IFormatProvider provider)
         {
-            var r = System.Int32.Parse(s, style, provider);
+            var r = global::System.Int32.Parse(s, style, provider);
             return From(r);
         }
 
@@ -5618,7 +5618,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
         /// <exception cref = "global::Vogen.ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
         public static MyVo6 Parse(global::System.ReadOnlySpan<char> s, global::System.IFormatProvider provider)
         {
-            var r = System.Int32.Parse(s, provider);
+            var r = global::System.Int32.Parse(s, provider);
             return From(r);
         }
 
@@ -5631,7 +5631,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
         /// <exception cref = "global::Vogen.ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
         public static MyVo6 Parse(string s)
         {
-            var r = System.Int32.Parse(s);
+            var r = global::System.Int32.Parse(s);
             return From(r);
         }
 
@@ -5644,7 +5644,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
         /// <exception cref = "global::Vogen.ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
         public static MyVo6 Parse(string s, global::System.Globalization.NumberStyles style)
         {
-            var r = System.Int32.Parse(s, style);
+            var r = global::System.Int32.Parse(s, style);
             return From(r);
         }
 
@@ -5657,7 +5657,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
         /// <exception cref = "global::Vogen.ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
         public static MyVo6 Parse(string s, global::System.Globalization.NumberStyles style, global::System.IFormatProvider provider)
         {
-            var r = System.Int32.Parse(s, style, provider);
+            var r = global::System.Int32.Parse(s, style, provider);
             return From(r);
         }
 
@@ -5670,7 +5670,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
         /// <exception cref = "global::Vogen.ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
         public static MyVo6 Parse(string s, global::System.IFormatProvider provider)
         {
-            var r = System.Int32.Parse(s, provider);
+            var r = global::System.Int32.Parse(s, provider);
             return From(r);
         }
 
@@ -6078,7 +6078,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
 #endif
         out @int result)
         {
-            if (System.Int32.TryParse(utf8Text, style, provider, out var __v))
+            if (global::System.Int32.TryParse(utf8Text, style, provider, out var __v))
             {
                 result = new @int(__v);
                 return true;
@@ -6100,7 +6100,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
 #endif
         out @int result)
         {
-            if (System.Int32.TryParse(utf8Text, provider, out var __v))
+            if (global::System.Int32.TryParse(utf8Text, provider, out var __v))
             {
                 result = new @int(__v);
                 return true;
@@ -6122,7 +6122,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
 #endif
         out @int result)
         {
-            if (System.Int32.TryParse(utf8Text, out var __v))
+            if (global::System.Int32.TryParse(utf8Text, out var __v))
             {
                 result = new @int(__v);
                 return true;
@@ -6144,7 +6144,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
 #endif
         out @int result)
         {
-            if (System.Int32.TryParse(s, style, provider, out var __v))
+            if (global::System.Int32.TryParse(s, style, provider, out var __v))
             {
                 result = new @int(__v);
                 return true;
@@ -6166,7 +6166,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
 #endif
         out @int result)
         {
-            if (System.Int32.TryParse(s, provider, out var __v))
+            if (global::System.Int32.TryParse(s, provider, out var __v))
             {
                 result = new @int(__v);
                 return true;
@@ -6188,7 +6188,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
 #endif
         out @int result)
         {
-            if (System.Int32.TryParse(s, out var __v))
+            if (global::System.Int32.TryParse(s, out var __v))
             {
                 result = new @int(__v);
                 return true;
@@ -6210,7 +6210,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
 #endif
         out @int result)
         {
-            if (System.Int32.TryParse(s, style, provider, out var __v))
+            if (global::System.Int32.TryParse(s, style, provider, out var __v))
             {
                 result = new @int(__v);
                 return true;
@@ -6232,7 +6232,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
 #endif
         out @int result)
         {
-            if (System.Int32.TryParse(s, provider, out var __v))
+            if (global::System.Int32.TryParse(s, provider, out var __v))
             {
                 result = new @int(__v);
                 return true;
@@ -6254,7 +6254,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
 #endif
         out @int result)
         {
-            if (System.Int32.TryParse(s, out var __v))
+            if (global::System.Int32.TryParse(s, out var __v))
             {
                 result = new @int(__v);
                 return true;
@@ -6273,7 +6273,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
         /// <exception cref = "global::Vogen.ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
         public static @int Parse(global::System.ReadOnlySpan<byte> utf8Text, global::System.Globalization.NumberStyles style, global::System.IFormatProvider provider)
         {
-            var r = System.Int32.Parse(utf8Text, style, provider);
+            var r = global::System.Int32.Parse(utf8Text, style, provider);
             return From(r);
         }
 
@@ -6286,7 +6286,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
         /// <exception cref = "global::Vogen.ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
         public static @int Parse(global::System.ReadOnlySpan<byte> utf8Text, global::System.IFormatProvider provider)
         {
-            var r = System.Int32.Parse(utf8Text, provider);
+            var r = global::System.Int32.Parse(utf8Text, provider);
             return From(r);
         }
 
@@ -6299,7 +6299,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
         /// <exception cref = "global::Vogen.ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
         public static @int Parse(global::System.ReadOnlySpan<char> s, global::System.Globalization.NumberStyles style, global::System.IFormatProvider provider)
         {
-            var r = System.Int32.Parse(s, style, provider);
+            var r = global::System.Int32.Parse(s, style, provider);
             return From(r);
         }
 
@@ -6312,7 +6312,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
         /// <exception cref = "global::Vogen.ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
         public static @int Parse(global::System.ReadOnlySpan<char> s, global::System.IFormatProvider provider)
         {
-            var r = System.Int32.Parse(s, provider);
+            var r = global::System.Int32.Parse(s, provider);
             return From(r);
         }
 
@@ -6325,7 +6325,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
         /// <exception cref = "global::Vogen.ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
         public static @int Parse(string s)
         {
-            var r = System.Int32.Parse(s);
+            var r = global::System.Int32.Parse(s);
             return From(r);
         }
 
@@ -6338,7 +6338,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
         /// <exception cref = "global::Vogen.ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
         public static @int Parse(string s, global::System.Globalization.NumberStyles style)
         {
-            var r = System.Int32.Parse(s, style);
+            var r = global::System.Int32.Parse(s, style);
             return From(r);
         }
 
@@ -6351,7 +6351,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
         /// <exception cref = "global::Vogen.ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
         public static @int Parse(string s, global::System.Globalization.NumberStyles style, global::System.IFormatProvider provider)
         {
-            var r = System.Int32.Parse(s, style, provider);
+            var r = global::System.Int32.Parse(s, style, provider);
             return From(r);
         }
 
@@ -6364,7 +6364,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
         /// <exception cref = "global::Vogen.ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
         public static @int Parse(string s, global::System.IFormatProvider provider)
         {
-            var r = System.Int32.Parse(s, provider);
+            var r = global::System.Int32.Parse(s, provider);
             return From(r);
         }
 
@@ -6770,7 +6770,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
 #endif
         out @byte result)
         {
-            if (System.Int32.TryParse(utf8Text, style, provider, out var __v))
+            if (global::System.Int32.TryParse(utf8Text, style, provider, out var __v))
             {
                 result = new @byte(__v);
                 return true;
@@ -6792,7 +6792,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
 #endif
         out @byte result)
         {
-            if (System.Int32.TryParse(utf8Text, provider, out var __v))
+            if (global::System.Int32.TryParse(utf8Text, provider, out var __v))
             {
                 result = new @byte(__v);
                 return true;
@@ -6814,7 +6814,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
 #endif
         out @byte result)
         {
-            if (System.Int32.TryParse(utf8Text, out var __v))
+            if (global::System.Int32.TryParse(utf8Text, out var __v))
             {
                 result = new @byte(__v);
                 return true;
@@ -6836,7 +6836,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
 #endif
         out @byte result)
         {
-            if (System.Int32.TryParse(s, style, provider, out var __v))
+            if (global::System.Int32.TryParse(s, style, provider, out var __v))
             {
                 result = new @byte(__v);
                 return true;
@@ -6858,7 +6858,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
 #endif
         out @byte result)
         {
-            if (System.Int32.TryParse(s, provider, out var __v))
+            if (global::System.Int32.TryParse(s, provider, out var __v))
             {
                 result = new @byte(__v);
                 return true;
@@ -6880,7 +6880,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
 #endif
         out @byte result)
         {
-            if (System.Int32.TryParse(s, out var __v))
+            if (global::System.Int32.TryParse(s, out var __v))
             {
                 result = new @byte(__v);
                 return true;
@@ -6902,7 +6902,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
 #endif
         out @byte result)
         {
-            if (System.Int32.TryParse(s, style, provider, out var __v))
+            if (global::System.Int32.TryParse(s, style, provider, out var __v))
             {
                 result = new @byte(__v);
                 return true;
@@ -6924,7 +6924,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
 #endif
         out @byte result)
         {
-            if (System.Int32.TryParse(s, provider, out var __v))
+            if (global::System.Int32.TryParse(s, provider, out var __v))
             {
                 result = new @byte(__v);
                 return true;
@@ -6946,7 +6946,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
 #endif
         out @byte result)
         {
-            if (System.Int32.TryParse(s, out var __v))
+            if (global::System.Int32.TryParse(s, out var __v))
             {
                 result = new @byte(__v);
                 return true;
@@ -6965,7 +6965,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
         /// <exception cref = "global::Vogen.ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
         public static @byte Parse(global::System.ReadOnlySpan<byte> utf8Text, global::System.Globalization.NumberStyles style, global::System.IFormatProvider provider)
         {
-            var r = System.Int32.Parse(utf8Text, style, provider);
+            var r = global::System.Int32.Parse(utf8Text, style, provider);
             return From(r);
         }
 
@@ -6978,7 +6978,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
         /// <exception cref = "global::Vogen.ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
         public static @byte Parse(global::System.ReadOnlySpan<byte> utf8Text, global::System.IFormatProvider provider)
         {
-            var r = System.Int32.Parse(utf8Text, provider);
+            var r = global::System.Int32.Parse(utf8Text, provider);
             return From(r);
         }
 
@@ -6991,7 +6991,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
         /// <exception cref = "global::Vogen.ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
         public static @byte Parse(global::System.ReadOnlySpan<char> s, global::System.Globalization.NumberStyles style, global::System.IFormatProvider provider)
         {
-            var r = System.Int32.Parse(s, style, provider);
+            var r = global::System.Int32.Parse(s, style, provider);
             return From(r);
         }
 
@@ -7004,7 +7004,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
         /// <exception cref = "global::Vogen.ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
         public static @byte Parse(global::System.ReadOnlySpan<char> s, global::System.IFormatProvider provider)
         {
-            var r = System.Int32.Parse(s, provider);
+            var r = global::System.Int32.Parse(s, provider);
             return From(r);
         }
 
@@ -7017,7 +7017,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
         /// <exception cref = "global::Vogen.ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
         public static @byte Parse(string s)
         {
-            var r = System.Int32.Parse(s);
+            var r = global::System.Int32.Parse(s);
             return From(r);
         }
 
@@ -7030,7 +7030,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
         /// <exception cref = "global::Vogen.ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
         public static @byte Parse(string s, global::System.Globalization.NumberStyles style)
         {
-            var r = System.Int32.Parse(s, style);
+            var r = global::System.Int32.Parse(s, style);
             return From(r);
         }
 
@@ -7043,7 +7043,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
         /// <exception cref = "global::Vogen.ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
         public static @byte Parse(string s, global::System.Globalization.NumberStyles style, global::System.IFormatProvider provider)
         {
-            var r = System.Int32.Parse(s, style, provider);
+            var r = global::System.Int32.Parse(s, style, provider);
             return From(r);
         }
 
@@ -7056,7 +7056,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
         /// <exception cref = "global::Vogen.ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
         public static @byte Parse(string s, global::System.IFormatProvider provider)
         {
-            var r = System.Int32.Parse(s, provider);
+            var r = global::System.Int32.Parse(s, provider);
             return From(r);
         }
 
@@ -7478,7 +7478,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
 #endif
         out MyInt result)
         {
-            if (System.Int32.TryParse(utf8Text, style, provider, out var __v))
+            if (global::System.Int32.TryParse(utf8Text, style, provider, out var __v))
             {
                 result = new MyInt(__v);
                 return true;
@@ -7500,7 +7500,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
 #endif
         out MyInt result)
         {
-            if (System.Int32.TryParse(utf8Text, provider, out var __v))
+            if (global::System.Int32.TryParse(utf8Text, provider, out var __v))
             {
                 result = new MyInt(__v);
                 return true;
@@ -7522,7 +7522,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
 #endif
         out MyInt result)
         {
-            if (System.Int32.TryParse(utf8Text, out var __v))
+            if (global::System.Int32.TryParse(utf8Text, out var __v))
             {
                 result = new MyInt(__v);
                 return true;
@@ -7544,7 +7544,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
 #endif
         out MyInt result)
         {
-            if (System.Int32.TryParse(s, style, provider, out var __v))
+            if (global::System.Int32.TryParse(s, style, provider, out var __v))
             {
                 result = new MyInt(__v);
                 return true;
@@ -7566,7 +7566,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
 #endif
         out MyInt result)
         {
-            if (System.Int32.TryParse(s, provider, out var __v))
+            if (global::System.Int32.TryParse(s, provider, out var __v))
             {
                 result = new MyInt(__v);
                 return true;
@@ -7588,7 +7588,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
 #endif
         out MyInt result)
         {
-            if (System.Int32.TryParse(s, out var __v))
+            if (global::System.Int32.TryParse(s, out var __v))
             {
                 result = new MyInt(__v);
                 return true;
@@ -7610,7 +7610,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
 #endif
         out MyInt result)
         {
-            if (System.Int32.TryParse(s, style, provider, out var __v))
+            if (global::System.Int32.TryParse(s, style, provider, out var __v))
             {
                 result = new MyInt(__v);
                 return true;
@@ -7632,7 +7632,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
 #endif
         out MyInt result)
         {
-            if (System.Int32.TryParse(s, provider, out var __v))
+            if (global::System.Int32.TryParse(s, provider, out var __v))
             {
                 result = new MyInt(__v);
                 return true;
@@ -7654,7 +7654,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
 #endif
         out MyInt result)
         {
-            if (System.Int32.TryParse(s, out var __v))
+            if (global::System.Int32.TryParse(s, out var __v))
             {
                 result = new MyInt(__v);
                 return true;
@@ -7673,7 +7673,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
         /// <exception cref = "global::Vogen.ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
         public static MyInt Parse(global::System.ReadOnlySpan<byte> utf8Text, global::System.Globalization.NumberStyles style, global::System.IFormatProvider provider)
         {
-            var r = System.Int32.Parse(utf8Text, style, provider);
+            var r = global::System.Int32.Parse(utf8Text, style, provider);
             return From(r);
         }
 
@@ -7686,7 +7686,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
         /// <exception cref = "global::Vogen.ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
         public static MyInt Parse(global::System.ReadOnlySpan<byte> utf8Text, global::System.IFormatProvider provider)
         {
-            var r = System.Int32.Parse(utf8Text, provider);
+            var r = global::System.Int32.Parse(utf8Text, provider);
             return From(r);
         }
 
@@ -7699,7 +7699,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
         /// <exception cref = "global::Vogen.ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
         public static MyInt Parse(global::System.ReadOnlySpan<char> s, global::System.Globalization.NumberStyles style, global::System.IFormatProvider provider)
         {
-            var r = System.Int32.Parse(s, style, provider);
+            var r = global::System.Int32.Parse(s, style, provider);
             return From(r);
         }
 
@@ -7712,7 +7712,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
         /// <exception cref = "global::Vogen.ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
         public static MyInt Parse(global::System.ReadOnlySpan<char> s, global::System.IFormatProvider provider)
         {
-            var r = System.Int32.Parse(s, provider);
+            var r = global::System.Int32.Parse(s, provider);
             return From(r);
         }
 
@@ -7725,7 +7725,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
         /// <exception cref = "global::Vogen.ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
         public static MyInt Parse(string s)
         {
-            var r = System.Int32.Parse(s);
+            var r = global::System.Int32.Parse(s);
             return From(r);
         }
 
@@ -7738,7 +7738,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
         /// <exception cref = "global::Vogen.ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
         public static MyInt Parse(string s, global::System.Globalization.NumberStyles style)
         {
-            var r = System.Int32.Parse(s, style);
+            var r = global::System.Int32.Parse(s, style);
             return From(r);
         }
 
@@ -7751,7 +7751,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
         /// <exception cref = "global::Vogen.ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
         public static MyInt Parse(string s, global::System.Globalization.NumberStyles style, global::System.IFormatProvider provider)
         {
-            var r = System.Int32.Parse(s, style, provider);
+            var r = global::System.Int32.Parse(s, style, provider);
             return From(r);
         }
 
@@ -7764,7 +7764,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
         /// <exception cref = "global::Vogen.ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
         public static MyInt Parse(string s, global::System.IFormatProvider provider)
         {
-            var r = System.Int32.Parse(s, provider);
+            var r = global::System.Int32.Parse(s, provider);
             return From(r);
         }
 

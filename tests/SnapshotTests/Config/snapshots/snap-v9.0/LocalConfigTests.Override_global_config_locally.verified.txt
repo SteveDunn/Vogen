@@ -37,7 +37,7 @@ public static class VogenOpenApiExtensions
 				schema.Type = "number";
 			}
 
-			if (context.JsonTypeInfo.Type == typeof(global::System.Nullable<Whatever.CustomerId>))
+			if (context.JsonTypeInfo.Type == typeof(global::System.Nullable<global::Whatever.CustomerId>))
 			{
 				schema.Type = "number";
 				schema.Nullable = true;
@@ -311,7 +311,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
 #endif
         out CustomerId result)
         {
-            if (System.Single.TryParse(utf8Text, style, provider, out var __v))
+            if (global::System.Single.TryParse(utf8Text, style, provider, out var __v))
             {
                 var validation = CustomerId.Validate(__v);
                 if (validation != Vogen.Validation.Ok)
@@ -340,7 +340,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
 #endif
         out CustomerId result)
         {
-            if (System.Single.TryParse(utf8Text, provider, out var __v))
+            if (global::System.Single.TryParse(utf8Text, provider, out var __v))
             {
                 var validation = CustomerId.Validate(__v);
                 if (validation != Vogen.Validation.Ok)
@@ -369,7 +369,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
 #endif
         out CustomerId result)
         {
-            if (System.Single.TryParse(utf8Text, out var __v))
+            if (global::System.Single.TryParse(utf8Text, out var __v))
             {
                 var validation = CustomerId.Validate(__v);
                 if (validation != Vogen.Validation.Ok)
@@ -398,7 +398,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
 #endif
         out CustomerId result)
         {
-            if (System.Single.TryParse(s, style, provider, out var __v))
+            if (global::System.Single.TryParse(s, style, provider, out var __v))
             {
                 var validation = CustomerId.Validate(__v);
                 if (validation != Vogen.Validation.Ok)
@@ -427,7 +427,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
 #endif
         out CustomerId result)
         {
-            if (System.Single.TryParse(s, provider, out var __v))
+            if (global::System.Single.TryParse(s, provider, out var __v))
             {
                 var validation = CustomerId.Validate(__v);
                 if (validation != Vogen.Validation.Ok)
@@ -456,7 +456,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
 #endif
         out CustomerId result)
         {
-            if (System.Single.TryParse(s, out var __v))
+            if (global::System.Single.TryParse(s, out var __v))
             {
                 var validation = CustomerId.Validate(__v);
                 if (validation != Vogen.Validation.Ok)
@@ -485,7 +485,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
 #endif
         out CustomerId result)
         {
-            if (System.Single.TryParse(s, style, provider, out var __v))
+            if (global::System.Single.TryParse(s, style, provider, out var __v))
             {
                 var validation = CustomerId.Validate(__v);
                 if (validation != Vogen.Validation.Ok)
@@ -514,7 +514,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
 #endif
         out CustomerId result)
         {
-            if (System.Single.TryParse(s, provider, out var __v))
+            if (global::System.Single.TryParse(s, provider, out var __v))
             {
                 var validation = CustomerId.Validate(__v);
                 if (validation != Vogen.Validation.Ok)
@@ -543,7 +543,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
 #endif
         out CustomerId result)
         {
-            if (System.Single.TryParse(s, out var __v))
+            if (global::System.Single.TryParse(s, out var __v))
             {
                 var validation = CustomerId.Validate(__v);
                 if (validation != Vogen.Validation.Ok)
@@ -569,7 +569,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
         /// <exception cref = "Whatever.MyValidationException">Thrown when the value can be parsed, but is not valid.</exception>
         public static CustomerId Parse(global::System.ReadOnlySpan<byte> utf8Text, global::System.Globalization.NumberStyles style, global::System.IFormatProvider provider)
         {
-            var r = System.Single.Parse(utf8Text, style, provider);
+            var r = global::System.Single.Parse(utf8Text, style, provider);
             return From(r);
         }
 
@@ -582,7 +582,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
         /// <exception cref = "Whatever.MyValidationException">Thrown when the value can be parsed, but is not valid.</exception>
         public static CustomerId Parse(global::System.ReadOnlySpan<byte> utf8Text, global::System.IFormatProvider provider)
         {
-            var r = System.Single.Parse(utf8Text, provider);
+            var r = global::System.Single.Parse(utf8Text, provider);
             return From(r);
         }
 
@@ -595,7 +595,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
         /// <exception cref = "Whatever.MyValidationException">Thrown when the value can be parsed, but is not valid.</exception>
         public static CustomerId Parse(global::System.ReadOnlySpan<char> s, global::System.Globalization.NumberStyles style, global::System.IFormatProvider provider)
         {
-            var r = System.Single.Parse(s, style, provider);
+            var r = global::System.Single.Parse(s, style, provider);
             return From(r);
         }
 
@@ -608,7 +608,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
         /// <exception cref = "Whatever.MyValidationException">Thrown when the value can be parsed, but is not valid.</exception>
         public static CustomerId Parse(global::System.ReadOnlySpan<char> s, global::System.IFormatProvider provider)
         {
-            var r = System.Single.Parse(s, provider);
+            var r = global::System.Single.Parse(s, provider);
             return From(r);
         }
 
@@ -621,7 +621,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
         /// <exception cref = "Whatever.MyValidationException">Thrown when the value can be parsed, but is not valid.</exception>
         public static CustomerId Parse(string s)
         {
-            var r = System.Single.Parse(s);
+            var r = global::System.Single.Parse(s);
             return From(r);
         }
 
@@ -634,7 +634,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
         /// <exception cref = "Whatever.MyValidationException">Thrown when the value can be parsed, but is not valid.</exception>
         public static CustomerId Parse(string s, global::System.Globalization.NumberStyles style)
         {
-            var r = System.Single.Parse(s, style);
+            var r = global::System.Single.Parse(s, style);
             return From(r);
         }
 
@@ -647,7 +647,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
         /// <exception cref = "Whatever.MyValidationException">Thrown when the value can be parsed, but is not valid.</exception>
         public static CustomerId Parse(string s, global::System.Globalization.NumberStyles style, global::System.IFormatProvider provider)
         {
-            var r = System.Single.Parse(s, style, provider);
+            var r = global::System.Single.Parse(s, style, provider);
             return From(r);
         }
 
@@ -660,7 +660,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
         /// <exception cref = "Whatever.MyValidationException">Thrown when the value can be parsed, but is not valid.</exception>
         public static CustomerId Parse(string s, global::System.IFormatProvider provider)
         {
-            var r = System.Single.Parse(s, provider);
+            var r = global::System.Single.Parse(s, provider);
             return From(r);
         }
 

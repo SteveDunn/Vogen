@@ -71,6 +71,7 @@
       <ParentFile>EfCoreGenerationTests</ParentFile>
       <DependentUpon>EfCoreGenerationTests.cs</DependentUpon>
     </None>
+    <None Remove="BugFixes\snapshots\snap-v9.0\Bug854_PropertiesNamedSystem.Test.verified.txt" />
   </ItemGroup>
 
 </Project>

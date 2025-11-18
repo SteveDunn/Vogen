@@ -145,7 +145,7 @@ internal static class GenerateCodeForParse
               /// <exception cref="{{item.ValidationExceptionFullName}}">Thrown when the value can be parsed, but is not valid.</exception>
               public {{staticOrNot}}{{item.VoTypeName}} Parse({{parameters}}) 
               {
-                  var r = {{item.UnderlyingTypeFullName}}.Parse({{parameterNames}});
+                  var r = {{item.UnderlyingTypeFullNameWithGlobalAlias}}.Parse({{parameterNames}});
                   return From(r{{item.Nullable.BangForUnderlying}});
               }
               """;

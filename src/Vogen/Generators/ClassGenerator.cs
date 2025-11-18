@@ -26,7 +26,7 @@ public class ClassGenerator : IGenerateValueObjectSourceCode
     
     string GenerateCode() => $@"
 
-{Util.WriteStartNamespace(item.FullNamespace)}
+{Util.WriteStartNamespace(item.FullUnaliasedNamespace)}
     {Util.GenerateCoverageExcludeAndGeneratedCodeAttributes()}
     {Util.GenerateAnyConversionAttributes(tds, item)}
     {DebugGeneration.GenerateDebugAttributes(item, wrapperName, itemUnderlyingType)}
@@ -156,6 +156,6 @@ public class ClassGenerator : IGenerateValueObjectSourceCode
     }}
 
 {GenerateEfCoreExtensions.GenerateInnerIfNeeded(item)}
-{Util.WriteCloseNamespace(item.FullNamespace)}";
+{Util.WriteCloseNamespace(item.FullUnaliasedNamespace)}";
     }
 }

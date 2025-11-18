@@ -62,7 +62,7 @@ internal class GenerateCodeForBsonSerializers
             return;
         }
 
-        string pns = markerClassSymbol.FullNamespace();
+        string pns = markerClassSymbol.FullUnalisaedNamespace();
 
         string ns = pns.Length == 0 ? "" : $"namespace {pns};";
 
@@ -201,7 +201,7 @@ internal class GenerateCodeForBsonSerializers
         var isPublic = wrapper.WrapperType.DeclaredAccessibility.HasFlag(Accessibility.Public);
         var accessor = isPublic ? "public" : "internal";
 
-        string fullNamespace = wrapper.FullNamespace;
+        string fullNamespace = wrapper.FullUnaliasedNamespace;
         
         var ns = string.IsNullOrEmpty(fullNamespace) ? string.Empty : $"namespace {fullNamespace};";
 

@@ -301,7 +301,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
 #endif
         out _casting_public_sealed_partial_record_classImplicitImplicitchar result)
         {
-            if (System.Char.TryParse(s, out var __v))
+            if (global::System.Char.TryParse(s, out var __v))
             {
                 result = new _casting_public_sealed_partial_record_classImplicitImplicitchar(__v);
                 return true;
@@ -320,7 +320,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
         /// <exception cref = "global::Vogen.ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
         public static _casting_public_sealed_partial_record_classImplicitImplicitchar Parse(string s)
         {
-            var r = System.Char.Parse(s);
+            var r = global::System.Char.Parse(s);
             return From(r);
         }
 

@@ -233,7 +233,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
 #endif
         out _casting_public_partial_record_structNoneNonedouble result)
         {
-            if (System.Double.TryParse(utf8Text, out var __v))
+            if (global::System.Double.TryParse(utf8Text, out var __v))
             {
                 result = new _casting_public_partial_record_structNoneNonedouble(__v);
                 return true;
@@ -255,7 +255,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
 #endif
         out _casting_public_partial_record_structNoneNonedouble result)
         {
-            if (System.Double.TryParse(utf8Text, style, provider, out var __v))
+            if (global::System.Double.TryParse(utf8Text, style, provider, out var __v))
             {
                 result = new _casting_public_partial_record_structNoneNonedouble(__v);
                 return true;
@@ -277,7 +277,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
 #endif
         out _casting_public_partial_record_structNoneNonedouble result)
         {
-            if (System.Double.TryParse(utf8Text, provider, out var __v))
+            if (global::System.Double.TryParse(utf8Text, provider, out var __v))
             {
                 result = new _casting_public_partial_record_structNoneNonedouble(__v);
                 return true;
@@ -299,7 +299,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
 #endif
         out _casting_public_partial_record_structNoneNonedouble result)
         {
-            if (System.Double.TryParse(s, out var __v))
+            if (global::System.Double.TryParse(s, out var __v))
             {
                 result = new _casting_public_partial_record_structNoneNonedouble(__v);
                 return true;
@@ -321,7 +321,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
 #endif
         out _casting_public_partial_record_structNoneNonedouble result)
         {
-            if (System.Double.TryParse(s, style, provider, out var __v))
+            if (global::System.Double.TryParse(s, style, provider, out var __v))
             {
                 result = new _casting_public_partial_record_structNoneNonedouble(__v);
                 return true;
@@ -343,7 +343,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
 #endif
         out _casting_public_partial_record_structNoneNonedouble result)
         {
-            if (System.Double.TryParse(s, provider, out var __v))
+            if (global::System.Double.TryParse(s, provider, out var __v))
             {
                 result = new _casting_public_partial_record_structNoneNonedouble(__v);
                 return true;
@@ -365,7 +365,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
 #endif
         out _casting_public_partial_record_structNoneNonedouble result)
         {
-            if (System.Double.TryParse(s, out var __v))
+            if (global::System.Double.TryParse(s, out var __v))
             {
                 result = new _casting_public_partial_record_structNoneNonedouble(__v);
                 return true;
@@ -387,7 +387,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
 #endif
         out _casting_public_partial_record_structNoneNonedouble result)
         {
-            if (System.Double.TryParse(s, style, provider, out var __v))
+            if (global::System.Double.TryParse(s, style, provider, out var __v))
             {
                 result = new _casting_public_partial_record_structNoneNonedouble(__v);
                 return true;
@@ -409,7 +409,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
 #endif
         out _casting_public_partial_record_structNoneNonedouble result)
         {
-            if (System.Double.TryParse(s, provider, out var __v))
+            if (global::System.Double.TryParse(s, provider, out var __v))
             {
                 result = new _casting_public_partial_record_structNoneNonedouble(__v);
                 return true;
@@ -428,7 +428,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
         /// <exception cref = "global::Vogen.ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
         public static _casting_public_partial_record_structNoneNonedouble Parse(global::System.ReadOnlySpan<byte> utf8Text, global::System.Globalization.NumberStyles style, global::System.IFormatProvider provider)
         {
-            var r = System.Double.Parse(utf8Text, style, provider);
+            var r = global::System.Double.Parse(utf8Text, style, provider);
             return From(r);
         }
 
@@ -441,7 +441,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
         /// <exception cref = "global::Vogen.ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
         public static _casting_public_partial_record_structNoneNonedouble Parse(global::System.ReadOnlySpan<byte> utf8Text, global::System.IFormatProvider provider)
         {
-            var r = System.Double.Parse(utf8Text, provider);
+            var r = global::System.Double.Parse(utf8Text, provider);
             return From(r);
         }
 
@@ -454,7 +454,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
         /// <exception cref = "global::Vogen.ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
         public static _casting_public_partial_record_structNoneNonedouble Parse(global::System.ReadOnlySpan<char> s, global::System.Globalization.NumberStyles style, global::System.IFormatProvider provider)
         {
-            var r = System.Double.Parse(s, style, provider);
+            var r = global::System.Double.Parse(s, style, provider);
             return From(r);
         }
 
@@ -467,7 +467,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
         /// <exception cref = "global::Vogen.ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
         public static _casting_public_partial_record_structNoneNonedouble Parse(global::System.ReadOnlySpan<char> s, global::System.IFormatProvider provider)
         {
-            var r = System.Double.Parse(s, provider);
+            var r = global::System.Double.Parse(s, provider);
             return From(r);
         }
 
@@ -480,7 +480,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
         /// <exception cref = "global::Vogen.ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
         public static _casting_public_partial_record_structNoneNonedouble Parse(string s)
         {
-            var r = System.Double.Parse(s);
+            var r = global::System.Double.Parse(s);
             return From(r);
         }
 
@@ -493,7 +493,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
         /// <exception cref = "global::Vogen.ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
         public static _casting_public_partial_record_structNoneNonedouble Parse(string s, global::System.Globalization.NumberStyles style)
         {
-            var r = System.Double.Parse(s, style);
+            var r = global::System.Double.Parse(s, style);
             return From(r);
         }
 
@@ -506,7 +506,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
         /// <exception cref = "global::Vogen.ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
         public static _casting_public_partial_record_structNoneNonedouble Parse(string s, global::System.Globalization.NumberStyles style, global::System.IFormatProvider provider)
         {
-            var r = System.Double.Parse(s, style, provider);
+            var r = global::System.Double.Parse(s, style, provider);
             return From(r);
         }
 
@@ -519,7 +519,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
         /// <exception cref = "global::Vogen.ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
         public static _casting_public_partial_record_structNoneNonedouble Parse(string s, global::System.IFormatProvider provider)
         {
-            var r = System.Double.Parse(s, provider);
+            var r = global::System.Double.Parse(s, provider);
             return From(r);
         }
 

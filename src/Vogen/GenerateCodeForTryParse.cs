@@ -134,7 +134,7 @@ public static class GenerateCodeForTryParse
                   /// </returns>
                   public {{staticOrNot}}global::System.Boolean TryParse({{parameters}}, {{Util.GenerateNotNullWhenTrueAttribute()}} out {{item.VoTypeName}} result) 
                   {
-                      if({{item.UnderlyingTypeFullName}}.TryParse({{parameterNames}}, out var __v)) 
+                      if({{item.UnderlyingTypeFullNameWithGlobalAlias}}.TryParse({{parameterNames}}, out var __v)) 
                       {
                           {{Util.GenerateCallToNormalizeMethodIfNeeded(item, "__v")}}
                           {{GenerateCallToValidationIfNeeded(item, "__v")}}

@@ -37,7 +37,7 @@ public static class VogenOpenApiExtensions
 				schema.Type = "string";
 			}
 
-			if (context.JsonTypeInfo.Type == typeof(global::System.Nullable<Whatever._casting_public_readonly_partial_record_structExplicitExplicitstring>))
+			if (context.JsonTypeInfo.Type == typeof(global::System.Nullable<global::Whatever._casting_public_readonly_partial_record_structExplicitExplicitstring>))
 			{
 				schema.Type = "string";
 				schema.Nullable = true;

@@ -116,7 +116,7 @@ public partial class EfCoreConverters
 public static class escapedTestspublic_readonly_partial_structConversions_Nonerecord__struct__float__decimal__Ext 
 {
         public static global::Microsoft.EntityFrameworkCore.Metadata.Builders.PropertyBuilder<@class.escapedTestspublic_readonly_partial_structConversions_Nonerecord__struct__float__decimal> HasVogenConversion(this global::Microsoft.EntityFrameworkCore.Metadata.Builders.PropertyBuilder<@class.escapedTestspublic_readonly_partial_structConversions_Nonerecord__struct__float__decimal> propertyBuilder) =>
-            propertyBuilder.HasConversion<@class.EfCoreConverters.escapedTestspublic_readonly_partial_structConversions_Nonerecord__struct__float__decimalEfCoreValueConverter, @class.EfCoreConverters.escapedTestspublic_readonly_partial_structConversions_Nonerecord__struct__float__decimalEfCoreValueComparer>();
+            propertyBuilder.HasConversion<global::@class.EfCoreConverters.escapedTestspublic_readonly_partial_structConversions_Nonerecord__struct__float__decimalEfCoreValueConverter, global::@class.EfCoreConverters.escapedTestspublic_readonly_partial_structConversions_Nonerecord__struct__float__decimalEfCoreValueComparer>();
 }
 
 

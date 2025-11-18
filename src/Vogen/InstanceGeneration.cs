@@ -21,7 +21,7 @@ public static class InstanceGeneration
 
         foreach (InstanceProperties each in item.InstanceProperties)
         {
-            sb.AppendLine(GenerateInstance(each, classDeclarationSyntax, item.FullNamespace));
+            sb.AppendLine(GenerateInstance(each, classDeclarationSyntax, item.FullUnaliasedNamespace));
         }
 
         return sb.ToString();

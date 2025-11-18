@@ -16,7 +16,7 @@ internal static class SemanticHelper
     /// <returns></returns>
     public static string EscapedFullName(this ISymbol symbol)
     {
-        var prefix = FullNamespace(symbol);
+        var prefix = FullUnalisaedNamespace(symbol);
         var suffix = "";
 
         if (symbol is INamedTypeSymbol nts)
@@ -48,7 +48,7 @@ internal static class SemanticHelper
         }
     }
 
-    public static string FullNamespace(this ISymbol symbol)
+    private static string FullNamespace(this ISymbol symbol, bool includeGlobal)
     {
         var parts = new Stack<string>();
         INamespaceSymbol? iterator = symbol as INamespaceSymbol ?? symbol.ContainingNamespace;
@@ -63,8 +63,19 @@ internal static class SemanticHelper
             iterator = iterator.ContainingNamespace;
         }
 
-        return string.Join(".", parts);
+        if (parts.Count == 0)
+        {
+            return string.Empty;
+        }
+
+        string prefix = includeGlobal ? "global::" : string.Empty;
+
+        return prefix + string.Join(".", parts);
     }
+
+    public static string FullAliasedNamespace(this ISymbol symbol) => FullNamespace(symbol, true);
+
+    public static string FullUnalisaedNamespace(this ISymbol symbol) => FullNamespace(symbol, false);
 
     public static bool HasDefaultConstructor(this INamedTypeSymbol symbol)
     {

@@ -125,7 +125,7 @@ public partial class EfCoreConverters
 public static class escapedTestspublic_partial_classConversions_Nonestring__Ext 
 {
         public static global::Microsoft.EntityFrameworkCore.Metadata.Builders.PropertyBuilder<@class.escapedTestspublic_partial_classConversions_Nonestring> HasVogenConversion(this global::Microsoft.EntityFrameworkCore.Metadata.Builders.PropertyBuilder<@class.escapedTestspublic_partial_classConversions_Nonestring> propertyBuilder) =>
-            propertyBuilder.HasConversion<@class.EfCoreConverters.escapedTestspublic_partial_classConversions_NonestringEfCoreValueConverter, @class.EfCoreConverters.escapedTestspublic_partial_classConversions_NonestringEfCoreValueComparer>();
+            propertyBuilder.HasConversion<global::@class.EfCoreConverters.escapedTestspublic_partial_classConversions_NonestringEfCoreValueConverter, global::@class.EfCoreConverters.escapedTestspublic_partial_classConversions_NonestringEfCoreValueComparer>();
 }
 
 

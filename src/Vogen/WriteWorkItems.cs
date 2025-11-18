@@ -40,7 +40,7 @@ internal static class WriteWorkItems
         SyntaxNode formatted = root.NormalizeWhitespace();
         SourceText sourceText = SourceText.From(formatted.ToFullString(), Encoding.UTF8);
         
-        var unsanitized = $"{item.FullNamespace}_{voClass.Identifier}.g.cs";
+        var unsanitized = $"{item.FullAliasedNamespace}_{voClass.Identifier}.g.cs";
 
         string filename = Util.SanitizeToALegalFilename(unsanitized);
 

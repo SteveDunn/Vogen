@@ -56,8 +56,8 @@ internal static class GenerateEfCoreTypes
         var accessor = isPublic ? "public" : "internal";
 
         
-        string generatedConverter = $"{markerClassSymbol.FullNamespace()}.{markerClassSymbol.Name}.{voSymbol.Name}EfCoreValueConverter";
-        string generatedComparer = $"{markerClassSymbol.FullNamespace()}.{markerClassSymbol.Name}.{voSymbol.Name}EfCoreValueComparer";
+        string generatedConverter = $"{markerClassSymbol.FullAliasedNamespace()}.{markerClassSymbol.Name}.{voSymbol.Name}EfCoreValueConverter";
+        string generatedComparer = $"{markerClassSymbol.FullAliasedNamespace()}.{markerClassSymbol.Name}.{voSymbol.Name}EfCoreValueComparer";
 
         code = code.Replace("__CLASS_PREFIX__", voSymbol.Name);
         code = code.Replace("__GENERATED_CONVERTER_NAME__", generatedConverter);

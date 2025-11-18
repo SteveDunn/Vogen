@@ -76,12 +76,12 @@ internal static class GenerateCodeForAspNetCoreOpenApiSchema
         foreach (VoWorkItem workItem in workItems)
         {
             string voTypeName = workItem.VoTypeName;
-            string ns = workItem.FullNamespace;
+            string ns = workItem.FullAliasedNamespace;
 
             string fqn = string.IsNullOrEmpty(ns) ? voTypeName : $"{ns}.{voTypeName}";
             string typeExpression = nullable
                 ? $"global::System.Nullable<{fqn}>"
-                : $"{(string.IsNullOrEmpty(ns) ? "" : "global::" + ns + ".")}{voTypeName}";
+                : $"{(string.IsNullOrEmpty(ns) ? "" : ns + ".")}{voTypeName}";
 
             TypeAndFormat typeAndPossibleFormat = MapUnderlyingTypeToJsonSchema(workItem);
 

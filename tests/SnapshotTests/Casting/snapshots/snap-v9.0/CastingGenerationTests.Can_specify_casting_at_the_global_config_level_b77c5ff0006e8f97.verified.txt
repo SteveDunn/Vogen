@@ -302,7 +302,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
 #endif
         out _casting_public_partial_recordImplicitImplicitSystem_DateTimeOffset result)
         {
-            if (System.DateTimeOffset.TryParse(input, out var __v))
+            if (global::System.DateTimeOffset.TryParse(input, out var __v))
             {
                 result = new _casting_public_partial_recordImplicitImplicitSystem_DateTimeOffset(__v);
                 return true;
@@ -324,7 +324,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
 #endif
         out _casting_public_partial_recordImplicitImplicitSystem_DateTimeOffset result)
         {
-            if (System.DateTimeOffset.TryParse(s, provider, out var __v))
+            if (global::System.DateTimeOffset.TryParse(s, provider, out var __v))
             {
                 result = new _casting_public_partial_recordImplicitImplicitSystem_DateTimeOffset(__v);
                 return true;
@@ -346,7 +346,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
 #endif
         out _casting_public_partial_recordImplicitImplicitSystem_DateTimeOffset result)
         {
-            if (System.DateTimeOffset.TryParse(input, formatProvider, styles, out var __v))
+            if (global::System.DateTimeOffset.TryParse(input, formatProvider, styles, out var __v))
             {
                 result = new _casting_public_partial_recordImplicitImplicitSystem_DateTimeOffset(__v);
                 return true;
@@ -368,7 +368,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
 #endif
         out _casting_public_partial_recordImplicitImplicitSystem_DateTimeOffset result)
         {
-            if (System.DateTimeOffset.TryParse(input, out var __v))
+            if (global::System.DateTimeOffset.TryParse(input, out var __v))
             {
                 result = new _casting_public_partial_recordImplicitImplicitSystem_DateTimeOffset(__v);
                 return true;
@@ -390,7 +390,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
 #endif
         out _casting_public_partial_recordImplicitImplicitSystem_DateTimeOffset result)
         {
-            if (System.DateTimeOffset.TryParse(s, provider, out var __v))
+            if (global::System.DateTimeOffset.TryParse(s, provider, out var __v))
             {
                 result = new _casting_public_partial_recordImplicitImplicitSystem_DateTimeOffset(__v);
                 return true;
@@ -412,7 +412,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
 #endif
         out _casting_public_partial_recordImplicitImplicitSystem_DateTimeOffset result)
         {
-            if (System.DateTimeOffset.TryParse(input, formatProvider, styles, out var __v))
+            if (global::System.DateTimeOffset.TryParse(input, formatProvider, styles, out var __v))
             {
                 result = new _casting_public_partial_recordImplicitImplicitSystem_DateTimeOffset(__v);
                 return true;
@@ -431,7 +431,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
         /// <exception cref = "global::Vogen.ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
         public static _casting_public_partial_recordImplicitImplicitSystem_DateTimeOffset Parse(global::System.ReadOnlySpan<char> s, global::System.IFormatProvider provider)
         {
-            var r = System.DateTimeOffset.Parse(s, provider);
+            var r = global::System.DateTimeOffset.Parse(s, provider);
             return From(r);
         }
 
@@ -444,7 +444,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
         /// <exception cref = "global::Vogen.ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
         public static _casting_public_partial_recordImplicitImplicitSystem_DateTimeOffset Parse(global::System.ReadOnlySpan<char> input, global::System.IFormatProvider formatProvider, global::System.Globalization.DateTimeStyles styles)
         {
-            var r = System.DateTimeOffset.Parse(input, formatProvider, styles);
+            var r = global::System.DateTimeOffset.Parse(input, formatProvider, styles);
             return From(r);
         }
 
@@ -457,7 +457,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
         /// <exception cref = "global::Vogen.ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
         public static _casting_public_partial_recordImplicitImplicitSystem_DateTimeOffset Parse(string input)
         {
-            var r = System.DateTimeOffset.Parse(input);
+            var r = global::System.DateTimeOffset.Parse(input);
             return From(r);
         }
 
@@ -470,7 +470,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
         /// <exception cref = "global::Vogen.ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
         public static _casting_public_partial_recordImplicitImplicitSystem_DateTimeOffset Parse(string input, global::System.IFormatProvider formatProvider)
         {
-            var r = System.DateTimeOffset.Parse(input, formatProvider);
+            var r = global::System.DateTimeOffset.Parse(input, formatProvider);
             return From(r);
         }
 
@@ -483,7 +483,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
         /// <exception cref = "global::Vogen.ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
         public static _casting_public_partial_recordImplicitImplicitSystem_DateTimeOffset Parse(string input, global::System.IFormatProvider formatProvider, global::System.Globalization.DateTimeStyles styles)
         {
-            var r = System.DateTimeOffset.Parse(input, formatProvider, styles);
+            var r = global::System.DateTimeOffset.Parse(input, formatProvider, styles);
             return From(r);
         }
 

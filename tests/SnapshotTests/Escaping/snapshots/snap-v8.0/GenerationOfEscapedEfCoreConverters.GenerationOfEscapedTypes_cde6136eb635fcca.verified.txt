@@ -125,7 +125,7 @@ public partial class EfCoreConverters
 public static class escapedTestspublic_partial_record_classConversions_NewtonsoftJsonstring__Ext 
 {
         public static global::Microsoft.EntityFrameworkCore.Metadata.Builders.PropertyBuilder<@class.escapedTestspublic_partial_record_classConversions_NewtonsoftJsonstring> HasVogenConversion(this global::Microsoft.EntityFrameworkCore.Metadata.Builders.PropertyBuilder<@class.escapedTestspublic_partial_record_classConversions_NewtonsoftJsonstring> propertyBuilder) =>
-            propertyBuilder.HasConversion<@class.EfCoreConverters.escapedTestspublic_partial_record_classConversions_NewtonsoftJsonstringEfCoreValueConverter, @class.EfCoreConverters.escapedTestspublic_partial_record_classConversions_NewtonsoftJsonstringEfCoreValueComparer>();
+            propertyBuilder.HasConversion<global::@class.EfCoreConverters.escapedTestspublic_partial_record_classConversions_NewtonsoftJsonstringEfCoreValueConverter, global::@class.EfCoreConverters.escapedTestspublic_partial_record_classConversions_NewtonsoftJsonstringEfCoreValueComparer>();
 }
 
 

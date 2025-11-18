@@ -240,7 +240,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
 #endif
         out internal_readonly_partial_structConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterdecimal result)
         {
-            if (System.Decimal.TryParse(s, out var __v))
+            if (global::System.Decimal.TryParse(s, out var __v))
             {
                 result = new internal_readonly_partial_structConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterdecimal(__v);
                 return true;
@@ -262,7 +262,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
 #endif
         out internal_readonly_partial_structConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterdecimal result)
         {
-            if (System.Decimal.TryParse(s, style, provider, out var __v))
+            if (global::System.Decimal.TryParse(s, style, provider, out var __v))
             {
                 result = new internal_readonly_partial_structConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterdecimal(__v);
                 return true;
@@ -281,7 +281,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
         /// <exception cref = "global::Vogen.ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
         public static internal_readonly_partial_structConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterdecimal Parse(string s)
         {
-            var r = System.Decimal.Parse(s);
+            var r = global::System.Decimal.Parse(s);
             return From(r);
         }
 
@@ -294,7 +294,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
         /// <exception cref = "global::Vogen.ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
         public static internal_readonly_partial_structConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterdecimal Parse(string s, global::System.Globalization.NumberStyles style)
         {
-            var r = System.Decimal.Parse(s, style);
+            var r = global::System.Decimal.Parse(s, style);
             return From(r);
         }
 
@@ -307,7 +307,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
         /// <exception cref = "global::Vogen.ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
         public static internal_readonly_partial_structConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterdecimal Parse(string s, global::System.IFormatProvider provider)
         {
-            var r = System.Decimal.Parse(s, provider);
+            var r = global::System.Decimal.Parse(s, provider);
             return From(r);
         }
 
@@ -320,7 +320,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
         /// <exception cref = "global::Vogen.ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
         public static internal_readonly_partial_structConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterdecimal Parse(string s, global::System.Globalization.NumberStyles style, global::System.IFormatProvider provider)
         {
-            var r = System.Decimal.Parse(s, style, provider);
+            var r = global::System.Decimal.Parse(s, style, provider);
             return From(r);
         }
 

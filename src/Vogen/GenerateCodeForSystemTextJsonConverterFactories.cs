@@ -61,9 +61,9 @@ internal class GenerateCodeForSystemTextJsonConverterFactories
 
     private static string BuildEntry(VoWorkItem eachStj)
     {
-        var fqn = string.IsNullOrEmpty(eachStj.FullNamespace)
+        var fqn = string.IsNullOrEmpty(eachStj.FullAliasedNamespace)
             ? $"{eachStj.VoTypeName}"
-            : $"global::{eachStj.FullNamespace}.{eachStj.VoTypeName}";
+            : $"{eachStj.FullAliasedNamespace}.{eachStj.VoTypeName}";
             
         return $$"""{ typeof({{fqn}}), new global::System.Lazy<global::System.Text.Json.Serialization.JsonConverter>(() => new {{fqn}}.{{eachStj.VoTypeName}}SystemTextJsonConverter()) }""";
     }

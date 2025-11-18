@@ -245,7 +245,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
 #endif
         out escapedTestspublic_partial_recordConversions_NoneSystem_Guid result)
         {
-            if (System.Guid.TryParse(input, out var __v))
+            if (global::System.Guid.TryParse(input, out var __v))
             {
                 result = new escapedTestspublic_partial_recordConversions_NoneSystem_Guid(__v);
                 return true;
@@ -264,7 +264,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
         /// <exception cref = "global::Vogen.ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
         public static escapedTestspublic_partial_recordConversions_NoneSystem_Guid Parse(string input)
         {
-            var r = System.Guid.Parse(input);
+            var r = global::System.Guid.Parse(input);
             return From(r);
         }
 

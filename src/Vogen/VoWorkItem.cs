@@ -12,6 +12,7 @@ namespace Vogen;
 public class VoWorkItem
 {
     private readonly INamedTypeSymbol _underlyingType = null!;
+    private readonly string _underlyingTypeFullNameWithGlobalAlias = null!;
     private readonly string _underlyingTypeFullName = null!;
     
     public MethodDeclarationSyntax? NormalizeInputMethod { get; init; }
@@ -22,12 +23,13 @@ public class VoWorkItem
     {
         get => _underlyingType;
 #if !NETSTANDARD
-        [System.Diagnostics.CodeAnalysis.MemberNotNull(nameof(_underlyingTypeFullName))]
+        [System.Diagnostics.CodeAnalysis.MemberNotNull(nameof(_underlyingTypeFullNameWithGlobalAlias))]
 #endif
         init
         {
             _underlyingType = value;
             _underlyingTypeFullName = value.EscapedFullName();
+            _underlyingTypeFullNameWithGlobalAlias = "global::" + value.EscapedFullName();
             IsUnderlyingAString = SeeIfAssignableFromString();
         }
     }
@@ -63,7 +65,15 @@ public class VoWorkItem
 
     public List<InstanceProperties> InstanceProperties { get; init; } = new();
 
-    public required string FullNamespace { get; init; }
+    /// <summary>
+    /// The full namespace including the global namespace, e.g. global::MyNamespace.Whatever
+    /// </summary>
+    public required string FullAliasedNamespace { get; init; }
+
+    /// <summary>
+    /// The namespace excluding the global namespace, e.g. MyNamespace.Whatever
+    /// </summary>
+    public required string FullUnaliasedNamespace { get; init; }
 
     public INamedTypeSymbol ValidationExceptionSymbol => Config.ValidationExceptionType ?? DefaultValidationExceptionSymbol;
     
@@ -73,7 +83,17 @@ public class VoWorkItem
 
     public string VoTypeName => TypeToAugment.Identifier.ToString();
     
+    /// <summary>
+    /// The full name of the underlying type, including the full namespace and the global namespace.
+    /// The global namespace is included as we want to differentiate the type type name (e.g. `System.Guid`) from
+    /// any property names the user might have chosen (e.g. `System`). This is so the generated code will call
+    /// `global::System.Guid.TryParse` instead of `System.Guid.TryParse`, where the later might assume the property
+    /// name `System` if there was one.
+    /// </summary>
+    public string UnderlyingTypeFullNameWithGlobalAlias => _underlyingTypeFullNameWithGlobalAlias;
+
     public string UnderlyingTypeFullName => _underlyingTypeFullName;
+    
 
     public required bool IsSealed { get; init; }
 

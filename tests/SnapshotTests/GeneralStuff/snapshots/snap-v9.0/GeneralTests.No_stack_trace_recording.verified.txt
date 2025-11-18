@@ -37,7 +37,7 @@ public static class VogenOpenApiExtensions
 				schema.Type = "string";
 			}
 
-			if (context.JsonTypeInfo.Type == typeof(global::System.Nullable<Whatever.CustomerId>))
+			if (context.JsonTypeInfo.Type == typeof(global::System.Nullable<global::Whatever.CustomerId>))
 			{
 				schema.Type = "string";
 				schema.Nullable = true;

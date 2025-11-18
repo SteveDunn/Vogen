@@ -15,7 +15,7 @@ using Vogen;
 
 namespace Whatever;
 
-[ValueObject(typeof(bool))]
+[ValueObject<bool>]
 [Instance("Invalid", false)]
 public partial struct BooleanThing
 {

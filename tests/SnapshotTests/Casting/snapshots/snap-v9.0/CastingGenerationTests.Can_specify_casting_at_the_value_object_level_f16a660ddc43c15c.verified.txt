@@ -255,7 +255,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
 #endif
         out _casting_public_sealed_partial_classImplicitNonedecimal result)
         {
-            if (System.Decimal.TryParse(utf8Text, out var __v))
+            if (global::System.Decimal.TryParse(utf8Text, out var __v))
             {
                 result = new _casting_public_sealed_partial_classImplicitNonedecimal(__v);
                 return true;
@@ -277,7 +277,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
 #endif
         out _casting_public_sealed_partial_classImplicitNonedecimal result)
         {
-            if (System.Decimal.TryParse(utf8Text, style, provider, out var __v))
+            if (global::System.Decimal.TryParse(utf8Text, style, provider, out var __v))
             {
                 result = new _casting_public_sealed_partial_classImplicitNonedecimal(__v);
                 return true;
@@ -299,7 +299,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
 #endif
         out _casting_public_sealed_partial_classImplicitNonedecimal result)
         {
-            if (System.Decimal.TryParse(utf8Text, provider, out var __v))
+            if (global::System.Decimal.TryParse(utf8Text, provider, out var __v))
             {
                 result = new _casting_public_sealed_partial_classImplicitNonedecimal(__v);
                 return true;
@@ -321,7 +321,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
 #endif
         out _casting_public_sealed_partial_classImplicitNonedecimal result)
         {
-            if (System.Decimal.TryParse(s, out var __v))
+            if (global::System.Decimal.TryParse(s, out var __v))
             {
                 result = new _casting_public_sealed_partial_classImplicitNonedecimal(__v);
                 return true;
@@ -343,7 +343,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
 #endif
         out _casting_public_sealed_partial_classImplicitNonedecimal result)
         {
-            if (System.Decimal.TryParse(s, style, provider, out var __v))
+            if (global::System.Decimal.TryParse(s, style, provider, out var __v))
             {
                 result = new _casting_public_sealed_partial_classImplicitNonedecimal(__v);
                 return true;
@@ -365,7 +365,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
 #endif
         out _casting_public_sealed_partial_classImplicitNonedecimal result)
         {
-            if (System.Decimal.TryParse(s, provider, out var __v))
+            if (global::System.Decimal.TryParse(s, provider, out var __v))
             {
                 result = new _casting_public_sealed_partial_classImplicitNonedecimal(__v);
                 return true;
@@ -387,7 +387,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
 #endif
         out _casting_public_sealed_partial_classImplicitNonedecimal result)
         {
-            if (System.Decimal.TryParse(s, out var __v))
+            if (global::System.Decimal.TryParse(s, out var __v))
             {
                 result = new _casting_public_sealed_partial_classImplicitNonedecimal(__v);
                 return true;
@@ -409,7 +409,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
 #endif
         out _casting_public_sealed_partial_classImplicitNonedecimal result)
         {
-            if (System.Decimal.TryParse(s, style, provider, out var __v))
+            if (global::System.Decimal.TryParse(s, style, provider, out var __v))
             {
                 result = new _casting_public_sealed_partial_classImplicitNonedecimal(__v);
                 return true;
@@ -431,7 +431,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
 #endif
         out _casting_public_sealed_partial_classImplicitNonedecimal result)
         {
-            if (System.Decimal.TryParse(s, provider, out var __v))
+            if (global::System.Decimal.TryParse(s, provider, out var __v))
             {
                 result = new _casting_public_sealed_partial_classImplicitNonedecimal(__v);
                 return true;
@@ -450,7 +450,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
         /// <exception cref = "global::Vogen.ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
         public static _casting_public_sealed_partial_classImplicitNonedecimal Parse(global::System.ReadOnlySpan<byte> utf8Text, global::System.Globalization.NumberStyles style, global::System.IFormatProvider provider)
         {
-            var r = System.Decimal.Parse(utf8Text, style, provider);
+            var r = global::System.Decimal.Parse(utf8Text, style, provider);
             return From(r);
         }
 
@@ -463,7 +463,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
         /// <exception cref = "global::Vogen.ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
         public static _casting_public_sealed_partial_classImplicitNonedecimal Parse(global::System.ReadOnlySpan<byte> utf8Text, global::System.IFormatProvider provider)
         {
-            var r = System.Decimal.Parse(utf8Text, provider);
+            var r = global::System.Decimal.Parse(utf8Text, provider);
             return From(r);
         }
 
@@ -476,7 +476,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
         /// <exception cref = "global::Vogen.ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
         public static _casting_public_sealed_partial_classImplicitNonedecimal Parse(global::System.ReadOnlySpan<char> s, global::System.Globalization.NumberStyles style, global::System.IFormatProvider provider)
         {
-            var r = System.Decimal.Parse(s, style, provider);
+            var r = global::System.Decimal.Parse(s, style, provider);
             return From(r);
         }
 
@@ -489,7 +489,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
         /// <exception cref = "global::Vogen.ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
         public static _casting_public_sealed_partial_classImplicitNonedecimal Parse(global::System.ReadOnlySpan<char> s, global::System.IFormatProvider provider)
         {
-            var r = System.Decimal.Parse(s, provider);
+            var r = global::System.Decimal.Parse(s, provider);
             return From(r);
         }
 
@@ -502,7 +502,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
         /// <exception cref = "global::Vogen.ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
         public static _casting_public_sealed_partial_classImplicitNonedecimal Parse(string s)
         {
-            var r = System.Decimal.Parse(s);
+            var r = global::System.Decimal.Parse(s);
             return From(r);
         }
 
@@ -515,7 +515,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
         /// <exception cref = "global::Vogen.ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
         public static _casting_public_sealed_partial_classImplicitNonedecimal Parse(string s, global::System.Globalization.NumberStyles style)
         {
-            var r = System.Decimal.Parse(s, style);
+            var r = global::System.Decimal.Parse(s, style);
             return From(r);
         }
 
@@ -528,7 +528,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
         /// <exception cref = "global::Vogen.ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
         public static _casting_public_sealed_partial_classImplicitNonedecimal Parse(string s, global::System.Globalization.NumberStyles style, global::System.IFormatProvider provider)
         {
-            var r = System.Decimal.Parse(s, style, provider);
+            var r = global::System.Decimal.Parse(s, style, provider);
             return From(r);
         }
 
@@ -541,7 +541,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
         /// <exception cref = "global::Vogen.ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
         public static _casting_public_sealed_partial_classImplicitNonedecimal Parse(string s, global::System.IFormatProvider provider)
         {
-            var r = System.Decimal.Parse(s, provider);
+            var r = global::System.Decimal.Parse(s, provider);
             return From(r);
         }
 

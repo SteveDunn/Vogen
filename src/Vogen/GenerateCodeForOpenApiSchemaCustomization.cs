@@ -161,9 +161,9 @@ internal class GenerateCodeForOpenApiSchemaCustomization
         {
             string voTypeName = workItem.VoTypeName;
 
-            var fqn = string.IsNullOrEmpty(workItem.FullNamespace)
+            var fqn = string.IsNullOrEmpty(workItem.FullAliasedNamespace)
                 ? $"{voTypeName}"
-                : $"{workItem.FullNamespace}.{voTypeName}";
+                : $"{workItem.FullAliasedNamespace}.{voTypeName}";
 
             if (nullable)
             {

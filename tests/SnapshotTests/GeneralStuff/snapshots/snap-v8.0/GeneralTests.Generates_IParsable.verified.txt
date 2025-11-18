@@ -252,7 +252,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
 #endif
         out Foo result)
         {
-            if (System.Boolean.TryParse(value, out var __v))
+            if (global::System.Boolean.TryParse(value, out var __v))
             {
                 result = new Foo(__v);
                 return true;
@@ -274,7 +274,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
 #endif
         out Foo result)
         {
-            if (System.Boolean.TryParse(value, out var __v))
+            if (global::System.Boolean.TryParse(value, out var __v))
             {
                 result = new Foo(__v);
                 return true;
@@ -293,7 +293,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
         /// <exception cref = "global::Vogen.ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
         public static Foo Parse(global::System.ReadOnlySpan<char> value)
         {
-            var r = System.Boolean.Parse(value);
+            var r = global::System.Boolean.Parse(value);
             return From(r);
         }
 
@@ -306,7 +306,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
         /// <exception cref = "global::Vogen.ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
         public static Foo Parse(string value)
         {
-            var r = System.Boolean.Parse(value);
+            var r = global::System.Boolean.Parse(value);
             return From(r);
         }
 

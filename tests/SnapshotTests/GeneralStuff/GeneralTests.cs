@@ -727,6 +727,37 @@ public partial struct CustomerId
     }
 
     [Fact]
+    public async Task Can_use_new_for_own_fields()
+    {
+        var source = @"using Vogen;
+namespace Whatever;
+
+    [ValueObject(typeof(int))]
+    public partial struct MyVo { 
+         public static MyVo Unspecified = new MyVo(-1);
+    }
+";
+
+        await new SnapshotRunner<ValueObjectGenerator>()
+            .WithSource(source)
+            .IgnoreInitialCompilationErrors()
+            .RunOn(TargetFramework.Net8_0);
+    }
+
+    [Fact]
+    public Task Partial_struct_created_successfully_with_no_namespace()
+    {
+        var source = @"using Vogen;
+
+[ValueObject(typeof(int))]
+public partial struct CustomerId
+{
+}";
+
+        return RunTest(source);
+    }
+
+    [Fact]
     public Task No_namespace() =>
         RunTest(@"using Vogen;
 
@@ -738,20 +769,22 @@ public partial struct CustomerId
 
     [Fact]
     public Task Produces_instances() =>
-        RunTest(@"using Vogen;
+        RunTest("""
+                using Vogen;
 
-namespace Whatever;
+                namespace Whatever;
 
-[ValueObject(typeof(int))]
-[Instance(name: ""Unspecified"", value: -1, tripleSlashComment: ""a short description that'll show up in intellisense"")]
-[Instance(name: ""Unspecified1"", value: -2)]
-[Instance(name: ""Unspecified2"", value: -3, tripleSlashComment: ""<some_xml>whatever</some_xml"")]
-[Instance(name: ""Unspecified3"", value: -4)]
-[Instance(name: ""Cust42"", value: 42)]
-public partial struct CustomerId
-{
-}
-");
+                [ValueObject(typeof(int))]
+                [Instance(name: "Unspecified", value: -1, tripleSlashComment: "a short description that'll show up in intellisense")]
+                [Instance(name: "Unspecified1", value: -2)]
+                [Instance(name: "Unspecified2", value: -3, tripleSlashComment: "<some_xml>whatever</some_xml")]
+                [Instance(name: "Unspecified3", value: -4)]
+                [Instance(name: "Cust42", value: 42)]
+                public partial struct CustomerId
+                {
+                }
+
+                """);
 
     [Fact]
     public Task Validation_with_PascalCased_validate_method() =>

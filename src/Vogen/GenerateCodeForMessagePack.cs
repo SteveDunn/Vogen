@@ -13,9 +13,9 @@ internal class GenerateCodeForMessagePack : IGenerateConversion
 {
     public static void GenerateForMarkerClasses(SourceProductionContext context, ImmutableArray<MarkerClassDefinition> conversionMarkerClasses)
     {
-        foreach (MarkerClassDefinition? eachMarkerClass in conversionMarkerClasses)
+        foreach (MarkerClassDefinition eachMarkerClass in conversionMarkerClasses)
         {
-            GenerateCodeForMessagePack.GenerateForAMarkerClass(context, eachMarkerClass);
+            GenerateForAMarkerClass(context, eachMarkerClass);
         }
     }
 
@@ -28,7 +28,7 @@ internal class GenerateCodeForMessagePack : IGenerateConversion
             return;
         }
 
-        string pns = markerClassSymbol.FullNamespace();
+        string pns = markerClassSymbol.FullUnalisaedNamespace();
 
         string ns = pns.Length == 0 ? "" : $"namespace {pns};";
 
@@ -249,7 +249,7 @@ internal class GenerateCodeForMessagePack : IGenerateConversion
             var isPublic = voWorkItem.WrapperType.DeclaredAccessibility.HasFlag(Accessibility.Public);
             var accessor = isPublic ? "public" : "internal";
 
-            return new(voWorkItem.FullNamespace, voWorkItem.WrapperType, voWorkItem.UnderlyingType, accessor);
+            return new(voWorkItem.FullUnaliasedNamespace, voWorkItem.WrapperType, voWorkItem.UnderlyingType, accessor);
         }
     }
 

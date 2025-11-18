@@ -241,7 +241,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
 #endif
     out MyVo result)
     {
-        if (System.Guid.TryParse(input, out var __v))
+        if (global::System.Guid.TryParse(input, out var __v))
         {
             result = new MyVo(__v);
             return true;
@@ -263,7 +263,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
 #endif
     out MyVo result)
     {
-        if (System.Guid.TryParse(s, provider, out var __v))
+        if (global::System.Guid.TryParse(s, provider, out var __v))
         {
             result = new MyVo(__v);
             return true;
@@ -285,7 +285,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
 #endif
     out MyVo result)
     {
-        if (System.Guid.TryParse(input, out var __v))
+        if (global::System.Guid.TryParse(input, out var __v))
         {
             result = new MyVo(__v);
             return true;
@@ -307,7 +307,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
 #endif
     out MyVo result)
     {
-        if (System.Guid.TryParse(s, provider, out var __v))
+        if (global::System.Guid.TryParse(s, provider, out var __v))
         {
             result = new MyVo(__v);
             return true;
@@ -326,7 +326,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
     /// <exception cref = "global::Vogen.ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
     public static MyVo Parse(global::System.ReadOnlySpan<char> input)
     {
-        var r = System.Guid.Parse(input);
+        var r = global::System.Guid.Parse(input);
         return From(r);
     }
 
@@ -339,7 +339,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
     /// <exception cref = "global::Vogen.ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
     public static MyVo Parse(global::System.ReadOnlySpan<char> s, global::System.IFormatProvider provider)
     {
-        var r = System.Guid.Parse(s, provider);
+        var r = global::System.Guid.Parse(s, provider);
         return From(r);
     }
 
@@ -352,7 +352,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
     /// <exception cref = "global::Vogen.ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
     public static MyVo Parse(string input)
     {
-        var r = System.Guid.Parse(input);
+        var r = global::System.Guid.Parse(input);
         return From(r);
     }
 
@@ -365,7 +365,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
     /// <exception cref = "global::Vogen.ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
     public static MyVo Parse(string s, global::System.IFormatProvider provider)
     {
-        var r = System.Guid.Parse(s, provider);
+        var r = global::System.Guid.Parse(s, provider);
         return From(r);
     }
 

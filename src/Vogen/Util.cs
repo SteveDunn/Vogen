@@ -75,7 +75,7 @@ internal static class Util
         new GenerateCodeForMessagePack()
     };
 
-    public static string SanitizeToALegalFilename(string input) => input.Replace('@', '_');
+    public static string SanitizeToALegalFilename(string input) => input.Replace('@', '_').Replace(':', '_');
 
     public static SourceText FormatSource(string source)
     {

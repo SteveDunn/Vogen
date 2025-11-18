@@ -238,7 +238,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
 #endif
     out MyVo result)
     {
-        if (System.TimeOnly.TryParse(s, provider, style, out var __v))
+        if (global::System.TimeOnly.TryParse(s, provider, style, out var __v))
         {
             result = new MyVo(__v);
             return true;
@@ -260,7 +260,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
 #endif
     out MyVo result)
     {
-        if (System.TimeOnly.TryParse(s, provider, out var __v))
+        if (global::System.TimeOnly.TryParse(s, provider, out var __v))
         {
             result = new MyVo(__v);
             return true;
@@ -282,7 +282,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
 #endif
     out MyVo result)
     {
-        if (System.TimeOnly.TryParse(s, out var __v))
+        if (global::System.TimeOnly.TryParse(s, out var __v))
         {
             result = new MyVo(__v);
             return true;
@@ -304,7 +304,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
 #endif
     out MyVo result)
     {
-        if (System.TimeOnly.TryParse(s, provider, style, out var __v))
+        if (global::System.TimeOnly.TryParse(s, provider, style, out var __v))
         {
             result = new MyVo(__v);
             return true;
@@ -326,7 +326,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
 #endif
     out MyVo result)
     {
-        if (System.TimeOnly.TryParse(s, provider, out var __v))
+        if (global::System.TimeOnly.TryParse(s, provider, out var __v))
         {
             result = new MyVo(__v);
             return true;
@@ -348,7 +348,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
 #endif
     out MyVo result)
     {
-        if (System.TimeOnly.TryParse(s, out var __v))
+        if (global::System.TimeOnly.TryParse(s, out var __v))
         {
             result = new MyVo(__v);
             return true;
@@ -367,7 +367,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
     /// <exception cref = "global::Vogen.ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
     public static MyVo Parse(global::System.ReadOnlySpan<char> s, global::System.IFormatProvider provider)
     {
-        var r = System.TimeOnly.Parse(s, provider);
+        var r = global::System.TimeOnly.Parse(s, provider);
         return From(r);
     }
 
@@ -380,7 +380,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
     /// <exception cref = "global::Vogen.ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
     public static MyVo Parse(global::System.ReadOnlySpan<char> s, global::System.IFormatProvider provider, global::System.Globalization.DateTimeStyles style)
     {
-        var r = System.TimeOnly.Parse(s, provider, style);
+        var r = global::System.TimeOnly.Parse(s, provider, style);
         return From(r);
     }
 
@@ -393,7 +393,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
     /// <exception cref = "global::Vogen.ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
     public static MyVo Parse(string s)
     {
-        var r = System.TimeOnly.Parse(s);
+        var r = global::System.TimeOnly.Parse(s);
         return From(r);
     }
 
@@ -406,7 +406,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
     /// <exception cref = "global::Vogen.ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
     public static MyVo Parse(string s, global::System.IFormatProvider provider)
     {
-        var r = System.TimeOnly.Parse(s, provider);
+        var r = global::System.TimeOnly.Parse(s, provider);
         return From(r);
     }
 
@@ -419,7 +419,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
     /// <exception cref = "global::Vogen.ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
     public static MyVo Parse(string s, global::System.IFormatProvider provider, global::System.Globalization.DateTimeStyles style)
     {
-        var r = System.TimeOnly.Parse(s, provider, style);
+        var r = global::System.TimeOnly.Parse(s, provider, style);
         return From(r);
     }
 

@@ -38,7 +38,7 @@ public static class VogenOpenApiExtensions
 				schema.Format = "date-time";
 			}
 
-			if (context.JsonTypeInfo.Type == typeof(global::System.Nullable<Whatever._casting_public_partial_structImplicitExplicitSystem_DateTime>))
+			if (context.JsonTypeInfo.Type == typeof(global::System.Nullable<global::Whatever._casting_public_partial_structImplicitExplicitSystem_DateTime>))
 			{
 				schema.Type = "string";
 				schema.Format = "date-time";
@@ -298,7 +298,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
 #endif
         out _casting_public_partial_structImplicitExplicitSystem_DateTime result)
         {
-            if (System.DateTime.TryParse(s, out var __v))
+            if (global::System.DateTime.TryParse(s, out var __v))
             {
                 result = new _casting_public_partial_structImplicitExplicitSystem_DateTime(__v);
                 return true;
@@ -320,7 +320,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
 #endif
         out _casting_public_partial_structImplicitExplicitSystem_DateTime result)
         {
-            if (System.DateTime.TryParse(s, provider, out var __v))
+            if (global::System.DateTime.TryParse(s, provider, out var __v))
             {
                 result = new _casting_public_partial_structImplicitExplicitSystem_DateTime(__v);
                 return true;
@@ -342,7 +342,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
 #endif
         out _casting_public_partial_structImplicitExplicitSystem_DateTime result)
         {
-            if (System.DateTime.TryParse(s, provider, styles, out var __v))
+            if (global::System.DateTime.TryParse(s, provider, styles, out var __v))
             {
                 result = new _casting_public_partial_structImplicitExplicitSystem_DateTime(__v);
                 return true;
@@ -364,7 +364,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
 #endif
         out _casting_public_partial_structImplicitExplicitSystem_DateTime result)
         {
-            if (System.DateTime.TryParse(s, out var __v))
+            if (global::System.DateTime.TryParse(s, out var __v))
             {
                 result = new _casting_public_partial_structImplicitExplicitSystem_DateTime(__v);
                 return true;
@@ -386,7 +386,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
 #endif
         out _casting_public_partial_structImplicitExplicitSystem_DateTime result)
         {
-            if (System.DateTime.TryParse(s, provider, out var __v))
+            if (global::System.DateTime.TryParse(s, provider, out var __v))
             {
                 result = new _casting_public_partial_structImplicitExplicitSystem_DateTime(__v);
                 return true;
@@ -408,7 +408,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
 #endif
         out _casting_public_partial_structImplicitExplicitSystem_DateTime result)
         {
-            if (System.DateTime.TryParse(s, provider, styles, out var __v))
+            if (global::System.DateTime.TryParse(s, provider, styles, out var __v))
             {
                 result = new _casting_public_partial_structImplicitExplicitSystem_DateTime(__v);
                 return true;
@@ -427,7 +427,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
         /// <exception cref = "global::Vogen.ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
         public static _casting_public_partial_structImplicitExplicitSystem_DateTime Parse(global::System.ReadOnlySpan<char> s, global::System.IFormatProvider provider)
         {
-            var r = System.DateTime.Parse(s, provider);
+            var r = global::System.DateTime.Parse(s, provider);
             return From(r);
         }
 
@@ -440,7 +440,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
         /// <exception cref = "global::Vogen.ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
         public static _casting_public_partial_structImplicitExplicitSystem_DateTime Parse(global::System.ReadOnlySpan<char> s, global::System.IFormatProvider provider, global::System.Globalization.DateTimeStyles styles)
         {
-            var r = System.DateTime.Parse(s, provider, styles);
+            var r = global::System.DateTime.Parse(s, provider, styles);
             return From(r);
         }
 
@@ -453,7 +453,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
         /// <exception cref = "global::Vogen.ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
         public static _casting_public_partial_structImplicitExplicitSystem_DateTime Parse(string s)
         {
-            var r = System.DateTime.Parse(s);
+            var r = global::System.DateTime.Parse(s);
             return From(r);
         }
 
@@ -466,7 +466,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
         /// <exception cref = "global::Vogen.ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
         public static _casting_public_partial_structImplicitExplicitSystem_DateTime Parse(string s, global::System.IFormatProvider provider)
         {
-            var r = System.DateTime.Parse(s, provider);
+            var r = global::System.DateTime.Parse(s, provider);
             return From(r);
         }
 
@@ -479,7 +479,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
         /// <exception cref = "global::Vogen.ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
         public static _casting_public_partial_structImplicitExplicitSystem_DateTime Parse(string s, global::System.IFormatProvider provider, global::System.Globalization.DateTimeStyles styles)
         {
-            var r = System.DateTime.Parse(s, provider, styles);
+            var r = global::System.DateTime.Parse(s, provider, styles);
             return From(r);
         }
 

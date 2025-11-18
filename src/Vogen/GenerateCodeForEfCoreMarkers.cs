@@ -45,7 +45,7 @@ internal class GenerateCodeForEfCoreMarkers
         var body = GenerateEfCoreTypes.GenerateBodyForAMarkerClass(markerClass);
         var extensionMethod = GenerateEfCoreTypes.GenerateMarkerExtensionMethod(markerClass);
 
-        var fullNamespace = markerClass.MarkerClassSymbol.FullNamespace();
+        var fullNamespace = markerClass.MarkerClassSymbol.FullUnalisaedNamespace();
 
         var isPublic = markerClass.MarkerClassSymbol.DeclaredAccessibility.HasFlag(Accessibility.Public);
         var accessor = isPublic ? "public" : "internal";
@@ -87,7 +87,7 @@ $$"""
             return;
         }
         
-        var fullNamespace = markerSymbol.FullNamespace();
+        var fullNamespace = markerSymbol.FullUnalisaedNamespace();
 
         var isPublic = markerSymbol.DeclaredAccessibility.HasFlag(Accessibility.Public);
         var accessor = isPublic ? "public" : "internal";

@@ -31,7 +31,7 @@ internal class GenerateCodeForOrleansSerializers
 
     private static SerializerEntry GenerateSource(VoWorkItem item)
     {
-        var fullNamespace = item.FullNamespace;
+        var fullNamespace = item.FullUnaliasedNamespace;
 
         var isPublic = item.WrapperType.DeclaredAccessibility.HasFlag(Accessibility.Public);
         var accessor = isPublic ? "public" : "internal";
