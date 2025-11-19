@@ -180,7 +180,7 @@ internal class GenerateCodeForOpenApiSchemaCustomization
         }
     }
 
-    internal record struct TypeAndFormat(string Type, string Format);
+    internal record struct TypeAndFormat(string Type, string JsonSchemaType, string Format);
 
     // see https://spec.openapis.org/oas/v3.0.0.html#data-types
     internal static TypeAndFormat MapUnderlyingTypeToJsonSchema(VoWorkItem workItem)
@@ -189,32 +189,32 @@ internal class GenerateCodeForOpenApiSchemaCustomization
 
         TypeAndFormat jsonType = primitiveType switch
         {
-            "System.Int32" => new("integer", "int32"),
-            "System.Int64" => new("integer", "int64"),
-            "System.Int16" => new("number", ""),
-            "System.Single" => new("number", ""),
-            "System.Decimal" => new("number", "double"),
-            "System.Double" => new("number", "double"),
-            "System.String" => new("string", ""),
-            "System.Boolean" => new("boolean", ""),
-            "System.DateOnly" => new("string", "date"),
-            "System.DateTime" => new("string", "date-time"),
-            "System.DateTimeOffset" => new("string", "date-time"),
-            "System.Guid" => new("string", "uuid"),
-            "System.Byte" => new("string", "byte"),
-            _ => new(TryMapComplexPrimitive(workItem), "")
+            "System.Int32" => new("integer", "Number", "int32"),
+            "System.Int64" => new("integer", "Number","int64"),
+            "System.Int16" => new("number", "Number",""),
+            "System.Single" => new("number", "Number",""),
+            "System.Decimal" => new("number", "Number", "double"),
+            "System.Double" => new("number", "Number", "double"),
+            "System.String" => new("string", "String", ""),
+            "System.Boolean" => new("boolean", "Boolean", ""),
+            "System.DateOnly" => new("string", "String", "date"),
+            "System.DateTime" => new("string", "String", "date-time"),
+            "System.DateTimeOffset" => new("string", "String", "date-time"),
+            "System.Guid" => new("string", "String", "uuid"),
+            "System.Byte" => new("string", "String", "byte"),
+            _ => TryMapComplexPrimitive(workItem)
         };
 
         return jsonType;
     }
 
-    private static string TryMapComplexPrimitive(VoWorkItem workItem)
+    private static TypeAndFormat TryMapComplexPrimitive(VoWorkItem workItem)
     {
         if (workItem.ParsingInformation.IParsableIsAvailable)
         {
-            return "string";
+            return new("string", "String", "");
         }
 
-        return "object";
+        return new("object", "Object", "");
     }
 }

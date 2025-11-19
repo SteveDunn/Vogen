@@ -1,13 +1,18 @@
-using Microsoft.OpenApi.Any;
+#pragma warning disable ASPDEPR002
+//using Microsoft.OpenApi.Any;
+
+using Microsoft.OpenApi;
 using Vogen;
 
 #if USE_SWASHBUCKLE
+    [assembly: VogenDefaults(openApiSchemaCustomizations: OpenApiSchemaCustomizations.GenerateSwashbuckleMappingExtensionMethod)]
 #endif
 #if USE_MICROSOFT_OPENAPI_AND_SCALAR
-using Scalar.AspNetCore;
+    using Microsoft.AspNetCore.OpenApi;
+    using Scalar.AspNetCore;
+    [assembly: VogenDefaults(openApiSchemaCustomizations: OpenApiSchemaCustomizations.GenerateOpenApiMappingExtensionMethod)]
 #endif
 
-[assembly: VogenDefaults(openApiSchemaCustomizations: OpenApiSchemaCustomizations.GenerateSwashbuckleMappingExtensionMethod)]
 
 var builder = Microsoft.AspNetCore.Builder.WebApplication.CreateBuilder(args);
 
@@ -107,9 +112,9 @@ app.MapGet("/historicweatherforecast/{historicForecastId}", (HistoricForecastId 
     .WithName("GetHistoricForecast")
     .WithOpenApi(generatedOperation =>
     {
-        var parameter = generatedOperation.Parameters[0];
-        parameter.Description = "The ID of the historical weather report (example only - always returns the same weather report)";
-        parameter.Example = new OpenApiString(Guid.NewGuid().ToString());
+        var parameter = generatedOperation.Parameters?[0];
+        parameter?.Description = "The ID of the historical weather report (example only - always returns the same weather report)";
+        parameter?.Examples?.Add("example1", new OpenApiExample { Value = Guid.NewGuid().ToString() });
         return generatedOperation;        
     });
 

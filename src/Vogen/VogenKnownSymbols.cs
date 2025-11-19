@@ -20,6 +20,9 @@ public class VogenKnownSymbols(Compilation compilation) : KnownSymbols(compilati
     public INamedTypeSymbol? OpenApiOptions => GetOrResolveType("Microsoft.AspNetCore.OpenApi.OpenApiOptions", ref _OpenApiOptions);
     private Option<INamedTypeSymbol?> _OpenApiOptions;
 
+    public INamedTypeSymbol? JsonSchemaType => GetOrResolveType("Microsoft.OpenApi.JsonSchemaType", ref _JsonSchemaType);
+    private Option<INamedTypeSymbol?> _JsonSchemaType;
+
     public INamedTypeSymbol? TypeShapeAttribute => GetOrResolveType("PolyType.TypeShapeAttribute", ref _TypeShapeAttribute);
     private Option<INamedTypeSymbol?> _TypeShapeAttribute;
 

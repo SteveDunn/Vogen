@@ -16,7 +16,10 @@ internal static class GenerateCodeForAspNetCoreOpenApiSchema
         VogenKnownSymbols knownSymbols,
         string inAppendage)
     {
-        if (!IsOpenApiReferenced(knownSymbols))
+        OpenApiVersionBeingUsed v = IsOpenApi2xReferenced(knownSymbols) ? OpenApiVersionBeingUsed.TwoPlus :
+            IsOpenApi1xReferenced(knownSymbols) ? OpenApiVersionBeingUsed.One : OpenApiVersionBeingUsed.None; 
+        
+        if (v is OpenApiVersionBeingUsed.None)
         {
             return;
         }
@@ -43,7 +46,7 @@ internal static class GenerateCodeForAspNetCoreOpenApiSchema
             .Append(_indent, 2)
             .AppendLine("{");
 
-        MapWorkItemsForOpenApi(workItems, sb);
+        MapWorkItemsForOpenApi(workItems, sb, v);
 
         sb
             .Append(_indent, 3)
@@ -61,17 +64,17 @@ internal static class GenerateCodeForAspNetCoreOpenApiSchema
         context.AddSource("OpenApiSchemaExtensions_g.cs", sb.ToString());
     }
 
-    private static string MapWorkItemsForOpenApi(List<VoWorkItem> workItems, StringBuilder sb)
+    private static string MapWorkItemsForOpenApi(List<VoWorkItem> workItems, StringBuilder sb, OpenApiVersionBeingUsed v)
     {
-        MapWorkItemsForOpenApi(workItems, sb, false);
+        MapWorkItemsForOpenApi(workItems, sb, false, v);
 
         var valueTypes = workItems.Where(i => i.IsTheWrapperAValueType);
-        MapWorkItemsForOpenApi(valueTypes, sb, true);
+        MapWorkItemsForOpenApi(valueTypes, sb, true, v);
 
         return sb.ToString();
     }
 
-    private static void MapWorkItemsForOpenApi(IEnumerable<VoWorkItem> workItems, StringBuilder sb, bool nullable)
+    private static void MapWorkItemsForOpenApi(IEnumerable<VoWorkItem> workItems, StringBuilder sb, bool nullable, OpenApiVersionBeingUsed v)
     {
         foreach (VoWorkItem workItem in workItems)
         {
@@ -86,17 +89,31 @@ internal static class GenerateCodeForAspNetCoreOpenApiSchema
             TypeAndFormat typeAndPossibleFormat = MapUnderlyingTypeToJsonSchema(workItem);
 
             sb.Append(_indent, 3).AppendLine($"if (context.JsonTypeInfo.Type == typeof({typeExpression}))");
-            sb.Append(_indent, 3).AppendLine($"{{");
-            sb.Append(_indent, 4).AppendLine($"schema.Type = \"{typeAndPossibleFormat.Type}\";");
+            sb.Append(_indent, 3).AppendLine("{");
+
+            if (v is OpenApiVersionBeingUsed.One)
+            {
+                sb.Append(_indent, 4).AppendLine($"schema.Type = \"{typeAndPossibleFormat.Type}\";");
+                if (nullable)
+                {
+                    sb.Append(_indent, 4).AppendLine("schema.Nullable = true;");
+                }
+            }
+
+            if (v is OpenApiVersionBeingUsed.TwoPlus)
+            {
+                string t = $"Microsoft.OpenApi.JsonSchemaType.{typeAndPossibleFormat.JsonSchemaType}";
+                if (nullable)
+                {
+                    t += " | Microsoft.OpenApi.JsonSchemaType.Null";
+                }
+                
+                sb.Append(_indent, 4).AppendLine($"schema.Type = {t};");
+            }
 
             if (!string.IsNullOrEmpty(typeAndPossibleFormat.Format))
             {
                 sb.Append(_indent, 4).AppendLine($"schema.Format = \"{typeAndPossibleFormat.Format}\";");
-            }
-
-            if (nullable)
-            {
-                sb.Append(_indent, 4).AppendLine("schema.Nullable = true;");
             }
 
             sb.Append(_indent, 3).AppendLine($"}}");
@@ -104,5 +121,13 @@ internal static class GenerateCodeForAspNetCoreOpenApiSchema
         }
     }
 
-    private static bool IsOpenApiReferenced(VogenKnownSymbols vogenKnownSymbols) => vogenKnownSymbols.OpenApiOptions is not null;
+    private static bool IsOpenApi1xReferenced(VogenKnownSymbols vogenKnownSymbols) => vogenKnownSymbols.OpenApiOptions is not null;
+    private static bool IsOpenApi2xReferenced(VogenKnownSymbols vogenKnownSymbols) => vogenKnownSymbols.JsonSchemaType is not null;
+
+    enum OpenApiVersionBeingUsed
+    {
+        None,
+        One,
+        TwoPlus
+    }
 }

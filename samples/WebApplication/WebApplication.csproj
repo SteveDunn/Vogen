@@ -5,7 +5,7 @@
         <Nullable>enable</Nullable>
         <ImplicitUsings>enable</ImplicitUsings>
         <UseLocallyBuiltPackage>true</UseLocallyBuiltPackage>
-        <OpenApiMode>Swashbuckle</OpenApiMode>
+        <OpenApiMode>MicrosoftAndScalar</OpenApiMode>
     </PropertyGroup>
 
     <PropertyGroup Condition=" '$(OpenApiMode)' == 'Swashbuckle'">
@@ -14,17 +14,17 @@
     </PropertyGroup>
 
     <PropertyGroup Condition=" '$(OpenApiMode)' == 'MicrosoftAndScalar'">
-        <TargetFramework>net9.0</TargetFramework>
+        <TargetFramework>net10.0</TargetFramework>
         <DefineConstants>USE_MICROSOFT_OPENAPI_AND_SCALAR</DefineConstants>
     </PropertyGroup>
 
     <ItemGroup>
         <PackageReference Include="Refit" Version="8.0.0"/>
-        <PackageReference Include="System.Text.Json" Version="8.0.5" />
+<!--        <PackageReference Include="System.Text.Json" Version="8.0.5" />-->
     </ItemGroup>
 
     <ItemGroup Condition=" '$(OpenApiMode)' == 'MicrosoftAndScalar'">
-        <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="9.0.0-preview.4.24267.6"/>
+        <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="10.0.0"/>
         <PackageReference Include="Scalar.AspNetCore" Version="1.1.1"/>
     </ItemGroup>
 

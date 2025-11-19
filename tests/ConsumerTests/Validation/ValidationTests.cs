@@ -1,6 +1,7 @@
 using System.Diagnostics.CodeAnalysis;
 using ConsumerTests;
 using Vogen.Tests.Types;
+// ReSharper disable IdentifierTypo
 #pragma warning disable CS8602 // Dereference of a possibly null reference.
 #pragma warning disable CS8625 // Cannot convert null literal to non-nullable reference type.
 
@@ -17,7 +18,7 @@ public class ValidationTests
             camelCase1.Should().ThrowExactly<ValueObjectValidationException>().WithMessage("must be greater than zero");
 
             bool b = MyVo_validate_with_camelCase_method_name.TryFrom(-1, out var vo);
-            vo.Should().Be(default);
+            vo.Should().Be(null);
             b.Should().BeFalse();
 
             var voe = MyVo_validate_with_camelCase_method_name.TryFrom(-1);
@@ -28,7 +29,7 @@ public class ValidationTests
             pascalCase1.Should().ThrowExactly<ValueObjectValidationException>().WithMessage("must be greater than zero");
             
             bool b = MyVo_validate_with_PascalCase_method_name.TryFrom(-1, out var vo);
-            vo.Should().Be(default);
+            vo.Should().Be(null);
             b.Should().BeFalse();
 
             var voe = MyVo_validate_with_PascalCase_method_name.TryFrom(-1);
@@ -91,7 +92,7 @@ public class ValidationTests
         Func<EightiesDate> act3 = () => EightiesDate.From(new DateTime(1985, 6, 10));
         act3.Should().NotThrow();
 
-        string[] validDaves = new[] { "dave grohl", "david beckham", "david bowie" };
+        string[] validDaves = ["dave grohl", "david beckham", "david bowie"];
         foreach (var name in validDaves)
         {
             Func<Dave> act4 = () => Dave.From(name);
@@ -109,7 +110,7 @@ public class ValidationTests
             }
         }
 
-        string[] invalidDaves = new[] { "dafid jones", "fred flintstone", "davidoff cool water" };
+        string[] invalidDaves = ["dafid jones", "fred flintstone", "davidoff cool water"];
         foreach (var name in invalidDaves)
         {
             Func<Dave> act5 = () => Dave.From(name);
