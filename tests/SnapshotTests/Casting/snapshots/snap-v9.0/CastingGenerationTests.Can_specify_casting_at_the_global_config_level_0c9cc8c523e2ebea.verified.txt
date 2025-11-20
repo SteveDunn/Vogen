@@ -41,8 +41,8 @@ public static class VogenOpenApiExtensions
 			if (context.JsonTypeInfo.Type == typeof(global::System.Nullable<global::Whatever._casting_public_readonly_partial_record_structNoneNoneSystem_DateTime>))
 			{
 				schema.Type = "string";
-				schema.Format = "date-time";
 				schema.Nullable = true;
+				schema.Format = "date-time";
 			}
 
 			return global::System.Threading.Tasks.Task.CompletedTask;

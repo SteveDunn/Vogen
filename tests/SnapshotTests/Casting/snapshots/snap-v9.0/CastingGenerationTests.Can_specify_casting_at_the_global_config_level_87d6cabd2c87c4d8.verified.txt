@@ -41,8 +41,8 @@ public static class VogenOpenApiExtensions
 			if (context.JsonTypeInfo.Type == typeof(global::System.Nullable<global::Whatever._casting_public_partial_record_structImplicitImplicitSystem_Guid>))
 			{
 				schema.Type = "string";
-				schema.Format = "uuid";
 				schema.Nullable = true;
+				schema.Format = "uuid";
 			}
 
 			return global::System.Threading.Tasks.Task.CompletedTask;

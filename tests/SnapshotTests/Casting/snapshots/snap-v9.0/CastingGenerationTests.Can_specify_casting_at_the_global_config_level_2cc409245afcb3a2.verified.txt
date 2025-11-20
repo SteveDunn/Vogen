@@ -41,8 +41,8 @@ public static class VogenOpenApiExtensions
 			if (context.JsonTypeInfo.Type == typeof(global::System.Nullable<global::Whatever._casting_public_readonly_partial_structExplicitExplicit>))
 			{
 				schema.Type = "integer";
-				schema.Format = "int32";
 				schema.Nullable = true;
+				schema.Format = "int32";
 			}
 
 			return global::System.Threading.Tasks.Task.CompletedTask;
