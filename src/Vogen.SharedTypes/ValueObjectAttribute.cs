@@ -54,7 +54,7 @@ namespace Vogen
         /// </example>
         /// </param>
         public ValueObjectAttribute(
-            Conversions conversions = Conversions.Default,
+            Conversions conversions = Conversions.Unspecified,
             Type? throws = null!,
             Customizations customizations = Customizations.None,
             DeserializationStrictness deserializationStrictness = DeserializationStrictness.AllowValidAndKnownInstances,
@@ -131,7 +131,7 @@ namespace Vogen
         /// </param>
         public ValueObjectAttribute(
             Type? underlyingType = null!,
-            Conversions conversions = Conversions.Default,
+            Conversions conversions = Conversions.Unspecified,
             Type? throws = null!,
             Customizations customizations = Customizations.None,
             DeserializationStrictness deserializationStrictness = DeserializationStrictness.AllowValidAndKnownInstances,
