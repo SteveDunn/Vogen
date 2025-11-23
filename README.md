@@ -477,7 +477,7 @@ var c2 = default(CustomerId);
 
 ### Can I serialize and deserialize them?
 
-Yes. By default, each VO is decorated with a `TypeConverter` and `System.Text.Json` (STJ) serializer. There are other converters/serializers for:
+Yes. By default, each VO is decorated with a `TypeConverter` and `System.Text.Json` (STJ) serializer (if STJ is referenced). There are other converters/serializers for:
 
 * Newtonsoft.Json (NSJ)
 * Dapper
@@ -486,6 +486,7 @@ Yes. By default, each VO is decorated with a `TypeConverter` and `System.Text.Js
 * MongoDB/BSON
 * Orleans
 * ServiceStack.Text
+* XML - allows VOs to be used in XML documents and types that use 'Data Contract Serialization', e.g. using attributes like `[DataMember]`
 
 ### Can I use them in EFCore?
 

@@ -69,7 +69,7 @@ public enum Conversions
     Orleans = 1 << 9,
 
     /// <summary>
-    /// Generates implementation of IXmlSerializable.
+    /// Generates implementation of IXmlSerializable so that types can be serialized to XML, including types used by DataContractSerializer.
     /// </summary>
     XmlSerializable = 1 << 10,
 
