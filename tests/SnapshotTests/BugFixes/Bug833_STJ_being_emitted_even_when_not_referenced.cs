@@ -1,12 +1,12 @@
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using Shared;
 using Vogen;
 
 namespace SnapshotTests.BugFixes;
 
-public class Bug597_STJ_being_emitted_even_with_no_conversions_specified
+public class Bug833_STJ_being_emitted_even_when_not_referenced
 {
-    // See https://github.com/SteveDunn/Vogen/issues/597
+    // See https://github.com/SteveDunn/Vogen/issues/833
     
     [Fact]
     public async Task Omitted_if_stj_package_not_referenced()
@@ -15,18 +15,16 @@ public class Bug597_STJ_being_emitted_even_with_no_conversions_specified
                      using System;
                      using Vogen;
 
-                     [ValueObject(conversions: Conversions.None)]
+                     [ValueObject]
                      public partial struct Vo
                      {
                      }
-
-
                      """;
 
         await new SnapshotRunner<ValueObjectGenerator>()
-                .WithSource(source)
-                .ExcludeSystemTextJsonNugetPackage()
-                .IgnoreInitialCompilationErrors()
-                .RunOn(TargetFramework.Net4_8);
+            .WithSource(source)
+            .ExcludeSystemTextJsonNugetPackage()
+            .IgnoreInitialCompilationErrors()
+            .RunOn(TargetFramework.Net4_8);
     }
 }

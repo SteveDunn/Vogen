@@ -202,14 +202,15 @@ internal static class Util
     /// </summary>
     /// <param name="tds"></param>
     /// <param name="item"></param>
+    /// <param name="knownSymbols"></param>
     /// <returns></returns>
-    public static string GenerateAnyConversionAttributes(TypeDeclarationSyntax tds, VoWorkItem item)
+    public static string GenerateAnyConversionAttributes(TypeDeclarationSyntax tds, VoWorkItem item, VogenKnownSymbols knownSymbols)
     {
         StringBuilder sb = new StringBuilder();
 
         foreach (var conversionGenerator in _conversionGenerators)
         {
-            var attribute = conversionGenerator.GenerateAnyAttributes(tds, item);
+            var attribute = conversionGenerator.GenerateAnyAttributes(tds, item, knownSymbols);
             if (!string.IsNullOrEmpty(attribute))
             {
                 sb.AppendLine(attribute);
@@ -221,12 +222,15 @@ internal static class Util
 
     private static string GenerateAnyConversionAttributesForDebuggerProxy(VoWorkItem item) => item.Config.Conversions.ToString();
 
-    public static string GenerateAnyConversionBodies(TypeDeclarationSyntax tds, VoWorkItem item)
+    public static string GenerateAnyConversionBodies(
+        TypeDeclarationSyntax tds, 
+        VoWorkItem item, 
+        VogenKnownSymbols knownSymbols)
     {
         StringBuilder sb = new StringBuilder();
         foreach (var conversionGenerator in _conversionGenerators)
         {
-            sb.AppendLine(conversionGenerator.GenerateAnyBody(tds, item));
+            sb.AppendLine(conversionGenerator.GenerateAnyBody(tds, item, knownSymbols));
         }
 
         return sb.ToString();
@@ -272,7 +276,7 @@ internal static class Util
         return code;
     }
 
-    public static string GenerateDebuggerProxyForClasses(TypeDeclarationSyntax tds, VoWorkItem item)
+    public static string GenerateDebuggerProxyForClasses(TypeDeclarationSyntax tds, VoWorkItem item, VogenKnownSymbols knownSymbols)
     {
         string code = $@"internal sealed class {item.VoTypeName}DebugView
         {{
@@ -286,7 +290,7 @@ internal static class Util
             public global::System.String UnderlyingType => ""{item.UnderlyingTypeFullName}"";
             public {item.UnderlyingTypeFullName} Value => _t.Value ;
 
-            public global::System.String Conversions => @""{Util.GenerateAnyConversionAttributes(tds, item)}"";
+            public global::System.String Conversions => @""{Util.GenerateAnyConversionAttributes(tds, item, knownSymbols)}"";
                 }}";
 
         return code;

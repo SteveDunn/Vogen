@@ -4,12 +4,12 @@ namespace Vogen.Generators.Conversions;
 
 internal class GenerateDapperConversions : IGenerateConversion
 {
-    public string GenerateAnyAttributes(TypeDeclarationSyntax tds, VoWorkItem item)
+    public string GenerateAnyAttributes(TypeDeclarationSyntax tds, VoWorkItem item, VogenKnownSymbols knownSymbols)
     {
         return string.Empty;
     }
 
-    public string GenerateAnyBody(TypeDeclarationSyntax tds, VoWorkItem item)
+    public string GenerateAnyBody(TypeDeclarationSyntax tds, VoWorkItem item, VogenKnownSymbols knownSymbols)
     {
         if (!IsOurs(item.Config.Conversions))
         {

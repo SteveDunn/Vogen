@@ -4,7 +4,7 @@ namespace Vogen.Generators.Conversions;
 
 class GenerateTypeConverterConversions : IGenerateConversion
 {
-    public string GenerateAnyAttributes(TypeDeclarationSyntax tds, VoWorkItem item)
+    public string GenerateAnyAttributes(TypeDeclarationSyntax tds, VoWorkItem item, VogenKnownSymbols knownSymbols)
     {
         if (!item.Config.Conversions.HasFlag(Vogen.Conversions.TypeConverter))
         {
@@ -14,7 +14,7 @@ class GenerateTypeConverterConversions : IGenerateConversion
         return $@"[global::System.ComponentModel.TypeConverter(typeof({item.VoTypeName}TypeConverter))]";
     }
 
-    public string GenerateAnyBody(TypeDeclarationSyntax tds, VoWorkItem item)
+    public string GenerateAnyBody(TypeDeclarationSyntax tds, VoWorkItem item, VogenKnownSymbols knownSymbols)
     {
         if (!item.Config.Conversions.HasFlag(Vogen.Conversions.TypeConverter))
         {

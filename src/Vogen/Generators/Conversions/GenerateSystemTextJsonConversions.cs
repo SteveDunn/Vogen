@@ -4,52 +4,13 @@ namespace Vogen.Generators.Conversions;
 
 internal class GenerateSystemTextJsonConversions : IGenerateConversion
 {
-    private static string GenerateDeserializeJsonMethod(VoWorkItem item) => $$"""
-          #if NETCOREAPP3_0_OR_GREATER
-          [global::System.Diagnostics.CodeAnalysis.DoesNotReturnAttribute]
-          #endif
-          private static void ThrowJsonExceptionWhenValidationFails(Vogen.Validation validation)
-          {
-              var e = ThrowHelper.CreateValidationException(validation);
-              throw new global::System.Text.Json.JsonException(null, e);
-          }
-          {{GenerateThrowExceptionHelperIfNeeded(item)}}
-          
-          private static VOTYPE DeserializeJson(VOUNDERLYINGTYPE value)
-          {
-              {{GenerateNullCheckAndThrowJsonExceptionIfNeeded(item)}}
-              {{Util.GenerateCallToNormalizeMethodIfNeeded(item)}}
-              {{Util.GenerateChecksForKnownInstancesIfRequired(item)}}
-              
-              {{GenerateCodeForCallingValidation.CallWhenDeserializingAndCheckStrictnessFlag(item, "ThrowJsonExceptionWhenValidationFails")}}
-          
-              return new VOTYPE(value);
-          }
-          """
-        .Replace("\n", "\n            ");
-
-    private static string GenerateThrowExceptionHelperIfNeeded(VoWorkItem voWorkItem) =>
-        voWorkItem.IsTheUnderlyingAValueType ? string.Empty
-            : """
-                
-                private static void ThrowJsonExceptionWhenNull(VOUNDERLYINGTYPE value)
-                {
-                    if (value == null)
-                    {
-                        var e = ThrowHelper.CreateCannotBeNullException();
-                        throw new global::System.Text.Json.JsonException(null, e);
-                    }
-                }
-                """;
-
-    private static string GenerateNullCheckAndThrowJsonExceptionIfNeeded(VoWorkItem voWorkItem) =>
-        voWorkItem.IsTheUnderlyingAValueType ? string.Empty
-            : $$"""
-                ThrowJsonExceptionWhenNull(value);
-                """;
-
-    public string GenerateAnyAttributes(TypeDeclarationSyntax tds, VoWorkItem item)
+    public string GenerateAnyAttributes(TypeDeclarationSyntax tds, VoWorkItem item, VogenKnownSymbols knownSymbols)
     {
+        if (knownSymbols.StjSerializer is null)
+        {
+            return string.Empty;
+        }
+        
         if (!item.Config.Conversions.HasFlag(Vogen.Conversions.SystemTextJson))
         {
             return string.Empty;
@@ -58,8 +19,13 @@ internal class GenerateSystemTextJsonConversions : IGenerateConversion
         return $@"[global::System.Text.Json.Serialization.JsonConverter(typeof({item.VoTypeName}SystemTextJsonConverter))]";
     }
 
-    public string GenerateAnyBody(TypeDeclarationSyntax tds, VoWorkItem item)
+    public string GenerateAnyBody(TypeDeclarationSyntax tds, VoWorkItem item, VogenKnownSymbols knownSymbols)
     {
+        if (knownSymbols.StjSerializer is null)
+        {
+            return string.Empty;
+        }
+
         if (!item.Config.Conversions.HasFlag(Vogen.Conversions.SystemTextJson))
         {
             return string.Empty;
@@ -103,6 +69,50 @@ internal class GenerateSystemTextJsonConversions : IGenerateConversion
                 #nullable restore
                 """;
     }
+
+    private static string GenerateDeserializeJsonMethod(VoWorkItem item) => $$"""
+          #if NETCOREAPP3_0_OR_GREATER
+          [global::System.Diagnostics.CodeAnalysis.DoesNotReturnAttribute]
+          #endif
+          private static void ThrowJsonExceptionWhenValidationFails(Vogen.Validation validation)
+          {
+              var e = ThrowHelper.CreateValidationException(validation);
+              throw new global::System.Text.Json.JsonException(null, e);
+          }
+          {{GenerateThrowExceptionHelperIfNeeded(item)}}
+
+          private static VOTYPE DeserializeJson(VOUNDERLYINGTYPE value)
+          {
+              {{GenerateNullCheckAndThrowJsonExceptionIfNeeded(item)}}
+              {{Util.GenerateCallToNormalizeMethodIfNeeded(item)}}
+              {{Util.GenerateChecksForKnownInstancesIfRequired(item)}}
+              
+              {{GenerateCodeForCallingValidation.CallWhenDeserializingAndCheckStrictnessFlag(item, "ThrowJsonExceptionWhenValidationFails")}}
+
+              return new VOTYPE(value);
+          }
+          """
+        .Replace("\n", "\n            ");
+
+    private static string GenerateThrowExceptionHelperIfNeeded(VoWorkItem voWorkItem) =>
+        voWorkItem.IsTheUnderlyingAValueType ? string.Empty
+            : """
+                
+                private static void ThrowJsonExceptionWhenNull(VOUNDERLYINGTYPE value)
+                {
+                    if (value == null)
+                    {
+                        var e = ThrowHelper.CreateCannotBeNullException();
+                        throw new global::System.Text.Json.JsonException(null, e);
+                    }
+                }
+                """;
+
+    private static string GenerateNullCheckAndThrowJsonExceptionIfNeeded(VoWorkItem voWorkItem) =>
+        voWorkItem.IsTheUnderlyingAValueType ? string.Empty
+            : $$"""
+                ThrowJsonExceptionWhenNull(value);
+                """;
 
     private static string ResolveTemplate(VoWorkItem item) =>
         Templates.TryGetForSpecificType(item.UnderlyingType, "SystemTextJsonConverter") ??

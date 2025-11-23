@@ -27,7 +27,7 @@ public class StructGenerator : IGenerateValueObjectSourceCode
 
 {Util.WriteStartNamespace(item.FullUnaliasedNamespace)}
     {Util.GenerateCoverageExcludeAndGeneratedCodeAttributes()}
-    {Util.GenerateAnyConversionAttributes(tds, item)}
+    {Util.GenerateAnyConversionAttributes(tds, item, parameters.VogenKnownSymbols)}
     {DebugGeneration.GenerateDebugAttributes(item, wrapperName, itemUnderlyingType)}
     {Util.GeneratePolyTypeAttributeIfAvailable(parameters.VogenKnownSymbols)}
 // ReSharper disable once UnusedType.Global
@@ -135,7 +135,7 @@ public class StructGenerator : IGenerateValueObjectSourceCode
 
         {InstanceGeneration.GenerateAnyInstances(tds, item)}
  
-        {Util.GenerateAnyConversionBodies(tds, item)}
+        {Util.GenerateAnyConversionBodies(tds, item, parameters.VogenKnownSymbols)}
 
         {GenerateCodeForXmlSerializable.GenerateBodyIfNeeded(parameters)}
 

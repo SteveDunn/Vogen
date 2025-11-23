@@ -253,7 +253,7 @@ internal class GenerateCodeForMessagePack : IGenerateConversion
         }
     }
 
-    public string GenerateAnyAttributes(TypeDeclarationSyntax tds, VoWorkItem item)
+    public string GenerateAnyAttributes(TypeDeclarationSyntax tds, VoWorkItem item, VogenKnownSymbols knownSymbols)
     {
         if (!item.HasConversion(Conversions.MessagePack))
         {
@@ -265,5 +265,5 @@ internal class GenerateCodeForMessagePack : IGenerateConversion
         return $"[global::MessagePack.MessagePackFormatter(typeof({fqName}))]";
     }
 
-    public string GenerateAnyBody(TypeDeclarationSyntax tds, VoWorkItem item) => "";
+    public string GenerateAnyBody(TypeDeclarationSyntax tds, VoWorkItem item, VogenKnownSymbols knownSymbols) => "";
 }

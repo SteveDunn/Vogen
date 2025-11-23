@@ -28,7 +28,7 @@ public class ClassGenerator : IGenerateValueObjectSourceCode
 
 {Util.WriteStartNamespace(item.FullUnaliasedNamespace)}
     {Util.GenerateCoverageExcludeAndGeneratedCodeAttributes()}
-    {Util.GenerateAnyConversionAttributes(tds, item)}
+    {Util.GenerateAnyConversionAttributes(tds, item, parameters.VogenKnownSymbols)}
     {DebugGeneration.GenerateDebugAttributes(item, wrapperName, itemUnderlyingType)}
     {Util.GeneratePolyTypeAttributeIfAvailable(parameters.VogenKnownSymbols)}
     {Util.GenerateModifiersFor(tds)} class {wrapperName} : 
@@ -144,11 +144,11 @@ public class ClassGenerator : IGenerateValueObjectSourceCode
 
         {InstanceGeneration.GenerateAnyInstances(tds, item)}
 
-        {Util.GenerateAnyConversionBodies(tds, item)}
+        {Util.GenerateAnyConversionBodies(tds, item, parameters.VogenKnownSymbols)}
 
         {GenerateCodeForXmlSerializable.GenerateBodyIfNeeded(parameters)}
 
-        {Util.GenerateDebuggerProxyForClasses(tds, item)}
+        {Util.GenerateDebuggerProxyForClasses(tds, item, parameters.VogenKnownSymbols)}
 
         {Util.GenerateThrowHelper(item)}
 

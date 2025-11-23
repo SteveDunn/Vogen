@@ -27,7 +27,7 @@ public class RecordStructGenerator : IGenerateValueObjectSourceCode
 
 {Util.WriteStartNamespace(item.FullUnaliasedNamespace)}
     {Util.GenerateCoverageExcludeAndGeneratedCodeAttributes()}
-    {Util.GenerateAnyConversionAttributes(tds, item)}
+    {Util.GenerateAnyConversionAttributes(tds, item, parameters.VogenKnownSymbols)}
     {DebugGeneration.GenerateDebugAttributes(item, wrapperName, itemUnderlyingType)}
     {Util.GeneratePolyTypeAttributeIfAvailable(parameters.VogenKnownSymbols)}
     { Util.GenerateModifiersFor(tds)} record struct {wrapperName} : 
@@ -141,7 +141,7 @@ public class RecordStructGenerator : IGenerateValueObjectSourceCode
 
         {InstanceGeneration.GenerateAnyInstances(tds, item)}
 
-        {Util.GenerateAnyConversionBodies(tds, item)}
+        {Util.GenerateAnyConversionBodies(tds, item, parameters.VogenKnownSymbols)}
 
         {GenerateCodeForXmlSerializable.GenerateBodyIfNeeded(parameters)}
 

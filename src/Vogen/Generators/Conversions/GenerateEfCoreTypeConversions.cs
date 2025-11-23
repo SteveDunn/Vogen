@@ -4,10 +4,10 @@ namespace Vogen.Generators.Conversions;
 
 internal class GenerateEfCoreTypeConversions : IGenerateConversion
 {
-    public string GenerateAnyAttributes(TypeDeclarationSyntax tds, VoWorkItem item) => string.Empty;
+    public string GenerateAnyAttributes(TypeDeclarationSyntax tds, VoWorkItem item, VogenKnownSymbols knownSymbols) => string.Empty;
 
 
-    public string GenerateAnyBody(TypeDeclarationSyntax tds, VoWorkItem item)
+    public string GenerateAnyBody(TypeDeclarationSyntax tds, VoWorkItem item, VogenKnownSymbols knownSymbols)
     {
         if (!item.Config.Conversions.HasFlag(Vogen.Conversions.EfCoreValueConverter))
         {

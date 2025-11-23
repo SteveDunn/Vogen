@@ -4,7 +4,7 @@ namespace Vogen.Generators.Conversions;
 
 internal class GenerateNewtonsoftJsonConversions : IGenerateConversion
 {
-    public string GenerateAnyAttributes(TypeDeclarationSyntax tds, VoWorkItem item)
+    public string GenerateAnyAttributes(TypeDeclarationSyntax tds, VoWorkItem item, VogenKnownSymbols knownSymbols)
     {
         if (!IsOurs(item.Config.Conversions))
         {
@@ -14,7 +14,7 @@ internal class GenerateNewtonsoftJsonConversions : IGenerateConversion
         return $@"[global::Newtonsoft.Json.JsonConverter(typeof({item.VoTypeName}NewtonsoftJsonConverter))]";
     }
 
-    public string GenerateAnyBody(TypeDeclarationSyntax tds, VoWorkItem item)
+    public string GenerateAnyBody(TypeDeclarationSyntax tds, VoWorkItem item, VogenKnownSymbols knownSymbols)
     {
         if (!IsOurs(item.Config.Conversions))
         {

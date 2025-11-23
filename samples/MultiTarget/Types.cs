@@ -1,7 +1,7 @@
 ﻿using System;
 using Vogen;
 
-namespace NetStandard21Consumer
+namespace Types
 {
     [ValueObject]
     public partial struct Age
@@ -13,7 +13,7 @@ namespace NetStandard21Consumer
     {
     }
     
-    public class Class1
+    public class Types
     {
     }
 }

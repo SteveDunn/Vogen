@@ -31,4 +31,7 @@ public class VogenKnownSymbols(Compilation compilation) : KnownSymbols(compilati
 
     public INamedTypeSymbol? TimeOnly => GetOrResolveType("System.DateOnly", ref _TimeOnly);
     private Option<INamedTypeSymbol?> _TimeOnly;
+
+    public INamedTypeSymbol? StjSerializer => GetOrResolveType("System.Text.Json.JsonSerializer", ref _StjSerializer);
+    private Option<INamedTypeSymbol?> _StjSerializer;
 }

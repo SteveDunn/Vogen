@@ -5,7 +5,7 @@ namespace Vogen.Generators.Conversions;
 
 public interface IGenerateConversion
 {
-    string GenerateAnyAttributes(TypeDeclarationSyntax tds, VoWorkItem item);
+    string GenerateAnyAttributes(TypeDeclarationSyntax tds, VoWorkItem item, VogenKnownSymbols knownSymbols);
 
-    string GenerateAnyBody(TypeDeclarationSyntax tds, VoWorkItem item);
+    string GenerateAnyBody(TypeDeclarationSyntax tds, VoWorkItem item, VogenKnownSymbols knownSymbols);
 }
