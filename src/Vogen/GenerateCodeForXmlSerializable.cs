@@ -27,7 +27,9 @@ public class GenerateCodeForXmlSerializable
             public void ReadXml(global::System.Xml.XmlReader reader) 
             {
                 _value = ({{parameters.WorkItem.UnderlyingTypeFullName}})reader.ReadElementContentAs(typeof({{parameters.WorkItem.UnderlyingTypeFullName}}), null!);
-                _isInitialized = true;
+                #if !VOGEN_NO_VALIDATION
+                    _isInitialized = true;
+                #endif
             }
             
             public void WriteXml(global::System.Xml.XmlWriter writer) => writer.WriteValue(_value);

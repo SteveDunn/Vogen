@@ -25,22 +25,22 @@ public partial class Name;
 
 public class Person
 {
-    public PersonId Id { get; set; }
+    public required PersonId Id { get; set; }
     
-    public Name Name { get; set; }
+    public required Name Name { get; set; }
     
-    public Age Age { get; set; }
+    public required Age Age { get; set; }
 }
 
 [DataContract(Name = "Person", Namespace = "urn:sample")] // customize root
 public class PersonDc
 {
-    [DataMember(Order = 3)] public PersonId Id { get; set; }
-    [DataMember(Order = 2)] public Name Name { get; set; }
-    [DataMember(Order = 1, Name = "SomethingElse")] public Age Age { get; set; }
+    [DataMember(Order = 3)] public required PersonId Id { get; set; }
+    [DataMember(Order = 2)] public required Name Name { get; set; }
+    [DataMember(Order = 1, Name = "SomethingElse")] public required Age Age { get; set; }
 
     [IgnoreDataMember] // never serialized
-    public string InternalNote { get; set; }
+    public required string InternalNote { get; set; }
 }
 
 [UsedImplicitly]
@@ -54,7 +54,7 @@ public class XmlScenario : IScenario
         return Task.CompletedTask;
     }
 
-    private void RunXmlSerializer()
+    private static void RunXmlSerializer()
     {
         var originalObject = new Person
         {
@@ -81,13 +81,14 @@ public class XmlScenario : IScenario
         Console.WriteLine($"Id: {deserializedObject.Id}, Name: {deserializedObject.Name}, Active: {deserializedObject.Age}");
     }
 
-    private void DataContractSerializer()
+    private static void DataContractSerializer()
     {
         var originalObject = new PersonDc
         {
             Id = PersonId.From(123),
             Name = Name.From("Test"),
-            Age = Age.From(42)
+            Age = Age.From(42),
+            InternalNote = "whatever"
         };
 
         var dcs = new DataContractSerializer(
