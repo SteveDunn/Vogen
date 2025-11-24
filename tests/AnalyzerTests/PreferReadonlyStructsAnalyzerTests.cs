@@ -37,6 +37,54 @@ public class PreferReadonlyStructsAnalyzerTests
         await test.RunAsync();
     }
 
+    [Fact]
+    public async Task Does_not_trigger_if_xml_serializable()
+    {
+        var source = $$"""
+                       using System;
+                       using System.Xml;
+                       using System.Xml.Serialization;
+                       using System.Xml.Schema;
+                       using Vogen;
+
+                       namespace Whatever;
+
+                       [ValueObject]
+                       public partial struct MyStruct : IXmlSerializable
+                       {
+                           public XmlSchema GetSchema()
+                           {
+                               throw new NotImplementedException();
+                           }
+                       
+                           public void ReadXml(XmlReader reader)
+                           {
+                               throw new NotImplementedException();
+                           }
+                       
+                           public void WriteXml(XmlWriter writer)
+                           {
+                               throw new NotImplementedException();
+                           }
+                       }
+                       
+                       """;
+
+        var test = new VerifyCS.Test
+        {
+            TestState =
+            {
+                Sources = { source }
+            },
+            CompilerDiagnostics = CompilerDiagnostics.Suggestions,
+            ReferenceAssemblies = References.Net90AndOurs.Value,
+        };
+
+        test.DisabledDiagnostics.Add("CS1591");
+
+        await test.RunAsync();
+    }
+
     [Theory]
     [InlineData("struct")]
     [InlineData("record struct")]

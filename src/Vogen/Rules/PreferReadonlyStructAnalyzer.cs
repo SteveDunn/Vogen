@@ -26,7 +26,7 @@ public sealed class PreferReadonlyStructAnalyzer : DiagnosticAnalyzer
 
     public override void Initialize(AnalysisContext context)
     {
-        context.ConfigureGeneratedCodeAnalysis(GeneratedCodeAnalysisFlags.None);
+        context.ConfigureGeneratedCodeAnalysis(GeneratedCodeAnalysisFlags.ReportDiagnostics);
         context.EnableConcurrentExecution();
 
         context.RegisterSyntaxNodeAction(AnalyzeNode, SyntaxKind.StructDeclaration, SyntaxKind.RecordStructDeclaration);
@@ -56,8 +56,14 @@ public sealed class PreferReadonlyStructAnalyzer : DiagnosticAnalyzer
         {
             return;
         }
-
+        
         if (symbol.IsReadOnly)
+        {
+            return;
+        }
+
+        var ixml = context.SemanticModel.Compilation.GetTypeByMetadataName("System.Xml.Serialization.IXmlSerializable");
+        if (ixml is not null && symbol.AllInterfaces.Contains(ixml, SymbolEqualityComparer.Default))
         {
             return;
         }
