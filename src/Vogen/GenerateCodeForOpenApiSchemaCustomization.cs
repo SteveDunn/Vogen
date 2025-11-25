@@ -1,3 +1,4 @@
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,20 +21,22 @@ internal class GenerateCodeForOpenApiSchemaCustomization
 
         var inAppendage = string.IsNullOrEmpty(projectName) ? string.Empty : $"In{projectName}";
 
+        var openApiVersion = OpenApiSchemaUtils.DetermineOpenApiVersionBeingUsed(knownSymbols);
+
         if (c.HasFlag(OpenApiSchemaCustomizations.GenerateSwashbuckleSchemaFilter))
         {
             WriteSchemaFilter(context, knownSymbols, inAppendage);
         }
 
-        if (c.HasFlag(OpenApiSchemaCustomizations.GenerateSwashbuckleMappingExtensionMethod))
+        if (c.HasFlag(OpenApiSchemaCustomizations.GenerateSwashbuckleMappingExtensionMethod) && openApiVersion != OpenApiVersionBeingUsed.None)
         {
-            WriteSwashbuckleExtensionMethodMapping(context, workItems, knownSymbols, inAppendage);
+            WriteSwashbuckleExtensionMethodMapping(context, workItems, knownSymbols, inAppendage, openApiVersion);
         }
 
-        if (c.HasFlag(OpenApiSchemaCustomizations.GenerateOpenApiMappingExtensionMethod))
+        if (c.HasFlag(OpenApiSchemaCustomizations.GenerateOpenApiMappingExtensionMethod) && openApiVersion != OpenApiVersionBeingUsed.None)
         {
             GenerateCodeForAspNetCoreOpenApiSchema
-                .WriteOpenApiExtensionMethodMapping(context, workItems, knownSymbols, inAppendage);
+                .WriteOpenApiExtensionMethodMapping(context, workItems, knownSymbols, inAppendage, openApiVersion);
         }
     }
 
@@ -113,9 +116,10 @@ internal class GenerateCodeForOpenApiSchemaCustomization
     private static void WriteSwashbuckleExtensionMethodMapping(SourceProductionContext context,
         List<VoWorkItem> workItems,
         VogenKnownSymbols knownSymbols,
-        string inAppendage)
+        string inAppendage,
+        OpenApiVersionBeingUsed openApiVersion)
     {
-        if (!IsSwashbuckleReferenced(knownSymbols))
+        if (!IsSwashbuckleReferenced(knownSymbols) || openApiVersion == OpenApiVersionBeingUsed.None)
         {
             return;
         }
@@ -129,7 +133,7 @@ internal class GenerateCodeForOpenApiSchemaCustomization
               {
                   public static global::Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenOptions MapVogenTypes{{inAppendage}}(this global::Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenOptions o)
                   {
-                      {{MapWorkItems(workItems)}}
+                      {{MapWorkItems(workItems, openApiVersion)}}
 
                       return o;
                   }
@@ -141,21 +145,22 @@ internal class GenerateCodeForOpenApiSchemaCustomization
 
     private static bool IsSwashbuckleReferenced(VogenKnownSymbols vogenKnownSymbols) => vogenKnownSymbols.SwaggerISchemaFilter is not null;
 
-    private static string MapWorkItems(List<VoWorkItem> workItems)
+    private static string MapWorkItems(List<VoWorkItem> workItems, OpenApiVersionBeingUsed openApiVersion)
     {
         var sb = new StringBuilder();
 
         // map everything an non-nullable
-        MapWorkItems(workItems, sb, false);
+        MapWorkItems(workItems, sb, false, openApiVersion);
 
         // map value types again as nullable, see https://github.com/SteveDunn/Vogen/issues/693
         var valueTypes = workItems.Where(i => i.IsTheWrapperAValueType);
-        MapWorkItems(valueTypes, sb, true);
+        MapWorkItems(valueTypes, sb, true, openApiVersion);
 
         return sb.ToString();
     }
 
-    private static void MapWorkItems(IEnumerable<VoWorkItem> workItems, StringBuilder sb, bool nullable)
+    private static void MapWorkItems(IEnumerable<VoWorkItem> workItems, StringBuilder sb, bool nullable,
+        OpenApiVersionBeingUsed openApiVersion)
     {
         foreach (var workItem in workItems)
         {
@@ -171,12 +176,32 @@ internal class GenerateCodeForOpenApiSchemaCustomization
             }
 
             TypeAndFormat typeAndPossibleFormat = MapUnderlyingTypeToJsonSchema(workItem);
-            string typeText = $"Type = \"{typeAndPossibleFormat.Type}\"";
             string formatText = typeAndPossibleFormat.Format.Length == 0 ? "" : $", Format = \"{typeAndPossibleFormat.Format}\"";
-            string nullableText = $", Nullable = {nullable.ToString().ToLower()}";
 
-            sb.AppendLine(
-                $$"""global::Microsoft.Extensions.DependencyInjection.SwaggerGenOptionsExtensions.MapType<{{fqn}}>(o, () => new global::Microsoft.OpenApi.Models.OpenApiSchema { {{typeText}}{{formatText}}{{nullableText}} });""");
+            switch (openApiVersion)
+            {
+                case OpenApiVersionBeingUsed.One:
+                {
+                    string typeText = $"Type = \"{typeAndPossibleFormat.Type}\"";
+                    string nullableText = $", Nullable = {nullable.ToString().ToLower()}";
+
+                    sb.AppendLine(
+                        $$"""global::Microsoft.Extensions.DependencyInjection.SwaggerGenOptionsExtensions.MapType<{{fqn}}>(o, () => new global::Microsoft.OpenApi.Models.OpenApiSchema { {{typeText}}{{formatText}}{{nullableText}} });""");
+                    break;
+                }
+                case OpenApiVersionBeingUsed.TwoPlus:
+                {
+                    string typeText = $"Type = global::Microsoft.OpenApi.JsonSchemaType.{typeAndPossibleFormat.JsonSchemaType}";
+                    if (nullable)
+                    {
+                        typeText += " | global::Microsoft.OpenApi.JsonSchemaType.Null";
+                    }
+
+                    sb.AppendLine(
+                        $$"""global::Microsoft.Extensions.DependencyInjection.SwaggerGenOptionsExtensions.MapType<{{fqn}}>(o, () => new global::Microsoft.OpenApi.OpenApiSchema { {{typeText}}{{formatText}} });""");
+                    break;
+                }
+            }
         }
     }
 

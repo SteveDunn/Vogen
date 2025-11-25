@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Microsoft.CodeAnalysis;
@@ -14,12 +14,9 @@ internal static class GenerateCodeForAspNetCoreOpenApiSchema
         SourceProductionContext context,
         List<VoWorkItem> workItems,
         VogenKnownSymbols knownSymbols,
-        string inAppendage)
+        string inAppendage, OpenApiVersionBeingUsed openApiVersion)
     {
-        OpenApiVersionBeingUsed v = IsOpenApi2xReferenced(knownSymbols) ? OpenApiVersionBeingUsed.TwoPlus :
-            IsOpenApi1xReferenced(knownSymbols) ? OpenApiVersionBeingUsed.One : OpenApiVersionBeingUsed.None; 
-        
-        if (v is OpenApiVersionBeingUsed.None)
+        if (openApiVersion is OpenApiVersionBeingUsed.None)
         {
             return;
         }
@@ -46,7 +43,7 @@ internal static class GenerateCodeForAspNetCoreOpenApiSchema
             .Append(_indent, 2)
             .AppendLine("{");
 
-        MapWorkItemsForOpenApi(workItems, sb, v);
+        MapWorkItemsForOpenApi(workItems, sb, openApiVersion);
 
         sb
             .Append(_indent, 3)
@@ -119,15 +116,5 @@ internal static class GenerateCodeForAspNetCoreOpenApiSchema
             sb.Append(_indent, 3).AppendLine($"}}");
             sb.AppendLine();
         }
-    }
-
-    private static bool IsOpenApi1xReferenced(VogenKnownSymbols vogenKnownSymbols) => vogenKnownSymbols.OpenApiOptions is not null;
-    private static bool IsOpenApi2xReferenced(VogenKnownSymbols vogenKnownSymbols) => vogenKnownSymbols.JsonSchemaType is not null;
-
-    enum OpenApiVersionBeingUsed
-    {
-        None,
-        One,
-        TwoPlus
     }
 }
