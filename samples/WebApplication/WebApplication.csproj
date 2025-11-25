@@ -1,16 +1,20 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
     <PropertyGroup>
-        <TargetFramework>net8.0</TargetFramework>
         <Nullable>enable</Nullable>
         <ImplicitUsings>enable</ImplicitUsings>
         <UseLocallyBuiltPackage>true</UseLocallyBuiltPackage>
-        <OpenApiMode>MicrosoftAndScalar</OpenApiMode>
+        <OpenApiMode>Swashbuckle-net10</OpenApiMode>
     </PropertyGroup>
 
-    <PropertyGroup Condition=" '$(OpenApiMode)' == 'Swashbuckle'">
+    <PropertyGroup Condition=" '$(OpenApiMode)' == 'Swashbuckle-net8'">
         <TargetFramework>net8.0</TargetFramework>
-        <DefineConstants>USE_SWASHBUCKLE</DefineConstants>
+        <DefineConstants>USE_SWASHBUCKLE_NET8</DefineConstants>
+    </PropertyGroup>
+
+    <PropertyGroup Condition=" '$(OpenApiMode)' == 'Swashbuckle-net10'">
+        <TargetFramework>net10.0</TargetFramework>
+        <DefineConstants>USE_SWASHBUCKLE_NET10</DefineConstants>
     </PropertyGroup>
 
     <PropertyGroup Condition=" '$(OpenApiMode)' == 'MicrosoftAndScalar'">
@@ -28,9 +32,13 @@
         <PackageReference Include="Scalar.AspNetCore" Version="1.1.1"/>
     </ItemGroup>
 
-    <ItemGroup Condition=" '$(OpenApiMode)' == 'Swashbuckle'">
+    <ItemGroup Condition=" '$(OpenApiMode)' == 'Swashbuckle-net8'">
         <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="8.0.2"/>
         <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0"/>
+    </ItemGroup>
+    <ItemGroup Condition=" '$(OpenApiMode)' == 'Swashbuckle-net10'">
+        <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="10.0.0"/>
+        <PackageReference Include="Swashbuckle.AspNetCore.Annotations" Version="10.0.1" />
     </ItemGroup>
 
     <ItemGroup Condition=" '$(UseLocallyBuiltPackage)' != ''">
