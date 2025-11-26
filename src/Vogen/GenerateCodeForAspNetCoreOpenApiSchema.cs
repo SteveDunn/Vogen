@@ -15,8 +15,7 @@ internal static class GenerateCodeForAspNetCoreOpenApiSchema
         SourceProductionContext context,
         List<VoWorkItem> workItems,
         VogenKnownSymbols knownSymbols,
-        string className,
-        OpenApiVersionBeingUsed openApiVersion)
+        string className)
     {
         var items = workItems.Select(eachItem =>
             new Item
@@ -29,6 +28,9 @@ internal static class GenerateCodeForAspNetCoreOpenApiSchema
             }).ToList();
         
         if (openApiVersion is OpenApiVersionBeingUsed.None)
+        var openApiVersion = OpenApiSchemaUtils.DetermineOpenApiVersionBeingUsed(knownSymbols);
+
+        if (!OpenApiSchemaUtils.IsOpenApiOptionsReferenced(knownSymbols) || openApiVersion is OpenApiVersionBeingUsed.None)
         {
             return;
         }
