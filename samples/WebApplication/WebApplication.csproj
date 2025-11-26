@@ -4,27 +4,26 @@
         <Nullable>enable</Nullable>
         <ImplicitUsings>enable</ImplicitUsings>
         <UseLocallyBuiltPackage>true</UseLocallyBuiltPackage>
-        <OpenApiMode>Swashbuckle-net10</OpenApiMode>
+        <OpenApiMode>Swashbuckle-net8</OpenApiMode>
     </PropertyGroup>
 
     <PropertyGroup Condition=" '$(OpenApiMode)' == 'Swashbuckle-net8'">
         <TargetFramework>net8.0</TargetFramework>
-        <DefineConstants>USE_SWASHBUCKLE_NET8</DefineConstants>
+        <DefineConstants>$(DefineConstants);USE_SWASHBUCKLE;USE_SWASHBUCKLE_NET8</DefineConstants>
     </PropertyGroup>
 
     <PropertyGroup Condition=" '$(OpenApiMode)' == 'Swashbuckle-net10'">
         <TargetFramework>net10.0</TargetFramework>
-        <DefineConstants>USE_SWASHBUCKLE_NET10</DefineConstants>
+        <DefineConstants>$(DefineConstants);USE_SWASHBUCKLE;USE_SWASHBUCKLE_NET10</DefineConstants>
     </PropertyGroup>
 
     <PropertyGroup Condition=" '$(OpenApiMode)' == 'MicrosoftAndScalar'">
         <TargetFramework>net10.0</TargetFramework>
-        <DefineConstants>USE_MICROSOFT_OPENAPI_AND_SCALAR</DefineConstants>
+        <DefineConstants>$(DefineConstants);USE_MICROSOFT_OPENAPI_AND_SCALAR</DefineConstants>
     </PropertyGroup>
 
     <ItemGroup>
         <PackageReference Include="Refit" Version="8.0.0"/>
-<!--        <PackageReference Include="System.Text.Json" Version="8.0.5" />-->
     </ItemGroup>
 
     <ItemGroup Condition=" '$(OpenApiMode)' == 'MicrosoftAndScalar'">
@@ -36,9 +35,10 @@
         <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="8.0.2"/>
         <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0"/>
     </ItemGroup>
+
     <ItemGroup Condition=" '$(OpenApiMode)' == 'Swashbuckle-net10'">
         <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="10.0.0"/>
-        <PackageReference Include="Swashbuckle.AspNetCore.Annotations" Version="10.0.1" />
+        <PackageReference Include="Swashbuckle.AspNetCore" Version="10.0.1" />
     </ItemGroup>
 
     <ItemGroup Condition=" '$(UseLocallyBuiltPackage)' != ''">
