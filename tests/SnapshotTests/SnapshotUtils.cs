@@ -18,6 +18,7 @@ namespace SnapshotTests
                 TargetFramework.AspNetCore8_0 => "AspNetCore8.0",
                 TargetFramework.Net9_0 => "9.0",
                 TargetFramework.AspNetCore9_0 => "AspNetCore9.0",
+                TargetFramework.AspNetCore10_0 => "AspNetCore10.0",
                 _ => throw new InvalidOperationException($"Don't know about target framework {targetFramework}")
             };
 

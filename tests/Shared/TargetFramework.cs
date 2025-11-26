@@ -7,6 +7,7 @@
         AspNetCore8_0,
         Net9_0,
         AspNetCore9_0,
-        Latest = Net9_0
+        AspNetCore10_0,
+        Latest = Net9_0,
     }
 }
