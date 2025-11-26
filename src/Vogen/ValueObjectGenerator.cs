@@ -44,14 +44,14 @@ public class ValueObjectGenerator : IIncrementalGenerator
                 var targets = left.Right.Left.Left;
                 var globalConfig = left.Right.Left.Right;
                 var ks = source.Right;
-                var ef = left.Right.Right;
+                var mrkerClasses = left.Right.Right;
                 
                 Execute(
                     compilation,
                     ks,
                     targets,
                     globalConfig,
-                    ef,
+                    mrkerClasses,
                     spc);
             });
     }
@@ -69,12 +69,12 @@ public class ValueObjectGenerator : IIncrementalGenerator
                 transform: (ctx, _) => ManageAttributes.GetDefaultConfigFromGlobalAttribute(ctx))
             .Where(static m => m is not null)!;
 
-        IncrementalValuesProvider<MarkerClassDefinition> converterMarkerClasses = syntaxProvider.CreateSyntaxProvider(
+        IncrementalValuesProvider<MarkerClassDefinition> markerClasses = syntaxProvider.CreateSyntaxProvider(
                 predicate: (node, _) => ConversionMarkers.IsTarget(node),
                 transform: (ctx, _) => ConversionMarkers.GetMarkerClassFromAttribute(ctx))
             .Where(static m => m is not null)!;
 
-        return new Found(targets, globalConfig, converterMarkerClasses);
+        return new Found(targets, globalConfig, markerClasses);
     }
 
     record struct Found(
@@ -122,7 +122,7 @@ public class ValueObjectGenerator : IIncrementalGenerator
         // get all the ValueObject types found.
         List<VoWorkItem> workItems = GetWorkItems(targets, spc, globalConfig, csharpCompilation.LanguageVersion, vogenKnownSymbols, compilation).ToList();
             
-        GenerateCodeForOpenApiSchemaCustomization.WriteIfNeeded(globalConfig, spc, workItems, vogenKnownSymbols, compilation);
+        GenerateCodeForOpenApiSchemaCustomization.WriteIfNeeded(globalConfig, spc, workItems, vogenKnownSymbols, markerClasses, compilation);
 
         GenerateCodeForEfCoreMarkers.Generate(spc, compilation, markerClasses);
         

@@ -8,7 +8,7 @@ using Vogen.Generators.Conversions;
 
 namespace Vogen;
 
-internal class GenerateCodeForEfCoreMarkers
+internal static class GenerateCodeForEfCoreMarkers
 {
     public static void Generate(SourceProductionContext context, Compilation compilation, ImmutableArray<MarkerClassDefinition> markerClasses)
     {
@@ -17,13 +17,13 @@ internal class GenerateCodeForEfCoreMarkers
             return;
         }
         
-        foreach (MarkerClassDefinition? eachMarkerClass in markerClasses)
+        foreach (MarkerClassDefinition eachMarkerClass in markerClasses)
         {
             var matchingMarkers = eachMarkerClass.AttributeDefinitions.Where(a => a.Marker?.Kind == ConversionMarkerKind.EFCore).ToList();
 
             if (matchingMarkers.Count == 0)
             {
-                return;
+                continue;
             }
             
             StoreExtensionMethodToRegisterAllInMarkerClass(eachMarkerClass.MarkerClassSymbol, matchingMarkers, context);

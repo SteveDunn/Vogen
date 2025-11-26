@@ -8,4 +8,3 @@ namespace WebApplication.Shared;
 
 [ValueObject]
 public partial struct SharedStruct;
-

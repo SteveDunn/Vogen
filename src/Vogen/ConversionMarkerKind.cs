@@ -2,8 +2,9 @@ namespace Vogen;
 
 public enum ConversionMarkerKind
 {
-    Unrecognized,
+    Unrecognized ,
     EFCore,
     MessagePack,
     Bson,
+    OpenApi,
 }
