@@ -1,4 +1,4 @@
-using Microsoft.CodeAnalysis;
+﻿using Microsoft.CodeAnalysis;
 // ReSharper disable InconsistentNaming
 
 namespace Vogen;
@@ -19,6 +19,18 @@ public class VogenKnownSymbols(Compilation compilation) : KnownSymbols(compilati
 
     public INamedTypeSymbol? OpenApiOptions => GetOrResolveType("Microsoft.AspNetCore.OpenApi.OpenApiOptions", ref _OpenApiOptions);
     private Option<INamedTypeSymbol?> _OpenApiOptions;
+
+    /// <summary>
+    /// OpenApiSchema from Microsoft.OpenApi namespace, as used in OpenApi v2+
+    /// </summary>
+    public INamedTypeSymbol? OpenApiSchemaV2 => GetOrResolveType("Microsoft.OpenApi.OpenApiSchema", ref _OpenApiSchemaV2Options);
+    private Option<INamedTypeSymbol?> _OpenApiSchemaV2Options;
+
+    /// <summary>
+    /// OpenApiSchema from Microsoft.OpenApi.Models namespace, as used in OpenApi v1+
+    /// </summary>
+    public INamedTypeSymbol? OpenApiSchemaV1 => GetOrResolveType("Microsoft.OpenApi.Models.OpenApiSchema", ref _OpenApiSchemaV1Options);
+    private Option<INamedTypeSymbol?> _OpenApiSchemaV1Options;
 
     public INamedTypeSymbol? JsonSchemaType => GetOrResolveType("Microsoft.OpenApi.JsonSchemaType", ref _JsonSchemaType);
     private Option<INamedTypeSymbol?> _JsonSchemaType;

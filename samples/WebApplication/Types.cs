@@ -1,4 +1,5 @@
-using Vogen;
+﻿using Vogen;
+using WebApplication.Shared;
 
 record WeatherForecast(ForecastDate Date, Centigrade TemperatureC, Farenheit TemperatureF, string? Summary, City City);
 
@@ -35,5 +36,8 @@ public class Order
     public OrderId OrderId { get; init; } 
 
     public CustomerName CustomerName { get; init; } = CustomerName.From("");
+
+    public SharedStruct SharedStruct { get; init; }
+    public SharedStruct? SharedStructOrNull { get; init; }
 }
 
