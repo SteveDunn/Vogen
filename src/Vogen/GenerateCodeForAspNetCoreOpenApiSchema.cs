@@ -14,9 +14,11 @@ internal static class GenerateCodeForAspNetCoreOpenApiSchema
         SourceProductionContext context,
         List<VoWorkItem> workItems,
         VogenKnownSymbols knownSymbols,
-        string inAppendage, OpenApiVersionBeingUsed openApiVersion)
+        string inAppendage)
     {
-        if (openApiVersion is OpenApiVersionBeingUsed.None)
+        var openApiVersion = OpenApiSchemaUtils.DetermineOpenApiVersionBeingUsed(knownSymbols);
+
+        if (!OpenApiSchemaUtils.IsOpenApiOptionsReferenced(knownSymbols) || openApiVersion is OpenApiVersionBeingUsed.None)
         {
             return;
         }

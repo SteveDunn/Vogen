@@ -2,6 +2,9 @@
 
 internal static class OpenApiSchemaUtils
 {
+    public static bool IsSwashbuckleReferenced(VogenKnownSymbols vogenKnownSymbols) => vogenKnownSymbols.SwaggerISchemaFilter is not null;
+    public static bool IsOpenApiOptionsReferenced(VogenKnownSymbols vogenKnownSymbols) => vogenKnownSymbols.OpenApiOptions is not null;
+
     private static bool IsOpenApi1xReferenced(VogenKnownSymbols vogenKnownSymbols) => vogenKnownSymbols.OpenApiSchemaV1 is not null;
     private static bool IsOpenApi2xReferenced(VogenKnownSymbols vogenKnownSymbols) => vogenKnownSymbols.OpenApiSchemaV2 is not null;
 

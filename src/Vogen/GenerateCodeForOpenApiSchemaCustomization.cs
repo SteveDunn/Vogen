@@ -9,40 +9,41 @@ namespace Vogen;
 
 internal class GenerateCodeForOpenApiSchemaCustomization
 {
+    private const char _indent = '\t'; // tab-level
+
     public static void WriteIfNeeded(VogenConfiguration? globalConfig,
         SourceProductionContext context,
         List<VoWorkItem> workItems,
         VogenKnownSymbols knownSymbols,
         Compilation compilation)
     {
-        var c = globalConfig?.OpenApiSchemaCustomizations ?? VogenConfiguration.DefaultInstance.OpenApiSchemaCustomizations;
+        var c = globalConfig?.OpenApiSchemaCustomizations ??
+                VogenConfiguration.DefaultInstance.OpenApiSchemaCustomizations;
 
         var projectName = ProjectName.FromAssemblyName(compilation.Assembly.Name);
 
         var inAppendage = string.IsNullOrEmpty(projectName) ? string.Empty : $"In{projectName}";
-
-        var openApiVersion = OpenApiSchemaUtils.DetermineOpenApiVersionBeingUsed(knownSymbols);
 
         if (c.HasFlag(OpenApiSchemaCustomizations.GenerateSwashbuckleSchemaFilter))
         {
             WriteSchemaFilter(context, knownSymbols, inAppendage);
         }
 
-        if (c.HasFlag(OpenApiSchemaCustomizations.GenerateSwashbuckleMappingExtensionMethod) && openApiVersion != OpenApiVersionBeingUsed.None)
+        if (c.HasFlag(OpenApiSchemaCustomizations.GenerateSwashbuckleMappingExtensionMethod))
         {
-            WriteSwashbuckleExtensionMethodMapping(context, workItems, knownSymbols, inAppendage, openApiVersion);
+            WriteSwashbuckleExtensionMethodMapping(context, workItems, knownSymbols, inAppendage);
         }
 
-        if (c.HasFlag(OpenApiSchemaCustomizations.GenerateOpenApiMappingExtensionMethod) && openApiVersion != OpenApiVersionBeingUsed.None)
+        if (c.HasFlag(OpenApiSchemaCustomizations.GenerateOpenApiMappingExtensionMethod))
         {
             GenerateCodeForAspNetCoreOpenApiSchema
-                .WriteOpenApiExtensionMethodMapping(context, workItems, knownSymbols, inAppendage, openApiVersion);
+                .WriteOpenApiExtensionMethodMapping(context, workItems, knownSymbols, inAppendage);
         }
     }
 
     private static void WriteSchemaFilter(SourceProductionContext context, VogenKnownSymbols knownSymbols, string inAppendage)
     {
-        if (!IsSwashbuckleReferenced(knownSymbols))
+        if (!OpenApiSchemaUtils.IsSwashbuckleReferenced(knownSymbols))
         {
             return;
         }
@@ -116,10 +117,11 @@ internal class GenerateCodeForOpenApiSchemaCustomization
     private static void WriteSwashbuckleExtensionMethodMapping(SourceProductionContext context,
         List<VoWorkItem> workItems,
         VogenKnownSymbols knownSymbols,
-        string inAppendage,
-        OpenApiVersionBeingUsed openApiVersion)
+        string inAppendage)
     {
-        if (!IsSwashbuckleReferenced(knownSymbols) || openApiVersion == OpenApiVersionBeingUsed.None)
+        var openApiVersion = OpenApiSchemaUtils.DetermineOpenApiVersionBeingUsed(knownSymbols);
+        
+        if (!OpenApiSchemaUtils.IsSwashbuckleReferenced(knownSymbols) || openApiVersion == OpenApiVersionBeingUsed.None)
         {
             return;
         }
@@ -133,7 +135,7 @@ internal class GenerateCodeForOpenApiSchemaCustomization
               {
                   public static global::Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenOptions MapVogenTypes{{inAppendage}}(this global::Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenOptions o)
                   {
-                      {{MapWorkItems(workItems, openApiVersion)}}
+              {{MapWorkItems(workItems, openApiVersion)}}
 
                       return o;
                   }
@@ -142,8 +144,6 @@ internal class GenerateCodeForOpenApiSchemaCustomization
 
         context.AddSource("SwashbuckleSchemaExtensions_g.cs", source);
     }
-
-    private static bool IsSwashbuckleReferenced(VogenKnownSymbols vogenKnownSymbols) => vogenKnownSymbols.SwaggerISchemaFilter is not null;
 
     private static string MapWorkItems(List<VoWorkItem> workItems, OpenApiVersionBeingUsed openApiVersion)
     {
@@ -164,6 +164,7 @@ internal class GenerateCodeForOpenApiSchemaCustomization
     {
         foreach (var workItem in workItems)
         {
+            sb.Append(_indent, 2);
             string voTypeName = workItem.VoTypeName;
 
             var fqn = string.IsNullOrEmpty(workItem.FullAliasedNamespace)
@@ -181,26 +182,26 @@ internal class GenerateCodeForOpenApiSchemaCustomization
             switch (openApiVersion)
             {
                 case OpenApiVersionBeingUsed.One:
-                {
-                    string typeText = $"Type = \"{typeAndPossibleFormat.Type}\"";
-                    string nullableText = $", Nullable = {nullable.ToString().ToLower()}";
-
-                    sb.AppendLine(
-                        $$"""global::Microsoft.Extensions.DependencyInjection.SwaggerGenOptionsExtensions.MapType<{{fqn}}>(o, () => new global::Microsoft.OpenApi.Models.OpenApiSchema { {{typeText}}{{formatText}}{{nullableText}} });""");
-                    break;
-                }
-                case OpenApiVersionBeingUsed.TwoPlus:
-                {
-                    string typeText = $"Type = global::Microsoft.OpenApi.JsonSchemaType.{typeAndPossibleFormat.JsonSchemaType}";
-                    if (nullable)
                     {
-                        typeText += " | global::Microsoft.OpenApi.JsonSchemaType.Null";
-                    }
+                        string typeText = $"Type = \"{typeAndPossibleFormat.Type}\"";
+                        string nullableText = $", Nullable = {nullable.ToString().ToLower()}";
 
-                    sb.AppendLine(
-                        $$"""global::Microsoft.Extensions.DependencyInjection.SwaggerGenOptionsExtensions.MapType<{{fqn}}>(o, () => new global::Microsoft.OpenApi.OpenApiSchema { {{typeText}}{{formatText}} });""");
-                    break;
-                }
+                        sb.AppendLine(
+                            $$"""global::Microsoft.Extensions.DependencyInjection.SwaggerGenOptionsExtensions.MapType<{{fqn}}>(o, () => new global::Microsoft.OpenApi.Models.OpenApiSchema { {{typeText}}{{formatText}}{{nullableText}} });""");
+                        break;
+                    }
+                case OpenApiVersionBeingUsed.TwoPlus:
+                    {
+                        string typeText = $"Type = global::Microsoft.OpenApi.JsonSchemaType.{typeAndPossibleFormat.JsonSchemaType}";
+                        if (nullable)
+                        {
+                            typeText += " | global::Microsoft.OpenApi.JsonSchemaType.Null";
+                        }
+
+                        sb.AppendLine(
+                            $$"""global::Microsoft.Extensions.DependencyInjection.SwaggerGenOptionsExtensions.MapType<{{fqn}}>(o, () => new global::Microsoft.OpenApi.OpenApiSchema { {{typeText}}{{formatText}} });""");
+                        break;
+                    }
             }
         }
     }
@@ -215,9 +216,9 @@ internal class GenerateCodeForOpenApiSchemaCustomization
         TypeAndFormat jsonType = primitiveType switch
         {
             "System.Int32" => new("integer", "Number", "int32"),
-            "System.Int64" => new("integer", "Number","int64"),
-            "System.Int16" => new("number", "Number",""),
-            "System.Single" => new("number", "Number",""),
+            "System.Int64" => new("integer", "Number", "int64"),
+            "System.Int16" => new("number", "Number", ""),
+            "System.Single" => new("number", "Number", ""),
             "System.Decimal" => new("number", "Number", "double"),
             "System.Double" => new("number", "Number", "double"),
             "System.String" => new("string", "String", ""),
