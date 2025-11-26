@@ -1,9 +1,9 @@
-namespace Vogen;
+﻿namespace Vogen;
 
 internal static class OpenApiSchemaUtils
 {
-    private static bool IsOpenApi1xReferenced(VogenKnownSymbols vogenKnownSymbols) => vogenKnownSymbols.OpenApiOptions is not null;
-    private static bool IsOpenApi2xReferenced(VogenKnownSymbols vogenKnownSymbols) => vogenKnownSymbols.JsonSchemaType is not null;
+    private static bool IsOpenApi1xReferenced(VogenKnownSymbols vogenKnownSymbols) => vogenKnownSymbols.OpenApiSchemaV1 is not null;
+    private static bool IsOpenApi2xReferenced(VogenKnownSymbols vogenKnownSymbols) => vogenKnownSymbols.OpenApiSchemaV2 is not null;
 
     public static OpenApiVersionBeingUsed DetermineOpenApiVersionBeingUsed(VogenKnownSymbols knownSymbols)
     {
