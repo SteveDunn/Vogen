@@ -28,7 +28,7 @@
 
 public static class VogenSwashbuckleExtensions
 {
-    public static global::Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenOptions MapVogenTypesIngenerator(this global::Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenOptions o)
+    public static global::Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenOptions MapVogenTypesMapVogenTypesIngenerator(this global::Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenOptions o)
     {
         global::Microsoft.Extensions.DependencyInjection.SwaggerGenOptionsExtensions.MapType<global::@double.MyVoInt>(o, () => new global::Microsoft.OpenApi.Models.OpenApiSchema { Type = "integer", Format = "int32", Nullable = false });
 global::Microsoft.Extensions.DependencyInjection.SwaggerGenOptionsExtensions.MapType<global::@double.MyVoFloat>(o, () => new global::Microsoft.OpenApi.Models.OpenApiSchema { Type = "number", Nullable = false });
@@ -71,7 +71,7 @@ global::Microsoft.Extensions.DependencyInjection.SwaggerGenOptionsExtensions.Map
 // Suppress warnings about CS1591: Missing XML comment for publicly visible type or member 'Type_or_Member'
 #pragma warning disable CS1591
 
-public static class VogenOpenApiExtensions
+public static partial class VogenOpenApiExtensions
 {
 	public static global::Microsoft.AspNetCore.OpenApi.OpenApiOptions MapVogenTypesIngenerator(this global::Microsoft.AspNetCore.OpenApi.OpenApiOptions options)
 	{
