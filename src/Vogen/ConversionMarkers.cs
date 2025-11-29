@@ -12,6 +12,7 @@ internal static class ConversionMarkers
 {
     private static readonly Dictionary<string, ConversionMarkerKind> _knownMarkerAttributes = new()
     {
+        { "OpenApiMarkerAttribute`1", ConversionMarkerKind.OpenApi },
         { "EfCoreConverterAttribute`1", ConversionMarkerKind.EFCore },
         { "MessagePackAttribute`1", ConversionMarkerKind.MessagePack },
         { "BsonSerializerAttribute`1", ConversionMarkerKind.Bson }

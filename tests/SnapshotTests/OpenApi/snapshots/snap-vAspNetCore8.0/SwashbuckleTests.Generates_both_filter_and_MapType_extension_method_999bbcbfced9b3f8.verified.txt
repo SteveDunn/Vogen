@@ -24,7 +24,7 @@ using System.Reflection;
 
 [global::System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage]
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Vogen", "1.0.0.0")]
-public class VogenSchemaFilterIngenerator : global::Swashbuckle.AspNetCore.SwaggerGen.ISchemaFilter
+public class VogenSchemaFilterMapVogenTypesIngenerator : global::Swashbuckle.AspNetCore.SwaggerGen.ISchemaFilter
 {
     private const BindingFlags _flags = BindingFlags.Public | BindingFlags.Instance;
     public void Apply(global::Microsoft.OpenApi.Models.OpenApiSchema schema, global::Swashbuckle.AspNetCore.SwaggerGen.SchemaFilterContext context)
@@ -99,7 +99,7 @@ public class VogenSchemaFilterIngenerator : global::Swashbuckle.AspNetCore.Swagg
 
 public static class VogenSwashbuckleExtensions
 {
-    public static global::Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenOptions MapVogenTypesIngenerator(this global::Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenOptions o)
+    public static global::Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenOptions MapVogenTypesMapVogenTypesIngenerator(this global::Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenOptions o)
     {
         global::Microsoft.Extensions.DependencyInjection.SwaggerGenOptionsExtensions.MapType<global::MyNamespace.MyVoInt>(o, () => new global::Microsoft.OpenApi.Models.OpenApiSchema { Type = "integer", Format = "int32", Nullable = false });
 global::Microsoft.Extensions.DependencyInjection.SwaggerGenOptionsExtensions.MapType<global::MyNamespace.MyVoFloat>(o, () => new global::Microsoft.OpenApi.Models.OpenApiSchema { Type = "number", Nullable = false });

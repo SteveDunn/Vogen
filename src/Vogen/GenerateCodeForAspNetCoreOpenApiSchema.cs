@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Collections.Immutable;
 using System.Linq;
 using System.Text;
 using Microsoft.CodeAnalysis;
@@ -14,8 +15,18 @@ internal static class GenerateCodeForAspNetCoreOpenApiSchema
         SourceProductionContext context,
         List<VoWorkItem> workItems,
         VogenKnownSymbols knownSymbols,
-        string inAppendage)
+        string className)
     {
+        var items = workItems.Select(eachItem =>
+            new Item
+            {
+                VoTypeName = eachItem.VoTypeName,
+                IsTheWrapperAValueType = eachItem.IsTheWrapperAValueType,
+                FullAliasedNamespace = eachItem.FullAliasedNamespace,
+                IParsableIsAvailable = knownSymbols.IParsableOfT is not null,
+                UnderlyingTypeFullName = eachItem.UnderlyingType.EscapedFullName()
+            }).ToList();
+        
         OpenApiVersionBeingUsed v = IsOpenApi2xReferenced(knownSymbols) ? OpenApiVersionBeingUsed.TwoPlus :
             IsOpenApi1xReferenced(knownSymbols) ? OpenApiVersionBeingUsed.One : OpenApiVersionBeingUsed.None; 
         
@@ -24,16 +35,25 @@ internal static class GenerateCodeForAspNetCoreOpenApiSchema
             return;
         }
 
+        WriteOpenApiExtensionMethodMapping(context, items, knownSymbols, className, v);
+    }
+
+    private static void WriteOpenApiExtensionMethodMapping(
+        SourceProductionContext context,
+        List<Item> workItems,
+        VogenKnownSymbols knownSymbols,
+        string className, 
+        OpenApiVersionBeingUsed v)
+    {
         var sb = new StringBuilder();
 
         sb.AppendLine(GeneratedCodeSegments.Preamble);
         sb.AppendLine();
-        sb.AppendLine("public static class VogenOpenApiExtensions");
+        sb.AppendLine("public static partial class VogenOpenApiExtensions");
         sb.AppendLine("{");
         sb
             .Append(_indent)
-            .Append("public static global::Microsoft.AspNetCore.OpenApi.OpenApiOptions MapVogenTypes")
-            .Append(inAppendage)
+            .Append($"public static global::Microsoft.AspNetCore.OpenApi.OpenApiOptions {className}")
             .AppendLine("(this global::Microsoft.AspNetCore.OpenApi.OpenApiOptions options)");
 
         sb.Append(_indent).AppendLine("{");
@@ -61,22 +81,20 @@ internal static class GenerateCodeForAspNetCoreOpenApiSchema
         sb.Append(_indent).AppendLine("}");
         sb.AppendLine("}");
 
-        context.AddSource("OpenApiSchemaExtensions_g.cs", sb.ToString());
+        context.AddSource($"_{className}_g.cs", sb.ToString());
     }
 
-    private static string MapWorkItemsForOpenApi(List<VoWorkItem> workItems, StringBuilder sb, OpenApiVersionBeingUsed v)
+    private static void MapWorkItemsForOpenApi(List<Item> workItems, StringBuilder sb, OpenApiVersionBeingUsed v)
     {
         MapWorkItemsForOpenApi(workItems, sb, false, v);
 
         var valueTypes = workItems.Where(i => i.IsTheWrapperAValueType);
         MapWorkItemsForOpenApi(valueTypes, sb, true, v);
-
-        return sb.ToString();
     }
 
-    private static void MapWorkItemsForOpenApi(IEnumerable<VoWorkItem> workItems, StringBuilder sb, bool nullable, OpenApiVersionBeingUsed v)
+    private static void MapWorkItemsForOpenApi(IEnumerable<Item> workItems, StringBuilder sb, bool nullable, OpenApiVersionBeingUsed v)
     {
-        foreach (VoWorkItem workItem in workItems)
+        foreach (var workItem in workItems)
         {
             string voTypeName = workItem.VoTypeName;
             string ns = workItem.FullAliasedNamespace;
@@ -129,5 +147,38 @@ internal static class GenerateCodeForAspNetCoreOpenApiSchema
         None,
         One,
         TwoPlus
+    }
+
+    public static void WriteOpenApiSpecForMarkers(SourceProductionContext context,
+        List<VoWorkItem> workItems,
+        VogenKnownSymbols knownSymbols,
+        ImmutableArray<MarkerClassDefinition> markerClasses)
+    {
+        foreach (MarkerClassDefinition eachMarkerClass in markerClasses)
+        {
+            var matchingMarkers = eachMarkerClass.AttributeDefinitions.Where(a => a.Marker?.Kind == ConversionMarkerKind.OpenApi).ToList();
+
+            if (matchingMarkers.Count == 0)
+            {
+                continue;
+            }
+
+            var items = eachMarkerClass.AttributeDefinitions.Select(ad => ad.Marker).Where(m => m is not null).Select(eachItem =>
+                new Item
+                {
+                    IsTheWrapperAValueType = eachItem!.VoSymbol.IsValueType,
+                    FullAliasedNamespace = eachItem.VoSymbol.FullAliasedNamespace(),
+                    IParsableIsAvailable = knownSymbols.IParsableOfT is not null,
+                    UnderlyingTypeFullName = eachItem.UnderlyingTypeSymbol.EscapedFullName(),
+                    VoTypeName = eachItem.VoSymbol.Name
+                }).ToList();
+
+            WriteOpenApiExtensionMethodMapping(
+                context,
+                items,
+                knownSymbols,
+                $"MapVogenTypesIn{eachMarkerClass.MarkerClassSymbol.Name}",
+                OpenApiVersionBeingUsed.TwoPlus);
+        }
     }
 }

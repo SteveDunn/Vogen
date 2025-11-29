@@ -26,7 +26,7 @@
 // Suppress warnings about CS1591: Missing XML comment for publicly visible type or member 'Type_or_Member'
 #pragma warning disable CS1591
 
-public static class VogenOpenApiExtensions
+public static partial class VogenOpenApiExtensions
 {
 	public static global::Microsoft.AspNetCore.OpenApi.OpenApiOptions MapVogenTypesIngenerator(this global::Microsoft.AspNetCore.OpenApi.OpenApiOptions options)
 	{

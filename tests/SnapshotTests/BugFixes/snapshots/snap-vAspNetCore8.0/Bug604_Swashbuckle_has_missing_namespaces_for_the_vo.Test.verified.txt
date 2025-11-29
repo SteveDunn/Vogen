@@ -28,7 +28,7 @@
 
 public static class VogenSwashbuckleExtensions
 {
-    public static global::Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenOptions MapVogenTypesIngenerator(this global::Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenOptions o)
+    public static global::Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenOptions MapVogenTypesMapVogenTypesIngenerator(this global::Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenOptions o)
     {
         global::Microsoft.Extensions.DependencyInjection.SwaggerGenOptionsExtensions.MapType<global::MyLongNamespace.Vo>(o, () => new global::Microsoft.OpenApi.Models.OpenApiSchema { Type = "integer", Format = "int32", Nullable = false });
 global::Microsoft.Extensions.DependencyInjection.SwaggerGenOptionsExtensions.MapType<global::System.Nullable<global::MyLongNamespace.Vo>>(o, () => new global::Microsoft.OpenApi.Models.OpenApiSchema { Type = "integer", Format = "int32", Nullable = true });

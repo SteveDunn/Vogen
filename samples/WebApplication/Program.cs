@@ -1,8 +1,8 @@
 #pragma warning disable ASPDEPR002
-//using Microsoft.OpenApi.Any;
 
 using Microsoft.OpenApi;
 using Vogen;
+using WebApplication.Shared;
 
 #if USE_SWASHBUCKLE
     [assembly: VogenDefaults(openApiSchemaCustomizations: OpenApiSchemaCustomizations.GenerateSwashbuckleMappingExtensionMethod)]
@@ -14,13 +14,16 @@ using Vogen;
 #endif
 
 
+
 var builder = Microsoft.AspNetCore.Builder.WebApplication.CreateBuilder(args);
 
 #if USE_MICROSOFT_OPENAPI_AND_SCALAR
     builder.Services.AddOpenApi((OpenApiOptions o) =>
     {
+        o.MapVogenTypesInOpenApiMarkers();
     });
 #endif
+
 
 #if USE_SWASHBUCKLE
 // Add services to the container.
@@ -46,7 +49,6 @@ var app = builder.Build();
     app.UseSwagger();
     app.UseSwaggerUI();
 #endif
-
 
 app.UseHttpsRedirection();
 app.MapControllers();
@@ -124,3 +126,8 @@ app.MapScalarApiReference();
 #endif
 
 app.Run();
+
+[OpenApiMarker<City>]
+[OpenApiMarker<Age>]
+[OpenApiMarker<Name>]
+public partial class OpenApiMarkers;

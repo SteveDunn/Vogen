@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Collections.Immutable;
 using System.Linq;
 using System.Text;
 using Microsoft.CodeAnalysis;
@@ -12,28 +13,32 @@ internal class GenerateCodeForOpenApiSchemaCustomization
         SourceProductionContext context,
         List<VoWorkItem> workItems,
         VogenKnownSymbols knownSymbols,
+        ImmutableArray<MarkerClassDefinition> markerClasses,
         Compilation compilation)
     {
+        GenerateCodeForAspNetCoreOpenApiSchema
+            .WriteOpenApiSpecForMarkers(context, workItems, knownSymbols, markerClasses);
+
         var c = globalConfig?.OpenApiSchemaCustomizations ?? VogenConfiguration.DefaultInstance.OpenApiSchemaCustomizations;
 
         var projectName = ProjectName.FromAssemblyName(compilation.Assembly.Name);
 
-        var inAppendage = string.IsNullOrEmpty(projectName) ? string.Empty : $"In{projectName}";
+        var className = string.IsNullOrEmpty(projectName) ? string.Empty : $"MapVogenTypesIn{projectName}";
 
         if (c.HasFlag(OpenApiSchemaCustomizations.GenerateSwashbuckleSchemaFilter))
         {
-            WriteSchemaFilter(context, knownSymbols, inAppendage);
+            WriteSchemaFilter(context, knownSymbols, className);
         }
 
         if (c.HasFlag(OpenApiSchemaCustomizations.GenerateSwashbuckleMappingExtensionMethod))
         {
-            WriteSwashbuckleExtensionMethodMapping(context, workItems, knownSymbols, inAppendage);
+            WriteSwashbuckleExtensionMethodMapping(context, workItems, knownSymbols, className);
         }
 
         if (c.HasFlag(OpenApiSchemaCustomizations.GenerateOpenApiMappingExtensionMethod))
         {
             GenerateCodeForAspNetCoreOpenApiSchema
-                .WriteOpenApiExtensionMethodMapping(context, workItems, knownSymbols, inAppendage);
+                .WriteOpenApiExtensionMethodMapping(context, workItems, knownSymbols, className);
         }
     }
 
@@ -145,17 +150,25 @@ internal class GenerateCodeForOpenApiSchemaCustomization
     {
         var sb = new StringBuilder();
 
+        var items = workItems.Select(workItem => new Item
+        {
+            IParsableIsAvailable = workItem.ParsingInformation.IParsableIsAvailable,
+            UnderlyingTypeFullName = workItem.UnderlyingTypeFullName,
+            VoTypeName = workItem.VoTypeName,
+            FullAliasedNamespace = workItem.FullAliasedNamespace,
+            IsTheWrapperAValueType = workItem.IsTheWrapperAValueType
+        }).ToArray();
+
         // map everything an non-nullable
-        MapWorkItems(workItems, sb, false);
+        MapWorkItems(items, sb, false);
 
         // map value types again as nullable, see https://github.com/SteveDunn/Vogen/issues/693
-        var valueTypes = workItems.Where(i => i.IsTheWrapperAValueType);
-        MapWorkItems(valueTypes, sb, true);
+        MapWorkItems(items.Where(i => i.IsTheWrapperAValueType), sb, true);
 
         return sb.ToString();
     }
 
-    private static void MapWorkItems(IEnumerable<VoWorkItem> workItems, StringBuilder sb, bool nullable)
+    private static void MapWorkItems(IEnumerable<Item> workItems, StringBuilder sb, bool nullable)
     {
         foreach (var workItem in workItems)
         {
@@ -180,10 +193,19 @@ internal class GenerateCodeForOpenApiSchemaCustomization
         }
     }
 
+    public class Item
+    {
+        public required string UnderlyingTypeFullName { get; init; }
+        public required bool IParsableIsAvailable { get; init; }
+        public required string VoTypeName { get; init; }
+        public required string FullAliasedNamespace { get; init; }
+        public required bool IsTheWrapperAValueType { get; init; }
+    }
+
     internal record struct TypeAndFormat(string Type, string JsonSchemaType, string Format);
 
     // see https://spec.openapis.org/oas/v3.0.0.html#data-types
-    internal static TypeAndFormat MapUnderlyingTypeToJsonSchema(VoWorkItem workItem)
+    internal static TypeAndFormat MapUnderlyingTypeToJsonSchema(Item workItem)
     {
         var primitiveType = workItem.UnderlyingTypeFullName;
 
@@ -202,15 +224,15 @@ internal class GenerateCodeForOpenApiSchemaCustomization
             "System.DateTimeOffset" => new("string", "String", "date-time"),
             "System.Guid" => new("string", "String", "uuid"),
             "System.Byte" => new("string", "String", "byte"),
-            _ => TryMapComplexPrimitive(workItem)
+            _ => TryMapComplexPrimitive(workItem.IParsableIsAvailable)
         };
 
         return jsonType;
     }
 
-    private static TypeAndFormat TryMapComplexPrimitive(VoWorkItem workItem)
+    private static TypeAndFormat TryMapComplexPrimitive(bool iParsableIsAvailable)
     {
-        if (workItem.ParsingInformation.IParsableIsAvailable)
+        if (iParsableIsAvailable)
         {
             return new("string", "String", "");
         }
