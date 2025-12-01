@@ -1,16 +1,26 @@
 #pragma warning disable ASPDEPR002
 
-using Microsoft.OpenApi;
 using Vogen;
 using WebApplication.Shared;
 
-#if USE_SWASHBUCKLE
-    [assembly: VogenDefaults(openApiSchemaCustomizations: OpenApiSchemaCustomizations.GenerateSwashbuckleMappingExtensionMethod)]
+#if USE_SWASHBUCKLE_NET8
+using Microsoft.OpenApi.Any;
+using Microsoft.OpenApi.Models;
+
+[assembly: VogenDefaults(openApiSchemaCustomizations: OpenApiSchemaCustomizations.GenerateSwashbuckleMappingExtensionMethod)]
+#endif
+#if USE_SWASHBUCKLE_NET10
+using System.Text.Json.Nodes;
+using Microsoft.OpenApi;
+
+[assembly: VogenDefaults(openApiSchemaCustomizations: OpenApiSchemaCustomizations.GenerateSwashbuckleMappingExtensionMethod)]
 #endif
 #if USE_MICROSOFT_OPENAPI_AND_SCALAR
-    using Microsoft.AspNetCore.OpenApi;
-    using Scalar.AspNetCore;
-    [assembly: VogenDefaults(openApiSchemaCustomizations: OpenApiSchemaCustomizations.GenerateOpenApiMappingExtensionMethod)]
+using Microsoft.AspNetCore.OpenApi;
+using Microsoft.OpenApi;
+using Scalar.AspNetCore;
+
+[assembly: VogenDefaults(openApiSchemaCustomizations: OpenApiSchemaCustomizations.GenerateOpenApiMappingExtensionMethod)]
 #endif
 
 
@@ -116,7 +126,15 @@ app.MapGet("/historicweatherforecast/{historicForecastId}", (HistoricForecastId 
     {
         var parameter = generatedOperation.Parameters?[0];
         parameter?.Description = "The ID of the historical weather report (example only - always returns the same weather report)";
+
+#if USE_MICROSOFT_OPENAPI_AND_SCALAR
         parameter?.Examples?.Add("example1", new OpenApiExample { Value = Guid.NewGuid().ToString() });
+#elif USE_SWASHBUCKLE_NET8
+        parameter?.Examples?.Add("example1", new OpenApiExample { Value = new OpenApiString(Guid.NewGuid().ToString()) });
+#elif USE_SWASHBUCKLE_NET10
+        parameter?.Examples?.Add("example1", new OpenApiExample() { Value = JsonValue.Create(Guid.NewGuid().ToString()) });
+#endif
+
         return generatedOperation;        
     });
 

@@ -176,6 +176,16 @@ public sealed class ProjectBuilder
                 AddNuGetReference("Microsoft.AspNetCore.OpenApi", "9.0.6", "lib/net9.0");
                 AddNuGetReference("Microsoft.OpenApi", "1.6.17", "lib/netstandard2.0/");
                 break;
+
+            case TargetFramework.AspNetCore10_0:
+                AddNuGetReference("Microsoft.NETCore.App.Ref", "10.0.0", "ref/net10.0/");
+                AddNuGetReference("Microsoft.AspNetCore.App.Ref", "10.0.0", "ref/net10.0/");
+                AddNuGetReference("Swashbuckle.AspNetCore.SwaggerGen", "10.0.0", "lib/net10.0/");
+                AddNuGetReference("MongoDB.Bson", "2.27.0", "lib/netstandard2.0");
+                AddNuGetReference("Microsoft.AspNetCore.OpenApi", "10.0.0", "lib/net10.0");
+                AddNuGetReference("Microsoft.OpenApi", "3.0.1", "lib/netstandard2.0/");
+                break;
+
             case null:
                 break;
             default:

@@ -28,16 +28,16 @@
 
 public static class VogenSwashbuckleExtensions
 {
-    public static global::Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenOptions MapVogenTypesMapVogenTypesIngenerator(this global::Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenOptions o)
+    public static global::Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenOptions MapVogenTypesIngenerator(this global::Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenOptions o)
     {
-		global::Microsoft.Extensions.DependencyInjection.SwaggerGenOptionsExtensions.MapType<global::MyNamespace.MyVoInt>(o, () => new global::Microsoft.OpenApi.Models.OpenApiSchema { Type = "integer", Format = "int32", Nullable = false });
-		global::Microsoft.Extensions.DependencyInjection.SwaggerGenOptionsExtensions.MapType<global::MyNamespace.MyVoFloat>(o, () => new global::Microsoft.OpenApi.Models.OpenApiSchema { Type = "number", Nullable = false });
-		global::Microsoft.Extensions.DependencyInjection.SwaggerGenOptionsExtensions.MapType<global::MyNamespace.MyVoDecimal>(o, () => new global::Microsoft.OpenApi.Models.OpenApiSchema { Type = "number", Format = "double", Nullable = false });
-		global::Microsoft.Extensions.DependencyInjection.SwaggerGenOptionsExtensions.MapType<global::MyNamespace.MyVoDouble>(o, () => new global::Microsoft.OpenApi.Models.OpenApiSchema { Type = "number", Format = "double", Nullable = false });
-		global::Microsoft.Extensions.DependencyInjection.SwaggerGenOptionsExtensions.MapType<global::MyNamespace.MyVoString>(o, () => new global::Microsoft.OpenApi.Models.OpenApiSchema { Type = "string", Nullable = false });
-		global::Microsoft.Extensions.DependencyInjection.SwaggerGenOptionsExtensions.MapType<global::MyNamespace.MyVoBool>(o, () => new global::Microsoft.OpenApi.Models.OpenApiSchema { Type = "boolean", Nullable = false });
-		global::Microsoft.Extensions.DependencyInjection.SwaggerGenOptionsExtensions.MapType<global::MyNamespace.@bool>(o, () => new global::Microsoft.OpenApi.Models.OpenApiSchema { Type = "boolean", Nullable = false });
-		global::Microsoft.Extensions.DependencyInjection.SwaggerGenOptionsExtensions.MapType<global::MyNamespace.MyVoShort>(o, () => new global::Microsoft.OpenApi.Models.OpenApiSchema { Type = "number", Nullable = false });
+		global::Microsoft.Extensions.DependencyInjection.SwaggerGenOptionsExtensions.MapType<global::@double.MyVoInt>(o, () => new global::Microsoft.OpenApi.OpenApiSchema { Type = global::Microsoft.OpenApi.JsonSchemaType.Number, Format = "int32" });
+		global::Microsoft.Extensions.DependencyInjection.SwaggerGenOptionsExtensions.MapType<global::@double.MyVoFloat>(o, () => new global::Microsoft.OpenApi.OpenApiSchema { Type = global::Microsoft.OpenApi.JsonSchemaType.Number });
+		global::Microsoft.Extensions.DependencyInjection.SwaggerGenOptionsExtensions.MapType<global::@double.MyVoDecimal>(o, () => new global::Microsoft.OpenApi.OpenApiSchema { Type = global::Microsoft.OpenApi.JsonSchemaType.Number, Format = "double" });
+		global::Microsoft.Extensions.DependencyInjection.SwaggerGenOptionsExtensions.MapType<global::@double.MyVoDouble>(o, () => new global::Microsoft.OpenApi.OpenApiSchema { Type = global::Microsoft.OpenApi.JsonSchemaType.Number, Format = "double" });
+		global::Microsoft.Extensions.DependencyInjection.SwaggerGenOptionsExtensions.MapType<global::@double.MyVoString>(o, () => new global::Microsoft.OpenApi.OpenApiSchema { Type = global::Microsoft.OpenApi.JsonSchemaType.String });
+		global::Microsoft.Extensions.DependencyInjection.SwaggerGenOptionsExtensions.MapType<global::@double.MyVoBool>(o, () => new global::Microsoft.OpenApi.OpenApiSchema { Type = global::Microsoft.OpenApi.JsonSchemaType.Boolean });
+		global::Microsoft.Extensions.DependencyInjection.SwaggerGenOptionsExtensions.MapType<global::@double.@bool>(o, () => new global::Microsoft.OpenApi.OpenApiSchema { Type = global::Microsoft.OpenApi.JsonSchemaType.Boolean });
+		global::Microsoft.Extensions.DependencyInjection.SwaggerGenOptionsExtensions.MapType<global::@double.MyVoShort>(o, () => new global::Microsoft.OpenApi.OpenApiSchema { Type = global::Microsoft.OpenApi.JsonSchemaType.Number });
 
 
         return o;
@@ -71,53 +71,53 @@ public static class VogenSwashbuckleExtensions
 // Suppress warnings about CS1591: Missing XML comment for publicly visible type or member 'Type_or_Member'
 #pragma warning disable CS1591
 
-public static partial class VogenOpenApiExtensions
+public static class VogenOpenApiExtensions
 {
 	public static global::Microsoft.AspNetCore.OpenApi.OpenApiOptions MapVogenTypesIngenerator(this global::Microsoft.AspNetCore.OpenApi.OpenApiOptions options)
 	{
 		options.AddSchemaTransformer((schema, context, cancellationToken) =>
 		{
-			if (context.JsonTypeInfo.Type == typeof(global::MyNamespace.MyVoInt))
+			if (context.JsonTypeInfo.Type == typeof(global::@double.MyVoInt))
 			{
-				schema.Type = "integer";
+				schema.Type = Microsoft.OpenApi.JsonSchemaType.Number;
 				schema.Format = "int32";
 			}
 
-			if (context.JsonTypeInfo.Type == typeof(global::MyNamespace.MyVoFloat))
+			if (context.JsonTypeInfo.Type == typeof(global::@double.MyVoFloat))
 			{
-				schema.Type = "number";
+				schema.Type = Microsoft.OpenApi.JsonSchemaType.Number;
 			}
 
-			if (context.JsonTypeInfo.Type == typeof(global::MyNamespace.MyVoDecimal))
+			if (context.JsonTypeInfo.Type == typeof(global::@double.MyVoDecimal))
 			{
-				schema.Type = "number";
+				schema.Type = Microsoft.OpenApi.JsonSchemaType.Number;
 				schema.Format = "double";
 			}
 
-			if (context.JsonTypeInfo.Type == typeof(global::MyNamespace.MyVoDouble))
+			if (context.JsonTypeInfo.Type == typeof(global::@double.MyVoDouble))
 			{
-				schema.Type = "number";
+				schema.Type = Microsoft.OpenApi.JsonSchemaType.Number;
 				schema.Format = "double";
 			}
 
-			if (context.JsonTypeInfo.Type == typeof(global::MyNamespace.MyVoString))
+			if (context.JsonTypeInfo.Type == typeof(global::@double.MyVoString))
 			{
-				schema.Type = "string";
+				schema.Type = Microsoft.OpenApi.JsonSchemaType.String;
 			}
 
-			if (context.JsonTypeInfo.Type == typeof(global::MyNamespace.MyVoBool))
+			if (context.JsonTypeInfo.Type == typeof(global::@double.MyVoBool))
 			{
-				schema.Type = "boolean";
+				schema.Type = Microsoft.OpenApi.JsonSchemaType.Boolean;
 			}
 
-			if (context.JsonTypeInfo.Type == typeof(global::MyNamespace.@bool))
+			if (context.JsonTypeInfo.Type == typeof(global::@double.@bool))
 			{
-				schema.Type = "boolean";
+				schema.Type = Microsoft.OpenApi.JsonSchemaType.Boolean;
 			}
 
-			if (context.JsonTypeInfo.Type == typeof(global::MyNamespace.MyVoShort))
+			if (context.JsonTypeInfo.Type == typeof(global::@double.MyVoShort))
 			{
-				schema.Type = "number";
+				schema.Type = Microsoft.OpenApi.JsonSchemaType.Number;
 			}
 
 			return global::System.Threading.Tasks.Task.CompletedTask;
@@ -162,36 +162,36 @@ namespace generator
         private static readonly global::System.Collections.Generic.Dictionary<global::System.Type, global::System.Lazy<global::System.Text.Json.Serialization.JsonConverter>> _lookup = new global::System.Collections.Generic.Dictionary<global::System.Type, global::System.Lazy<global::System.Text.Json.Serialization.JsonConverter>>
         {
             {
-                typeof(global::MyNamespace.MyVoInt),
-                new global::System.Lazy<global::System.Text.Json.Serialization.JsonConverter>(() => new global::MyNamespace.MyVoInt.MyVoIntSystemTextJsonConverter())
+                typeof(global::@double.MyVoInt),
+                new global::System.Lazy<global::System.Text.Json.Serialization.JsonConverter>(() => new global::@double.MyVoInt.MyVoIntSystemTextJsonConverter())
             },
             {
-                typeof(global::MyNamespace.MyVoFloat),
-                new global::System.Lazy<global::System.Text.Json.Serialization.JsonConverter>(() => new global::MyNamespace.MyVoFloat.MyVoFloatSystemTextJsonConverter())
+                typeof(global::@double.MyVoFloat),
+                new global::System.Lazy<global::System.Text.Json.Serialization.JsonConverter>(() => new global::@double.MyVoFloat.MyVoFloatSystemTextJsonConverter())
             },
             {
-                typeof(global::MyNamespace.MyVoDecimal),
-                new global::System.Lazy<global::System.Text.Json.Serialization.JsonConverter>(() => new global::MyNamespace.MyVoDecimal.MyVoDecimalSystemTextJsonConverter())
+                typeof(global::@double.MyVoDecimal),
+                new global::System.Lazy<global::System.Text.Json.Serialization.JsonConverter>(() => new global::@double.MyVoDecimal.MyVoDecimalSystemTextJsonConverter())
             },
             {
-                typeof(global::MyNamespace.MyVoDouble),
-                new global::System.Lazy<global::System.Text.Json.Serialization.JsonConverter>(() => new global::MyNamespace.MyVoDouble.MyVoDoubleSystemTextJsonConverter())
+                typeof(global::@double.MyVoDouble),
+                new global::System.Lazy<global::System.Text.Json.Serialization.JsonConverter>(() => new global::@double.MyVoDouble.MyVoDoubleSystemTextJsonConverter())
             },
             {
-                typeof(global::MyNamespace.MyVoString),
-                new global::System.Lazy<global::System.Text.Json.Serialization.JsonConverter>(() => new global::MyNamespace.MyVoString.MyVoStringSystemTextJsonConverter())
+                typeof(global::@double.MyVoString),
+                new global::System.Lazy<global::System.Text.Json.Serialization.JsonConverter>(() => new global::@double.MyVoString.MyVoStringSystemTextJsonConverter())
             },
             {
-                typeof(global::MyNamespace.MyVoBool),
-                new global::System.Lazy<global::System.Text.Json.Serialization.JsonConverter>(() => new global::MyNamespace.MyVoBool.MyVoBoolSystemTextJsonConverter())
+                typeof(global::@double.MyVoBool),
+                new global::System.Lazy<global::System.Text.Json.Serialization.JsonConverter>(() => new global::@double.MyVoBool.MyVoBoolSystemTextJsonConverter())
             },
             {
-                typeof(global::MyNamespace.@bool),
-                new global::System.Lazy<global::System.Text.Json.Serialization.JsonConverter>(() => new global::MyNamespace.@bool.@boolSystemTextJsonConverter())
+                typeof(global::@double.@bool),
+                new global::System.Lazy<global::System.Text.Json.Serialization.JsonConverter>(() => new global::@double.@bool.@boolSystemTextJsonConverter())
             },
             {
-                typeof(global::MyNamespace.MyVoShort),
-                new global::System.Lazy<global::System.Text.Json.Serialization.JsonConverter>(() => new global::MyNamespace.MyVoShort.MyVoShortSystemTextJsonConverter())
+                typeof(global::@double.MyVoShort),
+                new global::System.Lazy<global::System.Text.Json.Serialization.JsonConverter>(() => new global::@double.MyVoShort.MyVoShortSystemTextJsonConverter())
             }
         };
         public override bool CanConvert(global::System.Type typeToConvert) => _lookup.ContainsKey(typeToConvert);
@@ -220,7 +220,7 @@ namespace generator
 
 // Suppress warnings about CS1591: Missing XML comment for publicly visible type or member 'Type_or_Member'
 #pragma warning disable CS1591
-namespace MyNamespace
+namespace @double
 {
     [global::System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Vogen", "1.0.0.0")]
@@ -930,7 +930,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
 
 // Suppress warnings about CS1591: Missing XML comment for publicly visible type or member 'Type_or_Member'
 #pragma warning disable CS1591
-namespace MyNamespace
+namespace @double
 {
     [global::System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Vogen", "1.0.0.0")]
@@ -1640,7 +1640,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
 
 // Suppress warnings about CS1591: Missing XML comment for publicly visible type or member 'Type_or_Member'
 #pragma warning disable CS1591
-namespace MyNamespace
+namespace @double
 {
     [global::System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Vogen", "1.0.0.0")]
@@ -2348,7 +2348,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
 
 // Suppress warnings about CS1591: Missing XML comment for publicly visible type or member 'Type_or_Member'
 #pragma warning disable CS1591
-namespace MyNamespace
+namespace @double
 {
     [global::System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Vogen", "1.0.0.0")]
@@ -3057,7 +3057,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
 
 // Suppress warnings about CS1591: Missing XML comment for publicly visible type or member 'Type_or_Member'
 #pragma warning disable CS1591
-namespace MyNamespace
+namespace @double
 {
     [global::System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Vogen", "1.0.0.0")]
@@ -3505,7 +3505,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
 
 // Suppress warnings about CS1591: Missing XML comment for publicly visible type or member 'Type_or_Member'
 #pragma warning disable CS1591
-namespace MyNamespace
+namespace @double
 {
     [global::System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Vogen", "1.0.0.0")]
@@ -3953,7 +3953,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
 
 // Suppress warnings about CS1591: Missing XML comment for publicly visible type or member 'Type_or_Member'
 #pragma warning disable CS1591
-namespace MyNamespace
+namespace @double
 {
     [global::System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Vogen", "1.0.0.0")]
@@ -4401,7 +4401,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
 
 // Suppress warnings about CS1591: Missing XML comment for publicly visible type or member 'Type_or_Member'
 #pragma warning disable CS1591
-namespace MyNamespace
+namespace @double
 {
     [global::System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Vogen", "1.0.0.0")]
