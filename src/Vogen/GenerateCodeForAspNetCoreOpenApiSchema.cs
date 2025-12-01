@@ -27,7 +27,6 @@ internal static class GenerateCodeForAspNetCoreOpenApiSchema
                 UnderlyingTypeFullName = eachItem.UnderlyingType.EscapedFullName()
             }).ToList();
         
-        if (openApiVersion is OpenApiVersionBeingUsed.None)
         var openApiVersion = OpenApiSchemaUtils.DetermineOpenApiVersionBeingUsed(knownSymbols);
 
         if (!OpenApiSchemaUtils.IsOpenApiOptionsReferenced(knownSymbols) || openApiVersion is OpenApiVersionBeingUsed.None)
@@ -35,7 +34,7 @@ internal static class GenerateCodeForAspNetCoreOpenApiSchema
             return;
         }
 
-        WriteOpenApiExtensionMethodMapping(context, items, knownSymbols, className, v);
+        WriteOpenApiExtensionMethodMapping(context, items, knownSymbols, className, openApiVersion);
     }
 
     private static void WriteOpenApiExtensionMethodMapping(
@@ -43,7 +42,7 @@ internal static class GenerateCodeForAspNetCoreOpenApiSchema
         List<Item> workItems,
         VogenKnownSymbols knownSymbols,
         string className, 
-        OpenApiVersionBeingUsed v)
+        OpenApiVersionBeingUsed openApiVersion)
     {
         var sb = new StringBuilder();
 

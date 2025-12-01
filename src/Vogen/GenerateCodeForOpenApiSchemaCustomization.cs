@@ -42,7 +42,7 @@ internal class GenerateCodeForOpenApiSchemaCustomization
         if (c.HasFlag(OpenApiSchemaCustomizations.GenerateOpenApiMappingExtensionMethod))
         {
             GenerateCodeForAspNetCoreOpenApiSchema
-                .WriteOpenApiExtensionMethodMapping(context, workItems, knownSymbols, classNamee);
+                .WriteOpenApiExtensionMethodMapping(context, workItems, knownSymbols, className);
         }
     }
 
