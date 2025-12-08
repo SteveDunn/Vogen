@@ -19,8 +19,7 @@ internal class GenerateCodeForOpenApiSchemaCustomization
         ImmutableArray<MarkerClassDefinition> markerClasses,
         Compilation compilation)
     {
-        GenerateCodeForAspNetCoreOpenApiSchema
-            .WriteOpenApiSpecForMarkers(context, workItems, knownSymbols, markerClasses);
+        GenerateCodeForAspNetCoreOpenApiSchema.WriteOpenApiSpecForMarkers(context, workItems, knownSymbols, markerClasses);
 
         var c = globalConfig?.OpenApiSchemaCustomizations ??
                 VogenConfiguration.DefaultInstance.OpenApiSchemaCustomizations;
@@ -122,7 +121,7 @@ internal class GenerateCodeForOpenApiSchemaCustomization
     private static void WriteSwashbuckleExtensionMethodMapping(SourceProductionContext context,
         List<VoWorkItem> workItems,
         VogenKnownSymbols knownSymbols,
-        string inAppendage)
+        string className)
     {
         var openApiVersion = OpenApiSchemaUtils.DetermineOpenApiVersionBeingUsed(knownSymbols);
         
@@ -138,7 +137,7 @@ internal class GenerateCodeForOpenApiSchemaCustomization
 
               public static class VogenSwashbuckleExtensions
               {
-                  public static global::Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenOptions MapVogenTypes{{inAppendage}}(this global::Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenOptions o)
+                  public static global::Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenOptions {{className}}(this global::Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenOptions o)
                   {
               {{MapWorkItems(workItems, openApiVersion)}}
 
