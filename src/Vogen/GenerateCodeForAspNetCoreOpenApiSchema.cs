@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Linq;
 using System.Text;
@@ -17,6 +17,13 @@ internal static class GenerateCodeForAspNetCoreOpenApiSchema
         VogenKnownSymbols knownSymbols,
         string className)
     {
+        var openApiVersion = OpenApiSchemaUtils.DetermineOpenApiVersionBeingUsed(knownSymbols);
+
+        if (!OpenApiSchemaUtils.IsOpenApiOptionsReferenced(knownSymbols) || openApiVersion is OpenApiVersionBeingUsed.None)
+        {
+            return;
+        }
+
         var items = workItems.Select(eachItem =>
             new Item
             {
@@ -27,23 +34,14 @@ internal static class GenerateCodeForAspNetCoreOpenApiSchema
                 UnderlyingTypeFullName = eachItem.UnderlyingType.EscapedFullName()
             }).ToList();
         
-        OpenApiVersionBeingUsed v = IsOpenApi2xReferenced(knownSymbols) ? OpenApiVersionBeingUsed.TwoPlus :
-            IsOpenApi1xReferenced(knownSymbols) ? OpenApiVersionBeingUsed.One : OpenApiVersionBeingUsed.None; 
-        
-        if (v is OpenApiVersionBeingUsed.None)
-        {
-            return;
-        }
-
-        WriteOpenApiExtensionMethodMapping(context, items, knownSymbols, className, v);
+        WriteOpenApiExtensionMethodMapping(context, items, className, openApiVersion);
     }
 
     private static void WriteOpenApiExtensionMethodMapping(
         SourceProductionContext context,
         List<Item> workItems,
-        VogenKnownSymbols knownSymbols,
         string className, 
-        OpenApiVersionBeingUsed v)
+        OpenApiVersionBeingUsed openApiVersion)
     {
         var sb = new StringBuilder();
 
@@ -66,7 +64,7 @@ internal static class GenerateCodeForAspNetCoreOpenApiSchema
             .Append(_indent, 2)
             .AppendLine("{");
 
-        MapWorkItemsForOpenApi(workItems, sb, v);
+        MapWorkItemsForOpenApi(workItems, sb, openApiVersion);
 
         sb
             .Append(_indent, 3)
@@ -139,21 +137,18 @@ internal static class GenerateCodeForAspNetCoreOpenApiSchema
         }
     }
 
-    private static bool IsOpenApi1xReferenced(VogenKnownSymbols vogenKnownSymbols) => vogenKnownSymbols.OpenApiOptions is not null;
-    private static bool IsOpenApi2xReferenced(VogenKnownSymbols vogenKnownSymbols) => vogenKnownSymbols.JsonSchemaType is not null;
-
-    enum OpenApiVersionBeingUsed
-    {
-        None,
-        One,
-        TwoPlus
-    }
-
     public static void WriteOpenApiSpecForMarkers(SourceProductionContext context,
         List<VoWorkItem> workItems,
         VogenKnownSymbols knownSymbols,
         ImmutableArray<MarkerClassDefinition> markerClasses)
     {
+        var openApiVersion = OpenApiSchemaUtils.DetermineOpenApiVersionBeingUsed(knownSymbols);
+
+        if (!OpenApiSchemaUtils.IsOpenApiOptionsReferenced(knownSymbols) || openApiVersion is OpenApiVersionBeingUsed.None)
+        {
+            return;
+        }
+
         foreach (MarkerClassDefinition eachMarkerClass in markerClasses)
         {
             var matchingMarkers = eachMarkerClass.AttributeDefinitions.Where(a => a.Marker?.Kind == ConversionMarkerKind.OpenApi).ToList();
@@ -176,9 +171,8 @@ internal static class GenerateCodeForAspNetCoreOpenApiSchema
             WriteOpenApiExtensionMethodMapping(
                 context,
                 items,
-                knownSymbols,
                 $"MapVogenTypesIn{eachMarkerClass.MarkerClassSymbol.Name}",
-                OpenApiVersionBeingUsed.TwoPlus);
+                openApiVersion);
         }
     }
 }

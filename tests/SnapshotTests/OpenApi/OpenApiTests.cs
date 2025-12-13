@@ -53,10 +53,13 @@ public class OpenApiTests
     }
 
     [Theory]
-    [InlineData("")]
-    [InlineData("namespace MyNamespace;")]
-    [InlineData("namespace @double;")]
-    public async Task Generates_both_OpenApiMappingExtensionMethod_SwaggerMappingExtensionMethod(string @namespace)
+    [InlineData("", TargetFramework.AspNetCore9_0)]
+    [InlineData("namespace MyNamespace;", TargetFramework.AspNetCore9_0)]
+    [InlineData("namespace @double;", TargetFramework.AspNetCore9_0)]
+    [InlineData("", TargetFramework.AspNetCore10_0)]
+    [InlineData("namespace MyNamespace;", TargetFramework.AspNetCore10_0)]
+    [InlineData("namespace @double;", TargetFramework.AspNetCore10_0)]
+    public async Task Generates_both_OpenApiMappingExtensionMethod_SwaggerMappingExtensionMethod(string @namespace, TargetFramework targetFramework)
     {
         var source =
             $$"""
@@ -97,7 +100,7 @@ public class OpenApiTests
         await new SnapshotRunner<ValueObjectGenerator>()
             .WithSource(source)
             .CustomizeSettings(s => s.UseHashedParameters(@namespace))
-            .RunOn(TargetFramework.AspNetCore9_0);
+            .RunOn(targetFramework);
     }
 
     [Theory]
