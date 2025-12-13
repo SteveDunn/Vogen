@@ -8,8 +8,8 @@
     <NoPackageAnalysis>true</NoPackageAnalysis>
 
     <!-- Version and PackageVersion are handled in Directory.Build.targets -->
-    <PackageId>Vogen</PackageId>
-    <PackageProjectUrl>https://github.com/SteveDunn/Vogen</PackageProjectUrl>
+    <PackageId>GreatUtilities.Vogen</PackageId>
+    <PackageProjectUrl>https://github.com/ziongh/Vogen</PackageProjectUrl>
     <PackageOutputPath>$(MSBuildThisFileDirectory)\..\artifacts</PackageOutputPath>
     <PackageTags>vogen;stringlytyped;primitive;obsession;valuetype;valuetypes;valueobj;valueobjects;ddd</PackageTags>
     <PackageIcon>package_logo_128x128.png</PackageIcon>
