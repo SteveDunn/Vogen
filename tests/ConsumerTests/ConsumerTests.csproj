@@ -60,6 +60,8 @@
 
   <ItemGroup>
 
+    <PackageReference Include="NuGet.ProjectModel" Version="7.0.1" />
+
     <PackageReference Include="System.Net.Http" Version="4.3.4" />
     <PackageReference Include="MongoDB.Analyzer" Version="1.4.0" />
     <PackageReference Include="MongoDB.Bson" Version="2.27.0" />
