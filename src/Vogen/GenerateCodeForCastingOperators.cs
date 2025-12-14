@@ -10,7 +10,7 @@ public static class GenerateCodeForCastingOperators
     {
         var item = p.WorkItem;
         var wrapper = tds.Identifier;
-        var primitive = item.UnderlyingTypeFullName;
+        var primitive = item.UnderlyingTypeFullNameWithGlobalAlias;
 
         string primitiveBang = item.Nullable.BangForUnderlying;
 

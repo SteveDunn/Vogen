@@ -9,7 +9,7 @@ public static class GenerateCodeForHashCodes
             return string.Empty;
         }
         
-        string itemUnderlyingType = item.UnderlyingTypeFullName;
+        string itemUnderlyingType = item.UnderlyingTypeFullNameWithGlobalAlias;
 
         return
             $$"""
@@ -34,7 +34,7 @@ public static class GenerateCodeForHashCodes
             return string.Empty;
         }
 
-        string itemUnderlyingType = item.UnderlyingTypeFullName;
+        string itemUnderlyingType = item.UnderlyingTypeFullNameWithGlobalAlias;
 
         return
             $$"""

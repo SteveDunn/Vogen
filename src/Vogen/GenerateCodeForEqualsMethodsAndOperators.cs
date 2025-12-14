@@ -32,7 +32,7 @@ $$"""
                   return true;
               }
 
-              return GetType() == other.GetType() && {{$"global::System.Collections.Generic.EqualityComparer<{item.UnderlyingTypeFullName}>.Default.Equals(Value, other.Value)"}};
+              return GetType() == other.GetType() && {{$"global::System.Collections.Generic.EqualityComparer<{item.UnderlyingTypeFullNameWithGlobalAlias}>.Default.Equals(Value, other.Value)"}};
             }
 """;
 
@@ -73,7 +73,7 @@ $$"""
               // We treat anything uninitialized as not equal to anything, even other uninitialized instances of this type.
               if(!IsInitialized() || !other.IsInitialized()) return false;
 
-              return {{$"global::System.Collections.Generic.EqualityComparer<{item.UnderlyingTypeFullName}>.Default.Equals(Value, other.Value)"}};
+              return {{$"global::System.Collections.Generic.EqualityComparer<{item.UnderlyingTypeFullNameWithGlobalAlias}>.Default.Equals(Value, other.Value)"}};
             }
   """;
 
@@ -112,7 +112,7 @@ $$"""
             return string.Empty;
         }
 
-        string itemUnderlyingType = item.UnderlyingTypeFullName;
+        string itemUnderlyingType = item.UnderlyingTypeFullNameWithGlobalAlias;
 
         bool isString = item.IsUnderlyingAString;
 
@@ -121,7 +121,7 @@ $$"""
         string output = item.UserProvidedOverloads.EqualsForUnderlying.WasProvided ? string.Empty :
 $$"""
 
-            public{{readonlyOrEmpty}} global::System.Boolean Equals({{itemUnderlyingType}}{{underlyingQ}} primitive)
+            public{{readonlyOrEmpty}} global::System.Boolean Equals({{item.UnderlyingTypeFullNameWithGlobalAlias}}{{underlyingQ}} primitive)
             {
               return Value.Equals(primitive);
             }
@@ -167,6 +167,6 @@ $$"""
 
     public static string GenerateInterfaceDefinitionsIfNeeded(string prefix, VoWorkItem item) =>
         item.Config.PrimitiveEqualityGeneration.HasFlag(PrimitiveEqualityGeneration.GenerateMethods)
-            ? $"{prefix}global::System.IEquatable<{item.UnderlyingTypeFullName}> "
+            ? $"{prefix}global::System.IEquatable<{item.UnderlyingTypeFullNameWithGlobalAlias}> "
             : string.Empty;
 }

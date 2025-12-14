@@ -61,7 +61,7 @@ internal class GenerateSystemTextJsonConversions : IGenerateConversion
         code = code.Replace("DESERIALIZEJSONMETHOD", GenerateDeserializeJsonMethod(item));
 
         code = code.Replace("VOTYPE", item.VoTypeName);
-        code = code.Replace("VOUNDERLYINGTYPE", item.UnderlyingTypeFullName);
+        code = code.Replace("VOUNDERLYINGTYPE", item.UnderlyingTypeFullNameWithGlobalAlias);
 
         return $"""
                 #nullable disable

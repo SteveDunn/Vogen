@@ -287,8 +287,8 @@ internal static class Util
                 _t = t;
             }}
 
-            public global::System.String UnderlyingType => ""{item.UnderlyingTypeFullName}"";
-            public {item.UnderlyingTypeFullName} Value => _t.Value ;
+            public global::System.String UnderlyingType => ""{item.UnderlyingTypeFullNameWithGlobalAlias}"";
+            public {item.UnderlyingTypeFullNameWithGlobalAlias} Value => _t.Value ;
 
             public global::System.String Conversions => @""{Util.GenerateAnyConversionAttributes(tds, item, knownSymbols)}"";
                 }}";
@@ -362,7 +362,7 @@ internal static class Util
     public static string GenerateCommentForValueProperty(VoWorkItem item) =>
         $"""
          /// <summary>
-         /// Gets the underlying <see cref="{EscapeTypeNameForTripleSlashComment(item.UnderlyingType)}" /> value if set, otherwise a <see cref="{EscapeTypeNameForTripleSlashComment(item.ValidationExceptionSymbol)}" /> is thrown.
+         /// Gets the underlying <see cref="{EscapeTypeNameForTripleSlashComment(item.UnderlyingTypeFullNameWithGlobalAlias)}" /> value if set, otherwise a <see cref="{EscapeTypeNameForTripleSlashComment(item.ValidationExceptionSymbol)}" /> is thrown.
          /// </summary>
          """;
 
