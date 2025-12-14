@@ -1,36 +1,42 @@
-﻿namespace ConsumerTests;
-
-using Vogen;
-
-namespace NuGet
+﻿namespace NuGet
 {
-    
+    public class PackageIdentity;
+    public class LicenseMetadata;
+    public class PackageDeprecationMetadata;
+    public class PackageVulnerabilityMetadata;
 }
 
-using PackageIdentity = global::NuGet.Packaging.Core.PackageIdentity;
-using LicenseMetadata = global::NuGet.Packaging.LicenseMetadata;
-using PackageDeprecationMetadata = global::NuGet.Protocol.PackageDeprecationMetadata;
-using PackageVulnerabilityMetadata = global::NuGet.Protocol.PackageVulnerabilityMetadata;
-
-public class NuGet
-{}
-
-[ValueObject<ValueTuple<PackageIdentity, LicenseMetadata, Uri, PackageDeprecationMetadata, PackageVulnerabilityMetadata>>]
-internal partial record class PackageMetadata
+namespace ConsumerTests
 {
-    public static PackageMetadata NuGet => From((null!, null!, null!, null!, null!));
-    public PackageIdentity Identity => Value.Item1;
+    using PackageIdentity = global::NuGet.PackageIdentity;
+    using LicenseMetadata = global::NuGet.LicenseMetadata;
+    using PackageDeprecationMetadata = global::NuGet.PackageDeprecationMetadata;
+    using PackageVulnerabilityMetadata = global::NuGet.PackageVulnerabilityMetadata;
+    using Vogen;
 
-    public LicenseMetadata License => Value.Item2;
+    public class NuGet
+    {
+    }
 
-    public Uri LicenseUrl => Value.Item3;
+    [ValueObject<ValueTuple<PackageIdentity, LicenseMetadata, Uri, PackageDeprecationMetadata, PackageVulnerabilityMetadata>>]
+    internal partial record class PackageMetadata
+    {
+        public static PackageMetadata NuGet => From((null!, null!, null!, null!, null!));
+        public PackageIdentity Identity => Value.Item1;
 
-    public PackageDeprecationMetadata DeprecationMetadata => Value.Item4;
+        public LicenseMetadata License => Value.Item2;
 
-    public PackageVulnerabilityMetadata VulnerabilityMetadata => Value.Item5;
+        public Uri LicenseUrl => Value.Item3;
 
-    private static Validation Validate((PackageIdentity Identity, LicenseMetadata LicenseMetadata, Uri LicenseUrl, PackageDeprecationMetadata DeprecationMetadata, PackageVulnerabilityMetadata VulnerabilityMetadata) input)
-        => input.Identity != null && input.LicenseMetadata != null
-            ? Validation.Ok
-            : Validation.Invalid($"'{input}' is not a valid {nameof(PackageMetadata)}.");
+        public PackageDeprecationMetadata DeprecationMetadata => Value.Item4;
+
+        public PackageVulnerabilityMetadata VulnerabilityMetadata => Value.Item5;
+
+        private static Validation Validate(
+            (PackageIdentity Identity, LicenseMetadata LicenseMetadata, Uri LicenseUrl, PackageDeprecationMetadata DeprecationMetadata,
+                PackageVulnerabilityMetadata VulnerabilityMetadata) input)
+            => input.Identity != null && input.LicenseMetadata != null
+                ? Validation.Ok
+                : Validation.Invalid($"'{input}' is not a valid {nameof(PackageMetadata)}.");
+    }
 }
