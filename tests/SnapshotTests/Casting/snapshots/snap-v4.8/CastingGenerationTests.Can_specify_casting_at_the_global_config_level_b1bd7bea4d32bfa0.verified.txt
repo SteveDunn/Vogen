@@ -70,9 +70,9 @@ namespace Whatever
     [global::System.Text.Json.Serialization.JsonConverter(typeof(_casting_public_readonly_partial_structExplicitImplicitdecimalSystemTextJsonConverter))]
     [global::System.ComponentModel.TypeConverter(typeof(_casting_public_readonly_partial_structExplicitImplicitdecimalTypeConverter))]
     [global::System.Diagnostics.DebuggerTypeProxyAttribute(typeof(_casting_public_readonly_partial_structExplicitImplicitdecimalDebugView))]
-    [global::System.Diagnostics.DebuggerDisplayAttribute("Underlying type: System.Decimal, Value = { _value }")]
+    [global::System.Diagnostics.DebuggerDisplayAttribute("Underlying type: global::System.Decimal, Value = { _value }")]
     // ReSharper disable once UnusedType.Global
-    public readonly partial struct _casting_public_readonly_partial_structExplicitImplicitdecimal : global::System.IEquatable<_casting_public_readonly_partial_structExplicitImplicitdecimal>, global::System.IEquatable<System.Decimal>, global::System.IComparable<_casting_public_readonly_partial_structExplicitImplicitdecimal>, global::System.IComparable, global::System.IFormattable
+    public readonly partial struct _casting_public_readonly_partial_structExplicitImplicitdecimal : global::System.IEquatable<_casting_public_readonly_partial_structExplicitImplicitdecimal>, global::System.IEquatable<global::System.Decimal>, global::System.IComparable<_casting_public_readonly_partial_structExplicitImplicitdecimal>, global::System.IComparable, global::System.IFormattable
     {
 #if DEBUG
 private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
@@ -80,11 +80,11 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
 #if !VOGEN_NO_VALIDATION
         private readonly global::System.Boolean _isInitialized;
 #endif
-        private readonly System.Decimal _value;
+        private readonly global::System.Decimal _value;
         /// <summary>
-        /// Gets the underlying <see cref = "System.Decimal"/> value if set, otherwise a <see cref = "Vogen.ValueObjectValidationException"/> is thrown.
+        /// Gets the underlying <see cref = "decimal "/> value if set, otherwise a <see cref = "global::Vogen.ValueObjectValidationException"/> is thrown.
         /// </summary>
-        public readonly System.Decimal Value
+        public readonly global::System.Decimal Value
         {
             [global::System.Diagnostics.DebuggerStepThroughAttribute]
             [global::System.Runtime.CompilerServices.MethodImpl(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
@@ -109,7 +109,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
         }
 
         [global::System.Diagnostics.DebuggerStepThroughAttribute]
-        private _casting_public_readonly_partial_structExplicitImplicitdecimal(System.Decimal value)
+        private _casting_public_readonly_partial_structExplicitImplicitdecimal(global::System.Decimal value)
         {
             _value = value;
 #if !VOGEN_NO_VALIDATION
@@ -126,7 +126,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
         /// <param name = "value">The underlying type.</param>
         /// <returns>An instance of this type.</returns>
         [global::System.Runtime.CompilerServices.MethodImpl(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
-        public static _casting_public_readonly_partial_structExplicitImplicitdecimal From(System.Decimal value)
+        public static _casting_public_readonly_partial_structExplicitImplicitdecimal From(global::System.Decimal value)
         {
             return new _casting_public_readonly_partial_structExplicitImplicitdecimal(value);
         }
@@ -146,7 +146,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
 #if NETCOREAPP3_0_OR_GREATER
 [global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)]
 #endif
-        System.Decimal value, 
+        global::System.Decimal value, 
 #if NETCOREAPP3_0_OR_GREATER
 [global::System.Diagnostics.CodeAnalysis.MaybeNullWhen(false)]
 #endif
@@ -164,10 +164,10 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
         /// If validation is provided, and it fails, an error will be returned.
         /// </summary>
         /// <param name = "value">The primitive value.</param>
-        /// <returns>A <see cref = "Vogen.ValueObjectOrError{T}"/> containing either the value object, or an error.</returns>
-        public static Vogen.ValueObjectOrError<_casting_public_readonly_partial_structExplicitImplicitdecimal> TryFrom(System.Decimal value)
+        /// <returns>A <see cref = "global::Vogen.ValueObjectOrError{T}"/> containing either the value object, or an error.</returns>
+        public static global::Vogen.ValueObjectOrError<_casting_public_readonly_partial_structExplicitImplicitdecimal> TryFrom(global::System.Decimal value)
         {
-            return new Vogen.ValueObjectOrError<_casting_public_readonly_partial_structExplicitImplicitdecimal>(new _casting_public_readonly_partial_structExplicitImplicitdecimal(value));
+            return new global::Vogen.ValueObjectOrError<_casting_public_readonly_partial_structExplicitImplicitdecimal>(new _casting_public_readonly_partial_structExplicitImplicitdecimal(value));
         }
 
         [global::System.Runtime.CompilerServices.MethodImpl(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
@@ -178,11 +178,11 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
 #else
         public readonly bool IsInitialized() => _isInitialized;
 #endif
-        public static explicit operator _casting_public_readonly_partial_structExplicitImplicitdecimal(System.Decimal value) => From(value);
-        public static implicit operator System.Decimal(_casting_public_readonly_partial_structExplicitImplicitdecimal vo) => vo._value;
+        public static explicit operator _casting_public_readonly_partial_structExplicitImplicitdecimal(global::System.Decimal value) => From(value);
+        public static implicit operator global::System.Decimal(_casting_public_readonly_partial_structExplicitImplicitdecimal vo) => vo._value;
         // only called internally when something has been deserialized into
         // its primitive type.
-        private static _casting_public_readonly_partial_structExplicitImplicitdecimal __Deserialize(System.Decimal value)
+        private static _casting_public_readonly_partial_structExplicitImplicitdecimal __Deserialize(global::System.Decimal value)
         {
             return new _casting_public_readonly_partial_structExplicitImplicitdecimal(value);
         }
@@ -193,7 +193,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
             // We treat anything uninitialized as not equal to anything, even other uninitialized instances of this type.
             if (!IsInitialized() || !other.IsInitialized())
                 return false;
-            return global::System.Collections.Generic.EqualityComparer<System.Decimal>.Default.Equals(Value, other.Value);
+            return global::System.Collections.Generic.EqualityComparer<global::System.Decimal>.Default.Equals(Value, other.Value);
         }
 
         public global::System.Boolean Equals(_casting_public_readonly_partial_structExplicitImplicitdecimal other, global::System.Collections.Generic.IEqualityComparer<_casting_public_readonly_partial_structExplicitImplicitdecimal> comparer)
@@ -201,7 +201,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
             return comparer.Equals(this, other);
         }
 
-        public readonly global::System.Boolean Equals(System.Decimal primitive)
+        public readonly global::System.Boolean Equals(global::System.Decimal primitive)
         {
             return Value.Equals(primitive);
         }
@@ -213,10 +213,10 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
 
         public static global::System.Boolean operator ==(_casting_public_readonly_partial_structExplicitImplicitdecimal left, _casting_public_readonly_partial_structExplicitImplicitdecimal right) => left.Equals(right);
         public static global::System.Boolean operator !=(_casting_public_readonly_partial_structExplicitImplicitdecimal left, _casting_public_readonly_partial_structExplicitImplicitdecimal right) => !(left == right);
-        public static global::System.Boolean operator ==(_casting_public_readonly_partial_structExplicitImplicitdecimal left, System.Decimal right) => left.Value.Equals(right);
-        public static global::System.Boolean operator ==(System.Decimal left, _casting_public_readonly_partial_structExplicitImplicitdecimal right) => right.Value.Equals(left);
-        public static global::System.Boolean operator !=(System.Decimal left, _casting_public_readonly_partial_structExplicitImplicitdecimal right) => !(left == right);
-        public static global::System.Boolean operator !=(_casting_public_readonly_partial_structExplicitImplicitdecimal left, System.Decimal right) => !(left == right);
+        public static global::System.Boolean operator ==(_casting_public_readonly_partial_structExplicitImplicitdecimal left, global::System.Decimal right) => left.Value.Equals(right);
+        public static global::System.Boolean operator ==(global::System.Decimal left, _casting_public_readonly_partial_structExplicitImplicitdecimal right) => right.Value.Equals(left);
+        public static global::System.Boolean operator !=(global::System.Decimal left, _casting_public_readonly_partial_structExplicitImplicitdecimal right) => !(left == right);
+        public static global::System.Boolean operator !=(_casting_public_readonly_partial_structExplicitImplicitdecimal left, global::System.Decimal right) => !(left == right);
         public int CompareTo(_casting_public_readonly_partial_structExplicitImplicitdecimal other) => Value.CompareTo(other.Value);
         public int CompareTo(object other)
         {
@@ -335,14 +335,14 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
 #nullable restore
         public readonly override global::System.Int32 GetHashCode()
         {
-            return global::System.Collections.Generic.EqualityComparer<System.Decimal>.Default.GetHashCode(Value);
+            return global::System.Collections.Generic.EqualityComparer<global::System.Decimal>.Default.GetHashCode(Value);
         }
 
-        /// <inheritdoc cref = "System.Decimal.ToString()"/>
+        /// <inheritdoc cref = "decimal.ToString()"/>
         public override global::System.String ToString() => IsInitialized() ? Value.ToString() ?? "" : "[UNINITIALIZED]";
-        /// <inheritdoc cref = "System.Decimal.ToString(string)"/>
+        /// <inheritdoc cref = "decimal.ToString(string)"/>
         public global::System.String ToString(string format) => IsInitialized() ? Value.ToString(format) ?? "" : "[UNINITIALIZED]";
-        /// <inheritdoc cref = "System.Decimal.ToString(System.IFormatProvider)"/>
+        /// <inheritdoc cref = "decimal.ToString(System.IFormatProvider)"/>
         public global::System.String ToString(global::System.IFormatProvider provider) => IsInitialized() ? Value.ToString(provider) ?? "" : "[UNINITIALIZED]";
         [global::System.Runtime.CompilerServices.MethodImpl(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
         private readonly void EnsureInitialized()
@@ -372,7 +372,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
 #endif
             }
 
-            public override void Write(System.Text.Json.Utf8JsonWriter writer, _casting_public_readonly_partial_structExplicitImplicitdecimal value, global::System.Text.Json.JsonSerializerOptions options)
+            public override void Write(global::System.Text.Json.Utf8JsonWriter writer, _casting_public_readonly_partial_structExplicitImplicitdecimal value, global::System.Text.Json.JsonSerializerOptions options)
             {
 #if NET5_0_OR_GREATER
                 global::System.Text.Json.JsonSerializer.Serialize(writer, value.Value, options);
@@ -387,12 +387,12 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
                 return __DeserializeSystemTextJson(global::System.Decimal.Parse(reader.GetString(), global::System.Globalization.NumberStyles.Any, global::System.Globalization.CultureInfo.InvariantCulture));
             }
 
-            public override void WriteAsPropertyName(System.Text.Json.Utf8JsonWriter writer, _casting_public_readonly_partial_structExplicitImplicitdecimal value, global::System.Text.Json.JsonSerializerOptions options)
+            public override void WriteAsPropertyName(global::System.Text.Json.Utf8JsonWriter writer, _casting_public_readonly_partial_structExplicitImplicitdecimal value, global::System.Text.Json.JsonSerializerOptions options)
             {
                 writer.WritePropertyName(value.Value.ToString(global::System.Globalization.CultureInfo.InvariantCulture));
             }
 #endif
-            private static _casting_public_readonly_partial_structExplicitImplicitdecimal __DeserializeSystemTextJson(System.Decimal value)
+            private static _casting_public_readonly_partial_structExplicitImplicitdecimal __DeserializeSystemTextJson(global::System.Decimal value)
             {
                 try
                 {
@@ -493,14 +493,14 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
 #if NETCOREAPP3_0_OR_GREATER
     [global::System.Diagnostics.CodeAnalysis.DoesNotReturnAttribute]
 #endif
-            internal static void ThrowWhenValidationFails(Vogen.Validation validation)
+            internal static void ThrowWhenValidationFails(global::Vogen.Validation validation)
             {
                 throw CreateValidationException(validation);
             }
 
-            internal static System.Exception CreateValidationException(string message) => new global::Vogen.ValueObjectValidationException(message);
-            internal static System.Exception CreateCannotBeNullException() => new global::Vogen.ValueObjectValidationException("Cannot create a value object with null.");
-            internal static System.Exception CreateValidationException(Vogen.Validation validation)
+            internal static global::System.Exception CreateValidationException(string message) => new global::Vogen.ValueObjectValidationException(message);
+            internal static global::System.Exception CreateCannotBeNullException() => new global::Vogen.ValueObjectValidationException("Cannot create a value object with null.");
+            internal static global::System.Exception CreateValidationException(global::Vogen.Validation validation)
             {
                 var ex = CreateValidationException(validation.ErrorMessage);
                 if (validation.Data != null)

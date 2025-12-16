@@ -70,8 +70,8 @@ namespace Whatever
     [global::System.Text.Json.Serialization.JsonConverter(typeof(_casting_public_partial_record_structExplicitExplicitshortSystemTextJsonConverter))]
     [global::System.ComponentModel.TypeConverter(typeof(_casting_public_partial_record_structExplicitExplicitshortTypeConverter))]
     [global::System.Diagnostics.DebuggerTypeProxyAttribute(typeof(_casting_public_partial_record_structExplicitExplicitshortDebugView))]
-    [global::System.Diagnostics.DebuggerDisplayAttribute("Underlying type: System.Int16, Value = { _value }")]
-    public partial record struct _casting_public_partial_record_structExplicitExplicitshort : global::System.IEquatable<_casting_public_partial_record_structExplicitExplicitshort>, global::System.IEquatable<System.Int16>, global::System.IComparable<_casting_public_partial_record_structExplicitExplicitshort>, global::System.IComparable, global::System.IFormattable
+    [global::System.Diagnostics.DebuggerDisplayAttribute("Underlying type: global::System.Int16, Value = { _value }")]
+    public partial record struct _casting_public_partial_record_structExplicitExplicitshort : global::System.IEquatable<_casting_public_partial_record_structExplicitExplicitshort>, global::System.IEquatable<global::System.Int16>, global::System.IComparable<_casting_public_partial_record_structExplicitExplicitshort>, global::System.IComparable, global::System.IFormattable
     {
 #if DEBUG
 private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
@@ -79,11 +79,11 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
 #if !VOGEN_NO_VALIDATION
         private readonly global::System.Boolean _isInitialized;
 #endif
-        private readonly System.Int16 _value;
+        private readonly global::System.Int16 _value;
         /// <summary>
-        /// Gets the underlying <see cref = "System.Int16"/> value if set, otherwise a <see cref = "Vogen.ValueObjectValidationException"/> is thrown.
+        /// Gets the underlying <see cref = "short "/> value if set, otherwise a <see cref = "global::Vogen.ValueObjectValidationException"/> is thrown.
         /// </summary>
-        public readonly System.Int16 Value
+        public readonly global::System.Int16 Value
         {
             [global::System.Diagnostics.DebuggerStepThroughAttribute]
             [global::System.Runtime.CompilerServices.MethodImpl(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
@@ -114,7 +114,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
         }
 
         [global::System.Diagnostics.DebuggerStepThroughAttribute]
-        private _casting_public_partial_record_structExplicitExplicitshort(System.Int16 value)
+        private _casting_public_partial_record_structExplicitExplicitshort(global::System.Int16 value)
         {
             _value = value;
 #if !VOGEN_NO_VALIDATION
@@ -128,7 +128,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
         /// <param name = "value">The underlying type.</param>
         /// <returns>An instance of this type.</returns>
         [global::System.Runtime.CompilerServices.MethodImpl(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
-        public static _casting_public_partial_record_structExplicitExplicitshort From(System.Int16 value)
+        public static _casting_public_partial_record_structExplicitExplicitshort From(global::System.Int16 value)
         {
             return new _casting_public_partial_record_structExplicitExplicitshort(value);
         }
@@ -148,7 +148,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
 #if NETCOREAPP3_0_OR_GREATER
 [global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)]
 #endif
-        System.Int16 value, 
+        global::System.Int16 value, 
 #if NETCOREAPP3_0_OR_GREATER
 [global::System.Diagnostics.CodeAnalysis.MaybeNullWhen(false)]
 #endif
@@ -166,10 +166,10 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
         /// If validation is provided, and it fails, an error will be returned.
         /// </summary>
         /// <param name = "value">The primitive value.</param>
-        /// <returns>A <see cref = "Vogen.ValueObjectOrError{T}"/> containing either the value object, or an error.</returns>
-        public static Vogen.ValueObjectOrError<_casting_public_partial_record_structExplicitExplicitshort> TryFrom(System.Int16 value)
+        /// <returns>A <see cref = "global::Vogen.ValueObjectOrError{T}"/> containing either the value object, or an error.</returns>
+        public static global::Vogen.ValueObjectOrError<_casting_public_partial_record_structExplicitExplicitshort> TryFrom(global::System.Int16 value)
         {
-            return new Vogen.ValueObjectOrError<_casting_public_partial_record_structExplicitExplicitshort>(new _casting_public_partial_record_structExplicitExplicitshort(value));
+            return new global::Vogen.ValueObjectOrError<_casting_public_partial_record_structExplicitExplicitshort>(new _casting_public_partial_record_structExplicitExplicitshort(value));
         }
 
         [global::System.Runtime.CompilerServices.MethodImpl(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
@@ -180,11 +180,11 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
 #else
         public readonly bool IsInitialized() => _isInitialized;
 #endif
-        public static explicit operator _casting_public_partial_record_structExplicitExplicitshort(System.Int16 value) => From(value);
-        public static explicit operator System.Int16(_casting_public_partial_record_structExplicitExplicitshort value) => value.Value;
+        public static explicit operator _casting_public_partial_record_structExplicitExplicitshort(global::System.Int16 value) => From(value);
+        public static explicit operator global::System.Int16(_casting_public_partial_record_structExplicitExplicitshort value) => value.Value;
         // only called internally when something has been deserialized into
         // its primitive type.
-        private static _casting_public_partial_record_structExplicitExplicitshort __Deserialize(System.Int16 value)
+        private static _casting_public_partial_record_structExplicitExplicitshort __Deserialize(global::System.Int16 value)
         {
             return new _casting_public_partial_record_structExplicitExplicitshort(value);
         }
@@ -195,7 +195,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
             // We treat anything uninitialized as not equal to anything, even other uninitialized instances of this type.
             if (!IsInitialized() || !other.IsInitialized())
                 return false;
-            return global::System.Collections.Generic.EqualityComparer<System.Int16>.Default.Equals(Value, other.Value);
+            return global::System.Collections.Generic.EqualityComparer<global::System.Int16>.Default.Equals(Value, other.Value);
         }
 
         public global::System.Boolean Equals(_casting_public_partial_record_structExplicitExplicitshort other, global::System.Collections.Generic.IEqualityComparer<_casting_public_partial_record_structExplicitExplicitshort> comparer)
@@ -203,15 +203,15 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
             return comparer.Equals(this, other);
         }
 
-        public readonly global::System.Boolean Equals(System.Int16 primitive)
+        public readonly global::System.Boolean Equals(global::System.Int16 primitive)
         {
             return Value.Equals(primitive);
         }
 
-        public static global::System.Boolean operator ==(_casting_public_partial_record_structExplicitExplicitshort left, System.Int16 right) => left.Value.Equals(right);
-        public static global::System.Boolean operator ==(System.Int16 left, _casting_public_partial_record_structExplicitExplicitshort right) => right.Value.Equals(left);
-        public static global::System.Boolean operator !=(System.Int16 left, _casting_public_partial_record_structExplicitExplicitshort right) => !(left == right);
-        public static global::System.Boolean operator !=(_casting_public_partial_record_structExplicitExplicitshort left, System.Int16 right) => !(left == right);
+        public static global::System.Boolean operator ==(_casting_public_partial_record_structExplicitExplicitshort left, global::System.Int16 right) => left.Value.Equals(right);
+        public static global::System.Boolean operator ==(global::System.Int16 left, _casting_public_partial_record_structExplicitExplicitshort right) => right.Value.Equals(left);
+        public static global::System.Boolean operator !=(global::System.Int16 left, _casting_public_partial_record_structExplicitExplicitshort right) => !(left == right);
+        public static global::System.Boolean operator !=(_casting_public_partial_record_structExplicitExplicitshort left, global::System.Int16 right) => !(left == right);
         public int CompareTo(_casting_public_partial_record_structExplicitExplicitshort other) => Value.CompareTo(other.Value);
         public int CompareTo(object other)
         {
@@ -329,15 +329,15 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
 #nullable restore
         public readonly override global::System.Int32 GetHashCode()
         {
-            return global::System.Collections.Generic.EqualityComparer<System.Int16>.Default.GetHashCode(Value);
+            return global::System.Collections.Generic.EqualityComparer<global::System.Int16>.Default.GetHashCode(Value);
         }
 
         // record enumerates fields - we just want our Value and to throw if it's not initialized.
-        /// <inheritdoc cref = "System.Int16.ToString()"/>
+        /// <inheritdoc cref = "short.ToString()"/>
         public override global::System.String ToString() => IsInitialized() ? Value.ToString() ?? "" : "[UNINITIALIZED]";
-        /// <inheritdoc cref = "System.Int16.ToString(System.IFormatProvider)"/>
+        /// <inheritdoc cref = "short.ToString(System.IFormatProvider)"/>
         public global::System.String ToString(global::System.IFormatProvider provider) => IsInitialized() ? Value.ToString(provider) ?? "" : "[UNINITIALIZED]";
-        /// <inheritdoc cref = "System.Int16.ToString(string)"/>
+        /// <inheritdoc cref = "short.ToString(string)"/>
         public global::System.String ToString(string format) => IsInitialized() ? Value.ToString(format) ?? "" : "[UNINITIALIZED]";
         [global::System.Runtime.CompilerServices.MethodImpl(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
         private readonly void EnsureInitialized()
@@ -367,7 +367,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
 #endif
             }
 
-            public override void Write(System.Text.Json.Utf8JsonWriter writer, _casting_public_partial_record_structExplicitExplicitshort value, global::System.Text.Json.JsonSerializerOptions options)
+            public override void Write(global::System.Text.Json.Utf8JsonWriter writer, _casting_public_partial_record_structExplicitExplicitshort value, global::System.Text.Json.JsonSerializerOptions options)
             {
 #if NET5_0_OR_GREATER
                 global::System.Text.Json.JsonSerializer.Serialize(writer, value.Value, options);
@@ -382,7 +382,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
                 return DeserializeJson(global::System.Int16.Parse(reader.GetString(), global::System.Globalization.NumberStyles.Any, global::System.Globalization.CultureInfo.InvariantCulture));
             }
 
-            public override void WriteAsPropertyName(System.Text.Json.Utf8JsonWriter writer, _casting_public_partial_record_structExplicitExplicitshort value, global::System.Text.Json.JsonSerializerOptions options)
+            public override void WriteAsPropertyName(global::System.Text.Json.Utf8JsonWriter writer, _casting_public_partial_record_structExplicitExplicitshort value, global::System.Text.Json.JsonSerializerOptions options)
             {
                 writer.WritePropertyName(value.Value.ToString(global::System.Globalization.CultureInfo.InvariantCulture));
             }
@@ -390,13 +390,13 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
 #if NETCOREAPP3_0_OR_GREATER
             [global::System.Diagnostics.CodeAnalysis.DoesNotReturnAttribute]
 #endif
-            private static void ThrowJsonExceptionWhenValidationFails(Vogen.Validation validation)
+            private static void ThrowJsonExceptionWhenValidationFails(global::Vogen.Validation validation)
             {
                 var e = ThrowHelper.CreateValidationException(validation);
                 throw new global::System.Text.Json.JsonException(null, e);
             }
 
-            private static _casting_public_partial_record_structExplicitExplicitshort DeserializeJson(System.Int16 value)
+            private static _casting_public_partial_record_structExplicitExplicitshort DeserializeJson(global::System.Int16 value)
             {
                 return new _casting_public_partial_record_structExplicitExplicitshort(value);
             }
@@ -492,14 +492,14 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
 #if NETCOREAPP3_0_OR_GREATER
     [global::System.Diagnostics.CodeAnalysis.DoesNotReturnAttribute]
 #endif
-            internal static void ThrowWhenValidationFails(Vogen.Validation validation)
+            internal static void ThrowWhenValidationFails(global::Vogen.Validation validation)
             {
                 throw CreateValidationException(validation);
             }
 
-            internal static System.Exception CreateValidationException(string message) => new global::Vogen.ValueObjectValidationException(message);
-            internal static System.Exception CreateCannotBeNullException() => new global::Vogen.ValueObjectValidationException("Cannot create a value object with null.");
-            internal static System.Exception CreateValidationException(Vogen.Validation validation)
+            internal static global::System.Exception CreateValidationException(string message) => new global::Vogen.ValueObjectValidationException(message);
+            internal static global::System.Exception CreateCannotBeNullException() => new global::Vogen.ValueObjectValidationException("Cannot create a value object with null.");
+            internal static global::System.Exception CreateValidationException(global::Vogen.Validation validation)
             {
                 var ex = CreateValidationException(validation.ErrorMessage);
                 if (validation.Data != null)

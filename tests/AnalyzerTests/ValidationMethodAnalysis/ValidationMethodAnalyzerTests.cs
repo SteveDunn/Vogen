@@ -58,10 +58,10 @@ namespace ConsoleApplication1;
 [Vogen.ValueObject(typeof(int))]
 public partial class {|#0:TypeName|}
 {   
-    private static Vogen.Validation Validate(int input)
+    private static global::Vogen.Validation Validate(int input)
     {
         bool isValid = true; // todo: your validation
-        return isValid ? Vogen.Validation.Ok : Vogen.Validation.Invalid("[todo: describe the validation]");
+        return isValid ? global::Vogen.Validation.Ok : global::Vogen.Validation.Invalid("[todo: describe the validation]");
     }
 }
 """);

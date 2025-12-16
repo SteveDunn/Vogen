@@ -217,11 +217,11 @@ internal class GenerateCodeForBsonSerializers
 
     }
 
-    private static string GenerateSource(INamedTypeSymbol wrapperSymbol, INamedTypeSymbol underlyingSymbol, string accessor)
+    private static string GenerateSource(INamedTypeSymbol wrapperSymbol, INamedTypeSymbol underlyingType, string accessor)
     {
+        string underlyingFullName = underlyingType.FullNameWithGlobalAlias();
         var wrapperNames = new EscapedSymbolNames(wrapperSymbol);
 
-        EscapedSymbolFullName underlyingFullName = new EscapedSymbolFullName(underlyingSymbol);
         EscapedSymbolFullName wrapperFullName = wrapperNames.FullName;
 
         var className = $"{wrapperNames.ShortName}{_nameSuffix}";

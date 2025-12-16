@@ -116,8 +116,8 @@ namespace Whatever
     [global::System.Text.Json.Serialization.JsonConverter(typeof(_casting_public_partial_record_classImplicitExplicitboolSystemTextJsonConverter))]
     [global::System.ComponentModel.TypeConverter(typeof(_casting_public_partial_record_classImplicitExplicitboolTypeConverter))]
     [global::System.Diagnostics.DebuggerTypeProxyAttribute(typeof(_casting_public_partial_record_classImplicitExplicitboolDebugView))]
-    [global::System.Diagnostics.DebuggerDisplayAttribute("Underlying type: System.Boolean, Value = { _value }")]
-    public partial record class _casting_public_partial_record_classImplicitExplicitbool : global::System.IEquatable<_casting_public_partial_record_classImplicitExplicitbool>, global::System.IEquatable<System.Boolean>, global::System.IComparable<_casting_public_partial_record_classImplicitExplicitbool>, global::System.IComparable
+    [global::System.Diagnostics.DebuggerDisplayAttribute("Underlying type: global::System.Boolean, Value = { _value }")]
+    public partial record class _casting_public_partial_record_classImplicitExplicitbool : global::System.IEquatable<_casting_public_partial_record_classImplicitExplicitbool>, global::System.IEquatable<global::System.Boolean>, global::System.IComparable<_casting_public_partial_record_classImplicitExplicitbool>, global::System.IComparable
     {
 #if DEBUG
 private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
@@ -125,11 +125,11 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
 #if !VOGEN_NO_VALIDATION
         private readonly global::System.Boolean _isInitialized;
 #endif
-        private readonly System.Boolean _value;
+        private readonly global::System.Boolean _value;
         /// <summary>
-        /// Gets the underlying <see cref = "System.Boolean"/> value if set, otherwise a <see cref = "Vogen.ValueObjectValidationException"/> is thrown.
+        /// Gets the underlying <see cref = "bool "/> value if set, otherwise a <see cref = "global::Vogen.ValueObjectValidationException"/> is thrown.
         /// </summary>
-        public System.Boolean Value
+        public global::System.Boolean Value
         {
             [global::System.Diagnostics.DebuggerStepThroughAttribute]
             [global::System.Runtime.CompilerServices.MethodImpl(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
@@ -160,7 +160,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
         }
 
         [global::System.Diagnostics.DebuggerStepThroughAttribute]
-        private _casting_public_partial_record_classImplicitExplicitbool(System.Boolean value)
+        private _casting_public_partial_record_classImplicitExplicitbool(global::System.Boolean value)
         {
             _value = value;
 #if !VOGEN_NO_VALIDATION
@@ -174,7 +174,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
         /// <param name = "value">The underlying type.</param>
         /// <returns>An instance of this type.</returns>
         [global::System.Runtime.CompilerServices.MethodImpl(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
-        public static _casting_public_partial_record_classImplicitExplicitbool From(System.Boolean value)
+        public static _casting_public_partial_record_classImplicitExplicitbool From(global::System.Boolean value)
         {
             return new _casting_public_partial_record_classImplicitExplicitbool(value);
         }
@@ -194,7 +194,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
 #if NETCOREAPP3_0_OR_GREATER
 [global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)]
 #endif
-        System.Boolean value, 
+        global::System.Boolean value, 
 #if NETCOREAPP3_0_OR_GREATER
 [global::System.Diagnostics.CodeAnalysis.MaybeNullWhen(false)]
 #endif
@@ -212,10 +212,10 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
         /// If validation is provided, and it fails, an error will be returned.
         /// </summary>
         /// <param name = "value">The primitive value.</param>
-        /// <returns>A <see cref = "Vogen.ValueObjectOrError{T}"/> containing either the value object, or an error.</returns>
-        public static Vogen.ValueObjectOrError<_casting_public_partial_record_classImplicitExplicitbool> TryFrom(System.Boolean value)
+        /// <returns>A <see cref = "global::Vogen.ValueObjectOrError{T}"/> containing either the value object, or an error.</returns>
+        public static global::Vogen.ValueObjectOrError<_casting_public_partial_record_classImplicitExplicitbool> TryFrom(global::System.Boolean value)
         {
-            return new Vogen.ValueObjectOrError<_casting_public_partial_record_classImplicitExplicitbool>(new _casting_public_partial_record_classImplicitExplicitbool(value));
+            return new global::Vogen.ValueObjectOrError<_casting_public_partial_record_classImplicitExplicitbool>(new _casting_public_partial_record_classImplicitExplicitbool(value));
         }
 
         [global::System.Runtime.CompilerServices.MethodImpl(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
@@ -228,7 +228,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
 #endif
         // only called internally when something has been deserialized into
         // its primitive type.
-        private static _casting_public_partial_record_classImplicitExplicitbool __Deserialize(System.Boolean value)
+        private static _casting_public_partial_record_classImplicitExplicitbool __Deserialize(global::System.Boolean value)
         {
             return new _casting_public_partial_record_classImplicitExplicitbool(value);
         }
@@ -249,7 +249,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
                 return true;
             }
 
-            return GetType() == other.GetType() && global::System.Collections.Generic.EqualityComparer<System.Boolean>.Default.Equals(Value, other.Value);
+            return GetType() == other.GetType() && global::System.Collections.Generic.EqualityComparer<global::System.Boolean>.Default.Equals(Value, other.Value);
         }
 
         public global::System.Boolean Equals(_casting_public_partial_record_classImplicitExplicitbool other, global::System.Collections.Generic.IEqualityComparer<_casting_public_partial_record_classImplicitExplicitbool> comparer)
@@ -257,17 +257,17 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
             return comparer.Equals(this, other);
         }
 
-        public global::System.Boolean Equals(System.Boolean primitive)
+        public global::System.Boolean Equals(global::System.Boolean primitive)
         {
             return Value.Equals(primitive);
         }
 
-        public static global::System.Boolean operator ==(_casting_public_partial_record_classImplicitExplicitbool left, System.Boolean right) => left.Value.Equals(right);
-        public static global::System.Boolean operator ==(System.Boolean left, _casting_public_partial_record_classImplicitExplicitbool right) => right.Value.Equals(left);
-        public static global::System.Boolean operator !=(System.Boolean left, _casting_public_partial_record_classImplicitExplicitbool right) => !(left == right);
-        public static global::System.Boolean operator !=(_casting_public_partial_record_classImplicitExplicitbool left, System.Boolean right) => !(left == right);
-        public static explicit operator System.Boolean(_casting_public_partial_record_classImplicitExplicitbool value) => value.Value;
-        public static implicit operator _casting_public_partial_record_classImplicitExplicitbool(System.Boolean value)
+        public static global::System.Boolean operator ==(_casting_public_partial_record_classImplicitExplicitbool left, global::System.Boolean right) => left.Value.Equals(right);
+        public static global::System.Boolean operator ==(global::System.Boolean left, _casting_public_partial_record_classImplicitExplicitbool right) => right.Value.Equals(left);
+        public static global::System.Boolean operator !=(global::System.Boolean left, _casting_public_partial_record_classImplicitExplicitbool right) => !(left == right);
+        public static global::System.Boolean operator !=(_casting_public_partial_record_classImplicitExplicitbool left, global::System.Boolean right) => !(left == right);
+        public static explicit operator global::System.Boolean(_casting_public_partial_record_classImplicitExplicitbool value) => value.Value;
+        public static implicit operator _casting_public_partial_record_classImplicitExplicitbool(global::System.Boolean value)
         {
             return new _casting_public_partial_record_classImplicitExplicitbool(value);
         }
@@ -367,15 +367,15 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
             {
                 global::System.Int32 hash = (global::System.Int32)2166136261;
                 hash = (hash * 16777619) ^ GetType().GetHashCode();
-                hash = (hash * 16777619) ^ global::System.Collections.Generic.EqualityComparer<System.Boolean>.Default.GetHashCode(Value);
+                hash = (hash * 16777619) ^ global::System.Collections.Generic.EqualityComparer<global::System.Boolean>.Default.GetHashCode(Value);
                 return hash;
             }
         }
 
         // record enumerates fields - we just want our Value and to throw if it's not initialized.
-        /// <inheritdoc cref = "System.Boolean.ToString()"/>
+        /// <inheritdoc cref = "bool.ToString()"/>
         public override global::System.String ToString() => IsInitialized() ? Value.ToString() ?? "" : "[UNINITIALIZED]";
-        /// <inheritdoc cref = "System.Boolean.ToString(System.IFormatProvider? )"/>
+        /// <inheritdoc cref = "bool.ToString(System.IFormatProvider? )"/>
         public global::System.String ToString(global::System.IFormatProvider provider) => IsInitialized() ? Value.ToString(provider) ?? "" : "[UNINITIALIZED]";
         [global::System.Runtime.CompilerServices.MethodImpl(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
         private void EnsureInitialized()
@@ -420,13 +420,13 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
 #if NETCOREAPP3_0_OR_GREATER
             [global::System.Diagnostics.CodeAnalysis.DoesNotReturnAttribute]
 #endif
-            private static void ThrowJsonExceptionWhenValidationFails(Vogen.Validation validation)
+            private static void ThrowJsonExceptionWhenValidationFails(global::Vogen.Validation validation)
             {
                 var e = ThrowHelper.CreateValidationException(validation);
                 throw new global::System.Text.Json.JsonException(null, e);
             }
 
-            private static _casting_public_partial_record_classImplicitExplicitbool DeserializeJson(System.Boolean value)
+            private static _casting_public_partial_record_classImplicitExplicitbool DeserializeJson(global::System.Boolean value)
             {
                 return new _casting_public_partial_record_classImplicitExplicitbool(value);
             }
@@ -484,8 +484,8 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
                 _t = t;
             }
 
-            public global::System.String UnderlyingType => "System.Boolean";
-            public System.Boolean Value => _t.Value;
+            public global::System.String UnderlyingType => "global::System.Boolean";
+            public global::System.Boolean Value => _t.Value;
             public global::System.String Conversions => @"[global::System.Text.Json.Serialization.JsonConverter(typeof(_casting_public_partial_record_classImplicitExplicitboolSystemTextJsonConverter))]
 [global::System.ComponentModel.TypeConverter(typeof(_casting_public_partial_record_classImplicitExplicitboolTypeConverter))]
 ";
@@ -516,14 +516,14 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
 #if NETCOREAPP3_0_OR_GREATER
     [global::System.Diagnostics.CodeAnalysis.DoesNotReturnAttribute]
 #endif
-            internal static void ThrowWhenValidationFails(Vogen.Validation validation)
+            internal static void ThrowWhenValidationFails(global::Vogen.Validation validation)
             {
                 throw CreateValidationException(validation);
             }
 
-            internal static System.Exception CreateValidationException(string message) => new global::Vogen.ValueObjectValidationException(message);
-            internal static System.Exception CreateCannotBeNullException() => new global::Vogen.ValueObjectValidationException("Cannot create a value object with null.");
-            internal static System.Exception CreateValidationException(Vogen.Validation validation)
+            internal static global::System.Exception CreateValidationException(string message) => new global::Vogen.ValueObjectValidationException(message);
+            internal static global::System.Exception CreateCannotBeNullException() => new global::Vogen.ValueObjectValidationException("Cannot create a value object with null.");
+            internal static global::System.Exception CreateValidationException(global::Vogen.Validation validation)
             {
                 var ex = CreateValidationException(validation.ErrorMessage);
                 if (validation.Data != null)

@@ -161,6 +161,6 @@ internal class GenerateCodeForStaticAbstracts
             return string.Empty;
         }
 
-        return precedingText + $" IVogen<{item.TypeToAugment.Identifier}, {item.UnderlyingTypeFullName}>";
+        return precedingText + $" IVogen<{item.TypeToAugment.Identifier}, {item.UnderlyingTypeFullNameWithGlobalAlias}>";
     }
 }

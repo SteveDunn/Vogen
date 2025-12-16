@@ -116,8 +116,8 @@ namespace Whatever
     [global::System.Text.Json.Serialization.JsonConverter(typeof(_casting_public_sealed_partial_recordNoneNonecharSystemTextJsonConverter))]
     [global::System.ComponentModel.TypeConverter(typeof(_casting_public_sealed_partial_recordNoneNonecharTypeConverter))]
     [global::System.Diagnostics.DebuggerTypeProxyAttribute(typeof(_casting_public_sealed_partial_recordNoneNonecharDebugView))]
-    [global::System.Diagnostics.DebuggerDisplayAttribute("Underlying type: System.Char, Value = { _value }")]
-    public sealed partial record class _casting_public_sealed_partial_recordNoneNonechar : global::System.IEquatable<_casting_public_sealed_partial_recordNoneNonechar>, global::System.IEquatable<System.Char>, global::System.IComparable<_casting_public_sealed_partial_recordNoneNonechar>, global::System.IComparable, global::System.IFormattable, global::System.ISpanFormattable, global::System.IUtf8SpanFormattable
+    [global::System.Diagnostics.DebuggerDisplayAttribute("Underlying type: global::System.Char, Value = { _value }")]
+    public sealed partial record class _casting_public_sealed_partial_recordNoneNonechar : global::System.IEquatable<_casting_public_sealed_partial_recordNoneNonechar>, global::System.IEquatable<global::System.Char>, global::System.IComparable<_casting_public_sealed_partial_recordNoneNonechar>, global::System.IComparable, global::System.IFormattable, global::System.ISpanFormattable, global::System.IUtf8SpanFormattable
     {
 #if DEBUG
 private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
@@ -125,11 +125,11 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
 #if !VOGEN_NO_VALIDATION
         private readonly global::System.Boolean _isInitialized;
 #endif
-        private readonly System.Char _value;
+        private readonly global::System.Char _value;
         /// <summary>
-        /// Gets the underlying <see cref = "System.Char"/> value if set, otherwise a <see cref = "Vogen.ValueObjectValidationException"/> is thrown.
+        /// Gets the underlying <see cref = "char "/> value if set, otherwise a <see cref = "global::Vogen.ValueObjectValidationException"/> is thrown.
         /// </summary>
-        public System.Char Value
+        public global::System.Char Value
         {
             [global::System.Diagnostics.DebuggerStepThroughAttribute]
             [global::System.Runtime.CompilerServices.MethodImpl(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
@@ -160,7 +160,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
         }
 
         [global::System.Diagnostics.DebuggerStepThroughAttribute]
-        private _casting_public_sealed_partial_recordNoneNonechar(System.Char value)
+        private _casting_public_sealed_partial_recordNoneNonechar(global::System.Char value)
         {
             _value = value;
 #if !VOGEN_NO_VALIDATION
@@ -174,7 +174,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
         /// <param name = "value">The underlying type.</param>
         /// <returns>An instance of this type.</returns>
         [global::System.Runtime.CompilerServices.MethodImpl(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
-        public static _casting_public_sealed_partial_recordNoneNonechar From(System.Char value)
+        public static _casting_public_sealed_partial_recordNoneNonechar From(global::System.Char value)
         {
             return new _casting_public_sealed_partial_recordNoneNonechar(value);
         }
@@ -194,7 +194,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
 #if NETCOREAPP3_0_OR_GREATER
 [global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)]
 #endif
-        System.Char value, 
+        global::System.Char value, 
 #if NETCOREAPP3_0_OR_GREATER
 [global::System.Diagnostics.CodeAnalysis.MaybeNullWhen(false)]
 #endif
@@ -212,10 +212,10 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
         /// If validation is provided, and it fails, an error will be returned.
         /// </summary>
         /// <param name = "value">The primitive value.</param>
-        /// <returns>A <see cref = "Vogen.ValueObjectOrError{T}"/> containing either the value object, or an error.</returns>
-        public static Vogen.ValueObjectOrError<_casting_public_sealed_partial_recordNoneNonechar> TryFrom(System.Char value)
+        /// <returns>A <see cref = "global::Vogen.ValueObjectOrError{T}"/> containing either the value object, or an error.</returns>
+        public static global::Vogen.ValueObjectOrError<_casting_public_sealed_partial_recordNoneNonechar> TryFrom(global::System.Char value)
         {
-            return new Vogen.ValueObjectOrError<_casting_public_sealed_partial_recordNoneNonechar>(new _casting_public_sealed_partial_recordNoneNonechar(value));
+            return new global::Vogen.ValueObjectOrError<_casting_public_sealed_partial_recordNoneNonechar>(new _casting_public_sealed_partial_recordNoneNonechar(value));
         }
 
         [global::System.Runtime.CompilerServices.MethodImpl(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
@@ -228,7 +228,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
 #endif
         // only called internally when something has been deserialized into
         // its primitive type.
-        private static _casting_public_sealed_partial_recordNoneNonechar __Deserialize(System.Char value)
+        private static _casting_public_sealed_partial_recordNoneNonechar __Deserialize(global::System.Char value)
         {
             return new _casting_public_sealed_partial_recordNoneNonechar(value);
         }
@@ -249,7 +249,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
                 return true;
             }
 
-            return GetType() == other.GetType() && global::System.Collections.Generic.EqualityComparer<System.Char>.Default.Equals(Value, other.Value);
+            return GetType() == other.GetType() && global::System.Collections.Generic.EqualityComparer<global::System.Char>.Default.Equals(Value, other.Value);
         }
 
         public global::System.Boolean Equals(_casting_public_sealed_partial_recordNoneNonechar other, global::System.Collections.Generic.IEqualityComparer<_casting_public_sealed_partial_recordNoneNonechar> comparer)
@@ -257,15 +257,15 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
             return comparer.Equals(this, other);
         }
 
-        public global::System.Boolean Equals(System.Char primitive)
+        public global::System.Boolean Equals(global::System.Char primitive)
         {
             return Value.Equals(primitive);
         }
 
-        public static global::System.Boolean operator ==(_casting_public_sealed_partial_recordNoneNonechar left, System.Char right) => left.Value.Equals(right);
-        public static global::System.Boolean operator ==(System.Char left, _casting_public_sealed_partial_recordNoneNonechar right) => right.Value.Equals(left);
-        public static global::System.Boolean operator !=(System.Char left, _casting_public_sealed_partial_recordNoneNonechar right) => !(left == right);
-        public static global::System.Boolean operator !=(_casting_public_sealed_partial_recordNoneNonechar left, System.Char right) => !(left == right);
+        public static global::System.Boolean operator ==(_casting_public_sealed_partial_recordNoneNonechar left, global::System.Char right) => left.Value.Equals(right);
+        public static global::System.Boolean operator ==(global::System.Char left, _casting_public_sealed_partial_recordNoneNonechar right) => right.Value.Equals(left);
+        public static global::System.Boolean operator !=(global::System.Char left, _casting_public_sealed_partial_recordNoneNonechar right) => !(left == right);
+        public static global::System.Boolean operator !=(_casting_public_sealed_partial_recordNoneNonechar left, global::System.Char right) => !(left == right);
         public int CompareTo(_casting_public_sealed_partial_recordNoneNonechar other)
         {
             if (other is null)
@@ -346,15 +346,15 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
             {
                 global::System.Int32 hash = (global::System.Int32)2166136261;
                 hash = (hash * 16777619) ^ GetType().GetHashCode();
-                hash = (hash * 16777619) ^ global::System.Collections.Generic.EqualityComparer<System.Char>.Default.GetHashCode(Value);
+                hash = (hash * 16777619) ^ global::System.Collections.Generic.EqualityComparer<global::System.Char>.Default.GetHashCode(Value);
                 return hash;
             }
         }
 
         // record enumerates fields - we just want our Value and to throw if it's not initialized.
-        /// <inheritdoc cref = "System.Char.ToString()"/>
+        /// <inheritdoc cref = "char.ToString()"/>
         public override global::System.String ToString() => IsInitialized() ? Value.ToString() ?? "" : "[UNINITIALIZED]";
-        /// <inheritdoc cref = "System.Char.ToString(System.IFormatProvider? )"/>
+        /// <inheritdoc cref = "char.ToString(System.IFormatProvider? )"/>
         public global::System.String ToString(global::System.IFormatProvider provider) => IsInitialized() ? Value.ToString(provider) ?? "" : "[UNINITIALIZED]";
         [global::System.Runtime.CompilerServices.MethodImpl(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
         private void EnsureInitialized()
@@ -381,7 +381,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
                 return DeserializeJson(s[0]);
             }
 
-            public override void Write(System.Text.Json.Utf8JsonWriter writer, _casting_public_sealed_partial_recordNoneNonechar value, global::System.Text.Json.JsonSerializerOptions options)
+            public override void Write(global::System.Text.Json.Utf8JsonWriter writer, _casting_public_sealed_partial_recordNoneNonechar value, global::System.Text.Json.JsonSerializerOptions options)
             {
                 writer.WriteStringValue(value.Value.ToString());
             }
@@ -394,7 +394,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
                 return DeserializeJson(s[0]);
             }
 
-            public override void WriteAsPropertyName(System.Text.Json.Utf8JsonWriter writer, _casting_public_sealed_partial_recordNoneNonechar value, global::System.Text.Json.JsonSerializerOptions options)
+            public override void WriteAsPropertyName(global::System.Text.Json.Utf8JsonWriter writer, _casting_public_sealed_partial_recordNoneNonechar value, global::System.Text.Json.JsonSerializerOptions options)
             {
                 writer.WritePropertyName(value.Value.ToString());
             }
@@ -402,13 +402,13 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
 #if NETCOREAPP3_0_OR_GREATER
             [global::System.Diagnostics.CodeAnalysis.DoesNotReturnAttribute]
 #endif
-            private static void ThrowJsonExceptionWhenValidationFails(Vogen.Validation validation)
+            private static void ThrowJsonExceptionWhenValidationFails(global::Vogen.Validation validation)
             {
                 var e = ThrowHelper.CreateValidationException(validation);
                 throw new global::System.Text.Json.JsonException(null, e);
             }
 
-            private static _casting_public_sealed_partial_recordNoneNonechar DeserializeJson(System.Char value)
+            private static _casting_public_sealed_partial_recordNoneNonechar DeserializeJson(global::System.Char value)
             {
                 return new _casting_public_sealed_partial_recordNoneNonechar(value);
             }
@@ -469,8 +469,8 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
                 _t = t;
             }
 
-            public global::System.String UnderlyingType => "System.Char";
-            public System.Char Value => _t.Value;
+            public global::System.String UnderlyingType => "global::System.Char";
+            public global::System.Char Value => _t.Value;
             public global::System.String Conversions => @"[global::System.Text.Json.Serialization.JsonConverter(typeof(_casting_public_sealed_partial_recordNoneNonecharSystemTextJsonConverter))]
 [global::System.ComponentModel.TypeConverter(typeof(_casting_public_sealed_partial_recordNoneNonecharTypeConverter))]
 ";
@@ -501,14 +501,14 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
 #if NETCOREAPP3_0_OR_GREATER
     [global::System.Diagnostics.CodeAnalysis.DoesNotReturnAttribute]
 #endif
-            internal static void ThrowWhenValidationFails(Vogen.Validation validation)
+            internal static void ThrowWhenValidationFails(global::Vogen.Validation validation)
             {
                 throw CreateValidationException(validation);
             }
 
-            internal static System.Exception CreateValidationException(string message) => new global::Vogen.ValueObjectValidationException(message);
-            internal static System.Exception CreateCannotBeNullException() => new global::Vogen.ValueObjectValidationException("Cannot create a value object with null.");
-            internal static System.Exception CreateValidationException(Vogen.Validation validation)
+            internal static global::System.Exception CreateValidationException(string message) => new global::Vogen.ValueObjectValidationException(message);
+            internal static global::System.Exception CreateCannotBeNullException() => new global::Vogen.ValueObjectValidationException("Cannot create a value object with null.");
+            internal static global::System.Exception CreateValidationException(global::Vogen.Validation validation)
             {
                 var ex = CreateValidationException(validation.ErrorMessage);
                 if (validation.Data != null)

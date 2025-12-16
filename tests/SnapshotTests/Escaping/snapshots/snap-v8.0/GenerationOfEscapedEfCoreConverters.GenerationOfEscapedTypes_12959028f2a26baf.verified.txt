@@ -196,8 +196,8 @@ namespace @class
     [global::System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Vogen", "1.0.0.0")]
     [global::System.Diagnostics.DebuggerTypeProxyAttribute(typeof(escapedTestspublic_partial_classConversions_Nonerecord__struct__float__event2DebugView))]
-    [global::System.Diagnostics.DebuggerDisplayAttribute("Underlying type: @class.@record.@struct.@float.event2, Value = { _value }")]
-    public partial class escapedTestspublic_partial_classConversions_Nonerecord__struct__float__event2 : global::System.IEquatable<escapedTestspublic_partial_classConversions_Nonerecord__struct__float__event2>, global::System.IEquatable<@class.@record.@struct.@float.event2>
+    [global::System.Diagnostics.DebuggerDisplayAttribute("Underlying type: global::@class.@record.@struct.@float.event2, Value = { _value }")]
+    public partial class escapedTestspublic_partial_classConversions_Nonerecord__struct__float__event2 : global::System.IEquatable<escapedTestspublic_partial_classConversions_Nonerecord__struct__float__event2>, global::System.IEquatable<global::@class.@record.@struct.@float.event2>
     {
 #if DEBUG
 private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
@@ -205,11 +205,11 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
 #if !VOGEN_NO_VALIDATION
         private readonly global::System.Boolean _isInitialized;
 #endif
-        private readonly @class.@record.@struct.@float.event2 _value;
+        private readonly global::@class.@record.@struct.@float.event2 _value;
         /// <summary>
-        /// Gets the underlying <see cref = "@class.@record.@struct.@float.event2"/> value if set, otherwise a <see cref = "Vogen.ValueObjectValidationException"/> is thrown.
+        /// Gets the underlying <see cref = "global::@class.record.@struct.@float.event2"/> value if set, otherwise a <see cref = "global::Vogen.ValueObjectValidationException"/> is thrown.
         /// </summary>
-        public @class.@record.@struct.@float.event2 Value
+        public global::@class.@record.@struct.@float.event2 Value
         {
             [global::System.Diagnostics.DebuggerStepThroughAttribute]
             [global::System.Runtime.CompilerServices.MethodImpl(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
@@ -234,7 +234,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
         }
 
         [global::System.Diagnostics.DebuggerStepThroughAttribute]
-        private escapedTestspublic_partial_classConversions_Nonerecord__struct__float__event2(@class.@record.@struct.@float.event2 value)
+        private escapedTestspublic_partial_classConversions_Nonerecord__struct__float__event2(global::@class.@record.@struct.@float.event2 value)
         {
             _value = value;
 #if !VOGEN_NO_VALIDATION
@@ -248,7 +248,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
         /// <param name = "value">The underlying type.</param>
         /// <returns>An instance of this type.</returns>
         [global::System.Runtime.CompilerServices.MethodImpl(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
-        public static escapedTestspublic_partial_classConversions_Nonerecord__struct__float__event2 From(@class.@record.@struct.@float.event2 value)
+        public static escapedTestspublic_partial_classConversions_Nonerecord__struct__float__event2 From(global::@class.@record.@struct.@float.event2 value)
         {
             return new escapedTestspublic_partial_classConversions_Nonerecord__struct__float__event2(value);
         }
@@ -268,7 +268,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
 #if NETCOREAPP3_0_OR_GREATER
 [global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)]
 #endif
-        @class.@record.@struct.@float.event2 value, 
+        global::@class.@record.@struct.@float.event2 value, 
 #if NETCOREAPP3_0_OR_GREATER
 [global::System.Diagnostics.CodeAnalysis.MaybeNullWhen(false)]
 #endif
@@ -286,10 +286,10 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
         /// If validation is provided, and it fails, an error will be returned.
         /// </summary>
         /// <param name = "value">The primitive value.</param>
-        /// <returns>A <see cref = "Vogen.ValueObjectOrError{T}"/> containing either the value object, or an error.</returns>
-        public static Vogen.ValueObjectOrError<escapedTestspublic_partial_classConversions_Nonerecord__struct__float__event2> TryFrom(@class.@record.@struct.@float.event2 value)
+        /// <returns>A <see cref = "global::Vogen.ValueObjectOrError{T}"/> containing either the value object, or an error.</returns>
+        public static global::Vogen.ValueObjectOrError<escapedTestspublic_partial_classConversions_Nonerecord__struct__float__event2> TryFrom(global::@class.@record.@struct.@float.event2 value)
         {
-            return new Vogen.ValueObjectOrError<escapedTestspublic_partial_classConversions_Nonerecord__struct__float__event2>(new escapedTestspublic_partial_classConversions_Nonerecord__struct__float__event2(value));
+            return new global::Vogen.ValueObjectOrError<escapedTestspublic_partial_classConversions_Nonerecord__struct__float__event2>(new escapedTestspublic_partial_classConversions_Nonerecord__struct__float__event2(value));
         }
 
         [global::System.Runtime.CompilerServices.MethodImpl(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
@@ -302,7 +302,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
 #endif
         // only called internally when something has been deserialized into
         // its primitive type.
-        private static escapedTestspublic_partial_classConversions_Nonerecord__struct__float__event2 __Deserialize(@class.@record.@struct.@float.event2 value)
+        private static escapedTestspublic_partial_classConversions_Nonerecord__struct__float__event2 __Deserialize(global::@class.@record.@struct.@float.event2 value)
         {
             return new escapedTestspublic_partial_classConversions_Nonerecord__struct__float__event2(value);
         }
@@ -323,7 +323,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
                 return true;
             }
 
-            return GetType() == other.GetType() && global::System.Collections.Generic.EqualityComparer<@class.@record.@struct.@float.event2>.Default.Equals(Value, other.Value);
+            return GetType() == other.GetType() && global::System.Collections.Generic.EqualityComparer<global::@class.@record.@struct.@float.event2>.Default.Equals(Value, other.Value);
         }
 
         public global::System.Boolean Equals(escapedTestspublic_partial_classConversions_Nonerecord__struct__float__event2 other, global::System.Collections.Generic.IEqualityComparer<escapedTestspublic_partial_classConversions_Nonerecord__struct__float__event2> comparer)
@@ -331,7 +331,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
             return comparer.Equals(this, other);
         }
 
-        public global::System.Boolean Equals(@class.@record.@struct.@float.event2 primitive)
+        public global::System.Boolean Equals(global::@class.@record.@struct.@float.event2 primitive)
         {
             return Value.Equals(primitive);
         }
@@ -343,12 +343,12 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
 
         public static global::System.Boolean operator ==(escapedTestspublic_partial_classConversions_Nonerecord__struct__float__event2 left, escapedTestspublic_partial_classConversions_Nonerecord__struct__float__event2 right) => Equals(left, right);
         public static global::System.Boolean operator !=(escapedTestspublic_partial_classConversions_Nonerecord__struct__float__event2 left, escapedTestspublic_partial_classConversions_Nonerecord__struct__float__event2 right) => !Equals(left, right);
-        public static global::System.Boolean operator ==(escapedTestspublic_partial_classConversions_Nonerecord__struct__float__event2 left, @class.@record.@struct.@float.event2 right) => left.Value.Equals(right);
-        public static global::System.Boolean operator ==(@class.@record.@struct.@float.event2 left, escapedTestspublic_partial_classConversions_Nonerecord__struct__float__event2 right) => right.Value.Equals(left);
-        public static global::System.Boolean operator !=(@class.@record.@struct.@float.event2 left, escapedTestspublic_partial_classConversions_Nonerecord__struct__float__event2 right) => !(left == right);
-        public static global::System.Boolean operator !=(escapedTestspublic_partial_classConversions_Nonerecord__struct__float__event2 left, @class.@record.@struct.@float.event2 right) => !(left == right);
-        public static explicit operator escapedTestspublic_partial_classConversions_Nonerecord__struct__float__event2(@class.@record.@struct.@float.event2 value) => From(value);
-        public static explicit operator @class.@record.@struct.@float.event2(escapedTestspublic_partial_classConversions_Nonerecord__struct__float__event2 value) => value.Value;
+        public static global::System.Boolean operator ==(escapedTestspublic_partial_classConversions_Nonerecord__struct__float__event2 left, global::@class.@record.@struct.@float.event2 right) => left.Value.Equals(right);
+        public static global::System.Boolean operator ==(global::@class.@record.@struct.@float.event2 left, escapedTestspublic_partial_classConversions_Nonerecord__struct__float__event2 right) => right.Value.Equals(left);
+        public static global::System.Boolean operator !=(global::@class.@record.@struct.@float.event2 left, escapedTestspublic_partial_classConversions_Nonerecord__struct__float__event2 right) => !(left == right);
+        public static global::System.Boolean operator !=(escapedTestspublic_partial_classConversions_Nonerecord__struct__float__event2 left, global::@class.@record.@struct.@float.event2 right) => !(left == right);
+        public static explicit operator escapedTestspublic_partial_classConversions_Nonerecord__struct__float__event2(global::@class.@record.@struct.@float.event2 value) => From(value);
+        public static explicit operator global::@class.@record.@struct.@float.event2(escapedTestspublic_partial_classConversions_Nonerecord__struct__float__event2 value) => value.Value;
 #nullable disable
 #nullable restore
         public override global::System.Int32 GetHashCode()
@@ -357,12 +357,12 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
             {
                 global::System.Int32 hash = (global::System.Int32)2166136261;
                 hash = (hash * 16777619) ^ GetType().GetHashCode();
-                hash = (hash * 16777619) ^ global::System.Collections.Generic.EqualityComparer<@class.@record.@struct.@float.event2>.Default.GetHashCode(Value);
+                hash = (hash * 16777619) ^ global::System.Collections.Generic.EqualityComparer<global::@class.@record.@struct.@float.event2>.Default.GetHashCode(Value);
                 return hash;
             }
         }
 
-        /// <inheritdoc cref = "@class.@record.@struct.@float.event2.ToString()"/>
+        /// <inheritdoc cref = "global::@class.record.@struct.@float.event2.ToString()"/>
         public override global::System.String ToString() => IsInitialized() ? Value.ToString() ?? "" : "[UNINITIALIZED]";
         [global::System.Runtime.CompilerServices.MethodImpl(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
         private void EnsureInitialized()
@@ -385,8 +385,8 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
                 _t = t;
             }
 
-            public global::System.String UnderlyingType => "@class.@record.@struct.@float.event2";
-            public @class.@record.@struct.@float.event2 Value => _t.Value;
+            public global::System.String UnderlyingType => "global::@class.@record.@struct.@float.event2";
+            public global::@class.@record.@struct.@float.event2 Value => _t.Value;
             public global::System.String Conversions => @"";
         }
 
@@ -415,14 +415,14 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
 #if NETCOREAPP3_0_OR_GREATER
     [global::System.Diagnostics.CodeAnalysis.DoesNotReturnAttribute]
 #endif
-            internal static void ThrowWhenValidationFails(Vogen.Validation validation)
+            internal static void ThrowWhenValidationFails(global::Vogen.Validation validation)
             {
                 throw CreateValidationException(validation);
             }
 
-            internal static System.Exception CreateValidationException(string message) => new global::Vogen.ValueObjectValidationException(message);
-            internal static System.Exception CreateCannotBeNullException() => new global::Vogen.ValueObjectValidationException("Cannot create a value object with null.");
-            internal static System.Exception CreateValidationException(Vogen.Validation validation)
+            internal static global::System.Exception CreateValidationException(string message) => new global::Vogen.ValueObjectValidationException(message);
+            internal static global::System.Exception CreateCannotBeNullException() => new global::Vogen.ValueObjectValidationException("Cannot create a value object with null.");
+            internal static global::System.Exception CreateValidationException(global::Vogen.Validation validation)
             {
                 var ex = CreateValidationException(validation.ErrorMessage);
                 if (validation.Data != null)

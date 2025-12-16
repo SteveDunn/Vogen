@@ -12,7 +12,7 @@ public class ClassGenerator : IGenerateValueObjectSourceCode
         
         SyntaxToken wrapperName = tds.Identifier;
 
-        string itemUnderlyingType = item.UnderlyingTypeFullName;
+        string itemUnderlyingType = item.UnderlyingTypeFullNameWithGlobalAlias;
 
         string wrapperQ = item.Nullable.QuestionMarkForWrapper;
         string underlyingNullAnnotation = item.Nullable.QuestionMarkForUnderlying;

@@ -12,7 +12,7 @@ public class StructGenerator : IGenerateValueObjectSourceCode
 
         SyntaxToken wrapperName = tds.Identifier;
 
-        string itemUnderlyingType = item.UnderlyingTypeFullName;
+        string itemUnderlyingType = item.UnderlyingTypeFullNameWithGlobalAlias;
 
         string underlyingNullAnnotation = item.Nullable.QuestionMarkForUnderlying;
         string underlyingBang = item.Nullable.BangForUnderlying;

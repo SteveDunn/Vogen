@@ -124,9 +124,9 @@ namespace Whatever
     [global::System.Text.Json.Serialization.JsonConverter(typeof(_casting_public_readonly_partial_structImplicitExplicitSystemTextJsonConverter))]
     [global::System.ComponentModel.TypeConverter(typeof(_casting_public_readonly_partial_structImplicitExplicitTypeConverter))]
     [global::System.Diagnostics.DebuggerTypeProxyAttribute(typeof(_casting_public_readonly_partial_structImplicitExplicitDebugView))]
-    [global::System.Diagnostics.DebuggerDisplayAttribute("Underlying type: System.Int32, Value = { _value }")]
+    [global::System.Diagnostics.DebuggerDisplayAttribute("Underlying type: global::System.Int32, Value = { _value }")]
     // ReSharper disable once UnusedType.Global
-    public readonly partial struct _casting_public_readonly_partial_structImplicitExplicit : global::System.IEquatable<_casting_public_readonly_partial_structImplicitExplicit>, global::System.IEquatable<System.Int32>, global::System.IComparable<_casting_public_readonly_partial_structImplicitExplicit>, global::System.IComparable, global::System.IParsable<_casting_public_readonly_partial_structImplicitExplicit>, global::System.ISpanParsable<_casting_public_readonly_partial_structImplicitExplicit>, global::System.IUtf8SpanParsable<_casting_public_readonly_partial_structImplicitExplicit>, global::System.IFormattable, global::System.ISpanFormattable, global::System.IUtf8SpanFormattable
+    public readonly partial struct _casting_public_readonly_partial_structImplicitExplicit : global::System.IEquatable<_casting_public_readonly_partial_structImplicitExplicit>, global::System.IEquatable<global::System.Int32>, global::System.IComparable<_casting_public_readonly_partial_structImplicitExplicit>, global::System.IComparable, global::System.IParsable<_casting_public_readonly_partial_structImplicitExplicit>, global::System.ISpanParsable<_casting_public_readonly_partial_structImplicitExplicit>, global::System.IUtf8SpanParsable<_casting_public_readonly_partial_structImplicitExplicit>, global::System.IFormattable, global::System.ISpanFormattable, global::System.IUtf8SpanFormattable
     {
 #if DEBUG
 private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
@@ -134,11 +134,11 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
 #if !VOGEN_NO_VALIDATION
         private readonly global::System.Boolean _isInitialized;
 #endif
-        private readonly System.Int32 _value;
+        private readonly global::System.Int32 _value;
         /// <summary>
-        /// Gets the underlying <see cref = "System.Int32"/> value if set, otherwise a <see cref = "Vogen.ValueObjectValidationException"/> is thrown.
+        /// Gets the underlying <see cref = "int "/> value if set, otherwise a <see cref = "global::Vogen.ValueObjectValidationException"/> is thrown.
         /// </summary>
-        public readonly System.Int32 Value
+        public readonly global::System.Int32 Value
         {
             [global::System.Diagnostics.DebuggerStepThroughAttribute]
             [global::System.Runtime.CompilerServices.MethodImpl(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
@@ -163,7 +163,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
         }
 
         [global::System.Diagnostics.DebuggerStepThroughAttribute]
-        private _casting_public_readonly_partial_structImplicitExplicit(System.Int32 value)
+        private _casting_public_readonly_partial_structImplicitExplicit(global::System.Int32 value)
         {
             _value = value;
 #if !VOGEN_NO_VALIDATION
@@ -180,7 +180,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
         /// <param name = "value">The underlying type.</param>
         /// <returns>An instance of this type.</returns>
         [global::System.Runtime.CompilerServices.MethodImpl(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
-        public static _casting_public_readonly_partial_structImplicitExplicit From(System.Int32 value)
+        public static _casting_public_readonly_partial_structImplicitExplicit From(global::System.Int32 value)
         {
             return new _casting_public_readonly_partial_structImplicitExplicit(value);
         }
@@ -200,7 +200,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
 #if NETCOREAPP3_0_OR_GREATER
 [global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)]
 #endif
-        System.Int32 value, 
+        global::System.Int32 value, 
 #if NETCOREAPP3_0_OR_GREATER
 [global::System.Diagnostics.CodeAnalysis.MaybeNullWhen(false)]
 #endif
@@ -218,10 +218,10 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
         /// If validation is provided, and it fails, an error will be returned.
         /// </summary>
         /// <param name = "value">The primitive value.</param>
-        /// <returns>A <see cref = "Vogen.ValueObjectOrError{T}"/> containing either the value object, or an error.</returns>
-        public static Vogen.ValueObjectOrError<_casting_public_readonly_partial_structImplicitExplicit> TryFrom(System.Int32 value)
+        /// <returns>A <see cref = "global::Vogen.ValueObjectOrError{T}"/> containing either the value object, or an error.</returns>
+        public static global::Vogen.ValueObjectOrError<_casting_public_readonly_partial_structImplicitExplicit> TryFrom(global::System.Int32 value)
         {
-            return new Vogen.ValueObjectOrError<_casting_public_readonly_partial_structImplicitExplicit>(new _casting_public_readonly_partial_structImplicitExplicit(value));
+            return new global::Vogen.ValueObjectOrError<_casting_public_readonly_partial_structImplicitExplicit>(new _casting_public_readonly_partial_structImplicitExplicit(value));
         }
 
         [global::System.Runtime.CompilerServices.MethodImpl(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
@@ -232,15 +232,15 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
 #else
         public readonly bool IsInitialized() => _isInitialized;
 #endif
-        public static explicit operator System.Int32(_casting_public_readonly_partial_structImplicitExplicit value) => value.Value;
-        public static implicit operator _casting_public_readonly_partial_structImplicitExplicit(System.Int32 value)
+        public static explicit operator global::System.Int32(_casting_public_readonly_partial_structImplicitExplicit value) => value.Value;
+        public static implicit operator _casting_public_readonly_partial_structImplicitExplicit(global::System.Int32 value)
         {
             return new _casting_public_readonly_partial_structImplicitExplicit(value);
         }
 
         // only called internally when something has been deserialized into
         // its primitive type.
-        private static _casting_public_readonly_partial_structImplicitExplicit __Deserialize(System.Int32 value)
+        private static _casting_public_readonly_partial_structImplicitExplicit __Deserialize(global::System.Int32 value)
         {
             return new _casting_public_readonly_partial_structImplicitExplicit(value);
         }
@@ -251,7 +251,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
             // We treat anything uninitialized as not equal to anything, even other uninitialized instances of this type.
             if (!IsInitialized() || !other.IsInitialized())
                 return false;
-            return global::System.Collections.Generic.EqualityComparer<System.Int32>.Default.Equals(Value, other.Value);
+            return global::System.Collections.Generic.EqualityComparer<global::System.Int32>.Default.Equals(Value, other.Value);
         }
 
         public global::System.Boolean Equals(_casting_public_readonly_partial_structImplicitExplicit other, global::System.Collections.Generic.IEqualityComparer<_casting_public_readonly_partial_structImplicitExplicit> comparer)
@@ -259,7 +259,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
             return comparer.Equals(this, other);
         }
 
-        public readonly global::System.Boolean Equals(System.Int32 primitive)
+        public readonly global::System.Boolean Equals(global::System.Int32 primitive)
         {
             return Value.Equals(primitive);
         }
@@ -271,10 +271,10 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
 
         public static global::System.Boolean operator ==(_casting_public_readonly_partial_structImplicitExplicit left, _casting_public_readonly_partial_structImplicitExplicit right) => left.Equals(right);
         public static global::System.Boolean operator !=(_casting_public_readonly_partial_structImplicitExplicit left, _casting_public_readonly_partial_structImplicitExplicit right) => !(left == right);
-        public static global::System.Boolean operator ==(_casting_public_readonly_partial_structImplicitExplicit left, System.Int32 right) => left.Value.Equals(right);
-        public static global::System.Boolean operator ==(System.Int32 left, _casting_public_readonly_partial_structImplicitExplicit right) => right.Value.Equals(left);
-        public static global::System.Boolean operator !=(System.Int32 left, _casting_public_readonly_partial_structImplicitExplicit right) => !(left == right);
-        public static global::System.Boolean operator !=(_casting_public_readonly_partial_structImplicitExplicit left, System.Int32 right) => !(left == right);
+        public static global::System.Boolean operator ==(_casting_public_readonly_partial_structImplicitExplicit left, global::System.Int32 right) => left.Value.Equals(right);
+        public static global::System.Boolean operator ==(global::System.Int32 left, _casting_public_readonly_partial_structImplicitExplicit right) => right.Value.Equals(left);
+        public static global::System.Boolean operator !=(global::System.Int32 left, _casting_public_readonly_partial_structImplicitExplicit right) => !(left == right);
+        public static global::System.Boolean operator !=(_casting_public_readonly_partial_structImplicitExplicit left, global::System.Int32 right) => !(left == right);
         public int CompareTo(_casting_public_readonly_partial_structImplicitExplicit other) => Value.CompareTo(other.Value);
         public int CompareTo(object other)
         {
@@ -612,14 +612,14 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
 #nullable restore
         public readonly override global::System.Int32 GetHashCode()
         {
-            return global::System.Collections.Generic.EqualityComparer<System.Int32>.Default.GetHashCode(Value);
+            return global::System.Collections.Generic.EqualityComparer<global::System.Int32>.Default.GetHashCode(Value);
         }
 
-        /// <inheritdoc cref = "System.Int32.ToString()"/>
+        /// <inheritdoc cref = "int.ToString()"/>
         public override global::System.String ToString() => IsInitialized() ? Value.ToString() ?? "" : "[UNINITIALIZED]";
-        /// <inheritdoc cref = "System.Int32.ToString(System.IFormatProvider? )"/>
+        /// <inheritdoc cref = "int.ToString(System.IFormatProvider? )"/>
         public global::System.String ToString(global::System.IFormatProvider provider) => IsInitialized() ? Value.ToString(provider) ?? "" : "[UNINITIALIZED]";
-        /// <inheritdoc cref = "System.Int32.ToString(string? )"/>
+        /// <inheritdoc cref = "int.ToString(string? )"/>
         public global::System.String ToString([System.Diagnostics.CodeAnalysis.StringSyntaxAttribute("NumericFormat")] string format) => IsInitialized() ? Value.ToString(format) ?? "" : "[UNINITIALIZED]";
         [global::System.Runtime.CompilerServices.MethodImpl(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
         private readonly void EnsureInitialized()
@@ -649,7 +649,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
 #endif
             }
 
-            public override void Write(System.Text.Json.Utf8JsonWriter writer, _casting_public_readonly_partial_structImplicitExplicit value, global::System.Text.Json.JsonSerializerOptions options)
+            public override void Write(global::System.Text.Json.Utf8JsonWriter writer, _casting_public_readonly_partial_structImplicitExplicit value, global::System.Text.Json.JsonSerializerOptions options)
             {
 #if NET5_0_OR_GREATER
                 global::System.Text.Json.JsonSerializer.Serialize(writer, value.Value, options);
@@ -664,7 +664,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
                 return DeserializeJson(global::System.Int32.Parse(reader.GetString(), global::System.Globalization.NumberStyles.Any, global::System.Globalization.CultureInfo.InvariantCulture));
             }
 
-            public override void WriteAsPropertyName(System.Text.Json.Utf8JsonWriter writer, _casting_public_readonly_partial_structImplicitExplicit value, global::System.Text.Json.JsonSerializerOptions options)
+            public override void WriteAsPropertyName(global::System.Text.Json.Utf8JsonWriter writer, _casting_public_readonly_partial_structImplicitExplicit value, global::System.Text.Json.JsonSerializerOptions options)
             {
                 writer.WritePropertyName(value.Value.ToString(global::System.Globalization.CultureInfo.InvariantCulture));
             }
@@ -672,13 +672,13 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
 #if NETCOREAPP3_0_OR_GREATER
             [global::System.Diagnostics.CodeAnalysis.DoesNotReturnAttribute]
 #endif
-            private static void ThrowJsonExceptionWhenValidationFails(Vogen.Validation validation)
+            private static void ThrowJsonExceptionWhenValidationFails(global::Vogen.Validation validation)
             {
                 var e = ThrowHelper.CreateValidationException(validation);
                 throw new global::System.Text.Json.JsonException(null, e);
             }
 
-            private static _casting_public_readonly_partial_structImplicitExplicit DeserializeJson(System.Int32 value)
+            private static _casting_public_readonly_partial_structImplicitExplicit DeserializeJson(global::System.Int32 value)
             {
                 return new _casting_public_readonly_partial_structImplicitExplicit(value);
             }
@@ -772,14 +772,14 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
 #if NETCOREAPP3_0_OR_GREATER
     [global::System.Diagnostics.CodeAnalysis.DoesNotReturnAttribute]
 #endif
-            internal static void ThrowWhenValidationFails(Vogen.Validation validation)
+            internal static void ThrowWhenValidationFails(global::Vogen.Validation validation)
             {
                 throw CreateValidationException(validation);
             }
 
-            internal static System.Exception CreateValidationException(string message) => new global::Vogen.ValueObjectValidationException(message);
-            internal static System.Exception CreateCannotBeNullException() => new global::Vogen.ValueObjectValidationException("Cannot create a value object with null.");
-            internal static System.Exception CreateValidationException(Vogen.Validation validation)
+            internal static global::System.Exception CreateValidationException(string message) => new global::Vogen.ValueObjectValidationException(message);
+            internal static global::System.Exception CreateCannotBeNullException() => new global::Vogen.ValueObjectValidationException("Cannot create a value object with null.");
+            internal static global::System.Exception CreateValidationException(global::Vogen.Validation validation)
             {
                 var ex = CreateValidationException(validation.ErrorMessage);
                 if (validation.Data != null)

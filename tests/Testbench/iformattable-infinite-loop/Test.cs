@@ -415,7 +415,7 @@
 //                 throw new global::System.Text.Json.JsonException("Unable to parse the GUID for an instance of Test");
 //             }
 //
-//             public override void WriteAsPropertyName(System.Text.Json.Utf8JsonWriter writer, Test value, global::System.Text.Json.JsonSerializerOptions options)
+//             public override void WriteAsPropertyName(global::System.Text.Json.Utf8JsonWriter writer, Test value, global::System.Text.Json.JsonSerializerOptions options)
 //             {
 //                 writer.WritePropertyName(value.Value.ToString());
 //             }

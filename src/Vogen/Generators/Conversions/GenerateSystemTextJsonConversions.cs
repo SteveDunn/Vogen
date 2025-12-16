@@ -61,7 +61,7 @@ internal class GenerateSystemTextJsonConversions : IGenerateConversion
         code = code.Replace("DESERIALIZEJSONMETHOD", GenerateDeserializeJsonMethod(item));
 
         code = code.Replace("VOTYPE", item.VoTypeName);
-        code = code.Replace("VOUNDERLYINGTYPE", item.UnderlyingTypeFullName);
+        code = code.Replace("VOUNDERLYINGTYPE", item.UnderlyingTypeFullNameWithGlobalAlias);
 
         return $"""
                 #nullable disable
@@ -74,7 +74,7 @@ internal class GenerateSystemTextJsonConversions : IGenerateConversion
           #if NETCOREAPP3_0_OR_GREATER
           [global::System.Diagnostics.CodeAnalysis.DoesNotReturnAttribute]
           #endif
-          private static void ThrowJsonExceptionWhenValidationFails(Vogen.Validation validation)
+          private static void ThrowJsonExceptionWhenValidationFails(global::Vogen.Validation validation)
           {
               var e = ThrowHelper.CreateValidationException(validation);
               throw new global::System.Text.Json.JsonException(null, e);

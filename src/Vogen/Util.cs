@@ -287,8 +287,8 @@ internal static class Util
                 _t = t;
             }}
 
-            public global::System.String UnderlyingType => ""{item.UnderlyingTypeFullName}"";
-            public {item.UnderlyingTypeFullName} Value => _t.Value ;
+            public global::System.String UnderlyingType => ""{item.UnderlyingTypeFullNameWithGlobalAlias}"";
+            public {item.UnderlyingTypeFullNameWithGlobalAlias} Value => _t.Value ;
 
             public global::System.String Conversions => @""{Util.GenerateAnyConversionAttributes(tds, item, knownSymbols)}"";
                 }}";
@@ -334,11 +334,9 @@ internal static class Util
 
         var symbolToUse = symbol.IsGenericType ? symbol.OriginalDefinition : symbol;
 
-        var displayString = symbolToUse.EscapedFullName();
-
         return symbolToUse.IsGenericType
-            ? EscapeTypeNameForTripleSlashComment(symbolToUse.ToDisplayString())
-            : displayString;
+            ? EscapeTypeNameForTripleSlashComment(symbolToUse.ToDisplayString(_formatForNonTuples))
+            : symbolToUse.ToDisplayString(_formatForNonTuples);
     }
 
     // private static readonly SymbolDisplayFormat _myFormat =
@@ -357,6 +355,16 @@ internal static class Util
 #if ROSLYN_4_6_OR_GREATER
                 | SymbolDisplayMiscellaneousOptions.ExpandValueTuple
 #endif
+            );
+
+    private static readonly SymbolDisplayFormat _formatForNonTuples =
+        new(
+            globalNamespaceStyle: SymbolDisplayGlobalNamespaceStyle.Included,
+            typeQualificationStyle: SymbolDisplayTypeQualificationStyle.NameAndContainingTypesAndNamespaces,
+            genericsOptions: SymbolDisplayGenericsOptions.IncludeTypeParameters,
+            miscellaneousOptions:
+                SymbolDisplayMiscellaneousOptions.EscapeKeywordIdentifiers |
+                SymbolDisplayMiscellaneousOptions.UseSpecialTypes
             );
     
     public static string GenerateCommentForValueProperty(VoWorkItem item) =>
@@ -422,18 +430,18 @@ internal static class Util
                       #if NETCOREAPP3_0_OR_GREATER
                       [global::System.Diagnostics.CodeAnalysis.DoesNotReturnAttribute]
                       #endif
-                      internal static void ThrowWhenValidationFails(Vogen.Validation validation)
+                      internal static void ThrowWhenValidationFails(global::Vogen.Validation validation)
                       {
                           throw CreateValidationException(validation);
                       }
                       
-                      internal static System.Exception CreateValidationException(string message) =>
+                      internal static global::System.Exception CreateValidationException(string message) =>
                         new {{{item.ValidationExceptionFullName}}}(message);
 
-                      internal static System.Exception CreateCannotBeNullException() =>
+                      internal static global::System.Exception CreateCannotBeNullException() =>
                         new {{{item.ValidationExceptionFullName}}}("Cannot create a value object with null.");
                       
-                      internal static System.Exception CreateValidationException(Vogen.Validation validation)
+                      internal static global::System.Exception CreateValidationException(global::Vogen.Validation validation)
                       {
                           var ex = CreateValidationException(validation.ErrorMessage);
                       

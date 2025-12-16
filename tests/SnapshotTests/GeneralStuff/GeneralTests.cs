@@ -833,7 +833,7 @@ namespace Whatever;
 [ValueObject(typeof(int))]
 public partial struct CustomerId
 {
-    private static Vogen.Validation validate(int value)
+    private static global::Vogen.Validation validate(int value)
     {
         if (value > 0)
             return Validation.Ok;

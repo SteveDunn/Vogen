@@ -47,6 +47,9 @@ internal static class SemanticHelper
             return EscapedFullName(nts);
         }
     }
+    
+    public static string FullNameWithGlobalAlias(this ISymbol symbol) => "global::" + symbol.EscapedFullName();
+    
 
     private static string FullNamespace(this ISymbol symbol, bool includeGlobal)
     {

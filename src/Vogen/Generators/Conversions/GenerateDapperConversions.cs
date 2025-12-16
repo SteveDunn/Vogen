@@ -21,7 +21,7 @@ internal class GenerateDapperConversions : IGenerateConversion
             Templates.GetForAnyType("DapperTypeHandler");
 
         code = code.Replace("VOTYPE", item.VoTypeName);
-        code = code.Replace("VOUNDERLYINGTYPE", item.UnderlyingTypeFullName);
+        code = code.Replace("VOUNDERLYINGTYPE", item.UnderlyingTypeFullNameWithGlobalAlias);
         
         return $"""
                 #nullable disable

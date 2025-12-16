@@ -117,8 +117,8 @@ namespace MyNamespace
     [global::System.Text.Json.Serialization.JsonConverter(typeof(MyVoSystemTextJsonConverter))]
     [global::System.ComponentModel.TypeConverter(typeof(MyVoTypeConverter))]
     [global::System.Diagnostics.DebuggerTypeProxyAttribute(typeof(MyVoDebugView))]
-    [global::System.Diagnostics.DebuggerDisplayAttribute("Underlying type: MyNamespace.C, Value = { _value }")]
-    public partial class MyVo : global::System.IEquatable<MyVo>, global::System.IEquatable<MyNamespace.C>, global::System.IParsable<MyVo>
+    [global::System.Diagnostics.DebuggerDisplayAttribute("Underlying type: global::MyNamespace.C, Value = { _value }")]
+    public partial class MyVo : global::System.IEquatable<MyVo>, global::System.IEquatable<global::MyNamespace.C>, global::System.IParsable<MyVo>
     {
 #if DEBUG
 private readonly global::System.Diagnostics.StackTrace? _stackTrace  = null!;
@@ -126,11 +126,11 @@ private readonly global::System.Diagnostics.StackTrace? _stackTrace  = null!;
 #if !VOGEN_NO_VALIDATION
         private readonly global::System.Boolean _isInitialized;
 #endif
-        private readonly MyNamespace.C? _value;
+        private readonly global::MyNamespace.C? _value;
         /// <summary>
-        /// Gets the underlying <see cref = "MyNamespace.C"/> value if set, otherwise a <see cref = "Vogen.ValueObjectValidationException"/> is thrown.
+        /// Gets the underlying <see cref = "global::MyNamespace.C"/> value if set, otherwise a <see cref = "global::Vogen.ValueObjectValidationException"/> is thrown.
         /// </summary>
-        public MyNamespace.C Value
+        public global::MyNamespace.C Value
         {
             [global::System.Diagnostics.DebuggerStepThroughAttribute]
             [global::System.Runtime.CompilerServices.MethodImpl(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
@@ -155,7 +155,7 @@ private readonly global::System.Diagnostics.StackTrace? _stackTrace  = null!;
         }
 
         [global::System.Diagnostics.DebuggerStepThroughAttribute]
-        private MyVo(MyNamespace.C value)
+        private MyVo(global::MyNamespace.C value)
         {
             _value = value;
 #if !VOGEN_NO_VALIDATION
@@ -169,7 +169,7 @@ private readonly global::System.Diagnostics.StackTrace? _stackTrace  = null!;
         /// <param name = "value">The underlying type.</param>
         /// <returns>An instance of this type.</returns>
         [global::System.Runtime.CompilerServices.MethodImpl(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
-        public static MyVo From(MyNamespace.C value)
+        public static MyVo From(global::MyNamespace.C value)
         {
             if (value is null)
             {
@@ -195,7 +195,7 @@ private readonly global::System.Diagnostics.StackTrace? _stackTrace  = null!;
 #if NETCOREAPP3_0_OR_GREATER
 [global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)]
 #endif
-        MyNamespace.C? value, 
+        global::MyNamespace.C? value, 
 #if NETCOREAPP3_0_OR_GREATER
 [global::System.Diagnostics.CodeAnalysis.MaybeNullWhen(false)]
 #endif
@@ -219,15 +219,15 @@ private readonly global::System.Diagnostics.StackTrace? _stackTrace  = null!;
         /// If validation is provided, and it fails, an error will be returned.
         /// </summary>
         /// <param name = "value">The primitive value.</param>
-        /// <returns>A <see cref = "Vogen.ValueObjectOrError{T}"/> containing either the value object, or an error.</returns>
-        public static Vogen.ValueObjectOrError<MyVo> TryFrom(MyNamespace.C value)
+        /// <returns>A <see cref = "global::Vogen.ValueObjectOrError{T}"/> containing either the value object, or an error.</returns>
+        public static global::Vogen.ValueObjectOrError<MyVo> TryFrom(global::MyNamespace.C value)
         {
             if (value is null)
             {
-                return new Vogen.ValueObjectOrError<MyVo>(Vogen.Validation.Invalid("The value provided was null"));
+                return new global::Vogen.ValueObjectOrError<MyVo>(global::Vogen.Validation.Invalid("The value provided was null"));
             }
 
-            return new Vogen.ValueObjectOrError<MyVo>(new MyVo(value));
+            return new global::Vogen.ValueObjectOrError<MyVo>(new MyVo(value));
         }
 
         [global::System.Runtime.CompilerServices.MethodImpl(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
@@ -240,7 +240,7 @@ private readonly global::System.Diagnostics.StackTrace? _stackTrace  = null!;
 #endif
         // only called internally when something has been deserialized into
         // its primitive type.
-        private static MyVo __Deserialize(MyNamespace.C value)
+        private static MyVo __Deserialize(global::MyNamespace.C value)
         {
             if (value is null)
             {
@@ -267,7 +267,7 @@ private readonly global::System.Diagnostics.StackTrace? _stackTrace  = null!;
                 return true;
             }
 
-            return GetType() == other.GetType() && global::System.Collections.Generic.EqualityComparer<MyNamespace.C>.Default.Equals(Value, other.Value);
+            return GetType() == other.GetType() && global::System.Collections.Generic.EqualityComparer<global::MyNamespace.C>.Default.Equals(Value, other.Value);
         }
 
         public global::System.Boolean Equals(MyVo? other, global::System.Collections.Generic.IEqualityComparer<MyVo> comparer)
@@ -275,7 +275,7 @@ private readonly global::System.Diagnostics.StackTrace? _stackTrace  = null!;
             return comparer.Equals(this, other);
         }
 
-        public global::System.Boolean Equals(MyNamespace.C? primitive)
+        public global::System.Boolean Equals(global::MyNamespace.C? primitive)
         {
             return Value.Equals(primitive);
         }
@@ -287,12 +287,12 @@ private readonly global::System.Diagnostics.StackTrace? _stackTrace  = null!;
 
         public static global::System.Boolean operator ==(MyVo? left, MyVo? right) => Equals(left, right);
         public static global::System.Boolean operator !=(MyVo? left, MyVo? right) => !Equals(left, right);
-        public static global::System.Boolean operator ==(MyVo? left, MyNamespace.C? right) => left?.Value.Equals(right) ?? false;
-        public static global::System.Boolean operator ==(MyNamespace.C? left, MyVo? right) => right?.Value.Equals(left) ?? false;
-        public static global::System.Boolean operator !=(MyNamespace.C? left, MyVo? right) => !(left == right);
-        public static global::System.Boolean operator !=(MyVo? left, MyNamespace.C? right) => !(left == right);
-        public static explicit operator MyVo(MyNamespace.C value) => From(value);
-        public static explicit operator MyNamespace.C(MyVo value) => value.Value;
+        public static global::System.Boolean operator ==(MyVo? left, global::MyNamespace.C? right) => left?.Value.Equals(right) ?? false;
+        public static global::System.Boolean operator ==(global::MyNamespace.C? left, MyVo? right) => right?.Value.Equals(left) ?? false;
+        public static global::System.Boolean operator !=(global::MyNamespace.C? left, MyVo? right) => !(left == right);
+        public static global::System.Boolean operator !=(MyVo? left, global::MyNamespace.C? right) => !(left == right);
+        public static explicit operator MyVo(global::MyNamespace.C value) => From(value);
+        public static explicit operator global::MyNamespace.C(MyVo value) => value.Value;
         /// <inheritdoc cref = "MyNamespace.C.TryParse(string? , System.IFormatProvider? , out MyNamespace.C)"/>
         /// <summary>
         /// </summary>
@@ -336,7 +336,7 @@ private readonly global::System.Diagnostics.StackTrace? _stackTrace  = null!;
             {
                 global::System.Int32 hash = (global::System.Int32)2166136261;
                 hash = (hash * 16777619) ^ GetType().GetHashCode();
-                hash = (hash * 16777619) ^ global::System.Collections.Generic.EqualityComparer<MyNamespace.C>.Default.GetHashCode(Value);
+                hash = (hash * 16777619) ^ global::System.Collections.Generic.EqualityComparer<global::MyNamespace.C>.Default.GetHashCode(Value);
                 return hash;
             }
         }
@@ -369,11 +369,11 @@ private readonly global::System.Diagnostics.StackTrace? _stackTrace  = null!;
         {
             public override MyVo Read(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {
-                var primitive = global::System.Text.Json.JsonSerializer.Deserialize<MyNamespace.C>(ref reader, options);
+                var primitive = global::System.Text.Json.JsonSerializer.Deserialize<global::MyNamespace.C>(ref reader, options);
                 return DeserializeJson(primitive);
             }
 
-            public override void Write(System.Text.Json.Utf8JsonWriter writer, MyVo value, global::System.Text.Json.JsonSerializerOptions options)
+            public override void Write(global::System.Text.Json.Utf8JsonWriter writer, MyVo value, global::System.Text.Json.JsonSerializerOptions options)
             {
                 global::System.Text.Json.JsonSerializer.Serialize(writer, value.Value, options);
             }
@@ -381,11 +381,11 @@ private readonly global::System.Diagnostics.StackTrace? _stackTrace  = null!;
 #if NET6_0_OR_GREATER
             public override MyVo ReadAsPropertyName(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {
-                var primitive = global::System.Text.Json.JsonSerializer.Deserialize<MyNamespace.C>(ref reader, options);
+                var primitive = global::System.Text.Json.JsonSerializer.Deserialize<global::MyNamespace.C>(ref reader, options);
                 return DeserializeJson(primitive);
             }
 
-            public override void WriteAsPropertyName(System.Text.Json.Utf8JsonWriter writer, MyVo value, global::System.Text.Json.JsonSerializerOptions options)
+            public override void WriteAsPropertyName(global::System.Text.Json.Utf8JsonWriter writer, MyVo value, global::System.Text.Json.JsonSerializerOptions options)
             {
                 writer.WritePropertyName(global::System.Text.Json.JsonSerializer.Serialize(value.Value));
             }
@@ -393,13 +393,13 @@ private readonly global::System.Diagnostics.StackTrace? _stackTrace  = null!;
 #if NETCOREAPP3_0_OR_GREATER
             [global::System.Diagnostics.CodeAnalysis.DoesNotReturnAttribute]
 #endif
-            private static void ThrowJsonExceptionWhenValidationFails(Vogen.Validation validation)
+            private static void ThrowJsonExceptionWhenValidationFails(global::Vogen.Validation validation)
             {
                 var e = ThrowHelper.CreateValidationException(validation);
                 throw new global::System.Text.Json.JsonException(null, e);
             }
 
-            private static void ThrowJsonExceptionWhenNull(MyNamespace.C value)
+            private static void ThrowJsonExceptionWhenNull(global::MyNamespace.C value)
             {
                 if (value == null)
                 {
@@ -408,7 +408,7 @@ private readonly global::System.Diagnostics.StackTrace? _stackTrace  = null!;
                 }
             }
 
-            private static MyVo DeserializeJson(MyNamespace.C value)
+            private static MyVo DeserializeJson(global::MyNamespace.C value)
             {
                 ThrowJsonExceptionWhenNull(value);
                 return new MyVo(value);
@@ -421,18 +421,18 @@ private readonly global::System.Diagnostics.StackTrace? _stackTrace  = null!;
         {
             public override global::System.Boolean CanConvertFrom(global::System.ComponentModel.ITypeDescriptorContext context, global::System.Type sourceType)
             {
-                return sourceType == typeof(MyNamespace.C);
+                return sourceType == typeof(global::MyNamespace.C);
             }
 
             public override global::System.Object ConvertFrom(global::System.ComponentModel.ITypeDescriptorContext context, global::System.Globalization.CultureInfo culture, global::System.Object value)
             {
-                MyNamespace.C ut = (MyNamespace.C)value;
+                global::MyNamespace.C ut = (global::MyNamespace.C)value;
                 return MyVo.__Deserialize(ut);
             }
 
             public override bool CanConvertTo(global::System.ComponentModel.ITypeDescriptorContext context, global::System.Type sourceType)
             {
-                return sourceType == typeof(MyNamespace.C);
+                return sourceType == typeof(global::MyNamespace.C);
             }
 
             public override object ConvertTo(global::System.ComponentModel.ITypeDescriptorContext context, global::System.Globalization.CultureInfo culture, global::System.Object value, global::System.Type destinationType)
@@ -455,8 +455,8 @@ private readonly global::System.Diagnostics.StackTrace? _stackTrace  = null!;
                 _t = t;
             }
 
-            public global::System.String UnderlyingType => "MyNamespace.C";
-            public MyNamespace.C Value => _t.Value;
+            public global::System.String UnderlyingType => "global::MyNamespace.C";
+            public global::MyNamespace.C Value => _t.Value;
             public global::System.String Conversions => @"[global::System.Text.Json.Serialization.JsonConverter(typeof(MyVoSystemTextJsonConverter))]
 [global::System.ComponentModel.TypeConverter(typeof(MyVoTypeConverter))]
 ";
@@ -487,14 +487,14 @@ private readonly global::System.Diagnostics.StackTrace? _stackTrace  = null!;
 #if NETCOREAPP3_0_OR_GREATER
     [global::System.Diagnostics.CodeAnalysis.DoesNotReturnAttribute]
 #endif
-            internal static void ThrowWhenValidationFails(Vogen.Validation validation)
+            internal static void ThrowWhenValidationFails(global::Vogen.Validation validation)
             {
                 throw CreateValidationException(validation);
             }
 
-            internal static System.Exception CreateValidationException(string message) => new global::Vogen.ValueObjectValidationException(message);
-            internal static System.Exception CreateCannotBeNullException() => new global::Vogen.ValueObjectValidationException("Cannot create a value object with null.");
-            internal static System.Exception CreateValidationException(Vogen.Validation validation)
+            internal static global::System.Exception CreateValidationException(string message) => new global::Vogen.ValueObjectValidationException(message);
+            internal static global::System.Exception CreateCannotBeNullException() => new global::Vogen.ValueObjectValidationException("Cannot create a value object with null.");
+            internal static global::System.Exception CreateValidationException(global::Vogen.Validation validation)
             {
                 var ex = CreateValidationException(validation.ErrorMessage);
                 if (validation.Data != null)
