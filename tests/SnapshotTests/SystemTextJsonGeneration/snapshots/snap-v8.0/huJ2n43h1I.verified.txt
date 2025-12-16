@@ -69,9 +69,9 @@ namespace Whatever
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Vogen", "1.0.0.0")]
     [global::System.Text.Json.Serialization.JsonConverter(typeof(stj_number_as_string_public_partial_structConversions_SystemTextJsonfloat_customizedSystemTextJsonConverter))]
     [global::System.Diagnostics.DebuggerTypeProxyAttribute(typeof(stj_number_as_string_public_partial_structConversions_SystemTextJsonfloat_customizedDebugView))]
-    [global::System.Diagnostics.DebuggerDisplayAttribute("Underlying type: System.Single, Value = { _value }")]
+    [global::System.Diagnostics.DebuggerDisplayAttribute("Underlying type: global::System.Single, Value = { _value }")]
     // ReSharper disable once UnusedType.Global
-    public partial struct stj_number_as_string_public_partial_structConversions_SystemTextJsonfloat_customized : global::System.IEquatable<stj_number_as_string_public_partial_structConversions_SystemTextJsonfloat_customized>, global::System.IEquatable<System.Single>, global::System.IComparable<stj_number_as_string_public_partial_structConversions_SystemTextJsonfloat_customized>, global::System.IComparable, global::System.IParsable<stj_number_as_string_public_partial_structConversions_SystemTextJsonfloat_customized>, global::System.ISpanParsable<stj_number_as_string_public_partial_structConversions_SystemTextJsonfloat_customized>, global::System.IUtf8SpanParsable<stj_number_as_string_public_partial_structConversions_SystemTextJsonfloat_customized>, global::System.IFormattable, global::System.ISpanFormattable, global::System.IUtf8SpanFormattable
+    public partial struct stj_number_as_string_public_partial_structConversions_SystemTextJsonfloat_customized : global::System.IEquatable<stj_number_as_string_public_partial_structConversions_SystemTextJsonfloat_customized>, global::System.IEquatable<global::System.Single>, global::System.IComparable<stj_number_as_string_public_partial_structConversions_SystemTextJsonfloat_customized>, global::System.IComparable, global::System.IParsable<stj_number_as_string_public_partial_structConversions_SystemTextJsonfloat_customized>, global::System.ISpanParsable<stj_number_as_string_public_partial_structConversions_SystemTextJsonfloat_customized>, global::System.IUtf8SpanParsable<stj_number_as_string_public_partial_structConversions_SystemTextJsonfloat_customized>, global::System.IFormattable, global::System.ISpanFormattable, global::System.IUtf8SpanFormattable
     {
 #if DEBUG
 private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
@@ -79,11 +79,11 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
 #if !VOGEN_NO_VALIDATION
         private readonly global::System.Boolean _isInitialized;
 #endif
-        private readonly System.Single _value;
+        private readonly global::System.Single _value;
         /// <summary>
-        /// Gets the underlying <see cref = "System.Single"/> value if set, otherwise a <see cref = "Vogen.ValueObjectValidationException"/> is thrown.
+        /// Gets the underlying <see cref = "float "/> value if set, otherwise a <see cref = "global::Vogen.ValueObjectValidationException"/> is thrown.
         /// </summary>
-        public readonly System.Single Value
+        public readonly global::System.Single Value
         {
             [global::System.Diagnostics.DebuggerStepThroughAttribute]
             [global::System.Runtime.CompilerServices.MethodImpl(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
@@ -108,7 +108,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
         }
 
         [global::System.Diagnostics.DebuggerStepThroughAttribute]
-        private stj_number_as_string_public_partial_structConversions_SystemTextJsonfloat_customized(System.Single value)
+        private stj_number_as_string_public_partial_structConversions_SystemTextJsonfloat_customized(global::System.Single value)
         {
             _value = value;
 #if !VOGEN_NO_VALIDATION
@@ -125,7 +125,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
         /// <param name = "value">The underlying type.</param>
         /// <returns>An instance of this type.</returns>
         [global::System.Runtime.CompilerServices.MethodImpl(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
-        public static stj_number_as_string_public_partial_structConversions_SystemTextJsonfloat_customized From(System.Single value)
+        public static stj_number_as_string_public_partial_structConversions_SystemTextJsonfloat_customized From(global::System.Single value)
         {
             return new stj_number_as_string_public_partial_structConversions_SystemTextJsonfloat_customized(value);
         }
@@ -145,7 +145,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
 #if NETCOREAPP3_0_OR_GREATER
 [global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)]
 #endif
-        System.Single value, 
+        global::System.Single value, 
 #if NETCOREAPP3_0_OR_GREATER
 [global::System.Diagnostics.CodeAnalysis.MaybeNullWhen(false)]
 #endif
@@ -163,10 +163,10 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
         /// If validation is provided, and it fails, an error will be returned.
         /// </summary>
         /// <param name = "value">The primitive value.</param>
-        /// <returns>A <see cref = "Vogen.ValueObjectOrError{T}"/> containing either the value object, or an error.</returns>
-        public static Vogen.ValueObjectOrError<stj_number_as_string_public_partial_structConversions_SystemTextJsonfloat_customized> TryFrom(System.Single value)
+        /// <returns>A <see cref = "global::Vogen.ValueObjectOrError{T}"/> containing either the value object, or an error.</returns>
+        public static global::Vogen.ValueObjectOrError<stj_number_as_string_public_partial_structConversions_SystemTextJsonfloat_customized> TryFrom(global::System.Single value)
         {
-            return new Vogen.ValueObjectOrError<stj_number_as_string_public_partial_structConversions_SystemTextJsonfloat_customized>(new stj_number_as_string_public_partial_structConversions_SystemTextJsonfloat_customized(value));
+            return new global::Vogen.ValueObjectOrError<stj_number_as_string_public_partial_structConversions_SystemTextJsonfloat_customized>(new stj_number_as_string_public_partial_structConversions_SystemTextJsonfloat_customized(value));
         }
 
         [global::System.Runtime.CompilerServices.MethodImpl(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
@@ -177,11 +177,11 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
 #else
         public readonly bool IsInitialized() => _isInitialized;
 #endif
-        public static explicit operator stj_number_as_string_public_partial_structConversions_SystemTextJsonfloat_customized(System.Single value) => From(value);
-        public static explicit operator System.Single(stj_number_as_string_public_partial_structConversions_SystemTextJsonfloat_customized value) => value.Value;
+        public static explicit operator stj_number_as_string_public_partial_structConversions_SystemTextJsonfloat_customized(global::System.Single value) => From(value);
+        public static explicit operator global::System.Single(stj_number_as_string_public_partial_structConversions_SystemTextJsonfloat_customized value) => value.Value;
         // only called internally when something has been deserialized into
         // its primitive type.
-        private static stj_number_as_string_public_partial_structConversions_SystemTextJsonfloat_customized __Deserialize(System.Single value)
+        private static stj_number_as_string_public_partial_structConversions_SystemTextJsonfloat_customized __Deserialize(global::System.Single value)
         {
             return new stj_number_as_string_public_partial_structConversions_SystemTextJsonfloat_customized(value);
         }
@@ -192,7 +192,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
             // We treat anything uninitialized as not equal to anything, even other uninitialized instances of this type.
             if (!IsInitialized() || !other.IsInitialized())
                 return false;
-            return global::System.Collections.Generic.EqualityComparer<System.Single>.Default.Equals(Value, other.Value);
+            return global::System.Collections.Generic.EqualityComparer<global::System.Single>.Default.Equals(Value, other.Value);
         }
 
         public global::System.Boolean Equals(stj_number_as_string_public_partial_structConversions_SystemTextJsonfloat_customized other, global::System.Collections.Generic.IEqualityComparer<stj_number_as_string_public_partial_structConversions_SystemTextJsonfloat_customized> comparer)
@@ -200,7 +200,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
             return comparer.Equals(this, other);
         }
 
-        public readonly global::System.Boolean Equals(System.Single primitive)
+        public readonly global::System.Boolean Equals(global::System.Single primitive)
         {
             return Value.Equals(primitive);
         }
@@ -212,10 +212,10 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
 
         public static global::System.Boolean operator ==(stj_number_as_string_public_partial_structConversions_SystemTextJsonfloat_customized left, stj_number_as_string_public_partial_structConversions_SystemTextJsonfloat_customized right) => left.Equals(right);
         public static global::System.Boolean operator !=(stj_number_as_string_public_partial_structConversions_SystemTextJsonfloat_customized left, stj_number_as_string_public_partial_structConversions_SystemTextJsonfloat_customized right) => !(left == right);
-        public static global::System.Boolean operator ==(stj_number_as_string_public_partial_structConversions_SystemTextJsonfloat_customized left, System.Single right) => left.Value.Equals(right);
-        public static global::System.Boolean operator ==(System.Single left, stj_number_as_string_public_partial_structConversions_SystemTextJsonfloat_customized right) => right.Value.Equals(left);
-        public static global::System.Boolean operator !=(System.Single left, stj_number_as_string_public_partial_structConversions_SystemTextJsonfloat_customized right) => !(left == right);
-        public static global::System.Boolean operator !=(stj_number_as_string_public_partial_structConversions_SystemTextJsonfloat_customized left, System.Single right) => !(left == right);
+        public static global::System.Boolean operator ==(stj_number_as_string_public_partial_structConversions_SystemTextJsonfloat_customized left, global::System.Single right) => left.Value.Equals(right);
+        public static global::System.Boolean operator ==(global::System.Single left, stj_number_as_string_public_partial_structConversions_SystemTextJsonfloat_customized right) => right.Value.Equals(left);
+        public static global::System.Boolean operator !=(global::System.Single left, stj_number_as_string_public_partial_structConversions_SystemTextJsonfloat_customized right) => !(left == right);
+        public static global::System.Boolean operator !=(stj_number_as_string_public_partial_structConversions_SystemTextJsonfloat_customized left, global::System.Single right) => !(left == right);
         public int CompareTo(stj_number_as_string_public_partial_structConversions_SystemTextJsonfloat_customized other) => Value.CompareTo(other.Value);
         public int CompareTo(object other)
         {
@@ -553,14 +553,14 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
 #nullable restore
         public readonly override global::System.Int32 GetHashCode()
         {
-            return global::System.Collections.Generic.EqualityComparer<System.Single>.Default.GetHashCode(Value);
+            return global::System.Collections.Generic.EqualityComparer<global::System.Single>.Default.GetHashCode(Value);
         }
 
-        /// <inheritdoc cref = "System.Single.ToString()"/>
+        /// <inheritdoc cref = "float.ToString()"/>
         public override global::System.String ToString() => IsInitialized() ? Value.ToString() ?? "" : "[UNINITIALIZED]";
-        /// <inheritdoc cref = "System.Single.ToString(System.IFormatProvider? )"/>
+        /// <inheritdoc cref = "float.ToString(System.IFormatProvider? )"/>
         public global::System.String ToString(global::System.IFormatProvider provider) => IsInitialized() ? Value.ToString(provider) ?? "" : "[UNINITIALIZED]";
-        /// <inheritdoc cref = "System.Single.ToString(string? )"/>
+        /// <inheritdoc cref = "float.ToString(string? )"/>
         public global::System.String ToString([System.Diagnostics.CodeAnalysis.StringSyntaxAttribute("NumericFormat")] string format) => IsInitialized() ? Value.ToString(format) ?? "" : "[UNINITIALIZED]";
         [global::System.Runtime.CompilerServices.MethodImpl(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
         private readonly void EnsureInitialized()
@@ -589,7 +589,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
                 return DeserializeJson(global::System.Single.Parse(reader.GetString(), global::System.Globalization.NumberStyles.Any, global::System.Globalization.CultureInfo.InvariantCulture));
             }
 
-            public override void Write(System.Text.Json.Utf8JsonWriter writer, stj_number_as_string_public_partial_structConversions_SystemTextJsonfloat_customized value, global::System.Text.Json.JsonSerializerOptions options)
+            public override void Write(global::System.Text.Json.Utf8JsonWriter writer, stj_number_as_string_public_partial_structConversions_SystemTextJsonfloat_customized value, global::System.Text.Json.JsonSerializerOptions options)
             {
                 writer.WriteStringValue(value.Value.ToString(global::System.Globalization.CultureInfo.InvariantCulture));
             }
@@ -600,7 +600,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
                 return DeserializeJson(global::System.Single.Parse(reader.GetString(), global::System.Globalization.NumberStyles.Any, global::System.Globalization.CultureInfo.InvariantCulture));
             }
 
-            public override void WriteAsPropertyName(System.Text.Json.Utf8JsonWriter writer, stj_number_as_string_public_partial_structConversions_SystemTextJsonfloat_customized value, global::System.Text.Json.JsonSerializerOptions options)
+            public override void WriteAsPropertyName(global::System.Text.Json.Utf8JsonWriter writer, stj_number_as_string_public_partial_structConversions_SystemTextJsonfloat_customized value, global::System.Text.Json.JsonSerializerOptions options)
             {
                 writer.WritePropertyName(value.Value.ToString(global::System.Globalization.CultureInfo.InvariantCulture));
             }
@@ -608,13 +608,13 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
 #if NETCOREAPP3_0_OR_GREATER
             [global::System.Diagnostics.CodeAnalysis.DoesNotReturnAttribute]
 #endif
-            private static void ThrowJsonExceptionWhenValidationFails(Vogen.Validation validation)
+            private static void ThrowJsonExceptionWhenValidationFails(global::Vogen.Validation validation)
             {
                 var e = ThrowHelper.CreateValidationException(validation);
                 throw new global::System.Text.Json.JsonException(null, e);
             }
 
-            private static stj_number_as_string_public_partial_structConversions_SystemTextJsonfloat_customized DeserializeJson(System.Single value)
+            private static stj_number_as_string_public_partial_structConversions_SystemTextJsonfloat_customized DeserializeJson(global::System.Single value)
             {
                 return new stj_number_as_string_public_partial_structConversions_SystemTextJsonfloat_customized(value);
             }
@@ -665,14 +665,14 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
 #if NETCOREAPP3_0_OR_GREATER
     [global::System.Diagnostics.CodeAnalysis.DoesNotReturnAttribute]
 #endif
-            internal static void ThrowWhenValidationFails(Vogen.Validation validation)
+            internal static void ThrowWhenValidationFails(global::Vogen.Validation validation)
             {
                 throw CreateValidationException(validation);
             }
 
-            internal static System.Exception CreateValidationException(string message) => new global::Vogen.ValueObjectValidationException(message);
-            internal static System.Exception CreateCannotBeNullException() => new global::Vogen.ValueObjectValidationException("Cannot create a value object with null.");
-            internal static System.Exception CreateValidationException(Vogen.Validation validation)
+            internal static global::System.Exception CreateValidationException(string message) => new global::Vogen.ValueObjectValidationException(message);
+            internal static global::System.Exception CreateCannotBeNullException() => new global::Vogen.ValueObjectValidationException("Cannot create a value object with null.");
+            internal static global::System.Exception CreateValidationException(global::Vogen.Validation validation)
             {
                 var ex = CreateValidationException(validation.ErrorMessage);
                 if (validation.Data != null)

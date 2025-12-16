@@ -69,8 +69,8 @@ namespace Whatever
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Vogen", "1.0.0.0")]
     [global::System.Text.Json.Serialization.JsonConverter(typeof(stj_number_as_string_public_partial_recordConversions_SystemTextJsonSystem_DateTime_customizedSystemTextJsonConverter))]
     [global::System.Diagnostics.DebuggerTypeProxyAttribute(typeof(stj_number_as_string_public_partial_recordConversions_SystemTextJsonSystem_DateTime_customizedDebugView))]
-    [global::System.Diagnostics.DebuggerDisplayAttribute("Underlying type: System.DateTime, Value = { _value }")]
-    public partial record class stj_number_as_string_public_partial_recordConversions_SystemTextJsonSystem_DateTime_customized : global::System.IEquatable<stj_number_as_string_public_partial_recordConversions_SystemTextJsonSystem_DateTime_customized>, global::System.IEquatable<System.DateTime>, global::System.IComparable<stj_number_as_string_public_partial_recordConversions_SystemTextJsonSystem_DateTime_customized>, global::System.IComparable, global::System.IParsable<stj_number_as_string_public_partial_recordConversions_SystemTextJsonSystem_DateTime_customized>, global::System.ISpanParsable<stj_number_as_string_public_partial_recordConversions_SystemTextJsonSystem_DateTime_customized>, global::System.IFormattable, global::System.ISpanFormattable, global::System.IUtf8SpanFormattable
+    [global::System.Diagnostics.DebuggerDisplayAttribute("Underlying type: global::System.DateTime, Value = { _value }")]
+    public partial record class stj_number_as_string_public_partial_recordConversions_SystemTextJsonSystem_DateTime_customized : global::System.IEquatable<stj_number_as_string_public_partial_recordConversions_SystemTextJsonSystem_DateTime_customized>, global::System.IEquatable<global::System.DateTime>, global::System.IComparable<stj_number_as_string_public_partial_recordConversions_SystemTextJsonSystem_DateTime_customized>, global::System.IComparable, global::System.IParsable<stj_number_as_string_public_partial_recordConversions_SystemTextJsonSystem_DateTime_customized>, global::System.ISpanParsable<stj_number_as_string_public_partial_recordConversions_SystemTextJsonSystem_DateTime_customized>, global::System.IFormattable, global::System.ISpanFormattable, global::System.IUtf8SpanFormattable
     {
 #if DEBUG
 private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
@@ -78,11 +78,11 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
 #if !VOGEN_NO_VALIDATION
         private readonly global::System.Boolean _isInitialized;
 #endif
-        private readonly System.DateTime _value;
+        private readonly global::System.DateTime _value;
         /// <summary>
-        /// Gets the underlying <see cref = "System.DateTime"/> value if set, otherwise a <see cref = "Vogen.ValueObjectValidationException"/> is thrown.
+        /// Gets the underlying <see cref = "global::System.DateTime"/> value if set, otherwise a <see cref = "global::Vogen.ValueObjectValidationException"/> is thrown.
         /// </summary>
-        public System.DateTime Value
+        public global::System.DateTime Value
         {
             [global::System.Diagnostics.DebuggerStepThroughAttribute]
             [global::System.Runtime.CompilerServices.MethodImpl(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
@@ -113,7 +113,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
         }
 
         [global::System.Diagnostics.DebuggerStepThroughAttribute]
-        private stj_number_as_string_public_partial_recordConversions_SystemTextJsonSystem_DateTime_customized(System.DateTime value)
+        private stj_number_as_string_public_partial_recordConversions_SystemTextJsonSystem_DateTime_customized(global::System.DateTime value)
         {
             _value = value;
 #if !VOGEN_NO_VALIDATION
@@ -127,7 +127,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
         /// <param name = "value">The underlying type.</param>
         /// <returns>An instance of this type.</returns>
         [global::System.Runtime.CompilerServices.MethodImpl(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
-        public static stj_number_as_string_public_partial_recordConversions_SystemTextJsonSystem_DateTime_customized From(System.DateTime value)
+        public static stj_number_as_string_public_partial_recordConversions_SystemTextJsonSystem_DateTime_customized From(global::System.DateTime value)
         {
             return new stj_number_as_string_public_partial_recordConversions_SystemTextJsonSystem_DateTime_customized(value);
         }
@@ -147,7 +147,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
 #if NETCOREAPP3_0_OR_GREATER
 [global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)]
 #endif
-        System.DateTime value, 
+        global::System.DateTime value, 
 #if NETCOREAPP3_0_OR_GREATER
 [global::System.Diagnostics.CodeAnalysis.MaybeNullWhen(false)]
 #endif
@@ -165,10 +165,10 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
         /// If validation is provided, and it fails, an error will be returned.
         /// </summary>
         /// <param name = "value">The primitive value.</param>
-        /// <returns>A <see cref = "Vogen.ValueObjectOrError{T}"/> containing either the value object, or an error.</returns>
-        public static Vogen.ValueObjectOrError<stj_number_as_string_public_partial_recordConversions_SystemTextJsonSystem_DateTime_customized> TryFrom(System.DateTime value)
+        /// <returns>A <see cref = "global::Vogen.ValueObjectOrError{T}"/> containing either the value object, or an error.</returns>
+        public static global::Vogen.ValueObjectOrError<stj_number_as_string_public_partial_recordConversions_SystemTextJsonSystem_DateTime_customized> TryFrom(global::System.DateTime value)
         {
-            return new Vogen.ValueObjectOrError<stj_number_as_string_public_partial_recordConversions_SystemTextJsonSystem_DateTime_customized>(new stj_number_as_string_public_partial_recordConversions_SystemTextJsonSystem_DateTime_customized(value));
+            return new global::Vogen.ValueObjectOrError<stj_number_as_string_public_partial_recordConversions_SystemTextJsonSystem_DateTime_customized>(new stj_number_as_string_public_partial_recordConversions_SystemTextJsonSystem_DateTime_customized(value));
         }
 
         [global::System.Runtime.CompilerServices.MethodImpl(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
@@ -181,7 +181,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
 #endif
         // only called internally when something has been deserialized into
         // its primitive type.
-        private static stj_number_as_string_public_partial_recordConversions_SystemTextJsonSystem_DateTime_customized __Deserialize(System.DateTime value)
+        private static stj_number_as_string_public_partial_recordConversions_SystemTextJsonSystem_DateTime_customized __Deserialize(global::System.DateTime value)
         {
             return new stj_number_as_string_public_partial_recordConversions_SystemTextJsonSystem_DateTime_customized(value);
         }
@@ -202,7 +202,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
                 return true;
             }
 
-            return GetType() == other.GetType() && global::System.Collections.Generic.EqualityComparer<System.DateTime>.Default.Equals(Value, other.Value);
+            return GetType() == other.GetType() && global::System.Collections.Generic.EqualityComparer<global::System.DateTime>.Default.Equals(Value, other.Value);
         }
 
         public global::System.Boolean Equals(stj_number_as_string_public_partial_recordConversions_SystemTextJsonSystem_DateTime_customized other, global::System.Collections.Generic.IEqualityComparer<stj_number_as_string_public_partial_recordConversions_SystemTextJsonSystem_DateTime_customized> comparer)
@@ -210,17 +210,17 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
             return comparer.Equals(this, other);
         }
 
-        public global::System.Boolean Equals(System.DateTime primitive)
+        public global::System.Boolean Equals(global::System.DateTime primitive)
         {
             return Value.Equals(primitive);
         }
 
-        public static global::System.Boolean operator ==(stj_number_as_string_public_partial_recordConversions_SystemTextJsonSystem_DateTime_customized left, System.DateTime right) => left.Value.Equals(right);
-        public static global::System.Boolean operator ==(System.DateTime left, stj_number_as_string_public_partial_recordConversions_SystemTextJsonSystem_DateTime_customized right) => right.Value.Equals(left);
-        public static global::System.Boolean operator !=(System.DateTime left, stj_number_as_string_public_partial_recordConversions_SystemTextJsonSystem_DateTime_customized right) => !(left == right);
-        public static global::System.Boolean operator !=(stj_number_as_string_public_partial_recordConversions_SystemTextJsonSystem_DateTime_customized left, System.DateTime right) => !(left == right);
-        public static explicit operator stj_number_as_string_public_partial_recordConversions_SystemTextJsonSystem_DateTime_customized(System.DateTime value) => From(value);
-        public static explicit operator System.DateTime(stj_number_as_string_public_partial_recordConversions_SystemTextJsonSystem_DateTime_customized value) => value.Value;
+        public static global::System.Boolean operator ==(stj_number_as_string_public_partial_recordConversions_SystemTextJsonSystem_DateTime_customized left, global::System.DateTime right) => left.Value.Equals(right);
+        public static global::System.Boolean operator ==(global::System.DateTime left, stj_number_as_string_public_partial_recordConversions_SystemTextJsonSystem_DateTime_customized right) => right.Value.Equals(left);
+        public static global::System.Boolean operator !=(global::System.DateTime left, stj_number_as_string_public_partial_recordConversions_SystemTextJsonSystem_DateTime_customized right) => !(left == right);
+        public static global::System.Boolean operator !=(stj_number_as_string_public_partial_recordConversions_SystemTextJsonSystem_DateTime_customized left, global::System.DateTime right) => !(left == right);
+        public static explicit operator stj_number_as_string_public_partial_recordConversions_SystemTextJsonSystem_DateTime_customized(global::System.DateTime value) => From(value);
+        public static explicit operator global::System.DateTime(stj_number_as_string_public_partial_recordConversions_SystemTextJsonSystem_DateTime_customized value) => value.Value;
         public int CompareTo(stj_number_as_string_public_partial_recordConversions_SystemTextJsonSystem_DateTime_customized other)
         {
             if (other is null)
@@ -463,17 +463,17 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
             {
                 global::System.Int32 hash = (global::System.Int32)2166136261;
                 hash = (hash * 16777619) ^ GetType().GetHashCode();
-                hash = (hash * 16777619) ^ global::System.Collections.Generic.EqualityComparer<System.DateTime>.Default.GetHashCode(Value);
+                hash = (hash * 16777619) ^ global::System.Collections.Generic.EqualityComparer<global::System.DateTime>.Default.GetHashCode(Value);
                 return hash;
             }
         }
 
         // record enumerates fields - we just want our Value and to throw if it's not initialized.
-        /// <inheritdoc cref = "System.DateTime.ToString()"/>
+        /// <inheritdoc cref = "global::System.DateTime.ToString()"/>
         public override global::System.String ToString() => IsInitialized() ? Value.ToString() ?? "" : "[UNINITIALIZED]";
-        /// <inheritdoc cref = "System.DateTime.ToString(System.IFormatProvider? )"/>
+        /// <inheritdoc cref = "global::System.DateTime.ToString(System.IFormatProvider? )"/>
         public global::System.String ToString(global::System.IFormatProvider provider) => IsInitialized() ? Value.ToString(provider) ?? "" : "[UNINITIALIZED]";
-        /// <inheritdoc cref = "System.DateTime.ToString(string? )"/>
+        /// <inheritdoc cref = "global::System.DateTime.ToString(string? )"/>
         public global::System.String ToString([System.Diagnostics.CodeAnalysis.StringSyntaxAttribute("DateTimeFormat")] string format) => IsInitialized() ? Value.ToString(format) ?? "" : "[UNINITIALIZED]";
         [global::System.Runtime.CompilerServices.MethodImpl(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
         private void EnsureInitialized()
@@ -499,7 +499,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
                 return DeserializeJson(reader.GetDateTime().ToUniversalTime());
             }
 
-            public override void Write(System.Text.Json.Utf8JsonWriter writer, stj_number_as_string_public_partial_recordConversions_SystemTextJsonSystem_DateTime_customized value, global::System.Text.Json.JsonSerializerOptions options)
+            public override void Write(global::System.Text.Json.Utf8JsonWriter writer, stj_number_as_string_public_partial_recordConversions_SystemTextJsonSystem_DateTime_customized value, global::System.Text.Json.JsonSerializerOptions options)
             {
                 writer.WriteStringValue(value.Value.ToUniversalTime());
             }
@@ -513,7 +513,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
                 return DeserializeJson(global::System.DateTime.ParseExact(reader.GetString(), "O", global::System.Globalization.CultureInfo.InvariantCulture, global::System.Globalization.DateTimeStyles.RoundtripKind));
             }
 
-            public override void WriteAsPropertyName(System.Text.Json.Utf8JsonWriter writer, stj_number_as_string_public_partial_recordConversions_SystemTextJsonSystem_DateTime_customized value, global::System.Text.Json.JsonSerializerOptions options)
+            public override void WriteAsPropertyName(global::System.Text.Json.Utf8JsonWriter writer, stj_number_as_string_public_partial_recordConversions_SystemTextJsonSystem_DateTime_customized value, global::System.Text.Json.JsonSerializerOptions options)
             {
                 writer.WritePropertyName(value.Value.ToUniversalTime().ToString("O", global::System.Globalization.CultureInfo.InvariantCulture));
             }
@@ -521,13 +521,13 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
 #if NETCOREAPP3_0_OR_GREATER
             [global::System.Diagnostics.CodeAnalysis.DoesNotReturnAttribute]
 #endif
-            private static void ThrowJsonExceptionWhenValidationFails(Vogen.Validation validation)
+            private static void ThrowJsonExceptionWhenValidationFails(global::Vogen.Validation validation)
             {
                 var e = ThrowHelper.CreateValidationException(validation);
                 throw new global::System.Text.Json.JsonException(null, e);
             }
 
-            private static stj_number_as_string_public_partial_recordConversions_SystemTextJsonSystem_DateTime_customized DeserializeJson(System.DateTime value)
+            private static stj_number_as_string_public_partial_recordConversions_SystemTextJsonSystem_DateTime_customized DeserializeJson(global::System.DateTime value)
             {
                 return new stj_number_as_string_public_partial_recordConversions_SystemTextJsonSystem_DateTime_customized(value);
             }
@@ -542,8 +542,8 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
                 _t = t;
             }
 
-            public global::System.String UnderlyingType => "System.DateTime";
-            public System.DateTime Value => _t.Value;
+            public global::System.String UnderlyingType => "global::System.DateTime";
+            public global::System.DateTime Value => _t.Value;
             public global::System.String Conversions => @"[global::System.Text.Json.Serialization.JsonConverter(typeof(stj_number_as_string_public_partial_recordConversions_SystemTextJsonSystem_DateTime_customizedSystemTextJsonConverter))]
 ";
         }
@@ -573,14 +573,14 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
 #if NETCOREAPP3_0_OR_GREATER
     [global::System.Diagnostics.CodeAnalysis.DoesNotReturnAttribute]
 #endif
-            internal static void ThrowWhenValidationFails(Vogen.Validation validation)
+            internal static void ThrowWhenValidationFails(global::Vogen.Validation validation)
             {
                 throw CreateValidationException(validation);
             }
 
-            internal static System.Exception CreateValidationException(string message) => new global::Vogen.ValueObjectValidationException(message);
-            internal static System.Exception CreateCannotBeNullException() => new global::Vogen.ValueObjectValidationException("Cannot create a value object with null.");
-            internal static System.Exception CreateValidationException(Vogen.Validation validation)
+            internal static global::System.Exception CreateValidationException(string message) => new global::Vogen.ValueObjectValidationException(message);
+            internal static global::System.Exception CreateCannotBeNullException() => new global::Vogen.ValueObjectValidationException("Cannot create a value object with null.");
+            internal static global::System.Exception CreateValidationException(global::Vogen.Validation validation)
             {
                 var ex = CreateValidationException(validation.ErrorMessage);
                 if (validation.Data != null)

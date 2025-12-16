@@ -63,8 +63,6 @@ public class Bug869Tests
                          public class NuGet<T>;
                          public class System<T>;
                          public class Microsoft<T>;    
-                         public class Vogen;    
-                         public class Vogen<T>;    
                      
                          [ValueObject<Type1>]
                          internal partial class MyVo

@@ -70,9 +70,9 @@ namespace Whatever
     [global::System.Text.Json.Serialization.JsonConverter(typeof(FileHashSystemTextJsonConverter))]
     [global::System.ComponentModel.TypeConverter(typeof(FileHashTypeConverter))]
     [global::System.Diagnostics.DebuggerTypeProxyAttribute(typeof(FileHashDebugView))]
-    [global::System.Diagnostics.DebuggerDisplayAttribute("Underlying type: Whatever.Hash, Value = { _value }")]
+    [global::System.Diagnostics.DebuggerDisplayAttribute("Underlying type: global::Whatever.Hash, Value = { _value }")]
     // ReSharper disable once UnusedType.Global
-    public readonly partial struct FileHash : global::System.IEquatable<FileHash>, global::System.IEquatable<Whatever.Hash>
+    public readonly partial struct FileHash : global::System.IEquatable<FileHash>, global::System.IEquatable<global::Whatever.Hash>
     {
 #if DEBUG
 private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
@@ -80,11 +80,11 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
 #if !VOGEN_NO_VALIDATION
         private readonly global::System.Boolean _isInitialized;
 #endif
-        private readonly Whatever.Hash _value;
+        private readonly global::Whatever.Hash _value;
         /// <summary>
-        /// Gets the underlying <see cref = "Whatever.Hash"/> value if set, otherwise a <see cref = "Vogen.ValueObjectValidationException"/> is thrown.
+        /// Gets the underlying <see cref = "global::Whatever.Hash"/> value if set, otherwise a <see cref = "global::Vogen.ValueObjectValidationException"/> is thrown.
         /// </summary>
-        public readonly Whatever.Hash Value
+        public readonly global::Whatever.Hash Value
         {
             [global::System.Diagnostics.DebuggerStepThroughAttribute]
             [global::System.Runtime.CompilerServices.MethodImpl(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
@@ -109,7 +109,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
         }
 
         [global::System.Diagnostics.DebuggerStepThroughAttribute]
-        private FileHash(Whatever.Hash value)
+        private FileHash(global::Whatever.Hash value)
         {
             _value = value;
 #if !VOGEN_NO_VALIDATION
@@ -126,7 +126,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
         /// <param name = "value">The underlying type.</param>
         /// <returns>An instance of this type.</returns>
         [global::System.Runtime.CompilerServices.MethodImpl(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
-        public static FileHash From(Whatever.Hash value)
+        public static FileHash From(global::Whatever.Hash value)
         {
             if (value is null)
             {
@@ -152,7 +152,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
 #if NETCOREAPP3_0_OR_GREATER
 [global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)]
 #endif
-        Whatever.Hash value, 
+        global::Whatever.Hash value, 
 #if NETCOREAPP3_0_OR_GREATER
 [global::System.Diagnostics.CodeAnalysis.MaybeNullWhen(false)]
 #endif
@@ -176,15 +176,15 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
         /// If validation is provided, and it fails, an error will be returned.
         /// </summary>
         /// <param name = "value">The primitive value.</param>
-        /// <returns>A <see cref = "Vogen.ValueObjectOrError{T}"/> containing either the value object, or an error.</returns>
-        public static Vogen.ValueObjectOrError<FileHash> TryFrom(Whatever.Hash value)
+        /// <returns>A <see cref = "global::Vogen.ValueObjectOrError{T}"/> containing either the value object, or an error.</returns>
+        public static global::Vogen.ValueObjectOrError<FileHash> TryFrom(global::Whatever.Hash value)
         {
             if (value is null)
             {
-                return new Vogen.ValueObjectOrError<FileHash>(Vogen.Validation.Invalid("The value provided was null"));
+                return new global::Vogen.ValueObjectOrError<FileHash>(global::Vogen.Validation.Invalid("The value provided was null"));
             }
 
-            return new Vogen.ValueObjectOrError<FileHash>(new FileHash(value));
+            return new global::Vogen.ValueObjectOrError<FileHash>(new FileHash(value));
         }
 
         [global::System.Runtime.CompilerServices.MethodImpl(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
@@ -195,11 +195,11 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
 #else
         public readonly bool IsInitialized() => _isInitialized;
 #endif
-        public static explicit operator FileHash(Whatever.Hash value) => From(value);
-        public static explicit operator Whatever.Hash(FileHash value) => value.Value;
+        public static explicit operator FileHash(global::Whatever.Hash value) => From(value);
+        public static explicit operator global::Whatever.Hash(FileHash value) => value.Value;
         // only called internally when something has been deserialized into
         // its primitive type.
-        private static FileHash __Deserialize(Whatever.Hash value)
+        private static FileHash __Deserialize(global::Whatever.Hash value)
         {
             if (value is null)
             {
@@ -216,7 +216,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
             // We treat anything uninitialized as not equal to anything, even other uninitialized instances of this type.
             if (!IsInitialized() || !other.IsInitialized())
                 return false;
-            return global::System.Collections.Generic.EqualityComparer<Whatever.Hash>.Default.Equals(Value, other.Value);
+            return global::System.Collections.Generic.EqualityComparer<global::Whatever.Hash>.Default.Equals(Value, other.Value);
         }
 
         public global::System.Boolean Equals(FileHash other, global::System.Collections.Generic.IEqualityComparer<FileHash> comparer)
@@ -224,7 +224,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
             return comparer.Equals(this, other);
         }
 
-        public readonly global::System.Boolean Equals(Whatever.Hash primitive)
+        public readonly global::System.Boolean Equals(global::Whatever.Hash primitive)
         {
             return Value.Equals(primitive);
         }
@@ -236,15 +236,15 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
 
         public static global::System.Boolean operator ==(FileHash left, FileHash right) => left.Equals(right);
         public static global::System.Boolean operator !=(FileHash left, FileHash right) => !(left == right);
-        public static global::System.Boolean operator ==(FileHash left, Whatever.Hash right) => left.Value.Equals(right);
-        public static global::System.Boolean operator ==(Whatever.Hash left, FileHash right) => right.Value.Equals(left);
-        public static global::System.Boolean operator !=(Whatever.Hash left, FileHash right) => !(left == right);
-        public static global::System.Boolean operator !=(FileHash left, Whatever.Hash right) => !(left == right);
+        public static global::System.Boolean operator ==(FileHash left, global::Whatever.Hash right) => left.Value.Equals(right);
+        public static global::System.Boolean operator ==(global::Whatever.Hash left, FileHash right) => right.Value.Equals(left);
+        public static global::System.Boolean operator !=(global::Whatever.Hash left, FileHash right) => !(left == right);
+        public static global::System.Boolean operator !=(FileHash left, global::Whatever.Hash right) => !(left == right);
 #nullable disable
 #nullable restore
         public readonly override global::System.Int32 GetHashCode()
         {
-            return global::System.Collections.Generic.EqualityComparer<Whatever.Hash>.Default.GetHashCode(Value);
+            return global::System.Collections.Generic.EqualityComparer<global::Whatever.Hash>.Default.GetHashCode(Value);
         }
 
         /// <summary>
@@ -275,11 +275,11 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
         {
             public override FileHash Read(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {
-                var primitive = global::System.Text.Json.JsonSerializer.Deserialize<Whatever.Hash>(ref reader, options);
+                var primitive = global::System.Text.Json.JsonSerializer.Deserialize<global::Whatever.Hash>(ref reader, options);
                 return DeserializeJson(primitive);
             }
 
-            public override void Write(System.Text.Json.Utf8JsonWriter writer, FileHash value, global::System.Text.Json.JsonSerializerOptions options)
+            public override void Write(global::System.Text.Json.Utf8JsonWriter writer, FileHash value, global::System.Text.Json.JsonSerializerOptions options)
             {
                 global::System.Text.Json.JsonSerializer.Serialize(writer, value.Value, options);
             }
@@ -287,11 +287,11 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
 #if NET6_0_OR_GREATER
             public override FileHash ReadAsPropertyName(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {
-                var primitive = global::System.Text.Json.JsonSerializer.Deserialize<Whatever.Hash>(ref reader, options);
+                var primitive = global::System.Text.Json.JsonSerializer.Deserialize<global::Whatever.Hash>(ref reader, options);
                 return DeserializeJson(primitive);
             }
 
-            public override void WriteAsPropertyName(System.Text.Json.Utf8JsonWriter writer, FileHash value, global::System.Text.Json.JsonSerializerOptions options)
+            public override void WriteAsPropertyName(global::System.Text.Json.Utf8JsonWriter writer, FileHash value, global::System.Text.Json.JsonSerializerOptions options)
             {
                 writer.WritePropertyName(global::System.Text.Json.JsonSerializer.Serialize(value.Value));
             }
@@ -299,13 +299,13 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
 #if NETCOREAPP3_0_OR_GREATER
             [global::System.Diagnostics.CodeAnalysis.DoesNotReturnAttribute]
 #endif
-            private static void ThrowJsonExceptionWhenValidationFails(Vogen.Validation validation)
+            private static void ThrowJsonExceptionWhenValidationFails(global::Vogen.Validation validation)
             {
                 var e = ThrowHelper.CreateValidationException(validation);
                 throw new global::System.Text.Json.JsonException(null, e);
             }
 
-            private static void ThrowJsonExceptionWhenNull(Whatever.Hash value)
+            private static void ThrowJsonExceptionWhenNull(global::Whatever.Hash value)
             {
                 if (value == null)
                 {
@@ -314,7 +314,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
                 }
             }
 
-            private static FileHash DeserializeJson(Whatever.Hash value)
+            private static FileHash DeserializeJson(global::Whatever.Hash value)
             {
                 ThrowJsonExceptionWhenNull(value);
                 return new FileHash(value);
@@ -327,18 +327,18 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
         {
             public override global::System.Boolean CanConvertFrom(global::System.ComponentModel.ITypeDescriptorContext context, global::System.Type sourceType)
             {
-                return sourceType == typeof(Whatever.Hash);
+                return sourceType == typeof(global::Whatever.Hash);
             }
 
             public override global::System.Object ConvertFrom(global::System.ComponentModel.ITypeDescriptorContext context, global::System.Globalization.CultureInfo culture, global::System.Object value)
             {
-                Whatever.Hash ut = (Whatever.Hash)value;
+                global::Whatever.Hash ut = (global::Whatever.Hash)value;
                 return FileHash.__Deserialize(ut);
             }
 
             public override bool CanConvertTo(global::System.ComponentModel.ITypeDescriptorContext context, global::System.Type sourceType)
             {
-                return sourceType == typeof(Whatever.Hash);
+                return sourceType == typeof(global::Whatever.Hash);
             }
 
             public override object ConvertTo(global::System.ComponentModel.ITypeDescriptorContext context, global::System.Globalization.CultureInfo culture, global::System.Object value, global::System.Type destinationType)
@@ -397,14 +397,14 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
 #if NETCOREAPP3_0_OR_GREATER
     [global::System.Diagnostics.CodeAnalysis.DoesNotReturnAttribute]
 #endif
-            internal static void ThrowWhenValidationFails(Vogen.Validation validation)
+            internal static void ThrowWhenValidationFails(global::Vogen.Validation validation)
             {
                 throw CreateValidationException(validation);
             }
 
-            internal static System.Exception CreateValidationException(string message) => new global::Vogen.ValueObjectValidationException(message);
-            internal static System.Exception CreateCannotBeNullException() => new global::Vogen.ValueObjectValidationException("Cannot create a value object with null.");
-            internal static System.Exception CreateValidationException(Vogen.Validation validation)
+            internal static global::System.Exception CreateValidationException(string message) => new global::Vogen.ValueObjectValidationException(message);
+            internal static global::System.Exception CreateCannotBeNullException() => new global::Vogen.ValueObjectValidationException("Cannot create a value object with null.");
+            internal static global::System.Exception CreateValidationException(global::Vogen.Validation validation)
             {
                 var ex = CreateValidationException(validation.ErrorMessage);
                 if (validation.Data != null)

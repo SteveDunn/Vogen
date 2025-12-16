@@ -117,8 +117,8 @@ namespace Whatever
     [global::System.Text.Json.Serialization.JsonConverter(typeof(_casting_public_partial_recordExplicitNonebyteSystemTextJsonConverter))]
     [global::System.ComponentModel.TypeConverter(typeof(_casting_public_partial_recordExplicitNonebyteTypeConverter))]
     [global::System.Diagnostics.DebuggerTypeProxyAttribute(typeof(_casting_public_partial_recordExplicitNonebyteDebugView))]
-    [global::System.Diagnostics.DebuggerDisplayAttribute("Underlying type: System.Byte, Value = { _value }")]
-    public partial record class _casting_public_partial_recordExplicitNonebyte : global::System.IEquatable<_casting_public_partial_recordExplicitNonebyte>, global::System.IEquatable<System.Byte>, global::System.IComparable<_casting_public_partial_recordExplicitNonebyte>, global::System.IComparable, global::System.IParsable<_casting_public_partial_recordExplicitNonebyte>, global::System.ISpanParsable<_casting_public_partial_recordExplicitNonebyte>, global::System.IUtf8SpanParsable<_casting_public_partial_recordExplicitNonebyte>, global::System.IFormattable, global::System.ISpanFormattable, global::System.IUtf8SpanFormattable
+    [global::System.Diagnostics.DebuggerDisplayAttribute("Underlying type: global::System.Byte, Value = { _value }")]
+    public partial record class _casting_public_partial_recordExplicitNonebyte : global::System.IEquatable<_casting_public_partial_recordExplicitNonebyte>, global::System.IEquatable<global::System.Byte>, global::System.IComparable<_casting_public_partial_recordExplicitNonebyte>, global::System.IComparable, global::System.IParsable<_casting_public_partial_recordExplicitNonebyte>, global::System.ISpanParsable<_casting_public_partial_recordExplicitNonebyte>, global::System.IUtf8SpanParsable<_casting_public_partial_recordExplicitNonebyte>, global::System.IFormattable, global::System.ISpanFormattable, global::System.IUtf8SpanFormattable
     {
 #if DEBUG
 private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
@@ -126,11 +126,11 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
 #if !VOGEN_NO_VALIDATION
         private readonly global::System.Boolean _isInitialized;
 #endif
-        private readonly System.Byte _value;
+        private readonly global::System.Byte _value;
         /// <summary>
-        /// Gets the underlying <see cref = "System.Byte"/> value if set, otherwise a <see cref = "Vogen.ValueObjectValidationException"/> is thrown.
+        /// Gets the underlying <see cref = "byte "/> value if set, otherwise a <see cref = "global::Vogen.ValueObjectValidationException"/> is thrown.
         /// </summary>
-        public System.Byte Value
+        public global::System.Byte Value
         {
             [global::System.Diagnostics.DebuggerStepThroughAttribute]
             [global::System.Runtime.CompilerServices.MethodImpl(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
@@ -161,7 +161,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
         }
 
         [global::System.Diagnostics.DebuggerStepThroughAttribute]
-        private _casting_public_partial_recordExplicitNonebyte(System.Byte value)
+        private _casting_public_partial_recordExplicitNonebyte(global::System.Byte value)
         {
             _value = value;
 #if !VOGEN_NO_VALIDATION
@@ -175,7 +175,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
         /// <param name = "value">The underlying type.</param>
         /// <returns>An instance of this type.</returns>
         [global::System.Runtime.CompilerServices.MethodImpl(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
-        public static _casting_public_partial_recordExplicitNonebyte From(System.Byte value)
+        public static _casting_public_partial_recordExplicitNonebyte From(global::System.Byte value)
         {
             return new _casting_public_partial_recordExplicitNonebyte(value);
         }
@@ -195,7 +195,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
 #if NETCOREAPP3_0_OR_GREATER
 [global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)]
 #endif
-        System.Byte value, 
+        global::System.Byte value, 
 #if NETCOREAPP3_0_OR_GREATER
 [global::System.Diagnostics.CodeAnalysis.MaybeNullWhen(false)]
 #endif
@@ -213,10 +213,10 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
         /// If validation is provided, and it fails, an error will be returned.
         /// </summary>
         /// <param name = "value">The primitive value.</param>
-        /// <returns>A <see cref = "Vogen.ValueObjectOrError{T}"/> containing either the value object, or an error.</returns>
-        public static Vogen.ValueObjectOrError<_casting_public_partial_recordExplicitNonebyte> TryFrom(System.Byte value)
+        /// <returns>A <see cref = "global::Vogen.ValueObjectOrError{T}"/> containing either the value object, or an error.</returns>
+        public static global::Vogen.ValueObjectOrError<_casting_public_partial_recordExplicitNonebyte> TryFrom(global::System.Byte value)
         {
-            return new Vogen.ValueObjectOrError<_casting_public_partial_recordExplicitNonebyte>(new _casting_public_partial_recordExplicitNonebyte(value));
+            return new global::Vogen.ValueObjectOrError<_casting_public_partial_recordExplicitNonebyte>(new _casting_public_partial_recordExplicitNonebyte(value));
         }
 
         [global::System.Runtime.CompilerServices.MethodImpl(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
@@ -229,7 +229,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
 #endif
         // only called internally when something has been deserialized into
         // its primitive type.
-        private static _casting_public_partial_recordExplicitNonebyte __Deserialize(System.Byte value)
+        private static _casting_public_partial_recordExplicitNonebyte __Deserialize(global::System.Byte value)
         {
             return new _casting_public_partial_recordExplicitNonebyte(value);
         }
@@ -250,7 +250,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
                 return true;
             }
 
-            return GetType() == other.GetType() && global::System.Collections.Generic.EqualityComparer<System.Byte>.Default.Equals(Value, other.Value);
+            return GetType() == other.GetType() && global::System.Collections.Generic.EqualityComparer<global::System.Byte>.Default.Equals(Value, other.Value);
         }
 
         public global::System.Boolean Equals(_casting_public_partial_recordExplicitNonebyte other, global::System.Collections.Generic.IEqualityComparer<_casting_public_partial_recordExplicitNonebyte> comparer)
@@ -258,16 +258,16 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
             return comparer.Equals(this, other);
         }
 
-        public global::System.Boolean Equals(System.Byte primitive)
+        public global::System.Boolean Equals(global::System.Byte primitive)
         {
             return Value.Equals(primitive);
         }
 
-        public static global::System.Boolean operator ==(_casting_public_partial_recordExplicitNonebyte left, System.Byte right) => left.Value.Equals(right);
-        public static global::System.Boolean operator ==(System.Byte left, _casting_public_partial_recordExplicitNonebyte right) => right.Value.Equals(left);
-        public static global::System.Boolean operator !=(System.Byte left, _casting_public_partial_recordExplicitNonebyte right) => !(left == right);
-        public static global::System.Boolean operator !=(_casting_public_partial_recordExplicitNonebyte left, System.Byte right) => !(left == right);
-        public static explicit operator _casting_public_partial_recordExplicitNonebyte(System.Byte value) => From(value);
+        public static global::System.Boolean operator ==(_casting_public_partial_recordExplicitNonebyte left, global::System.Byte right) => left.Value.Equals(right);
+        public static global::System.Boolean operator ==(global::System.Byte left, _casting_public_partial_recordExplicitNonebyte right) => right.Value.Equals(left);
+        public static global::System.Boolean operator !=(global::System.Byte left, _casting_public_partial_recordExplicitNonebyte right) => !(left == right);
+        public static global::System.Boolean operator !=(_casting_public_partial_recordExplicitNonebyte left, global::System.Byte right) => !(left == right);
+        public static explicit operator _casting_public_partial_recordExplicitNonebyte(global::System.Byte value) => From(value);
         public int CompareTo(_casting_public_partial_recordExplicitNonebyte other)
         {
             if (other is null)
@@ -615,17 +615,17 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
             {
                 global::System.Int32 hash = (global::System.Int32)2166136261;
                 hash = (hash * 16777619) ^ GetType().GetHashCode();
-                hash = (hash * 16777619) ^ global::System.Collections.Generic.EqualityComparer<System.Byte>.Default.GetHashCode(Value);
+                hash = (hash * 16777619) ^ global::System.Collections.Generic.EqualityComparer<global::System.Byte>.Default.GetHashCode(Value);
                 return hash;
             }
         }
 
         // record enumerates fields - we just want our Value and to throw if it's not initialized.
-        /// <inheritdoc cref = "System.Byte.ToString()"/>
+        /// <inheritdoc cref = "byte.ToString()"/>
         public override global::System.String ToString() => IsInitialized() ? Value.ToString() ?? "" : "[UNINITIALIZED]";
-        /// <inheritdoc cref = "System.Byte.ToString(System.IFormatProvider? )"/>
+        /// <inheritdoc cref = "byte.ToString(System.IFormatProvider? )"/>
         public global::System.String ToString(global::System.IFormatProvider provider) => IsInitialized() ? Value.ToString(provider) ?? "" : "[UNINITIALIZED]";
-        /// <inheritdoc cref = "System.Byte.ToString(string? )"/>
+        /// <inheritdoc cref = "byte.ToString(string? )"/>
         public global::System.String ToString([System.Diagnostics.CodeAnalysis.StringSyntaxAttribute("NumericFormat")] string format) => IsInitialized() ? Value.ToString(format) ?? "" : "[UNINITIALIZED]";
         [global::System.Runtime.CompilerServices.MethodImpl(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
         private void EnsureInitialized()
@@ -678,13 +678,13 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
 #if NETCOREAPP3_0_OR_GREATER
             [global::System.Diagnostics.CodeAnalysis.DoesNotReturnAttribute]
 #endif
-            private static void ThrowJsonExceptionWhenValidationFails(Vogen.Validation validation)
+            private static void ThrowJsonExceptionWhenValidationFails(global::Vogen.Validation validation)
             {
                 var e = ThrowHelper.CreateValidationException(validation);
                 throw new global::System.Text.Json.JsonException(null, e);
             }
 
-            private static _casting_public_partial_recordExplicitNonebyte DeserializeJson(System.Byte value)
+            private static _casting_public_partial_recordExplicitNonebyte DeserializeJson(global::System.Byte value)
             {
                 return new _casting_public_partial_recordExplicitNonebyte(value);
             }
@@ -745,8 +745,8 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
                 _t = t;
             }
 
-            public global::System.String UnderlyingType => "System.Byte";
-            public System.Byte Value => _t.Value;
+            public global::System.String UnderlyingType => "global::System.Byte";
+            public global::System.Byte Value => _t.Value;
             public global::System.String Conversions => @"[global::System.Text.Json.Serialization.JsonConverter(typeof(_casting_public_partial_recordExplicitNonebyteSystemTextJsonConverter))]
 [global::System.ComponentModel.TypeConverter(typeof(_casting_public_partial_recordExplicitNonebyteTypeConverter))]
 ";
@@ -777,14 +777,14 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
 #if NETCOREAPP3_0_OR_GREATER
     [global::System.Diagnostics.CodeAnalysis.DoesNotReturnAttribute]
 #endif
-            internal static void ThrowWhenValidationFails(Vogen.Validation validation)
+            internal static void ThrowWhenValidationFails(global::Vogen.Validation validation)
             {
                 throw CreateValidationException(validation);
             }
 
-            internal static System.Exception CreateValidationException(string message) => new global::Vogen.ValueObjectValidationException(message);
-            internal static System.Exception CreateCannotBeNullException() => new global::Vogen.ValueObjectValidationException("Cannot create a value object with null.");
-            internal static System.Exception CreateValidationException(Vogen.Validation validation)
+            internal static global::System.Exception CreateValidationException(string message) => new global::Vogen.ValueObjectValidationException(message);
+            internal static global::System.Exception CreateCannotBeNullException() => new global::Vogen.ValueObjectValidationException("Cannot create a value object with null.");
+            internal static global::System.Exception CreateValidationException(global::Vogen.Validation validation)
             {
                 var ex = CreateValidationException(validation.ErrorMessage);
                 if (validation.Data != null)

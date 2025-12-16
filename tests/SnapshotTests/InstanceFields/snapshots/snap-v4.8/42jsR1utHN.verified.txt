@@ -70,8 +70,8 @@ namespace Whatever
     [global::System.Text.Json.Serialization.JsonConverter(typeof(internal_readonly_partial_record_structcharSystemTextJsonConverter))]
     [global::System.ComponentModel.TypeConverter(typeof(internal_readonly_partial_record_structcharTypeConverter))]
     [global::System.Diagnostics.DebuggerTypeProxyAttribute(typeof(internal_readonly_partial_record_structcharDebugView))]
-    [global::System.Diagnostics.DebuggerDisplayAttribute("Underlying type: System.Char, Value = { _value }")]
-    internal readonly partial record struct internal_readonly_partial_record_structchar : global::System.IEquatable<internal_readonly_partial_record_structchar>, global::System.IEquatable<System.Char>, global::System.IComparable<internal_readonly_partial_record_structchar>, global::System.IComparable
+    [global::System.Diagnostics.DebuggerDisplayAttribute("Underlying type: global::System.Char, Value = { _value }")]
+    internal readonly partial record struct internal_readonly_partial_record_structchar : global::System.IEquatable<internal_readonly_partial_record_structchar>, global::System.IEquatable<global::System.Char>, global::System.IComparable<internal_readonly_partial_record_structchar>, global::System.IComparable
     {
 #if DEBUG
 private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
@@ -79,11 +79,11 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
 #if !VOGEN_NO_VALIDATION
         private readonly global::System.Boolean _isInitialized;
 #endif
-        private readonly System.Char _value;
+        private readonly global::System.Char _value;
         /// <summary>
-        /// Gets the underlying <see cref = "System.Char"/> value if set, otherwise a <see cref = "Vogen.ValueObjectValidationException"/> is thrown.
+        /// Gets the underlying <see cref = "char "/> value if set, otherwise a <see cref = "global::Vogen.ValueObjectValidationException"/> is thrown.
         /// </summary>
-        public readonly System.Char Value
+        public readonly global::System.Char Value
         {
             [global::System.Diagnostics.DebuggerStepThroughAttribute]
             [global::System.Runtime.CompilerServices.MethodImpl(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
@@ -114,7 +114,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
         }
 
         [global::System.Diagnostics.DebuggerStepThroughAttribute]
-        private internal_readonly_partial_record_structchar(System.Char value)
+        private internal_readonly_partial_record_structchar(global::System.Char value)
         {
             _value = value;
 #if !VOGEN_NO_VALIDATION
@@ -128,7 +128,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
         /// <param name = "value">The underlying type.</param>
         /// <returns>An instance of this type.</returns>
         [global::System.Runtime.CompilerServices.MethodImpl(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
-        public static internal_readonly_partial_record_structchar From(System.Char value)
+        public static internal_readonly_partial_record_structchar From(global::System.Char value)
         {
             return new internal_readonly_partial_record_structchar(value);
         }
@@ -148,7 +148,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
 #if NETCOREAPP3_0_OR_GREATER
 [global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)]
 #endif
-        System.Char value, 
+        global::System.Char value, 
 #if NETCOREAPP3_0_OR_GREATER
 [global::System.Diagnostics.CodeAnalysis.MaybeNullWhen(false)]
 #endif
@@ -166,10 +166,10 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
         /// If validation is provided, and it fails, an error will be returned.
         /// </summary>
         /// <param name = "value">The primitive value.</param>
-        /// <returns>A <see cref = "Vogen.ValueObjectOrError{T}"/> containing either the value object, or an error.</returns>
-        public static Vogen.ValueObjectOrError<internal_readonly_partial_record_structchar> TryFrom(System.Char value)
+        /// <returns>A <see cref = "global::Vogen.ValueObjectOrError{T}"/> containing either the value object, or an error.</returns>
+        public static global::Vogen.ValueObjectOrError<internal_readonly_partial_record_structchar> TryFrom(global::System.Char value)
         {
-            return new Vogen.ValueObjectOrError<internal_readonly_partial_record_structchar>(new internal_readonly_partial_record_structchar(value));
+            return new global::Vogen.ValueObjectOrError<internal_readonly_partial_record_structchar>(new internal_readonly_partial_record_structchar(value));
         }
 
         [global::System.Runtime.CompilerServices.MethodImpl(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
@@ -180,11 +180,11 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
 #else
         public readonly bool IsInitialized() => _isInitialized;
 #endif
-        public static explicit operator internal_readonly_partial_record_structchar(System.Char value) => From(value);
-        public static explicit operator System.Char(internal_readonly_partial_record_structchar value) => value.Value;
+        public static explicit operator internal_readonly_partial_record_structchar(global::System.Char value) => From(value);
+        public static explicit operator global::System.Char(internal_readonly_partial_record_structchar value) => value.Value;
         // only called internally when something has been deserialized into
         // its primitive type.
-        private static internal_readonly_partial_record_structchar __Deserialize(System.Char value)
+        private static internal_readonly_partial_record_structchar __Deserialize(global::System.Char value)
         {
             if (value == MyValue.Value)
                 return MyValue;
@@ -197,7 +197,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
             // We treat anything uninitialized as not equal to anything, even other uninitialized instances of this type.
             if (!IsInitialized() || !other.IsInitialized())
                 return false;
-            return global::System.Collections.Generic.EqualityComparer<System.Char>.Default.Equals(Value, other.Value);
+            return global::System.Collections.Generic.EqualityComparer<global::System.Char>.Default.Equals(Value, other.Value);
         }
 
         public global::System.Boolean Equals(internal_readonly_partial_record_structchar other, global::System.Collections.Generic.IEqualityComparer<internal_readonly_partial_record_structchar> comparer)
@@ -205,15 +205,15 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
             return comparer.Equals(this, other);
         }
 
-        public readonly global::System.Boolean Equals(System.Char primitive)
+        public readonly global::System.Boolean Equals(global::System.Char primitive)
         {
             return Value.Equals(primitive);
         }
 
-        public static global::System.Boolean operator ==(internal_readonly_partial_record_structchar left, System.Char right) => left.Value.Equals(right);
-        public static global::System.Boolean operator ==(System.Char left, internal_readonly_partial_record_structchar right) => right.Value.Equals(left);
-        public static global::System.Boolean operator !=(System.Char left, internal_readonly_partial_record_structchar right) => !(left == right);
-        public static global::System.Boolean operator !=(internal_readonly_partial_record_structchar left, System.Char right) => !(left == right);
+        public static global::System.Boolean operator ==(internal_readonly_partial_record_structchar left, global::System.Char right) => left.Value.Equals(right);
+        public static global::System.Boolean operator ==(global::System.Char left, internal_readonly_partial_record_structchar right) => right.Value.Equals(left);
+        public static global::System.Boolean operator !=(global::System.Char left, internal_readonly_partial_record_structchar right) => !(left == right);
+        public static global::System.Boolean operator !=(internal_readonly_partial_record_structchar left, global::System.Char right) => !(left == right);
         public int CompareTo(internal_readonly_partial_record_structchar other) => Value.CompareTo(other.Value);
         public int CompareTo(object other)
         {
@@ -264,13 +264,13 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
 #nullable restore
         public readonly override global::System.Int32 GetHashCode()
         {
-            return global::System.Collections.Generic.EqualityComparer<System.Char>.Default.GetHashCode(Value);
+            return global::System.Collections.Generic.EqualityComparer<global::System.Char>.Default.GetHashCode(Value);
         }
 
         // record enumerates fields - we just want our Value and to throw if it's not initialized.
-        /// <inheritdoc cref = "System.Char.ToString()"/>
+        /// <inheritdoc cref = "char.ToString()"/>
         public override global::System.String ToString() => IsInitialized() ? Value.ToString() ?? "" : "[UNINITIALIZED]";
-        /// <inheritdoc cref = "System.Char.ToString(System.IFormatProvider)"/>
+        /// <inheritdoc cref = "char.ToString(System.IFormatProvider)"/>
         public global::System.String ToString(global::System.IFormatProvider provider) => IsInitialized() ? Value.ToString(provider) ?? "" : "[UNINITIALIZED]";
         [global::System.Runtime.CompilerServices.MethodImpl(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
         private readonly void EnsureInitialized()
@@ -299,7 +299,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
                 return DeserializeJson(s[0]);
             }
 
-            public override void Write(System.Text.Json.Utf8JsonWriter writer, internal_readonly_partial_record_structchar value, global::System.Text.Json.JsonSerializerOptions options)
+            public override void Write(global::System.Text.Json.Utf8JsonWriter writer, internal_readonly_partial_record_structchar value, global::System.Text.Json.JsonSerializerOptions options)
             {
                 writer.WriteStringValue(value.Value.ToString());
             }
@@ -312,7 +312,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
                 return DeserializeJson(s[0]);
             }
 
-            public override void WriteAsPropertyName(System.Text.Json.Utf8JsonWriter writer, internal_readonly_partial_record_structchar value, global::System.Text.Json.JsonSerializerOptions options)
+            public override void WriteAsPropertyName(global::System.Text.Json.Utf8JsonWriter writer, internal_readonly_partial_record_structchar value, global::System.Text.Json.JsonSerializerOptions options)
             {
                 writer.WritePropertyName(value.Value.ToString());
             }
@@ -320,13 +320,13 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
 #if NETCOREAPP3_0_OR_GREATER
             [global::System.Diagnostics.CodeAnalysis.DoesNotReturnAttribute]
 #endif
-            private static void ThrowJsonExceptionWhenValidationFails(Vogen.Validation validation)
+            private static void ThrowJsonExceptionWhenValidationFails(global::Vogen.Validation validation)
             {
                 var e = ThrowHelper.CreateValidationException(validation);
                 throw new global::System.Text.Json.JsonException(null, e);
             }
 
-            private static internal_readonly_partial_record_structchar DeserializeJson(System.Char value)
+            private static internal_readonly_partial_record_structchar DeserializeJson(global::System.Char value)
             {
                 if (value == MyValue.Value)
                     return MyValue;
@@ -425,14 +425,14 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
 #if NETCOREAPP3_0_OR_GREATER
     [global::System.Diagnostics.CodeAnalysis.DoesNotReturnAttribute]
 #endif
-            internal static void ThrowWhenValidationFails(Vogen.Validation validation)
+            internal static void ThrowWhenValidationFails(global::Vogen.Validation validation)
             {
                 throw CreateValidationException(validation);
             }
 
-            internal static System.Exception CreateValidationException(string message) => new global::Vogen.ValueObjectValidationException(message);
-            internal static System.Exception CreateCannotBeNullException() => new global::Vogen.ValueObjectValidationException("Cannot create a value object with null.");
-            internal static System.Exception CreateValidationException(Vogen.Validation validation)
+            internal static global::System.Exception CreateValidationException(string message) => new global::Vogen.ValueObjectValidationException(message);
+            internal static global::System.Exception CreateCannotBeNullException() => new global::Vogen.ValueObjectValidationException("Cannot create a value object with null.");
+            internal static global::System.Exception CreateValidationException(global::Vogen.Validation validation)
             {
                 var ex = CreateValidationException(validation.ErrorMessage);
                 if (validation.Data != null)

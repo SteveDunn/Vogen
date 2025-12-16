@@ -197,8 +197,8 @@ namespace @class
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Vogen", "1.0.0.0")]
     [global::Newtonsoft.Json.JsonConverter(typeof(escapedTestspublic_partial_recordConversions_NewtonsoftJsonSystem_GuidNewtonsoftJsonConverter))]
     [global::System.Diagnostics.DebuggerTypeProxyAttribute(typeof(escapedTestspublic_partial_recordConversions_NewtonsoftJsonSystem_GuidDebugView))]
-    [global::System.Diagnostics.DebuggerDisplayAttribute("Underlying type: System.Guid, Value = { _value }")]
-    public partial record class escapedTestspublic_partial_recordConversions_NewtonsoftJsonSystem_Guid : global::System.IEquatable<escapedTestspublic_partial_recordConversions_NewtonsoftJsonSystem_Guid>, global::System.IEquatable<System.Guid>, global::System.IComparable<escapedTestspublic_partial_recordConversions_NewtonsoftJsonSystem_Guid>, global::System.IComparable, global::System.IParsable<escapedTestspublic_partial_recordConversions_NewtonsoftJsonSystem_Guid>, global::System.ISpanParsable<escapedTestspublic_partial_recordConversions_NewtonsoftJsonSystem_Guid>, global::System.IFormattable, global::System.ISpanFormattable, global::System.IUtf8SpanFormattable
+    [global::System.Diagnostics.DebuggerDisplayAttribute("Underlying type: global::System.Guid, Value = { _value }")]
+    public partial record class escapedTestspublic_partial_recordConversions_NewtonsoftJsonSystem_Guid : global::System.IEquatable<escapedTestspublic_partial_recordConversions_NewtonsoftJsonSystem_Guid>, global::System.IEquatable<global::System.Guid>, global::System.IComparable<escapedTestspublic_partial_recordConversions_NewtonsoftJsonSystem_Guid>, global::System.IComparable, global::System.IParsable<escapedTestspublic_partial_recordConversions_NewtonsoftJsonSystem_Guid>, global::System.ISpanParsable<escapedTestspublic_partial_recordConversions_NewtonsoftJsonSystem_Guid>, global::System.IFormattable, global::System.ISpanFormattable, global::System.IUtf8SpanFormattable
     {
 #if DEBUG
 private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
@@ -206,11 +206,11 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
 #if !VOGEN_NO_VALIDATION
         private readonly global::System.Boolean _isInitialized;
 #endif
-        private readonly System.Guid _value;
+        private readonly global::System.Guid _value;
         /// <summary>
-        /// Gets the underlying <see cref = "System.Guid"/> value if set, otherwise a <see cref = "Vogen.ValueObjectValidationException"/> is thrown.
+        /// Gets the underlying <see cref = "global::System.Guid"/> value if set, otherwise a <see cref = "global::Vogen.ValueObjectValidationException"/> is thrown.
         /// </summary>
-        public System.Guid Value
+        public global::System.Guid Value
         {
             [global::System.Diagnostics.DebuggerStepThroughAttribute]
             [global::System.Runtime.CompilerServices.MethodImpl(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
@@ -241,7 +241,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
         }
 
         [global::System.Diagnostics.DebuggerStepThroughAttribute]
-        private escapedTestspublic_partial_recordConversions_NewtonsoftJsonSystem_Guid(System.Guid value)
+        private escapedTestspublic_partial_recordConversions_NewtonsoftJsonSystem_Guid(global::System.Guid value)
         {
             _value = value;
 #if !VOGEN_NO_VALIDATION
@@ -255,7 +255,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
         /// <param name = "value">The underlying type.</param>
         /// <returns>An instance of this type.</returns>
         [global::System.Runtime.CompilerServices.MethodImpl(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
-        public static escapedTestspublic_partial_recordConversions_NewtonsoftJsonSystem_Guid From(System.Guid value)
+        public static escapedTestspublic_partial_recordConversions_NewtonsoftJsonSystem_Guid From(global::System.Guid value)
         {
             return new escapedTestspublic_partial_recordConversions_NewtonsoftJsonSystem_Guid(value);
         }
@@ -275,7 +275,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
 #if NETCOREAPP3_0_OR_GREATER
 [global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)]
 #endif
-        System.Guid value, 
+        global::System.Guid value, 
 #if NETCOREAPP3_0_OR_GREATER
 [global::System.Diagnostics.CodeAnalysis.MaybeNullWhen(false)]
 #endif
@@ -293,10 +293,10 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
         /// If validation is provided, and it fails, an error will be returned.
         /// </summary>
         /// <param name = "value">The primitive value.</param>
-        /// <returns>A <see cref = "Vogen.ValueObjectOrError{T}"/> containing either the value object, or an error.</returns>
-        public static Vogen.ValueObjectOrError<escapedTestspublic_partial_recordConversions_NewtonsoftJsonSystem_Guid> TryFrom(System.Guid value)
+        /// <returns>A <see cref = "global::Vogen.ValueObjectOrError{T}"/> containing either the value object, or an error.</returns>
+        public static global::Vogen.ValueObjectOrError<escapedTestspublic_partial_recordConversions_NewtonsoftJsonSystem_Guid> TryFrom(global::System.Guid value)
         {
-            return new Vogen.ValueObjectOrError<escapedTestspublic_partial_recordConversions_NewtonsoftJsonSystem_Guid>(new escapedTestspublic_partial_recordConversions_NewtonsoftJsonSystem_Guid(value));
+            return new global::Vogen.ValueObjectOrError<escapedTestspublic_partial_recordConversions_NewtonsoftJsonSystem_Guid>(new escapedTestspublic_partial_recordConversions_NewtonsoftJsonSystem_Guid(value));
         }
 
         [global::System.Runtime.CompilerServices.MethodImpl(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
@@ -309,7 +309,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
 #endif
         // only called internally when something has been deserialized into
         // its primitive type.
-        private static escapedTestspublic_partial_recordConversions_NewtonsoftJsonSystem_Guid __Deserialize(System.Guid value)
+        private static escapedTestspublic_partial_recordConversions_NewtonsoftJsonSystem_Guid __Deserialize(global::System.Guid value)
         {
             return new escapedTestspublic_partial_recordConversions_NewtonsoftJsonSystem_Guid(value);
         }
@@ -330,7 +330,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
                 return true;
             }
 
-            return GetType() == other.GetType() && global::System.Collections.Generic.EqualityComparer<System.Guid>.Default.Equals(Value, other.Value);
+            return GetType() == other.GetType() && global::System.Collections.Generic.EqualityComparer<global::System.Guid>.Default.Equals(Value, other.Value);
         }
 
         public global::System.Boolean Equals(escapedTestspublic_partial_recordConversions_NewtonsoftJsonSystem_Guid other, global::System.Collections.Generic.IEqualityComparer<escapedTestspublic_partial_recordConversions_NewtonsoftJsonSystem_Guid> comparer)
@@ -338,17 +338,17 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
             return comparer.Equals(this, other);
         }
 
-        public global::System.Boolean Equals(System.Guid primitive)
+        public global::System.Boolean Equals(global::System.Guid primitive)
         {
             return Value.Equals(primitive);
         }
 
-        public static global::System.Boolean operator ==(escapedTestspublic_partial_recordConversions_NewtonsoftJsonSystem_Guid left, System.Guid right) => left.Value.Equals(right);
-        public static global::System.Boolean operator ==(System.Guid left, escapedTestspublic_partial_recordConversions_NewtonsoftJsonSystem_Guid right) => right.Value.Equals(left);
-        public static global::System.Boolean operator !=(System.Guid left, escapedTestspublic_partial_recordConversions_NewtonsoftJsonSystem_Guid right) => !(left == right);
-        public static global::System.Boolean operator !=(escapedTestspublic_partial_recordConversions_NewtonsoftJsonSystem_Guid left, System.Guid right) => !(left == right);
-        public static explicit operator escapedTestspublic_partial_recordConversions_NewtonsoftJsonSystem_Guid(System.Guid value) => From(value);
-        public static explicit operator System.Guid(escapedTestspublic_partial_recordConversions_NewtonsoftJsonSystem_Guid value) => value.Value;
+        public static global::System.Boolean operator ==(escapedTestspublic_partial_recordConversions_NewtonsoftJsonSystem_Guid left, global::System.Guid right) => left.Value.Equals(right);
+        public static global::System.Boolean operator ==(global::System.Guid left, escapedTestspublic_partial_recordConversions_NewtonsoftJsonSystem_Guid right) => right.Value.Equals(left);
+        public static global::System.Boolean operator !=(global::System.Guid left, escapedTestspublic_partial_recordConversions_NewtonsoftJsonSystem_Guid right) => !(left == right);
+        public static global::System.Boolean operator !=(escapedTestspublic_partial_recordConversions_NewtonsoftJsonSystem_Guid left, global::System.Guid right) => !(left == right);
+        public static explicit operator escapedTestspublic_partial_recordConversions_NewtonsoftJsonSystem_Guid(global::System.Guid value) => From(value);
+        public static explicit operator global::System.Guid(escapedTestspublic_partial_recordConversions_NewtonsoftJsonSystem_Guid value) => value.Value;
         public int CompareTo(escapedTestspublic_partial_recordConversions_NewtonsoftJsonSystem_Guid other)
         {
             if (other is null)
@@ -534,15 +534,15 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
             {
                 global::System.Int32 hash = (global::System.Int32)2166136261;
                 hash = (hash * 16777619) ^ GetType().GetHashCode();
-                hash = (hash * 16777619) ^ global::System.Collections.Generic.EqualityComparer<System.Guid>.Default.GetHashCode(Value);
+                hash = (hash * 16777619) ^ global::System.Collections.Generic.EqualityComparer<global::System.Guid>.Default.GetHashCode(Value);
                 return hash;
             }
         }
 
         // record enumerates fields - we just want our Value and to throw if it's not initialized.
-        /// <inheritdoc cref = "System.Guid.ToString()"/>
+        /// <inheritdoc cref = "global::System.Guid.ToString()"/>
         public override global::System.String ToString() => IsInitialized() ? Value.ToString() ?? "" : "[UNINITIALIZED]";
-        /// <inheritdoc cref = "System.Guid.ToString(string? )"/>
+        /// <inheritdoc cref = "global::System.Guid.ToString(string? )"/>
         public global::System.String ToString([System.Diagnostics.CodeAnalysis.StringSyntaxAttribute("GuidFormat")] string format) => IsInitialized() ? Value.ToString(format) ?? "" : "[UNINITIALIZED]";
         [global::System.Runtime.CompilerServices.MethodImpl(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
         private void EnsureInitialized()
@@ -587,8 +587,8 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
                 _t = t;
             }
 
-            public global::System.String UnderlyingType => "System.Guid";
-            public System.Guid Value => _t.Value;
+            public global::System.String UnderlyingType => "global::System.Guid";
+            public global::System.Guid Value => _t.Value;
             public global::System.String Conversions => @"[global::Newtonsoft.Json.JsonConverter(typeof(escapedTestspublic_partial_recordConversions_NewtonsoftJsonSystem_GuidNewtonsoftJsonConverter))]
 ";
         }
@@ -618,14 +618,14 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
 #if NETCOREAPP3_0_OR_GREATER
     [global::System.Diagnostics.CodeAnalysis.DoesNotReturnAttribute]
 #endif
-            internal static void ThrowWhenValidationFails(Vogen.Validation validation)
+            internal static void ThrowWhenValidationFails(global::Vogen.Validation validation)
             {
                 throw CreateValidationException(validation);
             }
 
-            internal static System.Exception CreateValidationException(string message) => new global::Vogen.ValueObjectValidationException(message);
-            internal static System.Exception CreateCannotBeNullException() => new global::Vogen.ValueObjectValidationException("Cannot create a value object with null.");
-            internal static System.Exception CreateValidationException(Vogen.Validation validation)
+            internal static global::System.Exception CreateValidationException(string message) => new global::Vogen.ValueObjectValidationException(message);
+            internal static global::System.Exception CreateCannotBeNullException() => new global::Vogen.ValueObjectValidationException("Cannot create a value object with null.");
+            internal static global::System.Exception CreateValidationException(global::Vogen.Validation validation)
             {
                 var ex = CreateValidationException(validation.ErrorMessage);
                 if (validation.Data != null)

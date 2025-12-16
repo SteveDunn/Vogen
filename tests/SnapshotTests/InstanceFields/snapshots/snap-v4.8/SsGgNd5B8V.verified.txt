@@ -70,9 +70,9 @@ namespace Whatever
     [global::System.Text.Json.Serialization.JsonConverter(typeof(public_readonly_partial_structdoubleSystemTextJsonConverter))]
     [global::System.ComponentModel.TypeConverter(typeof(public_readonly_partial_structdoubleTypeConverter))]
     [global::System.Diagnostics.DebuggerTypeProxyAttribute(typeof(public_readonly_partial_structdoubleDebugView))]
-    [global::System.Diagnostics.DebuggerDisplayAttribute("Underlying type: System.Double, Value = { _value }")]
+    [global::System.Diagnostics.DebuggerDisplayAttribute("Underlying type: global::System.Double, Value = { _value }")]
     // ReSharper disable once UnusedType.Global
-    public readonly partial struct public_readonly_partial_structdouble : global::System.IEquatable<public_readonly_partial_structdouble>, global::System.IEquatable<System.Double>, global::System.IComparable<public_readonly_partial_structdouble>, global::System.IComparable, global::System.IFormattable
+    public readonly partial struct public_readonly_partial_structdouble : global::System.IEquatable<public_readonly_partial_structdouble>, global::System.IEquatable<global::System.Double>, global::System.IComparable<public_readonly_partial_structdouble>, global::System.IComparable, global::System.IFormattable
     {
 #if DEBUG
 private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
@@ -80,11 +80,11 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
 #if !VOGEN_NO_VALIDATION
         private readonly global::System.Boolean _isInitialized;
 #endif
-        private readonly System.Double _value;
+        private readonly global::System.Double _value;
         /// <summary>
-        /// Gets the underlying <see cref = "System.Double"/> value if set, otherwise a <see cref = "Vogen.ValueObjectValidationException"/> is thrown.
+        /// Gets the underlying <see cref = "double "/> value if set, otherwise a <see cref = "global::Vogen.ValueObjectValidationException"/> is thrown.
         /// </summary>
-        public readonly System.Double Value
+        public readonly global::System.Double Value
         {
             [global::System.Diagnostics.DebuggerStepThroughAttribute]
             [global::System.Runtime.CompilerServices.MethodImpl(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
@@ -109,7 +109,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
         }
 
         [global::System.Diagnostics.DebuggerStepThroughAttribute]
-        private public_readonly_partial_structdouble(System.Double value)
+        private public_readonly_partial_structdouble(global::System.Double value)
         {
             _value = value;
 #if !VOGEN_NO_VALIDATION
@@ -126,7 +126,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
         /// <param name = "value">The underlying type.</param>
         /// <returns>An instance of this type.</returns>
         [global::System.Runtime.CompilerServices.MethodImpl(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
-        public static public_readonly_partial_structdouble From(System.Double value)
+        public static public_readonly_partial_structdouble From(global::System.Double value)
         {
             return new public_readonly_partial_structdouble(value);
         }
@@ -146,7 +146,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
 #if NETCOREAPP3_0_OR_GREATER
 [global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)]
 #endif
-        System.Double value, 
+        global::System.Double value, 
 #if NETCOREAPP3_0_OR_GREATER
 [global::System.Diagnostics.CodeAnalysis.MaybeNullWhen(false)]
 #endif
@@ -164,10 +164,10 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
         /// If validation is provided, and it fails, an error will be returned.
         /// </summary>
         /// <param name = "value">The primitive value.</param>
-        /// <returns>A <see cref = "Vogen.ValueObjectOrError{T}"/> containing either the value object, or an error.</returns>
-        public static Vogen.ValueObjectOrError<public_readonly_partial_structdouble> TryFrom(System.Double value)
+        /// <returns>A <see cref = "global::Vogen.ValueObjectOrError{T}"/> containing either the value object, or an error.</returns>
+        public static global::Vogen.ValueObjectOrError<public_readonly_partial_structdouble> TryFrom(global::System.Double value)
         {
-            return new Vogen.ValueObjectOrError<public_readonly_partial_structdouble>(new public_readonly_partial_structdouble(value));
+            return new global::Vogen.ValueObjectOrError<public_readonly_partial_structdouble>(new public_readonly_partial_structdouble(value));
         }
 
         [global::System.Runtime.CompilerServices.MethodImpl(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
@@ -178,11 +178,11 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
 #else
         public readonly bool IsInitialized() => _isInitialized;
 #endif
-        public static explicit operator public_readonly_partial_structdouble(System.Double value) => From(value);
-        public static explicit operator System.Double(public_readonly_partial_structdouble value) => value.Value;
+        public static explicit operator public_readonly_partial_structdouble(global::System.Double value) => From(value);
+        public static explicit operator global::System.Double(public_readonly_partial_structdouble value) => value.Value;
         // only called internally when something has been deserialized into
         // its primitive type.
-        private static public_readonly_partial_structdouble __Deserialize(System.Double value)
+        private static public_readonly_partial_structdouble __Deserialize(global::System.Double value)
         {
             if (value == MyValue.Value)
                 return MyValue;
@@ -195,7 +195,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
             // We treat anything uninitialized as not equal to anything, even other uninitialized instances of this type.
             if (!IsInitialized() || !other.IsInitialized())
                 return false;
-            return global::System.Collections.Generic.EqualityComparer<System.Double>.Default.Equals(Value, other.Value);
+            return global::System.Collections.Generic.EqualityComparer<global::System.Double>.Default.Equals(Value, other.Value);
         }
 
         public global::System.Boolean Equals(public_readonly_partial_structdouble other, global::System.Collections.Generic.IEqualityComparer<public_readonly_partial_structdouble> comparer)
@@ -203,7 +203,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
             return comparer.Equals(this, other);
         }
 
-        public readonly global::System.Boolean Equals(System.Double primitive)
+        public readonly global::System.Boolean Equals(global::System.Double primitive)
         {
             return Value.Equals(primitive);
         }
@@ -215,10 +215,10 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
 
         public static global::System.Boolean operator ==(public_readonly_partial_structdouble left, public_readonly_partial_structdouble right) => left.Equals(right);
         public static global::System.Boolean operator !=(public_readonly_partial_structdouble left, public_readonly_partial_structdouble right) => !(left == right);
-        public static global::System.Boolean operator ==(public_readonly_partial_structdouble left, System.Double right) => left.Value.Equals(right);
-        public static global::System.Boolean operator ==(System.Double left, public_readonly_partial_structdouble right) => right.Value.Equals(left);
-        public static global::System.Boolean operator !=(System.Double left, public_readonly_partial_structdouble right) => !(left == right);
-        public static global::System.Boolean operator !=(public_readonly_partial_structdouble left, System.Double right) => !(left == right);
+        public static global::System.Boolean operator ==(public_readonly_partial_structdouble left, global::System.Double right) => left.Value.Equals(right);
+        public static global::System.Boolean operator ==(global::System.Double left, public_readonly_partial_structdouble right) => right.Value.Equals(left);
+        public static global::System.Boolean operator !=(global::System.Double left, public_readonly_partial_structdouble right) => !(left == right);
+        public static global::System.Boolean operator !=(public_readonly_partial_structdouble left, global::System.Double right) => !(left == right);
         public int CompareTo(public_readonly_partial_structdouble other) => Value.CompareTo(other.Value);
         public int CompareTo(object other)
         {
@@ -337,14 +337,14 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
 #nullable restore
         public readonly override global::System.Int32 GetHashCode()
         {
-            return global::System.Collections.Generic.EqualityComparer<System.Double>.Default.GetHashCode(Value);
+            return global::System.Collections.Generic.EqualityComparer<global::System.Double>.Default.GetHashCode(Value);
         }
 
-        /// <inheritdoc cref = "System.Double.ToString()"/>
+        /// <inheritdoc cref = "double.ToString()"/>
         public override global::System.String ToString() => IsInitialized() ? Value.ToString() ?? "" : "[UNINITIALIZED]";
-        /// <inheritdoc cref = "System.Double.ToString(string)"/>
+        /// <inheritdoc cref = "double.ToString(string)"/>
         public global::System.String ToString(string format) => IsInitialized() ? Value.ToString(format) ?? "" : "[UNINITIALIZED]";
-        /// <inheritdoc cref = "System.Double.ToString(System.IFormatProvider)"/>
+        /// <inheritdoc cref = "double.ToString(System.IFormatProvider)"/>
         public global::System.String ToString(global::System.IFormatProvider provider) => IsInitialized() ? Value.ToString(provider) ?? "" : "[UNINITIALIZED]";
         [global::System.Runtime.CompilerServices.MethodImpl(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
         private readonly void EnsureInitialized()
@@ -376,7 +376,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
 #endif
             }
 
-            public override void Write(System.Text.Json.Utf8JsonWriter writer, public_readonly_partial_structdouble value, global::System.Text.Json.JsonSerializerOptions options)
+            public override void Write(global::System.Text.Json.Utf8JsonWriter writer, public_readonly_partial_structdouble value, global::System.Text.Json.JsonSerializerOptions options)
             {
 #if NET5_0_OR_GREATER
                 global::System.Text.Json.JsonSerializer.Serialize(writer, value.Value, options);
@@ -391,12 +391,12 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
                 return __DeserializeSystemTextJson(global::System.Double.Parse(reader.GetString(), global::System.Globalization.NumberStyles.Any, global::System.Globalization.CultureInfo.InvariantCulture));
             }
 
-            public override void WriteAsPropertyName(System.Text.Json.Utf8JsonWriter writer, public_readonly_partial_structdouble value, global::System.Text.Json.JsonSerializerOptions options)
+            public override void WriteAsPropertyName(global::System.Text.Json.Utf8JsonWriter writer, public_readonly_partial_structdouble value, global::System.Text.Json.JsonSerializerOptions options)
             {
                 writer.WritePropertyName(value.Value.ToString(global::System.Globalization.CultureInfo.InvariantCulture));
             }
 #endif
-            private static public_readonly_partial_structdouble __DeserializeSystemTextJson(System.Double value)
+            private static public_readonly_partial_structdouble __DeserializeSystemTextJson(global::System.Double value)
             {
                 try
                 {
@@ -498,14 +498,14 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
 #if NETCOREAPP3_0_OR_GREATER
     [global::System.Diagnostics.CodeAnalysis.DoesNotReturnAttribute]
 #endif
-            internal static void ThrowWhenValidationFails(Vogen.Validation validation)
+            internal static void ThrowWhenValidationFails(global::Vogen.Validation validation)
             {
                 throw CreateValidationException(validation);
             }
 
-            internal static System.Exception CreateValidationException(string message) => new global::Vogen.ValueObjectValidationException(message);
-            internal static System.Exception CreateCannotBeNullException() => new global::Vogen.ValueObjectValidationException("Cannot create a value object with null.");
-            internal static System.Exception CreateValidationException(Vogen.Validation validation)
+            internal static global::System.Exception CreateValidationException(string message) => new global::Vogen.ValueObjectValidationException(message);
+            internal static global::System.Exception CreateCannotBeNullException() => new global::Vogen.ValueObjectValidationException("Cannot create a value object with null.");
+            internal static global::System.Exception CreateValidationException(global::Vogen.Validation validation)
             {
                 var ex = CreateValidationException(validation.ErrorMessage);
                 if (validation.Data != null)

@@ -117,8 +117,8 @@ namespace Whatever
     [global::System.Text.Json.Serialization.JsonConverter(typeof(_casting_public_partial_recordExplicitImplicitlongSystemTextJsonConverter))]
     [global::System.ComponentModel.TypeConverter(typeof(_casting_public_partial_recordExplicitImplicitlongTypeConverter))]
     [global::System.Diagnostics.DebuggerTypeProxyAttribute(typeof(_casting_public_partial_recordExplicitImplicitlongDebugView))]
-    [global::System.Diagnostics.DebuggerDisplayAttribute("Underlying type: System.Int64, Value = { _value }")]
-    public partial record class _casting_public_partial_recordExplicitImplicitlong : global::System.IEquatable<_casting_public_partial_recordExplicitImplicitlong>, global::System.IEquatable<System.Int64>, global::System.IComparable<_casting_public_partial_recordExplicitImplicitlong>, global::System.IComparable, global::System.IParsable<_casting_public_partial_recordExplicitImplicitlong>, global::System.ISpanParsable<_casting_public_partial_recordExplicitImplicitlong>, global::System.IUtf8SpanParsable<_casting_public_partial_recordExplicitImplicitlong>, global::System.IFormattable, global::System.ISpanFormattable, global::System.IUtf8SpanFormattable
+    [global::System.Diagnostics.DebuggerDisplayAttribute("Underlying type: global::System.Int64, Value = { _value }")]
+    public partial record class _casting_public_partial_recordExplicitImplicitlong : global::System.IEquatable<_casting_public_partial_recordExplicitImplicitlong>, global::System.IEquatable<global::System.Int64>, global::System.IComparable<_casting_public_partial_recordExplicitImplicitlong>, global::System.IComparable, global::System.IParsable<_casting_public_partial_recordExplicitImplicitlong>, global::System.ISpanParsable<_casting_public_partial_recordExplicitImplicitlong>, global::System.IUtf8SpanParsable<_casting_public_partial_recordExplicitImplicitlong>, global::System.IFormattable, global::System.ISpanFormattable, global::System.IUtf8SpanFormattable
     {
 #if DEBUG
 private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
@@ -126,11 +126,11 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
 #if !VOGEN_NO_VALIDATION
         private readonly global::System.Boolean _isInitialized;
 #endif
-        private readonly System.Int64 _value;
+        private readonly global::System.Int64 _value;
         /// <summary>
-        /// Gets the underlying <see cref = "System.Int64"/> value if set, otherwise a <see cref = "Vogen.ValueObjectValidationException"/> is thrown.
+        /// Gets the underlying <see cref = "long "/> value if set, otherwise a <see cref = "global::Vogen.ValueObjectValidationException"/> is thrown.
         /// </summary>
-        public System.Int64 Value
+        public global::System.Int64 Value
         {
             [global::System.Diagnostics.DebuggerStepThroughAttribute]
             [global::System.Runtime.CompilerServices.MethodImpl(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
@@ -161,7 +161,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
         }
 
         [global::System.Diagnostics.DebuggerStepThroughAttribute]
-        private _casting_public_partial_recordExplicitImplicitlong(System.Int64 value)
+        private _casting_public_partial_recordExplicitImplicitlong(global::System.Int64 value)
         {
             _value = value;
 #if !VOGEN_NO_VALIDATION
@@ -175,7 +175,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
         /// <param name = "value">The underlying type.</param>
         /// <returns>An instance of this type.</returns>
         [global::System.Runtime.CompilerServices.MethodImpl(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
-        public static _casting_public_partial_recordExplicitImplicitlong From(System.Int64 value)
+        public static _casting_public_partial_recordExplicitImplicitlong From(global::System.Int64 value)
         {
             return new _casting_public_partial_recordExplicitImplicitlong(value);
         }
@@ -195,7 +195,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
 #if NETCOREAPP3_0_OR_GREATER
 [global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)]
 #endif
-        System.Int64 value, 
+        global::System.Int64 value, 
 #if NETCOREAPP3_0_OR_GREATER
 [global::System.Diagnostics.CodeAnalysis.MaybeNullWhen(false)]
 #endif
@@ -213,10 +213,10 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
         /// If validation is provided, and it fails, an error will be returned.
         /// </summary>
         /// <param name = "value">The primitive value.</param>
-        /// <returns>A <see cref = "Vogen.ValueObjectOrError{T}"/> containing either the value object, or an error.</returns>
-        public static Vogen.ValueObjectOrError<_casting_public_partial_recordExplicitImplicitlong> TryFrom(System.Int64 value)
+        /// <returns>A <see cref = "global::Vogen.ValueObjectOrError{T}"/> containing either the value object, or an error.</returns>
+        public static global::Vogen.ValueObjectOrError<_casting_public_partial_recordExplicitImplicitlong> TryFrom(global::System.Int64 value)
         {
-            return new Vogen.ValueObjectOrError<_casting_public_partial_recordExplicitImplicitlong>(new _casting_public_partial_recordExplicitImplicitlong(value));
+            return new global::Vogen.ValueObjectOrError<_casting_public_partial_recordExplicitImplicitlong>(new _casting_public_partial_recordExplicitImplicitlong(value));
         }
 
         [global::System.Runtime.CompilerServices.MethodImpl(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
@@ -229,7 +229,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
 #endif
         // only called internally when something has been deserialized into
         // its primitive type.
-        private static _casting_public_partial_recordExplicitImplicitlong __Deserialize(System.Int64 value)
+        private static _casting_public_partial_recordExplicitImplicitlong __Deserialize(global::System.Int64 value)
         {
             return new _casting_public_partial_recordExplicitImplicitlong(value);
         }
@@ -250,7 +250,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
                 return true;
             }
 
-            return GetType() == other.GetType() && global::System.Collections.Generic.EqualityComparer<System.Int64>.Default.Equals(Value, other.Value);
+            return GetType() == other.GetType() && global::System.Collections.Generic.EqualityComparer<global::System.Int64>.Default.Equals(Value, other.Value);
         }
 
         public global::System.Boolean Equals(_casting_public_partial_recordExplicitImplicitlong other, global::System.Collections.Generic.IEqualityComparer<_casting_public_partial_recordExplicitImplicitlong> comparer)
@@ -258,17 +258,17 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
             return comparer.Equals(this, other);
         }
 
-        public global::System.Boolean Equals(System.Int64 primitive)
+        public global::System.Boolean Equals(global::System.Int64 primitive)
         {
             return Value.Equals(primitive);
         }
 
-        public static global::System.Boolean operator ==(_casting_public_partial_recordExplicitImplicitlong left, System.Int64 right) => left.Value.Equals(right);
-        public static global::System.Boolean operator ==(System.Int64 left, _casting_public_partial_recordExplicitImplicitlong right) => right.Value.Equals(left);
-        public static global::System.Boolean operator !=(System.Int64 left, _casting_public_partial_recordExplicitImplicitlong right) => !(left == right);
-        public static global::System.Boolean operator !=(_casting_public_partial_recordExplicitImplicitlong left, System.Int64 right) => !(left == right);
-        public static explicit operator _casting_public_partial_recordExplicitImplicitlong(System.Int64 value) => From(value);
-        public static implicit operator System.Int64(_casting_public_partial_recordExplicitImplicitlong vo) => vo._value;
+        public static global::System.Boolean operator ==(_casting_public_partial_recordExplicitImplicitlong left, global::System.Int64 right) => left.Value.Equals(right);
+        public static global::System.Boolean operator ==(global::System.Int64 left, _casting_public_partial_recordExplicitImplicitlong right) => right.Value.Equals(left);
+        public static global::System.Boolean operator !=(global::System.Int64 left, _casting_public_partial_recordExplicitImplicitlong right) => !(left == right);
+        public static global::System.Boolean operator !=(_casting_public_partial_recordExplicitImplicitlong left, global::System.Int64 right) => !(left == right);
+        public static explicit operator _casting_public_partial_recordExplicitImplicitlong(global::System.Int64 value) => From(value);
+        public static implicit operator global::System.Int64(_casting_public_partial_recordExplicitImplicitlong vo) => vo._value;
         public int CompareTo(_casting_public_partial_recordExplicitImplicitlong other)
         {
             if (other is null)
@@ -616,17 +616,17 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
             {
                 global::System.Int32 hash = (global::System.Int32)2166136261;
                 hash = (hash * 16777619) ^ GetType().GetHashCode();
-                hash = (hash * 16777619) ^ global::System.Collections.Generic.EqualityComparer<System.Int64>.Default.GetHashCode(Value);
+                hash = (hash * 16777619) ^ global::System.Collections.Generic.EqualityComparer<global::System.Int64>.Default.GetHashCode(Value);
                 return hash;
             }
         }
 
         // record enumerates fields - we just want our Value and to throw if it's not initialized.
-        /// <inheritdoc cref = "System.Int64.ToString()"/>
+        /// <inheritdoc cref = "long.ToString()"/>
         public override global::System.String ToString() => IsInitialized() ? Value.ToString() ?? "" : "[UNINITIALIZED]";
-        /// <inheritdoc cref = "System.Int64.ToString(System.IFormatProvider? )"/>
+        /// <inheritdoc cref = "long.ToString(System.IFormatProvider? )"/>
         public global::System.String ToString(global::System.IFormatProvider provider) => IsInitialized() ? Value.ToString(provider) ?? "" : "[UNINITIALIZED]";
-        /// <inheritdoc cref = "System.Int64.ToString(string? )"/>
+        /// <inheritdoc cref = "long.ToString(string? )"/>
         public global::System.String ToString([System.Diagnostics.CodeAnalysis.StringSyntaxAttribute("NumericFormat")] string format) => IsInitialized() ? Value.ToString(format) ?? "" : "[UNINITIALIZED]";
         [global::System.Runtime.CompilerServices.MethodImpl(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
         private void EnsureInitialized()
@@ -656,7 +656,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
 #endif
             }
 
-            public override void Write(System.Text.Json.Utf8JsonWriter writer, _casting_public_partial_recordExplicitImplicitlong value, global::System.Text.Json.JsonSerializerOptions options)
+            public override void Write(global::System.Text.Json.Utf8JsonWriter writer, _casting_public_partial_recordExplicitImplicitlong value, global::System.Text.Json.JsonSerializerOptions options)
             {
 #if NET5_0_OR_GREATER
                 global::System.Text.Json.JsonSerializer.Serialize(writer, value.Value, options);
@@ -671,7 +671,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
                 return DeserializeJson(global::System.Int64.Parse(reader.GetString(), global::System.Globalization.NumberStyles.Any, global::System.Globalization.CultureInfo.InvariantCulture));
             }
 
-            public override void WriteAsPropertyName(System.Text.Json.Utf8JsonWriter writer, _casting_public_partial_recordExplicitImplicitlong value, global::System.Text.Json.JsonSerializerOptions options)
+            public override void WriteAsPropertyName(global::System.Text.Json.Utf8JsonWriter writer, _casting_public_partial_recordExplicitImplicitlong value, global::System.Text.Json.JsonSerializerOptions options)
             {
                 writer.WritePropertyName(value.Value.ToString(global::System.Globalization.CultureInfo.InvariantCulture));
             }
@@ -679,13 +679,13 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
 #if NETCOREAPP3_0_OR_GREATER
             [global::System.Diagnostics.CodeAnalysis.DoesNotReturnAttribute]
 #endif
-            private static void ThrowJsonExceptionWhenValidationFails(Vogen.Validation validation)
+            private static void ThrowJsonExceptionWhenValidationFails(global::Vogen.Validation validation)
             {
                 var e = ThrowHelper.CreateValidationException(validation);
                 throw new global::System.Text.Json.JsonException(null, e);
             }
 
-            private static _casting_public_partial_recordExplicitImplicitlong DeserializeJson(System.Int64 value)
+            private static _casting_public_partial_recordExplicitImplicitlong DeserializeJson(global::System.Int64 value)
             {
                 return new _casting_public_partial_recordExplicitImplicitlong(value);
             }
@@ -743,8 +743,8 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
                 _t = t;
             }
 
-            public global::System.String UnderlyingType => "System.Int64";
-            public System.Int64 Value => _t.Value;
+            public global::System.String UnderlyingType => "global::System.Int64";
+            public global::System.Int64 Value => _t.Value;
             public global::System.String Conversions => @"[global::System.Text.Json.Serialization.JsonConverter(typeof(_casting_public_partial_recordExplicitImplicitlongSystemTextJsonConverter))]
 [global::System.ComponentModel.TypeConverter(typeof(_casting_public_partial_recordExplicitImplicitlongTypeConverter))]
 ";
@@ -775,14 +775,14 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
 #if NETCOREAPP3_0_OR_GREATER
     [global::System.Diagnostics.CodeAnalysis.DoesNotReturnAttribute]
 #endif
-            internal static void ThrowWhenValidationFails(Vogen.Validation validation)
+            internal static void ThrowWhenValidationFails(global::Vogen.Validation validation)
             {
                 throw CreateValidationException(validation);
             }
 
-            internal static System.Exception CreateValidationException(string message) => new global::Vogen.ValueObjectValidationException(message);
-            internal static System.Exception CreateCannotBeNullException() => new global::Vogen.ValueObjectValidationException("Cannot create a value object with null.");
-            internal static System.Exception CreateValidationException(Vogen.Validation validation)
+            internal static global::System.Exception CreateValidationException(string message) => new global::Vogen.ValueObjectValidationException(message);
+            internal static global::System.Exception CreateCannotBeNullException() => new global::Vogen.ValueObjectValidationException("Cannot create a value object with null.");
+            internal static global::System.Exception CreateValidationException(global::Vogen.Validation validation)
             {
                 var ex = CreateValidationException(validation.ErrorMessage);
                 if (validation.Data != null)

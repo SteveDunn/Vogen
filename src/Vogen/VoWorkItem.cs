@@ -29,7 +29,7 @@ public class VoWorkItem
         {
             _underlyingType = value;
             _underlyingTypeFullName = value.EscapedFullName();
-            _underlyingTypeFullNameWithGlobalAlias = "global::" + value.EscapedFullName();
+            _underlyingTypeFullNameWithGlobalAlias = value.FullNameWithGlobalAlias();
             IsUnderlyingAString = SeeIfAssignableFromString();
         }
     }

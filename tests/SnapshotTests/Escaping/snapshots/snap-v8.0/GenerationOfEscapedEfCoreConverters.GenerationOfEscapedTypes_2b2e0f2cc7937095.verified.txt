@@ -202,8 +202,8 @@ namespace @class
     [global::System.Text.Json.Serialization.JsonConverter(typeof(escapedTestspublic_partial_classConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterrecord__struct__float__decimalSystemTextJsonConverter))]
     [global::Newtonsoft.Json.JsonConverter(typeof(escapedTestspublic_partial_classConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterrecord__struct__float__decimalNewtonsoftJsonConverter))]
     [global::System.Diagnostics.DebuggerTypeProxyAttribute(typeof(escapedTestspublic_partial_classConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterrecord__struct__float__decimalDebugView))]
-    [global::System.Diagnostics.DebuggerDisplayAttribute("Underlying type: @class.@record.@struct.@float.@decimal, Value = { _value }")]
-    public partial class escapedTestspublic_partial_classConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterrecord__struct__float__decimal : global::System.IEquatable<escapedTestspublic_partial_classConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterrecord__struct__float__decimal>, global::System.IEquatable<@class.@record.@struct.@float.@decimal>
+    [global::System.Diagnostics.DebuggerDisplayAttribute("Underlying type: global::@class.@record.@struct.@float.@decimal, Value = { _value }")]
+    public partial class escapedTestspublic_partial_classConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterrecord__struct__float__decimal : global::System.IEquatable<escapedTestspublic_partial_classConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterrecord__struct__float__decimal>, global::System.IEquatable<global::@class.@record.@struct.@float.@decimal>
     {
 #if DEBUG
 private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
@@ -211,11 +211,11 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
 #if !VOGEN_NO_VALIDATION
         private readonly global::System.Boolean _isInitialized;
 #endif
-        private readonly @class.@record.@struct.@float.@decimal _value;
+        private readonly global::@class.@record.@struct.@float.@decimal _value;
         /// <summary>
-        /// Gets the underlying <see cref = "@class.@record.@struct.@float.@decimal"/> value if set, otherwise a <see cref = "Vogen.ValueObjectValidationException"/> is thrown.
+        /// Gets the underlying <see cref = "global::@class.record.@struct.@float.@decimal"/> value if set, otherwise a <see cref = "global::Vogen.ValueObjectValidationException"/> is thrown.
         /// </summary>
-        public @class.@record.@struct.@float.@decimal Value
+        public global::@class.@record.@struct.@float.@decimal Value
         {
             [global::System.Diagnostics.DebuggerStepThroughAttribute]
             [global::System.Runtime.CompilerServices.MethodImpl(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
@@ -240,7 +240,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
         }
 
         [global::System.Diagnostics.DebuggerStepThroughAttribute]
-        private escapedTestspublic_partial_classConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterrecord__struct__float__decimal(@class.@record.@struct.@float.@decimal value)
+        private escapedTestspublic_partial_classConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterrecord__struct__float__decimal(global::@class.@record.@struct.@float.@decimal value)
         {
             _value = value;
 #if !VOGEN_NO_VALIDATION
@@ -254,7 +254,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
         /// <param name = "value">The underlying type.</param>
         /// <returns>An instance of this type.</returns>
         [global::System.Runtime.CompilerServices.MethodImpl(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
-        public static escapedTestspublic_partial_classConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterrecord__struct__float__decimal From(@class.@record.@struct.@float.@decimal value)
+        public static escapedTestspublic_partial_classConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterrecord__struct__float__decimal From(global::@class.@record.@struct.@float.@decimal value)
         {
             return new escapedTestspublic_partial_classConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterrecord__struct__float__decimal(value);
         }
@@ -274,7 +274,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
 #if NETCOREAPP3_0_OR_GREATER
 [global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)]
 #endif
-        @class.@record.@struct.@float.@decimal value, 
+        global::@class.@record.@struct.@float.@decimal value, 
 #if NETCOREAPP3_0_OR_GREATER
 [global::System.Diagnostics.CodeAnalysis.MaybeNullWhen(false)]
 #endif
@@ -292,10 +292,10 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
         /// If validation is provided, and it fails, an error will be returned.
         /// </summary>
         /// <param name = "value">The primitive value.</param>
-        /// <returns>A <see cref = "Vogen.ValueObjectOrError{T}"/> containing either the value object, or an error.</returns>
-        public static Vogen.ValueObjectOrError<escapedTestspublic_partial_classConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterrecord__struct__float__decimal> TryFrom(@class.@record.@struct.@float.@decimal value)
+        /// <returns>A <see cref = "global::Vogen.ValueObjectOrError{T}"/> containing either the value object, or an error.</returns>
+        public static global::Vogen.ValueObjectOrError<escapedTestspublic_partial_classConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterrecord__struct__float__decimal> TryFrom(global::@class.@record.@struct.@float.@decimal value)
         {
-            return new Vogen.ValueObjectOrError<escapedTestspublic_partial_classConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterrecord__struct__float__decimal>(new escapedTestspublic_partial_classConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterrecord__struct__float__decimal(value));
+            return new global::Vogen.ValueObjectOrError<escapedTestspublic_partial_classConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterrecord__struct__float__decimal>(new escapedTestspublic_partial_classConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterrecord__struct__float__decimal(value));
         }
 
         [global::System.Runtime.CompilerServices.MethodImpl(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
@@ -308,7 +308,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
 #endif
         // only called internally when something has been deserialized into
         // its primitive type.
-        private static escapedTestspublic_partial_classConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterrecord__struct__float__decimal __Deserialize(@class.@record.@struct.@float.@decimal value)
+        private static escapedTestspublic_partial_classConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterrecord__struct__float__decimal __Deserialize(global::@class.@record.@struct.@float.@decimal value)
         {
             return new escapedTestspublic_partial_classConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterrecord__struct__float__decimal(value);
         }
@@ -329,7 +329,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
                 return true;
             }
 
-            return GetType() == other.GetType() && global::System.Collections.Generic.EqualityComparer<@class.@record.@struct.@float.@decimal>.Default.Equals(Value, other.Value);
+            return GetType() == other.GetType() && global::System.Collections.Generic.EqualityComparer<global::@class.@record.@struct.@float.@decimal>.Default.Equals(Value, other.Value);
         }
 
         public global::System.Boolean Equals(escapedTestspublic_partial_classConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterrecord__struct__float__decimal other, global::System.Collections.Generic.IEqualityComparer<escapedTestspublic_partial_classConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterrecord__struct__float__decimal> comparer)
@@ -337,7 +337,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
             return comparer.Equals(this, other);
         }
 
-        public global::System.Boolean Equals(@class.@record.@struct.@float.@decimal primitive)
+        public global::System.Boolean Equals(global::@class.@record.@struct.@float.@decimal primitive)
         {
             return Value.Equals(primitive);
         }
@@ -349,12 +349,12 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
 
         public static global::System.Boolean operator ==(escapedTestspublic_partial_classConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterrecord__struct__float__decimal left, escapedTestspublic_partial_classConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterrecord__struct__float__decimal right) => Equals(left, right);
         public static global::System.Boolean operator !=(escapedTestspublic_partial_classConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterrecord__struct__float__decimal left, escapedTestspublic_partial_classConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterrecord__struct__float__decimal right) => !Equals(left, right);
-        public static global::System.Boolean operator ==(escapedTestspublic_partial_classConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterrecord__struct__float__decimal left, @class.@record.@struct.@float.@decimal right) => left.Value.Equals(right);
-        public static global::System.Boolean operator ==(@class.@record.@struct.@float.@decimal left, escapedTestspublic_partial_classConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterrecord__struct__float__decimal right) => right.Value.Equals(left);
-        public static global::System.Boolean operator !=(@class.@record.@struct.@float.@decimal left, escapedTestspublic_partial_classConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterrecord__struct__float__decimal right) => !(left == right);
-        public static global::System.Boolean operator !=(escapedTestspublic_partial_classConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterrecord__struct__float__decimal left, @class.@record.@struct.@float.@decimal right) => !(left == right);
-        public static explicit operator escapedTestspublic_partial_classConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterrecord__struct__float__decimal(@class.@record.@struct.@float.@decimal value) => From(value);
-        public static explicit operator @class.@record.@struct.@float.@decimal(escapedTestspublic_partial_classConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterrecord__struct__float__decimal value) => value.Value;
+        public static global::System.Boolean operator ==(escapedTestspublic_partial_classConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterrecord__struct__float__decimal left, global::@class.@record.@struct.@float.@decimal right) => left.Value.Equals(right);
+        public static global::System.Boolean operator ==(global::@class.@record.@struct.@float.@decimal left, escapedTestspublic_partial_classConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterrecord__struct__float__decimal right) => right.Value.Equals(left);
+        public static global::System.Boolean operator !=(global::@class.@record.@struct.@float.@decimal left, escapedTestspublic_partial_classConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterrecord__struct__float__decimal right) => !(left == right);
+        public static global::System.Boolean operator !=(escapedTestspublic_partial_classConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterrecord__struct__float__decimal left, global::@class.@record.@struct.@float.@decimal right) => !(left == right);
+        public static explicit operator escapedTestspublic_partial_classConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterrecord__struct__float__decimal(global::@class.@record.@struct.@float.@decimal value) => From(value);
+        public static explicit operator global::@class.@record.@struct.@float.@decimal(escapedTestspublic_partial_classConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterrecord__struct__float__decimal value) => value.Value;
 #nullable disable
 #nullable restore
         public override global::System.Int32 GetHashCode()
@@ -363,12 +363,12 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
             {
                 global::System.Int32 hash = (global::System.Int32)2166136261;
                 hash = (hash * 16777619) ^ GetType().GetHashCode();
-                hash = (hash * 16777619) ^ global::System.Collections.Generic.EqualityComparer<@class.@record.@struct.@float.@decimal>.Default.GetHashCode(Value);
+                hash = (hash * 16777619) ^ global::System.Collections.Generic.EqualityComparer<global::@class.@record.@struct.@float.@decimal>.Default.GetHashCode(Value);
                 return hash;
             }
         }
 
-        /// <inheritdoc cref = "@class.@record.@struct.@float.@decimal.ToString()"/>
+        /// <inheritdoc cref = "global::@class.record.@struct.@float.@decimal.ToString()"/>
         public override global::System.String ToString() => IsInitialized() ? Value.ToString() ?? "" : "[UNINITIALIZED]";
         [global::System.Runtime.CompilerServices.MethodImpl(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
         private void EnsureInitialized()
@@ -391,11 +391,11 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
         {
             public override escapedTestspublic_partial_classConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterrecord__struct__float__decimal Read(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {
-                var primitive = global::System.Text.Json.JsonSerializer.Deserialize<@class.@record.@struct.@float.@decimal>(ref reader, options);
+                var primitive = global::System.Text.Json.JsonSerializer.Deserialize<global::@class.@record.@struct.@float.@decimal>(ref reader, options);
                 return DeserializeJson(primitive);
             }
 
-            public override void Write(System.Text.Json.Utf8JsonWriter writer, escapedTestspublic_partial_classConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterrecord__struct__float__decimal value, global::System.Text.Json.JsonSerializerOptions options)
+            public override void Write(global::System.Text.Json.Utf8JsonWriter writer, escapedTestspublic_partial_classConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterrecord__struct__float__decimal value, global::System.Text.Json.JsonSerializerOptions options)
             {
                 global::System.Text.Json.JsonSerializer.Serialize(writer, value.Value, options);
             }
@@ -403,11 +403,11 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
 #if NET6_0_OR_GREATER
             public override escapedTestspublic_partial_classConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterrecord__struct__float__decimal ReadAsPropertyName(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {
-                var primitive = global::System.Text.Json.JsonSerializer.Deserialize<@class.@record.@struct.@float.@decimal>(ref reader, options);
+                var primitive = global::System.Text.Json.JsonSerializer.Deserialize<global::@class.@record.@struct.@float.@decimal>(ref reader, options);
                 return DeserializeJson(primitive);
             }
 
-            public override void WriteAsPropertyName(System.Text.Json.Utf8JsonWriter writer, escapedTestspublic_partial_classConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterrecord__struct__float__decimal value, global::System.Text.Json.JsonSerializerOptions options)
+            public override void WriteAsPropertyName(global::System.Text.Json.Utf8JsonWriter writer, escapedTestspublic_partial_classConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterrecord__struct__float__decimal value, global::System.Text.Json.JsonSerializerOptions options)
             {
                 writer.WritePropertyName(global::System.Text.Json.JsonSerializer.Serialize(value.Value));
             }
@@ -415,13 +415,13 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
 #if NETCOREAPP3_0_OR_GREATER
             [global::System.Diagnostics.CodeAnalysis.DoesNotReturnAttribute]
 #endif
-            private static void ThrowJsonExceptionWhenValidationFails(Vogen.Validation validation)
+            private static void ThrowJsonExceptionWhenValidationFails(global::Vogen.Validation validation)
             {
                 var e = ThrowHelper.CreateValidationException(validation);
                 throw new global::System.Text.Json.JsonException(null, e);
             }
 
-            private static escapedTestspublic_partial_classConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterrecord__struct__float__decimal DeserializeJson(@class.@record.@struct.@float.@decimal value)
+            private static escapedTestspublic_partial_classConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterrecord__struct__float__decimal DeserializeJson(global::@class.@record.@struct.@float.@decimal value)
             {
                 return new escapedTestspublic_partial_classConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterrecord__struct__float__decimal(value);
             }
@@ -444,7 +444,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
 
             public override object ReadJson(Newtonsoft.Json.JsonReader reader, System.Type objectType, object existingValue, Newtonsoft.Json.JsonSerializer serializer)
             {
-                var result = serializer.Deserialize<@class.@record.@struct.@float.@decimal?>(reader);
+                var result = serializer.Deserialize<global::@class.@record.@struct.@float.@decimal?>(reader);
                 return result.HasValue ? escapedTestspublic_partial_classConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterrecord__struct__float__decimal.__Deserialize(result.Value) : null;
             }
         }
@@ -462,7 +462,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
             {
                 return value switch
                 {
-                    global::System.String stringValue => escapedTestspublic_partial_classConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterrecord__struct__float__decimal.__Deserialize(global::System.Text.Json.JsonSerializer.Deserialize<@class.@record.@struct.@float.@decimal>(stringValue)),
+                    global::System.String stringValue => escapedTestspublic_partial_classConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterrecord__struct__float__decimal.__Deserialize(global::System.Text.Json.JsonSerializer.Deserialize<global::@class.@record.@struct.@float.@decimal>(stringValue)),
                     _ => throw new global::System.InvalidCastException($"Unable to cast object of type {value.GetType()} to escapedTestspublic_partial_classConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterrecord__struct__float__decimal"),
                 };
             }
@@ -509,7 +509,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
 #nullable disable
         public partial class LinqToDbValueConverter : global::LinqToDB.Common.ValueConverter<escapedTestspublic_partial_classConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterrecord__struct__float__decimal, global::System.String>
         {
-            public LinqToDbValueConverter() : base(v => global::System.Text.Json.JsonSerializer.Serialize(v.Value, default(global::System.Text.Json.JsonSerializerOptions)), p => escapedTestspublic_partial_classConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterrecord__struct__float__decimal.__Deserialize(global::System.Text.Json.JsonSerializer.Deserialize<@class.@record.@struct.@float.@decimal>(p, default(global::System.Text.Json.JsonSerializerOptions))), handlesNulls: false)
+            public LinqToDbValueConverter() : base(v => global::System.Text.Json.JsonSerializer.Serialize(v.Value, default(global::System.Text.Json.JsonSerializerOptions)), p => escapedTestspublic_partial_classConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterrecord__struct__float__decimal.__Deserialize(global::System.Text.Json.JsonSerializer.Deserialize<global::@class.@record.@struct.@float.@decimal>(p, default(global::System.Text.Json.JsonSerializerOptions))), handlesNulls: false)
             {
             }
         }
@@ -523,8 +523,8 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
                 _t = t;
             }
 
-            public global::System.String UnderlyingType => "@class.@record.@struct.@float.@decimal";
-            public @class.@record.@struct.@float.@decimal Value => _t.Value;
+            public global::System.String UnderlyingType => "global::@class.@record.@struct.@float.@decimal";
+            public global::@class.@record.@struct.@float.@decimal Value => _t.Value;
             public global::System.String Conversions => @"[global::System.Text.Json.Serialization.JsonConverter(typeof(escapedTestspublic_partial_classConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterrecord__struct__float__decimalSystemTextJsonConverter))]
 [global::Newtonsoft.Json.JsonConverter(typeof(escapedTestspublic_partial_classConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterrecord__struct__float__decimalNewtonsoftJsonConverter))]
 ";
@@ -555,14 +555,14 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
 #if NETCOREAPP3_0_OR_GREATER
     [global::System.Diagnostics.CodeAnalysis.DoesNotReturnAttribute]
 #endif
-            internal static void ThrowWhenValidationFails(Vogen.Validation validation)
+            internal static void ThrowWhenValidationFails(global::Vogen.Validation validation)
             {
                 throw CreateValidationException(validation);
             }
 
-            internal static System.Exception CreateValidationException(string message) => new global::Vogen.ValueObjectValidationException(message);
-            internal static System.Exception CreateCannotBeNullException() => new global::Vogen.ValueObjectValidationException("Cannot create a value object with null.");
-            internal static System.Exception CreateValidationException(Vogen.Validation validation)
+            internal static global::System.Exception CreateValidationException(string message) => new global::Vogen.ValueObjectValidationException(message);
+            internal static global::System.Exception CreateCannotBeNullException() => new global::Vogen.ValueObjectValidationException("Cannot create a value object with null.");
+            internal static global::System.Exception CreateValidationException(global::Vogen.Validation validation)
             {
                 var ex = CreateValidationException(validation.ErrorMessage);
                 if (validation.Data != null)
