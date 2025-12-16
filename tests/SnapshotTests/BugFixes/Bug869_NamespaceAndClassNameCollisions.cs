@@ -57,8 +57,56 @@ public class Bug869Tests
                          using Vogen;
                      
                          public class NuGet;
+                         
+                         public class System;
+                         public class Microsoft;
+                         public class NuGet<T>;
+                         public class System<T>;
+                         public class Microsoft<T>;    
+                         public class Vogen;    
+                         public class Vogen<T>;    
                      
                          [ValueObject<Type1>]
+                         internal partial class MyVo
+                         {
+                             public static MyVo DefaultInstance => From(new Type1());
+                         }
+                     }
+                     """;
+
+        await new SnapshotRunner<ValueObjectGenerator>()
+            .IgnoreInitialCompilationErrors()
+            .WithSource(source)
+            .RunOnAllFrameworks();
+    }
+
+    [Fact]
+    public async Task Colliding3()
+    {
+        var source = $$"""
+                     namespace NuGet
+                     {
+                         public class Type1;
+                     }
+                     
+                     namespace ConsumerTests
+                     {
+                         using Type1 = global::NuGet.Type1;
+                         
+                         public class NuGet;
+                         
+                         public class System;
+                         public class Microsoft;
+                         public class NuGet<T>;
+                         public class System<T>;
+                         public class Microsoft<T>;    
+                         public class Vogen;    
+                         public class Newtonsoft;    
+                         public class MongoDB;    
+                         public class Orleans;    
+                         public class Vogen<T>;    
+                     
+                         [global::Vogen.ValueObject<Type1>]
                          internal partial class MyVo
                          {
                              public static MyVo DefaultInstance => From(new Type1());

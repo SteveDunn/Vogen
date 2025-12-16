@@ -12,7 +12,7 @@ __HANDLE_NULL__ #endif
                 return DeserializeJson(reader.GetGuid());
             }
 
-            public override void Write(System.Text.Json.Utf8JsonWriter writer, VOTYPE value, global::System.Text.Json.JsonSerializerOptions options)
+            public override void Write(global::System.Text.Json.Utf8JsonWriter writer, VOTYPE value, global::System.Text.Json.JsonSerializerOptions options)
             {
                 writer.WriteStringValue(value.Value);
             }
@@ -28,7 +28,7 @@ __HANDLE_NULL__ #endif
                 throw new global::System.Text.Json.JsonException("Unable to parse the GUID for an instance of VOTYPE");
             }
 
-            public override void WriteAsPropertyName(System.Text.Json.Utf8JsonWriter writer, VOTYPE value, global::System.Text.Json.JsonSerializerOptions options)
+            public override void WriteAsPropertyName(global::System.Text.Json.Utf8JsonWriter writer, VOTYPE value, global::System.Text.Json.JsonSerializerOptions options)
             {
                 writer.WritePropertyName(value.Value.ToString());
             }

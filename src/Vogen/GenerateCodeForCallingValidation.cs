@@ -20,7 +20,7 @@ internal static class GenerateCodeForCallingValidation
         {
             return $$"""
                      var validation = {{workItem.TypeToAugment.Identifier}}.{{workItem.ValidateMethod.Identifier.Value}}(value);
-                     if (validation != Vogen.Validation.Ok)
+                     if (validation != global::Vogen.Validation.Ok)
                      {
                          {{throwingMethod}}(validation);
                      }
@@ -36,7 +36,7 @@ internal static class GenerateCodeForCallingValidation
         if (workItem.ValidateMethod is not null)
         {
             return @$"var validation = {workItem.TypeToAugment.Identifier}.{workItem.ValidateMethod.Identifier.Value}(value);
-            if (validation != Vogen.Validation.Ok)
+            if (validation != global::Vogen.Validation.Ok)
             {{
                 vo = default!;
                 return false;
@@ -52,9 +52,9 @@ internal static class GenerateCodeForCallingValidation
         if (workItem.ValidateMethod is not null)
         {
             return @$"var validation = {workItem.TypeToAugment.Identifier}.{workItem.ValidateMethod.Identifier.Value}(value);
-            if (validation != Vogen.Validation.Ok)
+            if (validation != global::Vogen.Validation.Ok)
             {{
-                return new Vogen.ValueObjectOrError<{className}>(validation);
+                return new global::Vogen.ValueObjectOrError<{className}>(validation);
             }}
 ";
         }

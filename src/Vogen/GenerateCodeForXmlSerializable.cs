@@ -26,7 +26,7 @@ public class GenerateCodeForXmlSerializable
             
             public void ReadXml(global::System.Xml.XmlReader reader) 
             {
-                _value = ({{parameters.WorkItem.UnderlyingTypeFullName}})reader.ReadElementContentAs(typeof({{parameters.WorkItem.UnderlyingTypeFullName}}), null!);
+                _value = ({{parameters.WorkItem.UnderlyingTypeFullNameWithGlobalAlias}})reader.ReadElementContentAs(typeof({{parameters.WorkItem.UnderlyingTypeFullNameWithGlobalAlias}}), null!);
                 #if !VOGEN_NO_VALIDATION
                     _isInitialized = true;
                 #endif

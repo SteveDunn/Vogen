@@ -126,7 +126,7 @@ internal class GenerateCodeForBsonSerializers
                          m => m.Marker?.Kind is ConversionMarkerKind.Bson))
             {
                 // ReSharper disable NullableWarningSuppressionIsUsed
-                string generatedSource = GenerateSource(eachAttr.Marker!.VoSymbol, eachAttr.Marker!.UnderlyingTypeSymbol, "public");
+                string generatedSource = GenerateSource(eachAttr.Marker!.VoSymbol, eachAttr.Marker!.UnderlyingTypeSymbol.FullAliasedNamespace(), "public");
                 // ReSharper restore NullableWarningSuppressionIsUsed
                 
                 sb.AppendLine(
@@ -205,7 +205,7 @@ internal class GenerateCodeForBsonSerializers
         
         var ns = string.IsNullOrEmpty(fullNamespace) ? string.Empty : $"namespace {fullNamespace};";
 
-        var generatedSource = GenerateSource(wrapper.WrapperType, wrapper.UnderlyingType, accessor);
+        var generatedSource = GenerateSource(wrapper.WrapperType, wrapper.UnderlyingTypeFullNameWithGlobalAlias, accessor);
 
         return $"""
                 {GeneratedCodeSegments.Preamble}
@@ -217,11 +217,10 @@ internal class GenerateCodeForBsonSerializers
 
     }
 
-    private static string GenerateSource(INamedTypeSymbol wrapperSymbol, INamedTypeSymbol underlyingSymbol, string accessor)
+    private static string GenerateSource(INamedTypeSymbol wrapperSymbol, string underlyingFullName, string accessor)
     {
         var wrapperNames = new EscapedSymbolNames(wrapperSymbol);
 
-        EscapedSymbolFullName underlyingFullName = new EscapedSymbolFullName(underlyingSymbol);
         EscapedSymbolFullName wrapperFullName = wrapperNames.FullName;
 
         var className = $"{wrapperNames.ShortName}{_nameSuffix}";

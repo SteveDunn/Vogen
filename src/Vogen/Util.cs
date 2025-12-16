@@ -334,11 +334,9 @@ internal static class Util
 
         var symbolToUse = symbol.IsGenericType ? symbol.OriginalDefinition : symbol;
 
-        var displayString = symbolToUse.EscapedFullName();
-
         return symbolToUse.IsGenericType
-            ? EscapeTypeNameForTripleSlashComment(symbolToUse.ToDisplayString())
-            : displayString;
+            ? EscapeTypeNameForTripleSlashComment(symbolToUse.ToDisplayString(_formatForNonTuples))
+            : symbolToUse.ToDisplayString(_formatForNonTuples);
     }
 
     // private static readonly SymbolDisplayFormat _myFormat =
@@ -358,11 +356,21 @@ internal static class Util
                 | SymbolDisplayMiscellaneousOptions.ExpandValueTuple
 #endif
             );
+
+    private static readonly SymbolDisplayFormat _formatForNonTuples =
+        new(
+            globalNamespaceStyle: SymbolDisplayGlobalNamespaceStyle.Included,
+            typeQualificationStyle: SymbolDisplayTypeQualificationStyle.NameAndContainingTypesAndNamespaces,
+            genericsOptions: SymbolDisplayGenericsOptions.IncludeTypeParameters,
+            miscellaneousOptions:
+                SymbolDisplayMiscellaneousOptions.EscapeKeywordIdentifiers |
+                SymbolDisplayMiscellaneousOptions.UseSpecialTypes
+            );
     
     public static string GenerateCommentForValueProperty(VoWorkItem item) =>
         $"""
          /// <summary>
-         /// Gets the underlying <see cref="{EscapeTypeNameForTripleSlashComment(item.UnderlyingTypeFullNameWithGlobalAlias)}" /> value if set, otherwise a <see cref="{EscapeTypeNameForTripleSlashComment(item.ValidationExceptionSymbol)}" /> is thrown.
+         /// Gets the underlying <see cref="{EscapeTypeNameForTripleSlashComment(item.UnderlyingType)}" /> value if set, otherwise a <see cref="{EscapeTypeNameForTripleSlashComment(item.ValidationExceptionSymbol)}" /> is thrown.
          /// </summary>
          """;
 
@@ -422,18 +430,18 @@ internal static class Util
                       #if NETCOREAPP3_0_OR_GREATER
                       [global::System.Diagnostics.CodeAnalysis.DoesNotReturnAttribute]
                       #endif
-                      internal static void ThrowWhenValidationFails(Vogen.Validation validation)
+                      internal static void ThrowWhenValidationFails(global::Vogen.Validation validation)
                       {
                           throw CreateValidationException(validation);
                       }
                       
-                      internal static System.Exception CreateValidationException(string message) =>
+                      internal static global::System.Exception CreateValidationException(string message) =>
                         new {{{item.ValidationExceptionFullName}}}(message);
 
-                      internal static System.Exception CreateCannotBeNullException() =>
+                      internal static global::System.Exception CreateCannotBeNullException() =>
                         new {{{item.ValidationExceptionFullName}}}("Cannot create a value object with null.");
                       
-                      internal static System.Exception CreateValidationException(Vogen.Validation validation)
+                      internal static global::System.Exception CreateValidationException(global::Vogen.Validation validation)
                       {
                           var ex = CreateValidationException(validation.ErrorMessage);
                       

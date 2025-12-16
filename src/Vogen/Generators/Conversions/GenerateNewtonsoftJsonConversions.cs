@@ -31,7 +31,7 @@ internal class GenerateNewtonsoftJsonConversions : IGenerateConversion
         }
 
         code = code.Replace("VOTYPE", item.VoTypeName);
-        code = code.Replace("VOUNDERLYINGTYPE", item.UnderlyingTypeFullName);
+        code = code.Replace("VOUNDERLYINGTYPE", item.UnderlyingTypeFullNameWithGlobalAlias);
 
         return $"""
                 #nullable disable

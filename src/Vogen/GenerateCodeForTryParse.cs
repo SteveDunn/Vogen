@@ -157,7 +157,7 @@ public static class GenerateCodeForTryParse
         {
             return $$"""
                      var validation = {{workItem.TypeToAugment.Identifier}}.{{workItem.ValidateMethod.Identifier.Value}}({{parameterName}});
-                     if (validation != Vogen.Validation.Ok)
+                     if (validation != global::Vogen.Validation.Ok)
                      {
                          result = default{{bangForWrapper}};
                          return false;

@@ -17,7 +17,7 @@ __NORMAL__                return DeserializeJson(reader.GetInt16());
 __STRING__                return DeserializeJson(global::System.Int16.Parse(reader.GetString(), global::System.Globalization.NumberStyles.Any, global::System.Globalization.CultureInfo.InvariantCulture));
             }
 
-            public override void Write(System.Text.Json.Utf8JsonWriter writer, VOTYPE value, global::System.Text.Json.JsonSerializerOptions options)
+            public override void Write(global::System.Text.Json.Utf8JsonWriter writer, VOTYPE value, global::System.Text.Json.JsonSerializerOptions options)
             {
 __NORMAL__ #if NET5_0_OR_GREATER
 __NORMAL__                global::System.Text.Json.JsonSerializer.Serialize(writer, value.Value, options);
@@ -32,7 +32,7 @@ __STRING__                writer.WriteStringValue(value.Value.ToString(global::S
                 return DeserializeJson(global::System.Int16.Parse(reader.GetString(), global::System.Globalization.NumberStyles.Any, global::System.Globalization.CultureInfo.InvariantCulture));
             }
 
-            public override void WriteAsPropertyName(System.Text.Json.Utf8JsonWriter writer, VOTYPE value, global::System.Text.Json.JsonSerializerOptions options)
+            public override void WriteAsPropertyName(global::System.Text.Json.Utf8JsonWriter writer, VOTYPE value, global::System.Text.Json.JsonSerializerOptions options)
             {
                 writer.WritePropertyName(value.Value.ToString(global::System.Globalization.CultureInfo.InvariantCulture));
             }

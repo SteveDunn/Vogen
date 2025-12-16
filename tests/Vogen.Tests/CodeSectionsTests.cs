@@ -19,7 +19,7 @@ __NORMAL__                return VOTYPE.From(reader.GetDouble());
 __STRING__                return VOTYPE.From(global::System.Double.Parse(reader.GetString(), NumberStyles.Any, global::System.CultureInfo.InvariantCulture));
             }
 
-            public override void Write(System.Text.Json.Utf8JsonWriter writer, VOTYPE value, global::System.Text.Json.JsonSerializerOptions options)
+            public override void Write(global::System.Text.Json.Utf8JsonWriter writer, VOTYPE value, global::System.Text.Json.JsonSerializerOptions options)
             {
 __NORMAL__                writer.WriteNumberValue(value.Value);
 __STRING__                writer.WriteString(value.Value.ToString(global::System.CultureInfo.InvariantCulture));
@@ -37,7 +37,7 @@ __STRING__                writer.WriteString(value.Value.ToString(global::System
 __STRING__                return VOTYPE.From(global::System.Double.Parse(reader.GetString(), NumberStyles.Any, global::System.CultureInfo.InvariantCulture));
             }
 
-            public override void Write(System.Text.Json.Utf8JsonWriter writer, VOTYPE value, global::System.Text.Json.JsonSerializerOptions options)
+            public override void Write(global::System.Text.Json.Utf8JsonWriter writer, VOTYPE value, global::System.Text.Json.JsonSerializerOptions options)
             {
 __STRING__                writer.WriteString(value.Value.ToString(global::System.CultureInfo.InvariantCulture));
             }
@@ -56,7 +56,7 @@ __STRING__                writer.WriteString(value.Value.ToString(global::System
 __STRING__                return VOTYPE.From(global::System.Double.Parse(reader.GetString(), NumberStyles.Any, global::System.CultureInfo.InvariantCulture));
             }
 
-            public override void Write(System.Text.Json.Utf8JsonWriter writer, VOTYPE value, global::System.Text.Json.JsonSerializerOptions options)
+            public override void Write(global::System.Text.Json.Utf8JsonWriter writer, VOTYPE value, global::System.Text.Json.JsonSerializerOptions options)
             {
 __STRING__                writer.WriteString(value.Value.ToString(global::System.CultureInfo.InvariantCulture));
             }
@@ -73,7 +73,7 @@ __STRING__                writer.WriteString(value.Value.ToString(global::System
                 return VOTYPE.From(global::System.Double.Parse(reader.GetString(), NumberStyles.Any, global::System.CultureInfo.InvariantCulture));
             }
 
-            public override void Write(System.Text.Json.Utf8JsonWriter writer, VOTYPE value, global::System.Text.Json.JsonSerializerOptions options)
+            public override void Write(global::System.Text.Json.Utf8JsonWriter writer, VOTYPE value, global::System.Text.Json.JsonSerializerOptions options)
             {
                 writer.WriteString(value.Value.ToString(global::System.CultureInfo.InvariantCulture));
             }

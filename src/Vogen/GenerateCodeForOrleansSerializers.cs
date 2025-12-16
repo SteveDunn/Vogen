@@ -40,7 +40,7 @@ internal class GenerateCodeForOrleansSerializers
 
         string unescapedWrapperName = item.WrapperType.Name;
         string wrapperName = Util.EscapeKeywordsIfRequired(unescapedWrapperName);
-        string underlyingTypeName = item.UnderlyingTypeFullName;
+        string underlyingTypeName = item.UnderlyingTypeFullNameWithGlobalAlias;
 
         var assemblyAttribute = string.IsNullOrWhiteSpace(fullNamespace)
             ? $"[assembly: global::Orleans.Serialization.Configuration.TypeManifestProvider({item.VoTypeName}OrleansProvider))]"

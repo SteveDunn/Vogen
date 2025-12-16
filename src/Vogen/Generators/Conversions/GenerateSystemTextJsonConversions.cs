@@ -74,7 +74,7 @@ internal class GenerateSystemTextJsonConversions : IGenerateConversion
           #if NETCOREAPP3_0_OR_GREATER
           [global::System.Diagnostics.CodeAnalysis.DoesNotReturnAttribute]
           #endif
-          private static void ThrowJsonExceptionWhenValidationFails(Vogen.Validation validation)
+          private static void ThrowJsonExceptionWhenValidationFails(global::Vogen.Validation validation)
           {
               var e = ThrowHelper.CreateValidationException(validation);
               throw new global::System.Text.Json.JsonException(null, e);
