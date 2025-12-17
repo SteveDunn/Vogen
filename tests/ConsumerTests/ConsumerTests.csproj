@@ -50,7 +50,7 @@
 	</ItemGroup>
 
 	<ItemGroup Condition=" '$(UseLocallyBuiltPackage)' == ''">
-		<PackageReference Include="Vogen" Version="4.0.13" />
+		<PackageReference Include="Vogen" Version="8.0.3" />
 	</ItemGroup>
 
 
