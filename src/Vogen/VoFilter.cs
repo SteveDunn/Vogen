@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Linq;
 using Microsoft.CodeAnalysis;
@@ -22,8 +23,8 @@ internal static class VoFilter
 
         return attrs.Where(
             a => a.AttributeClass?.EscapedFullName() == "Vogen.ValueObjectAttribute"
-                 || a.AttributeClass?.BaseType?.EscapedFullName() == "Vogen.ValueObjectAttribute"
-                 || a.AttributeClass?.BaseType?.BaseType?.EscapedFullName() == "Vogen.ValueObjectAttribute");
+            || a.AttributeClass?.BaseType?.EscapedFullName() == "Vogen.ValueObjectAttribute"
+            || a.AttributeClass?.BaseType?.BaseType?.EscapedFullName() == "Vogen.ValueObjectAttribute");
     }
 
     /// <summary>
@@ -40,7 +41,7 @@ internal static class VoFilter
         var semanticModel = context.SemanticModel;
 
         ISymbol declaredSymbol = semanticModel.GetDeclaredSymbol(context.Node)!;
-        
+
         var voSymbolInformation = (INamedTypeSymbol) declaredSymbol;
 
         var attributeData = TryGetValueObjectAttributes(voSymbolInformation).ToImmutableArray();
@@ -60,9 +61,9 @@ internal static class VoFilter
         return null;
     }
 
-    public static bool IsTarget(SyntaxNode syntaxNode) => 
+    public static bool IsTarget(SyntaxNode syntaxNode) =>
         syntaxNode is TypeDeclarationSyntax { AttributeLists.Count: > 0 };
 
-    public static bool IsTarget(INamedTypeSymbol? voClass) => 
-        voClass is not null && TryGetValueObjectAttributes(voClass).Any();    
+    public static bool IsTarget(INamedTypeSymbol? voClass) =>
+        voClass is not null && TryGetValueObjectAttributes(voClass).Any();
 }

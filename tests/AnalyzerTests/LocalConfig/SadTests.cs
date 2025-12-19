@@ -220,4 +220,42 @@ public {type} CustomerId {{ }}
                 });
         }
     }
+
+    [Theory]
+    [InlineData("[ValueObject(conversions: Conversions.Unspecified)]")]
+    [InlineData("[ValueObject<int>(conversions: Conversions.Unspecified)]")]
+    [InlineData("[ValueObject(typeof(int), Conversions.Unspecified)]")]
+    [InlineData("[ValueObject<int>(Conversions.Unspecified)]")]
+    public async Task Cannot_explicitly_use_unspecified(string attribute)
+    {
+        var source = $$"""
+                     using System;
+                     using Vogen;
+
+                     namespace Whatever;
+
+                     {{attribute}}
+                     public partial class CustomerId { }
+
+                     """;
+
+        await new TestRunner<ValueObjectGenerator>()
+            .WithSource(source)
+            .ValidateWith(Validate)
+            .RunOnAllFrameworks();
+        return;
+
+        static void Validate(ImmutableArray<Diagnostic> diagnostics)
+        {
+            diagnostics.Should().HaveCount(1);
+
+            diagnostics.Should().SatisfyRespectively(
+                first =>
+                {
+                    first.Id.Should().Be("VOG011");
+                    first.ToString().Should().Be(
+                        "(6,2): error VOG011: The Conversions specified do not match any known conversions - see the Conversions type");
+                });
+        }
+    }
 }

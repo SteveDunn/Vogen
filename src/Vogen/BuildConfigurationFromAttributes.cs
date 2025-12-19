@@ -4,6 +4,7 @@ using System.Collections.Immutable;
 using System.Linq;
 using Microsoft.CodeAnalysis;
 using Vogen.Diagnostics;
+using Vogen.Extensions;
 
 // ReSharper disable NullableWarningSuppressionIsUsed
 
@@ -27,9 +28,9 @@ internal class BuildConfigurationFromAttributes
     private CastOperator _fromPrimitiveCasting;
     private CastOperator _toPrimitiveCasting;
     private bool _disableStackTraceGenerationInDebug;
-    private ParsableForStrings _parsableForStrings; 
-    private ParsableForPrimitives _parsableForPrimitives; 
-    private TryFromGeneration _tryFromGeneration; 
+    private ParsableForStrings _parsableForStrings;
+    private ParsableForPrimitives _parsableForPrimitives;
+    private TryFromGeneration _tryFromGeneration;
     private IsInitializedMethodGeneration _isInitializedMethodGeneration;
     private SystemTextJsonConverterFactoryGeneration _systemTextJsonConverterFactoryGeneration;
     private StaticAbstractsGeneration _staticAbstractsGeneration;
@@ -61,9 +62,9 @@ internal class BuildConfigurationFromAttributes
         _openApiSchemaCustomizations = OpenApiSchemaCustomizations.Unspecified;
         _primitiveTypeMustBeExplicit = false;
         _primitiveEqualityGeneration = PrimitiveEqualityGeneration.Unspecified;
-       
+
         _diagnostics = new List<Diagnostic>();
-        
+
         ImmutableArray<TypedConstant> args = _matchingAttribute.ConstructorArguments;
 
         _hasErroredAttributes = args.Any(a => a.Kind == TypedConstantKind.Error);
@@ -72,7 +73,7 @@ internal class BuildConfigurationFromAttributes
     public static VogenConfigurationBuildResult TryBuildFromValueObjectAttribute(AttributeData matchingAttribute) => 
         new BuildConfigurationFromAttributes(matchingAttribute).Build(argsAreFromVogenDefaultAttribute: false);
 
-    public static VogenConfigurationBuildResult TryBuildFromVogenDefaultsAttribute(AttributeData matchingAttribute) => 
+    public static VogenConfigurationBuildResult TryBuildFromVogenDefaultsAttribute(AttributeData matchingAttribute) =>
         new BuildConfigurationFromAttributes(matchingAttribute).Build(argsAreFromVogenDefaultAttribute: true);
 
     private VogenConfigurationBuildResult Build(bool argsAreFromVogenDefaultAttribute)
@@ -172,10 +173,13 @@ internal class BuildConfigurationFromAttributes
         }
 
         var syntaxLocation = syntax.GetLocation();
-        
+
         if (!_conversions.IsValidFlags())
         {
-            _diagnostics.Add(DiagnosticsCatalogue.InvalidConversions(syntaxLocation));
+            if (_matchingAttribute.GetExplicitlySpecifiedAttributeConstructorParameters().Contains("conversions"))
+            {
+                _diagnostics.Add(DiagnosticsCatalogue.InvalidConversions(syntaxLocation));
+            }
         }
 
         if (!_customizations.IsValidFlags())
@@ -213,7 +217,7 @@ internal class BuildConfigurationFromAttributes
             {
                 _primitiveEqualityGeneration = (PrimitiveEqualityGeneration) v;
             }
-            
+
             if (i == 15)
             {
                 _primitiveTypeMustBeExplicit = (bool) v;
@@ -344,7 +348,7 @@ internal class BuildConfigurationFromAttributes
             {
                 _fromPrimitiveCasting = (CastOperator) v;
             }
-            
+
             if (i == 7)
             {
                 _toPrimitiveCasting = (CastOperator) v;

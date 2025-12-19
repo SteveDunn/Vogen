@@ -178,4 +178,30 @@ public class MyValidationException : Exception
             diagnostics.Should().BeEmpty();
         }
     }
+
+    [Fact]
+    public async Task Does_not_error_that_conversions_is_unspecified_if_omitted()
+    {
+        var source = """
+                     using System;
+                     using Vogen;
+
+                     namespace Whatever;
+
+                     [ValueObject]
+                     public partial class CustomerId { }
+
+                     """;
+
+        await new TestRunner<ValueObjectGenerator>()
+            .WithSource(source)
+            .ValidateWith(Validate)
+            .RunOnAllFrameworks();
+        return;
+
+        static void Validate(ImmutableArray<Diagnostic> diagnostics)
+        {
+            diagnostics.Should().HaveCount(0);
+        }
+    }
 }
