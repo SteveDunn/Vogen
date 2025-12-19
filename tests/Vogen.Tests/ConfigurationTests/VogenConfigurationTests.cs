@@ -12,7 +12,7 @@ public class VogenConfigurationTests
         {
             var instance = VogenConfiguration.DefaultInstance;
             
-            instance.Conversions.Should().Be(Conversions.Default);
+            instance.Conversions.Should().Be(Conversions.TypeConverter | Conversions.SystemTextJson);
             instance.Customizations.Should().Be(Customizations.None);
             instance.DeserializationStrictness.Should().Be(DeserializationStrictness.Default);
             instance.DebuggerAttributes.Should().Be(DebuggerAttributeGeneration.Full);
@@ -159,6 +159,77 @@ public class VogenConfigurationTests
             var result = CombineConfigurations.CombineAndResolveAnythingUnspecified(ConfigWithOmitConversionsAs(Conversions.EfCoreValueConverter), ConfigWithOmitConversionsAs(Conversions.NewtonsoftJson));
 
             result.Conversions.Should().Be(Conversions.EfCoreValueConverter);
+        }
+
+        [Fact]
+        public void Local_beats_global_when_local_is_default_and_global_is_not()
+        {
+            var result = CombineConfigurations.CombineAndResolveAnythingUnspecified(
+                ConfigWithOmitConversionsAs(Conversions.SystemTextJson | Conversions.TypeConverter),
+                ConfigWithOmitConversionsAs(Conversions.NewtonsoftJson));
+
+            result.Conversions.Should().Be(Conversions.SystemTextJson | Conversions.TypeConverter);
+        }
+
+        [Fact]
+        public void Default_is_correct()
+        {
+            var result = CombineConfigurations.CombineAndResolveAnythingUnspecified(
+                ConfigWithOmitConversionsAs(Conversions.Default),
+                ConfigWithOmitConversionsAs(Conversions.Default));
+
+            result.Conversions.Should().Be(Conversions.SystemTextJson | Conversions.TypeConverter);
+        }
+
+        [Fact]
+        public void Unspecified_is_Default()
+        {
+            var result = CombineConfigurations.CombineAndResolveAnythingUnspecified(
+                ConfigWithOmitConversionsAs(Conversions.Unspecified),
+                ConfigWithOmitConversionsAs(Conversions.Unspecified));
+
+            result.Conversions.Should().Be(Conversions.Default);
+        }
+
+        [Fact]
+        public void Unspecified_is_overridable_locally()
+        {
+            var result = CombineConfigurations.CombineAndResolveAnythingUnspecified(
+                ConfigWithOmitConversionsAs(Conversions.Unspecified),
+                ConfigWithOmitConversionsAs(Conversions.NewtonsoftJson));
+
+            result.Conversions.Should().Be(Conversions.NewtonsoftJson);
+        }
+        [Fact]
+        public void Unspecified_is_overridable_globally()
+        {
+            var result = CombineConfigurations.CombineAndResolveAnythingUnspecified(
+                ConfigWithOmitConversionsAs(Conversions.NewtonsoftJson),
+                ConfigWithOmitConversionsAs(Conversions.Unspecified));
+
+            result.Conversions.Should().Be(Conversions.NewtonsoftJson);
+        }
+
+        [Fact]
+        public void Default_is_combinable_with_other_enum_members()
+        {
+            var result = CombineConfigurations.CombineAndResolveAnythingUnspecified(
+                ConfigWithOmitConversionsAs(Conversions.Default | Conversions.NewtonsoftJson),
+                ConfigWithOmitConversionsAs(Conversions.Unspecified));
+
+            result.Conversions.Should().Be(Conversions.NewtonsoftJson | Conversions.SystemTextJson | Conversions.TypeConverter);
+        }
+
+        [Fact]
+        public void Unspecified_when_combined_with_other_enum_members_forces_the_value_to_unspecified()
+        {
+            // This is a bit strange - but because of the -1 value of Unspecified - it works this way
+            // And I think that it is ok for this to be the behaviour
+            var result = CombineConfigurations.CombineAndResolveAnythingUnspecified(
+                ConfigWithOmitConversionsAs(Conversions.Unspecified | Conversions.NewtonsoftJson),
+                ConfigWithOmitConversionsAs(Conversions.Unspecified | Conversions.NewtonsoftJson));
+
+            result.Conversions.Should().Be(Conversions.Default);
         }
 
         private static VogenConfiguration ConfigWithOmitConversionsAs(Conversions conversions) =>

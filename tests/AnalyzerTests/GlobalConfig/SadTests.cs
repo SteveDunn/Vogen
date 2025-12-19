@@ -87,24 +87,26 @@ public class SadTests
     [Fact]
     public async Task Missing_string_constructor()
     {
-        var source = @"using System;
-using Vogen;
+        var source = """
+                     using System;
+                     using Vogen;
 
-[assembly: VogenDefaults(throws: typeof(Whatever.MyValidationException))]
+                     [assembly: VogenDefaults(throws: typeof(Whatever.MyValidationException))]
 
-namespace Whatever;
+                     namespace Whatever;
 
-[ValueObject]
-public partial struct CustomerId
-{
-    private static Validation Validate(int value) => value > 0 ? Validation.Ok : Validation.Invalid(""xxxx"");
-}
+                     [ValueObject]
+                     public partial struct CustomerId
+                     {
+                         private static Validation Validate(int value) => value > 0 ? Validation.Ok : Validation.Invalid("xxxx");
+                     }
 
-public class MyValidationException : Exception
-{
-    public MyValidationException(object o) : base(o.ToString()) { }
-}
-";
+                     public class MyValidationException : Exception
+                     {
+                         public MyValidationException(object o) : base(o.ToString()) { }
+                     }
+
+                     """;
 
         await new TestRunner<ValueObjectGenerator>()
             .WithSource(source)
@@ -127,24 +129,26 @@ public class MyValidationException : Exception
     [Fact]
     public async Task Missing_public_string_constructor_on_exception()
     {
-        const string source = @"using System;
-using Vogen;
+        const string source = """
+                              using System;
+                              using Vogen;
 
-[assembly: VogenDefaults(throws: typeof(Whatever.MyValidationException))]
+                              [assembly: VogenDefaults(throws: typeof(Whatever.MyValidationException))]
 
-namespace Whatever;
+                              namespace Whatever;
 
-[ValueObject]
-public partial struct CustomerId
-{
-    private static Validation Validate(int value) => value > 0 ? Validation.Ok : Validation.Invalid(""xxxx"");
-}
+                              [ValueObject]
+                              public partial struct CustomerId
+                              {
+                                  private static Validation Validate(int value) => value > 0 ? Validation.Ok : Validation.Invalid("xxxx");
+                              }
 
-public class MyValidationException : Exception
-{
-    private MyValidationException(object o) : base(o.ToString()) { } // PRIVATE!
-}
-";
+                              public class MyValidationException : Exception
+                              {
+                                  private MyValidationException(object o) : base(o.ToString()) { } // PRIVATE!
+                              }
+
+                              """;
 
         await new TestRunner<ValueObjectGenerator>()
             .WithSource(source)
@@ -167,21 +171,23 @@ public class MyValidationException : Exception
     [Fact]
     public async Task Not_an_exception()
     {
-        var source = @"using System;
-using Vogen;
+        var source = """
+                     using System;
+                     using Vogen;
 
-[assembly: VogenDefaults(throws: typeof(Whatever.MyValidationException))]
+                     [assembly: VogenDefaults(throws: typeof(Whatever.MyValidationException))]
 
-namespace Whatever;
+                     namespace Whatever;
 
-[ValueObject]
-public partial struct CustomerId
-{
-    private static Validation Validate(int value) => value > 0 ? Validation.Ok : Validation.Invalid(""xxxx"");
-}
+                     [ValueObject]
+                     public partial struct CustomerId
+                     {
+                         private static Validation Validate(int value) => value > 0 ? Validation.Ok : Validation.Invalid("xxxx");
+                     }
 
-public class MyValidationException { } // NOT AN EXCEPTION!
-";
+                     public class MyValidationException { } // NOT AN EXCEPTION!
+
+                     """;
 
         await new TestRunner<ValueObjectGenerator>()
             .WithSource(source)
@@ -213,16 +219,18 @@ public class MyValidationException { } // NOT AN EXCEPTION!
     [Fact]
     public async Task Not_valid_conversion()
     {
-        var source = @"using System;
-using Vogen;
+        var source = """
+                     using System;
+                     using Vogen;
 
-[assembly: VogenDefaults(conversions: (Conversions)4242)]
+                     [assembly: VogenDefaults(conversions: (Conversions)4242)]
 
-namespace Whatever;
+                     namespace Whatever;
 
-[ValueObject]
-public partial struct CustomerId { }
-";
+                     [ValueObject]
+                     public partial struct CustomerId { }
+
+                     """;
 
         await new TestRunner<ValueObjectGenerator>()
             .WithSource(source)
@@ -248,16 +256,18 @@ public partial struct CustomerId { }
     [Fact]
     public async Task Not_valid_customization()
     {
-        var source = @"using System;
-using Vogen;
+        var source = """
+                     using System;
+                     using Vogen;
 
-[assembly: VogenDefaults(customizations: (Customizations)666)]
+                     [assembly: VogenDefaults(customizations: (Customizations)666)]
 
-namespace Whatever;
+                     namespace Whatever;
 
-[ValueObject]
-public partial struct CustomerId { }
-";
+                     [ValueObject]
+                     public partial struct CustomerId { }
+
+                     """;
 
         await new TestRunner<ValueObjectGenerator>()
             .WithSource(source)
@@ -282,16 +292,18 @@ public partial struct CustomerId { }
     [Fact]
     public async Task Not_valid_deserialization_strictness()
     {
-        var source = @"using System;
-using Vogen;
+        var source = """
+                     using System;
+                     using Vogen;
 
-[assembly: VogenDefaults(deserializationStrictness: (DeserializationStrictness)666)]
+                     [assembly: VogenDefaults(deserializationStrictness: (DeserializationStrictness)666)]
 
-namespace Whatever;
+                     namespace Whatever;
 
-[ValueObject]
-public partial struct CustomerId { }
-";
+                     [ValueObject]
+                     public partial struct CustomerId { }
+
+                     """;
 
         await new TestRunner<ValueObjectGenerator>()
             .WithSource(source)
@@ -317,16 +329,18 @@ public partial struct CustomerId { }
     [Fact]
     public async Task Not_valid_customization_or_conversion()
     {
-        var source = @"using System;
-using Vogen;
+        var source = """
+                     using System;
+                     using Vogen;
 
-[assembly: VogenDefaults(customizations: (Customizations)666, conversions: (Conversions)4242)]
+                     [assembly: VogenDefaults(customizations: (Customizations)666, conversions: (Conversions)4242)]
 
-namespace Whatever;
+                     namespace Whatever;
 
-[ValueObject]
-public partial struct CustomerId { }
-";
+                     [ValueObject]
+                     public partial struct CustomerId { }
+
+                     """;
 
         await new TestRunner<ValueObjectGenerator>()
             .WithSource(source)
@@ -353,4 +367,43 @@ public partial struct CustomerId { }
                 });
         }
     }
+    
+    [Theory]
+    [InlineData("[assembly: VogenDefaults(conversions: Conversions.Unspecified)]")]
+    [InlineData("[assembly: VogenDefaults(typeof(int), Conversions.Unspecified)]")]
+    public async Task Cannot_explicitly_use_unspecified(string attribute)
+    {
+        var source = $$"""
+                       using System;
+                       using Vogen;
+
+                       {{attribute}}
+                       
+                       namespace Whatever;
+
+                       [ValueObject]
+                       public partial class CustomerId { }
+
+                       """;
+
+        await new TestRunner<ValueObjectGenerator>()
+            .WithSource(source)
+            .ValidateWith(Validate)
+            .RunOnAllFrameworks();
+        return;
+
+        static void Validate(ImmutableArray<Diagnostic> diagnostics)
+        {
+            diagnostics.Should().HaveCount(1);
+
+            diagnostics.Should().SatisfyRespectively(
+                first =>
+                {
+                    first.Id.Should().Be("VOG011");
+                    first.ToString().Should().Be(
+                        "(4,12): error VOG011: The Conversions specified do not match any known conversions - see the Conversions type");
+                });
+        }
+    }
+
 }
