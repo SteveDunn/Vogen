@@ -303,7 +303,14 @@ internal static class Util
     {
         if (item.UnderlyingTypeFullName == "System.Guid" && item.Config.Customizations.HasFlag(Customizations.AddFactoryMethodForGuids))
         {
-            return $"public static {item.VoTypeName} FromNewGuid() => From(global::System.Guid.NewGuid());";
+            var g = $"""
+                    public static {item.VoTypeName} FromNewGuid() => From(global::System.Guid.NewGuid());
+                    #if NET9_0_OR_GREATER
+                    public static {item.VoTypeName} FromNewVersion7Guid() => From(global::System.Guid.CreateVersion7());
+                    public static {item.VoTypeName} FromNewVersion7Guid(global::System.DateTimeOffset d) => From(global::System.Guid.CreateVersion7(d));
+                    #endif
+                    """;
+            return g;
         }
 
         return string.Empty;

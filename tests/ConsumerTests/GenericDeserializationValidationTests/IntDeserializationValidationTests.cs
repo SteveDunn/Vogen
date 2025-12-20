@@ -12,7 +12,7 @@ namespace ConsumerTests.GenericDeserializationValidationTests;
 public class IntDeserializationValidationTests
 {
     [Fact]
-    public async void Deserialization_dapper_should_not_bypass_validation_pass()
+    public async Task Deserialization_dapper_should_not_bypass_validation_pass()
     {
         using var connection = new SqliteConnection("DataSource=:memory:");
         await connection.OpenAsync();
@@ -23,7 +23,7 @@ public class IntDeserializationValidationTests
     }
 
     [Fact]
-    public async void Deserialization_dapper_should_not_bypass_validation_fail()
+    public async Task Deserialization_dapper_should_not_bypass_validation_fail()
     {
         using var connection = new SqliteConnection("DataSource=:memory:");
         await connection.OpenAsync();
@@ -34,7 +34,7 @@ public class IntDeserializationValidationTests
     }
 
     [Fact]
-    public async void Deserialization_efcore_should_not_bypass_validation_pass()
+    public async Task Deserialization_efcore_should_not_bypass_validation_pass()
     {
         var connection = new SqliteConnection("DataSource=:memory:");
         await connection.OpenAsync();
@@ -51,7 +51,7 @@ public class IntDeserializationValidationTests
     }
 
     [Fact]
-    public async void Deserialization_efcore_should_not_bypass_validation_fail()
+    public async Task Deserialization_efcore_should_not_bypass_validation_fail()
     {
         var connection = new SqliteConnection("DataSource=:memory:");
         await connection.OpenAsync();
@@ -67,7 +67,7 @@ public class IntDeserializationValidationTests
         }
     }
     [Fact]
-    public async void Deserialization_linqtodb_should_not_bypass_validation_pass()
+    public async Task Deserialization_linqtodb_should_not_bypass_validation_pass()
     {
         var connection = new SqliteConnection("DataSource=:memory:");
         await connection.OpenAsync();
@@ -80,7 +80,7 @@ public class IntDeserializationValidationTests
     }
 
     [Fact]
-    public async void Deserialization_linqtodb_should_not_bypass_validation_fail()
+    public async Task Deserialization_linqtodb_should_not_bypass_validation_fail()
     {
         var connection = new SqliteConnection("DataSource=:memory:");
         await connection.OpenAsync();
