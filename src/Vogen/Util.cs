@@ -303,7 +303,7 @@ internal static class Util
     {
         if (item.UnderlyingTypeFullName == "System.Guid" && item.Config.Customizations.HasFlag(Customizations.AddFactoryMethodForGuids))
         {
-            var g = """
+            var g = $"""
                     public static {item.VoTypeName} FromNewGuid() => From(global::System.Guid.NewGuid());
                     #if NET9_0_OR_GREATER
                     public static {item.VoTypeName} FromNewVersion7Guid() => From(global::System.Guid.CreateVersion7());
