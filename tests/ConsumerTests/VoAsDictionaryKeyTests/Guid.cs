@@ -1,6 +1,7 @@
 ﻿#nullable disable
 
 using System.Text.Json;
+using System.Threading.Tasks;
 using FluentAssertions.Extensions;
 
 namespace ConsumerTests.VoAsDictionaryKeyTests;
@@ -15,10 +16,12 @@ public partial class EmployeeTypeGuid
 public class GuidTests
 {
     [Fact]
-    public void Factory_for_V7_is_supported()
+    public async Task Factory_for_V7_is_supported()
     {
         var g1 = EmployeeTypeGuid.FromNewVersion7Guid();
+        await Task.Delay(100);
         var g2 = EmployeeTypeGuid.FromNewVersion7Guid();
+        await Task.Delay(100);
         var g3 = EmployeeTypeGuid.FromNewVersion7Guid();
         
         g1.Should().BeLessThan(g2);
