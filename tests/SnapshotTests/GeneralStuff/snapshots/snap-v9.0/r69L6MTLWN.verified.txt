@@ -235,6 +235,10 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
     public static explicit operator MyVo(global::System.Guid value) => From(value);
     public static explicit operator global::System.Guid(MyVo value) => value.Value;
     public static MyVo FromNewGuid() => From(global::System.Guid.NewGuid());
+#if NET9_0_OR_GREATER
+public static MyVo FromNewVersion7Guid() => From(global::System.Guid.CreateVersion7());
+public static MyVo FromNewVersion7Guid(global::System.DateTimeOffset d) => From(global::System.Guid.CreateVersion7(d));
+#endif
     // only called internally when something has been deserialized into
     // its primitive type.
     private static MyVo __Deserialize(global::System.Guid value)
