@@ -52,6 +52,15 @@ internal class GenerateCodeForOpenApiSchemaCustomization
             return;
         }
 
+        var openApiVersion = OpenApiSchemaUtils.DetermineOpenApiVersionBeingUsed(knownSymbols);
+        var openApiSchemaReference = openApiVersion switch
+        {
+            OpenApiVersionBeingUsed.One => "global::Microsoft.OpenApi.Models.OpenApiSchema",
+            OpenApiVersionBeingUsed.TwoPlus => "global::Microsoft.OpenApi.IOpenApiSchema",
+            _ => throw new ArgumentOutOfRangeException(nameof(openApiVersion), "Unknown or unimplemented schema version")
+        };
+        
+        
         string source =
             $$"""
 
@@ -64,7 +73,7 @@ internal class GenerateCodeForOpenApiSchemaCustomization
               {                                
                   private const BindingFlags _flags = BindingFlags.Public | BindingFlags.Instance;
 
-                  public void Apply(global::Microsoft.OpenApi.Models.OpenApiSchema schema, global::Swashbuckle.AspNetCore.SwaggerGen.SchemaFilterContext context)
+                  public void Apply({{openApiSchemaReference}} schema, global::Swashbuckle.AspNetCore.SwaggerGen.SchemaFilterContext context)
                   {
                       if (context.Type.GetCustomAttribute<Vogen.ValueObjectAttribute>() is not { } attribute)
                           return;
