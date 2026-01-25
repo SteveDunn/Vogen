@@ -30,6 +30,31 @@ public class SwashbuckleTests
             .CustomizeSettings(s => s.UseHashedParameters(@namespace))
             .RunOn(TargetFramework.AspNetCore8_0);
     }
+    
+    [Theory]
+    [InlineData("")]
+    [InlineData("namespace MyNamespace;")]
+    [InlineData("namespace @double;")]
+    public async Task Generates_filter_code_net10(string @namespace)
+    {
+        var source =
+            $$"""
+              using System;
+              using Vogen;
+
+              [assembly: VogenDefaults(openApiSchemaCustomizations: OpenApiSchemaCustomizations.GenerateSwashbuckleSchemaFilter)]
+
+              {{@namespace}}
+
+              [ValueObject<int>]
+              public partial class MyVo { }
+              """;
+
+        await new SnapshotRunner<ValueObjectGenerator>()
+            .WithSource(source)
+            .CustomizeSettings(s => s.UseHashedParameters(@namespace))
+            .RunOn(TargetFramework.AspNetCore10_0);
+    }
 
     [Theory]
     [InlineData("")]
