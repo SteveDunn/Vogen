@@ -30,6 +30,23 @@ internal static class Util
               """;
     }
 
+    public static string GenerateNullCheckAndReturnNullIfNeeded(VoWorkItem voWorkItem)
+    {
+        return 
+            """
+                if (value is null)
+                {
+                    return null;
+                }
+            """;
+    }
+    
+    public static string GenerateFrom(string itemUnderlyingType)
+    {
+        return
+            $"    return From(({itemUnderlyingType})value);";
+    }
+
     public static string GenerateMethodModifiers(
         Accessibility defaultAccessibility,
         IEnumerable<string> otherModifers,
