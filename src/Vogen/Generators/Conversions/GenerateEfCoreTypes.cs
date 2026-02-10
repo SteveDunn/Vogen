@@ -68,11 +68,17 @@ internal static class GenerateEfCoreTypes
         return code;
     }
     
-    private const string _extensionMethodForOuter = 
+    private const string _extensionMethodForOuter =
         """
         __ACCESSIBILITY_OF_MARKER_CLASS__ static class __CLASS_PREFIX____Ext 
         {
                 __ACCESSIBILITY_OF_MARKER_CLASS__ static global::Microsoft.EntityFrameworkCore.Metadata.Builders.PropertyBuilder<VOTYPE> HasVogenConversion(this global::Microsoft.EntityFrameworkCore.Metadata.Builders.PropertyBuilder<VOTYPE> propertyBuilder) =>
+                    propertyBuilder.HasConversion<__GENERATED_CONVERTER_NAME__, __GENERATED_COMPARER_NAME__>();
+                __ACCESSIBILITY_OF_MARKER_CLASS__ static global::Microsoft.EntityFrameworkCore.Metadata.Builders.PropertyBuilder<VOTYPE?> HasVogenConversion(this global::Microsoft.EntityFrameworkCore.Metadata.Builders.PropertyBuilder<VOTYPE?> propertyBuilder) =>
+                    propertyBuilder.HasConversion<__GENERATED_CONVERTER_NAME__, __GENERATED_COMPARER_NAME__>();
+                __ACCESSIBILITY_OF_MARKER_CLASS__ static global::Microsoft.EntityFrameworkCore.Metadata.Builders.ComplexTypePropertyBuilder<VOTYPE> HasVogenConversion(this global::Microsoft.EntityFrameworkCore.Metadata.Builders.ComplexTypePropertyBuilder<VOTYPE> propertyBuilder) =>
+                    propertyBuilder.HasConversion<__GENERATED_CONVERTER_NAME__, __GENERATED_COMPARER_NAME__>();
+                __ACCESSIBILITY_OF_MARKER_CLASS__ static global::Microsoft.EntityFrameworkCore.Metadata.Builders.ComplexTypePropertyBuilder<VOTYPE?> HasVogenConversion(this global::Microsoft.EntityFrameworkCore.Metadata.Builders.ComplexTypePropertyBuilder<VOTYPE?> propertyBuilder) =>
                     propertyBuilder.HasConversion<__GENERATED_CONVERTER_NAME__, __GENERATED_COMPARER_NAME__>();
         }
         
