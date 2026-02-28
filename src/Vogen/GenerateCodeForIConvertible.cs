@@ -1,3 +1,4 @@
+using System.Linq;
 using System.Text;
 using Analyzer.Utilities.Extensions;
 using Microsoft.CodeAnalysis;
@@ -59,7 +60,7 @@ public static class GenerateCodeForIConvertible
                 interfaceSymbol,
                 (valueAccessor, parameterNames) =>
                 {
-                    return $"return IsInitialized() ? {valueAccessor}.{primitiveMethod.Name}({parameterNames}) : default;";
+                    return $"return IsInitialized() ? {valueAccessor}.{eachInterfaceMethod.Name}({parameterNames}) : default;";
                 });
 
             sb.AppendLine(hoistMethodFromPrimitive);
