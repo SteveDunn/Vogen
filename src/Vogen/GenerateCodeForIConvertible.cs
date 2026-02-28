@@ -1,4 +1,3 @@
-using System.Collections.Immutable;
 using System.Linq;
 using System.Text;
 using Analyzer.Utilities.Extensions;
@@ -85,35 +84,9 @@ public static class GenerateCodeForIConvertible
         var existingMethods = wrapperSymbol
             .GetMembers(interfaceMethod.Name)
             .OfType<IMethodSymbol>()
-            .Where(m => ParametersMatch(m.Parameters, interfaceMethod.Parameters))
+            .Where(m => m.ParametersAreSame(interfaceMethod))
             .ToList();
 
         return existingMethods.Count > 0;
-    }
-
-    /// <summary>
-    /// Compares two parameter lists for matching names, types, and ref kinds.
-    /// Used to determine if an existing method matches an interface method signature.
-    /// </summary>
-    private static bool ParametersMatch(ImmutableArray<IParameterSymbol> existingParams, ImmutableArray<IParameterSymbol> interfaceParams)
-    {
-        if (existingParams.Length != interfaceParams.Length)
-            return false;
-
-        for (int i = 0; i < existingParams.Length; i++)
-        {
-            var existing = existingParams[i];
-            var interfaceParam = interfaceParams[i];
-
-            // Check name, type, and ref kind match
-            if (existing.Name != interfaceParam.Name)
-                return false;
-            if (!existing.Type.Equals(interfaceParam.Type, SymbolEqualityComparer.Default))
-                return false;
-            if (existing.RefKind != interfaceParam.RefKind)
-                return false;
-        }
-
-        return true;
     }
 }
