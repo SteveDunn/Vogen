@@ -29,4 +29,25 @@
 
     [ValueObject<float>(conversions: Conversions.LinqToDbValueConverter)]
     public partial struct LinqToDbFloatVo { }
+
+    /// <summary>
+    /// This example demonstrates that you can provide custom implementations for specific IConvertible methods.
+    /// Vogen will not override your custom implementation; it will only hoist the other IConvertible methods.
+    /// 
+    /// In this case, we provide a custom ToInt32 implementation that rounds the float value,
+    /// while other IConvertible methods (ToBoolean, ToByte, ToChar, etc.) are automatically hoisted.
+    /// </summary>
+    [ValueObject<float>(conversions: Conversions.None)]
+    public partial struct CustomRoundingFloat
+    {
+        /// <summary>
+        /// Custom implementation of IConvertible.ToInt32 that rounds instead of truncating.
+        /// This demonstrates that Vogen respects user-defined implementations and won't regenerate them.
+        /// </summary>
+        public int ToInt32(IFormatProvider? provider)
+        {
+            // Custom logic: round instead of truncate
+            return IsInitialized() ? (int)System.Math.Round(Value) : default;
+        }
+    }
 }

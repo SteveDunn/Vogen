@@ -1,3 +1,4 @@
+using System.Collections.Immutable;
 using System.Linq;
 using System.Text;
 using Analyzer.Utilities.Extensions;
@@ -55,6 +56,11 @@ public static class GenerateCodeForIConvertible
             if (primitiveMethod is null)
                 continue;
 
+            // Skip if the wrapper already has a method with the same name and signature.
+            // This allows users to provide custom implementations for specific IConvertible methods.
+            if (MethodExistsOnWrapper(wrapperSymbol, eachInterfaceMethod))
+                continue;
+
             string hoistMethodFromPrimitive = Hoisting.HoistMethodFromPrimitive(
                 primitiveMethod,
                 interfaceSymbol,
@@ -68,5 +74,46 @@ public static class GenerateCodeForIConvertible
 
         sb.AppendLine("#nullable restore");
         return sb.ToString();
+    }
+
+    /// <summary>
+    /// Checks if the wrapper type already defines a method matching the given interface method signature.
+    /// This prevents attempting to generate IConvertible methods that the user has already explicitly implemented.
+    /// </summary>
+    private static bool MethodExistsOnWrapper(INamedTypeSymbol wrapperSymbol, IMethodSymbol interfaceMethod)
+    {
+        var existingMethods = wrapperSymbol
+            .GetMembers(interfaceMethod.Name)
+            .OfType<IMethodSymbol>()
+            .Where(m => ParametersMatch(m.Parameters, interfaceMethod.Parameters))
+            .ToList();
+
+        return existingMethods.Count > 0;
+    }
+
+    /// <summary>
+    /// Compares two parameter lists for matching names, types, and ref kinds.
+    /// Used to determine if an existing method matches an interface method signature.
+    /// </summary>
+    private static bool ParametersMatch(ImmutableArray<IParameterSymbol> existingParams, ImmutableArray<IParameterSymbol> interfaceParams)
+    {
+        if (existingParams.Length != interfaceParams.Length)
+            return false;
+
+        for (int i = 0; i < existingParams.Length; i++)
+        {
+            var existing = existingParams[i];
+            var interfaceParam = interfaceParams[i];
+
+            // Check name, type, and ref kind match
+            if (existing.Name != interfaceParam.Name)
+                return false;
+            if (!existing.Type.Equals(interfaceParam.Type, SymbolEqualityComparer.Default))
+                return false;
+            if (existing.RefKind != interfaceParam.RefKind)
+                return false;
+        }
+
+        return true;
     }
 }

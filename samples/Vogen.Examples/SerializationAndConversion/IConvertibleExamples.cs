@@ -19,6 +19,7 @@ public class IConvertibleExamples : IScenario
         DemonstrateConvertChangeType();
         DemonstrateConvertToSpecificType();
         DemonstrateCustomConversionLogic();
+        DemonstrateCustomImplementations();
 
         return Task.CompletedTask;
     }
@@ -91,5 +92,35 @@ public class IConvertibleExamples : IScenario
         Debug.Assert((decimal)convertedValue == 32.0m);
 
         Console.WriteLine($"Temperature {temperature} converted to {targetType.Name}: {convertedValue}");
+    }
+
+    /// <summary>
+    /// Example 4: Custom IConvertible implementations
+    /// 
+    /// You can provide custom implementations for specific IConvertible methods.
+    /// Vogen will respect your custom code and not override it, while still hoisting the other
+    /// IConvertible methods. This is useful when you need special conversion logic for certain types.
+    /// 
+    /// The CustomRoundingFloat type demonstrates this: it provides a custom ToInt32 that rounds
+    /// the float value instead of truncating it, while other IConvertible methods are automatically hoisted.
+    /// </summary>
+    private void DemonstrateCustomImplementations()
+    {
+        var value = CustomRoundingFloat.From(3.7f);
+
+        // Uses the custom ToInt32 implementation (rounds to 4, not truncates to 3)
+        IConvertible convertible = value;
+        int rounded = convertible.ToInt32(null);
+
+        Debug.Assert(rounded == 4);
+
+        // Other IConvertible methods are still available and hoisted automatically
+        byte asByte = convertible.ToByte(null);
+        decimal asDecimal = convertible.ToDecimal(null);
+
+        Debug.Assert(asByte == 4);
+        Debug.Assert(asDecimal == 3.7m);
+
+        Console.WriteLine($"CustomRoundingFloat {value} rounds to {rounded}, but converts to byte as {asByte} and decimal as {asDecimal}");
     }
 }
