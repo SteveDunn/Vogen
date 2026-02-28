@@ -1,4 +1,6 @@
-﻿namespace Vogen.Examples.Types
+﻿using System;
+
+namespace Vogen.Examples.Types
 {
     [ValueObject<float>(conversions: Conversions.NewtonsoftJson | Conversions.SystemTextJson)]
     public readonly partial struct Celsius { }
@@ -44,10 +46,10 @@
         /// Custom implementation of IConvertible.ToInt32 that rounds instead of truncating.
         /// This demonstrates that Vogen respects user-defined implementations and won't regenerate them.
         /// </summary>
-        public int ToInt32(IFormatProvider? provider)
+        public int ToInt32(IFormatProvider provider)
         {
             // Custom logic: round instead of truncate
-            return IsInitialized() ? (int)System.Math.Round(Value) : default;
+            return IsInitialized() ? (int)Math.Round(Value) : 0;
         }
     }
 }

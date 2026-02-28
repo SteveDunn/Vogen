@@ -48,11 +48,8 @@ public static class Hoisting
         // Append parameters with attributes, types, and modifiers
         var parameters = new List<string>();
         List<ParameterNameAndRef> nameAndRefKinds = new();
-        var methodParams = methodSymbol.Parameters;
-        
-        for (int i = 0; i < methodParams.Length; i++)
+        foreach (var eachParam in methodSymbol.Parameters)
         {
-            var eachParam = methodParams[i];
             var parameterBuilder = new StringBuilder();
 
             // Append parameter attributes, ignoring NullableAttribute
@@ -66,22 +63,10 @@ public static class Hoisting
             // Append parameter type and name
             var parameterName = Util.EscapeKeywordsIfRequired(eachParam.Name);
             
-            // For interface implementations, use the interface method's parameter types to match nullability
-            IParameterSymbol parameterToUse = eachParam;
-            if (isExplicitInterfaceImplementation && interfaceSymbol.GetJustMethods().FirstOrDefault(m => m.Name == methodSymbol.Name) is IMethodSymbol interfaceMethod)
-            {
-                // Get the parameter at the same index from the interface method to ensure nullability annotations match.
-                // While the parameter count should always match between the interface and implementation, we bounds-check
-                // defensively in case of unexpected scenarios. If the interface method has fewer parameters, we fall back
-                // to the primitive method's parameter type.
-                if (i < interfaceMethod.Parameters.Length)
-                {
-                    parameterToUse = interfaceMethod.Parameters[i];
-                }
-            }
-            
-            string typeAsText = parameterToUse.Type.ToDisplayString(SymbolDisplayFormat.FullyQualifiedFormat);
+            string typeAsText = eachParam.Type.ToDisplayString(DisplayFormats.SymbolFormatWhenNullabilityIsOff);
 
+            //var paramType = eachParam.Type;
+            
             parameterBuilder.Append($"{refKind} {typeAsText} {parameterName}");
             nameAndRefKinds.Add(new(parameterName, refKind));
             parameters.Add(parameterBuilder.ToString());

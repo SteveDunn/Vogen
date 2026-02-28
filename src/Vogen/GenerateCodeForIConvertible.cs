@@ -27,6 +27,9 @@ public static class GenerateCodeForIConvertible
     /// Some of the IConvertible methods are already hoisted elsewhere (ToString with
     /// IFormatProvider is produced by the IFormattable logic) so we skip any method
     /// named "ToString" and delegate the rest back to the underlying primitive.
+    /// 
+    /// Generated methods are wrapped in #nullable disable to avoid nullability conflicts
+    /// between IConvertible interface requirements and wrapper's nullable context.
     /// </summary>
     public static string GenerateAnyHoistedIConvertibleMethods(GenerationParameters parameters)
     {
