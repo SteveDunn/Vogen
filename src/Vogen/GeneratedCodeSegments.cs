@@ -35,5 +35,8 @@ internal static class GeneratedCodeSegments
 
             // Suppress warnings about CS1591: Missing XML comment for publicly visible type or member 'Type_or_Member'
             #pragma warning disable CS1591
+
+            // Suppress warnings about CS8767 : Nullability of reference types in type of parameter doesn't match implicitly implemented member (possibly because of nullability attributes).
+            #pragma warning disable CS8767
             """.Replace("\r\n", "\n").Replace("\n", Environment.NewLine); // normalize regardless of git checkout policy        
 }
