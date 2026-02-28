@@ -36,6 +36,7 @@ public class RecordClassGenerator : IGenerateValueObjectSourceCode
         {GenerateCodeForComparables.GenerateInterfaceDefinitionsIfNeeded(", ", item)}
         {GenerateCodeForIParsableInterfaceDeclarations.GenerateIfNeeded(", ", item)}
         {GenerateCodeForTryFormat.GenerateInterfaceDefinitionsIfNeeded(", ", parameters)}
+        {GenerateCodeForIConvertible.GenerateInterfaceDefinitionsIfNeeded(", ", parameters)}
         {GenerateCodeForStaticAbstracts.GenerateInterfaceDefinitionIfNeeded(", ", item)}
         {GenerateCodeForXmlSerializable.GenerateInterfaceDefinitionIfNeeded(", ", item)}
     {{
@@ -141,6 +142,8 @@ public class RecordClassGenerator : IGenerateValueObjectSourceCode
         {GenerateCodeForTryParse.GenerateAnyHoistedTryParseMethods(item)}{GenerateCodeForParse.GenerateAnyHoistedParseMethods(item)}
 
         {GenerateCodeForTryFormat.GenerateAnyHoistedTryFormatMethods(parameters)}
+
+        {GenerateCodeForIConvertible.GenerateAnyHoistedIConvertibleMethods(parameters)}
 
         {GenerateCodeForHashCodes.GenerateGetHashCodeForAClass(item)}
 

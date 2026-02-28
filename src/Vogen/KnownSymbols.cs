@@ -44,6 +44,9 @@ public class KnownSymbols(Compilation compilation)
     public INamedTypeSymbol? IFormatProvider => GetOrResolveType("System.IFormatProvider", ref _IFormatProvider);
     private Option<INamedTypeSymbol?> _IFormatProvider;
 
+    public INamedTypeSymbol? IConvertible => GetOrResolveType("System.IConvertible", ref _IConvertible);
+    private Option<INamedTypeSymbol?> _IConvertible;
+
     public INamedTypeSymbol? IReadOnlyDictionaryOfTKeyTValue => GetOrResolveType("System.Collections.Generic.IReadOnlyDictionary`2", ref _IReadOnlyDictionaryOfTKeyTValue);
     private Option<INamedTypeSymbol?> _IReadOnlyDictionaryOfTKeyTValue;
 
