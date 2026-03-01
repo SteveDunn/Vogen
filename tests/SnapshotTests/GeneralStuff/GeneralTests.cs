@@ -883,6 +883,22 @@ public partial struct @class
     }
 
     [Fact]
+    public Task Generates_IConvertible()
+    {
+        return new SnapshotRunner<ValueObjectGenerator>()
+            .WithSource("""
+                        #nullable disable
+                        using Vogen;
+
+                        namespace Whatever;
+
+                        [ValueObject(typeof(float))]
+                        public sealed partial class Foo { }
+                        """)
+            .RunOn(TargetFramework.Net8_0);
+    }
+
+    [Fact]
     public Task Generates_IParsable_and_skip_user_provided_method_1()
     {
         return RunTest(

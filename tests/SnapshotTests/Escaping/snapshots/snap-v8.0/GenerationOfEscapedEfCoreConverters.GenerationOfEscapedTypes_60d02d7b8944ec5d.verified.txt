@@ -28,6 +28,9 @@
 // Suppress warnings about CS1591: Missing XML comment for publicly visible type or member 'Type_or_Member'
 #pragma warning disable CS1591
 
+// Suppress warnings about CS8767 : Nullability of reference types in type of parameter doesn't match implicitly implemented member (possibly because of nullability attributes).
+#pragma warning disable CS8767
+
 namespace @class;
     
   public static class EfCoreConverters__Ext
@@ -71,6 +74,9 @@ namespace @class;
 
 // Suppress warnings about CS1591: Missing XML comment for publicly visible type or member 'Type_or_Member'
 #pragma warning disable CS1591
+
+// Suppress warnings about CS8767 : Nullability of reference types in type of parameter doesn't match implicitly implemented member (possibly because of nullability attributes).
+#pragma warning disable CS8767
 
 namespace @class;
     
@@ -143,6 +149,8 @@ public static class escapedTestspublic_readonly_partial_record_structConversions
 
 // Suppress warnings about CS1591: Missing XML comment for publicly visible type or member 'Type_or_Member'
 #pragma warning disable CS1591
+// Suppress warnings about CS8767 : Nullability of reference types in type of parameter doesn't match implicitly implemented member (possibly because of nullability attributes).
+#pragma warning disable CS8767
 namespace generator
 {
     [global::System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage]
@@ -182,6 +190,8 @@ namespace generator
 
 // Suppress warnings about CS1591: Missing XML comment for publicly visible type or member 'Type_or_Member'
 #pragma warning disable CS1591
+// Suppress warnings about CS8767 : Nullability of reference types in type of parameter doesn't match implicitly implemented member (possibly because of nullability attributes).
+#pragma warning disable CS8767
 namespace @class
 {
     [global::System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage]
@@ -259,9 +269,6 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
         /// <param name = "value">The underlying type.</param>
         /// <param name = "vo">An instance of the value object.</param>
         /// <returns>True if the value object can be built, otherwise false.</returns>
-        
-#pragma warning disable CS8767 // Nullability of reference types in type of parameter doesn't match implicitly implemented member because of nullability attributes.
-
         public static bool TryFrom(
 #if NETCOREAPP3_0_OR_GREATER
 [global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)]
@@ -271,8 +278,6 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
 [global::System.Diagnostics.CodeAnalysis.MaybeNullWhen(false)]
 #endif
         out escapedTestspublic_readonly_partial_record_structConversions_NewtonsoftJsonSystem_Guid vo)
-#pragma warning restore CS8767 // Nullability of reference types in type of parameter doesn't match implicitly implemented member because of nullability attributes.
-
         {
             vo = new escapedTestspublic_readonly_partial_record_structConversions_NewtonsoftJsonSystem_Guid(value);
             return true;

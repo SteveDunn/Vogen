@@ -28,6 +28,9 @@
 // Suppress warnings about CS1591: Missing XML comment for publicly visible type or member 'Type_or_Member'
 #pragma warning disable CS1591
 
+// Suppress warnings about CS8767 : Nullability of reference types in type of parameter doesn't match implicitly implemented member (possibly because of nullability attributes).
+#pragma warning disable CS8767
+
 namespace Whatever;
     
   public static class EfCoreConverters__Ext
@@ -79,6 +82,9 @@ configurationBuilder.Properties<Whatever.MyInt>().HaveConversion<Whatever.EfCore
 
 // Suppress warnings about CS1591: Missing XML comment for publicly visible type or member 'Type_or_Member'
 #pragma warning disable CS1591
+
+// Suppress warnings about CS8767 : Nullability of reference types in type of parameter doesn't match implicitly implemented member (possibly because of nullability attributes).
+#pragma warning disable CS8767
 
 namespace Whatever;
     
@@ -158,6 +164,9 @@ public static class MyVo1__Ext
 
 // Suppress warnings about CS1591: Missing XML comment for publicly visible type or member 'Type_or_Member'
 #pragma warning disable CS1591
+
+// Suppress warnings about CS8767 : Nullability of reference types in type of parameter doesn't match implicitly implemented member (possibly because of nullability attributes).
+#pragma warning disable CS8767
 
 namespace Whatever;
     
@@ -247,6 +256,9 @@ public static class MyVo2__Ext
 // Suppress warnings about CS1591: Missing XML comment for publicly visible type or member 'Type_or_Member'
 #pragma warning disable CS1591
 
+// Suppress warnings about CS8767 : Nullability of reference types in type of parameter doesn't match implicitly implemented member (possibly because of nullability attributes).
+#pragma warning disable CS8767
+
 namespace Whatever;
     
 public partial class EfCoreConverters
@@ -325,6 +337,9 @@ public static class MyVo3__Ext
 
 // Suppress warnings about CS1591: Missing XML comment for publicly visible type or member 'Type_or_Member'
 #pragma warning disable CS1591
+
+// Suppress warnings about CS8767 : Nullability of reference types in type of parameter doesn't match implicitly implemented member (possibly because of nullability attributes).
+#pragma warning disable CS8767
 
 namespace Whatever;
     
@@ -405,6 +420,9 @@ public static class MyVo4__Ext
 // Suppress warnings about CS1591: Missing XML comment for publicly visible type or member 'Type_or_Member'
 #pragma warning disable CS1591
 
+// Suppress warnings about CS8767 : Nullability of reference types in type of parameter doesn't match implicitly implemented member (possibly because of nullability attributes).
+#pragma warning disable CS8767
+
 namespace Whatever;
     
 public partial class EfCoreConverters
@@ -483,6 +501,9 @@ public static class MyVo5__Ext
 
 // Suppress warnings about CS1591: Missing XML comment for publicly visible type or member 'Type_or_Member'
 #pragma warning disable CS1591
+
+// Suppress warnings about CS8767 : Nullability of reference types in type of parameter doesn't match implicitly implemented member (possibly because of nullability attributes).
+#pragma warning disable CS8767
 
 namespace Whatever;
     
@@ -572,6 +593,9 @@ public static class MyVo6__Ext
 // Suppress warnings about CS1591: Missing XML comment for publicly visible type or member 'Type_or_Member'
 #pragma warning disable CS1591
 
+// Suppress warnings about CS8767 : Nullability of reference types in type of parameter doesn't match implicitly implemented member (possibly because of nullability attributes).
+#pragma warning disable CS8767
+
 namespace Whatever;
     
 public partial class EfCoreConverters
@@ -651,6 +675,9 @@ public static class int__Ext
 // Suppress warnings about CS1591: Missing XML comment for publicly visible type or member 'Type_or_Member'
 #pragma warning disable CS1591
 
+// Suppress warnings about CS8767 : Nullability of reference types in type of parameter doesn't match implicitly implemented member (possibly because of nullability attributes).
+#pragma warning disable CS8767
+
 namespace Whatever;
     
 public partial class EfCoreConverters
@@ -729,6 +756,9 @@ public static class byte__Ext
 
 // Suppress warnings about CS1591: Missing XML comment for publicly visible type or member 'Type_or_Member'
 #pragma warning disable CS1591
+
+// Suppress warnings about CS8767 : Nullability of reference types in type of parameter doesn't match implicitly implemented member (possibly because of nullability attributes).
+#pragma warning disable CS8767
 
 namespace Whatever;
     
@@ -818,6 +848,9 @@ public static class MyInt__Ext
 // Suppress warnings about CS1591: Missing XML comment for publicly visible type or member 'Type_or_Member'
 #pragma warning disable CS1591
 
+// Suppress warnings about CS8767 : Nullability of reference types in type of parameter doesn't match implicitly implemented member (possibly because of nullability attributes).
+#pragma warning disable CS8767
+
 namespace @byte;
     
   public static class EfCoreConverters__Ext
@@ -862,6 +895,9 @@ configurationBuilder.Properties<@int.@string>().HaveConversion<@byte.EfCoreConve
 
 // Suppress warnings about CS1591: Missing XML comment for publicly visible type or member 'Type_or_Member'
 #pragma warning disable CS1591
+
+// Suppress warnings about CS8767 : Nullability of reference types in type of parameter doesn't match implicitly implemented member (possibly because of nullability attributes).
+#pragma warning disable CS8767
 
 namespace @byte;
     
@@ -942,6 +978,9 @@ public static class byte__Ext
 // Suppress warnings about CS1591: Missing XML comment for publicly visible type or member 'Type_or_Member'
 #pragma warning disable CS1591
 
+// Suppress warnings about CS8767 : Nullability of reference types in type of parameter doesn't match implicitly implemented member (possibly because of nullability attributes).
+#pragma warning disable CS8767
+
 namespace @byte;
     
 public partial class EfCoreConverters
@@ -1013,6 +1052,8 @@ public static class string__Ext
 
 // Suppress warnings about CS1591: Missing XML comment for publicly visible type or member 'Type_or_Member'
 #pragma warning disable CS1591
+// Suppress warnings about CS8767 : Nullability of reference types in type of parameter doesn't match implicitly implemented member (possibly because of nullability attributes).
+#pragma warning disable CS8767
 namespace generator
 {
     [global::System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage]
@@ -1096,6 +1137,8 @@ namespace generator
 
 // Suppress warnings about CS1591: Missing XML comment for publicly visible type or member 'Type_or_Member'
 #pragma warning disable CS1591
+// Suppress warnings about CS8767 : Nullability of reference types in type of parameter doesn't match implicitly implemented member (possibly because of nullability attributes).
+#pragma warning disable CS8767
 namespace @int
 {
     [global::System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage]
@@ -1105,7 +1148,7 @@ namespace @int
     [global::System.Diagnostics.DebuggerTypeProxyAttribute(typeof(@byteDebugView))]
     [global::System.Diagnostics.DebuggerDisplayAttribute("Underlying type: global::System.Byte, Value = { _value }")]
     // ReSharper disable once UnusedType.Global
-    public partial struct @byte : global::System.IEquatable<@byte>, global::System.IEquatable<global::System.Byte>, global::System.IComparable<@byte>, global::System.IComparable, global::System.IParsable<@byte>, global::System.ISpanParsable<@byte>, global::System.IUtf8SpanParsable<@byte>, global::System.IFormattable, global::System.ISpanFormattable, global::System.IUtf8SpanFormattable
+    public partial struct @byte : global::System.IEquatable<@byte>, global::System.IEquatable<global::System.Byte>, global::System.IComparable<@byte>, global::System.IComparable, global::System.IParsable<@byte>, global::System.ISpanParsable<@byte>, global::System.IUtf8SpanParsable<@byte>, global::System.IFormattable, global::System.ISpanFormattable, global::System.IUtf8SpanFormattable, global::System.IConvertible
     {
 #if DEBUG
 private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
@@ -1172,9 +1215,6 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
         /// <param name = "value">The underlying type.</param>
         /// <param name = "vo">An instance of the value object.</param>
         /// <returns>True if the value object can be built, otherwise false.</returns>
-        
-#pragma warning disable CS8767 // Nullability of reference types in type of parameter doesn't match implicitly implemented member because of nullability attributes.
-
         public static bool TryFrom(
 #if NETCOREAPP3_0_OR_GREATER
 [global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)]
@@ -1184,8 +1224,6 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
 [global::System.Diagnostics.CodeAnalysis.MaybeNullWhen(false)]
 #endif
         out @byte vo)
-#pragma warning restore CS8767 // Nullability of reference types in type of parameter doesn't match implicitly implemented member because of nullability attributes.
-
         {
             vo = new @byte(value);
             return true;
@@ -1585,6 +1623,104 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
         }
 
 #nullable restore
+#nullable disable
+        /// <inheritdoc cref = "byte.GetTypeCode()"/>
+        public System.TypeCode GetTypeCode()
+        {
+            return IsInitialized() ? Value.GetTypeCode() : default;
+        }
+
+        /// <inheritdoc cref = "System.IConvertible"/>
+        bool System.IConvertible.ToBoolean(global::System.IFormatProvider provider)
+        {
+            return IsInitialized() ? (Value as System.IConvertible).ToBoolean(provider) : default;
+        }
+
+        /// <inheritdoc cref = "System.IConvertible"/>
+        byte System.IConvertible.ToByte(global::System.IFormatProvider provider)
+        {
+            return IsInitialized() ? (Value as System.IConvertible).ToByte(provider) : default;
+        }
+
+        /// <inheritdoc cref = "System.IConvertible"/>
+        char System.IConvertible.ToChar(global::System.IFormatProvider provider)
+        {
+            return IsInitialized() ? (Value as System.IConvertible).ToChar(provider) : default;
+        }
+
+        /// <inheritdoc cref = "System.IConvertible"/>
+        System.DateTime System.IConvertible.ToDateTime(global::System.IFormatProvider provider)
+        {
+            return IsInitialized() ? (Value as System.IConvertible).ToDateTime(provider) : default;
+        }
+
+        /// <inheritdoc cref = "System.IConvertible"/>
+        decimal System.IConvertible.ToDecimal(global::System.IFormatProvider provider)
+        {
+            return IsInitialized() ? (Value as System.IConvertible).ToDecimal(provider) : default;
+        }
+
+        /// <inheritdoc cref = "System.IConvertible"/>
+        double System.IConvertible.ToDouble(global::System.IFormatProvider provider)
+        {
+            return IsInitialized() ? (Value as System.IConvertible).ToDouble(provider) : default;
+        }
+
+        /// <inheritdoc cref = "System.IConvertible"/>
+        short System.IConvertible.ToInt16(global::System.IFormatProvider provider)
+        {
+            return IsInitialized() ? (Value as System.IConvertible).ToInt16(provider) : default;
+        }
+
+        /// <inheritdoc cref = "System.IConvertible"/>
+        int System.IConvertible.ToInt32(global::System.IFormatProvider provider)
+        {
+            return IsInitialized() ? (Value as System.IConvertible).ToInt32(provider) : default;
+        }
+
+        /// <inheritdoc cref = "System.IConvertible"/>
+        long System.IConvertible.ToInt64(global::System.IFormatProvider provider)
+        {
+            return IsInitialized() ? (Value as System.IConvertible).ToInt64(provider) : default;
+        }
+
+        /// <inheritdoc cref = "System.IConvertible"/>
+        sbyte System.IConvertible.ToSByte(global::System.IFormatProvider provider)
+        {
+            return IsInitialized() ? (Value as System.IConvertible).ToSByte(provider) : default;
+        }
+
+        /// <inheritdoc cref = "System.IConvertible"/>
+        float System.IConvertible.ToSingle(global::System.IFormatProvider provider)
+        {
+            return IsInitialized() ? (Value as System.IConvertible).ToSingle(provider) : default;
+        }
+
+        /// <inheritdoc cref = "System.IConvertible"/>
+        object System.IConvertible.ToType(global::System.Type @type, global::System.IFormatProvider provider)
+        {
+            return IsInitialized() ? (Value as System.IConvertible).ToType(@type, provider) : default;
+        }
+
+        /// <inheritdoc cref = "System.IConvertible"/>
+        ushort System.IConvertible.ToUInt16(global::System.IFormatProvider provider)
+        {
+            return IsInitialized() ? (Value as System.IConvertible).ToUInt16(provider) : default;
+        }
+
+        /// <inheritdoc cref = "System.IConvertible"/>
+        uint System.IConvertible.ToUInt32(global::System.IFormatProvider provider)
+        {
+            return IsInitialized() ? (Value as System.IConvertible).ToUInt32(provider) : default;
+        }
+
+        /// <inheritdoc cref = "System.IConvertible"/>
+        ulong System.IConvertible.ToUInt64(global::System.IFormatProvider provider)
+        {
+            return IsInitialized() ? (Value as System.IConvertible).ToUInt64(provider) : default;
+        }
+
+#nullable restore
         public readonly override global::System.Int32 GetHashCode()
         {
             return global::System.Collections.Generic.EqualityComparer<global::System.Byte>.Default.GetHashCode(Value);
@@ -1795,6 +1931,8 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
 
 // Suppress warnings about CS1591: Missing XML comment for publicly visible type or member 'Type_or_Member'
 #pragma warning disable CS1591
+// Suppress warnings about CS8767 : Nullability of reference types in type of parameter doesn't match implicitly implemented member (possibly because of nullability attributes).
+#pragma warning disable CS8767
 namespace @int
 {
     [global::System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage]
@@ -1884,9 +2022,6 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
         /// <param name = "value">The underlying type.</param>
         /// <param name = "vo">An instance of the value object.</param>
         /// <returns>True if the value object can be built, otherwise false.</returns>
-        
-#pragma warning disable CS8767 // Nullability of reference types in type of parameter doesn't match implicitly implemented member because of nullability attributes.
-
         public static bool TryFrom(
 #if NETCOREAPP3_0_OR_GREATER
 [global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)]
@@ -1896,8 +2031,6 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
 [global::System.Diagnostics.CodeAnalysis.MaybeNullWhen(false)]
 #endif
         out @string vo)
-#pragma warning restore CS8767 // Nullability of reference types in type of parameter doesn't match implicitly implemented member because of nullability attributes.
-
         {
             if (value is null)
             {
@@ -2230,6 +2363,8 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
 
 // Suppress warnings about CS1591: Missing XML comment for publicly visible type or member 'Type_or_Member'
 #pragma warning disable CS1591
+// Suppress warnings about CS8767 : Nullability of reference types in type of parameter doesn't match implicitly implemented member (possibly because of nullability attributes).
+#pragma warning disable CS8767
 namespace Whatever
 {
     [global::System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage]
@@ -2239,7 +2374,7 @@ namespace Whatever
     [global::System.Diagnostics.DebuggerTypeProxyAttribute(typeof(MyVo1DebugView))]
     [global::System.Diagnostics.DebuggerDisplayAttribute("Underlying type: global::System.Int32, Value = { _value }")]
     // ReSharper disable once UnusedType.Global
-    public partial struct MyVo1 : global::System.IEquatable<MyVo1>, global::System.IEquatable<global::System.Int32>, global::System.IComparable<MyVo1>, global::System.IComparable, global::System.IParsable<MyVo1>, global::System.ISpanParsable<MyVo1>, global::System.IUtf8SpanParsable<MyVo1>, global::System.IFormattable, global::System.ISpanFormattable, global::System.IUtf8SpanFormattable
+    public partial struct MyVo1 : global::System.IEquatable<MyVo1>, global::System.IEquatable<global::System.Int32>, global::System.IComparable<MyVo1>, global::System.IComparable, global::System.IParsable<MyVo1>, global::System.ISpanParsable<MyVo1>, global::System.IUtf8SpanParsable<MyVo1>, global::System.IFormattable, global::System.ISpanFormattable, global::System.IUtf8SpanFormattable, global::System.IConvertible
     {
 #if DEBUG
 private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
@@ -2306,9 +2441,6 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
         /// <param name = "value">The underlying type.</param>
         /// <param name = "vo">An instance of the value object.</param>
         /// <returns>True if the value object can be built, otherwise false.</returns>
-        
-#pragma warning disable CS8767 // Nullability of reference types in type of parameter doesn't match implicitly implemented member because of nullability attributes.
-
         public static bool TryFrom(
 #if NETCOREAPP3_0_OR_GREATER
 [global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)]
@@ -2318,8 +2450,6 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
 [global::System.Diagnostics.CodeAnalysis.MaybeNullWhen(false)]
 #endif
         out MyVo1 vo)
-#pragma warning restore CS8767 // Nullability of reference types in type of parameter doesn't match implicitly implemented member because of nullability attributes.
-
         {
             vo = new MyVo1(value);
             return true;
@@ -2719,6 +2849,104 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
         }
 
 #nullable restore
+#nullable disable
+        /// <inheritdoc cref = "int.GetTypeCode()"/>
+        public System.TypeCode GetTypeCode()
+        {
+            return IsInitialized() ? Value.GetTypeCode() : default;
+        }
+
+        /// <inheritdoc cref = "System.IConvertible"/>
+        bool System.IConvertible.ToBoolean(global::System.IFormatProvider provider)
+        {
+            return IsInitialized() ? (Value as System.IConvertible).ToBoolean(provider) : default;
+        }
+
+        /// <inheritdoc cref = "System.IConvertible"/>
+        byte System.IConvertible.ToByte(global::System.IFormatProvider provider)
+        {
+            return IsInitialized() ? (Value as System.IConvertible).ToByte(provider) : default;
+        }
+
+        /// <inheritdoc cref = "System.IConvertible"/>
+        char System.IConvertible.ToChar(global::System.IFormatProvider provider)
+        {
+            return IsInitialized() ? (Value as System.IConvertible).ToChar(provider) : default;
+        }
+
+        /// <inheritdoc cref = "System.IConvertible"/>
+        System.DateTime System.IConvertible.ToDateTime(global::System.IFormatProvider provider)
+        {
+            return IsInitialized() ? (Value as System.IConvertible).ToDateTime(provider) : default;
+        }
+
+        /// <inheritdoc cref = "System.IConvertible"/>
+        decimal System.IConvertible.ToDecimal(global::System.IFormatProvider provider)
+        {
+            return IsInitialized() ? (Value as System.IConvertible).ToDecimal(provider) : default;
+        }
+
+        /// <inheritdoc cref = "System.IConvertible"/>
+        double System.IConvertible.ToDouble(global::System.IFormatProvider provider)
+        {
+            return IsInitialized() ? (Value as System.IConvertible).ToDouble(provider) : default;
+        }
+
+        /// <inheritdoc cref = "System.IConvertible"/>
+        short System.IConvertible.ToInt16(global::System.IFormatProvider provider)
+        {
+            return IsInitialized() ? (Value as System.IConvertible).ToInt16(provider) : default;
+        }
+
+        /// <inheritdoc cref = "System.IConvertible"/>
+        int System.IConvertible.ToInt32(global::System.IFormatProvider provider)
+        {
+            return IsInitialized() ? (Value as System.IConvertible).ToInt32(provider) : default;
+        }
+
+        /// <inheritdoc cref = "System.IConvertible"/>
+        long System.IConvertible.ToInt64(global::System.IFormatProvider provider)
+        {
+            return IsInitialized() ? (Value as System.IConvertible).ToInt64(provider) : default;
+        }
+
+        /// <inheritdoc cref = "System.IConvertible"/>
+        sbyte System.IConvertible.ToSByte(global::System.IFormatProvider provider)
+        {
+            return IsInitialized() ? (Value as System.IConvertible).ToSByte(provider) : default;
+        }
+
+        /// <inheritdoc cref = "System.IConvertible"/>
+        float System.IConvertible.ToSingle(global::System.IFormatProvider provider)
+        {
+            return IsInitialized() ? (Value as System.IConvertible).ToSingle(provider) : default;
+        }
+
+        /// <inheritdoc cref = "System.IConvertible"/>
+        object System.IConvertible.ToType(global::System.Type @type, global::System.IFormatProvider provider)
+        {
+            return IsInitialized() ? (Value as System.IConvertible).ToType(@type, provider) : default;
+        }
+
+        /// <inheritdoc cref = "System.IConvertible"/>
+        ushort System.IConvertible.ToUInt16(global::System.IFormatProvider provider)
+        {
+            return IsInitialized() ? (Value as System.IConvertible).ToUInt16(provider) : default;
+        }
+
+        /// <inheritdoc cref = "System.IConvertible"/>
+        uint System.IConvertible.ToUInt32(global::System.IFormatProvider provider)
+        {
+            return IsInitialized() ? (Value as System.IConvertible).ToUInt32(provider) : default;
+        }
+
+        /// <inheritdoc cref = "System.IConvertible"/>
+        ulong System.IConvertible.ToUInt64(global::System.IFormatProvider provider)
+        {
+            return IsInitialized() ? (Value as System.IConvertible).ToUInt64(provider) : default;
+        }
+
+#nullable restore
         public readonly override global::System.Int32 GetHashCode()
         {
             return global::System.Collections.Generic.EqualityComparer<global::System.Int32>.Default.GetHashCode(Value);
@@ -2926,6 +3154,8 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
 
 // Suppress warnings about CS1591: Missing XML comment for publicly visible type or member 'Type_or_Member'
 #pragma warning disable CS1591
+// Suppress warnings about CS8767 : Nullability of reference types in type of parameter doesn't match implicitly implemented member (possibly because of nullability attributes).
+#pragma warning disable CS8767
 namespace Whatever
 {
     [global::System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage]
@@ -2934,7 +3164,7 @@ namespace Whatever
     [global::System.ComponentModel.TypeConverter(typeof(MyVo2TypeConverter))]
     [global::System.Diagnostics.DebuggerTypeProxyAttribute(typeof(MyVo2DebugView))]
     [global::System.Diagnostics.DebuggerDisplayAttribute("Underlying type: global::System.String, Value = { _value }")]
-    public partial class MyVo2 : global::System.IEquatable<MyVo2>, global::System.IEquatable<global::System.String>, global::System.IComparable<MyVo2>, global::System.IComparable, global::System.IParsable<MyVo2>
+    public partial class MyVo2 : global::System.IEquatable<MyVo2>, global::System.IEquatable<global::System.String>, global::System.IComparable<MyVo2>, global::System.IComparable, global::System.IParsable<MyVo2>, global::System.IConvertible
     {
 #if DEBUG
 private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
@@ -3004,9 +3234,6 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
         /// <param name = "value">The underlying type.</param>
         /// <param name = "vo">An instance of the value object.</param>
         /// <returns>True if the value object can be built, otherwise false.</returns>
-        
-#pragma warning disable CS8767 // Nullability of reference types in type of parameter doesn't match implicitly implemented member because of nullability attributes.
-
         public static bool TryFrom(
 #if NETCOREAPP3_0_OR_GREATER
 [global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)]
@@ -3016,8 +3243,6 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
 [global::System.Diagnostics.CodeAnalysis.MaybeNullWhen(false)]
 #endif
         out MyVo2 vo)
-#pragma warning restore CS8767 // Nullability of reference types in type of parameter doesn't match implicitly implemented member because of nullability attributes.
-
         {
             if (value is null)
             {
@@ -3168,6 +3393,104 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
         }
 
 #nullable disable
+#nullable restore
+#nullable disable
+        /// <inheritdoc cref = "string.GetTypeCode()"/>
+        public System.TypeCode GetTypeCode()
+        {
+            return IsInitialized() ? Value.GetTypeCode() : default;
+        }
+
+        /// <inheritdoc cref = "System.IConvertible"/>
+        bool System.IConvertible.ToBoolean(global::System.IFormatProvider provider)
+        {
+            return IsInitialized() ? (Value as System.IConvertible).ToBoolean(provider) : default;
+        }
+
+        /// <inheritdoc cref = "System.IConvertible"/>
+        byte System.IConvertible.ToByte(global::System.IFormatProvider provider)
+        {
+            return IsInitialized() ? (Value as System.IConvertible).ToByte(provider) : default;
+        }
+
+        /// <inheritdoc cref = "System.IConvertible"/>
+        char System.IConvertible.ToChar(global::System.IFormatProvider provider)
+        {
+            return IsInitialized() ? (Value as System.IConvertible).ToChar(provider) : default;
+        }
+
+        /// <inheritdoc cref = "System.IConvertible"/>
+        System.DateTime System.IConvertible.ToDateTime(global::System.IFormatProvider provider)
+        {
+            return IsInitialized() ? (Value as System.IConvertible).ToDateTime(provider) : default;
+        }
+
+        /// <inheritdoc cref = "System.IConvertible"/>
+        decimal System.IConvertible.ToDecimal(global::System.IFormatProvider provider)
+        {
+            return IsInitialized() ? (Value as System.IConvertible).ToDecimal(provider) : default;
+        }
+
+        /// <inheritdoc cref = "System.IConvertible"/>
+        double System.IConvertible.ToDouble(global::System.IFormatProvider provider)
+        {
+            return IsInitialized() ? (Value as System.IConvertible).ToDouble(provider) : default;
+        }
+
+        /// <inheritdoc cref = "System.IConvertible"/>
+        short System.IConvertible.ToInt16(global::System.IFormatProvider provider)
+        {
+            return IsInitialized() ? (Value as System.IConvertible).ToInt16(provider) : default;
+        }
+
+        /// <inheritdoc cref = "System.IConvertible"/>
+        int System.IConvertible.ToInt32(global::System.IFormatProvider provider)
+        {
+            return IsInitialized() ? (Value as System.IConvertible).ToInt32(provider) : default;
+        }
+
+        /// <inheritdoc cref = "System.IConvertible"/>
+        long System.IConvertible.ToInt64(global::System.IFormatProvider provider)
+        {
+            return IsInitialized() ? (Value as System.IConvertible).ToInt64(provider) : default;
+        }
+
+        /// <inheritdoc cref = "System.IConvertible"/>
+        sbyte System.IConvertible.ToSByte(global::System.IFormatProvider provider)
+        {
+            return IsInitialized() ? (Value as System.IConvertible).ToSByte(provider) : default;
+        }
+
+        /// <inheritdoc cref = "System.IConvertible"/>
+        float System.IConvertible.ToSingle(global::System.IFormatProvider provider)
+        {
+            return IsInitialized() ? (Value as System.IConvertible).ToSingle(provider) : default;
+        }
+
+        /// <inheritdoc cref = "System.IConvertible"/>
+        object System.IConvertible.ToType(global::System.Type @type, global::System.IFormatProvider provider)
+        {
+            return IsInitialized() ? (Value as System.IConvertible).ToType(@type, provider) : default;
+        }
+
+        /// <inheritdoc cref = "System.IConvertible"/>
+        ushort System.IConvertible.ToUInt16(global::System.IFormatProvider provider)
+        {
+            return IsInitialized() ? (Value as System.IConvertible).ToUInt16(provider) : default;
+        }
+
+        /// <inheritdoc cref = "System.IConvertible"/>
+        uint System.IConvertible.ToUInt32(global::System.IFormatProvider provider)
+        {
+            return IsInitialized() ? (Value as System.IConvertible).ToUInt32(provider) : default;
+        }
+
+        /// <inheritdoc cref = "System.IConvertible"/>
+        ulong System.IConvertible.ToUInt64(global::System.IFormatProvider provider)
+        {
+            return IsInitialized() ? (Value as System.IConvertible).ToUInt64(provider) : default;
+        }
+
 #nullable restore
         public override global::System.Int32 GetHashCode()
         {
@@ -3374,6 +3697,8 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
 
 // Suppress warnings about CS1591: Missing XML comment for publicly visible type or member 'Type_or_Member'
 #pragma warning disable CS1591
+// Suppress warnings about CS8767 : Nullability of reference types in type of parameter doesn't match implicitly implemented member (possibly because of nullability attributes).
+#pragma warning disable CS8767
 namespace Whatever
 {
     [global::System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage]
@@ -3383,7 +3708,7 @@ namespace Whatever
     [global::System.Diagnostics.DebuggerTypeProxyAttribute(typeof(MyVo3DebugView))]
     [global::System.Diagnostics.DebuggerDisplayAttribute("Underlying type: global::System.String, Value = { _value }")]
     // ReSharper disable once UnusedType.Global
-    public readonly partial struct MyVo3 : global::System.IEquatable<MyVo3>, global::System.IEquatable<global::System.String>, global::System.IComparable<MyVo3>, global::System.IComparable, global::System.IParsable<MyVo3>
+    public readonly partial struct MyVo3 : global::System.IEquatable<MyVo3>, global::System.IEquatable<global::System.String>, global::System.IComparable<MyVo3>, global::System.IComparable, global::System.IParsable<MyVo3>, global::System.IConvertible
     {
 #if DEBUG
 private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
@@ -3456,9 +3781,6 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
         /// <param name = "value">The underlying type.</param>
         /// <param name = "vo">An instance of the value object.</param>
         /// <returns>True if the value object can be built, otherwise false.</returns>
-        
-#pragma warning disable CS8767 // Nullability of reference types in type of parameter doesn't match implicitly implemented member because of nullability attributes.
-
         public static bool TryFrom(
 #if NETCOREAPP3_0_OR_GREATER
 [global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)]
@@ -3468,8 +3790,6 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
 [global::System.Diagnostics.CodeAnalysis.MaybeNullWhen(false)]
 #endif
         out MyVo3 vo)
-#pragma warning restore CS8767 // Nullability of reference types in type of parameter doesn't match implicitly implemented member because of nullability attributes.
-
         {
             if (value is null)
             {
@@ -3604,6 +3924,104 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
         }
 
 #nullable disable
+#nullable restore
+#nullable disable
+        /// <inheritdoc cref = "string.GetTypeCode()"/>
+        public System.TypeCode GetTypeCode()
+        {
+            return IsInitialized() ? Value.GetTypeCode() : default;
+        }
+
+        /// <inheritdoc cref = "System.IConvertible"/>
+        bool System.IConvertible.ToBoolean(global::System.IFormatProvider provider)
+        {
+            return IsInitialized() ? (Value as System.IConvertible).ToBoolean(provider) : default;
+        }
+
+        /// <inheritdoc cref = "System.IConvertible"/>
+        byte System.IConvertible.ToByte(global::System.IFormatProvider provider)
+        {
+            return IsInitialized() ? (Value as System.IConvertible).ToByte(provider) : default;
+        }
+
+        /// <inheritdoc cref = "System.IConvertible"/>
+        char System.IConvertible.ToChar(global::System.IFormatProvider provider)
+        {
+            return IsInitialized() ? (Value as System.IConvertible).ToChar(provider) : default;
+        }
+
+        /// <inheritdoc cref = "System.IConvertible"/>
+        System.DateTime System.IConvertible.ToDateTime(global::System.IFormatProvider provider)
+        {
+            return IsInitialized() ? (Value as System.IConvertible).ToDateTime(provider) : default;
+        }
+
+        /// <inheritdoc cref = "System.IConvertible"/>
+        decimal System.IConvertible.ToDecimal(global::System.IFormatProvider provider)
+        {
+            return IsInitialized() ? (Value as System.IConvertible).ToDecimal(provider) : default;
+        }
+
+        /// <inheritdoc cref = "System.IConvertible"/>
+        double System.IConvertible.ToDouble(global::System.IFormatProvider provider)
+        {
+            return IsInitialized() ? (Value as System.IConvertible).ToDouble(provider) : default;
+        }
+
+        /// <inheritdoc cref = "System.IConvertible"/>
+        short System.IConvertible.ToInt16(global::System.IFormatProvider provider)
+        {
+            return IsInitialized() ? (Value as System.IConvertible).ToInt16(provider) : default;
+        }
+
+        /// <inheritdoc cref = "System.IConvertible"/>
+        int System.IConvertible.ToInt32(global::System.IFormatProvider provider)
+        {
+            return IsInitialized() ? (Value as System.IConvertible).ToInt32(provider) : default;
+        }
+
+        /// <inheritdoc cref = "System.IConvertible"/>
+        long System.IConvertible.ToInt64(global::System.IFormatProvider provider)
+        {
+            return IsInitialized() ? (Value as System.IConvertible).ToInt64(provider) : default;
+        }
+
+        /// <inheritdoc cref = "System.IConvertible"/>
+        sbyte System.IConvertible.ToSByte(global::System.IFormatProvider provider)
+        {
+            return IsInitialized() ? (Value as System.IConvertible).ToSByte(provider) : default;
+        }
+
+        /// <inheritdoc cref = "System.IConvertible"/>
+        float System.IConvertible.ToSingle(global::System.IFormatProvider provider)
+        {
+            return IsInitialized() ? (Value as System.IConvertible).ToSingle(provider) : default;
+        }
+
+        /// <inheritdoc cref = "System.IConvertible"/>
+        object System.IConvertible.ToType(global::System.Type @type, global::System.IFormatProvider provider)
+        {
+            return IsInitialized() ? (Value as System.IConvertible).ToType(@type, provider) : default;
+        }
+
+        /// <inheritdoc cref = "System.IConvertible"/>
+        ushort System.IConvertible.ToUInt16(global::System.IFormatProvider provider)
+        {
+            return IsInitialized() ? (Value as System.IConvertible).ToUInt16(provider) : default;
+        }
+
+        /// <inheritdoc cref = "System.IConvertible"/>
+        uint System.IConvertible.ToUInt32(global::System.IFormatProvider provider)
+        {
+            return IsInitialized() ? (Value as System.IConvertible).ToUInt32(provider) : default;
+        }
+
+        /// <inheritdoc cref = "System.IConvertible"/>
+        ulong System.IConvertible.ToUInt64(global::System.IFormatProvider provider)
+        {
+            return IsInitialized() ? (Value as System.IConvertible).ToUInt64(provider) : default;
+        }
+
 #nullable restore
         public readonly override global::System.Int32 GetHashCode()
         {
@@ -3808,6 +4226,8 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
 
 // Suppress warnings about CS1591: Missing XML comment for publicly visible type or member 'Type_or_Member'
 #pragma warning disable CS1591
+// Suppress warnings about CS8767 : Nullability of reference types in type of parameter doesn't match implicitly implemented member (possibly because of nullability attributes).
+#pragma warning disable CS8767
 namespace Whatever
 {
     [global::System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage]
@@ -3817,7 +4237,7 @@ namespace Whatever
     [global::System.Diagnostics.DebuggerTypeProxyAttribute(typeof(MyVo4DebugView))]
     [global::System.Diagnostics.DebuggerDisplayAttribute("Underlying type: global::System.Int32, Value = { _value }")]
     // ReSharper disable once UnusedType.Global
-    public readonly partial struct MyVo4 : global::System.IEquatable<MyVo4>, global::System.IEquatable<global::System.Int32>, global::System.IComparable<MyVo4>, global::System.IComparable, global::System.IParsable<MyVo4>, global::System.ISpanParsable<MyVo4>, global::System.IUtf8SpanParsable<MyVo4>, global::System.IFormattable, global::System.ISpanFormattable, global::System.IUtf8SpanFormattable
+    public readonly partial struct MyVo4 : global::System.IEquatable<MyVo4>, global::System.IEquatable<global::System.Int32>, global::System.IComparable<MyVo4>, global::System.IComparable, global::System.IParsable<MyVo4>, global::System.ISpanParsable<MyVo4>, global::System.IUtf8SpanParsable<MyVo4>, global::System.IFormattable, global::System.ISpanFormattable, global::System.IUtf8SpanFormattable, global::System.IConvertible
     {
 #if DEBUG
 private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
@@ -3884,9 +4304,6 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
         /// <param name = "value">The underlying type.</param>
         /// <param name = "vo">An instance of the value object.</param>
         /// <returns>True if the value object can be built, otherwise false.</returns>
-        
-#pragma warning disable CS8767 // Nullability of reference types in type of parameter doesn't match implicitly implemented member because of nullability attributes.
-
         public static bool TryFrom(
 #if NETCOREAPP3_0_OR_GREATER
 [global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)]
@@ -3896,8 +4313,6 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
 [global::System.Diagnostics.CodeAnalysis.MaybeNullWhen(false)]
 #endif
         out MyVo4 vo)
-#pragma warning restore CS8767 // Nullability of reference types in type of parameter doesn't match implicitly implemented member because of nullability attributes.
-
         {
             vo = new MyVo4(value);
             return true;
@@ -4297,6 +4712,104 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
         }
 
 #nullable restore
+#nullable disable
+        /// <inheritdoc cref = "int.GetTypeCode()"/>
+        public System.TypeCode GetTypeCode()
+        {
+            return IsInitialized() ? Value.GetTypeCode() : default;
+        }
+
+        /// <inheritdoc cref = "System.IConvertible"/>
+        bool System.IConvertible.ToBoolean(global::System.IFormatProvider provider)
+        {
+            return IsInitialized() ? (Value as System.IConvertible).ToBoolean(provider) : default;
+        }
+
+        /// <inheritdoc cref = "System.IConvertible"/>
+        byte System.IConvertible.ToByte(global::System.IFormatProvider provider)
+        {
+            return IsInitialized() ? (Value as System.IConvertible).ToByte(provider) : default;
+        }
+
+        /// <inheritdoc cref = "System.IConvertible"/>
+        char System.IConvertible.ToChar(global::System.IFormatProvider provider)
+        {
+            return IsInitialized() ? (Value as System.IConvertible).ToChar(provider) : default;
+        }
+
+        /// <inheritdoc cref = "System.IConvertible"/>
+        System.DateTime System.IConvertible.ToDateTime(global::System.IFormatProvider provider)
+        {
+            return IsInitialized() ? (Value as System.IConvertible).ToDateTime(provider) : default;
+        }
+
+        /// <inheritdoc cref = "System.IConvertible"/>
+        decimal System.IConvertible.ToDecimal(global::System.IFormatProvider provider)
+        {
+            return IsInitialized() ? (Value as System.IConvertible).ToDecimal(provider) : default;
+        }
+
+        /// <inheritdoc cref = "System.IConvertible"/>
+        double System.IConvertible.ToDouble(global::System.IFormatProvider provider)
+        {
+            return IsInitialized() ? (Value as System.IConvertible).ToDouble(provider) : default;
+        }
+
+        /// <inheritdoc cref = "System.IConvertible"/>
+        short System.IConvertible.ToInt16(global::System.IFormatProvider provider)
+        {
+            return IsInitialized() ? (Value as System.IConvertible).ToInt16(provider) : default;
+        }
+
+        /// <inheritdoc cref = "System.IConvertible"/>
+        int System.IConvertible.ToInt32(global::System.IFormatProvider provider)
+        {
+            return IsInitialized() ? (Value as System.IConvertible).ToInt32(provider) : default;
+        }
+
+        /// <inheritdoc cref = "System.IConvertible"/>
+        long System.IConvertible.ToInt64(global::System.IFormatProvider provider)
+        {
+            return IsInitialized() ? (Value as System.IConvertible).ToInt64(provider) : default;
+        }
+
+        /// <inheritdoc cref = "System.IConvertible"/>
+        sbyte System.IConvertible.ToSByte(global::System.IFormatProvider provider)
+        {
+            return IsInitialized() ? (Value as System.IConvertible).ToSByte(provider) : default;
+        }
+
+        /// <inheritdoc cref = "System.IConvertible"/>
+        float System.IConvertible.ToSingle(global::System.IFormatProvider provider)
+        {
+            return IsInitialized() ? (Value as System.IConvertible).ToSingle(provider) : default;
+        }
+
+        /// <inheritdoc cref = "System.IConvertible"/>
+        object System.IConvertible.ToType(global::System.Type @type, global::System.IFormatProvider provider)
+        {
+            return IsInitialized() ? (Value as System.IConvertible).ToType(@type, provider) : default;
+        }
+
+        /// <inheritdoc cref = "System.IConvertible"/>
+        ushort System.IConvertible.ToUInt16(global::System.IFormatProvider provider)
+        {
+            return IsInitialized() ? (Value as System.IConvertible).ToUInt16(provider) : default;
+        }
+
+        /// <inheritdoc cref = "System.IConvertible"/>
+        uint System.IConvertible.ToUInt32(global::System.IFormatProvider provider)
+        {
+            return IsInitialized() ? (Value as System.IConvertible).ToUInt32(provider) : default;
+        }
+
+        /// <inheritdoc cref = "System.IConvertible"/>
+        ulong System.IConvertible.ToUInt64(global::System.IFormatProvider provider)
+        {
+            return IsInitialized() ? (Value as System.IConvertible).ToUInt64(provider) : default;
+        }
+
+#nullable restore
         public readonly override global::System.Int32 GetHashCode()
         {
             return global::System.Collections.Generic.EqualityComparer<global::System.Int32>.Default.GetHashCode(Value);
@@ -4504,6 +5017,8 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
 
 // Suppress warnings about CS1591: Missing XML comment for publicly visible type or member 'Type_or_Member'
 #pragma warning disable CS1591
+// Suppress warnings about CS8767 : Nullability of reference types in type of parameter doesn't match implicitly implemented member (possibly because of nullability attributes).
+#pragma warning disable CS8767
 namespace Whatever
 {
     [global::System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage]
@@ -4582,9 +5097,6 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
         /// <param name = "value">The underlying type.</param>
         /// <param name = "vo">An instance of the value object.</param>
         /// <returns>True if the value object can be built, otherwise false.</returns>
-        
-#pragma warning disable CS8767 // Nullability of reference types in type of parameter doesn't match implicitly implemented member because of nullability attributes.
-
         public static bool TryFrom(
 #if NETCOREAPP3_0_OR_GREATER
 [global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)]
@@ -4594,8 +5106,6 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
 [global::System.Diagnostics.CodeAnalysis.MaybeNullWhen(false)]
 #endif
         out MyVo5 vo)
-#pragma warning restore CS8767 // Nullability of reference types in type of parameter doesn't match implicitly implemented member because of nullability attributes.
-
         {
             vo = new MyVo5(value);
             return true;
@@ -5196,6 +5706,8 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
 
 // Suppress warnings about CS1591: Missing XML comment for publicly visible type or member 'Type_or_Member'
 #pragma warning disable CS1591
+// Suppress warnings about CS8767 : Nullability of reference types in type of parameter doesn't match implicitly implemented member (possibly because of nullability attributes).
+#pragma warning disable CS8767
 namespace Whatever
 {
     [global::System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage]
@@ -5204,7 +5716,7 @@ namespace Whatever
     [global::System.ComponentModel.TypeConverter(typeof(MyVo6TypeConverter))]
     [global::System.Diagnostics.DebuggerTypeProxyAttribute(typeof(MyVo6DebugView))]
     [global::System.Diagnostics.DebuggerDisplayAttribute("Underlying type: global::System.Int32, Value = { _value }")]
-    public partial record class MyVo6 : global::System.IEquatable<MyVo6>, global::System.IEquatable<global::System.Int32>, global::System.IComparable<MyVo6>, global::System.IComparable, global::System.IParsable<MyVo6>, global::System.ISpanParsable<MyVo6>, global::System.IUtf8SpanParsable<MyVo6>, global::System.IFormattable, global::System.ISpanFormattable, global::System.IUtf8SpanFormattable
+    public partial record class MyVo6 : global::System.IEquatable<MyVo6>, global::System.IEquatable<global::System.Int32>, global::System.IComparable<MyVo6>, global::System.IComparable, global::System.IParsable<MyVo6>, global::System.ISpanParsable<MyVo6>, global::System.IUtf8SpanParsable<MyVo6>, global::System.IFormattable, global::System.ISpanFormattable, global::System.IUtf8SpanFormattable, global::System.IConvertible
     {
 #if DEBUG
 private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
@@ -5274,9 +5786,6 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
         /// <param name = "value">The underlying type.</param>
         /// <param name = "vo">An instance of the value object.</param>
         /// <returns>True if the value object can be built, otherwise false.</returns>
-        
-#pragma warning disable CS8767 // Nullability of reference types in type of parameter doesn't match implicitly implemented member because of nullability attributes.
-
         public static bool TryFrom(
 #if NETCOREAPP3_0_OR_GREATER
 [global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)]
@@ -5286,8 +5795,6 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
 [global::System.Diagnostics.CodeAnalysis.MaybeNullWhen(false)]
 #endif
         out MyVo6 vo)
-#pragma warning restore CS8767 // Nullability of reference types in type of parameter doesn't match implicitly implemented member because of nullability attributes.
-
         {
             vo = new MyVo6(value);
             return true;
@@ -5696,6 +6203,104 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
         }
 
 #nullable restore
+#nullable disable
+        /// <inheritdoc cref = "int.GetTypeCode()"/>
+        public System.TypeCode GetTypeCode()
+        {
+            return IsInitialized() ? Value.GetTypeCode() : default;
+        }
+
+        /// <inheritdoc cref = "System.IConvertible"/>
+        bool System.IConvertible.ToBoolean(global::System.IFormatProvider provider)
+        {
+            return IsInitialized() ? (Value as System.IConvertible).ToBoolean(provider) : default;
+        }
+
+        /// <inheritdoc cref = "System.IConvertible"/>
+        byte System.IConvertible.ToByte(global::System.IFormatProvider provider)
+        {
+            return IsInitialized() ? (Value as System.IConvertible).ToByte(provider) : default;
+        }
+
+        /// <inheritdoc cref = "System.IConvertible"/>
+        char System.IConvertible.ToChar(global::System.IFormatProvider provider)
+        {
+            return IsInitialized() ? (Value as System.IConvertible).ToChar(provider) : default;
+        }
+
+        /// <inheritdoc cref = "System.IConvertible"/>
+        System.DateTime System.IConvertible.ToDateTime(global::System.IFormatProvider provider)
+        {
+            return IsInitialized() ? (Value as System.IConvertible).ToDateTime(provider) : default;
+        }
+
+        /// <inheritdoc cref = "System.IConvertible"/>
+        decimal System.IConvertible.ToDecimal(global::System.IFormatProvider provider)
+        {
+            return IsInitialized() ? (Value as System.IConvertible).ToDecimal(provider) : default;
+        }
+
+        /// <inheritdoc cref = "System.IConvertible"/>
+        double System.IConvertible.ToDouble(global::System.IFormatProvider provider)
+        {
+            return IsInitialized() ? (Value as System.IConvertible).ToDouble(provider) : default;
+        }
+
+        /// <inheritdoc cref = "System.IConvertible"/>
+        short System.IConvertible.ToInt16(global::System.IFormatProvider provider)
+        {
+            return IsInitialized() ? (Value as System.IConvertible).ToInt16(provider) : default;
+        }
+
+        /// <inheritdoc cref = "System.IConvertible"/>
+        int System.IConvertible.ToInt32(global::System.IFormatProvider provider)
+        {
+            return IsInitialized() ? (Value as System.IConvertible).ToInt32(provider) : default;
+        }
+
+        /// <inheritdoc cref = "System.IConvertible"/>
+        long System.IConvertible.ToInt64(global::System.IFormatProvider provider)
+        {
+            return IsInitialized() ? (Value as System.IConvertible).ToInt64(provider) : default;
+        }
+
+        /// <inheritdoc cref = "System.IConvertible"/>
+        sbyte System.IConvertible.ToSByte(global::System.IFormatProvider provider)
+        {
+            return IsInitialized() ? (Value as System.IConvertible).ToSByte(provider) : default;
+        }
+
+        /// <inheritdoc cref = "System.IConvertible"/>
+        float System.IConvertible.ToSingle(global::System.IFormatProvider provider)
+        {
+            return IsInitialized() ? (Value as System.IConvertible).ToSingle(provider) : default;
+        }
+
+        /// <inheritdoc cref = "System.IConvertible"/>
+        object System.IConvertible.ToType(global::System.Type @type, global::System.IFormatProvider provider)
+        {
+            return IsInitialized() ? (Value as System.IConvertible).ToType(@type, provider) : default;
+        }
+
+        /// <inheritdoc cref = "System.IConvertible"/>
+        ushort System.IConvertible.ToUInt16(global::System.IFormatProvider provider)
+        {
+            return IsInitialized() ? (Value as System.IConvertible).ToUInt16(provider) : default;
+        }
+
+        /// <inheritdoc cref = "System.IConvertible"/>
+        uint System.IConvertible.ToUInt32(global::System.IFormatProvider provider)
+        {
+            return IsInitialized() ? (Value as System.IConvertible).ToUInt32(provider) : default;
+        }
+
+        /// <inheritdoc cref = "System.IConvertible"/>
+        ulong System.IConvertible.ToUInt64(global::System.IFormatProvider provider)
+        {
+            return IsInitialized() ? (Value as System.IConvertible).ToUInt64(provider) : default;
+        }
+
+#nullable restore
         public override global::System.Int32 GetHashCode()
         {
             unchecked // Overflow is fine, just wrap
@@ -5906,6 +6511,8 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
 
 // Suppress warnings about CS1591: Missing XML comment for publicly visible type or member 'Type_or_Member'
 #pragma warning disable CS1591
+// Suppress warnings about CS8767 : Nullability of reference types in type of parameter doesn't match implicitly implemented member (possibly because of nullability attributes).
+#pragma warning disable CS8767
 namespace Whatever
 {
     [global::System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage]
@@ -5984,9 +6591,6 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
         /// <param name = "value">The underlying type.</param>
         /// <param name = "vo">An instance of the value object.</param>
         /// <returns>True if the value object can be built, otherwise false.</returns>
-        
-#pragma warning disable CS8767 // Nullability of reference types in type of parameter doesn't match implicitly implemented member because of nullability attributes.
-
         public static bool TryFrom(
 #if NETCOREAPP3_0_OR_GREATER
 [global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)]
@@ -5996,8 +6600,6 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
 [global::System.Diagnostics.CodeAnalysis.MaybeNullWhen(false)]
 #endif
         out @int vo)
-#pragma warning restore CS8767 // Nullability of reference types in type of parameter doesn't match implicitly implemented member because of nullability attributes.
-
         {
             vo = new @int(value);
             return true;
@@ -6598,6 +7200,8 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
 
 // Suppress warnings about CS1591: Missing XML comment for publicly visible type or member 'Type_or_Member'
 #pragma warning disable CS1591
+// Suppress warnings about CS8767 : Nullability of reference types in type of parameter doesn't match implicitly implemented member (possibly because of nullability attributes).
+#pragma warning disable CS8767
 namespace Whatever
 {
     [global::System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage]
@@ -6676,9 +7280,6 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
         /// <param name = "value">The underlying type.</param>
         /// <param name = "vo">An instance of the value object.</param>
         /// <returns>True if the value object can be built, otherwise false.</returns>
-        
-#pragma warning disable CS8767 // Nullability of reference types in type of parameter doesn't match implicitly implemented member because of nullability attributes.
-
         public static bool TryFrom(
 #if NETCOREAPP3_0_OR_GREATER
 [global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)]
@@ -6688,8 +7289,6 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
 [global::System.Diagnostics.CodeAnalysis.MaybeNullWhen(false)]
 #endif
         out @byte vo)
-#pragma warning restore CS8767 // Nullability of reference types in type of parameter doesn't match implicitly implemented member because of nullability attributes.
-
         {
             vo = new @byte(value);
             return true;
@@ -7290,6 +7889,8 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
 
 // Suppress warnings about CS1591: Missing XML comment for publicly visible type or member 'Type_or_Member'
 #pragma warning disable CS1591
+// Suppress warnings about CS8767 : Nullability of reference types in type of parameter doesn't match implicitly implemented member (possibly because of nullability attributes).
+#pragma warning disable CS8767
 namespace Whatever
 {
     [global::System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage]
@@ -7298,7 +7899,7 @@ namespace Whatever
     [global::System.ComponentModel.TypeConverter(typeof(MyIntTypeConverter))]
     [global::System.Diagnostics.DebuggerTypeProxyAttribute(typeof(MyIntDebugView))]
     [global::System.Diagnostics.DebuggerDisplayAttribute("Underlying type: global::System.Int32, Value = { _value }")]
-    public partial record class MyInt : global::System.IEquatable<MyInt>, global::System.IEquatable<global::System.Int32>, global::System.IComparable<MyInt>, global::System.IComparable, global::System.IParsable<MyInt>, global::System.ISpanParsable<MyInt>, global::System.IUtf8SpanParsable<MyInt>, global::System.IFormattable, global::System.ISpanFormattable, global::System.IUtf8SpanFormattable
+    public partial record class MyInt : global::System.IEquatable<MyInt>, global::System.IEquatable<global::System.Int32>, global::System.IComparable<MyInt>, global::System.IComparable, global::System.IParsable<MyInt>, global::System.ISpanParsable<MyInt>, global::System.IUtf8SpanParsable<MyInt>, global::System.IFormattable, global::System.ISpanFormattable, global::System.IUtf8SpanFormattable, global::System.IConvertible
     {
 #if DEBUG
 private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
@@ -7368,9 +7969,6 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
         /// <param name = "value">The underlying type.</param>
         /// <param name = "vo">An instance of the value object.</param>
         /// <returns>True if the value object can be built, otherwise false.</returns>
-        
-#pragma warning disable CS8767 // Nullability of reference types in type of parameter doesn't match implicitly implemented member because of nullability attributes.
-
         public static bool TryFrom(
 #if NETCOREAPP3_0_OR_GREATER
 [global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)]
@@ -7380,8 +7978,6 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
 [global::System.Diagnostics.CodeAnalysis.MaybeNullWhen(false)]
 #endif
         out MyInt vo)
-#pragma warning restore CS8767 // Nullability of reference types in type of parameter doesn't match implicitly implemented member because of nullability attributes.
-
         {
             vo = new MyInt(value);
             return true;
@@ -7787,6 +8383,104 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
         {
             bytesWritten = default;
             return IsInitialized() ? Value.TryFormat(utf8Destination, out bytesWritten, format, provider) : true;
+        }
+
+#nullable restore
+#nullable disable
+        /// <inheritdoc cref = "int.GetTypeCode()"/>
+        public System.TypeCode GetTypeCode()
+        {
+            return IsInitialized() ? Value.GetTypeCode() : default;
+        }
+
+        /// <inheritdoc cref = "System.IConvertible"/>
+        bool System.IConvertible.ToBoolean(global::System.IFormatProvider provider)
+        {
+            return IsInitialized() ? (Value as System.IConvertible).ToBoolean(provider) : default;
+        }
+
+        /// <inheritdoc cref = "System.IConvertible"/>
+        byte System.IConvertible.ToByte(global::System.IFormatProvider provider)
+        {
+            return IsInitialized() ? (Value as System.IConvertible).ToByte(provider) : default;
+        }
+
+        /// <inheritdoc cref = "System.IConvertible"/>
+        char System.IConvertible.ToChar(global::System.IFormatProvider provider)
+        {
+            return IsInitialized() ? (Value as System.IConvertible).ToChar(provider) : default;
+        }
+
+        /// <inheritdoc cref = "System.IConvertible"/>
+        System.DateTime System.IConvertible.ToDateTime(global::System.IFormatProvider provider)
+        {
+            return IsInitialized() ? (Value as System.IConvertible).ToDateTime(provider) : default;
+        }
+
+        /// <inheritdoc cref = "System.IConvertible"/>
+        decimal System.IConvertible.ToDecimal(global::System.IFormatProvider provider)
+        {
+            return IsInitialized() ? (Value as System.IConvertible).ToDecimal(provider) : default;
+        }
+
+        /// <inheritdoc cref = "System.IConvertible"/>
+        double System.IConvertible.ToDouble(global::System.IFormatProvider provider)
+        {
+            return IsInitialized() ? (Value as System.IConvertible).ToDouble(provider) : default;
+        }
+
+        /// <inheritdoc cref = "System.IConvertible"/>
+        short System.IConvertible.ToInt16(global::System.IFormatProvider provider)
+        {
+            return IsInitialized() ? (Value as System.IConvertible).ToInt16(provider) : default;
+        }
+
+        /// <inheritdoc cref = "System.IConvertible"/>
+        int System.IConvertible.ToInt32(global::System.IFormatProvider provider)
+        {
+            return IsInitialized() ? (Value as System.IConvertible).ToInt32(provider) : default;
+        }
+
+        /// <inheritdoc cref = "System.IConvertible"/>
+        long System.IConvertible.ToInt64(global::System.IFormatProvider provider)
+        {
+            return IsInitialized() ? (Value as System.IConvertible).ToInt64(provider) : default;
+        }
+
+        /// <inheritdoc cref = "System.IConvertible"/>
+        sbyte System.IConvertible.ToSByte(global::System.IFormatProvider provider)
+        {
+            return IsInitialized() ? (Value as System.IConvertible).ToSByte(provider) : default;
+        }
+
+        /// <inheritdoc cref = "System.IConvertible"/>
+        float System.IConvertible.ToSingle(global::System.IFormatProvider provider)
+        {
+            return IsInitialized() ? (Value as System.IConvertible).ToSingle(provider) : default;
+        }
+
+        /// <inheritdoc cref = "System.IConvertible"/>
+        object System.IConvertible.ToType(global::System.Type @type, global::System.IFormatProvider provider)
+        {
+            return IsInitialized() ? (Value as System.IConvertible).ToType(@type, provider) : default;
+        }
+
+        /// <inheritdoc cref = "System.IConvertible"/>
+        ushort System.IConvertible.ToUInt16(global::System.IFormatProvider provider)
+        {
+            return IsInitialized() ? (Value as System.IConvertible).ToUInt16(provider) : default;
+        }
+
+        /// <inheritdoc cref = "System.IConvertible"/>
+        uint System.IConvertible.ToUInt32(global::System.IFormatProvider provider)
+        {
+            return IsInitialized() ? (Value as System.IConvertible).ToUInt32(provider) : default;
+        }
+
+        /// <inheritdoc cref = "System.IConvertible"/>
+        ulong System.IConvertible.ToUInt64(global::System.IFormatProvider provider)
+        {
+            return IsInitialized() ? (Value as System.IConvertible).ToUInt64(provider) : default;
         }
 
 #nullable restore

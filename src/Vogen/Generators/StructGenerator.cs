@@ -37,6 +37,7 @@ public class StructGenerator : IGenerateValueObjectSourceCode
         {GenerateCodeForComparables.GenerateInterfaceDefinitionsIfNeeded(", ", item)}
         {GenerateCodeForIParsableInterfaceDeclarations.GenerateIfNeeded(", ", item)}
         {GenerateCodeForTryFormat.GenerateInterfaceDefinitionsIfNeeded(", ", parameters)}
+        {GenerateCodeForIConvertible.GenerateInterfaceDefinitionsIfNeeded(", ", parameters)}
         {GenerateCodeForStaticAbstracts.GenerateInterfaceDefinitionIfNeeded(", ", item)}
         {GenerateCodeForXmlSerializable.GenerateInterfaceDefinitionIfNeeded(", ", item)}
     {{
@@ -126,6 +127,8 @@ public class StructGenerator : IGenerateValueObjectSourceCode
         {GenerateCodeForTryParse.GenerateAnyHoistedTryParseMethods(item)}{GenerateCodeForParse.GenerateAnyHoistedParseMethods(item)}
         
         {GenerateCodeForTryFormat.GenerateAnyHoistedTryFormatMethods(parameters)}
+        
+        {GenerateCodeForIConvertible.GenerateAnyHoistedIConvertibleMethods(parameters)}
         
         {GenerateCodeForHashCodes.GenerateForAStruct(item)}
 

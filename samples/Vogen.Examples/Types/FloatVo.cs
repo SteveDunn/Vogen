@@ -1,4 +1,6 @@
-﻿namespace Vogen.Examples.Types
+﻿using System;
+
+namespace Vogen.Examples.Types
 {
     [ValueObject<float>(conversions: Conversions.NewtonsoftJson | Conversions.SystemTextJson)]
     public readonly partial struct Celsius { }
@@ -29,4 +31,27 @@
 
     [ValueObject<float>(conversions: Conversions.LinqToDbValueConverter)]
     public partial struct LinqToDbFloatVo { }
+
+    /// <summary>
+    /// This example demonstrates that you can provide custom implementations for specific IConvertible methods.
+    /// Vogen will not override your custom implementation; it will only hoist the other IConvertible methods.
+    /// 
+    /// In this case, we provide a custom ToInt32 implementation that rounds the float value,
+    /// while other IConvertible methods (ToBoolean, ToByte, ToChar, etc.) are automatically hoisted.
+    /// </summary>
+    [ValueObject<float>(conversions: Conversions.None)]
+    public partial struct CustomRoundingFloat
+    {
+        /// <summary>
+        /// Custom implementation of IConvertible.ToInt32 that rounds instead of truncating.
+        /// This demonstrates that Vogen respects user-defined implementations and won't regenerate them.
+        /// </summary>
+#pragma warning disable CS8632 // The annotation for nullable reference types should only be used in code within a '#nullable' annotations context.
+        public int ToInt32(IFormatProvider? provider)
+#pragma warning restore CS8632 // The annotation for nullable reference types should only be used in code within a '#nullable' annotations context.
+        {
+            // Custom logic: round instead of truncate
+            return IsInitialized() ? (int)Math.Round(Value) : 0;
+        }
+    }
 }
