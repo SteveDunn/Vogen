@@ -20,6 +20,8 @@
 
 // Suppress warnings about CS1591: Missing XML comment for publicly visible type or member 'Type_or_Member'
 #pragma warning disable CS1591
+// Suppress warnings about CS8767 : Nullability of reference types in type of parameter doesn't match implicitly implemented member (possibly because of nullability attributes).
+#pragma warning disable CS8767
 using System.Reflection;
 
 [global::System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage]
@@ -97,6 +99,9 @@ public class VogenSchemaFilterMapVogenTypesIngenerator : global::Swashbuckle.Asp
 // Suppress warnings about CS1591: Missing XML comment for publicly visible type or member 'Type_or_Member'
 #pragma warning disable CS1591
 
+// Suppress warnings about CS8767 : Nullability of reference types in type of parameter doesn't match implicitly implemented member (possibly because of nullability attributes).
+#pragma warning disable CS8767
+
 public static class VogenSwashbuckleExtensions
 {
     public static global::Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenOptions MapVogenTypesIngenerator(this global::Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenOptions o)
@@ -130,6 +135,8 @@ public static class VogenSwashbuckleExtensions
 
 // Suppress warnings about CS1591: Missing XML comment for publicly visible type or member 'Type_or_Member'
 #pragma warning disable CS1591
+// Suppress warnings about CS8767 : Nullability of reference types in type of parameter doesn't match implicitly implemented member (possibly because of nullability attributes).
+#pragma warning disable CS8767
 public interface IVogen<TSelf, TPrimitive>
     where TSelf : IVogen<TSelf, TPrimitive>
 {
@@ -166,6 +173,8 @@ public interface IVogen<TSelf, TPrimitive>
 
 // Suppress warnings about CS1591: Missing XML comment for publicly visible type or member 'Type_or_Member'
 #pragma warning disable CS1591
+// Suppress warnings about CS8767 : Nullability of reference types in type of parameter doesn't match implicitly implemented member (possibly because of nullability attributes).
+#pragma warning disable CS8767
 namespace generator
 {
     [global::System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage]
@@ -209,6 +218,8 @@ namespace generator
 
 // Suppress warnings about CS1591: Missing XML comment for publicly visible type or member 'Type_or_Member'
 #pragma warning disable CS1591
+// Suppress warnings about CS8767 : Nullability of reference types in type of parameter doesn't match implicitly implemented member (possibly because of nullability attributes).
+#pragma warning disable CS8767
 namespace MyApp
 {
     [global::System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage]
@@ -287,9 +298,6 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
         /// <param name = "value">The underlying type.</param>
         /// <param name = "vo">An instance of the value object.</param>
         /// <returns>True if the value object can be built, otherwise false.</returns>
-        
-#pragma warning disable CS8767 // Nullability of reference types in type of parameter doesn't match implicitly implemented member because of nullability attributes.
-
         public static bool TryFrom(
 #if NETCOREAPP3_0_OR_GREATER
 [global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)]
@@ -299,8 +307,6 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
 [global::System.Diagnostics.CodeAnalysis.MaybeNullWhen(false)]
 #endif
         out ToDoItemId vo)
-#pragma warning restore CS8767 // Nullability of reference types in type of parameter doesn't match implicitly implemented member because of nullability attributes.
-
         {
             vo = new ToDoItemId(value);
             return true;
