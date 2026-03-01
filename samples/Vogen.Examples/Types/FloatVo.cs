@@ -46,7 +46,9 @@ namespace Vogen.Examples.Types
         /// Custom implementation of IConvertible.ToInt32 that rounds instead of truncating.
         /// This demonstrates that Vogen respects user-defined implementations and won't regenerate them.
         /// </summary>
-        public int ToInt32(IFormatProvider provider)
+#pragma warning disable CS8632 // The annotation for nullable reference types should only be used in code within a '#nullable' annotations context.
+        public int ToInt32(IFormatProvider? provider)
+#pragma warning restore CS8632 // The annotation for nullable reference types should only be used in code within a '#nullable' annotations context.
         {
             // Custom logic: round instead of truncate
             return IsInitialized() ? (int)Math.Round(Value) : 0;
