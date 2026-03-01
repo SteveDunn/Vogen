@@ -37,7 +37,7 @@
         <!--    Add several topics that are less important or are relevant only for advanced/experienced users.    -->
         <secondary>
             <title>Exploring more advanced features</title>
-            <a href="conversion-mechanisms.md" summary="Compare IConvertible, TypeConverter, casting, and serialization converters"/>
+            <a href="how-to/conversion-mechanisms.md" summary="Compare IConvertible, TypeConverter, casting, and serialization converters"/>
             <a href="EfCoreIntegrationHowTo.md"/>
             <a href="NormalizationHowTo.md" summary="How to normalize (sanitize) input values"/>
         </secondary>

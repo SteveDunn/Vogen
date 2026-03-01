@@ -30,4 +30,4 @@ The methods generated delegate to the corresponding methods on the underlying pr
 
 **Note:** You can provide custom implementations for specific `IConvertible` methods if needed. Vogen will respect your custom code and only hoist the remaining methods.
 
-For detailed information, see [IConvertible](IConvertible.md) and [Conversion Mechanisms](../how-to/conversion-mechanisms.md).
+For detailed information, see [IConvertible](IConvertible.md) and [Conversion Mechanisms](conversion-mechanisms.md).
