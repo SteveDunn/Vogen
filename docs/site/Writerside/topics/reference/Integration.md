@@ -1,7 +1,8 @@
 # Serialize Value Objects
 
-Vogen integrates with various serializers, including:
+Vogen integrates with various serializers and conversion mechanisms, including:
 
+* **IConvertible** - Automatic for primitives that implement it, enabling dynamic type conversion and framework integration
 * JSON (`System.Text.Json` and `Newtonsoft.Json`)
 * BSON
 * Dapper
@@ -12,9 +13,17 @@ Vogen integrates with various serializers, including:
 
 … and many others. See the `Conversions` attribute for a full list.
 
-This conversion code can be generated in the **same project** as the value object or in a different project. Using a different project is allows you to follow architecture patterns where you separate infrastructure from other layers.
+## IConvertible - Automatic Hoisting
 
-## Conversion code in the same project
+When the underlying primitive type implements `System.IConvertible` (such as `int`, `float`, `decimal`, `DateTime`), Vogen automatically generates the `IConvertible` interface on your value object. This enables seamless integration with .NET APIs that expect `IConvertible` types, such as `Convert.ChangeType()`, data mapping frameworks, and reflection-based utilities.
+
+**This is automatic and requires no configuration.** See [IConvertible](IConvertible.md) for detailed information.
+
+## Explicit Conversion Configuration
+
+For other conversion mechanisms, you control what to generate using the `conversions` parameter.
+
+### Conversion code in the same project
 
 Here are two types where we want serializers for MessagePack and Mongo's BSON format:
 
