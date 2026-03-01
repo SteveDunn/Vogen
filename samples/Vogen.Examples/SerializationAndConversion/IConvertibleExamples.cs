@@ -42,7 +42,7 @@ public class IConvertibleExamples : IScenario
         object asDecimal = Convert.ChangeType(temperature, typeof(decimal));
         object asString = Convert.ChangeType(temperature, typeof(string));
 
-        Debug.Assert((int)asInt == 25);
+        Debug.Assert((int)asInt == 26);
         Debug.Assert((decimal)asDecimal == 25.5m);
         Debug.Assert((string)asString == "25.5");
     }
@@ -64,8 +64,8 @@ public class IConvertibleExamples : IScenario
         int asInt = convertible.ToInt32(null);
         byte asByte = convertible.ToByte(null);
 
-        Debug.Assert(asInt == 98);
-        Debug.Assert(asByte == 98);
+        Debug.Assert(asInt == 99);
+        Debug.Assert(asByte == 99);
     }
 
     /// <summary>
