@@ -33,7 +33,7 @@ internal class GenerateCodeForBsonSerializers
 
             var filename = new Filename(eachWrapper.WrapperType.ToDisplayString() + "_bson.g.cs");
 
-            Util.TryWriteUsingUniqueFilename(filename, context, Util.FormatSource(eachGenerated));
+            Util.AddSourceToContext(filename, context, Util.FormatSource(eachGenerated));
         }
         
         WriteRegistration(applicableWrappers, compilation, context);
@@ -84,7 +84,7 @@ internal class GenerateCodeForBsonSerializers
 
         string filename = Util.GetLegalFilenameForMarkerClass(markerClass.MarkerClassSymbol, ConversionMarkerKind.Bson);
 
-        Util.TryWriteUsingUniqueFilename(filename, context, Util.FormatSource(sourceCode));
+        Util.AddSourceToContext(filename, context, Util.FormatSource(sourceCode));
 
         return;
 
@@ -163,7 +163,7 @@ internal class GenerateCodeForBsonSerializers
               }
               """;
 
-        Util.TryWriteUsingUniqueFilename(classNameForRegistering, context, Util.FormatSource(source));
+        Util.AddSourceToContext(classNameForRegistering, context, Util.FormatSource(source));
         return;
 
         string ClassNameForRegistering()

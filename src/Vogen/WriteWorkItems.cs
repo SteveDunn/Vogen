@@ -44,7 +44,7 @@ internal static class WriteWorkItems
 
         string filename = Util.SanitizeToALegalFilename(unsanitized);
 
-        Util.TryWriteUsingUniqueFilename(filename, context, sourceText);
+        Util.AddSourceToContext(filename, context, sourceText);
     }
 
     private static IGenerateValueObjectSourceCode GetGenerator(VoWorkItem item) =>

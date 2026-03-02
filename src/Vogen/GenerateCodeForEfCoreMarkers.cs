@@ -74,7 +74,7 @@ $$"""
 
         string filename = Util.GetLegalFilenameForMarkerClass(markerClass.MarkerClassSymbol, markerClass.VoSymbol, markerClass.Kind);
 
-        Util.TryWriteUsingUniqueFilename(filename, context, sourceText);
+        Util.AddSourceToContext(filename, context, sourceText);
     }
     
     private static void StoreExtensionMethodToRegisterAllInMarkerClass(
@@ -121,7 +121,7 @@ $$"""
 
         var filename = Util.GetLegalFilenameForMarkerClass(markerSymbol, ConversionMarkerKind.EFCore);
 
-        Util.TryWriteUsingUniqueFilename(filename, context, sourceText);
+        Util.AddSourceToContext(filename, context, sourceText);
         
         return;
 
