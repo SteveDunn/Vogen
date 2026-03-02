@@ -99,6 +99,18 @@ public class RecordStructGenerator : IGenerateValueObjectSourceCode
             return new {wrapperName}(value);
         }}
 
+        /// <summary>
+        /// Builds a nullable instance from the provided underlying type.
+        /// </summary>
+        /// <param name=""value"">The underlying type.</param>
+        /// <returns>An instance of this type.</returns>
+        [global::System.Runtime.CompilerServices.MethodImpl(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
+        {Util.GenerateMethodModifiers(Accessibility.Public, ["static"], item.UserProvidedPartials.PartialFrom)} {wrapperName}? FromNullable({itemUnderlyingType}? value)
+        {{
+            {Util.GenerateNullCheckAndReturnNullIfNeeded(item)}
+            {Util.GenerateFrom(itemUnderlyingType)}
+        }}
+
         {GenerateCodeForTryFrom.GenerateForAStruct(item, wrapperName, itemUnderlyingType)}
 
 {Util.GenerateIsInitializedMethod(@readonly: true, item)}
