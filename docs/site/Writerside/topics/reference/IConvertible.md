@@ -141,4 +141,4 @@ For more detailed guidance, see [Conversion Mechanisms](conversion-mechanisms.md
 
 - [Hoisting](Hoisting.md) - General hoisting strategy in Vogen
 - [Integration](Integration.md) - Converting and serializing value objects
-- [Casting Operators](../how-to/casting-operators.md) - Alternative conversion via explicit/implicit casts
+- [Casting Operators](Casting.md) - Alternative conversion via explicit/implicit casts
