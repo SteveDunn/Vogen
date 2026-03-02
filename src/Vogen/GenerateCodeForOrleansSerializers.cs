@@ -24,7 +24,7 @@ internal class GenerateCodeForOrleansSerializers
     {
         SourceText sourceText = SourceText.From(entry.SourceCode, Encoding.UTF8);
 
-        Util.TryWriteUsingUniqueFilename(entry.Filename, context, sourceText);
+        Util.AddSourceToContext(entry.Filename, context, sourceText);
     }
 
     public record SerializerEntry(string Filename, string SourceCode);
