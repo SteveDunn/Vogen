@@ -50,9 +50,9 @@
         <toc-element topic="Hoisting.md"/>
         <toc-element topic="Parsing.md"/>
         <toc-element topic="Contributing.md"/>
+        <toc-element topic="IConvertible.md"/>
+        <toc-element topic="conversion-mechanisms.md"/>
     </toc-element>
     <toc-element topic="FAQ.md">
     </toc-element>
-    <toc-element topic="IConvertible.md"/>
-    <toc-element topic="conversion-mechanisms.md"/>
 </instance-profile>
