@@ -17,7 +17,7 @@ Vogen integrates with various serializers and conversion mechanisms, including:
 
 When the underlying primitive type implements `System.IConvertible` (such as `int`, `float`, `decimal`, `DateTime`), Vogen automatically generates the `IConvertible` interface on your value object. This enables seamless integration with .NET APIs that expect `IConvertible` types, such as `Convert.ChangeType()`, data mapping frameworks, and reflection-based utilities.
 
-**This is automatic and requires no configuration.** See [IConvertible](../reference/IConvertible.md) for detailed information.
+**This is automatic and requires no configuration.** See [IConvertible](IConvertible.md) for detailed information.
 
 ## Explicit Conversion Configuration
 
