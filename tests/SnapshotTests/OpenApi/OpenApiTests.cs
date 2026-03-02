@@ -171,4 +171,24 @@ public class OpenApiTests
             .WithSource(source)
             .RunOn(TargetFramework.AspNetCore9_0);
     }
+
+    [Fact]
+    public async Task Generates_OpenApiMappingExtensionMethod_for_collections()
+    {
+        var source =
+            $$"""
+              using System;
+              using System.Collections.Generic;
+              using Vogen;
+
+              [assembly: VogenDefaults(openApiSchemaCustomizations: OpenApiSchemaCustomizations.GenerateOpenApiMappingExtensionMethod)]
+
+              [ValueObject<string>]
+              public partial class MyVoString { }
+              """;
+
+        await new SnapshotRunner<ValueObjectGenerator>()
+            .WithSource(source)
+            .RunOn(TargetFramework.AspNetCore9_0);
+    }
 }
