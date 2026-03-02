@@ -53,7 +53,7 @@ internal class GenerateCodeForMessagePack : IGenerateConversion
 
         string filename = Util.GetLegalFilenameForMarkerClass(markerClass.MarkerClassSymbol, ConversionMarkerKind.MessagePack);
 
-        Util.TryWriteUsingUniqueFilename(filename, context, sourceText);
+        Util.AddSourceToContext(filename, context, sourceText);
 
         return;
 
@@ -124,7 +124,7 @@ internal class GenerateCodeForMessagePack : IGenerateConversion
         {
             SourceText sourceText = Util.FormatSource(eachToWrite.SourceCode);
 
-            Util.TryWriteUsingUniqueFilename(eachToWrite.Filename, context, sourceText);
+            Util.AddSourceToContext(eachToWrite.Filename, context, sourceText);
         }
     }
 

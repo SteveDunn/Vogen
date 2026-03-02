@@ -1,5 +1,4 @@
-﻿using System;
-using System.Runtime.CompilerServices;
+﻿using System.Runtime.CompilerServices;
 using System.Text;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
@@ -65,7 +64,7 @@ internal static class Util
         typeName.Replace("<", "{").Replace(">", "}");
 
     static readonly IGenerateConversion[] _conversionGenerators =
-    {
+    [
         new GenerateSystemTextJsonConversions(),
         new GenerateNewtonsoftJsonConversions(),
         new GenerateTypeConverterConversions(),
@@ -73,7 +72,7 @@ internal static class Util
         new GenerateEfCoreTypeConversions(),
         new GenerateLinqToDbConversions(),
         new GenerateCodeForMessagePack()
-    };
+    ];
 
     public static string SanitizeToALegalFilename(string input) => input.Replace('@', '_').Replace(':', '_');
 
@@ -86,34 +85,11 @@ internal static class Util
         return SourceText.From(formatted.ToFullString(), Encoding.UTF8);
     }
 
-    public static void TryWriteUsingUniqueFilename(Filename filename, SourceProductionContext context, SourceText sourceText)
-        => TryWriteUsingUniqueFilename(filename.Value, context, sourceText);
+    public static void AddSourceToContext(Filename filename, SourceProductionContext context, SourceText sourceText)
+        => AddSourceToContext(filename.Value, context, sourceText);
 
-    public static void TryWriteUsingUniqueFilename(string filename, SourceProductionContext context, SourceText sourceText)
-    {
-        int count = 0;
-        string hintName = filename;
-
-        while (true)
-        {
-            try
-            {
-                context.AddSource(hintName, sourceText);
-                return;
-            }
-            catch (ArgumentException)
-            {
-                if (++count >= 10)
-                {
-                    throw;
-                }
-
-                hintName = $"{count}{filename}";
-            }
-        }
-    }
-
-
+    public static void AddSourceToContext(string filename, SourceProductionContext context, SourceText sourceText) => 
+        context.AddSource(filename, sourceText);
 
     public static string GenerateNotNullWhenTrueAttribute() =>
         """
@@ -193,7 +169,7 @@ internal static class Util
             return string.Empty;
         }
 
-        return @$"}}";
+        return "}";
     }
 
     /// <summary>
@@ -518,7 +494,7 @@ internal static class Util
             return string.Empty;
         }
 
-        return @"    [global::PolyType.TypeShapeAttribute(Marshaler = typeof(PolyTypeMarshaler))]";
+        return "    [global::PolyType.TypeShapeAttribute(Marshaler = typeof(PolyTypeMarshaler))]";
     }
 
     /// <summary>
