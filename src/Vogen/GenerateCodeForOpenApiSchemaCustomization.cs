@@ -213,13 +213,13 @@ internal class GenerateCodeForOpenApiSchemaCustomization
                         // item schema information instead of letting it default to an
                         // untyped array.
                         sb.AppendLine(
-                            $$"""global::Microsoft.Extensions.DependencyInjection.SwaggerGenOptionsExtensions.MapType<{{fqn}}[]>(o, () => new global::Microsoft.OpenApi.Models.OpenApiSchema { Type = "array", Items = new global::Microsoft.OpenApi.Models.OpenApiSchema { Type = "{typeAndPossibleFormat.Type}"{formatText} } });"""
+                            $$"""global::Microsoft.Extensions.DependencyInjection.SwaggerGenOptionsExtensions.MapType<{{fqn}}[]>(o, () => new global::Microsoft.OpenApi.Models.OpenApiSchema { Type = "array", Items = new global::Microsoft.OpenApi.Models.OpenApiSchema { {{typeText}}{{formatText}}{{nullableText}} } });"""
                         );
                         sb.AppendLine(
-                            $$"""global::Microsoft.Extensions.DependencyInjection.SwaggerGenOptionsExtensions.MapType<global::System.Collections.Generic.List<{{fqn}}>>(o, () => new global::Microsoft.OpenApi.Models.OpenApiSchema { Type = "array", Items = new global::Microsoft.OpenApi.Models.OpenApiSchema { Type = "{typeAndPossibleFormat.Type}"{formatText} } });"""
+                            $$"""global::Microsoft.Extensions.DependencyInjection.SwaggerGenOptionsExtensions.MapType<global::System.Collections.Generic.List<{{fqn}}>>(o, () => new global::Microsoft.OpenApi.Models.OpenApiSchema { Type = "array", Items = new global::Microsoft.OpenApi.Models.OpenApiSchema { {{typeText}}{{formatText}}{{nullableText}} } });"""
                         );
                         sb.AppendLine(
-                            $$"""global::Microsoft.Extensions.DependencyInjection.SwaggerGenOptionsExtensions.MapType<global::System.Collections.Generic.IEnumerable<{{fqn}}>>(o, () => new global::Microsoft.OpenApi.Models.OpenApiSchema { Type = "array", Items = new global::Microsoft.OpenApi.Models.OpenApiSchema { Type = "{typeAndPossibleFormat.Type}"{formatText} } });"""
+                            $$"""global::Microsoft.Extensions.DependencyInjection.SwaggerGenOptionsExtensions.MapType<global::System.Collections.Generic.IEnumerable<{{fqn}}>>(o, () => new global::Microsoft.OpenApi.Models.OpenApiSchema { Type = "array", Items = new global::Microsoft.OpenApi.Models.OpenApiSchema { {{typeText}}{{formatText}}{{nullableText}} } });"""
                         );
                         break;
                     }
@@ -231,16 +231,18 @@ internal class GenerateCodeForOpenApiSchemaCustomization
                             typeText += " | global::Microsoft.OpenApi.JsonSchemaType.Null";
                         }
 
+                        var array =
+                            $$"""new global::Microsoft.OpenApi.OpenApiSchema { Type = global::Microsoft.OpenApi.JsonSchemaType.Array, Items = new global::Microsoft.OpenApi.OpenApiSchema { {{typeText}}{{formatText}} } }""";
                         sb.AppendLine(
                             $$"""global::Microsoft.Extensions.DependencyInjection.SwaggerGenOptionsExtensions.MapType<{{fqn}}>(o, () => new global::Microsoft.OpenApi.OpenApiSchema { {{typeText}}{{formatText}} });""");
                         sb.AppendLine(
-                            $$"""global::Microsoft.Extensions.DependencyInjection.SwaggerGenOptionsExtensions.MapType<{{fqn}}[]>(o, () => new global::Microsoft.OpenApi.OpenApiSchema { Type = global::Microsoft.OpenApi.JsonSchemaType.Array, Items = new global::Microsoft.OpenApi.OpenApiSchema { Type = global::Microsoft.OpenApi.JsonSchemaType.{typeAndPossibleFormat.JsonSchemaType}{formatText} } });"""
+                            $$"""global::Microsoft.Extensions.DependencyInjection.SwaggerGenOptionsExtensions.MapType<{{fqn}}[]>(o, () => {{array}});"""
                         );
                         sb.AppendLine(
-                            $$"""global::Microsoft.Extensions.DependencyInjection.SwaggerGenOptionsExtensions.MapType<global::System.Collections.Generic.List<{{fqn}}>>(o, () => new global::Microsoft.OpenApi.OpenApiSchema { Type = global::Microsoft.OpenApi.JsonSchemaType.Array, Items = new global::Microsoft.OpenApi.OpenApiSchema { Type = global::Microsoft.OpenApi.JsonSchemaType.{typeAndPossibleFormat.JsonSchemaType}{formatText} } });"""
+                            $$"""global::Microsoft.Extensions.DependencyInjection.SwaggerGenOptionsExtensions.MapType<global::System.Collections.Generic.List<{{fqn}}>>(o, () => {{array}});"""
                         );
                         sb.AppendLine(
-                            $$"""global::Microsoft.Extensions.DependencyInjection.SwaggerGenOptionsExtensions.MapType<global::System.Collections.Generic.IEnumerable<{{fqn}}>>(o, () => new global::Microsoft.OpenApi.OpenApiSchema { Type = global::Microsoft.OpenApi.JsonSchemaType.Array, Items = new global::Microsoft.OpenApi.OpenApiSchema { Type = global::Microsoft.OpenApi.JsonSchemaType.{typeAndPossibleFormat.JsonSchemaType}{formatText} } });"""
+                            $$"""global::Microsoft.Extensions.DependencyInjection.SwaggerGenOptionsExtensions.MapType<global::System.Collections.Generic.IEnumerable<{{fqn}}>>(o, () => {{array}});"""
                         );
                         break;
                     }

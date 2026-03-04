@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 
+[ApiController]
 [Route("api/[controller]")]
 public class OrdersController : ControllerBase
 {
@@ -31,6 +32,13 @@ public class OrdersController : ControllerBase
         if (order == null)
             return new NotFoundResult();
         return Ok(order);
+    }
+    
+    [HttpPost]
+    [Produces(typeof(Order))]
+    public IActionResult Post([FromBody]OrderId[] orderIds)
+    {
+        return Created();
     }
 }
 

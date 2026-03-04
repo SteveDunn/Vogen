@@ -148,7 +148,7 @@ internal static class GenerateCodeForAspNetCoreOpenApiSchema
                 sb.Append(_indent, 4).AppendLine("schema.Type = Microsoft.OpenApi.JsonSchemaType.Array;");
                 sb.Append(_indent, 4).AppendLine($"schema.Items = new Microsoft.OpenApi.OpenApiSchema {{ Type = Microsoft.OpenApi.JsonSchemaType.{typeAndPossibleFormat.JsonSchemaType}{(string.IsNullOrEmpty(typeAndPossibleFormat.Format) ? "" : $", Format = \"{typeAndPossibleFormat.Format}\"")} }};");
             }
-            sb.Append(_indent, 3).AppendLine("}}");
+            sb.Append(_indent, 3).AppendLine("}");
             sb.AppendLine();
 
             // generic collection handling (List<>, IEnumerable<>, etc.)
@@ -164,7 +164,7 @@ internal static class GenerateCodeForAspNetCoreOpenApiSchema
                 sb.Append(_indent, 4).AppendLine("schema.Type = Microsoft.OpenApi.JsonSchemaType.Array;");
                 sb.Append(_indent, 4).AppendLine($"schema.Items = new Microsoft.OpenApi.OpenApiSchema {{ Type = Microsoft.OpenApi.JsonSchemaType.{typeAndPossibleFormat.JsonSchemaType}{(string.IsNullOrEmpty(typeAndPossibleFormat.Format) ? "" : $", Format = \"{typeAndPossibleFormat.Format}\"")} }};");
             }
-            sb.Append(_indent, 3).AppendLine("}}");
+            sb.Append(_indent, 3).AppendLine("}");
             sb.AppendLine();
         }
     }

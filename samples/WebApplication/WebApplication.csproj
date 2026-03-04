@@ -4,7 +4,7 @@
         <Nullable>enable</Nullable>
         <ImplicitUsings>enable</ImplicitUsings>
         <UseLocallyBuiltPackage>true</UseLocallyBuiltPackage>
-        <OpenApiMode>Swashbuckle-net8</OpenApiMode>
+        <OpenApiMode>MicrosoftAndScalar</OpenApiMode>
     </PropertyGroup>
 
     <PropertyGroup Condition=" '$(OpenApiMode)' == 'Swashbuckle-net8'">
