@@ -34,13 +34,37 @@ public static class VogenSwashbuckleExtensions
     public static global::Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenOptions MapVogenTypesIngenerator(this global::Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenOptions o)
     {
 		global::Microsoft.Extensions.DependencyInjection.SwaggerGenOptionsExtensions.MapType<MyVoInt>(o, () => new global::Microsoft.OpenApi.OpenApiSchema { Type = global::Microsoft.OpenApi.JsonSchemaType.Number, Format = "int32" });
+global::Microsoft.Extensions.DependencyInjection.SwaggerGenOptionsExtensions.MapType<MyVoInt[]>(o, () => new global::Microsoft.OpenApi.OpenApiSchema { Type = global::Microsoft.OpenApi.JsonSchemaType.Array, Items = new global::Microsoft.OpenApi.OpenApiSchema { Type = global::Microsoft.OpenApi.JsonSchemaType.Number, Format = "int32" } });
+global::Microsoft.Extensions.DependencyInjection.SwaggerGenOptionsExtensions.MapType<global::System.Collections.Generic.List<MyVoInt>>(o, () => new global::Microsoft.OpenApi.OpenApiSchema { Type = global::Microsoft.OpenApi.JsonSchemaType.Array, Items = new global::Microsoft.OpenApi.OpenApiSchema { Type = global::Microsoft.OpenApi.JsonSchemaType.Number, Format = "int32" } });
+global::Microsoft.Extensions.DependencyInjection.SwaggerGenOptionsExtensions.MapType<global::System.Collections.Generic.IEnumerable<MyVoInt>>(o, () => new global::Microsoft.OpenApi.OpenApiSchema { Type = global::Microsoft.OpenApi.JsonSchemaType.Array, Items = new global::Microsoft.OpenApi.OpenApiSchema { Type = global::Microsoft.OpenApi.JsonSchemaType.Number, Format = "int32" } });
 		global::Microsoft.Extensions.DependencyInjection.SwaggerGenOptionsExtensions.MapType<MyVoFloat>(o, () => new global::Microsoft.OpenApi.OpenApiSchema { Type = global::Microsoft.OpenApi.JsonSchemaType.Number });
+global::Microsoft.Extensions.DependencyInjection.SwaggerGenOptionsExtensions.MapType<MyVoFloat[]>(o, () => new global::Microsoft.OpenApi.OpenApiSchema { Type = global::Microsoft.OpenApi.JsonSchemaType.Array, Items = new global::Microsoft.OpenApi.OpenApiSchema { Type = global::Microsoft.OpenApi.JsonSchemaType.Number } });
+global::Microsoft.Extensions.DependencyInjection.SwaggerGenOptionsExtensions.MapType<global::System.Collections.Generic.List<MyVoFloat>>(o, () => new global::Microsoft.OpenApi.OpenApiSchema { Type = global::Microsoft.OpenApi.JsonSchemaType.Array, Items = new global::Microsoft.OpenApi.OpenApiSchema { Type = global::Microsoft.OpenApi.JsonSchemaType.Number } });
+global::Microsoft.Extensions.DependencyInjection.SwaggerGenOptionsExtensions.MapType<global::System.Collections.Generic.IEnumerable<MyVoFloat>>(o, () => new global::Microsoft.OpenApi.OpenApiSchema { Type = global::Microsoft.OpenApi.JsonSchemaType.Array, Items = new global::Microsoft.OpenApi.OpenApiSchema { Type = global::Microsoft.OpenApi.JsonSchemaType.Number } });
 		global::Microsoft.Extensions.DependencyInjection.SwaggerGenOptionsExtensions.MapType<MyVoDecimal>(o, () => new global::Microsoft.OpenApi.OpenApiSchema { Type = global::Microsoft.OpenApi.JsonSchemaType.Number, Format = "double" });
+global::Microsoft.Extensions.DependencyInjection.SwaggerGenOptionsExtensions.MapType<MyVoDecimal[]>(o, () => new global::Microsoft.OpenApi.OpenApiSchema { Type = global::Microsoft.OpenApi.JsonSchemaType.Array, Items = new global::Microsoft.OpenApi.OpenApiSchema { Type = global::Microsoft.OpenApi.JsonSchemaType.Number, Format = "double" } });
+global::Microsoft.Extensions.DependencyInjection.SwaggerGenOptionsExtensions.MapType<global::System.Collections.Generic.List<MyVoDecimal>>(o, () => new global::Microsoft.OpenApi.OpenApiSchema { Type = global::Microsoft.OpenApi.JsonSchemaType.Array, Items = new global::Microsoft.OpenApi.OpenApiSchema { Type = global::Microsoft.OpenApi.JsonSchemaType.Number, Format = "double" } });
+global::Microsoft.Extensions.DependencyInjection.SwaggerGenOptionsExtensions.MapType<global::System.Collections.Generic.IEnumerable<MyVoDecimal>>(o, () => new global::Microsoft.OpenApi.OpenApiSchema { Type = global::Microsoft.OpenApi.JsonSchemaType.Array, Items = new global::Microsoft.OpenApi.OpenApiSchema { Type = global::Microsoft.OpenApi.JsonSchemaType.Number, Format = "double" } });
 		global::Microsoft.Extensions.DependencyInjection.SwaggerGenOptionsExtensions.MapType<MyVoDouble>(o, () => new global::Microsoft.OpenApi.OpenApiSchema { Type = global::Microsoft.OpenApi.JsonSchemaType.Number, Format = "double" });
+global::Microsoft.Extensions.DependencyInjection.SwaggerGenOptionsExtensions.MapType<MyVoDouble[]>(o, () => new global::Microsoft.OpenApi.OpenApiSchema { Type = global::Microsoft.OpenApi.JsonSchemaType.Array, Items = new global::Microsoft.OpenApi.OpenApiSchema { Type = global::Microsoft.OpenApi.JsonSchemaType.Number, Format = "double" } });
+global::Microsoft.Extensions.DependencyInjection.SwaggerGenOptionsExtensions.MapType<global::System.Collections.Generic.List<MyVoDouble>>(o, () => new global::Microsoft.OpenApi.OpenApiSchema { Type = global::Microsoft.OpenApi.JsonSchemaType.Array, Items = new global::Microsoft.OpenApi.OpenApiSchema { Type = global::Microsoft.OpenApi.JsonSchemaType.Number, Format = "double" } });
+global::Microsoft.Extensions.DependencyInjection.SwaggerGenOptionsExtensions.MapType<global::System.Collections.Generic.IEnumerable<MyVoDouble>>(o, () => new global::Microsoft.OpenApi.OpenApiSchema { Type = global::Microsoft.OpenApi.JsonSchemaType.Array, Items = new global::Microsoft.OpenApi.OpenApiSchema { Type = global::Microsoft.OpenApi.JsonSchemaType.Number, Format = "double" } });
 		global::Microsoft.Extensions.DependencyInjection.SwaggerGenOptionsExtensions.MapType<MyVoString>(o, () => new global::Microsoft.OpenApi.OpenApiSchema { Type = global::Microsoft.OpenApi.JsonSchemaType.String });
+global::Microsoft.Extensions.DependencyInjection.SwaggerGenOptionsExtensions.MapType<MyVoString[]>(o, () => new global::Microsoft.OpenApi.OpenApiSchema { Type = global::Microsoft.OpenApi.JsonSchemaType.Array, Items = new global::Microsoft.OpenApi.OpenApiSchema { Type = global::Microsoft.OpenApi.JsonSchemaType.String } });
+global::Microsoft.Extensions.DependencyInjection.SwaggerGenOptionsExtensions.MapType<global::System.Collections.Generic.List<MyVoString>>(o, () => new global::Microsoft.OpenApi.OpenApiSchema { Type = global::Microsoft.OpenApi.JsonSchemaType.Array, Items = new global::Microsoft.OpenApi.OpenApiSchema { Type = global::Microsoft.OpenApi.JsonSchemaType.String } });
+global::Microsoft.Extensions.DependencyInjection.SwaggerGenOptionsExtensions.MapType<global::System.Collections.Generic.IEnumerable<MyVoString>>(o, () => new global::Microsoft.OpenApi.OpenApiSchema { Type = global::Microsoft.OpenApi.JsonSchemaType.Array, Items = new global::Microsoft.OpenApi.OpenApiSchema { Type = global::Microsoft.OpenApi.JsonSchemaType.String } });
 		global::Microsoft.Extensions.DependencyInjection.SwaggerGenOptionsExtensions.MapType<MyVoBool>(o, () => new global::Microsoft.OpenApi.OpenApiSchema { Type = global::Microsoft.OpenApi.JsonSchemaType.Boolean });
+global::Microsoft.Extensions.DependencyInjection.SwaggerGenOptionsExtensions.MapType<MyVoBool[]>(o, () => new global::Microsoft.OpenApi.OpenApiSchema { Type = global::Microsoft.OpenApi.JsonSchemaType.Array, Items = new global::Microsoft.OpenApi.OpenApiSchema { Type = global::Microsoft.OpenApi.JsonSchemaType.Boolean } });
+global::Microsoft.Extensions.DependencyInjection.SwaggerGenOptionsExtensions.MapType<global::System.Collections.Generic.List<MyVoBool>>(o, () => new global::Microsoft.OpenApi.OpenApiSchema { Type = global::Microsoft.OpenApi.JsonSchemaType.Array, Items = new global::Microsoft.OpenApi.OpenApiSchema { Type = global::Microsoft.OpenApi.JsonSchemaType.Boolean } });
+global::Microsoft.Extensions.DependencyInjection.SwaggerGenOptionsExtensions.MapType<global::System.Collections.Generic.IEnumerable<MyVoBool>>(o, () => new global::Microsoft.OpenApi.OpenApiSchema { Type = global::Microsoft.OpenApi.JsonSchemaType.Array, Items = new global::Microsoft.OpenApi.OpenApiSchema { Type = global::Microsoft.OpenApi.JsonSchemaType.Boolean } });
 		global::Microsoft.Extensions.DependencyInjection.SwaggerGenOptionsExtensions.MapType<@bool>(o, () => new global::Microsoft.OpenApi.OpenApiSchema { Type = global::Microsoft.OpenApi.JsonSchemaType.Boolean });
+global::Microsoft.Extensions.DependencyInjection.SwaggerGenOptionsExtensions.MapType<@bool[]>(o, () => new global::Microsoft.OpenApi.OpenApiSchema { Type = global::Microsoft.OpenApi.JsonSchemaType.Array, Items = new global::Microsoft.OpenApi.OpenApiSchema { Type = global::Microsoft.OpenApi.JsonSchemaType.Boolean } });
+global::Microsoft.Extensions.DependencyInjection.SwaggerGenOptionsExtensions.MapType<global::System.Collections.Generic.List<@bool>>(o, () => new global::Microsoft.OpenApi.OpenApiSchema { Type = global::Microsoft.OpenApi.JsonSchemaType.Array, Items = new global::Microsoft.OpenApi.OpenApiSchema { Type = global::Microsoft.OpenApi.JsonSchemaType.Boolean } });
+global::Microsoft.Extensions.DependencyInjection.SwaggerGenOptionsExtensions.MapType<global::System.Collections.Generic.IEnumerable<@bool>>(o, () => new global::Microsoft.OpenApi.OpenApiSchema { Type = global::Microsoft.OpenApi.JsonSchemaType.Array, Items = new global::Microsoft.OpenApi.OpenApiSchema { Type = global::Microsoft.OpenApi.JsonSchemaType.Boolean } });
 		global::Microsoft.Extensions.DependencyInjection.SwaggerGenOptionsExtensions.MapType<MyVoShort>(o, () => new global::Microsoft.OpenApi.OpenApiSchema { Type = global::Microsoft.OpenApi.JsonSchemaType.Number });
+global::Microsoft.Extensions.DependencyInjection.SwaggerGenOptionsExtensions.MapType<MyVoShort[]>(o, () => new global::Microsoft.OpenApi.OpenApiSchema { Type = global::Microsoft.OpenApi.JsonSchemaType.Array, Items = new global::Microsoft.OpenApi.OpenApiSchema { Type = global::Microsoft.OpenApi.JsonSchemaType.Number } });
+global::Microsoft.Extensions.DependencyInjection.SwaggerGenOptionsExtensions.MapType<global::System.Collections.Generic.List<MyVoShort>>(o, () => new global::Microsoft.OpenApi.OpenApiSchema { Type = global::Microsoft.OpenApi.JsonSchemaType.Array, Items = new global::Microsoft.OpenApi.OpenApiSchema { Type = global::Microsoft.OpenApi.JsonSchemaType.Number } });
+global::Microsoft.Extensions.DependencyInjection.SwaggerGenOptionsExtensions.MapType<global::System.Collections.Generic.IEnumerable<MyVoShort>>(o, () => new global::Microsoft.OpenApi.OpenApiSchema { Type = global::Microsoft.OpenApi.JsonSchemaType.Array, Items = new global::Microsoft.OpenApi.OpenApiSchema { Type = global::Microsoft.OpenApi.JsonSchemaType.Number } });
 
 
         return o;
@@ -89,9 +113,33 @@ public static partial class VogenOpenApiExtensions
 				schema.Format = "int32";
 			}
 
+			if (context.JsonTypeInfo.Type.IsArray && context.JsonTypeInfo.Type.GetElementType() == typeof(MyVoInt))
+			{
+				schema.Type = Microsoft.OpenApi.JsonSchemaType.Array;
+				schema.Items = new Microsoft.OpenApi.OpenApiSchema { Type = Microsoft.OpenApi.JsonSchemaType.Number, Format = "int32" };
+			}
+
+			if (context.JsonTypeInfo.Type.IsGenericType && context.JsonTypeInfo.Type.GetGenericArguments().Length == 1 && context.JsonTypeInfo.Type.GetGenericArguments()[0] == typeof(MyVoInt))
+			{
+				schema.Type = Microsoft.OpenApi.JsonSchemaType.Array;
+				schema.Items = new Microsoft.OpenApi.OpenApiSchema { Type = Microsoft.OpenApi.JsonSchemaType.Number, Format = "int32" };
+			}
+
 			if (context.JsonTypeInfo.Type == typeof(MyVoFloat))
 			{
 				schema.Type = Microsoft.OpenApi.JsonSchemaType.Number;
+			}
+
+			if (context.JsonTypeInfo.Type.IsArray && context.JsonTypeInfo.Type.GetElementType() == typeof(MyVoFloat))
+			{
+				schema.Type = Microsoft.OpenApi.JsonSchemaType.Array;
+				schema.Items = new Microsoft.OpenApi.OpenApiSchema { Type = Microsoft.OpenApi.JsonSchemaType.Number };
+			}
+
+			if (context.JsonTypeInfo.Type.IsGenericType && context.JsonTypeInfo.Type.GetGenericArguments().Length == 1 && context.JsonTypeInfo.Type.GetGenericArguments()[0] == typeof(MyVoFloat))
+			{
+				schema.Type = Microsoft.OpenApi.JsonSchemaType.Array;
+				schema.Items = new Microsoft.OpenApi.OpenApiSchema { Type = Microsoft.OpenApi.JsonSchemaType.Number };
 			}
 
 			if (context.JsonTypeInfo.Type == typeof(MyVoDecimal))
@@ -100,10 +148,34 @@ public static partial class VogenOpenApiExtensions
 				schema.Format = "double";
 			}
 
+			if (context.JsonTypeInfo.Type.IsArray && context.JsonTypeInfo.Type.GetElementType() == typeof(MyVoDecimal))
+			{
+				schema.Type = Microsoft.OpenApi.JsonSchemaType.Array;
+				schema.Items = new Microsoft.OpenApi.OpenApiSchema { Type = Microsoft.OpenApi.JsonSchemaType.Number, Format = "double" };
+			}
+
+			if (context.JsonTypeInfo.Type.IsGenericType && context.JsonTypeInfo.Type.GetGenericArguments().Length == 1 && context.JsonTypeInfo.Type.GetGenericArguments()[0] == typeof(MyVoDecimal))
+			{
+				schema.Type = Microsoft.OpenApi.JsonSchemaType.Array;
+				schema.Items = new Microsoft.OpenApi.OpenApiSchema { Type = Microsoft.OpenApi.JsonSchemaType.Number, Format = "double" };
+			}
+
 			if (context.JsonTypeInfo.Type == typeof(MyVoDouble))
 			{
 				schema.Type = Microsoft.OpenApi.JsonSchemaType.Number;
 				schema.Format = "double";
+			}
+
+			if (context.JsonTypeInfo.Type.IsArray && context.JsonTypeInfo.Type.GetElementType() == typeof(MyVoDouble))
+			{
+				schema.Type = Microsoft.OpenApi.JsonSchemaType.Array;
+				schema.Items = new Microsoft.OpenApi.OpenApiSchema { Type = Microsoft.OpenApi.JsonSchemaType.Number, Format = "double" };
+			}
+
+			if (context.JsonTypeInfo.Type.IsGenericType && context.JsonTypeInfo.Type.GetGenericArguments().Length == 1 && context.JsonTypeInfo.Type.GetGenericArguments()[0] == typeof(MyVoDouble))
+			{
+				schema.Type = Microsoft.OpenApi.JsonSchemaType.Array;
+				schema.Items = new Microsoft.OpenApi.OpenApiSchema { Type = Microsoft.OpenApi.JsonSchemaType.Number, Format = "double" };
 			}
 
 			if (context.JsonTypeInfo.Type == typeof(MyVoString))
@@ -111,9 +183,33 @@ public static partial class VogenOpenApiExtensions
 				schema.Type = Microsoft.OpenApi.JsonSchemaType.String;
 			}
 
+			if (context.JsonTypeInfo.Type.IsArray && context.JsonTypeInfo.Type.GetElementType() == typeof(MyVoString))
+			{
+				schema.Type = Microsoft.OpenApi.JsonSchemaType.Array;
+				schema.Items = new Microsoft.OpenApi.OpenApiSchema { Type = Microsoft.OpenApi.JsonSchemaType.String };
+			}
+
+			if (context.JsonTypeInfo.Type.IsGenericType && context.JsonTypeInfo.Type.GetGenericArguments().Length == 1 && context.JsonTypeInfo.Type.GetGenericArguments()[0] == typeof(MyVoString))
+			{
+				schema.Type = Microsoft.OpenApi.JsonSchemaType.Array;
+				schema.Items = new Microsoft.OpenApi.OpenApiSchema { Type = Microsoft.OpenApi.JsonSchemaType.String };
+			}
+
 			if (context.JsonTypeInfo.Type == typeof(MyVoBool))
 			{
 				schema.Type = Microsoft.OpenApi.JsonSchemaType.Boolean;
+			}
+
+			if (context.JsonTypeInfo.Type.IsArray && context.JsonTypeInfo.Type.GetElementType() == typeof(MyVoBool))
+			{
+				schema.Type = Microsoft.OpenApi.JsonSchemaType.Array;
+				schema.Items = new Microsoft.OpenApi.OpenApiSchema { Type = Microsoft.OpenApi.JsonSchemaType.Boolean };
+			}
+
+			if (context.JsonTypeInfo.Type.IsGenericType && context.JsonTypeInfo.Type.GetGenericArguments().Length == 1 && context.JsonTypeInfo.Type.GetGenericArguments()[0] == typeof(MyVoBool))
+			{
+				schema.Type = Microsoft.OpenApi.JsonSchemaType.Array;
+				schema.Items = new Microsoft.OpenApi.OpenApiSchema { Type = Microsoft.OpenApi.JsonSchemaType.Boolean };
 			}
 
 			if (context.JsonTypeInfo.Type == typeof(@bool))
@@ -121,9 +217,33 @@ public static partial class VogenOpenApiExtensions
 				schema.Type = Microsoft.OpenApi.JsonSchemaType.Boolean;
 			}
 
+			if (context.JsonTypeInfo.Type.IsArray && context.JsonTypeInfo.Type.GetElementType() == typeof(@bool))
+			{
+				schema.Type = Microsoft.OpenApi.JsonSchemaType.Array;
+				schema.Items = new Microsoft.OpenApi.OpenApiSchema { Type = Microsoft.OpenApi.JsonSchemaType.Boolean };
+			}
+
+			if (context.JsonTypeInfo.Type.IsGenericType && context.JsonTypeInfo.Type.GetGenericArguments().Length == 1 && context.JsonTypeInfo.Type.GetGenericArguments()[0] == typeof(@bool))
+			{
+				schema.Type = Microsoft.OpenApi.JsonSchemaType.Array;
+				schema.Items = new Microsoft.OpenApi.OpenApiSchema { Type = Microsoft.OpenApi.JsonSchemaType.Boolean };
+			}
+
 			if (context.JsonTypeInfo.Type == typeof(MyVoShort))
 			{
 				schema.Type = Microsoft.OpenApi.JsonSchemaType.Number;
+			}
+
+			if (context.JsonTypeInfo.Type.IsArray && context.JsonTypeInfo.Type.GetElementType() == typeof(MyVoShort))
+			{
+				schema.Type = Microsoft.OpenApi.JsonSchemaType.Array;
+				schema.Items = new Microsoft.OpenApi.OpenApiSchema { Type = Microsoft.OpenApi.JsonSchemaType.Number };
+			}
+
+			if (context.JsonTypeInfo.Type.IsGenericType && context.JsonTypeInfo.Type.GetGenericArguments().Length == 1 && context.JsonTypeInfo.Type.GetGenericArguments()[0] == typeof(MyVoShort))
+			{
+				schema.Type = Microsoft.OpenApi.JsonSchemaType.Array;
+				schema.Items = new Microsoft.OpenApi.OpenApiSchema { Type = Microsoft.OpenApi.JsonSchemaType.Number };
 			}
 
 			return global::System.Threading.Tasks.Task.CompletedTask;

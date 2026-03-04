@@ -41,11 +41,35 @@ public static partial class VogenOpenApiExtensions
 				schema.Format = "int32";
 			}
 
+			if (context.JsonTypeInfo.Type.IsArray && context.JsonTypeInfo.Type.GetElementType() == typeof(global::Whatever._casting_public_partial_structExplicitExplicitint))
+			{
+				schema.Type = "array";
+				schema.Items = new Microsoft.OpenApi.Models.OpenApiSchema { Type = "integer", Format = "int32" };
+			}
+
+			if (context.JsonTypeInfo.Type.IsGenericType && context.JsonTypeInfo.Type.GetGenericArguments().Length == 1 && context.JsonTypeInfo.Type.GetGenericArguments()[0] == typeof(global::Whatever._casting_public_partial_structExplicitExplicitint))
+			{
+				schema.Type = "array";
+				schema.Items = new Microsoft.OpenApi.Models.OpenApiSchema { Type = "integer", Format = "int32" };
+			}
+
 			if (context.JsonTypeInfo.Type == typeof(global::System.Nullable<global::Whatever._casting_public_partial_structExplicitExplicitint>))
 			{
 				schema.Type = "integer";
 				schema.Nullable = true;
 				schema.Format = "int32";
+			}
+
+			if (context.JsonTypeInfo.Type.IsArray && context.JsonTypeInfo.Type.GetElementType() == typeof(global::System.Nullable<global::Whatever._casting_public_partial_structExplicitExplicitint>))
+			{
+				schema.Type = "array";
+				schema.Items = new Microsoft.OpenApi.Models.OpenApiSchema { Type = "integer", Format = "int32" };
+			}
+
+			if (context.JsonTypeInfo.Type.IsGenericType && context.JsonTypeInfo.Type.GetGenericArguments().Length == 1 && context.JsonTypeInfo.Type.GetGenericArguments()[0] == typeof(global::System.Nullable<global::Whatever._casting_public_partial_structExplicitExplicitint>))
+			{
+				schema.Type = "array";
+				schema.Items = new Microsoft.OpenApi.Models.OpenApiSchema { Type = "integer", Format = "int32" };
 			}
 
 			return global::System.Threading.Tasks.Task.CompletedTask;

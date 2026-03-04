@@ -41,11 +41,35 @@ public static partial class VogenOpenApiExtensions
 				schema.Format = "uuid";
 			}
 
+			if (context.JsonTypeInfo.Type.IsArray && context.JsonTypeInfo.Type.GetElementType() == typeof(MyVo))
+			{
+				schema.Type = "array";
+				schema.Items = new Microsoft.OpenApi.Models.OpenApiSchema { Type = "string", Format = "uuid" };
+			}
+
+			if (context.JsonTypeInfo.Type.IsGenericType && context.JsonTypeInfo.Type.GetGenericArguments().Length == 1 && context.JsonTypeInfo.Type.GetGenericArguments()[0] == typeof(MyVo))
+			{
+				schema.Type = "array";
+				schema.Items = new Microsoft.OpenApi.Models.OpenApiSchema { Type = "string", Format = "uuid" };
+			}
+
 			if (context.JsonTypeInfo.Type == typeof(global::System.Nullable<MyVo>))
 			{
 				schema.Type = "string";
 				schema.Nullable = true;
 				schema.Format = "uuid";
+			}
+
+			if (context.JsonTypeInfo.Type.IsArray && context.JsonTypeInfo.Type.GetElementType() == typeof(global::System.Nullable<MyVo>))
+			{
+				schema.Type = "array";
+				schema.Items = new Microsoft.OpenApi.Models.OpenApiSchema { Type = "string", Format = "uuid" };
+			}
+
+			if (context.JsonTypeInfo.Type.IsGenericType && context.JsonTypeInfo.Type.GetGenericArguments().Length == 1 && context.JsonTypeInfo.Type.GetGenericArguments()[0] == typeof(global::System.Nullable<MyVo>))
+			{
+				schema.Type = "array";
+				schema.Items = new Microsoft.OpenApi.Models.OpenApiSchema { Type = "string", Format = "uuid" };
 			}
 
 			return global::System.Threading.Tasks.Task.CompletedTask;
