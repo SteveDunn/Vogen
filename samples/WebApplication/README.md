@@ -11,5 +11,29 @@ You can switch by changing `<OpenApiMode>` in the `.csproj` file to `MicrosoftAn
 or `Swashbuckle-net10`. 
 The launch settings for `MicrosoftAndScalar` is `https openapi and scalar`.
 
+## Run from the command line
+
+The `WebApplication` project uses conditional compilation constants to switch between OpenAPI setups.
+Use the `OpenApiMode` MSBuild property from the command line to set those constants.
+
+### Run with Swashbuckle (`USE_SWASHBUCKLE`)
+
+```bash
+dotnet run --project samples/WebApplication/WebApplication.csproj -p:OpenApiMode=Swashbuckle-net8
+```
+
+```bash
+dotnet run --project samples/WebApplication/WebApplication.csproj -p:OpenApiMode=Swashbuckle-net10
+```
+This will generate the swagger page at `/swagger`, and the OpenApi spec at `/swagger/v1/swagger.json`
+
+### Run with Microsoft OpenAPI + Scalar (`USE_MICROSOFT_OPENAPI_AND_SCALAR`)
+
+```bash
+dotnet run --project samples/WebApplication/WebApplication.csproj -p:OpenApiMode=MicrosoftAndScalar
+```
+
+This will generated the OpenApi spec at `/openapi/v1.json`
+
 The companion project to this is `WebApplicationConsumer` which demonstrates how to consume an API that uses value 
 object as parameters.

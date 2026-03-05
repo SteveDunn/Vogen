@@ -41,6 +41,18 @@ public static partial class VogenOpenApiExtensions
 				schema.Format = "uuid";
 			}
 
+			if (context.JsonTypeInfo.Type.IsArray && context.JsonTypeInfo.Type.GetElementType() == typeof(global::Whatever._casting_public_partial_record_classNoneNoneSystem_Guid))
+			{
+				schema.Type = "array";
+				schema.Items = new Microsoft.OpenApi.Models.OpenApiSchema { Type = "string", Format = "uuid" };
+			}
+
+			if (context.JsonTypeInfo.Type.IsGenericType && context.JsonTypeInfo.Type.GetGenericArguments().Length == 1 && context.JsonTypeInfo.Type.GetGenericArguments()[0] == typeof(global::Whatever._casting_public_partial_record_classNoneNoneSystem_Guid))
+			{
+				schema.Type = "array";
+				schema.Items = new Microsoft.OpenApi.Models.OpenApiSchema { Type = "string", Format = "uuid" };
+			}
+
 			return global::System.Threading.Tasks.Task.CompletedTask;
 		});
 

@@ -26,19 +26,19 @@ using Scalar.AspNetCore;
 
 
 var builder = Microsoft.AspNetCore.Builder.WebApplication.CreateBuilder(args);
+builder.Services.AddEndpointsApiExplorer();
 
-#if USE_MICROSOFT_OPENAPI_AND_SCALAR
-    builder.Services.AddOpenApi((OpenApiOptions o) =>
-    {
-        o.MapVogenTypesInOpenApiMarkers();
-    });
-#endif
+    #if USE_MICROSOFT_OPENAPI_AND_SCALAR
+        builder.Services.AddOpenApi((OpenApiOptions o) =>
+        {
+            o.MapVogenTypesInOpenApiMarkers();
+        });
+    #endif
 
 
 #if USE_SWASHBUCKLE
 // Add services to the container.
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(opt =>
 {
     // the following extension method is available if you specify `GenerateSwashbuckleMappingExtensionMethod` - as shown above

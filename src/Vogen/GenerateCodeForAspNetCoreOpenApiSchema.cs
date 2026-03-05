@@ -134,6 +134,38 @@ internal static class GenerateCodeForAspNetCoreOpenApiSchema
 
             sb.Append(_indent, 3).AppendLine($"}}");
             sb.AppendLine();
+
+            // array handling
+            sb.Append(_indent, 3).AppendLine($"if (context.JsonTypeInfo.Type.IsArray && context.JsonTypeInfo.Type.GetElementType() == typeof({typeExpression}))");
+            sb.Append(_indent, 3).AppendLine("{");
+            if (v is OpenApiVersionBeingUsed.One)
+            {
+                sb.Append(_indent, 4).AppendLine("schema.Type = \"array\";");
+                sb.Append(_indent, 4).AppendLine($"schema.Items = new Microsoft.OpenApi.Models.OpenApiSchema {{ Type = \"{typeAndPossibleFormat.Type}\"{(string.IsNullOrEmpty(typeAndPossibleFormat.Format) ? "" : $", Format = \"{typeAndPossibleFormat.Format}\"")} }};");
+            }
+            if (v is OpenApiVersionBeingUsed.TwoPlus)
+            {
+                sb.Append(_indent, 4).AppendLine("schema.Type = Microsoft.OpenApi.JsonSchemaType.Array;");
+                sb.Append(_indent, 4).AppendLine($"schema.Items = new Microsoft.OpenApi.OpenApiSchema {{ Type = Microsoft.OpenApi.JsonSchemaType.{typeAndPossibleFormat.JsonSchemaType}{(string.IsNullOrEmpty(typeAndPossibleFormat.Format) ? "" : $", Format = \"{typeAndPossibleFormat.Format}\"")} }};");
+            }
+            sb.Append(_indent, 3).AppendLine("}");
+            sb.AppendLine();
+
+            // generic collection handling (List<>, IEnumerable<>, etc.)
+            sb.Append(_indent, 3).AppendLine($"if (context.JsonTypeInfo.Type.IsGenericType && context.JsonTypeInfo.Type.GetGenericArguments().Length == 1 && context.JsonTypeInfo.Type.GetGenericArguments()[0] == typeof({typeExpression}))");
+            sb.Append(_indent, 3).AppendLine("{");
+            if (v is OpenApiVersionBeingUsed.One)
+            {
+                sb.Append(_indent, 4).AppendLine("schema.Type = \"array\";");
+                sb.Append(_indent, 4).AppendLine($"schema.Items = new Microsoft.OpenApi.Models.OpenApiSchema {{ Type = \"{typeAndPossibleFormat.Type}\"{(string.IsNullOrEmpty(typeAndPossibleFormat.Format) ? "" : $", Format = \"{typeAndPossibleFormat.Format}\"")} }};");
+            }
+            if (v is OpenApiVersionBeingUsed.TwoPlus)
+            {
+                sb.Append(_indent, 4).AppendLine("schema.Type = Microsoft.OpenApi.JsonSchemaType.Array;");
+                sb.Append(_indent, 4).AppendLine($"schema.Items = new Microsoft.OpenApi.OpenApiSchema {{ Type = Microsoft.OpenApi.JsonSchemaType.{typeAndPossibleFormat.JsonSchemaType}{(string.IsNullOrEmpty(typeAndPossibleFormat.Format) ? "" : $", Format = \"{typeAndPossibleFormat.Format}\"")} }};");
+            }
+            sb.Append(_indent, 3).AppendLine("}");
+            sb.AppendLine();
         }
     }
 

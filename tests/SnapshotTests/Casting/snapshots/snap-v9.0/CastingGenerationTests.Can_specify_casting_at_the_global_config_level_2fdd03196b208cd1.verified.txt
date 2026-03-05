@@ -40,6 +40,18 @@ public static partial class VogenOpenApiExtensions
 				schema.Type = "boolean";
 			}
 
+			if (context.JsonTypeInfo.Type.IsArray && context.JsonTypeInfo.Type.GetElementType() == typeof(global::Whatever._casting_public_partial_recordImplicitExplicitbool))
+			{
+				schema.Type = "array";
+				schema.Items = new Microsoft.OpenApi.Models.OpenApiSchema { Type = "boolean" };
+			}
+
+			if (context.JsonTypeInfo.Type.IsGenericType && context.JsonTypeInfo.Type.GetGenericArguments().Length == 1 && context.JsonTypeInfo.Type.GetGenericArguments()[0] == typeof(global::Whatever._casting_public_partial_recordImplicitExplicitbool))
+			{
+				schema.Type = "array";
+				schema.Items = new Microsoft.OpenApi.Models.OpenApiSchema { Type = "boolean" };
+			}
+
 			return global::System.Threading.Tasks.Task.CompletedTask;
 		});
 
