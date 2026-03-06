@@ -4,29 +4,39 @@ using System.Linq;
 using System.Text;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.Text;
+using Vogen.Extensions;
 using Vogen.Generators.Conversions;
 
 namespace Vogen;
 
 internal static class GenerateCodeForEfCoreMarkers
 {
-    public static void Generate(SourceProductionContext context, Compilation compilation, ImmutableArray<MarkerClassDefinition> markerClasses)
+    public static void Generate(SourceProductionContext context, Compilation compilation, ImmutableArray<MarkerClassDefinition> mcc)
     {
         if (!compilation.IsAtLeastCSharp12())
         {
             return;
         }
-        
-        foreach (MarkerClassDefinition eachMarkerClass in markerClasses)
+
+        var groupedByName = mcc.GroupBy(mc => mc.MarkerClassSymbol, SymbolEqualityComparer.Default);
+
+        var markerClasses = groupedByName.Select(g => 
+            new
+            {
+                Symbol = g.First().MarkerClassSymbol, 
+                Attributes = g.SelectMany(x => x.AttributeDefinitions).DistinctByCompat(x => x.Marker)
+            });
+
+        foreach (var eachMarkerClass in markerClasses)
         {
-            var matchingMarkers = eachMarkerClass.AttributeDefinitions.Where(a => a.Marker?.Kind == ConversionMarkerKind.EFCore).ToList();
+            var matchingMarkers = eachMarkerClass.Attributes.Where(a => a.Marker?.Kind == ConversionMarkerKind.EFCore).ToList();
 
             if (matchingMarkers.Count == 0)
             {
                 continue;
             }
             
-            StoreExtensionMethodToRegisterAllInMarkerClass(eachMarkerClass.MarkerClassSymbol, matchingMarkers, context);
+            StoreExtensionMethodToRegisterAllInMarkerClass(eachMarkerClass.Symbol, matchingMarkers, context);
             
             foreach (MarkerAttributeDefinition? eachAttributeInMarkerClass in matchingMarkers)
             {

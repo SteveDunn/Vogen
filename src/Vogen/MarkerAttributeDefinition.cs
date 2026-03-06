@@ -19,7 +19,7 @@ internal sealed class MarkerAttributeDefinition
     }
     
     /// <summary>
-    /// Gets the marker, or null if the associated attribute has an error.
+    /// Gets the marker or null if the associated attribute has an error.
     /// </summary>
     public ConversionMarker? Marker { get;  }
 
@@ -30,3 +30,13 @@ internal sealed class MarkerAttributeDefinition
     public static MarkerAttributeDefinition Ok(ConversionMarkerKind kind, INamedTypeSymbol voSymbol, INamedTypeSymbol underlyingTypeSymbol, INamedTypeSymbol sourceSymbol) =>
         new(marker: new ConversionMarker(kind, voSymbol, underlyingTypeSymbol, sourceSymbol), diagnostics: []);
 }
+
+// internal class ConversionMarkerCollection
+// {
+//     public ConversionMarker[] Markers { get; }
+//
+//     public ConversionMarkerCollection(ConversionMarker[] markers)
+//     {
+//         Markers = markers;
+//     }
+// }

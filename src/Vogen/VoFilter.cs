@@ -11,7 +11,7 @@ internal static class VoFilter
 {
     /// <summary>
     /// Tries to get any `ValueObject` attributes specified on the provided symbol.
-    /// It might return more than one, because the user might have typed more than one.
+    /// It might return more than one because the user might have typed more than one.
     /// Even though having more than one is not valid, it's still possible for it to exist,
     /// so we return what is found and let the caller decide what to do.
     /// </summary>
@@ -21,7 +21,7 @@ internal static class VoFilter
     {
         var attrs = voSymbolInformation.GetAttributes();
 
-        return attrs.Where(a => IsValueObjectAttributeType(a.AttributeClass));
+        return attrs.Where(a => IsNamedValueObjectAttributeType(a.AttributeClass));
     }
 
     /// <summary>
@@ -63,7 +63,7 @@ internal static class VoFilter
         return null;
     }
 
-    public static bool IsTarget(SyntaxNode syntaxNode) =>
+    public static bool IsDeclaringATypeAndHasAtLeastOneAttribute(SyntaxNode syntaxNode) =>
         syntaxNode is TypeDeclarationSyntax { AttributeLists.Count: > 0 };
 
     public static bool IsTarget(INamedTypeSymbol? voClass) =>
@@ -80,7 +80,7 @@ internal static class VoFilter
                 var symbol = semanticModel.GetSymbolInfo(attribute).Symbol as IMethodSymbol;
                 var attributeType = symbol?.ContainingType;
 
-                if (IsValueObjectAttributeType(attributeType))
+                if (IsNamedValueObjectAttributeType(attributeType))
                 {
                     return true;
                 }
@@ -90,7 +90,7 @@ internal static class VoFilter
         return false;
     }
 
-    private static bool IsValueObjectAttributeType(INamedTypeSymbol? attributeClass) =>
+    private static bool IsNamedValueObjectAttributeType(INamedTypeSymbol? attributeClass) =>
         attributeClass?.EscapedFullName() == "Vogen.ValueObjectAttribute"
         || attributeClass?.BaseType?.EscapedFullName() == "Vogen.ValueObjectAttribute"
         || attributeClass?.BaseType?.BaseType?.EscapedFullName() == "Vogen.ValueObjectAttribute";

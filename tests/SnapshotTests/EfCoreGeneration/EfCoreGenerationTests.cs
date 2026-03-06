@@ -7,6 +7,37 @@ namespace SnapshotTests.EfCoreGeneration;
 public class EfCoreGenerationTests
 {
     [Fact]
+    public async Task Handles_partial_markers()
+    {
+        var source = """
+                     using System;
+                     using Vogen;
+                     
+                     namespace Whatever;
+                     
+                     [ValueObject<int>]
+                     public partial class CustomerId;
+
+                     [ValueObject<int>]
+                     public partial class UserId;
+
+                     [ValueObject<int>]
+                     public partial class AnotherUserId;
+
+                     [EfCoreConverter<UserId>]
+                     [EfCoreConverter<CustomerId>]
+                     internal partial class EfCoreConverters;
+
+                     [EfCoreConverter<AnotherUserId>]
+                     internal partial class EfCoreConverters;
+                     """;
+
+            await new SnapshotRunner<ValueObjectGenerator>()
+                .WithSource(source)
+                .RunOn(TargetFramework.Net8_0);
+    }
+
+    [Fact]
     public async Task Writes_efcore_converters_if_attribute_present_and_on_net_8_or_greater()
     {
         var source = """

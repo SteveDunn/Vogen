@@ -18,7 +18,7 @@ internal static class ConversionMarkers
         { "BsonSerializerAttribute`1", ConversionMarkerKind.Bson }
     };
 
-    public static MarkerClassDefinition? GetMarkerClassFromAttribute(GeneratorSyntaxContext context)
+    public static MarkerClassDefinition? TryGetMarkerClassFromAttribute(GeneratorSyntaxContext context)
     {
         var semanticModel = context.SemanticModel;
 

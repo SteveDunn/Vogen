@@ -59,7 +59,7 @@ public class ValueObjectGenerator : IIncrementalGenerator
     private static Found GetTargets(SyntaxValueProvider syntaxProvider)
     {
         IncrementalValuesProvider<VoTarget> targets = syntaxProvider.CreateSyntaxProvider(
-                predicate: static (node, _) => VoFilter.IsTarget(node),
+                predicate: static (node, _) => VoFilter.IsDeclaringATypeAndHasAtLeastOneAttribute(node),
                 transform: static (ctx, _) => VoFilter.TryGetTarget(ctx))
             .Where(static m => m is not null)!;
 
@@ -70,8 +70,8 @@ public class ValueObjectGenerator : IIncrementalGenerator
             .Where(static m => m is not null)!;
 
         IncrementalValuesProvider<MarkerClassDefinition> markerClasses = syntaxProvider.CreateSyntaxProvider(
-                predicate: (node, _) => ConversionMarkers.IsTarget(node),
-                transform: (ctx, _) => ConversionMarkers.GetMarkerClassFromAttribute(ctx))
+                predicate: (node, _) => VoFilter.IsDeclaringATypeAndHasAtLeastOneAttribute(node),
+                transform: (ctx, _) => ConversionMarkers.TryGetMarkerClassFromAttribute(ctx))
             .Where(static m => m is not null)!;
 
         return new Found(targets, globalConfig, markerClasses);
@@ -127,7 +127,7 @@ public class ValueObjectGenerator : IIncrementalGenerator
         GenerateCodeForEfCoreMarkers.Generate(spc, compilation, markerClasses);
         
         // the user can specify to create the MessagePack generated code as an attribute
-        // or as marker in another project.
+        // or as a marker in another project.
         GenerateCodeForMessagePack.GenerateForApplicableValueObjects(spc, compilation, workItems);
         GenerateCodeForMessagePack.GenerateForMarkerClasses(spc, markerClasses);
         
