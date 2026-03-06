@@ -87,7 +87,7 @@ public class ValueObjectGenerator : IIncrementalGenerator
         VogenKnownSymbols vogenKnownSymbols,
         ImmutableArray<VoTarget> targets,
         ImmutableArray<VogenConfigurationBuildResult> globalConfigBuildResult,
-        ImmutableArray<MarkerClassDefinition> markerClasses,
+        ImmutableArray<MarkerClassDefinition> mc,
         SourceProductionContext spc)
     {
         var csharpCompilation = compilation as CSharpCompilation;
@@ -98,12 +98,14 @@ public class ValueObjectGenerator : IIncrementalGenerator
 
         internalDiags.RecordTargets(targets);
 
-        var conversionMarkerErrors = markerClasses.SelectMany(x => x.Diagnostics);
+        var conversionMarkerErrors = mc.SelectMany(x => x.Diagnostics);
         
         foreach (var diagnostic in conversionMarkerErrors)
         {
             spc.ReportDiagnostic(diagnostic);
         }
+
+        var markerClasses = new MarkersCollection(mc);
         
         // if there are some, get the default global config
         VogenConfigurationBuildResult buildResult = globalConfigBuildResult.IsDefaultOrEmpty
@@ -122,17 +124,17 @@ public class ValueObjectGenerator : IIncrementalGenerator
         // get all the ValueObject types found.
         List<VoWorkItem> workItems = GetWorkItems(targets, spc, globalConfig, csharpCompilation.LanguageVersion, vogenKnownSymbols, compilation).ToList();
             
-        GenerateCodeForOpenApiSchemaCustomization.WriteIfNeeded(globalConfig, spc, workItems, vogenKnownSymbols, markerClasses, compilation);
+        GenerateCodeForOpenApiSchemaCustomization.WriteIfNeeded(globalConfig, spc, workItems, vogenKnownSymbols, mc, compilation);
 
         GenerateCodeForEfCoreMarkers.Generate(spc, compilation, markerClasses);
         
         // the user can specify to create the MessagePack generated code as an attribute
         // or as a marker in another project.
         GenerateCodeForMessagePack.GenerateForApplicableValueObjects(spc, compilation, workItems);
-        GenerateCodeForMessagePack.GenerateForMarkerClasses(spc, markerClasses);
+        GenerateCodeForMessagePack.GenerateForMarkerClasses(spc, mc);
         
         GenerateCodeForBsonSerializers.GenerateForApplicableValueObjects(spc, compilation, workItems);
-        GenerateCodeForBsonSerializers.GenerateForMarkerClasses(spc, markerClasses);
+        GenerateCodeForBsonSerializers.GenerateForMarkerClasses(spc, mc);
         
         GenerateCodeForOrleansSerializers.WriteIfNeeded(spc, workItems);
 

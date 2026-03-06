@@ -1,41 +1,27 @@
 using System.Collections.Generic;
 using System.Collections.Immutable;
-using System.Linq;
 using System.Text;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.Text;
-using Vogen.Extensions;
 using Vogen.Generators.Conversions;
 
 namespace Vogen;
 
 internal static class GenerateCodeForEfCoreMarkers
 {
-    public static void Generate(SourceProductionContext context, Compilation compilation, ImmutableArray<MarkerClassDefinition> mcc)
+    public static void Generate(SourceProductionContext context, Compilation compilation, MarkersCollection mcc)
     {
         if (!compilation.IsAtLeastCSharp12())
         {
             return;
         }
 
-        var groupedByName = mcc.GroupBy(mc => mc.MarkerClassSymbol, SymbolEqualityComparer.Default);
+        ImmutableArray<MarkerAndAttributes> xxx = mcc.GetByKind(ConversionMarkerKind.EFCore);
 
-        var markerClasses = groupedByName.Select(g => 
-            new
-            {
-                Symbol = g.First().MarkerClassSymbol, 
-                Attributes = g.SelectMany(x => x.AttributeDefinitions).DistinctByCompat(x => x.Marker)
-            });
-
-        foreach (var eachMarkerClass in markerClasses)
+        foreach (var eachMarkerClass in xxx)
         {
-            var matchingMarkers = eachMarkerClass.Attributes.Where(a => a.Marker?.Kind == ConversionMarkerKind.EFCore).ToList();
+            var matchingMarkers = eachMarkerClass.Attributes;
 
-            if (matchingMarkers.Count == 0)
-            {
-                continue;
-            }
-            
             StoreExtensionMethodToRegisterAllInMarkerClass(eachMarkerClass.Symbol, matchingMarkers, context);
             
             foreach (MarkerAttributeDefinition? eachAttributeInMarkerClass in matchingMarkers)
