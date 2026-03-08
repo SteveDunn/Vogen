@@ -6,6 +6,32 @@ namespace SnapshotTests.BugFixes;
 
 public class Bug898_Duplicate_partial_markers
 {
+      [Fact]
+      public async Task Handles_partial_markers_for_openapi()
+      {
+          var source = """
+                       using System;
+                       using Vogen;
+
+                       namespace Foo
+                       {
+                           [ValueObject<int>]
+                           public partial struct Vo1;
+
+                           [ValueObject<string>]
+                           public partial struct Vo2;
+                               
+                           [OpenApiMarker<Vo1>]
+                           [OpenApiMarker<Vo2>]
+                           public partial class OpenApiMarkers;
+                       }
+                       """;
+
+              await new SnapshotRunner<ValueObjectGenerator>()
+                  .WithSource(source)
+                  .RunOn(TargetFramework.AspNetCore9_0);
+      }
+
     [Fact]
     public async Task Handles_partial_markers_for_bson()
     {
@@ -24,6 +50,8 @@ public class Bug898_Duplicate_partial_markers
                      public partial struct Age;
 
                      [BsonSerializer<Name>]
+                     public partial class MyMarkers;
+
                      [BsonSerializer<Age>]
                      public partial class MyMarkers;
                      """;
