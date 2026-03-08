@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using System.Collections.Immutable;
 using System.Linq;
 using System.Text;
 using Microsoft.CodeAnalysis;
@@ -11,19 +10,19 @@ namespace Vogen;
 
 internal class GenerateCodeForMessagePack : IGenerateConversion
 {
-    public static void GenerateForMarkerClasses(SourceProductionContext context, ImmutableArray<MarkerClassDefinition> conversionMarkerClasses)
+    public static void GenerateForMarkerClasses(SourceProductionContext context, MarkersCollection conversionMarkerClasses)
     {
-        foreach (MarkerClassDefinition eachMarkerClass in conversionMarkerClasses)
+        foreach (var eachMarkerClass in conversionMarkerClasses.GetByKind(ConversionMarkerKind.MessagePack))
         {
             GenerateForAMarkerClass(context, eachMarkerClass);
         }
     }
 
-    private static void GenerateForAMarkerClass(SourceProductionContext context, MarkerClassDefinition markerClass)
+    private static void GenerateForAMarkerClass(SourceProductionContext context, MarkerAndAttributes markerClass)
     {
-        var markerClassSymbol = markerClass.MarkerClassSymbol;
+        var markerClassSymbol = markerClass.Symbol;
 
-        if (!markerClass.AttributeDefinitions.Any(m => m.Marker?.Kind is ConversionMarkerKind.MessagePack))
+        if (!markerClass.Attributes.Any(m => m.Marker?.Kind is ConversionMarkerKind.MessagePack))
         {
             return;
         }
@@ -51,7 +50,7 @@ internal class GenerateCodeForMessagePack : IGenerateConversion
 
         SourceText sourceText = Util.FormatSource(s);
 
-        string filename = Util.GetLegalFilenameForMarkerClass(markerClass.MarkerClassSymbol, ConversionMarkerKind.MessagePack);
+        string filename = Util.GetLegalFilenameForMarkerClass(markerClass.Symbol, ConversionMarkerKind.MessagePack);
 
         Util.AddSourceToContext(filename, context, sourceText);
 
@@ -69,8 +68,7 @@ internal class GenerateCodeForMessagePack : IGenerateConversion
 
             string GenerateEach()
             {
-                string?[] names = markerClass.AttributeDefinitions.Where(
-                    m => m.Marker?.Kind is ConversionMarkerKind.MessagePack).Select(
+                string?[] names = markerClass.Attributes.Select(
                     x =>
                     {
                         if (x.Marker is null)
@@ -91,7 +89,7 @@ internal class GenerateCodeForMessagePack : IGenerateConversion
         {
             StringBuilder sb = new();
 
-            foreach (MarkerAttributeDefinition eachAttr in markerClass.AttributeDefinitions.Where(
+            foreach (MarkerAttributeDefinition eachAttr in markerClass.Attributes.Where(
                          m => m.Marker?.Kind is ConversionMarkerKind.MessagePack))
             {
                 sb.AppendLine(

@@ -6,6 +6,37 @@ namespace SnapshotTests.BugFixes;
 
 public class Bug898_Duplicate_partial_markers
 {
+    [Fact]
+    public async Task Handles_partial_markers_for_messagepack()
+    {
+        var source =
+            """
+
+              using System;
+              using Vogen;
+
+              namespace @double;
+
+              [ValueObject<int>(conversions: Conversions.None)]
+              public partial struct MyId;
+
+              [ValueObject<int>(conversions: Conversions.None)]
+              public partial struct MyId2;
+
+              [MessagePack<MyId>]
+              public partial class MyMarkers;
+
+              [MessagePack<MyId2>]
+              public partial class MyMarkers;
+
+              """;
+
+        await new SnapshotRunner<ValueObjectGenerator>()
+            .WithSource(source)
+            .WithPackage(new NuGetPackage("MessagePack", "2.5.187", "lib/netstandard2.0" ))
+            .RunOn(TargetFramework.Net8_0);
+    }
+
       [Fact]
       public async Task Handles_partial_markers_for_openapi()
       {
