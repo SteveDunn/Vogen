@@ -44,23 +44,18 @@ internal class GenerateCodeForBsonSerializers
     /// 'Bson', and for each attribute, generate the serializer as a nested classed
     /// </summary>
     /// <param name="context"></param>
-    /// <param name="markerClass"></param>
-    public static void GenerateForMarkerClasses(SourceProductionContext context, ImmutableArray<MarkerClassDefinition> markerClass)
+    /// <param name="markers"></param>
+    public static void GenerateForMarkerClasses(SourceProductionContext context, MarkersCollection markers)
     {
-        foreach (var each in markerClass)
+        foreach (var each in markers.GetByKind(ConversionMarkerKind.Bson))
         {
             GenerateForMarkerClass(context, each);
         }
     }
 
-    private static void GenerateForMarkerClass(SourceProductionContext context, MarkerClassDefinition markerClass)
+    private static void GenerateForMarkerClass(SourceProductionContext context, MarkerAndAttributes marker)
     {
-        var markerClassSymbol = markerClass.MarkerClassSymbol;
-
-        if (!markerClass.AttributeDefinitions.Any(m => m.Marker?.Kind is ConversionMarkerKind.Bson))
-        {
-            return;
-        }
+        var markerClassSymbol = marker.Symbol;
 
         string pns = markerClassSymbol.FullUnalisaedNamespace();
 
@@ -82,7 +77,7 @@ internal class GenerateCodeForBsonSerializers
 
                   """;
 
-        string filename = Util.GetLegalFilenameForMarkerClass(markerClass.MarkerClassSymbol, ConversionMarkerKind.Bson);
+        string filename = Util.GetLegalFilenameForMarkerClass(markerClassSymbol, ConversionMarkerKind.Bson);
 
         Util.AddSourceToContext(filename, context, Util.FormatSource(sourceCode));
 
@@ -100,8 +95,7 @@ internal class GenerateCodeForBsonSerializers
 
             string GenerateEach()
             {
-                string?[] names = markerClass.AttributeDefinitions.Where(
-                    m => m.Marker?.Kind is ConversionMarkerKind.Bson).Select(
+                string?[] names = marker.Attributes.Select(
                     x =>
                     {
                         if (x.Marker is null)
@@ -122,8 +116,7 @@ internal class GenerateCodeForBsonSerializers
         {
             StringBuilder sb = new();
 
-            foreach (MarkerAttributeDefinition eachAttr in markerClass.AttributeDefinitions.Where(
-                         m => m.Marker?.Kind is ConversionMarkerKind.Bson))
+            foreach (MarkerAttributeDefinition eachAttr in marker.Attributes)
             {
                 // ReSharper disable NullableWarningSuppressionIsUsed
                 string generatedSource = GenerateSource(eachAttr.Marker!.VoSymbol, eachAttr.Marker!.UnderlyingTypeSymbol, "public");
