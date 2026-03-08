@@ -22,6 +22,8 @@ public class Bug898_Duplicate_partial_markers
                            public partial struct Vo2;
                                
                            [OpenApiMarker<Vo1>]
+                           public partial class OpenApiMarkers;
+
                            [OpenApiMarker<Vo2>]
                            public partial class OpenApiMarkers;
                        }

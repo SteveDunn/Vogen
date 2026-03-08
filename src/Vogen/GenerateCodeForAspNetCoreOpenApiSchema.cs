@@ -172,7 +172,7 @@ internal static class GenerateCodeForAspNetCoreOpenApiSchema
     public static void WriteOpenApiSpecForMarkers(SourceProductionContext context,
         List<VoWorkItem> workItems,
         VogenKnownSymbols knownSymbols,
-        ImmutableArray<MarkerClassDefinition> markerClasses)
+        MarkersCollection markerClasses)
     {
         var openApiVersion = OpenApiSchemaUtils.DetermineOpenApiVersionBeingUsed(knownSymbols);
 
@@ -181,16 +181,9 @@ internal static class GenerateCodeForAspNetCoreOpenApiSchema
             return;
         }
 
-        foreach (MarkerClassDefinition eachMarkerClass in markerClasses)
+        foreach (var marker in markerClasses.GetByKind(ConversionMarkerKind.OpenApi))
         {
-            var matchingMarkers = eachMarkerClass.AttributeDefinitions.Where(a => a.Marker?.Kind == ConversionMarkerKind.OpenApi).ToList();
-
-            if (matchingMarkers.Count == 0)
-            {
-                continue;
-            }
-
-            var items = eachMarkerClass.AttributeDefinitions.Select(ad => ad.Marker).Where(m => m is not null).Select(eachItem =>
+            var items = marker.Attributes.Select(ad => ad.Marker).Where(m => m is not null).Select(eachItem =>
                 new Item
                 {
                     IsTheWrapperAValueType = eachItem!.VoSymbol.IsValueType,
@@ -203,7 +196,7 @@ internal static class GenerateCodeForAspNetCoreOpenApiSchema
             WriteOpenApiExtensionMethodMapping(
                 context,
                 items,
-                $"MapVogenTypesIn{eachMarkerClass.MarkerClassSymbol.Name}",
+                $"MapVogenTypesIn{marker.Symbol.Name}",
                 openApiVersion);
         }
     }
