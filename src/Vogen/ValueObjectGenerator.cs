@@ -44,14 +44,14 @@ public class ValueObjectGenerator : IIncrementalGenerator
                 var targets = left.Right.Left.Left;
                 var globalConfig = left.Right.Left.Right;
                 var ks = source.Right;
-                var mrkerClasses = left.Right.Right;
+                ImmutableArray<MarkerDiscovery?> markerClasses = left.Right.Right;
                 
                 Execute(
                     compilation,
                     ks,
                     targets,
                     globalConfig,
-                    mrkerClasses,
+                    markerClasses,
                     spc);
             });
     }
@@ -69,9 +69,9 @@ public class ValueObjectGenerator : IIncrementalGenerator
                 transform: (ctx, _) => ManageAttributes.GetDefaultConfigFromGlobalAttribute(ctx))
             .Where(static m => m is not null)!;
 
-        IncrementalValuesProvider<MarkerClassDefinition> markerClasses = syntaxProvider.CreateSyntaxProvider(
+        IncrementalValuesProvider<MarkerDiscovery?> markerClasses = syntaxProvider.CreateSyntaxProvider(
                 predicate: (node, _) => VoFilter.IsDeclaringATypeAndHasAtLeastOneAttribute(node),
-                transform: (ctx, _) => ConversionMarkers.TryGetMarkerClassFromAttribute(ctx))
+                transform: (ctx, _) => ConversionMarkers.TryDiscoverMarkerClassFromAttribute(ctx))
             .Where(static m => m is not null)!;
 
         return new Found(targets, globalConfig, markerClasses);
@@ -80,32 +80,35 @@ public class ValueObjectGenerator : IIncrementalGenerator
     record struct Found(
         IncrementalValuesProvider<VoTarget> Vos,
         IncrementalValuesProvider<VogenConfigurationBuildResult> GlobalConfig,
-        IncrementalValuesProvider<MarkerClassDefinition> ConverterMarkerClasses);
+        IncrementalValuesProvider<MarkerDiscovery?> ConverterMarkerClasses);
     
     private static void Execute(
         Compilation compilation,
         VogenKnownSymbols vogenKnownSymbols,
         ImmutableArray<VoTarget> targets,
         ImmutableArray<VogenConfigurationBuildResult> globalConfigBuildResult,
-        ImmutableArray<MarkerClassDefinition> mc,
+        ImmutableArray<MarkerDiscovery?> markerDiscoveries,
         SourceProductionContext spc)
     {
         var csharpCompilation = compilation as CSharpCompilation;
-        if (csharpCompilation is null) return;
+        if (csharpCompilation is null)
+        {
+            return;
+        }
 
         using var internalDiags = InternalDiagnostics.TryCreateIfSpecialClassIsPresent(compilation, spc, vogenKnownSymbols);
         internalDiags.IncrementGeneratedCount();
 
         internalDiags.RecordTargets(targets);
 
-        var conversionMarkerErrors = mc.SelectMany(x => x.Diagnostics);
+        var conversionMarkerErrors = markerDiscoveries.SelectMany(x => x?.Diagnostics ?? Enumerable.Empty<Diagnostic>());
         
         foreach (var diagnostic in conversionMarkerErrors)
         {
             spc.ReportDiagnostic(diagnostic);
         }
 
-        var markerClasses = new MarkersCollection(mc);
+        var markerClasses = new MarkersCollection(markerDiscoveries);
         
         // if there are some, get the default global config
         VogenConfigurationBuildResult buildResult = globalConfigBuildResult.IsDefaultOrEmpty

@@ -7,8 +7,8 @@ internal static class GenerateEfCoreTypes
     public static string GenerateInner(INamedTypeSymbol primitiveType, bool isWrapperAValueType, INamedTypeSymbol voSymbol) =>
         Generate(isWritingAsInnerClass: true, primitiveType, isWrapperAValueType, voSymbol);
 
-    public static string GenerateBodyForAMarkerClass(ConversionMarker markerClass) => 
-        Generate(isWritingAsInnerClass: false, markerClass.UnderlyingTypeSymbol, markerClass.VoSymbol.IsValueType,  markerClass.VoSymbol);
+    public static string GenerateBodyForAMarkerClass(MarkerAttributeProperties markerAttributePropertiesClass) => 
+        Generate(isWritingAsInnerClass: false, markerAttributePropertiesClass.UnderlyingTypeSymbol, markerAttributePropertiesClass.VoSymbol.IsValueType,  markerAttributePropertiesClass.VoSymbol);
 
     private static string Generate(bool isWritingAsInnerClass, INamedTypeSymbol primitiveType, bool isWrapperAValueType, INamedTypeSymbol voSymbol)
     {
@@ -43,10 +43,10 @@ internal static class GenerateEfCoreTypes
         return code;
     }
 
-    public static string GenerateMarkerExtensionMethod(ConversionMarker marker)
+    public static string GenerateMarkerExtensionMethod(MarkerAttributeProperties markerAttributeProperties)
     {
-        var voSymbol = marker.VoSymbol;
-        var markerClassSymbol = marker.MarkerClassSymbol;
+        var voSymbol = markerAttributeProperties.VoSymbol;
+        var markerClassSymbol = markerAttributeProperties.MarkerClassSymbol;
 
         string voTypeName = voSymbol.EscapedFullName();
         

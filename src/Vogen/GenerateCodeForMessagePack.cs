@@ -89,7 +89,7 @@ internal class GenerateCodeForMessagePack : IGenerateConversion
         {
             StringBuilder sb = new();
 
-            foreach (MarkerAttributeDefinition eachAttr in markerClass.Attributes.Where(
+            foreach (MarkerPropertiesAndDiagnostics eachAttr in markerClass.Attributes.Where(
                          m => m.Marker?.Kind is ConversionMarkerKind.MessagePack))
             {
                 sb.AppendLine(

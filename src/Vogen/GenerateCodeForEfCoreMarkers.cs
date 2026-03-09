@@ -16,22 +16,22 @@ internal static class GenerateCodeForEfCoreMarkers
             return;
         }
 
-        ImmutableArray<MarkerAndAttributes> xxx = mcc.GetByKind(ConversionMarkerKind.EFCore);
+        ImmutableArray<MarkerAndAttributes> efCoreMarkers = mcc.GetByKind(ConversionMarkerKind.EFCore);
 
-        foreach (var eachMarkerClass in xxx)
+        foreach (MarkerAndAttributes? each in efCoreMarkers)
         {
-            var matchingMarkers = eachMarkerClass.Attributes;
+            var matchingMarkers = each.Attributes;
 
-            StoreExtensionMethodToRegisterAllInMarkerClass(eachMarkerClass.Symbol, matchingMarkers, context);
+            StoreExtensionMethodToRegisterAllInMarkerClass(each.Symbol, matchingMarkers, context);
             
-            foreach (MarkerAttributeDefinition? eachAttributeInMarkerClass in matchingMarkers)
+            foreach (MarkerPropertiesAndDiagnostics? eachAttributeInMarkerClass in matchingMarkers)
             {
                 WriteEachIfNeeded(context, eachAttributeInMarkerClass.Marker);
             }
         }
     }
 
-    private static void WriteEachIfNeeded(SourceProductionContext context, ConversionMarker? markerClass)
+    private static void WriteEachIfNeeded(SourceProductionContext context, MarkerAttributeProperties? markerClass)
     {
         if (markerClass is null)
         {
@@ -75,7 +75,7 @@ $$"""
     
     private static void StoreExtensionMethodToRegisterAllInMarkerClass(
         INamedTypeSymbol? markerSymbol, 
-        IEnumerable<MarkerAttributeDefinition> markerAttributes,
+        IEnumerable<MarkerPropertiesAndDiagnostics> markerAttributes,
         SourceProductionContext context)
     {
         if (markerSymbol is null)
@@ -125,7 +125,7 @@ $$"""
         {
             StringBuilder sb = new StringBuilder();
 
-            foreach (MarkerAttributeDefinition eachSpec in markerAttributes)
+            foreach (MarkerPropertiesAndDiagnostics eachSpec in markerAttributes)
             {
                 if (eachSpec.Marker is null)
                 {

@@ -10,9 +10,9 @@ namespace Vogen;
 /// and contains the symbol for the value object being referenced, a symbol for the underlying type of the value object,
 /// and a symbol for the method containing the attribute. 
 /// </summary>
-internal sealed class MarkerAttributeDefinition
+internal sealed class MarkerPropertiesAndDiagnostics
 {
-    private MarkerAttributeDefinition(ConversionMarker? marker, IEnumerable<Diagnostic> diagnostics)
+    private MarkerPropertiesAndDiagnostics(MarkerAttributeProperties? marker, IEnumerable<Diagnostic> diagnostics)
     {
         Marker = marker;
         Diagnostics = diagnostics.ToList();
@@ -21,22 +21,12 @@ internal sealed class MarkerAttributeDefinition
     /// <summary>
     /// Gets the marker or null if the associated attribute has an error.
     /// </summary>
-    public ConversionMarker? Marker { get;  }
+    public MarkerAttributeProperties? Marker { get;  }
 
     public List<Diagnostic> Diagnostics { get; }
 
-    public static MarkerAttributeDefinition Error(Diagnostic diag) => new(null, [diag]);
+    public static MarkerPropertiesAndDiagnostics Error(Diagnostic diag) => new(null, [diag]);
 
-    public static MarkerAttributeDefinition Ok(ConversionMarkerKind kind, INamedTypeSymbol voSymbol, INamedTypeSymbol underlyingTypeSymbol, INamedTypeSymbol sourceSymbol) =>
-        new(marker: new ConversionMarker(kind, voSymbol, underlyingTypeSymbol, sourceSymbol), diagnostics: []);
+    public static MarkerPropertiesAndDiagnostics Ok(ConversionMarkerKind kind, INamedTypeSymbol voSymbol, INamedTypeSymbol underlyingTypeSymbol, INamedTypeSymbol sourceSymbol) =>
+        new(marker: new MarkerAttributeProperties(kind, voSymbol, underlyingTypeSymbol, sourceSymbol), diagnostics: []);
 }
-
-// internal class ConversionMarkerCollection
-// {
-//     public ConversionMarker[] Markers { get; }
-//
-//     public ConversionMarkerCollection(ConversionMarker[] markers)
-//     {
-//         Markers = markers;
-//     }
-// }

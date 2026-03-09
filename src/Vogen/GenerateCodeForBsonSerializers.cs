@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using System.Collections.Immutable;
 using System.Linq;
 using System.Text;
 using Microsoft.CodeAnalysis;
@@ -116,7 +115,7 @@ internal class GenerateCodeForBsonSerializers
         {
             StringBuilder sb = new();
 
-            foreach (MarkerAttributeDefinition eachAttr in marker.Attributes)
+            foreach (MarkerPropertiesAndDiagnostics eachAttr in marker.Attributes)
             {
                 // ReSharper disable NullableWarningSuppressionIsUsed
                 string generatedSource = GenerateSource(eachAttr.Marker!.VoSymbol, eachAttr.Marker!.UnderlyingTypeSymbol, "public");

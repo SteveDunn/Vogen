@@ -202,7 +202,7 @@ internal static class DiagnosticsCatalogue
     public static Diagnostic BothImplicitAndExplicitCastsSpecified(INamedTypeSymbol voSymbol) =>
         Create(_bothImplicitAndExplicitCastsSpecified, voSymbol.Locations, voSymbol.Name); 
 
-    public static Diagnostic TypesReferencedInAConversionMarkerMustBeaValueObjects(INamedTypeSymbol markerClassSymbol, INamedTypeSymbol voSymbol) => 
+    public static Diagnostic TypesReferencedInAConversionMarkerMustBeValueObjects(INamedTypeSymbol markerClassSymbol, INamedTypeSymbol voSymbol) => 
         Create(_typesReferencedInAConversionMarkerMustBeaValueObjects, voSymbol.Locations, markerClassSymbol.Name, voSymbol.Name);
 
     private static DiagnosticDescriptor CreateDescriptor(string code, string title, string messageFormat, DiagnosticSeverity severity = DiagnosticSeverity.Error)
