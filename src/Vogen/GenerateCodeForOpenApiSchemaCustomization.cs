@@ -269,7 +269,7 @@ internal class GenerateCodeForOpenApiSchemaCustomization
         {
             "System.Int32" => new("integer", "Number", "int32"),
             "System.Int64" => new("integer", "Number", "int64"),
-            "System.Int16" => new("number", "Number", ""),
+            "System.Int16" => new("integer", "Integer", ""),
             "System.Single" => new("number", "Number", ""),
             "System.Decimal" => new("number", "Number", "double"),
             "System.Double" => new("number", "Number", "double"),
@@ -279,7 +279,7 @@ internal class GenerateCodeForOpenApiSchemaCustomization
             "System.DateTime" => new("string", "String", "date-time"),
             "System.DateTimeOffset" => new("string", "String", "date-time"),
             "System.Guid" => new("string", "String", "uuid"),
-            "System.Byte" => new("string", "String", "byte"),
+            "System.Byte" => new("integer", "Integer", ""),
             _ => TryMapComplexPrimitive(workItem.IParsableIsAvailable)
         };
 

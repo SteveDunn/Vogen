@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using WebApplication.Shared;
 
 [ApiController]
 [Route("api/[controller]")]
@@ -6,8 +7,8 @@ public class OrdersController : ControllerBase
 {
     private static readonly Order[] _orders =
     [
-        new() { OrderId = OrderId.From(1), CustomerName = CustomerName.From("Fred")},
-        new() { OrderId = OrderId.From(2), CustomerName = CustomerName.From("Barney")}
+        new() { OrderId = OrderId.From(1), CustomerName = CustomerName.From("Fred"),  SharedStruct = SharedStruct.From(1), CustomerCategory = Category.From(1),CustomerCode = Code.From(111), CustomerSecretCode = SecretCode.From('A')},
+        new() { OrderId = OrderId.From(2), CustomerName = CustomerName.From("Barney"),SharedStruct = SharedStruct.From(2), CustomerCategory = Category.From(2), CustomerCode = Code.From(222), CustomerSecretCode = SecretCode.From('Z')}
     ];
 
     [HttpGet]
