@@ -260,30 +260,48 @@ internal class GenerateCodeForOpenApiSchemaCustomization
 
     internal record struct TypeAndFormat(string Type, string JsonSchemaType, string Format);
 
+    private static readonly Dictionary<string, TypeAndFormat> _lookup = new()
+    {
+        { typeof(bool).FullName!, new("boolean", "Boolean", "") },
+        { typeof(byte).FullName!, new("integer", "Integer", "") },
+        { typeof(sbyte).FullName!, new("integer", "Integer", "") },
+        { typeof(short).FullName!, new("integer", "Integer", "int32") },
+        { typeof(ushort).FullName!, new("integer", "Integer", "int32") },
+        { typeof(int).FullName!, new("integer", "Number", "int32") },
+        { typeof(uint).FullName!, new("integer", "Integer", "int32") },
+        { typeof(long).FullName!, new("integer", "Number", "int64") },
+        { typeof(ulong).FullName!, new("integer", "Integer", "int64") },
+        { typeof(float).FullName!, new("number", "Number", "float") },
+        { typeof(double).FullName!, new("number", "Number", "double") },
+        { typeof(decimal).FullName!, new("number", "Number", "double") },
+        { typeof(string).FullName!, new("string", "String", "") },
+        { typeof(char).FullName!, new("string", "String", "") },
+        { typeof(byte[]).FullName!, new("string", "String", "byte") },
+        { typeof(DateTime).FullName!, new("string", "String", "date-time") },
+        { typeof(DateTimeOffset).FullName!, new("string", "String", "date-time") },
+        { typeof(TimeSpan).FullName!, new("string", "String", "date-span") },
+        { typeof(Guid).FullName!, new("string", "String", "uuid") },
+        { typeof(Uri).FullName!, new("string", "String", "uri") },
+        { typeof(Version).FullName!, new("string", "String", "") },
+        { "System.DateOnly", new("string", "String", "date") },
+        { "System.TimeOnly", new("string", "String", "time") },
+        { "System.Int128", new("integer", "Integer", "int128") },
+        { "System.UInt128", new("integer", "Integer", "int128") }
+    };
+
+
     // see https://spec.openapis.org/oas/v3.0.0.html#data-types
+    // and https://github.com/domaindrivendev/Swashbuckle.AspNetCore/blob/master/test/Swashbuckle.AspNetCore.Newtonsoft.Test/SchemaGenerator/NewtonsoftSchemaGeneratorTests.cs#L38
     internal static TypeAndFormat MapUnderlyingTypeToJsonSchema(Item workItem)
     {
         var primitiveType = workItem.UnderlyingTypeFullName;
 
-        TypeAndFormat jsonType = primitiveType switch
+        if (_lookup.TryGetValue(primitiveType, out var typeAndFormat))
         {
-            "System.Int32" => new("integer", "Number", "int32"),
-            "System.Int64" => new("integer", "Number", "int64"),
-            "System.Int16" => new("integer", "Integer", ""),
-            "System.Single" => new("number", "Number", ""),
-            "System.Decimal" => new("number", "Number", "double"),
-            "System.Double" => new("number", "Number", "double"),
-            "System.String" => new("string", "String", ""),
-            "System.Boolean" => new("boolean", "Boolean", ""),
-            "System.DateOnly" => new("string", "String", "date"),
-            "System.DateTime" => new("string", "String", "date-time"),
-            "System.DateTimeOffset" => new("string", "String", "date-time"),
-            "System.Guid" => new("string", "String", "uuid"),
-            "System.Byte" => new("integer", "Integer", ""),
-            _ => TryMapComplexPrimitive(workItem.IParsableIsAvailable)
-        };
-
-        return jsonType;
+            return typeAndFormat;
+        }
+        
+        return TryMapComplexPrimitive(workItem.IParsableIsAvailable);
     }
 
     private static TypeAndFormat TryMapComplexPrimitive(bool iParsableIsAvailable)
