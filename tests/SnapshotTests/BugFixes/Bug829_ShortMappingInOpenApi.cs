@@ -4,11 +4,11 @@ using Vogen;
 
 namespace SnapshotTests.BugFixes;
 
-// See https://github.com/SteveDunn/Vogen/issues/896
-public class Bug896_ByteMappingInOpenApi
+// See https://github.com/SteveDunn/Vogen/issues/829
+public class Bug829_ShortMappingInOpenApi
 {
     [Fact]
-    public async Task ByteMapping()
+    public async Task ShortMapping()
     {
         var source =
             $$"""
@@ -19,14 +19,11 @@ public class Bug896_ByteMappingInOpenApi
 
               namespace N;
 
-              [ValueObject<byte>]
-              public partial class MyVoByte { }
-
-              [ValueObject<char>]
-              public partial class MyVoChar { }
-
               [ValueObject<short>]
               public partial class MyVoShort { }
+
+              [ValueObject<ushort>]
+              public partial class MyVoUShort { }
               """;
 
         await new SnapshotRunner<ValueObjectGenerator>()
@@ -34,4 +31,3 @@ public class Bug896_ByteMappingInOpenApi
             .RunOn(TargetFramework.Net9_0);
     }
 }
-
