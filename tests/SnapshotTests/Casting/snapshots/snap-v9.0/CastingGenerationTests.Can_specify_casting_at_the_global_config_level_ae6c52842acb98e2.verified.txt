@@ -37,20 +37,19 @@ public static partial class VogenOpenApiExtensions
 		{
 			if (context.JsonTypeInfo.Type == typeof(global::Whatever._casting_public_partial_classImplicitExplicitbyte))
 			{
-				schema.Type = "string";
-				schema.Format = "byte";
+				schema.Type = "integer";
 			}
 
 			if (context.JsonTypeInfo.Type.IsArray && context.JsonTypeInfo.Type.GetElementType() == typeof(global::Whatever._casting_public_partial_classImplicitExplicitbyte))
 			{
 				schema.Type = "array";
-				schema.Items = new Microsoft.OpenApi.Models.OpenApiSchema { Type = "string", Format = "byte" };
+				schema.Items = new Microsoft.OpenApi.Models.OpenApiSchema { Type = "integer" };
 			}
 
 			if (context.JsonTypeInfo.Type.IsGenericType && context.JsonTypeInfo.Type.GetGenericArguments().Length == 1 && context.JsonTypeInfo.Type.GetGenericArguments()[0] == typeof(global::Whatever._casting_public_partial_classImplicitExplicitbyte))
 			{
 				schema.Type = "array";
-				schema.Items = new Microsoft.OpenApi.Models.OpenApiSchema { Type = "string", Format = "byte" };
+				schema.Items = new Microsoft.OpenApi.Models.OpenApiSchema { Type = "integer" };
 			}
 
 			return global::System.Threading.Tasks.Task.CompletedTask;

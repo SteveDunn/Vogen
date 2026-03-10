@@ -148,4 +148,9 @@ app.Run();
 [OpenApiMarker<City>]
 [OpenApiMarker<Age>]
 [OpenApiMarker<Name>]
+[OpenApiMarker<SecretCode>]
+[OpenApiMarker<SharedStruct>]
+[OpenApiMarker<Code>]
+[OpenApiMarker<Category>]
+[OpenApiMarker<SecretCode>]
 public partial class OpenApiMarkers;

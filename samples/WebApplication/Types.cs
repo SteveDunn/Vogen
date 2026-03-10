@@ -28,7 +28,16 @@ public partial struct OrderId
 {
 }
 
-[ValueObject<Guid>]
+[ValueObject<byte>]
+public partial struct Category;
+
+[ValueObject<short>]
+public partial struct Code;
+
+[ValueObject<char>]
+public partial struct SecretCode;
+
+[ValueObject<char>]
 public readonly partial struct HistoricForecastId;
 
 public class Order
@@ -39,5 +48,8 @@ public class Order
 
     public SharedStruct SharedStruct { get; init; }
     public SharedStruct? SharedStructOrNull { get; init; }
+    public Category CustomerCategory { get; set; }
+    public Code CustomerCode { get; set; }
+    public SecretCode CustomerSecretCode { get; set; }
 }
 

@@ -61,10 +61,10 @@ global::Microsoft.Extensions.DependencyInjection.SwaggerGenOptionsExtensions.Map
 global::Microsoft.Extensions.DependencyInjection.SwaggerGenOptionsExtensions.MapType<global::MyNamespace.@bool[]>(o, () => new global::Microsoft.OpenApi.Models.OpenApiSchema { Type = "array", Items = new global::Microsoft.OpenApi.Models.OpenApiSchema { Type = "boolean", Nullable = false } });
 global::Microsoft.Extensions.DependencyInjection.SwaggerGenOptionsExtensions.MapType<global::System.Collections.Generic.List<global::MyNamespace.@bool>>(o, () => new global::Microsoft.OpenApi.Models.OpenApiSchema { Type = "array", Items = new global::Microsoft.OpenApi.Models.OpenApiSchema { Type = "boolean", Nullable = false } });
 global::Microsoft.Extensions.DependencyInjection.SwaggerGenOptionsExtensions.MapType<global::System.Collections.Generic.IEnumerable<global::MyNamespace.@bool>>(o, () => new global::Microsoft.OpenApi.Models.OpenApiSchema { Type = "array", Items = new global::Microsoft.OpenApi.Models.OpenApiSchema { Type = "boolean", Nullable = false } });
-		global::Microsoft.Extensions.DependencyInjection.SwaggerGenOptionsExtensions.MapType<global::MyNamespace.MyVoShort>(o, () => new global::Microsoft.OpenApi.Models.OpenApiSchema { Type = "number", Nullable = false });
-global::Microsoft.Extensions.DependencyInjection.SwaggerGenOptionsExtensions.MapType<global::MyNamespace.MyVoShort[]>(o, () => new global::Microsoft.OpenApi.Models.OpenApiSchema { Type = "array", Items = new global::Microsoft.OpenApi.Models.OpenApiSchema { Type = "number", Nullable = false } });
-global::Microsoft.Extensions.DependencyInjection.SwaggerGenOptionsExtensions.MapType<global::System.Collections.Generic.List<global::MyNamespace.MyVoShort>>(o, () => new global::Microsoft.OpenApi.Models.OpenApiSchema { Type = "array", Items = new global::Microsoft.OpenApi.Models.OpenApiSchema { Type = "number", Nullable = false } });
-global::Microsoft.Extensions.DependencyInjection.SwaggerGenOptionsExtensions.MapType<global::System.Collections.Generic.IEnumerable<global::MyNamespace.MyVoShort>>(o, () => new global::Microsoft.OpenApi.Models.OpenApiSchema { Type = "array", Items = new global::Microsoft.OpenApi.Models.OpenApiSchema { Type = "number", Nullable = false } });
+		global::Microsoft.Extensions.DependencyInjection.SwaggerGenOptionsExtensions.MapType<global::MyNamespace.MyVoShort>(o, () => new global::Microsoft.OpenApi.Models.OpenApiSchema { Type = "integer", Nullable = false });
+global::Microsoft.Extensions.DependencyInjection.SwaggerGenOptionsExtensions.MapType<global::MyNamespace.MyVoShort[]>(o, () => new global::Microsoft.OpenApi.Models.OpenApiSchema { Type = "array", Items = new global::Microsoft.OpenApi.Models.OpenApiSchema { Type = "integer", Nullable = false } });
+global::Microsoft.Extensions.DependencyInjection.SwaggerGenOptionsExtensions.MapType<global::System.Collections.Generic.List<global::MyNamespace.MyVoShort>>(o, () => new global::Microsoft.OpenApi.Models.OpenApiSchema { Type = "array", Items = new global::Microsoft.OpenApi.Models.OpenApiSchema { Type = "integer", Nullable = false } });
+global::Microsoft.Extensions.DependencyInjection.SwaggerGenOptionsExtensions.MapType<global::System.Collections.Generic.IEnumerable<global::MyNamespace.MyVoShort>>(o, () => new global::Microsoft.OpenApi.Models.OpenApiSchema { Type = "array", Items = new global::Microsoft.OpenApi.Models.OpenApiSchema { Type = "integer", Nullable = false } });
 
 
         return o;
@@ -231,19 +231,19 @@ public static partial class VogenOpenApiExtensions
 
 			if (context.JsonTypeInfo.Type == typeof(global::MyNamespace.MyVoShort))
 			{
-				schema.Type = "number";
+				schema.Type = "integer";
 			}
 
 			if (context.JsonTypeInfo.Type.IsArray && context.JsonTypeInfo.Type.GetElementType() == typeof(global::MyNamespace.MyVoShort))
 			{
 				schema.Type = "array";
-				schema.Items = new Microsoft.OpenApi.Models.OpenApiSchema { Type = "number" };
+				schema.Items = new Microsoft.OpenApi.Models.OpenApiSchema { Type = "integer" };
 			}
 
 			if (context.JsonTypeInfo.Type.IsGenericType && context.JsonTypeInfo.Type.GetGenericArguments().Length == 1 && context.JsonTypeInfo.Type.GetGenericArguments()[0] == typeof(global::MyNamespace.MyVoShort))
 			{
 				schema.Type = "array";
-				schema.Items = new Microsoft.OpenApi.Models.OpenApiSchema { Type = "number" };
+				schema.Items = new Microsoft.OpenApi.Models.OpenApiSchema { Type = "integer" };
 			}
 
 			return global::System.Threading.Tasks.Task.CompletedTask;
