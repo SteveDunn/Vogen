@@ -44,14 +44,14 @@ public class ValueObjectGenerator : IIncrementalGenerator
                 var targets = left.Right.Left.Left;
                 var globalConfig = left.Right.Left.Right;
                 var ks = source.Right;
-                var mrkerClasses = left.Right.Right;
+                ImmutableArray<MarkerDiscovery?> markerClasses = left.Right.Right;
                 
                 Execute(
                     compilation,
                     ks,
                     targets,
                     globalConfig,
-                    mrkerClasses,
+                    markerClasses,
                     spc);
             });
     }
@@ -59,7 +59,7 @@ public class ValueObjectGenerator : IIncrementalGenerator
     private static Found GetTargets(SyntaxValueProvider syntaxProvider)
     {
         IncrementalValuesProvider<VoTarget> targets = syntaxProvider.CreateSyntaxProvider(
-                predicate: static (node, _) => VoFilter.IsTarget(node),
+                predicate: static (node, _) => VoFilter.IsDeclaringATypeAndHasAtLeastOneAttribute(node),
                 transform: static (ctx, _) => VoFilter.TryGetTarget(ctx))
             .Where(static m => m is not null)!;
 
@@ -69,9 +69,9 @@ public class ValueObjectGenerator : IIncrementalGenerator
                 transform: (ctx, _) => ManageAttributes.GetDefaultConfigFromGlobalAttribute(ctx))
             .Where(static m => m is not null)!;
 
-        IncrementalValuesProvider<MarkerClassDefinition> markerClasses = syntaxProvider.CreateSyntaxProvider(
-                predicate: (node, _) => ConversionMarkers.IsTarget(node),
-                transform: (ctx, _) => ConversionMarkers.GetMarkerClassFromAttribute(ctx))
+        IncrementalValuesProvider<MarkerDiscovery?> markerClasses = syntaxProvider.CreateSyntaxProvider(
+                predicate: (node, _) => VoFilter.IsDeclaringATypeAndHasAtLeastOneAttribute(node),
+                transform: (ctx, _) => ConversionMarkers.TryDiscoverMarkerClassFromAttribute(ctx))
             .Where(static m => m is not null)!;
 
         return new Found(targets, globalConfig, markerClasses);
@@ -80,30 +80,35 @@ public class ValueObjectGenerator : IIncrementalGenerator
     record struct Found(
         IncrementalValuesProvider<VoTarget> Vos,
         IncrementalValuesProvider<VogenConfigurationBuildResult> GlobalConfig,
-        IncrementalValuesProvider<MarkerClassDefinition> ConverterMarkerClasses);
+        IncrementalValuesProvider<MarkerDiscovery?> ConverterMarkerClasses);
     
     private static void Execute(
         Compilation compilation,
         VogenKnownSymbols vogenKnownSymbols,
         ImmutableArray<VoTarget> targets,
         ImmutableArray<VogenConfigurationBuildResult> globalConfigBuildResult,
-        ImmutableArray<MarkerClassDefinition> markerClasses,
+        ImmutableArray<MarkerDiscovery?> markerDiscoveries,
         SourceProductionContext spc)
     {
         var csharpCompilation = compilation as CSharpCompilation;
-        if (csharpCompilation is null) return;
+        if (csharpCompilation is null)
+        {
+            return;
+        }
 
         using var internalDiags = InternalDiagnostics.TryCreateIfSpecialClassIsPresent(compilation, spc, vogenKnownSymbols);
         internalDiags.IncrementGeneratedCount();
 
         internalDiags.RecordTargets(targets);
 
-        var conversionMarkerErrors = markerClasses.SelectMany(x => x.Diagnostics);
+        var conversionMarkerErrors = markerDiscoveries.SelectMany(x => x?.Diagnostics ?? Enumerable.Empty<Diagnostic>());
         
         foreach (var diagnostic in conversionMarkerErrors)
         {
             spc.ReportDiagnostic(diagnostic);
         }
+
+        var markerClasses = new MarkersCollection(markerDiscoveries);
         
         // if there are some, get the default global config
         VogenConfigurationBuildResult buildResult = globalConfigBuildResult.IsDefaultOrEmpty
@@ -127,7 +132,7 @@ public class ValueObjectGenerator : IIncrementalGenerator
         GenerateCodeForEfCoreMarkers.Generate(spc, compilation, markerClasses);
         
         // the user can specify to create the MessagePack generated code as an attribute
-        // or as marker in another project.
+        // or as a marker in another project.
         GenerateCodeForMessagePack.GenerateForApplicableValueObjects(spc, compilation, workItems);
         GenerateCodeForMessagePack.GenerateForMarkerClasses(spc, markerClasses);
         

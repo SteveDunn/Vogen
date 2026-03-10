@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using System.Collections.Immutable;
-using System.Linq;
 using System.Text;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.Text;
@@ -10,32 +9,29 @@ namespace Vogen;
 
 internal static class GenerateCodeForEfCoreMarkers
 {
-    public static void Generate(SourceProductionContext context, Compilation compilation, ImmutableArray<MarkerClassDefinition> markerClasses)
+    public static void Generate(SourceProductionContext context, Compilation compilation, MarkersCollection mcc)
     {
         if (!compilation.IsAtLeastCSharp12())
         {
             return;
         }
-        
-        foreach (MarkerClassDefinition eachMarkerClass in markerClasses)
-        {
-            var matchingMarkers = eachMarkerClass.AttributeDefinitions.Where(a => a.Marker?.Kind == ConversionMarkerKind.EFCore).ToList();
 
-            if (matchingMarkers.Count == 0)
-            {
-                continue;
-            }
+        ImmutableArray<MarkerAndAttributes> efCoreMarkers = mcc.GetByKind(ConversionMarkerKind.EFCore);
+
+        foreach (MarkerAndAttributes? each in efCoreMarkers)
+        {
+            var matchingMarkers = each.Attributes;
+
+            StoreExtensionMethodToRegisterAllInMarkerClass(each.Symbol, matchingMarkers, context);
             
-            StoreExtensionMethodToRegisterAllInMarkerClass(eachMarkerClass.MarkerClassSymbol, matchingMarkers, context);
-            
-            foreach (MarkerAttributeDefinition? eachAttributeInMarkerClass in matchingMarkers)
+            foreach (MarkerPropertiesAndDiagnostics? eachAttributeInMarkerClass in matchingMarkers)
             {
                 WriteEachIfNeeded(context, eachAttributeInMarkerClass.Marker);
             }
         }
     }
 
-    private static void WriteEachIfNeeded(SourceProductionContext context, ConversionMarker? markerClass)
+    private static void WriteEachIfNeeded(SourceProductionContext context, MarkerAttributeProperties? markerClass)
     {
         if (markerClass is null)
         {
@@ -79,7 +75,7 @@ $$"""
     
     private static void StoreExtensionMethodToRegisterAllInMarkerClass(
         INamedTypeSymbol? markerSymbol, 
-        IEnumerable<MarkerAttributeDefinition> markerAttributes,
+        IEnumerable<MarkerPropertiesAndDiagnostics> markerAttributes,
         SourceProductionContext context)
     {
         if (markerSymbol is null)
@@ -129,7 +125,7 @@ $$"""
         {
             StringBuilder sb = new StringBuilder();
 
-            foreach (MarkerAttributeDefinition eachSpec in markerAttributes)
+            foreach (MarkerPropertiesAndDiagnostics eachSpec in markerAttributes)
             {
                 if (eachSpec.Marker is null)
                 {

@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections.Immutable;
 using System.Linq;
 using System.Text;
 using Microsoft.CodeAnalysis;
@@ -16,7 +15,7 @@ internal class GenerateCodeForOpenApiSchemaCustomization
         SourceProductionContext context,
         List<VoWorkItem> workItems,
         VogenKnownSymbols knownSymbols,
-        ImmutableArray<MarkerClassDefinition> markerClasses,
+        MarkersCollection markerClasses,
         Compilation compilation)
     {
         GenerateCodeForAspNetCoreOpenApiSchema.WriteOpenApiSpecForMarkers(context, workItems, knownSymbols, markerClasses);

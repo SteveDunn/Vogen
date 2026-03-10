@@ -3,7 +3,6 @@ using System.Collections.Immutable;
 using System.Linq;
 using Analyzer.Utilities.Extensions;
 using Microsoft.CodeAnalysis;
-using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Vogen.Diagnostics;
 
 namespace Vogen;
@@ -18,13 +17,16 @@ internal static class ConversionMarkers
         { "BsonSerializerAttribute`1", ConversionMarkerKind.Bson }
     };
 
-    public static MarkerClassDefinition? GetMarkerClassFromAttribute(GeneratorSyntaxContext context)
+    public static MarkerDiscovery? TryDiscoverMarkerClassFromAttribute(GeneratorSyntaxContext context)
     {
         var semanticModel = context.SemanticModel;
 
-        ISymbol declaredSymbol = semanticModel.GetDeclaredSymbol(context.Node)!;
+        INamedTypeSymbol? markerClassSymbol = semanticModel.GetDeclaredSymbol(context.Node) as INamedTypeSymbol;
 
-        var markerClassSymbol = (INamedTypeSymbol) declaredSymbol;
+        if (markerClassSymbol is null)
+        {
+            return null;
+        }
 
         ImmutableArray<AttributeData> attributeData = GetAnyMarkerAttributes(markerClassSymbol).ToImmutableArray();
 
@@ -33,9 +35,10 @@ internal static class ConversionMarkers
             return null;
         }
 
-        return new MarkerClassDefinition(
+        IEnumerable<MarkerPropertiesAndDiagnostics> attrs = attributeData.Select(a => TryBuild(a, markerClassSymbol)).Where(a => a is not null)!;
+        return new MarkerDiscovery(
             markerClassSymbol, 
-            attributeData.Select(a => TryBuild(a, markerClassSymbol)).Where(a => a is not null)!);
+            attrs.ToImmutableArray());
     }
 
     private static IEnumerable<AttributeData> GetAnyMarkerAttributes(INamedTypeSymbol markerClass)
@@ -46,10 +49,7 @@ internal static class ConversionMarkers
             a => _knownMarkerAttributes.ContainsKey(a.AttributeClass?.MetadataName ?? ""));
     }
 
-    public static bool IsTarget(SyntaxNode node) => 
-        node is TypeDeclarationSyntax { AttributeLists.Count: > 0 };
-
-    private static MarkerAttributeDefinition? TryBuild(AttributeData markerAtt, in INamedTypeSymbol? markerClassSymbol)
+    private static MarkerPropertiesAndDiagnostics? TryBuild(AttributeData markerAtt, in INamedTypeSymbol markerClassSymbol)
     {
         ImmutableArray<TypedConstant> args = markerAtt.ConstructorArguments;
 
@@ -57,7 +57,7 @@ internal static class ConversionMarkers
 
         if (hasErroredAttributes)
         {
-            // skip further generator execution and let compiler generate the errors
+            // skip further generator execution and let the compiler generate the errors
             return null;
         }
 
@@ -75,8 +75,8 @@ internal static class ConversionMarkers
 
         if (!VoFilter.IsTarget(voSymbol))
         {
-            return MarkerAttributeDefinition.Error(
-                DiagnosticsCatalogue.TypesReferencedInAConversionMarkerMustBeaValueObjects(markerClassSymbol!, voSymbol));
+            return MarkerPropertiesAndDiagnostics.Error(
+                DiagnosticsCatalogue.TypesReferencedInAConversionMarkerMustBeValueObjects(markerClassSymbol, voSymbol));
         }
 
         List<AttributeData> voAttributes = VoFilter.TryGetValueObjectAttributes(voSymbol).ToList();
@@ -95,20 +95,20 @@ internal static class ConversionMarkers
             return null;
         }
 
-        VogenConfiguration c = config.ResultingConfiguration!;
+        VogenConfiguration? c = config.ResultingConfiguration;
 
-        var underlyingType = c.UnderlyingType ?? TryResolveUnderlyingType(voSymbol);
+        var underlyingType = c?.UnderlyingType ?? TryResolveUnderlyingType(voSymbol);
 
         if (underlyingType is null)
         {
-            return MarkerAttributeDefinition.Error(
+            return MarkerPropertiesAndDiagnostics.Error(
                 DiagnosticsCatalogue.VoReferencedInAConversionMarkerMustExplicitlySpecifyPrimitive(
-                    markerClassSymbol!, 
+                    markerClassSymbol, 
                     voSymbol, 
                     markerAtt.ApplicationSyntaxReference?.GetSyntax().GetLocation()));
         }
         
-        return MarkerAttributeDefinition.Ok(markerKind, voSymbol, underlyingType, markerClassSymbol!);
+        return MarkerPropertiesAndDiagnostics.Ok(markerKind, voSymbol, underlyingType, markerClassSymbol);
     }
 
     private static ConversionMarkerKind ResolveMarkerKind(AttributeData att) => 
@@ -126,6 +126,6 @@ internal static class ConversionMarkers
 
         IPropertySymbol? prop = ms[0] as IPropertySymbol;
         
-        return prop!.Type as INamedTypeSymbol;
+        return prop?.Type as INamedTypeSymbol;
     }
 }
