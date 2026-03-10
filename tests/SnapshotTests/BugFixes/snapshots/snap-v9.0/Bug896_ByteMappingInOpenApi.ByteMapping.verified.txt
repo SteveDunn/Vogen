@@ -71,19 +71,20 @@ public static partial class VogenOpenApiExtensions
 
 			if (context.JsonTypeInfo.Type == typeof(global::N.MyVoShort))
 			{
-				schema.Type = "string";
+				schema.Type = "integer";
+				schema.Format = "int32";
 			}
 
 			if (context.JsonTypeInfo.Type.IsArray && context.JsonTypeInfo.Type.GetElementType() == typeof(global::N.MyVoShort))
 			{
 				schema.Type = "array";
-				schema.Items = new Microsoft.OpenApi.Models.OpenApiSchema { Type = "string" };
+				schema.Items = new Microsoft.OpenApi.Models.OpenApiSchema { Type = "integer", Format = "int32" };
 			}
 
 			if (context.JsonTypeInfo.Type.IsGenericType && context.JsonTypeInfo.Type.GetGenericArguments().Length == 1 && context.JsonTypeInfo.Type.GetGenericArguments()[0] == typeof(global::N.MyVoShort))
 			{
 				schema.Type = "array";
-				schema.Items = new Microsoft.OpenApi.Models.OpenApiSchema { Type = "string" };
+				schema.Items = new Microsoft.OpenApi.Models.OpenApiSchema { Type = "integer", Format = "int32" };
 			}
 
 			return global::System.Threading.Tasks.Task.CompletedTask;
@@ -1519,8 +1520,8 @@ namespace N
     [global::System.Text.Json.Serialization.JsonConverter(typeof(MyVoShortSystemTextJsonConverter))]
     [global::System.ComponentModel.TypeConverter(typeof(MyVoShortTypeConverter))]
     [global::System.Diagnostics.DebuggerTypeProxyAttribute(typeof(MyVoShortDebugView))]
-    [global::System.Diagnostics.DebuggerDisplayAttribute("Underlying type: global::System.Char, Value = { _value }")]
-    public partial class MyVoShort : global::System.IEquatable<MyVoShort>, global::System.IEquatable<global::System.Char>, global::System.IComparable<MyVoShort>, global::System.IComparable, global::System.IFormattable, global::System.ISpanFormattable, global::System.IUtf8SpanFormattable, global::System.IConvertible
+    [global::System.Diagnostics.DebuggerDisplayAttribute("Underlying type: global::System.Int16, Value = { _value }")]
+    public partial class MyVoShort : global::System.IEquatable<MyVoShort>, global::System.IEquatable<global::System.Int16>, global::System.IComparable<MyVoShort>, global::System.IComparable, global::System.IParsable<MyVoShort>, global::System.ISpanParsable<MyVoShort>, global::System.IUtf8SpanParsable<MyVoShort>, global::System.IFormattable, global::System.ISpanFormattable, global::System.IUtf8SpanFormattable, global::System.IConvertible
     {
 #if DEBUG
 private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
@@ -1528,11 +1529,11 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
 #if !VOGEN_NO_VALIDATION
         private readonly global::System.Boolean _isInitialized;
 #endif
-        private readonly global::System.Char _value;
+        private readonly global::System.Int16 _value;
         /// <summary>
-        /// Gets the underlying <see cref = "char "/> value if set, otherwise a <see cref = "global::Vogen.ValueObjectValidationException"/> is thrown.
+        /// Gets the underlying <see cref = "short "/> value if set, otherwise a <see cref = "global::Vogen.ValueObjectValidationException"/> is thrown.
         /// </summary>
-        public global::System.Char Value
+        public global::System.Int16 Value
         {
             [global::System.Diagnostics.DebuggerStepThroughAttribute]
             [global::System.Runtime.CompilerServices.MethodImpl(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
@@ -1557,7 +1558,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
         }
 
         [global::System.Diagnostics.DebuggerStepThroughAttribute]
-        private MyVoShort(global::System.Char value)
+        private MyVoShort(global::System.Int16 value)
         {
             _value = value;
 #if !VOGEN_NO_VALIDATION
@@ -1571,7 +1572,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
         /// <param name = "value">The underlying type.</param>
         /// <returns>An instance of this type.</returns>
         [global::System.Runtime.CompilerServices.MethodImpl(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
-        public static MyVoShort From(global::System.Char value)
+        public static MyVoShort From(global::System.Int16 value)
         {
             return new MyVoShort(value);
         }
@@ -1588,7 +1589,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
 #if NETCOREAPP3_0_OR_GREATER
 [global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)]
 #endif
-        global::System.Char value, 
+        global::System.Int16 value, 
 #if NETCOREAPP3_0_OR_GREATER
 [global::System.Diagnostics.CodeAnalysis.MaybeNullWhen(false)]
 #endif
@@ -1605,7 +1606,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
         /// </summary>
         /// <param name = "value">The primitive value.</param>
         /// <returns>A <see cref = "global::Vogen.ValueObjectOrError{T}"/> containing either the value object, or an error.</returns>
-        public static global::Vogen.ValueObjectOrError<MyVoShort> TryFrom(global::System.Char value)
+        public static global::Vogen.ValueObjectOrError<MyVoShort> TryFrom(global::System.Int16 value)
         {
             return new global::Vogen.ValueObjectOrError<MyVoShort>(new MyVoShort(value));
         }
@@ -1620,7 +1621,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
 #endif
         // only called internally when something has been deserialized into
         // its primitive type.
-        private static MyVoShort __Deserialize(global::System.Char value)
+        private static MyVoShort __Deserialize(global::System.Int16 value)
         {
             return new MyVoShort(value);
         }
@@ -1641,7 +1642,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
                 return true;
             }
 
-            return GetType() == other.GetType() && global::System.Collections.Generic.EqualityComparer<global::System.Char>.Default.Equals(Value, other.Value);
+            return GetType() == other.GetType() && global::System.Collections.Generic.EqualityComparer<global::System.Int16>.Default.Equals(Value, other.Value);
         }
 
         public global::System.Boolean Equals(MyVoShort other, global::System.Collections.Generic.IEqualityComparer<MyVoShort> comparer)
@@ -1649,7 +1650,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
             return comparer.Equals(this, other);
         }
 
-        public global::System.Boolean Equals(global::System.Char primitive)
+        public global::System.Boolean Equals(global::System.Int16 primitive)
         {
             return Value.Equals(primitive);
         }
@@ -1661,12 +1662,12 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
 
         public static global::System.Boolean operator ==(MyVoShort left, MyVoShort right) => Equals(left, right);
         public static global::System.Boolean operator !=(MyVoShort left, MyVoShort right) => !Equals(left, right);
-        public static global::System.Boolean operator ==(MyVoShort left, global::System.Char right) => left.Value.Equals(right);
-        public static global::System.Boolean operator ==(global::System.Char left, MyVoShort right) => right.Value.Equals(left);
-        public static global::System.Boolean operator !=(global::System.Char left, MyVoShort right) => !(left == right);
-        public static global::System.Boolean operator !=(MyVoShort left, global::System.Char right) => !(left == right);
-        public static explicit operator MyVoShort(global::System.Char value) => From(value);
-        public static explicit operator global::System.Char(MyVoShort value) => value.Value;
+        public static global::System.Boolean operator ==(MyVoShort left, global::System.Int16 right) => left.Value.Equals(right);
+        public static global::System.Boolean operator ==(global::System.Int16 left, MyVoShort right) => right.Value.Equals(left);
+        public static global::System.Boolean operator !=(global::System.Int16 left, MyVoShort right) => !(left == right);
+        public static global::System.Boolean operator !=(MyVoShort left, global::System.Int16 right) => !(left == right);
+        public static explicit operator MyVoShort(global::System.Int16 value) => From(value);
+        public static explicit operator global::System.Int16(MyVoShort value) => value.Value;
         public int CompareTo(MyVoShort other)
         {
             if (other is null)
@@ -1684,7 +1685,183 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
             return 0;
         }
 
-        /// <inheritdoc cref = "char.TryParse(string? , out char)"/>
+        /// <inheritdoc cref = "short.TryParse(System.ReadOnlySpan{byte}, System.Globalization.NumberStyles, System.IFormatProvider? , out short)"/>
+        /// <summary>
+        /// </summary>
+        /// <returns>
+        /// True if the value could a) be parsed by the underlying type, and b) passes any validation (after running any optional normalization).
+        /// </returns>
+        public static global::System.Boolean TryParse(global::System.ReadOnlySpan<byte> utf8Text, global::System.Globalization.NumberStyles style, global::System.IFormatProvider provider, 
+#if NETCOREAPP3_0_OR_GREATER
+[global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)]
+#endif
+        out MyVoShort result)
+        {
+            if (global::System.Int16.TryParse(utf8Text, style, provider, out var __v))
+            {
+                result = new MyVoShort(__v);
+                return true;
+            }
+
+            result = default;
+            return false;
+        }
+
+        /// <inheritdoc cref = "short.TryParse(System.ReadOnlySpan{byte}, System.IFormatProvider? , out short)"/>
+        /// <summary>
+        /// </summary>
+        /// <returns>
+        /// True if the value could a) be parsed by the underlying type, and b) passes any validation (after running any optional normalization).
+        /// </returns>
+        public static global::System.Boolean TryParse(global::System.ReadOnlySpan<byte> utf8Text, global::System.IFormatProvider provider, 
+#if NETCOREAPP3_0_OR_GREATER
+[global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)]
+#endif
+        out MyVoShort result)
+        {
+            if (global::System.Int16.TryParse(utf8Text, provider, out var __v))
+            {
+                result = new MyVoShort(__v);
+                return true;
+            }
+
+            result = default;
+            return false;
+        }
+
+        /// <inheritdoc cref = "short.TryParse(System.ReadOnlySpan{byte}, out short)"/>
+        /// <summary>
+        /// </summary>
+        /// <returns>
+        /// True if the value could a) be parsed by the underlying type, and b) passes any validation (after running any optional normalization).
+        /// </returns>
+        public static global::System.Boolean TryParse(global::System.ReadOnlySpan<byte> utf8Text, 
+#if NETCOREAPP3_0_OR_GREATER
+[global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)]
+#endif
+        out MyVoShort result)
+        {
+            if (global::System.Int16.TryParse(utf8Text, out var __v))
+            {
+                result = new MyVoShort(__v);
+                return true;
+            }
+
+            result = default;
+            return false;
+        }
+
+        /// <inheritdoc cref = "short.TryParse(System.ReadOnlySpan{char}, System.Globalization.NumberStyles, System.IFormatProvider? , out short)"/>
+        /// <summary>
+        /// </summary>
+        /// <returns>
+        /// True if the value could a) be parsed by the underlying type, and b) passes any validation (after running any optional normalization).
+        /// </returns>
+        public static global::System.Boolean TryParse(global::System.ReadOnlySpan<char> s, global::System.Globalization.NumberStyles style, global::System.IFormatProvider provider, 
+#if NETCOREAPP3_0_OR_GREATER
+[global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)]
+#endif
+        out MyVoShort result)
+        {
+            if (global::System.Int16.TryParse(s, style, provider, out var __v))
+            {
+                result = new MyVoShort(__v);
+                return true;
+            }
+
+            result = default;
+            return false;
+        }
+
+        /// <inheritdoc cref = "short.TryParse(System.ReadOnlySpan{char}, System.IFormatProvider? , out short)"/>
+        /// <summary>
+        /// </summary>
+        /// <returns>
+        /// True if the value could a) be parsed by the underlying type, and b) passes any validation (after running any optional normalization).
+        /// </returns>
+        public static global::System.Boolean TryParse(global::System.ReadOnlySpan<char> s, global::System.IFormatProvider provider, 
+#if NETCOREAPP3_0_OR_GREATER
+[global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)]
+#endif
+        out MyVoShort result)
+        {
+            if (global::System.Int16.TryParse(s, provider, out var __v))
+            {
+                result = new MyVoShort(__v);
+                return true;
+            }
+
+            result = default;
+            return false;
+        }
+
+        /// <inheritdoc cref = "short.TryParse(System.ReadOnlySpan{char}, out short)"/>
+        /// <summary>
+        /// </summary>
+        /// <returns>
+        /// True if the value could a) be parsed by the underlying type, and b) passes any validation (after running any optional normalization).
+        /// </returns>
+        public static global::System.Boolean TryParse(global::System.ReadOnlySpan<char> s, 
+#if NETCOREAPP3_0_OR_GREATER
+[global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)]
+#endif
+        out MyVoShort result)
+        {
+            if (global::System.Int16.TryParse(s, out var __v))
+            {
+                result = new MyVoShort(__v);
+                return true;
+            }
+
+            result = default;
+            return false;
+        }
+
+        /// <inheritdoc cref = "short.TryParse(string? , System.Globalization.NumberStyles, System.IFormatProvider? , out short)"/>
+        /// <summary>
+        /// </summary>
+        /// <returns>
+        /// True if the value could a) be parsed by the underlying type, and b) passes any validation (after running any optional normalization).
+        /// </returns>
+        public static global::System.Boolean TryParse(string s, global::System.Globalization.NumberStyles style, global::System.IFormatProvider provider, 
+#if NETCOREAPP3_0_OR_GREATER
+[global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)]
+#endif
+        out MyVoShort result)
+        {
+            if (global::System.Int16.TryParse(s, style, provider, out var __v))
+            {
+                result = new MyVoShort(__v);
+                return true;
+            }
+
+            result = default;
+            return false;
+        }
+
+        /// <inheritdoc cref = "short.TryParse(string? , System.IFormatProvider? , out short)"/>
+        /// <summary>
+        /// </summary>
+        /// <returns>
+        /// True if the value could a) be parsed by the underlying type, and b) passes any validation (after running any optional normalization).
+        /// </returns>
+        public static global::System.Boolean TryParse(string s, global::System.IFormatProvider provider, 
+#if NETCOREAPP3_0_OR_GREATER
+[global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)]
+#endif
+        out MyVoShort result)
+        {
+            if (global::System.Int16.TryParse(s, provider, out var __v))
+            {
+                result = new MyVoShort(__v);
+                return true;
+            }
+
+            result = default;
+            return false;
+        }
+
+        /// <inheritdoc cref = "short.TryParse(string? , out short)"/>
         /// <summary>
         /// </summary>
         /// <returns>
@@ -1696,7 +1873,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
 #endif
         out MyVoShort result)
         {
-            if (global::System.Char.TryParse(s, out var __v))
+            if (global::System.Int16.TryParse(s, out var __v))
             {
                 result = new MyVoShort(__v);
                 return true;
@@ -1706,7 +1883,59 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
             return false;
         }
 
-        /// <inheritdoc cref = "char.Parse(string)"/>
+        /// <inheritdoc cref = "short.Parse(System.ReadOnlySpan{byte}, System.Globalization.NumberStyles, System.IFormatProvider? )"/>
+        /// <summary>
+        /// </summary>
+        /// <returns>
+        /// The value created by calling the Parse method on the primitive.
+        /// </returns>
+        /// <exception cref = "global::Vogen.ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
+        public static MyVoShort Parse(global::System.ReadOnlySpan<byte> utf8Text, global::System.Globalization.NumberStyles style, global::System.IFormatProvider provider)
+        {
+            var r = global::System.Int16.Parse(utf8Text, style, provider);
+            return From(r);
+        }
+
+        /// <inheritdoc cref = "short.Parse(System.ReadOnlySpan{byte}, System.IFormatProvider? )"/>
+        /// <summary>
+        /// </summary>
+        /// <returns>
+        /// The value created by calling the Parse method on the primitive.
+        /// </returns>
+        /// <exception cref = "global::Vogen.ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
+        public static MyVoShort Parse(global::System.ReadOnlySpan<byte> utf8Text, global::System.IFormatProvider provider)
+        {
+            var r = global::System.Int16.Parse(utf8Text, provider);
+            return From(r);
+        }
+
+        /// <inheritdoc cref = "short.Parse(System.ReadOnlySpan{char}, System.Globalization.NumberStyles, System.IFormatProvider? )"/>
+        /// <summary>
+        /// </summary>
+        /// <returns>
+        /// The value created by calling the Parse method on the primitive.
+        /// </returns>
+        /// <exception cref = "global::Vogen.ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
+        public static MyVoShort Parse(global::System.ReadOnlySpan<char> s, global::System.Globalization.NumberStyles style, global::System.IFormatProvider provider)
+        {
+            var r = global::System.Int16.Parse(s, style, provider);
+            return From(r);
+        }
+
+        /// <inheritdoc cref = "short.Parse(System.ReadOnlySpan{char}, System.IFormatProvider? )"/>
+        /// <summary>
+        /// </summary>
+        /// <returns>
+        /// The value created by calling the Parse method on the primitive.
+        /// </returns>
+        /// <exception cref = "global::Vogen.ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
+        public static MyVoShort Parse(global::System.ReadOnlySpan<char> s, global::System.IFormatProvider provider)
+        {
+            var r = global::System.Int16.Parse(s, provider);
+            return From(r);
+        }
+
+        /// <inheritdoc cref = "short.Parse(string)"/>
         /// <summary>
         /// </summary>
         /// <returns>
@@ -1715,34 +1944,73 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
         /// <exception cref = "global::Vogen.ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
         public static MyVoShort Parse(string s)
         {
-            var r = global::System.Char.Parse(s);
+            var r = global::System.Int16.Parse(s);
+            return From(r);
+        }
+
+        /// <inheritdoc cref = "short.Parse(string, System.Globalization.NumberStyles)"/>
+        /// <summary>
+        /// </summary>
+        /// <returns>
+        /// The value created by calling the Parse method on the primitive.
+        /// </returns>
+        /// <exception cref = "global::Vogen.ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
+        public static MyVoShort Parse(string s, global::System.Globalization.NumberStyles style)
+        {
+            var r = global::System.Int16.Parse(s, style);
+            return From(r);
+        }
+
+        /// <inheritdoc cref = "short.Parse(string, System.Globalization.NumberStyles, System.IFormatProvider? )"/>
+        /// <summary>
+        /// </summary>
+        /// <returns>
+        /// The value created by calling the Parse method on the primitive.
+        /// </returns>
+        /// <exception cref = "global::Vogen.ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
+        public static MyVoShort Parse(string s, global::System.Globalization.NumberStyles style, global::System.IFormatProvider provider)
+        {
+            var r = global::System.Int16.Parse(s, style, provider);
+            return From(r);
+        }
+
+        /// <inheritdoc cref = "short.Parse(string, System.IFormatProvider? )"/>
+        /// <summary>
+        /// </summary>
+        /// <returns>
+        /// The value created by calling the Parse method on the primitive.
+        /// </returns>
+        /// <exception cref = "global::Vogen.ValueObjectValidationException">Thrown when the value can be parsed, but is not valid.</exception>
+        public static MyVoShort Parse(string s, global::System.IFormatProvider provider)
+        {
+            var r = global::System.Int16.Parse(s, provider);
             return From(r);
         }
 
 #nullable disable
-        /// <inheritdoc cref = "System.IFormattable"/>
-        string System.IFormattable.ToString(string format, global::System.IFormatProvider formatProvider)
+        /// <inheritdoc cref = "short.ToString(string? , System.IFormatProvider? )"/>
+        public string ToString([System.Diagnostics.CodeAnalysis.StringSyntaxAttribute("NumericFormat")] string format, global::System.IFormatProvider provider)
         {
-            return IsInitialized() ? (Value as System.IFormattable).ToString(format, formatProvider) : "[UNINITIALIZED]";
+            return IsInitialized() ? Value.ToString(format, provider) : "[UNINITIALIZED]";
         }
 
-        /// <inheritdoc cref = "System.ISpanFormattable"/>
-        bool System.ISpanFormattable.TryFormat(global::System.Span<char> destination, out int charsWritten, global::System.ReadOnlySpan<char> format, global::System.IFormatProvider provider)
+        /// <inheritdoc cref = "short.TryFormat(System.Span{char}, out int, System.ReadOnlySpan{char}, System.IFormatProvider? )"/>
+        public bool TryFormat(global::System.Span<char> destination, out int charsWritten, [System.Diagnostics.CodeAnalysis.StringSyntaxAttribute("NumericFormat")] global::System.ReadOnlySpan<char> format, global::System.IFormatProvider provider)
         {
             charsWritten = default;
-            return IsInitialized() ? (Value as System.ISpanFormattable).TryFormat(destination, out charsWritten, format, provider) : true;
+            return IsInitialized() ? Value.TryFormat(destination, out charsWritten, format, provider) : true;
         }
 
-        /// <inheritdoc cref = "System.IUtf8SpanFormattable"/>
-        bool System.IUtf8SpanFormattable.TryFormat(global::System.Span<byte> utf8Destination, out int bytesWritten, global::System.ReadOnlySpan<char> format, global::System.IFormatProvider provider)
+        /// <inheritdoc cref = "short.TryFormat(System.Span{byte}, out int, System.ReadOnlySpan{char}, System.IFormatProvider? )"/>
+        public bool TryFormat(global::System.Span<byte> utf8Destination, out int bytesWritten, [System.Diagnostics.CodeAnalysis.StringSyntaxAttribute("NumericFormat")] global::System.ReadOnlySpan<char> format, global::System.IFormatProvider provider)
         {
             bytesWritten = default;
-            return IsInitialized() ? (Value as System.IUtf8SpanFormattable).TryFormat(utf8Destination, out bytesWritten, format, provider) : true;
+            return IsInitialized() ? Value.TryFormat(utf8Destination, out bytesWritten, format, provider) : true;
         }
 
 #nullable restore
 #nullable disable
-        /// <inheritdoc cref = "char.GetTypeCode()"/>
+        /// <inheritdoc cref = "short.GetTypeCode()"/>
         public System.TypeCode GetTypeCode()
         {
             return IsInitialized() ? Value.GetTypeCode() : default;
@@ -1845,15 +2113,17 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
             {
                 global::System.Int32 hash = (global::System.Int32)2166136261;
                 hash = (hash * 16777619) ^ GetType().GetHashCode();
-                hash = (hash * 16777619) ^ global::System.Collections.Generic.EqualityComparer<global::System.Char>.Default.GetHashCode(Value);
+                hash = (hash * 16777619) ^ global::System.Collections.Generic.EqualityComparer<global::System.Int16>.Default.GetHashCode(Value);
                 return hash;
             }
         }
 
-        /// <inheritdoc cref = "char.ToString()"/>
+        /// <inheritdoc cref = "short.ToString()"/>
         public override global::System.String ToString() => IsInitialized() ? Value.ToString() ?? "" : "[UNINITIALIZED]";
-        /// <inheritdoc cref = "char.ToString(System.IFormatProvider? )"/>
+        /// <inheritdoc cref = "short.ToString(System.IFormatProvider? )"/>
         public global::System.String ToString(global::System.IFormatProvider provider) => IsInitialized() ? Value.ToString(provider) ?? "" : "[UNINITIALIZED]";
+        /// <inheritdoc cref = "short.ToString(string? )"/>
+        public global::System.String ToString([System.Diagnostics.CodeAnalysis.StringSyntaxAttribute("NumericFormat")] string format) => IsInitialized() ? Value.ToString(format) ?? "" : "[UNINITIALIZED]";
         [global::System.Runtime.CompilerServices.MethodImpl(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
         private void EnsureInitialized()
         {
@@ -1875,26 +2145,31 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
         {
             public override MyVoShort Read(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {
-                var s = reader.GetString();
-                return DeserializeJson(s[0]);
+#if NET5_0_OR_GREATER
+                return DeserializeJson(global::System.Text.Json.JsonSerializer.Deserialize(ref reader, (global::System.Text.Json.Serialization.Metadata.JsonTypeInfo<global::System.Int16>)options.GetTypeInfo(typeof(global::System.Int16))));
+#else
+                return DeserializeJson(reader.GetInt16());
+#endif
             }
 
             public override void Write(global::System.Text.Json.Utf8JsonWriter writer, MyVoShort value, global::System.Text.Json.JsonSerializerOptions options)
             {
-                writer.WriteStringValue(value.Value.ToString());
+#if NET5_0_OR_GREATER
+                global::System.Text.Json.JsonSerializer.Serialize(writer, value.Value, options);
+#else
+                writer.WriteNumberValue(value.Value);
+#endif
             }
 
 #if NET6_0_OR_GREATER
             public override MyVoShort ReadAsPropertyName(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {
-                var s = reader.GetString();
-
-                return DeserializeJson(s[0]);
+                return DeserializeJson(global::System.Int16.Parse(reader.GetString(), global::System.Globalization.NumberStyles.Any, global::System.Globalization.CultureInfo.InvariantCulture));
             }
 
             public override void WriteAsPropertyName(global::System.Text.Json.Utf8JsonWriter writer, MyVoShort value, global::System.Text.Json.JsonSerializerOptions options)
             {
-                writer.WritePropertyName(value.Value.ToString());
+                writer.WritePropertyName(value.Value.ToString(global::System.Globalization.CultureInfo.InvariantCulture));
             }
 #endif
 #if NETCOREAPP3_0_OR_GREATER
@@ -1906,7 +2181,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
                 throw new global::System.Text.Json.JsonException(null, e);
             }
 
-            private static MyVoShort DeserializeJson(global::System.Char value)
+            private static MyVoShort DeserializeJson(global::System.Int16 value)
             {
                 return new MyVoShort(value);
             }
@@ -1918,32 +2193,31 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
         {
             public override global::System.Boolean CanConvertFrom(global::System.ComponentModel.ITypeDescriptorContext context, global::System.Type sourceType)
             {
-                return sourceType == typeof(global::System.Char) || sourceType == typeof(global::System.String) || base.CanConvertFrom(context, sourceType);
+                return sourceType == typeof(global::System.Int16) || sourceType == typeof(global::System.String) || base.CanConvertFrom(context, sourceType);
             }
 
             public override global::System.Object ConvertFrom(global::System.ComponentModel.ITypeDescriptorContext context, global::System.Globalization.CultureInfo culture, global::System.Object value)
             {
                 return value switch
                 {
-                    global::System.Char charValue => MyVoShort.__Deserialize(charValue),
-                    global::System.Int16 shortValue => MyVoShort.__Deserialize((global::System.Char)shortValue),
-                    global::System.Int32 intValue => MyVoShort.__Deserialize((global::System.Char)intValue),
-                    global::System.Int64 longValue => MyVoShort.__Deserialize((global::System.Char)longValue),
-                    global::System.String stringValue when !global::System.String.IsNullOrEmpty(stringValue) && global::System.Char.TryParse(stringValue, out var result) => MyVoShort.__Deserialize(result),
+                    global::System.Int16 shortValue => MyVoShort.__Deserialize(shortValue),
+                    global::System.Int32 intValue => MyVoShort.__Deserialize((global::System.Int16)intValue),
+                    global::System.Int64 longValue => MyVoShort.__Deserialize((global::System.Int16)longValue),
+                    global::System.String stringValue when !global::System.String.IsNullOrEmpty(stringValue) && global::System.Int16.TryParse(stringValue, out var result) => MyVoShort.__Deserialize(result),
                     _ => base.ConvertFrom(context, culture, value),
                 };
             }
 
             public override bool CanConvertTo(global::System.ComponentModel.ITypeDescriptorContext context, global::System.Type sourceType)
             {
-                return sourceType == typeof(global::System.Char) || sourceType == typeof(global::System.String) || base.CanConvertTo(context, sourceType);
+                return sourceType == typeof(global::System.Int16) || sourceType == typeof(global::System.String) || base.CanConvertTo(context, sourceType);
             }
 
             public override object ConvertTo(global::System.ComponentModel.ITypeDescriptorContext context, global::System.Globalization.CultureInfo culture, global::System.Object value, global::System.Type destinationType)
             {
                 if (value is MyVoShort idValue)
                 {
-                    if (destinationType == typeof(global::System.Char))
+                    if (destinationType == typeof(global::System.Int16))
                     {
                         return idValue.Value;
                     }
@@ -1967,8 +2241,8 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
                 _t = t;
             }
 
-            public global::System.String UnderlyingType => "global::System.Char";
-            public global::System.Char Value => _t.Value;
+            public global::System.String UnderlyingType => "global::System.Int16";
+            public global::System.Int16 Value => _t.Value;
             public global::System.String Conversions => @"[global::System.Text.Json.Serialization.JsonConverter(typeof(MyVoShortSystemTextJsonConverter))]
 [global::System.ComponentModel.TypeConverter(typeof(MyVoShortTypeConverter))]
 ";

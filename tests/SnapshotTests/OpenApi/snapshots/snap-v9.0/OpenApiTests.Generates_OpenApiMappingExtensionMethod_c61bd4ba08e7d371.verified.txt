@@ -56,18 +56,19 @@ public static partial class VogenOpenApiExtensions
 			if (context.JsonTypeInfo.Type == typeof(MyVoFloat))
 			{
 				schema.Type = "number";
+				schema.Format = "float";
 			}
 
 			if (context.JsonTypeInfo.Type.IsArray && context.JsonTypeInfo.Type.GetElementType() == typeof(MyVoFloat))
 			{
 				schema.Type = "array";
-				schema.Items = new Microsoft.OpenApi.Models.OpenApiSchema { Type = "number" };
+				schema.Items = new Microsoft.OpenApi.Models.OpenApiSchema { Type = "number", Format = "float" };
 			}
 
 			if (context.JsonTypeInfo.Type.IsGenericType && context.JsonTypeInfo.Type.GetGenericArguments().Length == 1 && context.JsonTypeInfo.Type.GetGenericArguments()[0] == typeof(MyVoFloat))
 			{
 				schema.Type = "array";
-				schema.Items = new Microsoft.OpenApi.Models.OpenApiSchema { Type = "number" };
+				schema.Items = new Microsoft.OpenApi.Models.OpenApiSchema { Type = "number", Format = "float" };
 			}
 
 			if (context.JsonTypeInfo.Type == typeof(MyVoDecimal))
@@ -160,18 +161,19 @@ public static partial class VogenOpenApiExtensions
 			if (context.JsonTypeInfo.Type == typeof(MyVoShort))
 			{
 				schema.Type = "integer";
+				schema.Format = "int32";
 			}
 
 			if (context.JsonTypeInfo.Type.IsArray && context.JsonTypeInfo.Type.GetElementType() == typeof(MyVoShort))
 			{
 				schema.Type = "array";
-				schema.Items = new Microsoft.OpenApi.Models.OpenApiSchema { Type = "integer" };
+				schema.Items = new Microsoft.OpenApi.Models.OpenApiSchema { Type = "integer", Format = "int32" };
 			}
 
 			if (context.JsonTypeInfo.Type.IsGenericType && context.JsonTypeInfo.Type.GetGenericArguments().Length == 1 && context.JsonTypeInfo.Type.GetGenericArguments()[0] == typeof(MyVoShort))
 			{
 				schema.Type = "array";
-				schema.Items = new Microsoft.OpenApi.Models.OpenApiSchema { Type = "integer" };
+				schema.Items = new Microsoft.OpenApi.Models.OpenApiSchema { Type = "integer", Format = "int32" };
 			}
 
 			return global::System.Threading.Tasks.Task.CompletedTask;
