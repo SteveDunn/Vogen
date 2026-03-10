@@ -21,6 +21,12 @@ public class Bug896_ByteMappingInOpenApi
 
               [ValueObject<byte>]
               public partial class MyVoByte { }
+
+              [ValueObject<char>]
+              public partial class MyVoChar { }
+
+              [ValueObject<char>]
+              public partial class MyVoShort { }
               """;
 
         await new SnapshotRunner<ValueObjectGenerator>()
