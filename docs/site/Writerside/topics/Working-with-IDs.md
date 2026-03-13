@@ -1,6 +1,10 @@
 # Working with IDs
 
-This tutorial takes you through working with value objects which represent IDs. You should follow this tutorial if you want to customize how IDs are generated. It describes how to work with sequential Guids which are optimised for use in SQL server.  
+This tutorial takes you through working with value objects which represent IDs. It shows how to create a custom factory that generates deterministic values, in this case, sequential GUIDs (a technique that used to be used* to create optimised GUIDs for use in SQL server) 
+
+*Note that sequential GUIDs are now part of .NET with the addition of `Guid.CreateVersion7` - this is described in the [FAQ](FAQ.md#can-i-have-a-factory-method-for-value-objects-that-wrap-guids)
+
+You should follow this tutorial if you want to customize how IDs are generated or have any requirement to generate deterministicall values. 
 
 **1. Create a new value object based on a Guid**
 ```c#
