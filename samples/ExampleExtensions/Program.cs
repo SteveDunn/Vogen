@@ -1,33 +1,55 @@
 ﻿using Vogen;
 
+// Generates the IVogen<TWrapper, TPrimitive> interface, which can then be used in C# 14 extension members.
 [assembly: VogenDefaults(
     staticAbstractsGeneration: StaticAbstractsGeneration.MostCommon)]
 
-Console.WriteLine("Hello, World!");
+int suppliedId = 123;
+int? nullId = null;
 
-int supplied = 123;
-int? notSupplied = null;
+var non_null_id_1 = CustomerId.From(suppliedId);
+var non_null_id_2 = CustomerId.FromNullable(suppliedId);
+CustomerId? null_id_1 = CustomerId.FromNullable(nullId);
 
-var non_null1 = MyId.From(supplied);
-var non_null2 = MyId.FromNullable(supplied);
-MyId? null_1 = MyId.FromNullable(notSupplied);
+string suppliedName = "Frescho";
+string? nullName = null;
 
-Write(non_null1);
-Write(non_null2);
-Write(null_1);
+var non_null_name_1 = CustomerName.From(suppliedName);
+var non_null_name_2 = CustomerName.FromNullable(suppliedName);
+CustomerName? null_name_1 = CustomerName.FromNullable(nullName);
+
+WriteId(non_null_id_1);
+WriteId(non_null_id_2);
+WriteId(null_id_1);
+
+WriteName(non_null_name_1);
+WriteName(non_null_name_2);
+WriteName(null_name_1);
 return;
 
-static void Write(MyId? vo) => Console.WriteLine(vo?.Value.ToString() ?? "null");
+static void WriteId(CustomerId? vo) => Console.WriteLine(vo?.Value.ToString() ?? "null");
+static void WriteName(CustomerName? vo) => Console.WriteLine(vo?.Value ?? "null");
 
 
 [ValueObject<int>]
-public partial class MyId;
+public partial class CustomerId;
 
-static class Extensions
+[ValueObject<string>]
+public partial class CustomerName;
+
+internal static class Extensions
 {
-    extension<TWrapper, TPrimitive>(IVogen<TWrapper, TPrimitive>) where TWrapper : IVogen<TWrapper, TPrimitive> where TPrimitive : struct
+    extension<TWrapper, TPrimitive>(IVogen<TWrapper, TPrimitive>) 
+        where TWrapper : IVogen<TWrapper, TPrimitive> 
+        where TPrimitive : struct
     {
         public static TWrapper? FromNullable(TPrimitive? value) => value is null ? default : TWrapper.From(value.Value);
-        
     }
+    
+    extension<TWrapper, TPrimitive>(IVogen<TWrapper, TPrimitive>)
+        where TWrapper : IVogen<TWrapper, TPrimitive>
+        where TPrimitive : class
+    {
+        public static TWrapper? FromNullable(TPrimitive? value) => value is null ? default : TWrapper.From(value);
+    }    
 }
