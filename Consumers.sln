@@ -38,6 +38,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApplication.Shared", "sa
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MultiTarget", "samples\MultiTarget\MultiTarget.csproj", "{9EDBE469-EB9A-44C7-BBCF-79E8AB58CB13}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExampleExtensions", "samples\ExampleExtensions\ExampleExtensions.csproj", "{7D0D9EC6-3DB7-4540-B049-090C5CBB5402}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -84,6 +86,10 @@ Global
 		{9EDBE469-EB9A-44C7-BBCF-79E8AB58CB13}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9EDBE469-EB9A-44C7-BBCF-79E8AB58CB13}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9EDBE469-EB9A-44C7-BBCF-79E8AB58CB13}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7D0D9EC6-3DB7-4540-B049-090C5CBB5402}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7D0D9EC6-3DB7-4540-B049-090C5CBB5402}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7D0D9EC6-3DB7-4540-B049-090C5CBB5402}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7D0D9EC6-3DB7-4540-B049-090C5CBB5402}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
