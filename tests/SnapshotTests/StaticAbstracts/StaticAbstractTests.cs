@@ -76,12 +76,16 @@ public class StaticAbstractTests
                      using Vogen;
 
                      [assembly: VogenDefaults(
-                     systemTextJsonConverterFactoryGeneration: SystemTextJsonConverterFactoryGeneration.Omit, 
-                     conversions: Conversions.None, 
-                     staticAbstractsGeneration: StaticAbstractsGeneration.FactoryMethods | StaticAbstractsGeneration.EqualsOperators | StaticAbstractsGeneration.ImplicitCastFromPrimitive | StaticAbstractsGeneration.ImplicitCastToPrimitive)]
+                         systemTextJsonConverterFactoryGeneration: SystemTextJsonConverterFactoryGeneration.Omit, 
+                         conversions: Conversions.None, 
+                         staticAbstractsGeneration: 
+                            StaticAbstractsGeneration.FactoryMethods | 
+                            StaticAbstractsGeneration.EqualsOperators | 
+                            StaticAbstractsGeneration.ImplicitCastFromPrimitive | 
+                            StaticAbstractsGeneration.ImplicitCastToPrimitive)]
 
                      [ValueObject<Guid>(toPrimitiveCasting: CastOperator.Implicit, fromPrimitiveCasting: CastOperator.Implicit)]
-                     public partial class MyVo { }
+                     public partial class MyVo;
                      """;
 
         await new SnapshotRunner<ValueObjectGenerator>()
@@ -176,18 +180,18 @@ public class StaticAbstractTests
     public async Task Generates_code_for_different_variations(params string[] flags)
     {
         string attrs = string.Join(" | ", flags.Select(f => $"StaticAbstractsGeneration.{f}"));
+        
         var source = $$"""
                        using System;
                        using Vogen;
 
                        [assembly: VogenDefaults(
-                       systemTextJsonConverterFactoryGeneration: SystemTextJsonConverterFactoryGeneration.Omit, 
-                       conversions: Conversions.None, 
-                       staticAbstractsGeneration: {{attrs}})]
+                           systemTextJsonConverterFactoryGeneration: SystemTextJsonConverterFactoryGeneration.Omit, 
+                           conversions: Conversions.None, 
+                           staticAbstractsGeneration: {{attrs}})]
 
                        [ValueObject<Guid>]
-                       public partial struct MyVo { }
-
+                       public partial struct MyVo;
                        """;
 
         await new SnapshotRunner<ValueObjectGenerator>()
