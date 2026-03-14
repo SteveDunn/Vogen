@@ -4,11 +4,11 @@
 
 ### Is there a 'FromNullable' method?
 No, Vogen encourages real values that mean something in your domain. null hardly ever means anything (it doesn't even nothing!). However, in certain situations outside of the domain, handling nulls is useful.
-So, while there's nothing built in, you can extend Vogen and add a `FromNullable` method. See this [how-to] page(https://github.com/SteveDunn/Vogen/blob/main/docs/site/Writerside/topics/Handling-nulls.md)
+So, while there's nothing built in, you can extend Vogen and add a `FromNullable` method. See this [how-to](Handling-nulls.md) page
 
 ## What versions of .NET are supported?
 
-The source generator is .NET Standard 2.0. The code it generates supports all C# language versions from 6.0 and onwards
+The source generator is .NET Standard 2.0. The generated code is generally compatible with all C# language versions from 6.0 but certain features, such as EF Core marker classes and BSON serializers, are gated for use in C# 12 and onwards.
 
 If you're using the generator in a .NET Framework project and using the old style projects (the one before the 'SDK style' projects), then you'll need to do a few things differently:
 
@@ -199,12 +199,13 @@ The [casting page](Casting.md) describes these problems in more detail.
 
 > _"I'd like to tell if a type is a Vogen value object by seeing if it implements an interface, such as `IValidated<T>"`_
 
-**NOTE**
-Vogen _can_ now generate an interface, but it's a _[curiously recurring template](https://en.wikipedia.org/wiki/Curiously_recurring_template_pattern)_, and so isn't particularly useful in the same way as a _normal_ interface is and how it would be used in this context
+By default, an interface is not generated. However, in certain circumstances, you might want to have an interface, which is described below.
 
-Just like primitives have no interfaces (aside from static abstract interfaces, such as those used in [generic math](https://dunnhq.com/posts/2021/generic-math/)), there's usually no need to have interfaces on value objects. 
-The receiver that takes a `CustomerId` knows that it's a value object. 
-If it were instead to take (for example), an `IValidated<int>`, then it wouldn't have any more information; 
+### Why is there no interface by default?
+
+Just like primitives have no interfaces (aside from static abstract interfaces, such as those used in [generic math](https://dunnhq.com/posts/2021/generic-math/)), there's usually no need to have interfaces on value objects.
+The receiver that takes a `CustomerId` knows that it's a value object.
+If it were instead to take (for example), an `IValidated<int>`, then it wouldn't have any more information;
 you'd still have to know to call `Value` to get the value.
 
 It might also relax type-safety. Without the interface, we have signatures such as this:
@@ -229,7 +230,12 @@ So, callers could mess things up by calling `DoSomething(productId, supplierId, 
 
 There would also be no need to know if it's validated, as, if it's in your domain, **it's valid** (there's no way to manually create invalid instances).  And with that said, there would also be no point in exposing the 'Validate' method via the interface because validation is done at creation.
 
-Having said that, outside the domain, it can be useful to have an interface. The [Guids tutorial](how-to-guides.topic) describes how to generate the interface and when it's useful to do so. 
+Having said that, it can be sometimes be useful to have an interface, for example, [generating sequential IDs](#can-i-have-a-factory-method-for-value-objects-that-wrap-guids).
+
+### How can I generate the interface?
+
+Vogen _can_ now generate an interface, but it's a _[curiously recurring template](https://en.wikipedia.org/wiki/Curiously_recurring_template_pattern)_, and so isn't particularly useful in the same way as a _normal_ interface is and how it would be used in this context
+
 
 ## Can I represent special values
 
@@ -303,8 +309,10 @@ So I added a [language proposal for invariant records](https://github.com/dotnet
 One of the responses in the proposal says that the language team decided that validation policies shouldn’t be part of C# but provided by source generators.
 
 ## How do I run the benchmarks?
+                                                       
+Run the following in the Vogen.Benchmarks folder:
 
-`dotnet run -c Release -- --job short --framework net6.0 --filter *`
+`dotnet run -c Release -- --job short --framework net10.0 --filter *`
 
 ## Why do I get a build error when running `.\Build.ps1`?
 

@@ -4,7 +4,7 @@ This tutorial takes you through working with value objects which represent IDs. 
 
 *Note that sequential GUIDs are now part of .NET with the addition of `Guid.CreateVersion7` - this is described in the [FAQ](FAQ.md#can-i-have-a-factory-method-for-value-objects-that-wrap-guids)
 
-You should follow this tutorial if you want to customize how IDs are generated or have any requirement to generate deterministicall values. 
+You should follow this tutorial if you want to customize how IDs are generated or have any requirement to generate deterministic values. 
 
 **1. Create a new value object based on a Guid**
 ```c#
