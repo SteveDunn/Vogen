@@ -11,6 +11,8 @@ public class Bug720_Inconsistent_casting_mixed_with_IVogen_generation
     public async Task Works_when_the_static_abstracts_and_implementation_have_same_casting()
     {
         // we say that to primitive is implicit and we say that the static abstract interface matches.
+
+        // language=c#
         var source = """
                      using Vogen;
                      using static Vogen.StaticAbstractsGeneration;
