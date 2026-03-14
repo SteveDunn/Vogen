@@ -587,4 +587,3 @@ the new source code that is generated.
 To do this, run `RunSnapshots.ps1 -reset`. This will delete all the snapshots and treat what is generated
 as the correct version. Needless to say, only do this if you're sure the newly generated code is
 correct.
-~~~~
