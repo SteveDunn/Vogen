@@ -3,7 +3,7 @@
 ## Usage FAQ
 
 ### Is there a 'FromNullable' method?
-No, Vogen encourages real values that mean something in your domain. null hardly ever means anything (it doesn't even nothing!). However, in certain situations outside of the domain, handling nulls is useful.
+No, Vogen encourages real values that mean something in your domain. `null` hardly ever **means** anything (it doesn't even mean _nothing_!). However, in certain situations outside of the domain, handling nulls is useful.
 So, while there's nothing built in, you can extend Vogen and add a `FromNullable` method. See this [how-to](Handling-nulls.md) page
 
 ## What versions of .NET are supported?
@@ -97,7 +97,7 @@ public record struct CustomerId
 ```
 
 You might also provide other constructors which might not validate the data, thereby _allowing invalid data 
-into your domain_. Those other constructors might not throw exceptions or might throw different exceptions.  
+into your domain_. Those other constructors might not throw exceptions (or might throw different exceptions).  
 One of the opinions in Vogen is that any invalid data given to a Value Object throws a `ValueObjectValidationException`.
 
 You could also use `default(CustomerId)` to evade validation.  In Vogen, there are analyzers that catch this and fail the build, e.g.:
@@ -152,7 +152,7 @@ Concretely: *"When 5 things need to change, Shalloway will find at most, 4 of th
 
 **Yes**. The analyzer generates a compilation error.
 
-## If my VO is a `struct`, can I prohibit using `CustomerId customerId = new(CustomerId);`?
+## If my VO is a `struct`, can I prohibit using `CustomerId customerId = new CustomerId();`?
 
 **Yes**. The analyzer generates a compilation error.
 
@@ -221,7 +221,7 @@ public void DoSomething(
 
 ```c#
 public void DoSomething(
-  IValidate<int> customerId, 
+  IValidated<int> customerId, 
   IValidated<int> supplierId, 
   IValidated<int> productId);
 ```
@@ -261,7 +261,7 @@ public readonly partial struct Age
 }
 ```
 
-Using `new` is only permitted in the value object itself and bypassed validation (and normalization).
+Using `new` is only permitted in the value object itself and bypasses validation (and normalization).
 
 You can then use default values when using these types, e.g.
 
@@ -283,9 +283,9 @@ public void CanEnter(Age age) {
 ```
 
 ## Can I normalize the value when a VO is created?
-I'd like to normalize/sanitize the values used, for example, trimming the input. Is this possible?
+Is it possible normalize/sanitize the values used, for example, trimming the input?
 
-Yes, add NormalizeInput method, e.g.
+Yes, add a `NormalizeInput` method, e.g.
 ```c#
     private static string NormalizeInput(string input) => input.Trim();
 ```
@@ -312,7 +312,7 @@ One of the responses in the proposal says that the language team decided that va
                                                        
 Run the following in the Vogen.Benchmarks folder:
 
-`dotnet run -c Release -- --job short --framework net10.0 --filter *`
+`dotnet run -c Release -- --job short --runtimes net10.0 --filter *`
 
 ## Why do I get a build error when running `.\Build.ps1`?
 
@@ -374,7 +374,7 @@ public partial struct SpecialMeasurement;
 
 Collections aren’t allowed as they don't exhibit value-equality.
 It is worth considering if the type you're wrapping in your value object exhibits value-equality.
-For types that don't, it completely breaks down the principal of value objects.
+For types that don't, it completely breaks down the principle of value objects.
 
 ## I've made a change that means the 'Snapshot' tests are expectedly failing in the build—what do I do?
 
@@ -390,7 +390,7 @@ platform and tooling. Those are [described here](https://github.com/VerifyTests/
 snapshot runner to overwrite the expected files with the actual files that are generated.**
 
 To do this, run `.\RunSnapshots.ps1 -v "minimal" -reset`. 
-This deletes all `snaphsot` folders under the `tests` 
+This deletes all `snapshot` folders under the `tests` 
 folder and treats everything generated as the new baseline for future comparisons.
 
 This will mean there are potentially **thousands** of changed files that will end up in the commit, 
@@ -485,8 +485,8 @@ If you don't want that, then you can specify in your project that you don't want
 
 ```xml
 <PropertyGroup>
-    <OutputType>Exe</OutputType>
-    <TargetFramework>net8.0</TargetFramework>
+    <OutputType>...</OutputType>
+    <TargetFramework>...</TargetFramework>
     ➕ <DefineConstants>VOGEN_NO_VALIDATION</DefineConstants>
 </PropertyGroup>
 ```
@@ -567,7 +567,7 @@ To run the snapshot tests, run `RunSnapshots.ps1`
 Most tests involve checking two, maybe three, things:
 * checking that the source generated is as expected (so the snapshot tests in the main solution)
 * checking that the behavior of the change works as expected (so a test in the `consumers` solution (`tests/consumers.sln`))
-* (maybe) - if you added/changed the behavior of the code that generates the source code (rather than just changing a template), then a unit test in the main solution
+* (maybe) – if you added/changed the behavior of the code that generates the source code (rather than just changing a template), then a unit test in the main solution
 
 ## I've changed the source that is generated, and I now have snapshot failures, what should I do?
 

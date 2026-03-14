@@ -8,8 +8,8 @@ using BenchmarkDotNet.Jobs;
 namespace Vogen.Benchmarks.NoValidation
 {
     [MemoryDiagnoser, InliningDiagnoser(logFailuresOnly: false, filterByNamespace: true), Description("The underlying type is int and there is no validation")]
-    // [SimpleJob(RuntimeMoniker.Net60)]
-    // [SimpleJob(RuntimeMoniker.Net80)]
+    [SimpleJob(RuntimeMoniker.Net10_0)]
+    [SimpleJob(RuntimeMoniker.Net90)]
     public class Underlying_Int_With_No_Validation
     {
         private volatile int _n1;

@@ -7,8 +7,8 @@ using BenchmarkDotNet.Jobs;
 namespace Vogen.Benchmarks.WithValidation
 {
     [MemoryDiagnoser, Description("The underlying type is int and the VOs validation that they're > 0")]
-    [SimpleJob(RuntimeMoniker.Net60)]
-    [SimpleJob(RuntimeMoniker.Net80)]
+    [SimpleJob(RuntimeMoniker.Net10_0)]
+    [SimpleJob(RuntimeMoniker.Net90)]
     public class Underlying_Int_With_Validation
     {
         // ReSharper disable once FieldCanBeMadeReadOnly.Local

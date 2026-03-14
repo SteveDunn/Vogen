@@ -40,6 +40,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MultiTarget", "samples\Mult
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExampleExtensions", "samples\ExampleExtensions\ExampleExtensions.csproj", "{7D0D9EC6-3DB7-4540-B049-090C5CBB5402}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vogen.Benchmarks", "tests\Vogen.Benchmarks\Vogen.Benchmarks.csproj", "{0FF8DF8D-76E3-4511-B204-44687615429D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -90,6 +92,10 @@ Global
 		{7D0D9EC6-3DB7-4540-B049-090C5CBB5402}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7D0D9EC6-3DB7-4540-B049-090C5CBB5402}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7D0D9EC6-3DB7-4540-B049-090C5CBB5402}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0FF8DF8D-76E3-4511-B204-44687615429D}.Debug|Any CPU.ActiveCfg = Release|Any CPU
+		{0FF8DF8D-76E3-4511-B204-44687615429D}.Debug|Any CPU.Build.0 = Release|Any CPU
+		{0FF8DF8D-76E3-4511-B204-44687615429D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0FF8DF8D-76E3-4511-B204-44687615429D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
