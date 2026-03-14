@@ -22,6 +22,7 @@
         <toc-element topic="Working-with-databases.md"/>
     </toc-element>
     <toc-element topic="how-to-guides.topic">
+        <toc-element topic="Handling-nulls.md"/>
         <toc-element topic="create-and-use-value-objects.md"/>
         <toc-element topic="Validate-values.md"/>
         <toc-element topic="Instances.md"/>

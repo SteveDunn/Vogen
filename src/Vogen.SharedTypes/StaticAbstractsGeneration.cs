@@ -53,16 +53,29 @@ public enum StaticAbstractsGeneration
     InstanceMethodsAndProperties = 1 << 6,
 
     /// <summary>
-    /// Value objects that are generated derive from `: IVogen`. Use just this flag if you have several projects and only wish to
-    /// generate the definition in one of them, or if you want to define it yourself.
+    /// Value objects that are generated implement the generic `: IVogen` interface.
+    /// If you don't want the interface declaration to be generated, e.g., because you're declaring it in another
+    /// project (either Vogen is generating it, or you've declared it yourself), combine this with <see cref="OmitInterfaceDeclaration"/>.
+    /// NOTE: Use the more specifically named 'InstancesHaveInterfaceDefinition' instead - this will be marked as obsolete at some point.
     /// </summary>
     ValueObjectsDeriveFromTheInterface = 1 << 7,
+    
+    /// <summary>
+    /// Value objects that are generated implement the generic `: IVogen` interface.
+    /// </summary>
+    InstancesHaveInterfaceDefinition = 1 << 7,
+
+    /// <summary>
+    /// Omit the generation of the generic IVogen interface. Use this if you're declaring it in another
+    /// project (either Vogen is generating it, or you've declared it yourself).
+    /// </summary>
+    OmitInterfaceDeclaration = 1 << 8,
 
     /// <summary>
     /// The most common usage; generates the definition, containing equals, explicit casts, and factory methods, and
     /// make value objects derive from it.
     /// </summary>
-    MostCommon = ValueObjectsDeriveFromTheInterface |
+    MostCommon = InstancesHaveInterfaceDefinition |
                  EqualsOperators |
                  ExplicitCastFromPrimitive |
                  ExplicitCastToPrimitive |

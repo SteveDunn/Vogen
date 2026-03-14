@@ -19,7 +19,7 @@ internal class GenerateCodeForStaticAbstracts
                                                VogenConfiguration.DefaultInstance.StaticAbstractsGeneration;
 
         // we don't want to generate if omitting or if we're only _using_ the interface (it could be declared somewhere else)
-        if (generation is StaticAbstractsGeneration.Omit or StaticAbstractsGeneration.ValueObjectsDeriveFromTheInterface)
+        if (generation is StaticAbstractsGeneration.Omit || generation.HasFlag(StaticAbstractsGeneration.OmitInterfaceDeclaration))
         {
             return;
         }
@@ -156,7 +156,7 @@ internal class GenerateCodeForStaticAbstracts
             return string.Empty;
         }
 
-        if (!item.Config.StaticAbstractsGeneration.HasFlag(StaticAbstractsGeneration.ValueObjectsDeriveFromTheInterface))
+        if (!item.Config.StaticAbstractsGeneration.HasFlag(StaticAbstractsGeneration.InstancesHaveInterfaceDefinition))
         {
             return string.Empty;
         }

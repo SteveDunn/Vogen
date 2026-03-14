@@ -2,7 +2,7 @@
 
 // Generates the IVogen<TWrapper, TPrimitive> interface, which can then be used in C# 14 extension members.
 [assembly: VogenDefaults(
-    staticAbstractsGeneration: StaticAbstractsGeneration.ValueObjectsDeriveFromTheInterface)]
+    staticAbstractsGeneration: StaticAbstractsGeneration.InstancesHaveInterfaceDefinition | StaticAbstractsGeneration.FactoryMethods)]
 
 int suppliedId = 123;
 int? nullId = null;
