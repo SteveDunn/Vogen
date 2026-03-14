@@ -10,7 +10,7 @@ So, while there's nothing built in, you can extend Vogen and add a `FromNullable
 
 The source generator is .NET Standard 2.0. The generated code is generally compatible with all C# language versions from 6.0 but certain features, such as EF Core marker classes and BSON serializers, are gated for use in C# 12 and onwards.
 
-If you're using the generator in a .NET Framework project and using the old style projects (the one before the 'SDK style' projects), then you'll need to do a few things differently:
+If you're still using older non-SDK-style .NET Framework projects, you'll need some additional setup:
 
 * add the reference using `PackageReference` in the `.csproj` file:
 
