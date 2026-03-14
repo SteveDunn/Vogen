@@ -8,6 +8,7 @@ public class LocalConfigTests
     [Fact]
     public Task OmitDebugAttributes_override()
     {
+        // language=c#
         var source = @"using System;
 using Vogen;
 namespace Whatever;
@@ -25,6 +26,7 @@ public partial struct CustomerId
     [Fact]
     public Task Defaults()
     {
+        // language=c#
         var source = @"using System;
 using Vogen;
 namespace Whatever;
@@ -42,6 +44,7 @@ public partial struct CustomerId
     [Fact]
     public Task Defaults_with_validation()
     {
+        // language=c#
         var source = @"using System;
 using Vogen;
 namespace Whatever;
@@ -66,6 +69,7 @@ public partial struct CustomerId
     [Fact]
     public Task Defaults_with_validation_and_instances()
     {
+        // language=c#
         var source = @"using System;
 using Vogen;
 namespace Whatever;
@@ -91,6 +95,7 @@ public partial struct CustomerId
     [Fact]
     public Task Type_override()
     {
+        // language=c#
         var source = @"using System;
 using Vogen;
 namespace Whatever;
@@ -108,6 +113,7 @@ public partial struct CustomerId
     [Fact]
     public Task Exception_override()
     {
+        // language=c#
         var source = @"using System;
 using Vogen;
 namespace Whatever;
@@ -132,6 +138,7 @@ public class MyValidationException : Exception
     [Fact]
     public Task Conversion_override()
     {
+        // language=c#
         var source = @"using System;
 using Vogen;
 namespace Whatever;
@@ -147,6 +154,7 @@ public partial struct CustomerId { }";
     [Fact]
     public Task Conversion_and_exceptions_override()
     {
+        // language=c#
         var source = @"using System;
 using Vogen;
 namespace Whatever;
@@ -172,6 +180,7 @@ public class MyValidationException : Exception
     [Fact]
     public Task Override_global_config_locally()
     {
+        // language=c#
         var source = @"using System;
 using Vogen;
 

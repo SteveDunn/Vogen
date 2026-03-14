@@ -72,7 +72,8 @@ namespace record.@struct.@float
 
   [ValueObject(conversions: {conversions}, underlyingType: typeof({underlyingType}))]
   {type} {className} {{ }}";
-        
+
+        // language=c#
         var source = @"using Vogen;
 namespace @class
 {

@@ -76,6 +76,7 @@ public class GenerationPermutationTests
                             """;
         }
 
+        // language=c#
         var source = $$"""
                        using Vogen;
                        namespace Whatever

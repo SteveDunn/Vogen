@@ -9,6 +9,7 @@ public class GenericAttributeTests
     [SkippableFact]
     public Task Partial_struct_created_successfully()
     {
+        // language=c#
         var source = @"using Vogen;
 namespace Whatever;
 
@@ -27,6 +28,7 @@ public partial struct CustomerId
             .RunOn(TargetFramework.Latest);
 
     [SkippableFact]
+    // language=c#
     public Task No_namespace() =>
         RunTest(@"using Vogen;
 
@@ -39,6 +41,7 @@ public partial struct CustomerId
     [SkippableFact]
     public Task Produces_instances()
     {
+        // language=c#
         return RunTest(@"using Vogen;
 
 namespace Whatever;
@@ -58,6 +61,7 @@ public partial struct CustomerId
     [SkippableFact]
     public Task Produces_instances_with_derived_attribute()
     {
+        // language=c#
         return RunTest(@"using Vogen;
 
 namespace Whatever;
@@ -84,6 +88,7 @@ public partial struct CustomerId
     [SkippableFact]
     public Task Validation_with_PascalCased_validate_method()
     {
+        // language=c#
         return RunTest(@"using Vogen;
 
 namespace Whatever;
@@ -105,6 +110,7 @@ public partial struct CustomerId
     [SkippableFact]
     public Task Validation_with_camelCased_validate_method()
     {
+        // language=c#
         return RunTest(@"using Vogen;
 
 namespace Whatever;
@@ -151,6 +157,7 @@ public partial struct CustomerId
     [SkippableFact]
     public Task Namespace_names_can_have_reserved_keywords()
     {
+        // language=c#
         return RunTest(@"using Vogen;
 
 namespace @double;

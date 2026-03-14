@@ -37,6 +37,7 @@ public class PermutationsOfConversionsTests
     
     private static Task RunTest(string declaration, string type, string conversions)
     {
+        // language=c#
         var source = $@"using System;
 using Vogen;
 namespace Whatever

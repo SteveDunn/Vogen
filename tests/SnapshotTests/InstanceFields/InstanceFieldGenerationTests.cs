@@ -50,6 +50,7 @@ public partial struct BooleanThing
     [Fact]
     public Task Instance_names_can_have_reserved_keywords()
     {
+        // language=c#
         var source = @"using Vogen;
 
 namespace Whatever;
@@ -101,6 +102,7 @@ public partial struct CustomerId
   [ValueObject(underlyingType: typeof({underlyingType}))]
   [Instance(name: ""MyValue"", value: {instanceValue})]
   {type} {className} {{}}";
+        // language=c#
         var source = @"using Vogen;
 namespace Whatever
 {

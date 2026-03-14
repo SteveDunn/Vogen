@@ -67,6 +67,7 @@ public class CustomizeNumbersAsStringsInSystemTextJson
 
         }
 
+        // language=c#
         var source = @"using Vogen;
 namespace Whatever
 {

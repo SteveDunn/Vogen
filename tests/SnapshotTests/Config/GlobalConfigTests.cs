@@ -8,6 +8,7 @@ public class GlobalConfigTests
     [Fact]
     public Task Disable_stack_trace_recording_in_debug()
     {
+        // language=c#
         var source = @"using System;
 using Vogen;
 
@@ -29,6 +30,7 @@ public partial struct CustomerId
     [Fact]
     public Task Enable_stack_trace_recoding_in_debug()
     {
+        // language=c#
         var source = @"using System;
 using Vogen;
 
@@ -50,6 +52,7 @@ public partial struct CustomerId
     [Fact]
     public Task Type_override()
     {
+        // language=c#
         var source = @"using System;
 using Vogen;
 
@@ -71,6 +74,7 @@ public partial struct CustomerId
     [Fact]
     public Task OmitDebugAttributes_override()
     {
+        // language=c#
         var source = @"using System;
 using Vogen;
 
@@ -154,6 +158,7 @@ public partial struct CustomerId
     [Fact]
     public Task Customization_override()
     {
+        // language=c#
         var source = @"
 #pragma warning disable CS0618 // 'Customizations.TreatNumberAsStringInSystemTextJson' is obsolete
 using System;
@@ -175,6 +180,7 @@ public partial struct CustomerId { }
     [Fact]
     public Task Conversion_and_exceptions_override()
     {
+        // language=c#
         var source = @"using System;
 using Vogen;
 

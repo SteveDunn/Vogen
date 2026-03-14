@@ -452,6 +452,7 @@ public class GeneralTests
     [Fact]
     public async Task ServiceStackDotTextConversion_generates_static_constructor_for_strings()
     {
+        // language=c#
         var source = @"using Vogen;
   [ValueObject(conversions: Conversions.ServiceStackDotText, underlyingType: typeof(string))]
   public partial struct MyVo { }
@@ -465,6 +466,7 @@ public class GeneralTests
     [Fact]
     public async Task ServiceStackDotTextConversion_generates_static_constructor_for_non_strings()
     {
+        // language=c#
         var source = @"using Vogen;
   [ValueObject(conversions: Conversions.ServiceStackDotText, underlyingType: typeof(int))]
   public partial struct MyVo { }
@@ -479,6 +481,7 @@ public class GeneralTests
     [Fact]
     public async Task ServiceStackDotTextConversion_generates_static_constructor_for_time_related_primitives()
     {
+        // language=c#
         var source = @"using System;
   using Vogen;
   [ValueObject(conversions: Conversions.ServiceStackDotText, underlyingType: typeof(TimeOnly))]
@@ -493,6 +496,7 @@ public class GeneralTests
     [Fact]
     public async Task ServiceStackDotTextConversion_generates_static_constructor_for_date_time()
     {
+        // language=c#
         var source = @"using System;
   using Vogen;
   [ValueObject(conversions: Conversions.ServiceStackDotText, underlyingType: typeof(DateTime))]
@@ -507,6 +511,7 @@ public class GeneralTests
     [Fact]
     public async Task Can_use_derived_ValueObjectAttribute()
     {
+        // language=c#
         var source = @"using System;
   using Vogen;
 
@@ -534,6 +539,7 @@ internal class C
     [Fact]
     public async Task EFCore_generated_stuff()
     {
+        // language=c#
         var source = @"using Vogen;
   [ValueObject(conversions: Conversions.EfCoreValueConverter, underlyingType: typeof(string))]
   public partial struct MyVo { }
@@ -566,6 +572,7 @@ internal class C
     [Fact]
     public async Task User_supplied_Equals()
     {
+        // language=c#
         var source = @"using Vogen;
 [ValueObject(typeof(string))]
 public readonly partial record struct MyVo
@@ -593,6 +600,7 @@ public readonly partial record struct MyVo
     [SkippableFact]
     public async Task User_supplied_Equals_generic()
     {
+        // language=c#
         var source = @"using Vogen;
 [ValueObject<string>]
 public readonly partial record struct MyVo
@@ -620,6 +628,7 @@ public readonly partial record struct MyVo
     [Fact]
     public async Task Bug_fix_516_user_can_provide_Equals_and_GetHashCode()
     {
+        // language=c#
         var source = @"using Vogen;
 [ValueObject(typeof(string))]
 public readonly partial record struct BugFix516Vo
@@ -646,6 +655,7 @@ public readonly partial record struct BugFix516Vo
     [Fact]
     public Task Partial_record_struct_created_successfully()
     {
+        // language=c#
         var source = @"using Vogen;
 namespace Whatever;
 
@@ -660,6 +670,7 @@ public readonly partial record struct CustomerId
     [Fact]
     public Task No_stack_trace_recording()
     {
+        // language=c#
         var source = @"using Vogen;
 [assembly: VogenDefaults(disableStackTraceRecordingInDebug: true)]
 
@@ -676,6 +687,7 @@ public readonly partial record struct CustomerId
     [Fact]
     public Task No_casting()
     {
+        // language=c#
         var source = @"using Vogen;
 namespace Whatever;
 
@@ -689,6 +701,7 @@ public partial class MyVo { }
     [Fact]
     public Task No_is_initialized_method()
     {
+        // language=c#
         var source = @"using Vogen;
 namespace Whatever;
 
@@ -702,6 +715,7 @@ public partial class MyVo { }
     [Fact]
     public Task With_is_initialized_method()
     {
+        // language=c#
         var source = @"using Vogen;
 namespace Whatever;
 
@@ -715,6 +729,7 @@ public partial class MyVo { }
     [Fact]
     public Task Partial_struct_created_successfully()
     {
+        // language=c#
         var source = @"using Vogen;
 namespace Whatever;
 
@@ -729,6 +744,7 @@ public partial struct CustomerId
     [Fact]
     public async Task Can_use_new_for_own_fields()
     {
+        // language=c#
         var source = @"using Vogen;
 namespace Whatever;
 
@@ -747,6 +763,7 @@ namespace Whatever;
     [Fact]
     public Task Partial_struct_created_successfully_with_no_namespace()
     {
+        // language=c#
         var source = @"using Vogen;
 
 [ValueObject(typeof(int))]
@@ -758,6 +775,7 @@ public partial struct CustomerId
     }
 
     [Fact]
+    // language=c#
     public Task No_namespace() =>
         RunTest(@"using Vogen;
 
@@ -787,6 +805,7 @@ public partial struct CustomerId
                 """);
 
     [Fact]
+    // language=c#
     public Task Validation_with_PascalCased_validate_method() =>
         RunTest(@"using Vogen;
 
@@ -806,6 +825,7 @@ public partial struct CustomerId
 ");
 
     [Fact]
+    // language=c#
     public Task Validation_with_camelCased_validate_method() =>
         RunTest(@"using Vogen;
 
@@ -825,6 +845,7 @@ public partial struct CustomerId
 ");
 
     [Fact]
+    // language=c#
     public Task Validation_can_have_fully_qualified_return_type() =>
         RunTest(@"using Vogen;
 
@@ -845,6 +866,7 @@ public partial struct CustomerId
 
 
     [Fact]
+    // language=c#
     public Task Namespace_names_can_have_reserved_keywords() =>
         RunTest(@"using Vogen;
 
