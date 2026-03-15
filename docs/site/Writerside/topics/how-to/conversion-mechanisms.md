@@ -339,13 +339,33 @@ public class Customer
 {
     [BsonId]
     public CustomerId Id { get; set; }
-    
+
     public string Name { get; set; }
 }
 
 // MongoDB driver handles conversion automatically
 var customer = collection.Find(c => c.Id == customerId).FirstOrDefault();
 ```
+
+**Registration Options:**
+
+By default, Vogen generates a static class with a static constructor that automatically registers BSON serializers.
+If you need to configure BSON before registration (e.g., custom serializers, conventions), use:
+
+```c#
+[assembly: VogenDefaults(
+    conversions: Conversions.Bson,
+    customizations: Customizations.ManuallyRegisterBsonSerializers)]
+
+// Now you control when registration happens:
+// 1. Configure BSON as needed
+BsonSerializer.RegisterSerializer(new CustomSerializer());
+
+// 2. Then register Vogen serializers
+BsonSerializationRegisterFor[YourProjectName].TryRegister();
+```
+
+See [MongoDB Integration](MongoIntegrationHowTo.md) for details.
 
 ### MessagePack
 

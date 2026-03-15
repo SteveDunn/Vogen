@@ -20,7 +20,11 @@ Most values are present in both `ValueObject` and `VogenDefaults`. The parameter
 * `underlyingType`—the type of the primitive that is being wrapped—defaults to `int`
 * `conversions` - specified what conversion code is generated - defaults to `Conversions.Default` which generates type converters and a converter to handle serialization using System.Text.Json
 * `throws` = specifies the type of exception thrown when validation fails—defaults to `ValueObjectValidationException`
-* `customizations`—simple customization switches—defaults to `Customizations.None`,
+* `customizations`—simple customization switches—defaults to `Customizations.None`. Available flags:
+  * `Customizations.TreatNumberAsStringInSystemTextJson` - serialize numbers as strings in System.Text.Json (obsolete on .NET 5+)
+  * `Customizations.AddFactoryMethodForGuids` - adds a `FromNewGuid()` factory method for GUID value objects
+  * `Customizations.GenerateLinqPadToDump` - generates a `ToDump()` method for LinqPad
+  * `Customizations.ManuallyRegisterBsonSerializers` - generates BSON registration as a `TryRegister()` method without a static constructor, allowing control over registration timing,
 * `deserializationStrictness` - specifies how strict deserialization is, e.g. should your `Validate` method be called, or should pre-defined instances that otherwise invalid be allowed - defaults to `DeserializationStrictness.AllowValidAndKnownInstances`
 * `debuggerAttributes` - specifies the level that debug attributes are written as some IDEs don't support all of them, e.g., Rider - defaults to `DebuggerAttributeGeneration.Full` which generates `DebuggerDisplay` and a debugger proxy type for IDEs that support them
 * `comparison`—species which comparison code is generated—defaults to `ComparisonGeneration.UseUnderlying` which hoists any `IComparable` implementations from the primitive
