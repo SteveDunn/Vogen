@@ -36,5 +36,13 @@ public enum Customizations
     /// <summary>
     /// Generate ToDump for LinqPad
     /// </summary>
-    GenerateLinqPadToDump = 1 << 2
+    GenerateLinqPadToDump = 1 << 2,
+    
+    /// <summary>
+    /// Manually register BSON registrations. By default, Vogen creates a static class with a static constructor that registers
+    /// all BSON serializers. However, you might want to run BSON configuration before this.
+    /// This flag tells Vogen to create a `TryRegister` method on a class named `BsonSerializationRegisterFor[YourAssemblyName]`
+    /// as opposed to a static constructor 
+    /// </summary>
+    ManuallyRegisterBsonSerializers = 1 << 3
 }
