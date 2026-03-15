@@ -167,10 +167,21 @@ internal class GenerateCodeForBsonSerializers
 
         string GenerateRegistrationSource()
         {
-            bool useStatic = customizations is not null && customizations.Value.HasFlag(Customizations.ManuallyRegisterBsonSerializers);
+            bool manual = customizations is not null && customizations.Value.HasFlag(Customizations.ManuallyRegisterBsonSerializers);
 
-            return useStatic
+            return manual
                 ? $$"""
+                    {{GeneratedCodeSegments.Preamble}}
+
+                    public static class {{classNameForRegistering}}
+                    {
+                          public static void TryRegister() 
+                          {
+                              {{TextForEachRegisterCall(items)}}
+                          }
+                    }
+                    """
+                : $$"""
                     {{GeneratedCodeSegments.Preamble}}
 
                     public static class {{classNameForRegistering}}
@@ -181,17 +192,6 @@ internal class GenerateCodeForBsonSerializers
                           }
                           
                           public static void TryRegister() { }
-                    }
-                    """
-                : $$"""
-                    {{GeneratedCodeSegments.Preamble}}
-
-                    public static class {{classNameForRegistering}}
-                    {
-                          public static void TryRegister() 
-                          {
-                              {{TextForEachRegisterCall(items)}}
-                          }
                     }
                     """;
         }
