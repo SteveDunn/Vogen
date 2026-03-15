@@ -136,7 +136,7 @@ public class ValueObjectGenerator : IIncrementalGenerator
         GenerateCodeForMessagePack.GenerateForApplicableValueObjects(spc, compilation, workItems);
         GenerateCodeForMessagePack.GenerateForMarkerClasses(spc, markerClasses);
         
-        GenerateCodeForBsonSerializers.GenerateForApplicableValueObjects(spc, compilation, workItems);
+        GenerateCodeForBsonSerializers.GenerateForApplicableValueObjects(spc, compilation, workItems, globalConfig?.Customizations);
         GenerateCodeForBsonSerializers.GenerateForMarkerClasses(spc, markerClasses);
         
         GenerateCodeForOrleansSerializers.WriteIfNeeded(spc, workItems);

@@ -451,7 +451,30 @@ var newCustomerId = CustomerId.FromNewGuid();
 ```
 
 > To customize the generation of Guids, please see [this tutorial](Working-with-IDs.md)
-> 
+>
+
+## How do I control when BSON serializers are registered?
+
+By default, Vogen generates a static class with a static constructor that automatically registers BSON serializers when first accessed.
+If you need to run BSON configuration before registration (e.g., set up custom conventions, configure serializers), use:
+
+```c#
+[assembly: VogenDefaults(
+  customizations: Customizations.ManuallyRegisterBsonSerializers)]
+```
+
+This generates a `TryRegister()` method without a static constructor, giving you full control:
+
+```c#
+// 1. Configure BSON as needed
+BsonSerializer.RegisterSerializer(new MyCustomSerializer());
+ConventionRegistry.Register("MyConventions", new ConventionPack { ... }, _ => true);
+
+// 2. Then register Vogen-generated serializers
+BsonSerializationRegisterFor[YourProjectName].TryRegister();
+```
+
+See [MongoDB Integration](MongoIntegrationHowTo.md) for more details.
 
 ## Can I use value objects instead of primitives as parameters in Blazor pages and components?
 

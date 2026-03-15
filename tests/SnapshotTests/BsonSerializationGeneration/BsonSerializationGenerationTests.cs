@@ -30,6 +30,29 @@ public class BsonSerializationGenerationTests
     }
 
     [Fact]
+    public async Task Writes_bson_serializers_but_manually_register_the_serializers()
+    {
+        var source = """
+                     using System;
+                     using Vogen;
+                     
+                     [assembly: VogenDefaults(conversions: Conversions.Bson, customizations: Customizations.ManuallyRegisterBsonSerializers)]
+
+                     namespace Whatever;
+                     [ValueObject<int>]
+                     public partial struct Age;
+
+                     [ValueObject<string>]
+                     public partial struct Name;
+                     """;
+
+            await new SnapshotRunner<ValueObjectGenerator>()
+                .WithSource(source)
+                .IgnoreInitialCompilationErrors()
+                .RunOn(TargetFramework.Net8_0);
+    }
+
+    [Fact]
     public async Task Escapes_namespaces()
     {
         var source = """

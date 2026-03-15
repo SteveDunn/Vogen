@@ -9,7 +9,7 @@ namespace Vogen;
 internal class GenerateCodeForBsonSerializers
 {
     private const string _nameSuffix = "BsonSerializer";
-    
+
     /// <summary>
     /// For each value object that has a BSON conversion attribute, write a separate file with a serializer,
     /// with a class name of '[WrapperName]BsonSerializer', and a filename of '[NameSpace].[WrapperName]_bson.g.cs' 
@@ -17,7 +17,11 @@ internal class GenerateCodeForBsonSerializers
     /// <param name="context"></param>
     /// <param name="compilation"></param>
     /// <param name="workItems"></param>
-    public static void GenerateForApplicableValueObjects(SourceProductionContext context, Compilation compilation, List<VoWorkItem> workItems)
+    /// <param name="customizations"></param>
+    public static void GenerateForApplicableValueObjects(SourceProductionContext context,
+        Compilation compilation,
+        List<VoWorkItem> workItems,
+        Customizations? customizations)
     {
         if (!compilation.IsAtLeastCSharp12())
         {
@@ -35,7 +39,7 @@ internal class GenerateCodeForBsonSerializers
             Util.AddSourceToContext(filename, context, Util.FormatSource(eachGenerated));
         }
         
-        WriteRegistration(applicableWrappers, compilation, context);
+        WriteRegistration(applicableWrappers, compilation, context, customizations);
     }
 
     /// <summary>
@@ -131,7 +135,10 @@ internal class GenerateCodeForBsonSerializers
         }
     }
 
-    private static void WriteRegistration(List<VoWorkItem> items, Compilation compilation, SourceProductionContext context)
+    private static void WriteRegistration(List<VoWorkItem> items,
+        Compilation compilation,
+        SourceProductionContext context,
+        Customizations? customizations)
     {
         if (items.Count == 0)
         {
@@ -140,20 +147,7 @@ internal class GenerateCodeForBsonSerializers
 
         var classNameForRegistering = ClassNameForRegistering();
 
-        string source =
-            $$"""
-              {{GeneratedCodeSegments.Preamble}}
-
-              public static class {{classNameForRegistering}}
-              {
-                    static {{classNameForRegistering}}()
-                    {
-                        {{TextForEachRegisterCall(items)}}
-                    }
-                    
-                    public static void TryRegister() { }
-              }
-              """;
+        var source = GenerateRegistrationSource();
 
         Util.AddSourceToContext(classNameForRegistering, context, Util.FormatSource(source));
         return;
@@ -169,6 +163,37 @@ internal class GenerateCodeForBsonSerializers
             }
 
             return s;
+        }
+
+        string GenerateRegistrationSource()
+        {
+            bool manual = customizations is not null && customizations.Value.HasFlag(Customizations.ManuallyRegisterBsonSerializers);
+
+            return manual
+                ? $$"""
+                    {{GeneratedCodeSegments.Preamble}}
+
+                    public static class {{classNameForRegistering}}
+                    {
+                          public static void TryRegister() 
+                          {
+                              {{TextForEachRegisterCall(items)}}
+                          }
+                    }
+                    """
+                : $$"""
+                    {{GeneratedCodeSegments.Preamble}}
+
+                    public static class {{classNameForRegistering}}
+                    {
+                          static {{classNameForRegistering}}()
+                          {
+                              {{TextForEachRegisterCall(items)}}
+                          }
+                          
+                          public static void TryRegister() { }
+                    }
+                    """;
         }
     }
 
