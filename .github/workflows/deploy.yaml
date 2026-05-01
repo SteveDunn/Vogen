@@ -19,7 +19,7 @@ env:
   # Replace HI with the ID of the instance in capital letters
   ARTIFACT: webHelpHI2-all.zip
   # Writerside docker image version
-  DOCKER_VERSION: 232.10165.1
+  DOCKER_VERSION: 'latest'
   # Add the variable below to upload Algolia indexes
   # Replace HI with the ID of the instance in capital letters
   ALGOLIA_ARTIFACT: algolia-indexes-HI.zip
