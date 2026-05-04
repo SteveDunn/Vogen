@@ -8,7 +8,7 @@ namespace SnapshotTests.BugFixes;
 public class Bug610_Inconsistent_casting
 {
     [Fact]
-    public async Task Setting_implicit_casting_to_primitive_in_global_config_should_not_write_a_primitive_cast_to_wrapper()
+    public async Task Global_config_implicit_cast_omits_primitive_cast()
     {
         var source = """
                      using System;
@@ -31,7 +31,7 @@ public class Bug610_Inconsistent_casting
     }
 
     [Fact]
-    public async Task Setting_implicit_casting_to_primitive_in_value_object_config_should_write_a_primitive_cast()
+    public async Task Local_config_implicit_cast_writes_primitive_cast()
     {
         var source = """
                      using System;
