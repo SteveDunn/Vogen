@@ -8,7 +8,7 @@ namespace SnapshotTests.BugFixes;
 public class Bug625_EFCoreConverters_uses_wrong_marker_interface_name
 {
     [Fact]
-    public async Task A_marker_interface_not_named_EfCoreConverters_is_still_referenced_and_that_name_is_used_in_the_generated_code()
+    public async Task Handles_custom_marker_interface_name_in_generated_code()
     {
         var source = """
                      using System;
