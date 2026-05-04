@@ -136,7 +136,7 @@ public partial class TypeName
     }
 
     [Fact]
-    public async Task Triggered_for_missing_method_and_assembly_level_config_specifies_a_different_type()
+    public async Task Triggered_when_assembly_config_specifies_different_type()
     {
         var input = LineEndingsHelper.Normalize(
             """
@@ -219,7 +219,7 @@ public partial class TypeName
     }
 
     [Fact]
-    public async Task Triggered_for_missing_method_and_assembly_level_config_does_not_specify_a_different_type()
+    public async Task Triggered_when_assembly_config_has_no_type_override()
     {
         var input = LineEndingsHelper.Normalize(
             """

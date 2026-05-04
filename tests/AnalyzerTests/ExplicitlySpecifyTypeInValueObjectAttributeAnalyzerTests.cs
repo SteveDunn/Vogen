@@ -48,7 +48,7 @@ namespace AnalyzerTests
         }
 
         [Fact]
-        public async Task Not_triggered_when_type_is_not_specified_and_global_config_says_it_should_not_be()
+        public async Task Not_triggered_when_global_config_disables_type_check()
         {
             var source = $$"""
                            using Vogen;

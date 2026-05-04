@@ -388,7 +388,7 @@ public class GeneralTests
     }
 
     [Fact]
-    public async Task Can_specify_both_swashbuckle_filter_and_MapType_extension_method_generation_for_openapi()
+    public async Task Can_generate_both_swashbuckle_filter_and_MapType()
     {
         var source = $$"""
 
@@ -479,7 +479,7 @@ public class GeneralTests
     }
 
     [Fact]
-    public async Task ServiceStackDotTextConversion_generates_static_constructor_for_time_related_primitives()
+    public async Task ServiceStack_generates_static_ctor_for_time_types()
     {
         // language=c#
         var source = @"using System;

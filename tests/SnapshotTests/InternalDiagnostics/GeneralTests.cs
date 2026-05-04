@@ -40,7 +40,7 @@ public class InternalDiagnosticsTests
     }
 
     [Fact]
-    public Task It_does_not_write_diagnostics_if___ProduceDiagnostics_class_is_not_present_in_the_Vogen_namespace()
+    public Task No_diagnostics_when_marker_class_missing_in_namespace()
     {
         return RunTest(
             """
@@ -74,7 +74,7 @@ public class InternalDiagnosticsTests
     }
 
     [Fact]
-    public Task It_does_not_write_diagnostics_if___ProduceDiagnostics_class_is_not_present_anywhere()
+    public Task No_diagnostics_when_marker_class_missing_entirely()
     {
         return RunTest(
             """

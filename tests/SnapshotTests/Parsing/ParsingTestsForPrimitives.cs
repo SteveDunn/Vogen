@@ -149,7 +149,7 @@ public class ParsingTestsForPrimitives
     // If any of the Parse/TryParse methods on the primitive are private, we can't call them.
     // Since we can't call them, we can't implement them.
     [Fact]
-    public Task Does_not_generate_IParsable_for_a_class_wrapping_a_bool_because_it_implements_it_privately()
+    public Task No_IParsable_for_bool_wrapper_with_private_implementation()
     {
         return RunTest(
             """
