@@ -52,6 +52,7 @@ namespace SnapshotTests
         private LanguageVersion _languageVersion = LanguageVersion.Default;
         private bool _excludeStj;
         private string _assemblyName = "generator";
+        private readonly Dictionary<string, string> _buildProperties = new();
 
         public async Task RunOnAllFrameworks() => await RunOn(_allFrameworks);
         
@@ -66,6 +67,12 @@ namespace SnapshotTests
         public SnapshotRunner<T> WithAssemblyName(string assemblyName)
         {
             _assemblyName = assemblyName;
+            return this;
+        }
+
+        public SnapshotRunner<T> WithBuildProperty(string key, string value)
+        {
+            _buildProperties[key] = value;
             return this;
         }
 
@@ -123,14 +130,18 @@ namespace SnapshotTests
         {
             var r = MetadataReference.CreateFromFile(typeof(ValueObjectAttribute).Assembly.Location);
 
-            var results = await new ProjectBuilder()
+            var pb = new ProjectBuilder()
                 .WithAssemblyName(_assemblyName)
                 .WithUserSource(_source!)
                 .WithNugetPackages(_additionalNuGetPackages)
                 .WithTargetFramework(targetFramework)
                 .WithLanguageVersion(_languageVersion)
-                .ShouldExcludeSystemTextJson(_excludeStj)
-                .GetGeneratedOutput<T>(_ignoreInitialCompilationErrors, r);
+                .ShouldExcludeSystemTextJson(_excludeStj);
+
+            foreach (var kvp in _buildProperties)
+                pb.WithBuildProperty(kvp.Key, kvp.Value);
+
+            var results = await pb.GetGeneratedOutput<T>(_ignoreInitialCompilationErrors, r);
 
             return results;
         }
