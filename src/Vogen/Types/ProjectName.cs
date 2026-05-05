@@ -6,30 +6,30 @@ internal class ProjectName
     
     /// <summary>
     /// Returns a <see cref="ProjectName"/> from the MSBuild <c>RootNamespace</c> property when it is set,
-    /// otherwise falls back to <see cref="FromAssemblyName"/>.
+    /// otherwise falls back to <see cref="FromAssemblyName"/>.  Either value is normalised.
     /// </summary>
     public static ProjectName FromRootNamespaceOrAssemblyName(string? rootNamespace, string assemblyName) =>
-        !string.IsNullOrWhiteSpace(rootNamespace) ? new(rootNamespace!) : FromAssemblyName(assemblyName);
+        !string.IsNullOrWhiteSpace(rootNamespace) ? new(Normalise(rootNamespace!)) : FromAssemblyName(assemblyName);
 
     /// <summary>
-    /// Replaces [., -] with [_] for use as type type names etc., and ensures the result
+    /// Replaces [., ,, space, -] with [_] for use as type names etc., and ensures the result
     /// does not start with a digit (which would produce an invalid C# identifier).
     /// </summary>
-    /// <param name="assemblyName"></param>
-    /// <returns></returns>
-    public static ProjectName FromAssemblyName(string assemblyName)
-    {
-        assemblyName = assemblyName.Replace(".", "_");
-        assemblyName = assemblyName.Replace(",", "_");
-        assemblyName = assemblyName.Replace(" ", "_");
-        assemblyName = assemblyName.Replace("-", "_");
+    public static ProjectName FromAssemblyName(string assemblyName) => new(Normalise(assemblyName));
 
-        if (assemblyName.Length > 0 && char.IsDigit(assemblyName[0]))
+    private static string Normalise(string value)
+    {
+        value = value.Replace(".", "_");
+        value = value.Replace(",", "_");
+        value = value.Replace(" ", "_");
+        value = value.Replace("-", "_");
+
+        if (value.Length > 0 && char.IsDigit(value[0]))
         {
-            assemblyName = "_" + assemblyName;
+            value = "_" + value;
         }
 
-        return new(assemblyName);
+        return value;
     }
 
     public string Value { get; }
