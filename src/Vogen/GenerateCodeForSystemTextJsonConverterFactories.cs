@@ -11,7 +11,8 @@ internal class GenerateCodeForSystemTextJsonConverterFactories
         List<VoWorkItem> workItems,
         SourceProductionContext context,
         Compilation compilation,
-        VogenKnownSymbols vogenKnownSymbols)
+        VogenKnownSymbols vogenKnownSymbols,
+        string? rootNamespace)
     {
         if (vogenKnownSymbols.JsonConverterFactory is null)
         {
@@ -29,7 +30,7 @@ internal class GenerateCodeForSystemTextJsonConverterFactories
         
         var entries = workItems.Where(i => i.Config.Conversions.HasFlag(Conversions.SystemTextJson)).Select(BuildEntry);
         
-        var fullNamespace = ProjectName.FromAssemblyName(compilation.Assembly.Name);
+        var fullNamespace = ProjectName.FromRootNamespaceOrAssemblyName(rootNamespace, compilation.Assembly.Name);
 
         string source =
             $$"""

@@ -16,14 +16,15 @@ internal class GenerateCodeForOpenApiSchemaCustomization
         List<VoWorkItem> workItems,
         VogenKnownSymbols knownSymbols,
         MarkersCollection markerClasses,
-        Compilation compilation)
+        Compilation compilation,
+        string? rootNamespace)
     {
         GenerateCodeForAspNetCoreOpenApiSchema.WriteOpenApiSpecForMarkers(context, workItems, knownSymbols, markerClasses);
 
         var c = globalConfig?.OpenApiSchemaCustomizations ??
                 VogenConfiguration.DefaultInstance.OpenApiSchemaCustomizations;
 
-        var projectName = ProjectName.FromAssemblyName(compilation.Assembly.Name);
+        var projectName = ProjectName.FromRootNamespaceOrAssemblyName(rootNamespace, compilation.Assembly.Name);
 
         var className = string.IsNullOrEmpty(projectName) ? string.Empty : $"MapVogenTypesIn{projectName}";
 

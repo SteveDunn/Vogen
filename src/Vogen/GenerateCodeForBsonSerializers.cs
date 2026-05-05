@@ -21,7 +21,8 @@ internal class GenerateCodeForBsonSerializers
     public static void GenerateForApplicableValueObjects(SourceProductionContext context,
         Compilation compilation,
         List<VoWorkItem> workItems,
-        Customizations? customizations)
+        Customizations? customizations,
+        string? rootNamespace)
     {
         if (!compilation.IsAtLeastCSharp12())
         {
@@ -39,7 +40,7 @@ internal class GenerateCodeForBsonSerializers
             Util.AddSourceToContext(filename, context, Util.FormatSource(eachGenerated));
         }
         
-        WriteRegistration(applicableWrappers, compilation, context, customizations);
+        WriteRegistration(applicableWrappers, compilation, context, customizations, rootNamespace);
     }
 
     /// <summary>
@@ -138,7 +139,8 @@ internal class GenerateCodeForBsonSerializers
     private static void WriteRegistration(List<VoWorkItem> items,
         Compilation compilation,
         SourceProductionContext context,
-        Customizations? customizations)
+        Customizations? customizations,
+        string? rootNamespace)
     {
         if (items.Count == 0)
         {
@@ -154,7 +156,7 @@ internal class GenerateCodeForBsonSerializers
 
         string ClassNameForRegistering()
         {
-            string projectName = ProjectName.FromAssemblyName(compilation.AssemblyName ?? "").Value;
+            string projectName = ProjectName.FromRootNamespaceOrAssemblyName(rootNamespace, compilation.AssemblyName ?? "").Value;
 
             string s = "BsonSerializationRegister";
             if(projectName.Length > 0)
