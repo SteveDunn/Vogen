@@ -617,18 +617,28 @@ Linq2DB 4.0 or greater supports `DateOnly` and `TimeOnly`. Vogen generates value
 
 ### Can I use protobuf-net?
 
-Yes. Add a dependency to protobuf-net and set a surrogate attribute:
+Yes. Add a dependency to protobuf-net and create a surrogate class with the appropriate conversion operators, then reference it via `[ProtoContract(Surrogate = ...)]`:
 
 ```csharp
 [ValueObject<string>]
-[ProtoContract(Surrogate = typeof(string))]
-public partial class BoxId {
-//...
+[ProtoContract(Surrogate = typeof(BoxIdSurrogate))]
+public partial class BoxId;
+
+[ProtoContract]
+public class BoxIdSurrogate
+{
+    [ProtoMember(1)]
+    public string Value { get; set; } = "";
+
+    public static implicit operator BoxId(BoxIdSurrogate surrogate) => BoxId.From(surrogate.Value);
+    public static implicit operator BoxIdSurrogate(BoxId value) => new() { Value = value.Value };
 }
 ```
 
-BoxId type now will be serialized as a string in all messages/grpc calls. If one is generating .proto files for other 
-applications from C# code, proto files will include Surrogate type as the type. 
+BoxId will be serialized using the surrogate in all messages and gRPC calls.
+
+> **Note:** Do not use `[ProtoContract(Surrogate = typeof(string))]` — protobuf-net v3 treats `string` (and other primitives) as built-in types and will throw `'Data of this type has inbuilt behaviour, and cannot be added to a model in this way: System.String'` at runtime, including when generating `.proto` schemas via `SchemaGenerator`. Use a dedicated surrogate class instead.
+
 _thank you to [@DomasM](https://github.com/DomasM) for this information_.
 
 ## Thanks
