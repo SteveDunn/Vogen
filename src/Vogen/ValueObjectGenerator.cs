@@ -32,18 +32,30 @@ public class ValueObjectGenerator : IIncrementalGenerator
         var compilationAndValues = context.CompilationProvider.Combine(targetsConfigAndMarkers);
         
         var everything = compilationAndValues.Combine(knownSymbols);
+
+        IncrementalValueProvider<string?> rootNamespace = context.AnalyzerConfigOptionsProvider
+            .Select(static (options, _) =>
+            {
+                options.GlobalOptions.TryGetValue("build_property.RootNamespace", out var ns);
+                return ns;
+            });
+
+        var everythingWithNs = everything.Combine(rootNamespace);
             
-        context.RegisterSourceOutput(everything,
+        context.RegisterSourceOutput(everythingWithNs,
             static (spc, source) =>
             {
-                var left = source.Left;
+                var everything = source.Left;
+                string? rootNs = source.Right;
+
+                var left = everything.Left;
         
                 // todo: break apart building the work items, as that only needs global config,
                 // which will make the following less horrific!
                 Compilation compilation = left.Left;
                 var targets = left.Right.Left.Left;
                 var globalConfig = left.Right.Left.Right;
-                var ks = source.Right;
+                var ks = everything.Right;
                 ImmutableArray<MarkerDiscovery?> markerClasses = left.Right.Right;
                 
                 Execute(
@@ -52,7 +64,8 @@ public class ValueObjectGenerator : IIncrementalGenerator
                     targets,
                     globalConfig,
                     markerClasses,
-                    spc);
+                    spc,
+                    rootNs);
             });
     }
 
@@ -88,7 +101,8 @@ public class ValueObjectGenerator : IIncrementalGenerator
         ImmutableArray<VoTarget> targets,
         ImmutableArray<VogenConfigurationBuildResult> globalConfigBuildResult,
         ImmutableArray<MarkerDiscovery?> markerDiscoveries,
-        SourceProductionContext spc)
+        SourceProductionContext spc,
+        string? rootNamespace)
     {
         var csharpCompilation = compilation as CSharpCompilation;
         if (csharpCompilation is null)
@@ -127,7 +141,7 @@ public class ValueObjectGenerator : IIncrementalGenerator
         // get all the ValueObject types found.
         List<VoWorkItem> workItems = GetWorkItems(targets, spc, globalConfig, csharpCompilation.LanguageVersion, vogenKnownSymbols, compilation).ToList();
             
-        GenerateCodeForOpenApiSchemaCustomization.WriteIfNeeded(globalConfig, spc, workItems, vogenKnownSymbols, markerClasses, compilation);
+        GenerateCodeForOpenApiSchemaCustomization.WriteIfNeeded(globalConfig, spc, workItems, vogenKnownSymbols, markerClasses, compilation, rootNamespace);
 
         GenerateCodeForEfCoreMarkers.Generate(spc, compilation, markerClasses);
         
@@ -136,7 +150,7 @@ public class ValueObjectGenerator : IIncrementalGenerator
         GenerateCodeForMessagePack.GenerateForApplicableValueObjects(spc, compilation, workItems);
         GenerateCodeForMessagePack.GenerateForMarkerClasses(spc, markerClasses);
         
-        GenerateCodeForBsonSerializers.GenerateForApplicableValueObjects(spc, compilation, workItems, globalConfig?.Customizations);
+        GenerateCodeForBsonSerializers.GenerateForApplicableValueObjects(spc, compilation, workItems, globalConfig?.Customizations, rootNamespace);
         GenerateCodeForBsonSerializers.GenerateForMarkerClasses(spc, markerClasses);
         
         GenerateCodeForOrleansSerializers.WriteIfNeeded(spc, workItems);
@@ -149,7 +163,7 @@ public class ValueObjectGenerator : IIncrementalGenerator
                 
             GenerateCodeForStaticAbstracts.WriteInterfacesAndMethodsIfNeeded(mergedConfig, spc, compilation);
 
-            GenerateCodeForSystemTextJsonConverterFactories.WriteIfNeeded(mergedConfig, workItems, spc, compilation, vogenKnownSymbols);
+            GenerateCodeForSystemTextJsonConverterFactories.WriteIfNeeded(mergedConfig, workItems, spc, compilation, vogenKnownSymbols, rootNamespace);
 
             foreach (var eachWorkItem in workItems)
             {

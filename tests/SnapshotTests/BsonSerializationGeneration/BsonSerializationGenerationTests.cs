@@ -13,9 +13,13 @@ public class BsonSerializationGenerationTests
                      using System;
                      using Vogen;
                      
-                     [assembly: VogenDefaults(conversions: Conversions.Bson)]
+                     [assembly: VogenDefaults(
+                     staticAbstractsGeneration: StaticAbstractsGeneration.MostCommon | StaticAbstractsGeneration.InstanceMethodsAndProperties, 
+                     conversions: Conversions.Default | Conversions.Bson)]
+                     
+                     // [assembly: VogenDefaults(conversions: Conversions.Bson)]
 
-                     namespace Whatever;
+                     namespace Vogen.Examples.SerializationAndConversion.Mongo;
                      [ValueObject<int>]
                      public partial struct Age;
 
@@ -25,6 +29,7 @@ public class BsonSerializationGenerationTests
 
             await new SnapshotRunner<ValueObjectGenerator>()
                 .WithSource(source)
+                .WithAssemblyName("Vogen.Examples")
                 .IgnoreInitialCompilationErrors()
                 .RunOn(TargetFramework.Net8_0);
     }

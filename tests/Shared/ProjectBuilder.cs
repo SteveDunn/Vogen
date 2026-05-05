@@ -44,6 +44,7 @@ public sealed class ProjectBuilder
     private bool _excludeStj;
     private LanguageVersion _languageVersion = LanguageVersion.Default;
     private string _assemblyName = "generator";
+    private readonly Dictionary<string, string> _buildProperties = new();
 
     public ProjectBuilder WithTargetFramework(TargetFramework targetFramework)
     {
@@ -296,6 +297,13 @@ public sealed class ProjectBuilder
         return this;
     }
 
+    public ProjectBuilder WithBuildProperty(string key, string value)
+    {
+        _buildProperties[key] = value;
+
+        return this;
+    }
+
     public ProjectBuilder WithNugetPackages(IEnumerable<NuGetPackage> packages)
     {
         foreach (var nuGetPackage in packages)
@@ -350,7 +358,7 @@ public sealed class ProjectBuilder
             _references,
             options);
 
-        AnalyzerConfigOptionsProvider optionsProvider = new TestAnalyzerConfigOptionsProvider(new Dictionary<string, string>());
+        AnalyzerConfigOptionsProvider optionsProvider = new TestAnalyzerConfigOptionsProvider(_buildProperties);
 
         ImmutableArray<Diagnostic> initialDiags;
 
@@ -378,7 +386,8 @@ public sealed class ProjectBuilder
 
         var driver = CSharpGeneratorDriver
             .Create(generator)
-            .WithUpdatedParseOptions(parseOptions.WithDocumentationMode(DocumentationMode.Diagnose));
+            .WithUpdatedParseOptions(parseOptions.WithDocumentationMode(DocumentationMode.Diagnose))
+            .WithUpdatedAnalyzerConfigOptions(optionsProvider);
 
         driver.RunGeneratorsAndUpdateCompilation(compilation, out var outputCompilation, out var generatorDiags);
 
