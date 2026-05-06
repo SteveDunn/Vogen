@@ -24,7 +24,7 @@ If the underlying primitive implements `INumber<T>` or `INumberBase<T>` (.NET 7+
 
 This is opt-in via `NumericsGeneration.Generate` on the `[ValueObject]` attribute:
 
-```csharp
+```C#
 [ValueObject<double>(numericsGeneration: NumericsGeneration.Generate)]
 public partial struct Distance { }
 ```
