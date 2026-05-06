@@ -36,7 +36,6 @@ namespace MediumTests.SerializationAndConversionTests
         // ReSharper disable once UnusedParameter.Local
         static async Task Main(string[] args)
         {
-            await new GrpcScenario().Run();
             try
             {
                 var scenarioTypes = typeof(Program).Assembly.GetTypes()
