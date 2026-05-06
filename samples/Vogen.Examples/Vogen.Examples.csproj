@@ -20,10 +20,16 @@
 
 		<PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.8" />
 		<PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="8.0.8" />
+		<PackageReference Include="protobuf-net" Version="3.2.56" />
+		<PackageReference Include="protobuf-net.Grpc" Version="1.2.2" />
+		<PackageReference Include="protobuf-net.Grpc.Reflection" Version="1.2.2" />
+		<PackageReference Include="protobuf-net.Reflection" Version="3.2.52" />
 		<PackageReference Include="SQLitePCLRaw.lib.e_sqlite3" Version="2.1.9" />
 		<PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="8.0.8" />
 
 		<PackageReference Include="MongoDB.Driver" Version="2.28.0" />
+
+		<PackageReference Include="System.ServiceModel.Primitives" Version="8.1.2" />
 		<PackageReference Include="System.Text.Json" Version="8.0.5" />
 		<PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
 		<PackageReference Include="Dapper" Version="2.0.123" />
