@@ -617,19 +617,7 @@ Linq2DB 4.0 or greater supports `DateOnly` and `TimeOnly`. Vogen generates value
 
 ### Can I use protobuf-net?
 
-Yes. Add a dependency to protobuf-net and set a surrogate attribute:
-
-```csharp
-[ValueObject<string>]
-[ProtoContract(Surrogate = typeof(string))]
-public partial class BoxId {
-//...
-}
-```
-
-BoxId type now will be serialized as a string in all messages/grpc calls. If one is generating .proto files for other 
-applications from C# code, proto files will include Surrogate type as the type. 
-_thank you to [@DomasM](https://github.com/DomasM) for this information_.
+Yes. See the [FAQ](docs/site/Writerside/topics/reference/FAQ.md#can-i-use-protobuf-net) for details and a worked example.
 
 ## Thanks
 

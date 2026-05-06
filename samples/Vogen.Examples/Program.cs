@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using System.Threading.Tasks;
+using Vogen.Examples.SerializationAndConversion.Grpc;
 
 namespace Vogen.Examples
 {
