@@ -421,7 +421,42 @@ Linq2DB 4.0 or greater supports `DateOnly` and `TimeOnly`. Vogen generates value
 
 ## Can I use protobuf-net?
 
-Yes. Add a dependency to protobuf-net and use a generic surrogate class that works across all your value objects:
+### protobuf-net v2 (pre-v3)
+
+Yes. Add a dependency to protobuf-net and annotate the value object with `[ProtoContract(Surrogate = typeof(string))]`:
+
+```c#
+[ValueObject<string>]
+[ProtoContract(Surrogate = typeof(string))]
+public partial class Name;
+```
+
+_thank you to [@DomasM](https://github.com/DomasM) for this information_.
+
+### protobuf-net v3 (and later)
+
+In v3, primitive types such as `string` and `int` are registered as built-in types. Attempting to use them as surrogates (e.g. `[ProtoContract(Surrogate = typeof(string))]`) will throw:
+
+> `'Data of this type has inbuilt behaviour, and cannot be added to a model in this way: System.String'`
+
+This error occurs at runtime and also when generating `.proto` schemas via `SchemaGenerator`.
+
+The solution is a generic surrogate class that you define once and reuse across all your value objects:
+
+```c#
+// TW = wrapper type, TP = primitive (underlying) type
+[ProtoContract]
+public class VogenSurrogate<TW, TP> where TW : IVogen<TW, TP>
+{
+    [ProtoMember(1)]
+    public TP Value { get; set; }
+
+    public static implicit operator TW(VogenSurrogate<TW, TP> surrogate) => TW.From(surrogate.Value);
+    public static implicit operator VogenSurrogate<TW, TP>(TW value) => new() { Value = value.Value };
+}
+```
+
+Then annotate each value object with the appropriate closed generic:
 
 ```c#
 [ValueObject<string>]
@@ -431,26 +466,10 @@ public partial class BoxId;
 [ValueObject<int>]
 [ProtoContract(Surrogate = typeof(VogenSurrogate<Age, int>))]
 public partial class Age;
-
-[ProtoContract]
-public class VogenSurrogate<TW, TP> where TW : IVogen<TW, TP>
-{
-    [ProtoMember(1)]
-    public string Value { get; set; } = "";
-
-    public static implicit operator BoxId(VogenSurrogate<TW, TP> surrogate) => BoxId.From(surrogate.Value);
-    public static implicit operator VogenSurrogate<TW, TP>(BoxId value) => new() { Value = value.Value };
-}
 ```
-
-The generic `VogenSurrogate<TW, TP>` can be defined once and reused for every value object in your project.
-
-> **Note:** Do not use `[ProtoContract(Surrogate = typeof(string))]` — protobuf-net v3 treats `string` (and other primitives) as built-in types and will throw `'Data of this type has inbuilt behaviour, and cannot be added to a model in this way: System.String'` at runtime, including when generating `.proto` schemas via `SchemaGenerator`. Use a surrogate class instead.
 
 A full working example including schema generation and a gRPC service can be found in
 [`samples/Vogen.Examples/SerializationAndConversion/Grpc/GrpcScenario.cs`](../../../../samples/Vogen.Examples/SerializationAndConversion/Grpc/GrpcScenario.cs).
-
-_thank you to [@DomasM](https://github.com/DomasM) for this information_.
 
 ## Can I have a factory method for value objects that wrap GUIDs?
 
