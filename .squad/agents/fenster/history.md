@@ -2,6 +2,22 @@
 
 ## Learnings
 
+### 2026-05-06: Issue #909 - VOG038 for Nullable<T>.GetValueOrDefault()
+
+**Issue**: `Nullable<T>.GetValueOrDefault()` with no arguments can manufacture `default(T)` for Vogen struct value objects, bypassing validation and producing an invalid instance.
+
+**Implementation Summary**:
+- Added analyzer `DoNotUseGetValueOrDefaultAnalyzer` using `OperationKind.Invocation`
+- Restricted the rule to the zero-argument overload on `System.Nullable<T>` only
+- Reused `VoFilter.IsTarget(...)` to ensure `T` is a Vogen value object before reporting `VOG038`
+- Left the one-argument overload alone because callers supply an explicit fallback value
+- Added analyzer tests covering struct/readonly struct/record struct forms plus safe non-diagnostic cases
+
+**Verification**:
+- `dotnet build src\\Vogen\\Vogen.csproj -c Release -v q`
+
+---
+
 ### 2026-05-05: Issue #838 - Protobuf Surrogate Investigation
 
 **Issue**: GitHub issue #838 reports that the README example for protobuf-net usage fails with:

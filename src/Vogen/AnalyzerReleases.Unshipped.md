@@ -6,3 +6,4 @@
 
 Rule ID | Category | Severity | Notes
 --------|----------|----------|-------
+VOG038 | Usage | Error | DoNotUseGetValueOrDefaultAnalyzer: Calling GetValueOrDefault on nullable Value Object is prohibited
