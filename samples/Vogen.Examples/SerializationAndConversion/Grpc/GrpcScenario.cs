@@ -70,14 +70,15 @@ public partial class Age;
 [ProtoContract(Surrogate = typeof(VogenSurrogate<Temperature, double>))]
 public partial class Temperature;
 
+// TW = wrapper, TP = primitive (underlying)
 [ProtoContract]
 public class VogenSurrogate<TW, TP> where TW: IVogen<TW, TP>
 {
     [ProtoMember(1)]
-    public string Value { get; set; } = "";
+    public TP Value { get; set; }
 
-    public static implicit operator BoxId(VogenSurrogate<TW, TP> surrogate) => BoxId.From(surrogate.Value);
-    public static implicit operator VogenSurrogate<TW, TP>(BoxId value) => new() { Value = value.Value };
+    public static implicit operator TW(VogenSurrogate<TW, TP> surrogate) => TW.From(surrogate.Value);
+    public static implicit operator VogenSurrogate<TW, TP>(TW value) => new() { Value = value.Value };
 }
 
 

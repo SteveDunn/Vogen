@@ -420,10 +420,11 @@ Linq2DB 4.0 or greater supports `DateOnly` and `TimeOnly`. Vogen generates value
 `MappingSchema.Default.SetConverter<DateTime, TimeOnly>(dt => TimeOnly.FromDateTime(dt));`
 
 ## Can I use protobuf-net?
+Yes, but the mechanism is different depending on the version of protobuf-net you are using.
 
 ### protobuf-net v2 (pre-v3)
 
-Yes. Add a dependency to protobuf-net and annotate the value object with `[ProtoContract(Surrogate = typeof(string))]`:
+Add a dependency to protobuf-net and annotate the value object with `[ProtoContract(Surrogate = typeof(string))]`: (NOTE: replace `string` with the correct primitive)
 
 ```c#
 [ValueObject<string>]
