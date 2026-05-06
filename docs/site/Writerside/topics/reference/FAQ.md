@@ -487,7 +487,7 @@ Note that properties should use `{ get; set; }` (not `init`) and be nullable, as
 via a parameterless constructor and then sets each property — Vogen prohibits assigning `default` to value object fields.
 
 A full working example including schema generation and a gRPC service can be found in
-[`samples/Vogen.Examples/SerializationAndConversion/Grpc/GrpcScenario.cs`](../../../../samples/Vogen.Examples/SerializationAndConversion/Grpc/GrpcScenario.cs).
+[the samples project](https://github.com/SteveDunn/Vogen/tree/main/samples/Vogen.Examples/SerializationAndConversion/Grpc).
 
 ## Can I have a factory method for value objects that wrap GUIDs?
 
