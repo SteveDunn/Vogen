@@ -57,6 +57,38 @@ public partial struct MyValueObject;
 
 ---
 
+## 2026-05-15: In-Process ASP.NET Core Hosting for gRPC Scenario Testing
+
+**By:** Fenster (Backend Dev)
+
+**What:** Enhanced GrpcScenario.cs with in-process ASP.NET Core gRPC hosting for real serialization testing.
+
+**Context:** The original GrpcScenario.cs called the gRPC service directly in-process, which didn't test protobuf-net serialization over the wire. Steve requested enhancement to test real serialization.
+
+**Decision:** Use in-process ASP.NET Core hosting with WebApplication and Kestrel configured for HTTP/2 instead of Docker/Testcontainers.
+
+**Implementation:**
+- Host gRPC service using WebApplication with Kestrel for HTTP/2
+- Use protobuf-net.Grpc.AspNetCore for code-first gRPC server
+- Use Grpc.Net.Client for client channel creation
+- Dynamic port allocation via socket binding
+- Added `<FrameworkReference Include="Microsoft.AspNetCore.App" />` to Vogen.Examples.csproj
+
+**Rationale:**
+1. **Simpler than Docker:** No custom Dockerfile needed; standard .NET pattern
+2. **Full stack validation:** Tests Vogen value objects → protobuf serialization → HTTP/2 transport → deserialization
+3. **Fast execution:** No container startup overhead
+4. **No external dependencies:** Runs anywhere .NET 8 runs
+
+**Alternatives Considered:**
+- Docker/Testcontainers — would require Dockerfile; overkill for this scenario
+- Keep in-process call — doesn't test serialization
+- External gRPC server — requires manual setup; not portable
+
+**Impact:** Tests verify that `VogenSurrogate<TW, TP>` pattern works correctly with protobuf-net over real gRPC. Example is more realistic and demonstrates end-to-end integration.
+
+---
+
 ## End of decisions
 
 New decisions will be merged here by Scribe from `.squad/decisions/inbox/`.

@@ -54,3 +54,41 @@
 
 **Conclusion**:
 This is not a bug in Vogen's code generation. It's **incorrect documentation** that suggests an invalid protobuf-net pattern. The README should be corrected to remove or fix the protobuf example.
+
+---
+
+### 2026-05-15: Enhanced gRPC Scenario with Real Server Testing
+
+**Task**: Enhance `samples\Vogen.Examples\SerializationAndConversion\Grpc\GrpcScenario.cs` to test real protobuf-net serialization over HTTP/2 gRPC.
+
+**Implementation**: 
+- Used in-process ASP.NET Core hosting approach (standard pattern for .NET gRPC integration tests)
+- Created real HTTP/2 server with `WebApplication` and Kestrel
+- Used `protobuf-net.Grpc.AspNetCore` for server-side code-first gRPC hosting
+- Used `Grpc.Net.Client` for client channel creation
+- Dynamic port allocation via socket binding to avoid port conflicts
+
+**Key Patterns Discovered**:
+1. **In-process ASP.NET Core testing pattern** is preferred over Docker/Testcontainers for custom gRPC services (unlike MongoDb scenario which uses pre-built images)
+2. **Required NuGet packages for code-first gRPC**:
+   - `protobuf-net.Grpc.AspNetCore` (v1.2.2) - for `AddCodeFirstGrpc()` and `MapGrpcService<T>()`
+   - `Grpc.Net.Client` (v2.70.0) - for `GrpcChannel.ForAddress()`
+   - `ProtoBuf.Grpc.Client` namespace - for `channel.CreateGrpcService<T>()` extension
+   - `ProtoBuf.Grpc.Server` namespace - for `AddCodeFirstGrpc()` extension
+3. **Framework reference needed**: Added `<FrameworkReference Include="Microsoft.AspNetCore.App" />` to csproj since it uses `Microsoft.NET.Sdk` (not Web SDK)
+4. **Port allocation**: Use socket binding to `IPAddress.Loopback:0` to get OS-assigned available port
+5. **HTTP/2 enforcement**: Must configure Kestrel with `HttpProtocols.Http2` explicitly for gRPC
+6. **Proper cleanup**: Server must be stopped with `StopAsync()` and disposed in finally block
+7. **Error handling**: Wrap in try/catch similar to Mongo scenario pattern
+
+**Files Modified**:
+- `samples\Vogen.Examples\Vogen.Examples.csproj` - Added packages and framework reference
+- `samples\Vogen.Examples\SerializationAndConversion\Grpc\GrpcScenario.cs` - Complete rewrite with server hosting
+
+**Build Verification**: ✓ `dotnet build samples\Vogen.Examples\Vogen.Examples.csproj -c Release` succeeds
+
+**Architecture Notes**:
+- This pattern tests the FULL serialization stack: Vogen value objects → VogenSurrogate → protobuf wire format → HTTP/2 → deserialize back
+- The existing `VogenSurrogate<TW, TP>` pattern (using `IVogen<TW, TP>` static abstracts) works perfectly with code-first gRPC
+- No changes needed to value object definitions or surrogate class
+

@@ -22,8 +22,10 @@
 		<PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="8.0.8" />
 		<PackageReference Include="protobuf-net" Version="3.2.56" />
 		<PackageReference Include="protobuf-net.Grpc" Version="1.2.2" />
+		<PackageReference Include="protobuf-net.Grpc.AspNetCore" Version="1.2.2" />
 		<PackageReference Include="protobuf-net.Grpc.Reflection" Version="1.2.2" />
 		<PackageReference Include="protobuf-net.Reflection" Version="3.2.52" />
+		<PackageReference Include="Grpc.Net.Client" Version="2.70.0" />
 		<PackageReference Include="SQLitePCLRaw.lib.e_sqlite3" Version="2.1.9" />
 		<PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="8.0.8" />
 
@@ -41,6 +43,10 @@
 		  <PrivateAssets>all</PrivateAssets>
 		  <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 		</PackageReference>
+	</ItemGroup>
+
+	<ItemGroup>
+		<FrameworkReference Include="Microsoft.AspNetCore.App" />
 	</ItemGroup>
 
 	<ItemGroup Condition=" '$(UseLocallyBuiltPackage)' != ''">
