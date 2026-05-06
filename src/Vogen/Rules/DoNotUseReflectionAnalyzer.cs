@@ -28,8 +28,8 @@ public class DoNotUseReflectionAnalyzer : DiagnosticAnalyzer
 
     public override void Initialize(AnalysisContext context)
     {
-
-        context.ConfigureGeneratedCodeAnalysis(GeneratedCodeAnalysisFlags.None);
+        // Use Analyze | ReportDiagnostics so user code inside Blazor/Razor-generated C# files is checked.
+        context.ConfigureGeneratedCodeAnalysis(GeneratedCodeAnalysisFlags.Analyze | GeneratedCodeAnalysisFlags.ReportDiagnostics);
         context.EnableConcurrentExecution();
 
         context.RegisterCompilationStartAction(compStartCtx =>
@@ -43,6 +43,8 @@ public class DoNotUseReflectionAnalyzer : DiagnosticAnalyzer
 
             compStartCtx.RegisterOperationAction(operationCtx =>
             {
+                if (VoFilter.IsInCodeThatShouldNotBeAnalyzed(operationCtx.Operation.Syntax)) return;
+
                 var invocation = (IInvocationOperation) operationCtx.Operation;
 
                 var methodSymbol = invocation.TargetMethod;

@@ -37,8 +37,11 @@ public class DoNotUseNewAnalyzer : DiagnosticAnalyzer
 
     public override void Initialize(AnalysisContext context)
     {
-
-        context.ConfigureGeneratedCodeAnalysis(GeneratedCodeAnalysisFlags.None);
+        // Use Analyze | ReportDiagnostics so that user code inside Blazor/Razor-generated C# files is
+        // also checked. Without this, new MyVo() in .razor @code blocks is silently allowed.
+        // Non-Razor generated files are filtered out inside AnalyzeExpression via IsInNonRazorGeneratedFile.
+        context.ConfigureGeneratedCodeAnalysis(GeneratedCodeAnalysisFlags.Analyze | GeneratedCodeAnalysisFlags.ReportDiagnostics);
+        // context.ConfigureGeneratedCodeAnalysis(GeneratedCodeAnalysisFlags.None);
         context.EnableConcurrentExecution();
 
         context.RegisterCompilationStartAction(compilationContext =>
@@ -49,6 +52,8 @@ public class DoNotUseNewAnalyzer : DiagnosticAnalyzer
 
     private static void AnalyzeExpression(OperationAnalysisContext context)
     {
+        if (VoFilter.IsInCodeThatShouldNotBeAnalyzed(context.Operation.Syntax)) return;
+
         if (context.Operation is not IObjectCreationOperation c) return;
 
         if (c.Type is not INamedTypeSymbol symbol) return;

@@ -33,7 +33,8 @@ public class DoNotCompareWithPrimitivesInEfCoreAnalyzer : DiagnosticAnalyzer
 
     public override void Initialize(AnalysisContext context)
     {
-        context.ConfigureGeneratedCodeAnalysis(GeneratedCodeAnalysisFlags.None);
+        // Use Analyze | ReportDiagnostics so user code inside Blazor/Razor-generated C# files is checked.
+        context.ConfigureGeneratedCodeAnalysis(GeneratedCodeAnalysisFlags.Analyze | GeneratedCodeAnalysisFlags.ReportDiagnostics);
         context.EnableConcurrentExecution();
 
         context.RegisterSyntaxNodeAction(AnalyzeInvocation, SyntaxKind.InvocationExpression);
@@ -42,6 +43,8 @@ public class DoNotCompareWithPrimitivesInEfCoreAnalyzer : DiagnosticAnalyzer
 
     private static void AnalyzeInvocation(SyntaxNodeAnalysisContext context)
     {
+        if (VoFilter.IsInCodeThatShouldNotBeAnalyzed(context.Node)) return;
+
         var invocationExpr = (InvocationExpressionSyntax) context.Node;
         if (invocationExpr.Expression is not MemberAccessExpressionSyntax memberAccessExpr)
         {
@@ -85,6 +88,8 @@ public class DoNotCompareWithPrimitivesInEfCoreAnalyzer : DiagnosticAnalyzer
 
     private static void AnalyzeQueryExpression(SyntaxNodeAnalysisContext context)
     {
+        if (VoFilter.IsInCodeThatShouldNotBeAnalyzed(context.Node)) return;
+
         var queryExpr = (QueryExpressionSyntax) context.Node;
         var whereClauses = queryExpr.Body.DescendantNodes().OfType<WhereClauseSyntax>();
         var fromClause = queryExpr.FromClause;

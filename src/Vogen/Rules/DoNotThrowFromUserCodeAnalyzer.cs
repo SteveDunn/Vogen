@@ -26,7 +26,8 @@ public class DoNotThrowFromUserCodeAnalyzer : DiagnosticAnalyzer
 
     public override void Initialize(AnalysisContext context)
     {
-        context.ConfigureGeneratedCodeAnalysis(GeneratedCodeAnalysisFlags.None);
+        // Use Analyze | ReportDiagnostics so user code inside Blazor/Razor-generated C# files is checked.
+        context.ConfigureGeneratedCodeAnalysis(GeneratedCodeAnalysisFlags.Analyze | GeneratedCodeAnalysisFlags.ReportDiagnostics);
         context.EnableConcurrentExecution();
 
         context.RegisterSyntaxNodeAction(Analyze, SyntaxKind.ThrowStatement, SyntaxKind.ThrowExpression);
@@ -34,6 +35,8 @@ public class DoNotThrowFromUserCodeAnalyzer : DiagnosticAnalyzer
 
     private static void Analyze(SyntaxNodeAnalysisContext ctx)
     {
+        if (VoFilter.IsInCodeThatShouldNotBeAnalyzed(ctx.Node)) return;
+
         var throwStatement =  ctx.Node;
         
         var containingType = throwStatement.AncestorsAndSelf().OfType<TypeDeclarationSyntax>().FirstOrDefault();

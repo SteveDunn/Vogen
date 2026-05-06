@@ -30,8 +30,10 @@ public class DoNotUseDefaultAnalyzer : DiagnosticAnalyzer
 
     public override void Initialize(AnalysisContext context)
     {
-
-        context.ConfigureGeneratedCodeAnalysis(GeneratedCodeAnalysisFlags.None);
+        // Use Analyze | ReportDiagnostics so that user code inside Blazor/Razor-generated C# files is
+        // also checked. Without this, default(MyVo) in .razor @code blocks is silently allowed.
+        // Non-Razor generated files are filtered out inside ReportIfNeeded via IsInNonRazorGeneratedFile.
+        context.ConfigureGeneratedCodeAnalysis(GeneratedCodeAnalysisFlags.Analyze | GeneratedCodeAnalysisFlags.ReportDiagnostics);
         context.EnableConcurrentExecution();
 
         context.RegisterCompilationStartAction(compilationContext =>
@@ -67,6 +69,8 @@ public class DoNotUseDefaultAnalyzer : DiagnosticAnalyzer
 
     private static void ReportIfNeeded(SyntaxNodeAnalysisContext ctx, ExpressionSyntax literalExpressionSyntax)
     {
+        if (VoFilter.IsInCodeThatShouldNotBeAnalyzed(literalExpressionSyntax)) return;
+
         var typeInfo = ctx.SemanticModel.GetTypeInfo(literalExpressionSyntax).Type;
         if (typeInfo is not INamedTypeSymbol symbol) return;
 
