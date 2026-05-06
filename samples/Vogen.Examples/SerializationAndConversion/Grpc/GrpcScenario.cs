@@ -1,3 +1,5 @@
+#nullable enable
+
 using System;
 using System.Net;
 using System.Net.Sockets;
@@ -7,8 +9,6 @@ using Grpc.Net.Client;
 using JetBrains.Annotations;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
 using ProtoBuf;
 using ProtoBuf.Grpc.Client;
 using ProtoBuf.Grpc.Server;
@@ -150,7 +150,3 @@ public class VogenSurrogate<TW, TP> where TW: IVogen<TW, TP>
     public static implicit operator TW(VogenSurrogate<TW, TP> surrogate) => TW.From(surrogate.Value);
     public static implicit operator VogenSurrogate<TW, TP>?(TW? value) => value is null ? null :  new VogenSurrogate<TW, TP> { Value = value.Value };
 }
-
-
-
-
