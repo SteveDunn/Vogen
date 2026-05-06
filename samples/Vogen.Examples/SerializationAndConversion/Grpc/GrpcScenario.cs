@@ -16,7 +16,7 @@ public class GrpcScenario : IScenario
 
         string schema = generator.GetSchema<IService>();
         Console.WriteLine("Schema is: " + schema);
-        
+       
         IService service = new Service();
         var person = await service.GetDataAsync();
         
@@ -26,10 +26,10 @@ public class GrpcScenario : IScenario
 
 public class Person
 {
-    public Name Name { get; init; }
-    public Age Age { get; init; }
-    public BoxId BoxId { get; init; }
-    public Temperature Temperature { get; init; }
+    public required Name Name { get; init; }
+    public required Age Age { get; init; }
+    public required BoxId BoxId { get; init; }
+    public required Temperature Temperature { get; init; }
 }
 
 [ServiceContract]
@@ -74,8 +74,7 @@ public partial class Temperature;
 [ProtoContract]
 public class VogenSurrogate<TW, TP> where TW: IVogen<TW, TP>
 {
-    [ProtoMember(1)]
-    public TP Value { get; set; }
+    [ProtoMember(1)] public TP Value { get; set; } = default!;
 
     public static implicit operator TW(VogenSurrogate<TW, TP> surrogate) => TW.From(surrogate.Value);
     public static implicit operator VogenSurrogate<TW, TP>(TW value) => new() { Value = value.Value };
