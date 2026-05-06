@@ -424,6 +424,8 @@ Yes, but the mechanism is different depending on the version of protobuf-net you
 
 ### protobuf-net v2 (pre-v3)
 
+> ⚠️ **This pattern is broken in protobuf-net v3 and later.** If you are on v3+, skip to the next section.
+
 Add a dependency to protobuf-net and annotate the value object with `[ProtoContract(Surrogate = typeof(string))]`: (NOTE: replace `string` with the correct primitive)
 
 ```c#
@@ -468,6 +470,21 @@ public partial class BoxId;
 [ProtoContract(Surrogate = typeof(VogenSurrogate<Age, int>))]
 public partial class Age;
 ```
+
+Any DTO or message class that contains these value objects must also be annotated with `[ProtoContract]` and `[ProtoMember]`
+on each property — without these, protobuf-net cannot deserialize the message and will return `null`:
+
+```c#
+[ProtoContract]
+public class Person
+{
+    [ProtoMember(1)] public Name? Name { get; set; }
+    [ProtoMember(2)] public Age? Age { get; set; }
+}
+```
+
+Note that properties should use `{ get; set; }` (not `init`) and be nullable, as protobuf-net constructs the object
+via a parameterless constructor and then sets each property — Vogen prohibits assigning `default` to value object fields.
 
 A full working example including schema generation and a gRPC service can be found in
 [`samples/Vogen.Examples/SerializationAndConversion/Grpc/GrpcScenario.cs`](../../../../samples/Vogen.Examples/SerializationAndConversion/Grpc/GrpcScenario.cs).
