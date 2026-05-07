@@ -44,6 +44,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vogen.Benchmarks", "tests\V
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "1MyProg", "samples\1MyProg\1MyProg.csproj", "{2CDDD2E7-2CC0-470B-AE5A-60B018F08998}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlazorExample", "samples\BlazorExample\BlazorExample.csproj", "{D6171866-4B51-4F2B-9F46-552DD5E283F1}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -102,6 +104,10 @@ Global
 		{2CDDD2E7-2CC0-470B-AE5A-60B018F08998}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2CDDD2E7-2CC0-470B-AE5A-60B018F08998}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2CDDD2E7-2CC0-470B-AE5A-60B018F08998}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D6171866-4B51-4F2B-9F46-552DD5E283F1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D6171866-4B51-4F2B-9F46-552DD5E283F1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D6171866-4B51-4F2B-9F46-552DD5E283F1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D6171866-4B51-4F2B-9F46-552DD5E283F1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
