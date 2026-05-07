@@ -44,4 +44,5 @@ public static class RuleIdentifiers
     public const string VoReferencedInAConversionMarkerMustExplicitlySpecifyPrimitive = "VOG035";
     public const string BothImplicitAndExplicitCastsSpecified = "VOG036";
     public const string NumericsGenerationNotApplicable = "VOG037";
+    public const string DoNotUseGetValueOrDefault = "VOG038";
 }

@@ -28,6 +28,10 @@ namespace Vogen.Examples.SyntaxExamples.NoDefaulting
             // var _ = new CustomerId();
             // new CustomerId();
 
+            // uncomment for - error VOG038: Type 'CustomerId' cannot be constructed with GetValueOrDefault() as it is prohibited.
+            // CustomerId? v6 = null;
+            // v6.GetValueOrDefault();
+
             // this is valid syntax as it can't easily be picked up at compile time,
             // but it throws a ValueObjectValidationException at runtime.
             CustomerId[] customerIds = new CustomerId[10];
