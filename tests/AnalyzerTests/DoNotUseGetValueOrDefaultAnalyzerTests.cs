@@ -25,27 +25,29 @@ namespace AnalyzerTests
         [Fact]
         public async Task NoDiagnosticsForEmptyCode()
         {
-            var test = @"";
-            await VerifyCS.VerifyAnalyzerAsync(test);
+            const string source = "";
+            await VerifyCS.VerifyAnalyzerAsync(source);
         }
 
         [Theory]
         [ClassData(typeof(StructTypes))]
         public async Task Disallow_parameterless_GetValueOrDefault_on_nullable_value_objects(string type)
         {
-            var source = $@"using Vogen;
-namespace Whatever;
+            var source = $$"""
+                           using Vogen;
+                           namespace Whatever;
 
-[ValueObject(typeof(int))]
-public {type} MyVo {{ }}
+                           [ValueObject(typeof(int))]
+                           public {{type}} MyVo { }
 
-public class Test {{
-    public Test() {{
-        MyVo? value = null;
-        var result = {{|#0:value.GetValueOrDefault()|}};
-    }}
-}}
-";
+                           public class Test {
+                               public Test() {
+                                   MyVo? value = null;
+                                   var result = {|#0:value.GetValueOrDefault()|};
+                               }
+                           }
+
+                           """;
 
             await Run(source, WithDiagnostics("VOG038", DiagnosticSeverity.Error, "MyVo", 0));
         }
@@ -54,19 +56,21 @@ public class Test {{
         [ClassData(typeof(StructTypes))]
         public async Task Allow_GetValueOrDefault_with_explicit_default_value(string type)
         {
-            var source = $@"using Vogen;
-namespace Whatever;
+            var source = $$"""
+                           using Vogen;
+                           namespace Whatever;
 
-[ValueObject(typeof(int))]
-public {type} MyVo {{ }}
+                           [ValueObject(typeof(int))]
+                           public {{type}} MyVo { }
 
-public class Test {{
-    public Test() {{
-        MyVo? value = null;
-        var result = value.GetValueOrDefault(default);
-    }}
-}}
-";
+                           public class Test {
+                               public Test() {
+                                   MyVo? value = null;
+                                   var result = value.GetValueOrDefault(default);
+                               }
+                           }
+
+                           """;
 
             await Run(source, []);
         }
@@ -74,15 +78,17 @@ public class Test {{
         [Fact]
         public async Task Allow_parameterless_GetValueOrDefault_on_non_value_object_nullable_structs()
         {
-            var source = @"namespace Whatever;
+            var source = """
+                         namespace Whatever;
 
-public class Test {
-    public Test() {
-        int? value = null;
-        var result = value.GetValueOrDefault();
-    }
-}
-";
+                         public class Test {
+                             public Test() {
+                                 int? value = null;
+                                 var result = value.GetValueOrDefault();
+                             }
+                         }
+
+                         """;
 
             await VerifyCS.VerifyAnalyzerAsync(source);
         }
