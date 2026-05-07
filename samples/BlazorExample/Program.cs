@@ -31,6 +31,9 @@ app.Run();
 [ValueObject<DateOnly>]
 public partial struct ForecastDate;
 
+[ValueObject<string>]
+public partial struct WeatherSummary;
+
 [ValueObject<double>]
 public partial struct Celcius
 {

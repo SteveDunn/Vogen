@@ -28,9 +28,9 @@ else
         {
             <tr>
                 <td>@forecast.Date.Value.ToShortDateString()</td>
-                <td>@forecast.TemperatureC</td>
+                <td>@forecast.TemperatureC.Value</td>
                 <td>@forecast.TemperatureC.InFahrenheit</td>
-                <td>@forecast.Summary</td>
+                <td>@forecast.Summary.Value</td>
             </tr>
         }
         </tbody>
@@ -55,7 +55,7 @@ else
         {
             Date = ForecastDate.From(startDate.AddDays(index)),
             TemperatureC = Celcius.From(Random.Shared.Next(-20, 55)),
-            Summary = summaries[Random.Shared.Next(summaries.Length)]
+            Summary = WeatherSummary.From(summaries[Random.Shared.Next(summaries.Length)])
         }).ToArray();
     }
 
@@ -63,6 +63,6 @@ else
     {
         public ForecastDate Date { get; set; }
         public Celcius TemperatureC { get; set; }
-        public string? Summary { get; set; }
+        public WeatherSummary Summary { get; set; }
     }
 }

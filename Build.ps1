@@ -120,18 +120,27 @@ exec { & dotnet restore Consumers.sln -p UseLocallyBuiltPackage=true --force --n
 
 # Run builds in parallel - Debug uses solution filter to exclude Vogen.Benchmarks
 # (Benchmarks always build Release regardless of config; filter prevents the parallel file lock)
-$debugTask = Start-Process "dotnet" "build Consumers.NoBenchmarks.slnf --configuration Debug --no-restore --verbosity $verbosity" -NoNewWindow -PassThru
-$releaseTask = Start-Process "dotnet" "build Consumers.sln --configuration Release --no-restore --verbosity $verbosity" -NoNewWindow -PassThru
+$debugLog   = [System.IO.Path]::GetTempFileName()
+$releaseLog = [System.IO.Path]::GetTempFileName()
+
+$debugTask   = Start-Process "dotnet" "build Consumers.NoBenchmarks.slnf --configuration Debug --no-restore --verbosity $verbosity"   -NoNewWindow -PassThru -RedirectStandardOutput $debugLog   -RedirectStandardError "$debugLog.err"
+$releaseTask = Start-Process "dotnet" "build Consumers.sln               --configuration Release --no-restore --verbosity $verbosity" -NoNewWindow -PassThru -RedirectStandardOutput $releaseLog -RedirectStandardError "$releaseLog.err"
 
 $debugTask.WaitForExit()
 $releaseTask.WaitForExit()
 
-if ($debugTask.ExitCode -ne 0) {
+if ($null -ne $debugTask.ExitCode -and $debugTask.ExitCode -ne 0) {
+    Write-Host (Get-Content $debugLog   -Raw) -ForegroundColor Red
+    Write-Host (Get-Content "$debugLog.err"   -Raw) -ForegroundColor Red
     throw "Exec: Debug build failed with exit code $($debugTask.ExitCode)"
 }
-if ($releaseTask.ExitCode -ne 0) {
+if ($null -ne $releaseTask.ExitCode -and $releaseTask.ExitCode -ne 0) {
+    Write-Host (Get-Content $releaseLog -Raw) -ForegroundColor Red
+    Write-Host (Get-Content "$releaseLog.err" -Raw) -ForegroundColor Red
     throw "Exec: Release build failed with exit code $($releaseTask.ExitCode)"
 }
+
+Remove-Item $debugLog, "$debugLog.err", $releaseLog, "$releaseLog.err" -ErrorAction SilentlyContinue
 
 WriteStage("Running consumer tests in debug with the local version of the NuGet package:" +$version)
 exec { & dotnet test ./tests/ConsumerTests -c Debug --no-build --no-restore --verbosity $verbosity }
