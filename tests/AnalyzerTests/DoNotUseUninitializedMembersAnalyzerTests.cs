@@ -17,6 +17,8 @@ public sealed class DoNotUseUninitializedMembersAnalyzerTests
                                          [System.AttributeUsage(System.AttributeTargets.Struct | System.AttributeTargets.Class)]
                                          public class ValueObjectAttribute : System.Attribute { }
                                          public sealed class ValueObjectAttribute<T> : ValueObjectAttribute { }
+                                         public sealed class SetsUninitializedMembersAttribute : System.Attribute { }
+                                         public sealed class MayBeUninitializedAttribute : System.Attribute { }
                                      }
                                      """;
 
@@ -137,6 +139,23 @@ public sealed class DoNotUseUninitializedMembersAnalyzerTests
 
     [Theory]
     [MemberData(nameof(AllVogenDeclarations))]
+    public async Task Does_Not_Report_When_Annotated_With_MayBeUninitialized(string vogenTypeDeclaration)
+    {
+        var code = $$"""
+                     using Vogen;
+                     [ValueObject<int>] public {{vogenTypeDeclaration}} MyVO;
+                     public sealed class C
+                     {
+                         [MayBeUninitialized]
+                         public MyVO P { get; set; }
+                     }
+                     """;
+        await CreateAnalyzerTest(code).RunAsync();
+    }
+
+
+    [Theory]
+    [MemberData(nameof(AllVogenDeclarations))]
     public async Task Does_Not_Report_When_Nullable(string vogenTypeDeclaration)
     {
         var code = $$"""
@@ -170,6 +189,25 @@ public sealed class DoNotUseUninitializedMembersAnalyzerTests
 
     [Theory]
     [MemberData(nameof(AllVogenDeclarations))]
+    public async Task Does_Not_Report_When_Inline_Initialized_Field(string vogenTypeDeclaration)
+    {
+        var code = $$"""
+                     using Vogen;
+                     [ValueObject<int>] public {{vogenTypeDeclaration}} MyVO
+                     {
+                         public static MyVO From(int v) => default;
+                     }
+                     public sealed class C
+                     {
+                         public readonly MyVO _field = MyVO.From(0);
+                     }
+                     """;
+        await CreateAnalyzerTest(code).RunAsync();
+    }
+
+
+    [Theory]
+    [MemberData(nameof(AllVogenDeclarations))]
     public async Task Does_Not_Report_When_Assigned_In_Every_Constructor(string vogenTypeDeclaration)
     {
         var code = $$"""
@@ -180,6 +218,24 @@ public sealed class DoNotUseUninitializedMembersAnalyzerTests
                          public MyVO P { get; set; }
                          public C(MyVO p) { P = p; }
                          public C(int x) : this(default(MyVO)) { }
+                     }
+                     """;
+        await CreateAnalyzerTest(code).RunAsync();
+    }
+
+    [Theory]
+    [MemberData(nameof(AllVogenDeclarations))]
+    public async Task Does_Not_Report_When_Constructor_Is_Annotated_With_SetsUninitializedMembers(string vogenTypeDeclaration)
+    {
+        var code = $$"""
+                     using Vogen;
+                     using System.Diagnostics.CodeAnalysis;
+                     [ValueObject<int>] public {{vogenTypeDeclaration}} MyVO;
+                     public sealed class C
+                     {
+                         public MyVO P { get; set; }
+                         [SetsUninitializedMembers]
+                         public C(int x){}
                      }
                      """;
         await CreateAnalyzerTest(code).RunAsync();
