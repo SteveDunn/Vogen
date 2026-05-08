@@ -7,6 +7,7 @@ using Vogen.Generators;
 
 namespace Vogen;
 
+#if NET10_0_OR_GREATER
 /// <summary>
 /// Generates the <see cref="System.Numerics.INumber{T}"/> or <see cref="System.Numerics.INumberBase{T}"/>
 /// implementation for value objects whose underlying primitive type implements the corresponding interface.
@@ -18,6 +19,19 @@ namespace Vogen;
 ///
 /// Requires C# 11 or later.
 /// </summary>
+#elif NETSTANDARD
+/// <summary>
+/// Generates the System.Numerics.INumberBase of T or System.Numerics.INumberBase of T
+/// implementation for value objects whose underlying primitive type implements the corresponding interface.
+///
+/// Static abstract interface members (e.g. <c>double.One</c>) cannot be called on concrete
+/// types in ordinary code — they require a constrained type parameter. So the generated code
+/// includes private generic helper methods that forward every call through a type parameter,
+/// which the C# compiler can then resolve to the concrete type's implementation.
+///
+/// Requires C# 11 or later.
+/// </summary>
+#endif
 public static class GenerateCodeForINumber
 {
     private enum NumericMode { None, INumber, INumberBase }
@@ -214,7 +228,7 @@ public static class GenerateCodeForINumber
         //  - If an [Instance] with that name exists: the instance generates a readonly field, which does NOT
         //    satisfy a static abstract property. Generate an explicit interface impl that delegates to the field.
         //  - Otherwise: generate the normal public property.
-        GenerateNumberProperty(sb, wrapperName, primitiveType, wrapperSymbol, item,
+        GenerateNumberProperty(sb, wrapperName, wrapperSymbol, item,
             name: "One",
             iface: $"global::System.Numerics.INumberBase<{wrapperName}>",
             body: $"From(__GetOne<{primitiveType}>())");
@@ -225,17 +239,17 @@ public static class GenerateCodeForINumber
             sb.AppendLine($"    public static global::System.Int32 Radix => __GetRadix<{primitiveType}>();");
         }
 
-        GenerateNumberProperty(sb, wrapperName, primitiveType, wrapperSymbol, item,
+        GenerateNumberProperty(sb, wrapperName, wrapperSymbol, item,
             name: "Zero",
             iface: $"global::System.Numerics.INumberBase<{wrapperName}>",
             body: $"From(__GetZero<{primitiveType}>())");
 
-        GenerateNumberProperty(sb, wrapperName, primitiveType, wrapperSymbol, item,
+        GenerateNumberProperty(sb, wrapperName, wrapperSymbol, item,
             name: "AdditiveIdentity",
             iface: $"global::System.Numerics.IAdditiveIdentity<{wrapperName}, {wrapperName}>",
             body: $"From(__GetAdditiveIdentity<{primitiveType}>())");
 
-        GenerateNumberProperty(sb, wrapperName, primitiveType, wrapperSymbol, item,
+        GenerateNumberProperty(sb, wrapperName, wrapperSymbol, item,
             name: "MultiplicativeIdentity",
             iface: $"global::System.Numerics.IMultiplicativeIdentity<{wrapperName}, {wrapperName}>",
             body: $"From(__GetMultiplicativeIdentity<{primitiveType}>())");
@@ -246,7 +260,6 @@ public static class GenerateCodeForINumber
     private static void GenerateNumberProperty(
         StringBuilder sb,
         string wrapperName,
-        string primitiveType,
         INamedTypeSymbol wrapperSymbol,
         VoWorkItem item,
         string name,

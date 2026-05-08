@@ -474,7 +474,7 @@ namespace AnalyzerTests
 
         /// <summary>
         /// Like <see cref="Run(string[],IEnumerable{DiagnosticResult})"/> but each source may optionally carry
-        /// an explicit file name. A <c>null</c> name means auto-assign (same as the plain <see cref="Run"/> overload).
+        /// an explicit file name. A <c>null</c> name means auto-assign (same as the plain <see cref="Run(string,IEnumerable{DiagnosticResult})"/> overload).
         /// Named files are used to test path-sensitive filtering (e.g. <c>.razor.g.cs</c> vs <c>.g.cs</c>).
         /// </summary>
         private async Task RunWithNamedSources(
