@@ -100,12 +100,12 @@ public class DoNotUseUninitializedMembersAnalyzer : DiagnosticAnalyzer
         INamedTypeSymbol memberTypeSymbol,
         ConcurrentDictionary<INamedTypeSymbol, bool> vogenTargetCache)
     {
-        if (memberSymbol.GetAttributes().Any(a => a.AttributeClass?.Name == nameof(MayBeUninitializedAttribute)))
+        if (IsAnnotatedWithMayBeUninitialized(memberSymbol))
         {
             return;
         }
 
-        if (!CheckIfTypeNeedsHandling(memberTypeSymbol, memberSymbol, vogenTargetCache))
+        if (!CheckIfTypeNeedsHandling(memberTypeSymbol, vogenTargetCache))
         {
             return;
         }
@@ -166,12 +166,10 @@ public class DoNotUseUninitializedMembersAnalyzer : DiagnosticAnalyzer
     /// Tries to determine if the given member could be problematic.
     /// </summary>
     /// <param name="namedDeclaredType">The type of the member.</param>
-    /// <param name="memberSymbol">The symbol of the member (field or property).</param>
     /// <param name="vogenTargetCache"></param>
     /// <returns>True if the type and member need handling, otherwise false.</returns>
     private static bool CheckIfTypeNeedsHandling(
         INamedTypeSymbol namedDeclaredType,
-        ISymbol memberSymbol,
         ConcurrentDictionary<INamedTypeSymbol, bool> vogenTargetCache)
     {
         var isVoTarget = vogenTargetCache.GetOrAdd(namedDeclaredType, VoFilter.IsTarget);
@@ -185,18 +183,6 @@ public class DoNotUseUninitializedMembersAnalyzer : DiagnosticAnalyzer
         // Skip properties that are annotated as nullable
         if (namedDeclaredType.NullableAnnotation == NullableAnnotation.Annotated
             || namedDeclaredType.SpecialType == SpecialType.System_Nullable_T)
-        {
-            return false;
-        }
-
-        // Skip positional record properties (they are assigned by the synthesized primary constructor).
-        if (HasParameterDeclaringSyntax(memberSymbol))
-        {
-            return false;
-        }
-
-        // Skip members with an inline initializer.
-        if (HasInlineInitializer(memberSymbol))
         {
             return false;
         }
@@ -262,28 +248,45 @@ public class DoNotUseUninitializedMembersAnalyzer : DiagnosticAnalyzer
     }
 
 
-    private static bool HasParameterDeclaringSyntax(ISymbol member) =>
-        member
-            .DeclaringSyntaxReferences
-            .Select(x => x.GetSyntax())
-            .OfType<ParameterSyntax>()
-            .Any();
-
-    private static bool HasInlineInitializer(ISymbol member)
+    private static bool IsAnnotatedWithMayBeUninitialized(ISymbol memberSymbol)
     {
-        foreach (var syntaxRef in member.DeclaringSyntaxReferences)
+        if (memberSymbol.GetAttributes().Any(a => a.AttributeClass?.Name == nameof(MayBeUninitializedAttribute)))
         {
-            var syntax = syntaxRef.GetSyntax();
-            switch (syntax)
-            {
-                case PropertyDeclarationSyntax { Initializer: not null }:
-                case VariableDeclaratorSyntax { Initializer: not null }:
+            return true;
+        }
+
+        if (memberSymbol is not IPropertySymbol propertySymbol)
+        {
+            return false;
+        }
+
+        if (propertySymbol.OverriddenProperty is not null && IsAnnotatedWithMayBeUninitialized(propertySymbol.OverriddenProperty))
+        {
+            return true;
+        }
+
+
+        foreach (var interfaceMember in propertySymbol
+                     .ContainingType
+                     .AllInterfaces
+                     .SelectMany(x => x.GetMembers().OfType<IPropertySymbol>()))
+        {
+                var implementation = propertySymbol.ContainingType.FindImplementationForInterfaceMember(interfaceMember);
+                if (!SymbolEqualityComparer.Default.Equals(implementation, propertySymbol))
+                {
+                    continue;
+                }
+
+                if (interfaceMember.GetAttributes().Any(a => a.AttributeClass?.Name == nameof(MayBeUninitializedAttribute)))
+                {
                     return true;
-            }
+                }
+
         }
 
         return false;
     }
+
 
     private static bool ConstructorAssignsMember(
         IMethodSymbol constructor,

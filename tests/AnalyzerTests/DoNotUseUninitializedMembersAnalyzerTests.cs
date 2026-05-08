@@ -153,6 +153,27 @@ public sealed class DoNotUseUninitializedMembersAnalyzerTests
         await CreateAnalyzerTest(code).RunAsync();
     }
 
+    [Theory]
+    [MemberData(nameof(AllVogenDeclarations))]
+    public async Task Does_Not_Report_When_Interface_Is_Annotated_With_MayBeUninitialized(string vogenTypeDeclaration)
+    {
+        var code = $$"""
+                     using Vogen;
+                     public interface IC
+                     {
+                       [MayBeUninitialized]
+                        MyVO P { get; set; }
+                     }
+                     
+                     [ValueObject<int>] public {{vogenTypeDeclaration}} MyVO;
+                     public sealed class C : IC
+                     {
+                         public MyVO P { get; set; }
+                     }
+                     """;
+        await CreateAnalyzerTest(code).RunAsync();
+    }
+
 
     [Theory]
     [MemberData(nameof(AllVogenDeclarations))]
@@ -222,6 +243,26 @@ public sealed class DoNotUseUninitializedMembersAnalyzerTests
                      """;
         await CreateAnalyzerTest(code).RunAsync();
     }
+
+    [Theory]
+    [MemberData(nameof(AllVogenDeclarations))]
+    public async Task Does_Not_Report_When_Assigned_In_Every_Static_Constructor(string vogenTypeDeclaration)
+    {
+        var code = $$"""
+                     using Vogen;
+                     [ValueObject<int>] public {{vogenTypeDeclaration}} MyVO;
+                     public sealed class C
+                     {
+                         public static MyVO P { get; set; }
+                         static C()
+                         {
+                             P = default(MyVO);
+                         }
+                     }
+                     """;
+        await CreateAnalyzerTest(code).RunAsync();
+    }
+
 
     [Theory]
     [MemberData(nameof(AllVogenDeclarations))]
