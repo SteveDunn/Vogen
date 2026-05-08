@@ -233,7 +233,7 @@ public class DoNotUseUninitializedMembersAnalyzer : DiagnosticAnalyzer
 
         // Read-only get-only computed properties (no setter, no auto-property backing) cannot
         // accidentally surface a default value; skip them.
-        if (prop.SetMethod is null)
+        if (propertyDeclarationSyntax.ExpressionBody is not null)
         {
             return false;
         }

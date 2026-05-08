@@ -92,6 +92,36 @@ public sealed class DoNotUseUninitializedMembersAnalyzerTests
 
     [Theory]
     [MemberData(nameof(AllVogenDeclarations))]
+    public async Task Reports_Get_Only(string vogenTypeDeclaration)
+    {
+        var code = $$"""
+                     using Vogen;
+                     [ValueObject<int>] public {{vogenTypeDeclaration}} MyVO;
+                     public sealed class C
+                     {
+                         public MyVO {|{{RuleIdentifiers.DoNotUseUninitializedMembers}}:P|} { get; }
+                     }
+                     """;
+        await CreateAnalyzerTest(code).RunAsync();
+    }
+
+    [Theory]
+    [MemberData(nameof(AllVogenDeclarations))]
+    public async Task Reports_Init(string vogenTypeDeclaration)
+    {
+        var code = $$"""
+                     using Vogen;
+                     [ValueObject<int>] public {{vogenTypeDeclaration}} MyVO;
+                     public sealed class C
+                     {
+                         public MyVO {|{{RuleIdentifiers.DoNotUseUninitializedMembers}}:P|} { get; init; }
+                     }
+                     """;
+        await CreateAnalyzerTest(code).RunAsync();
+    }
+
+    [Theory]
+    [MemberData(nameof(AllVogenDeclarations))]
     public async Task Reports_When_Any_Constructor_Does_Not_Assign(string vogenTypeDeclaration)
     {
         var code = $$"""
