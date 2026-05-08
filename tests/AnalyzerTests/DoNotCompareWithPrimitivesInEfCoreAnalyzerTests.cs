@@ -99,7 +99,7 @@ public class DoNotCompareWithPrimitivesInEfCoreAnalyzerTests
 
             await Run(
                 sources,
-                WithDiagnostics("VOG034", DiagnosticSeverity.Error, "Age", 0));
+                WithDiagnostics("VOG034", DiagnosticSeverity.Warning, "Age", 0));
         }
 
         [Fact]
@@ -122,10 +122,10 @@ public class DoNotCompareWithPrimitivesInEfCoreAnalyzerTests
 
             await Run(
                 sources,
-                WithDiagnostics("VOG034", DiagnosticSeverity.Error, "Age", 0));
+                WithDiagnostics("VOG034", DiagnosticSeverity.Warning, "Age", 0));
         }
 
-        [Fact(Skip = "It would be nice if this did work, but I couldn't get it working. Please see the thread at https://github.com/SteveDunn/Vogen/issues/684")]
+        [Fact]
         public async Task Triggers_when_found_in_IQueryableOfDbSet_in_separate_expression_twice_removed()
         {
             var source = _source + """
@@ -146,7 +146,7 @@ public class DoNotCompareWithPrimitivesInEfCoreAnalyzerTests
 
             await Run(
                 sources,
-                WithDiagnostics("VOG034", DiagnosticSeverity.Error, "Age", 0));
+                WithDiagnostics("VOG034", DiagnosticSeverity.Warning, "Age", 0));
         }
 
         [Fact]
@@ -170,7 +170,7 @@ public class DoNotCompareWithPrimitivesInEfCoreAnalyzerTests
 
             await Run(
                 sources,
-                WithDiagnostics("VOG034", DiagnosticSeverity.Error, "Age", 0));
+                WithDiagnostics("VOG034", DiagnosticSeverity.Warning, "Age", 0));
         }
 
         [Fact]
@@ -192,7 +192,7 @@ public class DoNotCompareWithPrimitivesInEfCoreAnalyzerTests
 
             await Run(
                 sources,
-                WithDiagnostics("VOG034", DiagnosticSeverity.Error, "Age", 0));
+                WithDiagnostics("VOG034", DiagnosticSeverity.Warning, "Age", 0));
         }
 
         [Fact]
@@ -214,7 +214,7 @@ public class DoNotCompareWithPrimitivesInEfCoreAnalyzerTests
 
             await Run(
                 sources,
-                WithDiagnostics("VOG034", DiagnosticSeverity.Error, "Age", 0));
+                WithDiagnostics("VOG034", DiagnosticSeverity.Warning, "Age", 0));
         }
 
         [Fact]
@@ -318,7 +318,7 @@ public class DoNotCompareWithPrimitivesInEfCoreAnalyzerTests
 
             await Run(
                 sources,
-                WithDiagnostics("VOG034", DiagnosticSeverity.Error, "Age", 0));
+                WithDiagnostics("VOG034", DiagnosticSeverity.Warning, "Age", 0));
         }
 
         [Fact]
@@ -340,7 +340,7 @@ public class DoNotCompareWithPrimitivesInEfCoreAnalyzerTests
 
             await Run(
                 sources,
-                WithDiagnostics("VOG034", DiagnosticSeverity.Error, "Age", 0));
+                WithDiagnostics("VOG034", DiagnosticSeverity.Warning, "Age", 0));
         }
 
         [Fact]
@@ -362,7 +362,7 @@ public class DoNotCompareWithPrimitivesInEfCoreAnalyzerTests
 
             await Run(
                 sources,
-                WithDiagnostics("VOG034", DiagnosticSeverity.Error, "Age", 0));
+                WithDiagnostics("VOG034", DiagnosticSeverity.Warning, "Age", 0));
         }
 
         [Fact]
