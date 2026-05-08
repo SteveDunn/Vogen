@@ -1,7 +1,5 @@
 ﻿using Vogen.Diagnostics;
-
 namespace Vogen.Rules;
-
 using System.Collections.Concurrent;
 using System.Collections.Immutable;
 using System.Linq;
@@ -33,81 +31,83 @@ public class DoNotUseUninitializedMembersAnalyzer : DiagnosticAnalyzer
         context.ConfigureGeneratedCodeAnalysis(GeneratedCodeAnalysisFlags.None);
         context.EnableConcurrentExecution();
 
-        context.RegisterSymbolAction(
-            AnalyzeNamedType,
-            SymbolKind.NamedType);
+        context.RegisterSyntaxNodeAction(AnalyzeMemberNode, SyntaxKind.PropertyDeclaration);
+        context.RegisterSyntaxNodeAction(AnalyzeMemberNode, SyntaxKind.FieldDeclaration);
     }
 
-
-
-
-    private static void AnalyzeNamedType(
-        SymbolAnalysisContext context)
+    private static void AnalyzeMemberNode(SyntaxNodeAnalysisContext ctx)
     {
-        if (context.FilterTree is not null && VoFilter.IsInCodeThatShouldNotBeAnalyzed(context.FilterTree))
+        if (ctx.ContainingSymbol is null)
         {
             return;
         }
 
-        var typeSymbol = (INamedTypeSymbol) context.Symbol;
-
-        if (typeSymbol.TypeKind != TypeKind.Class
-            && typeSymbol.TypeKind != TypeKind.Struct)
+        var memberSymbol = ctx.ContainingSymbol;
+        if (!TryGetCandidate(memberSymbol, out var memberType))
         {
             return;
         }
 
-        var constructors = typeSymbol.InstanceConstructors;
-        var staticConstructor = typeSymbol.StaticConstructors.FirstOrDefault();
-
-        foreach (var member in typeSymbol.GetMembers())
+        if (memberSymbol.ContainingSymbol is not INamedTypeSymbol containingType)
         {
-            if (!TryGetCandidate(
-                    member,
-                    out var memberType))
-            {
-                continue;
-            }
-
-            if (IsMemberSafelyInitialized(context, member, staticConstructor, constructors))
-            {
-                continue;
-            }
-
-            var location = member.Locations.FirstOrDefault() ?? Location.None;
-            context.ReportDiagnostic(
-                Diagnostic.Create(
-                    _rule,
-                    location,
-                    member.Name,
-                    memberType.ToDisplayString()));
+            return;
         }
+
+        var constructors = containingType.InstanceConstructors;
+
+        var c = constructors
+            .SelectMany(x => x.DeclaringSyntaxReferences)
+            .Select(syntaxRef => syntaxRef.GetSyntax())
+            .OfType<ConstructorDeclarationSyntax>()
+            .Select(x => ctx.SemanticModel.GetOperation(x))
+            .Where(x => x is not null)
+            .ToArray();
+        if (c.Length != 0)
+        {
+
+        }
+        // There can be only one static constructor.
+        var staticConstructor = containingType.StaticConstructors.FirstOrDefault();
+
+
+        if (IsMemberSafelyInitialized(ctx.SemanticModel, memberSymbol, staticConstructor, constructors))
+        {
+            return;
+        }
+
+        var location = memberSymbol.Locations.FirstOrDefault() ?? Location.None;
+        ctx.ReportDiagnostic(
+            Diagnostic.Create(
+                _rule,
+                location,
+                memberSymbol.Name,
+                memberType.ToDisplayString()));
     }
 
     private static bool IsMemberSafelyInitialized(
-        SymbolAnalysisContext context,
+        SemanticModel semanticModel,
         ISymbol member,
         IMethodSymbol? staticConstructor,
         ImmutableArray<IMethodSymbol> constructors)
     {
-        if (constructors.IsDefaultOrEmpty)
-        {
-            return false;
-        }
-
         if (member.IsStatic)
         {
             return staticConstructor != null
                    && ConstructorAssignsMember(
                        staticConstructor,
                        member,
-                       context.Compilation,
+                       semanticModel,
                        new ConcurrentDictionary<IMethodSymbol, bool>(SymbolEqualityComparer.Default));
+        }
+
+        if (constructors.IsDefaultOrEmpty)
+        {
+            return false;
         }
 
         var visitedConstructors = new ConcurrentDictionary<IMethodSymbol, bool>(SymbolEqualityComparer.Default);
         return constructors
-            .All(ctor => ConstructorAssignsMember(ctor, member, context.Compilation, visitedConstructors));
+            .All(ctor => ConstructorAssignsMember(ctor, member, semanticModel, visitedConstructors));
     }
 
 
@@ -279,10 +279,18 @@ public class DoNotUseUninitializedMembersAnalyzer : DiagnosticAnalyzer
     }
 
 
+    /// <summary>
+    /// Checks if the method <paramref name="constructor"/> assigns the member <paramref name="member"/>.
+    /// </summary>
+    /// <param name="constructor">The method symbol of the constructor to check.</param>
+    /// <param name="member">The member symbol to check for assignment.</param>
+    /// <param name="semanticModel">The compilation context for symbol resolution.</param>
+    /// <param name="visited">A cache to avoid redundant checks on the same constructor.</param>
+    /// <returns>True if the constructor assigns the member, otherwise false.</returns>
     private static bool ConstructorAssignsMember(
         IMethodSymbol constructor,
         ISymbol member,
-        Compilation compilation,
+        SemanticModel semanticModel,
         ConcurrentDictionary<IMethodSymbol, bool> visited)
     {
         if (visited.TryGetValue(constructor, out var result))
@@ -299,46 +307,19 @@ public class DoNotUseUninitializedMembersAnalyzer : DiagnosticAnalyzer
         }
 
         return constructor
-            .DeclaringSyntaxReferences.Select(syntaxRef => syntaxRef.GetSyntax())
+            .DeclaringSyntaxReferences
+            .Select(syntaxRef => syntaxRef.GetSyntax())
             .OfType<ConstructorDeclarationSyntax>()
             .Any(constructorSyntax =>
-                CheckIfConstructorSyntaxAssignsToTheMember(member, compilation, visited, constructorSyntax));
+                CheckIfConstructorSyntaxAssignsToTheMember(member, semanticModel, visited, constructorSyntax));
     }
 
     private static bool CheckIfConstructorSyntaxAssignsToTheMember(
         ISymbol member,
-        Compilation compilation,
+        SemanticModel semanticModel,
         ConcurrentDictionary<IMethodSymbol, bool> visited,
         ConstructorDeclarationSyntax constructorSyntax)
     {
-        // This is effectively a simple check if any members are assigned insidte the constructor
-        // To prevent retrieving the Semantic Model
-        // This may or may not be more efficient than just retrieving the semantic model
-        var bodyNodes = constructorSyntax.Body?.DescendantNodes();
-        bodyNodes ??= constructorSyntax.ExpressionBody?.DescendantNodes();
-        var assignmentExpressionSyntaxNodes = bodyNodes
-            ?
-            .OfType<AssignmentExpressionSyntax>()
-            .Where(x => x.IsKind(SyntaxKind.SimpleAssignmentExpression))
-            .ToImmutableArray();
-
-        var thisConstructor = constructorSyntax.Initializer is { } initializer
-                              && initializer.ThisOrBaseKeyword.IsKind(SyntaxKind.ThisKeyword)
-            ? initializer
-            : null;
-
-
-        // Check if the constructor assigns any members
-        // If not and if it does not assign 'this' then it is not interesting
-        if (assignmentExpressionSyntaxNodes is not { IsDefaultOrEmpty: false } && thisConstructor is null)
-        {
-            return false;
-        }
-        // -- Check for assignments ends here --
-
-#pragma warning disable RS1030
-        var semanticModel = compilation.GetSemanticModel(constructorSyntax.SyntaxTree);
-#pragma warning restore RS1030
         var operation = semanticModel.GetOperation(constructorSyntax);
         var assignments = operation
             .Descendants()
@@ -349,13 +330,18 @@ public class DoNotUseUninitializedMembersAnalyzer : DiagnosticAnalyzer
             return true;
         }
 
+        var thisConstructor = constructorSyntax.Initializer is { } initializer
+                              && initializer.ThisOrBaseKeyword.IsKind(SyntaxKind.ThisKeyword)
+            ? initializer
+            : null;
+
         if (thisConstructor is null)
         {
             return false;
         }
 
         if (semanticModel.GetSymbolInfo(thisConstructor).Symbol is IMethodSymbol target
-            && ConstructorAssignsMember(target, member, compilation, visited))
+            && ConstructorAssignsMember(target, member, semanticModel, visited))
         {
             return true;
         }
