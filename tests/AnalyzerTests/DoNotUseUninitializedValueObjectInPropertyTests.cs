@@ -35,17 +35,19 @@ public class DoNotUseUninitializedValueObjectInPropertyTests
     [ClassData(typeof(AllVoTypes))]
     public async Task NoDiagnostic_when_property_has_initializer(string voType)
     {
-        var source = $@"using Vogen;
-namespace Whatever;
+        var source = $$"""
+                       using Vogen;
+                       namespace Whatever;
 
-[ValueObject(typeof(int))]
-public {voType} MyVo {{ }}
+                       [ValueObject(typeof(int))]
+                       public {{voType}} MyVo { }
 
-public class TestClass
-{{
-    public MyVo SomeProperty {{ get; set; }} = MyVo.From(0);
-}}
-";
+                       public class TestClass
+                       {
+                           public MyVo SomeProperty { get; set; } = MyVo.From(0);
+                       }
+
+                       """;
         await VerifyCS.VerifyAnalyzerAsync(source);
     }
 
@@ -53,17 +55,19 @@ public class TestClass
     [ClassData(typeof(AllVoTypes))]
     public async Task NoDiagnostic_when_property_is_nullable(string voType)
     {
-        var source = $@"using Vogen;
-namespace Whatever;
+        var source = $$"""
+                       using Vogen;
+                       namespace Whatever;
 
-[ValueObject(typeof(int))]
-public {voType} MyVo {{ }}
+                       [ValueObject(typeof(int))]
+                       public {{voType}} MyVo { }
 
-public class TestClass
-{{
-    public MyVo? SomeProperty {{ get; set; }}
-}}
-";
+                       public class TestClass
+                       {
+                           public MyVo? SomeProperty { get; set; }
+                       }
+
+                       """;
         await VerifyCS.VerifyAnalyzerAsync(source);
     }
 
@@ -71,18 +75,20 @@ public class TestClass
     [ClassData(typeof(AllVoTypes))]
     public async Task NoDiagnostic_when_property_is_getter_only(string voType)
     {
-        var source = $@"using Vogen;
-namespace Whatever;
+        var source = $$"""
+                       using Vogen;
+                       namespace Whatever;
 
-[ValueObject(typeof(int))]
-public {voType} MyVo {{ }}
+                       [ValueObject(typeof(int))]
+                       public {{voType}} MyVo { }
 
-public class TestClass
-{{
-    public TestClass(MyVo vo) {{ SomeProperty = vo; }}
-    public MyVo SomeProperty {{ get; }}
-}}
-";
+                       public class TestClass
+                       {
+                           public TestClass(MyVo vo) { SomeProperty = vo; }
+                           public MyVo SomeProperty { get; }
+                       }
+
+                       """;
         await VerifyCS.VerifyAnalyzerAsync(source);
     }
 
@@ -90,18 +96,20 @@ public class TestClass
     [ClassData(typeof(AllVoTypes))]
     public async Task NoDiagnostic_when_property_is_expression_bodied(string voType)
     {
-        var source = $@"using Vogen;
-namespace Whatever;
+        var source = $$"""
+                       using Vogen;
+                       namespace Whatever;
 
-[ValueObject(typeof(int))]
-public {voType} MyVo {{ }}
+                       [ValueObject(typeof(int))]
+                       public {{voType}} MyVo { }
 
-public class TestClass
-{{
-    private MyVo _backing = MyVo.From(1);
-    public MyVo SomeProperty => _backing;
-}}
-";
+                       public class TestClass
+                       {
+                           private MyVo _backing = MyVo.From(1);
+                           public MyVo SomeProperty => _backing;
+                       }
+
+                       """;
         await VerifyCS.VerifyAnalyzerAsync(source);
     }
 
@@ -109,17 +117,19 @@ public class TestClass
     [ClassData(typeof(AllVoTypes))]
     public async Task NoDiagnostic_when_property_is_static(string voType)
     {
-        var source = $@"using Vogen;
-namespace Whatever;
+        var source = $$"""
+                       using Vogen;
+                       namespace Whatever;
 
-[ValueObject(typeof(int))]
-public {voType} MyVo {{ }}
+                       [ValueObject(typeof(int))]
+                       public {{voType}} MyVo { }
 
-public class TestClass
-{{
-    public static MyVo SomeProperty {{ get; set; }}
-}}
-";
+                       public class TestClass
+                       {
+                           public static MyVo SomeProperty { get; set; }
+                       }
+
+                       """;
         await VerifyCS.VerifyAnalyzerAsync(source);
     }
 
@@ -128,18 +138,20 @@ public class TestClass
     public async Task NoDiagnostic_when_property_is_inside_a_value_object(string voType)
     {
         // A VO declaring a property of another VO type — the outer VO manages its own initialization.
-        var source = $@"using Vogen;
-namespace Whatever;
+        var source = $$"""
+                       using Vogen;
+                       namespace Whatever;
 
-[ValueObject(typeof(int))]
-public {voType} MyVo {{ }}
+                       [ValueObject(typeof(int))]
+                       public {{voType}} MyVo { }
 
-[ValueObject(typeof(int))]
-public partial class OuterVo
-{{
-    public MyVo Inner {{ get; set; }}
-}}
-";
+                       [ValueObject(typeof(int))]
+                       public partial class OuterVo
+                       {
+                           public MyVo Inner { get; set; }
+                       }
+
+                       """;
         await VerifyCS.VerifyAnalyzerAsync(source);
     }
 
@@ -148,17 +160,19 @@ public partial class OuterVo
     [ClassData(typeof(AllVoTypes))]
     public async Task NoDiagnostic_when_property_has_required_modifier(string voType)
     {
-        var source = $@"using Vogen;
-namespace Whatever;
+        var source = $$"""
+                       using Vogen;
+                       namespace Whatever;
 
-[ValueObject(typeof(int))]
-public {voType} MyVo {{ }}
+                       [ValueObject(typeof(int))]
+                       public {{voType}} MyVo { }
 
-public class TestClass
-{{
-    public required MyVo SomeProperty {{ get; set; }}
-}}
-";
+                       public class TestClass
+                       {
+                           public required MyVo SomeProperty { get; set; }
+                       }
+
+                       """;
         await VerifyCS.VerifyAnalyzerAsync(source);
     }
 
@@ -166,17 +180,19 @@ public class TestClass
     [ClassData(typeof(AllVoTypes))]
     public async Task Diagnostic_for_required_missing_init_only_property(string voType)
     {
-        var source = $@"using Vogen;
-namespace Whatever;
+        var source = $$"""
+                       using Vogen;
+                       namespace Whatever;
 
-[ValueObject(typeof(int))]
-public {voType} MyVo {{ }}
+                       [ValueObject(typeof(int))]
+                       public {{voType}} MyVo { }
 
-public class TestClass
-{{
-    public MyVo {{|#0:SomeInitProperty|}} {{ get; init; }}
-}}
-";
+                       public class TestClass
+                       {
+                           public MyVo {|#0:SomeInitProperty|} { get; init; }
+                       }
+
+                       """;
         await Run(
             source,
             WithDiagnostics("VOG038", DiagnosticSeverity.Warning, "MyVo", 0));
@@ -187,17 +203,19 @@ public class TestClass
     [ClassData(typeof(AllVoTypes))]
     public async Task Diagnostic_for_non_nullable_uninitialized_get_set_property(string voType)
     {
-        var source = $@"using Vogen;
-namespace Whatever;
+        var source = $$"""
+                       using Vogen;
+                       namespace Whatever;
 
-[ValueObject(typeof(int))]
-public {voType} MyVo {{ }}
+                       [ValueObject(typeof(int))]
+                       public {{voType}} MyVo { }
 
-public class TestClass
-{{
-    public MyVo {{|#0:SomeProperty|}} {{ get; set; }}
-}}
-";
+                       public class TestClass
+                       {
+                           public MyVo {|#0:SomeProperty|} { get; set; }
+                       }
+
+                       """;
         await Run(
             source,
             WithDiagnostics("VOG038", DiagnosticSeverity.Warning, "MyVo", 0));
@@ -207,21 +225,23 @@ public class TestClass
     [ClassData(typeof(AllVoTypes))]
     public async Task Diagnostic_for_multiple_uninitialized_properties(string voType)
     {
-        var source = $@"using Vogen;
-namespace Whatever;
+        var source = $$"""
+                       using Vogen;
+                       namespace Whatever;
 
-[ValueObject(typeof(int))]
-public {voType} MyVo {{ }}
+                       [ValueObject(typeof(int))]
+                       public {{voType}} MyVo { }
 
-[ValueObject(typeof(string))]
-public {voType} MyOtherVo {{ }}
+                       [ValueObject(typeof(string))]
+                       public {{voType}} MyOtherVo { }
 
-public class TestClass
-{{
-    public MyVo {{|#0:First|}} {{ get; set; }}
-    public MyOtherVo {{|#1:Second|}} {{ get; set; }}
-}}
-";
+                       public class TestClass
+                       {
+                           {|#0:public MyVo First { get; set; }|}
+                           {|#1:public MyOtherVo Second { get; set; }|}
+                       }
+
+                       """;
         await Run(
             source,
             WithDiagnostics("VOG038", DiagnosticSeverity.Warning, "MyVo", 0),
@@ -232,17 +252,19 @@ public class TestClass
     [ClassData(typeof(AllVoTypes))]
     public async Task Diagnostic_when_struct_property_is_settable_but_uninitialized(string voType)
     {
-        var source = $@"using Vogen;
-namespace Whatever;
+        var source = $$"""
+                       using Vogen;
+                       namespace Whatever;
 
-[ValueObject(typeof(int))]
-public {voType} MyVo {{ }}
+                       [ValueObject(typeof(int))]
+                       public {{voType}} MyVo { }
 
-public struct ContainerStruct
-{{
-    public MyVo {{|#0:SomeProperty|}} {{ get; set; }}
-}}
-";
+                       public struct ContainerStruct
+                       {
+                           public MyVo {|#0:SomeProperty|} { get; set; }
+                       }
+
+                       """;
         await Run(
             source,
             WithDiagnostics("VOG038", DiagnosticSeverity.Warning, "MyVo", 0));
