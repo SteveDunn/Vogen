@@ -1,4 +1,4 @@
-﻿#nullable disable
+#nullable disable
 using System.ComponentModel;
 using System.Linq;
 using System.Threading.Tasks;
@@ -244,6 +244,6 @@ public class CharVoTests
     {
         [Column(DataType = DataType.Char)]
         [ValueConverter(ConverterType = typeof(LinqToDbCharVo.LinqToDbValueConverter))]
-        public LinqToDbCharVo Id { get; set; }
+        public required LinqToDbCharVo Id { get; set; }
     }
 }

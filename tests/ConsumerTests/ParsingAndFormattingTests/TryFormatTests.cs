@@ -48,7 +48,7 @@ public class TryFormatTests
     
     public class TestContainer
     {
-        public MyId Id1 { get; set; }
+        public MyId? Id1 { get; set; }
         public MyId Id2 { get; set; } = MyId.From(Guid.Empty);
 
         public override string ToString()
