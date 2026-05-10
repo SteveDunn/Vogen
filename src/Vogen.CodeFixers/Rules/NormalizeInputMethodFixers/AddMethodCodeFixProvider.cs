@@ -60,7 +60,17 @@ namespace Vogen.Rules.NormalizeInputMethodFixers
 
             var newMember = GenerateMethod(returnType);
 
-            var newTypeDecl = typeDecl.AddMembers(newMember);
+            // If the type has no body (ends with ';'), convert it to have braces before adding members,
+            // otherwise AddMembers produces malformed output.
+            TypeDeclarationSyntax typeDeclWithBody = typeDecl.OpenBraceToken.IsKind(SyntaxKind.None)
+                ? typeDecl
+                    .WithSemicolonToken(SyntaxFactory.Token(SyntaxKind.None))
+                    .WithOpenBraceToken(SyntaxFactory.Token(SyntaxKind.OpenBraceToken))
+                    .WithCloseBraceToken(SyntaxFactory.Token(SyntaxKind.CloseBraceToken))
+                    .WithAdditionalAnnotations(Formatter.Annotation)
+                : typeDecl;
+
+            var newTypeDecl = typeDeclWithBody.AddMembers(newMember);
 
             var newRoot = root.ReplaceNode(typeDecl, newTypeDecl);
 
