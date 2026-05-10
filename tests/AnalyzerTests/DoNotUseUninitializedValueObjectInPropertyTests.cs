@@ -224,7 +224,7 @@ public class DoNotUseUninitializedValueObjectInPropertyTests
                        """;
         await Run(
             source,
-            WithDiagnostics("VOG038", DiagnosticSeverity.Warning, "MyVo", 0));
+            WithDiagnostics("VOG038", DiagnosticSeverity.Info, "MyVo", 0));
     }
 #endif
 
@@ -247,7 +247,7 @@ public class DoNotUseUninitializedValueObjectInPropertyTests
                        """;
         await Run(
             source,
-            WithDiagnostics("VOG038", DiagnosticSeverity.Warning, "MyVo", 0));
+            WithDiagnostics("VOG038", DiagnosticSeverity.Info, "MyVo", 0));
     }
 
     [Theory]
@@ -273,8 +273,8 @@ public class DoNotUseUninitializedValueObjectInPropertyTests
                        """;
         await Run(
             source,
-            WithDiagnostics("VOG038", DiagnosticSeverity.Warning, "MyVo", 0),
-            WithDiagnostics("VOG038", DiagnosticSeverity.Warning, "MyOtherVo", 1));
+            WithDiagnostics("VOG038", DiagnosticSeverity.Info, "MyVo", 0),
+            WithDiagnostics("VOG038", DiagnosticSeverity.Info, "MyOtherVo", 1));
     }
 
     [Theory]
@@ -296,7 +296,7 @@ public class DoNotUseUninitializedValueObjectInPropertyTests
                        """;
         await Run(
             source,
-            WithDiagnostics("VOG038", DiagnosticSeverity.Warning, "MyVo", 0));
+            WithDiagnostics("VOG038", DiagnosticSeverity.Info, "MyVo", 0));
     }
 
     private static IEnumerable<DiagnosticResult> WithDiagnostics(string code, DiagnosticSeverity severity,

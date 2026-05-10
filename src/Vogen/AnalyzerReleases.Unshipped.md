@@ -6,4 +6,4 @@
 
 Rule ID | Category | Severity | Notes
 --------|----------|----------|-------
-VOG038 | Usage | Warning | DoNotUseUninitializedValueObjectInPropertyAnalyzer
+VOG038 | Usage | Info | DoNotUseUninitializedValueObjectInPropertyAnalyzer

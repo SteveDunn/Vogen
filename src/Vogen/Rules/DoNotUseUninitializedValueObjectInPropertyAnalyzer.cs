@@ -39,7 +39,7 @@ public class DoNotUseUninitializedValueObjectInPropertyAnalyzer : DiagnosticAnal
         "Value Object property should be initialized",
         "Property of Value Object type '{0}' is not nullable, not required, and has no initializer - this may result in an uninitialized Value Object at runtime",
         RuleCategories.Usage,
-        DiagnosticSeverity.Warning,
+        DiagnosticSeverity.Info,
         isEnabledByDefault: true,
         description:
         "A property whose type is a Value Object is not nullable, not marked 'required', and has no initializer. " +
