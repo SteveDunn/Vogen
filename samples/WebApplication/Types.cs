@@ -42,14 +42,14 @@ public readonly partial struct HistoricForecastId;
 
 public class Order
 {
-    public OrderId OrderId { get; init; } 
+    public required OrderId OrderId { get; init; } 
 
     public CustomerName CustomerName { get; init; } = CustomerName.From("");
 
-    public SharedStruct SharedStruct { get; init; }
+    public required SharedStruct SharedStruct { get; init; }
     public SharedStruct? SharedStructOrNull { get; init; }
-    public Category CustomerCategory { get; set; }
-    public Code CustomerCode { get; set; }
-    public SecretCode CustomerSecretCode { get; set; }
+    public required Category CustomerCategory { get; set; }
+    public required Code CustomerCode { get; set; }
+    public required SecretCode CustomerSecretCode { get; set; }
 }
 

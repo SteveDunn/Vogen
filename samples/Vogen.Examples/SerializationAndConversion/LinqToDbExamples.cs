@@ -55,7 +55,7 @@ namespace Vogen.Examples.SerializationAndConversion
 			[PrimaryKey]
 			[Column(DataType = DataType.VarChar)]
 			[ValueConverter(ConverterType = typeof(LinqToDbStringVo.LinqToDbValueConverter))]
-			public LinqToDbStringVo Id { get; set; }
+			public required LinqToDbStringVo Id { get; set; }
 		}
 	}
 }

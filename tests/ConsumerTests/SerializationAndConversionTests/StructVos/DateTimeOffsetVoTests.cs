@@ -1,4 +1,4 @@
-﻿#nullable disable
+#nullable disable
 using System.ComponentModel;
 using System.Globalization;
 using System.Linq;
@@ -259,13 +259,13 @@ public class DateTimeOffsetVoTests
 
     public class EfCoreTestEntity
     {
-        public EfCoreDateTimeOffsetVo Id { get; set; }
+        public required EfCoreDateTimeOffsetVo Id { get; set; }
     }
 
     public class LinqToDbTestEntity
     {
         [Column(DataType = DataType.DateTimeOffset)]
         [ValueConverter(ConverterType = typeof(LinqToDbDateTimeOffsetVo.LinqToDbValueConverter))]
-        public LinqToDbDateTimeOffsetVo Id { get; set; }
+        public required LinqToDbDateTimeOffsetVo Id { get; set; }
     }
 }

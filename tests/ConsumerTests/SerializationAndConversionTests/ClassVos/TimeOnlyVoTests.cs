@@ -1,4 +1,4 @@
-﻿#nullable disable
+#nullable disable
 using System.ComponentModel;
 using System.Globalization;
 using System.Linq;
@@ -261,14 +261,14 @@ namespace Vogen.IntegrationTests.SerializationAndConversionTests.ClassVos
 
         public class EfCoreTestEntity
         {
-            public EfCoreTimeOnlyVo Id { get; set; }
+            public required EfCoreTimeOnlyVo Id { get; set; }
         }
 
         public class LinqToDbTestEntity
         {
             [Column(DataType = DataType.Time)]
             [ValueConverter(ConverterType = typeof(LinqToDbTimeOnlyVo.LinqToDbValueConverter))]
-            public LinqToDbTimeOnlyVo Id { get; set; }
+            public required LinqToDbTimeOnlyVo Id { get; set; }
         }
     }
 }

@@ -247,13 +247,13 @@ public class ByteVoTests
 
     public class EfCoreTestEntity
     {
-        public EfCoreByteVo Id { get; set; }
+        public required EfCoreByteVo Id { get; set; }
     }
 
     public class LinqToDbTestEntity
     {
         [Column(DataType = DataType.Byte)]
         [ValueConverter(ConverterType = typeof(LinqToDbByteVo.LinqToDbValueConverter))]
-        public LinqToDbByteVo Id { get; set; }
+        public required LinqToDbByteVo Id { get; set; }
     }
 }

@@ -26,9 +26,9 @@ public readonly partial struct Name;
 public class Person
 {
     [BsonId]
-    public ObjectId Id { get; set; }
-    public Name Name { get; set; }
-    public Age Age { get; set; }
+    public required ObjectId Id { get; set; }
+    public required Name Name { get; set; }
+    public required Age Age { get; set; }
 }
 
 [UsedImplicitly]

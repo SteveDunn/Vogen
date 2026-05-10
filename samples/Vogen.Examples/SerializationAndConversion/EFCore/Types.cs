@@ -4,7 +4,7 @@ public class PersonEntity
 {
     public Id Id { get; set; } = null!; // must be null in order for EF core to generate a value
     public Name Name { get; set; } = Name.NotSet;
-    public Age Age { get; set; }
+    public required Age Age { get; set; }
 }
 
 /// <summary>

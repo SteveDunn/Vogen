@@ -1,4 +1,4 @@
-﻿#nullable disable
+#nullable disable
 using System.ComponentModel;
 using System.Linq;
 using System.Threading.Tasks;
@@ -264,13 +264,13 @@ public class DateTimeVoTests
 
     public class EfCoreTestEntity
     {
-        public EfCoreDateTimeVo Id { get; set; }
+        public required EfCoreDateTimeVo Id { get; set; }
     }
 
     public class LinqToDbTestEntity
     {
         [Column(DataType = DataType.DateTime)]
         [ValueConverter(ConverterType = typeof(LinqToDbDateTimeVo.LinqToDbValueConverter))]
-        public LinqToDbDateTimeVo Id { get; set; }
+        public required LinqToDbDateTimeVo Id { get; set; }
     }
 }
