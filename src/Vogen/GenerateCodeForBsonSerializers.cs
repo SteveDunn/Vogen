@@ -18,6 +18,7 @@ internal class GenerateCodeForBsonSerializers
     /// <param name="compilation"></param>
     /// <param name="workItems"></param>
     /// <param name="customizations"></param>
+    /// <param name="rootNamespace"></param>
     public static void GenerateForApplicableValueObjects(SourceProductionContext context,
         Compilation compilation,
         List<VoWorkItem> workItems,

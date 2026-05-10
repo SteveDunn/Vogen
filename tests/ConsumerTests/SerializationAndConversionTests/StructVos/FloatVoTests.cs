@@ -1,4 +1,4 @@
-﻿#nullable disable
+#nullable disable
 using System.ComponentModel;
 using System.Globalization;
 using System.Linq;
@@ -247,13 +247,13 @@ public class FloatVoTests
 
     public class EfCoreTestEntity
     {
-        public EfCoreFloatVo Id { get; set; }
+        public required EfCoreFloatVo Id { get; set; }
     }
 
     public class LinqToDbTestEntity
     {
         [Column(DataType = DataType.Single)]
         [ValueConverter(ConverterType = typeof(LinqToDbFloatVo.LinqToDbValueConverter))]
-        public LinqToDbFloatVo Id { get; set; }
+        public required LinqToDbFloatVo Id { get; set; }
     }
 }

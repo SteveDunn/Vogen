@@ -246,13 +246,13 @@ public class CharVoTests
 
     public class EfCoreTestEntity
     {
-        public EfCoreCharVo Id { get; set; }
+        public required EfCoreCharVo Id { get; set; }
     }
 
     public class LinqToDbTestEntity
     {
         [Column(DataType = DataType.Char)]
         [ValueConverter(ConverterType = typeof(LinqToDbCharVo.LinqToDbValueConverter))]
-        public LinqToDbCharVo Id { get; set; }
+        public required LinqToDbCharVo Id { get; set; }
     }
 }

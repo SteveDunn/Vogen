@@ -32,7 +32,7 @@ public readonly partial struct HistoricForecastId;
 
 public class Order
 {
-    public OrderId OrderId { get; init; } 
+    public required OrderId OrderId { get; init; } 
 
     public CustomerName CustomerName { get; init; } = CustomerName.From("");
 }

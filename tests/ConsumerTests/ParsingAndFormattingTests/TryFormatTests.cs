@@ -48,7 +48,9 @@ public class TryFormatTests
     
     public class TestContainer
     {
+#pragma warning disable VOG038
         public MyId Id1 { get; set; }
+#pragma warning restore VOG038
         public MyId Id2 { get; set; } = MyId.From(Guid.Empty);
 
         public override string ToString()

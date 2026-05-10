@@ -257,14 +257,14 @@ namespace Vogen.IntegrationTests.SerializationAndConversionTests.ClassVos
 
         public class EfCoreTestEntity
         {
-            public EfCoreDateOnlyVo Id { get; set; }
+            public required EfCoreDateOnlyVo Id { get; set; }
         }
 
         public class LinqToDbTestEntity
         {
             [Column(DataType = DataType.Date)]
             [ValueConverter(ConverterType = typeof(LinqToDbDateOnlyVo.LinqToDbValueConverter))]
-            public LinqToDbDateOnlyVo Id { get; set; }
+            public required LinqToDbDateOnlyVo Id { get; set; }
         }
     }
 }

@@ -1,4 +1,4 @@
-﻿#nullable disable
+#nullable disable
 using System.ComponentModel;
 using System.Linq;
 using System.Threading.Tasks;
@@ -245,13 +245,13 @@ public class GuidVoTests
 
     public class EfCoreTestEntity
     {
-        public EfCoreGuidVo Id { get; set; }
+        public required EfCoreGuidVo Id { get; set; }
     }
 
     public class LinqToDbTestEntity
     {
         [Column(DataType = DataType.Guid)]
         [ValueConverter(ConverterType = typeof(LinqToDbGuidVo.LinqToDbValueConverter))]
-        public LinqToDbGuidVo Id { get; set; }
+        public required LinqToDbGuidVo Id { get; set; }
     }
 }

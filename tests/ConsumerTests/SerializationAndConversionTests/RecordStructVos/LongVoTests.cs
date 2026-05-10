@@ -1,4 +1,4 @@
-﻿#nullable disable
+#nullable disable
 using System.ComponentModel;
 using System.Linq;
 using System.Threading.Tasks;
@@ -244,13 +244,13 @@ public class LongVoTests
 
     public class EfCoreTestEntity
     {
-        public EfCoreLongVo Id { get; set; }
+        public required EfCoreLongVo Id { get; set; }
     }
 
     public class LinqToDbTestEntity
     {
         [Column(DataType = DataType.Int64)]
         [ValueConverter(ConverterType = typeof(LinqToDbLongVo.LinqToDbValueConverter))]
-        public LinqToDbLongVo Id { get; set; }
+        public required LinqToDbLongVo Id { get; set; }
     }
 }

@@ -306,13 +306,13 @@ public class AnyOtherTypeVoTests
     {
         public int Id { get; set; }
 
-        public EfCoreFooVo FooField { get; set; }
+        public required EfCoreFooVo FooField { get; set; }
     }
 
     public class LinqToDbTestEntity
     {
         [Column(DataType = DataType.VarChar)]
         [ValueConverter(ConverterType = typeof(LinqToDbFooVo.LinqToDbValueConverter))]
-        public LinqToDbFooVo FooField { get; set; }
+        public required LinqToDbFooVo FooField { get; set; }
     }
 }

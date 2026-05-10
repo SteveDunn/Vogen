@@ -249,13 +249,13 @@ public class StringVoTests
 
     public class EfCoreTestEntity
     {
-        public EfCoreStringVo Id { get; init; }
+        public required EfCoreStringVo Id { get; init; }
     }
 
     public class LinqToDbTestEntity
     {
         [Column(DataType = DataType.VarChar)]
         [ValueConverter(ConverterType = typeof(LinqToDbStringVo.LinqToDbValueConverter))]
-        public LinqToDbStringVo Id { get; init; }
+        public required LinqToDbStringVo Id { get; init; }
     }
 }

@@ -23,13 +23,13 @@ public readonly partial struct Name;
 public class Person
 {
     [Key(0)]
-    public PersonId Id { get; set; }
+    public required PersonId Id { get; set; }
     
     [Key(1)]
-    public Name Name { get; set; }
+    public required Name Name { get; set; }
     
     [Key(2)]
-    public Age Age { get; set; }
+    public required Age Age { get; set; }
 }
 
 [MessagePack<PersonId>]

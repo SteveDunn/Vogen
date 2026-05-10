@@ -9,7 +9,7 @@ internal class ProjectName
     /// otherwise falls back to <see cref="FromAssemblyName"/>.  Either value is normalised.
     /// </summary>
     public static ProjectName FromRootNamespaceOrAssemblyName(string? rootNamespace, string assemblyName) =>
-        !string.IsNullOrWhiteSpace(rootNamespace) ? new(Normalise(rootNamespace!)) : FromAssemblyName(assemblyName);
+        !string.IsNullOrWhiteSpace(rootNamespace) ? new(Normalise(rootNamespace)) : FromAssemblyName(assemblyName);
 
     /// <summary>
     /// Replaces [., ,, space, -] with [_] for use as type names etc., and ensures the result

@@ -263,13 +263,13 @@ public class BoolVoTests
 
     public class EfCoreTestEntity
     {
-        public EfCoreBoolVo Id { get; set; }
+        public required EfCoreBoolVo Id { get; set; }
     }
 
     public class LinqToDbTestEntity
     {
         [Column(DataType = DataType.Boolean)]
         [ValueConverter(ConverterType = typeof(LinqToDbBoolVo.LinqToDbValueConverter))]
-        public LinqToDbBoolVo Id { get; set; }
+        public required LinqToDbBoolVo Id { get; set; }
     }
 }

@@ -12,8 +12,8 @@ public readonly partial struct Name;
 
 public class Person
 {
-    public Name Name { get; init; }
-    public Age Age { get; init; }
+    public required Name Name { get; init; }
+    public required Age Age { get; init; }
 }
 
 public class BsonTests
