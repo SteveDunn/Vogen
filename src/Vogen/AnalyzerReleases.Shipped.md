@@ -66,6 +66,14 @@ Rule ID | Category | Severity | Notes
 VOG033 | Usage | Info | UseReadonlyStructInsteadOfStructAnalyzer
 VOG034 | Usage | Error | DoNotCompareWithPrimitivesInEfCore
 
+## Release 8.0.6
+
+### New Rules
+
+Rule ID | Category | Severity | Notes
+--------|----------|----------|-------
+VOG038 | Usage | Info | DoNotUseUninitializedValueObjectInPropertyAnalyzer
+
 
 
 
