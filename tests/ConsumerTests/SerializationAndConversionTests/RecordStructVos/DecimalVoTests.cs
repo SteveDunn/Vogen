@@ -277,13 +277,13 @@ public class DecimalVoTests
 
     public class EfCoreTestEntity
     {
-        public EfCoreDecimalVo Id { get; set; }
+        public required EfCoreDecimalVo Id { get; set; }
     }
 
     public class LinqToDbTestEntity
     {
         [Column(DataType = DataType.Decimal)]
         [ValueConverter(ConverterType = typeof(LinqToDbDecimalVo.LinqToDbValueConverter))]
-        public LinqToDbDecimalVo Id { get; set; }
+        public required LinqToDbDecimalVo Id { get; set; }
     }
 }

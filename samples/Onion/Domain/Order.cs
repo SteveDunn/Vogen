@@ -2,7 +2,7 @@ namespace Domain;
 
 public class Order
 {
-    public CustomerId CustomerId { get; set; }
-    public OrderId OrderId { get; set; }
-    public CustomerName CustomerName { get; set; }
+    public required CustomerId CustomerId { get; set; }
+    public required OrderId OrderId { get; set; }
+    public required CustomerName CustomerName { get; set; }
 }

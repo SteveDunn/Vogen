@@ -292,13 +292,13 @@ public class DoubleVoTests
 
     public class EfCoreTestEntity
     {
-        public EfCoreDoubleVo Id { get; set; }
+        public required EfCoreDoubleVo Id { get; set; }
     }
 
     public class LinqToDbTestEntity
     {
         [Column(DataType = DataType.Double)]
         [ValueConverter(ConverterType = typeof(LinqToDbDoubleVo.LinqToDbValueConverter))]
-        public LinqToDbDoubleVo Id { get; set; }
+        public required LinqToDbDoubleVo Id { get; set; }
     }
 }

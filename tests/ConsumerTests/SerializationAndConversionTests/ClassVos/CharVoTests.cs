@@ -237,7 +237,7 @@ public class CharVoTests
 
     public class EfCoreTestEntity
     {
-        public EfCoreCharVo Id { get; set; }
+        public required EfCoreCharVo Id { get; set; }
     }
 
     public class LinqToDbTestEntity

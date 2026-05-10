@@ -33,9 +33,9 @@ Console.WriteLine($"{person2.Name} is {person2.Age}, and lives at {person2.Addre
 
 public class Person
 {
-    public Age Age { get; set; }
-    public Name Name { get; set; }
-    public Address Address { get; set; }
+    public required Age Age { get; set; }
+    public required Name Name { get; set; }
+    public required Address Address { get; set; }
 }
 
 [ValueObject<int>]

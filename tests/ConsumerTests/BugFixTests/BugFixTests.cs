@@ -45,7 +45,7 @@ public class BugFixTests
 
 public class Person
 {
-    public Age Age { get; init; }
+    public required Age Age { get; init; }
         
     public Name? Name { get; set; }
         
