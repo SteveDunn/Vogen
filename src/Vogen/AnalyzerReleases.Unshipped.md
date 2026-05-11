@@ -6,4 +6,12 @@
 
 Rule ID | Category | Severity | Notes
 --------|----------|----------|-------
+VOG039 | Usage | Warning | DoNotAccessValueInEfCoreAnalyzer
+
+
+### Changed Rules
+
+Rule ID | New Category | New Severity | Old Category | Old Severity | Notes
+--------|--------------|--------------|--------------|--------------|-------
+VOG034 | Usage | Warning | Usage | Error | DoNotCompareWithPrimitivesInEfCoreAnalyzer
 VOG038 | Usage | Info | DoNotUseUninitializedValueObjectInPropertyAnalyzer
