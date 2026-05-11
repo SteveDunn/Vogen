@@ -301,6 +301,61 @@ public partial class TypeName
         await test.RunAsync();
     }
 
+    // Regression test for https://github.com/SteveDunn/Vogen/issues/742
+    [Fact]
+    public async Task Triggered_when_method_is_missing_and_type_has_semicolon_body()
+    {
+        var input = LineEndingsHelper.Normalize(
+            """
+            using System;
+            using Vogen;
+
+            namespace ConsoleApplication1;
+
+            [ValueObject<string>]
+            public readonly partial struct {|#0:RedemptionId|};
+            """);
+
+        var expectedOutput = LineEndingsHelper.Normalize(
+            """
+            using System;
+            using Vogen;
+
+            namespace ConsoleApplication1;
+
+            [ValueObject<string>]
+            public readonly partial struct RedemptionId
+            {
+                private static Validation Validate(string input)
+                {
+                    bool isValid = true; // todo: your validation
+                    return isValid ? Validation.Ok : Validation.Invalid("[todo: describe the validation]");
+                }
+            }
+            """);
+
+        var expectedDiagnostic =
+            VerifyCS.Diagnostic("AddValidationMethod").WithSeverity(DiagnosticSeverity.Info).WithLocation(0).WithArguments("RedemptionId");
+
+        var test = new VerifyCS.Test
+        {
+            TestState =
+            {
+                Sources = { input },
+                ReferenceAssemblies = References.Net90AndOurs.Value
+            },
+
+            CompilerDiagnostics = CompilerDiagnostics.Suggestions,
+            ReferenceAssemblies = References.Net90AndOurs.Value,
+            FixedCode = expectedOutput,
+            ExpectedDiagnostics = { expectedDiagnostic },
+        };
+
+        test.DisabledDiagnostics.Add("CS1591");
+
+        await test.RunAsync();
+    }
+
     //Diagnostic and CodeFix both triggered and checked for
     [Fact]
     public async Task Trigged_for_missing_method_and_vo_is_decorated_with_generic_attribute()
