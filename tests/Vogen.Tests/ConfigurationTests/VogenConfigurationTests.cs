@@ -74,7 +74,8 @@ public class VogenConfigurationTests
                 OpenApiSchemaCustomizations.Unspecified,
                 false,
                 PrimitiveEqualityGeneration.GenerateOperatorsAndMethods,
-                NumericsGeneration.Omit);
+                NumericsGeneration.Omit,
+                StringComparisonDefault.Omit);
     }
 
     public class Primitive_equality_generation
@@ -150,7 +151,8 @@ public class VogenConfigurationTests
                 OpenApiSchemaCustomizations: OpenApiSchemaCustomizations.Unspecified,
                 false,
                 PrimitiveEqualityGeneration.GenerateOperatorsAndMethods,
-                NumericsGeneration.Omit);
+                NumericsGeneration.Omit,
+                StringComparisonDefault.Omit);
     }
 
     public class Conversion
@@ -256,7 +258,8 @@ public class VogenConfigurationTests
                 OpenApiSchemaCustomizations.Unspecified,
                 false,
                 PrimitiveEqualityGeneration.GenerateOperatorsAndMethods,
-                NumericsGeneration.Omit);
+                NumericsGeneration.Omit,
+                StringComparisonDefault.Omit);
     }
 
     public class Comparable

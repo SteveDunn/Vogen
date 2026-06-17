@@ -99,6 +99,14 @@ internal static class BuildWorkItems
             }
         }
 
+        bool hasActiveDefaultComparison = config.StringDefaultComparison is not StringComparisonDefault.Unspecified
+            and not StringComparisonDefault.Omit;
+
+        if (hasActiveDefaultComparison && underlyingType.SpecialType != Microsoft.CodeAnalysis.SpecialType.System_String)
+        {
+            context.ReportDiagnostic(DiagnosticsCatalogue.StringDefaultComparisonNotApplicable(voSymbolInformation, underlyingType));
+        }
+
         IEnumerable<InstanceProperties> instanceProperties =
             TryBuildInstanceProperties(allAttributes, voSymbolInformation, context, underlyingType, vogenKnownSymbols).ToList();
 

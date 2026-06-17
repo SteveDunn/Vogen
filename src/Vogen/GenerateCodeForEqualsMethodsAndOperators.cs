@@ -13,7 +13,11 @@ public static class GenerateCodeForEqualsMethodsAndOperators
         
         string virtualKeyword = item is { IsRecordClass: true, IsSealed: false } ? "virtual " : " ";
 
-        var ret = item.UserProvidedOverloads.EqualsForWrapper.WasProvided ? string.Empty : 
+        string classEqualityExpr = item.IsUnderlyingAString && item.Config.GetStringDefaultComparerExpression() is { } classComparer
+            ? $"{classComparer}.Equals(Value, other.Value)"
+            : $"global::System.Collections.Generic.EqualityComparer<{item.UnderlyingTypeFullNameWithGlobalAlias}>.Default.Equals(Value, other.Value)";
+
+        var ret = item.UserProvidedOverloads.EqualsForWrapper.WasProvided ? string.Empty :
 $$"""
 
             public {{virtualKeyword}}global::System.Boolean Equals({{className}}{{wrapperQ}} other)
@@ -32,7 +36,7 @@ $$"""
                   return true;
               }
 
-              return GetType() == other.GetType() && {{$"global::System.Collections.Generic.EqualityComparer<{item.UnderlyingTypeFullNameWithGlobalAlias}>.Default.Equals(Value, other.Value)"}};
+              return GetType() == other.GetType() && {{classEqualityExpr}};
             }
 """;
 
@@ -65,6 +69,10 @@ $$"""
     {
         var structName = tds.Identifier;
 
+        string structEqualityExpr = item.IsUnderlyingAString && item.Config.GetStringDefaultComparerExpression() is { } structComparer
+            ? $"{structComparer}.Equals(Value, other.Value)"
+            : $"global::System.Collections.Generic.EqualityComparer<{item.UnderlyingTypeFullNameWithGlobalAlias}>.Default.Equals(Value, other.Value)";
+
         var ret = item.UserProvidedOverloads.EqualsForWrapper.WasProvided ? string.Empty :
 $$"""
             public readonly global::System.Boolean Equals({{structName}} other)
@@ -73,7 +81,7 @@ $$"""
               // We treat anything uninitialized as not equal to anything, even other uninitialized instances of this type.
               if(!IsInitialized() || !other.IsInitialized()) return false;
 
-              return {{$"global::System.Collections.Generic.EqualityComparer<{item.UnderlyingTypeFullNameWithGlobalAlias}>.Default.Equals(Value, other.Value)"}};
+              return {{structEqualityExpr}};
             }
   """;
 
@@ -118,12 +126,16 @@ $$"""
 
         string readonlyOrEmpty = isReadOnly ? " readonly" : string.Empty;
 
+        string primitiveEqualityBody = isString && item.Config.GetStringDefaultComparerExpression() is { } primComparer
+            ? $"return {primComparer}.Equals(Value, primitive);"
+            : "return Value.Equals(primitive);";
+
         string output = item.UserProvidedOverloads.EqualsForUnderlying.WasProvided ? string.Empty :
 $$"""
 
             public{{readonlyOrEmpty}} global::System.Boolean Equals({{item.UnderlyingTypeFullNameWithGlobalAlias}}{{underlyingQ}} primitive)
             {
-              return Value.Equals(primitive);
+              {{primitiveEqualityBody}}
             }
 
 """;
@@ -152,11 +164,23 @@ $$"""
 
         string w = item.Nullable.QuestionMarkForWrapper;
         string u = item.Nullable.QuestionMarkForUnderlying;
-        
+
+        if (item.IsUnderlyingAString && item.Config.GetStringDefaultComparerExpression() is { } opComparer)
+        {
+            return $"""
+
+                        public static global::System.Boolean operator ==({typeName}{w} left, {itemUnderlyingType}{u} right) => {opComparer}.Equals(left{w}.Value, right);
+                        public static global::System.Boolean operator ==({itemUnderlyingType}{u} left, {typeName}{w} right) => {opComparer}.Equals(left, right{w}.Value);
+
+                        public static global::System.Boolean operator !=({itemUnderlyingType}{u} left, {typeName}{w} right) => !(left == right);
+                        public static global::System.Boolean operator !=({typeName}{w} left, {itemUnderlyingType}{u} right) => !(left == right);
+                    """;
+        }
+
         string wDefaultToFalse = item.Nullable.IsEnabled && item.IsTheWrapperAReferenceType ? "?? false" : string.Empty;
 
         return $"""
-                
+
                     public static global::System.Boolean operator ==({typeName}{w} left, {itemUnderlyingType}{u} right) => left{w}.Value.Equals(right) {wDefaultToFalse};
                     public static global::System.Boolean operator ==({itemUnderlyingType}{u} left, {typeName}{w} right) => right{w}.Value.Equals(left) {wDefaultToFalse};
 

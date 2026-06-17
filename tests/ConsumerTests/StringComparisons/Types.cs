@@ -90,3 +90,23 @@ public partial record struct StringVo_RecordStruct_Generic
 public partial struct StringVo_Struct_Generic
 {
 }
+
+[ValueObject(typeof(string), stringDefaultComparison: StringComparisonDefault.OrdinalIgnoreCase)]
+public partial class StringVo_Class_DefaultOrdinalIgnoreCase
+{
+}
+
+[ValueObject(typeof(string), stringDefaultComparison: StringComparisonDefault.OrdinalIgnoreCase)]
+public partial record class StringVo_RecordClass_DefaultOrdinalIgnoreCase
+{
+}
+
+[ValueObject(typeof(string), stringDefaultComparison: StringComparisonDefault.OrdinalIgnoreCase)]
+public partial record struct StringVo_RecordStruct_DefaultOrdinalIgnoreCase
+{
+}
+
+[ValueObject(typeof(string), stringDefaultComparison: StringComparisonDefault.OrdinalIgnoreCase)]
+public partial struct StringVo_Struct_DefaultOrdinalIgnoreCase
+{
+}
