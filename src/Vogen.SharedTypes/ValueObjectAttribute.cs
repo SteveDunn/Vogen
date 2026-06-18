@@ -125,22 +125,22 @@ namespace Vogen
         /// <param name="numericsGeneration">Specifies whether to generate numeric interfaces (<c>INumber&lt;T&gt;</c> or <c>INumberBase&lt;T&gt;</c> depending on the underlying type)—defaults to <see cref="NumericsGeneration.Omit"/>.</param>
         /// <param name="stringDefaultComparison">Specifies the default <see cref="StringComparisonDefault"/> used for <c>==</c>, <c>Equals</c>, and <c>GetHashCode</c> on string-backed value objects—defaults to <see cref="StringComparisonDefault.Omit"/> which uses the underlying string's default comparison.</param>
         public ValueObjectAttribute(
-            Conversions conversions = Conversions.Unspecified,
-            Type? throws = null!,
-            Customizations customizations = Customizations.None,
-            DeserializationStrictness deserializationStrictness = DeserializationStrictness.AllowValidAndKnownInstances,
-            DebuggerAttributeGeneration debuggerAttributes = DebuggerAttributeGeneration.Default,
-            ComparisonGeneration comparison = ComparisonGeneration.Default,
-            StringComparersGeneration stringComparers = StringComparersGeneration.Unspecified,
-            CastOperator toPrimitiveCasting = CastOperator.Unspecified,
-            CastOperator fromPrimitiveCasting = CastOperator.Unspecified,
-            ParsableForStrings parsableForStrings = ParsableForStrings.Unspecified,
-            ParsableForPrimitives parsableForPrimitives = ParsableForPrimitives.Unspecified,
-            TryFromGeneration tryFromGeneration = TryFromGeneration.Unspecified,
-            IsInitializedMethodGeneration isInitializedMethodGeneration = IsInitializedMethodGeneration.Unspecified,
-            PrimitiveEqualityGeneration primitiveEqualityGeneration = PrimitiveEqualityGeneration.Unspecified,
-            NumericsGeneration numericsGeneration = NumericsGeneration.Unspecified,
-            StringComparisonDefault stringDefaultComparison = StringComparisonDefault.Unspecified) : base(
+            Conversions conversions,
+            Type? throws,
+            Customizations customizations,
+            DeserializationStrictness deserializationStrictness,
+            DebuggerAttributeGeneration debuggerAttributes,
+            ComparisonGeneration comparison,
+            StringComparersGeneration stringComparers,
+            CastOperator toPrimitiveCasting,
+            CastOperator fromPrimitiveCasting,
+            ParsableForStrings parsableForStrings,
+            ParsableForPrimitives parsableForPrimitives,
+            TryFromGeneration tryFromGeneration,
+            IsInitializedMethodGeneration isInitializedMethodGeneration,
+            PrimitiveEqualityGeneration primitiveEqualityGeneration,
+            NumericsGeneration numericsGeneration,
+            StringComparisonDefault stringDefaultComparison) : base(
             typeof(T),
             conversions,
             throws,
@@ -174,7 +174,7 @@ namespace Vogen
         // using parameter indexes (i.e. it expected param 0 to be the underlying type etc).
 
         // ReSharper disable once MemberCanBeProtected.Global
-        
+
         /// <summary>
         /// Configures aspects of this individual value object.
         /// </summary>
@@ -261,23 +261,23 @@ namespace Vogen
         /// <param name="numericsGeneration">Specifies whether to generate numeric interfaces (<c>INumber&lt;T&gt;</c> or <c>INumberBase&lt;T&gt;</c> depending on the underlying type)—defaults to <see cref="NumericsGeneration.Omit"/>.</param>
         /// <param name="stringDefaultComparison">Specifies the default <see cref="StringComparisonDefault"/> used for <c>==</c>, <c>Equals</c>, and <c>GetHashCode</c> on string-backed value objects—defaults to <see cref="StringComparisonDefault.Omit"/> which uses the underlying string's default comparison.</param>
         public ValueObjectAttribute(
-            Type? underlyingType = null!,
-            Conversions conversions = Conversions.Unspecified,
-            Type? throws = null!,
-            Customizations customizations = Customizations.None,
-            DeserializationStrictness deserializationStrictness = DeserializationStrictness.AllowValidAndKnownInstances,
-            DebuggerAttributeGeneration debuggerAttributes = DebuggerAttributeGeneration.Default,
-            ComparisonGeneration comparison = ComparisonGeneration.Default,
-            StringComparersGeneration stringComparers = StringComparersGeneration.Unspecified,
-            CastOperator toPrimitiveCasting = CastOperator.Unspecified,
-            CastOperator fromPrimitiveCasting = CastOperator.Unspecified,
-            ParsableForStrings parsableForStrings = ParsableForStrings.Unspecified,
-            ParsableForPrimitives parsableForPrimitives = ParsableForPrimitives.Unspecified,
-            TryFromGeneration tryFromGeneration = TryFromGeneration.Unspecified,
-            IsInitializedMethodGeneration isInitializedMethodGeneration = IsInitializedMethodGeneration.Unspecified,
-            PrimitiveEqualityGeneration primitiveEqualityGeneration = PrimitiveEqualityGeneration.Unspecified,
-            NumericsGeneration numericsGeneration = NumericsGeneration.Unspecified,
-            StringComparisonDefault stringDefaultComparison = StringComparisonDefault.Unspecified)
+            Type? underlyingType,
+            Conversions conversions,
+            Type? throws,
+            Customizations customizations,
+            DeserializationStrictness deserializationStrictness,
+            DebuggerAttributeGeneration debuggerAttributes,
+            ComparisonGeneration comparison,
+            StringComparersGeneration stringComparers,
+            CastOperator toPrimitiveCasting,
+            CastOperator fromPrimitiveCasting,
+            ParsableForStrings parsableForStrings,
+            ParsableForPrimitives parsableForPrimitives,
+            TryFromGeneration tryFromGeneration,
+            IsInitializedMethodGeneration isInitializedMethodGeneration,
+            PrimitiveEqualityGeneration primitiveEqualityGeneration,
+            NumericsGeneration numericsGeneration,
+            StringComparisonDefault stringDefaultComparison)
         {
             // DO NOT ADD PARAMETERS HERE, INSTEAD, CREATE OVERLOADS (at least until a new major version).
             // This is because some users use reflection to find this attribute, and changing the amount

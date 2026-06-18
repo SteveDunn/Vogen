@@ -91,22 +91,22 @@ public partial struct StringVo_Struct_Generic
 {
 }
 
-[ValueObject(typeof(string), stringDefaultComparison: StringComparisonDefault.OrdinalIgnoreCase)]
+[ValueObject(typeof(string), Conversions.Unspecified, null, Customizations.None, DeserializationStrictness.AllowValidAndKnownInstances, DebuggerAttributeGeneration.Default, ComparisonGeneration.Default, StringComparersGeneration.Unspecified, CastOperator.Unspecified, CastOperator.Unspecified, ParsableForStrings.Unspecified, ParsableForPrimitives.Unspecified, TryFromGeneration.Unspecified, IsInitializedMethodGeneration.Unspecified, PrimitiveEqualityGeneration.Unspecified, NumericsGeneration.Unspecified, StringComparisonDefault.OrdinalIgnoreCase)]
 public partial class StringVo_Class_DefaultOrdinalIgnoreCase
 {
 }
 
-[ValueObject(typeof(string), stringDefaultComparison: StringComparisonDefault.OrdinalIgnoreCase)]
+[ValueObject(typeof(string), Conversions.Unspecified, null, Customizations.None, DeserializationStrictness.AllowValidAndKnownInstances, DebuggerAttributeGeneration.Default, ComparisonGeneration.Default, StringComparersGeneration.Unspecified, CastOperator.Unspecified, CastOperator.Unspecified, ParsableForStrings.Unspecified, ParsableForPrimitives.Unspecified, TryFromGeneration.Unspecified, IsInitializedMethodGeneration.Unspecified, PrimitiveEqualityGeneration.Unspecified, NumericsGeneration.Unspecified, StringComparisonDefault.OrdinalIgnoreCase)]
 public partial record class StringVo_RecordClass_DefaultOrdinalIgnoreCase
 {
 }
 
-[ValueObject(typeof(string), stringDefaultComparison: StringComparisonDefault.OrdinalIgnoreCase)]
+[ValueObject(typeof(string), Conversions.Unspecified, null, Customizations.None, DeserializationStrictness.AllowValidAndKnownInstances, DebuggerAttributeGeneration.Default, ComparisonGeneration.Default, StringComparersGeneration.Unspecified, CastOperator.Unspecified, CastOperator.Unspecified, ParsableForStrings.Unspecified, ParsableForPrimitives.Unspecified, TryFromGeneration.Unspecified, IsInitializedMethodGeneration.Unspecified, PrimitiveEqualityGeneration.Unspecified, NumericsGeneration.Unspecified, StringComparisonDefault.OrdinalIgnoreCase)]
 public partial record struct StringVo_RecordStruct_DefaultOrdinalIgnoreCase
 {
 }
 
-[ValueObject(typeof(string), stringDefaultComparison: StringComparisonDefault.OrdinalIgnoreCase)]
+[ValueObject(typeof(string), Conversions.Unspecified, null, Customizations.None, DeserializationStrictness.AllowValidAndKnownInstances, DebuggerAttributeGeneration.Default, ComparisonGeneration.Default, StringComparersGeneration.Unspecified, CastOperator.Unspecified, CastOperator.Unspecified, ParsableForStrings.Unspecified, ParsableForPrimitives.Unspecified, TryFromGeneration.Unspecified, IsInitializedMethodGeneration.Unspecified, PrimitiveEqualityGeneration.Unspecified, NumericsGeneration.Unspecified, StringComparisonDefault.OrdinalIgnoreCase)]
 public partial struct StringVo_Struct_DefaultOrdinalIgnoreCase
 {
 }

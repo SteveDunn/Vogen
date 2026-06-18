@@ -1,4 +1,4 @@
-﻿// ReSharper disable MemberInitializerValueIgnored
+// ReSharper disable MemberInitializerValueIgnored
 // ReSharper disable UnusedType.Global
 
 // ReSharper disable UnusedParameter.Local
@@ -118,27 +118,26 @@ public class VogenDefaultsAttribute : Attribute
     /// <param name="numericsGeneration">Specifies whether to generate numeric interfaces (<c>INumber&lt;T&gt;</c> or <c>INumberBase&lt;T&gt;</c> depending on the underlying type)—defaults to <see cref="NumericsGeneration.Omit"/>.</param>
     /// <param name="stringDefaultComparison">Specifies the default <see cref="StringComparisonDefault"/> used for <c>==</c>, <c>Equals</c>, and <c>GetHashCode</c> on string-backed value objects—defaults to <see cref="StringComparisonDefault.Omit"/> which uses the underlying string's default comparison.</param>
     public VogenDefaultsAttribute(
-        Type? underlyingType = null,
-        Conversions conversions = Conversions.Unspecified,
-        Type? throws = null,
-        Customizations customizations = Customizations.None,
-        DeserializationStrictness deserializationStrictness = DeserializationStrictness.AllowValidAndKnownInstances,
-        DebuggerAttributeGeneration debuggerAttributes = DebuggerAttributeGeneration.Default,
-        CastOperator toPrimitiveCasting = CastOperator.Explicit,
-        CastOperator fromPrimitiveCasting = CastOperator.Explicit,
-        bool disableStackTraceRecordingInDebug = false,
-        ParsableForStrings parsableForStrings = ParsableForStrings.GenerateMethodsAndInterface,
-        ParsableForPrimitives parsableForPrimitives = ParsableForPrimitives.HoistMethodsAndInterfaces,
-        TryFromGeneration tryFromGeneration = TryFromGeneration.Unspecified,
-        IsInitializedMethodGeneration isInitializedMethodGeneration = IsInitializedMethodGeneration.Unspecified,
-        SystemTextJsonConverterFactoryGeneration systemTextJsonConverterFactoryGeneration =
-            SystemTextJsonConverterFactoryGeneration.Unspecified,
-        StaticAbstractsGeneration staticAbstractsGeneration = StaticAbstractsGeneration.Unspecified,
-        OpenApiSchemaCustomizations openApiSchemaCustomizations = OpenApiSchemaCustomizations.Unspecified,
-        bool explicitlySpecifyTypeInValueObject = false,
-        PrimitiveEqualityGeneration primitiveEqualityGeneration = PrimitiveEqualityGeneration.Unspecified,
-        NumericsGeneration numericsGeneration = NumericsGeneration.Unspecified,
-        StringComparisonDefault stringDefaultComparison = StringComparisonDefault.Unspecified)
+        Type? underlyingType,
+        Conversions conversions,
+        Type? throws,
+        Customizations customizations,
+        DeserializationStrictness deserializationStrictness,
+        DebuggerAttributeGeneration debuggerAttributes,
+        CastOperator toPrimitiveCasting,
+        CastOperator fromPrimitiveCasting,
+        bool disableStackTraceRecordingInDebug,
+        ParsableForStrings parsableForStrings,
+        ParsableForPrimitives parsableForPrimitives,
+        TryFromGeneration tryFromGeneration,
+        IsInitializedMethodGeneration isInitializedMethodGeneration,
+        SystemTextJsonConverterFactoryGeneration systemTextJsonConverterFactoryGeneration,
+        StaticAbstractsGeneration staticAbstractsGeneration,
+        OpenApiSchemaCustomizations openApiSchemaCustomizations,
+        bool explicitlySpecifyTypeInValueObject,
+        PrimitiveEqualityGeneration primitiveEqualityGeneration,
+        NumericsGeneration numericsGeneration,
+        StringComparisonDefault stringDefaultComparison)
     {
     }
 }

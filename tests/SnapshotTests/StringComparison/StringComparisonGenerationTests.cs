@@ -47,7 +47,7 @@ public class StringComparisonGenerationTests
                                using Vogen;
                                namespace Whatever;
 
-                               [ValueObject(typeof(string), stringDefaultComparison: StringComparisonDefault.OrdinalIgnoreCase)]
+                               [ValueObject(typeof(string), Conversions.Default, null, Customizations.None, DeserializationStrictness.AllowValidAndKnownInstances, DebuggerAttributeGeneration.Default, ComparisonGeneration.Default, StringComparersGeneration.Unspecified, CastOperator.Unspecified, CastOperator.Unspecified, ParsableForStrings.Unspecified, ParsableForPrimitives.Unspecified, TryFromGeneration.Unspecified, IsInitializedMethodGeneration.Unspecified, PrimitiveEqualityGeneration.Unspecified, NumericsGeneration.Unspecified, StringComparisonDefault.OrdinalIgnoreCase)]
                                public partial class StringThing { }
                                """;
 
