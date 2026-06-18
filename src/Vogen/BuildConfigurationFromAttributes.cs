@@ -198,13 +198,6 @@ internal class BuildConfigurationFromAttributes
             _diagnostics.Add(DiagnosticsCatalogue.InvalidDeserializationStrictness(syntaxLocation));
         }
 
-        bool hasActiveDefaultComparison = _stringDefaultComparison is not StringComparisonDefault.Unspecified
-            and not StringComparisonDefault.Omit;
-
-        if (hasActiveDefaultComparison && _stringComparers == StringComparersGeneration.Omit)
-        {
-            _diagnostics.Add(DiagnosticsCatalogue.StringDefaultComparisonConflictsWithStringComparersOmit(syntaxLocation));
-        }
     }
 
     // populates all args - it doesn't expect the underlying type argument as that is:

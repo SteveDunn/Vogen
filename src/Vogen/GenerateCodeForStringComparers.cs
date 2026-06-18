@@ -11,10 +11,7 @@ public static class GenerateCodeForStringComparers
             return string.Empty;
         }
 
-        bool hasDefaultComparison = item.Config.StringDefaultComparison is not StringComparisonDefault.Unspecified
-            and not StringComparisonDefault.Omit;
-
-        if (item.Config.StringComparers != StringComparersGeneration.Generate && !hasDefaultComparison)
+        if (item.Config.StringComparers != StringComparersGeneration.Generate)
         {
             return string.Empty;
         }

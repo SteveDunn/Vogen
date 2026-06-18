@@ -190,6 +190,37 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
 #else
         public bool IsInitialized() => _isInitialized;
 #endif
+#nullable disable
+        public static class Comparers
+        {
+            private class __StringEqualityComparer : global::System.Collections.Generic.IEqualityComparer<StringThing>
+            {
+                readonly global::System.StringComparer _comparer;
+                public __StringEqualityComparer(global::System.StringComparer comparer)
+                {
+                    _comparer = comparer;
+                }
+
+                public bool Equals(StringThing x, StringThing y)
+                {
+                    return _comparer.Equals(x._value, y._value);
+                }
+
+                public int GetHashCode(StringThing obj)
+                {
+                    return _comparer.GetHashCode(obj._value);
+                }
+            }
+
+            public static global::System.Collections.Generic.IEqualityComparer<StringThing> Ordinal => new __StringEqualityComparer(global::System.StringComparer.Ordinal);
+            public static global::System.Collections.Generic.IEqualityComparer<StringThing> OrdinalIgnoreCase => new __StringEqualityComparer(global::System.StringComparer.OrdinalIgnoreCase);
+            public static global::System.Collections.Generic.IEqualityComparer<StringThing> CurrentCulture => new __StringEqualityComparer(global::System.StringComparer.CurrentCulture);
+            public static global::System.Collections.Generic.IEqualityComparer<StringThing> CurrentCultureIgnoreCase => new __StringEqualityComparer(global::System.StringComparer.CurrentCultureIgnoreCase);
+            public static global::System.Collections.Generic.IEqualityComparer<StringThing> InvariantCulture => new __StringEqualityComparer(global::System.StringComparer.InvariantCulture);
+            public static global::System.Collections.Generic.IEqualityComparer<StringThing> InvariantCultureIgnoreCase => new __StringEqualityComparer(global::System.StringComparer.InvariantCultureIgnoreCase);
+#nullable restore
+        }
+
         // only called internally when something has been deserialized into
         // its primitive type.
         private static StringThing __Deserialize(global::System.String value)
