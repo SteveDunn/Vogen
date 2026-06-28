@@ -75,7 +75,7 @@ namespace Whatever
     [global::System.ComponentModel.TypeConverter(typeof(StringThingTypeConverter))]
     [global::System.Diagnostics.DebuggerTypeProxyAttribute(typeof(StringThingDebugView))]
     [global::System.Diagnostics.DebuggerDisplayAttribute("Underlying type: global::System.String, Value = { _value }")]
-    public partial class StringThing : global::System.IEquatable<StringThing>, global::System.IEquatable<global::System.String>, global::System.IComparable<StringThing>, global::System.IComparable, global::System.IParsable<StringThing>, global::System.IConvertible
+    public partial class StringThing : global::System.IEquatable<StringThing>, global::System.IEquatable<global::System.String>, global::System.IComparable<StringThing>, global::System.IComparable, global::System.IConvertible
     {
 #if DEBUG
 private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
@@ -250,7 +250,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
                 return true;
             }
 
-            return GetType() == other.GetType() && global::System.Collections.Generic.EqualityComparer<global::System.String>.Default.Equals(Value, other.Value);
+            return GetType() == other.GetType() && global::System.StringComparer.OrdinalIgnoreCase.Equals(Value, other.Value);
         }
 
         public global::System.Boolean Equals(StringThing other, global::System.Collections.Generic.IEqualityComparer<StringThing> comparer)
@@ -260,7 +260,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
 
         public global::System.Boolean Equals(global::System.String primitive)
         {
-            return Value.Equals(primitive);
+            return global::System.StringComparer.OrdinalIgnoreCase.Equals(Value, primitive);
         }
 
         public global::System.Boolean Equals(global::System.String primitive, global::System.StringComparer comparer)
@@ -275,8 +275,8 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
 
         public static global::System.Boolean operator ==(StringThing left, StringThing right) => Equals(left, right);
         public static global::System.Boolean operator !=(StringThing left, StringThing right) => !Equals(left, right);
-        public static global::System.Boolean operator ==(StringThing left, global::System.String right) => left.Value.Equals(right);
-        public static global::System.Boolean operator ==(global::System.String left, StringThing right) => right.Value.Equals(left);
+        public static global::System.Boolean operator ==(StringThing left, global::System.String right) => global::System.StringComparer.OrdinalIgnoreCase.Equals(left.Value, right);
+        public static global::System.Boolean operator ==(global::System.String left, StringThing right) => global::System.StringComparer.OrdinalIgnoreCase.Equals(left, right.Value);
         public static global::System.Boolean operator !=(global::System.String left, StringThing right) => !(left == right);
         public static global::System.Boolean operator !=(StringThing left, global::System.String right) => !(left == right);
         public static explicit operator StringThing(global::System.String value) => From(value);
@@ -350,51 +350,9 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
         }
 
         /// <inheritdoc cref = "System.IConvertible"/>
-        byte System.IConvertible.ToByte(global::System.IFormatProvider provider)
-        {
-            return IsInitialized() ? (Value as System.IConvertible).ToByte(provider) : default;
-        }
-
-        /// <inheritdoc cref = "System.IConvertible"/>
         char System.IConvertible.ToChar(global::System.IFormatProvider provider)
         {
             return IsInitialized() ? (Value as System.IConvertible).ToChar(provider) : default;
-        }
-
-        /// <inheritdoc cref = "System.IConvertible"/>
-        System.DateTime System.IConvertible.ToDateTime(global::System.IFormatProvider provider)
-        {
-            return IsInitialized() ? (Value as System.IConvertible).ToDateTime(provider) : default;
-        }
-
-        /// <inheritdoc cref = "System.IConvertible"/>
-        decimal System.IConvertible.ToDecimal(global::System.IFormatProvider provider)
-        {
-            return IsInitialized() ? (Value as System.IConvertible).ToDecimal(provider) : default;
-        }
-
-        /// <inheritdoc cref = "System.IConvertible"/>
-        double System.IConvertible.ToDouble(global::System.IFormatProvider provider)
-        {
-            return IsInitialized() ? (Value as System.IConvertible).ToDouble(provider) : default;
-        }
-
-        /// <inheritdoc cref = "System.IConvertible"/>
-        short System.IConvertible.ToInt16(global::System.IFormatProvider provider)
-        {
-            return IsInitialized() ? (Value as System.IConvertible).ToInt16(provider) : default;
-        }
-
-        /// <inheritdoc cref = "System.IConvertible"/>
-        int System.IConvertible.ToInt32(global::System.IFormatProvider provider)
-        {
-            return IsInitialized() ? (Value as System.IConvertible).ToInt32(provider) : default;
-        }
-
-        /// <inheritdoc cref = "System.IConvertible"/>
-        long System.IConvertible.ToInt64(global::System.IFormatProvider provider)
-        {
-            return IsInitialized() ? (Value as System.IConvertible).ToInt64(provider) : default;
         }
 
         /// <inheritdoc cref = "System.IConvertible"/>
@@ -404,15 +362,15 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
         }
 
         /// <inheritdoc cref = "System.IConvertible"/>
-        float System.IConvertible.ToSingle(global::System.IFormatProvider provider)
+        byte System.IConvertible.ToByte(global::System.IFormatProvider provider)
         {
-            return IsInitialized() ? (Value as System.IConvertible).ToSingle(provider) : default;
+            return IsInitialized() ? (Value as System.IConvertible).ToByte(provider) : default;
         }
 
         /// <inheritdoc cref = "System.IConvertible"/>
-        object System.IConvertible.ToType(global::System.Type @type, global::System.IFormatProvider provider)
+        short System.IConvertible.ToInt16(global::System.IFormatProvider provider)
         {
-            return IsInitialized() ? (Value as System.IConvertible).ToType(@type, provider) : default;
+            return IsInitialized() ? (Value as System.IConvertible).ToInt16(provider) : default;
         }
 
         /// <inheritdoc cref = "System.IConvertible"/>
@@ -422,15 +380,57 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
         }
 
         /// <inheritdoc cref = "System.IConvertible"/>
+        int System.IConvertible.ToInt32(global::System.IFormatProvider provider)
+        {
+            return IsInitialized() ? (Value as System.IConvertible).ToInt32(provider) : default;
+        }
+
+        /// <inheritdoc cref = "System.IConvertible"/>
         uint System.IConvertible.ToUInt32(global::System.IFormatProvider provider)
         {
             return IsInitialized() ? (Value as System.IConvertible).ToUInt32(provider) : default;
         }
 
         /// <inheritdoc cref = "System.IConvertible"/>
+        long System.IConvertible.ToInt64(global::System.IFormatProvider provider)
+        {
+            return IsInitialized() ? (Value as System.IConvertible).ToInt64(provider) : default;
+        }
+
+        /// <inheritdoc cref = "System.IConvertible"/>
         ulong System.IConvertible.ToUInt64(global::System.IFormatProvider provider)
         {
             return IsInitialized() ? (Value as System.IConvertible).ToUInt64(provider) : default;
+        }
+
+        /// <inheritdoc cref = "System.IConvertible"/>
+        float System.IConvertible.ToSingle(global::System.IFormatProvider provider)
+        {
+            return IsInitialized() ? (Value as System.IConvertible).ToSingle(provider) : default;
+        }
+
+        /// <inheritdoc cref = "System.IConvertible"/>
+        double System.IConvertible.ToDouble(global::System.IFormatProvider provider)
+        {
+            return IsInitialized() ? (Value as System.IConvertible).ToDouble(provider) : default;
+        }
+
+        /// <inheritdoc cref = "System.IConvertible"/>
+        decimal System.IConvertible.ToDecimal(global::System.IFormatProvider provider)
+        {
+            return IsInitialized() ? (Value as System.IConvertible).ToDecimal(provider) : default;
+        }
+
+        /// <inheritdoc cref = "System.IConvertible"/>
+        System.DateTime System.IConvertible.ToDateTime(global::System.IFormatProvider provider)
+        {
+            return IsInitialized() ? (Value as System.IConvertible).ToDateTime(provider) : default;
+        }
+
+        /// <inheritdoc cref = "System.IConvertible"/>
+        object System.IConvertible.ToType(global::System.Type @type, global::System.IFormatProvider provider)
+        {
+            return IsInitialized() ? (Value as System.IConvertible).ToType(@type, provider) : default;
         }
 
 #nullable restore
@@ -440,14 +440,14 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
             {
                 global::System.Int32 hash = (global::System.Int32)2166136261;
                 hash = (hash * 16777619) ^ GetType().GetHashCode();
-                hash = (hash * 16777619) ^ global::System.Collections.Generic.EqualityComparer<global::System.String>.Default.GetHashCode(Value);
+                hash = (hash * 16777619) ^ global::System.StringComparer.OrdinalIgnoreCase.GetHashCode(Value);
                 return hash;
             }
         }
 
         /// <inheritdoc cref = "string.ToString()"/>
         public override global::System.String ToString() => IsInitialized() ? Value.ToString() ?? "" : "[UNINITIALIZED]";
-        /// <inheritdoc cref = "string.ToString(System.IFormatProvider? )"/>
+        /// <inheritdoc cref = "string.ToString(System.IFormatProvider)"/>
         public global::System.String ToString(global::System.IFormatProvider provider) => IsInitialized() ? Value.ToString(provider) ?? "" : "[UNINITIALIZED]";
         [global::System.Runtime.CompilerServices.MethodImpl(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
         private void EnsureInitialized()

@@ -158,6 +158,14 @@ public static class CombineConfigurations
             (var local, _) => local,
         };
 
+        StringComparisonDefault stringDefaultComparison = (localValues.StringDefaultComparison, globalValues?.StringDefaultComparison) switch
+        {
+            (StringComparisonDefault.Unspecified, null) => VogenConfiguration.DefaultInstance.StringDefaultComparison,
+            (StringComparisonDefault.Unspecified, StringComparisonDefault.Unspecified) => VogenConfiguration.DefaultInstance.StringDefaultComparison,
+            (StringComparisonDefault.Unspecified, var global) => global.Value,
+            (var local, _) => local,
+        };
+
         var validationExceptionType = localValues.ValidationExceptionType ?? 
                                       globalValues?.ValidationExceptionType ?? 
                                       VogenConfiguration.DefaultInstance.ValidationExceptionType;
@@ -193,7 +201,8 @@ public static class CombineConfigurations
             OpenApiSchemaCustomizations: openApiSchemaCustomizations,
             ExplicitlySpecifyTypeInValueObject: primitiveTypeMustBeExplicit,
             PrimitiveEqualityGeneration: primitiveEqualityGeneration,
-            NumericsGeneration: numericsGeneration);
+            NumericsGeneration: numericsGeneration,
+            StringDefaultComparison: stringDefaultComparison);
     }
  
     /// If we don't have a global attribute, just use the default configuration as there

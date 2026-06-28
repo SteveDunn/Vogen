@@ -11,7 +11,7 @@ public static class GenerateCodeForStringComparers
             return string.Empty;
         }
 
-        if(item.Config.StringComparers != StringComparersGeneration.Generate)
+        if (item.Config.StringComparers != StringComparersGeneration.Generate)
         {
             return string.Empty;
         }
@@ -35,9 +35,9 @@ public static class GenerateCodeForStringComparers
                             return _comparer.Equals(x._value, y._value);
                         }
                      
-                         public int GetHashCode({{tds.Identifier}} obj) 
+                         public int GetHashCode({{tds.Identifier}} obj)
                          {
-                            return _comparer.GetHashCode();
+                            return _comparer.GetHashCode(obj._value);
                          }
                      }
                      

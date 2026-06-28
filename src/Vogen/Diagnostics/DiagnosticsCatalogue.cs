@@ -135,6 +135,12 @@ internal static class DiagnosticsCatalogue
         "'{0}' has NumericsGeneration.Generate set, but the underlying type '{1}' does not implement INumberBase<T>. No numeric interface will be generated.",
         DiagnosticSeverity.Warning);
 
+    private static readonly DiagnosticDescriptor _stringDefaultComparisonNotApplicable = CreateDescriptor(
+        RuleIdentifiers.StringDefaultComparisonNotApplicable,
+        "StringDefaultComparison has no effect",
+        "'{0}' has StringDefaultComparison set, but the underlying type '{1}' is not a string. StringDefaultComparison only applies to string-backed value objects.",
+        DiagnosticSeverity.Warning);
+
     public static Diagnostic TypeCannotBeNested(INamedTypeSymbol typeModel, INamedTypeSymbol container) => 
         Create(_typeCannotBeNested, typeModel.Locations, typeModel.Name, container.Name);
 
@@ -213,6 +219,9 @@ internal static class DiagnosticsCatalogue
 
     public static Diagnostic NumericsGenerationNotApplicable(INamedTypeSymbol voSymbol, ITypeSymbol underlyingType) =>
         Create(_numericsGenerationNotApplicable, voSymbol.Locations, voSymbol.Name, underlyingType.Name);
+
+    public static Diagnostic StringDefaultComparisonNotApplicable(INamedTypeSymbol voSymbol, ITypeSymbol underlyingType) =>
+        Create(_stringDefaultComparisonNotApplicable, voSymbol.Locations, voSymbol.Name, underlyingType.Name);
 
     private static DiagnosticDescriptor CreateDescriptor(string code, string title, string messageFormat, DiagnosticSeverity severity = DiagnosticSeverity.Error)
     {

@@ -56,6 +56,24 @@ public class ForRecordClasses
     }
 
     [Fact]
+    public void StringDefaultComparison_OrdinalIgnoreCase()
+    {
+        using var _ = new AssertionScope();
+
+        StringVo_RecordClass_DefaultOrdinalIgnoreCase left = StringVo_RecordClass_DefaultOrdinalIgnoreCase.From("abc");
+        StringVo_RecordClass_DefaultOrdinalIgnoreCase right = StringVo_RecordClass_DefaultOrdinalIgnoreCase.From("ABC");
+
+        (left == right).Should().BeTrue();
+        left.Equals(right).Should().BeTrue();
+        left.Equals("ABC").Should().BeTrue();
+        left.GetHashCode().Should().Be(right.GetHashCode());
+
+        Dictionary<StringVo_RecordClass_DefaultOrdinalIgnoreCase, int> d = new();
+        d.Add(StringVo_RecordClass_DefaultOrdinalIgnoreCase.From("one"), 1);
+        d.ContainsKey(StringVo_RecordClass_DefaultOrdinalIgnoreCase.From("ONE")).Should().BeTrue();
+    }
+
+    [Fact]
     public void OrdinalIgnoreCase_in_a_dictionary()
     {
         Dictionary<StringVo_RecordClass, int> d = new(StringVo_RecordClass.Comparers.OrdinalIgnoreCase);
