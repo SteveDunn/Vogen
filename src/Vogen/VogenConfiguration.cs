@@ -23,7 +23,8 @@ public record VogenConfiguration(
     OpenApiSchemaCustomizations OpenApiSchemaCustomizations,
     bool ExplicitlySpecifyTypeInValueObject,
     PrimitiveEqualityGeneration PrimitiveEqualityGeneration,
-    NumericsGeneration NumericsGeneration)
+    NumericsGeneration NumericsGeneration,
+    StringComparisonDefault StringDefaultComparison)
 {
     // Don't add default values here, they should be in DefaultInstance.
 
@@ -52,5 +53,17 @@ public record VogenConfiguration(
         OpenApiSchemaCustomizations: OpenApiSchemaCustomizations.Omit,
         ExplicitlySpecifyTypeInValueObject: false,
         PrimitiveEqualityGeneration: PrimitiveEqualityGeneration.GenerateOperatorsAndMethods,
-        NumericsGeneration: NumericsGeneration.Omit);
+        NumericsGeneration: NumericsGeneration.Omit,
+        StringDefaultComparison: StringComparisonDefault.Omit);
+
+    public string? GetStringDefaultComparerExpression() => StringDefaultComparison switch
+    {
+        StringComparisonDefault.Ordinal => "global::System.StringComparer.Ordinal",
+        StringComparisonDefault.OrdinalIgnoreCase => "global::System.StringComparer.OrdinalIgnoreCase",
+        StringComparisonDefault.CurrentCulture => "global::System.StringComparer.CurrentCulture",
+        StringComparisonDefault.CurrentCultureIgnoreCase => "global::System.StringComparer.CurrentCultureIgnoreCase",
+        StringComparisonDefault.InvariantCulture => "global::System.StringComparer.InvariantCulture",
+        StringComparisonDefault.InvariantCultureIgnoreCase => "global::System.StringComparer.InvariantCultureIgnoreCase",
+        _ => null
+    };
 }

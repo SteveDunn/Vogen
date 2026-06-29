@@ -72,6 +72,24 @@ public class ForStructs
     }
 
     [Fact]
+    public void StringDefaultComparison_OrdinalIgnoreCase()
+    {
+        using var _ = new AssertionScope();
+
+        StringVo_Struct_DefaultOrdinalIgnoreCase left = StringVo_Struct_DefaultOrdinalIgnoreCase.From("abc");
+        StringVo_Struct_DefaultOrdinalIgnoreCase right = StringVo_Struct_DefaultOrdinalIgnoreCase.From("ABC");
+
+        (left == right).Should().BeTrue();
+        left.Equals(right).Should().BeTrue();
+        left.Equals("ABC").Should().BeTrue();
+        left.GetHashCode().Should().Be(right.GetHashCode());
+
+        Dictionary<StringVo_Struct_DefaultOrdinalIgnoreCase, int> d = new();
+        d.Add(StringVo_Struct_DefaultOrdinalIgnoreCase.From("one"), 1);
+        d.ContainsKey(StringVo_Struct_DefaultOrdinalIgnoreCase.From("ONE")).Should().BeTrue();
+    }
+
+    [Fact]
     public void OrdinalIgnoreCase_GetHashCode_reflects_underlying_value()
     {
         var comparer = StringVo_Struct_Generic.Comparers.OrdinalIgnoreCase;

@@ -11,7 +11,7 @@ public static class GenerateCodeForStringComparers
             return string.Empty;
         }
 
-        if(item.Config.StringComparers != StringComparersGeneration.Generate)
+        if (item.Config.StringComparers != StringComparersGeneration.Generate)
         {
             return string.Empty;
         }
