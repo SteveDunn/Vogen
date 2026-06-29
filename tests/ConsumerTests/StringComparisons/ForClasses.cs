@@ -74,6 +74,18 @@ public class ForClasses
     }
 
     [Fact]
+    public void OrdinalIgnoreCase_GetHashCode_reflects_underlying_value()
+    {
+        var comparer = StringVo_Class_Generic.Comparers.OrdinalIgnoreCase;
+
+        var a = StringVo_Class_Generic.From("abc");
+        var b = StringVo_Class_Generic.From("xyz");
+
+        comparer.GetHashCode(a).Should().Be(comparer.GetHashCode(StringVo_Class_Generic.From("abc")));
+        comparer.GetHashCode(a).Should().NotBe(comparer.GetHashCode(b));
+    }
+
+    [Fact]
     public void OrdinalIgnoreCase_in_a_dictionary()
     {
         Dictionary<StringVo_Class, int> d = new(StringVo_Class.Comparers.OrdinalIgnoreCase);
