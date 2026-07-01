@@ -24,10 +24,34 @@ public static class GenerateCodeForCastingOperators
             sb.AppendLine($"public static explicit operator {wrapper}({primitive} value) => From(value);");
         }
 
+        // Null-propagation applies to the explicit cast only, for reference-type wrappers in a
+        // nullable-enabled context. Unspecified (the default) propagates for reference-type underlyings
+        // only - value-type underlyings are left alone so `(int)vo` doesn't change to `int?`. Generate
+        // propagates for all underlyings; Omit never does.
+        bool nullPropagateExplicit =
+            item.IsTheWrapperAReferenceType
+            && item.Nullable.IsEnabled
+            && config.NullPropagatingToPrimitiveCasts switch
+            {
+                NullPropagatingToPrimitiveCasts.Omit => false,
+                NullPropagatingToPrimitiveCasts.Generate => true,
+                _ => !item.IsTheUnderlyingAValueType
+            };
+
         // Generate the call to the Value property so that it throws if uninitialized.
         if (config.ToPrimitiveCasting == CastOperator.Explicit || sag.HasFlag(StaticAbstractsGeneration.ExplicitCastToPrimitive))
         {
-            sb.AppendLine($"public static explicit operator {primitive}({wrapper} value) => value.Value;");
+            // Don't propagate when the cast is part of the static-abstract IVogen interface - the
+            // nullable signature can't satisfy the declared `operator TPrimitive(TSelf)`.
+            if (nullPropagateExplicit && !sag.HasFlag(StaticAbstractsGeneration.ExplicitCastToPrimitive))
+            {
+                sb.AppendLine("[return: global::System.Diagnostics.CodeAnalysis.NotNullIfNotNull(nameof(value))]");
+                sb.AppendLine($"public static explicit operator {primitive}?({wrapper}? value) => value is null ? null : value.Value;");
+            }
+            else
+            {
+                sb.AppendLine($"public static explicit operator {primitive}({wrapper} value) => value.Value;");
+            }
         }
 
         // Generate the call to the _value field so that it doesn't throw if uninitialized.

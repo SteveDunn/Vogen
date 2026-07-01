@@ -166,6 +166,15 @@ public static class CombineConfigurations
             (var local, _) => local,
         };
 
+        NullPropagatingToPrimitiveCasts nullPropagatingToPrimitiveCasts =
+            (localValues.NullPropagatingToPrimitiveCasts, globalValues?.NullPropagatingToPrimitiveCasts) switch
+        {
+            (NullPropagatingToPrimitiveCasts.Unspecified, null) => VogenConfiguration.DefaultInstance.NullPropagatingToPrimitiveCasts,
+            (NullPropagatingToPrimitiveCasts.Unspecified, NullPropagatingToPrimitiveCasts.Unspecified) => VogenConfiguration.DefaultInstance.NullPropagatingToPrimitiveCasts,
+            (NullPropagatingToPrimitiveCasts.Unspecified, var global) => global.Value,
+            (var local, _) => local,
+        };
+
         var validationExceptionType = localValues.ValidationExceptionType ?? 
                                       globalValues?.ValidationExceptionType ?? 
                                       VogenConfiguration.DefaultInstance.ValidationExceptionType;
@@ -202,7 +211,8 @@ public static class CombineConfigurations
             ExplicitlySpecifyTypeInValueObject: primitiveTypeMustBeExplicit,
             PrimitiveEqualityGeneration: primitiveEqualityGeneration,
             NumericsGeneration: numericsGeneration,
-            StringDefaultComparison: stringDefaultComparison);
+            StringDefaultComparison: stringDefaultComparison,
+            NullPropagatingToPrimitiveCasts: nullPropagatingToPrimitiveCasts);
     }
  
     /// If we don't have a global attribute, just use the default configuration as there
