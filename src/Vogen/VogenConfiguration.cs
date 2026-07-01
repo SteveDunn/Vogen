@@ -24,7 +24,8 @@ public record VogenConfiguration(
     bool ExplicitlySpecifyTypeInValueObject,
     PrimitiveEqualityGeneration PrimitiveEqualityGeneration,
     NumericsGeneration NumericsGeneration,
-    StringComparisonDefault StringDefaultComparison)
+    StringComparisonDefault StringDefaultComparison,
+    NullPropagatingToPrimitiveCasts NullPropagatingToPrimitiveCasts)
 {
     // Don't add default values here, they should be in DefaultInstance.
 
@@ -54,7 +55,10 @@ public record VogenConfiguration(
         ExplicitlySpecifyTypeInValueObject: false,
         PrimitiveEqualityGeneration: PrimitiveEqualityGeneration.GenerateOperatorsAndMethods,
         NumericsGeneration: NumericsGeneration.Omit,
-        StringDefaultComparison: StringComparisonDefault.Omit);
+        StringDefaultComparison: StringComparisonDefault.Omit,
+        // Left Unspecified: the effective default is conditional on the underlying type, resolved in
+        // GenerateCodeForCastingOperators.
+        NullPropagatingToPrimitiveCasts: NullPropagatingToPrimitiveCasts.Unspecified);
 
     public string? GetStringDefaultComparerExpression() => StringDefaultComparison switch
     {

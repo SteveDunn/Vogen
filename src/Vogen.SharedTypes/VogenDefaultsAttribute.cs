@@ -53,6 +53,13 @@ public class VogenDefaultsAttribute : Attribute
     /// <param name="openApiSchemaCustomizations">Controls the generation of a Swashbuckle schema filter for OpenAPI.</param>
     /// <param name="explicitlySpecifyTypeInValueObject">Every ValueObject attribute must explicitly specify the type of the primitive.</param>
     /// <param name="numericsGeneration">Specifies whether to generate numeric interfaces (<c>INumber&lt;T&gt;</c> or <c>INumberBase&lt;T&gt;</c> depending on the underlying type)—defaults to <see cref="NumericsGeneration.Omit"/>.</param>
+    /// <param name="stringDefaultComparison">Specifies the default <see cref="StringComparisonDefault"/> used for <c>==</c>, <c>Equals</c>, and <c>GetHashCode</c> on string-backed value objects—defaults to <see cref="StringComparisonDefault.Omit"/> which uses the underlying string's default comparison.</param>
+    /// <param name="nullPropagatingToPrimitiveCasts">Controls whether the <b>explicit</b> to-primitive cast on reference-type value objects propagates <see langword="null"/>
+    /// instead of throwing (implicit to-primitive casts are unaffected). By default (<see cref="NullPropagatingToPrimitiveCasts.Unspecified"/>), casting a <see langword="null"/> reference yields
+    /// <see langword="null"/> for reference-type underlyings (e.g. <see cref="string"/>) rather than throwing a <see cref="NullReferenceException"/>;
+    /// value-type underlyings are unaffected unless <see cref="NullPropagatingToPrimitiveCasts.Generate"/> is specified. Use
+    /// <see cref="NullPropagatingToPrimitiveCasts.Omit"/> to keep the throwing behaviour. This is a no-op for structs and is silently ignored when it
+    /// would conflict with static-abstract cast generation.</param>
     public VogenDefaultsAttribute(
         Type? underlyingType = null,
         Conversions conversions = Conversions.Unspecified,
@@ -73,71 +80,9 @@ public class VogenDefaultsAttribute : Attribute
         OpenApiSchemaCustomizations openApiSchemaCustomizations = OpenApiSchemaCustomizations.Unspecified,
         bool explicitlySpecifyTypeInValueObject = false,
         PrimitiveEqualityGeneration primitiveEqualityGeneration = PrimitiveEqualityGeneration.Unspecified,
-        NumericsGeneration numericsGeneration = NumericsGeneration.Unspecified)
-    {
-    }
-
-    /// <summary>
-    /// Creates a new instance of a type that represents the default
-    /// values used for value object generation.
-    /// </summary>
-    /// <param name="underlyingType">The type of the primitive that is being wrapped—defaults to int.</param>
-    /// <param name="conversions">Specifies what conversion code is generated - defaults to <see cref="Conversions.Default"/> which generates type converters and a converter to handle serialization using System.Text.Json</param>
-    /// <param name="throws">Specifies the type of exception thrown when validation fails—defaults to <see cref="ValueObjectValidationException"/>.</param>
-    /// <param name="customizations">Simple customization switches—defaults to <see cref="Customizations.None"/>.</param>
-    /// <param name="deserializationStrictness">Specifies how strict deserialization is, e.g. should your Validate method be called, or should pre-defined instances that otherwise invalid be allowed - defaults to <see cref="DeserializationStrictness.AllowValidAndKnownInstances"/>.</param>
-    /// <param name="debuggerAttributes">Specifies the level that debug attributes are written as some IDEs don't support all of them, e.g., Rider - defaults to <see cref="DebuggerAttributeGeneration.Full"/> which generates DebuggerDisplay and a debugger proxy type for IDEs that support them</param>
-    /// <param name="toPrimitiveCasting">Controls how cast operators are generated for casting from the Value Object to the primitive.
-    /// Options are implicit or explicit or none.  Explicit is preferred over implicit if you really need them, but isn't recommended.
-    /// See <see href="https://github.com/SteveDunn/Vogen/wiki/Casting"/> for more information.</param>
-    /// <param name="fromPrimitiveCasting">Controls how cast operators are generated for casting from the primitive to the Value Object.
-    /// Options are implicit or explicit or none.  Explicit is preferred over implicit if you really need them, but isn't recommended.
-    /// See &lt;see href="https://github.com/SteveDunn/Vogen/wiki/Casting"/&gt; for more information.</param>
-    /// <param name="disableStackTraceRecordingInDebug">disables stack trace recording; in Debug builds, a stack trace is recorded and is
-    /// thrown in the exception when something is created in an uninitialized state, e.g. after deserialization</param>
-    /// <param name="parsableForStrings">Specifies what is generated for IParsable types for strings - defaults to <see cref="ParsableForStrings.GenerateMethodsAndInterface"/>.</param>
-    /// <param name="parsableForPrimitives">Specifies what is generated for Parse and TryParse methods - defaults to <see cref="ParsableForPrimitives.HoistMethodsAndInterfaces"/>.</param>
-    /// <param name="tryFromGeneration">Specifies what to write for TryFrom methods—defaults to <see cref="TryFromGeneration.GenerateBoolAndErrorOrMethods"/>.</param>
-    /// <param name="isInitializedMethodGeneration">Specifies whether to generate an IsInitialized() method - defaults to <see cref="IsInitializedMethodGeneration.Generate"/>.</param>
-    /// <param name="primitiveEqualityGeneration">
-    /// Specifies whether to generate primitive comparison operators, allowing this type to be compared for equality to the primitive.
-    /// Defaults to <see cref="PrimitiveEqualityGeneration.GenerateOperatorsAndMethods"/>
-    /// <example>
-    /// <para>
-    /// var vo = MyInt.From(123);
-    /// </para>
-    /// <para>
-    /// bool same = vo == 123;
-    /// </para>
-    /// </example>
-    /// </param>
-    /// <param name="systemTextJsonConverterFactoryGeneration">Controls the generation of the type factory for System.Text.Json.</param>
-    /// <param name="staticAbstractsGeneration">Controls the generation of static abstract interfaces.</param>
-    /// <param name="openApiSchemaCustomizations">Controls the generation of a Swashbuckle schema filter for OpenAPI.</param>
-    /// <param name="explicitlySpecifyTypeInValueObject">Every ValueObject attribute must explicitly specify the type of the primitive.</param>
-    /// <param name="numericsGeneration">Specifies whether to generate numeric interfaces (<c>INumber&lt;T&gt;</c> or <c>INumberBase&lt;T&gt;</c> depending on the underlying type)—defaults to <see cref="NumericsGeneration.Omit"/>.</param>
-    /// <param name="stringDefaultComparison">Specifies the default <see cref="StringComparisonDefault"/> used for <c>==</c>, <c>Equals</c>, and <c>GetHashCode</c> on string-backed value objects—defaults to <see cref="StringComparisonDefault.Omit"/> which uses the underlying string's default comparison.</param>
-    public VogenDefaultsAttribute(
-        Type? underlyingType,
-        Conversions conversions,
-        Type? throws,
-        Customizations customizations,
-        DeserializationStrictness deserializationStrictness,
-        DebuggerAttributeGeneration debuggerAttributes,
-        CastOperator toPrimitiveCasting,
-        CastOperator fromPrimitiveCasting,
-        bool disableStackTraceRecordingInDebug,
-        ParsableForStrings parsableForStrings,
-        ParsableForPrimitives parsableForPrimitives,
-        TryFromGeneration tryFromGeneration,
-        IsInitializedMethodGeneration isInitializedMethodGeneration,
-        SystemTextJsonConverterFactoryGeneration systemTextJsonConverterFactoryGeneration,
-        StaticAbstractsGeneration staticAbstractsGeneration,
-        OpenApiSchemaCustomizations openApiSchemaCustomizations,
-        bool explicitlySpecifyTypeInValueObject,
-        PrimitiveEqualityGeneration primitiveEqualityGeneration,
-        NumericsGeneration numericsGeneration,
-        StringComparisonDefault stringDefaultComparison)
+        NumericsGeneration numericsGeneration = NumericsGeneration.Unspecified,
+        StringComparisonDefault stringDefaultComparison = StringComparisonDefault.Unspecified,
+        NullPropagatingToPrimitiveCasts nullPropagatingToPrimitiveCasts = NullPropagatingToPrimitiveCasts.Unspecified)
     {
     }
 }
