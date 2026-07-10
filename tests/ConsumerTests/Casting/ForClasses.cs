@@ -24,6 +24,18 @@ public class ForClasses
     }
 
     [Fact]
+    public void Null_reference_propagates_to_null_by_default()
+    {
+        using var _ = new AssertionScope();
+
+        Vo? nullVo = null;
+
+        string? prim = (string?)nullVo;
+
+        prim.Should().BeNull();
+    }
+
+    [Fact]
     public void Just_implicit_to_primitive()
     {
         using var _ = new AssertionScope();
