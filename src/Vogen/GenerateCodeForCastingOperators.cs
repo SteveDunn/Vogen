@@ -24,10 +24,30 @@ public static class GenerateCodeForCastingOperators
             sb.AppendLine($"public static explicit operator {wrapper}({primitive} value) => From(value);");
         }
 
+        // The explicit to-primitive cast propagates null (returns null for a null receiver instead of
+        // throwing) for reference-type wrappers over a reference-type underlying (e.g. string) in a
+        // nullable-enabled context. Value-type underlyings are left alone so the cast result type stays
+        // `int` rather than `int?` (which would stop `(int)vo` compiling). Structs already lift over
+        // Nullable<T>, and with nullable disabled there's no NRT contract to express.
+        bool nullPropagateExplicit =
+            item.IsTheWrapperAReferenceType
+            && !item.IsTheUnderlyingAValueType
+            && item.Nullable.IsEnabled;
+
         // Generate the call to the Value property so that it throws if uninitialized.
         if (config.ToPrimitiveCasting == CastOperator.Explicit || sag.HasFlag(StaticAbstractsGeneration.ExplicitCastToPrimitive))
         {
-            sb.AppendLine($"public static explicit operator {primitive}({wrapper} value) => value.Value;");
+            // Don't propagate when the cast is part of the static-abstract IVogen interface - the
+            // nullable signature can't satisfy the declared `operator TPrimitive(TSelf)`.
+            if (nullPropagateExplicit && !sag.HasFlag(StaticAbstractsGeneration.ExplicitCastToPrimitive))
+            {
+                sb.AppendLine("[return: global::System.Diagnostics.CodeAnalysis.NotNullIfNotNull(nameof(value))]");
+                sb.AppendLine($"public static explicit operator {primitive}?({wrapper}? value) => value is null ? null : value.Value;");
+            }
+            else
+            {
+                sb.AppendLine($"public static explicit operator {primitive}({wrapper} value) => value.Value;");
+            }
         }
 
         // Generate the call to the _value field so that it doesn't throw if uninitialized.
