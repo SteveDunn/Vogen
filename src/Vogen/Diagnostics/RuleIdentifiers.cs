@@ -46,4 +46,5 @@ public static class RuleIdentifiers
     public const string NumericsGenerationNotApplicable = "VOG037";
     public const string PropertyOfValueObjectShouldBeInitialized = "VOG038";
     public const string StringDefaultComparisonNotApplicable = "VOG039";
+    public const string DoNotUseGetValueOrDefault = "VOG040";
 }
