@@ -57,17 +57,49 @@ internal class GenerateCodeForOrleansSerializers
                   
               {{accessor}} sealed class {{unescapedWrapperName}}OrleansSerializer : global::Orleans.Serialization.Codecs.IFieldCodec<{{item.VoTypeName}}>
               {
+                  private readonly global::System.Type CodecFieldType = typeof({{underlyingTypeName}});
+
                   public void WriteField<TBufferWriter>(ref global::Orleans.Serialization.Buffers.Writer<TBufferWriter> writer, uint fieldIdDelta, System.Type expectedType, {{item.VoTypeName}} value)
                       where TBufferWriter : global::System.Buffers.IBufferWriter<byte>
                   {
+                      global::Orleans.Serialization.Codecs.ReferenceCodec.MarkValueField(writer.Session);
+                      writer.WriteFieldHeader(fieldIdDelta, expectedType, typeof({{item.VoTypeName}}), global::Orleans.Serialization.WireProtocol.WireType.TagDelimited);
+
                       var baseCodec = writer.Session.CodecProvider.GetCodec<{{underlyingTypeName}}>();
-                      baseCodec.WriteField(ref writer, fieldIdDelta, typeof({{underlyingTypeName}}), value.Value);
+                      baseCodec.WriteField(ref writer, 0, CodecFieldType, value.Value);
+                      writer.WriteEndObject();
                   }
-              
+               
                   public {{item.VoTypeName}} ReadValue<TInput>(ref global::Orleans.Serialization.Buffers.Reader<TInput> reader, global::Orleans.Serialization.WireProtocol.Field field)
                   {
+                      field.EnsureWireTypeTagDelimited();
+                      global::Orleans.Serialization.Codecs.ReferenceCodec.MarkValueField(reader.Session);
+
                       var baseCodec = reader.Session.CodecProvider.GetCodec<{{underlyingTypeName}}>();
-                      var baseValue = baseCodec.ReadValue(ref reader, field);
+                      var baseValue = default({{underlyingTypeName}});
+                      uint fieldId = 0;
+
+                      while (true)
+                      {
+                          var header = global::Orleans.Serialization.Codecs.FieldHeaderCodec.ReadFieldHeader(ref reader);
+
+                          if (header.IsEndBaseOrEndObject)
+                          {
+                              break;
+                          }
+
+                          fieldId += header.FieldIdDelta;
+                          
+                          if (fieldId == 0)
+                          {
+                              baseValue = baseCodec.ReadValue(ref reader, header);
+                          }
+                          else
+                          {
+                              global::Orleans.Serialization.Codecs.ConsumeFieldExtension.ConsumeUnknownField(ref reader, header);
+                          }
+                      }
+
                       return UnsafeDeserialize(default, baseValue);
                   }
                   
