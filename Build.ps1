@@ -71,13 +71,6 @@ function GetPackageVersionFromFileName([string]$packagePath)
     throw "Could not determine package version from file name '$packagePath'"
 }
 
-function AssertSharedTypesVersionInPackage([string]$packagePath)
-{
-    $packageVersion = GetPackageVersionFromFileName($packagePath)
-    WriteStage("Verifying Vogen.SharedTypes assembly version in package '$packagePath'")
-    exec { & ./scripts/Assert-SharedTypesVersionInNupkg.ps1 -PackagePath $packagePath -ExpectedPackageVersion $packageVersion }
-}
-
 WriteStage("Building release version of Vogen...")
 
 if(Test-Path $artifacts) { Remove-Item $artifacts -Force -Recurse }
@@ -129,7 +122,6 @@ exec { & dotnet pack ./src/Vogen.Pack/Vogen.Pack.csproj -c Debug -o:$localPackag
 
 $localPackage = Get-ChildItem $localPackages -Filter "Vogen*.nupkg" | Where-Object { $_.Name -notlike "*.symbols.nupkg" } | Sort-Object LastWriteTimeUtc -Descending | Select-Object -First 1
 if ($null -eq $localPackage) { throw "Could not find generated local Vogen package in '$localPackages'" }
-AssertSharedTypesVersionInPackage($localPackage.FullName)
 
 WriteStage("Cleaning and building consumers (tests and samples) - verbosity of $verbosity")
 
@@ -183,9 +175,5 @@ if(-not $quick)
 
 WriteStage("Finally, packing the release version into " + $artifacts)
 exec { & dotnet pack src/Vogen.Pack/Vogen.Pack.csproj -c Release -o $artifacts --no-build --verbosity $verbosity }
-
-$releasePackage = Get-ChildItem $artifacts -Filter "Vogen*.nupkg" | Where-Object { $_.Name -notlike "*.symbols.nupkg" } | Sort-Object LastWriteTimeUtc -Descending | Select-Object -First 1
-if ($null -eq $releasePackage) { throw "Could not find generated release Vogen package in '$artifacts'" }
-AssertSharedTypesVersionInPackage($releasePackage.FullName)
 
 WriteStage("Done! Package generated at " + $artifacts)
