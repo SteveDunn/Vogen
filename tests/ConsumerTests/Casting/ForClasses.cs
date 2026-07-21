@@ -1,4 +1,6 @@
-﻿using FluentAssertions.Execution;
+﻿#pragma warning disable CS8604 // Possible null reference argument.
+
+using FluentAssertions.Execution;
 
 namespace ConsumerTests.CastOperators.Classes;
 

@@ -8,6 +8,15 @@
     <SignAssembly>true</SignAssembly>
     <AssemblyOriginatorKeyFile>..\..\strongname.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
+
+  <Target Name="StampSharedTypesVersion" AfterTargets="MinVer" BeforeTargets="GetAssemblyVersion">
+    <PropertyGroup>
+      <AssemblyVersion Condition="'$(MinVerMajor)' != ''">$(MinVerMajor).$(MinVerMinor).$(MinVerPatch).0</AssemblyVersion>
+      <FileVersion Condition="'$(MinVerMajor)' != ''">$(MinVerMajor).$(MinVerMinor).$(MinVerPatch).0</FileVersion>
+      <InformationalVersion Condition="'$(MinVerVersion)' != ''">$(MinVerVersion)</InformationalVersion>
+    </PropertyGroup>
+  </Target>
+
   <ItemGroup>
     <PackageReference Update="MinVer" Version="7.0.0">
       <PrivateAssets>all</PrivateAssets>
