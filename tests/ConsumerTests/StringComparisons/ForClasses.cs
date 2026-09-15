@@ -1,4 +1,4 @@
-﻿using FluentAssertions.Execution;
+using FluentAssertions.Execution;
 
 namespace ConsumerTests.StringComparisons;
 
@@ -71,6 +71,20 @@ public class ForClasses
         Dictionary<StringVo_Class_DefaultOrdinalIgnoreCase, int> d = new();
         d.Add(StringVo_Class_DefaultOrdinalIgnoreCase.From("one"), 1);
         d.ContainsKey(StringVo_Class_DefaultOrdinalIgnoreCase.From("ONE")).Should().BeTrue();
+    }
+
+    [Fact]
+    public void StringDefaultComparison_OrdinalIgnoreCase_via_minimal_ctor()
+    {
+        using var _ = new AssertionScope();
+
+        StringVo_Class_MinimalCtor_DefaultOrdinalIgnoreCase left = StringVo_Class_MinimalCtor_DefaultOrdinalIgnoreCase.From("abc");
+        StringVo_Class_MinimalCtor_DefaultOrdinalIgnoreCase right = StringVo_Class_MinimalCtor_DefaultOrdinalIgnoreCase.From("ABC");
+
+        (left == right).Should().BeTrue();
+        left.Equals(right).Should().BeTrue();
+        left.Equals("ABC").Should().BeTrue();
+        left.GetHashCode().Should().Be(right.GetHashCode());
     }
 
     [Fact]
