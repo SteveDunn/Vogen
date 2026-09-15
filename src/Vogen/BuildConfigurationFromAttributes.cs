@@ -327,6 +327,22 @@ internal class BuildConfigurationFromAttributes
             throw new InvalidOperationException("Too many arguments for the attribute.");
         }
 
+        // The minimal `ValueObjectAttribute<T>(StringComparisonDefault)` overload has exactly one
+        // constructor parameter, unlike the two full overloads (15 or 16 args), so this length is
+        // unambiguous. It doesn't fit the positional-by-index loop below (that loop assumes args are
+        // in the same order as the full constructors, where index 0 is `conversions`).
+        if (args.Length == 1)
+        {
+            var onlyValue = args[0].Value;
+
+            if (onlyValue is not null)
+            {
+                _stringDefaultComparison = (StringComparisonDefault) onlyValue;
+            }
+
+            return;
+        }
+
         for (int i = args.Length - 1; i >= 0; i--)
         {
             var v = args[i].Value;
