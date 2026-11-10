@@ -22,6 +22,7 @@
 #pragma warning disable CS1591
 // Suppress warnings about CS8767 : Nullability of reference types in type of parameter doesn't match implicitly implemented member (possibly because of nullability attributes).
 #pragma warning disable CS8767
+#nullable enable
 namespace generator
 {
     [global::System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage]
@@ -309,7 +310,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
             return From(s);
         }
 
-#nullable disable
+#nullable enable
 #nullable restore
 #nullable disable
         /// <inheritdoc cref = "string.GetTypeCode()"/>
@@ -440,7 +441,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
 
         // instance...
         public static readonly public_partial_recordstring MyValue = new public_partial_recordstring("123");
-#nullable disable
+#nullable enable
         /// <summary>
         /// Converts a public_partial_recordstring to or from JSON.
         /// </summary>
@@ -448,7 +449,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
         {
             public override public_partial_recordstring Read(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {
-                return DeserializeJson(reader.GetString());
+                return DeserializeJson(reader.GetString()!);
             }
 
             public override void Write(global::System.Text.Json.Utf8JsonWriter writer, public_partial_recordstring value, global::System.Text.Json.JsonSerializerOptions options)
@@ -459,7 +460,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
 #if NET6_0_OR_GREATER
             public override public_partial_recordstring ReadAsPropertyName(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {
-                return DeserializeJson(reader.GetString());
+                return DeserializeJson(reader.GetString()!);
             }
 
             public override void WriteAsPropertyName(global::System.Text.Json.Utf8JsonWriter writer, public_partial_recordstring value, global::System.Text.Json.JsonSerializerOptions options)

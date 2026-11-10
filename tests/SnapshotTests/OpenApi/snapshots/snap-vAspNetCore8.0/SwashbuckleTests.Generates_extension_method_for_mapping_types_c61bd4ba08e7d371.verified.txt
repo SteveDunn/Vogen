@@ -94,6 +94,7 @@ global::Microsoft.Extensions.DependencyInjection.SwaggerGenOptionsExtensions.Map
 #pragma warning disable CS1591
 // Suppress warnings about CS8767 : Nullability of reference types in type of parameter doesn't match implicitly implemented member (possibly because of nullability attributes).
 #pragma warning disable CS8767
+#nullable enable
 namespace generator
 {
     [global::System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage]
@@ -639,22 +640,22 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
         return From(r);
     }
 
-#nullable disable
+#nullable enable
     /// <inheritdoc cref = "int.ToString(string? , System.IFormatProvider? )"/>
-    public string ToString([System.Diagnostics.CodeAnalysis.StringSyntaxAttribute("NumericFormat")] string format, global::System.IFormatProvider provider)
+    public string ToString([System.Diagnostics.CodeAnalysis.StringSyntaxAttribute("NumericFormat")] string? format, global::System.IFormatProvider? provider)
     {
         return IsInitialized() ? Value.ToString(format, provider) : "[UNINITIALIZED]";
     }
 
     /// <inheritdoc cref = "int.TryFormat(System.Span{char}, out int, System.ReadOnlySpan{char}, System.IFormatProvider? )"/>
-    public bool TryFormat(global::System.Span<char> destination, out int charsWritten, [System.Diagnostics.CodeAnalysis.StringSyntaxAttribute("NumericFormat")] global::System.ReadOnlySpan<char> format, global::System.IFormatProvider provider)
+    public bool TryFormat(global::System.Span<char> destination, out int charsWritten, [System.Diagnostics.CodeAnalysis.StringSyntaxAttribute("NumericFormat")] global::System.ReadOnlySpan<char> format, global::System.IFormatProvider? provider)
     {
         charsWritten = default;
         return IsInitialized() ? Value.TryFormat(destination, out charsWritten, format, provider) : true;
     }
 
     /// <inheritdoc cref = "int.TryFormat(System.Span{byte}, out int, System.ReadOnlySpan{char}, System.IFormatProvider? )"/>
-    public bool TryFormat(global::System.Span<byte> utf8Destination, out int bytesWritten, [System.Diagnostics.CodeAnalysis.StringSyntaxAttribute("NumericFormat")] global::System.ReadOnlySpan<char> format, global::System.IFormatProvider provider)
+    public bool TryFormat(global::System.Span<byte> utf8Destination, out int bytesWritten, [System.Diagnostics.CodeAnalysis.StringSyntaxAttribute("NumericFormat")] global::System.ReadOnlySpan<char> format, global::System.IFormatProvider? provider)
     {
         bytesWritten = default;
         return IsInitialized() ? Value.TryFormat(utf8Destination, out bytesWritten, format, provider) : true;
@@ -789,7 +790,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
         }
     }
 
-#nullable disable
+#nullable enable
     /// <summary>
     /// Converts a MyVoInt to or from JSON.
     /// </summary>
@@ -816,7 +817,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
 #if NET6_0_OR_GREATER
             public override MyVoInt ReadAsPropertyName(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {
-                return DeserializeJson(global::System.Int32.Parse(reader.GetString(), global::System.Globalization.NumberStyles.Any, global::System.Globalization.CultureInfo.InvariantCulture));
+                return DeserializeJson(global::System.Int32.Parse(reader.GetString()!, global::System.Globalization.NumberStyles.Any, global::System.Globalization.CultureInfo.InvariantCulture));
             }
 
             public override void WriteAsPropertyName(global::System.Text.Json.Utf8JsonWriter writer, MyVoInt value, global::System.Text.Json.JsonSerializerOptions options)
@@ -1441,22 +1442,22 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
         return From(r);
     }
 
-#nullable disable
+#nullable enable
     /// <inheritdoc cref = "float.ToString(string? , System.IFormatProvider? )"/>
-    public string ToString([System.Diagnostics.CodeAnalysis.StringSyntaxAttribute("NumericFormat")] string format, global::System.IFormatProvider provider)
+    public string ToString([System.Diagnostics.CodeAnalysis.StringSyntaxAttribute("NumericFormat")] string? format, global::System.IFormatProvider? provider)
     {
         return IsInitialized() ? Value.ToString(format, provider) : "[UNINITIALIZED]";
     }
 
     /// <inheritdoc cref = "float.TryFormat(System.Span{char}, out int, System.ReadOnlySpan{char}, System.IFormatProvider? )"/>
-    public bool TryFormat(global::System.Span<char> destination, out int charsWritten, [System.Diagnostics.CodeAnalysis.StringSyntaxAttribute("NumericFormat")] global::System.ReadOnlySpan<char> format, global::System.IFormatProvider provider)
+    public bool TryFormat(global::System.Span<char> destination, out int charsWritten, [System.Diagnostics.CodeAnalysis.StringSyntaxAttribute("NumericFormat")] global::System.ReadOnlySpan<char> format, global::System.IFormatProvider? provider)
     {
         charsWritten = default;
         return IsInitialized() ? Value.TryFormat(destination, out charsWritten, format, provider) : true;
     }
 
     /// <inheritdoc cref = "float.TryFormat(System.Span{byte}, out int, System.ReadOnlySpan{char}, System.IFormatProvider? )"/>
-    public bool TryFormat(global::System.Span<byte> utf8Destination, out int bytesWritten, [System.Diagnostics.CodeAnalysis.StringSyntaxAttribute("NumericFormat")] global::System.ReadOnlySpan<char> format, global::System.IFormatProvider provider)
+    public bool TryFormat(global::System.Span<byte> utf8Destination, out int bytesWritten, [System.Diagnostics.CodeAnalysis.StringSyntaxAttribute("NumericFormat")] global::System.ReadOnlySpan<char> format, global::System.IFormatProvider? provider)
     {
         bytesWritten = default;
         return IsInitialized() ? Value.TryFormat(utf8Destination, out bytesWritten, format, provider) : true;
@@ -1591,7 +1592,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
         }
     }
 
-#nullable disable
+#nullable enable
     /// <summary>
     /// Converts a MyVoFloat to or from JSON.
     /// </summary>
@@ -1618,7 +1619,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
 #if NET6_0_OR_GREATER
             public override MyVoFloat ReadAsPropertyName(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {
-                return DeserializeJson(global::System.Single.Parse(reader.GetString(), global::System.Globalization.NumberStyles.Any, global::System.Globalization.CultureInfo.InvariantCulture));
+                return DeserializeJson(global::System.Single.Parse(reader.GetString()!, global::System.Globalization.NumberStyles.Any, global::System.Globalization.CultureInfo.InvariantCulture));
             }
 
             public override void WriteAsPropertyName(global::System.Text.Json.Utf8JsonWriter writer, MyVoFloat value, global::System.Text.Json.JsonSerializerOptions options)
@@ -2243,22 +2244,22 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
         return From(r);
     }
 
-#nullable disable
+#nullable enable
     /// <inheritdoc cref = "decimal.ToString(string? , System.IFormatProvider? )"/>
-    public string ToString([System.Diagnostics.CodeAnalysis.StringSyntaxAttribute("NumericFormat")] string format, global::System.IFormatProvider provider)
+    public string ToString([System.Diagnostics.CodeAnalysis.StringSyntaxAttribute("NumericFormat")] string? format, global::System.IFormatProvider? provider)
     {
         return IsInitialized() ? Value.ToString(format, provider) : "[UNINITIALIZED]";
     }
 
     /// <inheritdoc cref = "decimal.TryFormat(System.Span{char}, out int, System.ReadOnlySpan{char}, System.IFormatProvider? )"/>
-    public bool TryFormat(global::System.Span<char> destination, out int charsWritten, [System.Diagnostics.CodeAnalysis.StringSyntaxAttribute("NumericFormat")] global::System.ReadOnlySpan<char> format, global::System.IFormatProvider provider)
+    public bool TryFormat(global::System.Span<char> destination, out int charsWritten, [System.Diagnostics.CodeAnalysis.StringSyntaxAttribute("NumericFormat")] global::System.ReadOnlySpan<char> format, global::System.IFormatProvider? provider)
     {
         charsWritten = default;
         return IsInitialized() ? Value.TryFormat(destination, out charsWritten, format, provider) : true;
     }
 
     /// <inheritdoc cref = "decimal.TryFormat(System.Span{byte}, out int, System.ReadOnlySpan{char}, System.IFormatProvider? )"/>
-    public bool TryFormat(global::System.Span<byte> utf8Destination, out int bytesWritten, [System.Diagnostics.CodeAnalysis.StringSyntaxAttribute("NumericFormat")] global::System.ReadOnlySpan<char> format, global::System.IFormatProvider provider)
+    public bool TryFormat(global::System.Span<byte> utf8Destination, out int bytesWritten, [System.Diagnostics.CodeAnalysis.StringSyntaxAttribute("NumericFormat")] global::System.ReadOnlySpan<char> format, global::System.IFormatProvider? provider)
     {
         bytesWritten = default;
         return IsInitialized() ? Value.TryFormat(utf8Destination, out bytesWritten, format, provider) : true;
@@ -2393,7 +2394,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
         }
     }
 
-#nullable disable
+#nullable enable
     /// <summary>
     /// Converts a MyVoDecimal to or from JSON.
     /// </summary>
@@ -2420,7 +2421,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
 #if NET6_0_OR_GREATER
             public override MyVoDecimal ReadAsPropertyName(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {
-                return __DeserializeSystemTextJson(global::System.Decimal.Parse(reader.GetString(), global::System.Globalization.NumberStyles.Any, global::System.Globalization.CultureInfo.InvariantCulture));
+                return __DeserializeSystemTextJson(global::System.Decimal.Parse(reader.GetString()!, global::System.Globalization.NumberStyles.Any, global::System.Globalization.CultureInfo.InvariantCulture));
             }
 
             public override void WriteAsPropertyName(global::System.Text.Json.Utf8JsonWriter writer, MyVoDecimal value, global::System.Text.Json.JsonSerializerOptions options)
@@ -3043,22 +3044,22 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
         return From(r);
     }
 
-#nullable disable
+#nullable enable
     /// <inheritdoc cref = "double.ToString(string? , System.IFormatProvider? )"/>
-    public string ToString([System.Diagnostics.CodeAnalysis.StringSyntaxAttribute("NumericFormat")] string format, global::System.IFormatProvider provider)
+    public string ToString([System.Diagnostics.CodeAnalysis.StringSyntaxAttribute("NumericFormat")] string? format, global::System.IFormatProvider? provider)
     {
         return IsInitialized() ? Value.ToString(format, provider) : "[UNINITIALIZED]";
     }
 
     /// <inheritdoc cref = "double.TryFormat(System.Span{char}, out int, System.ReadOnlySpan{char}, System.IFormatProvider? )"/>
-    public bool TryFormat(global::System.Span<char> destination, out int charsWritten, [System.Diagnostics.CodeAnalysis.StringSyntaxAttribute("NumericFormat")] global::System.ReadOnlySpan<char> format, global::System.IFormatProvider provider)
+    public bool TryFormat(global::System.Span<char> destination, out int charsWritten, [System.Diagnostics.CodeAnalysis.StringSyntaxAttribute("NumericFormat")] global::System.ReadOnlySpan<char> format, global::System.IFormatProvider? provider)
     {
         charsWritten = default;
         return IsInitialized() ? Value.TryFormat(destination, out charsWritten, format, provider) : true;
     }
 
     /// <inheritdoc cref = "double.TryFormat(System.Span{byte}, out int, System.ReadOnlySpan{char}, System.IFormatProvider? )"/>
-    public bool TryFormat(global::System.Span<byte> utf8Destination, out int bytesWritten, [System.Diagnostics.CodeAnalysis.StringSyntaxAttribute("NumericFormat")] global::System.ReadOnlySpan<char> format, global::System.IFormatProvider provider)
+    public bool TryFormat(global::System.Span<byte> utf8Destination, out int bytesWritten, [System.Diagnostics.CodeAnalysis.StringSyntaxAttribute("NumericFormat")] global::System.ReadOnlySpan<char> format, global::System.IFormatProvider? provider)
     {
         bytesWritten = default;
         return IsInitialized() ? Value.TryFormat(utf8Destination, out bytesWritten, format, provider) : true;
@@ -3193,7 +3194,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
         }
     }
 
-#nullable disable
+#nullable enable
     /// <summary>
     /// Converts a MyVoDouble to or from JSON.
     /// </summary>
@@ -3220,7 +3221,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
 #if NET6_0_OR_GREATER
             public override MyVoDouble ReadAsPropertyName(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {
-                return __DeserializeSystemTextJson(global::System.Double.Parse(reader.GetString(), global::System.Globalization.NumberStyles.Any, global::System.Globalization.CultureInfo.InvariantCulture));
+                return __DeserializeSystemTextJson(global::System.Double.Parse(reader.GetString()!, global::System.Globalization.NumberStyles.Any, global::System.Globalization.CultureInfo.InvariantCulture));
             }
 
             public override void WriteAsPropertyName(global::System.Text.Json.Utf8JsonWriter writer, MyVoDouble value, global::System.Text.Json.JsonSerializerOptions options)
@@ -3606,7 +3607,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
         return From(s);
     }
 
-#nullable disable
+#nullable enable
 #nullable restore
 #nullable disable
     /// <inheritdoc cref = "string.GetTypeCode()"/>
@@ -3734,7 +3735,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
         }
     }
 
-#nullable disable
+#nullable enable
     /// <summary>
     /// Converts a MyVoString to or from JSON.
     /// </summary>
@@ -3742,7 +3743,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
     {
         public override MyVoString Read(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
         {
-            return DeserializeJson(reader.GetString());
+            return DeserializeJson(reader.GetString()!);
         }
 
         public override void Write(global::System.Text.Json.Utf8JsonWriter writer, MyVoString value, global::System.Text.Json.JsonSerializerOptions options)
@@ -3753,7 +3754,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
 #if NET6_0_OR_GREATER
             public override MyVoString ReadAsPropertyName(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {
-                return DeserializeJson(reader.GetString());
+                return DeserializeJson(reader.GetString()!);
             }
 
             public override void WriteAsPropertyName(global::System.Text.Json.Utf8JsonWriter writer, MyVoString value, global::System.Text.Json.JsonSerializerOptions options)
@@ -4152,7 +4153,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
         return From(r);
     }
 
-#nullable disable
+#nullable enable
 #nullable restore
 #nullable disable
     /// <inheritdoc cref = "bool.GetTypeCode()"/>
@@ -4280,7 +4281,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
         }
     }
 
-#nullable disable
+#nullable enable
     /// <summary>
     /// Converts a MyVoBool to or from JSON.
     /// </summary>
@@ -4299,7 +4300,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
 #if NET6_0_OR_GREATER
             public override MyVoBool ReadAsPropertyName(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {
-                return DeserializeJson(bool.Parse(reader.GetString()));
+                return DeserializeJson(bool.Parse(reader.GetString()!));
             }
 
             public override void WriteAsPropertyName(global::System.Text.Json.Utf8JsonWriter writer, MyVoBool value, global::System.Text.Json.JsonSerializerOptions options)
@@ -4692,7 +4693,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
         return From(r);
     }
 
-#nullable disable
+#nullable enable
 #nullable restore
 #nullable disable
     /// <inheritdoc cref = "bool.GetTypeCode()"/>
@@ -4820,7 +4821,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
         }
     }
 
-#nullable disable
+#nullable enable
     /// <summary>
     /// Converts a @bool to or from JSON.
     /// </summary>
@@ -4839,7 +4840,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
 #if NET6_0_OR_GREATER
             public override @bool ReadAsPropertyName(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {
-                return DeserializeJson(bool.Parse(reader.GetString()));
+                return DeserializeJson(bool.Parse(reader.GetString()!));
             }
 
             public override void WriteAsPropertyName(global::System.Text.Json.Utf8JsonWriter writer, @bool value, global::System.Text.Json.JsonSerializerOptions options)
@@ -5464,22 +5465,22 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
         return From(r);
     }
 
-#nullable disable
+#nullable enable
     /// <inheritdoc cref = "short.ToString(string? , System.IFormatProvider? )"/>
-    public string ToString([System.Diagnostics.CodeAnalysis.StringSyntaxAttribute("NumericFormat")] string format, global::System.IFormatProvider provider)
+    public string ToString([System.Diagnostics.CodeAnalysis.StringSyntaxAttribute("NumericFormat")] string? format, global::System.IFormatProvider? provider)
     {
         return IsInitialized() ? Value.ToString(format, provider) : "[UNINITIALIZED]";
     }
 
     /// <inheritdoc cref = "short.TryFormat(System.Span{char}, out int, System.ReadOnlySpan{char}, System.IFormatProvider? )"/>
-    public bool TryFormat(global::System.Span<char> destination, out int charsWritten, [System.Diagnostics.CodeAnalysis.StringSyntaxAttribute("NumericFormat")] global::System.ReadOnlySpan<char> format, global::System.IFormatProvider provider)
+    public bool TryFormat(global::System.Span<char> destination, out int charsWritten, [System.Diagnostics.CodeAnalysis.StringSyntaxAttribute("NumericFormat")] global::System.ReadOnlySpan<char> format, global::System.IFormatProvider? provider)
     {
         charsWritten = default;
         return IsInitialized() ? Value.TryFormat(destination, out charsWritten, format, provider) : true;
     }
 
     /// <inheritdoc cref = "short.TryFormat(System.Span{byte}, out int, System.ReadOnlySpan{char}, System.IFormatProvider? )"/>
-    public bool TryFormat(global::System.Span<byte> utf8Destination, out int bytesWritten, [System.Diagnostics.CodeAnalysis.StringSyntaxAttribute("NumericFormat")] global::System.ReadOnlySpan<char> format, global::System.IFormatProvider provider)
+    public bool TryFormat(global::System.Span<byte> utf8Destination, out int bytesWritten, [System.Diagnostics.CodeAnalysis.StringSyntaxAttribute("NumericFormat")] global::System.ReadOnlySpan<char> format, global::System.IFormatProvider? provider)
     {
         bytesWritten = default;
         return IsInitialized() ? Value.TryFormat(utf8Destination, out bytesWritten, format, provider) : true;
@@ -5614,7 +5615,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
         }
     }
 
-#nullable disable
+#nullable enable
     /// <summary>
     /// Converts a MyVoShort to or from JSON.
     /// </summary>
@@ -5641,7 +5642,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
 #if NET6_0_OR_GREATER
             public override MyVoShort ReadAsPropertyName(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {
-                return DeserializeJson(global::System.Int16.Parse(reader.GetString(), global::System.Globalization.NumberStyles.Any, global::System.Globalization.CultureInfo.InvariantCulture));
+                return DeserializeJson(global::System.Int16.Parse(reader.GetString()!, global::System.Globalization.NumberStyles.Any, global::System.Globalization.CultureInfo.InvariantCulture));
             }
 
             public override void WriteAsPropertyName(global::System.Text.Json.Utf8JsonWriter writer, MyVoShort value, global::System.Text.Json.JsonSerializerOptions options)
