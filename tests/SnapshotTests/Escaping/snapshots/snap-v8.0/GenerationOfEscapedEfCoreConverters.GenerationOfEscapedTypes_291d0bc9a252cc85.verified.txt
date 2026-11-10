@@ -151,6 +151,7 @@ public static class escapedTestspublic_partial_structConversions_Nonerecord__str
 #pragma warning disable CS1591
 // Suppress warnings about CS8767 : Nullability of reference types in type of parameter doesn't match implicitly implemented member (possibly because of nullability attributes).
 #pragma warning disable CS8767
+#nullable enable
 namespace generator
 {
     [global::System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage]
@@ -339,7 +340,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
         public static global::System.Boolean operator ==(global::@class.@record.@struct.@float.event2 left, escapedTestspublic_partial_structConversions_Nonerecord__struct__float__event2 right) => right.Value.Equals(left);
         public static global::System.Boolean operator !=(global::@class.@record.@struct.@float.event2 left, escapedTestspublic_partial_structConversions_Nonerecord__struct__float__event2 right) => !(left == right);
         public static global::System.Boolean operator !=(escapedTestspublic_partial_structConversions_Nonerecord__struct__float__event2 left, global::@class.@record.@struct.@float.event2 right) => !(left == right);
-#nullable disable
+#nullable enable
 #nullable restore
         public readonly override global::System.Int32 GetHashCode()
         {

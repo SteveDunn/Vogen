@@ -20,7 +20,7 @@ __HANDLE_NULL__ #endif
 #if NET6_0_OR_GREATER // we can't call Read or use GetGuid from JsonReader as it expects a token type of string, but here we have have 'propertyname'.
             public override VOTYPE ReadAsPropertyName(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {
-                if (global::System.Guid.TryParse(reader.GetString(), out global::System.Guid g))
+                if (global::System.Guid.TryParse(reader.GetString()!, out global::System.Guid g))
                 {
                     return DeserializeJson(g);
                 }

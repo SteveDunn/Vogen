@@ -22,6 +22,7 @@
 #pragma warning disable CS1591
 // Suppress warnings about CS8767 : Nullability of reference types in type of parameter doesn't match implicitly implemented member (possibly because of nullability attributes).
 #pragma warning disable CS8767
+#nullable enable
 namespace generator
 {
     [global::System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage]
@@ -222,7 +223,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
         public static global::System.Boolean operator !=(escapedTestspublic_partial_classConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterrecord__struct__float__event2 left, global::@class.@record.@struct.@float.event2 right) => !(left == right);
         public static explicit operator escapedTestspublic_partial_classConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterrecord__struct__float__event2(global::@class.@record.@struct.@float.event2 value) => From(value);
         public static explicit operator global::@class.@record.@struct.@float.event2(escapedTestspublic_partial_classConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterrecord__struct__float__event2 value) => value.Value;
-#nullable disable
+#nullable enable
 #nullable restore
         public override global::System.Int32 GetHashCode()
         {
@@ -250,7 +251,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
             }
         }
 
-#nullable disable
+#nullable enable
         /// <summary>
         /// Converts a escapedTestspublic_partial_classConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterrecord__struct__float__event2 to or from JSON.
         /// </summary>
@@ -258,7 +259,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
         {
             public override escapedTestspublic_partial_classConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterrecord__struct__float__event2 Read(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {
-                var primitive = global::System.Text.Json.JsonSerializer.Deserialize<global::@class.@record.@struct.@float.event2>(ref reader, options);
+                var primitive = global::System.Text.Json.JsonSerializer.Deserialize<global::@class.@record.@struct.@float.event2>(ref reader, options)!;
                 return DeserializeJson(primitive);
             }
 
@@ -270,7 +271,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
 #if NET6_0_OR_GREATER
             public override escapedTestspublic_partial_classConversions_NewtonsoftJson___Conversions_SystemTextJson___Conversions_EfCoreValueConverter___Conversions_DapperTypeHandler___Conversions_LinqToDbValueConverterrecord__struct__float__event2 ReadAsPropertyName(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {
-                var primitive = global::System.Text.Json.JsonSerializer.Deserialize<global::@class.@record.@struct.@float.event2>(ref reader, options);
+                var primitive = global::System.Text.Json.JsonSerializer.Deserialize<global::@class.@record.@struct.@float.event2>(ref reader, options)!;
                 return DeserializeJson(primitive);
             }
 

@@ -36,6 +36,8 @@ internal class GenerateCodeForSystemTextJsonConverterFactories
             $$"""
             
             {{GeneratedCodeSegments.Preamble}}
+
+            #nullable enable
             
             namespace {{fullNamespace}}
             {

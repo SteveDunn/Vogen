@@ -38,7 +38,10 @@ public static class GenerateCodeForTryFormat
     public static string GenerateAnyHoistedTryFormatMethods(GenerationParameters parameters)
     {
         StringBuilder sb = new StringBuilder();
-        sb.AppendLine("#nullable disable");
+        // #nullable enable (not disable) so that hoisted IFormattable/ISpanFormattable members carry
+        // their nullable annotations; consumers tracking their public API with PublicApiAnalyzers
+        // otherwise get RS0041 "oblivious reference types" on these members (#980).
+        sb.AppendLine("#nullable enable");
 
         BuildFor(sb, parameters, parameters.VogenKnownSymbols.IFormattable, FormattableType.ToString );
         BuildFor(sb, parameters, parameters.VogenKnownSymbols.ISpanFormattable, FormattableType.TryFormat);
@@ -87,7 +90,8 @@ public static class GenerateCodeForTryFormat
                     }
 
                     return "return default!";
-                });
+                },
+                emitNullableAware: true);
             
             sb.AppendLine(hoistMethodFromPrimitive);
         }
