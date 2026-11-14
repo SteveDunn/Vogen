@@ -27,10 +27,15 @@ internal static class Templates
         "Guid",
         "Int",
         "Long",
+        "SByte",
         "Short",
         "Single",
         "String",
-        "TimeOnly"
+        "TimeOnly",
+        "TimeSpan",
+        "UInt16",
+        "UInt32",
+        "UInt64"
     }.ToImmutableHashSet();
 
     public static bool IsKnownPrimitive(INamedTypeSymbol type)
