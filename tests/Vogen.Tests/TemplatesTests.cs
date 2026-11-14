@@ -2,6 +2,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using FluentAssertions;
+using Microsoft.CodeAnalysis;
+using Microsoft.CodeAnalysis.CSharp;
+using Vogen.Generators.Conversions;
 using Xunit;
 
 namespace Vogen.Tests;
@@ -68,5 +71,28 @@ public class TemplatesTests
         [
             "DapperTypeHandler", "LinqToDbValueConverter", "SystemTextJsonConverter", "TypeConverter"
         ];
+    }
+
+    [Theory]
+    [InlineData(typeof(uint), "System.UInt32")]
+    [InlineData(typeof(ulong), "System.UInt64")]
+    [InlineData(typeof(ushort), "System.UInt16")]
+    [InlineData(typeof(sbyte), "System.SByte")]
+    [InlineData(typeof(TimeSpan), "System.TimeSpan")]
+    public void EfCoreValueConverter_uses_native_type_for_additional_primitives(Type underlyingClrType, string expectedUnderlyingType)
+    {
+        var compilation = CSharpCompilation.Create(
+            "TestAssembly",
+            [CSharpSyntaxTree.ParseText("public readonly partial struct RowVersion;")],
+            [MetadataReference.CreateFromFile(typeof(object).Assembly.Location)]);
+
+        var underlyingSymbol = compilation.GetTypeByMetadataName(underlyingClrType.FullName!)!;
+        var voSymbol = compilation.GetTypeByMetadataName("RowVersion")!;
+
+        Templates.IsKnownPrimitive(underlyingSymbol).Should().BeTrue();
+
+        var generated = GenerateEfCoreTypes.GenerateInner(underlyingSymbol, isWrapperAValueType: true, voSymbol);
+        generated.Should().Contain($"ValueConverter<RowVersion, {expectedUnderlyingType}>");
+        generated.Should().NotContain("JsonSerializer");
     }
 }
