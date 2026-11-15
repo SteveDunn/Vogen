@@ -160,6 +160,16 @@ namespace Vogen
             stringDefaultComparison)
         {
         }
+
+        /// <summary>
+        /// Configures just the default string comparison for this value object, leaving every other aspect at its default.
+        /// This overload exists so that <c>stringDefaultComparison</c> can be specified on its own, without having to
+        /// also specify every other constructor parameter (see the two constructors above).
+        /// </summary>
+        /// <param name="stringDefaultComparison">Specifies the default <see cref="StringComparisonDefault"/> used for <c>==</c>, <c>Equals</c>, and <c>GetHashCode</c> on string-backed value objects—defaults to <see cref="StringComparisonDefault.Omit"/> which uses the underlying string's default comparison.</param>
+        public ValueObjectAttribute(StringComparisonDefault stringDefaultComparison) : base(typeof(T))
+        {
+        }
     }
 
     /// <summary>

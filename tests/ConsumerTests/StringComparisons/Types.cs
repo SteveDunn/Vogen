@@ -1,4 +1,4 @@
-﻿namespace ConsumerTests.StringComparisons;
+namespace ConsumerTests.StringComparisons;
 
 [ValueObject(typeof(string))]
 public partial class StringVo_Class_NothingSpecified
@@ -93,6 +93,13 @@ public partial struct StringVo_Struct_Generic
 
 [ValueObject(typeof(string), Conversions.Default, null, Customizations.None, DeserializationStrictness.AllowValidAndKnownInstances, DebuggerAttributeGeneration.Default, ComparisonGeneration.Default, StringComparersGeneration.Unspecified, CastOperator.Unspecified, CastOperator.Unspecified, ParsableForStrings.Unspecified, ParsableForPrimitives.Unspecified, TryFromGeneration.Unspecified, IsInitializedMethodGeneration.Unspecified, PrimitiveEqualityGeneration.Unspecified, NumericsGeneration.Unspecified, StringComparisonDefault.OrdinalIgnoreCase)]
 public partial class StringVo_Class_DefaultOrdinalIgnoreCase
+{
+}
+
+// Same config as above, but using the minimal single-parameter ValueObjectAttribute<T> constructor
+// (issue #967) instead of having to specify every other parameter.
+[ValueObject<string>(stringDefaultComparison: StringComparisonDefault.OrdinalIgnoreCase)]
+public partial class StringVo_Class_MinimalCtor_DefaultOrdinalIgnoreCase
 {
 }
 
