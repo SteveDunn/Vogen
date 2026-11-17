@@ -34,10 +34,8 @@ internal class GenerateCodeForSystemTextJsonConverterFactories
 
         string source =
             $$"""
-            
-            {{GeneratedCodeSegments.Preamble}}
 
-            #nullable enable
+            {{GeneratedCodeSegments.Preamble}}
             
             namespace {{fullNamespace}}
             {

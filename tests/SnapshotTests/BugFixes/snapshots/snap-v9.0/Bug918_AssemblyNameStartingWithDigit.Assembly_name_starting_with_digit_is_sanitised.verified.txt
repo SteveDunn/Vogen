@@ -22,7 +22,6 @@
 #pragma warning disable CS1591
 // Suppress warnings about CS8767 : Nullability of reference types in type of parameter doesn't match implicitly implemented member (possibly because of nullability attributes).
 #pragma warning disable CS8767
-#nullable enable
 namespace _1MyProject
 {
     [global::System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage]
