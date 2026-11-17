@@ -367,7 +367,7 @@ namespace Whatever
             return From(s);
         }
 
-#nullable disable
+#nullable enable
 #nullable restore
         public readonly override global::System.Int32 GetHashCode()
         {
@@ -392,7 +392,7 @@ namespace Whatever
             }
         }
 
-#nullable disable
+#nullable enable
         /// <summary>
         /// Converts a CustomerId to or from JSON.
         /// </summary>
@@ -400,7 +400,7 @@ namespace Whatever
         {
             public override CustomerId Read(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {
-                return DeserializeJson(reader.GetString());
+                return DeserializeJson(reader.GetString()!);
             }
 
             public override void Write(global::System.Text.Json.Utf8JsonWriter writer, CustomerId value, global::System.Text.Json.JsonSerializerOptions options)
@@ -411,7 +411,7 @@ namespace Whatever
 #if NET6_0_OR_GREATER
             public override CustomerId ReadAsPropertyName(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {
-                return DeserializeJson(reader.GetString());
+                return DeserializeJson(reader.GetString()!);
             }
 
             public override void WriteAsPropertyName(global::System.Text.Json.Utf8JsonWriter writer, CustomerId value, global::System.Text.Json.JsonSerializerOptions options)

@@ -9,7 +9,7 @@ __HANDLE_NULL__            public override bool HandleNull => true;
 __HANDLE_NULL__ #endif        
             public override VOTYPE Read(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {
-                var primitive = global::System.Text.Json.JsonSerializer.Deserialize<VOUNDERLYINGTYPE>(ref reader, options);
+                var primitive = global::System.Text.Json.JsonSerializer.Deserialize<VOUNDERLYINGTYPE>(ref reader, options)!;
                 return DeserializeJson(primitive);
             }
 
@@ -21,7 +21,7 @@ __HANDLE_NULL__ #endif
 #if NET6_0_OR_GREATER
             public override VOTYPE ReadAsPropertyName(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {
-                var primitive = global::System.Text.Json.JsonSerializer.Deserialize<VOUNDERLYINGTYPE>(ref reader, options);
+                var primitive = global::System.Text.Json.JsonSerializer.Deserialize<VOUNDERLYINGTYPE>(ref reader, options)!;
                 return DeserializeJson(primitive);
             }
 

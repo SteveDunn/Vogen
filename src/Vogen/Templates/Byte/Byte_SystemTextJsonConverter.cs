@@ -14,7 +14,7 @@ __NORMAL__                return DeserializeJson(global::System.Text.Json.JsonSe
 #else
 __NORMAL__                return DeserializeJson(reader.GetByte());
 #endif
-__STRING__                return DeserializeJson(global::System.Byte.Parse(reader.GetString(), global::System.Globalization.NumberStyles.Any, global::System.Globalization.CultureInfo.InvariantCulture));
+__STRING__                return DeserializeJson(global::System.Byte.Parse(reader.GetString()!, global::System.Globalization.NumberStyles.Any, global::System.Globalization.CultureInfo.InvariantCulture));
             }
 
             public override void Write(global::System.Text.Json.Utf8JsonWriter writer, VOTYPE value, global::System.Text.Json.JsonSerializerOptions options)
@@ -31,7 +31,7 @@ __STRING__                writer.WriteStringValue(value.Value.ToString(global::S
 #if NET6_0_OR_GREATER
             public override VOTYPE ReadAsPropertyName(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {
-                return DeserializeJson(global::System.Byte.Parse(reader.GetString(), global::System.Globalization.NumberStyles.Any, global::System.Globalization.CultureInfo.InvariantCulture));
+                return DeserializeJson(global::System.Byte.Parse(reader.GetString()!, global::System.Globalization.NumberStyles.Any, global::System.Globalization.CultureInfo.InvariantCulture));
             }
 
             public override void WriteAsPropertyName(global::System.Text.Json.Utf8JsonWriter writer, VOTYPE value, global::System.Text.Json.JsonSerializerOptions options)

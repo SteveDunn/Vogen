@@ -674,22 +674,22 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
             return From(r);
         }
 
-#nullable disable
+#nullable enable
         /// <inheritdoc cref = "System.DateTime.ToString(string? , System.IFormatProvider? )"/>
-        public string ToString([System.Diagnostics.CodeAnalysis.StringSyntaxAttribute("DateTimeFormat")] string format, global::System.IFormatProvider provider)
+        public string ToString([System.Diagnostics.CodeAnalysis.StringSyntaxAttribute("DateTimeFormat")] string? format, global::System.IFormatProvider? provider)
         {
             return IsInitialized() ? Value.ToString(format, provider) : "[UNINITIALIZED]";
         }
 
         /// <inheritdoc cref = "System.DateTime.TryFormat(System.Span{char}, out int, System.ReadOnlySpan{char}, System.IFormatProvider? )"/>
-        public bool TryFormat(global::System.Span<char> destination, out int charsWritten, [System.Diagnostics.CodeAnalysis.StringSyntaxAttribute("DateTimeFormat")] global::System.ReadOnlySpan<char> format, global::System.IFormatProvider provider)
+        public bool TryFormat(global::System.Span<char> destination, out int charsWritten, [System.Diagnostics.CodeAnalysis.StringSyntaxAttribute("DateTimeFormat")] global::System.ReadOnlySpan<char> format, global::System.IFormatProvider? provider)
         {
             charsWritten = default;
             return IsInitialized() ? Value.TryFormat(destination, out charsWritten, format, provider) : true;
         }
 
         /// <inheritdoc cref = "System.DateTime.TryFormat(System.Span{byte}, out int, System.ReadOnlySpan{char}, System.IFormatProvider? )"/>
-        public bool TryFormat(global::System.Span<byte> utf8Destination, out int bytesWritten, [System.Diagnostics.CodeAnalysis.StringSyntaxAttribute("DateTimeFormat")] global::System.ReadOnlySpan<char> format, global::System.IFormatProvider provider)
+        public bool TryFormat(global::System.Span<byte> utf8Destination, out int bytesWritten, [System.Diagnostics.CodeAnalysis.StringSyntaxAttribute("DateTimeFormat")] global::System.ReadOnlySpan<char> format, global::System.IFormatProvider? provider)
         {
             bytesWritten = default;
             return IsInitialized() ? Value.TryFormat(utf8Destination, out bytesWritten, format, provider) : true;
@@ -818,7 +818,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
             }
         }
 
-#nullable disable
+#nullable enable
         /// <summary>
         /// Converts a HireDate to or from JSON.
         /// </summary>
@@ -840,7 +840,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
             /// </summary>
             public override HireDate ReadAsPropertyName(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {
-                return DeserializeJson(global::System.DateTime.ParseExact(reader.GetString(), "O", global::System.Globalization.CultureInfo.InvariantCulture, global::System.Globalization.DateTimeStyles.RoundtripKind));
+                return DeserializeJson(global::System.DateTime.ParseExact(reader.GetString()!, "O", global::System.Globalization.CultureInfo.InvariantCulture, global::System.Globalization.DateTimeStyles.RoundtripKind));
             }
 
             public override void WriteAsPropertyName(global::System.Text.Json.Utf8JsonWriter writer, HireDate value, global::System.Text.Json.JsonSerializerOptions options)
@@ -1222,7 +1222,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
             return From(s);
         }
 
-#nullable disable
+#nullable enable
 #nullable restore
 #nullable disable
         /// <inheritdoc cref = "string.GetTypeCode()"/>
@@ -1344,7 +1344,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
             }
         }
 
-#nullable disable
+#nullable enable
         /// <summary>
         /// Converts a Name to or from JSON.
         /// </summary>
@@ -1352,7 +1352,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
         {
             public override Name Read(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {
-                return DeserializeJson(reader.GetString());
+                return DeserializeJson(reader.GetString()!);
             }
 
             public override void Write(global::System.Text.Json.Utf8JsonWriter writer, Name value, global::System.Text.Json.JsonSerializerOptions options)
@@ -1363,7 +1363,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
 #if NET6_0_OR_GREATER
             public override Name ReadAsPropertyName(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {
-                return DeserializeJson(reader.GetString());
+                return DeserializeJson(reader.GetString()!);
             }
 
             public override void WriteAsPropertyName(global::System.Text.Json.Utf8JsonWriter writer, Name value, global::System.Text.Json.JsonSerializerOptions options)
@@ -1989,22 +1989,22 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
             return From(r);
         }
 
-#nullable disable
+#nullable enable
         /// <inheritdoc cref = "int.ToString(string? , System.IFormatProvider? )"/>
-        public string ToString([System.Diagnostics.CodeAnalysis.StringSyntaxAttribute("NumericFormat")] string format, global::System.IFormatProvider provider)
+        public string ToString([System.Diagnostics.CodeAnalysis.StringSyntaxAttribute("NumericFormat")] string? format, global::System.IFormatProvider? provider)
         {
             return IsInitialized() ? Value.ToString(format, provider) : "[UNINITIALIZED]";
         }
 
         /// <inheritdoc cref = "int.TryFormat(System.Span{char}, out int, System.ReadOnlySpan{char}, System.IFormatProvider? )"/>
-        public bool TryFormat(global::System.Span<char> destination, out int charsWritten, [System.Diagnostics.CodeAnalysis.StringSyntaxAttribute("NumericFormat")] global::System.ReadOnlySpan<char> format, global::System.IFormatProvider provider)
+        public bool TryFormat(global::System.Span<char> destination, out int charsWritten, [System.Diagnostics.CodeAnalysis.StringSyntaxAttribute("NumericFormat")] global::System.ReadOnlySpan<char> format, global::System.IFormatProvider? provider)
         {
             charsWritten = default;
             return IsInitialized() ? Value.TryFormat(destination, out charsWritten, format, provider) : true;
         }
 
         /// <inheritdoc cref = "int.TryFormat(System.Span{byte}, out int, System.ReadOnlySpan{char}, System.IFormatProvider? )"/>
-        public bool TryFormat(global::System.Span<byte> utf8Destination, out int bytesWritten, [System.Diagnostics.CodeAnalysis.StringSyntaxAttribute("NumericFormat")] global::System.ReadOnlySpan<char> format, global::System.IFormatProvider provider)
+        public bool TryFormat(global::System.Span<byte> utf8Destination, out int bytesWritten, [System.Diagnostics.CodeAnalysis.StringSyntaxAttribute("NumericFormat")] global::System.ReadOnlySpan<char> format, global::System.IFormatProvider? provider)
         {
             bytesWritten = default;
             return IsInitialized() ? Value.TryFormat(utf8Destination, out bytesWritten, format, provider) : true;
@@ -2133,7 +2133,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
             }
         }
 
-#nullable disable
+#nullable enable
         /// <summary>
         /// Converts a Age to or from JSON.
         /// </summary>
@@ -2160,7 +2160,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
 #if NET6_0_OR_GREATER
             public override Age ReadAsPropertyName(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {
-                return DeserializeJson(global::System.Int32.Parse(reader.GetString(), global::System.Globalization.NumberStyles.Any, global::System.Globalization.CultureInfo.InvariantCulture));
+                return DeserializeJson(global::System.Int32.Parse(reader.GetString()!, global::System.Globalization.NumberStyles.Any, global::System.Globalization.CultureInfo.InvariantCulture));
             }
 
             public override void WriteAsPropertyName(global::System.Text.Json.Utf8JsonWriter writer, Age value, global::System.Text.Json.JsonSerializerOptions options)

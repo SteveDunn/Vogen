@@ -22,7 +22,7 @@ __HANDLE_NULL__ #endif
             /// </summary>
             public override VOTYPE ReadAsPropertyName(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {
-                return DeserializeJson(global::System.DateTime.ParseExact(reader.GetString(), "O", global::System.Globalization.CultureInfo.InvariantCulture, global::System.Globalization.DateTimeStyles.RoundtripKind));
+                return DeserializeJson(global::System.DateTime.ParseExact(reader.GetString()!, "O", global::System.Globalization.CultureInfo.InvariantCulture, global::System.Globalization.DateTimeStyles.RoundtripKind));
             }
 
             public override void WriteAsPropertyName(global::System.Text.Json.Utf8JsonWriter writer, VOTYPE value, global::System.Text.Json.JsonSerializerOptions options)

@@ -19,12 +19,31 @@ public static class Hoisting
     /// <param name="methodSymbol">The method to copy the signature from.</param>
     /// <param name="interfaceSymbol">The interface</param>
     /// <param name="bodyBuilder"></param>
+    /// <param name="emitNullableAware">
+    /// When true, parameter types keep their nullable reference type annotations (e.g. <c>IFormatProvider?</c>)
+    /// instead of being stripped, for hoists emitted inside a <c>#nullable enable</c> region.
+    /// </param>
     /// <returns></returns>
-    public static string HoistMethodFromPrimitive(IMethodSymbol methodSymbol, INamedTypeSymbol interfaceSymbol, Func<string, string, string> bodyBuilder)
+    public static string HoistMethodFromPrimitive(
+        IMethodSymbol methodSymbol,
+        INamedTypeSymbol interfaceSymbol,
+        Func<string, string, string> bodyBuilder,
+        bool emitNullableAware = false)
     {
         var sb = new StringBuilder();
 
         bool isExplicitInterfaceImplementation = methodSymbol.IsImplementationOfAnyExplicitInterfaceMember();
+
+        // In nullable-aware mode the emitted signature must match the interface contract, so
+        // parameter nullability comes from the interface method, not from the primitive's
+        // implementation (whose parameters may be oblivious in metadata).
+        IMethodSymbol? signatureSource = null;
+        if (emitNullableAware)
+        {
+            signatureSource = methodSymbol.ExplicitInterfaceImplementations.FirstOrDefault()
+                ?? interfaceSymbol.GetJustMethods().FirstOrDefault(m =>
+                    m.Name == methodSymbol.Name && m.Parameters.Length == methodSymbol.Parameters.Length);
+        }
 
         var inheritDocRef = isExplicitInterfaceImplementation
             ? interfaceSymbol.ToString()
@@ -43,13 +62,17 @@ public static class Hoisting
         string accessibility = isExplicitInterfaceImplementation ? "" : "public";
 
         // Append return type and method name
-        sb.Append($"{accessibility} {methodSymbol.ReturnType} {methodSymbol.Name}(");
+        string returnTypeText = signatureSource is not null
+            ? signatureSource.ReturnType.ToDisplayString(DisplayFormats.SymbolFormatWhenNullabilityIsOn)
+            : methodSymbol.ReturnType.ToDisplayString() ?? string.Empty;
+        sb.Append($"{accessibility} {returnTypeText} {methodSymbol.Name}(");
 
         // Append parameters with attributes, types, and modifiers
         var parameters = new List<string>();
         List<ParameterNameAndRef> nameAndRefKinds = new();
-        foreach (var eachParam in methodSymbol.Parameters)
+        for (int paramIndex = 0; paramIndex < methodSymbol.Parameters.Length; paramIndex++)
         {
+            var eachParam = methodSymbol.Parameters[paramIndex];
             var parameterBuilder = new StringBuilder();
 
             // Append parameter attributes, ignoring NullableAttribute
@@ -62,11 +85,20 @@ public static class Hoisting
 
             // Append parameter type and name
             var parameterName = Util.EscapeKeywordsIfRequired(eachParam.Name);
-            
-            string typeAsText = eachParam.Type.ToDisplayString(DisplayFormats.SymbolFormatWhenNullabilityIsOff);
+
+            // In nullable-aware mode the parameter type (including any NRT annotation) comes from the
+            // interface contract; otherwise annotations are stripped for emission under #nullable disable.
+            ITypeSymbol paramTypeSymbol = eachParam.Type;
+            if (emitNullableAware && signatureSource is not null && paramIndex < signatureSource.Parameters.Length)
+            {
+                paramTypeSymbol = signatureSource.Parameters[paramIndex].Type;
+            }
+
+            string typeAsText = paramTypeSymbol.ToDisplayString(
+                emitNullableAware ? DisplayFormats.SymbolFormatWhenNullabilityIsOn : DisplayFormats.SymbolFormatWhenNullabilityIsOff);
 
             //var paramType = eachParam.Type;
-            
+
             parameterBuilder.Append($"{refKind} {typeAsText} {parameterName}");
             nameAndRefKinds.Add(new(parameterName, refKind));
             parameters.Add(parameterBuilder.ToString());
@@ -77,7 +109,9 @@ public static class Hoisting
 
         string parameterNames = string.Join(", ", nameAndRefKinds.Select(x => $"{x.RefKind} {x.Name}"));
 
-        string valueAccessor = isExplicitInterfaceImplementation ? $"(Value as {interfaceSymbol.EscapedFullName()})" : "Value";
+        string valueAccessor = isExplicitInterfaceImplementation
+            ? $"(Value as {interfaceSymbol.EscapedFullName()}){(emitNullableAware ? "!" : string.Empty)}"
+            : "Value";
 
         string body = $$"""
                         {

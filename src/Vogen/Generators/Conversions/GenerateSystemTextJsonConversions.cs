@@ -1,4 +1,4 @@
-﻿using Microsoft.CodeAnalysis.CSharp.Syntax;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
 
 namespace Vogen.Generators.Conversions;
 
@@ -64,7 +64,7 @@ internal class GenerateSystemTextJsonConversions : IGenerateConversion
         code = code.Replace("VOUNDERLYINGTYPE", item.UnderlyingTypeFullNameWithGlobalAlias);
 
         return $"""
-                #nullable disable
+                #nullable enable
                 {code}
                 #nullable restore
                 """;

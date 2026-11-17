@@ -285,7 +285,7 @@ private readonly global::System.Diagnostics.StackTrace? _stackTrace  = null!;
         return From(r);
     }
 
-#nullable disable
+#nullable enable
 #nullable restore
     public readonly override global::System.Int32 GetHashCode()
     {
@@ -307,7 +307,7 @@ private readonly global::System.Diagnostics.StackTrace? _stackTrace  = null!;
         }
     }
 
-#nullable disable
+#nullable enable
     /// <summary>
     /// Converts a ImageAspectRatio to or from JSON.
     /// </summary>
@@ -315,7 +315,7 @@ private readonly global::System.Diagnostics.StackTrace? _stackTrace  = null!;
     {
         public override ImageAspectRatio Read(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
         {
-            var primitive = global::System.Text.Json.JsonSerializer.Deserialize<global::Ratio<System.Int32>>(ref reader, options);
+            var primitive = global::System.Text.Json.JsonSerializer.Deserialize<global::Ratio<System.Int32>>(ref reader, options)!;
             return DeserializeJson(primitive);
         }
 
@@ -327,7 +327,7 @@ private readonly global::System.Diagnostics.StackTrace? _stackTrace  = null!;
 #if NET6_0_OR_GREATER
             public override ImageAspectRatio ReadAsPropertyName(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {
-                var primitive = global::System.Text.Json.JsonSerializer.Deserialize<global::Ratio<System.Int32>>(ref reader, options);
+                var primitive = global::System.Text.Json.JsonSerializer.Deserialize<global::Ratio<System.Int32>>(ref reader, options)!;
                 return DeserializeJson(primitive);
             }
 

@@ -369,7 +369,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
             return From(s);
         }
 
-#nullable disable
+#nullable enable
 #nullable restore
 #nullable disable
         /// <inheritdoc cref = "string.GetTypeCode()"/>
@@ -491,7 +491,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
             }
         }
 
-#nullable disable
+#nullable enable
         /// <summary>
         /// Converts a _casting_public_partial_structExplicitNonestring to or from JSON.
         /// </summary>
@@ -499,7 +499,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
         {
             public override _casting_public_partial_structExplicitNonestring Read(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {
-                return DeserializeJson(reader.GetString());
+                return DeserializeJson(reader.GetString()!);
             }
 
             public override void Write(global::System.Text.Json.Utf8JsonWriter writer, _casting_public_partial_structExplicitNonestring value, global::System.Text.Json.JsonSerializerOptions options)
@@ -510,7 +510,7 @@ private readonly global::System.Diagnostics.StackTrace _stackTrace  = null!;
 #if NET6_0_OR_GREATER
             public override _casting_public_partial_structExplicitNonestring ReadAsPropertyName(ref global::System.Text.Json.Utf8JsonReader reader, global::System.Type typeToConvert, global::System.Text.Json.JsonSerializerOptions options)
             {
-                return DeserializeJson(reader.GetString());
+                return DeserializeJson(reader.GetString()!);
             }
 
             public override void WriteAsPropertyName(global::System.Text.Json.Utf8JsonWriter writer, _casting_public_partial_structExplicitNonestring value, global::System.Text.Json.JsonSerializerOptions options)
