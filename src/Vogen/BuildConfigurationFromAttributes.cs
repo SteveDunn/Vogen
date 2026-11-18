@@ -152,6 +152,18 @@ internal class BuildConfigurationFromAttributes
             ? attrClassSymbol.BaseType!.TypeArguments[0] as INamedTypeSymbol
             : attrClassSymbol.TypeArguments[0] as INamedTypeSymbol;
 
+        ImmutableArray<IParameterSymbol> constructorParameters =
+            attributeData.AttributeConstructor?.Parameters ?? ImmutableArray<IParameterSymbol>.Empty;
+        if (constructorParameters.Length == 1 && constructorParameters[0].Name == "stringDefaultComparison")
+        {
+            if (args[0].Value is { } stringDefaultComparison)
+            {
+                _stringDefaultComparison = (StringComparisonDefault) stringDefaultComparison;
+            }
+
+            return;
+        }
+
         PopulateFromValueObjectAttributeArgs(args);
     }
 

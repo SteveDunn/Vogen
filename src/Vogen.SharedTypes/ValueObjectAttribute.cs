@@ -90,6 +90,30 @@ namespace Vogen
         }
 
         /// <summary>
+        /// Configures the default string comparison for this individual value object.
+        /// </summary>
+        /// <param name="stringDefaultComparison">Specifies the default <see cref="StringComparisonDefault"/> used for <c>==</c>, <c>Equals</c>, and <c>GetHashCode</c> on string-backed value objects.</param>
+        public ValueObjectAttribute(StringComparisonDefault stringDefaultComparison) : this(
+            Conversions.Unspecified,
+            null,
+            Customizations.None,
+            DeserializationStrictness.AllowValidAndKnownInstances,
+            DebuggerAttributeGeneration.Default,
+            ComparisonGeneration.Default,
+            StringComparersGeneration.Unspecified,
+            CastOperator.Unspecified,
+            CastOperator.Unspecified,
+            ParsableForStrings.Unspecified,
+            ParsableForPrimitives.Unspecified,
+            TryFromGeneration.Unspecified,
+            IsInitializedMethodGeneration.Unspecified,
+            PrimitiveEqualityGeneration.Unspecified,
+            NumericsGeneration.Unspecified,
+            stringDefaultComparison)
+        {
+        }
+
+        /// <summary>
         /// Configures aspects of this individual value object.
         /// </summary>
         /// <param name="conversions">Specifies what conversion code is generated - defaults to <see cref="Conversions.Default"/> which generates type converters and a converter to handle serialization using System.Text.Json</param>
