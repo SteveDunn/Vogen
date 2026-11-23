@@ -126,7 +126,7 @@ internal static class GenerateCodeForParse
     private static void BuildParseMethod(IMethodSymbol methodSymbol, StringBuilder sb, VoWorkItem item)
     {
         string parameters = BuildParametersForParse(methodSymbol, item);
-        string parameterNames = BuildParameterNamesForParse(methodSymbol);
+        string parameterNames = BuildParameterNamesForParse(methodSymbol, item);
         string staticOrNot = methodSymbol.IsStatic ? "static " : string.Empty;
 
         var inheritDocRef = methodSymbol.OriginalDefinition.ToString()!
@@ -185,7 +185,7 @@ internal static class GenerateCodeForParse
             _ => ""
         };
 
-    private static string BuildParameterNamesForParse(IMethodSymbol methodSymbol)
+    private static string BuildParameterNamesForParse(IMethodSymbol methodSymbol, VoWorkItem item)
     {
         var parametersLength = methodSymbol.Parameters.Length;
         
@@ -194,7 +194,10 @@ internal static class GenerateCodeForParse
         for (var index = 0; index < parametersLength; index++)
         {
             var eachParameter = methodSymbol.Parameters[index];
-            l.Add($"{eachParameter.Name}");
+            l.Add(Util.GenerateNormalizeParsedArgumentIfNeeded(
+                item,
+                eachParameter.Name,
+                eachParameter.Type.SpecialType == SpecialType.System_String));
         }
 
         return string.Join(", ", l);

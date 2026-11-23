@@ -139,6 +139,21 @@ internal static class Util
         return string.Empty;
     }
 
+    /// <summary>
+    /// Produces the argument passed to the underlying type's Parse/TryParse, wrapping it in a
+    /// call to the user's NormalizeParsed method when one is present. Only string-based overloads
+    /// can be normalized this way, because NormalizeParsed takes and returns a string.
+    /// </summary>
+    public static string GenerateNormalizeParsedArgumentIfNeeded(VoWorkItem workItem, string argument, bool isStringBased)
+    {
+        if (!isStringBased || workItem.NormalizeParsedMethod is null)
+        {
+            return argument;
+        }
+
+        return $"{workItem.TypeToAugment.Identifier}.{workItem.NormalizeParsedMethod.Identifier.Value}({argument})";
+    }
+
 
     public static string EscapeKeywordsIfRequired(string name)
     {

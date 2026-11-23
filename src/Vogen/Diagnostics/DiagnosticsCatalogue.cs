@@ -89,6 +89,21 @@ internal static class DiagnosticsCatalogue
         "NormalizeInput must be static",
         "{0} must be static");
 
+    private static readonly DiagnosticDescriptor _normalizeParsedMethodMustBeStatic = CreateDescriptor(
+        RuleIdentifiers.NormalizeParsedMethodMustBeStatic,
+        "NormalizeParsed must be static",
+        "{0} must be static");
+
+    private static readonly DiagnosticDescriptor _normalizeParsedMethodMustReturnString = CreateDescriptor(
+        RuleIdentifiers.NormalizeParsedMethodMustReturnString,
+        "NormalizeParsed returns incorrect type",
+        "{0} must return a string");
+
+    private static readonly DiagnosticDescriptor _normalizeParsedMethodTakeOneParameterOfString = CreateDescriptor(
+        RuleIdentifiers.NormalizeParsedMethodTakeOneParameterOfString,
+        "NormalizeParsed accepts wrong type",
+        "{0} must accept one string parameter");
+
     private static readonly DiagnosticDescriptor _instanceMethodCannotHaveNullArgumentName = CreateDescriptor(
         RuleIdentifiers.InstanceMethodCannotHaveNullArgumentName,
         "Instance attribute cannot have null name",
@@ -161,6 +176,15 @@ internal static class DiagnosticsCatalogue
 
     public static Diagnostic NormalizeInputMethodMustBeStatic(MethodDeclarationSyntax member) => 
         Create(_normalizeInputMethodMustBeStatic, member.GetLocation(), member.Identifier);
+
+    public static Diagnostic NormalizeParsedMethodMustBeStatic(MethodDeclarationSyntax member) => 
+        Create(_normalizeParsedMethodMustBeStatic, member.GetLocation(), member.Identifier);
+
+    public static Diagnostic NormalizeParsedMethodMustReturnString(MethodDeclarationSyntax member) => 
+        Create(_normalizeParsedMethodMustReturnString, member.GetLocation(), member.Identifier);
+
+    public static Diagnostic NormalizeParsedMethodTakeOneParameterOfString(MethodDeclarationSyntax member) => 
+        Create(_normalizeParsedMethodTakeOneParameterOfString, member.GetLocation(), member.Identifier);
 
     public static Diagnostic RecordToStringOverloadShouldBeSealed(Location location, string voClassName) => 
         BuildDiagnostic(_recordToStringOverloadShouldBeSealed, voClassName, location);
