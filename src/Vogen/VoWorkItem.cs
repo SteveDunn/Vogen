@@ -17,6 +17,8 @@ public class VoWorkItem
     
     public MethodDeclarationSyntax? NormalizeInputMethod { get; init; }
     
+    public MethodDeclarationSyntax? NormalizeParsedMethod { get; init; }
+    
     public MethodDeclarationSyntax? ValidateMethod { get; init; }
 
     public INamedTypeSymbol UnderlyingType

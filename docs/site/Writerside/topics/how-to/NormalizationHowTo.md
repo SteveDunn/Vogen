@@ -70,3 +70,34 @@ namespace Vogen.Examples.TypicalScenarios
 There are various compiler errors associated with malformed normalization methods.
 
 This functionality was requested in [this feature request](https://github.com/SteveDunn/Vogen/issues/80).
+
+## Normalize the string before parsing
+
+`NormalizeInput` runs after the underlying value has been produced, so it cannot help when
+`Parse` / `TryParse` rejects the input before it gets there. A value object whose string form
+carries a prefix — `"E12"` for a value of `12`, for example — fails in the underlying type's
+parser long before `NormalizeInput` is called.
+
+For those types, add a private method named `NormalizeParsed`. It takes the string that is about
+to be parsed and returns the string that the underlying type's `Parse` / `TryParse` should
+receive instead:
+
+```c#
+[ValueObject<int>]
+public partial struct ErrorCode
+{
+    private static string NormalizeParsed(string inputToParse) => inputToParse.TrimStart('E');
+
+    public override string ToString() => $"E{Value}";
+}
+```
+
+`ErrorCode.Parse("E12").Value` is now `12`, and `ErrorCode.TryParse("E12", out var code)` returns
+`true` with `code.Value` equal to `12`.
+
+`NormalizeParsed` must be `static`, take a `string`, and return a `string`. It is applied to the
+string-based `Parse` and `TryParse` overloads; span-based overloads are left untouched because
+they do not take a `string`.
+
+This functionality was requested in [this feature request](https://github.com/SteveDunn/Vogen/issues/969).
+

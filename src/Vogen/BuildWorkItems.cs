@@ -120,6 +120,7 @@ internal static class BuildWorkItems
 
         MethodDeclarationSyntax? validateMethod = null;
         MethodDeclarationSyntax? normalizeInputMethod = null;
+        MethodDeclarationSyntax? normalizeParsedMethod = null;
 
         // add any validator or normalize methods it finds
         foreach (var memberDeclarationSyntax in voTypeSyntax.Members)
@@ -136,6 +137,11 @@ internal static class BuildWorkItems
                 if (TryHandleNormalizeMethod(methodName, mds, context, config, target))
                 {
                     normalizeInputMethod = mds;
+                }
+
+                if (TryHandleNormalizeParsedMethod(methodName, mds, context, target))
+                {
+                    normalizeParsedMethod = mds;
                 }
             }
         }
@@ -175,6 +181,7 @@ internal static class BuildWorkItems
             UnderlyingType = underlyingType,
             ValidateMethod = validateMethod,
             NormalizeInputMethod = normalizeInputMethod,
+            NormalizeParsedMethod = normalizeParsedMethod,
             FullAliasedNamespace = voSymbolInformation.FullAliasedNamespace(),
             FullUnaliasedNamespace = voSymbolInformation.FullUnalisaedNamespace(),
             IsSealed = voSymbolInformation.IsSealed,
@@ -364,6 +371,44 @@ internal static class BuildWorkItems
         if (!AreSameType(mds.ReturnType, config.UnderlyingType, target.SemanticModel))
         {
             context.ReportDiagnostic(DiagnosticsCatalogue.NormalizeInputMethodMustReturnUnderlyingType(mds));
+            return false;
+        }
+
+        return true;
+    }
+
+    private static bool TryHandleNormalizeParsedMethod(
+        string? methodName,
+        MethodDeclarationSyntax mds,
+        SourceProductionContext context,
+        VoTarget target)
+    {
+        if (StringComparer.OrdinalIgnoreCase.Compare(methodName, "normalizeparsed") != 0)
+        {
+            return false;
+        }
+
+        if (!IsMethodStatic(mds))
+        {
+            context.ReportDiagnostic(DiagnosticsCatalogue.NormalizeParsedMethodMustBeStatic(mds));
+            return false;
+        }
+
+        if (mds.ParameterList.Parameters.Count != 1)
+        {
+            context.ReportDiagnostic(DiagnosticsCatalogue.NormalizeParsedMethodTakeOneParameterOfString(mds));
+            return false;
+        }
+
+        if (!AreSameType(mds.ParameterList.Parameters[0].Type, target.SemanticModel.Compilation.GetSpecialType(SpecialType.System_String), target.SemanticModel))
+        {
+            context.ReportDiagnostic(DiagnosticsCatalogue.NormalizeParsedMethodTakeOneParameterOfString(mds));
+            return false;
+        }
+
+        if (!AreSameType(mds.ReturnType, target.SemanticModel.Compilation.GetSpecialType(SpecialType.System_String), target.SemanticModel))
+        {
+            context.ReportDiagnostic(DiagnosticsCatalogue.NormalizeParsedMethodMustReturnString(mds));
             return false;
         }
 

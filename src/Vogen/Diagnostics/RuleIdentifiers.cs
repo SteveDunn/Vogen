@@ -47,4 +47,7 @@ public static class RuleIdentifiers
     public const string PropertyOfValueObjectShouldBeInitialized = "VOG038";
     public const string StringDefaultComparisonNotApplicable = "VOG039";
     public const string DoNotUseGetValueOrDefault = "VOG040";
+    public const string NormalizeParsedMethodMustBeStatic = "VOG041";
+    public const string NormalizeParsedMethodMustReturnString = "VOG042";
+    public const string NormalizeParsedMethodTakeOneParameterOfString = "VOG043";
 }

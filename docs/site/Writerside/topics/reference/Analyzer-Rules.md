@@ -39,3 +39,6 @@ Vogen emits the following diagnostics. Errors (VOGxxx) prevent code generation; 
 | VOG035 | Error | Value object referenced in a conversion marker must explicitly specify its primitive type |
 | VOG036 | Error | Both implicit and explicit casts specified |
 | VOG037 | Warning | `NumericsGeneration.Generate` has no effect because the underlying type does not implement `INumberBase<T>` |
+| VOG041 | Error | NormalizeParsed method must be static |
+| VOG042 | Error | NormalizeParsed method must return a string |
+| VOG043 | Error | NormalizeParsed method must take one string parameter |

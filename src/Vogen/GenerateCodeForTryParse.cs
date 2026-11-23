@@ -116,7 +116,7 @@ public static class GenerateCodeForTryParse
     private static void BuildHoistedTryParseMethod(IMethodSymbol methodSymbol, StringBuilder sb, VoWorkItem item)
     {
         string parameters = BuildParametersForTryParse(methodSymbol, item);
-        string parameterNames = BuildParameterNamesForTryParse(methodSymbol);
+        string parameterNames = BuildParameterNamesForTryParse(methodSymbol, item);
         string staticOrNot = methodSymbol.IsStatic ? "static " : string.Empty;
 
         var inheritDocRef = methodSymbol.OriginalDefinition.ToString()!
@@ -199,13 +199,16 @@ public static class GenerateCodeForTryParse
             _ => ""
         };
 
-    private static string BuildParameterNamesForTryParse(IMethodSymbol methodSymbol)
+    private static string BuildParameterNamesForTryParse(IMethodSymbol methodSymbol, VoWorkItem item)
     {
         List<string> l = new();
         for (var index = 0; index < methodSymbol.Parameters.Length-1; index++)
         {
             var eachParameter = methodSymbol.Parameters[index];
-            l.Add($"{eachParameter.Name}");
+            l.Add(Util.GenerateNormalizeParsedArgumentIfNeeded(
+                item,
+                eachParameter.Name,
+                eachParameter.Type.SpecialType == SpecialType.System_String));
         }
 
         return string.Join(", ", l);
